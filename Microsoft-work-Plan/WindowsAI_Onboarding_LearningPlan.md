@@ -10,10 +10,10 @@
 
 | Week | Focus Area | Outcome |
 |------|-------------|---------|
-| Apr 9–15 | 🔹 ML + Python Stack Refresh | Be confident with core ML ideas and tools |
-| Apr 16–22 | 🔹 Deep Learning + Transformers | Understand how neural networks and GPTs work |
-| Apr 23–29 | 🔹 Generative AI + ChatGPT Internals | Go deep into LLMs, RLHF, prompting |
-| Apr 30–May 9 | 🔹 Windows AI + ONNX + Azure Prep | Get hands-on with Microsoft’s AI stack and tools |
+| Apr 26–02 | 🔹 ML + Python Stack Refresh | Be confident with core ML ideas and tools |
+| Apr 03–09 | 🔹 Deep Learning + Transformers | Understand how neural networks and GPTs work |
+| Apr 10–16 | 🔹 Generative AI + ChatGPT Internals | Go deep into LLMs, RLHF, prompting |
+| Apr 17–May 25 | 🔹 Windows AI + ONNX + Azure Prep | Get hands-on with Microsoft’s AI stack and tools |
 
 ---
 
