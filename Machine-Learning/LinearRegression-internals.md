@@ -12,7 +12,7 @@
 
 Trying to find the best line:
 
-\[ \text{Predicted value (\hat{y})} = wX + b \]
+**Predicted value (ŷ) = wX + b**
 
 Where:
 - `w`: weight (slope)
@@ -22,27 +22,26 @@ Where:
 
 ### 2. Goal
 
-Minimize the error (difference between actual `y` and predicted `\hat{y}`) using **Mean Squared Error (MSE)**:
+Minimize the error (difference between actual `y` and predicted `ŷ`) using **Mean Squared Error (MSE)**:
 
-\[ \text{MSE} = \frac{1}{n} \sum_{i=1}^{n}(y_i - (wX_i + b))^2 \]
+**MSE = (1/n) * Σ(yᵢ - (wXᵢ + b))²**
 
 ---
 
 ### 3. How scikit-learn Finds `w` and `b`
 
-It uses **Least Squares Method** (Analytical solution), not gradient descent:
+It uses **Least Squares Method** (Analytical solution), not gradient descent.
 
 ### The Formula:
 
-\[ w = (X^TX)^{-1}X^Ty \]
+**w = (XᵀX)⁻¹Xᵀy**
 
 Where:
-- \(X\) = input matrix
-- \(X^T\) = transpose of \(X\)
-- \((X^TX)^{-1}\) = inverse of \(X^TX\)
-- \(y\) = output vector
+- `Xᵀ` = transpose of `X`
+- `(XᵀX)⁻¹` = inverse of `XᵀX`
+- `y` = output vector
 
-**Bias** \(b\) is also automatically calculated if `fit_intercept=True`.
+**Bias** `b` is also automatically calculated if `fit_intercept=True`.
 
 ---
 
@@ -58,8 +57,7 @@ Where:
 
 - For a new input `X_new`, predict:
 
-\[ \hat{y} = wX\_new + b \]
-
+**ŷ = w * X_new + b**
 
 ---
 
@@ -89,13 +87,13 @@ theta_best = np.linalg.inv(X_b.T.dot(X_b)).dot(X_b.T).dot(y)
 
 # 🚀 Your Example (House Size vs Price)
 
-- Increase 500 sq ft -> Increase 25 lakhs
+- Increase 500 sq ft ➔ Increase 25 lakhs
 - So slope `w ≈ 0.05`
 - Intercept `b ≈ 0`
 
 Prediction for 1800:
 
-\[ \text{price} = (0.05 \times 1800) = 90 \text{ lakhs} \]
+**price = 0.05 × 1800 = 90 lakhs**
 
 ---
 
