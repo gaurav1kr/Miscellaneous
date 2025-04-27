@@ -91,6 +91,78 @@ model.fit(X, y)
 
 print(model.predict([[1, 1]]))  # Output: [1] -> COVID Positive
 ```
+##A possible output of above sample can be '0' also. A discussion is below :-
+
+# Why Logistic Regression Predicted '0' Instead of '1' and How `class_weight='balanced'` Fixed It
+
+## Problem Summary
+
+We trained a `LogisticRegression` model with this small dataset:
+
+| Feature 1 | Feature 2 | Label |
+|:---------:|:---------:|:-----:|
+|     1     |     1     |   1   |
+|     1     |     0     |   0   |
+|     0     |     1     |   0   |
+|     0     |     0     |   0   |
+
+Expected output: `1` (COVID Positive)
+
+Actual output: `0`
+
+---
+
+## Why Was the Output '0'?
+
+- **Class Imbalance:**
+  - 3 samples with label `0`, only 1 sample with label `1`.
+  - Logistic Regression tries to minimize error. Predicting `0` most of the time is safer.
+
+- **Regularization:**
+  - By default, `LogisticRegression` uses `penalty='l2'` and `C=1.0`.
+  - This penalizes large weights, leading to simpler decision boundaries favoring the majority class (`0`).
+
+- **Threshold for Classification:**
+  - Logistic Regression predicts based on probability.
+  - If probability of `1` is less than `0.5`, it predicts `0`.
+
+Thus, even for input `[1, 1]`, the model ended up predicting `0`.
+
+---
+
+## How `class_weight='balanced'` Fixed It
+
+Code after modification:
+```python - we can replace below in original code
+model = LogisticRegression(class_weight='balanced')
+model.fit(X, y)
+
+print(model.predict([[1, 1]]))
+```
+
+- **Automatic Weight Adjustment:**
+  - `class_weight='balanced'` sets class weights inversely proportional to their frequencies.
+  - Minority class (`1`) gets more importance during training.
+
+- **Effect on Model:**
+  - Misclassifying a `1` incurs a heavier penalty.
+  - The model adjusts its decision boundary to favor correct predictions for the minority class.
+
+- **Outcome:**
+  - Now for input `[1, 1]`, the model correctly predicts `1`.
+
+---
+
+## Key Takeaways
+
+- **Always be careful with class imbalance**, especially in small datasets.
+- **Use `class_weight='balanced'`** when imbalance is present.
+- **Monitor prediction probabilities** (`predict_proba`) if results seem counter-intuitive.
+- **Tune regularization (`C` value)** if needed to adjust model complexity.
+
+---
+
+This small tweak helped the model respect minority class samples and corrected the prediction behavior!
 
 ---
 
