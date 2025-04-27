@@ -31,13 +31,14 @@ Else -> class 0
 
 - **Loss Function:** Binary Cross-Entropy Loss
 
-\[
-\text{Loss} = - \left( y \log(p) + (1 - y) \log(1 - p) \right)
-\]
+\[ \text{Loss} = - \left( y \log(p) + (1 - y) \log(1 - p) \right) \]
 
-where:
+Where:
+
 - \( y \) = actual label (0 or 1)
-- \( p \) = predicted probability from sigmoid function
+
+- \( p \) = predicted probability from the sigmoid function
+
 
 - **Optimization:** Use Gradient Descent to update weights and bias.
 
