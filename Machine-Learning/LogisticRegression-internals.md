@@ -5,40 +5,40 @@
 
 - Takes weighted sum of input features.
 - Applies a Sigmoid function to squash output between 0 and 1.
-- If probability > 0.5 -> predict class 1, else class 0.
+- If probability > 0.5 → predict class 1, else class 0.
 
 ## 2. Step-by-Step
 
 Given input features `X = [x1, x2]`, weights `[w1, w2]`, and bias `b`:
 
 ### Step 1: Linear Combination
-```
+```python
 z = w1 * x1 + w2 * x2 + b
 ```
 
 ### Step 2: Apply Sigmoid
-```
+```python
 sigmoid(z) = 1 / (1 + exp(-z))
 ```
 
 ### Step 3: Make Prediction
-```
-If sigmoid(z) >= 0.5 -> class 1
-Else -> class 0
+```python
+if sigmoid(z) >= 0.5:
+    predict class 1
+else:
+    predict class 0
 ```
 
 ## 3. Training the Model
 
 - **Loss Function:** Binary Cross-Entropy Loss
 
-\[ \text{Loss} = - \left( y \log(p) + (1 - y) \log(1 - p) \right) \]
+The Loss is calculated as:  
+**Loss = - [ y × log(p) + (1 - y) × log(1 - p) ]**
 
-Where:
-
-- \( y \) = actual label (0 or 1)
-
-- \( p \) = predicted probability from the sigmoid function
-
+where:
+- `y` = actual label (0 or 1)
+- `p` = predicted probability output by the sigmoid function
 
 - **Optimization:** Use Gradient Descent to update weights and bias.
 
@@ -94,8 +94,8 @@ if __name__ == "__main__":
 
 | Step | What happens |
 |:----:|:-------------|
-| Linear model | \( z = wX + b \) |
-| Non-linearity | Sigmoid activation \( \sigma(z) \) |
+| Linear model | z = wX + b |
+| Non-linearity | Sigmoid activation σ(z) |
 | Loss function | Binary Cross-Entropy |
 | Optimization | Gradient Descent |
 
