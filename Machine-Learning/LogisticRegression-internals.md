@@ -30,7 +30,14 @@ Else -> class 0
 ## 3. Training the Model
 
 - **Loss Function:** Binary Cross-Entropy Loss
-\[ Loss = - \left[ y \log(p) + (1-y) \log(1-p) \right] \]
+
+\[
+\text{Loss} = - \left( y \log(p) + (1 - y) \log(1 - p) \right)
+\]
+
+where:
+- \( y \) = actual label (0 or 1)
+- \( p \) = predicted probability from sigmoid function
 
 - **Optimization:** Use Gradient Descent to update weights and bias.
 
