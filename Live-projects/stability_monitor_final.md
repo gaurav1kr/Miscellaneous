@@ -156,19 +156,40 @@ cpu_usage = 100 * ((total_time / Hertz) / seconds)
 
 ---
 
-## 🔷 FlashMonitor (Detailed)
+## 🔷 FlashMonitoring (Enhanced)
 
 ### Scope
-- Focus on `/opt` partition
+- Monitors flash usage across all processes in the TV system
+- Primarily focuses on critical partitions like `/opt`
 
-### Behavior
-- Monitor total flash usage
-- Identify **top 5 consumers**
+### Core Logic
+1. Collect flash usage of all running processes
+2. Sort processes in **descending order of flash consumption**
+3. Identify **top 5 flash-consuming processes**
 
-### Action
-- Store top processes in SQLite DB
-- Trigger alarm
-- Reboot system
+### KPI Integration
+- Top 5 processes are continuously reported to **Samsung KPI server**
+- Helps field engineers debug issues when customers report:
+  - TV hanging / stuck scenarios
+  - Performance degradation
+
+### Customer Issue Debug Flow
+- When a complaint is raised:
+  - Engineers fetch KPI data
+  - Analyze **top 5 flash consumers at that time**
+  - Identify problematic processes quickly
+
+### Threshold-Based Protection
+- A global flash usage threshold is defined
+- If total flash usage exceeds threshold:
+  - System triggers **power-off signal**
+  - Top 5 processes are **marked in RED in KPI server**
+
+### Alerting Mechanism
+- In case of abrupt shutdown reported by customer:
+  - KPI server already contains **red-marked processes**
+  - Immediate notification sent to process owners
+  - Enables faster root cause analysis
 
 ---
 
