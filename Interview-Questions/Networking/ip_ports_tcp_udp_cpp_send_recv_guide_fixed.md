@@ -24,9 +24,9 @@ sequenceDiagram
     participant CK as Client OS kernel
     participant SK as Server OS kernel
     participant S as Server process (192.168.1.20:8080)
-    S->>SK: socket(); bind(:8080); listen()
+    S->>SK: socket(), bind(:8080), listen()
     S->>SK: accept() [waits]
-    C->>CK: socket(); connect(server:8080)
+    C->>CK: socket(), connect(server:8080)
     CK->>SK: SYN
     SK->>CK: SYN-ACK
     CK->>SK: ACK
@@ -339,7 +339,7 @@ For two actual machines, run the server on Machine B and invoke `./client 192.16
 sequenceDiagram
     participant C as UDP client
     participant S as UDP server
-    S->>S: socket(SOCK_DGRAM); bind(:8080)
+    S->>S: socket(SOCK_DGRAM), bind(:8080)
     C->>S: sendto("Hello", server IP:8080)
     Note over C,S: Datagram may arrive, be lost, or arrive out of order
     S->>S: recvfrom() gets payload and sender address
