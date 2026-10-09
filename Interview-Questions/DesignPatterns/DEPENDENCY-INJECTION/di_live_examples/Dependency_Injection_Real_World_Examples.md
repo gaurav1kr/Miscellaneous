@@ -1,6 +1,97 @@
-# Dependency Injection in C++11/14 — Real-World Examples
+# Dependency Injection in C++11/14 — Fundamentals and Real-World Examples
 
-> **Core idea:** Give a class the dependencies it needs instead of constructing them inside it. This keeps business logic independent of concrete infrastructure implementations.
+> **Core idea:** A class should receive the dependencies it needs from outside instead of hard-coding their construction internally. Dependency Injection (DI) is a design technique, not a GoF creational pattern.
+
+# Part I — Understanding Dependency Injection
+
+## 1. What is Dependency Injection?
+
+A **dependency** is another object or service that a class needs to perform its work. **Dependency Injection** means that the caller (or composition root) constructs that dependency and supplies it to the class, typically through a constructor, setter, or method parameter.
+
+For example, `NotificationService` needs a sender. Instead of constructing an `EmailSender` internally, it receives an `INotificationSender` reference. The service can now work with Email, SMS, Push, or a test double without changing its code.
+
+## 2. Why is it used?
+
+- **Loose coupling:** Business logic depends on an interface instead of a concrete implementation.
+- **Testability:** Replace real databases, hardware, network clients, or authentication providers with fakes or mocks.
+- **Flexibility:** Choose different implementations for different platforms, environments, or deployments.
+- **Maintainability:** Change infrastructure implementations without rewriting the service that uses them.
+- **Explicit dependencies:** Constructor parameters reveal what a class requires.
+
+DI does not automatically require interfaces or a DI framework. Supplying a concrete dependency from outside is also injection; interfaces are especially useful when implementations vary.
+
+## 3. Before vs After DI
+
+![Without DI vs With DI](assets/di_before_after.svg)
+
+**Without DI — tightly coupled:**
+
+```cpp
+class NotificationService {
+    EmailSender sender;  // Concrete dependency constructed as part of service
+public:
+    void notify(const std::string& message) { sender.send(message); }
+};
+```
+
+**With DI — implementation supplied externally:**
+
+```cpp
+class INotificationSender {
+public:
+    virtual void send(const std::string& message) = 0;
+    virtual ~INotificationSender() {}
+};
+
+class NotificationService {
+    INotificationSender& sender; // Non-owning reference
+public:
+    explicit NotificationService(INotificationSender& s) : sender(s) {}
+    void notify(const std::string& message) { sender.send(message); }
+};
+
+// Caller / composition root:
+// EmailSender email;
+// NotificationService service(email);
+// service.notify("Welcome!");
+```
+
+**Important:** The injected sender must outlive `NotificationService` when stored as a reference. Use `std::unique_ptr` if the service should own the dependency, or `std::shared_ptr` if ownership must be shared.
+
+## 4. How DI works at runtime
+
+![Dependency injection runtime flow](assets/di_runtime.svg)
+
+1. The application constructs a concrete dependency such as `EmailSender`.
+2. It passes the dependency to `NotificationService`'s constructor.
+3. `NotificationService` stores the reference and uses the interface.
+4. `notify()` calls `send()`; virtual dispatch invokes the chosen implementation.
+5. In a test, the application can inject a fake sender instead.
+
+## 5. Types of Dependency Injection
+
+| Type | How it works | Typical use |
+|---|---|---|
+| **Constructor injection** | Pass required dependency to constructor | Preferred for mandatory dependencies |
+| **Setter injection** | Provide or replace dependency using a setter | Optional or reconfigurable dependency |
+| **Method injection** | Pass dependency to a particular operation | Dependency needed for one call only |
+
+Constructor injection makes required dependencies explicit and helps prevent partially initialized objects. Setter injection may need null/state checks. Method injection avoids storing a dependency when it is needed only temporarily.
+
+## 6. DI vs Dependency Inversion vs Factory vs Strategy
+
+- **Dependency Injection (DI):** How a class receives collaborators.
+- **Dependency Inversion Principle (DIP):** High-level policy and low-level implementation should depend on abstractions; DI often helps achieve this.
+- **Factory:** Encapsulates how concrete objects are created; a factory may be used by the composition root to create dependencies.
+- **Strategy:** Encapsulates interchangeable behaviors; a strategy object can be injected through DI.
+
+**When not to use DI:** Avoid introducing elaborate interfaces or containers for trivial objects with no meaningful variation. Prefer the simplest design that supports testing and expected change.
+
+---
+
+# Part II — Real-World C++ Examples
+
+The examples below use compact, illustrative implementations. Console output is a placeholder for real database, networking, cloud, hardware, and authentication operations.
 
 ## 1. Database Access — MySQL vs SQLite
 

@@ -1,3 +1,3 @@
-# Dependency Injection — Real-World C++ Examples
+# Dependency Injection in C++11/14
 
-Read [the complete guide](Dependency_Injection_Real_World_Examples.md). All SVG diagrams are in `assets/` and render in GitHub using relative paths. Every code block is a standalone C++11 example.
+Start with `Dependency_Injection_Real_World_Examples.md`. It covers the fundamentals, motivation, UML-style diagrams, injection techniques, and five real-world examples. Keep the `assets/` folder next to the Markdown file for GitHub rendering.
