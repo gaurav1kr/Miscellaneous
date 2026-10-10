@@ -1,30 +1,53 @@
-# Chapter 04 — String Matching and Sequence Alignment
+# Chapter 04 — Sequence alignment
 
-## Core mathematical idea
+> **Study goal:** Reconstruct the reasoning from the problem constraints. The example below is a teaching derivation; the linked original submission may use an equivalent optimized algorithm.
 
-Match prefixes by considering their final symbols .
+## 1. Start with a concrete question
 
-## A representative mathematical model
+**Worked example:** [1143. Longest Common Subsequence](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1143.md)
 
-`D(i,j)=\min(D(i-1,j)+1,D(i,j-1)+1,D(i-1,j-1)+[a_i\ne b_j])`
+**State meaning:** L(i,j): LCS length of first i chars of A and first j of B.
 
-The three alternatives correspond to delete, insert and substitute. In matching/counting variants, the aggregation changes.
+## 2. Why this recurrence follows
 
-**Important:** This formula is a pattern template. The precise recurrence for a listed problem must be derived from that problem’s constraints and code.
+If last characters match, extend a smaller optimal match. Otherwise at least one of the last characters is unused in an optimal common subsequence.
 
-## State-transition picture
+**Mathematical recurrence:**
+
+```text
+If A[i-1]=B[j-1]: L(i,j)=1+L(i-1,j-1); else max(L(i-1,j),L(i,j-1))
+```
+
+Before using the equation, identify the empty or impossible states, and check whether alternatives should be **added**, **maximized**, **minimized**, or **OR-ed**.
+
+## 3. Draw the decision and trace it
 
 ```mermaid
 flowchart TD
- A["Compare prefixes i and j"] --> B{"Last characters match?"}
- B -->|Yes| C["Use diagonal state"]
- B -->|No| D["Insert, delete or replace"]
- D --> E["Choose minimum cost"]
+ A["Compare last characters"] --> B{"Equal?"}
+ B -->|Yes| C["1 + diagonal state"]
+ B -->|No| D["Maximum of top and left states"]
 ```
 
-## How to study the linked problems
+**Trace:** A="abc", B="ac": row for empty A [0,0,0]; a [0,1,1]; ab [0,1,1]; abc [0,1,2]. Answer 2.
 
-For each problem: read the mathematical template, articulate its state and decision, inspect the submitted implementation, then justify why its transitions are correct. Compare with the previous problem: which constraint forced a new state dimension?
+### How to reproduce the trace on paper
+
+1. Write down the state definition, including exactly what the indices mean.
+2. Mark the base cases before any recursive calls.
+3. List the legal predecessor states or choices.
+4. Compute small states first; annotate each arrow with its reason.
+5. Compare the final result with a small manual enumeration.
+
+## 4. Connect mathematics to your C++
+
+Open [1143. Longest Common Subsequence](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1143.md) and find the line that performs the transition. If it is optimized, first imagine a full DP table, then explain why only a smaller number of previous states are required.
+
+**Interview questions:** Why are the cases exhaustive? Why do they not double-count? What invariant does each variable maintain? Which changes in the problem would require another state dimension?
+
+## 5. Related problems to compare
+
+The following links group problems for study. **Do not assume they all use the same recurrence**: compare the constraints and the submitted algorithm before transferring a technique.
 
 ## Problems in this family (25)
 
@@ -53,3 +76,4 @@ For each problem: read the mathematical template, articulate its state and decis
 - [3441. Minimum Cost Good Caption](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3441.md) — Hard
 - [3981. Count Distinct Ways to Form Target from Two Strings](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3981.md) — Hard
 - [3995. Minimum Cost to Convert String III](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3995.md) — Hard
+

@@ -1,31 +1,58 @@
-# Chapter 03 — Grid Paths and Geometric DP
+# Chapter 03 — Paths on a grid
 
-## Core mathematical idea
+> **Study goal:** Reconstruct the reasoning from the problem constraints. The example below is a teaching derivation; the linked original submission may use an equivalent optimized algorithm.
 
-A cell or position is a state; transitions come from legal predecessor positions .
+## 1. Start with a concrete question
 
-## A representative mathematical model
+**Worked example:** [63. Unique Paths II](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/63.md)
 
-`F(i,j)=F(i-1,j)+F(i,j-1)`
+**State meaning:** Number of valid routes ending at cell r,c.
 
-For minimum cost paths, replace + of paths with min of predecessor costs, then add the current cell cost. Obstacles contribute zero ways.
+## 2. Why this recurrence follows
 
-**Important:** This formula is a pattern template. The precise recurrence for a listed problem must be derived from that problem’s constraints and code.
+Every arrival comes from above or left. Since the last move is different, the two sets of paths do not overlap. Blocked cells contribute zero.
 
-## State-transition picture
+**Mathematical recurrence:**
+
+```text
+P(r,c)=P(r-1,c)+P(r,c-1) for unblocked cells; otherwise 0
+```
+
+Before using the equation, identify the empty or impossible states, and check whether alternatives should be **added**, **maximized**, **minimized**, or **OR-ed**.
+
+## 3. Draw the decision and trace it
 
 ```mermaid
 flowchart TD
- A["Paths to cell i,j"] --> B["Paths from above"]
- A --> C["Paths from left"]
- B --> D["Add counts"]
- C --> D
- D --> E["Obstacle: force zero"]
+ A["Start (0,0): 1"] --> B["(0,1): 1"]
+ A --> C["(1,0): 1"]
+ B --> D["(0,2): 1"]
+ C --> E["(2,0): 1"]
+ D --> F["(1,2): 1"]
+ E --> G["(2,1): 1"]
+ F --> H["Finish (2,2): 2"]
+ G --> H
 ```
 
-## How to study the linked problems
+**Trace:** 3×3 grid with obstacle at (1,1): row 0 = [1,1,1]; row 1 = [1,0,1]; row 2 = [1,1,2]. Answer 2.
 
-For each problem: read the mathematical template, articulate its state and decision, inspect the submitted implementation, then justify why its transitions are correct. Compare with the previous problem: which constraint forced a new state dimension?
+### How to reproduce the trace on paper
+
+1. Write down the state definition, including exactly what the indices mean.
+2. Mark the base cases before any recursive calls.
+3. List the legal predecessor states or choices.
+4. Compute small states first; annotate each arrow with its reason.
+5. Compare the final result with a small manual enumeration.
+
+## 4. Connect mathematics to your C++
+
+Open [63. Unique Paths II](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/63.md) and find the line that performs the transition. If it is optimized, first imagine a full DP table, then explain why only a smaller number of previous states are required.
+
+**Interview questions:** Why are the cases exhaustive? Why do they not double-count? What invariant does each variable maintain? Which changes in the problem would require another state dimension?
+
+## 5. Related problems to compare
+
+The following links group problems for study. **Do not assume they all use the same recurrence**: compare the constraints and the submitted algorithm before transferring a technique.
 
 ## Problems in this family (30)
 
@@ -59,3 +86,4 @@ For each problem: read the mathematical template, articulate its state and decis
 - [3429. Paint House IV](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3429.md) — Medium
 - [3459. Length of Longest V-Shaped Diagonal Segment](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3459.md) — Hard
 - [4016. Maximum Area of Two Non-Overlapping Square Submatrices](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/4016.md) — Medium
+

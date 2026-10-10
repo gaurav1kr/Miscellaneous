@@ -1,3 +1,5 @@
+> **Study expansion:** [301-problem coverage and verification](DRY-RUN-PROGRESS.md). All 301 pages now contain a walkthrough section; 28 have verified numerical examples, while 273 still need independent numerical verification.
+
 # Dynamic Programming: Mathematics → Recurrences → Your C++ Code
 
 **Source:** 301 latest Accepted C++ solutions from the supplied LeetCode export.

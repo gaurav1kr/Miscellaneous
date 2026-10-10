@@ -1,30 +1,57 @@
-# Chapter 09 — Bitmask, Assignment and Subset DP
+# Chapter 09 — Subset-state DP
 
-## Core mathematical idea
+> **Study goal:** Reconstruct the reasoning from the problem constraints. The example below is a teaching derivation; the linked original submission may use an equivalent optimized algorithm.
 
-Represent a chosen subset as bits of an integer .
+## 1. Start with a concrete question
 
-## A representative mathematical model
+**Worked example:** [464. Can I Win](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/464.md)
 
-`F(mask)=\operatorname{opt}_{i\notin mask}(cost(mask,i)+F(mask\cup\{i\}))`
+**State meaning:** Win(mask): whether current player can force a win from used-number set mask.
 
-There are 2^n subsets. Each transition adds or removes one element, subject to feasibility.
+## 2. Why this recurrence follows
 
-**Important:** This formula is a pattern template. The precise recurrence for a listed problem must be derived from that problem’s constraints and code.
+The state is the set of already chosen numbers. A winning move either finishes immediately or leaves the opponent in a losing state.
 
-## State-transition picture
+**Mathematical recurrence:**
+
+```text
+Win(mask)=OR over legal x of [x>=remaining OR NOT Win(mask with x used)]
+```
+
+Before using the equation, identify the empty or impossible states, and check whether alternatives should be **added**, **maximized**, **minimized**, or **OR-ed**.
+
+## 3. Draw the decision and trace it
 
 ```mermaid
 flowchart TD
- A["Mask of selected items"] --> B["Find unset bit"]
- B --> C["Check if assignment legal"]
- C --> D["Set bit in new mask"]
- D --> E["Update count or cost"]
+ A["Current used-number mask"] --> B["Try each unused number x"]
+ B --> C{"Reach target now?"}
+ C -->|Yes| D["Winning state"]
+ C -->|No| E["Evaluate opponent on next mask"]
+ E --> F{"Opponent loses?"}
+ F -->|Yes| D
+ F -->|No| G["Try another number"]
 ```
 
-## How to study the linked problems
+**Trace:** Numbers 1..3, target 4: first player chooses 1,2,or 3; examine each reply and whether it lets the opponent force a win.
 
-For each problem: read the mathematical template, articulate its state and decision, inspect the submitted implementation, then justify why its transitions are correct. Compare with the previous problem: which constraint forced a new state dimension?
+### How to reproduce the trace on paper
+
+1. Write down the state definition, including exactly what the indices mean.
+2. Mark the base cases before any recursive calls.
+3. List the legal predecessor states or choices.
+4. Compute small states first; annotate each arrow with its reason.
+5. Compare the final result with a small manual enumeration.
+
+## 4. Connect mathematics to your C++
+
+Open [464. Can I Win](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/464.md) and find the line that performs the transition. If it is optimized, first imagine a full DP table, then explain why only a smaller number of previous states are required.
+
+**Interview questions:** Why are the cases exhaustive? Why do they not double-count? What invariant does each variable maintain? Which changes in the problem would require another state dimension?
+
+## 5. Related problems to compare
+
+The following links group problems for study. **Do not assume they all use the same recurrence**: compare the constraints and the submitted algorithm before transferring a technique.
 
 ## Problems in this family (19)
 
@@ -47,3 +74,4 @@ For each problem: read the mathematical template, articulate its state and decis
 - [1986. Minimum Number of Work Sessions to Finish the Tasks](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1986.md) — Medium
 - [2035. Partition Array Into Two Arrays to Minimize Sum Difference](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/2035.md) — Hard
 - [2050. Parallel Courses III](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/2050.md) — Hard
+

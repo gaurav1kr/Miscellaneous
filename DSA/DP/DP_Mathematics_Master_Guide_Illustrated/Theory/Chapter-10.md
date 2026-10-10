@@ -1,52 +1,56 @@
-# Chapter 10 — Tree, Graph and DAG DP
+# Chapter 10 — Tree DP and return-value contracts
 
-## Core mathematical idea: solve subtrees, then combine them
+> **Study goal:** Reconstruct the reasoning from the problem constraints. The example below is a teaching derivation; the linked original submission may use an equivalent optimized algorithm.
 
-A rooted tree has no cycles, so once we solve the children of a node, we can solve the node. A **state** must describe exactly what information the parent needs. This is different from a global answer: a path sent upward cannot branch into both children.
+## 1. Start with a concrete question
 
-### Derive the recurrence — 124. Binary Tree Maximum Path Sum
+**Worked example:** [124. Binary Tree Maximum Path Sum](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/124.md)
 
-Let `gain(u)` be the maximum sum of a **single downward path** beginning at node `u`. We can reject negative child contributions:
+**State meaning:** Gain(u): maximum downward path beginning at u; Answer: maximum path anywhere.
 
-- `L = max(0, gain(left(u)))`
-- `R = max(0, gain(right(u)))`
-- `gain(u) = value(u) + max(L, R)`
-- `answer = max(answer, value(u) + L + R)`
+## 2. Why this recurrence follows
 
-**Why two formulas?** The path returned to the parent must have one branch, but a complete path passing through `u` may use both branches. This distinction is the key invariant.
+A path returned to the parent cannot branch in two directions. A complete path evaluated at the current node may use both children.
 
-For a root of `-10`, with left child `9` and right subtree rooted at `20` having children `15` and `7`, the best complete path is `15 → 20 → 7`, worth **42**. Returning both branches to the parent would be invalid.
+**Mathematical recurrence:**
 
-### Different graph problems require different mathematics
+```text
+Gain(u)=value(u)+max(0,Gain(left),Gain(right)); through(u)=value(u)+max(0,Gain(left))+max(0,Gain(right))
+```
 
-| Problem | Correct governing idea |
-|---|---|
-| 124. Binary Tree Maximum Path Sum | Postorder DP: downward gain versus global path |
-| 329. Longest Increasing Path | Memoized DFS on strictly increasing edges, forming a DAG |
-| 834. Sum of Distances in Tree | Two-pass rerooting DP |
-| 968. Binary Tree Cameras | Tree states describing covered / camera / uncovered |
-| 1786. Restricted Paths | Count paths along edges with decreasing shortest-path distance |
-| 1857. Largest Color Value | Topological order plus per-color path counts |
-| 1976. Number of Ways to Arrive | Dijkstra distance plus count of shortest paths |
+Before using the equation, identify the empty or impossible states, and check whether alternatives should be **added**, **maximized**, **minimized**, or **OR-ed**.
 
-**Do not reuse a probability recurrence for these problems.** Some linked problems use BFS, shortest paths, binary lifting, or graph structure rather than conventional DP.
-
-## State-transition picture
+## 3. Draw the decision and trace it
 
 ```mermaid
 flowchart TD
- A["Node u"] --> B["Solve left child"]
- A --> C["Solve right child"]
- B --> D["Gain returned to parent"]
+ A["Node 20"] --> B["Left child 15: gain 15"]
+ A --> C["Right child 7: gain 7"]
+ B --> D["Return upward: 20 + max(15,7) = 35"]
  C --> D
- B --> E["Path through u"]
+ B --> E["Complete path: 15 + 20 + 7 = 42"]
  C --> E
- E --> F["Update global optimum"]
 ```
 
-## How to study the linked problems
+**Trace:** Tree [-10,9,20,null,null,15,7]: at 20, downward gain is 35, through-node candidate is 42 (=15+20+7).
 
-For each problem: read the mathematical template, articulate its state and decision, inspect the submitted implementation, then justify why its transitions are correct. Compare with the previous problem: which constraint forced a new state dimension?
+### How to reproduce the trace on paper
+
+1. Write down the state definition, including exactly what the indices mean.
+2. Mark the base cases before any recursive calls.
+3. List the legal predecessor states or choices.
+4. Compute small states first; annotate each arrow with its reason.
+5. Compare the final result with a small manual enumeration.
+
+## 4. Connect mathematics to your C++
+
+Open [124. Binary Tree Maximum Path Sum](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/124.md) and find the line that performs the transition. If it is optimized, first imagine a full DP table, then explain why only a smaller number of previous states are required.
+
+**Interview questions:** Why are the cases exhaustive? Why do they not double-count? What invariant does each variable maintain? Which changes in the problem would require another state dimension?
+
+## 5. Related problems to compare
+
+The following links group problems for study. **Do not assume they all use the same recurrence**: compare the constraints and the submitted algorithm before transferring a technique.
 
 ## Problems in this family (20)
 
@@ -70,3 +74,4 @@ For each problem: read the mathematical template, articulate its state and decis
 - [1976. Number of Ways to Arrive at Destination](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1976.md) — Medium
 - [2003. Smallest Missing Genetic Value in Each Subtree](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/2003.md) — Hard
 - [2127. Maximum Employees to Be Invited to a Meeting](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/2127.md) — Hard
+

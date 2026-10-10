@@ -1,40 +1,56 @@
-# Chapter 11 — Digit DP, Counting and Probability
+# Chapter 11 — Counting with digit restrictions
 
-## Core mathematical idea: constrained counting and probability
+> **Study goal:** Reconstruct the reasoning from the problem constraints. The example below is a teaching derivation; the linked original submission may use an equivalent optimized algorithm.
 
-This chapter contains several **different** mathematical techniques; identify the correct one before writing a recurrence.
+## 1. Start with a concrete question
 
-### Digit DP
+**Worked example:** [600. Non-negative Integers without Consecutive Ones](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/600.md)
 
-Count numbers under an upper bound digit by digit. Typical state: `F(pos, tight, started, history)`. `tight` means the chosen prefix still equals the upper bound. At each position, try valid digits and sum the number of valid suffixes.
+**State meaning:** C(n): binary strings of length n without adjacent ones.
 
-### Probability DP
+## 2. Why this recurrence follows
 
-For a random process, use the law of total probability:
+Split valid strings by their beginning: starting with 0 leaves n-1 unrestricted valid positions; starting with 10 leaves n-2. Counting numbers ≤N adds a tight-bound condition.
 
-`P(state) = sum over choices [ probability(choice) × P(next state) ]`
+**Mathematical recurrence:**
 
-For example, Knight Probability in Chessboard (688) counts the chance of remaining on the board after a fixed number of random moves.
+```text
+C(n)=C(n-1)+C(n-2), with C(0)=1 and C(1)=2
+```
 
-### Combinatorial contribution counting
+Before using the equation, identify the empty or impossible states, and check whether alternatives should be **added**, **maximized**, **minimized**, or **OR-ed**.
 
-Some problems count how often each element contributes rather than enumerate every subsequence. For instance, in Vowels of All Substrings (2063), index `i` (zero based) belongs to `(i+1) × (n-i)` substrings. Add that contribution for every vowel.
-
-**Warning:** a number of linked problems use greedy, monotonic stacks, prefix sums, or other methods, not digit DP or probability DP. Read each submitted solution before selecting a model.
-
-## State-transition picture
+## 3. Draw the decision and trace it
 
 ```mermaid
 flowchart TD
- A["Digit position pos"] --> B["Choose next digit"]
- B --> C["Update tight bound"]
- C --> D["Update history state"]
- D --> E["Count valid suffixes"]
+ A["Valid binary string length n"] --> B["Starts with 0"]
+ A --> C["Starts with 10"]
+ B --> D["C(n-1) completions"]
+ C --> E["C(n-2) completions"]
+ D --> F["Add disjoint counts"]
+ E --> F
 ```
 
-## How to study the linked problems
+**Trace:** Length 3 strings: 000,001,010,100,101. Thus C(3)=5.
 
-For each problem: read the mathematical template, articulate its state and decision, inspect the submitted implementation, then justify why its transitions are correct. Compare with the previous problem: which constraint forced a new state dimension?
+### How to reproduce the trace on paper
+
+1. Write down the state definition, including exactly what the indices mean.
+2. Mark the base cases before any recursive calls.
+3. List the legal predecessor states or choices.
+4. Compute small states first; annotate each arrow with its reason.
+5. Compare the final result with a small manual enumeration.
+
+## 4. Connect mathematics to your C++
+
+Open [600. Non-negative Integers without Consecutive Ones](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/600.md) and find the line that performs the transition. If it is optimized, first imagine a full DP table, then explain why only a smaller number of previous states are required.
+
+**Interview questions:** Why are the cases exhaustive? Why do they not double-count? What invariant does each variable maintain? Which changes in the problem would require another state dimension?
+
+## 5. Related problems to compare
+
+The following links group problems for study. **Do not assume they all use the same recurrence**: compare the constraints and the submitted algorithm before transferring a technique.
 
 ## Problems in this family (56)
 
@@ -94,3 +110,4 @@ For each problem: read the mathematical template, articulate its state and decis
 - [3458. Select K Disjoint Special Substrings](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3458.md) — Medium
 - [3989. Maximum Consistent Columns in a Grid](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3989.md) — Hard
 - [4058. Maximum Pulse Value After One Subarray Rotation](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/4058.md) — Medium
+

@@ -1,31 +1,57 @@
-# Chapter 01 — Mathematical Recurrences and Combinatorics
+# Chapter 01 — Counting paths and recurrence
 
-## Core mathematical idea
+> **Study goal:** Reconstruct the reasoning from the problem constraints. The example below is a teaching derivation; the linked original submission may use an equivalent optimized algorithm.
 
-A recurrence expresses a large answer using smaller answers .
+## 1. Start with a concrete question
 
-## A representative mathematical model
+**Worked example:** [70. Climbing Stairs](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/70.md)
 
-`F(n)=\sum_{c\in Choices(n)}F(next(n,c))`
+**State meaning:** Ways to reach step i.
 
-For counting, add disjoint cases. For optimization, replace sum with min or max. Base cases must express empty structures correctly.
+## 2. Why this recurrence follows
 
-**Important:** This formula is a pattern template. The precise recurrence for a listed problem must be derived from that problem’s constraints and code.
+Every valid path ends in a one-step or two-step move. These endings are disjoint, so add the counts.
 
-## State-transition picture
+**Mathematical recurrence:**
+
+```text
+W(i)=W(i-1)+W(i-2)
+```
+
+Before using the equation, identify the empty or impossible states, and check whether alternatives should be **added**, **maximized**, **minimized**, or **OR-ed**.
+
+## 3. Draw the decision and trace it
 
 ```mermaid
-flowchart TD
- A["Count ways for size n"] --> B["Choose final step"]
- B --> C["From n minus 1"]
- B --> D["From n minus 2"]
- C --> E["Add disjoint counts"]
+flowchart LR
+ A["Step 0: 1 way"] --> B["Step 1: 1 way"]
+ A --> C["Step 2: 2 ways"]
+ B --> C
+ B --> D["Step 3: 3 ways"]
+ C --> D
+ C --> E["Step 4: 5 ways"]
  D --> E
 ```
 
-## How to study the linked problems
+**Trace:** n=4: W(0)=1, W(1)=1, W(2)=2, W(3)=3, W(4)=5
 
-For each problem: read the mathematical template, articulate its state and decision, inspect the submitted implementation, then justify why its transitions are correct. Compare with the previous problem: which constraint forced a new state dimension?
+### How to reproduce the trace on paper
+
+1. Write down the state definition, including exactly what the indices mean.
+2. Mark the base cases before any recursive calls.
+3. List the legal predecessor states or choices.
+4. Compute small states first; annotate each arrow with its reason.
+5. Compare the final result with a small manual enumeration.
+
+## 4. Connect mathematics to your C++
+
+Open [70. Climbing Stairs](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/70.md) and find the line that performs the transition. If it is optimized, first imagine a full DP table, then explain why only a smaller number of previous states are required.
+
+**Interview questions:** Why are the cases exhaustive? Why do they not double-count? What invariant does each variable maintain? Which changes in the problem would require another state dimension?
+
+## 5. Related problems to compare
+
+The following links group problems for study. **Do not assume they all use the same recurrence**: compare the constraints and the submitted algorithm before transferring a technique.
 
 ## Problems in this family (33)
 
@@ -62,3 +88,4 @@ For each problem: read the mathematical template, articulate its state and decis
 - [1641. Count Sorted Vowel Strings](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1641.md) — Medium
 - [1866. Number of Ways to Rearrange Sticks With K Sticks Visible](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1866.md) — Hard
 - [1997. First Day Where You Have Been in All the Rooms](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1997.md) — Medium
+

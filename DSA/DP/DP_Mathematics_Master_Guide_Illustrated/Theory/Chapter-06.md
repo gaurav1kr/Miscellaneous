@@ -1,32 +1,55 @@
-# Chapter 06 — Interval and Partition DP
+# Chapter 06 — Interval decomposition
 
-## Core mathematical idea
+> **Study goal:** Reconstruct the reasoning from the problem constraints. The example below is a teaching derivation; the linked original submission may use an equivalent optimized algorithm.
 
-Split an interval at a chosen boundary, root, or last operation .
+## 1. Start with a concrete question
 
-## A representative mathematical model
+**Worked example:** [312. Burst Balloons](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/312.md)
 
-`F(l,r)=\min_{l\le k<r}(F(l,k)+F(k+1,r)+cost(l,k,r))`
+**State meaning:** D(l,r): maximum coins bursting balloons strictly between boundaries l and r.
 
-Some interval problems maximize rather than minimize. Choosing the last operation can make otherwise interacting subproblems independent.
+## 2. Why this recurrence follows
 
-**Important:** This formula is a pattern template. The precise recurrence for a listed problem must be derived from that problem’s constraints and code.
+Choosing the FIRST balloon leaves changing neighbors; choosing the LAST makes the interval boundaries fixed. This is the crucial mathematical trick.
 
-## State-transition picture
+**Mathematical recurrence:**
+
+```text
+D(l,r)=max over l<k<r of [D(l,k)+D(k,r)+a[l]*a[k]*a[r]]
+```
+
+Before using the equation, identify the empty or impossible states, and check whether alternatives should be **added**, **maximized**, **minimized**, or **OR-ed**.
+
+## 3. Draw the decision and trace it
 
 ```mermaid
 flowchart TD
- A["Solve interval l to r"] --> B["Choose split k"]
- B --> C["Solve left interval"]
- B --> D["Solve right interval"]
- C --> E["Combine with split cost"]
+ A["Interval (l,r)"] --> B["Choose k as LAST balloon"]
+ B --> C["Solve left interval (l,k)"]
+ B --> D["Solve right interval (k,r)"]
+ C --> E["Add final gain a[l] × a[k] × a[r]"]
  D --> E
- E --> F["Min or max over k"]
 ```
 
-## How to study the linked problems
+**Trace:** Padded [1,3,1,5,1]: choose a balloon k to burst LAST in an interval, after its interior neighbors have gone.
 
-For each problem: read the mathematical template, articulate its state and decision, inspect the submitted implementation, then justify why its transitions are correct. Compare with the previous problem: which constraint forced a new state dimension?
+### How to reproduce the trace on paper
+
+1. Write down the state definition, including exactly what the indices mean.
+2. Mark the base cases before any recursive calls.
+3. List the legal predecessor states or choices.
+4. Compute small states first; annotate each arrow with its reason.
+5. Compare the final result with a small manual enumeration.
+
+## 4. Connect mathematics to your C++
+
+Open [312. Burst Balloons](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/312.md) and find the line that performs the transition. If it is optimized, first imagine a full DP table, then explain why only a smaller number of previous states are required.
+
+**Interview questions:** Why are the cases exhaustive? Why do they not double-count? What invariant does each variable maintain? Which changes in the problem would require another state dimension?
+
+## 5. Related problems to compare
+
+The following links group problems for study. **Do not assume they all use the same recurrence**: compare the constraints and the submitted algorithm before transferring a technique.
 
 ## Problems in this family (34)
 
@@ -64,3 +87,4 @@ For each problem: read the mathematical template, articulate its state and decis
 - [1884. Egg Drop With 2 Eggs and N Floors](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1884.md) — Medium
 - [3414. Maximum Score of Non-overlapping Intervals](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3414.md) — Hard
 - [4009. Minimum Possible Maximum Waiting Time](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/4009.md) — Hard
+

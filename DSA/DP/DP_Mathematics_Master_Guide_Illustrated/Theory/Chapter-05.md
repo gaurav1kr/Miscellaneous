@@ -1,31 +1,53 @@
-# Chapter 05 — Subsequence and Ordering DP
+# Chapter 05 — Increasing subsequences
 
-## Core mathematical idea
+> **Study goal:** Reconstruct the reasoning from the problem constraints. The example below is a teaching derivation; the linked original submission may use an equivalent optimized algorithm.
 
-A subsequence is built by choosing a compatible predecessor .
+## 1. Start with a concrete question
 
-## A representative mathematical model
+**Worked example:** [300. Longest Increasing Subsequence](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/300.md)
 
-`L(i)=1+\max_{j<i,\;a_j<a_i}L(j)`
+**State meaning:** L(i): best increasing subsequence ending exactly at i.
 
-When there is no predecessor, length is one. More advanced variants add dimensions such as last difference or number of chosen elements.
+## 2. Why this recurrence follows
 
-**Important:** This formula is a pattern template. The precise recurrence for a listed problem must be derived from that problem’s constraints and code.
+Choose the previous element of the subsequence. The strict inequality makes the transition legal; taking the maximum finds the best predecessor.
 
-## State-transition picture
+**Mathematical recurrence:**
 
-```mermaid
-flowchart TD
- A["Subsequence ending at i"] --> B["Inspect earlier j"]
- B --> C{"Can j precede i?"}
- C -->|Yes| D["Extend length at j"]
- C -->|No| E["Skip j"]
- D --> F["Keep best length"]
+```text
+L(i)=1+max(L(j) for j<i and a[j]<a[i]); empty maximum=0
 ```
 
-## How to study the linked problems
+Before using the equation, identify the empty or impossible states, and check whether alternatives should be **added**, **maximized**, **minimized**, or **OR-ed**.
 
-For each problem: read the mathematical template, articulate its state and decision, inspect the submitted implementation, then justify why its transitions are correct. Compare with the previous problem: which constraint forced a new state dimension?
+## 3. Draw the decision and trace it
+
+```mermaid
+flowchart LR
+ A["1 at index 1"] --> B["2 at index 2"]
+ B --> C["5 at index 3"]
+ D["3 at index 0"] --> C
+```
+
+**Trace:** [3,1,2,5]: L = [1,1,2,3]. The LIS is [1,2,5], length 3.
+
+### How to reproduce the trace on paper
+
+1. Write down the state definition, including exactly what the indices mean.
+2. Mark the base cases before any recursive calls.
+3. List the legal predecessor states or choices.
+4. Compute small states first; annotate each arrow with its reason.
+5. Compare the final result with a small manual enumeration.
+
+## 4. Connect mathematics to your C++
+
+Open [300. Longest Increasing Subsequence](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/300.md) and find the line that performs the transition. If it is optimized, first imagine a full DP table, then explain why only a smaller number of previous states are required.
+
+**Interview questions:** Why are the cases exhaustive? Why do they not double-count? What invariant does each variable maintain? Which changes in the problem would require another state dimension?
+
+## 5. Related problems to compare
+
+The following links group problems for study. **Do not assume they all use the same recurrence**: compare the constraints and the submitted algorithm before transferring a technique.
 
 ## Problems in this family (23)
 
@@ -52,3 +74,4 @@ For each problem: read the mathematical template, articulate its state and decis
 - [1770. Maximum Score from Performing Multiplication Operations](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1770.md) — Hard
 - [1911. Maximum Alternating Subsequence Sum](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1911.md) — Medium
 - [3409. Longest Subsequence With Decreasing Adjacent Difference](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3409.md) — Medium
+
