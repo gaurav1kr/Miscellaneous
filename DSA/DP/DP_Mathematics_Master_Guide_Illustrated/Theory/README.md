@@ -37,3 +37,7 @@ The chapter recurrences are **templates**, not guaranteed to be the exact recurr
 ## GitHub link rules
 
 Theory chapters live in `Theory/` and link to `../Problems/<number>.md`. Individual problem pages link back to `../Theory/Chapter-XX.md`. Keep the directory structure intact when uploading.
+
+## Complexity analysis
+
+Every problem page now ends with a **Time and Space Complexity** section instead of **Interview self-check**. See [complexity review status](COMPLEXITY-REVIEW-STATUS.md) for verification limitations.
