@@ -28,22 +28,22 @@ For each problem: read the mathematical template, articulate its state and decis
 
 ## Problems in this family (19)
 
-- [464. Can I Win](Problems/464.md) — Medium
-- [473. Matchsticks to Square](Problems/473.md) — Medium
-- [526. Beautiful Arrangement](Problems/526.md) — Medium
-- [698. Partition to K Equal Sum Subsets](Problems/698.md) — Medium
-- [773. Sliding Puzzle](Problems/773.md) — Hard
-- [847. Shortest Path Visiting All Nodes](Problems/847.md) — Hard
-- [943. Find the Shortest Superstring](Problems/943.md) — Hard
-- [996. Number of Squareful Arrays](Problems/996.md) — Hard
-- [1125. Smallest Sufficient Team](Problems/1125.md) — Hard
-- [1349. Maximum Students Taking Exam](Problems/1349.md) — Hard
-- [1494. Parallel Courses II](Problems/1494.md) — Hard
-- [1595. Minimum Cost to Connect Two Groups of Points](Problems/1595.md) — Hard
-- [1723. Find Minimum Time to Finish All Jobs](Problems/1723.md) — Hard
-- [1755. Closest Subsequence Sum](Problems/1755.md) — Hard
-- [1815. Maximum Number of Groups Getting Fresh Donuts](Problems/1815.md) — Hard
-- [1947. Maximum Compatibility Score Sum](Problems/1947.md) — Medium
-- [1986. Minimum Number of Work Sessions to Finish the Tasks](Problems/1986.md) — Medium
-- [2035. Partition Array Into Two Arrays to Minimize Sum Difference](Problems/2035.md) — Hard
-- [2050. Parallel Courses III](Problems/2050.md) — Hard
+- [464. Can I Win](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/464.md) — Medium
+- [473. Matchsticks to Square](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/473.md) — Medium
+- [526. Beautiful Arrangement](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/526.md) — Medium
+- [698. Partition to K Equal Sum Subsets](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/698.md) — Medium
+- [773. Sliding Puzzle](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/773.md) — Hard
+- [847. Shortest Path Visiting All Nodes](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/847.md) — Hard
+- [943. Find the Shortest Superstring](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/943.md) — Hard
+- [996. Number of Squareful Arrays](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/996.md) — Hard
+- [1125. Smallest Sufficient Team](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1125.md) — Hard
+- [1349. Maximum Students Taking Exam](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1349.md) — Hard
+- [1494. Parallel Courses II](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1494.md) — Hard
+- [1595. Minimum Cost to Connect Two Groups of Points](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1595.md) — Hard
+- [1723. Find Minimum Time to Finish All Jobs](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1723.md) — Hard
+- [1755. Closest Subsequence Sum](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1755.md) — Hard
+- [1815. Maximum Number of Groups Getting Fresh Donuts](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1815.md) — Hard
+- [1947. Maximum Compatibility Score Sum](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1947.md) — Medium
+- [1986. Minimum Number of Work Sessions to Finish the Tasks](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1986.md) — Medium
+- [2035. Partition Array Into Two Arrays to Minimize Sum Difference](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/2035.md) — Hard
+- [2050. Parallel Courses III](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/2050.md) — Hard

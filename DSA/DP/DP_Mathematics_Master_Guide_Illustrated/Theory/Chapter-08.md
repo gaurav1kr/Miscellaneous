@@ -28,25 +28,25 @@ For each problem: read the mathematical template, articulate its state and decis
 
 ## Problems in this family (22)
 
-- [123. Best Time to Buy and Sell Stock III](Problems/123.md) — Hard
-- [188. Best Time to Buy and Sell Stock IV](Problems/188.md) — Hard
-- [309. Best Time to Buy and Sell Stock with Cooldown](Problems/309.md) — Medium
-- [552. Student Attendance Record II](Problems/552.md) — Hard
-- [678. Valid Parenthesis String](Problems/678.md) — Medium
-- [714. Best Time to Buy and Sell Stock with Transaction Fee](Problems/714.md) — Medium
-- [790. Domino and Tromino Tiling](Problems/790.md) — Medium
-- [801. Minimum Swaps To Make Sequences Increasing](Problems/801.md) — Hard
-- [818. Race Car](Problems/818.md) — Hard
-- [926. Flip String to Monotone Increasing](Problems/926.md) — Medium
-- [975. Odd Even Jump](Problems/975.md) — Hard
-- [1025. Divisor Game](Problems/1025.md) — Easy
-- [1220. Count Vowels Permutation](Problems/1220.md) — Hard
-- [1223. Dice Roll Simulation](Problems/1223.md) — Hard
-- [1255. Maximum Score Words Formed by Letters](Problems/1255.md) — Hard
-- [1411. Number of Ways to Paint N × 3 Grid](Problems/1411.md) — Hard
-- [1653. Minimum Deletions to Make String Balanced](Problems/1653.md) — Medium
-- [1787. Make the XOR of All Segments Equal to Zero](Problems/1787.md) — Hard
-- [3389. Minimum Operations to Make Character Frequencies Equal](Problems/3389.md) — Hard
-- [3434. Maximum Frequency After Subarray Operation](Problems/3434.md) — Medium
-- [3980. Minimum Operations to Transform Binary String](Problems/3980.md) — Medium
-- [3984. Divisible Game](Problems/3984.md) — Medium
+- [123. Best Time to Buy and Sell Stock III](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/123.md) — Hard
+- [188. Best Time to Buy and Sell Stock IV](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/188.md) — Hard
+- [309. Best Time to Buy and Sell Stock with Cooldown](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/309.md) — Medium
+- [552. Student Attendance Record II](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/552.md) — Hard
+- [678. Valid Parenthesis String](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/678.md) — Medium
+- [714. Best Time to Buy and Sell Stock with Transaction Fee](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/714.md) — Medium
+- [790. Domino and Tromino Tiling](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/790.md) — Medium
+- [801. Minimum Swaps To Make Sequences Increasing](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/801.md) — Hard
+- [818. Race Car](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/818.md) — Hard
+- [926. Flip String to Monotone Increasing](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/926.md) — Medium
+- [975. Odd Even Jump](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/975.md) — Hard
+- [1025. Divisor Game](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1025.md) — Easy
+- [1220. Count Vowels Permutation](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1220.md) — Hard
+- [1223. Dice Roll Simulation](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1223.md) — Hard
+- [1255. Maximum Score Words Formed by Letters](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1255.md) — Hard
+- [1411. Number of Ways to Paint N × 3 Grid](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1411.md) — Hard
+- [1653. Minimum Deletions to Make String Balanced](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1653.md) — Medium
+- [1787. Make the XOR of All Segments Equal to Zero](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/1787.md) — Hard
+- [3389. Minimum Operations to Make Character Frequencies Equal](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3389.md) — Hard
+- [3434. Maximum Frequency After Subarray Operation](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3434.md) — Medium
+- [3980. Minimum Operations to Transform Binary String](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3980.md) — Medium
+- [3984. Divisible Game](https://github.com/gaurav1kr/Miscellaneous/blob/main/DSA/DP/DP_Mathematics_Master_Guide_Illustrated/Problems/3984.md) — Medium
