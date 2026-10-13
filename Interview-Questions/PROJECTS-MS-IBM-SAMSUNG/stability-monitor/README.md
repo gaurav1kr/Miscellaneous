@@ -352,19 +352,21 @@ Example event is illustrative; not a recovered Samsung KPI schema.
 
 ## 10. KPI server, defect ownership and Splunk
 
+The following uses simple Mermaid participant identifiers for GitHub compatibility.
+
 ```mermaid
 sequenceDiagram
-    participant TV as TV Stability Monitor
-    participant Queue as Persistent Alarm Queue
-    participant KPI as Samsung KPI Server
-    participant Team as Product / Memory Team
-    participant Splunk as Splunk Dashboard
-    TV->>Queue: Store alarm + diagnostic details
-    Queue->>KPI: Upload when network available
-    KPI->>Team: Create / assign defect
-    KPI->>Splunk: Ingest alarm metadata
-    Team->>Team: Investigate offending process or storage owner
-    Note over TV,KPI: Customer UI never displays these alarms
+    participant TV as StabilityMonitor
+    participant Q as AlarmQueue
+    participant KPI as KPIServer
+    participant Team as EngineeringTeam
+    participant Dash as Splunk
+    TV->>Q: Persist alarm and diagnostics
+    Q->>KPI: Upload queued alarm
+    KPI->>Team: Create and assign defect
+    KPI->>Dash: Publish alarm metadata
+    Team->>Team: Investigate process or storage owner
+    Note over TV,KPI: No customer facing alarm
 ```
 
 In a hardened design, send asynchronously and durably queue before SIGABRT/reboot. On reboot, upload unsent events later. Use correlation IDs to deduplicate repeated alarms.
