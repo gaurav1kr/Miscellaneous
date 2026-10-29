@@ -1,0 +1,34 @@
+{
+  "id": "936",
+  "title": "Stamping The Sequence",
+  "slug": "stamping-the-sequence",
+  "url": "https://leetcode.com/problems/stamping-the-sequence/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy",
+    "Queue"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Queue",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings stamp and target . Initially, there is a string s of length target.length with all s[i] == '?' . \n \n In one turn, you can place stamp over s and replace every letter in the s with the corresponding letter from stamp . \n\n For example, if stamp = \"abc\" and target = \"abcba\" , then s is \"?????\" initially. In one turn you can:\n\n place stamp at index 0 of s to obtain \"abc??\" , \n \n place stamp at index 1 of s to obtain \"?abc?\" , or \n \n place stamp at index 2 of s to obtain \"??abc\" . \n \n Note that stamp must be fully contained in the boundaries of s in order to stamp (i.e., you cannot place stamp at index 3 of s ). \n\n We want to convert s to target using at most 10 * target.length turns. \n \n Return an array of the index of the left-most letter being stamped at each turn . If we cannot obtain target from s within 10 * target.length turns, return an empty array. \n\n Example 1: \n \n```\nInput:\n stamp = \"abc\", target = \"ababc\"\n\nOutput:\n [0,2]\n\nExplanation:\n Initially s = \"?????\".\n- Place stamp at index 0 to get \"abc??\".\n- Place stamp at index 2 to get \"ababc\".\n[1,0,2] would also be accepted as an answer, as well as some other answers.\n```\n\n Example 2: \n \n```\nInput:\n stamp = \"abca\", target = \"aabcaca\"\n\nOutput:\n [3,0,1]\n\nExplanation:\n Initially s = \"???????\".\n- Place stamp at index 3 to get \"???abca\".\n- Place stamp at index 0 to get \"abcabca\".\n- Place stamp at index 1 to get \"aabcaca\".\n```\n\n Constraints: \n\n 1 <= stamp.length <= target.length <= 1000 \n \n stamp and target consist of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    //replace character by '?'\n    int replace(int pos,string&stamp,string&target){\n        int m=stamp.size();\n        int cnt=0;\n        for(int i=0;i<m;i++){\n            if(target[pos+i]!='?'){\n                target[pos+i]='?';\n                cnt++;\n            }\n        }\n        return cnt;\n    }\n    // check whether that part from index pos can be replaced\n    bool canReplace(int pos,string&stamp, string&target){\n        int n=target.size();\n        int m=stamp.size();\n        for(int i=0;i<m;i++){\n            if(stamp[i]!=target[pos+i] && target[pos+i]!='?'){\n                return false;\n            }\n        }\n            return true;\n    }\n    vector<int> movesToStamp(string stamp, string target) {\n        int n=target.size();\n        vector<int>ans;\n        int m=stamp.size();\n\n        vector<bool>vis(n,false);\n        int cnt=0;\n        while(cnt!=n){\n            bool change=false;\n            //traverse target string and check whether it can be replaced..\n            for(int i=0;i<=n-m;i++){\n                if(!vis[i] && canReplace(i,stamp,target)){ \n                    vis[i]=true;//mark as visited\n                    change=true;\n                    ans.push_back(i);\n                    cnt+=replace(i,stamp,target);//count no. of replacement\n                    if(cnt==n){\n                        break;\n                    }\n                }\n            }\n            // not replace any character then return empty array\n            if(!change){\n                return {};\n            }\n        }\n\n        reverse(ans.begin(),ans.end());//reverse ,as we go from last to first \n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617066855",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

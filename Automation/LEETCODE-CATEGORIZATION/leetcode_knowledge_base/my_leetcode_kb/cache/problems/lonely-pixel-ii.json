@@ -1,0 +1,34 @@
+{
+  "id": "533",
+  "title": "Lonely Pixel II",
+  "slug": "lonely-pixel-ii",
+  "url": "https://leetcode.com/problems/lonely-pixel-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an m x n picture consisting of black 'B' and white 'W' pixels and an integer target, return the number of black lonely pixels . \n \n A black lonely pixel is a character 'B' that located at a specific position (r, c) where: \n\n Row r and column c both contain exactly target black pixels. \n \n For all rows that have a black pixel at column c , they should be exactly the same as row r . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/24/pixel2-1-grid.jpg] \n \n```\nInput:\n picture = [[\"W\",\"B\",\"W\",\"B\",\"B\",\"W\"],[\"W\",\"B\",\"W\",\"B\",\"B\",\"W\"],[\"W\",\"B\",\"W\",\"B\",\"B\",\"W\"],[\"W\",\"W\",\"B\",\"W\",\"B\",\"W\"]], target = 3\n\nOutput:\n 6\n\nExplanation:\n All the green 'B' are the black pixels we need (all 'B's at column 1 and 3).\nTake 'B' at row r = 0 and column c = 1 as an example:\n - Rule 1, row r = 0 and column c = 1 both have exactly target = 3 black pixels. \n - Rule 2, the rows have black pixel at column c = 1 are row 0, row 1 and row 2. They are exactly the same as row r = 0.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/24/pixel2-2-grid.jpg] \n \n```\nInput:\n picture = [[\"W\",\"W\",\"B\"],[\"W\",\"W\",\"B\"],[\"W\",\"W\",\"B\"]], target = 1\n\nOutput:\n 0\n```\n\n Constraints: \n\n m == picture.length \n \n n == picture[i].length \n \n 1 <= m, n <= 200 \n \n picture[i][j] is 'W' or 'B' . \n \n 1 <= target <= min(m, n)",
+  "code": "class Solution {\npublic:\n    int findBlackPixel(vector<vector<char>>& picture, int target) {\n        int m = picture.size(), n = picture[0].size();\n        unordered_map<string, int> frequency;\n        vector<int> blackInColumn(n, 0);\n        for (const auto& row : picture) {\n            string pattern(row.begin(), row.end());\n            ++frequency[pattern];\n            for (int c = 0; c < n; ++c) {\n                blackInColumn[c] += row[c] == 'B';\n            }\n        }\n        int answer = 0;\n        for (const auto& entry : frequency) {\n            if (entry.second != target ||\n                count(entry.first.begin(), entry.first.end(), 'B') != target) {\n                continue;\n            }\n            for (int c = 0; c < n; ++c) {\n                if (entry.first[c] == 'B' && blackInColumn[c] == target) {\n                    answer += target;\n                }\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178477812",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "3403",
+  "title": "Find the Lexicographically Largest String From the Box I",
+  "slug": "find-the-lexicographically-largest-string-from-the-box-i",
+  "url": "https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Enumeration"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string word , and an integer numFriends . \n \n Alice is organizing a game for her numFriends friends. There are multiple rounds in the game, where in each round: \n\n word is split into numFriends non-empty strings, such that no previous round has had the exact same split. \n \n All the split words are put into a box. \n\n Find the lexicographically largest string from the box after all the rounds are finished. \n\n Example 1: \n\n Input: word = \"dbca\", numFriends = 2 \n \n Output: \"dbc\" \n \n Explanation:   \n \n All possible splits are: \n\n \"d\" and \"bca\" . \n \n \"db\" and \"ca\" . \n \n \"dbc\" and \"a\" . \n\n Example 2: \n\n Input: word = \"gggg\", numFriends = 4 \n \n Output: \"g\" \n \n Explanation:   \n \n The only possible split is: \"g\" , \"g\" , \"g\" , and \"g\" . \n\n Constraints: \n\n 1 <= word.length <= 5 * 10 3 \n \n word consists only of lowercase English letters. \n \n 1 <= numFriends <= word.length",
+  "code": "class Solution {public:string answerString(string word,int numFriends){if(numFriends==1)return word;int n=word.size(),len=n-numFriends+1;string ans;for(int i=0;i<n;i++)ans=max(ans,word.substr(i,len));return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177517855",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

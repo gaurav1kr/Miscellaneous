@@ -1,0 +1,30 @@
+{
+  "id": "1771",
+  "title": "Maximize Palindrome Length From Subsequences",
+  "slug": "maximize-palindrome-length-from-subsequences",
+  "url": "https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings, word1 and word2 . You want to construct a string in the following manner: \n\n Choose some non-empty subsequence subsequence1 from word1 . \n \n Choose some non-empty subsequence subsequence2 from word2 . \n \n Concatenate the subsequences: subsequence1 + subsequence2 , to make the string. \n\n Return the length of the longest palindrome that can be constructed in the described manner. If no palindromes can be constructed, return 0 . \n \n A subsequence of a string s is a string that can be made by deleting some (possibly none) characters from s without changing the order of the remaining characters. \n \n A palindrome is a string that reads the same forward as well as backward. \n\n Example 1: \n \n```\nInput:\n word1 = \"cacb\", word2 = \"cbba\"\n\nOutput:\n 5\n\nExplanation:\n Choose \"ab\" from word1 and \"cba\" from word2 to make \"abcba\", which is a palindrome.\n```\n\n Example 2: \n \n```\nInput:\n word1 = \"ab\", word2 = \"ab\"\n\nOutput:\n 3\n\nExplanation:\n Choose \"ab\" from word1 and \"a\" from word2 to make \"aba\", which is a palindrome.\n```\n\n Example 3: \n \n```\nInput:\n word1 = \"aa\", word2 = \"bb\"\n\nOutput:\n 0\n\nExplanation:\n You cannot construct a palindrome from the described method, so return 0.\n```\n\n Constraints: \n\n 1 <= word1.length, word2.length <= 1000 \n \n word1 and word2 consist of lowercase English letters.",
+  "code": "class Solution {\npublic:\n int longestPalindrome(string word1,string word2){\n  string s=word1+word2;int n=s.size(),split=word1.size();\n  vector<vector<int>> dp(n,vector<int>(n));\n  for(int i=n-1;i>=0;--i){dp[i][i]=1;\n   for(int j=i+1;j<n;++j){\n    if(s[i]==s[j])dp[i][j]=2+(i+1<=j-1?dp[i+1][j-1]:0);\n    else dp[i][j]=max(dp[i+1][j],dp[i][j-1]);\n   }\n  }\n  int ans=0;\n  for(int i=0;i<split;++i)for(int j=split;j<n;++j)if(s[i]==s[j])\n   ans=max(ans,2+(i+1<=j-1?dp[i+1][j-1]:0));\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175760667",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

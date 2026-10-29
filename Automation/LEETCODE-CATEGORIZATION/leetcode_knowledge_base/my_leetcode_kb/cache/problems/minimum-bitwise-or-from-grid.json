@@ -1,0 +1,33 @@
+{
+  "id": "3858",
+  "title": "Minimum Bitwise OR From Grid",
+  "slug": "minimum-bitwise-or-from-grid",
+  "url": "https://leetcode.com/problems/minimum-bitwise-or-from-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Bit Manipulation",
+    "Matrix"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array grid of size m x n . \n \n You must select exactly one integer from each row of the grid. \n \n Return an integer denoting the minimum possible bitwise OR of the selected integers from each row. \n\n Example 1: \n\n Input: grid = [[1,5],[2,4]] \n \n Output: 3 \n \n Explanation: \n\n Choose 1 from the first row and 2 from the second row. \n \n The bitwise OR of 1 | 2 = 3 ​​​​​​​, which is the minimum possible. \n\n Example 2: \n\n Input: grid = [[3,5],[6,4]] \n \n Output: 5 \n \n Explanation: \n\n Choose 5 from the first row and 4 from the second row. \n \n The bitwise OR of 5 | 4 = 5 ​​​​​​​, which is the minimum possible. \n\n Example 3: \n\n Input: grid = [[7,9,8]] \n \n Output: 7 \n \n Explanation: \n\n Choosing 7 gives the minimum bitwise OR. \n\n Constraints: \n\n 1 <= m == grid.length <= 10 5 \n \n 1 <= n == grid[i].length <= 10 5 \n \n m * n <= 10 5 \n \n 1 <= grid[i][j] <= 10 5 ​​​​​​​",
+  "code": "class Solution {\npublic:\n    int minimumOR(vector<vector<int>>& grid) {\n        int answer = (1 << 17) - 1; // nums <= 100000\n        for (int bit = 16; bit >= 0; --bit) {\n            int candidate = answer & ~(1 << bit);\n            bool valid = true;\n            for (const auto& row : grid) {\n                bool found = false;\n                for (int x : row)\n                    if ((x | candidate) == candidate) { found = true; break; }\n                if (!found) { valid = false; break; }\n            }\n            if (valid) answer = candidate;\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181067382",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

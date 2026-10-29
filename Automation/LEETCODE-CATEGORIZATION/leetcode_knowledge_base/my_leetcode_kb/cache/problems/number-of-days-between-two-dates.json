@@ -1,0 +1,28 @@
+{
+  "id": "1360",
+  "title": "Number of Days Between Two Dates",
+  "slug": "number-of-days-between-two-dates",
+  "url": "https://leetcode.com/problems/number-of-days-between-two-dates/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Write a program to count the number of days between two dates. \n \n The two dates are given as strings, their format is YYYY-MM-DD  as shown in the examples. \n\n Example 1: \n \n```\nInput:\n date1 = \"2019-06-29\", date2 = \"2019-06-30\"\n\nOutput:\n 1\n```\n \n Example 2: \n \n```\nInput:\n date1 = \"2020-01-15\", date2 = \"2019-12-31\"\n\nOutput:\n 15\n```\n\n Constraints: \n\n The given dates are valid dates between the years 1971 and 2100 .",
+  "code": "class Solution {\n    bool leap(int y) { return y % 400 == 0 || (y % 4 == 0 && y % 100 != 0); }\n    int days(string s) {\n        int y = stoi(s.substr(0, 4)), m = stoi(s.substr(5, 2));\n        int d = stoi(s.substr(8, 2));\n        int total = 365 * (y - 1) + (y - 1) / 4 - (y - 1) / 100 + (y - 1) / 400;\n        int md[] = {31,28,31,30,31,30,31,31,30,31,30,31};\n        for (int i = 1; i < m; ++i) total += md[i - 1] + (i == 2 && leap(y));\n        return total + d;\n    }\npublic:\n    int daysBetweenDates(string date1, string date2) {\n        return abs(days(date1) - days(date2));\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175750365",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "1866",
+  "title": "Number of Ways to Rearrange Sticks With K Sticks Visible",
+  "slug": "number-of-ways-to-rearrange-sticks-with-k-sticks-visible",
+  "url": "https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "There are n uniquely-sized sticks whose lengths are integers from 1 to n . You want to arrange the sticks such that exactly k  sticks are visible from the left. A stick is visible from the left if there are no longer  sticks to the left of it. \n\n For example, if the sticks are arranged [ 1 , 3 ,2, 5 ,4] , then the sticks with lengths 1 , 3 , and 5 are visible from the left. \n\n Given n and k , return the number of such arrangements . Since the answer may be large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 3, k = 2\n\nOutput:\n 3\n\nExplanation:\n [\n1\n,\n3\n,2], [\n2\n,\n3\n,1], and [\n2\n,1,\n3\n] are the only arrangements such that exactly 2 sticks are visible.\nThe visible sticks are underlined.\n```\n\n Example 2: \n \n```\nInput:\n n = 5, k = 5\n\nOutput:\n 1\n\nExplanation:\n [\n1\n,\n2\n,\n3\n,\n4\n,\n5\n] is the only arrangement such that all 5 sticks are visible.\nThe visible sticks are underlined.\n```\n\n Example 3: \n \n```\nInput:\n n = 20, k = 11\n\nOutput:\n 647427950\n\nExplanation:\n There are 647427950 (mod 10\n9 \n+ 7) ways to rearrange the sticks such that exactly 11 sticks are visible.\n```\n\n Constraints: \n\n 1 <= n <= 1000 \n \n 1 <= k <= n",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int rearrangeSticks(int n, int k) {\n        const int MOD = 1e9 + 7;\n        vector<vector<long>> dp(n + 1, vector<long>(k + 1));\n        dp[0][0] = 1;\n        for (int i = 1; i <= n; ++i)\n            for (int j = 1; j <= k; ++j)\n                dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][j] * (i - 1)) % MOD;\n        return dp[n][k];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610601853",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "1562",
+  "title": "Find Latest Group of Size M",
+  "slug": "find-latest-group-of-size-m",
+  "url": "https://leetcode.com/problems/find-latest-group-of-size-m/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Simulation"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Given an array arr that represents a permutation of numbers from 1 to n . \n \n You have a binary string of size n that initially has all its bits set to zero. At each step i (assuming both the binary string and arr are 1-indexed) from 1 to n , the bit at position arr[i] is set to 1 . \n \n You are also given an integer m . Find the latest step at which there exists a group of ones of length m . A group of ones is a contiguous substring of 1 's such that it cannot be extended in either direction. \n \n Return the latest step at which there exists a group of ones of length exactly m . If no such group exists, return -1 . \n\n Example 1: \n \n```\nInput:\n arr = [3,5,1,2,4], m = 1\n\nOutput:\n 4\n\nExplanation:\n \nStep 1: \"00\n1\n00\", groups: [\"1\"]\nStep 2: \"0010\n1\n\", groups: [\"1\", \"1\"]\nStep 3: \"\n1\n0101\", groups: [\"1\", \"1\", \"1\"]\nStep 4: \"1\n1\n101\", groups: [\"111\", \"1\"]\nStep 5: \"111\n1\n1\", groups: [\"11111\"]\nThe latest step at which there exists a group of size 1 is step 4.\n```\n\n Example 2: \n \n```\nInput:\n arr = [3,1,5,4,2], m = 2\n\nOutput:\n -1\n\nExplanation:\n \nStep 1: \"00\n1\n00\", groups: [\"1\"]\nStep 2: \"\n1\n0100\", groups: [\"1\", \"1\"]\nStep 3: \"1010\n1\n\", groups: [\"1\", \"1\", \"1\"]\nStep 4: \"101\n1\n1\", groups: [\"1\", \"111\"]\nStep 5: \"1\n1\n111\", groups: [\"11111\"]\nNo group of size 2 exists during any step.\n```\n\n Constraints: \n\n n == arr.length \n \n 1 <= m <= n <= 10 5 \n \n 1 <= arr[i] <= n \n \n All integers in arr are distinct .",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findLatestStep(vector<int>& arr, int m) {\n        int n = arr.size();\n        if (m == n) return n;\n        vector<int> length(n + 2), count(n + 1);\n        int res = -1;\n\n        for (int i = 0; i < n; ++i) {\n            int a = arr[i], left = length[a - 1], right = length[a + 1];\n            int total = left + right + 1;\n            length[a - left] = length[a + right] = total;\n            count[left]--, count[right]--, count[total]++;\n            if (count[m]) res = i + 1;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610598346",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "946",
+  "title": "Validate Stack Sequences",
+  "slug": "validate-stack-sequences",
+  "url": "https://leetcode.com/problems/validate-stack-sequences/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given two integer arrays pushed and popped each with distinct values, return true if this could have been the result of a sequence of push and pop operations on an initially empty stack, or false otherwise. \n\n Example 1: \n \n```\nInput:\n pushed = [1,2,3,4,5], popped = [4,5,3,2,1]\n\nOutput:\n true\n\nExplanation:\n We might do the following sequence:\npush(1), push(2), push(3), push(4),\npop() -> 4,\npush(5),\npop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1\n```\n\n Example 2: \n \n```\nInput:\n pushed = [1,2,3,4,5], popped = [4,3,5,1,2]\n\nOutput:\n false\n\nExplanation:\n 1 cannot be popped before 2.\n```\n\n Constraints: \n\n 1 <= pushed.length <= 1000 \n \n 0 <= pushed[i] <= 1000 \n \n All the elements of pushed are unique . \n \n popped.length == pushed.length \n \n popped is a permutation of pushed .",
+  "code": "class Solution \n{\npublic:\n    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) \n    {\n        stack<int> st;\n        int i = 0;\n        for (int x : pushed) \n        {\n            st.push(x);\n            while (!st.empty() && st.top() == popped[i]) \n            {\n                st.pop();\n                i++;\n            }\n        }\n        return i == popped.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1413996564",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

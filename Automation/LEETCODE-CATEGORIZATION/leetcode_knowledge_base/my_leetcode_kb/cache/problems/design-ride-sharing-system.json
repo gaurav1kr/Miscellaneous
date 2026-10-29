@@ -1,0 +1,34 @@
+{
+  "id": "3829",
+  "title": "Design Ride Sharing System",
+  "slug": "design-ride-sharing-system",
+  "url": "https://leetcode.com/problems/design-ride-sharing-system/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Design",
+    "Queue",
+    "Data Stream"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "A ride sharing system manages ride requests from riders and availability from drivers. Riders request rides, and drivers become available over time. The system should match riders and drivers in the order they arrive. \n \n Implement the RideSharingSystem class: \n\n RideSharingSystem() Initializes the system. \n \n void addRider(int riderId) Adds a new rider with the given riderId . \n \n void addDriver(int driverId) Adds a new driver with the given driverId . \n \n int[] matchDriverWithRider() Matches the earliest available driver with the earliest waiting rider and removes both of them from the system. Returns an integer array of size 2 where result = [driverId, riderId] if a match is made. If no match is available, returns [-1, -1] . \n \n void cancelRider(int riderId) Cancels the ride request of the rider with the given riderId if the rider exists and has not yet been matched. \n\n Example 1: \n\n Input: \n [\"RideSharingSystem\", \"addRider\", \"addDriver\", \"addRider\", \"matchDriverWithRider\", \"addDriver\", \"cancelRider\", \"matchDriverWithRider\", \"matchDriverWithRider\"] \n[[], [3], [2], [1], [], [5], [3], [], []] \n \n Output: \n [null, null, null, null, [2, 3], null, null, [5, 1], [-1, -1]] \n \n Explanation \nRideSharingSystem rideSharingSystem = new RideSharingSystem(); // Initializes the system \nrideSharingSystem.addRider(3); // rider 3 joins the queue \nrideSharingSystem.addDriver(2); // driver 2 joins the queue \nrideSharingSystem.addRider(1); // rider 1 joins the queue \nrideSharingSystem.matchDriverWithRider(); // returns [2, 3] \nrideSharingSystem.addDriver(5); // driver 5 becomes available \nrideSharingSystem.cancelRider(3); // rider 3 is already matched, cancel has no effect \nrideSharingSystem.matchDriverWithRider(); // returns [5, 1] \nrideSharingSystem.matchDriverWithRider(); // returns [-1, -1] \n \n Example 2: \n\n Input: \n [\"RideSharingSystem\", \"addRider\", \"addDriver\", \"addDriver\", \"matchDriverWithRider\", \"addRider\", \"cancelRider\", \"matchDriverWithRider\"] \n[[], [8], [8], [6], [], [2], [2], []] \n \n Output: \n [null, null, null, null, [8, 8], null, null, [-1, -1]] \n \n Explanation \nRideSharingSystem rideSharingSystem = new RideSharingSystem(); // Initializes the system \nrideSharingSystem.addRider(8); // rider 8 joins the queue \nrideSharingSystem.addDriver(8); // driver 8 joins the queue \nrideSharingSystem.addDriver(6); // driver 6 joins the queue \nrideSharingSystem.matchDriverWithRider(); // returns [8, 8] \nrideSharingSystem.addRider(2); // rider 2 joins the queue \nrideSharingSystem.cancelRider(2); // rider 2 cancels \nrideSharingSystem.matchDriverWithRider(); // returns [-1, -1] \n\n Constraints: \n\n 1 <= riderId, driverId <= 1000 \n \n Each riderId is unique among riders and is added at most once . \n \n Each driverId is unique among drivers and is added at most once . \n \n At most 1000 calls will be made in total to addRider ​​​​​​​, addDriver , matchDriverWithRider , and cancelRider .",
+  "code": "class RideSharingSystem {\n    queue<int> riders, drivers;\n    unordered_set<int> waiting;\npublic:\n    RideSharingSystem() {}\n    void addRider(int riderId) {\n        riders.push(riderId);\n        waiting.insert(riderId);\n    }\n    void addDriver(int driverId) { drivers.push(driverId); }\n    vector<int> matchDriverWithRider() {\n        while (!riders.empty() && !waiting.count(riders.front()))\n            riders.pop();\n        if (riders.empty() || drivers.empty()) return {-1, -1};\n        int d = drivers.front(), r = riders.front();\n        drivers.pop(); riders.pop(); waiting.erase(r);\n        return {d, r};\n    }\n    void cancelRider(int riderId) { waiting.erase(riderId); }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181053258",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

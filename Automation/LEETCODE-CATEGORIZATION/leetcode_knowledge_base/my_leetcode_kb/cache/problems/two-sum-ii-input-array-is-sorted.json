@@ -1,0 +1,31 @@
+{
+  "id": "167",
+  "title": "Two Sum II - Input Array Is Sorted",
+  "slug": "two-sum-ii-input-array-is-sorted",
+  "url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 1-indexed array of integers numbers that is already sorted in non-decreasing order . \n \n Find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index 1 ] and numbers[index 2 ] where 1 <= index 1 < index 2 <= numbers.length . \n \n Return the indices of the two numbers index 1 and index 2 as an integer array [index 1 , index 2 ] of length 2. \n \n The tests are generated such that there is exactly one solution . You may not use the same element twice. \n \n Your solution must use only constant extra space. \n\n Example 1: \n \n```\nInput:\n numbers = [\n2\n,\n7\n,11,15], target = 9\n\nOutput:\n [1,2]\n\nExplanation:\n The sum of 2 and 7 is 9. Therefore, index\n1\n = 1, index\n2\n = 2. We return [1, 2].\n```\n\n Example 2: \n \n```\nInput:\n numbers = [\n2\n,3,\n4\n], target = 6\n\nOutput:\n [1,3]\n\nExplanation:\n The sum of 2 and 4 is 6. Therefore index\n1\n = 1, index\n2\n = 3. We return [1, 3].\n```\n\n Example 3: \n \n```\nInput:\n numbers = [\n-1\n,\n0\n], target = -1\n\nOutput:\n [1,2]\n\nExplanation:\n The sum of -1 and 0 is -1. Therefore index\n1\n = 1, index\n2\n = 2. We return [1, 2].\n```\n\n Constraints: \n\n 2 <= numbers.length <= 3 * 10 4 \n \n -1000 <= numbers[i] <= 1000 \n \n numbers is sorted in non-decreasing order . \n \n -1000 <= target <= 1000 \n \n The tests are generated such that there is exactly one solution .",
+  "code": "class Solution {\npublic:\n    vector<int> twoSum(vector<int>& numbers, int target) {\n        int left = 0, right = numbers.size() - 1;\n        while (left < right) {\n            int sum = numbers[left] + numbers[right];\n            if (sum == target) return {left + 1, right + 1};\n            else if (sum < target) left++;\n            else right--;\n        }\n        return {};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588086992",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

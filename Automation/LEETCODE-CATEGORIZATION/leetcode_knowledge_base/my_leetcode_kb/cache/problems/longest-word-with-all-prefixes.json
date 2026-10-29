@@ -1,0 +1,37 @@
+{
+  "id": "1858",
+  "title": "Longest Word With All Prefixes",
+  "slug": "longest-word-with-all-prefixes",
+  "url": "https://leetcode.com/problems/longest-word-with-all-prefixes/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String",
+    "Depth-First Search",
+    "Trie"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an array of strings words , find the longest string in words such that every prefix of it is also in words . \n\n For example, let words = [\"a\", \"app\", \"ap\"] . The string \"app\" has prefixes \"ap\" and \"a\" , all of which are in words . \n\n Return the string described above. If there is more than one string with the same length, return the lexicographically smallest one, and if no string exists, return \"\" . \n\n Example 1: \n \n```\nInput:\n words = [\"k\",\"ki\",\"kir\",\"kira\", \"kiran\"]\n\nOutput:\n \"kiran\"\n\nExplanation:\n \"kiran\" has prefixes \"kira\", \"kir\", \"ki\", and \"k\", and all of them appear in words.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"a\", \"banana\", \"app\", \"appl\", \"ap\", \"apply\", \"apple\"]\n\nOutput:\n \"apple\"\n\nExplanation:\n Both \"apple\" and \"apply\" have all their prefixes in words.\nHowever, \"apple\" is lexicographically smaller, so we return that.\n```\n\n Example 3: \n \n```\nInput:\n words = [\"abc\", \"bc\", \"ab\", \"qwe\"]\n\nOutput:\n \"\"\n```\n\n Constraints: \n\n 1 <= words.length <= 10 5 \n \n 1 <= words[i].length <= 10 5 \n \n 1 <= sum(words[i].length) <= 10 5 \n \n words[i] consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string longestWord(vector<string>& words) {\n        sort(words.begin(), words.end(), [](const string& a, const string& b) {\n            if (a.size() != b.size()) return a.size() < b.size();\n            return a < b;\n        });\n        unordered_set<string> valid;\n        string answer;\n        for (const string& word : words) {\n            if (word.size() == 1 || valid.count(word.substr(0, word.size() - 1))) {\n                valid.insert(word);\n                if (word.size() > answer.size() || (word.size() == answer.size() && word < answer)) {\n                    answer = word;\n                }\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178618864",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

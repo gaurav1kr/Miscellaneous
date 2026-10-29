@@ -1,0 +1,28 @@
+{
+  "id": "369",
+  "title": "Plus One Linked List",
+  "slug": "plus-one-linked-list",
+  "url": "https://leetcode.com/problems/plus-one-linked-list/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Linked List",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Given a non-negative integer represented as a linked list of digits, plus one to the integer . \n \n The digits are stored such that the most significant digit is at the head of the list. \n\n Example 1: \n \n```\nInput:\n head = [1,2,3]\n\nOutput:\n [1,2,4]\n```\n \n Example 2: \n \n```\nInput:\n head = [0]\n\nOutput:\n [1]\n```\n\n Constraints: \n\n The number of nodes in the linked list is in the range [1, 100] . \n \n 0 <= Node.val <= 9 \n \n The number represented by the linked list does not contain leading zeros except for the zero itself.",
+  "code": "class Solution\n{\npublic:\n    ListNode* plusOne(ListNode* head)\n    {\n        ListNode dummy(0);\n        dummy.next = head;\n        ListNode* lastNonNine = &dummy;\n        for (ListNode* p = head; p; p = p->next)\n        {\n            if (p->val != 9) lastNonNine = p;\n        }\n        ++lastNonNine->val;\n        for (ListNode* p = lastNonNine->next; p; p = p->next)\n        {\n            p->val = 0;\n        }\n        return dummy.val ? new ListNode(dummy.val, head) : head;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178462376",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

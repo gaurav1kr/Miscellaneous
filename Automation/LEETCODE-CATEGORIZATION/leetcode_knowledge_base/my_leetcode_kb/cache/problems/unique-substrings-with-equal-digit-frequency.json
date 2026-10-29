@@ -1,0 +1,34 @@
+{
+  "id": "2168",
+  "title": "Unique Substrings With Equal Digit Frequency",
+  "slug": "unique-substrings-with-equal-digit-frequency",
+  "url": "https://leetcode.com/problems/unique-substrings-with-equal-digit-frequency/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Rolling Hash",
+    "Counting",
+    "Hash Function"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String"
+  ],
+  "description": "Given a digit string s , return the number of unique substrings of s where every digit appears the same number of times. \n\n Example 1: \n \n```\nInput:\n s = \"1212\"\n\nOutput:\n 5\n\nExplanation:\n The substrings that meet the requirements are \"1\", \"2\", \"12\", \"21\", \"1212\".\nNote that although the substring \"12\" appears twice, it is only counted once.\n```\n\n Example 2: \n \n```\nInput:\n s = \"12321\"\n\nOutput:\n 9\n\nExplanation:\n The substrings that meet the requirements are \"1\", \"2\", \"3\", \"12\", \"23\", \"32\", \"21\", \"123\", \"321\".\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of digits.",
+  "code": "class Solution {\npublic:\n    int equalDigitFrequency(string s) {\n        const unsigned long long BASE = 1315423911ULL;\n        unordered_set<unsigned long long> seen;\n        for (int i = 0; i < (int)s.size(); ++i) {\n            int freq[10] = {};\n            unsigned long long hash = 0;\n            int maximum = 0, distinct = 0;\n            for (int j = i; j < (int)s.size(); ++j) {\n                int digit = s[j] - '0';\n                if (++freq[digit] == 1) ++distinct;\n                maximum = max(maximum, freq[digit]);\n                hash = hash * BASE + (digit + 1);\n                if (maximum * distinct == j - i + 1) {\n                    seen.insert(hash);\n                }\n            }\n        }\n        return seen.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178645006",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

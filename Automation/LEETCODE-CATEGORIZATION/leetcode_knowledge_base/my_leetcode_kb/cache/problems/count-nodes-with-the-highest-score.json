@@ -1,0 +1,36 @@
+{
+  "id": "2049",
+  "title": "Count Nodes With the Highest Score",
+  "slug": "count-nodes-with-the-highest-score",
+  "url": "https://leetcode.com/problems/count-nodes-with-the-highest-score/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "Hash map",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There is a binary tree rooted at 0 consisting of n nodes. The nodes are labeled from 0 to n - 1 . You are given a 0-indexed integer array parents representing the tree, where parents[i] is the parent of node i . Since node 0 is the root, parents[0] == -1 . \n \n Each node has a score . To find the score of a node, consider if the node and the edges connected to it were removed . The tree would become one or more non-empty subtrees. The size of a subtree is the number of the nodes in it. The score of the node is the product of the sizes of all those subtrees. \n \n Return the number of nodes that have the highest score . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/10/03/example-1.png] \n \n```\nInput:\n parents = [-1,2,0,2,0]\n\nOutput:\n 3\n\nExplanation:\n\n- The score of node 0 is: 3 * 1 = 3\n- The score of node 1 is: 4 = 4\n- The score of node 2 is: 1 * 1 * 2 = 2\n- The score of node 3 is: 4 = 4\n- The score of node 4 is: 4 = 4\nThe highest score is 4, and three nodes (node 1, node 3, and node 4) have the highest score.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/10/03/example-2.png] \n \n```\nInput:\n parents = [-1,2,0]\n\nOutput:\n 2\n\nExplanation:\n\n- The score of node 0 is: 2 = 2\n- The score of node 1 is: 2 = 2\n- The score of node 2 is: 1 * 1 = 1\nThe highest score is 2, and two nodes (node 0 and node 1) have the highest score.\n```\n\n Constraints: \n\n n == parents.length \n \n 2 <= n <= 10 5 \n \n parents[0] == -1 \n \n 0 <= parents[i] <= n - 1 for i != 0 \n \n parents represents a valid binary tree.",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\n    vector<vector<int>> tree;\n    long maxScore = 0;\n    int count = 0;\n\npublic:\n    int countHighestScoreNodes(vector<int>& parents) {\n        int n = parents.size();\n        tree.resize(n);\n        for (int i = 1; i < n; ++i)\n            tree[parents[i]].push_back(i);\n        dfs(0, n);\n        return count;\n    }\n\n    int dfs(int node, int total) {\n        long score = 1;\n        int size = 0;\n        for (int child : tree[node]) {\n            int t = dfs(child, total);\n            score *= t;\n            size += t;\n        }\n        if (node != 0)\n            score *= (total - size - 1);\n        if (score == maxScore) ++count;\n        else if (score > maxScore) {\n            maxScore = score;\n            count = 1;\n        }\n        return size + 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610639315",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

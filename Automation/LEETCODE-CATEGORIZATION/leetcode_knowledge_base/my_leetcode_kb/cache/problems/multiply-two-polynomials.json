@@ -1,0 +1,29 @@
+{
+  "id": "3549",
+  "title": "Multiply Two Polynomials",
+  "slug": "multiply-two-polynomials",
+  "url": "https://leetcode.com/problems/multiply-two-polynomials/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays poly1 and poly2 , where the element at index i in each array represents the coefficient of x i in a polynomial. \n \n Let A(x) and B(x) be the polynomials represented by poly1 and poly2 , respectively. \n \n Return an integer array result of length (poly1.length + poly2.length - 1) representing the coefficients of the product polynomial R(x) = A(x) * B(x) , where result[i] denotes the coefficient of x i in R(x) . \n\n Example 1: \n\n Input: poly1 = [3,2,5], poly2 = [1,4] \n \n Output: [3,14,13,20] \n \n Explanation: \n\n A(x) = 3 + 2x + 5x 2 and B(x) = 1 + 4x \n \n R(x) = (3 + 2x + 5x 2 ) * (1 + 4x) \n \n R(x) = 3 * 1 + (3 * 4 + 2 * 1)x + (2 * 4 + 5 * 1)x 2 + (5 * 4)x 3 \n \n R(x) = 3 + 14x + 13x 2 + 20x 3 \n \n Thus, result = [3, 14, 13, 20] . \n\n Example 2: \n\n Input: poly1 = [1,0,-2], poly2 = [-1] \n \n Output: [-1,0,2] \n \n Explanation: \n\n A(x) = 1 + 0x - 2x 2 and B(x) = -1 \n \n R(x) = (1 + 0x - 2x 2 ) * (-1) \n \n R(x) = -1 + 0x + 2x 2 \n \n Thus, result = [-1, 0, 2] . \n\n Example 3: \n\n Input: poly1 = [1,5,-3], poly2 = [-4,2,0] \n \n Output: [-4,-18,22,-6,0] \n \n Explanation: \n\n A(x) = 1 + 5x - 3x 2 and B(x) = -4 + 2x + 0x 2 \n \n R(x) = (1 + 5x - 3x 2 ) * (-4 + 2x + 0x 2 ) \n \n R(x) = 1 * -4 + (1 * 2 + 5 * -4)x + (5 * 2 + -3 * -4)x 2 + (-3 * 2)x 3 + 0x 4 \n \n R(x) = -4 -18x + 22x 2 -6x 3 + 0x 4 \n \n Thus, result = [-4, -18, 22, -6, 0] . \n\n Constraints: \n\n 1 <= poly1.length, poly2.length <= 5 * 10 4 \n \n -10 3 <= poly1[i], poly2[i] <= 10 3 \n \n poly1 and poly2 contain at least one non-zero coefficient.",
+  "code": "class Solution {\n    long long power(long long a,long long b,int mod){long long r=1;while(b){if(b&1)r=r*a%mod;a=a*a%mod;b>>=1;}return r;}\n    void ntt(vector<int>&a,bool inv,int mod,int root){\n        int n=a.size();\n        for(int i=1,j=0;i<n;++i){int bit=n>>1;\n            for(;j&bit;bit>>=1)j^=bit;j^=bit;if(i<j)swap(a[i],a[j]);}\n        for(int len=2;len<=n;len<<=1){\n            long long wlen=power(root,(mod-1)/len,mod);\n            if(inv)wlen=power(wlen,mod-2,mod);\n            for(int i=0;i<n;i+=len){long long w=1;\n                for(int j=0;j<len/2;++j){\n                    int u=a[i+j],v=w*a[i+j+len/2]%mod;\n                    a[i+j]=(u+v>=mod?u+v-mod:u+v);\n                    a[i+j+len/2]=(u-v<0?u-v+mod:u-v);\n                    w=w*wlen%mod;\n                }\n            }\n        }\n        if(inv){long long scale=power(n,mod-2,mod);for(int &x:a)x=x*scale%mod;}\n    }\n    vector<int> conv(const vector<int>&a,const vector<int>&b,int mod,int root){\n        int size=1,need=a.size()+b.size()-1;while(size<need)size<<=1;\n        vector<int>x(size),y(size);\n        for(int i=0;i<(int)a.size();++i)x[i]=(a[i]%mod+mod)%mod;\n        for(int i=0;i<(int)b.size();++i)y[i]=(b[i]%mod+mod)%mod;\n        ntt(x,false,mod,root);ntt(y,false,mod,root);\n        for(int i=0;i<size;++i)x[i]=1LL*x[i]*y[i]%mod;\n        ntt(x,true,mod,root);x.resize(need);return x;\n    }\npublic:\n    vector<long long> multiply(vector<int>& poly1,vector<int>& poly2){\n        const long long p=998244353LL,q=1004535809LL;\n        vector<int>a=conv(poly1,poly2,(int)p,3),b=conv(poly1,poly2,(int)q,3);\n        long long inverse=power(p%q,q-2,(int)q),product=p*q;\n        vector<long long> ans(a.size());\n        for(int i=0;i<(int)a.size();++i){\n            long long t=(b[i]-a[i]+q)%q*inverse%q;\n            long long val=a[i]+p*t;\n            if(val>product/2)val-=product;\n            ans[i]=val;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181132084",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

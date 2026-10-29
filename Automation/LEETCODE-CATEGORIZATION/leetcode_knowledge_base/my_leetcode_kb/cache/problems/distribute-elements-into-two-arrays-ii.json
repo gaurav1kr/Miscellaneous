@@ -1,0 +1,33 @@
+{
+  "id": "3072",
+  "title": "Distribute Elements Into Two Arrays II",
+  "slug": "distribute-elements-into-two-arrays-ii",
+  "url": "https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Simulation"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given a 1-indexed array of integers nums of length n . \n \n We define a function greaterCount such that greaterCount(arr, val) returns the number of elements in arr that are strictly greater than val . \n \n You need to distribute all the elements of nums between two arrays arr1 and arr2 using n operations. In the first operation, append nums[1] to arr1 . In the second operation, append nums[2] to arr2 . Afterwards, in the i th operation: \n\n If greaterCount(arr1, nums[i]) > greaterCount(arr2, nums[i]) , append nums[i] to arr1 . \n \n If greaterCount(arr1, nums[i]) < greaterCount(arr2, nums[i]) , append nums[i] to arr2 . \n \n If greaterCount(arr1, nums[i]) == greaterCount(arr2, nums[i]) , append nums[i] to the array with a lesser number of elements. \n \n If there is still a tie, append nums[i] to arr1 . \n\n The array result is formed by concatenating the arrays arr1 and arr2 . For example, if arr1 == [1,2,3] and arr2 == [4,5,6] , then result = [1,2,3,4,5,6] . \n \n Return the integer array result . \n\n Example 1: \n \n```\nInput:\n nums = [2,1,3,3]\n\nOutput:\n [2,3,1,3]\n\nExplanation:\n After the first 2 operations, arr1 = [2] and arr2 = [1].\nIn the 3\nrd\n operation, the number of elements greater than 3 is zero in both arrays. Also, the lengths are equal, hence, append nums[3] to arr1.\nIn the 4\nth\n operation, the number of elements greater than 3 is zero in both arrays. As the length of arr2 is lesser, hence, append nums[4] to arr2.\nAfter 4 operations, arr1 = [2,3] and arr2 = [1,3].\nHence, the array result formed by concatenation is [2,3,1,3].\n```\n\n Example 2: \n \n```\nInput:\n nums = [5,14,3,1,2]\n\nOutput:\n [5,3,1,2,14]\n\nExplanation:\n After the first 2 operations, arr1 = [5] and arr2 = [14].\nIn the 3\nrd\n operation, the number of elements greater than 3 is one in both arrays. Also, the lengths are equal, hence, append nums[3] to arr1.\nIn the 4\nth\n operation, the number of elements greater than 1 is greater in arr1 than arr2 (2 > 1). Hence, append nums[4] to arr1.\nIn the 5\nth\n operation, the number of elements greater than 2 is greater in arr1 than arr2 (2 > 1). Hence, append nums[5] to arr1.\nAfter 5 operations, arr1 = [5,3,1,2] and arr2 = [14].\nHence, the array result formed by concatenation is [5,3,1,2,14].\n```\n\n Example 3: \n \n```\nInput:\n nums = [3,3,3,3]\n\nOutput:\n [3,3,3,3]\n\nExplanation:\n At the end of 4 operations, arr1 = [3,3] and arr2 = [3,3].\nHence, the array result formed by concatenation is [3,3,3,3].\n```\n\n Constraints: \n\n 3 <= n <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {\n struct BIT {vector<int> t; BIT(int n):t(n+1){} void add(int i){for(int n=t.size();i<n;i+=i&-i)++t[i];} int sum(int i){int s=0;for(;i;i-=i&-i)s+=t[i];return s;}};\npublic: vector<int> resultArray(vector<int>& nums) {\n vector<int> vals=nums;sort(vals.begin(),vals.end());vals.erase(unique(vals.begin(),vals.end()),vals.end());\n int n=nums.size(),m=vals.size();BIT a(m),b(m);vector<int> x{nums[0]},y{nums[1]};\n auto idx=[&](int v){return int(lower_bound(vals.begin(),vals.end(),v)-vals.begin())+1;};\n a.add(idx(nums[0]));b.add(idx(nums[1]));\n for(int i=2;i<n;i++){int p=idx(nums[i]),ca=(int)x.size()-a.sum(p),cb=(int)y.size()-b.sum(p);\n if(ca>cb||(ca==cb&&x.size()<=y.size())){x.push_back(nums[i]);a.add(p);}else{y.push_back(nums[i]);b.add(p);}}\n x.insert(x.end(),y.begin(),y.end());return x;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176848558",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

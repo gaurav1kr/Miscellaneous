@@ -1,0 +1,31 @@
+{
+  "id": "1714",
+  "title": "Sum Of Special Evenly-Spaced Elements In Array",
+  "slug": "sum-of-special-evenly-spaced-elements-in-array",
+  "url": "https://leetcode.com/problems/sum-of-special-evenly-spaced-elements-in-array/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Sqrt Decomposition"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums consisting of n non-negative integers. \n \n You are also given an array queries , where queries[i] = [x i , y i ] . The answer to the i th query is the sum of all nums[j] where x i <= j < n and (j - x i ) is divisible by y i . \n \n Return an array answer where answer.length == queries.length and answer[i] is the answer to the i th query modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n nums = [0,1,2,3,4,5,6,7], queries = [[0,3],[5,1],[4,2]]\n\nOutput:\n [9,18,10]\n\nExplanation:\n The answers of the queries are as follows:\n1) The j indices that satisfy this query are 0, 3, and 6. nums[0] + nums[3] + nums[6] = 9\n2) The j indices that satisfy this query are 5, 6, and 7. nums[5] + nums[6] + nums[7] = 18\n3) The j indices that satisfy this query are 4 and 6. nums[4] + nums[6] = 10\n```\n\n Example 2: \n \n```\nInput:\n nums = [100,200,101,201,102,202,103,203], queries = [[0,7]]\n\nOutput:\n [303]\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 5 * 10 4 \n \n 0 <= nums[i] <= 10 9 \n \n 1 <= queries.length <= 1.5 * 10 5 \n \n 0 <= x i < n \n \n 1 <= y i <= 5 * 10 4",
+  "code": "class Solution {\npublic:\n    vector<int> solve(vector<int>& nums, vector<vector<int>>& queries) {\n        const int MOD = 1000000007;\n        int n = nums.size();\n        int block = static_cast<int>(sqrt(n)) + 1;\n        vector<vector<int>> dp(block, vector<int>(n + 1, 0));\n        for (int step = 1; step < block; ++step) {\n            for (int i = n - 1; i >= 0; --i) {\n                dp[step][i] = (nums[i] + (i + step < n ? dp[step][i + step] : 0LL)) % MOD;\n            }\n        }\n        vector<int> answer;\n        for (const auto& query : queries) {\n            int start = query[0], step = query[1];\n            if (step < block) answer.push_back(dp[step][start]);\n            else {\n                long long sum = 0;\n                for (int i = start; i < n; i += step) sum = (sum + nums[i]) % MOD;\n                answer.push_back(static_cast<int>(sum));\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178605217",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

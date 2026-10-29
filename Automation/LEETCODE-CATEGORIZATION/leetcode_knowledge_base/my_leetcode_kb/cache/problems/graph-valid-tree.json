@@ -1,0 +1,32 @@
+{
+  "id": "261",
+  "title": "Graph Valid Tree",
+  "slug": "graph-valid-tree",
+  "url": "https://leetcode.com/problems/graph-valid-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You have a graph of n nodes labeled from 0 to n - 1 . You are given an integer n and a list of edges where edges[i] = [a i , b i ] indicates that there is an undirected edge between nodes a i and b i in the graph. \n \n Return true if the edges of the given graph make up a valid tree, and false otherwise . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/12/tree1-graph.jpg] \n \n```\nInput:\n n = 5, edges = [[0,1],[0,2],[0,3],[1,4]]\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/12/tree2-graph.jpg] \n \n```\nInput:\n n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= n <= 2000 \n \n 0 <= edges.length <= 5000 \n \n edges[i].length == 2 \n \n 0 <= a i , b i < n \n \n a i != b i \n \n There are no self-loops or repeated edges.",
+  "code": "class Solution\n{\npublic:\n    bool validTree(int n, vector< vector< int >>& edges)\n    {\n        if ((int) edges.size() != n - 1)\n        {\n            return false;\n        }\n        vector< vector< int >>g(n);\n        for (auto&e : edges)\n        {\n            g[e[0]].push_back(e[1]);\n            g[e[1]].push_back(e[0]);\n        }\n        vector< char>seen(n);\n        queue< int>q;\n        q.push(0);\n        seen[0] = 1;\n        int count = 0;\n        while (!q.empty())\n        {\n            int u = q.front();\n            q.pop();\n            ++count;\n            for (int v : g[u]) if(!seen[v])\n            {\n                seen[v] = 1;\n                q.push(v);\n            }\n        }\n        return count == n;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178440146",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

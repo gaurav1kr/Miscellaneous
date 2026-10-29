@@ -1,0 +1,42 @@
+{
+  "id": "1048",
+  "title": "Longest String Chain",
+  "slug": "longest-string-chain",
+  "url": "https://leetcode.com/problems/longest-string-chain/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "String",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of words where each word consists of lowercase English letters. \n \n word A is a predecessor of word B if and only if we can insert exactly one letter anywhere in word A without changing the order of the other characters to make it equal to word B . \n\n For example, \"abc\" is a predecessor of \"ab a c\" , while \"cba\" is not a predecessor of \"bcad\" . \n\n A word chain is a sequence of words [word 1 , word 2 , ..., word k ] with k >= 1 , where word 1 is a predecessor of word 2 , word 2 is a predecessor of word 3 , and so on. A single word is trivially a word chain with k == 1 . \n \n Return the length of the longest possible word chain with words chosen from the given list of words . \n\n Example 1: \n \n```\nInput:\n words = [\"a\",\"b\",\"ba\",\"bca\",\"bda\",\"bdca\"]\n\nOutput:\n 4\n\nExplanation\n: One of the longest word chains is [\"a\",\"\nb\na\",\"b\nd\na\",\"bd\nc\na\"].\n```\n\n Example 2: \n \n```\nInput:\n words = [\"xbc\",\"pcxbcf\",\"xb\",\"cxbc\",\"pcxbc\"]\n\nOutput:\n 5\n\nExplanation:\n All the words can be put in a word chain [\"xb\", \"xb\nc\n\", \"\nc\nxbc\", \"\np\ncxbc\", \"pcxbc\nf\n\"].\n```\n\n Example 3: \n \n```\nInput:\n words = [\"abcd\",\"dbqca\"]\n\nOutput:\n 1\n\nExplanation:\n The trivial word chain [\"abcd\"] is one of the longest word chains.\n[\"abcd\",\"dbqca\"] is not a valid word chain because the ordering of the letters is changed.\n```\n\n Constraints: \n\n 1 <= words.length <= 1000 \n \n 1 <= words[i].length <= 16 \n \n words[i] only consists of lowercase English letters.",
+  "code": "class Solution \n{\npublic:\n    static bool cmp(string &s1,string &s2)\n    {\n        return s1.length()<s2.length();\n    }\n    int longestStrChain(vector<string>& words) \n\t{\n        int ans=0;\n        sort(words.begin(),words.end(),cmp);\n        map<string,int>mp;\n        \n        for(string &s:words)\n        {\n            for(int i=0;i<s.length();i++)\n            {\n                string r=s.substr(0,i)+s.substr(i+1);\n                if(mp.find(r)==mp.end())\n                {\n                    mp[s]=max(mp[s],1);\n                }\n                else\n                mp[s]=max(mp[s],mp[r]+1);\n            }\n            ans=max(ans,mp[s]);\n        }\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1497897597",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

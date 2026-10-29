@@ -1,0 +1,31 @@
+{
+  "id": "1324",
+  "title": "Print Words Vertically",
+  "slug": "print-words-vertically",
+  "url": "https://leetcode.com/problems/print-words-vertically/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s . Return all the words vertically in the same order in which they appear in s . \r\nWords are returned as a list of strings, complete with spaces when is necessary. (Trailing spaces are not allowed). \r\nEach word would be put on only one column and that in one column there will be only one word. \n\n Example 1: \n \n```\nInput:\n s = \"HOW ARE YOU\"\r\n\nOutput:\n [\"HAY\",\"ORO\",\"WEU\"]\r\n\nExplanation: \nEach word is printed vertically. \r\n \"HAY\"\r\n \"ORO\"\r\n \"WEU\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"TO BE OR NOT TO BE\"\r\n\nOutput:\n [\"TBONTB\",\"OEROOE\",\" T\"]\r\n\nExplanation: \nTrailing spaces is not allowed. \r\n\"TBONTB\"\r\n\"OEROOE\"\r\n\" T\"\n```\n\n Example 3: \n \n```\nInput:\n s = \"CONTEST IS COMING\"\r\n\nOutput:\n [\"CIC\",\"OSO\",\"N M\",\"T I\",\"E N\",\"S G\",\"T\"]\n```\n\n Constraints: \n\n 1 <= s.length <= 200 \n \n s  contains only upper case English letters. \n \n It's guaranteed that there is only one space between 2 words.",
+  "code": "#include <vector>\n#include <string>\n#include <sstream>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> printVertically(string s) {\n        istringstream iss(s);\n        vector<string> words, res;\n        string word;\n        int maxLen = 0;\n        while (iss >> word) {\n            words.push_back(word);\n            maxLen = max(maxLen, (int)word.size());\n        }\n\n        for (int i = 0; i < maxLen; ++i) {\n            string line;\n            for (string& w : words)\n                line += i < w.size() ? w[i] : ' ';\n            while (!line.empty() && line.back() == ' ') line.pop_back();\n            res.push_back(line);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610613773",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

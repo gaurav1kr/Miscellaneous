@@ -1,0 +1,39 @@
+{
+  "id": "2973",
+  "title": "Find Number of Coins to Place in Tree Nodes",
+  "slug": "find-number-of-coins-to-place-in-tree-nodes",
+  "url": "https://leetcode.com/problems/find-number-of-coins-to-place-in-tree-nodes/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "DP on Trees"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Priority queue / heap",
+    "Sorted array",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an undirected tree with n nodes labeled from 0 to n - 1 , and rooted at node 0 . You are given a 2D integer array edges of length n - 1 , where edges[i] = [a i , b i ] indicates that there is an edge between nodes a i and b i in the tree. \n \n You are also given a 0-indexed integer array cost of length n , where cost[i] is the cost assigned to the i th node. \n \n You need to place some coins on every node of the tree. The number of coins to be placed at node i can be calculated as: \n\n If size of the subtree of node i is less than 3 , place 1 coin. \n \n Otherwise, place an amount of coins equal to the maximum product of cost values assigned to 3 distinct nodes in the subtree of node i . If this product is negative , place 0 coins. \n\n Return an array coin of size n such that coin[i] is the number of coins placed at node i . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/11/09/screenshot-2023-11-10-012641.png] \n \n```\nInput:\n edges = [[0,1],[0,2],[0,3],[0,4],[0,5]], cost = [1,2,3,4,5,6]\n\nOutput:\n [120,1,1,1,1,1]\n\nExplanation:\n For node 0 place 6 * 5 * 4 = 120 coins. All other nodes are leaves with subtree of size 1, place 1 coin on each of them.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/11/09/screenshot-2023-11-10-012614.png] \n \n```\nInput:\n edges = [[0,1],[0,2],[1,3],[1,4],[1,5],[2,6],[2,7],[2,8]], cost = [1,4,2,3,5,7,8,-4,2]\n\nOutput:\n [280,140,32,1,1,1,1,1,1]\n\nExplanation:\n The coins placed on each node are:\n- Place 8 * 7 * 5 = 280 coins on node 0.\n- Place 7 * 5 * 4 = 140 coins on node 1.\n- Place 8 * 2 * 2 = 32 coins on node 2.\n- All other nodes are leaves with subtree of size 1, place 1 coin on each of them.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2023/11/09/screenshot-2023-11-10-012513.png] \n \n```\nInput:\n edges = [[0,1],[0,2]], cost = [1,2,-2]\n\nOutput:\n [0,1,1]\n\nExplanation:\n Node 1 and 2 are leaves with subtree of size 1, place 1 coin on each of them. For node 0 the only possible product of cost is 2 * 1 * -2 = -4. Hence place 0 coins on node 0.\n```\n\n Constraints: \n\n 2 <= n <= 2 * 10 4 \n \n edges.length == n - 1 \n \n edges[i].length == 2 \n \n 0 <= a i , b i < n \n \n cost.length == n \n \n 1 <= |cost[i]| <= 10 4 \n \n The input is generated such that edges represents a valid tree.",
+  "code": "class Solution {vector<vector<int>>g;vector<int>v;vector<long long>ans;struct Data{int cnt;vector<long long>hi,lo;};Data dfs(int u,int p){Data d{1,{v[u]},{v[u]}};for(int w:g[u])if(w!=p){Data z=dfs(w,u);d.cnt+=z.cnt;d.hi.insert(d.hi.end(),z.hi.begin(),z.hi.end());d.lo.insert(d.lo.end(),z.lo.begin(),z.lo.end());}sort(d.hi.begin(),d.hi.end(),greater<long long>());if(d.hi.size()>3)d.hi.resize(3);sort(d.lo.begin(),d.lo.end());if(d.lo.size()>2)d.lo.resize(2);if(d.cnt<3)ans[u]=1;else ans[u]=max(0LL,max(d.hi[0]*d.hi[1]*d.hi[2],d.hi[0]*d.lo[0]*d.lo[1]));return d;}public:vector<long long> placedCoins(vector<vector<int>>& edges,vector<int>& cost){int n=cost.size();g.assign(n,{});v=cost;ans.assign(n,0);for(auto&e:edges)g[e[0]].push_back(e[1]),g[e[1]].push_back(e[0]);dfs(0,-1);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176786841",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "1691",
+  "title": "Maximum Height by Stacking Cuboids ",
+  "slug": "maximum-height-by-stacking-cuboids",
+  "url": "https://leetcode.com/problems/maximum-height-by-stacking-cuboids/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given n cuboids where the dimensions of the i th cuboid is cuboids[i] = [width i , length i , height i ] ( 0-indexed ). Choose a subset of cuboids and place them on each other. \n \n You can place cuboid i on cuboid j if width i <= width j and length i <= length j and height i <= height j . You can rearrange any cuboid's dimensions by rotating it to put it on another cuboid. \n \n Return the maximum height of the stacked cuboids . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2019/10/21/image.jpg] \n \n```\nInput:\n cuboids = [[50,45,20],[95,37,53],[45,23,12]]\n\nOutput:\n 190\n\nExplanation:\n\nCuboid 1 is placed on the bottom with the 53x37 side facing down with height 95.\nCuboid 0 is placed next with the 45x20 side facing down with height 50.\nCuboid 2 is placed next with the 23x12 side facing down with height 45.\nThe total height is 95 + 50 + 45 = 190.\n```\n\n Example 2: \n \n```\nInput:\n cuboids = [[38,25,45],[76,35,3]]\n\nOutput:\n 76\n\nExplanation:\n\nYou can't place any of the cuboids on the other.\nWe choose cuboid 1 and rotate it so that the 35x3 side is facing down and its height is 76.\n```\n\n Example 3: \n \n```\nInput:\n cuboids = [[7,11,17],[7,17,11],[11,7,17],[11,17,7],[17,7,11],[17,11,7]]\n\nOutput:\n 102\n\nExplanation:\n\nAfter rearranging the cuboids, you can see that all cuboids have the same dimension.\nYou can place the 11x7 side down on all cuboids so their heights are 17.\nThe maximum height of stacked cuboids is 6 * 17 = 102.\n```\n\n Constraints: \n\n n == cuboids.length \n \n 1 <= n <= 100 \n \n 1 <= width i , length i , height i <= 100",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxHeight(vector<vector<int>>& cuboids) {\n        for (auto& c : cuboids) sort(c.begin(), c.end());\n        sort(cuboids.begin(), cuboids.end());\n        int n = cuboids.size(), ans = 0;\n        vector<int> dp(n);\n        for (int i = 0; i < n; ++i) {\n            dp[i] = cuboids[i][2];\n            for (int j = 0; j < i; ++j) {\n                if (cuboids[j][0] <= cuboids[i][0] &&\n                    cuboids[j][1] <= cuboids[i][1] &&\n                    cuboids[j][2] <= cuboids[i][2])\n                    dp[i] = max(dp[i], dp[j] + cuboids[i][2]);\n            }\n            ans = max(ans, dp[i]);\n        }\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610697724",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

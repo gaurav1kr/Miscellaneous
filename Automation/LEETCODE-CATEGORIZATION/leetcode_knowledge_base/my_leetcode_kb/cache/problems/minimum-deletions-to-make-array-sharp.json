@@ -1,0 +1,22 @@
+{
+  "id": "4083",
+  "title": "Minimum Deletions to Make Array Sharp",
+  "slug": "minimum-deletions-to-make-array-sharp",
+  "url": "https://leetcode.com/problems/minimum-deletions-to-make-array-sharp/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n You may delete any number of elements from nums . The remaining elements keep their original order. \n \n The resulting array a is sharp if the bitwise XOR of every pair of adjacent elements is non-zero . That is, a[i] XOR a[i + 1] != 0 for every index i such that 0 <= i < a.length - 1 . An array with at most one element is sharp. \n \n Return the minimum number of deletions needed to make nums sharp. \n \n Bitwise XOR compares the corresponding bits of two integers. A bit in the result is 1 if the corresponding bits differ, and 0 otherwise. \n\n Example 1: \n\n Input: nums = [1,1,2,2,2,3] \n \n Output: 3 \n \n Explanation: \n\n The pairs at indices (0, 1) , (2, 3) , and (3, 4) each have an XOR of 0. \n \n Deleting one 1 and two 2s leaves [1, 2, 3] , where 1 XOR 2 == 3 and 2 XOR 3 == 1 are both non-zero. Therefore, the answer is 3. \n\n Example 2: \n\n Input: nums = [4,4,9,4] \n \n Output: 1 \n \n Explanation: \n\n The pair at indices (0, 1) has an XOR of 0. \n \n Deleting either of these two 4s leaves [4, 9, 4] , where 4 XOR 9 == 13 and 9 XOR 4 == 13 are both non-zero. \n\n Constraints: \n\n 2 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\n    public: int minDeletions(vector<int>& a) {\n        int ans=0;\n        for(int i=1; i<(int)a.size(); i++)ans+=a[i]==a[i-1];\n        return ans;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179340398",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

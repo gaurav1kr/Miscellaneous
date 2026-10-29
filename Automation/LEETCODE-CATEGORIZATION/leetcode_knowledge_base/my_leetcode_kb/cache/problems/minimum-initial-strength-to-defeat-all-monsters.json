@@ -1,0 +1,34 @@
+{
+  "id": "4008",
+  "title": "Minimum Initial Strength to Defeat All Monsters",
+  "slug": "minimum-initial-strength-to-defeat-all-monsters",
+  "url": "https://leetcode.com/problems/minimum-initial-strength-to-defeat-all-monsters/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array monsters , where monsters[i] represents the strength of the i th monster. \n \n You are also given a 2D integer array boosts , where boosts[i] = [l i , r i , v i ] indicates that v i is added to your temporary bonus while fighting any monster whose index lies in [l i , r i ] . Boost ranges may overlap, and the values of all applicable boosts are added together. \n \n You start with a non-negative initial strength and fight the monsters from left to right. \n \n For each monster at index i : \n\n Let bonus be the sum of the values of all boosts that apply to monster i . \n \n You can defeat the monster only if your current strength plus bonus is at least monsters[i] . \n \n After defeating the monster, only your current strength decreases by monsters[i] . If it becomes negative , it is set to 0. \n\n Return the minimum initial strength required to defeat all monsters. \n \n Note: The temporary bonus is used only to determine whether the current monster can be defeated. It does not otherwise change your current strength. \n\n Example 1: \n\n Input: monsters = [5,10,15], boosts = [[1,1,10]] \n \n Output: 30 \n \n Explanation: \n \n Let's start with an initial strength of 30. \n\n monsters[0] = 5 : At index 0, the bonus is 0. Since 30 + 0 >= 5 , this monster can be defeated. The strength becomes 30 - 5 = 25 . \n \n monsters[1] = 10 : At index 1, the bonus is 10. Since 25 + 10 >= 10 , this monster can be defeated. The strength becomes 25 - 10 = 15 . \n \n monsters[2] = 15 : At index 2, the bonus is 0. Since 15 + 0 >= 15 , this monster can be defeated. The strength becomes 15 - 15 = 0 . \n\n Thus, the minimum initial strength required is 30. \n\n Example 2: \n\n Input: monsters = [5,10,15], boosts = [[1,2,10],[1,2,5]] \n \n Output: 5 \n \n Explanation: \n \n Let's start with an initial strength of 5. \n\n monsters[0] = 5 : The bonus is 0. Since 5 + 0 >= 5 , the monster can be defeated. The strength becomes 5 - 5 = 0 . \n \n monsters[1] = 10 : The two overlapping boosts provide bonus = 10 + 5 = 15 . Since 0 + 15 >= 10 , the monster can be defeated. The strength remains 0. \n \n monsters[2] = 15 : The two overlapping boosts again provide bonus = 15 . Since 0 + 15 >= 15 , the monster can be defeated. The strength remains 0. \n\n Thus, the minimum initial strength required is 5. \n\n Constraints: \n\n 1 <= monsters.length <= 5 * 10 4 \n \n 1 <= monsters[i] <= 10 9 \n \n 0 <= boosts.length <= 5 * 10 4 \n \n boosts[i] == [l i , r i , v i ] \n \n 0 <= l i <= r i < monsters.length \n \n 1 <= v i <= 10 9 ​​​​​​​",
+  "code": "class Solution {\npublic:\n    long long minInitialStrength(vector<int>& monsters, vector<vector<int>>& boosts) {\n        int n = monsters.size();\n        vector<long long> diff(n + 1, 0);\n        for (const auto& q : boosts) {\n            diff[q[0]] += q[2];\n            diff[q[1] + 1] -= q[2];\n        }\n        vector<long long> bonus(n);\n        long long cur = 0;\n        for (int i = 0; i < n; ++i) {\n            cur += diff[i];\n            bonus[i] = cur;\n        }\n        long long need = 0;\n        for (int i = n - 1; i >= 0; --i) {\n            if (need > 0) need += monsters[i];\n            else need = max(0LL, (long long)monsters[i] - bonus[i]);\n        }\n        return need;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181109559",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

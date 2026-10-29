@@ -1,0 +1,29 @@
+{
+  "id": "2936",
+  "title": "Number of Equal Numbers Blocks",
+  "slug": "number-of-equal-numbers-blocks",
+  "url": "https://leetcode.com/problems/number-of-equal-numbers-blocks/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Interactive"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector"
+  ],
+  "description": "You are given a 0-indexed array of integers, nums . The following property holds for nums : \n\n All occurrences of a value are adjacent. In other words, if there are two indices i < j such that nums[i] == nums[j] , then for every index k that i < k < j , nums[k] == nums[i] . \n\n Since nums is a very large array, you are given an instance of the class BigArray which has the following functions: \n\n int at(long long index) : Returns the value of nums[i] . \n \n void size() : Returns nums.length . \n\n Let's partition the array into maximal blocks such that each block contains equal values . Return the number of these blocks. \n \n Note that if you want to test your solution using a custom test, behavior for tests with nums.length > 10 is undefined. \n\n Example 1: \n \n```\nInput:\n nums = [3,3,3,3,3]\n\nOutput:\n 1\n\nExplanation:\n There is only one block here which is the whole array (because all numbers are equal) and that is: [\n3,3,3,3,3\n]. So the answer would be 1.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,1,3,9,9,9,2,10,10]\n\nOutput:\n 5\n\nExplanation:\n There are 5 blocks here:\nBlock number 1: [\n1,1,1\n,3,9,9,9,2,10,10]\nBlock number 2: [1,1,1,\n3\n,9,9,9,2,10,10]\nBlock number 3: [1,1,1,3,\n9,9,9\n,2,10,10]\nBlock number 4: [1,1,1,3,9,9,9,\n2\n,10,10]\nBlock number 5: [1,1,1,3,9,9,9,2,\n10,10\n]\nSo the answer would be 5.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3,4,5,6,7]\n\nOutput:\n 7\n\nExplanation:\n Since all numbers are distinct, there are 7 blocks here and each element representing one block. So the answer would be 7.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 15 \n \n 1 <= nums[i] <= 10 9 \n \n The input is generated such that all equal values are adjacent. \n \n The sum of the elements of  nums  is at most  10 15 .",
+  "code": "class Solution {\npublic:\n    int countBlocks(BigArray* nums) {\n        long long n = nums->size(), i = 0;\n        int blocks = 0;\n        while (i < n) {\n            int value = nums->at(i);\n            long long lo = i + 1, hi = n;\n            while (lo < hi) {\n                long long mid = lo + (hi - lo) / 2;\n                if (nums->at(mid) == value) lo = mid + 1;\n                else hi = mid;\n            }\n            i = lo;\n            ++blocks;\n        }\n        return blocks;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178924042",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

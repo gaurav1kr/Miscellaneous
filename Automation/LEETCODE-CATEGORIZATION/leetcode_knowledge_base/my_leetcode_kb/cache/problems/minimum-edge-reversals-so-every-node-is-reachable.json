@@ -1,0 +1,32 @@
+{
+  "id": "2858",
+  "title": "Minimum Edge Reversals So Every Node Is Reachable",
+  "slug": "minimum-edge-reversals-so-every-node-is-reachable",
+  "url": "https://leetcode.com/problems/minimum-edge-reversals-so-every-node-is-reachable/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "There is a simple directed graph with n nodes labeled from 0 to n - 1 . The graph would form a tree if its edges were bi-directional. \n \n You are given an integer n and a 2D integer array edges , where edges[i] = [u i , v i ] represents a directed edge going from node u i to node v i . \n \n An edge reversal changes the direction of an edge, i.e., a directed edge going from node u i to node v i becomes a directed edge going from node v i to node u i . \n \n For every node i in the range [0, n - 1] , your task is to independently calculate the minimum number of edge reversals required so it is possible to reach any other node starting from node i through a sequence of directed edges . \n \n Return an integer array answer , where answer[i] is the minimum number of edge reversals required so it is possible to reach any other node starting from node i through a sequence of directed edges . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2023/08/26/image-20230826221104-3.png] \n \n```\nInput:\n n = 4, edges = [[2,0],[2,1],[1,3]]\n\nOutput:\n [1,1,0,2]\n\nExplanation:\n The image above shows the graph formed by the edges.\nFor node 0: after reversing the edge [2,0], it is possible to reach any other node starting from node 0.\nSo, answer[0] = 1.\nFor node 1: after reversing the edge [2,1], it is possible to reach any other node starting from node 1.\nSo, answer[1] = 1.\nFor node 2: it is already possible to reach any other node starting from node 2.\nSo, answer[2] = 0.\nFor node 3: after reversing the edges [1,3] and [2,1], it is possible to reach any other node starting from node 3.\nSo, answer[3] = 2.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2023/08/26/image-20230826225541-2.png] \n \n```\nInput:\n n = 3, edges = [[1,2],[2,0]]\n\nOutput:\n [2,0,1]\n\nExplanation:\n The image above shows the graph formed by the edges.\nFor node 0: after reversing the edges [2,0] and [1,2], it is possible to reach any other node starting from node 0.\nSo, answer[0] = 2.\nFor node 1: it is already possible to reach any other node starting from node 1.\nSo, answer[1] = 0.\nFor node 2: after reversing the edge [1, 2], it is possible to reach any other node starting from node 2.\nSo, answer[2] = 1.\n```\n\n Constraints: \n\n 2 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i].length == 2 \n \n 0 <= u i == edges[i][0] < n \n \n 0 <= v i == edges[i][1] < n \n \n u i != v i \n \n The input is generated such that if the edges were bi-directional, the graph would be a tree.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:vector<int> minEdgeReversals(int n,vector<vector<int>>& edges){vector<vector<pair<int,int>>> g(n);for(auto&e:edges){g[e[0]].push_back({e[1],0});g[e[1]].push_back({e[0],1});}vector<int> par(n,-1),order={0},ans(n);par[0]=0;for(int i=0;i<(int)order.size();++i){int u=order[i];for(auto [v,c]:g[u])if(v!=par[u]){par[v]=u;ans[0]+=c;order.push_back(v);}}for(int u:order)for(auto [v,c]:g[u])if(v!=par[u])ans[v]=ans[u]+(c==0?1:-1);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176727462",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

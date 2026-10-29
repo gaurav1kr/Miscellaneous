@@ -1,0 +1,32 @@
+{
+  "id": "3651",
+  "title": "Minimum Cost Path with Teleportations",
+  "slug": "minimum-cost-path-with-teleportations",
+  "url": "https://leetcode.com/problems/minimum-cost-path-with-teleportations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a m x n 2D integer array grid and an integer k . You start at the top-left cell (0, 0) and your goal is to reach the bottom‐right cell (m - 1, n - 1) . \n \n There are two types of moves available: \n\n Normal move : You can move right or down from your current cell (i, j) , i.e. you can move to (i, j + 1) (right) or (i + 1, j) (down). The cost is the value of the destination cell. \n\n Teleportation : You can teleport from any cell (i, j) , to any cell (x, y) such that grid[x][y] <= grid[i][j] ; the cost of this move is 0. You may teleport at most k times. \n\n Return the minimum total cost to reach cell (m - 1, n - 1) from (0, 0) . \n\n Example 1: \n\n Input: grid = [[1,3,3],[2,5,4],[4,3,5]], k = 2 \n \n Output: 7 \n \n Explanation: \n \n Initially we are at (0, 0) and cost is 0. \n\n Current Position \n Move \n New Position \n Total Cost \n\n (0, 0) \n Move Down \n (1, 0) \n 0 + 2 = 2 \n\n (1, 0) \n Move Right \n (1, 1) \n 2 + 5 = 7 \n\n (1, 1) \n Teleport to (2, 2) \n (2, 2) \n 7 + 0 = 7 \n\n The minimum cost to reach bottom-right cell is 7. \n\n Example 2: \n\n Input: grid = [[1,2],[2,3],[3,4]], k = 1 \n \n Output: 9 \n \n Explanation: \n \n Initially we are at (0, 0) and cost is 0. \n\n Current Position \n Move \n New Position \n Total Cost \n\n (0, 0) \n Move Down \n (1, 0) \n 0 + 2 = 2 \n\n (1, 0) \n Move Right \n (1, 1) \n 2 + 3 = 5 \n\n (1, 1) \n Move Down \n (2, 1) \n 5 + 4 = 9 \n\n The minimum cost to reach bottom-right cell is 9. \n\n Constraints: \n\n 2 <= m, n <= 80 \n \n m == grid.length \n \n n == grid[i].length \n \n 0 <= grid[i][j] <= 10 4 \n \n 0 <= k <= 10",
+  "code": "class Solution {\npublic:\n    int minCost(vector<vector<int>>& grid, int k) {\n        int m = grid.size(), n = grid[0].size(), N = m * n;\n        const int INF = 1000000000;\n        vector<pair<int, int>> cells;\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j) cells.push_back({grid[i][j], i * n + j});\n        sort(cells.begin(), cells.end());\n        vector<int> dp(N, INF); dp[0] = 0;\n        for (int step = 0; step <= k; ++step) {\n            for (int i = 0; i < m; ++i) {\n                for (int j = 0; j < n; ++j) {\n                    int id = i * n + j;\n                    if (i > 0 && dp[id - n] != INF) dp[id] = min(dp[id], dp[id - n] + grid[i][j]);\n                    if (j > 0 && dp[id - 1] != INF) dp[id] = min(dp[id], dp[id - 1] + grid[i][j]);\n                }\n            }\n            if (step == k) break;\n            vector<int> next(N, INF);\n            int best = INF;\n            for (int t = N - 1; t >= 0;) {\n                int p = t;\n                while (p >= 0 && cells[p].first == cells[t].first) --p;\n                for (int j = p + 1; j <= t; ++j) best = min(best, dp[cells[j].second]);\n                for (int j = p + 1; j <= t; ++j) next[cells[j].second] = best;\n                t = p;\n            }\n            dp.swap(next);\n        }\n        return dp[N - 1];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179639750",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

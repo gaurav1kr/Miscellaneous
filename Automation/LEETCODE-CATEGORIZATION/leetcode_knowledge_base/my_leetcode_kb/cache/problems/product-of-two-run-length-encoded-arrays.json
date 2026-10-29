@@ -1,0 +1,29 @@
+{
+  "id": "1868",
+  "title": "Product of Two Run-Length Encoded Arrays",
+  "slug": "product-of-two-run-length-encoded-arrays",
+  "url": "https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Run-length encoding is a compression algorithm that allows for an integer array nums with many segments of consecutive repeated numbers to be represented by a (generally smaller) 2D array encoded . Each encoded[i] = [val i , freq i ] describes the i th segment of repeated numbers in nums where val i is the value that is repeated freq i times. \n\n For example, nums = [1,1,1,2,2,2,2,2] is represented by the run-length encoded array encoded = [[1,3],[2,5]] . Another way to read this is \"three 1 's followed by five 2 's\". \n\n The product of two run-length encoded arrays encoded1 and encoded2 can be calculated using the following steps: \n\n Expand both encoded1 and encoded2 into the full arrays nums1 and nums2 respectively. \n \n Create a new array prodNums of length nums1.length and set prodNums[i] = nums1[i] * nums2[i] . \n \n Compress prodNums into a run-length encoded array and return it. \n\n You are given two run-length encoded arrays encoded1 and encoded2 representing full arrays nums1 and nums2 respectively. Both nums1 and nums2 have the same length . Each encoded1[i] = [val i , freq i ] describes the i th segment of nums1 , and each encoded2[j] = [val j , freq j ] describes the j th segment of nums2 . \n \n Return the product of encoded1 and encoded2 . \n \n Note: Compression should be done such that the run-length encoded array has the minimum possible length. \n\n Example 1: \n \n```\nInput:\n encoded1 = [[1,3],[2,3]], encoded2 = [[6,3],[3,3]]\n\nOutput:\n [[6,6]]\n\nExplanation:\n encoded1 expands to [1,1,1,2,2,2] and encoded2 expands to [6,6,6,3,3,3].\nprodNums = [6,6,6,6,6,6], which is compressed into the run-length encoded array [[6,6]].\n```\n\n Example 2: \n \n```\nInput:\n encoded1 = [[1,3],[2,1],[3,2]], encoded2 = [[2,3],[3,3]]\n\nOutput:\n [[2,3],[6,1],[9,2]]\n\nExplanation:\n encoded1 expands to [1,1,1,2,3,3] and encoded2 expands to [2,2,2,3,3,3].\nprodNums = [2,2,2,6,9,9], which is compressed into the run-length encoded array [[2,3],[6,1],[9,2]].\n```\n\n Constraints: \n\n 1 <= encoded1.length, encoded2.length <= 10 5 \n \n encoded1[i].length == 2 \n \n encoded2[j].length == 2 \n \n 1 <= val i , freq i <= 10 4 for each encoded1[i] . \n \n 1 <= val j , freq j <= 10 4 for each encoded2[j] . \n \n The full arrays that encoded1 and encoded2 represent are the same length.",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> findRLEArray(vector<vector<int>>& encoded1,\n                                     vector<vector<int>>& encoded2) {\n        vector<vector<int>> answer;\n        int i = 0, j = 0;\n        int left = 0, right = 0;\n        while (i < static_cast<int>(encoded1.size()) && j < static_cast<int>(encoded2.size())) {\n            if (left == 0) left = encoded1[i][1];\n            if (right == 0) right = encoded2[j][1];\n            int count = min(left, right);\n            int value = encoded1[i][0] * encoded2[j][0];\n            if (!answer.empty() && answer.back()[0] == value) answer.back()[1] += count;\n            else answer.push_back({value, count});\n            left -= count;\n            right -= count;\n            if (left == 0) ++i;\n            if (right == 0) ++j;\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178619582",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

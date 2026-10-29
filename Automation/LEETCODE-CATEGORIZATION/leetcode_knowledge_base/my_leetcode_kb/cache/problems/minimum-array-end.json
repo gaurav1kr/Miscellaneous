@@ -1,0 +1,24 @@
+{
+  "id": "3133",
+  "title": "Minimum Array End",
+  "slug": "minimum-array-end",
+  "url": "https://leetcode.com/problems/minimum-array-end/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "You are given two integers n and x . You have to construct an array of positive integers nums of size n where for every 0 <= i < n - 1 , nums[i + 1] is greater than nums[i] , and the result of the bitwise AND operation between all elements of nums is x . \n \n Return the minimum possible value of nums[n - 1] . \n\n Example 1: \n\n Input: n = 3, x = 4 \n \n Output: 6 \n \n Explanation: \n \n nums can be [4,5,6] and its last element is 6. \n\n Example 2: \n\n Input: n = 2, x = 7 \n \n Output: 15 \n \n Explanation: \n \n nums can be [7,15] and its last element is 15. \n\n Constraints: \n\n 1 <= n, x <= 10 8",
+  "code": "class Solution {public:long long minEnd(int n,int x){long long v=(long long)n-1,ans=x;for(int b=0;v;++b)if(((ans>>b)&1LL)==0){if(v&1)ans|=1LL<<b;v>>=1;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177388188",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

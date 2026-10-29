@@ -1,0 +1,31 @@
+{
+  "id": "2102",
+  "title": "Sequentially Ordinal Rank Tracker",
+  "slug": "sequentially-ordinal-rank-tracker",
+  "url": "https://leetcode.com/problems/sequentially-ordinal-rank-tracker/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Design",
+    "Heap (Priority Queue)",
+    "Data Stream",
+    "Ordered Set"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Ordered set",
+    "Priority queue / heap"
+  ],
+  "description": "A scenic location is represented by its name and attractiveness score , where name is a unique string among all locations and score is an integer. Locations can be ranked from the best to the worst. The higher the score, the better the location. If the scores of two locations are equal, then the location with the lexicographically smaller name is better. \n \n You are building a system that tracks the ranking of locations with the system initially starting with no locations. It supports: \n\n Adding scenic locations, one at a time . \n \n Querying the i th best location of all locations already added , where i is the number of times the system has been queried (including the current query).\n\n For example, when the system is queried for the 4 th time, it returns the 4 th best location of all locations already added. \n\n Note that the test data are generated so that at any time , the number of queries does not exceed the number of locations added to the system. \n \n Implement the SORTracker class: \n\n SORTracker() Initializes the tracker system. \n \n void add(string name, int score) Adds a scenic location with name and score to the system. \n \n string get() Queries and returns the i th best location, where i is the number of times this method has been invoked (including this invocation). \n\n Example 1: \n \n```\nInput\n\n[\"SORTracker\", \"add\", \"add\", \"get\", \"add\", \"get\", \"add\", \"get\", \"add\", \"get\", \"add\", \"get\", \"get\"]\n[[], [\"bradford\", 2], [\"branford\", 3], [], [\"alps\", 2], [], [\"orland\", 2], [], [\"orlando\", 3], [], [\"alpine\", 2], [], []]\n\nOutput\n\n[null, null, null, \"branford\", null, \"alps\", null, \"bradford\", null, \"bradford\", null, \"bradford\", \"orland\"]\n\nExplanation\n\nSORTracker tracker = new SORTracker(); // Initialize the tracker system.\ntracker.add(\"bradford\", 2); // Add location with name=\"bradford\" and score=2 to the system.\ntracker.add(\"branford\", 3); // Add location with name=\"branford\" and score=3 to the system.\ntracker.get(); // The sorted locations, from best to worst, are: branford, bradford.\n // Note that branford precedes bradford due to its \nhigher score\n (3 > 2).\n // This is the 1\nst\n time get() is called, so return the best location: \"branford\".\ntracker.add(\"alps\", 2); // Add location with name=\"alps\" and score=2 to the system.\ntracker.get(); // Sorted locations: branford, alps, bradford.\n // Note that alps precedes bradford even though they have the same score (2).\n // This is because \"alps\" is \nlexicographically smaller\n than \"bradford\".\n // Return the 2\nnd\n best location \"alps\", as it is the 2\nnd\n time get() is called.\ntracker.add(\"orland\", 2); // Add location with name=\"orland\" and score=2 to the system.\ntracker.get(); // Sorted locations: branford, alps, bradford, orland.\n // Return \"bradford\", as it is the 3\nrd\n time get() is called.\ntracker.add(\"orlando\", 3); // Add location with name=\"orlando\" and score=3 to the system.\ntracker.get(); // Sorted locations: branford, orlando, alps, bradford, orland.\n // Return \"bradford\".\ntracker.add(\"alpine\", 2); // Add location with name=\"alpine\" and score=2 to the system.\ntracker.get(); // Sorted locations: branford, orlando, alpine, alps, bradford, orland.\n // Return \"bradford\".\ntracker.get(); // Sorted locations: branford, orlando, alpine, alps, bradford, orland.\n // Return \"orland\".\n```\n\n Constraints: \n\n name consists of lowercase English letters, and is unique among all locations. \n \n 1 <= name.length <= 10 \n \n 1 <= score <= 10 5 \n \n At any time, the number of calls to get does not exceed the number of calls to add . \n \n At most 4 * 10 4 calls in total will be made to add and get .",
+  "code": "class SORTracker {\n    typedef pair<int,string> Entry;\n    struct Better {\n        bool operator()(const Entry& a, const Entry& b) const {\n            if (a.first != b.first) return a.first > b.first;\n            return a.second < b.second;\n        }\n    };\n    set<Entry, Better> top, rest;\npublic:\n    SORTracker() {}\n    void add(string name, int score) {\n        Entry e = {score, name};\n        if (!top.empty() && Better()(e, *prev(top.end()))) {\n            top.insert(e);\n            auto it = prev(top.end());\n            rest.insert(*it);\n            top.erase(it);\n        } else {\n            rest.insert(e);\n        }\n    }\n    string get() {\n        auto it = rest.begin();\n        Entry e = *it;\n        rest.erase(it);\n        top.insert(e);\n        return e.second;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179746194",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

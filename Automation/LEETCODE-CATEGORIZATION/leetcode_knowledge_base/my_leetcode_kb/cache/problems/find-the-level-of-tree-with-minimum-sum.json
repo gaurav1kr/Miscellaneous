@@ -1,0 +1,32 @@
+{
+  "id": "3157",
+  "title": "Find the Level of Tree with Minimum Sum",
+  "slug": "find-the-level-of-tree-with-minimum-sum",
+  "url": "https://leetcode.com/problems/find-the-level-of-tree-with-minimum-sum/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree root where each node has a value, return the level of the tree that has the minimum sum of values among all the levels (in case of a tie, return the lowest level). \n \n Note that the root of the tree is at level 1 and the level of any other node is its distance from the root + 1. \n\n Example 1: \n\n Input: root = [50,6,2,30,80,7] \n \n Output: 2 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/17/image_2024-05-17_16-15-46.png] \n\n Example 2: \n\n Input: root = [36,17,10,null,null,24] \n \n Output: 3 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/17/image_2024-05-17_16-14-18.png] \n\n Example 3: \n\n Input: root = [5,null,5,null,5] \n \n Output: 1 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/19/image_2024-05-19_19-07-20.png] \n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 5 ] . \n \n 1 <= Node.val <= 10 9",
+  "code": "class Solution {\npublic:\n    int minimumLevel(TreeNode* root) {\n        queue<TreeNode*> q;\n        q.push(root);\n        long long best = LLONG_MAX;\n        int answer = 1, level = 0;\n        while (!q.empty()) {\n            int sz = q.size();\n            long long sum = 0;\n            ++level;\n            while (sz--) {\n                TreeNode* u = q.front(); q.pop();\n                sum += u->val;\n                if (u->left) q.push(u->left);\n                if (u->right) q.push(u->right);\n            }\n            if (sum < best) { best = sum; answer = level; }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178953044",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

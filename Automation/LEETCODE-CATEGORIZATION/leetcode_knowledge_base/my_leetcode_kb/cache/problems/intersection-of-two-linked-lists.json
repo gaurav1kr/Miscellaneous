@@ -1,0 +1,31 @@
+{
+  "id": "160",
+  "title": "Intersection of Two Linked Lists",
+  "slug": "intersection-of-two-linked-lists",
+  "url": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Linked List",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Linked list"
+  ],
+  "description": "Given the heads of two singly linked-lists headA and headB , return the node at which the two lists intersect . If the two linked lists have no intersection at all, return null . \n \n For example, the following two linked lists begin to intersect at node c1 : \n [Figure: https://assets.leetcode.com/uploads/2021/03/05/160_statement.png] \n \n The test cases are generated such that there are no cycles anywhere in the entire linked structure. \n \n Note that the linked lists must retain their original structure after the function returns. \n \n Custom Judge: \n \n The inputs to the judge are given as follows (your program is not given these inputs): \n\n intersectVal - The value of the node where the intersection occurs. This is 0 if there is no intersected node. \n \n listA - The first linked list. \n \n listB - The second linked list. \n \n skipA - The number of nodes to skip ahead in listA (starting from the head) to get to the intersected node. \n \n skipB - The number of nodes to skip ahead in listB (starting from the head) to get to the intersected node. \n\n The judge will then create the linked structure based on these inputs and pass the two heads, headA and headB to your program. If you correctly return the intersected node, then your solution will be accepted . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/05/160_example_1_1.png] \n \n```\nInput:\n intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3\n\nOutput:\n Intersected at '8'\n\nExplanation:\n The intersected node's value is 8 (note that this must not be 0 if the two lists intersect).\nFrom the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.\n- Note that the intersected node's value is not 1 because the nodes with value 1 in A and B (2\nnd\n node in A and 3\nrd\n node in B) are different node references. In other words, they point to two different locations in memory, while the nodes with value 8 in A and B (3\nrd\n node in A and 4\nth\n node in B) point to the same location in memory.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/05/160_example_2.png] \n \n```\nInput:\n intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1\n\nOutput:\n Intersected at '2'\n\nExplanation:\n The intersected node's value is 2 (note that this must not be 0 if the two lists intersect).\nFrom the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/03/05/160_example_3.png] \n \n```\nInput:\n intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2\n\nOutput:\n No intersection\n\nExplanation:\n From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.\nExplanation: The two lists do not intersect, so return null.\n```\n\n Constraints: \n\n The number of nodes of listA is in the m . \n \n The number of nodes of listB is in the n . \n \n 1 <= m, n <= 3 * 10 4 \n \n 1 <= Node.val <= 10 5 \n \n 0 <= skipA <= m \n \n 0 <= skipB <= n \n \n intersectVal is 0 if listA and listB do not intersect. \n \n intersectVal == listA[skipA] == listB[skipB] if listA and listB intersect. \n\n Follow up: Could you write a solution that runs in O(m + n) time and use only O(1) memory?",
+  "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode(int x) : val(x), next(NULL) {}\n * };\n */\nclass Solution \n{\npublic:\n    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) \n    {\n         ListNode *ptr1 = headA ;\n         ListNode *ptr2 = headB ;\n         while(ptr1 != ptr2)\n         {\n             ptr1 = ptr1->next ;\n             ptr2 = ptr2->next ;\n             \n             if(ptr1 == ptr2)\n             {\n                 return ptr1 ;\n             }\n             if(!ptr1)\n             {\n                 ptr1 = headB ;\n             }\n             if(!ptr2)\n             {\n                 ptr2 = headA ;\n             }\n         }\n        return ptr1 ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "816878532",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

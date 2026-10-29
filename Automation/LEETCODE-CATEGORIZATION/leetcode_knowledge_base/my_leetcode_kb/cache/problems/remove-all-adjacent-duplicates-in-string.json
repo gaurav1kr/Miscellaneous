@@ -1,0 +1,29 @@
+{
+  "id": "1047",
+  "title": "Remove All Adjacent Duplicates In String",
+  "slug": "remove-all-adjacent-duplicates-in-string",
+  "url": "https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. A duplicate removal consists of choosing two adjacent and equal letters and removing them. \n \n We repeatedly make duplicate removals on s until we no longer can. \n \n Return the final string after all such duplicate removals have been made . It can be proven that the answer is unique . \n\n Example 1: \n \n```\nInput:\n s = \"abbaca\"\n\nOutput:\n \"ca\"\n\nExplanation:\n \nFor example, in \"abbaca\" we could remove \"bb\" since the letters are adjacent and equal, and this is the only possible move. The result of this move is that the string is \"aaca\", of which only \"aa\" is possible, so the final string is \"ca\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"azxxzy\"\n\nOutput:\n \"ay\"\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string removeDuplicates(string s) {\n        string result;\n        for (char c : s) {\n            if (!result.empty() && result.back() == c)\n                result.pop_back();\n            else\n                result.push_back(c);\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588104411",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "1379",
+  "title": "Find a Corresponding Node of a Binary Tree in a Clone of That Tree",
+  "slug": "find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree",
+  "url": "https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given two binary trees original and cloned and given a reference to a node target in the original tree. \n \n The cloned tree is a copy of the original tree. \n \n Return a reference to the same node in the cloned tree. \n \n Note that you are not allowed to change any of the two trees or the target node and the answer must be a reference to a node in the cloned tree. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/02/21/e1.png] \n \n```\nInput:\n tree = [7,4,3,null,null,6,19], target = 3\n\nOutput:\n 3\n\nExplanation:\n In all examples the original and cloned trees are shown. The target node is a green node from the original tree. The answer is the yellow node from the cloned tree.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/02/21/e2.png] \n \n```\nInput:\n tree = [7], target = 7\n\nOutput:\n 7\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/02/21/e3.png] \n \n```\nInput:\n tree = [8,null,6,null,5,null,4,null,3,null,2,null,1], target = 4\n\nOutput:\n 4\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n The values of the nodes of the tree are unique. \n \n target node is a node from the original tree and is not null . \n\n Follow up: Could you solve the problem if repeated values on the tree are allowed?",
+  "code": "\nclass Solution {\npublic:\n    TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {\n        if (!original) return nullptr;\n        if (original == target) return cloned;\n        TreeNode* left = getTargetCopy(original->left, cloned->left, target);\n        if (left) return left;\n        return getTargetCopy(original->right, cloned->right, target);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595389033",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

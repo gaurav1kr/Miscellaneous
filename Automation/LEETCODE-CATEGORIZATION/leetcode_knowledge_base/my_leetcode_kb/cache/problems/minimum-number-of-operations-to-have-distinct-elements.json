@@ -1,0 +1,32 @@
+{
+  "id": "3779",
+  "title": "Minimum Number of Operations to Have Distinct Elements",
+  "slug": "minimum-number-of-operations-to-have-distinct-elements",
+  "url": "https://leetcode.com/problems/minimum-number-of-operations-to-have-distinct-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n In one operation, you remove the first three elements of the current array. If there are fewer than three elements remaining, all remaining elements are removed. \n \n Repeat this operation until the array is empty or contains no duplicate values. \n \n Return an integer denoting the number of operations required. \n\n Example 1: \n\n Input: nums = [3,8,3,6,5,8] \n \n Output: 1 \n \n Explanation: \n \n In the first operation, we remove the first three elements. The remaining elements [6, 5, 8] are all distinct, so we stop. Only one operation is needed. \n\n Example 2: \n\n Input: nums = [2,2] \n \n Output: 1 \n \n Explanation: \n \n After one operation, the array becomes empty, which meets the stopping condition. \n\n Example 3: \n\n Input: nums = [4,3,5,1,2] \n \n Output: 0 \n \n Explanation: \n \n All elements in the array are distinct, therefore no operations are needed. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        unordered_set<int> seen;\n        for (int i = (int)nums.size() - 1; i >= 0; --i) {\n            if (!seen.insert(nums[i]).second) return (i + 3) / 3;\n        }\n        return 0;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179735207",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

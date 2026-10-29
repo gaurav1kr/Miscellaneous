@@ -1,0 +1,30 @@
+{
+  "id": "686",
+  "title": "Repeated String Match",
+  "slug": "repeated-string-match",
+  "url": "https://leetcode.com/problems/repeated-string-match/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "String Matching",
+    "Z Algorithm",
+    "Knuth–Morris–Pratt Algorithm",
+    "Boyer–Moore String-Search Algorithm"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given two strings a and b , return the minimum number of times you should repeat string a so that string b is a substring of it . If it is impossible for b ​​​​​​ to be a substring of a after repeating it, return -1 . \n \n Notice: string \"abc\" repeated 0 times is \"\" , repeated 1 time is \"abc\" and repeated 2 times is \"abcabc\" . \n\n Example 1: \n \n```\nInput:\n a = \"abcd\", b = \"cdabcdab\"\n\nOutput:\n 3\n\nExplanation:\n We return 3 because by repeating a three times \"ab\ncdabcdab\ncd\", b is a substring of it.\n```\n\n Example 2: \n \n```\nInput:\n a = \"a\", b = \"aa\"\n\nOutput:\n 2\n```\n\n Constraints: \n\n 1 <= a.length, b.length <= 10 4 \n \n a and b consist of lowercase English letters.",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    int repeatedStringMatch(string a, string b) {\n        int count = 1;\n        string repeated = a;\n        while (repeated.size() < b.size()) {\n            repeated += a;\n            count++;\n        }\n        if (repeated.find(b) != string::npos) return count;\n        repeated += a;\n        return (repeated.find(b) != string::npos) ? count + 1 : -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591355700",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

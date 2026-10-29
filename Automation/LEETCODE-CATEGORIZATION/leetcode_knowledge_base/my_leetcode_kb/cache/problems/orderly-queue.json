@@ -1,0 +1,32 @@
+{
+  "id": "899",
+  "title": "Orderly Queue",
+  "slug": "orderly-queue",
+  "url": "https://leetcode.com/problems/orderly-queue/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Sorting",
+    "Lexicographically Minimal String Rotation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Sorted array",
+    "String"
+  ],
+  "description": "You are given a string s and an integer k . You can choose one of the first k letters of s and append it at the end of the string. \n \n Return the lexicographically smallest string you could have after applying the mentioned step any number of moves . \n\n Example 1: \n \n```\nInput:\n s = \"cba\", k = 1\n\nOutput:\n \"acb\"\n\nExplanation:\n \nIn the first move, we move the 1\nst\n character 'c' to the end, obtaining the string \"bac\".\nIn the second move, we move the 1\nst\n character 'b' to the end, obtaining the final result \"acb\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"baaca\", k = 3\n\nOutput:\n \"aaabc\"\n\nExplanation:\n \nIn the first move, we move the 1\nst\n character 'b' to the end, obtaining the string \"aacab\".\nIn the second move, we move the 3\nrd\n character 'c' to the end, obtaining the final result \"aaabc\".\n```\n\n Constraints: \n\n 1 <= k <= s.length <= 1000 \n \n s consist of lowercase English letters.",
+  "code": "#include <string>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string orderlyQueue(string s, int k) {\n        if (k > 1) {\n            sort(s.begin(), s.end());\n            return s;\n        }\n\n        string res = s;\n        for (int i = 1; i < s.size(); ++i) {\n            string rotated = s.substr(i) + s.substr(0, i);\n            res = min(res, rotated);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610555594",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "2284",
+  "title": "Sender With Largest Word Count",
+  "slug": "sender-with-largest-word-count",
+  "url": "https://leetcode.com/problems/sender-with-largest-word-count/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "You have a chat log of n messages. You are given two string arrays messages and senders where messages[i] is a message sent by senders[i] . \n \n A message is list of words that are separated by a single space with no leading or trailing spaces. The word count of a sender is the total number of words sent by the sender. Note that a sender may send more than one message. \n \n Return the sender with the largest word count . If there is more than one sender with the largest word count, return the one with the lexicographically largest name . \n \n Note: \n\n Uppercase letters come before lowercase letters in lexicographical order. \n \n \"Alice\" and \"alice\" are distinct. \n\n Example 1: \n \n```\nInput:\n messages = [\"Hello userTwooo\",\"Hi userThree\",\"Wonderful day Alice\",\"Nice day userThree\"], senders = [\"Alice\",\"userTwo\",\"userThree\",\"Alice\"]\n\nOutput:\n \"Alice\"\n\nExplanation:\n Alice sends a total of 2 + 3 = 5 words.\nuserTwo sends a total of 2 words.\nuserThree sends a total of 3 words.\nSince Alice has the largest word count, we return \"Alice\".\n```\n\n Example 2: \n \n```\nInput:\n messages = [\"How is leetcode for everyone\",\"Leetcode is useful for practice\"], senders = [\"Bob\",\"Charlie\"]\n\nOutput:\n \"Charlie\"\n\nExplanation:\n Bob sends a total of 5 words.\nCharlie sends a total of 5 words.\nSince there is a tie for the largest word count, we return the sender with the lexicographically larger name, Charlie.\n```\n\n Constraints: \n\n n == messages.length == senders.length \n \n 1 <= n <= 10 4 \n \n 1 <= messages[i].length <= 100 \n \n 1 <= senders[i].length <= 10 \n \n messages[i] consists of uppercase and lowercase English letters and ' ' . \n \n All the words in messages[i] are separated by a single space . \n \n messages[i] does not have leading or trailing spaces. \n \n senders[i] consists of uppercase and lowercase English letters only.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:string largestWordCount(vector<string>& messages,vector<string>& senders){unordered_map<string,int> cnt;string ans=\"\";int best=0;for(int i=0;i<(int)messages.size();++i){int words=1;for(char c:messages[i])if(c==' ')++words;int cur=cnt[senders[i]]+=words;if(cur>best||(cur==best&&senders[i]>ans)){best=cur;ans=senders[i];}}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175906439",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

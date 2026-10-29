@@ -1,0 +1,36 @@
+{
+  "id": "2576",
+  "title": "Find the Maximum Number of Marked Indices",
+  "slug": "find-the-maximum-number-of-marked-indices",
+  "url": "https://leetcode.com/problems/find-the-maximum-number-of-marked-indices/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . \n \n Initially, all of the indices are unmarked. You are allowed to make this operation any number of times: \n\n Pick two different unmarked indices i and j such that 2 * nums[i] <= nums[j] , then mark i and j . \n\n Return the maximum possible number of marked indices in nums using the above operation any number of times . \n\n Example 1: \n \n```\nInput:\n nums = [3,5,2,4]\n\nOutput:\n 2\n\nExplanation: \nIn the first operation: pick i = 2 and j = 1, the operation is allowed because 2 * nums[2] <= nums[1]. Then mark index 2 and 1.\nIt can be shown that there's no other valid operation so the answer is 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [9,2,5,4]\n\nOutput:\n 4\n\nExplanation: \nIn the first operation: pick i = 3 and j = 0, the operation is allowed because 2 * nums[3] <= nums[0]. Then mark index 3 and 0.\nIn the second operation: pick i = 1 and j = 2, the operation is allowed because 2 * nums[1] <= nums[2]. Then mark index 1 and 2.\nSince there is no other operation, the answer is 4.\n```\n\n Example 3: \n \n```\nInput:\n nums = [7,6,8]\n\nOutput:\n 0\n\nExplanation: \nThere is no valid operation to do, so the answer is 0.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {public:int maxNumOfMarkedIndices(vector<int>& nums){sort(nums.begin(),nums.end());int n=nums.size(),i=0,j=(n+1)/2;while(i<n/2&&j<n){if(2LL*nums[i]<=nums[j])i++;j++;}return 2*i;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176618166",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

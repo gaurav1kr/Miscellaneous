@@ -1,0 +1,27 @@
+{
+  "id": "2728",
+  "title": "Count Houses in a Circular Street",
+  "slug": "count-houses-in-a-circular-street",
+  "url": "https://leetcode.com/problems/count-houses-in-a-circular-street/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Interactive"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector"
+  ],
+  "description": "You are given an object street of class Street that represents a circular street and a positive integer k which represents a maximum bound for the number of houses in that street (in other words, the number of houses is less than or equal to k ). Houses' doors could be open or closed initially. \n \n Initially, you are standing in front of a door to a house on this street. Your task is to count the number of houses in the street. \n \n The class Street contains the following functions which may help you: \n\n void openDoor() : Open the door of the house you are in front of. \n \n void closeDoor() : Close the door of the house you are in front of. \n \n boolean isDoorOpen() : Returns true if the door of the current house is open and false otherwise. \n \n void moveRight() : Move to the right house. \n \n void moveLeft() : Move to the left house. \n\n Return ans which represents the number of houses on this street. \n\n Example 1: \n \n```\nInput:\n street = [0,0,0,0], k = 10\n\nOutput:\n 4\n\nExplanation:\n There are 4 houses, and all their doors are closed. \nThe number of houses is less than k, which is 10.\n```\n\n Example 2: \n \n```\nInput:\n street = [1,0,1,1,0], k = 5\n\nOutput:\n 5\n\nExplanation:\n There are 5 houses, and the doors of the 1st, 3rd, and 4th house (moving in the right direction) are open, and the rest are closed.\nThe number of houses is equal to k, which is 5.\n```\n\n Constraints: \n\n n == number of houses \n \n 1 <= n <= k <= 10 3",
+  "code": "class Solution {\npublic:\n    int houseCount(Street* street, int k) {\n        for (int i = 0; i < k; ++i) {\n            street->closeDoor();\n            street->moveRight();\n        }\n        street->openDoor();\n        street->moveRight();\n        int count = 1;\n        while (!street->isDoorOpen()) {\n            ++count;\n            street->moveRight();\n        }\n        return count;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178901575",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

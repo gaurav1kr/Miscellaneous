@@ -1,0 +1,34 @@
+{
+  "id": "1905",
+  "title": "Count Sub Islands",
+  "slug": "count-sub-islands",
+  "url": "https://leetcode.com/problems/count-sub-islands/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Vector"
+  ],
+  "description": "You are given two m x n binary matrices grid1 and grid2 containing only 0 's (representing water) and 1 's (representing land). An island is a group of 1 's connected 4-directionally (horizontal or vertical). Any cells outside of the grid are considered water cells. \n \n An island in grid2 is considered a sub-island if there is an island in grid1 that contains all the cells that make up this island in grid2 . \n \n Return the number of islands in grid2 that are considered sub-islands . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/10/test1.png] \n \n```\nInput:\n grid1 = [[1,1,1,0,0],[0,1,1,1,1],[0,0,0,0,0],[1,0,0,0,0],[1,1,0,1,1]], grid2 = [[1,1,1,0,0],[0,0,1,1,1],[0,1,0,0,0],[1,0,1,1,0],[0,1,0,1,0]]\n\nOutput:\n 3\n\nExplanation: \nIn the picture above, the grid on the left is grid1 and the grid on the right is grid2.\nThe 1s colored red in grid2 are those considered to be part of a sub-island. There are three sub-islands.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/03/testcasex2.png] \n \n```\nInput:\n grid1 = [[1,0,1,0,1],[1,1,1,1,1],[0,0,0,0,0],[1,1,1,1,1],[1,0,1,0,1]], grid2 = [[0,0,0,0,0],[1,1,1,1,1],[0,1,0,1,0],[0,1,0,1,0],[1,0,0,0,1]]\n\nOutput:\n 2 \n\nExplanation: \nIn the picture above, the grid on the left is grid1 and the grid on the right is grid2.\nThe 1s colored red in grid2 are those considered to be part of a sub-island. There are two sub-islands.\n```\n\n Constraints: \n\n m == grid1.length == grid2.length \n \n n == grid1[i].length == grid2[i].length \n \n 1 <= m, n <= 500 \n \n grid1[i][j] and grid2[i][j] are either 0 or 1 .",
+  "code": "class Solution {int m,n;bool dfs(int r,int c,vector<vector<int>>& a,vector<vector<int>>& b){if(r<0||c<0||r>=m||c>=n||b[r][c]==0)return true;b[r][c]=0;bool good=a[r][c]==1;const int dr[]={1,-1,0,0},dc[]={0,0,1,-1};for(int k=0;k<4;++k){bool sub=dfs(r+dr[k],c+dc[k],a,b);good=good&&sub;}return good;}public:int countSubIslands(vector<vector<int>>& grid1,vector<vector<int>>& grid2){m=grid2.size();n=grid2[0].size();int ans=0;for(int i=0;i<m;++i)for(int j=0;j<n;++j)if(grid2[i][j])ans+=dfs(i,j,grid1,grid2);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175764589",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "1094",
+  "title": "Car Pooling",
+  "slug": "car-pooling",
+  "url": "https://leetcode.com/problems/car-pooling/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Simulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There is a car with capacity empty seats. The vehicle only drives east (i.e., it cannot turn around and drive west). \n \n You are given the integer capacity and an array trips where trips[i] = [numPassengers i , from i , to i ] indicates that the i th trip has numPassengers i passengers and the locations to pick them up and drop them off are from i and to i respectively. The locations are given as the number of kilometers due east from the car's initial location. \n \n Passengers are dropped off before new passengers are picked up at the same location. At every point along the route, the total number of passengers in the car must not exceed capacity . \n \n Return true if it is possible to pick up and drop off all passengers for all the given trips, or false otherwise. \n\n Example 1: \n \n```\nInput:\n trips = [[2,1,5],[3,3,7]], capacity = 4\n\nOutput:\n false\n\nExplanation:\n\nAt kilometer 1, 2 passengers are picked up, so the car holds 2.\nAt kilometer 3, 3 more are picked up, so the car holds 5.\nSince 5 > capacity = 4, the trips cannot all be completed.\n```\n\n Example 2: \n \n```\nInput:\n trips = [[2,1,5],[3,3,7]], capacity = 5\n\nOutput:\n true\n\nExplanation:\n\nAt kilometer 1, the car holds 2 passengers.\nAt kilometer 3, the car holds 5 passengers.\nAt kilometer 5, the first 2 are dropped off, so the car holds 3.\nAt kilometer 7, the last 3 are dropped off, so the car holds 0.\nThe maximum occupancy is 5, which never exceeds capacity = 5.\n```\n\n Constraints: \n\n 1 <= trips.length <= 1000 \n \n trips[i].length == 3 \n \n 1 <= numPassengers i <= 100 \n \n 0 <= from i < to i <= 1000 \n \n 1 <= capacity <= 10 5",
+  "code": "class Solution \n{\npublic:\n    bool carPooling(vector<vector<int>>& trips, int capacity) \n    {\n        int stops[1001] = {};\n        for (auto t : trips) stops[t[1]] += t[0], stops[t[2]] -= t[0];\n        for (auto i = 0; capacity >= 0 && i < 1001; ++i) capacity -= stops[i];\n        return capacity >= 0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1362160827",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

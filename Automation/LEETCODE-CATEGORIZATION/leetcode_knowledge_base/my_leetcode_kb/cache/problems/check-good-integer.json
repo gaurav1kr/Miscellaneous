@@ -1,0 +1,26 @@
+{
+  "id": "3959",
+  "title": "Check Good Integer",
+  "slug": "check-good-integer",
+  "url": "https://leetcode.com/problems/check-good-integer/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Simulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [],
+  "description": "You are given a positive integer n . \n \n Let digitSum be the sum of the digits of n , and let squareSum be the sum of the squares of the digits of n . \n \n An integer is called good if squareSum - digitSum >= 50 . \n \n Return true if n is good. Otherwise, return false . \n\n Example 1: \n\n Input: n = 1000 \n \n Output: false \n \n Explanation: \n\n The digits of 1000 are 1, 0, 0, and 0. \n \n The digitSum is 1 + 0 + 0 + 0 = 1 . \n \n The squareSum is 1 2 + 0 2 + 0 2 + 0 2 = 1 . \n \n The squareSum - digitSum is 1 - 1 = 0 . As 0 is not greater than or equal to 50, the output is false . \n\n Example 2: \n\n Input: n = 19 \n \n Output: true \n \n Explanation: \n\n The digits of 19 are 1 and 9. \n \n The digitSum is 1 + 9 = 10 . \n \n The squareSum is 1 2 + 9 2 = 1 + 81 = 82 . \n \n The squareSum - digitSum is 82 - 10 = 72 . As 72 is greater than or equal to 50, the output is true . \n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "class Solution {\npublic:\n    bool checkGoodInteger(int n) {\n        int diff = 0;\n        while (n) { int d = n % 10; diff += d * (d - 1); n /= 10; }\n        return diff >= 50;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179323443",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

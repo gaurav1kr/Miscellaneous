@@ -1,0 +1,29 @@
+{
+  "id": "704",
+  "title": "Binary Search",
+  "slug": "binary-search",
+  "url": "https://leetcode.com/problems/binary-search/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of integers nums which is sorted in ascending order, and an integer target , write a function to search target in nums . If target exists, then return its index. Otherwise, return -1 . \n \n You must write an algorithm with O(log n) runtime complexity. \n\n Example 1: \n \n```\nInput:\n nums = [-1,0,3,5,9,12], target = 9\n\nOutput:\n 4\n\nExplanation:\n 9 exists in nums and its index is 4\n```\n\n Example 2: \n \n```\nInput:\n nums = [-1,0,3,5,9,12], target = 2\n\nOutput:\n -1\n\nExplanation:\n 2 does not exist in nums so return -1\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 4 \n \n -10 4 < nums[i], target < 10 4 \n \n All the integers in nums are unique . \n \n nums is sorted in ascending order.",
+  "code": "class Solution {\npublic:\n    int search(vector<int>& nums, int target) {\n        int left = 0, right = nums.size() - 1;\n        while (left <= right) {\n            int mid = left + (right - left) / 2;\n            if (nums[mid] == target) return mid;\n            else if (nums[mid] < target) left = mid + 1;\n            else right = mid - 1;\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588099506",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

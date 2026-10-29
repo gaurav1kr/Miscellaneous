@@ -1,0 +1,29 @@
+{
+  "id": "3595",
+  "title": "Once Twice",
+  "slug": "once-twice",
+  "url": "https://leetcode.com/problems/once-twice/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . In this array: \n\n Exactly one element appears once . \n\n Exactly one element appears twice . \n\n All other elements appear exactly three times . \n\n Return an integer array of length 2, where the first element is the one that appears once , and the second is the one that appears twice . \n \n Your solution must run in O(n) time and O(1) space. \n\n Example 1: \n\n Input: nums = [2,2,3,2,5,5,5,7,7] \n \n Output: [3,7] \n \n Explanation: \n \n The element 3 appears once , and the element 7 appears twice . The remaining elements each appear three times . \n\n Example 2: \n\n Input: nums = [4,4,6,4,9,9,9,6,8] \n \n Output: [8,6] \n \n Explanation: \n \n The element 8 appears once , and the element 6 appears twice . The remaining elements each appear three times . \n\n Constraints: \n\n 3 <= nums.length <= 10 5 \n \n -2 31 <= nums[i] <= 2 31 - 1 \n \n nums.length is a multiple of 3. \n \n Exactly one element appears once, one element appears twice, and all other elements appear three times.",
+  "code": "class Solution {\npublic:\n    vector<int> onceTwice(vector<int>& nums) {\n        uint32_t one = 0, two = 0;\n        for (int x : nums) {\n            uint32_t v = static_cast<uint32_t>(x);\n            uint32_t newOne = (one ^ v) & ~two;\n            uint32_t newTwo = (two ^ v) & ~newOne;\n            one = newOne;\n            two = newTwo;\n        }\n        uint32_t diff = one ^ two;\n        uint32_t bit = diff & (~diff + 1u);\n        uint32_t a = 0, b = 0;\n        // For the distinguishing bit, one appears once and two appears twice.\n        // Residual ternary counters for each partition identify the numbers.\n        uint32_t aOne = 0, aTwo = 0, bOne = 0, bTwo = 0;\n        for (int x : nums) {\n            uint32_t v = static_cast<uint32_t>(x);\n            uint32_t &o = (v & bit) ? aOne : bOne;\n            uint32_t &t = (v & bit) ? aTwo : bTwo;\n            uint32_t no = (o ^ v) & ~t;\n            uint32_t nt = (t ^ v) & ~no;\n            o = no;\n            t = nt;\n        }\n        if (aOne & bit) { a = aOne; b = bTwo; }\n        else { a = bOne; b = aTwo; }\n        return {static_cast<int>(a), static_cast<int>(b)};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179723958",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

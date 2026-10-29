@@ -1,0 +1,28 @@
+{
+  "id": "504",
+  "title": "Base 7",
+  "slug": "base-7",
+  "url": "https://leetcode.com/problems/base-7/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given an integer num , return a string of its base 7 representation . \n\n Example 1: \n \n```\nInput:\n num = 100\n\nOutput:\n \"202\"\n```\n \n Example 2: \n \n```\nInput:\n num = -7\n\nOutput:\n \"-10\"\n```\n\n Constraints: \n\n -10 7 <= num <= 10 7",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string convertToBase7(int num) {\n        if (num == 0) return \"0\";\n        bool neg = num < 0;\n        num = abs(num);\n        string res;\n        while (num > 0) {\n            res = to_string(num % 7) + res;\n            num /= 7;\n        }\n        return neg ? \"-\" + res : res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610594703",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

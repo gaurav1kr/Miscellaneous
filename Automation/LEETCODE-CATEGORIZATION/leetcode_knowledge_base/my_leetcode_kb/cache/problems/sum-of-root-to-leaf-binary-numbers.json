@@ -1,0 +1,30 @@
+{
+  "id": "1022",
+  "title": "Sum of Root To Leaf Binary Numbers",
+  "slug": "sum-of-root-to-leaf-binary-numbers",
+  "url": "https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "You are given the root of a binary tree where each node has a value 0 or 1 . Each root-to-leaf path represents a binary number starting with the most significant bit. \n\n For example, if the path is 0 -> 1 -> 1 -> 0 -> 1 , then this could represent 01101 in binary, which is 13 . \n\n For all leaves in the tree, consider the numbers represented by the path from the root to that leaf. Return the sum of these numbers . \n \n The test cases are generated so that the answer fits in a 32-bits integer. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/04/04/sum-of-root-to-leaf-binary-numbers.png] \n \n```\nInput:\n root = [1,0,1,0,1,0,1]\n\nOutput:\n 22\n\nExplanation: \n(100) + (101) + (110) + (111) = 4 + 5 + 6 + 7 = 22\n```\n\n Example 2: \n \n```\nInput:\n root = [0]\n\nOutput:\n 0\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 1000] . \n \n Node.val is 0 or 1 .",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution\n{\n    int sum;\npublic:\n    Solution()\n    {\n        sum = 0;\n    }\n    int sumRootToLeaf(TreeNode* root)\n    {\n        printPaths(root);\n        return sum;\n    }\n\n    void printPaths(TreeNode* node)\n    {\n        int path[1000];\n        printPathsRecur(node, path, 0);\n    }\n\n    void printPathsRecur(TreeNode* node, int path[], int pathLen)\n    {\n        if (node == NULL)\n            return;\n\n        path[pathLen] = node->val;\n        pathLen++;\n\n        if (node->left == NULL && node->right == NULL)\n        {\n            printArray(path, pathLen);\n        }\n        else\n        {\n            printPathsRecur(node->left, path, pathLen);\n            printPathsRecur(node->right, path, pathLen);\n        }\n    }\n\n    void printArray(int ints[], int len)\n    {\n        int i;\n        int power = len - 1;\n        for (i = 0; i < len; i++)\n        {\n            if (ints[i])\n            {\n                sum = sum + pow(2, power);\n            }\n            power--;\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1151389448",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

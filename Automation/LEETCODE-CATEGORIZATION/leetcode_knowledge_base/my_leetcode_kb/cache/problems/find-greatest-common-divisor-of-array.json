@@ -1,0 +1,32 @@
+{
+  "id": "1979",
+  "title": "Find Greatest Common Divisor of Array",
+  "slug": "find-greatest-common-divisor-of-array",
+  "url": "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Number Theory",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return the greatest common divisor of the smallest number and largest number in nums . \n \n The greatest common divisor of two numbers is the largest positive integer that evenly divides both numbers. \n\n Example 1: \n \n```\nInput:\n nums = [2,5,6,9,10]\n\nOutput:\n 2\n\nExplanation:\n\nThe smallest number in nums is 2.\nThe largest number in nums is 10.\nThe greatest common divisor of 2 and 10 is 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [7,5,6,8,3]\n\nOutput:\n 1\n\nExplanation:\n\nThe smallest number in nums is 3.\nThe largest number in nums is 8.\nThe greatest common divisor of 3 and 8 is 1.\n```\n\n Example 3: \n \n```\nInput:\n nums = [3,3]\n\nOutput:\n 3\n\nExplanation:\n\nThe smallest number in nums is 3.\nThe largest number in nums is 3.\nThe greatest common divisor of 3 and 3 is 3.\n```\n\n Constraints: \n\n 2 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 1000",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findGCD(vector<int>& nums) {\n        int mn = *min_element(nums.begin(), nums.end());\n        int mx = *max_element(nums.begin(), nums.end());\n        return gcd(mn, mx);\n    }\n\n    int gcd(int a, int b) {\n        return b == 0 ? a : gcd(b, a % b);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610653590",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

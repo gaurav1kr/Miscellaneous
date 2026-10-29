@@ -1,0 +1,38 @@
+{
+  "id": "1986",
+  "title": "Minimum Number of Work Sessions to Finish the Tasks",
+  "slug": "minimum-number-of-work-sessions-to-finish-the-tasks",
+  "url": "https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "There are n tasks assigned to you. The task times are represented as an integer array tasks of length n , where the i th task takes tasks[i] hours to finish. A work session is when you work for at most sessionTime consecutive hours and then take a break. \n \n You should finish the given tasks in a way that satisfies the following conditions: \n\n If you start a task in a work session, you must complete it in the same work session. \n \n You can start a new task immediately after finishing the previous one. \n \n You may complete the tasks in any order . \n\n Given tasks and sessionTime , return the minimum number of work sessions needed to finish all the tasks following the conditions above. \n \n The tests are generated such that sessionTime is greater than or equal to the maximum element in tasks[i] . \n\n Example 1: \n \n```\nInput:\n tasks = [1,2,3], sessionTime = 3\n\nOutput:\n 2\n\nExplanation:\n You can finish the tasks in two work sessions.\n- First work session: finish the first and the second tasks in 1 + 2 = 3 hours.\n- Second work session: finish the third task in 3 hours.\n```\n\n Example 2: \n \n```\nInput:\n tasks = [3,1,3,1,1], sessionTime = 8\n\nOutput:\n 2\n\nExplanation:\n You can finish the tasks in two work sessions.\n- First work session: finish all the tasks except the last one in 3 + 1 + 3 + 1 = 8 hours.\n- Second work session: finish the last task in 1 hour.\n```\n\n Example 3: \n \n```\nInput:\n tasks = [1,2,3,4,5], sessionTime = 15\n\nOutput:\n 1\n\nExplanation:\n You can finish all the tasks in one work session.\n```\n\n Constraints: \n\n n == tasks.length \n \n 1 <= n <= 14 \n \n 1 <= tasks[i] <= 10 \n \n max(tasks[i]) <= sessionTime <= 15",
+  "code": "class Solution {\npublic:\n    int minSessions(vector<int>& tasks, int sessionTime) {\n        sort(tasks.rbegin(), tasks.rend());\n        int left = 1, right = tasks.size();\n\n        while (left < right) {\n            int mid = (left + right) / 2;\n            vector<int> sessions(mid, 0);\n            if (canPartition(tasks, sessions, 0, sessionTime)) {\n                right = mid;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return left;\n    }\n    \n    bool canPartition(vector<int>& tasks, vector<int>& sessions, int index, int sessionTime) {\n        if (index == tasks.size()) return true;\n        unordered_set<int> seen;\n\n        for (int& session : sessions) {\n            if (seen.count(session)) continue;\n            if (session + tasks[index] <= sessionTime) {\n                session += tasks[index];\n                if (canPartition(tasks, sessions, index + 1, sessionTime)) return true;\n                session -= tasks[index];\n                \n                seen.insert(session);\n                if (session == 0) break;\n            }\n        }\n\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617065287",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

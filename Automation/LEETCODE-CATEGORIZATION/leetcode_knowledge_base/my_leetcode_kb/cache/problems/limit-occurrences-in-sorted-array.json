@@ -1,0 +1,29 @@
+{
+  "id": "3940",
+  "title": "Limit Occurrences in Sorted Array",
+  "slug": "limit-occurrences-in-sorted-array",
+  "url": "https://leetcode.com/problems/limit-occurrences-in-sorted-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a sorted integer array nums and an integer k . \n \n Return an array such that each distinct element appears at most k times, while preserving the relative order of the elements in nums . \n \n Note: If a distinct element appears at least k times, then it must appear exactly k times in the resulting array. \n\n Example 1: \n\n Input: nums = [1,1,1,2,2,3], k = 2 \n \n Output: [1,1,2,2,3] \n \n Explanation: \n \n Each element can appear at most 2 times. \n\n The element 1 appears 3 times, so only 2 occurrences are kept. \n \n The element 2 appears 2 times, so both occurrences are kept. \n \n The element 3 appears 1 time, so it is kept. \n\n Thus, the resulting array is [1, 1, 2, 2, 3] . \n\n Example 2: \n\n Input: nums = [1,2,3], k = 1 \n \n Output: [1,2,3] \n \n Explanation: \n \n All elements are distinct and already appear at most once, so the array remains unchanged. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100 \n \n nums is sorted in non-decreasing order. \n \n 1 <= k <= nums.length \n\n Follow-up: \n\n Can you solve this in-place using O(1) extra space? \n \n Note that the space used for returning or resizing the result does not count toward the space complexity mentioned above, as some languages do not support in-place resizing.",
+  "code": "class Solution {\npublic:\n    vector<int> limitOccurrences(vector<int>& nums, int k) {\n        int write = 0;\n        for (int x : nums) {\n            if (write < k || nums[write - k] != x) nums[write++] = x;\n        }\n        nums.resize(write);\n        return nums;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179320629",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

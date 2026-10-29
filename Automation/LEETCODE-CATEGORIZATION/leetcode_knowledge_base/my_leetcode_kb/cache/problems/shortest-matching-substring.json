@@ -1,0 +1,32 @@
+{
+  "id": "3455",
+  "title": "Shortest Matching Substring",
+  "slug": "shortest-matching-substring",
+  "url": "https://leetcode.com/problems/shortest-matching-substring/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Binary Search",
+    "String Matching"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s and a pattern string p , where p contains exactly two '*' characters. \n \n The '*' in p matches any sequence of zero or more characters. \n \n Return the length of the shortest substring in s that matches p . If there is no such substring, return -1. \n Note: The empty substring is considered valid.\n\n Example 1: \n\n Input: s = \"abaacbaecebce\", p = \"ba*c*ce\" \n \n Output: 8 \n \n Explanation: \n \n The shortest matching substring of p in s is \" ba e c eb ce \" . \n\n Example 2: \n\n Input: s = \"baccbaadbc\", p = \"cc*baa*adb\" \n \n Output: -1 \n \n Explanation: \n \n There is no matching substring in s . \n\n Example 3: \n\n Input: s = \"a\", p = \"**\" \n \n Output: 0 \n \n Explanation: \n \n The empty substring is the shortest matching substring. \n\n Example 4: \n\n Input: s = \"madlogic\", p = \"*adlogi*\" \n \n Output: 6 \n \n Explanation: \n \n The shortest matching substring of p in s is \" adlogi \" . \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n 2 <= p.length <= 10 5 \n \n s contains only lowercase English letters. \n \n p contains only lowercase English letters and exactly two '*' .",
+  "code": "class Solution {vector<int>occ(const string&s,const string&p){int n=s.size(),m=p.size();vector<int>v(n+1);if(!m){iota(v.begin(),v.end(),0);return v;}vector<int>pi(m);for(int i=1,j=0;i<m;++i){while(j&&p[i]!=p[j])j=pi[j-1];if(p[i]==p[j])++j;pi[i]=j;}for(int i=0,j=0;i<n;++i){while(j&&s[i]!=p[j])j=pi[j-1];if(s[i]==p[j])++j;if(j==m){v[i-m+1]=1;j=pi[j-1];}}return v;}\n public:int shortestMatchingSubstring(string s,string p){int a=p.find('*'),b=p.find('*',a+1);string x=p.substr(0,a),y=p.substr(a+1,b-a-1),z=p.substr(b+1);int n=s.size();auto A=occ(s,x),B=occ(s,y),C=occ(s,z);vector<int>nb(n+2,n+1),nc(n+2,n+1);for(int i=n;i>=0;--i){nb[i]=B[i]?i:nb[i+1];nc[i]=C[i]?i:nc[i+1];}int ans=INT_MAX;for(int i=0;i+(int)x.size()<=n;++i)if(A[i]){int j=nb[i+x.size()];if(j>n)continue;int t=nc[j+y.size()];if(t<=n)ans=min(ans,t+(int)z.size()-i);}return ans==INT_MAX?-1:ans;\n }};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177531687",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

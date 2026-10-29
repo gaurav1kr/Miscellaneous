@@ -1,0 +1,37 @@
+{
+  "id": "3261",
+  "title": "Count Substrings That Satisfy K-Constraint II",
+  "slug": "count-substrings-that-satisfy-k-constraint-ii",
+  "url": "https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Binary Search",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a binary string s and an integer k . \n \n You are also given a 2D integer array queries , where queries[i] = [l i , r i ] . \n \n A binary string satisfies the k-constraint if either of the following conditions holds: \n\n The number of 0 's in the string is at most k . \n \n The number of 1 's in the string is at most k . \n\n Return an integer array answer , where answer[i] is the number of substrings of s[l i ..r i ] that satisfy the k-constraint . \n\n Example 1: \n\n Input: s = \"0001111\", k = 2, queries = [[0,6]] \n \n Output: [26] \n \n Explanation: \n \n For the query [0, 6] , all substrings of s[0..6] = \"0001111\" satisfy the k-constraint except for the substrings s[0..5] = \"000111\" and s[0..6] = \"0001111\" . \n\n Example 2: \n\n Input: s = \"010101\", k = 1, queries = [[0,5],[1,4],[2,3]] \n \n Output: [15,9,3] \n \n Explanation: \n \n The substrings of s with a length greater than 3 do not satisfy the k-constraint. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is either '0' or '1' . \n \n 1 <= k <= s.length \n \n 1 <= queries.length <= 10 5 \n \n queries[i] == [l i , r i ] \n \n 0 <= l i <= r i < s.length \n \n All queries are distinct.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution { public: vector<long long> countKConstraintSubstrings(string s,int k,vector<vector<int>>& queries){int n=s.size(),l=0,z=0,o=0;vector<int> left(n);vector<long long> pre(n+1);for(int r=0;r<n;r++){(s[r]=='0'?z:o)++;while(z>k&&o>k)(s[l++]=='0'?z:o)--;left[r]=l;pre[r+1]=pre[r]+r-l+1;}vector<long long> ans;for(auto &q:queries){int L=q[0],R=q[1];int t=lower_bound(left.begin()+L,left.begin()+R+1,L)-left.begin();long long len=t-L;ans.push_back(len*(len+1)/2+pre[R+1]-pre[t]);}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181227827",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "3591",
+  "title": "Check if Any Element Has Prime Frequency",
+  "slug": "check-if-any-element-has-prime-frequency",
+  "url": "https://leetcode.com/problems/check-if-any-element-has-prime-frequency/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Counting",
+    "Number Theory"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Return true if the frequency of any element of the array is prime , otherwise, return false . \n \n The frequency of an element x is the number of times it occurs in the array. \n \n A prime number is a natural number greater than 1 with only two factors, 1 and itself. \n\n Example 1: \n\n Input: nums = [1,2,3,4,5,4] \n \n Output: true \n \n Explanation: \n \n 4 has a frequency of two, which is a prime number. \n\n Example 2: \n\n Input: nums = [1,2,3,4,5] \n \n Output: false \n \n Explanation: \n \n All elements have a frequency of one. \n\n Example 3: \n\n Input: nums = [2,2,2,4,4] \n \n Output: true \n \n Explanation: \n \n Both 2 and 4 have a prime frequency. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 0 <= nums[i] <= 100",
+  "code": "class Solution {public:\n bool checkPrimeFrequency(vector<int>& nums){\n  unordered_map<int,int> freq;for(int x:nums)++freq[x];\n  for(auto&p:freq){int x=p.second;if(x<2)continue;bool prime=true;\n   for(int d=2;d*d<=x;++d)if(x%d==0){prime=false;break;}\n   if(prime)return true;\n  }return false;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177600975",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

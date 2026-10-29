@@ -1,0 +1,41 @@
+{
+  "id": "1348",
+  "title": "Tweet Counts Per Frequency",
+  "slug": "tweet-counts-per-frequency",
+  "url": "https://leetcode.com/problems/tweet-counts-per-frequency/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Binary Search",
+    "Design",
+    "Sorting",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Ordered set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "A social media company is trying to monitor activity on their site by analyzing the number of tweets that occur in select periods of time. These periods can be partitioned into smaller time chunks based on a certain frequency (every minute , hour , or day ). \n \n For example, the period [10, 10000] (in seconds ) would be partitioned into the following time chunks with these frequencies: \n\n Every minute (60-second chunks): [10,69] , [70,129] , [130,189] , ... , [9970,10000] \n \n Every hour (3600-second chunks): [10,3609] , [3610,7209] , [7210,10000] \n \n Every day (86400-second chunks): [10,10000] \n\n Notice that the last chunk may be shorter than the specified frequency's chunk size and will always end with the end time of the period ( 10000 in the above example). \n \n Design and implement an API to help the company with their analysis. \n \n Implement the TweetCounts class: \n\n TweetCounts() Initializes the TweetCounts object. \n \n void recordTweet(String tweetName, int time) Stores the tweetName at the recorded time (in seconds ). \n \n List<Integer> getTweetCountsPerFrequency(String freq, String tweetName, int startTime, int endTime) Returns a list of integers representing the number of tweets with tweetName in each time chunk for the given period of time [startTime, endTime] (in seconds ) and frequency freq .\n\n freq is one of \"minute\" , \"hour\" , or \"day\" representing a frequency of every minute , hour , or day respectively. \n\n Example: \n \n```\nInput\n\n[\"TweetCounts\",\"recordTweet\",\"recordTweet\",\"recordTweet\",\"getTweetCountsPerFrequency\",\"getTweetCountsPerFrequency\",\"recordTweet\",\"getTweetCountsPerFrequency\"]\n[[],[\"tweet3\",0],[\"tweet3\",60],[\"tweet3\",10],[\"minute\",\"tweet3\",0,59],[\"minute\",\"tweet3\",0,60],[\"tweet3\",120],[\"hour\",\"tweet3\",0,210]]\n\nOutput\n\n[null,null,null,null,[2],[2,1],null,[4]]\n\nExplanation\n\nTweetCounts tweetCounts = new TweetCounts();\ntweetCounts.recordTweet(\"tweet3\", 0); // New tweet \"tweet3\" at time 0\ntweetCounts.recordTweet(\"tweet3\", 60); // New tweet \"tweet3\" at time 60\ntweetCounts.recordTweet(\"tweet3\", 10); // New tweet \"tweet3\" at time 10\ntweetCounts.getTweetCountsPerFrequency(\"minute\", \"tweet3\", 0, 59); // return [2]; chunk [0,59] had 2 tweets\ntweetCounts.getTweetCountsPerFrequency(\"minute\", \"tweet3\", 0, 60); // return [2,1]; chunk [0,59] had 2 tweets, chunk [60,60] had 1 tweet\ntweetCounts.recordTweet(\"tweet3\", 120); // New tweet \"tweet3\" at time 120\ntweetCounts.getTweetCountsPerFrequency(\"hour\", \"tweet3\", 0, 210); // return [4]; chunk [0,210] had 4 tweets\n```\n\n Constraints: \n\n 0 <= time, startTime, endTime <= 10 9 \n \n 0 <= endTime - startTime <= 10 4 \n \n There will be at most 10 4 calls in total to recordTweet and getTweetCountsPerFrequency .",
+  "code": "class TweetCounts {\n    unordered_map<string, multiset<int>> times;\npublic:\n    TweetCounts() {}\n    void recordTweet(string tweetName, int time) {\n        times[tweetName].insert(time);\n    }\n    vector<int> getTweetCountsPerFrequency(string freq, string tweetName,\n                                            int startTime, int endTime) {\n        int width = freq == \"minute\" ? 60 : (freq == \"hour\" ? 3600 : 86400);\n        vector<int> result((endTime - startTime) / width + 1, 0);\n        auto it = times.find(tweetName);\n        if (it == times.end()) return result;\n        auto p = it->second.lower_bound(startTime);\n        while (p != it->second.end() && *p <= endTime) {\n            ++result[(*p - startTime) / width];\n            ++p;\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175750058",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

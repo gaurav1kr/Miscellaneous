@@ -1,0 +1,26 @@
+{
+  "id": "3744",
+  "title": "Find Kth Character in Expanded String",
+  "slug": "find-kth-character-in-expanded-string",
+  "url": "https://leetcode.com/problems/find-kth-character-in-expanded-string/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s consisting of one or more words separated by single spaces. Each word in s consists of lowercase English letters. \n \n We obtain the expanded string t from s as follows: \n\n For each word in s , repeat its first character once, then its second character twice, and so on. \n\n For example, if s = \"hello world\" , then t = \"heelllllllooooo woorrrllllddddd\" . \n \n You are also given an integer k , representing a valid index of the string t . \n \n Return the k th character of the string t . \n\n Example 1: \n\n Input: s = \"hello world\", k = 0 \n \n Output: \"h\" \n \n Explanation: \n \n t = \"heelllllllooooo woorrrllllddddd\" . Therefore, the answer is t[0] = \"h\" . \n\n Example 2: \n\n Input: s = \"hello world\", k = 15 \n \n Output: \" \" \n \n Explanation: \n \n t = \"heelllllllooooo woorrrllllddddd\" . Therefore, the answer is t[15] = \" \" . \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s contains only lowercase English letters and spaces ' ' . \n \n s does not contain any leading or trailing spaces. \n \n All the words in s are separated by a single space . \n \n 0 <= k < t.length . That is, k is a valid index of t .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    char kthCharacter(string s, long long k) {\n        long long pos = 0, repeat = 0;\n        for (char c : s) {\n            if (c == ' ') {\n                if (k == pos) return ' ';\n                ++pos; repeat = 0;\n            } else {\n                ++repeat;\n                if (k < pos + repeat) return c;\n                pos += repeat;\n            }\n        }\n        return ' ';\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181010589",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

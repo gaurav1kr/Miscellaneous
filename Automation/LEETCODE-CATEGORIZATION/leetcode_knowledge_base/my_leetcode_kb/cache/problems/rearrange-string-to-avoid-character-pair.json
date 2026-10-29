@@ -1,0 +1,31 @@
+{
+  "id": "3992",
+  "title": "Rearrange String to Avoid Character Pair",
+  "slug": "rearrange-string-to-avoid-character-pair",
+  "url": "https://leetcode.com/problems/rearrange-string-to-avoid-character-pair/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Sorted array",
+    "String"
+  ],
+  "description": "You are given a string s and two distinct lowercase English letters x and y . \n \n Rearrange the characters of s to construct a new string t such that: \n\n t is a permutation of s . \n \n Every occurrence of y appears before every occurrence of x in t . \n\n Return any valid string t . \n\n Example 1: \n\n Input: s = \"aabc\", x = \"a\", y = \"c\" \n \n Output: \"cbaa\" \n \n Explanation: \n \n The string \"cbaa\" is a permutation of \"aabc\" , and every occurrence of 'c' appears before every occurrence of 'a' . \n\n Example 2: \n\n Input: s = \"dcab\", x = \"d\", y = \"b\" \n \n Output: \"cabd\" \n \n Explanation: \n \n The string \"cabd\" is a permutation of \"dcab\" , and every occurrence of 'b' appears before every occurrence of 'd' . \n\n Example 3: \n\n Input: s = \"axe\", x = \"o\", y = \"x\" \n \n Output: \"axe\" \n \n Explanation: \n \n The string \"axe\" is already valid. Since 'o' does not occur in the string, the required condition is automatically satisfied. \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists of lowercase English letters. \n \n x and y are lowercase English letters. \n \n x != y",
+  "code": "class Solution {\npublic:\n    string rearrangeString(string s, char x, char y) {\n        string ans;\n        for (char c : s) if (c == y) ans += c;\n        for (char c : s) if (c != x && c != y) ans += c;\n        for (char c : s) if (c == x) ans += c;\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179327020",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

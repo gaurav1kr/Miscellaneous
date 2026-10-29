@@ -1,0 +1,31 @@
+{
+  "id": "2312",
+  "title": "Selling Pieces of Wood",
+  "slug": "selling-pieces-of-wood",
+  "url": "https://leetcode.com/problems/selling-pieces-of-wood/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Memoization"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two integers m and n that represent the height and width of a rectangular piece of wood. You are also given a 2D integer array prices , where prices[i] = [h i , w i , price i ] indicates you can sell a rectangular piece of wood of height h i and width w i for price i dollars. \n \n To cut a piece of wood, you must make a vertical or horizontal cut across the entire height or width of the piece to split it into two smaller pieces. After cutting a piece of wood into some number of smaller pieces, you can sell pieces according to prices . You may sell multiple pieces of the same shape, and you do not have to sell all the shapes. The grain of the wood makes a difference, so you cannot rotate a piece to swap its height and width. \n \n Return the maximum money you can earn after cutting an m x n piece of wood . \n \n Note that you can cut the piece of wood as many times as you want. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/04/27/ex1.png] \n \n```\nInput:\n m = 3, n = 5, prices = [[1,4,2],[2,2,7],[2,1,3]]\n\nOutput:\n 19\n\nExplanation:\n The diagram above shows a possible scenario. It consists of:\n- 2 pieces of wood shaped 2 x 2, selling for a price of 2 * 7 = 14.\n- 1 piece of wood shaped 2 x 1, selling for a price of 1 * 3 = 3.\n- 1 piece of wood shaped 1 x 4, selling for a price of 1 * 2 = 2.\nThis obtains a total of 14 + 3 + 2 = 19 money earned.\nIt can be shown that 19 is the maximum amount of money that can be earned.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/04/27/ex2new.png] \n \n```\nInput:\n m = 4, n = 6, prices = [[3,2,10],[1,4,2],[4,1,3]]\n\nOutput:\n 32\n\nExplanation:\n The diagram above shows a possible scenario. It consists of:\n- 3 pieces of wood shaped 3 x 2, selling for a price of 3 * 10 = 30.\n- 1 piece of wood shaped 1 x 4, selling for a price of 1 * 2 = 2.\nThis obtains a total of 30 + 2 = 32 money earned.\nIt can be shown that 32 is the maximum amount of money that can be earned.\nNotice that we cannot rotate the 1 x 4 piece of wood to obtain a 4 x 1 piece of wood.\n```\n\n Constraints: \n\n 1 <= m, n <= 200 \n \n 1 <= prices.length <= 2 * 10 4 \n \n prices[i].length == 3 \n \n 1 <= h i <= m \n \n 1 <= w i <= n \n \n 1 <= price i <= 10 6 \n \n All the shapes of wood (h i , w i ) are pairwise distinct .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:long long sellingWood(int m,int n,vector<vector<int>>& prices){vector<vector<long long>> dp(m+1,vector<long long>(n+1));for(auto& p:prices)dp[p[0]][p[1]]=max(dp[p[0]][p[1]],(long long)p[2]);for(int h=1;h<=m;++h)for(int w=1;w<=n;++w){for(int x=1;x<=h/2;++x)dp[h][w]=max(dp[h][w],dp[x][w]+dp[h-x][w]);for(int y=1;y<=w/2;++y)dp[h][w]=max(dp[h][w],dp[h][y]+dp[h][w-y]);}return dp[m][n];}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175913986",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

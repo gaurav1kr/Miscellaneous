@@ -1,0 +1,43 @@
+{
+  "id": "3420",
+  "title": "Count Non-Decreasing Subarrays After K Operations",
+  "slug": "count-non-decreasing-subarrays-after-k-operations",
+  "url": "https://leetcode.com/problems/count-non-decreasing-subarrays-after-k-operations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Segment Tree",
+    "Queue",
+    "Sliding Window",
+    "Monotonic Stack",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Tree / Trie",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Deque",
+    "Monotonic deque",
+    "Monotonic stack",
+    "Queue",
+    "Segment tree",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an array nums of n integers and an integer k . \n \n For each subarray of nums , you can apply up to k operations on it. In each operation, you increment any element of the subarray by 1. \n \n Note that each subarray is considered independently, meaning changes made to one subarray do not persist to another. \n \n Return the number of subarrays that you can make non-decreasing ​​​​​after performing at most k operations. \n \n An array is said to be non-decreasing if each element is greater than or equal to its previous element, if it exists. \n\n Example 1: \n\n Input: nums = [6,3,1,2,4,4], k = 7 \n \n Output: 17 \n \n Explanation: \n \n Out of all 21 possible subarrays of nums , only the subarrays [6, 3, 1] , [6, 3, 1, 2] , [6, 3, 1, 2, 4] and [6, 3, 1, 2, 4, 4] cannot be made non-decreasing after applying up to k = 7 operations. Thus, the number of non-decreasing subarrays is 21 - 4 = 17 . \n\n Example 2: \n\n Input: nums = [6,3,1,3,6], k = 4 \n \n Output: 12 \n \n Explanation: \n \n The subarray [3, 1, 3, 6] along with all subarrays of nums with three or fewer elements, except [6, 3, 1] , can be made non-decreasing after k operations. There are 5 subarrays of a single element, 4 subarrays of two elements, and 2 subarrays of three elements except [6, 3, 1] , so there are 1 + 5 + 4 + 2 = 12 subarrays that can be made non-decreasing. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= k <= 10 9",
+  "code": "class Solution {public:long long countNonDecreasingSubarrays(vector<int>&nums,int k){int n=nums.size(),r=n-1;deque<int>dq;long long cost=0,ans=0;for(int l=n-1;l>=0;l--){while(!dq.empty()&&nums[dq.back()]<=nums[l]){int j=dq.back();dq.pop_back();int nxt=dq.empty()?r+1:dq.back();cost+=1LL*(nums[l]-nums[j])*(nxt-j);}dq.push_back(l);while(cost>k){cost-=nums[dq.front()]-nums[r];if(dq.front()==r)dq.pop_front();r--;}ans+=r-l+1;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177521861",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

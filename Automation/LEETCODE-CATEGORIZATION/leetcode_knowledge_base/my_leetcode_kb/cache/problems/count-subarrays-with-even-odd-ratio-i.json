@@ -1,0 +1,38 @@
+{
+  "id": "4011",
+  "title": "Count Subarrays With Even Odd Ratio I",
+  "slug": "count-subarrays-with-even-odd-ratio-i",
+  "url": "https://leetcode.com/problems/count-subarrays-with-even-odd-ratio-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Merge Sort",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Prefix-sum array",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers a and b . \n \n For a subarray , let: \n\n x be the number of even elements. \n \n y be the number of odd elements. \n\n The ratio of even to odd elements in a subarray is defined as x / y , where ratios are compared by their exact rational values. \n \n A subarray is considered valid if: \n\n y > 0 , and \n \n x / y <= a / b . \n\n Return the number of valid subarrays in nums . \n\n Example 1: \n\n Input: nums = [1,2,1,2], a = 3, b = 2 \n \n Output: 7 \n \n Explanation: \n \n The following are the valid subarrays: \n\n Subarray \n Values \n Even Count \n Odd Count \n Ratio \n\n nums[0..0] \n [1] \n 0 \n 1 \n 0 / 1 \n\n nums[0..1] \n [1, 2] \n 1 \n 1 \n 1 / 1 \n\n nums[0..2] \n [1, 2, 1] \n 1 \n 2 \n 1 / 2 \n\n nums[0..3] \n [1, 2, 1, 2] \n 2 \n 2 \n 2 / 2 \n\n nums[1..2] \n [2, 1] \n 1 \n 1 \n 1 / 1 \n\n nums[2..2] \n [1] \n 0 \n 1 \n 0 / 1 \n\n nums[2..3] \n [1, 2] \n 1 \n 1 \n 1 / 1 \n\n Thus, the number of valid subarrays is 7. \n\n Example 2: \n\n Input: nums = [2,2,1], a = 2, b = 1 \n \n Output: 3 \n \n Explanation: \n \n The following are the valid subarrays: \n\n Subarray \n Values \n Even Count \n Odd Count \n Ratio \n\n nums[0..2] \n [2, 2, 1] \n 2 \n 1 \n 2 / 1 \n\n nums[1..2] \n [2, 1] \n 1 \n 1 \n 1 / 1 \n\n nums[2..2] \n [1] \n 0 \n 1 \n 0 / 1 \n\n Thus, the number of valid subarrays is 3. \n\n Example 3: \n\n Input: nums = [2,2,2], a = 1, b = 1 \n \n Output: 0 \n \n Explanation: \n \n Every subarray contains 0 odd numbers, so no subarray is valid. \n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 1000 \n \n 1 <= a, b <= 1000",
+  "code": "class Solution {\npublic:\n    int countRatioSubarrays(vector<int>& nums, int a, int b) {\n        int n = nums.size(), ans = 0;\n        for (int i = 0; i < n; ++i) {\n            int even = 0, odd = 0;\n            for (int j = i; j < n; ++j) {\n                if (nums[j] % 2 == 0) ++even;\n                else ++odd;\n                if (odd > 0 && (long long)even * b <= (long long)odd * a)\n                    ++ans;\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181110313",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

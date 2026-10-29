@@ -1,0 +1,27 @@
+{
+  "id": "1184",
+  "title": "Distance Between Bus Stops",
+  "slug": "distance-between-bus-stops",
+  "url": "https://leetcode.com/problems/distance-between-bus-stops/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "A bus has n stops numbered from 0 to n - 1 that form a circle. We know the distance between all pairs of neighboring stops where distance[i] is the distance between the stops number  i and (i + 1) % n . \n \n The bus goes along both directions i.e. clockwise and counterclockwise. \n \n Return the shortest distance between the given  start  and destination  stops. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2019/09/03/untitled-diagram-1.jpg] \n \n```\nInput:\n distance = [1,2,3,4], start = 0, destination = 1\r\n\nOutput:\n 1\r\n\nExplanation:\n Distance between 0 and 1 is 1 or 9, minimum is 1.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2019/09/03/untitled-diagram-1-1.jpg] \n \n```\nInput:\n distance = [1,2,3,4], start = 0, destination = 2\r\n\nOutput:\n 3\r\n\nExplanation:\n Distance between 0 and 2 is 3 or 7, minimum is 3.\n```\n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2019/09/03/untitled-diagram-1-2.jpg] \n \n```\nInput:\n distance = [1,2,3,4], start = 0, destination = 3\r\n\nOutput:\n 4\r\n\nExplanation:\n Distance between 0 and 3 is 6 or 4, minimum is 4.\n```\n\n Constraints: \n\n 1 <= n <= 10^4 \n \n distance.length == n \n \n 0 <= start, destination < n \n \n 0 <= distance[i] <= 10^4",
+  "code": "#include <vector>\n#include <numeric>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int distanceBetweenBusStops(vector<int>& dist, int start, int dest) {\n        if (start > dest) swap(start, dest);\n        int total = accumulate(dist.begin(), dist.end(), 0);\n        int path = accumulate(dist.begin() + start, dist.begin() + dest, 0);\n        return min(path, total - path);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610572195",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "1155",
+  "title": "Number of Dice Rolls With Target Sum",
+  "slug": "number-of-dice-rolls-with-target-sum",
+  "url": "https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You have n dice, and each dice has k faces numbered from 1 to k . \n \n Given three integers n , k , and target , return the number of possible ways (out of the k n total ways) to roll the dice, so the sum of the face-up numbers equals target . Since the answer may be too large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 1, k = 6, target = 3\n\nOutput:\n 1\n\nExplanation:\n You throw one die with 6 faces.\nThere is only one way to get a sum of 3.\n```\n\n Example 2: \n \n```\nInput:\n n = 2, k = 6, target = 7\n\nOutput:\n 6\n\nExplanation:\n You throw two dice, each with 6 faces.\nThere are 6 ways to get a sum of 7: 1+6, 2+5, 3+4, 4+3, 5+2, 6+1.\n```\n\n Example 3: \n \n```\nInput:\n n = 30, k = 30, target = 500\n\nOutput:\n 222616187\n\nExplanation:\n The answer must be returned modulo 10\n9\n + 7.\n```\n\n Constraints: \n\n 1 <= n, k <= 30 \n \n 1 <= target <= 1000",
+  "code": "class Solution {\nprivate:\n    int helper(int n,int k,int t,vector<vector<int>>& memo)\n    {\n        if(n>t || t>n*k) return 0;\n        if(n==0 && t!=0) return memo[n][t]=0;\n        if(n==0 && t==0) return memo[n][t]=1;\n        if(memo[n][t]!=-1) return memo[n][t];\n        int cnt=0;\n        for(int i=1;i<=k;i++){\n            cnt=(cnt+helper(n-1,k,t-i,memo))%1000000007;\n        }\n        return memo[n][t]=cnt;\n    }\npublic:\n    int numRollsToTarget(int n, int k, int target)\n    {\n        vector<vector<int>> memo(n+1,vector<int>(target+1,-1));\n        return helper(n,k,target,memo);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1359355952",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

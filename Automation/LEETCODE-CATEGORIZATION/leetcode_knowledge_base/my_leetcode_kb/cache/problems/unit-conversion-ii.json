@@ -1,0 +1,35 @@
+{
+  "id": "3535",
+  "title": "Unit Conversion II",
+  "slug": "unit-conversion-ii",
+  "url": "https://leetcode.com/problems/unit-conversion-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There are n types of units indexed from 0 to n - 1 . \n \n You are given a 2D integer array conversions of length n - 1 , where conversions[i] = [sourceUnit i , targetUnit i , conversionFactor i ] . This indicates that a single unit of type sourceUnit i is equivalent to conversionFactor i units of type targetUnit i . \n \n You are also given a 2D integer array queries of length q , where queries[i] = [unitA i , unitB i ] . \n \n Return an array answer of length q where answer[i] is the number of units of type unitB i equivalent to 1 unit of type unitA i , and can be represented as p/q where p and q are coprime. Return each answer[i] as pq -1 modulo 10 9 + 7 , where q -1 represents the multiplicative inverse of q modulo 10 9 + 7 . \n\n Example 1: \n\n Input: conversions = [[0,1,2],[0,2,6]], queries = [[1,2],[1,0]] \n \n Output: [3,500000004] \n \n Explanation: \n\n In the first query, we can convert unit 1 into 3 units of type 2 using the inverse of conversions[0] , then conversions[1] . \n \n In the second query, we can convert unit 1 into 1/2 units of type 0 using the inverse of conversions[0] . We return 500000004 since it is the multiplicative inverse of 2. \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/13/example1.png] \n \n Example 2: \n\n Input: conversions = [[0,1,2],[0,2,6],[0,3,8],[2,4,2],[2,5,4],[3,6,3]], queries = [[1,2],[0,4],[6,5],[4,6],[6,1]] \n \n Output: [3,12,1,2,83333334] \n \n Explanation: \n\n In the first query, we can convert unit 1 into 3 units of type 2 using the inverse of conversions[0] , then conversions[1] . \n \n In the second query, we can convert unit 0 into 12 units of type 4 using conversions[1] , then conversions[3] . \n \n In the third query, we can convert unit 6 into 1 unit of type 5 using the inverse of conversions[5] , the inverse of conversions[2] , conversions[1] , then conversions[4] . \n \n In the fourth query, we can convert unit 4 into 2 units of type 6 using the inverse of conversions[3] , the inverse of conversions[1] , conversions[2] , then conversions[5] . \n \n In the fifth query, we can convert unit 6 into 1/12 units of type 1 using the inverse of conversions[5] , the inverse of conversions[2] , then conversions[0] . We return 83333334 since it is the multiplicative inverse of 12. \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/13/example2.png] \n\n Constraints: \n\n 2 <= n <= 10 5 \n \n conversions.length == n - 1 \n \n 0 <= sourceUnit i , targetUnit i < n \n \n 1 <= conversionFactor i <= 10 9 \n \n 1 <= q <= 10 5 \n \n queries.length == q \n \n 0 <= unitA i , unitB i < n \n \n It is guaranteed that unit 0 can be uniquely converted into any other unit through a combination of forward or backward conversions.",
+  "code": "class Solution {\n    static const long long MOD=1000000007LL;\n    long long power(long long a,long long b) {\n        long long r=1;\n        while(b) { if(b&1) r=r*a%MOD; a=a*a%MOD; b>>=1; }\n        return r;\n    }\npublic:\n    vector<int> queryConversions(vector<vector<int>>& conversions, vector<vector<int>>& queries) {\n        int n=(int)conversions.size()+1;\n        vector<vector<pair<int,long long>>> g(n);\n        for (auto &e:conversions) {\n            g[e[0]].push_back({e[1],e[2]});\n            g[e[1]].push_back({e[0],power(e[2],MOD-2)});\n        }\n        vector<long long> scale(n,0); scale[0]=1;\n        queue<int> que; que.push(0);\n        while(!que.empty()) {\n            int u=que.front();que.pop();\n            for(auto &edge:g[u]) if(!scale[edge.first]) {\n                scale[edge.first]=scale[u]*edge.second%MOD;\n                que.push(edge.first);\n            }\n        }\n        vector<int> ans;\n        for(auto &q:queries)\n            ans.push_back((int)(scale[q[1]]*power(scale[q[0]],MOD-2)%MOD));\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180969426",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

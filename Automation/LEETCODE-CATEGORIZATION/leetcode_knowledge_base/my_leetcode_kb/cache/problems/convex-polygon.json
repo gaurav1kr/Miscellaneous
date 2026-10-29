@@ -1,0 +1,31 @@
+{
+  "id": "469",
+  "title": "Convex Polygon",
+  "slug": "convex-polygon",
+  "url": "https://leetcode.com/problems/convex-polygon/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry",
+    "Polygons"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array of points on the X-Y plane points where points[i] = [x i , y i ] . The points form a polygon when joined sequentially. \n \n Return true if this polygon is convex and false otherwise. \n \n You may assume the polygon formed by given points is always a simple polygon . In other words, we ensure that exactly two edges intersect at each vertex and that edges otherwise don't intersect each other. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/09/covpoly1-plane.jpg] \n \n```\nInput:\n points = [[0,0],[0,5],[5,5],[5,0]]\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/09/covpoly2-plane.jpg] \n \n```\nInput:\n points = [[0,0],[0,10],[10,10],[10,0],[5,5]]\n\nOutput:\n false\n```\n\n Constraints: \n\n 3 <= points.length <= 10 4 \n \n points[i].length == 2 \n \n -10 4 <= x i , y i <= 10 4 \n \n All the given points are unique .",
+  "code": "class Solution {\npublic:\n    bool isConvex(vector<vector<int>>& points) {\n        int sign = 0;\n        int n = static_cast<int>(points.size());\n        for (int i = 0; i < n; ++i) {\n            const auto& a = points[i];\n            const auto& b = points[(i + 1) % n];\n            const auto& c = points[(i + 2) % n];\n            long long cross = 1LL * (b[0] - a[0]) * (c[1] - b[1])\n                            - 1LL * (b[1] - a[1]) * (c[0] - b[0]);\n            if (cross == 0) {\n                continue;\n            }\n            int current = cross > 0 ? 1 : -1;\n            if (sign != 0 && sign != current) {\n                return false;\n            }\n            sign = current;\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178470588",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

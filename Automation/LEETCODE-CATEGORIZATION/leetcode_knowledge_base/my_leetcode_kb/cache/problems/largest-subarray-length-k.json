@@ -1,0 +1,29 @@
+{
+  "id": "1708",
+  "title": "Largest Subarray Length K",
+  "slug": "largest-subarray-length-k",
+  "url": "https://leetcode.com/problems/largest-subarray-length-k/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "An array A is larger than some array B if for the first index i where A[i] != B[i] , A[i] > B[i] . \n \n For example, consider 0 -indexing: \n\n [1,3,2,4] > [1,2,2,4] , since at index 1 , 3 > 2 . \n \n [1,4,4,4] < [2,1,1,1] , since at index 0 , 1 < 2 . \n\n A subarray is a contiguous subsequence of the array. \n \n Given an integer array nums of distinct integers, return the largest subarray of nums of length k . \n\n Example 1: \n \n```\nInput:\n nums = [1,4,5,2,3], k = 3\n\nOutput:\n [5,2,3]\n\nExplanation:\n The subarrays of size 3 are: [1,4,5], [4,5,2], and [5,2,3].\nOf these, [5,2,3] is the largest.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,4,5,2,3], k = 4\n\nOutput:\n [4,5,2,3]\n\nExplanation:\n The subarrays of size 4 are: [1,4,5,2], and [4,5,2,3].\nOf these, [4,5,2,3] is the largest.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,4,5,2,3], k = 1\n\nOutput:\n [5]\n```\n\n Constraints: \n\n 1 <= k <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n All the integers of nums are unique . \n\n Follow up: What if the integers in nums are not distinct?",
+  "code": "class Solution {\npublic:\n    vector<int> largestSubarray(vector<int>& nums, int k) {\n        int best = 0;\n        for (int i = 1; i + k <= static_cast<int>(nums.size()); ++i) {\n            if (nums[i] > nums[best]) best = i;\n        }\n        return vector<int>(nums.begin() + best, nums.begin() + best + k);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178604427",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

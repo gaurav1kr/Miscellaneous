@@ -1,0 +1,35 @@
+{
+  "id": "3078",
+  "title": "Match Alphanumerical Pattern in Matrix I",
+  "slug": "match-alphanumerical-pattern-in-matrix-i",
+  "url": "https://leetcode.com/problems/match-alphanumerical-pattern-in-matrix-i/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Matrix"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer matrix board and a 2D character matrix pattern . Where 0 <= board[r][c] <= 9 and each element of pattern is either a digit or a lowercase English letter. \n \n Your task is to find a submatrix of board that matches pattern . \n \n An integer matrix part matches pattern if we can replace cells containing letters in pattern with some digits (each distinct letter with a unique digit) in such a way that the resulting matrix becomes identical to the integer matrix part . In other words, \n\n The matrices have identical dimensions. \n \n If pattern[r][c] is a digit, then part[r][c] must be the same digit. \n \n If pattern[r][c] is a letter x :\n\n For every pattern[i][j] == x , part[i][j] must be the same as part[r][c] . \n \n For every pattern[i][j] != x , part[i][j] must be different than part[r][c] . \n\n Return an array of length 2 containing the row number and column number of the upper-left corner of a submatrix of board which matches pattern . If there is more than one such submatrix, return the coordinates of the submatrix with the lowest row index, and in case there is still a tie, return the coordinates of the submatrix with the lowest column index. If there are no suitable answers, return [-1, -1] . \n\n Example 1: \n\n 1 \n 2 \n 2 \n\n 2 \n 2 \n 3 \n\n 2 \n 3 \n 3 \n\n a \n b \n\n b \n b \n\n Input: board = [[1,2,2],[2,2,3],[2,3,3]], pattern = [\"ab\",\"bb\"] \n \n Output: [0,0] \n \n Explanation: If we consider this mapping: \"a\" -> 1 and \"b\" -> 2 ; the submatrix with the upper-left corner (0,0) is a match as outlined in the matrix above. \n \n Note that the submatrix with the upper-left corner (1,1) is also a match but since it comes after the other one, we return [0,0] . \n\n Example 2: \n\n 1 \n 1 \n 2 \n\n 3 \n 3 \n 4 \n\n 6 \n 6 \n 6 \n\n a \n b \n\n 6 \n 6 \n\n Input: board = [[1,1,2],[3,3,4],[6,6,6]], pattern = [\"ab\",\"66\"] \n \n Output: [1,1] \n \n Explanation: If we consider this mapping: \"a\" -> 3 and \"b\" -> 4 ; the submatrix with the upper-left corner (1,1) is a match as outlined in the matrix above. \n \n Note that since the corresponding values of \"a\" and \"b\" must differ, the submatrix with the upper-left corner (1,0) is not a match. Hence, we return [1,1] . \n\n Example 3: \n\n 1 \n 2 \n\n 2 \n 1 \n\n x \n x \n\n Input: board = [[1,2],[2,1]], pattern = [\"xx\"] \n \n Output: [-1,-1] \n \n Explanation: Since the values of the matched submatrix must be the same, there is no match. Hence, we return [-1,-1] . \n\n Constraints: \n\n 1 <= board.length <= 50 \n \n 1 <= board[i].length <= 50 \n \n 0 <= board[i][j] <= 9 \n \n 1 <= pattern.length <= 50 \n \n 1 <= pattern[i].length <= 50 \n \n pattern[i][j] is either a digit represented as a string or a lowercase English letter.",
+  "code": "class Solution {\npublic:\n    vector<int> findPattern(vector<vector<int>>& board, vector<string>& pattern) {\n        int R = board.size(), C = board[0].size();\n        int r = pattern.size(), c = pattern[0].size();\n        for (int i = 0; i + r <= R; ++i) for (int j = 0; j + c <= C; ++j) {\n            int forward[26], backward[10];\n            fill(forward, forward + 26, -1);\n            fill(backward, backward + 10, -1);\n            bool ok = true;\n            for (int x = 0; x < r && ok; ++x) for (int y = 0; y < c; ++y) {\n                char ch = pattern[x][y];\n                int d = board[i + x][j + y];\n                if (isdigit(ch)) { if (ch - '0' != d) ok = false; }\n                else {\n                    int a = ch - 'a';\n                    if ((forward[a] != -1 && forward[a] != d) ||\n                        (backward[d] != -1 && backward[d] != a)) ok = false;\n                    forward[a] = d; backward[d] = a;\n                }\n            }\n            if (ok) return {i, j};\n        }\n        return {-1, -1};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178942717",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

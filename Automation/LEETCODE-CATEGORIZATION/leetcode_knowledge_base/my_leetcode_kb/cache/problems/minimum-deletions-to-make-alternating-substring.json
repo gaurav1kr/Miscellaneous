@@ -1,0 +1,30 @@
+{
+  "id": "3777",
+  "title": "Minimum Deletions to Make Alternating Substring",
+  "slug": "minimum-deletions-to-make-alternating-substring",
+  "url": "https://leetcode.com/problems/minimum-deletions-to-make-alternating-substring/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Segment Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Segment tree",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s of length n consisting only of the characters 'A' and 'B' . \n \n You are also given a 2D integer array queries of length q , where each queries[i] is one of the following: \n\n [1, j] : Flip the character at index j of s i.e. 'A' changes to 'B' (and vice versa). This operation mutates s and affects subsequent queries. \n \n [2, l, r] : Compute the minimum number of character deletions required to make the substring s[l..r] alternating . This operation does not modify s ; the length of s remains n . \n\n A substring is alternating if no two adjacent characters are equal . A substring of length 1 is always alternating. \n \n Return an integer array answer , where answer[i] is the result of the i th query of type [2, l, r] . \n\n Example 1: \n\n Input: s = \"ABA\", queries = [[2,1,2],[1,1],[2,0,2]] \n \n Output: [0,2] \n \n Explanation: \n\n i \n queries[i] \n j \n l \n r \n s before query \n s[l..r] \n Result \n Answer \n\n 0 \n [2, 1, 2] \n - \n 1 \n 2 \n \"ABA\" \n \"BA\" \n Already alternating \n 0 \n\n 1 \n [1, 1] \n 1 \n - \n - \n \"ABA\" \n - \n Flip s[1] from 'B' to 'A' \n - \n\n 2 \n [2, 0, 2] \n - \n 0 \n 2 \n \"AAA\" \n \"AAA\" \n Delete any two 'A' s to get \"A\" \n 2 \n\n Thus, the answer is [0, 2] . \n\n Example 2: \n\n Input: s = \"ABB\", queries = [[2,0,2],[1,2],[2,0,2]] \n \n Output: [1,0] \n \n Explanation: \n\n i \n queries[i] \n j \n l \n r \n s before query \n s[l..r] \n Result \n Answer \n\n 0 \n [2, 0, 2] \n - \n 0 \n 2 \n \"ABB\" \n \"ABB\" \n Delete one 'B' to get \"AB\" \n 1 \n\n 1 \n [1, 2] \n 2 \n - \n - \n \"ABB\" \n - \n Flip s[2] from 'B' to 'A' \n - \n\n 2 \n [2, 0, 2] \n - \n 0 \n 2 \n \"ABA\" \n \"ABA\" \n Already alternating \n 0 \n\n Thus, the answer is [1, 0] . \n\n Example 3: \n\n Input: s = \"BABA\", queries = [[2,0,3],[1,1],[2,1,3]] \n \n Output: [0,1] \n \n Explanation: \n\n i \n queries[i] \n j \n l \n r \n s before query \n s[l..r] \n Result \n Answer \n\n 0 \n [2, 0, 3] \n - \n 0 \n 3 \n \"BABA\" \n \"BABA\" \n Already alternating \n 0 \n\n 1 \n [1, 1] \n 1 \n - \n - \n \"BABA\" \n - \n Flip s[1] from 'A' to 'B' \n - \n\n 2 \n [2, 1, 3] \n - \n 1 \n 3 \n \"BBBA\" \n \"BBA\" \n Delete one 'B' to get \"BA\" \n 1 \n\n Thus, the answer is [0, 1] . \n\n Constraints: \n\n 1 <= n == s.length <= 10 5 \n \n s[i] is either 'A' or 'B' . \n \n 1 <= q == queries.length <= 10 5 \n \n queries[i].length == 2 or 3 \n\n queries[i] == [1, j] or, \n \n queries[i] == [2, l, r] \n \n 0 <= j <= n - 1 \n \n 0 <= l <= r <= n - 1",
+  "code": "class Solution {\n    struct BIT {\n        vector<int> bit;\n        BIT(int n) : bit(n + 1, 0) {}\n        void add(int x, int d) {\n            for (++x; x < (int)bit.size(); x += x & -x) bit[x] += d;\n        }\n        int pref(int x) {\n            int z = 0;\n            for (++x; x > 0; x -= x & -x) z += bit[x];\n            return z;\n        }\n    };\npublic:\n    vector<int> minDeletions(string s, vector<vector<int>>& queries) {\n        int n = s.size();\n        BIT bit(n);\n        for (int i = 1; i < n; ++i) if (s[i] == s[i - 1]) bit.add(i, 1);\n        vector<int> ans;\n        for (auto &q : queries) {\n            if (q[0] == 2) {\n                ans.push_back(bit.pref(q[2]) - bit.pref(q[1]));\n            } else {\n                int j = q[1];\n                for (int i = max(1, j); i <= min(n - 1, j + 1); ++i)\n                    if (s[i] == s[i - 1]) bit.add(i, -1);\n                s[j] = (s[j] == 'A') ? 'B' : 'A';\n                for (int i = max(1, j); i <= min(n - 1, j + 1); ++i)\n                    if (s[i] == s[i - 1]) bit.add(i, 1);\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179642792",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

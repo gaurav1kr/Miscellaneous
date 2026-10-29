@@ -1,0 +1,32 @@
+{
+  "id": "303",
+  "title": "Range Sum Query - Immutable",
+  "slug": "range-sum-query-immutable",
+  "url": "https://leetcode.com/problems/range-sum-query-immutable/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Design",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , handle multiple queries of the following type: \n\n Calculate the sum of the elements of nums between indices left and right inclusive where left <= right . \n\n Implement the NumArray class: \n\n NumArray(int[] nums) Initializes the object with the integer array nums . \n \n int sumRange(int left, int right) Returns the sum of the elements of nums between indices left and right inclusive (i.e. nums[left] + nums[left + 1] + ... + nums[right] ). \n\n Example 1: \n \n```\nInput\n\n[\"NumArray\", \"sumRange\", \"sumRange\", \"sumRange\"]\n[[[-2, 0, 3, -5, 2, -1]], [0, 2], [2, 5], [0, 5]]\n\nOutput\n\n[null, 1, -1, -3]\n\nExplanation\n\nNumArray numArray = new NumArray([-2, 0, 3, -5, 2, -1]);\nnumArray.sumRange(0, 2); // return (-2) + 0 + 3 = 1\nnumArray.sumRange(2, 5); // return 3 + (-5) + 2 + (-1) = -1\nnumArray.sumRange(0, 5); // return (-2) + 0 + 3 + (-5) + 2 + (-1) = -3\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 4 \n \n -10 5 <= nums[i] <= 10 5 \n \n 0 <= left <= right < nums.length \n \n At most 10 4 calls will be made to sumRange .",
+  "code": "class NumArray {\nint seg[100000];\nvector<int> arr;\nint n;\nvoid build(int ind, int low, int high, vector<int>& arr)\n{\n   if(low == high) //base case\n   {\n       seg[ind] = arr[low];\n       return;\n   }\n   int mid = (low + high)/2;\n   build(2*ind+1,low,mid,arr);             //call for left sub-tree\n   build(2*ind+2,mid+1,high,arr);          //call for right sub-tree\n   seg[ind] = seg[2*ind+1] + seg[2*ind+2]; //store total sum\n}\n\nint query(int ind, int low, int high, int l, int r)\n{\n    if(low > r || high < l) //CASE 1: out of range\n     return 0;\n                                \n    if(l <= low && high <= r) //CASE 2: overlapping range\n     return seg[ind];\n     \n    //CASE 3: partial overlapping range\n    int mid = (low + high)/2;\n    int left = query(2*ind+1,low,mid,l,r);\n    int right = query(2*ind+2,mid+1,high,l,r);\n    return left + right;\n}\npublic:\n    NumArray(vector<int>& nums) {\n        arr = nums;\n        n = arr.size();\n        build(0,0,n-1,arr); //build segment tree\n    }\n    \n    int sumRange(int left, int right) {\n        return query(0,0,n-1,left,right);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1157243194",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

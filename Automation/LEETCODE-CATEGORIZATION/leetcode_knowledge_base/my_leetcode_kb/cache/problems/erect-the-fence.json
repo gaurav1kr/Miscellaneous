@@ -1,0 +1,32 @@
+{
+  "id": "587",
+  "title": "Erect the Fence",
+  "slug": "erect-the-fence",
+  "url": "https://leetcode.com/problems/erect-the-fence/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry",
+    "Convex Hull",
+    "Polygons"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array trees where trees[i] = [x i , y i ] represents the location of a tree in the garden. \n \n Fence the entire garden using the minimum length of rope, as it is expensive. The garden is well-fenced only if all the trees are enclosed . \n \n Return the coordinates of trees that are exactly located on the fence perimeter . You may return the answer in any order . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/24/erect2-plane.jpg] \n \n```\nInput:\n trees = [[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]\n\nOutput:\n [[1,1],[2,0],[4,2],[3,3],[2,4]]\n\nExplanation:\n All the trees will be on the perimeter of the fence except the tree at [2, 2], which will be inside the fence.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/24/erect1-plane.jpg] \n \n```\nInput:\n trees = [[1,2],[2,2],[4,2]]\n\nOutput:\n [[4,2],[2,2],[1,2]]\n\nExplanation:\n The fence forms a line that passes through all the trees.\n```\n\n Constraints: \n\n 1 <= trees.length <= 3000 \n \n trees[i].length == 2 \n \n 0 <= x i , y i <= 100 \n \n All the given positions are unique .",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<int>> outerTrees(vector<vector<int>>& trees) {\n        sort(trees.begin(), trees.end());\n        vector<vector<int>> hull;\n\n        auto cross = [](vector<int>& o, vector<int>& a, vector<int>& b) {\n            return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);\n        };\n\n        for (int i = 0; i < trees.size(); ++i) {\n            while (hull.size() >= 2 && cross(hull[hull.size() - 2], hull.back(), trees[i]) < 0)\n                hull.pop_back();\n            hull.push_back(trees[i]);\n        }\n\n        int lowerSize = hull.size();\n        for (int i = trees.size() - 2; i >= 0; --i) {\n            while (hull.size() > lowerSize && cross(hull[hull.size() - 2], hull.back(), trees[i]) < 0)\n                hull.pop_back();\n            hull.push_back(trees[i]);\n        }\n\n        sort(hull.begin(), hull.end());\n        hull.erase(unique(hull.begin(), hull.end()), hull.end());\n        return hull;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610554544",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

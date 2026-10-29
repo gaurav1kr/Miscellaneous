@@ -1,0 +1,33 @@
+{
+  "id": "2313",
+  "title": "Minimum Flips in Binary Tree to Get Result",
+  "slug": "minimum-flips-in-binary-tree-to-get-result",
+  "url": "https://leetcode.com/problems/minimum-flips-in-binary-tree-to-get-result/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "DP array / memo table",
+    "Tree adjacency list"
+  ],
+  "description": "You are given the root of a binary tree with the following properties: \n\n Leaf nodes have either the value 0 or 1 , representing false and true respectively. \n \n Non-leaf nodes have either the value 2 , 3 , 4 , or 5 , representing the boolean operations OR , AND , XOR , and NOT , respectively. \n\n You are also given a boolean result , which is the desired result of the evaluation of the root node. \n \n The evaluation of a node is as follows: \n\n If the node is a leaf node, the evaluation is the value of the node, i.e. true or false . \n \n Otherwise, evaluate the node's children and apply the boolean operation of its value with the children's evaluations. \n\n In one operation, you can flip a leaf node, which causes a false node to become true , and a true node to become false . \n \n Return the minimum number of operations that need to be performed such that the evaluation of root yields result . It can be shown that there is always a way to achieve result . \n \n A leaf node is a node that has zero children. \n \n Note: NOT nodes have either a left child or a right child, but other non-leaf nodes have both a left child and a right child. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/06/20/operationstree.png] \n \n```\nInput:\n root = [3,5,4,2,null,1,1,1,0], result = true\n\nOutput:\n 2\n\nExplanation:\n\nIt can be shown that a minimum of 2 nodes have to be flipped to make the root of the tree\nevaluate to true. One way to achieve this is shown in the diagram above.\n```\n\n Example 2: \n \n```\nInput:\n root = [0], result = false\n\nOutput:\n 0\n\nExplanation:\n\nThe root of the tree already evaluates to false, so 0 nodes have to be flipped.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 5 ] . \n \n 0 <= Node.val <= 5 \n \n OR , AND , and XOR nodes have 2 children. \n \n NOT nodes have 1 child. \n \n Leaf nodes have a value of 0 or 1 . \n \n Non-leaf nodes have a value of 2 , 3 , 4 , or 5 .",
+  "code": "class Solution {\n    static const int INF = 100000000;\n    array<int, 2> dfs(TreeNode* node) {\n        if (!node->left && !node->right) {\n            if (node->val <= 1) return {node->val == 0 ? 0 : 1, node->val == 1 ? 0 : 1};\n        }\n        if (node->val == 5) {\n            auto child = dfs(node->left ? node->left : node->right);\n            return {child[1], child[0]};\n        }\n        auto a = dfs(node->left), b = dfs(node->right);\n        array<int, 2> result = {INF, INF};\n        for (int x = 0; x <= 1; ++x) for (int y = 0; y <= 1; ++y) {\n            int z = node->val == 2 ? (x | y) : node->val == 3 ? (x & y) : (x ^ y);\n            result[z] = min(result[z], a[x] + b[y]);\n        }\n        return result;\n    }\npublic:\n    int minimumFlips(TreeNode* root, bool result) { return dfs(root)[result]; }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178857438",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

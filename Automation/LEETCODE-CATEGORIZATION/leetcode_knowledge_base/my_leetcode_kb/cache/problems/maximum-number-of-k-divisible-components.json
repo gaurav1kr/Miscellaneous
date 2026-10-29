@@ -1,0 +1,29 @@
+{
+  "id": "2872",
+  "title": "Maximum Number of K-Divisible Components",
+  "slug": "maximum-number-of-k-divisible-components",
+  "url": "https://leetcode.com/problems/maximum-number-of-k-divisible-components/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There is an undirected tree with n nodes labeled from 0 to n - 1 . You are given the integer n and a 2D integer array edges of length n - 1 , where edges[i] = [a i , b i ] indicates that there is an edge between nodes a i and b i in the tree. \n \n You are also given a 0-indexed integer array values of length n , where values[i] is the value associated with the i th node, and an integer k . \n \n A valid split of the tree is obtained by removing any set of edges, possibly empty, from the tree such that the resulting components all have values that are divisible by k , where the value of a connected component is the sum of the values of its nodes. \n \n Return the maximum number of components in any valid split . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/08/07/example12-cropped2svg.jpg] \n \n```\nInput:\n n = 5, edges = [[0,2],[1,2],[1,3],[2,4]], values = [1,8,1,4,4], k = 6\n\nOutput:\n 2\n\nExplanation:\n We remove the edge connecting node 1 with 2. The resulting split is valid because:\n- The value of the component containing nodes 1 and 3 is values[1] + values[3] = 12.\n- The value of the component containing nodes 0, 2, and 4 is values[0] + values[2] + values[4] = 6.\nIt can be shown that no other valid split has more than 2 connected components.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/08/07/example21svg-1.jpg] \n \n```\nInput:\n n = 7, edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]], values = [3,0,6,1,5,2,1], k = 3\n\nOutput:\n 3\n\nExplanation:\n We remove the edge connecting node 0 with 2, and the edge connecting node 0 with 1. The resulting split is valid because:\n- The value of the component containing node 0 is values[0] = 3.\n- The value of the component containing nodes 2, 5, and 6 is values[2] + values[5] + values[6] = 9.\n- The value of the component containing nodes 1, 3, and 4 is values[1] + values[3] + values[4] = 6.\nIt can be shown that no other valid split has more than 3 connected components.\n```\n\n Constraints: \n\n 1 <= n <= 3 * 10 4 \n \n edges.length == n - 1 \n \n edges[i].length == 2 \n \n 0 <= a i , b i < n \n \n values.length == n \n \n 0 <= values[i] <= 10 9 \n \n 1 <= k <= 10 9 \n \n Sum of values is divisible by k . \n \n The input is generated such that edges represents a valid tree.",
+  "code": "class Solution { public:\n int maxKDivisibleComponents(int n, vector<vector<int>>& edges, vector<int>& values, int k){\n  vector<vector<int>> g(n);for(auto &e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}\n  vector<int> parent(n,-1),order{0};parent[0]=0;\n  for(int i=0;i<(int)order.size();++i){int u=order[i];for(int v:g[u])if(parent[v]==-1){parent[v]=u;order.push_back(v);}}\n  vector<long long> sum(values.begin(),values.end());int ans=0;\n  for(int i=n-1;i>=0;--i){int u=order[i];if(sum[u]%k==0)++ans;else if(u!=0)sum[parent[u]]+=sum[u];}\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176734563",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

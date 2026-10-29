@@ -1,0 +1,29 @@
+{
+  "id": "3724",
+  "title": "Minimum Operations to Transform Array",
+  "slug": "minimum-operations-to-transform-array",
+  "url": "https://leetcode.com/problems/minimum-operations-to-transform-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays nums1 of length n and nums2 of length n + 1 . \n \n You want to transform nums1 into nums2 using the minimum number of operations. \n \n You may perform the following operations any number of times, each time choosing an index i : \n\n Increase nums1[i] by 1. \n \n Decrease nums1[i] by 1. \n \n Append nums1[i] to the end of the array. \n\n Return the minimum number of operations required to transform nums1 into nums2 . \n\n Example 1: \n\n Input: nums1 = [2,8], nums2 = [1,7,3] \n \n Output: 4 \n \n Explanation: \n\n Step \n i \n Operation \n nums1[i] \n Updated nums1 \n\n 1 \n 0 \n Append \n - \n [2, 8, 2] \n\n 2 \n 0 \n Decrement \n Decreases to 1 \n [1, 8, 2] \n\n 3 \n 1 \n Decrement \n Decreases to 7 \n [1, 7, 2] \n\n 4 \n 2 \n Increment \n Increases to 3 \n [1, 7, 3] \n\n Thus, after 4 operations nums1 is transformed into nums2 . \n\n Example 2: \n\n Input: nums1 = [1,3,6], nums2 = [2,4,5,3] \n \n Output: 4 \n \n Explanation: \n\n Step \n i \n Operation \n nums1[i] \n Updated nums1 \n\n 1 \n 1 \n Append \n - \n [1, 3, 6, 3] \n\n 2 \n 0 \n Increment \n Increases to 2 \n [2, 3, 6, 3] \n\n 3 \n 1 \n Increment \n Increases to 4 \n [2, 4, 6, 3] \n\n 4 \n 2 \n Decrement \n Decreases to 5 \n [2, 4, 5, 3] \n\n Thus, after 4 operations nums1 is transformed into nums2 . \n\n Example 3: \n\n Input: nums1 = [2], nums2 = [3,4] \n \n Output: 3 \n \n Explanation: \n\n Step \n i \n Operation \n nums1[i] \n Updated nums1 \n\n 1 \n 0 \n Increment \n Increases to 3 \n [3] \n\n 2 \n 0 \n Append \n - \n [3, 3] \n\n 3 \n 1 \n Increment \n Increases to 4 \n [3, 4] \n\n Thus, after 3 operations nums1 is transformed into nums2 . \n\n Constraints: \n\n 1 <= n == nums1.length <= 10 5 \n \n nums2.length == n + 1 \n \n 1 <= nums1[i], nums2[i] <= 10 5",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    long long minOperations(vector<int>& nums1, vector<int>& nums2) {\n        int n = nums1.size(), target = nums2[n];\n        long long base = 1, extra = LLONG_MAX;\n        for (int i = 0; i < n; ++i) {\n            base += llabs((long long)nums1[i] - nums2[i]);\n            int lo = min(nums1[i], nums2[i]);\n            int hi = max(nums1[i], nums2[i]);\n            long long dist = target < lo ? lo - target :\n                             target > hi ? target - hi : 0;\n            extra = min(extra, dist);\n        }\n        return base + extra;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181002849",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

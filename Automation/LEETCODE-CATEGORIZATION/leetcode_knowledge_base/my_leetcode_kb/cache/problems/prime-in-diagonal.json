@@ -1,0 +1,32 @@
+{
+  "id": "2614",
+  "title": "Prime In Diagonal",
+  "slug": "prime-in-diagonal",
+  "url": "https://leetcode.com/problems/prime-in-diagonal/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Matrix",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed two-dimensional integer array nums . \n \n Return the largest prime number that lies on at least one of the diagonals of nums . In case, no prime is present on any of the diagonals, return 0. \n \n Note that: \n\n An integer is prime if it is greater than 1 and has no positive integer divisors other than 1 and itself. \n \n An integer val is on one of the diagonals of nums if there exists an integer i for which nums[i][i] = val or an i for which nums[i][nums.length - i - 1] = val . \n\n [Figure: https://assets.leetcode.com/uploads/2023/03/06/screenshot-2023-03-06-at-45648-pm.png] \n \n In the above diagram, one diagonal is [1,5,9] and another diagonal is [3,5,7] . \n\n Example 1: \n \n```\nInput:\n nums = [[1,2,3],[5,6,7],[9,10,11]]\n\nOutput:\n 11\n\nExplanation:\n The numbers 1, 3, 6, 9, and 11 are the only numbers present on at least one of the diagonals. Since 11 is the largest prime, we return 11.\n```\n\n Example 2: \n \n```\nInput:\n nums = [[1,2,3],[5,17,7],[9,11,10]]\n\nOutput:\n 17\n\nExplanation:\n The numbers 1, 3, 9, 10, and 17 are all present on at least one of the diagonals. 17 is the largest prime, so we return 17.\n```\n\n Constraints: \n\n 1 <= nums.length <= 300 \n \n nums.length == nums i .length \n \n 1 <= nums [i][j]  <= 4*10 6",
+  "code": "class Solution {\n bool prime(int x){if(x<2)return false;for(int d=2;1LL*d*d<=x;++d)if(x%d==0)return false;return true;}\npublic:\n int diagonalPrime(vector<vector<int>>& nums){int ans=0,n=nums.size();for(int i=0;i<n;++i){if(prime(nums[i][i]))ans=max(ans,nums[i][i]);if(prime(nums[i][n-1-i]))ans=max(ans,nums[i][n-1-i]);}return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176629046",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

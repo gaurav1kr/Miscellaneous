@@ -1,0 +1,36 @@
+{
+  "id": "3928",
+  "title": "Minimum Cost to Buy Apples II",
+  "slug": "minimum-cost-to-buy-apples-ii",
+  "url": "https://leetcode.com/problems/minimum-cost-to-buy-apples-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer n and an integer array prices of length n , where prices[i] is the price of apples at shop i . \n \n You are also given a 2D integer array roads , where roads[i] = [u i , v i , cost i , tax i ] represents a bidirectional road: \n\n u i and v i are the shops connected by the road. \n \n cost i is the cost to travel the road without carrying apples. \n \n tax i is the multiplier applied to cost i when traveling with apples. \n\n For each shop i , you can either: \n\n Buy apples locally at shop i for prices[i] . \n \n Travel empty to any shop j using any number of roads, buy apples for prices[j] , and return to shop i while carrying apples, paying cost * tax on each road used for the return trip. \n\n The forward path, where you travel empty, and the return path may be different . \n \n Return an integer array ans of length n , where ans[i] is the minimum total cost to buy apples starting from shop i . \n\n Example 1: \n\n Input: n = 2, prices = [8,3], roads = [[0,1,1,2]] \n \n Output: [6,3] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/08/22/screenshot-2025-08-23-at-23341-am.png] \n\n Shop i \n prices[i] \n Shop j \n prices[j] \n cost i \n tax i \n Travel cost \n Return cost \n Total \n Minimum \n\n 0 \n 8 \n 1 \n 3 \n 1 \n 2 \n 1 \n 1 * 2 = 2 \n 1 + 2 + 3 = 6 \n min(8, 6) = 6 \n\n 1 \n 3 \n 0 \n 8 \n 1 \n 2 \n 1 \n 1 * 2 = 2 \n 1 + 2 + 8 = 11 \n min(3, 11) = 3 \n\n Thus, the answer is [6, 3] . \n\n Example 2: \n\n Input: n = 3, prices = [9,4,6], roads = [[0,1,1,3],[1,2,4,2]] \n \n Output: [8,4,6] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/08/22/screenshot-2025-08-23-at-23736-am.png] ​​​​​​​ \n\n Shop i \n prices[i] \n Shop j \n prices[j] \n cost i \n tax i \n Travel cost \n Return cost \n Total \n Minimum \n\n 0 \n 9 \n 1 \n 4 \n 1 \n 3 \n 1 \n 1 * 3 = 3 \n 1 + 3 + 4 = 8 \n min(9, 8) = 8 \n\n 1 \n 4 \n 2 \n 6 \n 4 \n 2 \n 4 \n 4 * 2 = 8 \n 4 + 8 + 6 = 18 \n min(4, 18) = 4 \n\n 2 \n 6 \n 1 \n 4 \n 4 \n 2 \n 4 \n 4 * 2 = 8 \n 4 + 8 + 4 = 16 \n min(6, 16) = 6 \n\n Thus, the answer is [8, 4, 6] . \n\n Example 3: \n\n Input: n = 3, prices = [10,11,1], roads = [[0,2,1,3],[1,2,3,4],[0,1,5,2]] \n \n Output: [5,11,1] \n \n Explanation: \n \n ​​​​​​​​​​​​​​ [Figure: https://assets.leetcode.com/uploads/2025/08/22/screenshot-2025-08-23-at-24644-am.png] \n\n Shop i \n prices[i] \n Shop j \n prices[j] \n cost i \n tax i \n Travel cost \n Return cost \n Total \n Minimum \n\n 0 \n 10 \n 2 \n 1 \n 1 \n 3 \n 1 \n 1 * 3 = 3 \n 1 + 3 + 1 = 5 \n min(10, 5) = 5 \n\n 1 \n 11 \n 2 \n 1 \n 3 \n 4 \n 3 \n 3 * 4 = 12 \n 3 + 12 + 1 = 16 \n min(11, 16) = 11 \n\n 2 \n 1 \n 0 \n 10 \n 1 \n 3 \n 1 \n 1 * 3 = 3 \n 1 + 3 + 10 = 14 \n min(1, 14) = 1 \n\n Thus, the answer is [5, 11, 1] . \n\n Constraints: \n\n 1 <= n <= 1000 \n \n prices.length == n \n \n 1 <= prices[i] <= 10 9 \n \n 0 <= roads.length <= min(n × (n - 1) / 2, 2000) \n \n roads[i] = [u i , v i , cost i , tax i ] \n \n 0 <= u i , v i <= n - 1 \n \n u i != v i \n \n 1 <= cost i <= 10 9 \n \n ​​​​​​​1 <= tax ​​​​​​​i <= 100 ​​​​​​​ \n \n There are no repeated edges.",
+  "code": "class Solution {\n    using LL = long long;\n    vector<LL> shortest(int start, const vector<vector<pair<int,LL>>>& g) {\n        const LL INF = (1LL << 62);\n        vector<LL> d(g.size(), INF);\n        priority_queue<pair<LL,int>, vector<pair<LL,int>>,\n                       greater<pair<LL,int>>> pq;\n        d[start] = 0;\n        pq.push({0, start});\n        while (!pq.empty()) {\n            auto top = pq.top(); pq.pop();\n            LL du = top.first;\n            int u = top.second;\n            if (du != d[u]) continue;\n            for (auto e : g[u]) {\n                if (d[e.first] > du + e.second) {\n                    d[e.first] = du + e.second;\n                    pq.push({d[e.first], e.first});\n                }\n            }\n        }\n        return d;\n    }\npublic:\n    vector<int> minCost(int n, vector<int>& prices,\n                        vector<vector<int>>& roads) {\n        vector<vector<pair<int,LL>>> empty(n), loaded(n);\n        for (auto& e : roads) {\n            int u = e[0], v = e[1];\n            LL w = e[2], t = e[3];\n            empty[u].push_back({v, w});\n            empty[v].push_back({u, w});\n            loaded[u].push_back({v, w * t});\n            loaded[v].push_back({u, w * t});\n        }\n        vector<int> ans(n);\n        for (int i = 0; i < n; ++i) {\n            auto a = shortest(i, empty);\n            auto b = shortest(i, loaded);\n            LL best = prices[i];\n            for (int j = 0; j < n; ++j) {\n                if (a[j] < (1LL << 60) && b[j] < (1LL << 60))\n                    best = min(best, a[j] + b[j] + prices[j]);\n            }\n            ans[i] = (int)best;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179652633",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "3283",
+  "title": "Maximum Number of Moves to Kill All Pawns",
+  "slug": "maximum-number-of-moves-to-kill-all-pawns",
+  "url": "https://leetcode.com/problems/maximum-number-of-moves-to-kill-all-pawns/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Bit Manipulation",
+    "Breadth-First Search",
+    "Game Theory",
+    "Bitmask"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is a 50 x 50 chessboard with one knight and some pawns on it. You are given two integers kx and ky where (kx, ky) denotes the position of the knight, and a 2D array positions where positions[i] = [x i , y i ] denotes the position of the pawns on the chessboard. \n \n Alice and Bob play a turn-based game, where Alice goes first. In each player's turn: \n\n The player selects a pawn that still exists on the board and captures it with the knight in the fewest possible moves . Note that the player can select any pawn, it might not be one that can be captured in the least number of moves. \n \n In the process of capturing the selected pawn, the knight may pass other pawns without capturing them . Only the selected pawn can be captured in this turn. \n\n Alice is trying to maximize the sum of the number of moves made by both players until there are no more pawns on the board, whereas Bob tries to minimize them. \n \n Return the maximum total number of moves made during the game that Alice can achieve, assuming both players play optimally . \n \n Note that in one move, a chess knight has eight possible positions it can move to, as illustrated below. Each move is two cells in a cardinal direction, then one cell in an orthogonal direction. \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/01/chess_knight.jpg] \n\n Example 1: \n\n Input: kx = 1, ky = 1, positions = [[0,0]] \n \n Output: 4 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/16/gif3.gif] \n \n The knight takes 4 moves to reach the pawn at (0, 0) . \n\n Example 2: \n\n Input: kx = 0, ky = 2, positions = [[1,1],[2,2],[3,3]] \n \n Output: 8 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/16/gif4.gif] \n\n Alice picks the pawn at (2, 2) and captures it in two moves: (0, 2) -> (1, 4) -> (2, 2) . \n \n Bob picks the pawn at (3, 3) and captures it in two moves: (2, 2) -> (4, 1) -> (3, 3) . \n \n Alice picks the pawn at (1, 1) and captures it in four moves: (3, 3) -> (4, 1) -> (2, 2) -> (0, 3) -> (1, 1) . \n\n Example 3: \n\n Input: kx = 0, ky = 0, positions = [[1,2],[2,4]] \n \n Output: 3 \n \n Explanation: \n\n Alice picks the pawn at (2, 4) and captures it in two moves: (0, 0) -> (1, 2) -> (2, 4) . Note that the pawn at (1, 2) is not captured. \n \n Bob picks the pawn at (1, 2) and captures it in one move: (2, 4) -> (1, 2) . \n\n Constraints: \n\n 0 <= kx, ky <= 49 \n \n 1 <= positions.length <= 15 \n \n positions[i].length == 2 \n \n 0 <= positions[i][0], positions[i][1] <= 49 \n \n All positions[i] are unique. \n \n The input is generated such that positions[i] != [kx, ky] for all 0 <= i < positions.length .",
+  "code": "class Solution { public: int maxMoves(int kx,int ky,vector<vector<int>>&positions){int n=positions.size();vector<pair<int,int>>pos;for(auto&p:positions)pos.push_back({p[0],p[1]});pos.push_back({kx,ky});vector<vector<int>>d(n+1,vector<int>(n));int dx[]={1,1,-1,-1,2,2,-2,-2},dy[]={2,-2,2,-2,1,-1,1,-1};for(int s=0;s<=n;++s){vector<vector<int>>dist(50,vector<int>(50,-1));queue<pair<int,int>>q;q.push(pos[s]);dist[pos[s].first][pos[s].second]=0;while(!q.empty()){auto cur=q.front();q.pop();for(int z=0;z<8;++z){int x=cur.first+dx[z],y=cur.second+dy[z];if(x>=0&&x<50&&y>=0&&y<50&&dist[x][y]<0){dist[x][y]=dist[cur.first][cur.second]+1;q.push({x,y});}}}for(int i=0;i<n;++i)d[s][i]=dist[pos[i].first][pos[i].second];}vector<vector<int>>memo(1<<n,vector<int>(n+1,-1));function<int(int,int)>dfs=[&](int mask,int at){if(mask==(1<<n)-1)return 0;int &res=memo[mask][at];if(res!=-1)return res;bool alice=__builtin_popcount((unsigned)mask)%2==0;res=alice?INT_MIN:INT_MAX;for(int j=0;j<n;++j)if(!(mask>>j&1)){int v=d[at][j]+dfs(mask|1<<j,j);if(alice)res=max(res,v);else res=min(res,v);}return res;};return dfs(0,n);} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177447761",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

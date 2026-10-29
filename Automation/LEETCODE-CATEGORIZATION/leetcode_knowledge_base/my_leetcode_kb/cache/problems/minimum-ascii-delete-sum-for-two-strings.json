@@ -1,0 +1,31 @@
+{
+  "id": "712",
+  "title": "Minimum ASCII Delete Sum for Two Strings",
+  "slug": "minimum-ascii-delete-sum-for-two-strings",
+  "url": "https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Longest Common Subsequence"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings s1 and  s2 , return the lowest ASCII sum of deleted characters to make two strings equal . \n\n Example 1: \n \n```\nInput:\n s1 = \"sea\", s2 = \"eat\"\n\nOutput:\n 231\n\nExplanation:\n Deleting \"s\" from \"sea\" adds the ASCII value of \"s\" (115) to the sum.\nDeleting \"t\" from \"eat\" adds 116 to the sum.\nAt the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"delete\", s2 = \"leet\"\n\nOutput:\n 403\n\nExplanation:\n Deleting \"dee\" from \"delete\" to turn the string into \"let\",\nadds 100[d] + 101[e] + 101[e] to the sum.\nDeleting \"e\" from \"leet\" adds 101[e] to the sum.\nAt the end, both strings are equal to \"let\", and the answer is 100+101+101+101 = 403.\nIf instead we turned both strings into \"lee\" or \"eet\", we would get answers of 433 or 417, which are higher.\n```\n\n Constraints: \n\n 1 <= s1.length, s2.length <= 1000 \n \n s1 and s2 consist of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int minimumDeleteSum(string s1, string s2) {\n        int n = s2.size();\n        vector<int> dp(n + 1, 0);\n        for (int j = 1; j <= n; ++j) dp[j] = dp[j - 1] + s2[j - 1];\n        for (char a : s1) {\n            int previous = dp[0];\n            dp[0] += a;\n            for (int j = 1; j <= n; ++j) {\n                int old = dp[j];\n                if (a == s2[j - 1]) dp[j] = previous;\n                else dp[j] = min(old + (int)a, dp[j - 1] + (int)s2[j - 1]);\n                previous = old;\n            }\n        }\n        return dp[n];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175739998",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

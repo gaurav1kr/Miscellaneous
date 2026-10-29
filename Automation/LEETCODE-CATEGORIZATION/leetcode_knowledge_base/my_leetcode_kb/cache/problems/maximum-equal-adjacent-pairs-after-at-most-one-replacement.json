@@ -1,0 +1,32 @@
+{
+  "id": "4066",
+  "title": "Maximum Equal Adjacent Pairs After at Most One Replacement",
+  "slug": "maximum-equal-adjacent-pairs-after-at-most-one-replacement",
+  "url": "https://leetcode.com/problems/maximum-equal-adjacent-pairs-after-at-most-one-replacement/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a 1-indexed integer array nums . \n \n You can choose two distinct values x and y and perform the following operation at most once: \n\n Replace every occurrence of x in nums with y . \n\n Return the maximum possible number of pairs of adjacent elements that are equal after performing the operation. \n\n Example 1: \n\n Input: nums = [1,2,3,2] \n \n Output: 2 \n \n Explanation: \n\n One optimal solution is to choose x = 3 and y = 2 . \n \n The resulting array is [1, 2, 2, 2] . \n \n There are 2 pairs of adjacent elements that are equal: (nums[2], nums[3]) and (nums[3], nums[4]) . \n \n Therefore, the answer is 2. \n\n Example 2: \n\n Input: nums = [1,2,1,2,1] \n \n Output: 4 \n \n Explanation: \n\n One optimal solution is to choose x = 1 and y = 2 . \n \n The resulting array is [2, 2, 2, 2, 2] . \n \n There are 4 pairs of adjacent elements that are equal: (nums[1], nums[2]) , (nums[2], nums[3]) , (nums[3], nums[4]) , and (nums[4], nums[5]) . \n \n Therefore, the answer is 4. \n\n Example 3: \n\n Input: nums = [1,1,1] \n \n Output: 2 \n \n Explanation: \n\n One optimal solution is to perform no operation. \n \n Thus, the resulting array is [1, 1, 1] . \n \n There are 2 pairs of adjacent elements that are equal: (nums[1], nums[2]) and (nums[2], nums[3]) . \n \n Therefore, the answer is 2. \n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {\npublic:\n    int maxEqualAdjacentPairs(vector<int>& nums) {\n        int base = 0, best = 0;\n        map<pair<int, int>, int> edges;\n        for (int i = 1; i < (int)nums.size(); ++i) {\n            int x = nums[i - 1], y = nums[i];\n            if (x == y) { ++base; continue; }\n            if (x > y) swap(x, y);\n            best = max(best, ++edges[{x, y}]);\n        }\n        return base + best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181123381",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

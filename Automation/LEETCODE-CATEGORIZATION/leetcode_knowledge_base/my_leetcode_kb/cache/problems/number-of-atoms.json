@@ -1,0 +1,36 @@
+{
+  "id": "726",
+  "title": "Number of Atoms",
+  "slug": "number-of-atoms",
+  "url": "https://leetcode.com/problems/number-of-atoms/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Stack",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Stack",
+    "String"
+  ],
+  "description": "Given a string formula representing a chemical formula, return the count of each atom . \n \n The atomic element always starts with an uppercase character, then zero or more lowercase letters, representing the name. \n \n One or more digits representing that element's count may follow if the count is greater than 1 . If the count is 1 , no digits will follow. \n\n For example, \"H2O\" and \"H2O2\" are possible, but \"H1O2\" is impossible. \n\n Two formulas are concatenated together to produce another formula. \n\n For example, \"H2O2He3Mg4\" is also a formula. \n\n A formula placed in parentheses, and a count (optionally added) is also a formula. \n\n For example, \"(H2O2)\" and \"(H2O2)3\" are formulas. \n\n Return the count of all elements as a string in the following form: the first name (in sorted order), followed by its count (if that count is more than 1 ), followed by the second name (in sorted order), followed by its count (if that count is more than 1 ), and so on. \n \n The test cases are generated so that all the values in the output fit in a 32-bit integer. \n\n Example 1: \n \n```\nInput:\n formula = \"H2O\"\n\nOutput:\n \"H2O\"\n\nExplanation:\n The count of elements are {'H': 2, 'O': 1}.\n```\n\n Example 2: \n \n```\nInput:\n formula = \"Mg(OH)2\"\n\nOutput:\n \"H2MgO2\"\n\nExplanation:\n The count of elements are {'H': 2, 'Mg': 1, 'O': 2}.\n```\n\n Example 3: \n \n```\nInput:\n formula = \"K4(ON(SO3)2)2\"\n\nOutput:\n \"K4N2O14S4\"\n\nExplanation:\n The count of elements are {'K': 4, 'N': 2, 'O': 14, 'S': 4}.\n```\n\n Constraints: \n\n 1 <= formula.length <= 1000 \n \n formula consists of English letters, digits, '(' , and ')' . \n \n formula is always valid.",
+  "code": "#include <string>\n#include <map>\n#include <stack>\n#include <cctype>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string countOfAtoms(string formula) {\n        stack<map<string, int>> stk;\n        map<string, int> cur;\n        int i = 0, n = formula.length();\n\n        while (i < n) {\n            if (formula[i] == '(') {\n                stk.push(cur);\n                cur.clear();\n                ++i;\n            } else if (formula[i] == ')') {\n                ++i;\n                int start = i, count = 0;\n                while (i < n && isdigit(formula[i])) ++i;\n                count = start < i ? stoi(formula.substr(start, i - start)) : 1;\n\n                for (auto& p : cur)\n                    p.second *= count;\n\n                auto top = stk.top(); stk.pop();\n                for (auto& p : cur)\n                    top[p.first] += p.second;\n\n                cur = top;\n            } else {\n                int start = i++;\n                while (i < n && islower(formula[i])) ++i;\n                string name = formula.substr(start, i - start);\n                start = i;\n                while (i < n && isdigit(formula[i])) ++i;\n                int count = start < i ? stoi(formula.substr(start, i - start)) : 1;\n                cur[name] += count;\n            }\n        }\n\n        string res;\n        for (auto& [atom, count] : cur) {\n            res += atom;\n            if (count > 1) res += to_string(count);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593835222",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

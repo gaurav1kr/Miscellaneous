@@ -1,0 +1,29 @@
+{
+  "id": "1422",
+  "title": "Maximum Score After Splitting a String",
+  "slug": "maximum-score-after-splitting-a-string",
+  "url": "https://leetcode.com/problems/maximum-score-after-splitting-a-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "Given a string s  of zeros and ones, return the maximum score after splitting the string into two non-empty substrings (i.e. left substring and right substring). \n \n The score after splitting a string is the number of zeros in the left substring plus the number of ones in the right substring. \n\n Example 1: \n \n```\nInput:\n s = \"011101\"\n\nOutput:\n 5 \n\nExplanation:\n \nAll possible ways of splitting s into two non-empty substrings are:\nleft = \"0\" and right = \"11101\", score = 1 + 4 = 5 \nleft = \"01\" and right = \"1101\", score = 1 + 3 = 4 \nleft = \"011\" and right = \"101\", score = 1 + 2 = 3 \nleft = \"0111\" and right = \"01\", score = 1 + 1 = 2 \nleft = \"01110\" and right = \"1\", score = 2 + 1 = 3\n```\n\n Example 2: \n \n```\nInput:\n s = \"00111\"\n\nOutput:\n 5\n\nExplanation:\n When left = \"00\" and right = \"111\", we get the maximum score = 2 + 3 = 5\n```\n\n Example 3: \n \n```\nInput:\n s = \"1111\"\n\nOutput:\n 3\n```\n\n Constraints: \n\n 2 <= s.length <= 500 \n \n The string s consists of characters '0' and '1' only.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxScore(string s) {\n        int ones = count(s.begin(), s.end(), '1');\n        int zeros = 0, maxScore = 0;\n        for (int i = 0; i < s.size() - 1; ++i) {\n            zeros += s[i] == '0';\n            ones -= s[i] == '1';\n            maxScore = max(maxScore, zeros + ones);\n        }\n        return maxScore;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610581935",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

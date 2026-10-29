@@ -1,0 +1,31 @@
+{
+  "id": "682",
+  "title": "Baseball Game",
+  "slug": "baseball-game",
+  "url": "https://leetcode.com/problems/baseball-game/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are keeping the scores for a baseball game with strange rules. At the beginning of the game, you start with an empty record. \n \n You are given a list of strings operations , where operations[i] is the i th operation you must apply to the record and is one of the following: \n\n An integer x .\n\n Record a new score of x . \n\n '+' .\n\n Record a new score that is the sum of the previous two scores. \n\n 'D' .\n\n Record a new score that is the double of the previous score. \n\n 'C' .\n\n Invalidate the previous score, removing it from the record. \n\n Return the sum of all the scores on the record after applying all the operations . \n \n The test cases are generated such that the answer and all intermediate calculations fit in a 32-bit integer and that all operations are valid. \n\n Example 1: \n \n```\nInput:\n ops = [\"5\",\"2\",\"C\",\"D\",\"+\"]\n\nOutput:\n 30\n\nExplanation:\n\n\"5\" - Add 5 to the record, record is now [5].\n\"2\" - Add 2 to the record, record is now [5, 2].\n\"C\" - Invalidate and remove the previous score, record is now [5].\n\"D\" - Add 2 * 5 = 10 to the record, record is now [5, 10].\n\"+\" - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].\nThe total sum is 5 + 10 + 15 = 30.\n```\n\n Example 2: \n \n```\nInput:\n ops = [\"5\",\"-2\",\"4\",\"C\",\"D\",\"9\",\"+\",\"+\"]\n\nOutput:\n 27\n\nExplanation:\n\n\"5\" - Add 5 to the record, record is now [5].\n\"-2\" - Add -2 to the record, record is now [5, -2].\n\"4\" - Add 4 to the record, record is now [5, -2, 4].\n\"C\" - Invalidate and remove the previous score, record is now [5, -2].\n\"D\" - Add 2 * -2 = -4 to the record, record is now [5, -2, -4].\n\"9\" - Add 9 to the record, record is now [5, -2, -4, 9].\n\"+\" - Add -4 + 9 = 5 to the record, record is now [5, -2, -4, 9, 5].\n\"+\" - Add 9 + 5 = 14 to the record, record is now [5, -2, -4, 9, 5, 14].\nThe total sum is 5 + -2 + -4 + 9 + 5 + 14 = 27.\n```\n\n Example 3: \n \n```\nInput:\n ops = [\"1\",\"C\"]\n\nOutput:\n 0\n\nExplanation:\n\n\"1\" - Add 1 to the record, record is now [1].\n\"C\" - Invalidate and remove the previous score, record is now [].\nSince the record is empty, the total sum is 0.\n```\n\n Constraints: \n\n 1 <= operations.length <= 1000 \n \n operations[i] is \"C\" , \"D\" , \"+\" , or a string representing an integer in the range [-3 * 10 4 , 3 * 10 4 ] . \n \n For operation \"+\" , there will always be at least two previous scores on the record. \n \n For operations \"C\" and \"D\" , there will always be at least one previous score on the record.",
+  "code": "\n#include <vector>\n#include <string>\n#include <stack>\nusing namespace std;\n\nclass Solution {\npublic:\n    int calPoints(vector<string>& ops) {\n        stack<int> stack;\n        \n        for (string& op : ops) {\n            if (op == \"+\") {\n                int top = stack.top(); stack.pop();\n                int newTop = top + stack.top();\n                stack.push(top);\n                stack.push(newTop);\n            } else if (op == \"D\") {\n                stack.push(stack.top() * 2);\n            } else if (op == \"C\") {\n                stack.pop();\n            } else {\n                stack.push(stoi(op));\n            }\n        }\n        \n        int result = 0;\n        while (!stack.empty()) {\n            result += stack.top();\n            stack.pop();\n        }\n        \n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592350609",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

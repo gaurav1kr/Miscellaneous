@@ -1,0 +1,34 @@
+{
+  "id": "2352",
+  "title": "Equal Row and Column Pairs",
+  "slug": "equal-row-and-column-pairs",
+  "url": "https://leetcode.com/problems/equal-row-and-column-pairs/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given a 0-indexed n x n integer matrix grid , return the number of pairs (r i , c j ) such that row r i and column c j are equal . \n \n A row and column pair is considered equal if they contain the same elements in the same order (i.e., an equal array). \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/06/01/ex1.jpg] \n \n```\nInput:\n grid = [[3,2,1],[1,7,6],[2,7,7]]\n\nOutput:\n 1\n\nExplanation:\n There is 1 equal row and column pair:\n- (Row 2, Column 1): [2,7,7]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/06/01/ex2.jpg] \n \n```\nInput:\n grid = [[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]\n\nOutput:\n 3\n\nExplanation:\n There are 3 equal row and column pairs:\n- (Row 0, Column 0): [3,1,2,2]\n- (Row 2, Column 2): [2,4,2,2]\n- (Row 3, Column 2): [2,4,2,2]\n```\n\n Constraints: \n\n n == grid.length == grid[i].length \n \n 1 <= n <= 200 \n \n 1 <= grid[i][j] <= 10 5",
+  "code": "class Solution { public:\n    int equalPairs(vector<vector<int>>& grid) {\n        int n=grid.size();map<vector<int>,int> cnt;\n        for(auto &row:grid)++cnt[row];\n        int ans=0;for(int j=0;j<n;++j){vector<int> col;for(int i=0;i<n;++i)col.push_back(grid[i][j]);ans+=cnt[col];}\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175924260",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

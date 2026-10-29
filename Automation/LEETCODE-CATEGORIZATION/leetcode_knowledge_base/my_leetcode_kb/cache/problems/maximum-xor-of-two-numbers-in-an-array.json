@@ -1,0 +1,35 @@
+{
+  "id": "421",
+  "title": "Maximum XOR of Two Numbers in an Array",
+  "slug": "maximum-xor-of-two-numbers-in-an-array",
+  "url": "https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return the maximum result of nums[i] XOR nums[j] , where 0 <= i <= j < n . \n\n Example 1: \n \n```\nInput:\n nums = [3,10,5,25,2,8]\n\nOutput:\n 28\n\nExplanation:\n The maximum result is 5 XOR 25 = 28.\n```\n\n Example 2: \n \n```\nInput:\n nums = [14,70,53,83,49,91,36,80,92,51,66,70]\n\nOutput:\n 127\n```\n\n Constraints: \n\n 1 <= nums.length <= 2 * 10 5 \n \n 0 <= nums[i] <= 2 31 - 1",
+  "code": "class Solution \n{\npublic:\n    struct trieNode \n    {\n        trieNode* left = nullptr; // 0\n        trieNode* right = nullptr; // 1\n    };\n\n    void insert(trieNode* root, int num) \n    {\n        trieNode* pcrawl = root;\n\n        for (int i = 31; i >= 0; i--) \n        {\n            int ith_bit = (num >> i) & 1;\n            if (ith_bit == 0) \n            {\n                if (pcrawl->left == NULL) \n                {\n                    pcrawl->left = new trieNode();\n                }\n                pcrawl = pcrawl->left;\n            } \n\t\t\telse \n            {\n                if (pcrawl->right == NULL) \n                {\n                    pcrawl->right = new trieNode();\n                }\n                pcrawl = pcrawl->right;\n            }\n        }\n    }\n\n    int findMaxXor(trieNode* root, int num)\n    {\n        int maxi = 0;\n        trieNode* pcrawl = root;\n\n        for (int i = 31; i >= 0; i--) \n        {\n            int ith_bit = (num >> i) & 1;\n            if (ith_bit == 1) \n            {\n                if (pcrawl->left != NULL) \n                {\n                    maxi += pow(2, i);\n                    pcrawl = pcrawl->left;\n                } \n                else \n                {\n                    pcrawl = pcrawl->right;\n                }\n            } \n            else \n            {\n                if (pcrawl->right != NULL) \n                {\n                    maxi += pow(2, i);\n                    pcrawl = pcrawl->right;\n                } \n                else \n                {\n                    pcrawl = pcrawl->left;\n                }\n            }\n        }\n        return maxi;\n    }\n\n    int findMaximumXOR(std::vector<int>& nums) \n    {\n        trieNode* root = new trieNode();\n        for (int& num : nums) \n        {\n            insert(root, num);\n        }\n\n        int maxResult = 0;\n        for (int i = 0; i < nums.size(); i++) \n        {\n            int temp = findMaxXor(root, nums[i]);\n            maxResult = std::max(maxResult, temp);\n        }\n        return maxResult;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1488593720",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

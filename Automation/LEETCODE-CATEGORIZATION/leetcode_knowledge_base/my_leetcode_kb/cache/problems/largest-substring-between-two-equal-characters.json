@@ -1,0 +1,30 @@
+{
+  "id": "1624",
+  "title": "Largest Substring Between Two Equal Characters",
+  "slug": "largest-substring-between-two-equal-characters",
+  "url": "https://leetcode.com/problems/largest-substring-between-two-equal-characters/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , return the length of the longest substring between two equal characters, excluding the two characters. If there is no such substring return -1 . \n \n A substring is a contiguous sequence of characters within a string. \n\n Example 1: \n \n```\nInput:\n s = \"aa\"\n\nOutput:\n 0\n\nExplanation:\n The optimal substring here is an empty substring between the two \n'a's\n.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abca\"\n\nOutput:\n 2\n\nExplanation:\n The optimal substring here is \"bc\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"cbzxy\"\n\nOutput:\n -1\n\nExplanation:\n There are no characters that appear twice in s.\n```\n\n Constraints: \n\n 1 <= s.length <= 300 \n \n s contains only lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxLengthBetweenEqualCharacters(string s) {\n        vector<int> first(26, -1);\n        int ans = -1;\n        for (int i = 0; i < (int)s.size(); ++i) {\n            int c = s[i] - 'a';\n            if (first[c] == -1) first[c] = i;\n            else ans = max(ans, i - first[c] - 1);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175756496",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

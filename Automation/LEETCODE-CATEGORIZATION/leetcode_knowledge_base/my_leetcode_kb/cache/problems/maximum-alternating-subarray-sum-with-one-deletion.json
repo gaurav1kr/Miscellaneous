@@ -1,0 +1,22 @@
+{
+  "id": "4072",
+  "title": "Maximum Alternating Subarray Sum With One Deletion",
+  "slug": "maximum-alternating-subarray-sum-with-one-deletion",
+  "url": "https://leetcode.com/problems/maximum-alternating-subarray-sum-with-one-deletion/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n You may delete at most one element from nums , then choose a subarray of the resulting array. \n \n Return the maximum possible alternating sum of the chosen subarray. \n \n The alternating sum of an array is the sum of its elements at even indices minus the sum of its elements at odd indices. The chosen subarray is reindexed starting from 0 before calculating its alternating sum. \n\n Example 1: \n\n Input: nums = [5,-5,1] \n \n Output: 11 \n \n Explanation: \n \n Choose not to delete an element and select the entire array. Its alternating sum is 5 - (-5) + 1 = 11 , which is the maximum possible. \n\n Example 2: \n\n Input: nums = [10,-5,-100] \n \n Output: 110 \n \n Explanation: \n \n Delete nums[1] = -5 to obtain [10,-100] , then select the entire resulting array. Its alternating sum is 10 - (-100) = 110 , which is the maximum possible. \n\n Example 3: \n\n Input: nums = [4,7] \n \n Output: 7 \n \n Explanation: \n \n Choose not to delete an element and select the subarray [7] . Its alternating sum is 7, which is the maximum possible. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 5 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    long long maxAlternatingSum(vector<int>& nums) {\n        const long long NEG = -(1LL<<60);\n        long long a[2]={NEG,NEG}, b[2]={NEG,NEG}, answer=NEG;\n        for (int x:nums) {\n            long long na[2]={NEG,NEG}, nb[2]={NEG,NEG};\n            na[1]=x;\n            for(int p=0;p<2;++p) {\n                if(a[p]!=NEG) {\n                    na[1-p]=max(na[1-p],a[p]+(p==0?x:-x));\n                    nb[p]=max(nb[p],a[p]); // delete this element\n                }\n                if(b[p]!=NEG) nb[1-p]=max(nb[1-p],b[p]+(p==0?x:-x));\n            }\n            for(int p=0;p<2;++p) {a[p]=na[p];b[p]=nb[p];answer=max(answer,max(a[p],b[p]));}\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181124983",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

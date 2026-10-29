@@ -1,0 +1,35 @@
+{
+  "id": "2658",
+  "title": "Maximum Number of Fish in a Grid",
+  "slug": "maximum-number-of-fish-in-a-grid",
+  "url": "https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed 2D matrix grid of size m x n , where (r, c) represents: \n\n A land cell if grid[r][c] = 0 , or \n \n A water cell containing grid[r][c] fish, if grid[r][c] > 0 . \n\n A fisher can start at any water cell (r, c) and can do the following operations any number of times: \n\n Catch all the fish at cell (r, c) , or \n \n Move to any adjacent water cell. \n\n Return the maximum number of fish the fisher can catch if he chooses his starting cell optimally, or 0 if no water cell exists. \n \n An adjacent cell of the cell (r, c) , is one of the cells (r, c + 1) , (r, c - 1) , (r + 1, c) or (r - 1, c) if it exists. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/03/29/example.png] \n \n```\nInput:\n grid = [[0,2,1,0],[4,0,0,3],[1,0,0,4],[0,3,2,0]]\n\nOutput:\n 7\n\nExplanation:\n The fisher can start at cell \n(1,3)\n and collect 3 fish, then move to cell \n(2,3)\n and collect 4 fish.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/03/29/example2.png] \n \n```\nInput:\n grid = [[1,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,1]]\n\nOutput:\n 1\n\nExplanation:\n The fisher can start at cells (0,0) or (3,3) and collect a single fish.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 10 \n \n 0 <= grid[i][j] <= 10",
+  "code": "class Solution {public:int findMaxFish(vector<vector<int>>& grid){int m=grid.size(),n=grid[0].size(),ans=0;int dx[4]={1,-1,0,0},dy[4]={0,0,1,-1};for(int i=0;i<m;i++)for(int j=0;j<n;j++)if(grid[i][j]>0){queue<pair<int,int>>q;q.push({i,j});int sum=grid[i][j];grid[i][j]=0;while(!q.empty()){auto p=q.front();q.pop();for(int z=0;z<4;z++){int x=p.first+dx[z],y=p.second+dy[z];if(x>=0&&x<m&&y>=0&&y<n&&grid[x][y]>0){sum+=grid[x][y];grid[x][y]=0;q.push({x,y});}}}ans=max(ans,sum);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176634378",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

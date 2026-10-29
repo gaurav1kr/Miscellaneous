@@ -1,0 +1,30 @@
+{
+  "id": "855",
+  "title": "Exam Room",
+  "slug": "exam-room",
+  "url": "https://leetcode.com/problems/exam-room/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Design",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Ordered set",
+    "Priority queue / heap"
+  ],
+  "description": "There is an exam room with n seats in a single row labeled from 0 to n - 1 . \n \n When a student enters the room, they must sit in the seat that maximizes the distance to the closest person. If there are multiple such seats, they sit in the seat with the lowest number. If no one is in the room, then the student sits at seat number 0 . \n \n Design a class that simulates the mentioned exam room. \n \n Implement the ExamRoom class: \n\n ExamRoom(int n) Initializes the object of the exam room with the number of the seats n . \n \n int seat() Returns the label of the seat at which the next student will set. \n \n void leave(int p) Indicates that the student sitting at seat p will leave the room. It is guaranteed that there will be a student sitting at seat p . \n\n Example 1: \n \n```\nInput\n\n[\"ExamRoom\", \"seat\", \"seat\", \"seat\", \"seat\", \"leave\", \"seat\"]\n[[10], [], [], [], [], [4], []]\n\nOutput\n\n[null, 0, 9, 4, 2, null, 5]\n\nExplanation\n\nExamRoom examRoom = new ExamRoom(10);\nexamRoom.seat(); // return 0, no one is in the room, then the student sits at seat number 0.\nexamRoom.seat(); // return 9, the student sits at the last seat number 9.\nexamRoom.seat(); // return 4, the student sits at the last seat number 4.\nexamRoom.seat(); // return 2, the student sits at the last seat number 2.\nexamRoom.leave(4);\nexamRoom.seat(); // return 5, the student sits at the last seat number 5.\n```\n\n Constraints: \n\n 1 <= n <= 10 9 \n \n It is guaranteed that there is a student sitting at seat p . \n \n At most 10 4 calls will be made to seat and leave .",
+  "code": "#include <set>\n\nusing namespace std;\n\nclass ExamRoom {\n    int N;\n    set<int> seats;\n\npublic:\n    ExamRoom(int n) : N(n) {}\n\n    int seat() {\n        if (seats.empty()) {\n            seats.insert(0);\n            return 0;\n        }\n\n        int prev = -1, maxDist = 0, seatToTake = 0;\n        for (int seat : seats) {\n            if (prev == -1) {\n                if (seat > 0) {\n                    maxDist = seat;\n                    seatToTake = 0;\n                }\n            } else {\n                int dist = (seat - prev) / 2;\n                if (dist > maxDist) {\n                    maxDist = dist;\n                    seatToTake = prev + dist;\n                }\n            }\n            prev = seat;\n        }\n\n        if (N - 1 - *seats.rbegin() > maxDist) {\n            seatToTake = N - 1;\n        }\n\n        seats.insert(seatToTake);\n        return seatToTake;\n    }\n\n    void leave(int p) {\n        seats.erase(p);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593826639",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

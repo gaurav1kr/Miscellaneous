@@ -1,0 +1,30 @@
+{
+  "id": "2518",
+  "title": "Number of Great Partitions",
+  "slug": "number-of-great-partitions",
+  "url": "https://leetcode.com/problems/number-of-great-partitions/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an array nums consisting of positive integers and an integer k . \n \n Partition the array into two ordered groups such that each element is in exactly one group. A partition is called great if the sum of elements of each group is greater than or equal to k . \n \n Return the number of distinct great partitions . Since the answer may be too large, return it modulo 10 9 + 7 . \n \n Two partitions are considered distinct if some element nums[i] is in different groups in the two partitions. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4], k = 4\n\nOutput:\n 6\n\nExplanation:\n The great partitions are: ([1,2,3], [4]), ([1,3], [2,4]), ([1,4], [2,3]), ([2,3], [1,4]), ([2,4], [1,3]) and ([4], [1,2,3]).\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,3,3], k = 4\n\nOutput:\n 0\n\nExplanation:\n There are no great partitions for this array.\n```\n\n Example 3: \n \n```\nInput:\n nums = [6,6], k = 2\n\nOutput:\n 2\n\nExplanation:\n We can either put nums[0] in the first partition or in the second partition.\nThe great partitions will be ([6], [6]) and ([6], [6]).\n```\n\n Constraints: \n\n 1 <= nums.length, k <= 1000 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {public:int countPartitions(vector<int>& nums,int k){const int M=1000000007;long long sum=accumulate(nums.begin(),nums.end(),0LL);if(sum<2LL*k)return 0;vector<int>dp(k,0);dp[0]=1;long long total=1;for(int x:nums){total=total*2%M;for(int j=k-1;j>=x;j--)dp[j]=(dp[j]+dp[j-x])%M;}long long bad=0;for(int x:dp)bad=(bad+x)%M;return (total-2*bad%M+M)%M;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176597850",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

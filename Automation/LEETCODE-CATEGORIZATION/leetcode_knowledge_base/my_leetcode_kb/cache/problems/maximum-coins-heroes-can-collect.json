@@ -1,0 +1,37 @@
+{
+  "id": "2838",
+  "title": "Maximum Coins Heroes Can Collect",
+  "slug": "maximum-coins-heroes-can-collect",
+  "url": "https://leetcode.com/problems/maximum-coins-heroes-can-collect/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There is a battle and n heroes are trying to defeat m monsters. You are given two 1-indexed arrays of positive integers heroes and monsters of length n and m , respectively. heroes [i] is the power of i th hero, and monsters [i] is the power of i th monster. \n \n The i th hero can defeat the j th monster if monsters[j] <= heroes[i] . \n \n You are also given a 1-indexed array coins of length m consisting of positive integers. coins[i] is the number of coins that each hero earns after defeating the i th monster. \n \n Return an array ans of length n where ans[i] is the maximum number of coins that the i th hero can collect from this battle . \n \n Notes \n\n The health of a hero doesn't get reduced after defeating a monster. \n \n Multiple heroes can defeat a monster, but each monster can be defeated by a given hero only once. \n\n Example 1: \n \n```\nInput:\n heroes = [1,4,2], monsters = [1,1,5,2,3], coins = [2,3,4,5,6]\n\nOutput:\n [5,16,10]\n\nExplanation: \nFor each hero, we list the index of all the monsters he can defeat:\n1\nst\n hero: [1,2] since the power of this hero is 1 and monsters[1], monsters[2] <= 1. So this hero collects coins[1] + coins[2] = 5 coins.\n2\nnd\n hero: [1,2,4,5] since the power of this hero is 4 and monsters[1], monsters[2], monsters[4], monsters[5] <= 4. So this hero collects coins[1] + coins[2] + coins[4] + coins[5] = 16 coins.\n3\nrd\n hero: [1,2,4] since the power of this hero is 2 and monsters[1], monsters[2], monsters[4] <= 2. So this hero collects coins[1] + coins[2] + coins[4] = 10 coins.\nSo the answer would be [5,16,10].\n```\n\n Example 2: \n \n```\nInput:\n heroes = [5], monsters = [2,3,1,2], coins = [10,6,5,2]\n\nOutput:\n [23]\n\nExplanation:\n This hero can defeat all the monsters since monsters[i] <= 5. So he collects all of the coins: coins[1] + coins[2] + coins[3] + coins[4] = 23, and the answer would be [23].\n```\n\n Example 3: \n \n```\nInput:\n heroes = [4,4], monsters = [5,7,8], coins = [1,1,1]\n\nOutput:\n [0,0]\n\nExplanation:\n In this example, no hero can defeat a monster. So the answer would be [0,0],\n```\n\n Constraints: \n\n 1 <= n == heroes.length <= 10 5 \n \n 1 <= m == monsters.length <= 10 5 \n \n coins.length == m \n \n 1 <= heroes[i], monsters[i], coins[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<long long> maximumCoins(vector<int>& heroes, vector<int>& monsters, vector<int>& coins) {\n        int n=monsters.size();\n        vector<pair<int,int>> a;\n        for(int i=0;i<n;++i)a.push_back({monsters[i],coins[i]});\n        sort(a.begin(),a.end());\n        vector<long long> pref(n+1);\n        vector<int> powers;\n        for(int i=0;i<n;++i) {powers.push_back(a[i].first);pref[i+1]=pref[i]+a[i].second;}\n        vector<long long> ans;\n        for(int h:heroes) {\n            int count=upper_bound(powers.begin(),powers.end(),h)-powers.begin();\n            ans.push_back(pref[count]);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178913314",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

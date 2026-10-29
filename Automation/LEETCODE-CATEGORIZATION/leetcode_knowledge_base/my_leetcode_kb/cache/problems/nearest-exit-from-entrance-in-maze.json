@@ -1,0 +1,32 @@
+{
+  "id": "1926",
+  "title": "Nearest Exit from Entrance in Maze",
+  "slug": "nearest-exit-from-entrance-in-maze",
+  "url": "https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an m x n matrix maze ( 0-indexed ) with empty cells (represented as '.' ) and walls (represented as '+' ). You are also given the entrance of the maze, where entrance = [entrance row , entrance col ] denotes the row and column of the cell you are initially standing at. \n \n In one step, you can move one cell up , down , left , or right . You cannot step into a cell with a wall, and you cannot step outside the maze. Your goal is to find the nearest exit from the entrance . An exit is defined as an empty cell that is at the border of the maze . The entrance does not count as an exit. \n \n Return the number of steps in the shortest path from the entrance to the nearest exit, or -1 if no such path exists . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/04/nearest1-grid.jpg] \n \n```\nInput:\n maze = [[\"+\",\"+\",\".\",\"+\"],[\".\",\".\",\".\",\"+\"],[\"+\",\"+\",\"+\",\".\"]], entrance = [1,2]\n\nOutput:\n 1\n\nExplanation:\n There are 3 exits in this maze at [1,0], [0,2], and [2,3].\nInitially, you are at the entrance cell [1,2].\n- You can reach [1,0] by moving 2 steps left.\n- You can reach [0,2] by moving 1 step up.\nIt is impossible to reach [2,3] from the entrance.\nThus, the nearest exit is [0,2], which is 1 step away.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/04/nearesr2-grid.jpg] \n \n```\nInput:\n maze = [[\"+\",\"+\",\"+\"],[\".\",\".\",\".\"],[\"+\",\"+\",\"+\"]], entrance = [1,0]\n\nOutput:\n 2\n\nExplanation:\n There is 1 exit in this maze at [1,2].\n[1,0] does not count as an exit since it is the entrance cell.\nInitially, you are at the entrance cell [1,0].\n- You can reach [1,2] by moving 2 steps right.\nThus, the nearest exit is [1,2], which is 2 steps away.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/06/04/nearest3-grid.jpg] \n \n```\nInput:\n maze = [[\".\",\"+\"]], entrance = [0,0]\n\nOutput:\n -1\n\nExplanation:\n There are no exits in this maze.\n```\n\n Constraints: \n\n maze.length == m \n \n maze[i].length == n \n \n 1 <= m, n <= 100 \n \n maze[i][j] is either '.' or '+' . \n \n entrance.length == 2 \n \n 0 <= entrance row < m \n \n 0 <= entrance col < n \n \n entrance will always be an empty cell.",
+  "code": "#include <vector>\n#include <queue>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int nearestExit(vector<vector<char>>& maze, vector<int>& entrance) {\n        int m = maze.size(), n = maze[0].size();\n        queue<pair<int, int>> q;\n        q.push({entrance[0], entrance[1]});\n        maze[entrance[0]][entrance[1]] = '+';\n        int steps = 0;\n        vector<pair<int, int>> dirs = {{1,0},{-1,0},{0,1},{0,-1}};\n        while (!q.empty()) {\n            int sz = q.size();\n            while (sz--) {\n                auto [x, y] = q.front(); q.pop();\n                for (auto [dx, dy] : dirs) {\n                    int nx = x + dx, ny = y + dy;\n                    if (nx >= 0 && nx < m && ny >= 0 && ny < n && maze[nx][ny] == '.') {\n                        if (nx == 0 || ny == 0 || nx == m - 1 || ny == n - 1)\n                            return steps + 1;\n                        maze[nx][ny] = '+';\n                        q.push({nx, ny});\n                    }\n                }\n            }\n            ++steps;\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610618270",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

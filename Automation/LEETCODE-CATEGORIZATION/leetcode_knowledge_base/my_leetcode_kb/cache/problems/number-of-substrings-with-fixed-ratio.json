@@ -1,0 +1,36 @@
+{
+  "id": "2489",
+  "title": "Number of Substrings With Fixed Ratio",
+  "slug": "number-of-substrings-with-fixed-ratio",
+  "url": "https://leetcode.com/problems/number-of-substrings-with-fixed-ratio/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "You are given a binary string s , and two integers num1 and num2 . num1 and num2 are coprime numbers. \n \n A ratio substring is a substring of s where the ratio between the number of 0 's and the number of 1 's in the substring is exactly num1 : num2 . \n\n For example, if num1 = 2 and num2 = 3 , then \"01011\" and \"1110000111\" are ratio substrings, while \"11000\" is not. \n\n Return the number of non-empty ratio substrings of s . \n \n Note that: \n\n A substring is a contiguous sequence of characters within a string. \n \n Two values x and y are coprime if gcd(x, y) == 1 where gcd(x, y) is the greatest common divisor of x and y . \n\n Example 1: \n \n```\nInput:\n s = \"0110011\", num1 = 1, num2 = 2\n\nOutput:\n 4\n\nExplanation:\n There exist 4 non-empty ratio substrings.\n- The substring s[0..2]: \"\n011\n0011\". It contains one 0 and two 1's. The ratio is 1 : 2.\n- The substring s[1..4]: \"0\n110\n011\". It contains one 0 and two 1's. The ratio is 1 : 2.\n- The substring s[4..6]: \"0110\n011\n\". It contains one 0 and two 1's. The ratio is 1 : 2.\n- The substring s[1..6]: \"0\n110011\n\". It contains two 0's and four 1's. The ratio is 2 : 4 == 1 : 2.\nIt can be shown that there are no more ratio substrings.\n```\n\n Example 2: \n \n```\nInput:\n s = \"10101\", num1 = 3, num2 = 1\n\nOutput:\n 0\n\nExplanation:\n There is no ratio substrings of s. We return 0.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n 1 <= num1, num2 <= s.length \n \n num1 and num2 are coprime integers.",
+  "code": "class Solution {\npublic:\n    long long fixedRatio(string s, int num1, int num2) {\n        unordered_map<long long, long long> freq;\n        freq[0] = 1;\n        long long balance = 0, answer = 0;\n        for (char c : s) {\n            balance += c == '0' ? num2 : -num1;\n            answer += freq[balance];\n            ++freq[balance];\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178879227",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

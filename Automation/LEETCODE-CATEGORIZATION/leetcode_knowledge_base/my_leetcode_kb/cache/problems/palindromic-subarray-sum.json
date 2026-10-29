@@ -1,0 +1,34 @@
+{
+  "id": "3985",
+  "title": "Palindromic Subarray Sum",
+  "slug": "palindromic-subarray-sum",
+  "url": "https://leetcode.com/problems/palindromic-subarray-sum/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Hash Function",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Return the maximum possible sum of a subarray of nums that is a palindrome . \n\n Example 1: \n\n Input: nums = [10,10] \n \n Output: 20 \n \n Explanation: \n \n The whole array [10,10] is a palindrome. Therefore, the maximum sum is 10 + 10 = 20 . \n\n Example 2: \n\n Input: nums = [1,2,3,2,1,5,6] \n \n Output: 9 \n \n Explanation: \n \n The contiguous subarray [1,2,3,2,1] is a palindrome. Its sum is 1 + 2 + 3 + 2 + 1 = 9 and it is the maximum sum. \n\n Example 3: \n\n Input: nums = [7,1,2,1,7,3,4,3,4] \n \n Output: 18 \n \n Explanation: \n \n The contiguous subarray [7,1,2,1,7] is a palindrome. Its sum is 7 + 1 + 2 + 1 + 7 = 18 and it is the maximum sum. \n\n Example 4: \n\n Input: nums = [1,2,3,4,5] \n \n Output: 5 \n \n Explanation: \n \n No subarray with length greater than 1 is a palindrome. The largest element in the array is 5. Therefore, the answer is 5. \n\n Example 5: \n\n Input: nums = [1000] \n \n Output: 1000 \n \n Explanation: \n \n The subarray with only one element is a palindrome. Therefore, the answer is 1000. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 ​​​​​​​9",
+  "code": "class Solution {\npublic:\n    long long getSum(vector<int>& nums){\n        int n=nums.size();vector<int>d1(n),d2(n);vector<long long>pref(n+1);for(int i=0;i<n;i++)pref[i+1]=pref[i]+nums[i];\n        long long ans=0;int l=0,r=-1;\n        for(int i=0;i<n;i++){int k=i>r?1:min(d1[l+r-i],r-i+1);while(i-k>=0&&i+k<n&&nums[i-k]==nums[i+k])k++;d1[i]=k--;\n            ans=max(ans,pref[i+k+1]-pref[i-k]);if(i+k>r){l=i-k;r=i+k;}}\n        l=0;r=-1;\n        for(int i=0;i<n;i++){int k=i>r?0:min(d2[l+r-i+1],r-i+1);while(i-k-1>=0&&i+k<n&&nums[i-k-1]==nums[i+k])k++;d2[i]=k--;\n            if(k>=0)ans=max(ans,pref[i+k+1]-pref[i-k-1]);if(i+k>r){l=i-k-1;r=i+k;}}\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181180232",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

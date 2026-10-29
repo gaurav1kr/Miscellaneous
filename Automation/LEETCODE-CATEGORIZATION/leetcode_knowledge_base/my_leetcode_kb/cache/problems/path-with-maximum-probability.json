@@ -1,0 +1,37 @@
+{
+  "id": "1514",
+  "title": "Path with Maximum Probability",
+  "slug": "path-with-maximum-probability",
+  "url": "https://leetcode.com/problems/path-with-maximum-probability/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path",
+    "Dijkstra's Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an undirected weighted graph of  n  nodes (0-indexed), represented by an edge list where  edges[i] = [a, b]  is an undirected edge connecting the nodes  a  and  b  with a probability of success of traversing that edge  succProb[i] . \n \n Given two nodes  start  and  end , find the path with the maximum probability of success to go from  start  to  end  and return its success probability. \n \n If there is no path from  start  to  end , return 0 . Your answer will be accepted if it differs from the correct answer by at most 1e-5 . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2019/09/20/1558_ex1.png] \n \n```\nInput:\n n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2\n\nOutput:\n 0.25000\n\nExplanation:\n There are two paths from start to end, one having a probability of success = 0.2 and the other has 0.5 * 0.5 = 0.25.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2019/09/20/1558_ex2.png] \n \n```\nInput:\n n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2\n\nOutput:\n 0.30000\n```\n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2019/09/20/1558_ex3.png] \n \n```\nInput:\n n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2\n\nOutput:\n 0.00000\n\nExplanation:\n There is no path between 0 and 2.\n```\n\n Constraints: \n\n 2 <= n <= 10^4 \n \n 0 <= start, end < n \n \n start != end \n \n 0 <= a, b < n \n \n a != b \n \n 0 <= succProb.length == edges.length <= 2*10^4 \n \n 0 <= succProb[i] <= 1 \n \n There is at most one edge between every two nodes.",
+  "code": "\n#include <vector>\n#include <queue>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) {\n        vector<vector<pair<int, double>>> graph(n);\n        for (int i = 0; i < edges.size(); ++i) {\n            graph[edges[i][0]].emplace_back(edges[i][1], succProb[i]);\n            graph[edges[i][1]].emplace_back(edges[i][0], succProb[i]);\n        }\n        \n        vector<double> prob(n, 0);\n        prob[start] = 1.0;\n        priority_queue<pair<double, int>> pq;\n        pq.push({1.0, start});\n        \n        while (!pq.empty()) {\n            auto [p, node] = pq.top();\n            pq.pop();\n            \n            if (node == end) return p;\n            \n            for (auto& [nextNode, probEdge] : graph[node]) {\n                double newProb = p * probEdge;\n                if (newProb > prob[nextNode]) {\n                    prob[nextNode] = newProb;\n                    pq.push({newProb, nextNode});\n                }\n            }\n        }\n        \n        return 0.0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592335998",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

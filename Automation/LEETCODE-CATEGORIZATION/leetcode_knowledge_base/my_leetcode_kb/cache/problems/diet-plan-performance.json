@@ -1,0 +1,29 @@
+{
+  "id": "1176",
+  "title": "Diet Plan Performance",
+  "slug": "diet-plan-performance",
+  "url": "https://leetcode.com/problems/diet-plan-performance/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "A dieter consumes  calories[i]  calories on the i -th day.  \n \n Given an integer k , for every consecutive sequence of k days ( calories[i], calories[i+1], ..., calories[i+k-1]  for all 0 <= i <= n-k ), they look at T , the total calories consumed during that sequence of k days ( calories[i] + calories[i+1] + ... + calories[i+k-1] ): \n\n If T < lower , they performed poorly on their diet and lose 1 point;  \n \n If T > upper , they performed well on their diet and gain 1 point; \n \n Otherwise, they performed normally and there is no change in points. \n\n Initially, the dieter has zero points. Return the total number of points the dieter has after dieting for calories.length  days. \n \n Note that the total points can be negative. \n\n Example 1: \n \n```\nInput:\n calories = [1,2,3,4,5], k = 1, lower = 3, upper = 3\n\nOutput:\n 0\n\nExplanation\n: Since k = 1, we consider each element of the array separately and compare it to lower and upper.\ncalories[0] and calories[1] are less than lower so 2 points are lost.\ncalories[3] and calories[4] are greater than upper so 2 points are gained.\n```\n\n Example 2: \n \n```\nInput:\n calories = [3,2], k = 2, lower = 0, upper = 1\n\nOutput:\n 1\n\nExplanation\n: Since k = 2, we consider subarrays of length 2.\ncalories[0] + calories[1] > upper so 1 point is gained.\n```\n\n Example 3: \n \n```\nInput:\n calories = [6,5,0,0], k = 2, lower = 1, upper = 5\n\nOutput:\n 0\n\nExplanation\n:\ncalories[0] + calories[1] > upper so 1 point is gained.\nlower <= calories[1] + calories[2] <= upper so no change in points.\ncalories[2] + calories[3] < lower so 1 point is lost.\n```\n\n Constraints: \n\n 1 <= k <= calories.length <= 10^5 \n \n 0 <= calories[i] <= 20000 \n \n 0 <= lower <= upper",
+  "code": "class Solution {\npublic:\n    int dietPlanPerformance(vector<int>& calories, int k,\n                            int lower, int upper) {\n        int sum = 0;\n        int score = 0;\n        for (int i = 0; i < static_cast<int>(calories.size()); ++i) {\n            sum += calories[i];\n            if (i >= k) {\n                sum -= calories[i - k];\n            }\n            if (i >= k - 1) {\n                score += (sum < lower ? -1 : (sum > upper ? 1 : 0));\n            }\n        }\n        return score;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178543414",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

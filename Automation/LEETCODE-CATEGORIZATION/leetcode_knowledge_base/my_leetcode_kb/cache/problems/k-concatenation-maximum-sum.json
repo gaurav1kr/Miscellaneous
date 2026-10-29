@@ -1,0 +1,30 @@
+{
+  "id": "1191",
+  "title": "K-Concatenation Maximum Sum",
+  "slug": "k-concatenation-maximum-sum",
+  "url": "https://leetcode.com/problems/k-concatenation-maximum-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer array arr and an integer k , modify the array by repeating it k times. \n \n For example, if arr = [1, 2] and k = 3 then the modified array will be [1, 2, 1, 2, 1, 2] . \n \n Return the maximum sub-array sum in the modified array. Note that the length of the sub-array can be 0 and its sum in that case is 0 . \n \n As the answer can be very large, return the answer modulo 10 9 + 7 . \n\n Example 1: \n\n Input: arr = [1, 2], k = 3 \n \n Output: 9 \n \n Explanation: \n \n The concatenated array is [1, 2, 1, 2, 1, 2] . \n \n The maximum-sum subarray is the entire array, with sum 1 + 2 + 1 + 2 + 1 + 2 = 9. \n\n Example 2: \n\n Input: arr = [1, -2, 1], k = 5 \n \n Output: 2 \n \n Explanation: \n \n The concatenated array is [1, -2, 1, 1, -2, 1, 1, -2, 1, 1, -2, 1, 1, -2, 1] . \n \n The maximum-sum subarray is [1, 1] , formed by the last element of one copy and the first element of the next copy, with sum 1 + 1 = 2. \n\n Example 3: \n\n Input: arr = [-1, -2], k = 7 \n \n Output: 0 \n \n Explanation: \n \n Every element in the concatenated array is negative, so no subarray has a positive sum. Therefore, the maximum possible sum is 0. \n\n Constraints: \n\n 1 <= arr.length <= 10 5 \n \n 1 <= k <= 10 5 \n \n -10 4 <= arr[i] <= 10 4",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int kConcatenationMaxSum(vector<int>& arr, int k) {\n        const int MOD = 1e9 + 7;\n        long max_kadane = kadane(arr);\n        if (k == 1) return max_kadane % MOD;\n\n        long total = accumulate(arr.begin(), arr.end(), 0L);\n        long double_kadane = kadane(concat(arr, arr));\n\n        return max({max_kadane, double_kadane, total > 0 ? double_kadane + (k - 2) * total : double_kadane}) % MOD;\n    }\n\n    long kadane(const vector<int>& arr) {\n        long max_sum = 0, cur = 0;\n        for (int x : arr) {\n            cur = max((long)x, cur + x);\n            max_sum = max(max_sum, cur);\n        }\n        return max_sum;\n    }\n\n    vector<int> concat(const vector<int>& a, const vector<int>& b) {\n        vector<int> res = a;\n        res.insert(res.end(), b.begin(), b.end());\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593846139",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

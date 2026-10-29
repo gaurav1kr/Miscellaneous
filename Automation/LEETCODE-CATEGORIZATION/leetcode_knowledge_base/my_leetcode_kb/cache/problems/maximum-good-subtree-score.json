@@ -1,0 +1,40 @@
+{
+  "id": "3575",
+  "title": "Maximum Good Subtree Score",
+  "slug": "maximum-good-subtree-score",
+  "url": "https://leetcode.com/problems/maximum-good-subtree-score/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Tree",
+    "Depth-First Search",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an undirected tree rooted at node 0 with n nodes numbered from 0 to n - 1 . Each node i has an integer value vals[i] , and its parent is given by par[i] . \n \n A subset of nodes within the subtree of a node is called good if every digit from 0 to 9 appears at most once in the decimal representation of the values of the selected nodes. \n \n The score of a good subset is the sum of the values of its nodes. \n \n Define an array maxScore of length n , where maxScore[u] represents the maximum possible sum of values of a good subset of nodes that belong to the subtree rooted at node u , including u itself and all its descendants. \n \n Return the sum of all values in maxScore . \n \n Since the answer may be large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: vals = [2,3], par = [-1,0] \n \n Output: 8 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/29/screenshot-2025-04-29-at-150754.png] \n\n The subtree rooted at node 0 includes nodes {0, 1} . The subset {2, 3} is good as the digits 2 and 3 appear only once. The score of this subset is 2 + 3 = 5 . \n \n The subtree rooted at node 1 includes only node {1} . The subset {3} is good. The score of this subset is 3. \n \n The maxScore array is [5, 3] , and the sum of all values in maxScore is 5 + 3 = 8 . Thus, the answer is 8. \n\n Example 2: \n\n Input: vals = [1,5,2], par = [-1,0,0] \n \n Output: 15 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/29/screenshot-2025-04-29-at-151408.png] \n\n The subtree rooted at node 0 includes nodes {0, 1, 2} . The subset {1, 5, 2} is good as the digits 1, 5 and 2 appear only once. The score of this subset is 1 + 5 + 2 = 8 . \n \n The subtree rooted at node 1 includes only node {1} . The subset {5} is good. The score of this subset is 5. \n \n The subtree rooted at node 2 includes only node {2} . The subset {2} is good. The score of this subset is 2. \n \n The maxScore array is [8, 5, 2] , and the sum of all values in maxScore is 8 + 5 + 2 = 15 . Thus, the answer is 15. \n\n Example 3: \n\n Input: vals = [34,1,2], par = [-1,0,1] \n \n Output: 42 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/29/screenshot-2025-04-29-at-151747.png] \n\n The subtree rooted at node 0 includes nodes {0, 1, 2} . The subset {34, 1, 2} is good as the digits 3, 4, 1 and 2 appear only once. The score of this subset is 34 + 1 + 2 = 37 . \n \n The subtree rooted at node 1 includes node {1, 2} . The subset {1, 2} is good as the digits 1 and 2 appear only once. The score of this subset is 1 + 2 = 3 . \n \n The subtree rooted at node 2 includes only node {2} . The subset {2} is good. The score of this subset is 2. \n \n The maxScore array is [37, 3, 2] , and the sum of all values in maxScore is 37 + 3 + 2 = 42 . Thus, the answer is 42. \n\n Example 4: \n\n Input: vals = [3,22,5], par = [-1,0,1] \n \n Output: 18 \n \n Explanation: \n\n The subtree rooted at node 0 includes nodes {0, 1, 2} . The subset {3, 22, 5} is not good, as digit 2 appears twice. Therefore, the subset {3, 5} is valid. The score of this subset is 3 + 5 = 8 . \n \n The subtree rooted at node 1 includes nodes {1, 2} . The subset {22, 5} is not good, as digit 2 appears twice. Therefore, the subset {5} is valid. The score of this subset is 5. \n \n The subtree rooted at node 2 includes {2} . The subset {5} is good. The score of this subset is 5. \n \n The maxScore array is [8, 5, 5] , and the sum of all values in maxScore is 8 + 5 + 5 = 18 . Thus, the answer is 18. \n\n Constraints: \n\n 1 <= n == vals.length <= 500 \n \n 1 <= vals[i] <= 10 9 \n \n par.length == n \n \n par[0] == -1 \n \n 0 <= par[i] < n for i in [1, n - 1] \n \n The input is generated such that the parent array par represents a valid tree.",
+  "code": "class Solution {\npublic:\n    int goodSubtreeSum(vector<int>& vals, vector<int>& par) {\n        const int MOD=1000000007, M=1024;\n        int n=vals.size();\n        vector<vector<int>> child(n);\n        for(int i=1;i<n;++i) child[par[i]].push_back(i);\n        vector<int> order(1,0);\n        for(int i=0;i<(int)order.size();++i)\n            for(int v:child[order[i]]) order.push_back(v);\n        vector<vector<long long>> dp(n,vector<long long>(M,-1));\n        long long answer=0;\n        for(int ii=n-1;ii>=0;--ii) {\n            int u=order[ii],mask=0,x=vals[u];\n            bool valid=true;\n            while(x>0) {\n                int d=x%10;\n                if(mask&(1<<d)) valid=false;\n                mask|=1<<d; x/=10;\n            }\n            dp[u][0]=0;\n            if(valid) dp[u][mask]=vals[u];\n            for(int v:child[u]) {\n                vector<long long> next(M,-1);\n                for(int a=0;a<M;++a) if(dp[u][a]>=0) {\n                    int freeMask=(M-1)^a;\n                    for(int b=freeMask;;b=(b-1)&freeMask) {\n                        if(dp[v][b]>=0)\n                            next[a|b]=max(next[a|b],dp[u][a]+dp[v][b]);\n                        if(b==0) break;\n                    }\n                }\n                dp[u].swap(next);\n                vector<long long>().swap(dp[v]);\n            }\n            answer=(answer+*max_element(dp[u].begin(),dp[u].end()))%MOD;\n        }\n        return (int)answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179750828",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

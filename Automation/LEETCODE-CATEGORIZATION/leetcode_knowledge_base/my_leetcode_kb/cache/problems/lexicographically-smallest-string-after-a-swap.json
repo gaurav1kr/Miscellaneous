@@ -1,0 +1,28 @@
+{
+  "id": "3216",
+  "title": "Lexicographically Smallest String After a Swap",
+  "slug": "lexicographically-smallest-string-after-a-swap",
+  "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-a-swap/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s containing only digits, return the lexicographically smallest string that can be obtained after swapping adjacent digits in s with the same parity at most once . \n \n Digits have the same parity if both are odd or both are even. For example, 5 and 9, as well as 2 and 4, have the same parity, while 6 and 9 do not. \n\n Example 1: \n\n Input: s = \"45320\" \n \n Output: \"43520\" \n \n Explanation: \n \n s[1] == '5' and s[2] == '3' both have the same parity, and swapping them results in the lexicographically smallest string. \n\n Example 2: \n\n Input: s = \"001\" \n \n Output: \"001\" \n \n Explanation: \n \n There is no need to perform a swap because s is already the lexicographically smallest. \n\n Constraints: \n\n 2 <= s.length <= 100 \n \n s consists only of digits.",
+  "code": "class Solution {public:string getSmallestString(string s){for(int i=0;i+1<(int)s.size();++i)if((s[i]-'0')%2==(s[i+1]-'0')%2&&s[i]>s[i+1]){swap(s[i],s[i+1]);break;}return s;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177425710",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

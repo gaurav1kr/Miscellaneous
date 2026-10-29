@@ -1,0 +1,31 @@
+{
+  "id": "227",
+  "title": "Basic Calculator II",
+  "slug": "basic-calculator-ii",
+  "url": "https://leetcode.com/problems/basic-calculator-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Stack"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given a string s which represents an expression, evaluate this expression and return its value .  \n \n The integer division should truncate toward zero. \n \n You may assume that the given expression is always valid. All intermediate results will be in the range of [-2 31 , 2 31 - 1] . \n \n Note: You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as eval() . \n\n Example 1: \n \n```\nInput:\n s = \"3+2*2\"\n\nOutput:\n 7\n```\n \n Example 2: \n \n```\nInput:\n s = \" 3/2 \"\n\nOutput:\n 1\n```\n \n Example 3: \n \n```\nInput:\n s = \" 3+5 / 2 \"\n\nOutput:\n 5\n```\n\n Constraints: \n\n 1 <= s.length <= 3 * 10 5 \n \n s consists of integers and operators ('+', '-', '*', '/') separated by some number of spaces. \n \n s represents a valid expression. \n \n All the integers in the expression are non-negative integers in the range [0, 2 31 - 1] . \n \n The answer is guaranteed to fit in a 32-bit integer .",
+  "code": "class Solution {\npublic:\n    int calculate(string s) {\n        int num = 0, n = s.size(), result = 0, last = 0;\n        char op = '+';\n        for (int i = 0; i < n; ++i) {\n            if (isdigit(s[i])) {\n                num = num * 10 + (s[i] - '0');\n            }\n            if (!isdigit(s[i]) && !isspace(s[i]) || i == n - 1) {\n                if (op == '+') { result += last; last = num; }\n                else if (op == '-') { result += last; last = -num; }\n                else if (op == '*') { last *= num; }\n                else if (op == '/') { last /= num; }\n                op = s[i];\n                num = 0;\n            }\n        }\n        return result + last;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536008125",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

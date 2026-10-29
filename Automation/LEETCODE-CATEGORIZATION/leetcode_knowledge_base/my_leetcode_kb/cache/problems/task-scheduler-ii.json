@@ -1,0 +1,33 @@
+{
+  "id": "2365",
+  "title": "Task Scheduler II",
+  "slug": "task-scheduler-ii",
+  "url": "https://leetcode.com/problems/task-scheduler-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of positive integers tasks , representing tasks that need to be completed in order , where tasks[i] represents the type of the i th task. \n \n You are also given a positive integer space , which represents the minimum number of days that must pass after the completion of a task before another task of the same type can be performed. \n \n Each day, until all tasks have been completed, you must either: \n\n Complete the next task from tasks , or \n \n Take a break. \n\n Return the minimum number of days needed to complete all tasks . \n\n Example 1: \n \n```\nInput:\n tasks = [1,2,1,2,3,1], space = 3\n\nOutput:\n 9\n\nExplanation:\n\nOne way to complete all tasks in 9 days is as follows:\nDay 1: Complete the 0th task.\nDay 2: Complete the 1st task.\nDay 3: Take a break.\nDay 4: Take a break.\nDay 5: Complete the 2nd task.\nDay 6: Complete the 3rd task.\nDay 7: Take a break.\nDay 8: Complete the 4th task.\nDay 9: Complete the 5th task.\nIt can be shown that the tasks cannot be completed in less than 9 days.\n```\n\n Example 2: \n \n```\nInput:\n tasks = [5,8,8,5], space = 2\n\nOutput:\n 6\n\nExplanation:\n\nOne way to complete all tasks in 6 days is as follows:\nDay 1: Complete the 0th task.\nDay 2: Complete the 1st task.\nDay 3: Take a break.\nDay 4: Take a break.\nDay 5: Complete the 2nd task.\nDay 6: Complete the 3rd task.\nIt can be shown that the tasks cannot be completed in less than 6 days.\n```\n\n Constraints: \n\n 1 <= tasks.length <= 10 5 \n \n 1 <= tasks[i] <= 10 9 \n \n 1 <= space <= tasks.length",
+  "code": "class Solution { public:\n    long long taskSchedulerII(vector<int>& tasks,int space) {\n        unordered_map<int,long long> last;long long day=0;\n        for(int x:tasks){if(last.count(x))day=max(day,last[x]+space);++day;last[x]=day;}\n        return day;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175927196",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

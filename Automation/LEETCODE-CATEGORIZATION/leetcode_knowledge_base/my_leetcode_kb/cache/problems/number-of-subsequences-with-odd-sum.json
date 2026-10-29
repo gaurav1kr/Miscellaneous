@@ -1,0 +1,33 @@
+{
+  "id": "3247",
+  "title": "Number of Subsequences with Odd Sum",
+  "slug": "number-of-subsequences-with-odd-sum",
+  "url": "https://leetcode.com/problems/number-of-subsequences-with-odd-sum/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an array nums , return the number of subsequences with an odd sum of elements. \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: nums = [1,1,1] \n \n Output: 4 \n \n Explanation: \n \n The odd-sum subsequences are: [ 1 , 1, 1] , [1, 1 , 1], [1, 1, 1 ] , [ 1, 1, 1 ] . \n\n Example 2: \n\n Input: nums = [1,2,2] \n \n Output: 4 \n \n Explanation: \n \n The odd-sum subsequences are: [ 1 , 2, 2] , [ 1, 2 , 2], [ 1 , 2, 2 ] , [ 1, 2, 2 ] . \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {\npublic:\n    int subsequenceCount(vector<int>& nums) {\n        const int MOD = 1000000007;\n        long long even = 1, odd = 0;\n        for (int x : nums) {\n            long long nextEven = (even + ((x & 1) ? odd : even)) % MOD;\n            long long nextOdd = (odd + ((x & 1) ? even : odd)) % MOD;\n            even = nextEven;\n            odd = nextOdd;\n        }\n        return static_cast<int>(odd);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178964910",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

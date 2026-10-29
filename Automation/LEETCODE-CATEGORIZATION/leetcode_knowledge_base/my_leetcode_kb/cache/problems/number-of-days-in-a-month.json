@@ -1,0 +1,24 @@
+{
+  "id": "1118",
+  "title": "Number of Days in a Month",
+  "slug": "number-of-days-in-a-month",
+  "url": "https://leetcode.com/problems/number-of-days-in-a-month/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given a year year and a month month , return the number of days of that month . \n\n Example 1: \n \n```\nInput:\n year = 1992, month = 7\n\nOutput:\n 31\n```\n \n Example 2: \n \n```\nInput:\n year = 2000, month = 2\n\nOutput:\n 29\n```\n \n Example 3: \n \n```\nInput:\n year = 1900, month = 2\n\nOutput:\n 28\n```\n\n Constraints: \n\n 1583 <= year <= 2100 \n \n 1 <= month <= 12",
+  "code": "class Solution {\npublic:\n    int numberOfDays(int year, int month) {\n        int days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\n        bool leap = year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);\n        return days[month - 1] + (month == 2 && leap ? 1 : 0);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178530460",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

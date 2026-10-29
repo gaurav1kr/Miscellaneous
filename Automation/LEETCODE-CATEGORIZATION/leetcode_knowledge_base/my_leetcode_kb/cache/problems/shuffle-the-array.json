@@ -1,0 +1,27 @@
+{
+  "id": "1470",
+  "title": "Shuffle the Array",
+  "slug": "shuffle-the-array",
+  "url": "https://leetcode.com/problems/shuffle-the-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given the array nums consisting of 2n elements in the form [x 1 ,x 2 ,...,x n ,y 1 ,y 2 ,...,y n ] . \n \n Return the array in the form [x 1 ,y 1 ,x 2 ,y 2 ,...,x n ,y n ] . \n\n Example 1: \n \n```\nInput:\n nums = [2,5,1,3,4,7], n = 3\r\n\nOutput:\n [2,3,5,4,1,7] \r\n\nExplanation:\n Since x\n1\n=2, x\n2\n=5, x\n3\n=1, y\n1\n=3, y\n2\n=4, y\n3\n=7 then the answer is [2,3,5,4,1,7].\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4,4,3,2,1], n = 4\r\n\nOutput:\n [1,4,2,3,3,2,4,1]\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,1,2,2], n = 2\r\n\nOutput:\n [1,2,1,2]\n```\n\n Constraints: \n\n 1 <= n <= 500 \n \n nums.length == 2n \n \n 1 <= nums[i] <= 10^3",
+  "code": "class Solution {\npublic:\n    vector<int> shuffle(vector<int>& nums, int n) {\n        vector<int> ans;\n        ans.reserve(2 * n);\n        for (int i = 0; i < n; ++i) {\n            ans.push_back(nums[i]);\n            ans.push_back(nums[i + n]);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175753239",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

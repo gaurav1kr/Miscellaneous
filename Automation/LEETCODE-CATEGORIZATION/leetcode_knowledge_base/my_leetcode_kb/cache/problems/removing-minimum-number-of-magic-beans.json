@@ -1,0 +1,36 @@
+{
+  "id": "2171",
+  "title": "Removing Minimum Number of Magic Beans",
+  "slug": "removing-minimum-number-of-magic-beans",
+  "url": "https://leetcode.com/problems/removing-minimum-number-of-magic-beans/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Enumeration",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array of positive integers beans , where each integer represents the number of magic beans found in a particular magic bag. \n \n Remove any number of beans ( possibly none ) from each bag such that the number of beans in each remaining non-empty bag (still containing at least one bean) is equal . Once a bean has been removed from a bag, you are not allowed to return it to any of the bags. \n \n Return the minimum number of magic beans that you have to remove . \n\n Example 1: \n \n```\nInput:\n beans = [4,1,6,5]\n\nOutput:\n 4\n\nExplanation:\n \n- We remove 1 bean from the bag with only 1 bean.\n This results in the remaining bags: [4,\n0\n,6,5]\n- Then we remove 2 beans from the bag with 6 beans.\n This results in the remaining bags: [4,0,\n4\n,5]\n- Then we remove 1 bean from the bag with 5 beans.\n This results in the remaining bags: [4,0,4,\n4\n]\nWe removed a total of 1 + 2 + 1 = 4 beans to make the remaining non-empty bags have an equal number of beans.\nThere are no other solutions that remove 4 beans or fewer.\n```\n\n Example 2: \n \n```\nInput:\n beans = [2,10,3,2]\n\nOutput:\n 7\n\nExplanation:\n\n- We remove 2 beans from one of the bags with 2 beans.\n This results in the remaining bags: [\n0\n,10,3,2]\n- Then we remove 2 beans from the other bag with 2 beans.\n This results in the remaining bags: [0,10,3,\n0\n]\n- Then we remove 3 beans from the bag with 3 beans. \n This results in the remaining bags: [0,10,\n0\n,0]\nWe removed a total of 2 + 2 + 3 = 7 beans to make the remaining non-empty bags have an equal number of beans.\nThere are no other solutions that removes 7 beans or fewer.\n```\n\n Constraints: \n\n 1 <= beans.length <= 10 5 \n \n 1 <= beans[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    long long minimumRemoval(vector<int>& beans) {\n        sort(beans.begin(),beans.end());\n        long long total=accumulate(beans.begin(),beans.end(),0LL),ans=total;\n        int n=beans.size();\n        for(int i=0;i<n;++i) ans=min(ans,total-1LL*beans[i]*(n-i));\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175878661",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

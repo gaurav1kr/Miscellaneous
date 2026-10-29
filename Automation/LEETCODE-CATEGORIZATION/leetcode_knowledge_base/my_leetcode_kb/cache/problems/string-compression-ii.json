@@ -1,0 +1,29 @@
+{
+  "id": "1531",
+  "title": "String Compression II",
+  "slug": "string-compression-ii",
+  "url": "https://leetcode.com/problems/string-compression-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "Run-length encoding is a string compression method that works by replacing consecutive identical characters (repeated 2 or more times) with the concatenation of the character and the number marking the count of the characters (length of the run). For example, to compress the string  \"aabccc\"  we replace \"aa\"  by  \"a2\"  and replace \"ccc\"  by  \"c3\" . Thus the compressed string becomes \"a2bc3\" . \n \n Notice that in this problem, we are not adding  '1'  after single characters. \n \n Given a string s  and an integer k . You need to delete at most   k characters from  s  such that the run-length encoded version of s  has minimum length. \n \n Find the minimum length of the run-length encoded version of s after deleting at most k characters . \n\n Example 1: \n \n```\nInput:\n s = \"aaabcccd\", k = 2\n\nOutput:\n 4\n\nExplanation: \nCompressing s without deleting anything will give us \"a3bc3d\" of length 6. Deleting any of the characters 'a' or 'c' would at most decrease the length of the compressed string to 5, for instance delete 2 'a' then we will have s = \"abcccd\" which compressed is abc3d. Therefore, the optimal way is to delete 'b' and 'd', then the compressed version of s will be \"a3c3\" of length 4.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aabbaa\", k = 2\n\nOutput:\n 2\n\nExplanation: \nIf we delete both 'b' characters, the resulting compressed string would be \"a4\" of length 2.\n```\n\n Example 3: \n \n```\nInput:\n s = \"aaaaaaaaaaa\", k = 0\n\nOutput:\n 3\n\nExplanation: \nSince k is zero, we cannot delete anything. The compressed string is \"a11\" of length 3.\n```\n\n Constraints: \n\n 1 <= s.length <= 100 \n \n 0 <= k <= s.length \n \n s contains only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int getLengthOfOptimalCompression(string s, int k) {\n        int n = s.size();\n        int m = k;\n\n        int dp[110][110] = {};\n        for (int i = 1; i <= n; ++i) {\n            for (int j = 0; j <= i && j <= m; ++j) {\n                int need_remove = 0;\n                int group_count = 0;\n                dp[i][j] = INT_MAX;\n                if (j) {\n                    dp[i][j] = dp[i - 1][j - 1];\n                }\n                for (int k = i; k >= 1; --k) {\n                    if (s[k - 1] != s[i - 1]) {\n                        need_remove += 1;\n                    } else {\n                        group_count += 1;\n                    }\n\n                    if (need_remove > j) {\n                        break;\n                    }\n\n                    if (group_count == 1) {\n                        dp[i][j] = min(dp[i][j], dp[k - 1][j - need_remove] + 1);\n                    } else if (group_count < 10) {\n                        dp[i][j] = min(dp[i][j], dp[k - 1][j - need_remove] + 2);\n                    } else if (group_count < 100) {\n                        dp[i][j] = min(dp[i][j], dp[k - 1][j - need_remove] + 3);\n                    } else {\n                        dp[i][j] = min(dp[i][j], dp[k - 1][j - need_remove] + 4);\n                    }\n                }\n            }\n        }\n\n        return dp[n][m];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617065124",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

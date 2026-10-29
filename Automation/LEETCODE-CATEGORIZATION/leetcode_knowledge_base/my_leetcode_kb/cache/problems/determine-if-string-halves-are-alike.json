@@ -1,0 +1,30 @@
+{
+  "id": "1704",
+  "title": "Determine if String Halves Are Alike",
+  "slug": "determine-if-string-halves-are-alike",
+  "url": "https://leetcode.com/problems/determine-if-string-halves-are-alike/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash set",
+    "Ordered set",
+    "String"
+  ],
+  "description": "You are given a string s of even length. Split this string into two halves of equal lengths, and let a be the first half and b be the second half. \n \n Two strings are alike if they have the same number of vowels ( 'a' , 'e' , 'i' , 'o' , 'u' , 'A' , 'E' , 'I' , 'O' , 'U' ). Notice that s contains uppercase and lowercase letters. \n \n Return true if a and b are alike . Otherwise, return false . \n\n Example 1: \n \n```\nInput:\n s = \"book\"\n\nOutput:\n true\n\nExplanation:\n a = \"b\no\n\" and b = \"\no\nk\". a has 1 vowel and b has 1 vowel. Therefore, they are alike.\n```\n\n Example 2: \n \n```\nInput:\n s = \"textbook\"\n\nOutput:\n false\n\nExplanation:\n a = \"t\ne\nxt\" and b = \"b\noo\nk\". a has 1 vowel whereas b has 2. Therefore, they are not alike.\nNotice that the vowel o is counted twice.\n```\n\n Constraints: \n\n 2 <= s.length <= 1000 \n \n s.length is even. \n \n s consists of uppercase and lowercase letters.",
+  "code": "#include <string>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool halvesAreAlike(string s) {\n        unordered_set<char> vowels = {'a','e','i','o','u','A','E','I','O','U'};\n        int mid = s.size() / 2, count = 0;\n        for (int i = 0; i < s.size(); ++i) {\n            if (vowels.count(s[i])) count += (i < mid ? 1 : -1);\n        }\n        return count == 0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610588397",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

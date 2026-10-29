@@ -1,0 +1,27 @@
+{
+  "id": "1299",
+  "title": "Replace Elements with Greatest Element on Right Side",
+  "slug": "replace-elements-with-greatest-element-on-right-side",
+  "url": "https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array arr , replace every element in that array with the greatest element among the elements to its right, and replace the last element with -1 . \n \n After doing so, return the array. \n\n Example 1: \n \n```\nInput:\n arr = [17,18,5,4,6,1]\n\nOutput:\n [18,6,6,6,1,-1]\n\nExplanation:\n \n- index 0 --> the greatest element to the right of index 0 is index 1 (18).\n- index 1 --> the greatest element to the right of index 1 is index 4 (6).\n- index 2 --> the greatest element to the right of index 2 is index 4 (6).\n- index 3 --> the greatest element to the right of index 3 is index 4 (6).\n- index 4 --> the greatest element to the right of index 4 is index 5 (1).\n- index 5 --> there are no elements to the right of index 5, so we put -1.\n```\n\n Example 2: \n \n```\nInput:\n arr = [400]\n\nOutput:\n [-1]\n\nExplanation:\n There are no elements to the right of index 0.\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 4 \n \n 1 <= arr[i] <= 10 5",
+  "code": "\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> replaceElements(vector<int>& arr) {\n        int n = arr.size();\n        int maxRight = -1;\n        for (int i = n - 1; i >= 0; --i) {\n            int temp = arr[i];\n            arr[i] = maxRight;\n            maxRight = max(maxRight, temp);\n        }\n        return arr;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592319309",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "549",
+  "title": "Binary Tree Longest Consecutive Sequence II",
+  "slug": "binary-tree-longest-consecutive-sequence-ii",
+  "url": "https://leetcode.com/problems/binary-tree-longest-consecutive-sequence-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, return the length of the longest consecutive path in the tree . \n \n A consecutive path is a path where the values of the consecutive nodes in the path differ by one. This path can be either increasing or decreasing. \n\n For example, [1,2,3,4] and [4,3,2,1] are both considered valid, but the path [1,2,4,3] is not valid. \n\n On the other hand, the path can be in the child-Parent-child order, where not necessarily be parent-child order. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/14/consec2-1-tree.jpg] \n \n```\nInput:\n root = [1,2,3]\n\nOutput:\n 2\n\nExplanation:\n The longest consecutive path is [1, 2] or [2, 1].\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/14/consec2-2-tree.jpg] \n \n```\nInput:\n root = [2,1,3]\n\nOutput:\n 3\n\nExplanation:\n The longest consecutive path is [1, 2, 3] or [3, 2, 1].\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 3 * 10 4 ] . \n \n -3 * 10 4 <= Node.val <= 3 * 10 4",
+  "code": "class Solution {\n    int best = 0;\n\n    pair<int, int> dfs(TreeNode* node) {\n        if (!node) {\n            return {0, 0};\n        }\n        int increasing = 1, decreasing = 1;\n        if (node->left) {\n            auto lengths = dfs(node->left);\n            if (node->left->val == node->val + 1) {\n                increasing = max(increasing, lengths.first + 1);\n            }\n            if (node->left->val == node->val - 1) {\n                decreasing = max(decreasing, lengths.second + 1);\n            }\n        }\n        if (node->right) {\n            auto lengths = dfs(node->right);\n            if (node->right->val == node->val + 1) {\n                increasing = max(increasing, lengths.first + 1);\n            }\n            if (node->right->val == node->val - 1) {\n                decreasing = max(decreasing, lengths.second + 1);\n            }\n        }\n        best = max(best, increasing + decreasing - 1);\n        return {increasing, decreasing};\n    }\n\npublic:\n    int longestConsecutive(TreeNode* root) {\n        best = 0;\n        dfs(root);\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178481314",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

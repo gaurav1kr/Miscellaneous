@@ -1,0 +1,33 @@
+{
+  "id": "266",
+  "title": "Palindrome Permutation",
+  "slug": "palindrome-permutation",
+  "url": "https://leetcode.com/problems/palindrome-permutation/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String"
+  ],
+  "description": "Given a string s , return true if a permutation of the string could form a palindrome and false otherwise . \n\n Example 1: \n \n```\nInput:\n s = \"code\"\n\nOutput:\n false\n```\n\n Example 2: \n \n```\nInput:\n s = \"aab\"\n\nOutput:\n true\n```\n\n Example 3: \n \n```\nInput:\n s = \"carerac\"\n\nOutput:\n true\n```\n\n Constraints: \n\n 1 <= s.length <= 5000 \n \n s consists of only lowercase English letters.",
+  "code": "class Solution\n{\npublic:\n    bool canPermutePalindrome(string s)\n    {\n        unordered_set< char>odd;\n        for (char c : s)\n        {\n            if (odd.count(c))\n            {\n                odd.erase(c);\n            }\n            else odd.insert(c);\n        }\n        return odd.size() <= 1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178441043",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

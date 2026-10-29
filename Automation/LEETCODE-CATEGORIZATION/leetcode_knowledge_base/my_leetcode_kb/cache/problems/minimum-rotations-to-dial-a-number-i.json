@@ -1,0 +1,20 @@
+{
+  "id": "4070",
+  "title": "Minimum Rotations to Dial a Number I",
+  "slug": "minimum-rotations-to-dial-a-number-i",
+  "url": "https://leetcode.com/problems/minimum-rotations-to-dial-a-number-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "You are given a string s of length 10 consisting of digits. \n \n The dial contains the digits 0 through 9 in order and is circular , so 0 and 9 are adjacent. The pointer initially points to 0. \n \n To dial each digit of s in order , rotate the pointer until it points to that digit. Each rotation moves the pointer to an adjacent digit, and you may rotate in either direction. Dialing a digit that the pointer already points to requires no rotations. \n \n Return the minimum total number of rotations needed to dial every digit of s . \n\n Example 1: \n\n Input: s = \"0192837465\" \n \n Output: 25 \n \n Explanation: \n\n Step \n From \n To \n Rotations \n\n 1 \n 0 \n 0 \n 0 \n\n 2 \n 0 \n 1 \n 1 \n\n 3 \n 1 \n 9 \n 2 \n\n 4 \n 9 \n 2 \n 3 \n\n 5 \n 2 \n 8 \n 4 \n\n 6 \n 8 \n 3 \n 5 \n\n 7 \n 3 \n 7 \n 4 \n\n 8 \n 7 \n 4 \n 3 \n\n 9 \n 4 \n 6 \n 2 \n\n 10 \n 6 \n 5 \n 1 \n\n The total is 0 + 1 + 2 + 3 + 4 + 5 + 4 + 3 + 2 + 1 = 25 , which is the minimum total number of rotations. \n\n Example 2: \n\n Input: s = \"1200210200\" \n \n Output: 12 \n \n Explanation: \n\n Step \n From \n To \n Rotations \n\n 1 \n 0 \n 1 \n 1 \n\n 2 \n 1 \n 2 \n 1 \n\n 3 \n 2 \n 0 \n 2 \n\n 4 \n 0 \n 0 \n 0 \n\n 5 \n 0 \n 2 \n 2 \n\n 6 \n 2 \n 1 \n 1 \n\n 7 \n 1 \n 0 \n 1 \n\n 8 \n 0 \n 2 \n 2 \n\n 9 \n 2 \n 0 \n 2 \n\n 10 \n 0 \n 0 \n 0 \n\n The total is 1 + 1 + 2 + 0 + 2 + 1 + 1 + 2 + 2 + 0 = 12 , which is the minimum total number of rotations. \n\n Constraints: \n\n s.length == 10 \n \n s consists only of digits '0' to '9'",
+  "code": "class Solution {\n    public: int minRotations(string s) {\n        int p=0,ans=0;\n        for(char c:s) {\n            int x=c-'0',d=abs(x-p);\n            ans+=min(d,10-d);\n            p=x;\n        }\n        return ans;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179338176",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

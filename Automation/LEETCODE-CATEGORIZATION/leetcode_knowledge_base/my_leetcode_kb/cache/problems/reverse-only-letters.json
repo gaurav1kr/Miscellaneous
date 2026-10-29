@@ -1,0 +1,28 @@
+{
+  "id": "917",
+  "title": "Reverse Only Letters",
+  "slug": "reverse-only-letters",
+  "url": "https://leetcode.com/problems/reverse-only-letters/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s , reverse the string according to the following rules: \n\n All the characters that are not English letters remain in the same position. \n \n All the English letters (lowercase or uppercase) should be reversed. \n\n Return s after reversing it . \n\n Example 1: \n \n```\nInput:\n s = \"ab-cd\"\n\nOutput:\n \"dc-ba\"\n```\n \n Example 2: \n \n```\nInput:\n s = \"a-bC-dEf-ghIj\"\n\nOutput:\n \"j-Ih-gfE-dCba\"\n```\n \n Example 3: \n \n```\nInput:\n s = \"Test1ng-Leet=code-Q!\"\n\nOutput:\n \"Qedo1ct-eeLg=ntse-T!\"\n```\n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists of characters with ASCII values in the range [33, 122] . \n \n s does not contain '\\\"' or '\\\\' .",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    string reverseOnlyLetters(string s) {\n        int left = 0, right = s.size() - 1;\n\n        while (left < right) {\n            if (!isalpha(s[left])) {\n                left++;\n            } else if (!isalpha(s[right])) {\n                right--;\n            } else {\n                swap(s[left++], s[right--]);\n            }\n        }\n        return s;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590174493",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

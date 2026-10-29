@@ -1,0 +1,29 @@
+{
+  "id": "1012",
+  "title": "Numbers With Repeated Digits",
+  "slug": "numbers-with-repeated-digits",
+  "url": "https://leetcode.com/problems/numbers-with-repeated-digits/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer n , return the number of positive integers in the range [1, n] that have at least one repeated digit . \n\n Example 1: \n \n```\nInput:\n n = 20\n\nOutput:\n 1\n\nExplanation:\n The only positive number (<= 20) with at least 1 repeated digit is 11.\n```\n\n Example 2: \n \n```\nInput:\n n = 100\n\nOutput:\n 10\n\nExplanation:\n The positive numbers (<= 100) with atleast 1 repeated digit are 11, 22, 33, 44, 55, 66, 77, 88, 99, and 100.\n```\n\n Example 3: \n \n```\nInput:\n n = 1000\n\nOutput:\n 262\n```\n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numDupDigitsAtMostN(int n) {\n        string s = to_string(n + 1);\n        int len = s.size(), res = 0;\n\n        for (int i = 1; i < len; ++i)\n            res += 9 * perm(9, i - 1);\n\n        vector<bool> used(10);\n        for (int i = 0; i < len; ++i) {\n            int d = s[i] - '0';\n            for (int j = i == 0 ? 1 : 0; j < d; ++j)\n                if (!used[j])\n                    res += perm(9 - i, len - i - 1);\n            if (used[d]) break;\n            used[d] = true;\n        }\n        return n - res;\n    }\n\n    int perm(int m, int n) {\n        int res = 1;\n        while (n--) res *= m--;\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1599283413",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

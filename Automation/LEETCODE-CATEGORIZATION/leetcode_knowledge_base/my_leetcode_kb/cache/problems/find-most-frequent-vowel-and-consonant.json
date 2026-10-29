@@ -1,0 +1,30 @@
+{
+  "id": "3541",
+  "title": "Find Most Frequent Vowel and Consonant",
+  "slug": "find-most-frequent-vowel-and-consonant",
+  "url": "https://leetcode.com/problems/find-most-frequent-vowel-and-consonant/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters ( 'a' to 'z' ). \n \n Your task is to: \n\n Find the vowel (one of 'a' , 'e' , 'i' , 'o' , or 'u' ) with the maximum frequency. \n \n Find the consonant (all other letters excluding vowels) with the maximum frequency. \n\n Return the sum of the two frequencies. \n \n Note : If multiple vowels or consonants have the same maximum frequency, you may choose any one of them. If there are no vowels or no consonants in the string, consider their frequency as 0. \nThe frequency of a letter x is the number of times it occurs in the string.\n\n Example 1: \n\n Input: s = \"successes\" \n \n Output: 6 \n \n Explanation: \n\n The vowels are: 'u' (frequency 1), 'e' (frequency 2). The maximum frequency is 2. \n \n The consonants are: 's' (frequency 4), 'c' (frequency 2). The maximum frequency is 4. \n \n The output is 2 + 4 = 6 . \n\n Example 2: \n\n Input: s = \"aeiaeia\" \n \n Output: 3 \n \n Explanation: \n\n The vowels are: 'a' (frequency 3), 'e' ( frequency 2), 'i' (frequency 2). The maximum frequency is 3. \n \n There are no consonants in s . Hence, maximum consonant frequency = 0. \n \n The output is 3 + 0 = 3 . \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists of lowercase English letters only.",
+  "code": "class Solution {public:int maxFreqSum(string s){int f[26]={};for(char c:s)f[c-'a']++;int v=0,c=0;for(int i=0;i<26;i++)if(string(\"aeiou\").find(char('a'+i))!=string::npos)v=max(v,f[i]);else c=max(c,f[i]);return v+c;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177570120",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

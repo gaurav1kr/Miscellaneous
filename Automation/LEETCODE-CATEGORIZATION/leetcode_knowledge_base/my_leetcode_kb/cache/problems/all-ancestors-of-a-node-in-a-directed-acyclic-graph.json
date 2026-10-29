@@ -1,0 +1,33 @@
+{
+  "id": "2192",
+  "title": "All Ancestors of a Node in a Directed Acyclic Graph",
+  "slug": "all-ancestors-of-a-node-in-a-directed-acyclic-graph",
+  "url": "https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort",
+    "Directed Acyclic Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Ordered set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n representing the number of nodes of a Directed Acyclic Graph (DAG). The nodes are numbered from 0 to n - 1 ( inclusive ). \n \n You are also given a 2D integer array edges , where edges[i] = [from i , to i ] denotes that there is a unidirectional edge from from i to to i in the graph. \n \n Return a list answer , where answer[i] is the list of ancestors of the i th node, sorted in ascending order . \n \n A node u is an ancestor of another node v if u can reach v via a set of edges. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/12/12/e1.png] \n \n```\nInput:\n n = 8, edgeList = [[0,3],[0,4],[1,3],[2,4],[2,7],[3,5],[3,6],[3,7],[4,6]]\n\nOutput:\n [[],[],[],[0,1],[0,2],[0,1,3],[0,1,2,3,4],[0,1,2,3]]\n\nExplanation:\n\nThe above diagram represents the input graph.\n- Nodes 0, 1, and 2 do not have any ancestors.\n- Node 3 has two ancestors 0 and 1.\n- Node 4 has two ancestors 0 and 2.\n- Node 5 has three ancestors 0, 1, and 3.\n- Node 6 has five ancestors 0, 1, 2, 3, and 4.\n- Node 7 has four ancestors 0, 1, 2, and 3.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/12/12/e2.png] \n \n```\nInput:\n n = 5, edgeList = [[0,1],[0,2],[0,3],[0,4],[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]\n\nOutput:\n [[],[0],[0,1],[0,1,2],[0,1,2,3]]\n\nExplanation:\n\nThe above diagram represents the input graph.\n- Node 0 does not have any ancestor.\n- Node 1 has one ancestor 0.\n- Node 2 has two ancestors 0 and 1.\n- Node 3 has three ancestors 0, 1, and 2.\n- Node 4 has four ancestors 0, 1, 2, and 3.\n```\n\n Constraints: \n\n 1 <= n <= 1000 \n \n 0 <= edges.length <= min(2000, n * (n - 1) / 2) \n \n edges[i].length == 2 \n \n 0 <= from i , to i <= n - 1 \n \n from i != to i \n \n There are no duplicate edges. \n \n The graph is directed and acyclic .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n vector<vector<int>> getAncestors(int n,vector<vector<int>>& edges) {\n  vector<vector<int>> g(n),ans(n);vector<int> indeg(n);vector<set<int>> ancestors(n);\n  for(auto&e:edges){g[e[0]].push_back(e[1]);++indeg[e[1]];}\n  queue<int> q;for(int i=0;i<n;++i)if(!indeg[i])q.push(i);\n  while(!q.empty()){int u=q.front();q.pop();for(int v:g[u]){\n   ancestors[v].insert(u);ancestors[v].insert(ancestors[u].begin(),ancestors[u].end());\n   if(--indeg[v]==0)q.push(v);\n  }}\n  for(int i=0;i<n;++i)ans[i]=vector<int>(ancestors[i].begin(),ancestors[i].end());return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175883275",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

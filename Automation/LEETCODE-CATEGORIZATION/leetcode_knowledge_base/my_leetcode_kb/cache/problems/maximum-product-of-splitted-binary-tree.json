@@ -1,0 +1,30 @@
+{
+  "id": "1339",
+  "title": "Maximum Product of Splitted Binary Tree",
+  "slug": "maximum-product-of-splitted-binary-tree",
+  "url": "https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, split the binary tree into two subtrees by removing one edge such that the product of the sums of the subtrees is maximized. \n \n Return the maximum product of the sums of the two subtrees . Since the answer may be too large, return it modulo 10 9 + 7 . \n \n Note that you need to maximize the answer before taking the mod and not after taking it. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/01/21/sample_1_1699.png] \n \n```\nInput:\n root = [1,2,3,4,5,6]\n\nOutput:\n 110\n\nExplanation:\n Remove the red edge and get 2 binary trees with sum 11 and 10. Their product is 110 (11*10)\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/01/21/sample_2_1699.png] \n \n```\nInput:\n root = [1,null,2,3,4,null,null,5,6]\n\nOutput:\n 90\n\nExplanation:\n Remove the red edge and get 2 binary trees with sum 15 and 6.Their product is 90 (15*6)\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [2, 5 * 10 4 ] . \n \n 1 <= Node.val <= 10 4",
+  "code": "#include <iostream>\nusing namespace std;\n\nclass Solution {\npublic:\n    long totalSum = 0, maxProductResult = 0;\n    int MOD = 1e9 + 7;\n\n    int calculateSum(TreeNode* root) {\n        if (!root) return 0;\n        int sum = root->val + calculateSum(root->left) + calculateSum(root->right);\n        totalSum += root->val;\n        return sum;\n    }\n\n    int findMaxProduct(TreeNode* root) {\n        if (!root) return 0;\n        int subSum = root->val + findMaxProduct(root->left) + findMaxProduct(root->right);\n        maxProductResult = max(maxProductResult, subSum * (totalSum - subSum));\n        return subSum;\n    }\n\n    int maxProduct(TreeNode* root) {\n        calculateSum(root);\n        findMaxProduct(root);\n        return maxProductResult % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591375096",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "2100",
+  "title": "Find Good Days to Rob the Bank",
+  "slug": "find-good-days-to-rob-the-bank",
+  "url": "https://leetcode.com/problems/find-good-days-to-rob-the-bank/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You and a gang of thieves are planning on robbing a bank. You are given a 0-indexed integer array security , where security[i] is the number of guards on duty on the i th day. The days are numbered starting from 0 . You are also given an integer time . \n \n The i th day is a good day to rob the bank if: \n\n There are at least time days before and after the i th day, \n \n The number of guards at the bank for the time days before i are non-increasing , and \n \n The number of guards at the bank for the time days after i are non-decreasing . \n\n More formally, this means day i is a good day to rob the bank if and only if security[i - time] >= security[i - time + 1] >= ... >= security[i] <= ... <= security[i + time - 1] <= security[i + time] . \n \n Return a list of all days (0-indexed) that are good days to rob the bank . The order that the days are returned in does not matter. \n\n Example 1: \n \n```\nInput:\n security = [5,3,3,3,5,6,2], time = 2\n\nOutput:\n [2,3]\n\nExplanation:\n\nOn day 2, we have security[0] >= security[1] >= security[2] <= security[3] <= security[4].\nOn day 3, we have security[1] >= security[2] >= security[3] <= security[4] <= security[5].\nNo other days satisfy this condition, so days 2 and 3 are the only good days to rob the bank.\n```\n\n Example 2: \n \n```\nInput:\n security = [1,1,1,1,1], time = 0\n\nOutput:\n [0,1,2,3,4]\n\nExplanation:\n\nSince time equals 0, every day is a good day to rob the bank, so return every day.\n```\n\n Example 3: \n \n```\nInput:\n security = [1,2,3,4,5,6], time = 2\n\nOutput:\n []\n\nExplanation:\n\nNo day has 2 days before it that have a non-increasing number of guards.\nThus, no day is a good day to rob the bank, so return an empty list.\n```\n\n Constraints: \n\n 1 <= security.length <= 10 5 \n \n 0 <= security[i], time <= 10 5",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> goodDaysToRobBank(vector<int>& sec, int time) {\n        int n = sec.size();\n        vector<int> dec(n), inc(n), res;\n\n        for (int i = 1; i < n; ++i)\n            if (sec[i] <= sec[i - 1]) dec[i] = dec[i - 1] + 1;\n        for (int i = n - 2; i >= 0; --i)\n            if (sec[i] <= sec[i + 1]) inc[i] = inc[i + 1] + 1;\n\n        for (int i = time; i < n - time; ++i)\n            if (dec[i] >= time && inc[i] >= time)\n                res.push_back(i);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610683186",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

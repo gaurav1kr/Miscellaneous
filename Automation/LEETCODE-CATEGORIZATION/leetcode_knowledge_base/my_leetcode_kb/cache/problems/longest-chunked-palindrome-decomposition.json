@@ -1,0 +1,36 @@
+{
+  "id": "1147",
+  "title": "Longest Chunked Palindrome Decomposition",
+  "slug": "longest-chunked-palindrome-decomposition",
+  "url": "https://leetcode.com/problems/longest-chunked-palindrome-decomposition/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming",
+    "Greedy",
+    "Rolling Hash",
+    "Hash Function"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "You are given a string text . You should split it to k substrings (subtext 1 , subtext 2 , ..., subtext k ) such that: \n\n subtext i is a non-empty string. \n \n The concatenation of all the substrings is equal to text (i.e., subtext 1 + subtext 2 + ... + subtext k == text ). \n \n subtext i == subtext k - i + 1 for all valid values of i (i.e., 1 <= i <= k ). \n\n Return the largest possible value of k . \n\n Example 1: \n \n```\nInput:\n text = \"ghiabcdefhelloadamhelloabcdefghi\"\n\nOutput:\n 7\n\nExplanation:\n We can split the string on \"(ghi)(abcdef)(hello)(adam)(hello)(abcdef)(ghi)\".\n```\n\n Example 2: \n \n```\nInput:\n text = \"merchant\"\n\nOutput:\n 1\n\nExplanation:\n We can split the string on \"(merchant)\".\n```\n\n Example 3: \n \n```\nInput:\n text = \"antaprezatepzapreanta\"\n\nOutput:\n 11\n\nExplanation:\n We can split the string on \"(a)(nt)(a)(pre)(za)(tep)(za)(pre)(a)(nt)(a)\".\n```\n\n Constraints: \n\n 1 <= text.length <= 1000 \n \n text consists only of lowercase English characters.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int longestDecomposition(string text) {\n        int n = text.size(), res = 0;\n        string l = \"\", r = \"\";\n        for (int i = 0; i < n; ++i) {\n            l += text[i];\n            r = text[n - 1 - i] + r;\n            if (l == r) {\n                res++;\n                l = r = \"\";\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610609102",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

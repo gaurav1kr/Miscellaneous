@@ -1,0 +1,32 @@
+{
+  "id": "590",
+  "title": "N-ary Tree Postorder Traversal",
+  "slug": "n-ary-tree-postorder-traversal",
+  "url": "https://leetcode.com/problems/n-ary-tree-postorder-traversal/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Stack",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of an n-ary tree, return the postorder traversal of its nodes' values . \n \n Nary-Tree input serialization is represented in their level order traversal. Each group of children is separated by the null value (See examples) \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2018/10/12/narytreeexample.png] \n \n```\nInput:\n root = [1,null,3,2,4,null,5,6]\n\nOutput:\n [5,6,3,2,4,1]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/11/08/sample_4_964.png] \n \n```\nInput:\n root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]\n\nOutput:\n [2,6,14,11,7,3,12,8,4,13,9,10,5,1]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 4 ] . \n \n 0 <= Node.val <= 10 4 \n \n The height of the n-ary tree is less than or equal to 1000 . \n\n Follow up: Recursive solution is trivial, could you do it iteratively?",
+  "code": "class Pair\n{\npublic:\n    Node* node;\n    int childrenIndex;\n    Pair(Node* _node, int _childrenIndex)\n    {\n        node = _node;\n        childrenIndex = _childrenIndex;\n    }\n};\n\nclass Solution {\npublic:\n    vector<int> postorder(Node* root)\n    {\n        int currentRootIndex = 0;\n        stack<Pair*> st;\n        vector<int> postorderTraversal;\n        while (root != NULL || st.size() > 0)\n        {\n            if (root != NULL)\n            {\n                st.push(new Pair(root, currentRootIndex));\n                currentRootIndex = 0;\n                if (root->children.size() >= 1)\n                {\n                    root = root->children[0];\n                }\n                else\n                {\n                    root = NULL;\n                }\n                continue;\n            }\n            Pair* temp = st.top();\n            st.pop();\n            postorderTraversal.push_back(temp->node->val);\n            while (st.size() > 0 && temp->childrenIndex == st.top()->node->children.size() - 1)\n            {\n                temp = st.top();\n                st.pop();\n                postorderTraversal.push_back(temp->node->val);\n            }\n            if (st.size() > 0)\n            {\n                root = st.top()->node->children[temp->childrenIndex + 1];\n                currentRootIndex = temp->childrenIndex + 1;\n            }\n    }\n    return postorderTraversal;    \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590161662",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "1680",
+  "title": "Concatenation of Consecutive Binary Numbers",
+  "slug": "concatenation-of-consecutive-binary-numbers",
+  "url": "https://leetcode.com/problems/concatenation-of-consecutive-binary-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Bit Manipulation",
+    "Simulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [],
+  "description": "Given an integer n , return the decimal value of the binary string formed by concatenating the binary representations of 1 to n in order, modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 1\n\nOutput:\n 1\n\nExplanation: \n\"1\" in binary corresponds to the decimal value 1.\n```\n\n Example 2: \n \n```\nInput:\n n = 3\n\nOutput:\n 27\n\nExplanation: \nIn binary, 1, 2, and 3 corresponds to \"1\", \"10\", and \"11\".\nAfter concatenating them, we have \"11011\", which corresponds to the decimal value 27.\n```\n\n Example 3: \n \n```\nInput:\n n = 12\n\nOutput:\n 505379714\n\nExplanation\n: The concatenation results in \"1101110010111011110001001101010111100\".\nThe decimal value of that is 118505380540.\nAfter modulo 10\n9\n + 7, the result is 505379714.\n```\n\n Constraints: \n\n 1 <= n <= 10 5",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int concatenatedBinary(int n) {\n        const long long MOD = 1000000007;\n        long long ans = 0;\n        int bits = 0;\n        for (int i = 1; i <= n; ++i) {\n            if ((i & (i - 1)) == 0) ++bits;\n            ans = ((ans << bits) | i) % MOD;\n        }\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175758037",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

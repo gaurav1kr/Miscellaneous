@@ -1,0 +1,35 @@
+{
+  "id": "2172",
+  "title": "Maximum AND Sum of Array",
+  "slug": "maximum-and-sum-of-array",
+  "url": "https://leetcode.com/problems/maximum-and-sum-of-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and an integer numSlots such that 2 * numSlots >= n . There are numSlots slots numbered from 1 to numSlots . \n \n You have to place all n integers into the slots such that each slot contains at most two numbers. The AND sum of a given placement is the sum of the bitwise AND of every number with its respective slot number. \n\n For example, the AND sum of placing the numbers [1, 3] into slot 1 and [4, 6] into slot 2 is equal to (1 AND 1 ) + (3 AND 1 ) + (4 AND 2 ) + (6 AND 2 ) = 1 + 1 + 0 + 2 = 4 . \n\n Return the maximum possible AND sum of nums given numSlots slots. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4,5,6], numSlots = 3\n\nOutput:\n 9\n\nExplanation:\n One possible placement is [1, 4] into slot \n1\n, [2, 6] into slot \n2\n, and [3, 5] into slot \n3\n. \nThis gives the maximum AND sum of (1 AND \n1\n) + (4 AND \n1\n) + (2 AND \n2\n) + (6 AND \n2\n) + (3 AND \n3\n) + (5 AND \n3\n) = 1 + 0 + 2 + 2 + 3 + 1 = 9.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,3,10,4,7,1], numSlots = 9\n\nOutput:\n 24\n\nExplanation:\n One possible placement is [1, 1] into slot \n1\n, [3] into slot \n3\n, [4] into slot \n4\n, [7] into slot \n7\n, and [10] into slot \n9\n.\nThis gives the maximum AND sum of (1 AND \n1\n) + (1 AND \n1\n) + (3 AND \n3\n) + (4 AND \n4\n) + (7 AND \n7\n) + (10 AND \n9\n) = 1 + 1 + 3 + 4 + 7 + 8 = 24.\nNote that slots 2, 5, 6, and 8 are empty which is permitted.\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= numSlots <= 9 \n \n 1 <= n <= 2 * numSlots \n \n 1 <= nums[i] <= 15",
+  "code": "class Solution {\npublic:\n    int maximumANDSum(vector<int>& nums, int numSlots) {\n        int states=1;for(int i=0;i<numSlots;++i) states*=3;\n        vector<int> dp(states,-1);dp[0]=0;int ans=0;\n        for(int mask=0;mask<states;++mask) if(dp[mask]>=0) {\n            int x=mask,used=0;\n            for(int j=0;j<numSlots;++j){used+=x%3;x/=3;}\n            if(used==(int)nums.size()){ans=max(ans,dp[mask]);continue;}\n            int place=1;\n            for(int j=0;j<numSlots;++j,place*=3) if((mask/place)%3<2)\n                dp[mask+place]=max(dp[mask+place],dp[mask]+(nums[used]&(j+1)));\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175878938",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

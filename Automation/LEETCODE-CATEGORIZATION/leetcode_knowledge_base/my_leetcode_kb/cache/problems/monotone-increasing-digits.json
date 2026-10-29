@@ -1,0 +1,26 @@
+{
+  "id": "738",
+  "title": "Monotone Increasing Digits",
+  "slug": "monotone-increasing-digits",
+  "url": "https://leetcode.com/problems/monotone-increasing-digits/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "An integer has monotone increasing digits if and only if each pair of adjacent digits x and y satisfy x <= y . \n \n Given an integer n , return the largest number that is less than or equal to n with monotone increasing digits . \n\n Example 1: \n \n```\nInput:\n n = 10\n\nOutput:\n 9\n```\n\n Example 2: \n \n```\nInput:\n n = 1234\n\nOutput:\n 1234\n```\n\n Example 3: \n \n```\nInput:\n n = 332\n\nOutput:\n 299\n```\n\n Constraints: \n\n 0 <= n <= 10 9",
+  "code": "class Solution {\npublic:\n    int monotoneIncreasingDigits(int n) {\n        string s = to_string(n);\n        int mark = s.size();\n        for (int i = s.size() - 1; i > 0; --i) {\n            if (s[i] < s[i - 1]) {\n                mark = i;\n                s[i - 1]--;\n            }\n        }\n        for (int i = mark; i < s.size(); ++i)\n            s[i] = '9';\n        return stoi(s);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593844814",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

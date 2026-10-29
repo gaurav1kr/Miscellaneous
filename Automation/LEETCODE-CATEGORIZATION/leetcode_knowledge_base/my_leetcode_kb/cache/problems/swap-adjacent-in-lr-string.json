@@ -1,0 +1,28 @@
+{
+  "id": "777",
+  "title": "Swap Adjacent in LR String",
+  "slug": "swap-adjacent-in-lr-string",
+  "url": "https://leetcode.com/problems/swap-adjacent-in-lr-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "In a string composed of 'L' , 'R' , and 'X' characters, like \"RXXLRXRXL\" , a move consists of either replacing one occurrence of \"XL\" with \"LX\" , or replacing one occurrence of \"RX\" with \"XR\" . Given the starting string start and the ending string result , return True if and only if there exists a sequence of moves to transform start to result . \n\n Example 1: \n \n```\nInput:\n start = \"RXXLRXRXL\", result = \"XRLXXRRLX\"\n\nOutput:\n true\n\nExplanation:\n We can transform start to result following these steps:\nRXXLRXRXL ->\nXRXLRXRXL ->\nXRLXRXRXL ->\nXRLXXRRXL ->\nXRLXXRRLX\n```\n\n Example 2: \n \n```\nInput:\n start = \"X\", result = \"L\"\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= start.length <= 10 4 \n \n start.length == result.length \n \n Both start and result will only consist of characters in 'L' , 'R' , and  'X' .",
+  "code": "class Solution {\npublic:\n\n    bool canTransform(string start, string end) {\n        // If lengths are different, transformation is impossible\n        if (start.length() != end.length()) {\n            return false;\n        }\n        \n        // Create strings without 'X' to check if character sequences match\n        string startChars, endChars;\n        for (char c : start) {\n            if (c != 'X') startChars += c;\n        }\n        for (char c : end) {\n            if (c != 'X') endChars += c;\n        }\n        \n        // If the sequences without 'X' don't match, return false\n        if (startChars != endChars) {\n            return false;\n        }\n        \n        // Initialize pointers for both strings\n        int p1 = 0, p2 = 0;\n        int n = start.size();\n        \n        while (p1 < n && p2 < n) {\n            // Skip 'X' in both strings\n            while (p1 < n && start[p1] == 'X') p1++;\n            while (p2 < n && end[p2] == 'X') p2++;\n            \n            // If both pointers reach the end, the strings are transformable\n            if (p1 == n && p2 == n) {\n                return true;\n            }\n            \n            // If only one pointer reaches the end, strings aren't transformable\n            if (p1 == n || p2 == n) {\n                return false;\n            }\n            \n            // If current characters don't match, transformation is impossible\n            if (start[p1] != end[p2]) {\n                return false;\n            }\n            \n            // 'L' should not move right (should be left or same position)\n            if (start[p1] == 'L' && p1 < p2) {\n                return false; \n            }\n            // 'R' should not move left (should be right or same position)\n            if (start[p1] == 'R' && p1 > p2) {\n                return false; \n            }\n            \n            // Move to the next character in both strings\n            p1++;\n            p2++;\n        }\n        \n        // If all checks pass, the transformation is possible\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617068045",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

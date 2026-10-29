@@ -1,0 +1,36 @@
+{
+  "id": "2223",
+  "title": "Sum of Scores of Built Strings",
+  "slug": "sum-of-scores-of-built-strings",
+  "url": "https://leetcode.com/problems/sum-of-scores-of-built-strings/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Binary Search",
+    "Rolling Hash",
+    "Suffix Array",
+    "String Matching",
+    "Hash Function",
+    "Z Algorithm",
+    "Knuth–Morris–Pratt Algorithm"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are building a string s of length n one character at a time, prepending each new character to the front of the string. The strings are labeled from 1 to n , where the string with length i is labeled s i . \n\n For example, for s = \"abaca\" , s 1 == \"a\" , s 2 == \"ca\" , s 3 == \"aca\" , etc. \n\n The score of s i is the length of the longest common prefix between s i and s n (Note that s == s n ). \n \n Given the final string s , return the sum of the score of every s i . \n\n Example 1: \n \n```\nInput:\n s = \"babab\"\n\nOutput:\n 9\n\nExplanation:\n\nFor s\n1\n == \"b\", the longest common prefix is \"b\" which has a score of 1.\nFor s\n2\n == \"ab\", there is no common prefix so the score is 0.\nFor s\n3\n == \"bab\", the longest common prefix is \"bab\" which has a score of 3.\nFor s\n4\n == \"abab\", there is no common prefix so the score is 0.\nFor s\n5\n == \"babab\", the longest common prefix is \"babab\" which has a score of 5.\nThe sum of the scores is 1 + 0 + 3 + 0 + 5 = 9, so we return 9.\n```\n\n Example 2: \n \n```\nInput:\n s = \"azbazbzaz\"\n\nOutput:\n 14\n\nExplanation:\n \nFor s\n2\n == \"az\", the longest common prefix is \"az\" which has a score of 2.\nFor s\n6\n == \"azbzaz\", the longest common prefix is \"azb\" which has a score of 3.\nFor s\n9\n == \"azbazbzaz\", the longest common prefix is \"azbazbzaz\" which has a score of 9.\nFor all other s\ni\n, the score is 0.\nThe sum of the scores is 2 + 3 + 9 = 14, so we return 14.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n long long sumScores(string s){int n=s.size(),l=0,r=0;vector<int>z(n);long long ans=n;\n  for(int i=1;i<n;++i){if(i<=r)z[i]=min(r-i+1,z[i-l]);while(i+z[i]<n&&s[z[i]]==s[i+z[i]])++z[i];\n   if(i+z[i]-1>r){l=i;r=i+z[i]-1;}ans+=z[i];\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175890908",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

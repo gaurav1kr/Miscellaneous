@@ -1,0 +1,25 @@
+{
+  "id": "3782",
+  "title": "Last Remaining Integer After Alternating Deletion Operations",
+  "slug": "last-remaining-integer-after-alternating-deletion-operations",
+  "url": "https://leetcode.com/problems/last-remaining-integer-after-alternating-deletion-operations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Recursion"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given an integer n . \n \n We write the integers from 1 to n in a sequence from left to right. Then, alternately apply the following two operations until only one integer remains, starting with operation 1: \n\n Operation 1 : Starting from the left, delete every second number. \n \n Operation 2 : Starting from the right, delete every second number. \n\n Return the last remaining integer. \n\n Example 1: \n\n Input: n = 8 \n \n Output: 3 \n \n Explanation: \n\n Write [1, 2, 3, 4, 5, 6, 7, 8] in a sequence. \n \n Starting from the left, we delete every second number: [1, 2 , 3, 4 , 5, 6 , 7, 8 ] . The remaining integers are [1, 3, 5, 7] . \n \n Starting from the right, we delete every second number: [ 1 , 3, 5 , 7] . The remaining integers are [3, 7] . \n \n Starting from the left, we delete every second number: [3, 7 ] . The remaining integer is [3] . \n\n Example 2: \n\n Input: n = 5 \n \n Output: 1 \n \n Explanation: \n\n Write [1, 2, 3, 4, 5] in a sequence. \n \n Starting from the left, we delete every second number: [1, 2 , 3, 4 , 5] . The remaining integers are [1, 3, 5] . \n \n Starting from the right, we delete every second number: [1, 3 , 5] . The remaining integers are [1, 5] . \n \n Starting from the left, we delete every second number: [1, 5 ] . The remaining integer is [1] . \n\n Example 3: \n\n Input: n = 1 \n \n Output: 1 \n \n Explanation: \n\n Write [1] in a sequence. \n \n The last remaining integer is 1. \n\n Constraints: \n\n 1 <= n <= 10 15",
+  "code": "class Solution {\npublic:\n    long long lastInteger(long long n) {\n        long long first = 1, step = 1;\n        bool fromLeft = true;\n        while (n > 1) {\n            if (!fromLeft && n % 2 == 0) first += step;\n            n = (n + 1) / 2;\n            step *= 2;\n            fromLeft = !fromLeft;\n        }\n        return first;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179643528",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

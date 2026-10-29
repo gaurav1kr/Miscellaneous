@@ -1,0 +1,32 @@
+{
+  "id": "2212",
+  "title": "Maximum Points in an Archery Competition",
+  "slug": "maximum-points-in-an-archery-competition",
+  "url": "https://leetcode.com/problems/maximum-points-in-an-archery-competition/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Backtracking",
+    "Bit Manipulation",
+    "Enumeration"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Alice and Bob are opponents in an archery competition. The competition has set the following rules: \n\n Alice first shoots numArrows arrows and then Bob shoots numArrows arrows. \n \n The points are then calculated as follows:\n\n The target has integer scoring sections ranging from 0 to 11 inclusive . \n \n For each section of the target with score k (in between 0 to 11 ), say Alice and Bob have shot a k and b k arrows on that section respectively. If a k >= b k , then Alice takes k points. If a k < b k , then Bob takes k points. \n \n However, if a k == b k == 0 , then nobody takes k points. \n\n For example, if Alice and Bob both shot 2 arrows on the section with score 11 , then Alice takes 11 points. On the other hand, if Alice shot 0 arrows on the section with score 11 and Bob shot 2 arrows on that same section, then Bob takes 11 points. \n\n You are given the integer numArrows and an integer array aliceArrows of size 12 , which represents the number of arrows Alice shot on each scoring section from 0 to 11 . Now, Bob wants to maximize the total number of points he can obtain. \n \n Return the array bobArrows which represents the number of arrows Bob shot on each scoring section from 0 to 11 . The sum of the values in bobArrows should equal numArrows . \n \n If there are multiple ways for Bob to earn the maximum total points, return any one of them. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/02/24/ex1.jpg] \n \n```\nInput:\n numArrows = 9, aliceArrows = [1,1,0,1,0,0,2,1,0,1,2,0]\n\nOutput:\n [0,0,0,0,1,1,0,0,1,2,3,1]\n\nExplanation:\n The table above shows how the competition is scored. \nBob earns a total point of 4 + 5 + 8 + 9 + 10 + 11 = 47.\nIt can be shown that Bob cannot obtain a score higher than 47 points.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/02/24/ex2new.jpg] \n \n```\nInput:\n numArrows = 3, aliceArrows = [0,0,1,0,0,0,0,0,0,0,0,2]\n\nOutput:\n [0,0,0,0,0,0,0,0,1,1,1,0]\n\nExplanation:\n The table above shows how the competition is scored.\nBob earns a total point of 8 + 9 + 10 = 27.\nIt can be shown that Bob cannot obtain a score higher than 27 points.\n```\n\n Constraints: \n\n 1 <= numArrows <= 10 5 \n \n aliceArrows.length == bobArrows.length == 12 \n \n 0 <= aliceArrows[i], bobArrows[i] <= numArrows \n \n sum(aliceArrows[i]) == numArrows",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n vector<int> maximumBobPoints(int numArrows,vector<int>& aliceArrows){vector<int> best(12),cur(12);int score=-1;\n  for(int mask=0;mask<(1<<12);++mask){fill(cur.begin(),cur.end(),0);int used=0,pts=0;\n   for(int i=1;i<12;++i)if(mask&(1<<i)){cur[i]=aliceArrows[i]+1;used+=cur[i];pts+=i;}\n   if(used<=numArrows&&pts>score){cur[0]=numArrows-used;best=cur;score=pts;}\n  }return best;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175888165",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

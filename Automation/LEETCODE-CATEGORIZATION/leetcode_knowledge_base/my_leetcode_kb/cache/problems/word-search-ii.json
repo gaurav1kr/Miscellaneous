@@ -1,0 +1,37 @@
+{
+  "id": "212",
+  "title": "Word Search II",
+  "slug": "word-search-ii",
+  "url": "https://leetcode.com/problems/word-search-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Backtracking",
+    "Trie",
+    "Matrix"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an m x n board  of characters and a list of strings words , return all words on the board . \n \n Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once in a word. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/07/search1.jpg] \n \n```\nInput:\n board = [[\"o\",\"a\",\"a\",\"n\"],[\"e\",\"t\",\"a\",\"e\"],[\"i\",\"h\",\"k\",\"r\"],[\"i\",\"f\",\"l\",\"v\"]], words = [\"oath\",\"pea\",\"eat\",\"rain\"]\n\nOutput:\n [\"eat\",\"oath\"]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/11/07/search2.jpg] \n \n```\nInput:\n board = [[\"a\",\"b\"],[\"c\",\"d\"]], words = [\"abcb\"]\n\nOutput:\n []\n```\n\n Constraints: \n\n m == board.length \n \n n == board[i].length \n \n 1 <= m, n <= 12 \n \n board[i][j] is a lowercase English letter. \n \n 1 <= words.length <= 3 * 10 4 \n \n 1 <= words[i].length <= 10 \n \n words[i] consists of lowercase English letters. \n \n All the strings of words are unique.",
+  "code": "class Solution {\npublic:\n    struct TrieNode {\n        TrieNode* children[26] = {nullptr};\n        string word = \"\";\n    };\n\n    void insert(TrieNode* root, const string& word) {\n        TrieNode* node = root;\n        for (char c : word) {\n            int index = c - 'a';\n            if (!node->children[index]) \n                node->children[index] = new TrieNode();\n            node = node->children[index];\n        }\n        node->word = word; // Store the word at the end node\n    }\n\n    void dfs(vector<vector<char>>& board, int i, int j, TrieNode* node, vector<string>& result) {\n        char c = board[i][j];\n        if (c == '#' || !node->children[c - 'a']) return;\n\n        node = node->children[c - 'a'];\n        if (!node->word.empty()) { // Found a word\n            result.push_back(node->word);\n            node->word = \"\"; // Avoid duplicates\n        }\n\n        board[i][j] = '#'; // Mark as visited\n        int dirs[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};\n        for (auto& dir : dirs) {\n            int x = i + dir[0], y = j + dir[1];\n            if (x >= 0 && x < board.size() && y >= 0 && y < board[0].size()) {\n                dfs(board, x, y, node, result);\n            }\n        }\n        board[i][j] = c; // Restore the cell\n    }\n\n    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {\n        TrieNode* root = new TrieNode();\n        for (const string& word : words) {\n            insert(root, word);\n        }\n\n        vector<string> result;\n        for (int i = 0; i < board.size(); ++i) {\n            for (int j = 0; j < board[0].size(); ++j) {\n                dfs(board, i, j, root, result);\n            }\n        }\n\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1540971573",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

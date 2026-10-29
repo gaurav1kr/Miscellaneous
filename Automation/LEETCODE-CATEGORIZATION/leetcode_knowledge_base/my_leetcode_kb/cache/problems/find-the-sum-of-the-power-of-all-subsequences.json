@@ -1,0 +1,32 @@
+{
+  "id": "3082",
+  "title": "Find the Sum of the Power of All Subsequences",
+  "slug": "find-the-sum-of-the-power-of-all-subsequences",
+  "url": "https://leetcode.com/problems/find-the-sum-of-the-power-of-all-subsequences/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Knapsack Problem",
+    "0-1 Knapsack"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and a positive integer k . \n \n The power of an array of integers is defined as the number of subsequences with their sum equal to k . \n \n Return the sum of power of all subsequences of nums . \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: nums = [1,2,3], k = 3 \n \n Output: 6 \n \n Explanation: \n \n There are 5 subsequences of nums with non-zero power: \n\n The subsequence [ 1 , 2 , 3 ] has 2 subsequences with sum == 3 : [1,2, 3 ] and [ 1 , 2 ,3] . \n \n The subsequence [ 1 ,2, 3 ] has 1 subsequence with sum == 3 : [1,2, 3 ] . \n \n The subsequence [1, 2 , 3 ] has 1 subsequence with sum == 3 : [1,2, 3 ] . \n \n The subsequence [ 1 , 2 ,3] has 1 subsequence with sum == 3 : [ 1 , 2 ,3] . \n \n The subsequence [1,2, 3 ] has 1 subsequence with sum == 3 : [1,2, 3 ] . \n\n Hence the answer is 2 + 1 + 1 + 1 + 1 = 6 . \n\n Example 2: \n\n Input: nums = [2,3,3], k = 5 \n \n Output: 4 \n \n Explanation: \n \n There are 3 subsequences of nums with non-zero power: \n\n The subsequence [ 2 , 3 , 3 ] has 2 subsequences with sum == 5 : [ 2 ,3, 3 ] and [ 2 , 3 ,3] . \n \n The subsequence [ 2 ,3, 3 ] has 1 subsequence with sum == 5 : [ 2 ,3, 3 ] . \n \n The subsequence [ 2 , 3 ,3] has 1 subsequence with sum == 5 : [ 2 , 3 ,3] . \n\n Hence the answer is 2 + 1 + 1 = 4 . \n\n Example 3: \n\n Input: nums = [1,2,3], k = 7 \n \n Output: 0 \n \n Explanation:  There exists no subsequence with sum 7 . Hence all subsequences of nums have power = 0 . \n\n Constraints: \n\n 1 <= n <= 100 \n \n 1 <= nums[i] <= 10 4 \n \n 1 <= k <= 100",
+  "code": "class Solution {public:int sumOfPower(vector<int>& nums,int k){\n const int M=1000000007;vector<long long> dp(k+1);dp[0]=1;\n for(int x:nums)for(int s=k;s>=0;s--){dp[s]=(2*dp[s]+(s>=x?dp[s-x]:0))%M;}return dp[k];\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176855337",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

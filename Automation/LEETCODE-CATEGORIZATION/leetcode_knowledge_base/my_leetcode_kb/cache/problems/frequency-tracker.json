@@ -1,0 +1,30 @@
+{
+  "id": "2671",
+  "title": "Frequency Tracker",
+  "slug": "frequency-tracker",
+  "url": "https://leetcode.com/problems/frequency-tracker/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Design"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map"
+  ],
+  "description": "Design a data structure that keeps track of the values in it and answers some queries regarding their frequencies. \n \n Implement the FrequencyTracker class. \n\n FrequencyTracker() : Initializes the FrequencyTracker object with an empty array initially. \n \n void add(int number) : Adds number to the data structure. \n \n void deleteOne(int number) : Deletes one occurrence of number from the data structure. The data structure may not contain number , and in this case nothing is deleted. \n \n bool hasFrequency(int frequency) : Returns true if there is a number in the data structure that occurs frequency number of times, otherwise, it returns false . \n\n Example 1: \n \n```\nInput\n\n[\"FrequencyTracker\", \"add\", \"add\", \"hasFrequency\"]\n[[], [3], [3], [2]]\n\nOutput\n\n[null, null, null, true]\n\nExplanation\n\nFrequencyTracker frequencyTracker = new FrequencyTracker();\nfrequencyTracker.add(3); // The data structure now contains [3]\nfrequencyTracker.add(3); // The data structure now contains [3, 3]\nfrequencyTracker.hasFrequency(2); // Returns true, because 3 occurs twice\n```\n\n Example 2: \n \n```\nInput\n\n[\"FrequencyTracker\", \"add\", \"deleteOne\", \"hasFrequency\"]\n[[], [1], [1], [1]]\n\nOutput\n\n[null, null, null, false]\n\nExplanation\n\nFrequencyTracker frequencyTracker = new FrequencyTracker();\nfrequencyTracker.add(1); // The data structure now contains [1]\nfrequencyTracker.deleteOne(1); // The data structure becomes empty []\nfrequencyTracker.hasFrequency(1); // Returns false, because the data structure is empty\n```\n\n Example 3: \n \n```\nInput\n\n[\"FrequencyTracker\", \"hasFrequency\", \"add\", \"hasFrequency\"]\n[[], [2], [3], [1]]\n\nOutput\n\n[null, false, null, true]\n\nExplanation\n\nFrequencyTracker frequencyTracker = new FrequencyTracker();\nfrequencyTracker.hasFrequency(2); // Returns false, because the data structure is empty\nfrequencyTracker.add(3); // The data structure now contains [3]\nfrequencyTracker.hasFrequency(1); // Returns true, because 3 occurs once\n```\n\n Constraints: \n\n 1 <= number <= 10 5 \n \n 1 <= frequency <= 10 5 \n \n At most, 2 * 10 5  calls will be made to add , deleteOne , and hasFrequency  in total .",
+  "code": "class FrequencyTracker {unordered_map<int,int>freq,counts;public:FrequencyTracker(){}void add(int number){int f=freq[number];if(f)counts[f]--;freq[number]=f+1;counts[f+1]++;}void deleteOne(int number){int f=freq[number];if(!f)return;counts[f]--;if(f==1)freq.erase(number);else{freq[number]=f-1;counts[f-1]++;}}bool hasFrequency(int frequency){return counts[frequency]>0;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176636495",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

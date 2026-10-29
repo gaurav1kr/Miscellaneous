@@ -1,0 +1,31 @@
+{
+  "id": "3385",
+  "title": "Minimum Time to Break Locks II",
+  "slug": "minimum-time-to-break-locks-ii",
+  "url": "https://leetcode.com/problems/minimum-time-to-break-locks-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "Bob is stuck in a dungeon and must break n locks, each requiring some amount of energy to break. The required energy for each lock is stored in an array called strength where strength[i] indicates the energy needed to break the i th lock. \n \n To break a lock, Bob uses a sword with the following characteristics: \n\n The initial energy of the sword is 0. \n \n The initial factor X by which the energy of the sword increases is 1. \n \n Every minute, the energy of the sword increases by the current factor X . \n \n To break the i th lock, the energy of the sword must reach at least strength[i] . \n \n After breaking a lock, the energy of the sword resets to 0, and the factor X increases by 1. \n\n Your task is to determine the minimum time in minutes required for Bob to break all n locks and escape the dungeon. \n \n Return the minimum time required for Bob to break all n locks. \n\n Example 1: \n\n Input: strength = [3,4,1] \n \n Output: 4 \n \n Explanation: \n\n Time \n Energy \n X \n Action \n Updated X \n\n 0 \n 0 \n 1 \n Nothing \n 1 \n\n 1 \n 1 \n 1 \n Break 3 rd Lock \n 2 \n\n 2 \n 2 \n 2 \n Nothing \n 2 \n\n 3 \n 4 \n 2 \n Break 2 nd Lock \n 3 \n\n 4 \n 3 \n 3 \n Break 1 st Lock \n 3 \n\n The locks cannot be broken in less than 4 minutes; thus, the answer is 4. \n\n Example 2: \n\n Input: strength = [2,5,4] \n \n Output: 6 \n \n Explanation: \n\n Time \n Energy \n X \n Action \n Updated X \n\n 0 \n 0 \n 1 \n Nothing \n 1 \n\n 1 \n 1 \n 1 \n Nothing \n 1 \n\n 2 \n 2 \n 1 \n Break 1 st Lock \n 2 \n\n 3 \n 2 \n 2 \n Nothing \n 2 \n\n 4 \n 4 \n 2 \n Break 3 rd Lock \n 3 \n\n 5 \n 3 \n 3 \n Nothing \n 3 \n\n 6 \n 6 \n 3 \n Break 2 nd Lock \n 4 \n\n The locks cannot be broken in less than 6 minutes; thus, the answer is 6. \n\n Constraints: \n\n n == strength.length \n \n 1 <= n <= 80 \n \n 1 <= strength[i] <= 10 6",
+  "code": "class Solution {\npublic:\n    int findMinimumTime(vector<int>& strength) {\n        int n=strength.size();const long long INF=1LL<<60;\n        vector<vector<int>> cost(n+1,vector<int>(n+1));\n        for(int i=1;i<=n;++i)for(int j=1;j<=n;++j)\n            cost[i][j]=(strength[i-1]+j-1)/j;\n        vector<long long> u(n+1),v(n+1);\n        vector<int> p(n+1),way(n+1);\n        for(int i=1;i<=n;++i) {\n            p[0]=i;int j0=0;vector<long long> minv(n+1,INF);\n            vector<char> used(n+1,false);\n            do {\n                used[j0]=true;int i0=p[j0],j1=0;long long delta=INF;\n                for(int j=1;j<=n;++j)if(!used[j]) {\n                    long long cur=cost[i0][j]-u[i0]-v[j];\n                    if(cur<minv[j]) {minv[j]=cur;way[j]=j0;}\n                    if(minv[j]<delta) {delta=minv[j];j1=j;}\n                }\n                for(int j=0;j<=n;++j) {\n                    if(used[j]){u[p[j]]+=delta;v[j]-=delta;}\n                    else minv[j]-=delta;\n                }\n                j0=j1;\n            }while(p[j0]!=0);\n            do {int j1=way[j0];p[j0]=p[j1];j0=j1;}while(j0);\n        }\n        return (int)(-v[0]);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181129680",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

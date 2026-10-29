@@ -1,0 +1,38 @@
+{
+  "id": "758",
+  "title": "Bold Words in String",
+  "slug": "bold-words-in-string",
+  "url": "https://leetcode.com/problems/bold-words-in-string/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie",
+    "String Matching",
+    "Aho–Corasick Algorithm"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an array of keywords words and a string s , make all appearances of all keywords words[i] in s bold. Any letters between <b> and </b> tags become bold. \n \n Return s after adding the bold tags . The returned string should use the least number of tags possible, and the tags should form a valid combination. \n\n Example 1: \n \n```\nInput:\n words = [\"ab\",\"bc\"], s = \"aabcd\"\n\nOutput:\n \"a<b>abc</b>d\"\n\nExplanation:\n Note that returning \n\"a<b>a<b>b</b>c</b>d\"\n would use more tags, so it is incorrect.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"ab\",\"cb\"], s = \"aabcd\"\n\nOutput:\n \"a<b>ab</b>cd\"\n```\n\n Constraints: \n\n 1 <= s.length <= 500 \n \n 0 <= words.length <= 50 \n \n 1 <= words[i].length <= 10 \n \n s and words[i] consist of lowercase English letters. \n\n Note: This question is the same as 616. Add Bold Tag in String .",
+  "code": "class Solution {\npublic:\n    string boldWords(vector<string>& words, string s) {\n        int n = s.size();\n        vector<bool> bold(n, false);\n        for (const string& word : words) {\n            size_t pos = s.find(word);\n            while (pos != string::npos) {\n                for (size_t i = pos; i < pos + word.size(); ++i) {\n                    bold[i] = true;\n                }\n                pos = s.find(word, pos + 1);\n            }\n        }\n        string answer;\n        for (int i = 0; i < n;) {\n            if (!bold[i]) {\n                answer += s[i++];\n                continue;\n            }\n            answer += \"<b>\";\n            while (i < n && bold[i]) {\n                answer += s[i++];\n            }\n            answer += \"</b>\";\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178508569",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

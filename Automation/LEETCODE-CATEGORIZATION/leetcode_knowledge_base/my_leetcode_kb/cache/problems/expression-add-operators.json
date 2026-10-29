@@ -1,0 +1,31 @@
+{
+  "id": "282",
+  "title": "Expression Add Operators",
+  "slug": "expression-add-operators",
+  "url": "https://leetcode.com/problems/expression-add-operators/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string num that contains only digits and an integer target , return all possibilities to insert the binary operators '+' , '-' , and/or '*' between the digits of num so that the resultant expression evaluates to the target value . \n \n Note that operands in the returned expressions should not contain leading zeros. \n \n Note that a number can contain multiple digits. \n\n Example 1: \n \n```\nInput:\n num = \"123\", target = 6\n\nOutput:\n [\"1*2*3\",\"1+2+3\"]\n\nExplanation:\n Both \"1*2*3\" and \"1+2+3\" evaluate to 6.\n```\n\n Example 2: \n \n```\nInput:\n num = \"232\", target = 8\n\nOutput:\n [\"2*3+2\",\"2+3*2\"]\n\nExplanation:\n Both \"2*3+2\" and \"2+3*2\" evaluate to 8.\n```\n\n Example 3: \n \n```\nInput:\n num = \"3456237490\", target = 9191\n\nOutput:\n []\n\nExplanation:\n There are no expressions that can be created from \"3456237490\" to evaluate to 9191.\n```\n\n Constraints: \n\n 1 <= num.length <= 10 \n \n num consists of only digits. \n \n -2 31 <= target <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    vector<string> ans;\n    \n    vector<string> addOperators(string s, int target) \n    {\n        helper(s,target, 0, \"\", 0, 0);\n        return ans;\n    }\n    void helper(string s, int target,int i, const string& path, long eval, long residual) \n    {\n        if(i==s.length()){\n            if(eval==target){\n                ans.push_back(path);\n                return;\n            }\n        } \n        string currStr;\n        long num=0;\n        // backtracking loop\n        for(int j=i;j<s.length();j++){\n            // handle 0\n            if(j>i && s[i]=='0') return;\n            currStr+= s[j]; \n            num= num*10 + s[j]- '0';\n            if(i==0){\n                helper(s,target, j+1,path+ currStr,num, num);\n            }\n            else{\n                helper(s,target,j+1,path + \"+\" + currStr, eval + num, num);\n                helper(s,target,j+1,path + \"-\" + currStr, eval - num, -num);\n                helper(s,target,j+1,path + \"*\" + currStr, eval -residual + residual*num , residual*num);\n\n\n            }\n        }\n        \n        \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1473615857",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

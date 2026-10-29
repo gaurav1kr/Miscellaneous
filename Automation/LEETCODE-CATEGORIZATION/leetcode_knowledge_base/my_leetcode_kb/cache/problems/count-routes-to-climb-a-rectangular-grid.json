@@ -1,0 +1,35 @@
+{
+  "id": "3797",
+  "title": "Count Routes to Climb a Rectangular Grid",
+  "slug": "count-routes-to-climb-a-rectangular-grid",
+  "url": "https://leetcode.com/problems/count-routes-to-climb-a-rectangular-grid/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a string array grid of size n , where each string grid[i] has length m . The character grid[i][j] is one of the following symbols: \n\n '.' : The cell is available. \n \n '#' : The cell is blocked. \n\n You want to count the number of different routes to climb grid . Each route must start from any cell in the bottom row (row n - 1 ) and end in the top row (row 0). \n \n However, there are some constraints on the route. \n\n You can only move from one available cell to another available cell. \n \n The Euclidean distance of each move is at most d , where d is an integer parameter given to you. The Euclidean distance between two cells (r1, c1) , (r2, c2) is sqrt((r1 - r2) 2 + (c1 - c2) 2 ) . \n \n Each move either stays on the same row or moves to the row directly above (from row r to r - 1 ). \n \n You cannot stay on the same row for two consecutive turns. If you stay on the same row in a move (and this move is not the last move), your next move must go to the row above. \n\n Return an integer denoting the number of such routes. Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: grid = [\"..\",\"#.\"], d = 1 \n \n Output: 2 \n \n Explanation: \n \n We label the cells we visit in the routes sequentially, starting from 1. The two routes are: \n \n```\n.2\n#1\n```\n\n```\n32\n#1\n```\n\n We can move from the cell (1, 1) to the cell (0, 1) because the Euclidean distance is sqrt((1 - 0) 2 + (1 - 1) 2 ) = sqrt(1) <= d . \n \n However, we cannot move from the cell (1, 1) to the cell (0, 0) because the Euclidean distance is sqrt((1 - 0) 2 + (1 - 0) 2 ) = sqrt(2) > d . \n\n Example 2: \n\n Input: grid = [\"..\",\"#.\"], d = 2 \n \n Output: 4 \n \n Explanation: \n \n Two of the routes are given in example 1. The other two routes are: \n \n```\n2.\n#1\n```\n\n```\n23\n#1\n```\n\n Note that we can move from (1, 1) to (0, 0) because the Euclidean distance is sqrt(2) <= d . \n\n Example 3: \n\n Input: grid = [\"#\"], d = 750 \n \n Output: 0 \n \n Explanation: \n \n We cannot choose any cell as the starting cell. Therefore, there are no routes. \n\n Example 4: \n\n Input: grid = [\"..\"], d = 1 \n \n Output: 4 \n \n Explanation: \n \n The possible routes are: \n \n```\n.1\n```\n\n```\n1.\n```\n\n```\n12\n```\n\n```\n21\n```\n\n Constraints: \n\n 1 <= n == grid.length <= 750 \n \n 1 <= m == grid[i].length <= 750 \n \n grid[i][j] is '.' or '#' . \n \n 1 <= d <= 750",
+  "code": "class Solution {\npublic:\n    int numberOfRoutes(vector<string>& grid, int d) {\n        const int MOD = 1000000007;\n        int n = grid.size(), m = grid[0].size();\n        int reach = (int)sqrt(1LL * d * d - 1);\n        vector<int> dp(m, 0);\n        for (int row = n - 1; row >= 0; --row) {\n            vector<int> incoming(m, 0), prefix(m + 1, 0), next(m, 0);\n            if (row == n - 1) {\n                for (int j = 0; j < m; ++j) incoming[j] = (grid[row][j] == '.');\n            } else {\n                for (int j = 0; j < m; ++j)\n                    prefix[j + 1] = (prefix[j] + (long long)dp[j]) % MOD;\n                for (int j = 0; j < m; ++j) if (grid[row][j] == '.') {\n                    int l = max(0, j - reach), r = min(m - 1, j + reach);\n                    incoming[j] = (prefix[r + 1] - prefix[l] + MOD) % MOD;\n                }\n            }\n            prefix.assign(m + 1, 0);\n            for (int j = 0; j < m; ++j)\n                prefix[j + 1] = (prefix[j] + (long long)incoming[j]) % MOD;\n            for (int j = 0; j < m; ++j) if (grid[row][j] == '.') {\n                int l = max(0, j - d), r = min(m - 1, j + d);\n                next[j] = (prefix[r + 1] - prefix[l] + MOD) % MOD;\n            }\n            dp.swap(next);\n        }\n        long long ans = 0;\n        for (int x : dp) ans += x;\n        return ans % MOD;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179645783",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "1505",
+  "title": "Minimum Possible Integer After at Most K Adjacent Swaps On Digits",
+  "slug": "minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits",
+  "url": "https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy",
+    "Binary Indexed Tree",
+    "Segment Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Fenwick tree",
+    "Segment tree",
+    "String"
+  ],
+  "description": "You are given a string num representing the digits of a very large integer and an integer k . You are allowed to swap any two adjacent digits of the integer at most k times. \n \n Return the minimum integer you can obtain also as a string . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/06/17/q4_1.jpg] \n \n```\nInput:\n num = \"4321\", k = 4\n\nOutput:\n \"1342\"\n\nExplanation:\n The steps to obtain the minimum integer from 4321 with 4 adjacent swaps are shown.\n```\n\n Example 2: \n \n```\nInput:\n num = \"100\", k = 1\n\nOutput:\n \"010\"\n\nExplanation:\n It's ok for the output to have leading zeros, but the input is guaranteed not to have any leading zeros.\n```\n\n Example 3: \n \n```\nInput:\n num = \"36789\", k = 1000\n\nOutput:\n \"36789\"\n\nExplanation:\n We can keep the number without any swaps.\n```\n\n Constraints: \n\n 1 <= num.length <= 3 * 10 4 \n \n num consists of only digits and does not contain leading zeros . \n \n 1 <= k <= 10 9",
+  "code": "class Solution {\npublic:\n    string minInteger(string num, int k) {\n        string res = num;\n        int n = res.size();\n        for (int i = 0; i < n && k > 0; ++i) {\n            char min_digit = res[i];\n            int min_pos = i;\n            for (int j = i + 1; j < n && j - i <= k; ++j) {\n                if (res[j] < min_digit) {\n                    min_digit = res[j];\n                    min_pos = j;\n                    if (min_digit == '0') break;\n                }\n            }\n            for (int j = min_pos; j > i; --j)\n                swap(res[j], res[j - 1]);\n            k -= (min_pos - i);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1615794338",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

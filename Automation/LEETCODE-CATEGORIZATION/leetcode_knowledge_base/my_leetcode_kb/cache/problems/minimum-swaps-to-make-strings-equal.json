@@ -1,0 +1,30 @@
+{
+  "id": "1247",
+  "title": "Minimum Swaps to Make Strings Equal",
+  "slug": "minimum-swaps-to-make-strings-equal",
+  "url": "https://leetcode.com/problems/minimum-swaps-to-make-strings-equal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given two strings s1 and s2 of equal length consisting of letters \"x\" and \"y\" only . Your task is to make these two strings equal to each other. You can swap any two characters that belong to different strings, which means: swap s1[i] and s2[j] . \n \n Return the minimum number of swaps required to make s1 and s2 equal, or return -1 if it is impossible to do so. \n\n Example 1: \n \n```\nInput:\n s1 = \"xx\", s2 = \"yy\"\n\nOutput:\n 1\n\nExplanation:\n Swap s1[0] and s2[1], s1 = \"yx\", s2 = \"yx\".\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"xy\", s2 = \"yx\"\n\nOutput:\n 2\n\nExplanation:\n Swap s1[0] and s2[0], s1 = \"yy\", s2 = \"xx\".\nSwap s1[0] and s2[1], s1 = \"xy\", s2 = \"xy\".\nNote that you cannot swap s1[0] and s1[1] to make s1 equal to \"yx\", cause we can only swap chars in different strings.\n```\n\n Example 3: \n \n```\nInput:\n s1 = \"xx\", s2 = \"xy\"\n\nOutput:\n -1\n```\n\n Constraints: \n\n 1 <= s1.length, s2.length <= 1000 \n \n s1.length == s2.length \n \n s1, s2 only contain 'x' or 'y' .",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minimumSwap(string s1, string s2) {\n        int xy = 0, yx = 0;\n        for (int i = 0; i < s1.size(); ++i) {\n            if (s1[i] == 'x' && s2[i] == 'y') xy++;\n            if (s1[i] == 'y' && s2[i] == 'x') yx++;\n        }\n        if ((xy + yx) % 2) return -1;\n        return xy / 2 + yx / 2 + (xy % 2) * 2;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593849821",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

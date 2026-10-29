@@ -1,0 +1,35 @@
+{
+  "id": "929",
+  "title": "Unique Email Addresses",
+  "slug": "unique-email-addresses",
+  "url": "https://leetcode.com/problems/unique-email-addresses/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Every valid email consists of a local name and a domain name , separated by the '@' sign. Besides lowercase letters, the email may contain one or more '.' or '+' . \n\n For example, in \"alice@leetcode.com\" , \"alice\" is the local name , and \"leetcode.com\" is the domain name . \n\n If you add periods '.' between some characters in the local name part of an email address, mail sent there will be forwarded to the same address without dots in the local name. Note that this rule does not apply to domain names . \n\n For example, \"alice.z@leetcode.com\" and \"alicez@leetcode.com\" forward to the same email address. \n\n If you add a plus '+' in the local name , everything after the first plus sign will be ignored . This allows certain emails to be filtered. Note that this rule does not apply to domain names . \n\n For example, \"m.y+name@email.com\" will be forwarded to \"my@email.com\" . \n\n It is possible to use both of these rules at the same time. \n \n Given an array of strings emails where we send one email to each emails[i] , return the number of different addresses that actually receive mails . \n\n Example 1: \n \n```\nInput:\n emails = [\"test.email+alex@leetcode.com\",\"test.e.mail+bob.cathy@leetcode.com\",\"testemail+david@lee.tcode.com\"]\n\nOutput:\n 2\n\nExplanation:\n \"testemail@leetcode.com\" and \"testemail@lee.tcode.com\" actually receive mails.\n```\n\n Example 2: \n \n```\nInput:\n emails = [\"a@leetcode.com\",\"b@leetcode.com\",\"c@leetcode.com\"]\n\nOutput:\n 3\n```\n\n Constraints: \n\n 1 <= emails.length <= 100 \n \n 1 <= emails[i].length <= 100 \n \n emails[i] consist of lowercase English letters, '+' , '.' and '@' . \n \n Each emails[i] contains exactly one '@' character. \n \n All local and domain names are non-empty. \n \n Local names do not start with a '+' character. \n \n Domain names end with the \".com\" suffix. \n \n Domain names must contain at least one character before \".com\" suffix.",
+  "code": "class Solution {\npublic:\n    int numUniqueEmails(vector<string>& emails) \n    {\n        unordered_map<string, int> freqMap;\n        for(string str : emails)\n        {\n            RemovePlus(str);\n            ++freqMap[str];\n        }\n        return freqMap.size() ;\n    }\n\n    void RemovePlus(string & str)\n    {\n          size_t pos_plus = str.find(\"+\");\n        size_t pos_atrate = str.find(\"@\");\n        if ((pos_plus != string::npos) && (pos_atrate != string::npos) && (pos_atrate > pos_plus))\n        {\n            str.erase(str.begin() + pos_plus, str.begin() + pos_atrate);\n            pos_atrate = str.find('@');\n        }\n       \n        for (size_t i = 0; i < pos_atrate; i++)\n        {\n            if (str[i] == '.')\n            {\n                str.erase(str.begin() + i);\n            }\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "979229940",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

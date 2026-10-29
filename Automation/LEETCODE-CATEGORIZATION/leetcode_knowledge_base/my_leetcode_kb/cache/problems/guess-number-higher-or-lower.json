@@ -1,0 +1,25 @@
+{
+  "id": "374",
+  "title": "Guess Number Higher or Lower",
+  "slug": "guess-number-higher-or-lower",
+  "url": "https://leetcode.com/problems/guess-number-higher-or-lower/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Binary Search",
+    "Interactive"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search"
+  ],
+  "data_structures": [],
+  "description": "We are playing the Guess Game. The game is as follows: \n \n I pick a number from 1 to n . You have to guess which number I picked (the number I picked stays the same throughout the game). \n \n Every time you guess wrong, I will tell you whether the number I picked is higher or lower than your guess. \n \n You call a pre-defined API int guess(int num) , which returns three possible results: \n\n -1 : Your guess is higher than the number I picked (i.e. num > pick ). \n \n 1 : Your guess is lower than the number I picked (i.e. num < pick ). \n \n 0 : your guess is equal to the number I picked (i.e. num == pick ). \n\n Return the number that I picked . \n\n Example 1: \n \n```\nInput:\n n = 10, pick = 6\n\nOutput:\n 6\n```\n\n Example 2: \n \n```\nInput:\n n = 1, pick = 1\n\nOutput:\n 1\n```\n\n Example 3: \n \n```\nInput:\n n = 2, pick = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= n <= 2 31 - 1 \n \n 1 <= pick <= n",
+  "code": "// Forward declaration of guess API.\nint guess(int num);\n\nclass Solution {\npublic:\n    int guessNumber(int n) {\n        int low = 1, high = n;\n        while (low <= high) {\n            int mid = low + (high - low) / 2;\n            int res = guess(mid);\n            if (res == 0) return mid;\n            else if (res < 0) high = mid - 1;\n            else low = mid + 1;\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610566493",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

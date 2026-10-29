@@ -1,0 +1,30 @@
+{
+  "id": "3899",
+  "title": "Angles of a Triangle",
+  "slug": "angles-of-a-triangle",
+  "url": "https://leetcode.com/problems/angles-of-a-triangle/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a positive integer array sides of length 3. \n \n Determine if there exists a triangle with positive area whose three side lengths are given by the elements of sides . \n \n If such a triangle exists, return an array of three floating-point numbers representing its internal angles (in degrees ), sorted in non-decreasing order. Otherwise, return an empty array. \n \n Answers within 10 -5 of the actual answer will be accepted. \n\n Example 1: \n\n Input: sides = [3,4,5] \n \n Output: [36.86990,53.13010,90.00000] \n \n Explanation: \n \n You can form a right-angled triangle with side lengths 3, 4, and 5. The internal angles of this triangle are approximately 36.869897646, 53.130102354, and 90 degrees respectively. \n\n Example 2: \n\n Input: sides = [2,4,2] \n \n Output: [] \n \n Explanation: \n \n You cannot form a triangle with positive area using side lengths 2, 4, and 2. \n\n Constraints: \n\n sides.length == 3 \n \n 1 <= sides[i] <= 1000",
+  "code": "class Solution {\npublic:\n    vector<double> internalAngles(vector<int>& sides) {\n        sort(sides.begin(), sides.end());\n        double a = sides[0], b = sides[1], c = sides[2];\n        if (a + b <= c) return {};\n        const double PI = acos(-1.0);\n        auto angle = [PI](double x, double y, double z) {\n            double cosine = (y*y + z*z - x*x) / (2*y*z);\n            cosine = max(-1.0, min(1.0, cosine));\n            return acos(cosine) * 180.0 / PI;\n        };\n        return {angle(a,b,c), angle(b,a,c), angle(c,a,b)};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181079241",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

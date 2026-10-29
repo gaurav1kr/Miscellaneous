@@ -1,0 +1,30 @@
+{
+  "id": "132",
+  "title": "Palindrome Partitioning II",
+  "slug": "palindrome-partitioning-ii",
+  "url": "https://leetcode.com/problems/palindrome-partitioning-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , partition s such that every substring of the partition is a palindrome . \n \n Return the minimum cuts needed for a palindrome partitioning of s . \n\n Example 1: \n \n```\nInput:\n s = \"aab\"\n\nOutput:\n 1\n\nExplanation:\n The palindrome partitioning [\"aa\",\"b\"] could be produced using 1 cut.\n```\n\n Example 2: \n \n```\nInput:\n s = \"a\"\n\nOutput:\n 0\n```\n\n Example 3: \n \n```\nInput:\n s = \"ab\"\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= s.length <= 2000 \n \n s consists of lowercase English letters only.",
+  "code": "class Solution \n{\npublic:\n    int solve(int i,string &s, vector<int> &dp)\n\t{\n        if(i==s.size())\n\t\t{\n            return 0;\n        }\n        if(dp[i]!=INT_MAX)return dp[i];\n        \n        for(int j=i;j<s.size();j++)\n\t\t{\n            if(isPalin(s,i,j))\n\t\t\t{\n                dp[i]=min(dp[i],solve(j+1,s,dp)+1);\n            }\n        }\n        return dp[i];\n    }\n\n    bool isPalin(string &s, int start,int end)\n\t{\n        while(start<=end)\n\t\t{\n            if(s[start++]!=s[end--])\n\t\t\t\treturn false;\n        }\n        return true;\n    }\n    int minCut(string s) \n\t{\n        vector<int> dp(s.size()+1,INT_MAX);\n        return solve(0,s,dp)-1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1498104120",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

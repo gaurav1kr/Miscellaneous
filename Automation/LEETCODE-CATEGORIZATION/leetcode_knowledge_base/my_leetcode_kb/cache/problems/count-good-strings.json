@@ -1,0 +1,20 @@
+{
+  "id": "4073",
+  "title": "Count Good Strings",
+  "slug": "count-good-strings",
+  "url": "https://leetcode.com/problems/count-good-strings/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "You are given an integer n . \n \n A string is considered good if it consists only of the characters 'a' and 'b' , and one of the following holds: \n\n It contains exactly one distinct character, and its length is odd . \n \n It can be written as s = s1 + s2 , where s1 and s2 are non-empty good strings, and the last character of s1 is different from the first character of s2 . \n\n Return the number of good strings of length n , modulo 10 9 + 7 . \n \n Here, + denotes string concatenation. \n\n Example 1: \n\n Input: n = 4 \n \n Output: 6 \n \n Explanation: \n\n The good strings are \"aaab\" , \"abbb\" , \"baaa\" , \"bbba\" , \"abab\" , and \"baba\" . \n \n For example, \"aaab\" = \"aaa\" + \"b\" . Both parts are good because each contains one distinct character and has odd length, and their characters at the boundary are different. \n \n Also, \"ab\" = \"a\" + \"b\" is good, so \"abab\" = \"ab\" + \"ab\" is good because the boundary characters are different. \n \n Thus, the answer is 6. \n\n Example 2: \n\n Input: n = 3 \n \n Output: 4 \n \n Explanation: \n \n The good strings are \"aaa\" , \"bbb\" , \"aba\" , and \"bab\" . Thus, the answer is 4. \n\n Example 3: \n\n Input: n = 2 \n \n Output: 2 \n \n Explanation: \n \n The good strings are \"ab\" and \"ba\" . Thus, the answer is 2. \n\n Constraints: \n\n 1 <= n <= 10 15",
+  "code": "class Solution {\n static const long long MOD=1000000007LL;\n typedef array<array<long long,2>,2> M;\n M mul(M a,M b){M c={{{0,0},{0,0}}};for(int i=0;i<2;++i)for(int j=0;j<2;++j)for(int k=0;k<2;++k)c[i][j]=(c[i][j]+a[i][k]*b[k][j])%MOD;return c;}\npublic:\n int countGoodStrings(long long n){\n  M a={{{1,1},{1,0}}},r={{{1,0},{0,1}}};\n  while(n){if(n&1)r=mul(r,a);a=mul(a,a);n>>=1;}\n  return (int)(2*r[0][1]%MOD);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181190109",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

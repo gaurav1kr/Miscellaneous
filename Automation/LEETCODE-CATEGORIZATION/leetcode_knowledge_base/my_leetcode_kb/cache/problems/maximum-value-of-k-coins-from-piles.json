@@ -1,0 +1,33 @@
+{
+  "id": "2218",
+  "title": "Maximum Value of K Coins From Piles",
+  "slug": "maximum-value-of-k-coins-from-piles",
+  "url": "https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "There are n piles of coins on a table. Each pile consists of a positive number of coins of assorted denominations. \n \n In one move, you can choose any coin on top of any pile, remove it, and add it to your wallet. \n \n Given a list piles , where piles[i] is a list of integers denoting the composition of the i th pile from top to bottom , and a positive integer k , return the maximum total value of coins you can have in your wallet if you choose exactly k coins optimally . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/11/09/e1.png] \n \n```\nInput:\n piles = [[1,100,3],[7,8,9]], k = 2\n\nOutput:\n 101\n\nExplanation:\n\nThe above diagram shows the different ways we can choose k coins.\nThe maximum total we can obtain is 101.\n```\n\n Example 2: \n \n```\nInput:\n piles = [[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]], k = 7\n\nOutput:\n 706\n\nExplanation:\n\nThe maximum total can be obtained if we choose all coins from the last pile.\n```\n\n Constraints: \n\n n == piles.length \n \n 1 <= n <= 1000 \n \n 1 <= piles[i][j] <= 10 5 \n \n 1 <= k <= sum(piles[i].length) <= 2000",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int maxValueOfCoins(vector<vector<int>>& piles,int k){vector<int>dp(k+1,-1000000000);dp[0]=0;\n  for(auto&pile:piles){vector<int>ndp=dp;int sum=0;for(int take=1;take<=(int)pile.size()&&take<=k;++take){sum+=pile[take-1];\n    for(int j=take;j<=k;++j)if(dp[j-take]>=0)ndp[j]=max(ndp[j],dp[j-take]+sum);\n   }dp.swap(ndp);\n  }return dp[k];\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175889744",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

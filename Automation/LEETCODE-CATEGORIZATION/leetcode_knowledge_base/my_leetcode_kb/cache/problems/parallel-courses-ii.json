@@ -1,0 +1,36 @@
+{
+  "id": "1494",
+  "title": "Parallel Courses II",
+  "slug": "parallel-courses-ii",
+  "url": "https://leetcode.com/problems/parallel-courses-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Graph Theory",
+    "Bitmask",
+    "Directed Acyclic Graph"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Bitmask",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer n , which indicates that there are n courses labeled from 1 to n . You are also given an array relations where relations[i] = [prevCourse i , nextCourse i ] , representing a prerequisite relationship between course prevCourse i and course nextCourse i : course prevCourse i has to be taken before course nextCourse i . Also, you are given the integer k . \n \n In one semester, you can take at most k courses as long as you have taken all the prerequisites in the previous semesters for the courses you are taking. \n \n Return the minimum number of semesters needed to take all courses . The testcases will be generated such that it is possible to take every course. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/05/22/leetcode_parallel_courses_1.png] \n \n```\nInput:\n n = 4, relations = [[2,1],[3,1],[1,4]], k = 2\n\nOutput:\n 3\n\nExplanation:\n The figure above represents the given graph.\nIn the first semester, you can take courses 2 and 3.\nIn the second semester, you can take course 1.\nIn the third semester, you can take course 4.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/05/22/leetcode_parallel_courses_2.png] \n \n```\nInput:\n n = 5, relations = [[2,1],[3,1],[4,1],[1,5]], k = 2\n\nOutput:\n 4\n\nExplanation:\n The figure above represents the given graph.\nIn the first semester, you can only take courses 2 and 3 since you cannot take more than two per semester.\nIn the second semester, you can take course 4.\nIn the third semester, you can take course 1.\nIn the fourth semester, you can take course 5.\n```\n\n Constraints: \n\n 1 <= n <= 15 \n \n 1 <= k <= n \n \n 0 <= relations.length <= n * (n-1) / 2 \n \n relations[i].length == 2 \n \n 1 <= prevCourse i , nextCourse i <= n \n \n prevCourse i != nextCourse i \n \n All the pairs [prevCourse i , nextCourse i ] are unique . \n \n The given graph is a directed acyclic graph.",
+  "code": "#include <vector>\n#include <queue>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minNumberOfSemesters(int n, vector<vector<int>>& dependencies, int k) {\n        vector<int> prereq(n, 0);\n        for (auto& d : dependencies)\n            prereq[d[1] - 1] |= (1 << (d[0] - 1));\n\n        vector<int> dp(1 << n, n + 1);\n        dp[0] = 0;\n\n        for (int mask = 0; mask < (1 << n); ++mask) {\n            int canTake = 0;\n            for (int i = 0; i < n; ++i)\n                if (!(mask & (1 << i)) && (mask & prereq[i]) == prereq[i])\n                    canTake |= (1 << i);\n\n            for (int sub = canTake; sub; sub = (sub - 1) & canTake)\n                if (__builtin_popcount(sub) <= k)\n                    dp[mask | sub] = min(dp[mask | sub], dp[mask] + 1);\n        }\n\n        return dp[(1 << n) - 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610556309",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

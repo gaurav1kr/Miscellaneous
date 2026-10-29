@@ -1,0 +1,45 @@
+{
+  "id": "1687",
+  "title": "Delivering Boxes from Storage to Ports",
+  "slug": "delivering-boxes-from-storage-to-ports",
+  "url": "https://leetcode.com/problems/delivering-boxes-from-storage-to-ports/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Segment Tree",
+    "Queue",
+    "Heap (Priority Queue)",
+    "Prefix Sum",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Heap / Priority Queue",
+    "Prefix Sum / Difference Array",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Monotonic deque",
+    "Prefix-sum array",
+    "Priority queue / heap",
+    "Queue",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You have the task of delivering some boxes from storage to their ports using only one ship. However, this ship has a limit on the number of boxes and the total weight that it can carry. \n \n You are given an array boxes , where boxes[i] = [ports ​​i ​, weight i ] , and three integers portsCount , maxBoxes , and maxWeight . \n\n ports ​​i is the port where you need to deliver the i th box and weights i is the weight of the i th box. \n \n portsCount is the number of ports. \n \n maxBoxes and maxWeight are the respective box and weight limits of the ship. \n\n The boxes need to be delivered in the order they are given . The ship will follow these steps: \n\n The ship will take some number of boxes from the boxes queue, not violating the maxBoxes and maxWeight constraints. \n \n For each loaded box in order , the ship will make a trip to the port the box needs to be delivered to and deliver it. If the ship is already at the correct port, no trip is needed, and the box can immediately be delivered. \n \n The ship then makes a return trip to storage to take more boxes from the queue. \n\n The ship must end at storage after all the boxes have been delivered. \n \n Return the minimum number of trips the ship needs to make to deliver all boxes to their respective ports. \n\n Example 1: \n \n```\nInput:\n boxes = [[1,1],[2,1],[1,1]], portsCount = 2, maxBoxes = 3, maxWeight = 3\n\nOutput:\n 4\n\nExplanation:\n The optimal strategy is as follows: \n- The ship takes all the boxes in the queue, goes to port 1, then port 2, then port 1 again, then returns to storage. 4 trips.\nSo the total number of trips is 4.\nNote that the first and third boxes cannot be delivered together because the boxes need to be delivered in order (i.e. the second box needs to be delivered at port 2 before the third box).\n```\n\n Example 2: \n \n```\nInput:\n boxes = [[1,2],[3,3],[3,1],[3,1],[2,4]], portsCount = 3, maxBoxes = 3, maxWeight = 6\n\nOutput:\n 6\n\nExplanation:\n The optimal strategy is as follows: \n- The ship takes the first box, goes to port 1, then returns to storage. 2 trips.\n- The ship takes the second, third and fourth boxes, goes to port 3, then returns to storage. 2 trips.\n- The ship takes the fifth box, goes to port 2, then returns to storage. 2 trips.\nSo the total number of trips is 2 + 2 + 2 = 6.\n```\n\n Example 3: \n \n```\nInput:\n boxes = [[1,4],[1,2],[2,1],[2,1],[3,2],[3,4]], portsCount = 3, maxBoxes = 6, maxWeight = 7\n\nOutput:\n 6\n\nExplanation:\n The optimal strategy is as follows:\n- The ship takes the first and second boxes, goes to port 1, then returns to storage. 2 trips.\n- The ship takes the third and fourth boxes, goes to port 2, then returns to storage. 2 trips.\n- The ship takes the fifth and sixth boxes, goes to port 3, then returns to storage. 2 trips.\nSo the total number of trips is 2 + 2 + 2 = 6.\n```\n\n Constraints: \n\n 1 <= boxes.length <= 10 5 \n \n 1 <= portsCount, maxBoxes, maxWeight <= 10 5 \n \n 1 <= ports ​​i <= portsCount \n \n 1 <= weights i <= maxWeight",
+  "code": "class Solution {\npublic:\n\n    vector<vector<int>> boxes;\n    int ports , max_box , max_wt , n;\n    vector<int> dp;\n    \n    int backtrack(int index) {\n        if(index == n)\n            return 0;\n        if(dp[index] != 0)\n            return dp[index];\n        \n        int start = index, end = index, currWt = boxes[index][1] , boxCount = 1 , lastPort = boxes[index][0] , ports_visited = 0;\n        //as long as it's possible to load the boxes load them into the ship so that the visit to the storage unit is minimised.\n        while(end+1<n && currWt + boxes[end+1][1] <= max_wt && boxCount + 1 <=max_box) \n        {\n            end++;\n            currWt += boxes[end][1];\n            boxCount++;\n            if(lastPort != boxes[end][0]){\n                ports_visited++;\n                lastPort = boxes[end][0];\n            }\n        }\n        //2 - from the storage to the 1st port and then back to the storage from the last port either for loading the next set of boxes or returning after delivering all the boxes.         \n        int trips = 2 + ports_visited + backtrack(end+1);\n        \n        //number of trips can still be minimised when a box going to port 'j' can be included in the next trip if there are other boxes going to port 'j'\n        \n        int x = -1;\n        for(int i = end-1;i>=index;i--){\n            if(boxes[i][0]!=lastPort) {\n            cout<<end<<\"    end\\n\";                \n                x = i;\n                break;\n            }\n        }\n        if(x!=-1){\n            trips = min(trips , 2+ports_visited-1+backtrack(x+1));\n        }\n\n        dp[index] = trips;        \n        cout<<trips<<\" \"<<index<<\"\\n\";\n        return trips;        \n    }\n    \n    \n    int boxDelivering(vector<vector<int>>& boxes, int portsCount, int maxBoxes, int maxWeight) {\n        this->boxes = boxes;\n        //ports,boxes\n        n = boxes.size();\n        dp.assign(n,0);\n        ports = portsCount; \n        max_box = maxBoxes;\n        max_wt = maxWeight;\n        return backtrack(0);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1613552136",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

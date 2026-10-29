@@ -1,0 +1,26 @@
+{
+  "id": "1758",
+  "title": "Minimum Changes To Make Alternating Binary String",
+  "slug": "minimum-changes-to-make-alternating-binary-string",
+  "url": "https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s consisting only of the characters '0' and '1' . In one operation, you can change any '0' to '1' or vice versa. \n \n The string is called alternating if no two adjacent characters are equal. For example, the string \"010\" is alternating, while the string \"0100\" is not. \n \n Return the minimum number of operations needed to make s alternating . \n\n Example 1: \n \n```\nInput:\n s = \"0100\"\n\nOutput:\n 1\n\nExplanation:\n If you change the last character to '1', s will be \"0101\", which is alternating.\n```\n\n Example 2: \n \n```\nInput:\n s = \"10\"\n\nOutput:\n 0\n\nExplanation:\n s is already alternating.\n```\n\n Example 3: \n \n```\nInput:\n s = \"1111\"\n\nOutput:\n 2\n\nExplanation:\n You need two operations to reach \"0101\" or \"1010\".\n```\n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s[i] is either '0' or '1' .",
+  "code": "class Solution {\npublic:\n int minOperations(string s){\n  int a=0;for(int i=0;i<(int)s.size();++i)if(s[i]!=(char)('0'+i%2))++a;\n  return min(a,(int)s.size()-a);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175760168",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

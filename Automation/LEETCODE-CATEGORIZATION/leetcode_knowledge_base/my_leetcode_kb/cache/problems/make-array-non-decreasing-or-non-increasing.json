@@ -1,0 +1,37 @@
+{
+  "id": "2263",
+  "title": "Make Array Non-decreasing or Non-increasing",
+  "slug": "make-array-non-decreasing-or-non-increasing",
+  "url": "https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . In one operation, you can: \n\n Choose an index i in the range 0 <= i < nums.length \n \n Set nums[i] to nums[i] + 1 or nums[i] - 1 \n\n Return the minimum number of operations to make nums non-decreasing or non-increasing . \n\n Example 1: \n \n```\nInput:\n nums = [3,2,4,5,0]\n\nOutput:\n 4\n\nExplanation:\n\nOne possible way to turn nums into non-increasing order is to:\n- Add 1 to nums[1] once so that it becomes 3.\n- Subtract 1 from nums[2] once so it becomes 3.\n- Subtract 1 from nums[3] twice so it becomes 3.\nAfter doing the 4 operations, nums becomes [3,3,3,3,0] which is in non-increasing order.\nNote that it is also possible to turn nums into [4,4,4,4,0] in 4 operations.\nIt can be proven that 4 is the minimum number of operations needed.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,2,3,4]\n\nOutput:\n 0\n\nExplanation:\n nums is already in non-decreasing order, so no operations are needed and we return 0.\n```\n\n Example 3: \n \n```\nInput:\n nums = [0]\n\nOutput:\n 0\n\nExplanation:\n nums is already in non-decreasing order, so no operations are needed and we return 0.\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 0 <= nums[i] <= 1000 \n\n Follow up: Can you solve it in O(n*log(n)) time complexity?",
+  "code": "class Solution {\n    long long cost(const vector<int>& nums) {\n        priority_queue<int> heap;\n        long long answer = 0;\n        for (int x : nums) {\n            heap.push(x);\n            if (heap.top() > x) {\n                answer += heap.top() - x;\n                heap.pop();\n                heap.push(x);\n            }\n        }\n        return answer;\n    }\npublic:\n    int convertArray(vector<int>& nums) {\n        long long first = cost(nums);\n        vector<int> negated(nums);\n        for (int& x : negated) x = -x;\n        return (int)min(first, cost(negated));\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178850501",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

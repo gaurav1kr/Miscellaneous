@@ -1,0 +1,30 @@
+{
+  "id": "3233",
+  "title": "Find the Count of Numbers Which Are Not Special",
+  "slug": "find-the-count-of-numbers-which-are-not-special",
+  "url": "https://leetcode.com/problems/find-the-count-of-numbers-which-are-not-special/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given 2 positive integers l and r . For any number x , all positive divisors of x except x are called the proper divisors of x . \n \n A number is called special if it has exactly 2 proper divisors . For example: \n\n The number 4 is special because it has proper divisors 1 and 2. \n \n The number 6 is not special because it has proper divisors 1, 2, and 3. \n\n Return the count of numbers in the range [l, r] that are not special . \n\n Example 1: \n\n Input: l = 5, r = 7 \n \n Output: 3 \n \n Explanation: \n \n There are no special numbers in the range [5, 7] . \n\n Example 2: \n\n Input: l = 4, r = 16 \n \n Output: 11 \n \n Explanation: \n \n The special numbers in the range [4, 16] are 4 and 9. \n\n Constraints: \n\n 1 <= l <= r <= 10 9",
+  "code": "class Solution { public:\n int nonSpecialCount(int l,int r) {\n  int m=sqrt((double)r);vector<bool> prime(m+1,true);if(m>=0)prime[0]=false;if(m>=1)prime[1]=false;\n  for(int p=2;p*p<=m;++p)if(prime[p])for(int j=p*p;j<=m;j+=p)prime[j]=false;\n  int special=0;for(int p=2;p<=m;++p)if(prime[p] && 1LL*p*p>=l)++special;\n  return r-l+1-special;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177431636",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

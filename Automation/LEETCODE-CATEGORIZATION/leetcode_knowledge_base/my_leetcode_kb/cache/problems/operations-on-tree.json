@@ -1,0 +1,38 @@
+{
+  "id": "1993",
+  "title": "Operations on Tree",
+  "slug": "operations-on-tree",
+  "url": "https://leetcode.com/problems/operations-on-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Design"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a tree with n nodes numbered from 0 to n - 1 in the form of a parent array parent where parent[i] is the parent of the i th node. The root of the tree is node 0 , so parent[0] = -1 since it has no parent. You want to design a data structure that allows users to lock, unlock, and upgrade nodes in the tree. \n \n The data structure should support the following functions: \n\n Lock: Locks the given node for the given user and prevents other users from locking the same node. You may only lock a node using this function if the node is unlocked. \n \n Unlock: Unlocks the given node for the given user. You may only unlock a node using this function if it is currently locked by the same user. \n \n Upgrade : Locks the given node for the given user and unlocks all of its descendants regardless of who locked it. You may only upgrade a node if all 3 conditions are true:\n\n The node is unlocked, \n \n It has at least one locked descendant (by any user), and \n \n It does not have any locked ancestors. \n\n Implement the LockingTree class: \n\n LockingTree(int[] parent) initializes the data structure with the parent array. \n \n lock(int num, int user) returns true if it is possible for the user with id user to lock the node num , or false otherwise. If it is possible, the node num will become locked by the user with id user . \n \n unlock(int num, int user) returns true if it is possible for the user with id user to unlock the node num , or false otherwise. If it is possible, the node num will become unlocked . \n \n upgrade(int num, int user) returns true if it is possible for the user with id user to upgrade the node num , or false otherwise. If it is possible, the node num will be upgraded . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/07/29/untitled.png] \n \n```\nInput\n\n[\"LockingTree\", \"lock\", \"unlock\", \"unlock\", \"lock\", \"upgrade\", \"lock\"]\n[[[-1, 0, 0, 1, 1, 2, 2]], [2, 2], [2, 3], [2, 2], [4, 5], [0, 1], [0, 1]]\n\nOutput\n\n[null, true, false, true, true, true, false]\n\nExplanation\n\nLockingTree lockingTree = new LockingTree([-1, 0, 0, 1, 1, 2, 2]);\nlockingTree.lock(2, 2); // return true because node 2 is unlocked.\n // Node 2 will now be locked by user 2.\nlockingTree.unlock(2, 3); // return false because user 3 cannot unlock a node locked by user 2.\nlockingTree.unlock(2, 2); // return true because node 2 was previously locked by user 2.\n // Node 2 will now be unlocked.\nlockingTree.lock(4, 5); // return true because node 4 is unlocked.\n // Node 4 will now be locked by user 5.\nlockingTree.upgrade(0, 1); // return true because node 0 is unlocked and has at least one locked descendant (node 4).\n // Node 0 will now be locked by user 1 and node 4 will now be unlocked.\nlockingTree.lock(0, 1); // return false because node 0 is already locked.\n```\n\n Constraints: \n\n n == parent.length \n \n 2 <= n <= 2000 \n \n 0 <= parent[i] <= n - 1 for i != 0 \n \n parent[0] == -1 \n \n 0 <= num <= n - 1 \n \n 1 <= user <= 10 4 \n \n parent represents a valid tree. \n \n At most 2000 calls in total will be made to lock , unlock , and upgrade .",
+  "code": "class LockingTree {\n    vector<int>par,owner;\n    vector<vector<int>>child;\n    bool clearDesc(int u){bool found=false;\n        for(int v:child[u]){\n            if(owner[v]!=-1){owner[v]=-1;found=true;}\n            if(clearDesc(v))found=true;\n        }\n        return found;\n    }\npublic:\n    LockingTree(vector<int>& parent):par(parent),owner(parent.size(),-1),child(parent.size()){\n        for(int i=1;i<(int)parent.size();++i)child[parent[i]].push_back(i);\n    }\n    bool lock(int num,int user){if(owner[num]!=-1)return false;owner[num]=user;return true;}\n    bool unlock(int num,int user){if(owner[num]!=user)return false;owner[num]=-1;return true;}\n    bool upgrade(int num,int user){\n        if(owner[num]!=-1)return false;\n        for(int p=par[num];p!=-1;p=par[p])if(owner[p]!=-1)return false;\n        if(!clearDesc(num))return false;\n        owner[num]=user;return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175767540",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

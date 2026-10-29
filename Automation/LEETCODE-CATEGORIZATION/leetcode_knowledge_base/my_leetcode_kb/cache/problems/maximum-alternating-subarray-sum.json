@@ -1,0 +1,30 @@
+{
+  "id": "2036",
+  "title": "Maximum Alternating Subarray Sum",
+  "slug": "maximum-alternating-subarray-sum",
+  "url": "https://leetcode.com/problems/maximum-alternating-subarray-sum/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "A subarray of a 0-indexed integer array is a contiguous non-empty sequence of elements within an array. \n \n The alternating subarray sum of a subarray that ranges from index i to j ( inclusive , 0 <= i <= j < nums.length ) is nums[i] - nums[i+1] + nums[i+2] - ... +/- nums[j] . \n \n Given a 0-indexed integer array nums , return the maximum alternating subarray sum of any subarray of nums . \n\n Example 1: \n \n```\nInput:\n nums = [3,-1,1,2]\n\nOutput:\n 5\n\nExplanation:\n\nThe subarray [3,-1,1] has the largest alternating subarray sum.\nThe alternating subarray sum is 3 - (-1) + 1 = 5.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,2,2,2,2]\n\nOutput:\n 2\n\nExplanation:\n\nThe subarrays [2], [2,2,2], and [2,2,2,2,2] have the largest alternating subarray sum.\nThe alternating subarray sum of [2] is 2.\nThe alternating subarray sum of [2,2,2] is 2 - 2 + 2 = 2.\nThe alternating subarray sum of [2,2,2,2,2] is 2 - 2 + 2 - 2 + 2 = 2.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1]\n\nOutput:\n 1\n\nExplanation:\n\nThere is only one non-empty subarray, which is [1].\nThe alternating subarray sum is 1.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 5 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    long long maximumAlternatingSubarraySum(vector<int>& nums) {\n        long long plus=LLONG_MIN/4, minus=LLONG_MIN/4, ans=LLONG_MIN;\n        for (int x:nums) {\n            long long nextPlus=max((long long)x,minus+x);\n            long long nextMinus=plus-x;\n            plus=nextPlus; minus=nextMinus;\n            ans=max(ans,max(plus,minus));\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179692863",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "3327",
+  "title": "Check if DFS Strings Are Palindromes",
+  "slug": "check-if-dfs-strings-are-palindromes",
+  "url": "https://leetcode.com/problems/check-if-dfs-strings-are-palindromes/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Tree",
+    "Depth-First Search",
+    "Hash Function"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "String",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a tree rooted at node 0, consisting of n nodes numbered from 0 to n - 1 . The tree is represented by an array parent of size n , where parent[i] is the parent of node i . Since node 0 is the root, parent[0] == -1 . \n \n You are also given a string s of length n , where s[i] is the character assigned to node i . \n \n Consider an empty string dfsStr , and define a recursive function dfs(int x) that takes a node x as a parameter and performs the following steps in order: \n\n Iterate over each child y of x in increasing order of their numbers , and call dfs(y) . \n \n Add the character s[x] to the end of the string dfsStr . \n\n Note that dfsStr is shared across all recursive calls of dfs . \n \n You need to find a boolean array answer of size n , where for each index i from 0 to n - 1 , you do the following: \n\n Empty the string dfsStr and call dfs(i) . \n \n If the resulting string dfsStr is a palindrome , then set answer[i] to true . Otherwise, set answer[i] to false . \n\n Return the array answer . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2024/09/01/tree1drawio.png] \n\n Input: parent = [-1,0,0,1,1,2], s = \"aababa\" \n \n Output: [true,true,false,true,true,true] \n \n Explanation: \n\n Calling dfs(0) results in the string dfsStr = \"abaaba\" , which is a palindrome. \n \n Calling dfs(1) results in the string dfsStr = \"aba\" , which is a palindrome. \n \n Calling dfs(2) results in the string dfsStr = \"ab\" , which is not a palindrome. \n \n Calling dfs(3) results in the string dfsStr = \"a\" , which is a palindrome. \n \n Calling dfs(4) results in the string dfsStr = \"b\" , which is a palindrome. \n \n Calling dfs(5) results in the string dfsStr = \"a\" , which is a palindrome. \n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2024/09/01/tree2drawio-1.png] \n\n Input: parent = [-1,0,0,0,0], s = \"aabcb\" \n \n Output: [true,true,true,true,true] \n \n Explanation: \n \n Every call on dfs(x) results in a palindrome string. \n\n Constraints: \n\n n == parent.length == s.length \n \n 1 <= n <= 10 5 \n \n 0 <= parent[i] <= n - 1 for all i >= 1 . \n \n parent[0] == -1 \n \n parent represents a valid tree. \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {public:vector<bool> findAnswer(vector<int>& parent,string s){int n=s.size();vector<vector<int>> ch(n);for(int i=1;i<n;i++)ch[parent[i]].push_back(i);vector<int> l(n),r(n);string t;function<void(int)> dfs=[&](int u){l[u]=t.size();for(int v:ch[u])dfs(v);t+=s[u];r[u]=t.size()-1;};dfs(0);vector<int>d1(n),d2(n);for(int i=0,L=0,R=-1;i<n;i++){int k=i>R?1:min(d1[L+R-i],R-i+1);while(i-k>=0&&i+k<n&&t[i-k]==t[i+k])k++;d1[i]=k--;if(i+k>R)L=i-k,R=i+k;}for(int i=0,L=0,R=-1;i<n;i++){int k=i>R?0:min(d2[L+R-i+1],R-i+1);while(i-k-1>=0&&i+k<n&&t[i-k-1]==t[i+k])k++;d2[i]=k--;if(i+k>R)L=i-k-1,R=i+k;}vector<bool> ans(n);for(int i=0;i<n;i++){int len=r[i]-l[i]+1,mid=(l[i]+r[i])/2;ans[i]=len%2?d1[mid]>=len/2+1:d2[mid+1]>=len/2;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177460785",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

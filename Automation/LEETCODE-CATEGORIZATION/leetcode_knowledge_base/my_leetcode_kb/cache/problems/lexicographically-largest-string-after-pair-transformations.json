@@ -1,0 +1,34 @@
+{
+  "id": "4036",
+  "title": "Lexicographically Largest String After Pair Transformations",
+  "slug": "lexicographically-largest-string-after-pair-transformations",
+  "url": "https://leetcode.com/problems/lexicographically-largest-string-after-pair-transformations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Greedy",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n For each integer x in nums , start with a string consisting of exactly x lowercase 'a' characters. \n \n You may perform the following operation any number of times (including zero): \n\n Choose two adjacent equal letters and replace them with the next letter in the alphabet. \n\n For example, \"aa\" can be replaced with \"b\" , and \"bb\" can be replaced with \"c\" . The pair \"zz\" cannot be replaced. \n \n For each x , determine the lexicographically largest string that can be obtained. \n \n Return an array of strings where the i th string is the answer for nums[i] . \n \n A string a is lexicographically larger than a string b if, at the first position where they differ, a contains a letter that appears later in the alphabet than the corresponding letter in b . If the first min(a.length, b.length) characters are equal, the longer string is lexicographically larger. \n\n Example 1: \n\n Input: nums = [2,5,7] \n \n Output: [\"b\",\"ca\",\"cba\"] \n \n Explanation: \n\n nums[0] = 2 : \"aa\" → \"b\" . \n \n nums[1] = 5 : \"aaaaa\" → \"baaa\" → \"bba\" → \"ca\" . \n \n nums[2] = 7 : \"aaaaaaa\" → \"baaaaa\" → \"bbaaa\" → \"bbba\" → \"cba\" . \n \n Therefore, ans = [\"b\", \"ca\", \"cba\"] . \n\n Example 2: \n\n Input: nums = [3,9,1] \n \n Output: [\"ba\",\"da\",\"a\"] \n \n Explanation: \n\n nums[0] = 3 : \"aaa\" → \"ba\" . \n \n nums[1] = 9 : \"aaaaaaaaa\" → \"baaaaaaa\" → \"bbaaaaa\" → \"bbbaaa\" → \"bbbba\" → \"cbba\" → \"cca\" → \"da\" . \n \n nums[2] = 1 : No transformation can be applied, so the result is \"a\" . \n \n Therefore, ans = [\"ba\", \"da\", \"a\"] . \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 8",
+  "code": "class Solution {\npublic:\n    vector<string> largestString(vector<int>& nums) {\n        vector<string> ans;\n        for (int x : nums) {\n            string s;\n            for (int b = 25; b >= 0; --b) {\n                int weight = 1 << b;\n                int count = x / weight;\n                s.append(count, char('a' + b));\n                x %= weight;\n            }\n            ans.push_back(s);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181524905",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

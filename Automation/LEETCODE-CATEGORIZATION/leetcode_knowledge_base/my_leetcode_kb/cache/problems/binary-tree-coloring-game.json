@@ -1,0 +1,30 @@
+{
+  "id": "1145",
+  "title": "Binary Tree Coloring Game",
+  "slug": "binary-tree-coloring-game",
+  "url": "https://leetcode.com/problems/binary-tree-coloring-game/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Two players play a turn based game on a binary tree. We are given the root of this binary tree, and the number of nodes n in the tree. n is odd, and each node has a distinct value from 1 to n . \n \n Initially, the first player names a value x with 1 <= x <= n , and the second player names a value y with 1 <= y <= n and y != x . The first player colors the node with value x red, and the second player colors the node with value y blue. \n \n Then, the players take turns starting with the first player. In each turn, that player chooses a node of their color (red if player 1, blue if player 2) and colors an uncolored neighbor of the chosen node (either the left child, right child, or parent of the chosen node.) \n \n If (and only if) a player cannot choose such a node in this way, they must pass their turn. If both players pass their turn, the game ends, and the winner is the player that colored more nodes. \n \n You are the second player. If it is possible to choose such a y to ensure you win the game, return true . If it is not possible, return false . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/08/01/1480-binary-tree-coloring-game.png] \n \n```\nInput:\n root = [1,2,3,4,5,6,7,8,9,10,11], n = 11, x = 3\n\nOutput:\n true\n\nExplanation: \nThe second player can choose the node with value 2.\n```\n\n Example 2: \n \n```\nInput:\n root = [1,2,3], n = 3, x = 1\n\nOutput:\n false\n```\n\n Constraints: \n\n The number of nodes in the tree is n . \n \n 1 <= x <= n <= 100 \n \n n is odd. \n \n 1 <= Node.val <= n \n \n All the values of the tree are unique .",
+  "code": "\nclass Solution {\n    int leftSize = 0, rightSize = 0;\npublic:\n    bool btreeGameWinningMove(TreeNode* root, int n, int x) {\n        count(root, x);\n        return max({leftSize, rightSize, n - leftSize - rightSize - 1}) > n / 2;\n    }\n\n    int count(TreeNode* node, int x) {\n        if (!node) return 0;\n        int l = count(node->left, x);\n        int r = count(node->right, x);\n        if (node->val == x) {\n            leftSize = l;\n            rightSize = r;\n        }\n        return l + r + 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593830603",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

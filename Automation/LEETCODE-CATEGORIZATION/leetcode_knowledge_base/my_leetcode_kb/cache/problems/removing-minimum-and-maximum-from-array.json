@@ -1,0 +1,29 @@
+{
+  "id": "2091",
+  "title": "Removing Minimum and Maximum From Array",
+  "slug": "removing-minimum-and-maximum-from-array",
+  "url": "https://leetcode.com/problems/removing-minimum-and-maximum-from-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of distinct integers nums . \n \n There is an element in nums that has the lowest value and an element that has the highest value. We call them the minimum and maximum respectively. Your goal is to remove both these elements from the array. \n \n A deletion is defined as either removing an element from the front of the array or removing an element from the back of the array. \n \n Return the minimum number of deletions it would take to remove both the minimum and maximum element from the array. \n\n Example 1: \n \n```\nInput:\n nums = [2,\n10\n,7,5,4,\n1\n,8,6]\n\nOutput:\n 5\n\nExplanation:\n \nThe minimum element in the array is nums[5], which is 1.\nThe maximum element in the array is nums[1], which is 10.\nWe can remove both the minimum and maximum by removing 2 elements from the front and 3 elements from the back.\nThis results in 2 + 3 = 5 deletions, which is the minimum number possible.\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,\n-4\n,\n19\n,1,8,-2,-3,5]\n\nOutput:\n 3\n\nExplanation:\n \nThe minimum element in the array is nums[1], which is -4.\nThe maximum element in the array is nums[2], which is 19.\nWe can remove both the minimum and maximum by removing 3 elements from the front.\nThis results in only 3 deletions, which is the minimum number possible.\n```\n\n Example 3: \n \n```\nInput:\n nums = [\n101\n]\n\nOutput:\n 1\n\nExplanation:\n \nThere is only one element in the array, which makes it both the minimum and maximum element.\nWe can remove it with 1 deletion.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 5 <= nums[i] <= 10 5 \n \n The integers in nums are distinct .",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minimumDeletions(vector<int>& nums) {\n        int n = nums.size();\n        int minIdx = min_element(nums.begin(), nums.end()) - nums.begin();\n        int maxIdx = max_element(nums.begin(), nums.end()) - nums.begin();\n\n        if (minIdx > maxIdx) swap(minIdx, maxIdx);\n\n        return min({maxIdx + 1, n - minIdx, minIdx + 1 + n - maxIdx});\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610682792",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

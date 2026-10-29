@@ -1,0 +1,29 @@
+{
+  "id": "232",
+  "title": "Implement Queue using Stacks",
+  "slug": "implement-queue-using-stacks",
+  "url": "https://leetcode.com/problems/implement-queue-using-stacks/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Stack",
+    "Design",
+    "Queue"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Queue",
+    "Stack"
+  ],
+  "description": "Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue ( push , peek , pop , and empty ). \n \n Implement the MyQueue class: \n\n void push(int x) Pushes element x to the back of the queue. \n \n int pop() Removes the element from the front of the queue and returns it. \n \n int peek() Returns the element at the front of the queue. \n \n boolean empty() Returns true if the queue is empty, false otherwise. \n\n Notes: \n\n You must use only standard operations of a stack, which means only push to top , peek/pop from top , size , and is empty operations are valid. \n \n Depending on your language, the stack may not be supported natively. You may simulate a stack using a list or deque (double-ended queue) as long as you use only a stack's standard operations. \n\n Example 1: \n \n```\nInput\n\n[\"MyQueue\", \"push\", \"push\", \"peek\", \"pop\", \"empty\"]\n[[], [1], [2], [], [], []]\n\nOutput\n\n[null, null, null, 1, 1, false]\n\nExplanation\n\nMyQueue myQueue = new MyQueue();\nmyQueue.push(1); // queue is: [1]\nmyQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)\nmyQueue.peek(); // return 1\nmyQueue.pop(); // return 1, queue is [2]\nmyQueue.empty(); // return false\n```\n\n Constraints: \n\n 1 <= x <= 9 \n \n At most 100  calls will be made to push , pop , peek , and empty . \n \n All the calls to pop and peek are valid. \n\n Follow-up: Can you implement the queue such that each operation is amortized O(1) time complexity? In other words, performing n operations will take overall O(n) time even if one of those operations may take longer.",
+  "code": "class MyQueue {\n    stack<int> input, output;\npublic:\n    void push(int x) {\n        input.push(x);\n    }\n    int pop() {\n        peek();\n        int val = output.top(); output.pop();\n        return val;\n    }\n    int peek() {\n        if (output.empty()) {\n            while (!input.empty()) {\n                output.push(input.top());\n                input.pop();\n            }\n        }\n        return output.top();\n    }\n    bool empty() {\n        return input.empty() && output.empty();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588102707",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

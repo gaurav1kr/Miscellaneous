@@ -1,0 +1,33 @@
+{
+  "id": "2128",
+  "title": "Remove All Ones With Row and Column Flips",
+  "slug": "remove-all-ones-with-row-and-column-flips",
+  "url": "https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Bit Manipulation",
+    "Matrix"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an m x n binary matrix grid . \n \n In one operation, you can choose any row or column and flip each value in that row or column (i.e., changing all 0 's to 1 's, and all 1 's to 0 's). \n \n Return true if it is possible to remove all 1 's from grid using any number of operations or false otherwise. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/01/03/image-20220103191300-1.png] \n \n```\nInput:\n grid = [[0,1,0],[1,0,1],[0,1,0]]\n\nOutput:\n true\n\nExplanation:\n One possible way to remove all 1's from grid is to:\n- Flip the middle row\n- Flip the middle column\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/01/03/image-20220103181204-7.png] \n \n```\nInput:\n grid = [[1,1,0],[0,0,0],[0,0,0]]\n\nOutput:\n false\n\nExplanation:\n It is impossible to remove all 1's from grid.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2022/01/03/image-20220103181224-8.png] \n \n```\nInput:\n grid = [[0]]\n\nOutput:\n true\n\nExplanation:\n There are no 1's in grid.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 300 \n \n grid[i][j] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n    bool removeOnes(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        for (int r = 1; r < m; ++r) {\n            int flip = grid[r][0] ^ grid[0][0];\n            for (int c = 0; c < n; ++c) {\n                if ((grid[r][c] ^ grid[0][c]) != flip) return false;\n            }\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178641904",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

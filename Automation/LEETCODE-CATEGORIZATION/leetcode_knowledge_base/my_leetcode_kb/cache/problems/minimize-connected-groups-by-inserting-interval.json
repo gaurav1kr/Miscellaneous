@@ -1,0 +1,34 @@
+{
+  "id": "3323",
+  "title": "Minimize Connected Groups by Inserting Interval",
+  "slug": "minimize-connected-groups-by-inserting-interval",
+  "url": "https://leetcode.com/problems/minimize-connected-groups-by-inserting-interval/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sliding Window",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D array intervals , where intervals[i] = [start i , end i ] represents the start and the end of interval i . You are also given an integer k . \n \n You must add exactly one new interval [start new , end new ] to the array such that: \n\n The length of the new interval, end new - start new , is at most k . \n \n After adding, the number of connected groups in intervals is minimized . \n\n A connected group of intervals is a maximal collection of intervals that, when considered together, cover a continuous range from the smallest point to the largest point with no gaps between them. Here are some examples: \n\n A group of intervals [[1, 2], [2, 5], [3, 3]] is connected because together they cover the range from 1 to 5 without any gaps. \n \n However, a group of intervals [[1, 2], [3, 4]] is not connected because the segment (2, 3) is not covered. \n\n Return the minimum number of connected groups after adding exactly one new interval to the array. \n\n Example 1: \n\n Input: intervals = [[1,3],[5,6],[8,10]], k = 3 \n \n Output: 2 \n \n Explanation: \n \n After adding the interval [3, 5] , we have two connected groups: [[1, 3], [3, 5], [5, 6]] and [[8, 10]] . \n\n Example 2: \n\n Input: intervals = [[5,10],[1,1],[3,3]], k = 1 \n \n Output: 3 \n \n Explanation: \n \n After adding the interval [1, 1] , we have three connected groups: [[1, 1], [1, 1]] , [[3, 3]] , and [[5, 10]] . \n\n Constraints: \n\n 1 <= intervals.length <= 10 5 \n \n intervals[i] == [start i , end i ] \n \n 1 <= start i <= end i <= 10 9 \n \n 1 <= k <= 10 9",
+  "code": "class Solution {\npublic:\n    int minConnectedGroups(vector<vector<int>>& intervals,int k) {\n        sort(intervals.begin(),intervals.end());\n        vector<pair<int,int>> merged;\n        for (auto& v:intervals) {\n            if (merged.empty() || v[0]>merged.back().second)\n                merged.push_back({v[0],v[1]});\n            else merged.back().second=max(merged.back().second,v[1]);\n        }\n        int m=merged.size(), best=0, right=0;\n        for (int left=0;left<m;++left) {\n            right=max(right,left);\n            while (right+1<m && merged[right+1].first-merged[left].second<=k)\n                ++right;\n            best=max(best,right-left);\n        }\n        return m-best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179717380",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

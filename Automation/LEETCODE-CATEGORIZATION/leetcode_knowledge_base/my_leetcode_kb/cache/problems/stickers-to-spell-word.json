@@ -1,0 +1,45 @@
+{
+  "id": "691",
+  "title": "Stickers to Spell Word",
+  "slug": "stickers-to-spell-word",
+  "url": "https://leetcode.com/problems/stickers-to-spell-word/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Memoization",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "We are given n different types of stickers . Each sticker has a lowercase English word on it. \n \n You would like to spell out the given string target by cutting individual letters from your collection of stickers and rearranging them. You can use each sticker more than once if you want, and you have infinite quantities of each sticker. \n \n Return the minimum number of stickers that you need to spell out target . If the task is impossible, return -1 . \n \n Note: In all test cases, all words were chosen randomly from the 1000 most common US English words, and target was chosen as a concatenation of two random words. \n\n Example 1: \n \n```\nInput:\n stickers = [\"with\",\"example\",\"science\"], target = \"thehat\"\n\nOutput:\n 3\n\nExplanation:\n\nWe can use 2 \"with\" stickers, and 1 \"example\" sticker.\nAfter cutting and rearrange the letters of those stickers, we can form the target \"thehat\".\nAlso, this is the minimum number of stickers necessary to form the target string.\n```\n\n Example 2: \n \n```\nInput:\n stickers = [\"notice\",\"possible\"], target = \"basicbasic\"\n\nOutput:\n -1\nExplanation:\nWe cannot form the target \"basicbasic\" from cutting letters from the given stickers.\n```\n\n Constraints: \n\n n == stickers.length \n \n 1 <= n <= 50 \n \n 1 <= stickers[i].length <= 10 \n \n 1 <= target.length <= 15 \n \n stickers[i] and target consist of lowercase English letters.",
+  "code": "#include <vector>\n#include <string>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minStickers(vector<string>& stickers, string target) {\n        int m = target.size();\n        vector<vector<int>> stickerCount;\n        for (string& s : stickers) {\n            vector<int> count(26, 0);\n            for (char c : s) count[c - 'a']++;\n            stickerCount.push_back(count);\n        }\n\n        unordered_map<string, int> memo;\n        memo[\"\"] = 0;\n\n        function<int(string)> dp = [&](string t) -> int {\n            if (memo.count(t)) return memo[t];\n            vector<int> count(26, 0);\n            for (char c : t) count[c - 'a']++;\n\n            int res = INT_MAX;\n            for (auto& s : stickerCount) {\n                if (s[t[0] - 'a'] == 0) continue;\n                string next;\n                for (int i = 0; i < 26; ++i) {\n                    if (count[i] > s[i])\n                        next += string(count[i] - s[i], 'a' + i);\n                }\n                int temp = dp(next);\n                if (temp != -1) res = min(res, 1 + temp);\n            }\n            return memo[t] = res == INT_MAX ? -1 : res;\n        };\n\n        return dp(target);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595382409",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

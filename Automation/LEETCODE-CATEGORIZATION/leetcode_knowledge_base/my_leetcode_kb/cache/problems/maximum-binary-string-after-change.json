@@ -1,0 +1,28 @@
+{
+  "id": "1702",
+  "title": "Maximum Binary String After Change",
+  "slug": "maximum-binary-string-after-change",
+  "url": "https://leetcode.com/problems/maximum-binary-string-after-change/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a binary string binary consisting of only 0 's or 1 's. You can apply each of the following operations any number of times: \n\n Operation 1: If the number contains the substring \"00\" , you can replace it with \"10\" .\n\n For example, \" 00 010\" -> \" 10 010 \" \n\n Operation 2: If the number contains the substring \"10\" , you can replace it with \"01\" .\n\n For example, \"000 10 \" -> \"000 01 \" \n\n Return the maximum binary string you can obtain after any number of operations. Binary string x is greater than binary string y if x 's decimal representation is greater than y 's decimal representation. \n\n Example 1: \n \n```\nInput:\n binary = \"000110\"\n\nOutput:\n \"111011\"\n\nExplanation:\n A valid transformation sequence can be:\n\"0001\n10\n\" -> \"0001\n01\n\" \n\"\n00\n0101\" -> \"\n10\n0101\" \n\"1\n00\n101\" -> \"1\n10\n101\" \n\"110\n10\n1\" -> \"110\n01\n1\" \n\"11\n00\n11\" -> \"11\n10\n11\"\n```\n\n Example 2: \n \n```\nInput:\n binary = \"01\"\n\nOutput:\n \"01\"\n\nExplanation:\n \"01\" cannot be transformed any further.\n```\n\n Constraints: \n\n 1 <= binary.length <= 10 5 \n \n binary consist of '0' and '1' .",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string maximumBinaryString(string binary) {\n        int n = binary.size(), count0 = 0, first0 = -1;\n        for (int i = 0; i < n; ++i) {\n            if (binary[i] == '0') {\n                if (first0 == -1) first0 = i;\n                ++count0;\n            }\n        }\n        if (count0 <= 1) return binary;\n        string res(n, '1');\n        res[first0 + count0 - 1] = '0';\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610634947",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

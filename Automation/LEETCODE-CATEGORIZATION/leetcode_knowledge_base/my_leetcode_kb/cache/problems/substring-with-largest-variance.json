@@ -1,0 +1,34 @@
+{
+  "id": "2272",
+  "title": "Substring With Largest Variance",
+  "slug": "substring-with-largest-variance",
+  "url": "https://leetcode.com/problems/substring-with-largest-variance/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Enumeration"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "The variance of a string is defined as the largest difference between the number of occurrences of any 2 characters present in the string. Note the two characters may or may not be the same. \n \n Given a string s consisting of lowercase English letters only, return the largest variance possible among all substrings of s . \n \n A substring is a contiguous sequence of characters within a string. \n\n Example 1: \n \n```\nInput:\n s = \"aababbb\"\n\nOutput:\n 3\n\nExplanation:\n\nAll possible variances along with their respective substrings are listed below:\n- Variance 0 for substrings \"a\", \"aa\", \"ab\", \"abab\", \"aababb\", \"ba\", \"b\", \"bb\", and \"bbb\".\n- Variance 1 for substrings \"aab\", \"aba\", \"abb\", \"aabab\", \"ababb\", \"aababbb\", and \"bab\".\n- Variance 2 for substrings \"aaba\", \"ababbb\", \"abbb\", and \"babb\".\n- Variance 3 for substring \"babbb\".\nSince the largest possible variance is 3, we return it.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abcde\"\n\nOutput:\n 0\n\nExplanation:\n\nNo letter occurs more than once in s, so the variance of every substring is 0.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists of lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:int largestVariance(string s){int ans=0;vector<int> cnt(26);for(char c:s)++cnt[c-'a'];for(int a=0;a<26;++a)for(int b=0;b<26;++b){if(a==b||!cnt[a]||!cnt[b])continue;int ca=0,cb=0,remaining=cnt[b];for(char ch:s){int x=ch-'a';if(x!=a&&x!=b)continue;if(x==a)++ca;else{++cb;--remaining;}if(cb)ans=max(ans,ca-cb);if(ca<cb&&remaining>0)ca=cb=0;}}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175903078",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

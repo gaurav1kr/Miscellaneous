@@ -1,0 +1,30 @@
+{
+  "id": "3904",
+  "title": "Smallest Stable Index II",
+  "slug": "smallest-stable-index-ii",
+  "url": "https://leetcode.com/problems/smallest-stable-index-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and an integer k . \n \n For each index i , define its instability score as max(nums[0..i]) - min(nums[i..n - 1]) . \n \n In other words: \n\n max(nums[0..i]) is the largest value among the elements from index 0 to index i . \n \n min(nums[i..n - 1]) is the smallest value among the elements from index i to index n - 1 . \n\n An index i is called stable if its instability score is less than or equal to k . \n \n Return the smallest stable index. If no such index exists, return -1. \n\n Example 1: \n\n Input: nums = [5,0,1,4], k = 3 \n \n Output: 3 \n \n Explanation: \n\n At index 0: The maximum in [5] is 5, and the minimum in [5, 0, 1, 4] is 0, so the instability score is 5 - 0 = 5 . \n \n At index 1: The maximum in [5, 0] is 5, and the minimum in [0, 1, 4] is 0, so the instability score is 5 - 0 = 5 . \n \n At index 2: The maximum in [5, 0, 1] is 5, and the minimum in [1, 4] is 1, so the instability score is 5 - 1 = 4 . \n \n At index 3: The maximum in [5, 0, 1, 4] is 5, and the minimum in [4] is 4, so the instability score is 5 - 4 = 1 . \n \n This is the first index with an instability score less than or equal to k = 3 . Thus, the answer is 3. \n\n Example 2: \n\n Input: nums = [3,2,1], k = 1 \n \n Output: -1 \n \n Explanation: \n\n At index 0, the instability score is 3 - 1 = 2 . \n \n At index 1, the instability score is 3 - 1 = 2 . \n \n At index 2, the instability score is 3 - 1 = 2 . \n \n None of these values is less than or equal to k = 1 , so the answer is -1. \n\n Example 3: \n\n Input: nums = [0], k = 0 \n \n Output: 0 \n \n Explanation: \n \n At index 0, the instability score is 0 - 0 = 0 , which is less than or equal to k = 0 . Therefore, the answer is 0. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 9 \n \n 0 <= k <= 10 9",
+  "code": "class Solution {\npublic:\n    int firstStableIndex(vector<int>& nums, int k) {\n        int n = nums.size();\n        vector<int> suffix(n);\n        suffix[n-1] = nums[n-1];\n        for (int i = n-2; i >= 0; --i)\n            suffix[i] = min(nums[i], suffix[i+1]);\n        int pref = nums[0];\n        for (int i = 0; i < n; ++i) {\n            pref = max(pref, nums[i]);\n            if ((long long)pref - suffix[i] <= k) return i;\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181080502",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

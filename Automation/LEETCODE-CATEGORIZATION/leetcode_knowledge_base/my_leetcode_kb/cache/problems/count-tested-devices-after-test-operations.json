@@ -1,0 +1,30 @@
+{
+  "id": "2960",
+  "title": "Count Tested Devices After Test Operations",
+  "slug": "count-tested-devices-after-test-operations",
+  "url": "https://leetcode.com/problems/count-tested-devices-after-test-operations/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array batteryPercentages having length n , denoting the battery percentages of n 0-indexed devices. \n \n Your task is to test each device i in order from 0 to n - 1 , by performing the following test operations: \n\n If batteryPercentages[i] is greater than 0 :\n\n Increment the count of tested devices. \n \n Decrease the battery percentage of all devices with indices j in the range [i + 1, n - 1] by 1 , ensuring their battery percentage never goes below 0 , i.e, batteryPercentages[j] = max(0, batteryPercentages[j] - 1) . \n \n Move to the next device. \n\n Otherwise, move to the next device without performing any test. \n\n Return an integer denoting the number of devices that will be tested after performing the test operations in order. \n\n Example 1: \n \n```\nInput:\n batteryPercentages = [1,1,2,1,3]\n\nOutput:\n 3\n\nExplanation: \nPerforming the test operations in order starting from device 0:\nAt device 0, batteryPercentages[0] > 0, so there is now 1 tested device, and batteryPercentages becomes [1,0,1,0,2].\nAt device 1, batteryPercentages[1] == 0, so we move to the next device without testing.\nAt device 2, batteryPercentages[2] > 0, so there are now 2 tested devices, and batteryPercentages becomes [1,0,1,0,1].\nAt device 3, batteryPercentages[3] == 0, so we move to the next device without testing.\nAt device 4, batteryPercentages[4] > 0, so there are now 3 tested devices, and batteryPercentages stays the same.\nSo, the answer is 3.\n```\n\n Example 2: \n \n```\nInput:\n batteryPercentages = [0,1,2]\n\nOutput:\n 2\n\nExplanation:\n Performing the test operations in order starting from device 0:\nAt device 0, batteryPercentages[0] == 0, so we move to the next device without testing.\nAt device 1, batteryPercentages[1] > 0, so there is now 1 tested device, and batteryPercentages becomes [0,1,1].\nAt device 2, batteryPercentages[2] > 0, so there are now 2 tested devices, and batteryPercentages stays the same.\nSo, the answer is 2.\n```\n\n Constraints: \n\n 1 <= n == batteryPercentages.length <= 100 \n \n 0 <= batteryPercentages[i] <= 100",
+  "code": "class Solution {public:int countTestedDevices(vector<int>& batteryPercentages){int ans=0;for(int x:batteryPercentages)if(x>ans)++ans;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176777423",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

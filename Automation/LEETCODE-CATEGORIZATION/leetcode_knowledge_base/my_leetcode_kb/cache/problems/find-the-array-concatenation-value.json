@@ -1,0 +1,30 @@
+{
+  "id": "2562",
+  "title": "Find the Array Concatenation Value",
+  "slug": "find-the-array-concatenation-value",
+  "url": "https://leetcode.com/problems/find-the-array-concatenation-value/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Simulation"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . \n \n The concatenation of two numbers is the number formed by concatenating their numerals. \n\n For example, the concatenation of 15 , 49 is 1549 . \n\n The concatenation value of nums is initially equal to 0 . Perform this operation until nums becomes empty: \n\n If nums has a size greater than one, add the value of the concatenation of the first and the last element to the concatenation value of nums , and remove those two elements from nums . For example, if the nums was [1, 2, 4, 5, 6] , add 16 to the concatenation value . \n \n If only one element exists in nums , add its value to the concatenation value of nums , then remove it. \n\n Return the concatenation value of nums . \n\n Example 1: \n \n```\nInput:\n nums = [7,52,2,4]\n\nOutput:\n 596\n\nExplanation:\n Before performing any operation, nums is [7,52,2,4] and concatenation value is 0.\n - In the first operation:\nWe pick the first element, 7, and the last element, 4.\nTheir concatenation is 74, and we add it to the concatenation value, so it becomes equal to 74.\nThen we delete them from nums, so nums becomes equal to [52,2].\n - In the second operation:\nWe pick the first element, 52, and the last element, 2.\nTheir concatenation is 522, and we add it to the concatenation value, so it becomes equal to 596.\nThen we delete them from the nums, so nums becomes empty.\nSince the concatenation value is 596 so the answer is 596.\n```\n\n Example 2: \n \n```\nInput:\n nums = [5,14,13,8,12]\n\nOutput:\n 673\n\nExplanation:\n Before performing any operation, nums is [5,14,13,8,12] and concatenation value is 0.\n - In the first operation:\nWe pick the first element, 5, and the last element, 12.\nTheir concatenation is 512, and we add it to the concatenation value, so it becomes equal to 512.\nThen we delete them from the nums, so nums becomes equal to [14,13,8].\n - In the second operation:\nWe pick the first element, 14, and the last element, 8.\nTheir concatenation is 148, and we add it to the concatenation value, so it becomes equal to 660.\nThen we delete them from the nums, so nums becomes equal to [13].\n - In the third operation:\nnums has only one element, so we pick 13 and add it to the concatenation value, so it becomes equal to 673.\nThen we delete it from nums, so nums become empty.\nSince the concatenation value is 673 so the answer is 673.\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 10 4",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n long long findTheArrayConcVal(vector<int>& nums){\n  int l=0,r=nums.size()-1;long long ans=0;\n  while(l<r)ans+=stoll(to_string(nums[l++])+to_string(nums[r--]));\n  if(l==r)ans+=nums[l];return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176613206",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "865",
+  "title": "Smallest Subtree with all the Deepest Nodes",
+  "slug": "smallest-subtree-with-all-the-deepest-nodes",
+  "url": "https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree",
+    "Binary Lifting",
+    "Lowest Common Ancestor",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map / hash set",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, the depth of each node is the shortest distance to the root . \n \n Return the smallest subtree such that it contains all the deepest nodes in the original tree. \n \n A node is called the deepest if it has the largest depth possible among any node in the entire tree. \n \n The subtree of a node is a tree consisting of that node, plus the set of all descendants of that node. \n\n Example 1: \n [Figure: https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/01/sketch1.png] \n \n```\nInput:\n root = [3,5,1,6,2,0,8,null,null,7,4]\n\nOutput:\n [2,7,4]\n\nExplanation:\n We return the node with value 2, colored in yellow in the diagram.\nThe nodes coloured in blue are the deepest nodes of the tree.\nNotice that nodes 5, 3 and 2 contain the deepest nodes in the tree but node 2 is the smallest subtree among them, so we return it.\n```\n\n Example 2: \n \n```\nInput:\n root = [1]\n\nOutput:\n [1]\n\nExplanation:\n The root is the deepest node in the tree.\n```\n\n Example 3: \n \n```\nInput:\n root = [0,1,3,null,2]\n\nOutput:\n [2]\n\nExplanation:\n The deepest node in the tree is 2, the valid subtrees are the subtrees of nodes 2, 1 and 0 but the subtree of node 2 is the smallest.\n```\n\n Constraints: \n\n The number of nodes in the tree will be in the range [1, 500] . \n \n 0 <= Node.val <= 500 \n \n The values of the nodes in the tree are unique . \n\n Note: This question is the same as 1123: https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution \n{\npublic:\n    pair<int, TreeNode*> deep(TreeNode* root)\n    {\n        if (!root) return { 0, NULL };\n        pair<int, TreeNode*> l = deep(root->left);\n        pair<int, TreeNode*> r = deep(root->right);\n\n        int d1 = l.first;\n        int d2 = r.first;\n        \n        int maxDepth = max(d1, d2) + 1;\n        TreeNode* secondNode;\n        if (d1 == d2) \n        {\n            secondNode = root;\n        }\n        else if (d1 > d2) \n        {\n            secondNode = l.second;\n        }\n        else \n        {\n            secondNode = r.second;\n        }\n        return { maxDepth, secondNode };\n    }\n\n    TreeNode* subtreeWithAllDeepest(TreeNode* root) \n    {\n        return deep(root).second;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1171718476",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

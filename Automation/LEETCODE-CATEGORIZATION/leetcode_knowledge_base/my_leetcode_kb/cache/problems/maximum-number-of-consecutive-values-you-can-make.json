@@ -1,0 +1,32 @@
+{
+  "id": "1798",
+  "title": "Maximum Number of Consecutive Values You Can Make",
+  "slug": "maximum-number-of-consecutive-values-you-can-make",
+  "url": "https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array coins of length n which represents the n coins that you own. The value of the i th coin is coins[i] . You can make some value x if you can choose some of your n coins such that their values sum up to x . \n \n Return the maximum number of consecutive integer values that you can make with your coins starting from and including 0 . \n \n Note that you may have multiple coins of the same value. \n\n Example 1: \n \n```\nInput:\n coins = [1,3]\n\nOutput:\n 2\n\nExplanation: \nYou can make the following values:\n- 0: take []\n- 1: take [1]\nYou can make 2 consecutive integer values starting from 0.\n```\n\n Example 2: \n \n```\nInput:\n coins = [1,1,1,4]\n\nOutput:\n 8\n\nExplanation: \nYou can make the following values:\n- 0: take []\n- 1: take [1]\n- 2: take [1,1]\n- 3: take [1,1,1]\n- 4: take [4]\n- 5: take [4,1]\n- 6: take [4,1,1]\n- 7: take [4,1,1,1]\nYou can make 8 consecutive integer values starting from 0.\n```\n\n Example 3: \n \n```\nInput:\n coins = [1,4,10,3,1]\n\nOutput:\n 20\n```\n\n Constraints: \n\n coins.length == n \n \n 1 <= n <= 4 * 10 4 \n \n 1 <= coins[i] <= 4 * 10 4",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int getMaximumConsecutive(vector<int>& coins) {\n        sort(coins.begin(), coins.end());\n        int res = 1;\n        for (int c : coins) {\n            if (c > res) break;\n            res += c;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610600146",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

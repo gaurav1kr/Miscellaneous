@@ -1,0 +1,32 @@
+{
+  "id": "1100",
+  "title": "Find K-Length Substrings With No Repeated Characters",
+  "slug": "find-k-length-substrings-with-no-repeated-characters",
+  "url": "https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s and an integer k , return the number of substrings in s of length k with no repeated characters . \n\n Example 1: \n \n```\nInput:\n s = \"havefunonleetcode\", k = 5\n\nOutput:\n 6\n\nExplanation:\n There are 6 substrings they are: 'havef','avefu','vefun','efuno','etcod','tcode'.\n```\n\n Example 2: \n \n```\nInput:\n s = \"home\", k = 5\n\nOutput:\n 0\n\nExplanation:\n Notice k can be larger than the length of s. In this case, it is not possible to find any substring.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists of lowercase English letters. \n \n 1 <= k <= 10 4",
+  "code": "class Solution {\npublic:\n    int numKLenSubstrNoRepeats(string s, int k) {\n        if (k > static_cast<int>(s.size())) {\n            return 0;\n        }\n        vector<int> freq(256, 0);\n        int duplicates = 0;\n        int answer = 0;\n        for (int i = 0; i < static_cast<int>(s.size()); ++i) {\n            unsigned char c = s[i];\n            if (++freq[c] == 2) {\n                ++duplicates;\n            }\n            if (i >= k) {\n                unsigned char old = s[i - k];\n                if (--freq[old] == 1) {\n                    --duplicates;\n                }\n            }\n            if (i >= k - 1 && duplicates == 0) {\n                ++answer;\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178527994",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

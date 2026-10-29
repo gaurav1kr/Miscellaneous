@@ -1,0 +1,25 @@
+{
+  "id": "3001",
+  "title": "Minimum Moves to Capture The Queen",
+  "slug": "minimum-moves-to-capture-the-queen",
+  "url": "https://leetcode.com/problems/minimum-moves-to-capture-the-queen/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Enumeration"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "There is a 1-indexed 8 x 8 chessboard containing 3 pieces. \n \n You are given 6 integers a , b , c , d , e , and f where: \n\n (a, b) denotes the position of the white rook. \n \n (c, d) denotes the position of the white bishop. \n \n (e, f) denotes the position of the black queen. \n\n Given that you can only move the white pieces, return the minimum number of moves required to capture the black queen . \n \n Note that: \n\n Rooks can move any number of squares either vertically or horizontally, but cannot jump over other pieces. \n \n Bishops can move any number of squares diagonally, but cannot jump over other pieces. \n \n A rook or a bishop can capture the queen if it is located in a square that they can move to. \n \n The queen does not move. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/12/21/ex1.png] \n \n```\nInput:\n a = 1, b = 1, c = 8, d = 8, e = 2, f = 3\n\nOutput:\n 2\n\nExplanation:\n We can capture the black queen in two moves by moving the white rook to (1, 3) then to (2, 3).\nIt is impossible to capture the black queen in less than two moves since it is not being attacked by any of the pieces at the beginning.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/12/21/ex2.png] \n \n```\nInput:\n a = 5, b = 3, c = 3, d = 4, e = 5, f = 2\n\nOutput:\n 1\n\nExplanation:\n We can capture the black queen in a single move by doing one of the following: \n- Move the white rook to (5, 2).\n- Move the white bishop to (5, 2).\n```\n\n Constraints: \n\n 1 <= a, b, c, d, e, f <= 8 \n \n No two pieces are on the same square.",
+  "code": "class Solution {public:int minMovesToCaptureTheQueen(int a,int b,int c,int d,int e,int f){bool rook=(a==e&&!(c==a&&min(b,f)<d&&d<max(b,f)))||(b==f&&!(d==b&&min(a,e)<c&&c<max(a,e)));bool bishop=(abs(c-e)==abs(d-f)&&!(abs(a-c)==abs(b-d)&&min(c,e)<a&&a<max(c,e)&&min(d,f)<b&&b<max(d,f)));return rook||bishop?1:2;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176804340",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

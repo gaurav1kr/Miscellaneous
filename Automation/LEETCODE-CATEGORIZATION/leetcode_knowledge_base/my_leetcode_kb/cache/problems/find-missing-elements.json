@@ -1,0 +1,35 @@
+{
+  "id": "3731",
+  "title": "Find Missing Elements",
+  "slug": "find-missing-elements",
+  "url": "https://leetcode.com/problems/find-missing-elements/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums consisting of unique integers. \n \n Originally, nums contained every integer within a certain range. However, some integers might have gone missing from the array. \n \n The smallest and largest integers of the original range are still present in nums . \n \n Return a sorted list of all the missing integers in this range. If no integers are missing, return an empty list. \n\n Example 1: \n\n Input: nums = [1,4,2,5] \n \n Output: [3] \n \n Explanation: \n \n The smallest integer is 1 and the largest is 5, so the full range should be [1,2,3,4,5] . Among these, only 3 is missing. \n\n Example 2: \n\n Input: nums = [7,8,6,9] \n \n Output: [] \n \n Explanation: \n \n The smallest integer is 6 and the largest is 9, so the full range is [6,7,8,9] . All integers are already present, so no integer is missing. \n\n Example 3: \n\n Input: nums = [5,1] \n \n Output: [2,3,4] \n \n Explanation: \n \n The smallest integer is 1 and the largest is 5, so the full range should be [1,2,3,4,5] . The missing integers are 2, 3, and 4. \n\n Constraints: \n\n 2 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {public: vector<int> findMissingElements(vector<int>& nums) {int lo=*min_element(nums.begin(),nums.end()),hi=*max_element(nums.begin(),nums.end());unordered_set<int> s(nums.begin(),nums.end());vector<int> a;for(int x=lo+1;x<hi;++x)if(!s.count(x))a.push_back(x);return a;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177741686",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

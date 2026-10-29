@@ -1,0 +1,34 @@
+{
+  "id": "3990",
+  "title": "Create Grid With Exactly K Paths II",
+  "slug": "create-grid-with-exactly-k-paths-ii",
+  "url": "https://leetcode.com/problems/create-grid-with-exactly-k-paths-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Bit Manipulation",
+    "Matrix",
+    "Combinatorics"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer k . \n \n Construct any grid consisting only of the characters '.' and '#' , where: \n\n '.' represents a free cell. \n \n '#' represents an obstacle cell. \n\n The grid must contain at most 25 rows and at most 25 columns. \n \n A valid path is a sequence of free cells that: \n\n Starts at the top-left cell (0, 0) . \n \n Ends at the bottom-right cell (m - 1, n - 1) , where m and n are the dimensions of your constructed grid. \n \n Moves only:\n\n Right, from (i, j) to (i, j + 1) , or \n \n Down, from (i, j) to (i + 1, j) . \n\n Return any grid such that there are exactly k valid paths from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array. \n\n Example 1: \n\n Input: k = 2 \n \n Output: [\"..#\",\"#..\",\"#..\"] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2026/05/31/screenshot-2026-05-31-at-82224pm.png] \n \n The grid contains exactly 2 valid paths from (0, 0) to (2, 2) : \n\n (0, 0) → (0, 1) → (1, 1) → (1, 2) → (2, 2) \n \n (0, 0) → (0, 1) → (1, 1) → (2, 1) → (2, 2) \n\n Example 2: \n\n Input: k = 3 \n \n Output: [\"...\",\"#..\",\"#..\"] \n \n Explanation: \n \n ​​​​​​​ [Figure: https://assets.leetcode.com/uploads/2026/05/31/screenshot-2026-05-31-at-82251pm.png] \n \n The grid contains exactly 3 valid paths from (0, 0) to (2, 2) : \n\n (0, 0) → (0, 1) → (0, 2) → (1, 2) → (2, 2) \n \n (0, 0) → (0, 1) → (1, 1) → (1, 2) → (2, 2) \n \n (0, 0) → (0, 1) → (1, 1) → (2, 1) → (2, 2) \n\n Constraints: ​​​​​​​ \n\n 1 <= k <= 1000",
+  "code": "class Solution {\npublic:\n    vector<string> createGrid(int k) {\n        vector<string> a(21, string(25, '#'));\n        for (int r=0;r<21;++r) a[r][24]='.';\n        for (int bit=0;bit<10;++bit) {\n            int r=2*bit, c=2*bit;\n            for (int i=r;i<=r+1;++i)\n                for (int j=c;j<=c+1;++j) a[i][j]='.';\n            if (bit<9) {\n                a[r+2][c+1]='.';\n                a[r+2][c+2]='.';\n            }\n            if (k & (1<<bit))\n                for (int j=c+1;j<25;++j) a[r][j]='.';\n        }\n        return a;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181501215",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

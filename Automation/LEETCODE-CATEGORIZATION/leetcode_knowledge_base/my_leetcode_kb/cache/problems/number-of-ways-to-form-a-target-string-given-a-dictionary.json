@@ -1,0 +1,33 @@
+{
+  "id": "1639",
+  "title": "Number of Ways to Form a Target String Given a Dictionary",
+  "slug": "number-of-ways-to-form-a-target-string-given-a-dictionary",
+  "url": "https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a list of strings of the same length words and a string target . \n \n Your task is to form target using the given words under the following rules: \n\n target should be formed from left to right. \n \n To form the i th character ( 0-indexed ) of target , you can choose the k th character of the j th string in words if target[i] = words[j][k] . \n \n Once you use the k th character of the j th string of words , you can no longer use the x th character of any string in words where x <= k . In other words, all characters to the left of or at index k become unusuable for every string. \n \n Repeat the process until you form the string target . \n\n Notice that you can use multiple characters from the same string in words provided the conditions above are met. \n \n Return the number of ways to form target from words . Since the answer may be too large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n words = [\"acca\",\"bbbb\",\"caca\"], target = \"aba\"\n\nOutput:\n 6\n\nExplanation:\n There are 6 ways to form target.\n\"aba\" -> index 0 (\"\na\ncca\"), index 1 (\"b\nb\nbb\"), index 3 (\"cac\na\n\")\n\"aba\" -> index 0 (\"\na\ncca\"), index 2 (\"bb\nb\nb\"), index 3 (\"cac\na\n\")\n\"aba\" -> index 0 (\"\na\ncca\"), index 1 (\"b\nb\nbb\"), index 3 (\"acc\na\n\")\n\"aba\" -> index 0 (\"\na\ncca\"), index 2 (\"bb\nb\nb\"), index 3 (\"acc\na\n\")\n\"aba\" -> index 1 (\"c\na\nca\"), index 2 (\"bb\nb\nb\"), index 3 (\"acc\na\n\")\n\"aba\" -> index 1 (\"c\na\nca\"), index 2 (\"bb\nb\nb\"), index 3 (\"cac\na\n\")\n```\n\n Example 2: \n \n```\nInput:\n words = [\"abba\",\"baab\"], target = \"bab\"\n\nOutput:\n 4\n\nExplanation:\n There are 4 ways to form target.\n\"bab\" -> index 0 (\"\nb\naab\"), index 1 (\"b\na\nab\"), index 2 (\"ab\nb\na\")\n\"bab\" -> index 0 (\"\nb\naab\"), index 1 (\"b\na\nab\"), index 3 (\"baa\nb\n\")\n\"bab\" -> index 0 (\"\nb\naab\"), index 2 (\"ba\na\nb\"), index 3 (\"baa\nb\n\")\n\"bab\" -> index 1 (\"a\nb\nba\"), index 2 (\"ba\na\nb\"), index 3 (\"baa\nb\n\")\n```\n\n Constraints: \n\n 1 <= words.length <= 1000 \n \n 1 <= words[i].length <= 1000 \n \n All strings in words have the same length. \n \n 1 <= target.length <= 1000 \n \n words[i] and target contain only lowercase English letters.",
+  "code": "#include <vector>\n#include <string>\nusing namespace std;\n\nclass Solution {\n    static constexpr int MOD = 1e9 + 7;\n\npublic:\n    int numWays(vector<string>& words, string target) {\n        int m = words[0].size(), n = target.size();\n        vector<vector<int>> freq(m, vector<int>(26, 0));\n        for (string& word : words)\n            for (int i = 0; i < m; ++i)\n                freq[i][word[i] - 'a']++;\n\n        vector<long long> dp(n + 1);\n        dp[0] = 1;\n\n        for (int i = 0; i < m; ++i) {\n            for (int j = n - 1; j >= 0; --j) {\n                dp[j + 1] += dp[j] * freq[i][target[j] - 'a'];\n                dp[j + 1] %= MOD;\n            }\n        }\n        return dp[n];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610673682",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

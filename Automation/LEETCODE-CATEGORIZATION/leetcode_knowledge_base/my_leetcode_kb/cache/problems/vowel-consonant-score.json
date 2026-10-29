@@ -1,0 +1,28 @@
+{
+  "id": "3813",
+  "title": "Vowel-Consonant Score",
+  "slug": "vowel-consonant-score",
+  "url": "https://leetcode.com/problems/vowel-consonant-score/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters, spaces, and digits. \n \n Let v be the number of vowels in s and c be the number of consonants in s . \n \n A vowel is one of the letters 'a' , 'e' , 'i' , 'o' , or 'u' , while any other letter in the English alphabet is considered a consonant. \n \n The score of the string s is defined as follows: \n\n If c > 0 , the score = floor(v / c) where floor denotes rounding down to the nearest integer. \n \n Otherwise, the score = 0 . \n\n Return an integer denoting the score of the string. \n\n Example 1: \n\n Input: s = \"cooear\" \n \n Output: 2 \n \n Explanation: \n \n The string s = \"cooear\" contains v = 4 vowels ('o', 'o', 'e', 'a') and c = 2 consonants ('c', 'r') . \n \n The score is floor(v / c) = floor(4 / 2) = 2 . \n\n Example 2: \n\n Input: s = \"axeyizou\" \n \n Output: 1 \n \n Explanation: \n \n The string s = \"axeyizou\" contains v = 5 vowels ('a', 'e', 'i', 'o', 'u') and c = 3 consonants ('x', 'y', 'z') . \n \n The score is floor(v / c) = floor(5 / 3) = 1 . \n\n Example 3: \n\n Input: s = \"au 123\" \n \n Output: 0 \n \n Explanation: \n \n The string s = \"au 123\" contains no consonants (c = 0) , so the score is 0. \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists of lowercase English letters, spaces and digits.",
+  "code": "class Solution {\npublic:\n    int vowelConsonantScore(string s) {\n        int v=0,c=0;\n        for(char ch:s){\n            ch=tolower((unsigned char)ch);\n            if(ch<'a'||ch>'z') continue;\n            if(string(\"aeiou\").find(ch)!=string::npos) ++v;\n            else ++c;\n        }\n        return c==0?0:v/c;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177765932",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

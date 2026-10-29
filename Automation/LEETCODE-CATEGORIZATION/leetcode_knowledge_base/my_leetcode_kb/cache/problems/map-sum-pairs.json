@@ -1,0 +1,36 @@
+{
+  "id": "677",
+  "title": "Map Sum Pairs",
+  "slug": "map-sum-pairs",
+  "url": "https://leetcode.com/problems/map-sum-pairs/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Design",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Trie"
+  ],
+  "description": "Design a map that allows you to do the following: \n\n Maps a string key to a given value. \n \n Returns the sum of the values that have a key with a prefix equal to a given string. \n\n Implement the MapSum class: \n\n MapSum() Initializes the MapSum object. \n \n void insert(String key, int val) Inserts the key-val pair into the map. If the key already existed, the original key-value pair will be overridden to the new one. \n \n int sum(string prefix) Returns the sum of all the pairs' value whose key starts with the prefix . \n\n Example 1: \n \n```\nInput\n\n[\"MapSum\", \"insert\", \"sum\", \"insert\", \"sum\"]\n[[], [\"apple\", 3], [\"ap\"], [\"app\", 2], [\"ap\"]]\n\nOutput\n\n[null, null, 3, null, 5]\n\nExplanation\n\nMapSum mapSum = new MapSum();\nmapSum.insert(\"apple\", 3); \nmapSum.sum(\"ap\"); // return 3 (\nap\nple = 3)\nmapSum.insert(\"app\", 2); \nmapSum.sum(\"ap\"); // return 5 (\nap\nple + \nap\np = 3 + 2 = 5)\n```\n\n Constraints: \n\n 1 <= key.length, prefix.length <= 50 \n \n key and prefix consist of only lowercase English letters. \n \n 1 <= val <= 1000 \n \n At most 50 calls will be made to insert and sum .",
+  "code": "#include <unordered_map>\n#include <string>\nusing namespace std;\n\nclass TrieNode {\npublic:\n    unordered_map<char, TrieNode*> children;\n    int value = 0;\n};\n\nclass MapSum {\nprivate:\n    TrieNode* root;\n    unordered_map<string, int> keyMap;\n\npublic:\n    MapSum() {\n        root = new TrieNode();\n    }\n\n    void insert(string key, int val) {\n        int delta = val - keyMap[key];\n        keyMap[key] = val;\n        TrieNode* node = root;\n        for (char ch : key) {\n            if (!node->children.count(ch)) {\n                node->children[ch] = new TrieNode();\n            }\n            node = node->children[ch];\n            node->value += delta;\n        }\n    }\n\n    int sum(string prefix) {\n        TrieNode* node = root;\n        for (char ch : prefix) {\n            if (!node->children.count(ch)) {\n                return 0;\n            }\n            node = node->children[ch];\n        }\n        return node->value;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591375742",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

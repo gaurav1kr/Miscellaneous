@@ -1,0 +1,36 @@
+{
+  "id": "2085",
+  "title": "Count Common Words With One Occurrence",
+  "slug": "count-common-words-with-one-occurrence",
+  "url": "https://leetcode.com/problems/count-common-words-with-one-occurrence/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two string arrays words1 and words2 , return the number of strings that appear exactly once in each  of the two arrays. \n\n Example 1: \n \n```\nInput:\n words1 = [\"leetcode\",\"is\",\"amazing\",\"as\",\"is\"], words2 = [\"amazing\",\"leetcode\",\"is\"]\n\nOutput:\n 2\n\nExplanation:\n\n- \"leetcode\" appears exactly once in each of the two arrays. We count this string.\n- \"amazing\" appears exactly once in each of the two arrays. We count this string.\n- \"is\" appears in each of the two arrays, but there are 2 occurrences of it in words1. We do not count this string.\n- \"as\" appears once in words1, but does not appear in words2. We do not count this string.\nThus, there are 2 strings that appear exactly once in each of the two arrays.\n```\n\n Example 2: \n \n```\nInput:\n words1 = [\"b\",\"bb\",\"bbb\"], words2 = [\"a\",\"aa\",\"aaa\"]\n\nOutput:\n 0\n\nExplanation:\n There are no strings that appear in each of the two arrays.\n```\n\n Example 3: \n \n```\nInput:\n words1 = [\"a\",\"ab\"], words2 = [\"a\",\"a\",\"a\",\"ab\"]\n\nOutput:\n 1\n\nExplanation:\n The only string that appears exactly once in each of the two arrays is \"ab\".\n```\n\n Constraints: \n\n 1 <= words1.length, words2.length <= 1000 \n \n 1 <= words1[i].length, words2[j].length <= 30 \n \n words1[i] and words2[j] consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n int countWords(vector<string>& words1,vector<string>& words2){\n  unordered_map<string,int>a,b;for(auto&s:words1)++a[s];for(auto&s:words2)++b[s];\n  int ans=0;for(auto&p:a) if(p.second==1 && b[p.first]==1) ++ans;return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175734084",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

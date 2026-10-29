@@ -1,0 +1,33 @@
+{
+  "id": "3653",
+  "title": "XOR After Range Multiplication Queries I",
+  "slug": "xor-after-range-multiplication-queries-i",
+  "url": "https://leetcode.com/problems/xor-after-range-multiplication-queries-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Simulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and a 2D integer array queries of size q , where queries[i] = [l i , r i , k i , v i ] . \n \n For each query, you must apply the following operations in order: \n\n Set idx = l i . \n \n While idx <= r i :\n\n Update: nums[idx] = (nums[idx] * v i ) % (10 9 + 7) \n \n Set idx += k i . \n\n Return the bitwise XOR of all elements in nums after processing all queries. \n\n Example 1: \n\n Input: nums = [1,1,1], queries = [[0,2,1,4]] \n \n Output: 4 \n \n Explanation: \n\n A single query [0, 2, 1, 4] multiplies every element from index 0 through index 2 by 4. \n \n The array changes from [1, 1, 1] to [4, 4, 4] . \n \n The XOR of all elements is 4 ^ 4 ^ 4 = 4 . \n\n Example 2: \n\n Input: nums = [2,3,1,5,4], queries = [[1,4,2,3],[0,2,1,2]] \n \n Output: 31 \n \n Explanation: \n\n The first query [1, 4, 2, 3] multiplies the elements at indices 1 and 3 by 3, transforming the array to [2, 9, 1, 15, 4] . \n \n The second query [0, 2, 1, 2] multiplies the elements at indices 0, 1, and 2 by 2, resulting in [4, 18, 2, 15, 4] . \n \n Finally, the XOR of all elements is 4 ^ 18 ^ 2 ^ 15 ^ 4 = 31 .​​​​​​​ ​​​​​​​ \n\n Constraints: \n\n 1 <= n == nums.length <= 10 3 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= q == queries.length <= 10 3 \n \n queries[i] = [l i , r i , k i , v i ] \n \n 0 <= l i <= r i < n \n \n 1 <= k i <= n \n \n 1 <= v i <= 10 5",
+  "code": "class Solution { public: int xorAfterQueries(vector<int>& nums,vector<vector<int>>& queries){const long long MOD=1000000007;for(auto&q:queries)for(int i=q[0];i<=q[1];i+=q[2])nums[i]=nums[i]*1LL*q[3]%MOD;int ans=0;for(int x:nums)ans^=x;return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177644547",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

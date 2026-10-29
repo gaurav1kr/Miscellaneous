@@ -1,0 +1,39 @@
+{
+  "id": "3081",
+  "title": "Replace Question Marks in String to Minimize Its Value",
+  "slug": "replace-question-marks-in-string-to-minimize-its-value",
+  "url": "https://leetcode.com/problems/replace-question-marks-in-string-to-minimize-its-value/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Priority queue / heap",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s . s[i] is either a lowercase English letter or '?' . \n \n For a string t having length m containing only lowercase English letters, we define the function cost(i) for an index i  as the number of characters equal to t[i]  that appeared before it, i.e. in the range [0, i - 1] . \n \n The value of t is the sum of cost(i) for all indices i . \n \n For example, for the string t = \"aab\" : \n\n cost(0) = 0 \n \n cost(1) = 1 \n \n cost(2) = 0 \n \n Hence, the value of \"aab\" is 0 + 1 + 0 = 1 . \n\n Your task is to replace all occurrences of '?' in s with any lowercase English letter so that the value of s is minimized . \n \n Return a string denoting the modified string with replaced occurrences of '?' . If there are multiple strings resulting in the minimum value , return the lexicographically smallest one. \n\n Example 1: \n\n Input: s = \"???\" \n \n Output: \"abc\" \n \n Explanation: In this example, we can replace the occurrences of '?' to make s equal to \"abc\" . \n \n For \"abc\" , cost(0) = 0 , cost(1) = 0 , and cost(2) = 0 . \n \n The value of \"abc\" is 0 . \n \n Some other modifications of s that have a value of 0 are \"cba\" , \"abz\" , and, \"hey\" . \n \n Among all of them, we choose the lexicographically smallest. \n\n Example 2: \n\n Input: s = \"a?a?\" \n \n Output: \"abac\" \n \n Explanation: In this example, the occurrences of '?' can be replaced to make s equal to \"abac\" . \n \n For \"abac\" , cost(0) = 0 , cost(1) = 0 , cost(2) = 1 , and cost(3) = 0 . \n \n The value of \"abac\" is  1 . \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is either a lowercase English letter or '?' .",
+  "code": "class Solution {public:string minimizeStringValue(string s){\n vector<int> f(26);int q=0;for(char c:s)if(c=='?')++q;else ++f[c-'a'];\n string chosen;for(int i=0;i<q;i++){int b=min_element(f.begin(),f.end())-f.begin();++f[b];chosen.push_back(char('a'+b));}\n sort(chosen.begin(),chosen.end());int j=0;for(char &c:s)if(c=='?')c=chosen[j++];return s;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176854508",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

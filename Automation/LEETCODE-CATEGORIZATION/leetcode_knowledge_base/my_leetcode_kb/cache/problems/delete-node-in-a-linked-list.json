@@ -1,0 +1,26 @@
+{
+  "id": "237",
+  "title": "Delete Node in a Linked List",
+  "slug": "delete-node-in-a-linked-list",
+  "url": "https://leetcode.com/problems/delete-node-in-a-linked-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "There is a singly-linked list head and we want to delete a node node in it. \n \n You are given the node to be deleted node . You will not be given access to the first node of head . \n \n All the values of the linked list are unique , and it is guaranteed that the given node node is not the last node in the linked list. \n \n Delete the given node. Note that by deleting the node, we do not mean removing it from memory. We mean: \n\n The value of the given node should not exist in the linked list. \n \n The number of nodes in the linked list should decrease by one. \n \n All the values before node should be in the same order. \n \n All the values after node should be in the same order. \n\n Custom testing: \n\n For the input, you should provide the entire linked list head and the node to be given node . node should not be the last node of the list and should be an actual node in the list. \n \n We will build the linked list and pass the node to your function. \n \n The output will be the entire list after calling your function. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/01/node1.jpg] \n \n```\nInput:\n head = [4,5,1,9], node = 5\n\nOutput:\n [4,1,9]\n\nExplanation: \nYou are given the second node with value 5, the linked list should become 4 -> 1 -> 9 after calling your function.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/09/01/node2.jpg] \n \n```\nInput:\n head = [4,5,1,9], node = 1\n\nOutput:\n [4,5,9]\n\nExplanation: \nYou are given the third node with value 1, the linked list should become 4 -> 5 -> 9 after calling your function.\n```\n\n Constraints: \n\n The number of the nodes in the given list is in the range [2, 1000] . \n \n -1000 <= Node.val <= 1000 \n \n The value of each node in the list is unique . \n \n The node to be deleted is in the list and is not a tail node.",
+  "code": "class Solution {\npublic:\n    void deleteNode(ListNode* node) {\n        node->val = node->next->val;\n        node->next = node->next->next;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588091452",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

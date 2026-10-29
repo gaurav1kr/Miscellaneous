@@ -1,0 +1,44 @@
+{
+  "id": "3845",
+  "title": "Maximum Subarray XOR with Bounded Range",
+  "slug": "maximum-subarray-xor-with-bounded-range",
+  "url": "https://leetcode.com/problems/maximum-subarray-xor-with-bounded-range/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Trie",
+    "Queue",
+    "Sliding Window",
+    "Prefix Sum",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Tree / Trie",
+    "Prefix Sum / Difference Array",
+    "Bit Manipulation",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Deque",
+    "Monotonic deque",
+    "Prefix-sum array",
+    "Queue",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given a non-negative integer array nums and an integer k . \n \n You must select a subarray of nums such that the difference between its maximum and minimum elements is at most k . The value of this subarray is the bitwise XOR of all elements in the subarray. \n \n Return an integer denoting the maximum possible value of the selected subarray. \n\n Example 1: \n\n Input: nums = [5,4,5,6], k = 2 \n \n Output: 7 \n \n Explanation: \n\n Select the subarray [5, 4, 5, 6 ] . \n \n The difference between its maximum and minimum elements is 6 - 4 = 2 <= k . \n \n The value is 4 XOR 5 XOR 6 = 7 . \n\n Example 2: \n\n Input: nums = [5,4,5,6], k = 1 \n \n Output: 6 \n \n Explanation: \n\n Select the subarray [5, 4, 5, 6 ] . \n \n The difference between its maximum and minimum elements is 6 - 6 = 0 <= k . \n \n The value is 6. \n\n Constraints: \n\n 1 <= nums.length <= 4 * 10 4 \n \n 0 <= nums[i] < 2 15 \n \n 0 <= k < 2 15",
+  "code": "class Solution {\n    struct Node{int child[2]={-1,-1},cnt=0;};vector<Node> trie;\n    void modify(int x,int delta){int p=0;trie[p].cnt+=delta;for(int b=14;b>=0;--b){int z=(x>>b)&1;if(trie[p].child[z]<0){trie[p].child[z]=trie.size();trie.push_back(Node());}p=trie[p].child[z];trie[p].cnt+=delta;}}\n    int best(int x){int p=0,ans=0;for(int b=14;b>=0;--b){int z=(x>>b)&1,t=trie[p].child[1-z];if(t>=0&&trie[t].cnt>0){ans|=1<<b;p=t;}else p=trie[p].child[z];}return ans;}\npublic:\n    int maxXor(vector<int>& nums,int k){int n=nums.size(),ans=0,l=0;deque<int> mx,mn;vector<int> pref(n+1);for(int i=0;i<n;++i)pref[i+1]=pref[i]^nums[i];trie.push_back(Node());\n        for(int r=0;r<n;++r){while(!mx.empty()&&nums[mx.back()]<=nums[r])mx.pop_back();mx.push_back(r);while(!mn.empty()&&nums[mn.back()]>=nums[r])mn.pop_back();mn.push_back(r);\n            modify(pref[r],1);\n            while(nums[mx.front()]-nums[mn.front()]>k){modify(pref[l],-1);if(mx.front()==l)mx.pop_front();if(mn.front()==l)mn.pop_front();++l;}\n            ans=max(ans,best(pref[r+1]));\n        }return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181156365",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

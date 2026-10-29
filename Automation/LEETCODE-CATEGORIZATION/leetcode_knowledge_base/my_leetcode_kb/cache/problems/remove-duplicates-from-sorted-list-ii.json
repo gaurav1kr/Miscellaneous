@@ -1,0 +1,28 @@
+{
+  "id": "82",
+  "title": "Remove Duplicates from Sorted List II",
+  "slug": "remove-duplicates-from-sorted-list-ii",
+  "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "You are given the head of a sorted linked list. \n \n Delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list. \n \n Return the linked list sorted as well. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/04/linkedlist1.jpg] \n \n```\nInput:\n head = [1,2,3,3,4,4,5]\n\nOutput:\n [1,2,5]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/01/04/linkedlist2.jpg] \n \n```\nInput:\n head = [1,1,1,2,3]\n\nOutput:\n [2,3]\n```\n\n Constraints: \n\n The number of nodes in the list is in the range [0, 300] . \n \n -100 <= Node.val <= 100 \n \n The list is guaranteed to be sorted in ascending order.",
+  "code": "class Solution {\npublic:\n    ListNode* deleteDuplicates(ListNode* head) {\n        ListNode dummy(0, head); // Dummy node to handle edge cases\n        ListNode* prev = &dummy;\n\n        while (head) {\n            if (head->next && head->val == head->next->val) {\n                while (head->next && head->val == head->next->val) \n                    head = head->next; // Skip duplicates\n                prev->next = head->next; // Remove duplicates\n            } else {\n                prev = prev->next; // Move to next unique node\n            }\n            head = head->next; // Move to the next node\n        }\n\n        return dummy.next;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536815574",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

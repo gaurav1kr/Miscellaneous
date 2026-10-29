@@ -1,0 +1,26 @@
+{
+  "id": "780",
+  "title": "Reaching Points",
+  "slug": "reaching-points",
+  "url": "https://leetcode.com/problems/reaching-points/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given four integers sx , sy , tx , and ty , return true if it is possible to convert the point (sx, sy) to the point (tx, ty) through some operations , or false otherwise . \n \n The allowed operation on some point (x, y) is to convert it to either (x, x + y) or (x + y, y) . \n\n Example 1: \n \n```\nInput:\n sx = 1, sy = 1, tx = 3, ty = 5\n\nOutput:\n true\n\nExplanation:\n\nOne series of moves that transforms the starting point to the target is:\n(1, 1) -> (1, 2)\n(1, 2) -> (3, 2)\n(3, 2) -> (3, 5)\n```\n\n Example 2: \n \n```\nInput:\n sx = 1, sy = 1, tx = 2, ty = 2\n\nOutput:\n false\n```\n\n Example 3: \n \n```\nInput:\n sx = 1, sy = 1, tx = 1, ty = 1\n\nOutput:\n true\n```\n\n Constraints: \n\n 1 <= sx, sy, tx, ty <= 10 9",
+  "code": "class Solution {\npublic:\n    bool reachingPoints(int sx, int sy, int tx, int ty) {\n        while (tx >= sx && ty >= sy) {\n            if (tx == sx && ty == sy) return true;\n            if (tx > ty) {\n                if (ty > sy) tx %= ty;\n                else return (tx - sx) % ty == 0;\n            } else {\n                if (tx > sx) ty %= tx;\n                else return (ty - sy) % tx == 0;\n            }\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593829714",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

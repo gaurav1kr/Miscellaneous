@@ -1,0 +1,30 @@
+{
+  "id": "2470",
+  "title": "Number of Subarrays With LCM Equal to K",
+  "slug": "number-of-subarrays-with-lcm-equal-to-k",
+  "url": "https://leetcode.com/problems/number-of-subarrays-with-lcm-equal-to-k/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and an integer k , return the number of subarrays of nums where the least common multiple of the subarray's elements is k . \n \n A subarray is a contiguous non-empty sequence of elements within an array. \n \n The least common multiple of an array is the smallest positive integer that is divisible by all the array elements. \n\n Example 1: \n \n```\nInput:\n nums = [3,6,2,7,1], k = 6\n\nOutput:\n 4\n\nExplanation:\n The subarrays of nums where 6 is the least common multiple of all the subarray's elements are:\n- [\n3\n,\n6\n,2,7,1]\n- [\n3\n,\n6\n,\n2\n,7,1]\n- [3,\n6\n,2,7,1]\n- [3,\n6\n,\n2\n,7,1]\n```\n\n Example 2: \n \n```\nInput:\n nums = [3], k = 2\n\nOutput:\n 0\n\nExplanation:\n There are no subarrays of nums where 2 is the least common multiple of all the subarray's elements.\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i], k <= 1000",
+  "code": "class Solution { int gcd(int a,int b){while(b){int t=a%b;a=b;b=t;}return a;}public:int subarrayLCM(vector<int>& nums,int k){int ans=0;for(int i=0;i<(int)nums.size();++i){long long l=1;for(int j=i;j<(int)nums.size();++j){l=l/gcd((int)l,nums[j])*nums[j];if(l>k||k%l)break;if(l==k)++ans;}}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176578516",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

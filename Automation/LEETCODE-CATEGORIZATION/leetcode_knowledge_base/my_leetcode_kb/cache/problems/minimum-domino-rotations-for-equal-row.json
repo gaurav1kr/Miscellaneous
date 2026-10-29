@@ -1,0 +1,29 @@
+{
+  "id": "1007",
+  "title": "Minimum Domino Rotations For Equal Row",
+  "slug": "minimum-domino-rotations-for-equal-row",
+  "url": "https://leetcode.com/problems/minimum-domino-rotations-for-equal-row/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "In a row of dominoes, tops[i] and bottoms[i] represent the top and bottom halves of the i th domino. (A domino is a tile with two numbers from 1 to 6 - one on each half of the tile.) \n \n We may rotate the i th domino, so that tops[i] and bottoms[i] swap values. \n \n Return the minimum number of rotations so that all the values in tops are the same, or all the values in bottoms are the same. \n \n If it cannot be done, return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/05/14/domino.png] \n \n```\nInput:\n tops = [2,1,2,4,2,2], bottoms = [5,2,6,2,3,2]\n\nOutput:\n 2\n\nExplanation:\n \nThe first figure represents the dominoes as given by tops and bottoms: before we do any rotations.\nIf we rotate the second and fourth dominoes, we can make every value in the top row equal to 2, as indicated by the second figure.\n```\n\n Example 2: \n \n```\nInput:\n tops = [3,5,1,2,3], bottoms = [3,6,3,3,4]\n\nOutput:\n -1\n\nExplanation:\n \nIn this case, it is not possible to rotate the dominoes to make one row of values equal.\n```\n\n Constraints: \n\n 2 <= tops.length <= 2 * 10 4 \n \n bottoms.length == tops.length \n \n 1 <= tops[i], bottoms[i] <= 6",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minDominoRotations(vector<int>& tops, vector<int>& bottoms) {\n        int rotationsA = check(tops[0], tops, bottoms);\n        int rotationsB = check(bottoms[0], tops, bottoms);\n        \n        if (rotationsA == -1) return rotationsB;\n        if (rotationsB == -1) return rotationsA;\n        return min(rotationsA, rotationsB);\n    }\n\n    int check(int x, vector<int>& tops, vector<int>& bottoms) {\n        int topRotations = 0, bottomRotations = 0;\n        for (int i = 0; i < tops.size(); i++) {\n            if (tops[i] != x && bottoms[i] != x) return -1;\n            if (tops[i] != x) topRotations++;\n            if (bottoms[i] != x) bottomRotations++;\n        }\n        return min(topRotations, bottomRotations);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590130729",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

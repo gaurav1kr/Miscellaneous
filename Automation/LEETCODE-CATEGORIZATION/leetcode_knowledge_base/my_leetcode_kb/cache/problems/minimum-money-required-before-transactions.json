@@ -1,0 +1,32 @@
+{
+  "id": "2412",
+  "title": "Minimum Money Required Before Transactions",
+  "slug": "minimum-money-required-before-transactions",
+  "url": "https://leetcode.com/problems/minimum-money-required-before-transactions/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed 2D integer array transactions , where transactions[i] = [cost i , cashback i ] . \n \n The array describes transactions, where each transaction must be completed exactly once in some order . At any given moment, you have a certain amount of money . In order to complete transaction i , money >= cost i must hold true. After performing a transaction, money becomes money - cost i + cashback i . \n \n Return the minimum amount of money required before any transaction so that all of the transactions can be completed regardless of the order of the transactions. \n\n Example 1: \n \n```\nInput:\n transactions = [[2,1],[5,0],[4,2]]\n\nOutput:\n 10\n\nExplanation:\n\nStarting with money = 10, the transactions can be performed in any order.\nIt can be shown that starting with money < 10 will fail to complete all transactions in some order.\n```\n\n Example 2: \n \n```\nInput:\n transactions = [[3,0],[0,3]]\n\nOutput:\n 3\n\nExplanation:\n\n- If transactions are in the order [[3,0],[0,3]], the minimum money required to complete the transactions is 3.\n- If transactions are in the order [[0,3],[3,0]], the minimum money required to complete the transactions is 0.\nThus, starting with money = 3, the transactions can be performed in any order.\n```\n\n Constraints: \n\n 1 <= transactions.length <= 10 5 \n \n transactions[i].length == 2 \n \n 0 <= cost i , cashback i <= 10 9",
+  "code": "class Solution {public:long long minimumMoney(vector<vector<int>>& transactions){long long loss=0,extra=0;for(auto&t:transactions)loss+=max(0,t[0]-t[1]);for(auto&t:transactions)extra=max(extra,(long long)min(t[0],t[1]));return loss+extra;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176546699",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

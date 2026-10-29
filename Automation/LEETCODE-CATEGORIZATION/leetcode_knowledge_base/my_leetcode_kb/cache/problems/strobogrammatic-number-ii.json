@@ -1,0 +1,31 @@
+{
+  "id": "247",
+  "title": "Strobogrammatic Number II",
+  "slug": "strobogrammatic-number-ii",
+  "url": "https://leetcode.com/problems/strobogrammatic-number-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String",
+    "Recursion"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an integer n , return all the strobogrammatic numbers that are of length n . You may return the answer in any order . \n \n A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down). \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n [\"11\",\"69\",\"88\",\"96\"]\n```\n \n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n [\"0\",\"1\",\"8\"]\n```\n\n Constraints: \n\n 1 <= n <= 14",
+  "code": "class Solution\n{\n    vector< string>build(int n, int total)\n    {\n        if (n == 0) return { \"\" };\n        if (n == 1) return { \"0\", \"1\", \"8\" };\n        vector< string>out;\n        for (auto&mid : build(n - 2, total))\n        {\n            for (auto p : vector< string> { \"00\", \"11\", \"69\", \"88\", \"96\" })\n            {\n                if (n == total && p == \"00\")\n                {\n                    continue;\n                }\n                out.push_back(p.substr(0, 1) + mid + p.substr(1, 1));\n            }\n        }\n        return out;\n    }\npublic:\n    vector< string>findStrobogrammatic(int n)\n    {\n        return build(n, n);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178435108",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "2556",
+  "title": "Disconnect Path in a Binary Matrix by at Most One Flip",
+  "slug": "disconnect-path-in-a-binary-matrix-by-at-most-one-flip",
+  "url": "https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed m x n binary matrix grid . You can move from a cell (row, col) to any of the cells (row + 1, col) or (row, col + 1) that has the value 1 . The matrix is disconnected if there is no path from (0, 0) to (m - 1, n - 1) . \n \n You can flip the value of at most one (possibly none) cell. You cannot flip the cells (0, 0) and (m - 1, n - 1) . \n \n Return true if it is possible to make the matrix disconnect or false otherwise . \n \n Note that flipping a cell changes its value from 0 to 1 or from 1 to 0 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/12/07/yetgrid2drawio.png] \n \n```\nInput:\n grid = [[1,1,1],[1,0,0],[1,1,1]]\n\nOutput:\n true\n\nExplanation:\n We can change the cell shown in the diagram above. There is no path from (0, 0) to (2, 2) in the resulting grid.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/12/07/yetgrid3drawio.png] \n \n```\nInput:\n grid = [[1,1,1],[1,0,1],[1,1,1]]\n\nOutput:\n false\n\nExplanation:\n It is not possible to change at most one cell such that there is not path from (0, 0) to (2, 2).\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 1000 \n \n 1 <= m * n <= 10 5 \n \n grid[i][j] is either 0 or 1 . \n \n grid[0][0] == grid[m - 1][n - 1] == 1",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n bool isPossibleToCutPath(vector<vector<int>>& grid){\n  int m=grid.size(),n=grid[0].size();\n  function<bool(int,int)> dfs=[&](int r,int c){\n   if(r>=m||c>=n||grid[r][c]==0)return false;\n   if(r==m-1&&c==n-1)return true;\n   grid[r][c]=0;\n   return dfs(r+1,c)||dfs(r,c+1);\n  };\n  if(!dfs(0,0))return true;\n  grid[0][0]=1;\n  return !dfs(0,0);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176611313",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

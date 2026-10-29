@@ -1,0 +1,22 @@
+{
+  "id": "1117",
+  "title": "Building H2O",
+  "slug": "building-h2o",
+  "url": "https://leetcode.com/problems/building-h2o/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Concurrency"
+  ],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "There are two kinds of threads: oxygen and hydrogen . Your goal is to group these threads to form water molecules. \n \n There is a barrier where each thread has to wait until a complete molecule can be formed. Hydrogen and oxygen threads will be given releaseHydrogen and releaseOxygen methods respectively, which will allow them to pass the barrier. These threads should pass the barrier in groups of three, and they must immediately bond with each other to form a water molecule. You must guarantee that all the threads from one molecule bond before any other threads from the next molecule do. \n \n In other words: \n\n If an oxygen thread arrives at the barrier when no hydrogen threads are present, it must wait for two hydrogen threads. \n \n If a hydrogen thread arrives at the barrier when no other threads are present, it must wait for an oxygen thread and another hydrogen thread. \n\n We do not have to worry about matching the threads up explicitly; the threads do not necessarily know which other threads they are paired up with. The key is that threads pass the barriers in complete sets; thus, if we examine the sequence of threads that bind and divide them into groups of three, each group should contain one oxygen and two hydrogen threads. \n \n Write synchronization code for oxygen and hydrogen molecules that enforces these constraints. \n\n Example 1: \n \n```\nInput:\n water = \"HOH\"\n\nOutput:\n \"HHO\"\n\nExplanation:\n \"HOH\" and \"OHH\" are also valid answers.\n```\n\n Example 2: \n \n```\nInput:\n water = \"OOHHHH\"\n\nOutput:\n \"HHOHHO\"\n\nExplanation:\n \"HOHHHO\", \"OHHHHO\", \"HHOHOH\", \"HOHHOH\", \"OHHHOH\", \"HHOOHH\", \"HOHOHH\" and \"OHHOHH\" are also valid answers.\n```\n\n Constraints: \n\n 3 * n == water.length \n \n 1 <= n <= 20 \n \n water[i] is either 'H' or 'O' . \n \n There will be exactly 2 * n 'H' in water . \n \n There will be exactly n 'O' in water .",
+  "code": "class H2O {\n    mutex mu;\n    condition_variable cv;\n    int h = 0, o = 0, finished = 0;\n    void complete() {\n        if (++finished == 3) {\n            h = o = finished = 0;\n            cv.notify_all();\n        }\n    }\npublic:\n    void hydrogen(function<void()> releaseHydrogen) {\n        unique_lock<mutex> lock(mu);\n        cv.wait(lock, [&] { return h < 2 && finished < 3; });\n        ++h;\n        releaseHydrogen();\n        complete();\n        cv.notify_all();\n    }\n    void oxygen(function<void()> releaseOxygen) {\n        unique_lock<mutex> lock(mu);\n        cv.wait(lock, [&] { return o < 1 && finished < 3; });\n        ++o;\n        releaseOxygen();\n        complete();\n        cv.notify_all();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175747275",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "3811",
+  "title": "Number of Alternating XOR Partitions",
+  "slug": "number-of-alternating-xor-partitions",
+  "url": "https://leetcode.com/problems/number-of-alternating-xor-partitions/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two distinct integers target1 and target2 . \n \n A partition of nums splits it into one or more contiguous, non-empty blocks that cover the entire array without overlap. \n \n A partition is valid if the bitwise XOR of elements in its blocks alternates between target1 and target2 , starting with target1 . \n \n Formally, for blocks b1 , b2 , …: \n\n XOR(b1) = target1 \n \n XOR(b2) = target2 (if it exists) \n \n XOR(b3) = target1 , and so on. \n\n Return the number of valid partitions of nums , modulo 10 9 + 7 . \n \n Note: A single block is valid if its XOR equals target1 . \n\n Example 1: \n\n Input: nums = [2,3,1,4], target1 = 1, target2 = 5 \n \n Output: 1 \n \n Explanation: ​​​​​​​ \n\n The XOR of [2, 3] is 1, which matches target1 . \n \n The XOR of the remaining block [1, 4] is 5, which matches target2 . \n \n This is the only valid alternating partition, so the answer is 1. \n\n Example 2: \n\n Input: nums = [1,0,0], target1 = 1, target2 = 0 \n \n Output: 3 \n \n Explanation: \n\n ​​​​​​​ The XOR of [1, 0, 0] is 1, which matches target1 . \n \n The XOR of [1] and [0, 0] are 1 and 0, matching target1 and target2 . \n \n The XOR of [1, 0] and [0] are 1 and 0, matching target1 and target2 . \n \n Thus, the answer is 3.​​​​​​​ \n\n Example 3: \n\n Input: nums = [7], target1 = 1, target2 = 7 \n \n Output: 0 \n \n Explanation: \n\n The XOR of [7] is 7, which does not match target1 , so no valid partition exists. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i], target1, target2 <= 10 5 \n \n target1 != target2",
+  "code": "class Solution {\npublic:\n    int alternatingXOR(vector<int>& nums, int target1, int target2) {\n        const int MOD = 1000000007;\n        unordered_map<int,long long> end1, end2;\n        int px = 0;\n        long long last1 = 0, last2 = 0;\n        end2[0] = 1; // Empty partition is ready for target1.\n        for (int v : nums) {\n            px ^= v;\n            last1 = end2[px ^ target1] % MOD;\n            last2 = end1[px ^ target2] % MOD;\n            end1[px] = (end1[px] + last1) % MOD;\n            end2[px] = (end2[px] + last2) % MOD;\n        }\n        return (int)((last1 + last2) % MOD);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181041502",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

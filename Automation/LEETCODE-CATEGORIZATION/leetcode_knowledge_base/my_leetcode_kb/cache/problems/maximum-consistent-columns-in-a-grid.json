@@ -1,0 +1,32 @@
+{
+  "id": "3989",
+  "title": "Maximum Consistent Columns in a Grid",
+  "slug": "maximum-consistent-columns-in-a-grid",
+  "url": "https://leetcode.com/problems/maximum-consistent-columns-in-a-grid/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array grid of size m x n , and an integer limit . \n \n You may remove zero or more columns from the grid, but at least one column must remain. The relative order of the remaining columns must be preserved. \n \n A grid is called consistent if for every row i , and for every pair of adjacent remaining columns a and b with a < b , the following holds: |grid[i][b] - grid[i][a]| <= limit . \n \n Return the maximum number of columns that can remain such that the resulting grid is consistent . \n\n Example 1: \n\n Input: grid = [[-2,0,3]], limit = 2 \n \n Output: 2 \n \n Explanation: \n\n Remove column 2 and keep columns 0 and 1, which gives |grid[0][1] − grid[0][0]| = |0 − (−2)| = 2 <= limit . \n \n Thus, the maximum number of columns that can remain is 2. \n\n Example 2: \n\n Input: grid = [[1,-1,1],[2,2,2]], limit = 1 \n \n Output: 2 \n \n Explanation: \n\n Remove column 1 and keep columns 0 and 2, which gives\n\n |grid[0][2] − grid[0][0]| = |1 − 1| = 0 <= limit and \n \n |grid[1][2] − grid[1][0]| = |2 − 2| = 0 <= limit . \n\n Thus, the maximum number of columns that can remain is 2. \n\n Example 3: \n\n Input: grid = [[-5,5]], limit = 9 \n \n Output: 1 \n \n Explanation: \n\n Remove either column 0 or column 1, since |grid[0][1] − grid[0][0]| = |5 − (−5)| = 10 > limit . \n \n Thus, the maximum number of columns that can remain is 1. \n\n Constraints: \n\n 1 <= m == grid.length <= 250 \n \n 1 <= n == grid[i].length <= 250 \n \n -10 5 <= grid[i][j] <= 10 5 \n \n 0 <= limit <= 10 5 ​​​​​​​​​​​​​​​​",
+  "code": "class Solution {\npublic:\n    int maxConsistentColumns(vector<vector<int>>& grid, int limit) {\n          int m = grid.size(), n = grid[0].size();\n        vector<int> dp(n, 1);\n        int ans = 1;\n\n        for (int j = 0; j < n; ++j) {\n            for (int k = 0; k < j; ++k) {\n                bool ok = true;\n\n                for (int i = 0; i < m; ++i) {\n                    if (abs(grid[i][j] - grid[i][k]) > limit) {\n                        ok = false;\n                        break;\n                    }\n                }\n\n                if (ok)\n                    dp[j] = max(dp[j], dp[k] + 1);\n            }\n\n            ans = max(ans, dp[j]);\n        }\n\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163794753",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

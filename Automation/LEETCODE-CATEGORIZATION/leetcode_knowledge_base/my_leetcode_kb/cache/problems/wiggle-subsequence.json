@@ -1,0 +1,32 @@
+{
+  "id": "376",
+  "title": "Wiggle Subsequence",
+  "slug": "wiggle-subsequence",
+  "url": "https://leetcode.com/problems/wiggle-subsequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "A wiggle sequence is a sequence where the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with one element and a sequence with two non-equal elements are trivially wiggle sequences. \n\n For example, [1, 7, 4, 9, 2, 5] is a wiggle sequence because the differences (6, -3, 5, -7, 3) alternate between positive and negative. \n \n In contrast, [1, 4, 7, 2, 5] and [1, 7, 4, 5, 5] are not wiggle sequences. The first is not because its first two differences are positive, and the second is not because its last difference is zero. \n\n A subsequence is obtained by deleting some elements (possibly zero) from the original sequence, leaving the remaining elements in their original order. \n \n Given an integer array nums , return the length of the longest wiggle subsequence of nums . \n\n Example 1: \n \n```\nInput:\n nums = [1,7,4,9,2,5]\n\nOutput:\n 6\n\nExplanation:\n The entire sequence is a wiggle sequence with differences (6, -3, 5, -7, 3).\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,17,5,10,13,15,10,5,16,8]\n\nOutput:\n 7\n\nExplanation:\n There are several subsequences that achieve this length.\nOne is [1, 17, 10, 13, 10, 16, 8] with differences (16, -7, 3, -3, 6, -8).\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3,4,5,6,7,8,9]\n\nOutput:\n 2\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 0 <= nums[i] <= 1000 \n\n Follow up: Could you solve this in O(n) time?",
+  "code": "class Solution \n{\npublic:\n    int wiggleMaxLength(vector<int>& nums) \n    {\n        int size=nums.size(), peak=1, valley=1;\n        for(int i=1; i<size; ++i)\n        {\n                 if(nums[i]>nums[i-1])\n                 {\n                    peak = valley + 1;\n                 }\n                else if(nums[i]<nums[i-1]) \n                {\n                    valley = peak + 1;\n                }\n        }\n        return max(peak , valley );\n        \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1477422925",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

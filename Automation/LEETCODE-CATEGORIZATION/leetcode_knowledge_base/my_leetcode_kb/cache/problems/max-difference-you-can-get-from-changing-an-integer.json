@@ -1,0 +1,26 @@
+{
+  "id": "1432",
+  "title": "Max Difference You Can Get From Changing an Integer",
+  "slug": "max-difference-you-can-get-from-changing-an-integer",
+  "url": "https://leetcode.com/problems/max-difference-you-can-get-from-changing-an-integer/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given an integer num . You will apply the following steps to num two separate times: \n\n Pick a digit x (0 <= x <= 9) . \n \n Pick another digit y (0 <= y <= 9) . Note y can be equal to x . \n \n Replace all the occurrences of x in the decimal representation of num by y . \n\n Let a and b be the two results from applying the operation to num independently . \n \n Return the max difference between a and b . \n \n Note that neither a nor b may have any leading zeros, and must not be 0. \n\n Example 1: \n \n```\nInput:\n num = 555\n\nOutput:\n 888\n\nExplanation:\n The first time pick x = 5 and y = 9 and store the new integer in a.\nThe second time pick x = 5 and y = 1 and store the new integer in b.\nWe have now a = 999 and b = 111 and max difference = 888\n```\n\n Example 2: \n \n```\nInput:\n num = 9\n\nOutput:\n 8\n\nExplanation:\n The first time pick x = 9 and y = 9 and store the new integer in a.\nThe second time pick x = 9 and y = 1 and store the new integer in b.\nWe have now a = 9 and b = 1 and max difference = 8\n```\n\n Constraints: \n\n 1 <= num <= 10 8",
+  "code": "class Solution {\npublic:\n    int maxDiff(int num) {\n        string s = to_string(num), hi = s, lo = s;\n        char a = '9';\n        for (char c : s) if (c != '9') { a = c; break; }\n        for (char& c : hi) if (c == a) c = '9';\n        if (s[0] != '1') {\n            char old = s[0];\n            for (char& c : lo) if (c == old) c = '1';\n        } else {\n            char old = 0;\n            for (int i = 1; i < (int)s.size(); ++i)\n                if (s[i] != '0' && s[i] != '1') { old = s[i]; break; }\n            if (old) for (char& c : lo) if (c == old) c = '0';\n        }\n        return stoi(hi) - stoi(lo);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175752678",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

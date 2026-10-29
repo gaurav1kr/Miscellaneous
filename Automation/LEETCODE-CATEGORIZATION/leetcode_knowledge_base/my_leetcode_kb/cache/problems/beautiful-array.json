@@ -1,0 +1,31 @@
+{
+  "id": "932",
+  "title": "Beautiful Array",
+  "slug": "beautiful-array",
+  "url": "https://leetcode.com/problems/beautiful-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Divide and Conquer"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "An array nums of length n is beautiful if: \n\n nums is a permutation of the integers in the range [1, n] . \n \n For every 0 <= i < j < n , there is no index k with i < k < j where 2 * nums[k] == nums[i] + nums[j] . \n\n Given the integer n , return any beautiful array nums of length n . There will be at least one valid answer for the given n . \n\n Example 1: \n \n```\nInput:\n n = 4\n\nOutput:\n [2,1,4,3]\n```\n \n Example 2: \n \n```\nInput:\n n = 5\n\nOutput:\n [3,1,2,5,4]\n```\n\n Constraints: \n\n 1 <= n <= 1000",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> beautifulArray(int n) {\n        if (n == 1) return {1};\n        vector<int> res, left = beautifulArray((n + 1) / 2), right = beautifulArray(n / 2);\n        for (int x : left) res.push_back(2 * x - 1);\n        for (int x : right) res.push_back(2 * x);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593848593",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

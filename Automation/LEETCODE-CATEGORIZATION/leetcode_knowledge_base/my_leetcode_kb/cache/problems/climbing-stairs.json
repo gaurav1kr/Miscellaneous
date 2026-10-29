@@ -1,0 +1,29 @@
+{
+  "id": "70",
+  "title": "Climbing Stairs",
+  "slug": "climbing-stairs",
+  "url": "https://leetcode.com/problems/climbing-stairs/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Memoization"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You are climbing a staircase. It takes n steps to reach the top. \n \n Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top? \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n 2\n\nExplanation:\n There are two ways to climb to the top.\n1. 1 step + 1 step\n2. 2 steps\n```\n\n Example 2: \n \n```\nInput:\n n = 3\n\nOutput:\n 3\n\nExplanation:\n There are three ways to climb to the top.\n1. 1 step + 1 step + 1 step\n2. 1 step + 2 steps\n3. 2 steps + 1 step\n```\n\n Constraints: \n\n 1 <= n <= 45",
+  "code": "class Solution \n{\npublic:\n    int climbStairs(int n) \n    {\n        if ( (n==1) || (n==0) )\n        {\n            return n ;\n        }\n        int a = 0 , b = 1 , c = 0 , i = 0 ;\n        \n        for(i=0;i<n;i++)\n        {\n            c = a + b ;\n            a = b ;\n            b = c ;\n        }\n        return c ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "487837996",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

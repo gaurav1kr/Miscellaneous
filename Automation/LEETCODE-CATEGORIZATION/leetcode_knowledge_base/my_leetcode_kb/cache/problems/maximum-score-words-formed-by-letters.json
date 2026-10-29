@@ -1,0 +1,44 @@
+{
+  "id": "1255",
+  "title": "Maximum Score Words Formed by Letters",
+  "slug": "maximum-score-words-formed-by-letters",
+  "url": "https://leetcode.com/problems/maximum-score-words-formed-by-letters/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Counting",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a list of words , list of  single  letters (might be repeating) and score  of every character. \n \n Return the maximum score of any valid set of words formed by using the given letters ( words[i] cannot be used two or more times). \n \n It is not necessary to use all characters in letters and each letter can only be used once. Score of letters  'a' , 'b' , 'c' , ... , 'z' is given by  score[0] , score[1] , ... , score[25] respectively. \n\n Example 1: \n \n```\nInput:\n words = [\"dog\",\"cat\",\"dad\",\"good\"], letters = [\"a\",\"a\",\"c\",\"d\",\"d\",\"d\",\"g\",\"o\",\"o\"], score = [1,0,9,5,0,0,3,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0]\n\nOutput:\n 23\n\nExplanation:\n\nScore a=1, c=9, d=5, g=3, o=2\nGiven letters, we can form the words \"dad\" (5+1+5) and \"good\" (3+2+2+5) with a score of 23.\nWords \"dad\" and \"dog\" only get a score of 21.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"xxxz\",\"ax\",\"bx\",\"cx\"], letters = [\"z\",\"a\",\"b\",\"c\",\"x\",\"x\",\"x\"], score = [4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,10]\n\nOutput:\n 27\n\nExplanation:\n\nScore a=4, b=4, c=4, x=5, z=10\nGiven letters, we can form the words \"ax\" (4+5), \"bx\" (4+5) and \"cx\" (4+5) with a score of 27.\nWord \"xxxz\" only get a score of 25.\n```\n\n Example 3: \n \n```\nInput:\n words = [\"leetcode\"], letters = [\"l\",\"e\",\"t\",\"c\",\"o\",\"d\"], score = [0,0,1,1,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0]\n\nOutput:\n 0\n\nExplanation:\n\nLetter \"e\" can only be used once.\n```\n\n Constraints: \n\n 1 <= words.length <= 14 \n \n 1 <= words[i].length <= 15 \n \n 1 <= letters.length <= 100 \n \n letters[i].length == 1 \n \n score.length == 26 \n \n 0 <= score[i] <= 10 \n \n words[i] , letters[i]  contains only lower case English letters.",
+  "code": "#include <vector>\n#include <string>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxScoreWords(vector<string>& words, vector<char>& letters, vector<int>& score) {\n        vector<int> count(26);\n        for (char c : letters) count[c - 'a']++;\n        return dfs(words, score, count, 0);\n    }\n\n    int dfs(vector<string>& words, vector<int>& score, vector<int> count, int idx) {\n        if (idx == words.size()) return 0;\n        int skip = dfs(words, score, count, idx + 1), take = 0;\n        vector<int> curr = count;\n        bool valid = true;\n        int wordScore = 0;\n        for (char c : words[idx]) {\n            if (--curr[c - 'a'] < 0) {\n                valid = false;\n                break;\n            }\n            wordScore += score[c - 'a'];\n        }\n        if (valid)\n            take = wordScore + dfs(words, score, curr, idx + 1);\n        return max(skip, take);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612880000",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

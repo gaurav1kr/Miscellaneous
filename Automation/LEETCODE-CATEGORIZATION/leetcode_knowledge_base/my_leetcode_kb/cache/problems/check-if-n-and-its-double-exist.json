@@ -1,0 +1,39 @@
+{
+  "id": "1346",
+  "title": "Check If N and Its Double Exist",
+  "slug": "check-if-n-and-its-double-exist",
+  "url": "https://leetcode.com/problems/check-if-n-and-its-double-exist/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an array arr of integers, check if there exist two indices i and j such that : \n\n i != j \n \n 0 <= i, j < arr.length \n \n arr[i] == 2 * arr[j] \n\n Example 1: \n \n```\nInput:\n arr = [10,2,5,3]\n\nOutput:\n true\n\nExplanation:\n For i = 0 and j = 2, arr[i] == 10 == 2 * 5 == 2 * arr[j]\n```\n\n Example 2: \n \n```\nInput:\n arr = [3,1,7,11]\n\nOutput:\n false\n\nExplanation:\n There is no i and j that satisfy the conditions.\n```\n\n Constraints: \n\n 2 <= arr.length <= 500 \n \n -10 3 <= arr[i] <= 10 3",
+  "code": "#include <vector>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool checkIfExist(vector<int>& arr) {\n        unordered_set<int> seen;\n        for (int n : arr) {\n            if (seen.count(n * 2) || (n % 2 == 0 && seen.count(n / 2)))\n                return true;\n            seen.insert(n);\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595379240",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

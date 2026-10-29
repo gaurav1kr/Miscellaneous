@@ -1,0 +1,29 @@
+{
+  "id": "450",
+  "title": "Delete Node in a BST",
+  "slug": "delete-node-in-a-bst",
+  "url": "https://leetcode.com/problems/delete-node-in-a-bst/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST . \n \n Basically, the deletion can be divided into two stages: \n\n Search for a node to remove. \n \n If the node is found, delete the node. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/04/del_node_1.jpg] \n \n```\nInput:\n root = [5,3,6,2,4,null,7], key = 3\n\nOutput:\n [5,4,6,2,null,null,7]\n\nExplanation:\n Given key to delete is 3. So we find the node with value 3 and delete it.\nOne valid answer is [5,4,6,2,null,null,7], shown in the above BST.\nPlease notice that another valid answer is [5,2,6,null,4,null,7] and it's also accepted.\n```\n\n Example 2: \n \n```\nInput:\n root = [5,3,6,2,4,null,7], key = 0\n\nOutput:\n [5,3,6,2,4,null,7]\n\nExplanation:\n The tree does not contain a node with value = 0.\n```\n\n Example 3: \n \n```\nInput:\n root = [], key = 0\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 4 ] . \n \n -10 5 <= Node.val <= 10 5 \n \n Each node has a unique value. \n \n root is a valid binary search tree. \n \n -10 5 <= key <= 10 5 \n\n Follow up: Could you solve it with time complexity O(height of tree) ?",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    TreeNode* deleteNode(TreeNode* root, int key) {\n        if (!root) return nullptr; // Base case: Node not found\n        if (key < root->val) {\n            root->left = deleteNode(root->left, key); // Search in left subtree\n        } else if (key > root->val) {\n            root->right = deleteNode(root->right, key); // Search in right subtree\n        } else {\n            // Node found\n            if (!root->left) return root->right; // No left child\n            if (!root->right) return root->left; // No right child\n\n            // Node with two children: Replace with inorder successor\n            TreeNode* minNode = getMin(root->right);\n            root->val = minNode->val;\n            root->right = deleteNode(root->right, minNode->val); // Delete the successor\n        }\n        return root;\n    }\n\nprivate:\n    TreeNode* getMin(TreeNode* node) {\n        while (node->left) node = node->left;\n        return node; // Find the leftmost (smallest) node\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1538748993",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

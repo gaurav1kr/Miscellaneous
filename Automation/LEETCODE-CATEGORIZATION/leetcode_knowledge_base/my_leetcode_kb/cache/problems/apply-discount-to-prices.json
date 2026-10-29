@@ -1,0 +1,26 @@
+{
+  "id": "2288",
+  "title": "Apply Discount to Prices",
+  "slug": "apply-discount-to-prices",
+  "url": "https://leetcode.com/problems/apply-discount-to-prices/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A sentence is a string of single-space separated words where each word can contain digits, lowercase letters, and the dollar sign '$' . A word represents a price if it is a sequence of digits preceded by a dollar sign. \n\n For example, \"$100\" , \"$23\" , and \"$6\" represent prices while \"100\" , \"$\" , and \"$1e5\" do not. \n\n You are given a string sentence representing a sentence and an integer discount . For each word representing a price, apply a discount of discount% on the price and update the word in the sentence. All updated prices should be represented with exactly two decimal places. \n \n Return a string representing the modified sentence . \n \n Note that all prices will contain at most 10 digits. \n\n Example 1: \n \n```\nInput:\n sentence = \"there are $1 $2 and 5$ candies in the shop\", discount = 50\n\nOutput:\n \"there are $0.50 $1.00 and 5$ candies in the shop\"\n\nExplanation:\n \nThe words which represent prices are \"$1\" and \"$2\". \n- A 50% discount on \"$1\" yields \"$0.50\", so \"$1\" is replaced by \"$0.50\".\n- A 50% discount on \"$2\" yields \"$1\". Since we need to have exactly 2 decimal places after a price, we replace \"$2\" with \"$1.00\".\n```\n\n Example 2: \n \n```\nInput:\n sentence = \"1 2 $3 4 $5 $6 7 8$ $9 $10$\", discount = 100\n\nOutput:\n \"1 2 $0.00 4 $0.00 $0.00 7 8$ $0.00 $10$\"\n\nExplanation:\n \nApplying a 100% discount on any price will result in 0.\nThe words representing prices are \"$3\", \"$5\", \"$6\", and \"$9\".\nEach of them is replaced by \"$0.00\".\n```\n\n Constraints: \n\n 1 <= sentence.length <= 10 5 \n \n sentence consists of lowercase English letters, digits, ' ' , and '$' . \n \n sentence does not have leading or trailing spaces. \n \n All words in sentence are separated by a single space. \n \n All prices will be positive numbers without leading zeros. \n \n All prices will have at most 10 digits. \n \n 0 <= discount <= 100",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:string discountPrices(string sentence,int discount){istringstream in(sentence);string w,out;while(in>>w){bool ok=w.size()>1&&w[0]=='$';for(int i=1;i<(int)w.size();++i)if(!isdigit((unsigned char)w[i]))ok=false;if(ok){long double x=stold(w.substr(1))*(100-discount)/100;ostringstream os;os<<'$'<<fixed<<setprecision(2)<<x;w=os.str();}if(!out.empty())out+=' ';out+=w;}return out;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175907792",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

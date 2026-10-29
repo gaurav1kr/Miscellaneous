@@ -1,0 +1,33 @@
+{
+  "id": "3822",
+  "title": "Design Order Management System",
+  "slug": "design-order-management-system",
+  "url": "https://leetcode.com/problems/design-order-management-system/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Design"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are asked to design a simple order management system for a trading platform. \n \n Each order is associated with an orderId , an orderType ( \"buy\" or \"sell\" ), and a price . \n \n An order is considered active unless it is canceled. \n \n Implement the OrderManagementSystem class: \n\n OrderManagementSystem() : Initializes the order management system. \n \n void addOrder(int orderId, string orderType, int price) : Adds a new active order with the given attributes. It is guaranteed that orderId is unique. \n \n void modifyOrder(int orderId, int newPrice) : Modifies the price of an existing order. It is guaranteed that the order exists and is active . \n \n void cancelOrder(int orderId) : Cancels an existing order. It is guaranteed that the order exists and is active . \n \n vector<int> getOrdersAtPrice(string orderType, int price) : Returns the orderId s of all active orders that match the given orderType and price . If no such orders exist, return an empty list. \n\n Note: The order of returned orderId s does not matter. \n\n Example 1: \n\n Input: \n [\"OrderManagementSystem\", \"addOrder\", \"addOrder\", \"addOrder\", \"getOrdersAtPrice\", \"modifyOrder\", \"modifyOrder\", \"getOrdersAtPrice\", \"cancelOrder\", \"cancelOrder\", \"getOrdersAtPrice\"] \n[[], [1, \"buy\", 1], [2, \"buy\", 1], [3, \"sell\", 2], [\"buy\", 1], [1, 3], [2, 1], [\"buy\", 1], [3], [2], [\"buy\", 1]] \n \n Output: \n [null, null, null, null, [2, 1], null, null, [2], null, null, []] \n \n Explanation \nOrderManagementSystem orderManagementSystem = new OrderManagementSystem(); \norderManagementSystem.addOrder(1, \"buy\", 1); // A buy order with ID 1 is added at price 1. \norderManagementSystem.addOrder(2, \"buy\", 1); // A buy order with ID 2 is added at price 1. \norderManagementSystem.addOrder(3, \"sell\", 2); // A sell order with ID 3 is added at price 2. \norderManagementSystem.getOrdersAtPrice(\"buy\", 1); // Both buy orders (IDs 1 and 2) are active at price 1, so the result is [2, 1] . \norderManagementSystem.modifyOrder(1, 3); // Order 1 is updated: its price becomes 3. \norderManagementSystem.modifyOrder(2, 1); // Order 2 is updated, but its price remains 1. \norderManagementSystem.getOrdersAtPrice(\"buy\", 1); // Only order 2 is still an active buy order at price 1, so the result is [2] . \norderManagementSystem.cancelOrder(3); // The sell order with ID 3 is canceled and removed from active orders. \norderManagementSystem.cancelOrder(2); // The buy order with ID 2 is canceled and removed from active orders. \norderManagementSystem.getOrdersAtPrice(\"buy\", 1); // There are no active buy orders left at price 1, so the result is [] . \n\n Constraints: \n\n 1 <= orderId <= 2000 \n \n orderId is unique across all orders. \n \n orderType is either \"buy\" or \"sell\" . \n \n 1 <= price <= 10 9 \n \n The total number of calls to addOrder , modifyOrder , cancelOrder , and getOrdersAtPrice does not exceed 2000 . \n \n For modifyOrder and cancelOrder , the specified orderId is guaranteed to exist and be active .",
+  "code": "class OrderManagementSystem {\n    struct Order { string type; int price; };\n    unordered_map<int, Order> orders;\n    map<pair<string,int>, unordered_set<int>> groups;\npublic:\n    OrderManagementSystem() {}\n    void addOrder(int orderId, string orderType, int price) {\n        orders[orderId] = {orderType, price};\n        groups[{orderType, price}].insert(orderId);\n    }\n    void modifyOrder(int orderId, int newPrice) {\n        Order &o = orders[orderId];\n        groups[{o.type, o.price}].erase(orderId);\n        o.price = newPrice;\n        groups[{o.type, o.price}].insert(orderId);\n    }\n    void cancelOrder(int orderId) {\n        Order o = orders[orderId];\n        groups[{o.type, o.price}].erase(orderId);\n        orders.erase(orderId);\n    }\n    vector<int> getOrdersAtPrice(string orderType, int price) {\n        vector<int> ans;\n        auto it = groups.find({orderType, price});\n        if (it != groups.end())\n            for (int id : it->second) ans.push_back(id);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181049407",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "3111",
+  "title": "Minimum Rectangles to Cover Points",
+  "slug": "minimum-rectangles-to-cover-points",
+  "url": "https://leetcode.com/problems/minimum-rectangles-to-cover-points/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array points , where points[i] = [x i , y i ] . You are also given an integer w . Your task is to cover all the given points with rectangles. \n \n Each rectangle has its lower end at some point (x 1 , 0) and its upper end at some point (x 2 , y 2 ) , where x 1 <= x 2 , y 2 >= 0 , and the condition x 2 - x 1 <= w must be satisfied for each rectangle. \n \n A point is considered covered by a rectangle if it lies within or on the boundary of the rectangle. \n \n Return an integer denoting the minimum number of rectangles needed so that each point is covered by at least one rectangle . \n \n Note: A point may be covered by more than one rectangle. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2024/03/04/screenshot-from-2024-03-04-20-33-05.png] \n\n Input: points = [[2,1],[1,0],[1,4],[1,8],[3,5],[4,6]], w = 1 \n \n Output: 2 \n \n Explanation: \n \n The image above shows one possible placement of rectangles to cover the points: \n\n A rectangle with a lower end at (1, 0) and its upper end at (2, 8) \n \n A rectangle with a lower end at (3, 0) and its upper end at (4, 8) \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2024/03/04/screenshot-from-2024-03-04-18-59-12.png] \n\n Input: points = [[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6]], w = 2 \n \n Output: 3 \n \n Explanation: \n \n The image above shows one possible placement of rectangles to cover the points: \n\n A rectangle with a lower end at (0, 0) and its upper end at (2, 2) \n \n A rectangle with a lower end at (3, 0) and its upper end at (5, 5) \n \n A rectangle with a lower end at (6, 0) and its upper end at (6, 6) \n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2024/03/04/screenshot-from-2024-03-04-20-24-03.png] \n\n Input: points = [[2,3],[1,2]], w = 0 \n \n Output: 2 \n \n Explanation: \n \n The image above shows one possible placement of rectangles to cover the points: \n\n A rectangle with a lower end at (1, 0) and its upper end at (1, 2) \n \n A rectangle with a lower end at (2, 0) and its upper end at (2, 3) \n\n Constraints: \n\n 1 <= points.length <= 10 5 \n \n points[i].length == 2 \n \n 0 <= x i == points[i][0] <= 10 9 \n \n 0 <= y i == points[i][1] <= 10 9 \n \n 0 <= w <= 10 9 \n \n All pairs (x i , y i ) are distinct.",
+  "code": "class Solution {public:int minRectanglesToCoverPoints(vector<vector<int>>& points,int w){vector<int> x;for(auto &p:points)x.push_back(p[0]);sort(x.begin(),x.end());int ans=0;long long end=-1;for(int v:x)if(v>end){++ans;end=(long long)v+w;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177375293",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

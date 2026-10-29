@@ -1,0 +1,38 @@
+{
+  "id": "2506",
+  "title": "Count Pairs Of Similar Strings",
+  "slug": "count-pairs-of-similar-strings",
+  "url": "https://leetcode.com/problems/count-pairs-of-similar-strings/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed string array words . \n \n Two strings are similar if they consist of the same characters. \n\n For example, \"abca\" and \"cba\" are similar since both consist of characters 'a' , 'b' , and 'c' . \n \n However, \"abacba\" and \"bcfd\" are not similar since they do not consist of the same characters. \n\n Return the number of pairs (i, j) such that 0 <= i < j <= word.length - 1 and the two strings words[i] and words[j] are similar . \n\n Example 1: \n \n```\nInput:\n words = [\"aba\",\"aabb\",\"abcd\",\"bac\",\"aabc\"]\n\nOutput:\n 2\n\nExplanation:\n There are 2 pairs that satisfy the conditions:\n- i = 0 and j = 1 : both words[0] and words[1] only consist of characters 'a' and 'b'. \n- i = 3 and j = 4 : both words[3] and words[4] only consist of characters 'a', 'b', and 'c'.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"aabb\",\"ab\",\"ba\"]\n\nOutput:\n 3\n\nExplanation:\n There are 3 pairs that satisfy the conditions:\n- i = 0 and j = 1 : both words[0] and words[1] only consist of characters 'a' and 'b'. \n- i = 0 and j = 2 : both words[0] and words[2] only consist of characters 'a' and 'b'.\n- i = 1 and j = 2 : both words[1] and words[2] only consist of characters 'a' and 'b'.\n```\n\n Example 3: \n \n```\nInput:\n words = [\"nba\",\"cba\",\"dba\"]\n\nOutput:\n 0\n\nExplanation:\n Since there does not exist any pair that satisfies the conditions, we return 0.\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length <= 100 \n \n words[i] consist of only lowercase English letters.",
+  "code": "class Solution {public:int similarPairs(vector<string>& words){unordered_map<int,int>freq;int ans=0;for(auto&s:words){int mask=0;for(char c:s)mask|=1<<(c-'a');ans+=freq[mask]++;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176592717",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

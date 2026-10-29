@@ -1,0 +1,32 @@
+{
+  "id": "3663",
+  "title": "Find The Least Frequent Digit",
+  "slug": "find-the-least-frequent-digit",
+  "url": "https://leetcode.com/problems/find-the-least-frequent-digit/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set"
+  ],
+  "description": "Given an integer n , find the digit that occurs least frequently in its decimal representation. If multiple digits have the same frequency, choose the smallest digit. \n \n Return the chosen digit as an integer. \nThe frequency of a digit x is the number of times it appears in the decimal representation of n .\n\n Example 1: \n\n Input: n = 1553322 \n \n Output: 1 \n \n Explanation: \n \n The least frequent digit in n is 1, which appears only once. All other digits appear twice. \n\n Example 2: \n\n Input: n = 723344511 \n \n Output: 2 \n \n Explanation: \n \n The least frequent digits in n are 7, 2, and 5; each appears only once. \n\n Constraints: \n\n 1 <= n <= 2 31 ​​​​​​​ - 1",
+  "code": "class Solution { public: int getLeastFrequentDigit(int n){int f[10]={};do{++f[n%10];n/=10;}while(n);int ans=-1,best=INT_MAX;for(int d=0;d<10;++d)if(f[d]&&f[d]<best){best=f[d];ans=d;}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177648262",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

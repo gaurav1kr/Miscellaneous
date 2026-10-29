@@ -1,0 +1,31 @@
+{
+  "id": "1315",
+  "title": "Sum of Nodes with Even-Valued Grandparent",
+  "slug": "sum-of-nodes-with-even-valued-grandparent",
+  "url": "https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, return the sum of values of nodes with an even-valued grandparent . If there are no nodes with an even-valued grandparent , return 0 . \n \n A grandparent of a node is the parent of its parent if it exists. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/08/10/even1-tree.jpg] \n \n```\nInput:\n root = [6,7,8,2,7,1,3,9,null,1,4,null,null,null,5]\n\nOutput:\n 18\n\nExplanation:\n The red nodes are the nodes with even-value grandparent while the blue nodes are the even-value grandparents.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/08/10/even2-tree.jpg] \n \n```\nInput:\n root = [1]\n\nOutput:\n 0\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n 1 <= Node.val <= 100",
+  "code": "\nclass Solution {\npublic:\n    int sumEvenGrandparent(TreeNode* root) {\n        return dfs(root, nullptr, nullptr);\n    }\n\n    int dfs(TreeNode* node, TreeNode* parent, TreeNode* grandparent) {\n        if (!node) return 0;\n        int sum = (grandparent && grandparent->val % 2 == 0) ? node->val : 0;\n        sum += dfs(node->left, node, parent);\n        sum += dfs(node->right, node, parent);\n        return sum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590139921",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

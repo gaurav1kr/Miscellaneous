@@ -1,0 +1,31 @@
+{
+  "id": "3853",
+  "title": "Merge Close Characters",
+  "slug": "merge-close-characters",
+  "url": "https://leetcode.com/problems/merge-close-characters/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters and an integer k . \n \n Two equal characters in the current string s are considered close if the distance between their indices is at most k . \n \n When two characters are close , the right one merges into the left. Merges happen one at a time , and after each merge, the string updates until no more merges are possible. \n \n Return the resulting string after performing all possible merges. \n \n Note : If multiple merges are possible, always merge the pair with the smallest left index. If multiple pairs share the smallest left index, choose the pair with the smallest right index. \n\n Example 1: \n\n Input: s = \"abca\", k = 3 \n \n Output: \"abc\" \n \n Explanation: \n\n ​​​​​​​ Characters 'a' at indices i = 0 and i = 3 are close as 3 - 0 = 3 <= k . \n \n Merge them into the left 'a' and s = \"abc\" . \n \n No other equal characters are close, so no further merges occur. \n\n Example 2: \n\n Input: s = \"aabca\", k = 2 \n \n Output: \"abca\" \n \n Explanation: \n\n Characters 'a' at indices i = 0 and i = 1 are close as 1 - 0 = 1 <= k . \n \n Merge them into the left 'a' and s = \"abca\" . \n \n Now the remaining 'a' characters at indices i = 0 and i = 3 are not close as k < 3 , so no further merges occur. \n\n Example 3: \n\n Input: s = \"yybyzybz\", k = 2 \n \n Output: \"ybzybz\" \n \n Explanation: \n\n Characters 'y' at indices i = 0 and i = 1 are close as 1 - 0 = 1 <= k . \n \n Merge them into the left 'y' and s = \"ybyzybz\" . \n \n Now the characters 'y' at indices i = 0 and i = 2 are close as 2 - 0 = 2 <= k . \n \n Merge them into the left 'y' and s = \"ybzybz\" . \n \n No other equal characters are close, so no further merges occur. \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n 1 <= k <= s.length \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string mergeCharacters(string s, int k) {\n        while (true) {\n            bool changed = false;\n            for (int i = 0; i < (int)s.size() && !changed; ++i) {\n                for (int j = i + 1; j < (int)s.size() && j - i <= k; ++j) {\n                    if (s[i] == s[j]) {\n                        s.erase(j, 1);\n                        changed = true;\n                        break;\n                    }\n                }\n            }\n            if (!changed) return s;\n        }\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181065450",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

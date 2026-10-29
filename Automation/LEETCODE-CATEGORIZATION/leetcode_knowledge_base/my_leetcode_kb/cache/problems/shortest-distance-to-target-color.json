@@ -1,0 +1,32 @@
+{
+  "id": "1182",
+  "title": "Shortest Distance to Target Color",
+  "slug": "shortest-distance-to-target-color",
+  "url": "https://leetcode.com/problems/shortest-distance-to-target-color/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an array colors , in which there are three colors: 1 , 2 and  3 . \n \n You are also given some queries. Each query consists of two integers i  and c , return the shortest distance between the given index  i and the target color c . If there is no solution return -1 . \n\n Example 1: \n \n```\nInput:\n colors = [1,1,2,1,3,2,2,3,3], queries = [[1,3],[2,2],[6,1]]\n\nOutput:\n [3,0,3]\n\nExplanation: \n\nThe nearest 3 from index 1 is at index 4 (3 steps away).\nThe nearest 2 from index 2 is at index 2 itself (0 steps away).\nThe nearest 1 from index 6 is at index 3 (3 steps away).\n```\n\n Example 2: \n \n```\nInput:\n colors = [1,2], queries = [[0,3]]\n\nOutput:\n [-1]\n\nExplanation: \nThere is no 3 in the array.\n```\n\n Constraints: \n\n 1 <= colors.length <= 5*10^4 \n \n 1 <= colors[i] <= 3 \n \n 1 <= queries.length <= 5*10^4 \n \n queries[i].length == 2 \n \n 0 <= queries[i][0] < colors.length \n \n 1 <= queries[i][1] <= 3",
+  "code": "class Solution {\npublic:\n    vector<int> shortestDistanceColor(vector<int>& colors,\n                                      vector<vector<int>>& queries) {\n        int n = colors.size();\n        vector<array<int, 4>> dist(n);\n        array<int, 4> last = {{-1, -1, -1, -1}};\n        const int INF = 1000000000;\n        for (int i = 0; i < n; ++i) {\n            last[colors[i]] = i;\n            for (int c = 1; c <= 3; ++c) {\n                dist[i][c] = last[c] == -1 ? INF : i - last[c];\n            }\n        }\n        last = {{-1, -1, -1, -1}};\n        for (int i = n - 1; i >= 0; --i) {\n            last[colors[i]] = i;\n            for (int c = 1; c <= 3; ++c) {\n                if (last[c] != -1) {\n                    dist[i][c] = min(dist[i][c], last[c] - i);\n                }\n            }\n        }\n        vector<int> answer;\n        for (const auto& q : queries) {\n            int d = dist[q[0]][q[1]];\n            answer.push_back(d == INF ? -1 : d);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178545832",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

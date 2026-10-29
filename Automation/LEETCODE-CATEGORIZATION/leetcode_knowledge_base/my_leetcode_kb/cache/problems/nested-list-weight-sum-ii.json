@@ -1,0 +1,31 @@
+{
+  "id": "364",
+  "title": "Nested List Weight Sum II",
+  "slug": "nested-list-weight-sum-ii",
+  "url": "https://leetcode.com/problems/nested-list-weight-sum-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Stack",
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Queue",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given a nested list of integers nestedList . Each element is either an integer or a list whose elements may also be integers or other lists. \n \n The depth of an integer is the number of lists that it is inside of. For example, the nested list [1,[2,2],[[3],2],1] has each integer's value set to its depth . Let maxDepth be the maximum depth of any integer. \n \n The weight of an integer is maxDepth - (the depth of the integer) + 1 . \n \n Return the sum of each integer in nestedList multiplied by its weight . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/27/nestedlistweightsumiiex1.png] \n \n```\nInput:\n nestedList = [[1,1],2,[1,1]]\n\nOutput:\n 8\n\nExplanation:\n Four 1's with a weight of 1, one 2 with a weight of 2.\n1*1 + 1*1 + 2*2 + 1*1 + 1*1 = 8\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/27/nestedlistweightsumiiex2.png] \n \n```\nInput:\n nestedList = [1,[4,[6]]]\n\nOutput:\n 17\n\nExplanation:\n One 1 at depth 3, one 4 at depth 2, and one 6 at depth 1.\n1*3 + 4*2 + 6*1 = 17\n```\n\n Constraints: \n\n 1 <= nestedList.length <= 50 \n \n The values of the integers in the nested list is in the range [-100, 100] . \n \n The maximum depth of any integer is less than or equal to 50 . \n \n There are no empty lists.",
+  "code": "class Solution\n{\npublic:\n    int depthSumInverse(vector<NestedInteger>& nestedList)\n    {\n        queue<NestedInteger> q;\n        for (const auto& item : nestedList) q.push(item);\n        int running = 0, answer = 0;\n        while (!q.empty())\n        {\n            int count = q.size();\n            while (count--)\n            {\n                NestedInteger item = q.front();\n                q.pop();\n                if (item.isInteger())\n                {\n                    running += item.getInteger();\n                } else\n                {\n                    for (const auto& child : item.getList()) q.push(child);\n                }\n            }\n            answer += running;\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178461232",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

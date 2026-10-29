@@ -1,0 +1,26 @@
+{
+  "id": "58",
+  "title": "Length of Last Word",
+  "slug": "length-of-last-word",
+  "url": "https://leetcode.com/problems/length-of-last-word/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s consisting of words and spaces, return the length of the last word in the string. \n \n A word is a maximal substring consisting of non-space characters only. \n\n Example 1: \n \n```\nInput:\n s = \"Hello World\"\n\nOutput:\n 5\n\nExplanation:\n The last word is \"World\" with length 5.\n```\n\n Example 2: \n \n```\nInput:\n s = \" fly me to the moon \"\n\nOutput:\n 4\n\nExplanation:\n The last word is \"moon\" with length 4.\n```\n\n Example 3: \n \n```\nInput:\n s = \"luffy is still joyboy\"\n\nOutput:\n 6\n\nExplanation:\n The last word is \"joyboy\" with length 6.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists of only English letters and spaces ' ' . \n \n There will be at least one word in s .",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int lengthOfLastWord(string s) {\n        int i = s.size() - 1, len = 0;\n        while (i >= 0 && s[i] == ' ') i--;\n        while (i >= 0 && s[i] != ' ') {\n            len++;\n            i--;\n        }\n        return len;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610579458",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

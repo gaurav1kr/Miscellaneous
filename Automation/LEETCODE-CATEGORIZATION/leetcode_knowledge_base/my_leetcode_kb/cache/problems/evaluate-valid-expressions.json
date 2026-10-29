@@ -1,0 +1,37 @@
+{
+  "id": "3749",
+  "title": "Evaluate Valid Expressions",
+  "slug": "evaluate-valid-expressions",
+  "url": "https://leetcode.com/problems/evaluate-valid-expressions/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Divide and Conquer",
+    "Stack"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string expression that represents a nested mathematical expression in a simplified form. \n \n A valid expression is either an integer literal or follows the format op(a,b) , where: \n\n op is one of \"add\" , \"sub\" , \"mul\" , or \"div\" . \n \n a and b are each valid expressions. \n\n The operations are defined as follows: \n\n add(a,b) = a + b \n \n sub(a,b) = a - b \n \n mul(a,b) = a * b \n \n div(a,b) = a / b \n\n Return an integer representing the result after fully evaluating the expression. \n\n Example 1: \n\n Input: expression = \"add(2,3)\" \n \n Output: 5 \n \n Explanation: \n \n The operation add(2,3) means 2 + 3 = 5 . \n\n Example 2: \n\n Input: expression = \"-42\" \n \n Output: -42 \n \n Explanation: \n \n The expression is a single integer literal, so the result is -42. \n\n Example 3: \n\n Input: expression = \"div(mul(4,sub(9,5)),add(1,1))\" \n \n Output: 8 \n \n Explanation: \n\n First, evaluate the inner expression: sub(9,5) = 9 - 5 = 4 \n \n Next, multiply the results: mul(4,4) = 4 * 4 = 16 \n \n Then, compute the addition on the right: add(1,1) = 1 + 1 = 2 \n \n Finally, divide the two main results: div(16,2) = 16 / 2 = 8 \n\n Therefore, the entire expression evaluates to 8. \n\n Constraints: \n\n 1 <= expression.length <= 10 5 \n \n expression is valid and consists of digits, commas, parentheses, the minus sign '-' , and the lowercase strings \"add\" , \"sub\" , \"mul\" , \"div\" . \n \n All intermediate results fit within the range of a long integer. \n \n All divisions result in integer values.",
+  "code": "class Solution {\n    struct Frame{string op;long long a=0;bool first=false;};\npublic:\n    long long evaluateExpression(string expression){vector<Frame> st;long long result=0;int i=0,n=expression.size();\n        auto feed=[&](long long v){if(st.empty()){result=v;return;}Frame &f=st.back();if(!f.first){f.a=v;f.first=true;}else{ // Second operand: finish frame and send result outside.\n            long long a=f.a;string op=f.op;st.pop_back();long long r=op==\"add\"?a+v:op==\"sub\"?a-v:op==\"mul\"?a*v:a/v;\n            while(true){if(st.empty()){result=r;break;}Frame &g=st.back();if(!g.first){g.a=r;g.first=true;break;}\n                long long b=g.a;string operation=g.op;st.pop_back();r=operation==\"add\"?b+r:operation==\"sub\"?b-r:operation==\"mul\"?b*r:b/r;\n            }\n        }};\n        while(i<n){if(expression[i]==','||expression[i]==')'){++i;continue;}\n            if(isalpha(expression[i])){int j=i;while(j<n&&isalpha(expression[j]))++j;st.push_back({expression.substr(i,j-i),0,false});i=j+1;}\n            else{int sign=1;if(expression[i]=='-'){sign=-1;++i;}long long x=0;while(i<n&&isdigit(expression[i]))x=x*10+expression[i++]-'0';feed(sign*x);}\n        }return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181148492",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

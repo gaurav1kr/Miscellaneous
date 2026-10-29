@@ -1,0 +1,32 @@
+{
+  "id": "3825",
+  "title": "Longest Strictly Increasing Subsequence With Non-Zero Bitwise AND",
+  "slug": "longest-strictly-increasing-subsequence-with-non-zero-bitwise-and",
+  "url": "https://leetcode.com/problems/longest-strictly-increasing-subsequence-with-non-zero-bitwise-and/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Bit Manipulation",
+    "Enumeration"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Return the length of the longest strictly increasing subsequence in nums whose bitwise AND is non-zero . If no such subsequence exists, return 0. \n\n Example 1: \n\n Input: nums = [5,4,7] \n \n Output: 2 \n \n Explanation: \n \n One longest strictly increasing subsequence is [5, 7] . The bitwise AND is 5 AND 7 = 5 , which is non-zero. \n\n Example 2: \n\n Input: nums = [2,3,6] \n \n Output: 3 \n \n Explanation: \n \n The longest strictly increasing subsequence is [2, 3, 6] . The bitwise AND is 2 AND 3 AND 6 = 2 , which is non-zero. \n\n Example 3: \n\n Input: nums = [0,1] \n \n Output: 1 \n \n Explanation: \n \n One longest strictly increasing subsequence is [1] . The bitwise AND is 1, which is non-zero. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 9 ​​​​​​​",
+  "code": "class Solution {\npublic:\n    int longestSubsequence(vector<int>& nums) {\n        int ans=0;\n        for(int bit=0;bit<30;++bit){\n            vector<int> tails;\n            for(int x:nums) if((x>>bit)&1){\n                auto it=lower_bound(tails.begin(),tails.end(),x);\n                if(it==tails.end()) tails.push_back(x);\n                else *it=x;\n            }\n            ans=max(ans,(int)tails.size());\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177769009",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

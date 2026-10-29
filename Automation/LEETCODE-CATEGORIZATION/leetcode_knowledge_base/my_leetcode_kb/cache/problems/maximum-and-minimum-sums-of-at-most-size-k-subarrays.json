@@ -1,0 +1,35 @@
+{
+  "id": "3430",
+  "title": "Maximum and Minimum Sums of at Most Size K Subarrays",
+  "slug": "maximum-and-minimum-sums-of-at-most-size-k-subarrays",
+  "url": "https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subarrays/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Math / Number Theory",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and a positive integer k . Return the sum of the maximum and minimum elements of all subarrays with at most k elements. \n\n Example 1: \n\n Input: nums = [1,2,3], k = 2 \n \n Output: 20 \n \n Explanation: \n \n The subarrays of nums with at most 2 elements are: \n\n Subarray \n Minimum \n Maximum \n Sum \n\n [1] \n 1 \n 1 \n 2 \n\n [2] \n 2 \n 2 \n 4 \n\n [3] \n 3 \n 3 \n 6 \n\n [1, 2] \n 1 \n 2 \n 3 \n\n [2, 3] \n 2 \n 3 \n 5 \n\n Final Total \n\n 20 \n\n The output would be 20. \n\n Example 2: \n\n Input: nums = [1,-3,1], k = 2 \n \n Output: -6 \n \n Explanation: \n \n The subarrays of nums with at most 2 elements are: \n\n Subarray \n Minimum \n Maximum \n Sum \n\n [1] \n 1 \n 1 \n 2 \n\n [-3] \n -3 \n -3 \n -6 \n\n [1] \n 1 \n 1 \n 2 \n\n [1, -3] \n -3 \n 1 \n -2 \n\n [-3, 1] \n -3 \n 1 \n -2 \n\n Final Total \n\n -6 \n\n The output would be -6. \n\n Constraints: \n\n 1 <= nums.length <= 80000 \n \n 1 <= k <= nums.length \n \n -10 6 <= nums[i] <= 10 6",
+  "code": "class Solution {\n long long calc(vector<int>& a,int k,bool mx){int n=a.size();vector<int>L(n),R(n),st;\n for(int i=0;i<n;++i){while(!st.empty()&&(mx?a[st.back()]<=a[i]:a[st.back()]>=a[i]))st.pop_back();L[i]=st.empty()?i+1:i-st.back();st.push_back(i);}st.clear();\n for(int i=n-1;i>=0;--i){while(!st.empty()&&(mx?a[st.back()]<a[i]:a[st.back()]>a[i]))st.pop_back();R[i]=st.empty()?n-i:st.back()-i;st.push_back(i);}\n long long ans=0;for(int i=0;i<n;++i){long long l=min(L[i],k),r=min(R[i],k),z=k-1;long long count=l*r;\n // Count pairs (left length,right length) whose sum exceeds k+1.\n // Subtract pairs of lengths whose sum exceeds k+1.\n long long a0=max(1LL,(long long)k-r+2),a1=l;\n if(a0<=a1){long long c=a1-a0+1;count=l*r-c*(a0+a1+2*r-2*k-2)/2;}\n ans+=count*a[i];}return ans;}\n public:long long minMaxSubarraySum(vector<int>& nums,int k){return calc(nums,k,true)+calc(nums,k,false);}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177524408",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

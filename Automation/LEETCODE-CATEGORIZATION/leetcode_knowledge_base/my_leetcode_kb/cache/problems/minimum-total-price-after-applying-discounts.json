@@ -1,0 +1,34 @@
+{
+  "id": "4014",
+  "title": "Minimum Total Price After Applying Discounts",
+  "slug": "minimum-total-price-after-applying-discounts",
+  "url": "https://leetcode.com/problems/minimum-total-price-after-applying-discounts/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays prices and discounts . \n \n The value prices[i] represents the price of the i th item, and discounts[j] represents a discount percentage. \n \n You may apply discounts subject to the following rules: \n\n Each discount can be applied to at most one item. \n \n Each item can receive at most one discount. \n \n An item may also receive no discount. \n\n If a discount of d percent is applied to an item with price p , its final price becomes (p * (100 - d)) / 100 . The final price is not rounded. \n \n Return the minimum possible sum of final prices after assigning discounts optimally. Answers within 10 -5 of the actual answer will be accepted. \n\n Example 1: \n\n Input: prices = [10,30,21], discounts = [50,60] \n \n Output: 32.50000 \n \n Explanation: \n\n Apply discounts[1] = 60 to prices[1] = 30 , thus 30 * (100 - 60) / 100 = 12 . \n \n Apply discounts[0] = 50 to prices[2] = 21 , thus 21 * (100 - 50) / 100 = 10.5 . \n \n prices[0] = 10 receives no discount, so it stays 10. \n\n The total is 12 + 10.5 + 10 = 32.50000 , which is the minimum possible. \n\n Example 2: \n\n Input: prices = [100,70], discounts = [10,40,50] \n \n Output: 92.00000 \n \n Explanation: ​​​​​​​ \n\n Apply discounts[2] = 50 to prices[0] = 100 , thus 100 * (100 - 50) / 100 = 50 . \n \n Apply discounts[1] = 40 to prices[1] = 70 , thus 70 * (100 - 40) / 100 = 42 . \n\n The total is 50 + 42 = 92.00000 , which is the minimum possible. \n\n Example 3: \n\n Input: prices = [7,3,9], discounts = [100,100] \n \n Output: 3.00000 \n \n Explanation: \n\n Apply discounts[0] = 100 to prices[2] = 9 , thus 9 * (100 - 100) / 100 = 0 . \n \n Apply discounts[1] = 100 to prices[0] = 7 , thus 7 * (100 - 100) / 100 = 0 . \n \n prices[1] = 3 receives no discount, so it stays 3. \n\n The total is 0 + 0 + 3 = 3.00000 , which is the minimum possible. \n\n Constraints: \n\n 1 <= prices.length, discounts.length <= 10 5 \n \n 1 <= prices[i] <= 10 5 \n \n 1 <= discounts[j] <= 100",
+  "code": "class Solution {\npublic:\n    double minPrice(vector<int>& prices, vector<int>& discounts) {\n        sort(prices.rbegin(), prices.rend());\n        sort(discounts.rbegin(), discounts.rend());\n        double total = 0;\n        for (int p : prices) total += p;\n        int k = min(prices.size(), discounts.size());\n        for (int i = 0; i < k; ++i)\n            total -= (double)prices[i] * discounts[i] / 100.0;\n        return total;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181111845",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

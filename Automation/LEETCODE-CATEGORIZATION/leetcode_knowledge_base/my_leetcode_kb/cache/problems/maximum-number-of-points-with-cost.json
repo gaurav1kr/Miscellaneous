@@ -1,0 +1,32 @@
+{
+  "id": "1937",
+  "title": "Maximum Number of Points with Cost",
+  "slug": "maximum-number-of-points-with-cost",
+  "url": "https://leetcode.com/problems/maximum-number-of-points-with-cost/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an m x n integer matrix points ( 0-indexed ). Starting with 0 points, you want to maximize the number of points you can get from the matrix. \n \n To gain points, you must pick one cell in each row . Picking the cell at coordinates (r, c) will add points[r][c] to your score. \n \n However, you will lose points if you pick a cell too far from the cell that you picked in the previous row. For every two adjacent rows r and r + 1 (where 0 <= r < m - 1 ), picking cells at coordinates (r, c 1 ) and (r + 1, c 2 ) will subtract abs(c 1 - c 2 ) from your score. \n \n Return the maximum number of points you can achieve . \n \n abs(x) is defined as: \n\n x for x >= 0 . \n \n -x for x < 0 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/07/12/screenshot-2021-07-12-at-13-40-26-diagram-drawio-diagrams-net.png] \n \n```\nInput:\n points = [[1,2,3],[1,5,1],[3,1,1]]\n\nOutput:\n 9\n\nExplanation:\n\nThe blue cells denote the optimal cells to pick, which have coordinates (0, 2), (1, 1), and (2, 0).\nYou add 3 + 5 + 3 = 11 to your score.\nHowever, you must subtract abs(2 - 1) + abs(1 - 0) = 2 from your score.\nYour final score is 11 - 2 = 9.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/07/12/screenshot-2021-07-12-at-13-42-14-diagram-drawio-diagrams-net.png] \n \n```\nInput:\n points = [[1,5],[2,3],[4,2]]\n\nOutput:\n 11\n\nExplanation:\n\nThe blue cells denote the optimal cells to pick, which have coordinates (0, 1), (1, 1), and (2, 0).\nYou add 5 + 3 + 4 = 12 to your score.\nHowever, you must subtract abs(1 - 1) + abs(1 - 0) = 1 from your score.\nYour final score is 12 - 1 = 11.\n```\n\n Constraints: \n\n m == points.length \n \n n == points[r].length \n \n 1 <= m, n <= 10 5 \n \n 1 <= m * n <= 10 5 \n \n 0 <= points[r][c] <= 10 5",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    long long maxPoints(vector<vector<int>>& points) {\n        int m = points.size(), n = points[0].size();\n        vector<long long> prev(points[0].begin(), points[0].end());\n\n        for (int i = 1; i < m; ++i) {\n            vector<long long> left(n), right(n), curr(n);\n            left[0] = prev[0];\n            for (int j = 1; j < n; ++j)\n                left[j] = max(left[j - 1] - 1, prev[j]);\n\n            right[n - 1] = prev[n - 1];\n            for (int j = n - 2; j >= 0; --j)\n                right[j] = max(right[j + 1] - 1, prev[j]);\n\n            for (int j = 0; j < n; ++j)\n                curr[j] = points[i][j] + max(left[j], right[j]);\n\n            prev = curr;\n        }\n\n        return *max_element(prev.begin(), prev.end());\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593695581",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1150",
+  "title": "Check If a Number Is Majority Element in a Sorted Array",
+  "slug": "check-if-a-number-is-majority-element-in-a-sorted-array",
+  "url": "https://leetcode.com/problems/check-if-a-number-is-majority-element-in-a-sorted-array/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array nums sorted in non-decreasing order and an integer target , return true if target is a majority element, or false otherwise . \n \n A majority element in an array nums is an element that appears more than nums.length / 2 times in the array. \n\n Example 1: \n \n```\nInput:\n nums = [2,4,5,5,5,5,5,6,6], target = 5\n\nOutput:\n true\n\nExplanation:\n The value 5 appears 5 times and the length of the array is 9.\nThus, 5 is a majority element because 5 > 9/2 is true.\n```\n\n Example 2: \n \n```\nInput:\n nums = [10,100,101,101], target = 101\n\nOutput:\n false\n\nExplanation:\n The value 101 appears 2 times and the length of the array is 4.\nThus, 101 is not a majority element because 2 > 4/2 is false.\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i], target <= 10 9 \n \n nums is sorted in non-decreasing order.",
+  "code": "class Solution {\npublic:\n    bool isMajorityElement(vector<int>& nums, int target) {\n        auto it = lower_bound(nums.begin(), nums.end(), target);\n        int pos = it - nums.begin();\n        return pos + static_cast<int>(nums.size()) / 2 < static_cast<int>(nums.size())\n            && nums[pos + nums.size() / 2] == target;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178536963",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

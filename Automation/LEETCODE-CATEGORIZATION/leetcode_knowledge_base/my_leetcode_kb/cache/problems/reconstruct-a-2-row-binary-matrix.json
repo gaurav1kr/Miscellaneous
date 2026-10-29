@@ -1,0 +1,31 @@
+{
+  "id": "1253",
+  "title": "Reconstruct a 2-Row Binary Matrix",
+  "slug": "reconstruct-a-2-row-binary-matrix",
+  "url": "https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Matrix"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given the following details of a matrix with n columns and 2 rows : \n\n The matrix is a binary matrix, which means each element in the matrix can be 0 or 1 . \n \n The sum of elements of the 0-th(upper) row is given as upper . \n \n The sum of elements of the 1-st(lower) row is given as lower . \n \n The sum of elements in the i-th column(0-indexed) is colsum[i] , where colsum is given as an integer array with length n . \n\n Your task is to reconstruct the matrix with upper , lower and colsum . \n \n Return it as a 2-D integer array. \n \n If there are more than one valid solution, any of them will be accepted. \n \n If no valid solution exists, return an empty 2-D array. \n\n Example 1: \n \n```\nInput:\n upper = 2, lower = 1, colsum = [1,1,1]\n\nOutput:\n [[1,1,0],[0,0,1]]\n\nExplanation: \n[[1,0,1],[0,1,0]], and [[0,1,1],[1,0,0]] are also correct answers.\n```\n\n Example 2: \n \n```\nInput:\n upper = 2, lower = 3, colsum = [2,2,1,1]\n\nOutput:\n []\n```\n\n Example 3: \n \n```\nInput:\n upper = 5, lower = 5, colsum = [2,1,2,0,1,0,1,2,0,1]\n\nOutput:\n [[1,1,1,0,1,0,0,1,0,0],[1,0,1,0,0,0,1,1,0,1]]\n```\n\n Constraints: \n\n 1 <= colsum.length <= 10^5 \n \n 0 <= upper, lower <= colsum.length \n \n 0 <= colsum[i] <= 2",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<int>> reconstructMatrix(int upper, int lower, vector<int>& colsum) {\n        int n = colsum.size();\n        vector<vector<int>> res(2, vector<int>(n, 0));\n        for (int i = 0; i < n; ++i) {\n            if (colsum[i] == 2) {\n                res[0][i] = res[1][i] = 1;\n                upper--; lower--;\n            }\n        }\n        for (int i = 0; i < n; ++i) {\n            if (colsum[i] == 1) {\n                if (upper > 0) {\n                    res[0][i] = 1;\n                    upper--;\n                } else {\n                    res[1][i] = 1;\n                    lower--;\n                }\n            }\n        }\n        if (upper == 0 && lower == 0) return res;\n        return {};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610623409",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

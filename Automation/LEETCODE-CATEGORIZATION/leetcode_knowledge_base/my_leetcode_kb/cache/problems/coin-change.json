@@ -1,0 +1,34 @@
+{
+  "id": "322",
+  "title": "Coin Change",
+  "slug": "coin-change",
+  "url": "https://leetcode.com/problems/coin-change/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Breadth-First Search",
+    "Knapsack Problem",
+    "Complete Knapsack"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money. \n \n Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1. \n \n You may assume that you have an infinite number of each kind of coin. \n\n Example 1: \n \n```\nInput:\n coins = [1,2,5], amount = 11\n\nOutput:\n 3\n\nExplanation:\n 11 = 5 + 5 + 1\n```\n\n Example 2: \n \n```\nInput:\n coins = [2], amount = 3\n\nOutput:\n -1\n```\n\n Example 3: \n \n```\nInput:\n coins = [1], amount = 0\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= coins.length <= 12 \n \n 1 <= coins[i] <= 2 31 - 1 \n \n 0 <= amount <= 10 4",
+  "code": "class Solution {\npublic:\n   int coinChange(vector<int>& coins, int amount) {\n    vector<int> dp(amount + 1, amount + 1);\n    dp[0] = 0;  // Base case: 0 coins needed for amount 0\n\n    for (int coin : coins) {\n        for (int i = coin; i <= amount; ++i) {\n            dp[i] = min(dp[i], dp[i - coin] + 1);\n        }\n    }\n\n    return dp[amount] == amount + 1 ? -1 : dp[amount];\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542478725",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

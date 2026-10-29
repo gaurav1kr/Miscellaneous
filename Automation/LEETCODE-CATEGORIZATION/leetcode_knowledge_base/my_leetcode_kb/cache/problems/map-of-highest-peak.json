@@ -1,0 +1,32 @@
+{
+  "id": "1765",
+  "title": "Map of Highest Peak",
+  "slug": "map-of-highest-peak",
+  "url": "https://leetcode.com/problems/map-of-highest-peak/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer matrix isWater of size m x n that represents a map of land and water cells. \n\n If isWater[i][j] == 0 , cell (i, j) is a land cell. \n \n If isWater[i][j] == 1 , cell (i, j) is a water cell. \n\n You must assign each cell a height in a way that follows these rules: \n\n The height of each cell must be non-negative. \n \n If the cell is a water cell, its height must be 0 . \n \n Any two adjacent cells must have an absolute height difference of at most 1 . A cell is adjacent to another cell if the former is directly north, east, south, or west of the latter (i.e., their sides are touching). \n\n Find an assignment of heights such that the maximum height in the matrix is maximized . \n \n Return an integer matrix height of size m x n where height[i][j] is cell (i, j) 's height. If there are multiple solutions, return any of them . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2021/01/10/screenshot-2021-01-11-at-82045-am.png] \n \n```\nInput:\n isWater = [[0,1],[0,0]]\n\nOutput:\n [[1,0],[2,1]]\n\nExplanation:\n The image shows the assigned heights of each cell.\nThe blue cell is the water cell, and the green cells are the land cells.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2021/01/10/screenshot-2021-01-11-at-82050-am.png] \n \n```\nInput:\n isWater = [[0,0,1],[1,0,0],[0,0,0]]\n\nOutput:\n [[1,1,0],[0,1,1],[1,2,2]]\n\nExplanation:\n A height of 2 is the maximum possible height of any assignment.\nAny height assignment that has a maximum height of 2 while still meeting the rules will also be accepted.\n```\n\n Constraints: \n\n m == isWater.length \n \n n == isWater[i].length \n \n 1 <= m, n <= 1000 \n \n isWater[i][j] is 0 or 1 . \n \n There is at least one water cell. \n\n Note: This question is the same as 542: https://leetcode.com/problems/01-matrix/",
+  "code": "#include <vector>\n#include <queue>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<int>> highestPeak(vector<vector<int>>& isWater) {\n        int m = isWater.size(), n = isWater[0].size();\n        queue<pair<int, int>> q;\n        vector<vector<int>> res(m, vector<int>(n, -1));\n\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                if (isWater[i][j]) {\n                    res[i][j] = 0;\n                    q.push({i, j});\n                }\n\n        vector<pair<int, int>> dirs = {{0,1},{1,0},{0,-1},{-1,0}};\n        while (!q.empty()) {\n            auto [x, y] = q.front(); q.pop();\n            for (auto& [dx, dy] : dirs) {\n                int nx = x + dx, ny = y + dy;\n                if (nx >= 0 && ny >= 0 && nx < m && ny < n && res[nx][ny] == -1) {\n                    res[nx][ny] = res[x][y] + 1;\n                    q.push({nx, ny});\n                }\n            }\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610586313",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

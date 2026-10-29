@@ -1,0 +1,37 @@
+{
+  "id": "379",
+  "title": "Design Phone Directory",
+  "slug": "design-phone-directory",
+  "url": "https://leetcode.com/problems/design-phone-directory/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Linked List",
+    "Design",
+    "Queue"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Linked List / Pointers",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Linked list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Design a phone directory that initially has maxNumbers empty slots that can store numbers. The directory should store numbers, check if a certain slot is empty or not, and empty a given slot. \n \n Implement the PhoneDirectory class: \n\n PhoneDirectory(int maxNumbers) Initializes the phone directory with the number of available slots maxNumbers . \n \n int get() Provides a number that is not assigned to anyone. Returns -1 if no number is available. \n \n bool check(int number) Returns true if the slot number is available and false otherwise. \n \n void release(int number) Recycles or releases the slot number . \n\n Example 1: \n \n```\nInput\n\n[\"PhoneDirectory\", \"get\", \"get\", \"check\", \"get\", \"check\", \"release\", \"check\"]\n[[3], [], [], [2], [], [2], [2], [2]]\n\nOutput\n\n[null, 0, 1, true, 2, false, null, true]\n\nExplanation\n\nPhoneDirectory phoneDirectory = new PhoneDirectory(3);\nphoneDirectory.get(); // It can return any available phone number. Here we assume it returns 0.\nphoneDirectory.get(); // Assume it returns 1.\nphoneDirectory.check(2); // The number 2 is available, so return true.\nphoneDirectory.get(); // It returns 2, the only number that is left.\nphoneDirectory.check(2); // The number 2 is no longer available, so return false.\nphoneDirectory.release(2); // Release number 2 back to the pool.\nphoneDirectory.check(2); // Number 2 is available again, return true.\n```\n\n Constraints: \n\n 1 <= maxNumbers <= 10 4 \n \n 0 <= number < maxNumbers \n \n At most 2 * 10 4 calls will be made to get , check , and release .",
+  "code": "class PhoneDirectory {\n    queue<int> freeNumbers;\n    vector<bool> used;\npublic:\n    PhoneDirectory(int maxNumbers) : used(maxNumbers, false) {\n        for (int i = 0; i < maxNumbers; ++i) freeNumbers.push(i);\n    }\n    int get() {\n        if (freeNumbers.empty()) return -1;\n        int number = freeNumbers.front();\n        freeNumbers.pop();\n        used[number] = true;\n        return number;\n    }\n    bool check(int number) {\n        return number >= 0 && number < (int)used.size() && !used[number];\n    }\n    void release(int number) {\n        if (number < 0 || number >= (int)used.size() || !used[number]) return;\n        used[number] = false;\n        freeNumbers.push(number);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179683403",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

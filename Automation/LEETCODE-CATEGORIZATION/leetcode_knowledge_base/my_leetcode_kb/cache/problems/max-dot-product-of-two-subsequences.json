@@ -1,0 +1,31 @@
+{
+  "id": "1458",
+  "title": "Max Dot Product of Two Subsequences",
+  "slug": "max-dot-product-of-two-subsequences",
+  "url": "https://leetcode.com/problems/max-dot-product-of-two-subsequences/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Longest Common Subsequence"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given two arrays nums1  and nums2 . \n \n Return the maximum dot product between  non-empty subsequences of nums1 and nums2 with the same length. \n \n A subsequence of an array is a new array which is formed from the original array by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie,  [2,3,5]  is a subsequence of  [1,2,3,4,5]  while [1,5,3]  is not). \n\n Example 1: \n \n```\nInput:\n nums1 = [2,1,-2,5], nums2 = [3,0,-6]\n\nOutput:\n 18\n\nExplanation:\n Take subsequence [2,-2] from nums1 and subsequence [3,-6] from nums2.\nTheir dot product is (2*3 + (-2)*(-6)) = 18.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [3,-2], nums2 = [2,-6,7]\n\nOutput:\n 21\n\nExplanation:\n Take subsequence [3] from nums1 and subsequence [7] from nums2.\nTheir dot product is (3*7) = 21.\n```\n\n Example 3: \n \n```\nInput:\n nums1 = [-1,-1], nums2 = [1,1]\n\nOutput:\n -1\n\nExplanation: \nTake subsequence [-1] from nums1 and subsequence [1] from nums2.\nTheir dot product is -1.\n```\n\n Constraints: \n\n 1 <= nums1.length, nums2.length <= 500 \n \n -1000 <= nums1[i], nums2[i] <= 1000",
+  "code": "class Solution {\npublic:\n    int maxDotProduct(std::vector<int>& nums1, std::vector<int>& nums2) {\n        int m = nums1.size(), n = nums2.size();\n        std::vector<int> current(n + 1, INT_MIN), previous(n + 1, INT_MIN);\n\n        for (int i = 1; i <= m; ++i) {\n            for (int j = 1; j <= n; ++j) {\n                int curr_product = nums1[i-1] * nums2[j-1];\n                current[j] = std::max({curr_product, previous[j], current[j-1], curr_product + std::max(0, previous[j-1])});\n            }\n            std::swap(current, previous);\n        }\n        return previous[n];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617067178",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "3574",
+  "title": "Maximize Subarray GCD Score",
+  "slug": "maximize-subarray-gcd-score",
+  "url": "https://leetcode.com/problems/maximize-subarray-gcd-score/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Enumeration",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array of positive integers nums and an integer k . \n \n You may perform at most k operations. In each operation, you can choose one element in the array and double its value. Each element can be doubled at most once. \n \n The score of a contiguous subarray is defined as the product of its length and the greatest common divisor (GCD) of all its elements. \n \n Your task is to return the maximum score that can be achieved by selecting a contiguous subarray from the modified array. \n \n Note: \n\n The greatest common divisor (GCD) of an array is the largest integer that evenly divides all the array elements. \n\n Example 1: \n\n Input: nums = [2,4], k = 1 \n \n Output: 8 \n \n Explanation: \n\n Double nums[0] to 4 using one operation. The modified array becomes [4, 4] . \n \n The GCD of the subarray [4, 4] is 4, and the length is 2. \n \n Thus, the maximum possible score is 2 × 4 = 8 . \n\n Example 2: \n\n Input: nums = [3,5,7], k = 2 \n \n Output: 14 \n \n Explanation: \n\n Double nums[2] to 14 using one operation. The modified array becomes [3, 5, 14] . \n \n The GCD of the subarray [14] is 14, and the length is 1. \n \n Thus, the maximum possible score is 1 × 14 = 14 . \n\n Example 3: \n\n Input: nums = [5,5,5], k = 1 \n \n Output: 15 \n \n Explanation: \n\n The subarray [5, 5, 5] has a GCD of 5, and its length is 3. \n \n Since doubling any element doesn't improve the score, the maximum score is 3 × 5 = 15 . \n\n Constraints: \n\n 1 <= n == nums.length <= 1500 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= k <= n",
+  "code": "class Solution {public:\n long long maxGCDScore(vector<int>& nums,int k){\n  long long ans=0;int n=nums.size();\n  for(int i=0;i<n;++i){int g=0,minTwos=100,cnt=0;\n   for(int j=i;j<n;++j){int x=nums[j];g=__gcd(g,x);int t=__builtin_ctz((unsigned)x);\n    if(t<minTwos){minTwos=t;cnt=1;}else if(t==minTwos)++cnt;\n    ans=max(ans,1LL*(j-i+1)*g*(cnt<=k?2:1));\n   }\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177589610",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

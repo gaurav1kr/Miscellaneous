@@ -1,0 +1,29 @@
+{
+  "id": "926",
+  "title": "Flip String to Monotone Increasing",
+  "slug": "flip-string-to-monotone-increasing",
+  "url": "https://leetcode.com/problems/flip-string-to-monotone-increasing/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "A binary string is monotone increasing if it consists of some number of 0 's (possibly none), followed by some number of 1 's (also possibly none). \n \n You are given a binary string s . You can flip s[i] changing it from 0 to 1 or from 1 to 0 . \n \n Return the minimum number of flips to make s monotone increasing . \n\n Example 1: \n \n```\nInput:\n s = \"00110\"\n\nOutput:\n 1\n\nExplanation:\n We flip the last digit to get 00111.\n```\n\n Example 2: \n \n```\nInput:\n s = \"010110\"\n\nOutput:\n 2\n\nExplanation:\n We flip to get 011111, or alternatively 000111.\n```\n\n Example 3: \n \n```\nInput:\n s = \"00011000\"\n\nOutput:\n 2\n\nExplanation:\n We flip to get 00000000.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is either '0' or '1' .",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minFlipsMonoIncr(string s) {\n        int ones = 0, flips = 0;\n        for (char c : s) {\n            if (c == '1') ones++;\n            else flips = min(flips + 1, ones);\n        }\n        return flips;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590126094",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

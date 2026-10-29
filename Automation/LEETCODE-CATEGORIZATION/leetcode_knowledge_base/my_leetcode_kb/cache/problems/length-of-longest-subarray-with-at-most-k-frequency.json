@@ -1,0 +1,34 @@
+{
+  "id": "2958",
+  "title": "Length of Longest Subarray With at Most K Frequency",
+  "slug": "length-of-longest-subarray-with-at-most-k-frequency",
+  "url": "https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n The frequency of an element x is the number of times it occurs in an array. \n \n An array is called good if the frequency of each element in this array is less than or equal to k . \n \n Return the length of the longest good subarray of nums . \n \n A subarray is a contiguous non-empty sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,1,2,3,1,2], k = 2\n\nOutput:\n 6\n\nExplanation:\n The longest possible good subarray is [1,2,3,1,2,3] since the values 1, 2, and 3 occur at most twice in this subarray. Note that the subarrays [2,3,1,2,3,1] and [3,1,2,3,1,2] are also good.\nIt can be shown that there are no good subarrays with length more than 6.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,1,2,1,2,1,2], k = 1\n\nOutput:\n 2\n\nExplanation:\n The longest possible good subarray is [1,2] since the values 1 and 2 occur at most once in this subarray. Note that the subarray [2,1] is also good.\nIt can be shown that there are no good subarrays with length more than 2.\n```\n\n Example 3: \n \n```\nInput:\n nums = [5,5,5,5,5,5,5], k = 4\n\nOutput:\n 4\n\nExplanation:\n The longest possible good subarray is [5,5,5,5] since the value 5 occurs 4 times in this subarray.\nIt can be shown that there are no good subarrays with length more than 4.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= k <= nums.length",
+  "code": "class Solution { public: int maxSubarrayLength(vector<int>& nums,int k){unordered_map<int,int> f;int l=0,ans=0;for(int r=0;r<(int)nums.size();++r){++f[nums[r]];while(f[nums[r]]>k)--f[nums[l++]];ans=max(ans,r-l+1);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176775813",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

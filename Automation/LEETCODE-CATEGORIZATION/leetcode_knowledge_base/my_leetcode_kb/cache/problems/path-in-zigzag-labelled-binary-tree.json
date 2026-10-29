@@ -1,0 +1,31 @@
+{
+  "id": "1104",
+  "title": "Path In Zigzag Labelled Binary Tree",
+  "slug": "path-in-zigzag-labelled-binary-tree",
+  "url": "https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "In an infinite binary tree where every node has two children, the nodes are labelled in row order. \n \n In the odd numbered rows (ie., the first, third, fifth,...), the labelling is left to right, while in the even numbered rows (second, fourth, sixth,...), the labelling is right to left. \n \n [Figure: https://assets.leetcode.com/uploads/2019/06/24/tree.png] \n \n Given the label of a node in this tree, return the labels in the path from the root of the tree to the node with that label . \n\n Example 1: \n \n```\nInput:\n label = 14\n\nOutput:\n [1,3,4,14]\n```\n\n Example 2: \n \n```\nInput:\n label = 26\n\nOutput:\n [1,2,6,10,26]\n```\n\n Constraints: \n\n 1 <= label <= 10^6",
+  "code": "#include <vector>\n#include <cmath>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> pathInZigZagTree(int label) {\n        vector<int> path;\n        int level = log2(label);\n        while (label > 0) {\n            path.insert(path.begin(), label);\n            int total = pow(2, level) + pow(2, level + 1) - 1;\n            label = (total - label) / 2;\n            level--;\n        }\n        return path;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593830032",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

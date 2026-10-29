@@ -1,0 +1,33 @@
+{
+  "id": "3610",
+  "title": "Minimum Number of Primes to Sum to Target",
+  "slug": "minimum-number-of-primes-to-sum-to-target",
+  "url": "https://leetcode.com/problems/minimum-number-of-primes-to-sum-to-target/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Number Theory"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two integers n and m . \n \n You have to select a multiset of prime numbers from the first m prime numbers such that the sum of the selected primes is exactly n . You may use each prime number multiple times. \n \n Return the minimum number of prime numbers needed to sum up to n , or -1 if it is not possible. \n\n Example 1: \n\n Input: n = 10, m = 2 \n \n Output: 4 \n \n Explanation: \n \n The first 2 primes are [2, 3]. The sum 10 can be formed as 2 + 2 + 3 + 3, requiring 4 primes. \n\n Example 2: \n\n Input: n = 15, m = 5 \n \n Output: 3 \n \n Explanation: \n \n The first 5 primes are [2, 3, 5, 7, 11]. The sum 15 can be formed as 5 + 5 + 5, requiring 3 primes. \n\n Example 3: \n\n Input: n = 7, m = 6 \n \n Output: 1 \n \n Explanation: \n \n The first 6 primes are [2, 3, 5, 7, 11, 13]. The sum 7 can be formed directly by prime 7, requiring only 1 prime. \n\n Constraints: \n\n 1 <= n <= 1000 \n \n 1 <= m <= 1000",
+  "code": "class Solution {\npublic:\n    int minNumberOfPrimes(int n,int m) {\n        vector<int> primes;\n        for(int x=2;(int)primes.size()<m;++x) {\n            bool prime=true;\n            for(int p:primes) { if(1LL*p*p>x) break; if(x%p==0) {prime=false;break;} }\n            if(prime) primes.push_back(x);\n        }\n        vector<int> dp(n+1,n+1);dp[0]=0;\n        for(int p:primes) for(int x=p;x<=n;++x)\n            dp[x]=min(dp[x],dp[x-p]+1);\n        return dp[n]>n?-1:dp[n];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180978164",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

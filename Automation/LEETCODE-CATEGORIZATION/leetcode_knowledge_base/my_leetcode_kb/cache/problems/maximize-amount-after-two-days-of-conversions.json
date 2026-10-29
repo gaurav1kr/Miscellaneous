@@ -1,0 +1,38 @@
+{
+  "id": "3387",
+  "title": "Maximize Amount After Two Days of Conversions",
+  "slug": "maximize-amount-after-two-days-of-conversions",
+  "url": "https://leetcode.com/problems/maximize-amount-after-two-days-of-conversions/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Hash map",
+    "Ordered map",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string initialCurrency , and you start with 1.0 of initialCurrency . \n \n You are also given four arrays with currency pairs (strings) and rates (real numbers): \n\n pairs1[i] = [startCurrency i , targetCurrency i ] denotes that you can convert from startCurrency i to targetCurrency i at a rate of rates1[i] on day 1 . \n \n pairs2[i] = [startCurrency i , targetCurrency i ] denotes that you can convert from startCurrency i to targetCurrency i at a rate of rates2[i] on day 2 . \n \n Also, each targetCurrency can be converted back to its corresponding startCurrency at a rate of 1 / rate . \n\n You can perform any number of conversions, including zero , using rates1 on day 1, followed by any number of additional conversions, including zero , using rates2 on day 2. \n \n Return the maximum amount of initialCurrency you can have after performing any number of conversions on both days in order . \n \n Note: Conversion rates are valid, and there will be no contradictions in the rates for either day. The rates for the days are independent of each other. \n\n Example 1: \n\n Input: initialCurrency = \"EUR\", pairs1 = [[\"EUR\",\"USD\"],[\"USD\",\"JPY\"]], rates1 = [2.0,3.0], pairs2 = [[\"JPY\",\"USD\"],[\"USD\",\"CHF\"],[\"CHF\",\"EUR\"]], rates2 = [4.0,5.0,6.0] \n \n Output: 720.00000 \n \n Explanation: \n \n To get the maximum amount of EUR , starting with 1.0 EUR : \n\n On Day 1:\n\n Convert EUR to USD to get 2.0 USD . \n \n Convert USD to JPY to get 6.0 JPY . \n\n On Day 2:\n\n Convert JPY to USD to get 24.0 USD . \n \n Convert USD to CHF to get 120.0 CHF . \n \n Finally, convert CHF to EUR to get 720.0 EUR . \n\n Example 2: \n\n Input: initialCurrency = \"NGN\", pairs1 = [[\"NGN\",\"EUR\"]] , rates1 = [9.0] , pairs2 = [[\"NGN\",\"EUR\"]] , rates2 = [6.0] \n \n Output: 1.50000 \n \n Explanation: \n \n Converting NGN to EUR on day 1 and EUR to NGN using the inverse rate on day 2 gives the maximum amount. \n\n Example 3: \n\n Input: initialCurrency = \"USD\", pairs1 = [[\"USD\",\"EUR\"]], rates1 = [1.0], pairs2 = [[\"EUR\",\"JPY\"]], rates2 = [10.0] \n \n Output: 1.00000 \n \n Explanation: \n \n In this example, there is no need to make any conversions on either day. \n\n Constraints: \n\n 1 <= initialCurrency.length <= 3 \n \n initialCurrency consists only of uppercase English letters. \n \n 1 <= n == pairs1.length <= 10 \n \n 1 <= m == pairs2.length <= 10 \n \n pairs1[i] == [startCurrency i , targetCurrency i ] \n \n pairs2[i] == [startCurrency i , targetCurrency i ] \n \n 1 <= startCurrency i .length, targetCurrency i .length <= 3 \n \n startCurrency i and targetCurrency i consist only of uppercase English letters. \n \n rates1.length == n \n \n rates2.length == m \n \n 1.0 <= rates1[i], rates2[i] <= 10.0 \n \n The input is generated such that there are no contradictions or cycles in the conversion graphs for either day. \n \n The input is generated such that the output is at most 5 * 10 10 .",
+  "code": "class Solution {\n    using G=unordered_map<string,vector<pair<string,double>>>;\n    G make(vector<vector<string>>& p,vector<double>& r) {\n        G g;\n        for(int i=0; i<(int)p.size(); i++) {\n            g[p[i][0]].push_back( {\n                p[i][1],r[i]\n            }\n            );\n            g[p[i][1]].push_back( {\n                p[i][0],1/r[i]\n            }\n            );\n        }\n        return g;\n    }\n    unordered_map<string,double> traverse(G&g,string start) {\n        unordered_map<string,double> val;\n        queue<string> q;\n        q.push(start);\n        val[start]=1;\n        while(!q.empty()) {\n            string u=q.front();\n            q.pop();\n            for(auto e:g[u])if(!val.count(e.first)) {\n                val[e.first]=val[u]*e.second;\n                q.push(e.first);\n            }\n        }\n        return val;\n    }\n    public:double maxAmount(string initialCurrency,vector<vector<string>>& p1,vector<double>& r1,vector<vector<string>>& p2,vector<double>& r2) {\n        G g1=make(p1,r1),g2=make(p2,r2);\n        auto a=traverse(g1,initialCurrency),b=traverse(g2,initialCurrency);\n        double ans=1;\n        for(auto x:a)if(b.count(x.first))ans=max(ans,x.second/b[x.first]);\n        return ans;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179341939",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

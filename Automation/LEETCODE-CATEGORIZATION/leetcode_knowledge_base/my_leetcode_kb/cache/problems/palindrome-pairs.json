@@ -1,0 +1,37 @@
+{
+  "id": "336",
+  "title": "Palindrome Pairs",
+  "slug": "palindrome-pairs",
+  "url": "https://leetcode.com/problems/palindrome-pairs/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie",
+    "Hash Function"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of unique strings words . \n \n A palindrome pair is a pair of integers (i, j) such that: \n\n 0 <= i, j < words.length , \n \n i != j , and \n \n words[i] + words[j] (the concatenation of the two strings) is a palindrome . \n\n Return an array of all the palindrome pairs of words . \n \n You must write an algorithm with  O(sum of words[i].length)  runtime complexity. \n\n Example 1: \n \n```\nInput:\n words = [\"abcd\",\"dcba\",\"lls\",\"s\",\"sssll\"]\n\nOutput:\n [[0,1],[1,0],[3,2],[2,4]]\n\nExplanation:\n The palindromes are [\"abcddcba\",\"dcbaabcd\",\"slls\",\"llssssll\"]\n```\n\n Example 2: \n \n```\nInput:\n words = [\"bat\",\"tab\",\"cat\"]\n\nOutput:\n [[0,1],[1,0]]\n\nExplanation:\n The palindromes are [\"battab\",\"tabbat\"]\n```\n\n Example 3: \n \n```\nInput:\n words = [\"a\",\"\"]\n\nOutput:\n [[0,1],[1,0]]\n\nExplanation:\n The palindromes are [\"a\",\"a\"]\n```\n\n Constraints: \n\n 1 <= words.length <= 5000 \n \n 0 <= words[i].length <= 300 \n \n words[i] consists of lowercase English letters.",
+  "code": "#define INDEX(c) (int)c - (int)'a'\nstruct Node \n{\n    Node* child[26];\n    int end;\n    vector<int> palindromes_below;\n    \n    Node() \n\t{\n        for (int i = 0; i < 26; i++) \n\t\t{\n            child[i] = NULL;\n        }\n        end = -1;\n    }\n};\n\nclass Solution \n{\n    Node* root = new Node();\n    \n\tpublic:\n\t\tvector<vector<int>> ans;\n\t\tbool check(const string& s, int i, int j) \n\t\t{\n\t\t\twhile (i < j) \n\t\t\t{\n\t\t\t\tif (s[i++] != s[j--]) return false;\n\t\t\t}\n\t\t\treturn true;\n\t\t}\n\n\t\tvoid insert(string& s, int ind) \n\t\t{\n\t\t\tNode* temp = root;\n\t\t\tfor (int i = s.size() - 1; i >= 0; i--) \n\t\t\t{\n\t\t\t\tif (check(s, 0, i)) \n\t\t\t\t{\n\t\t\t\t\ttemp->palindromes_below.push_back(ind);\n\t\t\t\t}\n\t\t\t\tif (temp->child[INDEX(s[i])] == NULL) \n\t\t\t\t{\n\t\t\t\t\ttemp->child[INDEX(s[i])] = new Node;\n\t\t\t\t}\n\t\t\t\ttemp = temp->child[INDEX(s[i])];\n\t\t\t}\n\t\t\ttemp->end = ind;\n\t\t\ttemp->palindromes_below.push_back(ind);\n\t\t}\n\n\t\tvoid search(string& s, int ind) \n\t\t{\n\t\t\tNode* temp = root;\n\t\t\tfor (int i = 0; i < s.size(); i++) \n\t\t\t{\n\t\t\t\tif (temp->end != -1 && temp->end != ind && check(s, i, s.size() - 1)) \n\t\t\t\t{\n\t\t\t\t\tans.push_back({ind, temp->end});\n\t\t\t\t}\n\t\t\t\t\n\t\t\t\tif (temp->child[INDEX(s[i])] == NULL) \n\t\t\t\t\treturn;\n\t\t\t\t\n\t\t\t\ttemp = temp->child[INDEX(s[i])];\n\t\t\t}\n\t\t\tfor (int idx : temp->palindromes_below) \n\t\t\t{\n\t\t\t\tif (ind != idx) ans.push_back({ind, idx});\n\t\t\t}\n\t\t}\n\n\t\tvector<vector<int>> palindromePairs(vector<string>& words) \n\t\t{\n\t\t\tfor (int i = 0; i < words.size(); i++) \n\t\t\t{\n\t\t\t\tinsert(words[i], i);\n\t\t\t}\n\t\t\tfor (int i = 0; i < words.size(); i++) \n\t\t\t{\n\t\t\t\tsearch(words[i], i);\n\t\t\t}\n\t\t\treturn ans;\n\t\t}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1482433590",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

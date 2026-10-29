@@ -1,0 +1,30 @@
+{
+  "id": "1006",
+  "title": "Clumsy Factorial",
+  "slug": "clumsy-factorial",
+  "url": "https://leetcode.com/problems/clumsy-factorial/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Stack"
+  ],
+  "description": "The factorial of a positive integer n is the product of all positive integers less than or equal to n . \n\n For example, factorial(10) = 10 * 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1 . \n\n We make a clumsy factorial using the integers in decreasing order by swapping out the multiply operations for a fixed rotation of operations with multiply '*' , divide '/' , add '+' , and subtract '-' in this order. \n\n For example, clumsy(10) = 10 * 9 / 8 + 7 - 6 * 5 / 4 + 3 - 2 * 1 . \n\n However, these operations are still applied using the usual order of operations of arithmetic. We do all multiplication and division steps before any addition or subtraction steps, and multiplication and division steps are processed left to right. \n \n Additionally, the division that we use is floor division such that 10 * 9 / 8 = 90 / 8 = 11 . \n \n Given an integer n , return the clumsy factorial of n . \n\n Example 1: \n \n```\nInput:\n n = 4\n\nOutput:\n 7\n\nExplanation:\n 7 = 4 * 3 / 2 + 1\n```\n\n Example 2: \n \n```\nInput:\n n = 10\n\nOutput:\n 12\n\nExplanation:\n 12 = 10 * 9 / 8 + 7 - 6 * 5 / 4 + 3 - 2 * 1\n```\n\n Constraints: \n\n 1 <= n <= 10 4",
+  "code": "class Solution {\npublic:\n    int clumsy(int n) {\n        stack<int> st;\n        st.push(n);\n        for (int x = n - 1, op = 0; x >= 1; --x, op = (op + 1) % 4) {\n            if (op == 0) { int v = st.top(); st.pop(); st.push(v * x); }\n            else if (op == 1) { int v = st.top(); st.pop(); st.push(v / x); }\n            else if (op == 2) st.push(x);\n            else st.push(-x);\n        }\n        int result = 0;\n        while (!st.empty()) { result += st.top(); st.pop(); }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175745094",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

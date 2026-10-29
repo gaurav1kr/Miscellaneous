@@ -1,0 +1,28 @@
+{
+  "id": "1573",
+  "title": "Number of Ways to Split a String",
+  "slug": "number-of-ways-to-split-a-string",
+  "url": "https://leetcode.com/problems/number-of-ways-to-split-a-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a binary string s , you can split s into 3 non-empty strings s1 , s2 , and s3 where s1 + s2 + s3 = s . \n \n Return the number of ways s can be split such that the number of ones is the same in s1 , s2 , and s3 . Since the answer may be too large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n s = \"10101\"\n\nOutput:\n 4\n\nExplanation:\n There are four ways to split s in 3 parts where each part contain the same number of letters '1'.\n\"1|010|1\"\n\"1|01|01\"\n\"10|10|1\"\n\"10|1|01\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"1001\"\n\nOutput:\n 0\n```\n\n Example 3: \n \n```\nInput:\n s = \"0000\"\n\nOutput:\n 3\n\nExplanation:\n There are three ways to split s in 3 parts.\n\"0|0|00\"\n\"0|00|0\"\n\"00|0|0\"\n```\n\n Constraints: \n\n 3 <= s.length <= 10 5 \n \n s[i] is either '0' or '1' .",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numWays(string s) {\n        const int MOD = 1e9 + 7;\n        int ones = 0;\n        for (char c : s) if (c == '1') ones++;\n        if (ones % 3 != 0) return 0;\n        if (ones == 0) return (long long)(s.size() - 1) * (s.size() - 2) / 2 % MOD;\n\n        int t = ones / 3, cnt = 0, a = 0, b = 0;\n        for (char c : s) {\n            if (c == '1') cnt++;\n            if (cnt == t) a++;\n            else if (cnt == 2 * t) b++;\n        }\n        return (long long)a * b % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610611611",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

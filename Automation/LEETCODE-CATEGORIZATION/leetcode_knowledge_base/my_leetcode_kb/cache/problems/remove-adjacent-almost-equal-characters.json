@@ -1,0 +1,31 @@
+{
+  "id": "2957",
+  "title": "Remove Adjacent Almost-Equal Characters",
+  "slug": "remove-adjacent-almost-equal-characters",
+  "url": "https://leetcode.com/problems/remove-adjacent-almost-equal-characters/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "You are given a 0-indexed string word . \n \n In one operation, you can pick any index i of word and change word[i] to any lowercase English letter. \n \n Return the minimum number of operations needed to remove all adjacent almost-equal characters from word . \n \n Two characters a and b are almost-equal if a == b or a and b are adjacent in the alphabet. \n\n Example 1: \n \n```\nInput:\n word = \"aaaaa\"\n\nOutput:\n 2\n\nExplanation:\n We can change word into \"a\nc\na\nc\na\" which does not have any adjacent almost-equal characters.\nIt can be shown that the minimum number of operations needed to remove all adjacent almost-equal characters from word is 2.\n```\n\n Example 2: \n \n```\nInput:\n word = \"abddez\"\n\nOutput:\n 2\n\nExplanation:\n We can change word into \"\ny\nbd\no\nez\" which does not have any adjacent almost-equal characters.\nIt can be shown that the minimum number of operations needed to remove all adjacent almost-equal characters from word is 2.\n```\n\n Example 3: \n \n```\nInput:\n word = \"zyxyxyz\"\n\nOutput:\n 3\n\nExplanation:\n We can change word into \"z\na\nx\na\nx\na\nz\" which does not have any adjacent almost-equal characters. \nIt can be shown that the minimum number of operations needed to remove all adjacent almost-equal characters from word is 3.\n```\n\n Constraints: \n\n 1 <= word.length <= 100 \n \n word consists only of lowercase English letters.",
+  "code": "class Solution{public:int removeAlmostEqualCharacters(string word){int ans=0;for(int i=1;i<(int)word.size();i++)if(abs(word[i]-word[i-1])<=1){ans++;i++;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176774977",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "1055",
+  "title": "Shortest Way to Form String",
+  "slug": "shortest-way-to-form-string",
+  "url": "https://leetcode.com/problems/shortest-way-to-form-string/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Binary Search",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., \"ace\" is a subsequence of \" a b c d e \" while \"aec\" is not). \n \n Given two strings source and target , return the minimum number of subsequences of source such that their concatenation equals target . If the task is impossible, return -1 . \n\n Example 1: \n \n```\nInput:\n source = \"abc\", target = \"abcbc\"\n\nOutput:\n 2\n\nExplanation:\n The target \"abcbc\" can be formed by \"abc\" and \"bc\", which are subsequences of source \"abc\".\n```\n\n Example 2: \n \n```\nInput:\n source = \"abc\", target = \"acdbc\"\n\nOutput:\n -1\n\nExplanation:\n The target string cannot be constructed from the subsequences of source string due to the character \"d\" in target string.\n```\n\n Example 3: \n \n```\nInput:\n source = \"xyz\", target = \"xzyxz\"\n\nOutput:\n 3\n\nExplanation:\n The target string can be constructed as follows \"xz\" + \"y\" + \"xz\".\n```\n\n Constraints: \n\n 1 <= source.length, target.length <= 1000 \n \n source and target consist of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int shortestWay(string source, string target) {\n        int used = 0;\n        int pos = 0;\n        while (pos < static_cast<int>(target.size())) {\n            int before = pos;\n            for (char c : source) {\n                if (pos < static_cast<int>(target.size()) && c == target[pos]) {\n                    ++pos;\n                }\n            }\n            if (pos == before) {\n                return -1;\n            }\n            ++used;\n        }\n        return used;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178514160",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

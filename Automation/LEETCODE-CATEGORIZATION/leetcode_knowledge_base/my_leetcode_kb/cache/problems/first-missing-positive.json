@@ -1,0 +1,30 @@
+{
+  "id": "41",
+  "title": "First Missing Positive",
+  "slug": "first-missing-positive",
+  "url": "https://leetcode.com/problems/first-missing-positive/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Given an unsorted integer array nums . Return the smallest positive integer that is not present in nums . \n \n You must implement an algorithm that runs in O(n) time and uses O(1) auxiliary space. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,0]\n\nOutput:\n 3\n\nExplanation:\n The numbers in the range [1,2] are all in the array.\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,4,-1,1]\n\nOutput:\n 2\n\nExplanation:\n 1 is in the array but 2 is missing.\n```\n\n Example 3: \n \n```\nInput:\n nums = [7,8,9,11,12]\n\nOutput:\n 1\n\nExplanation:\n The smallest positive integer 1 is missing.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -2 31 <= nums[i] <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    int firstMissingPositive(vector<int>& nums) {\n        int n = nums.size();\n        \n        // Place numbers in their correct positions\n        for (int i = 0; i < n; i++) {\n            while (nums[i] > 0 && nums[i] <= n && nums[i] != nums[nums[i] - 1]) {\n                swap(nums[i], nums[nums[i] - 1]);\n            }\n        }\n        \n        // Identify the first missing positive\n        for (int i = 0; i < n; i++) {\n            if (nums[i] != i + 1) {\n                return i + 1;\n            }\n        }\n        \n        return n + 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542401580",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

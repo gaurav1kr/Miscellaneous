@@ -1,0 +1,43 @@
+{
+  "id": "2503",
+  "title": "Maximum Number of Points From Grid Queries",
+  "slug": "maximum-number-of-points-from-grid-queries",
+  "url": "https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Breadth-First Search",
+    "Union-Find",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Matrix"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an m x n integer matrix grid and an array queries of size k . \n \n Find an array answer of size k such that for each integer queries[i] you start in the top left cell of the matrix and repeat the following process: \n\n If queries[i] is strictly greater than the value of the current cell that you are in, then you get one point if it is your first time visiting this cell, and you can move to any adjacent cell in all 4 directions: up, down, left, and right. \n \n Otherwise, you do not get any points, and you end this process. \n\n After the process, answer[i] is the maximum number of points you can get. Note that for each query you are allowed to visit the same cell multiple times. \n \n Return the resulting array answer . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2025/03/15/image1.png] \n \n```\nInput:\n grid = [[1,2,3],[2,5,7],[3,5,1]], queries = [5,6,2]\n\nOutput:\n [5,8,1]\n\nExplanation:\n The diagrams above show which cells we visit to get points for each query.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/10/20/yetgriddrawio-2.png] \n \n```\nInput:\n grid = [[5,2,1],[1,1,2]], queries = [3]\n\nOutput:\n [0]\n\nExplanation:\n We can not get any points because the value of the top left cell is already greater than or equal to 3.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 2 <= m, n <= 1000 \n \n 4 <= m * n <= 10 5 \n \n k == queries.length \n \n 1 <= k <= 10 4 \n \n 1 <= grid[i][j], queries[i] <= 10 6",
+  "code": "class Solution {public:vector<int> maxPoints(vector<vector<int>>& grid,vector<int>& queries){int m=grid.size(),n=grid[0].size(),q=queries.size();vector<pair<int,int>>order;for(int i=0;i<q;i++)order.push_back({queries[i],i});sort(order.begin(),order.end());using T=pair<int,int>;priority_queue<T,vector<T>,greater<T>>pq;vector<vector<int>>seen(m,vector<int>(n));pq.push({grid[0][0],0});seen[0][0]=1;int dr[4]={1,-1,0,0},dc[4]={0,0,1,-1},cnt=0;vector<int>ans(q);for(auto item:order){while(!pq.empty()&&pq.top().first<item.first){int id=pq.top().second;pq.pop();cnt++;int r=id/n,c=id%n;for(int d=0;d<4;d++){int x=r+dr[d],y=c+dc[d];if(x>=0&&x<m&&y>=0&&y<n&&!seen[x][y]){seen[x][y]=1;pq.push({grid[x][y],x*n+y});}}}ans[item.second]=cnt;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176592245",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "700",
+  "title": "Search in a Binary Search Tree",
+  "slug": "search-in-a-binary-search-tree",
+  "url": "https://leetcode.com/problems/search-in-a-binary-search-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "You are given the root of a binary search tree (BST) and an integer val . \n \n Find the node in the BST that the node's value equals val and return the subtree rooted with that node. If such a node does not exist, return null . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/12/tree1.jpg] \n \n```\nInput:\n root = [4,2,7,1,3], val = 2\n\nOutput:\n [2,1,3]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/01/12/tree2.jpg] \n \n```\nInput:\n root = [4,2,7,1,3], val = 5\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 5000] . \n \n 1 <= Node.val <= 10 7 \n \n root is a binary search tree. \n \n 1 <= val <= 10 7",
+  "code": "class Solution {\npublic:\n    TreeNode* searchBST(TreeNode* root, int val) {\n        if (!root || root->val == val) return root;\n        return val < root->val ? searchBST(root->left, val) : searchBST(root->right, val);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588373790",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

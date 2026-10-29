@@ -1,0 +1,29 @@
+{
+  "id": "1522",
+  "title": "Diameter of N-Ary Tree",
+  "slug": "diameter-of-n-ary-tree",
+  "url": "https://leetcode.com/problems/diameter-of-n-ary-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Tree adjacency list"
+  ],
+  "description": "Given a root of an N-ary tree , you need to compute the length of the diameter of the tree. \n \n The diameter of an N-ary tree is the length of the longest path between any two nodes in the tree. This path may or may not pass through the root. \n \n ( Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value.) \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/07/19/sample_2_1897.png] \n \n```\nInput:\n root = [1,null,3,2,4,null,5,6]\n\nOutput:\n 3\n\nExplanation: \nDiameter is shown in red color.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2020/07/19/sample_1_1897.png] \n \n```\nInput:\n root = [1,null,2,null,3,4,null,5,null,6]\n\nOutput:\n 4\n```\n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2020/07/19/sample_3_1897.png] \n \n```\nInput:\n root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]\n\nOutput:\n 7\n```\n\n Constraints: \n\n The depth of the n-ary tree is less than or equal to 1000 . \n \n The total number of nodes is between [1, 10 4 ] .",
+  "code": "class Solution {\n    int answer = 0;\n\n    int dfs(Node* node) {\n        if (!node) {\n            return 0;\n        }\n        int first = 0;\n        int second = 0;\n        for (Node* child : node->children) {\n            int height = dfs(child) + 1;\n            if (height > first) {\n                second = first;\n                first = height;\n            } else if (height > second) {\n                second = height;\n            }\n        }\n        answer = max(answer, first + second);\n        return first;\n    }\n\npublic:\n    int diameter(Node* root) {\n        answer = 0;\n        dfs(root);\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178584681",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

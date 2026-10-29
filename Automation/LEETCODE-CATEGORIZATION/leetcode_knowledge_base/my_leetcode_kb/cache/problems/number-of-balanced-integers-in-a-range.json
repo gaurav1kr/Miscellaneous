@@ -1,0 +1,26 @@
+{
+  "id": "3791",
+  "title": "Number of Balanced Integers in a Range",
+  "slug": "number-of-balanced-integers-in-a-range",
+  "url": "https://leetcode.com/problems/number-of-balanced-integers-in-a-range/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You are given two integers low and high . \n \n An integer is called balanced if it satisfies both of the following conditions: \n\n It contains at least two digits. \n \n The sum of digits at even positions is equal to the sum of digits at odd positions (the leftmost digit has position 1). \n\n Return an integer representing the number of balanced integers in the range [low, high] (both inclusive). \n\n Example 1: \n\n Input: low = 1, high = 100 \n \n Output: 9 \n \n Explanation: \n \n The 9 balanced numbers between 1 and 100 are 11, 22, 33, 44, 55, 66, 77, 88, and 99. \n\n Example 2: \n\n Input: low = 120, high = 129 \n \n Output: 1 \n \n Explanation: \n \n Only 121 is balanced because the sum of digits at even and odd positions are both 2. \n\n Example 3: \n\n Input: low = 1234, high = 1234 \n \n Output: 0 \n \n Explanation: \n \n 1234 is not balanced because the sum of digits at odd positions (1 + 3 = 4) does not equal the sum at even positions (2 + 4 = 6) . \n\n Constraints: \n\n 1 <= low <= high <= 10 15",
+  "code": "class Solution {\n    long long countUpTo(long long x) {\n        if (x < 10) return 0;\n        string bound = to_string(x);\n        long long result = 0;\n        for (int len = 2; len <= (int)bound.size(); ++len) {\n            string limit = len == (int)bound.size() ? bound : string(len, '9');\n            long long memo[17][300];\n            memset(memo, -1, sizeof(memo));\n            function<long long(int,int,bool)> dfs = [&](int pos, int diff, bool tight) -> long long {\n                if (pos == len) return diff == 0;\n                long long &cached = memo[pos][diff + 145];\n                if (!tight && cached != -1) return cached;\n                int hi = tight ? limit[pos] - '0' : 9;\n                long long ways = 0;\n                for (int d = (pos == 0); d <= hi; ++d) {\n                    int nd = diff + ((pos % 2 == 0) ? d : -d);\n                    ways += dfs(pos + 1, nd, tight && d == hi);\n                }\n                if (!tight) cached = ways;\n                return ways;\n            };\n            result += dfs(0, 0, true);\n        }\n        return result;\n    }\npublic:\n    long long countBalanced(long long low, long long high) {\n        return countUpTo(high) - countUpTo(low - 1);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179645066",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

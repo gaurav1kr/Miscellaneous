@@ -1,0 +1,28 @@
+{
+  "id": "3612",
+  "title": "Process String with Special Operations I",
+  "slug": "process-string-with-special-operations-i",
+  "url": "https://leetcode.com/problems/process-string-with-special-operations-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters and the special characters: * , # , and % . \n \n Build a new string result by processing s according to the following rules from left to right: \n\n If the letter is a lowercase English letter append it to result . \n \n A '*' removes the last character from result , if it exists. \n \n A '#' duplicates the current result and appends it to itself. \n \n A '%' reverses the current result . \n\n Return the final string result after processing all characters in s . \n\n Example 1: \n\n Input: s = \"a#b%*\" \n \n Output: \"ba\" \n \n Explanation: \n\n i \n s[i] \n Operation \n Current result \n\n 0 \n 'a' \n Append 'a' \n \"a\" \n\n 1 \n '#' \n Duplicate result \n \"aa\" \n\n 2 \n 'b' \n Append 'b' \n \"aab\" \n\n 3 \n '%' \n Reverse result \n \"baa\" \n\n 4 \n '*' \n Remove the last character \n \"ba\" \n\n Thus, the final result is \"ba\" . \n\n Example 2: \n\n Input: s = \"z*#\" \n \n Output: \"\" \n \n Explanation: \n\n i \n s[i] \n Operation \n Current result \n\n 0 \n 'z' \n Append 'z' \n \"z\" \n\n 1 \n '*' \n Remove the last character \n \"\" \n\n 2 \n '#' \n Duplicate the string \n \"\" \n\n Thus, the final result is \"\" . \n\n Constraints: \n\n 1 <= s.length <= 20 \n \n s consists of only lowercase English letters and special characters * , # , and % .",
+  "code": "class Solution {\npublic:\n string processStr(string s){string t;for(char c:s){if(c=='*'){if(!t.empty())t.pop_back();}else if(c=='#')t+=t;else if(c=='%')reverse(t.begin(),t.end());else t+=c;}return t;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177615228",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

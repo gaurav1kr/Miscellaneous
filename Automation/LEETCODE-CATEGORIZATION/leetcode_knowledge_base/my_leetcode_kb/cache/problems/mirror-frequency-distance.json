@@ -1,0 +1,30 @@
+{
+  "id": "3889",
+  "title": "Mirror Frequency Distance",
+  "slug": "mirror-frequency-distance",
+  "url": "https://leetcode.com/problems/mirror-frequency-distance/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters and digits. \n \n For each character, its mirror character is defined by reversing the order of its character set: \n\n For letters, the mirror of a character is the letter at the same position from the end of the alphabet.\n\n For example, the mirror of 'a' is 'z' , and the mirror of 'b' is 'y' , and so on. \n\n For digits, the mirror of a character is the digit at the same position from the end of the range '0' to '9' .\n\n For example, the mirror of '0' is '9' , and the mirror of '1' is '8' , and so on. \n\n For each unique character c in the string: \n\n Let m be its mirror character. \n \n Let freq(x) denote the number of times character x appears in the string. \n \n Compute the absolute difference between their frequencies , defined as: |freq(c) - freq(m)| \n\n The mirror pairs (c, m) and (m, c) are the same and must be counted only once . \n \n Return an integer denoting the total sum of these values over all such distinct mirror pairs . \n\n Example 1: \n\n Input: s = \"ab1z9\" \n \n Output: 3 \n \n Explanation: \n \n For every mirror pair: \n\n c \n m \n freq(c) \n freq(m) \n |freq(c) - freq(m)| \n\n a \n z \n 1 \n 1 \n 0 \n\n b \n y \n 1 \n 0 \n 1 \n\n 1 \n 8 \n 1 \n 0 \n 1 \n\n 9 \n 0 \n 1 \n 0 \n 1 \n\n Thus, the answer is 0 + 1 + 1 + 1 = 3 . \n\n Example 2: \n\n Input: s = \"4m7n\" \n \n Output: 2 \n \n Explanation: \n\n c \n m \n freq(c) \n freq(m) \n |freq(c) - freq(m)| \n\n 4 \n 5 \n 1 \n 0 \n 1 \n\n m \n n \n 1 \n 1 \n 0 \n\n 7 \n 2 \n 1 \n 0 \n 1 \n\n Thus, the answer is 1 + 0 + 1 = 2 .​​​​​​​ \n\n Example 3: \n\n Input: s = \"byby\" \n \n Output: 0 \n \n Explanation: \n\n c \n m \n freq(c) \n freq(m) \n |freq(c) - freq(m)| \n\n b \n y \n 2 \n 2 \n 0 \n\n Thus, the answer is 0. \n\n Constraints: \n\n 1 <= s.length <= 5 * 10 5 \n \n s consists only of lowercase English letters and digits.",
+  "code": "class Solution {\npublic:\n    int mirrorFrequency(string s) {\n        int f[128] = {};\n        for (char c : s) ++f[(int)c];\n        int ans = 0;\n        for (int i = 0; i < 13; ++i)\n            ans += abs(f['a'+i] - f['z'-i]);\n        for (int i = 0; i < 5; ++i)\n            ans += abs(f['0'+i] - f['9'-i]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181076121",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

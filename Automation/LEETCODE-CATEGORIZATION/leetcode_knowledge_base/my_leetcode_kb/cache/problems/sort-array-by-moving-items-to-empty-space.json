@@ -1,0 +1,33 @@
+{
+  "id": "2459",
+  "title": "Sort Array by Moving Items to Empty Space",
+  "slug": "sort-array-by-moving-items-to-empty-space",
+  "url": "https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of size n containing each element from 0 to n - 1 ( inclusive ). Each of the elements from 1 to n - 1 represents an item, and the element 0 represents an empty space. \n \n In one operation, you can move any item to the empty space. nums is considered to be sorted if the numbers of all the items are in ascending order and the empty space is either at the beginning or at the end of the array. \n \n For example, if n = 4 , nums is sorted if: \n\n nums = [0,1,2,3] or \n \n nums = [1,2,3,0] \n\n ...and considered to be unsorted otherwise. \n \n Return the minimum number of operations needed to sort nums . \n\n Example 1: \n \n```\nInput:\n nums = [4,2,0,3,1]\n\nOutput:\n 3\n\nExplanation:\n\n- Move item 2 to the empty space. Now, nums = [4,0,2,3,1].\n- Move item 1 to the empty space. Now, nums = [4,1,2,3,0].\n- Move item 4 to the empty space. Now, nums = [0,1,2,3,4].\nIt can be proven that 3 is the minimum number of operations needed.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4,0]\n\nOutput:\n 0\n\nExplanation:\n nums is already sorted so return 0.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,0,2,4,3]\n\nOutput:\n 2\n\nExplanation:\n\n- Move item 2 to the empty space. Now, nums = [1,2,0,4,3].\n- Move item 3 to the empty space. Now, nums = [1,2,3,4,0].\nIt can be proven that 2 is the minimum number of operations needed.\n```\n\n Constraints: \n\n n == nums.length \n \n 2 <= n <= 10 5 \n \n 0 <= nums[i] < n \n \n All the values of nums are unique .",
+  "code": "class Solution {\n    int solve(vector<int>& nums, bool zeroLast) {\n        int n = nums.size(), answer = 0;\n        vector<int> seen(n);\n        for (int i = 0; i < n; ++i) {\n            if (seen[i]) continue;\n            int cur = i, length = 0;\n            bool containsZero = false;\n            while (!seen[cur]) {\n                seen[cur] = 1;\n                int value = nums[cur];\n                containsZero |= value == 0;\n                cur = zeroLast ? (value == 0 ? n - 1 : value - 1) : value;\n                ++length;\n            }\n            if (length > 1) answer += length - 1 + (containsZero ? 0 : 2);\n        }\n        return answer;\n    }\npublic:\n    int sortArray(vector<int>& nums) { return min(solve(nums, false), solve(nums, true)); }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178875057",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

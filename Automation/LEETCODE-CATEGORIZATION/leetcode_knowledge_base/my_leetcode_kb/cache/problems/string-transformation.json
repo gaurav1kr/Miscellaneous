@@ -1,0 +1,33 @@
+{
+  "id": "2851",
+  "title": "String Transformation",
+  "slug": "string-transformation",
+  "url": "https://leetcode.com/problems/string-transformation/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "String Matching"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings s and t of equal length n . You can perform the following operation on the string s : \n\n Remove a suffix of s of length l where 0 < l < n and append it at the start of s . \n For example, let s = 'abcd' then in one operation you can remove the suffix 'cd' and append it in front of s making s = 'cdab' . \n\n You are also given an integer k . Return the number of ways in which s can be transformed into t in exactly k operations. \n \n Since the answer can be large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n s = \"abcd\", t = \"cdab\", k = 2\n\nOutput:\n 2\n\nExplanation:\n \nFirst way:\nIn first operation, choose suffix from index = 3, so resulting s = \"dabc\".\nIn second operation, choose suffix from index = 3, so resulting s = \"cdab\".\n\nSecond way:\nIn first operation, choose suffix from index = 1, so resulting s = \"bcda\".\nIn second operation, choose suffix from index = 1, so resulting s = \"cdab\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"ababab\", t = \"ababab\", k = 1\n\nOutput:\n 2\n\nExplanation:\n \nFirst way:\nChoose suffix from index = 2, so resulting s = \"ababab\".\n\nSecond way:\nChoose suffix from index = 4, so resulting s = \"ababab\".\n```\n\n Constraints: \n\n 2 <= s.length <= 5 * 10 5 \n \n 1 <= k <= 10 15 \n \n s.length == t.length \n \n s and t consist of only lowercase English alphabets.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int numberOfWays(string s,string t,long long k){const long long MOD=1000000007;int n=s.size();string joined=t+'#'+s+s.substr(0,n-1);vector<int> pi(joined.size());for(int i=1;i<(int)joined.size();++i){int j=pi[i-1];while(j&&joined[i]!=joined[j])j=pi[j-1];if(joined[i]==joined[j])++j;pi[i]=j;}long long matches=0;for(int i=n+1;i<(int)joined.size();++i)if(pi[i]==n)++matches;long long a=(s==t),b=1-a;long long M[2][2]={{(matches-1+MOD)%MOD,matches%MOD},{(n-matches)%MOD,(n-matches-1+MOD)%MOD}};long long R[2][2]={{1,0},{0,1}};while(k){if(k&1){long long z[2][2]={};for(int i=0;i<2;++i)for(int j=0;j<2;++j)for(int p=0;p<2;++p)z[i][j]=(z[i][j]+R[i][p]*M[p][j])%MOD;memcpy(R,z,sizeof(z));}long long z[2][2]={};for(int i=0;i<2;++i)for(int j=0;j<2;++j)for(int p=0;p<2;++p)z[i][j]=(z[i][j]+M[i][p]*M[p][j])%MOD;memcpy(M,z,sizeof(z));k>>=1;}return (int)((R[0][0]*a+R[0][1]*b)%MOD);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176724991",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

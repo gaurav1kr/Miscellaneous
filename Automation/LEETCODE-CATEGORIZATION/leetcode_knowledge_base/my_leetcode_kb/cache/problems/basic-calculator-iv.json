@@ -1,0 +1,38 @@
+{
+  "id": "770",
+  "title": "Basic Calculator IV",
+  "slug": "basic-calculator-iv",
+  "url": "https://leetcode.com/problems/basic-calculator-iv/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an expression such as expression = \"e + 8 - a + 5\" and an evaluation map such as {\"e\": 1} (given in terms of evalvars = [\"e\"] and evalints = [1] ), return a list of tokens representing the simplified expression, such as [\"-1*a\",\"14\"] \n\n An expression alternates chunks and symbols, with a space separating each chunk and symbol. \n \n A chunk is either an expression in parentheses, a variable, or a non-negative integer. \n \n A variable is a string of lowercase letters (not including digits.) Note that variables can be multiple letters, and note that variables never have a leading coefficient or unary operator like \"2x\" or \"-x\" . \n\n Expressions are evaluated in the usual order: brackets first, then multiplication, then addition and subtraction. \n\n For example, expression = \"1 + 2 * 3\" has an answer of [\"7\"] . \n\n The format of the output is as follows: \n\n For each term of free variables with a non-zero coefficient, we write the free variables within a term in sorted order lexicographically.\n\n For example, we would never write a term like \"b*a*c\" , only \"a*b*c\" . \n\n Terms have degrees equal to the number of free variables being multiplied, counting multiplicity. We write the largest degree terms of our answer first, breaking ties by lexicographic order ignoring the leading coefficient of the term.\n\n For example, \"a*a*b*c\" has degree 4 . \n\n The leading coefficient of the term is placed directly to the left with an asterisk separating it from the variables (if they exist.) A leading coefficient of 1 is still printed. \n \n An example of a well-formatted answer is [\"-2*a*a*a\", \"3*a*a*b\", \"3*b*b\", \"4*a\", \"5*c\", \"-6\"] . \n \n Terms (including constant terms) with coefficient 0 are not included.\n\n For example, an expression of \"0\" has an output of [] . \n\n Note: You may assume that the given expression is always valid. All intermediate results will be in the range of [-2 31 , 2 31 - 1] . \n\n Example 1: \n \n```\nInput:\n expression = \"e + 8 - a + 5\", evalvars = [\"e\"], evalints = [1]\n\nOutput:\n [\"-1*a\",\"14\"]\n```\n\n Example 2: \n \n```\nInput:\n expression = \"e - 8 + temperature - pressure\", evalvars = [\"e\", \"temperature\"], evalints = [1, 12]\n\nOutput:\n [\"-1*pressure\",\"5\"]\n```\n\n Example 3: \n \n```\nInput:\n expression = \"(e + 8) * (e - 8)\", evalvars = [], evalints = []\n\nOutput:\n [\"1*e*e\",\"-64\"]\n```\n\n Constraints: \n\n 1 <= expression.length <= 250 \n \n expression consists of lowercase English letters, digits, '+' , '-' , '*' , '(' , ')' , ' ' . \n \n expression does not contain any leading or trailing spaces. \n \n All the tokens in expression are separated by a single space. \n \n 0 <= evalvars.length <= 100 \n \n 1 <= evalvars[i].length <= 20 \n \n evalvars[i] consists of lowercase English letters. \n \n evalints.length == evalvars.length \n \n -100 <= evalints[i] <= 100",
+  "code": "class Solution {\n    using Key = vector<string>;\n    using Poly = map<Key, int>;\n    string s;\n    int pos = 0;\n    unordered_map<string, int> values;\n    void spaces() { while (pos < (int)s.size() && s[pos] == ' ') ++pos; }\n    Poly constant(int x) { return {{Key{}, x}}; }\n    Poly add(Poly a, const Poly& b, int sign = 1) {\n        for (const auto& p : b) a[p.first] += sign * p.second;\n        return a;\n    }\n    Poly multiply(const Poly& a, const Poly& b) {\n        Poly c;\n        for (const auto& x : a) for (const auto& y : b) {\n            Key key = x.first;\n            key.insert(key.end(), y.first.begin(), y.first.end());\n            sort(key.begin(), key.end());\n            c[key] += x.second * y.second;\n        }\n        return c;\n    }\n    Poly factor() {\n        spaces();\n        if (s[pos] == '(') {\n            ++pos;\n            Poly p = expression();\n            spaces(); ++pos;\n            return p;\n        }\n        if (isdigit(s[pos])) {\n            int x = 0;\n            while (pos < (int)s.size() && isdigit(s[pos])) x = x * 10 + s[pos++] - '0';\n            return constant(x);\n        }\n        string name;\n        while (pos < (int)s.size() && isalpha(s[pos])) name += s[pos++];\n        if (values.count(name)) return constant(values[name]);\n        return {{Key{name}, 1}};\n    }\n    Poly term() {\n        Poly p = factor();\n        while (true) {\n            spaces();\n            if (pos >= (int)s.size() || s[pos] != '*') break;\n            ++pos;\n            p = multiply(p, factor());\n        }\n        return p;\n    }\n    Poly expression() {\n        Poly p = term();\n        while (true) {\n            spaces();\n            if (pos >= (int)s.size() || s[pos] == ')') break;\n            char op = s[pos++];\n            p = add(p, term(), op == '+' ? 1 : -1);\n        }\n        return p;\n    }\npublic:\n    vector<string> basicCalculatorIV(string expressionText, vector<string>& evalvars,\n                                     vector<int>& evalints) {\n        s = expressionText;\n        pos = 0;\n        values.clear();\n        for (int i = 0; i < (int)evalvars.size(); ++i) values[evalvars[i]] = evalints[i];\n        Poly p = expression();\n        vector<pair<Key, int>> terms;\n        for (const auto& x : p) if (x.second != 0) terms.push_back(x);\n        sort(terms.begin(), terms.end(), [](const pair<Key,int>& a, const pair<Key,int>& b) {\n            if (a.first.size() != b.first.size()) return a.first.size() > b.first.size();\n            return a.first < b.first;\n        });\n        vector<string> answer;\n        for (const auto& x : terms) {\n            string t = to_string(x.second);\n            for (const string& name : x.first) t += \"*\" + name;\n            answer.push_back(t);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175740676",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

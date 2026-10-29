@@ -1,0 +1,38 @@
+{
+  "id": "2572",
+  "title": "Count the Number of Square-Free Subsets",
+  "slug": "count-the-number-of-square-free-subsets",
+  "url": "https://leetcode.com/problems/count-the-number-of-square-free-subsets/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Number Theory",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a positive integer 0-indexed  array nums . \n \n A subset of the array nums is square-free if the product of its elements is a square-free integer . \n \n A square-free integer is an integer that is divisible by no square number other than 1 . \n \n Return the number of square-free non-empty subsets of the array nums . Since the answer may be too large, return it modulo 10 9 + 7 . \n \n A non-empty   subset of nums is an array that can be obtained by deleting some (possibly none but not all) elements from nums . Two subsets are different if and only if the chosen indices to delete are different. \n\n Example 1: \n \n```\nInput:\n nums = [3,4,4,5]\n\nOutput:\n 3\n\nExplanation:\n There are 3 square-free subsets in this example:\n- The subset consisting of the 0\nth\n element [3]. The product of its elements is 3, which is a square-free integer.\n- The subset consisting of the 3\nrd\n element [5]. The product of its elements is 5, which is a square-free integer.\n- The subset consisting of 0\nth\n and 3\nrd\n elements [3,5]. The product of its elements is 15, which is a square-free integer.\nIt can be proven that there are no more than 3 square-free subsets in the given array.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1]\n\nOutput:\n 1\n\nExplanation:\n There is 1 square-free subset in this example:\n- The subset consisting of the 0\nth\n element [1]. The product of its elements is 1, which is a square-free integer.\nIt can be proven that there is no more than 1 square-free subset in the given array.\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 30",
+  "code": "class Solution {public:int squareFreeSubsets(vector<int>& nums){const int MOD=1000000007;int primes[]={2,3,5,7,11,13,17,19,23,29};vector<int> dp(1024);dp[0]=1;for(int x:nums){int mask=0;bool ok=true;for(int j=0;j<10;j++){int p=primes[j];if(x%(p*p)==0){ok=false;break;}if(x%p==0)mask|=1<<j;}if(!ok)continue;for(int s=1023;s>=0;--s)if(!(s&mask)){int ns=s|mask;dp[ns]=(dp[ns]+dp[s])%MOD;}}long long ans=0;for(int x:dp)ans+=x;return (ans-1+MOD)%MOD;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176616748",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

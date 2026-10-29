@@ -1,0 +1,32 @@
+{
+  "id": "2384",
+  "title": "Largest Palindromic Number",
+  "slug": "largest-palindromic-number",
+  "url": "https://leetcode.com/problems/largest-palindromic-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string num consisting of digits only. \n \n Return the largest palindromic integer (in the form of a string) that can be formed using digits taken from num . It should not contain leading zeroes . \n \n Notes: \n\n You do not need to use all the digits of num , but you must use at least one digit. \n \n The digits can be reordered. \n\n Example 1: \n \n```\nInput:\n num = \"444947137\"\n\nOutput:\n \"7449447\"\n\nExplanation:\n \nUse the digits \"4449477\" from \"\n44494\n7\n13\n7\n\" to form the palindromic integer \"7449447\".\nIt can be shown that \"7449447\" is the largest palindromic integer that can be formed.\n```\n\n Example 2: \n \n```\nInput:\n num = \"00009\"\n\nOutput:\n \"9\"\n\nExplanation:\n \nIt can be shown that \"9\" is the largest palindromic integer that can be formed.\nNote that the integer returned should not contain leading zeroes.\n```\n\n Constraints: \n\n 1 <= num.length <= 10 5 \n \n num consists of digits.",
+  "code": "class Solution { public:\n    string largestPalindromic(string num) {\n        int f[10]={};for(char c:num)++f[c-'0'];\n        string left;\n        for(int d=9;d>=1;--d){left.append(f[d]/2,char('0'+d));f[d]%=2;}\n        if(!left.empty()){left.append(f[0]/2,'0');f[0]%=2;}\n        char mid=0;for(int d=9;d>=0;--d)if(f[d]){mid=char('0'+d);break;}\n        string right=left;reverse(right.begin(),right.end());\n        if(left.empty()&&!mid)return \"0\";\n        return left+(mid?string(1,mid):string())+right;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175932407",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

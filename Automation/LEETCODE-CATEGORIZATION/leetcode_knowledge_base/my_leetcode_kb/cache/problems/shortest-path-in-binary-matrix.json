@@ -1,0 +1,32 @@
+{
+  "id": "1091",
+  "title": "Shortest Path in Binary Matrix",
+  "slug": "shortest-path-in-binary-matrix",
+  "url": "https://leetcode.com/problems/shortest-path-in-binary-matrix/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given an n x n binary matrix grid , return the length of the shortest clear path in the matrix . If there is no clear path, return -1 . \n \n A clear path in a binary matrix is a path from the top-left cell (i.e., (0, 0) ) to the bottom-right cell (i.e., (n - 1, n - 1) ) such that: \n\n All the visited cells of the path are 0 . \n \n All the adjacent cells of the path are 8-directionally connected (i.e., they are different and they share an edge or a corner). \n\n The length of a clear path is the number of visited cells of this path. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/18/example1_1.png] \n \n```\nInput:\n grid = [[0,1],[1,0]]\n\nOutput:\n 2\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/02/18/example2_1.png] \n \n```\nInput:\n grid = [[0,0,0],[1,1,0],[1,1,0]]\n\nOutput:\n 4\n```\n\n Example 3: \n \n```\nInput:\n grid = [[1,0,0],[1,1,0],[1,1,0]]\n\nOutput:\n -1\n```\n\n Constraints: \n\n n == grid.length \n \n n == grid[i].length \n \n 1 <= n <= 100 \n \n grid[i][j] is 0 or 1",
+  "code": "class Solution \n{\npublic:\n    int shortestPathBinaryMatrix(vector<vector<int>>& grid) \n\t{\n        int n = grid.size();\n        if(grid[0][0] != 0 || grid[n-1][n-1] != 0) return -1;\n        queue<pair<int,int>> q;\n        q.push({0,0});\n        pair<int,int>dirs[8] = {{0,1},{1,0},{0,-1},{-1,0},{-1,-1},{1,1},{1,-1},{-1,1}};\n        int dx,dy;\n        grid[0][0] = 1;\n        while(!q.empty())\n\t\t{\n            pair<int,int> curr = q.front();\n            q.pop();\n            if(curr.first == n - 1 && curr.second == n-1)\n\t\t\t{\n\t\t\t\treturn grid[curr.first][curr.second];\n\t\t\t}\n            for(auto x:dirs)\n\t\t\t{\n                dx = x.first + curr.first;\n                dy = x.second + curr.second;\n                if(dx >= 0 && dy >= 0 && dx < n && dy < n && grid[dx][dy] == 0)\n\t\t\t\t{\n                    q.push({dx,dy});\n                    grid[dx][dy]=grid[curr.first][curr.second]+1; \n                }\n            }\n        }\n       return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1372281268",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

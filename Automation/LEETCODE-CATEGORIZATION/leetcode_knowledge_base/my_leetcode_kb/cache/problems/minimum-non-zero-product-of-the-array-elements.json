@@ -1,0 +1,27 @@
+{
+  "id": "1969",
+  "title": "Minimum Non-Zero Product of the Array Elements",
+  "slug": "minimum-non-zero-product-of-the-array-elements",
+  "url": "https://leetcode.com/problems/minimum-non-zero-product-of-the-array-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy",
+    "Recursion"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given a positive integer p . Consider an array nums ( 1-indexed ) that consists of the integers in the inclusive range [1, 2 p - 1] in their binary representations. You are allowed to do the following operation any number of times: \n\n Choose two elements x and y from nums . \n \n Choose a bit in x and swap it with its corresponding bit in y . Corresponding bit refers to the bit that is in the same position in the other integer. \n\n For example, if x = 11 0 1 and y = 00 1 1 , after swapping the 2 nd bit from the right, we have x = 11 1 1 and y = 00 0 1 . \n \n Find the minimum non-zero product of nums after performing the above operation any number of times. Return this product modulo 10 9 + 7 . \n \n Note: The answer should be the minimum product before the modulo operation is done. \n\n Example 1: \n \n```\nInput:\n p = 1\n\nOutput:\n 1\n\nExplanation:\n nums = [1].\nThere is only one element, so the product equals that element.\n```\n\n Example 2: \n \n```\nInput:\n p = 2\n\nOutput:\n 6\n\nExplanation:\n nums = [01, 10, 11].\nAny swap would either make the product 0 or stay the same.\nThus, the array product of 1 * 2 * 3 = 6 is already minimized.\n```\n\n Example 3: \n \n```\nInput:\n p = 3\n\nOutput:\n 1512\n\nExplanation:\n nums = [001, 010, 011, 100, 101, 110, 111]\n- In the first operation we can swap the leftmost bit of the second and fifth elements.\n - The resulting array is [001, \n1\n10, 011, 100, \n0\n01, 110, 111].\n- In the second operation we can swap the middle bit of the third and fourth elements.\n - The resulting array is [001, 110, 0\n0\n1, 1\n1\n0, 001, 110, 111].\nThe array product is 1 * 6 * 1 * 6 * 1 * 6 * 7 = 1512, which is the minimum possible product.\n```\n\n Constraints: \n\n 1 <= p <= 60",
+  "code": "class Solution {\n    static const long long MOD=1000000007LL;\n    long long power(long long a,long long b){long long v=1;\n        while(b){if(b&1)v=v*a%MOD;a=a*a%MOD;b>>=1;}return v;}\npublic:\n    int minNonZeroProduct(int p){long long mx=(1LL<<p)-1;\n        return (int)((mx%MOD)*power((mx-1)%MOD,(mx-1)/2)%MOD);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175767158",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "2174",
+  "title": "Remove All Ones With Row and Column Flips II",
+  "slug": "remove-all-ones-with-row-and-column-flips-ii",
+  "url": "https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed m x n binary matrix grid . \n \n In one operation, you can choose any i and j that meet the following conditions: \n\n 0 <= i < m \n \n 0 <= j < n \n \n grid[i][j] == 1 \n\n and change the values of all cells in row i and column j to zero. \n \n Return the minimum number of operations needed to remove all 1 's from grid . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/02/13/image-20220213162716-1.png] \n \n```\nInput:\n grid = [[1,1,1],[1,1,1],[0,1,0]]\n\nOutput:\n 2\n\nExplanation:\n\nIn the first operation, change all cell values of row 1 and column 1 to zero.\nIn the second operation, change all cell values of row 0 and column 0 to zero.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/02/13/image-20220213162737-2.png] \n \n```\nInput:\n grid = [[0,1,0],[1,0,1],[0,1,0]]\n\nOutput:\n 2\n\nExplanation:\n\nIn the first operation, change all cell values of row 1 and column 0 to zero.\nIn the second operation, change all cell values of row 2 and column 1 to zero.\nNote that we cannot perform an operation using row 1 and column 1 because grid[1][1] != 1.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2022/02/13/image-20220213162752-3.png] \n \n```\nInput:\n grid = [[0,0],[0,0]]\n\nOutput:\n 0\n\nExplanation:\n\nThere are no 1's to remove so return 0.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 15 \n \n 1 <= m * n <= 15 \n \n grid[i][j] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n    int removeOnes(vector<vector<int>>& grid) {\n        int rows = grid.size(), cols = grid[0].size();\n        int initial = 0;\n        for (int r = 0; r < rows; ++r) {\n            for (int c = 0; c < cols; ++c) {\n                if (grid[r][c]) initial |= 1 << (r * cols + c);\n            }\n        }\n        queue<int> q;\n        unordered_set<int> seen;\n        q.push(initial);\n        seen.insert(initial);\n        int steps = 0;\n        while (!q.empty()) {\n            int count = q.size();\n            while (count--) {\n                int mask = q.front();\n                q.pop();\n                if (mask == 0) return steps;\n                for (int r = 0; r < rows; ++r) {\n                    for (int c = 0; c < cols; ++c) {\n                        if (!(mask & (1 << (r * cols + c)))) continue;\n                        int next = mask;\n                        for (int j = 0; j < cols; ++j) next &= ~(1 << (r * cols + j));\n                        for (int i = 0; i < rows; ++i) next &= ~(1 << (i * cols + c));\n                        if (seen.insert(next).second) q.push(next);\n                    }\n                }\n            }\n            ++steps;\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178645606",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

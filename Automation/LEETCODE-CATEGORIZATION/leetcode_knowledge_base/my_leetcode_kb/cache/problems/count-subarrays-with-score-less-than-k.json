@@ -1,0 +1,34 @@
+{
+  "id": "2302",
+  "title": "Count Subarrays With Score Less Than K",
+  "slug": "count-subarrays-with-score-less-than-k",
+  "url": "https://leetcode.com/problems/count-subarrays-with-score-less-than-k/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "The score of an array is defined as the product of its sum and its length. \n\n For example, the score of [1, 2, 3, 4, 5] is (1 + 2 + 3 + 4 + 5) * 5 = 75 . \n\n Given a positive integer array nums and an integer k , return the number of non-empty subarrays of nums whose score is strictly less than k . \n \n A subarray is a contiguous sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n nums = [2,1,4,3,5], k = 10\n\nOutput:\n 6\n\nExplanation:\n\nThe 6 subarrays having scores less than 10 are:\n- [2] with score 2 * 1 = 2.\n- [1] with score 1 * 1 = 1.\n- [4] with score 4 * 1 = 4.\n- [3] with score 3 * 1 = 3. \n- [5] with score 5 * 1 = 5.\n- [2,1] with score (2 + 1) * 2 = 6.\nNote that subarrays such as [1,4] and [4,3,5] are not considered because their scores are 10 and 36 respectively, while we need scores strictly less than 10.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,1], k = 5\n\nOutput:\n 5\n\nExplanation:\n\nEvery subarray except [1,1,1] has a score less than 5.\n[1,1,1] has a score (1 + 1 + 1) * 3 = 9, which is greater than 5.\nThus, there are 5 subarrays having scores less than 5.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= k <= 10 15",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:long long countSubarrays(vector<int>& nums,long long k){long long sum=0,ans=0;int l=0;for(int r=0;r<(int)nums.size();++r){sum+=nums[r];while(l<=r&&sum*(r-l+1)>=k)sum-=nums[l++];ans+=r-l+1;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175911244",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

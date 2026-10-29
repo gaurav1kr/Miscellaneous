@@ -1,0 +1,36 @@
+{
+  "id": "1168",
+  "title": "Optimize Water Distribution in a Village",
+  "slug": "optimize-water-distribution-in-a-village",
+  "url": "https://leetcode.com/problems/optimize-water-distribution-in-a-village/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Union-Find",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Minimum Spanning Tree",
+    "Prim's Algorithm",
+    "Kruskal's Algorithm",
+    "Borůvka's Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "There are n houses in a village. We want to supply water for all the houses by building wells and laying pipes. \n \n For each house i , we can either build a well inside it directly with cost wells[i - 1] (note the -1 due to 0-indexing ), or pipe in water from another well to it. The costs to lay pipes between houses are given by the array pipes where each pipes[j] = [house1 j , house2 j , cost j ] represents the cost to connect house1 j and house2 j together using a pipe. Connections are bidirectional, and there could be multiple valid connections between the same two houses with different costs. \n \n Return the minimum total cost to supply water to all houses . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/05/22/1359_ex1.png] \n \n```\nInput:\n n = 3, wells = [1,2,2], pipes = [[1,2,1],[2,3,1]]\n\nOutput:\n 3\n\nExplanation:\n The image shows the costs of connecting houses using pipes.\nThe best strategy is to build a well in the first house with cost 1 and connect the other houses to it with cost 2 so the total cost is 3.\n```\n\n Example 2: \n \n```\nInput:\n n = 2, wells = [1,1], pipes = [[1,2,1],[1,2,2]]\n\nOutput:\n 2\n\nExplanation:\n We can supply water with cost two using one of the three options:\nOption 1:\n - Build a well inside house 1 with cost 1.\n - Build a well inside house 2 with cost 1.\nThe total cost will be 2.\nOption 2:\n - Build a well inside house 1 with cost 1.\n - Connect house 2 with house 1 with cost 1.\nThe total cost will be 2.\nOption 3:\n - Build a well inside house 2 with cost 1.\n - Connect house 1 with house 2 with cost 1.\nThe total cost will be 2.\nNote that we can connect houses 1 and 2 with cost 1 or with cost 2 but we will always choose \nthe cheapest option\n.\n```\n\n Constraints: \n\n 2 <= n <= 10 4 \n \n wells.length == n \n \n 0 <= wells[i] <= 10 5 \n \n 1 <= pipes.length <= 10 4 \n \n pipes[j].length == 3 \n \n 1 <= house1 j , house2 j <= n \n \n 0 <= cost j <= 10 5 \n \n house1 j != house2 j",
+  "code": "class Solution {\npublic:\n    int minCostToSupplyWater(int n, vector<int>& wells,\n                             vector<vector<int>>& pipes) {\n        vector<array<int, 3>> edges;\n        for (int i = 1; i <= n; ++i) {\n            edges.push_back({wells[i - 1], 0, i});\n        }\n        for (const auto& p : pipes) {\n            edges.push_back({p[2], p[0], p[1]});\n        }\n        sort(edges.begin(), edges.end());\n        vector<int> parent(n + 1);\n        iota(parent.begin(), parent.end(), 0);\n        function<int(int)> find = [&](int x) {\n            return parent[x] == x ? x : parent[x] = find(parent[x]);\n        };\n        int total = 0;\n        for (const auto& e : edges) {\n            int a = find(e[1]);\n            int b = find(e[2]);\n            if (a != b) {\n                parent[a] = b;\n                total += e[0];\n            }\n        }\n        return total;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178542623",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

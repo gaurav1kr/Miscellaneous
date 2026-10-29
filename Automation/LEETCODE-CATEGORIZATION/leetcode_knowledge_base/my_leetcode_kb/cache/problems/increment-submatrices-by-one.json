@@ -1,0 +1,32 @@
+{
+  "id": "2536",
+  "title": "Increment Submatrices by One",
+  "slug": "increment-submatrices-by-one",
+  "url": "https://leetcode.com/problems/increment-submatrices-by-one/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n , indicating that we initially have an n x n   0-indexed integer matrix mat filled with zeroes. \n \n You are also given a 2D integer array query . For each query[i] = [row1 i , col1 i , row2 i , col2 i ] , you should do the following operation: \n\n Add 1 to every element in the submatrix with the top left corner (row1 i , col1 i ) and the bottom right corner (row2 i , col2 i ) . That is, add 1 to mat[x][y] for all row1 i <= x <= row2 i and col1 i <= y <= col2 i . \n\n Return the matrix mat after performing every query. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/11/24/p2example11.png] \n \n```\nInput:\n n = 3, queries = [[1,1,2,2],[0,0,1,1]]\n\nOutput:\n [[1,1,0],[1,2,1],[0,1,1]]\n\nExplanation:\n The diagram above shows the initial matrix, the matrix after the first query, and the matrix after the second query.\n- In the first query, we add 1 to every element in the submatrix with the top left corner (1, 1) and bottom right corner (2, 2).\n- In the second query, we add 1 to every element in the submatrix with the top left corner (0, 0) and bottom right corner (1, 1).\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/11/24/p2example22.png] \n \n```\nInput:\n n = 2, queries = [[0,0,1,1]]\n\nOutput:\n [[1,1],[1,1]]\n\nExplanation:\n The diagram above shows the initial matrix and the matrix after the first query.\n- In the first query we add 1 to every element in the matrix.\n```\n\n Constraints: \n\n 1 <= n <= 500 \n \n 1 <= queries.length <= 10 4 \n \n 0 <= row1 i <= row2 i < n \n \n 0 <= col1 i <= col2 i < n",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n vector<vector<int>> rangeAddQueries(int n,vector<vector<int>>& queries){\n  vector<vector<int>> d(n,vector<int>(n+1));\n  for(auto &q:queries)for(int r=q[0];r<=q[2];++r){++d[r][q[1]];--d[r][q[3]+1];}\n  vector<vector<int>> ans(n,vector<int>(n));\n  for(int i=0;i<n;++i){int s=0;for(int j=0;j<n;++j){s+=d[i][j];ans[i][j]=s;}}return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176604020",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

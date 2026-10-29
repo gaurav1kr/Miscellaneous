@@ -1,0 +1,32 @@
+{
+  "id": "1813",
+  "title": "Sentence Similarity III",
+  "slug": "sentence-similarity-iii",
+  "url": "https://leetcode.com/problems/sentence-similarity-iii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings sentence1 and sentence2 , each representing a sentence composed of words. A sentence is a list of words that are separated by a single space with no leading or trailing spaces. Each word consists of only uppercase and lowercase English characters. \n \n Two sentences s1 and s2 are considered similar if it is possible to insert an arbitrary sentence ( possibly empty ) inside one of these sentences such that the two sentences become equal. Note that the inserted sentence must be separated from existing words by spaces. \n \n For example, \n\n s1 = \"Hello Jane\" and s2 = \"Hello my name is Jane\" can be made equal by inserting \"my name is\" between \"Hello\" and \"Jane\" in s1. \n \n s1 = \"Frog cool\" and s2 = \"Frogs are cool\" are not similar, since although there is a sentence \"s are\" inserted into s1 , it is not separated from \"Frog\" by a space. \n\n Given two sentences sentence1 and sentence2 , return true if sentence1 and sentence2 are similar . Otherwise, return false . \n\n Example 1: \n\n Input: sentence1 = \"My name is Haley\", sentence2 = \"My Haley\" \n \n Output: true \n \n Explanation: \n \n sentence2 can be turned to sentence1 by inserting \"name is\" between \"My\" and \"Haley\". \n\n Example 2: \n\n Input: sentence1 = \"of\", sentence2 = \"A lot of words\" \n \n Output: false \n \n Explanation: \n \n No single sentence can be inserted inside one of the sentences to make it equal to the other. \n\n Example 3: \n\n Input: sentence1 = \"Eating right now\", sentence2 = \"Eating\" \n \n Output: true \n \n Explanation: \n \n sentence2 can be turned to sentence1 by inserting \"right now\" at the end of the sentence. \n\n Constraints: \n\n 1 <= sentence1.length, sentence2.length <= 100 \n \n sentence1 and sentence2 consist of lowercase and uppercase English letters and spaces. \n \n The words in sentence1 and sentence2 are separated by a single space.",
+  "code": "#include <sstream>\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool areSentencesSimilar(string s1, string s2) {\n        vector<string> a = split(s1), b = split(s2);\n        if (a.size() > b.size()) swap(a, b);\n        int i = 0;\n        while (i < a.size() && a[i] == b[i]) ++i;\n        int j = 0;\n        while (j < a.size() - i && a[a.size() - 1 - j] == b[b.size() - 1 - j]) ++j;\n        return i + j == a.size();\n    }\n\n    vector<string> split(string& s) {\n        istringstream iss(s);\n        string word;\n        vector<string> res;\n        while (iss >> word) res.push_back(word);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1602419930",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

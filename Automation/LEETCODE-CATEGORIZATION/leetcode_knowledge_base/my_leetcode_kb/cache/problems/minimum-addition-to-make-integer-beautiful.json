@@ -1,0 +1,26 @@
+{
+  "id": "2457",
+  "title": "Minimum Addition to Make Integer Beautiful",
+  "slug": "minimum-addition-to-make-integer-beautiful",
+  "url": "https://leetcode.com/problems/minimum-addition-to-make-integer-beautiful/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given two positive integers n and target . \n \n An integer is considered beautiful if the sum of its digits is less than or equal to target . \n \n Return the minimum non-negative integer x such that n + x is beautiful . The input will be generated such that it is always possible to make n beautiful. \n\n Example 1: \n \n```\nInput:\n n = 16, target = 6\n\nOutput:\n 4\n\nExplanation:\n Initially n is 16 and its digit sum is 1 + 6 = 7. After adding 4, n becomes 20 and digit sum becomes 2 + 0 = 2. It can be shown that we can not make n beautiful with adding non-negative integer less than 4.\n```\n\n Example 2: \n \n```\nInput:\n n = 467, target = 6\n\nOutput:\n 33\n\nExplanation:\n Initially n is 467 and its digit sum is 4 + 6 + 7 = 17. After adding 33, n becomes 500 and digit sum becomes 5 + 0 + 0 = 5. It can be shown that we can not make n beautiful with adding non-negative integer less than 33.\n```\n\n Example 3: \n \n```\nInput:\n n = 1, target = 1\n\nOutput:\n 0\n\nExplanation:\n Initially n is 1 and its digit sum is 1, which is already smaller than or equal to target.\n```\n\n Constraints: \n\n 1 <= n <= 10 12 \n \n 1 <= target <= 150 \n \n The input will be generated such that it is always possible to make n beautiful.",
+  "code": "class Solution { public: long long makeIntegerBeautiful(long long n,int target){auto digitSum=[](long long x){int s=0;while(x){s+=x%10;x/=10;}return s;};long long x=n,base=1;while(digitSum(x)>target){base*=10;x=((x+base-1)/base)*base;}return x-n;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176572035",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "501",
+  "title": "Find Mode in Binary Search Tree",
+  "slug": "find-mode-in-binary-search-tree",
+  "url": "https://leetcode.com/problems/find-mode-in-binary-search-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary search tree (BST) with duplicates, return all the mode(s) (i.e., the most frequently occurred element) in it . \n \n If the tree has more than one mode, return them in any order . \n \n Assume a BST is defined as follows: \n\n The left subtree of a node contains only nodes with keys less than or equal to the node's key. \n \n The right subtree of a node contains only nodes with keys greater than or equal to the node's key. \n \n Both the left and right subtrees must also be binary search trees. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/11/mode-tree.jpg] \n \n```\nInput:\n root = [1,null,2,2]\n\nOutput:\n [2]\n```\n\n Example 2: \n \n```\nInput:\n root = [0]\n\nOutput:\n [0]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n -10 5 <= Node.val <= 10 5 \n\n Follow up: Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count).",
+  "code": "class Solution {\n    int prev = 0, run = 0, best = 0;\n    bool hasPrev = false;\n    std::vector<int> result;\n    void dfs(TreeNode* node) {\n        if (!node) return;\n        dfs(node->left);\n        if (hasPrev && prev == node->val) ++run;\n        else run = 1;\n        prev = node->val;\n        hasPrev = true;\n        if (run > best) { best = run; result.clear(); }\n        if (run == best) result.push_back(node->val);\n        dfs(node->right);\n    }\npublic:\n    std::vector<int> findMode(TreeNode* root) {\n        prev = run = best = 0;\n        hasPrev = false;\n        result.clear();\n        dfs(root);\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175699637",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

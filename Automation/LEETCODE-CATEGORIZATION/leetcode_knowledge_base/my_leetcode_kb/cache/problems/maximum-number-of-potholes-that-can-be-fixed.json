@@ -1,0 +1,32 @@
+{
+  "id": "3119",
+  "title": "Maximum Number of Potholes That Can Be Fixed",
+  "slug": "maximum-number-of-potholes-that-can-be-fixed",
+  "url": "https://leetcode.com/problems/maximum-number-of-potholes-that-can-be-fixed/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string road , consisting only of characters \"x\" and \".\" , where each \"x\" denotes a pothole and each \".\" denotes a smooth road, and an integer budget . \n \n In one repair operation, you can repair n consecutive potholes for a price of n + 1 . \n \n Return the maximum number of potholes that can be fixed such that the sum of the prices of all of the fixes doesn't go over the given budget. \n\n Example 1: \n\n Input: road = \"..\", budget = 5 \n \n Output: 0 \n \n Explanation: \n \n There are no potholes to be fixed. \n\n Example 2: \n\n Input: road = \"..xxxxx\", budget = 4 \n \n Output: 3 \n \n Explanation: \n \n We fix the first three potholes (they are consecutive). The budget needed for this task is 3 + 1 = 4 . \n\n Example 3: \n\n Input: road = \"x.x.xxx...x\", budget = 14 \n \n Output: 6 \n \n Explanation: \n \n We can fix all the potholes. The total cost would be (1 + 1) + (1 + 1) + (3 + 1) + (1 + 1) = 10 which is within our budget of 14. \n\n Constraints: \n\n 1 <= road.length <= 10 5 \n \n 1 <= budget <= 10 5 + 1 \n \n road consists only of characters '.' and 'x' .",
+  "code": "class Solution {\npublic:\n    int maxPotholes(string road, int budget) {\n        vector<int> runs;\n        for (int i = 0; i < (int)road.size();) {\n            if (road[i] != 'x') { ++i; continue; }\n            int j = i;\n            while (j < (int)road.size() && road[j] == 'x') ++j;\n            runs.push_back(j - i);\n            i = j;\n        }\n        sort(runs.rbegin(), runs.rend());\n        int ans = 0;\n        for (int len : runs) {\n            if (budget <= 1) break;\n            int take = min(len, budget - 1);\n            ans += take;\n            budget -= take + 1;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178947918",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

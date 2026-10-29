@@ -1,0 +1,31 @@
+{
+  "id": "498",
+  "title": "Diagonal Traverse",
+  "slug": "diagonal-traverse",
+  "url": "https://leetcode.com/problems/diagonal-traverse/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an m x n matrix mat , return an array of all the elements of the array in a diagonal order . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/10/diag1-grid.jpg] \n \n```\nInput:\n mat = [[1,2,3],[4,5,6],[7,8,9]]\n\nOutput:\n [1,2,4,7,5,3,6,8,9]\n```\n\n Example 2: \n \n```\nInput:\n mat = [[1,2],[3,4]]\n\nOutput:\n [1,2,3,4]\n```\n\n Constraints: \n\n m == mat.length \n \n n == mat[i].length \n \n 1 <= m, n <= 10 4 \n \n 1 <= m * n <= 10 4 \n \n -10 5 <= mat[i][j] <= 10 5",
+  "code": "class Solution\n{\npublic:\n        vector<int> findDiagonalOrder(vector<vector<int>>& matrix)\n        {\n            vector<int>ans;\n            map<int,vector<int>>m;\n            for(int i=0;i<matrix.size();i++)\n            {\n                for(int j=0;j<matrix[0].size();j++)\n                {\n                    m[i+j].push_back(matrix[i][j]);\n                }\n            }\n\n           for(auto i:m)\n           {\n            if((i.first)%2 == 0)\n                reverse(i.second.begin(), i.second.end());\n\n            for(auto j: i.second)\n            ans.push_back(j);\n           }\n\n        return ans;\n        }\n\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1364800845",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

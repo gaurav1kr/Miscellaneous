@@ -1,0 +1,32 @@
+{
+  "id": "965",
+  "title": "Univalued Binary Tree",
+  "slug": "univalued-binary-tree",
+  "url": "https://leetcode.com/problems/univalued-binary-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list"
+  ],
+  "description": "A binary tree is uni-valued if every node in the tree has the same value. \n \n Given the root of a binary tree, return true if the given tree is uni-valued , or false otherwise. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2018/12/28/unival_bst_1.png] \n \n```\nInput:\n root = [1,1,1,1,1,null,1]\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2018/12/28/unival_bst_2.png] \n \n```\nInput:\n root = [2,2,2,5,2]\n\nOutput:\n false\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 100] . \n \n 0 <= Node.val < 100",
+  "code": "#include <queue>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isUnivalTree(TreeNode* root) {\n        int val = root->val;\n        queue<TreeNode*> q;\n        q.push(root);\n        while (!q.empty()) {\n            TreeNode* node = q.front();\n            q.pop();\n            if (node->val != val) return false;\n            if (node->left) q.push(node->left);\n            if (node->right) q.push(node->right);\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591371309",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

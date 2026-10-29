@@ -1,0 +1,40 @@
+{
+  "id": "987",
+  "title": "Vertical Order Traversal of a Binary Tree",
+  "slug": "vertical-order-traversal-of-a-binary-tree",
+  "url": "https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Sorting",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map / hash set",
+    "Ordered map",
+    "Queue",
+    "Sorted array",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree, calculate the vertical order traversal of the binary tree. \n \n For each node at position (row, col) , its left and right children will be at positions (row + 1, col - 1) and (row + 1, col + 1) respectively. The root of the tree is at (0, 0) . \n \n The vertical order traversal of a binary tree is a list of top-to-bottom orderings for each column index starting from the leftmost column and ending on the rightmost column. There may be multiple nodes in the same row and same column. In such a case, sort these nodes by their values. \n \n Return the vertical order traversal of the binary tree . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/29/vtree1.jpg] \n \n```\nInput:\n root = [3,9,20,null,null,15,7]\n\nOutput:\n [[9],[3,15],[20],[7]]\n\nExplanation:\n\nColumn -1: Only node 9 is in this column.\nColumn 0: Nodes 3 and 15 are in this column in that order from top to bottom.\nColumn 1: Only node 20 is in this column.\nColumn 2: Only node 7 is in this column.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/01/29/vtree2.jpg] \n \n```\nInput:\n root = [1,2,3,4,5,6,7]\n\nOutput:\n [[4],[2],[1,5,6],[3],[7]]\n\nExplanation:\n\nColumn -2: Only node 4 is in this column.\nColumn -1: Only node 2 is in this column.\nColumn 0: Nodes 1, 5, and 6 are in this column.\n 1 is at the top, so it comes first.\n 5 and 6 are at the same position (2, 0), so we order them by their value, 5 before 6.\nColumn 1: Only node 3 is in this column.\nColumn 2: Only node 7 is in this column.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/01/29/vtree3.jpg] \n \n```\nInput:\n root = [1,2,3,4,6,5,7]\n\nOutput:\n [[4],[2],[1,5,6],[3],[7]]\n\nExplanation:\n\nThis case is the exact same as example 2, but with nodes 5 and 6 swapped.\nNote that the solution remains the same since 5 and 6 are in the same location and should be ordered by their values.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 1000] . \n \n 0 <= Node.val <= 1000",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution \n{\npublic:\n    vector<vector<int>> verticalTraversal(TreeNode* root) \n    {\n       vector< vector<int>>ans;\n        if(!root) \n        {\n            return ans;\n        }\n\n        map<int,vector<pair<int,int>>>m;\n        queue<pair<TreeNode*,pair<int,int>>>q;\n        q.push({root,{0,0}});\n\n        while(!q.empty())\n        {\n            auto it=q.front();\n            q.pop();\n\n            TreeNode* node = it.first;\n            int line = it.second.first;\n            int level = it.second.second;\n\n            m[line].emplace_back(level,node->val);\n           \n            if(node->left!=NULL)\n            {\n                q.push({node->left,{line-1,level+1}});\n            }\n             if(node->right!=NULL)\n            {\n                q.push({node->right,{line+1,level+1}});\n            }\n        }\n        \n        for(auto it:m)\n        {\n            vector<int>level;\n            sort(it.second.begin(),it.second.end());\n            for(auto p : it.second)\n            {\n                level.push_back(p.second);\n            }\n            ans.push_back(level);\n        }\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1464618962",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "3295",
+  "title": "Report Spam Message",
+  "slug": "report-spam-message",
+  "url": "https://leetcode.com/problems/report-spam-message/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings message and an array of strings bannedWords . \n \n An array of words is considered spam if there are at least two words in it that exactly match any word in bannedWords . \n \n Return true if the array message is spam, and false otherwise. \n\n Example 1: \n\n Input: message = [\"hello\",\"world\",\"leetcode\"], bannedWords = [\"world\",\"hello\"] \n \n Output: true \n \n Explanation: \n \n The words \"hello\" and \"world\" from the message array both appear in the bannedWords array. \n\n Example 2: \n\n Input: message = [\"hello\",\"programming\",\"fun\"], bannedWords = [\"world\",\"programming\",\"leetcode\"] \n \n Output: false \n \n Explanation: \n \n Only one word from the message array ( \"programming\" ) appears in the bannedWords array. \n\n Constraints: \n\n 1 <= message.length, bannedWords.length <= 10 5 \n \n 1 <= message[i].length, bannedWords[i].length <= 15 \n \n message[i] and bannedWords[i] consist only of lowercase English letters.",
+  "code": "class Solution { public: bool reportSpam(vector<string>&message,vector<string>&bannedWords){unordered_set<string>s(bannedWords.begin(),bannedWords.end());int cnt=0;for(auto&w:message)if(s.count(w)&&++cnt==2)return true;return false;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177451289",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

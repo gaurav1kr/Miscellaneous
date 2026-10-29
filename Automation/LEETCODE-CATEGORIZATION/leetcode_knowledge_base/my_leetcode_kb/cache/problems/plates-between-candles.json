@@ -1,0 +1,35 @@
+{
+  "id": "2055",
+  "title": "Plates Between Candles",
+  "slug": "plates-between-candles",
+  "url": "https://leetcode.com/problems/plates-between-candles/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Binary Search",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "There is a long table with a line of plates and candles arranged on top of it. You are given a 0-indexed string s consisting of characters '*' and '|' only, where a '*' represents a plate and a '|' represents a candle . \n \n You are also given a 0-indexed 2D integer array queries where queries[i] = [left i , right i ] denotes the substring s[left i ...right i ] ( inclusive ). For each query, you need to find the number of plates between candles that are in the substring . A plate is considered between candles if there is at least one candle to its left and at least one candle to its right in the substring . \n\n For example, s = \"||**||**|*\" , and a query [3, 8] denotes the substring \"*|| ** |\" . The number of plates between candles in this substring is 2 , as each of the two plates has at least one candle in the substring to its left and right. \n\n Return an integer array answer where answer[i] is the answer to the i th query . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/10/04/ex-1.png] \n \n```\nInput:\n s = \"**|**|***|\", queries = [[2,5],[5,9]]\n\nOutput:\n [2,3]\n\nExplanation:\n\n- queries[0] has two plates between candles.\n- queries[1] has three plates between candles.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/10/04/ex-2.png] \n \n```\nInput:\n s = \"***|**|*****|**||**|*\", queries = [[1,17],[4,5],[14,17],[5,11],[15,16]]\n\nOutput:\n [9,0,0,0,0]\n\nExplanation:\n\n- queries[0] has nine plates between candles.\n- The other queries have zero plates between candles.\n```\n\n Constraints: \n\n 3 <= s.length <= 10 5 \n \n s consists of '*' and '|' characters. \n \n 1 <= queries.length <= 10 5 \n \n queries[i].length == 2 \n \n 0 <= left i <= right i < s.length",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> platesBetweenCandles(string s, vector<vector<int>>& queries) {\n        int n = s.size();\n        vector<int> prefix(n + 1), left(n), right(n);\n\n        for (int i = 0; i < n; ++i) {\n            prefix[i + 1] = prefix[i] + (s[i] == '*' ? 1 : 0);\n            left[i] = (s[i] == '|') ? i : (i > 0 ? left[i - 1] : -1);\n        }\n\n        for (int i = n - 1; i >= 0; --i)\n            right[i] = (s[i] == '|') ? i : (i + 1 < n ? right[i + 1] : n);\n\n        vector<int> res;\n        for (auto& q : queries) {\n            int l = right[q[0]], r = left[q[1]];\n            res.push_back((l < r) ? prefix[r] - prefix[l] : 0);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610645870",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

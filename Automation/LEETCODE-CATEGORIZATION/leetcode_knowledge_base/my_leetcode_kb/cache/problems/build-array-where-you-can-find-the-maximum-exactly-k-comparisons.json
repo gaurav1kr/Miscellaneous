@@ -1,0 +1,30 @@
+{
+  "id": "1420",
+  "title": "Build Array Where You Can Find The Maximum Exactly K Comparisons",
+  "slug": "build-array-where-you-can-find-the-maximum-exactly-k-comparisons",
+  "url": "https://leetcode.com/problems/build-array-where-you-can-find-the-maximum-exactly-k-comparisons/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given three integers n , m and k . Consider the following algorithm to find the maximum element of an array of positive integers: \n [Figure: https://assets.leetcode.com/uploads/2020/04/02/e.png] \n \n You should build the array arr which has the following properties: \n\n arr has exactly n integers. \n \n 1 <= arr[i] <= m where (0 <= i < n) . \n \n After applying the mentioned algorithm to arr , the value search_cost is equal to k . \n\n Return the number of ways to build the array arr under the mentioned conditions. As the answer may grow large, the answer must be computed modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 2, m = 3, k = 1\n\nOutput:\n 6\n\nExplanation:\n The possible arrays are [1, 1], [2, 1], [2, 2], [3, 1], [3, 2] [3, 3]\n```\n\n Example 2: \n \n```\nInput:\n n = 5, m = 2, k = 3\n\nOutput:\n 0\n\nExplanation:\n There are no possible arrays that satisfy the mentioned conditions.\n```\n\n Example 3: \n \n```\nInput:\n n = 9, m = 1, k = 1\n\nOutput:\n 1\n\nExplanation:\n The only possible array is [1, 1, 1, 1, 1, 1, 1, 1, 1]\n```\n\n Constraints: \n\n 1 <= n <= 50 \n \n 1 <= m <= 100 \n \n 0 <= k <= n",
+  "code": "class Solution {\npublic:\n    int numOfArrays(int n, int m, int k) {\n        const int MOD = 1000000007;\n        vector<vector<vector<long long>>> dp(n + 1, vector<vector<long long>>(m + 1, vector<long long>(k + 1, 0)));\n        \n        // Initialize dp[1][i][1] to 1, as there's only one way to create\n        // a single-element array with any number from 1 to m.\n        for (int i = 1; i <= m; i++) {\n            dp[1][i][1] = 1;\n        }\n        \n        // Fill in the dp table using dynamic programming.\n        for (int len = 2; len <= n; len++) {\n            for (int maxVal = 1; maxVal <= m; maxVal++) {\n                for (int cost = 1; cost <= k; cost++) {\n                    // dp[len][maxVal][cost] can be calculated by summing up\n                    // dp[len-1][i][cost-1] for i < maxVal and dp[len-1][maxVal][cost] * maxVal.\n                    long long sum = 0;\n                    for (int i = 1; i < maxVal; i++) {\n                        sum = (sum + dp[len - 1][i][cost - 1]) % MOD;\n                    }\n                    dp[len][maxVal][cost] = (dp[len - 1][maxVal][cost] * maxVal + sum) % MOD;\n                }\n            }\n        }\n        \n        // Sum up the possibilities for the final state dp[n][1..m][k].\n        long long ans = 0;\n        for (int i = 1; i <= m; i++) {\n            ans = (ans + dp[n][i][k]) % MOD;\n        }\n        \n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617064985",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "1274",
+  "title": "Number of Ships in a Rectangle",
+  "slug": "number-of-ships-in-a-rectangle",
+  "url": "https://leetcode.com/problems/number-of-ships-in-a-rectangle/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Interactive"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "(This problem is an interactive problem .) \n \n Each ship is located at an integer point on the sea represented by a cartesian plane, and each integer point may contain at most 1 ship. \n \n You have a function Sea.hasShips(topRight, bottomLeft) which takes two points as arguments and returns true If there is at least one ship in the rectangle represented by the two points, including on the boundary. \n \n Given two points: the top right and bottom left corners of a rectangle, return the number of ships present in that rectangle. It is guaranteed that there are at most 10 ships in that rectangle. \n \n Submissions making more than 400 calls to hasShips will be judged Wrong Answer . Also, any solutions that attempt to circumvent the judge will result in disqualification. \n\n Example : \n [Figure: https://assets.leetcode.com/uploads/2019/07/26/1445_example_1.PNG] \n \n```\nInput:\n \nships = [[1,1],[2,2],[3,3],[5,5]], topRight = [4,4], bottomLeft = [0,0]\n\nOutput:\n 3\n\nExplanation:\n From [0,0] to [4,4] we can count 3 ships within the range.\n```\n\n Example 2: \n \n```\nInput:\n ans = [[1,1],[2,2],[3,3]], topRight = [1000,1000], bottomLeft = [0,0]\n\nOutput:\n 3\n```\n\n Constraints: \n\n On the input ships is only given to initialize the map internally. You must solve this problem \"blindfolded\". In other words, you must find the answer using the given hasShips API, without knowing the ships position. \n \n 0 <= bottomLeft[0] <= topRight[0] <= 1000 \n \n 0 <= bottomLeft[1] <= topRight[1] <= 1000 \n \n topRight != bottomLeft",
+  "code": "class Solution {\n    int count(Sea& sea, int x1, int y1, int x2, int y2) {\n        if (x1 > x2 || y1 > y2 || !sea.hasShips({x2, y2}, {x1, y1})) {\n            return 0;\n        }\n        if (x1 == x2 && y1 == y2) {\n            return 1;\n        }\n        if (x2 - x1 >= y2 - y1) {\n            int mid = x1 + (x2 - x1) / 2;\n            return count(sea, x1, y1, mid, y2)\n                 + count(sea, mid + 1, y1, x2, y2);\n        }\n        int mid = y1 + (y2 - y1) / 2;\n        return count(sea, x1, y1, x2, mid)\n             + count(sea, x1, mid + 1, x2, y2);\n    }\n\npublic:\n    int countShips(Sea sea, vector<int> topRight, vector<int> bottomLeft) {\n        return count(sea, bottomLeft[0], bottomLeft[1],\n                     topRight[0], topRight[1]);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178571575",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

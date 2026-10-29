@@ -1,0 +1,30 @@
+{
+  "id": "1246",
+  "title": "Palindrome Removal",
+  "slug": "palindrome-removal",
+  "url": "https://leetcode.com/problems/palindrome-removal/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array arr . \n \n In one move, you can select a palindromic subarray arr[i], arr[i + 1], ..., arr[j] where i <= j , and remove that subarray from the given array. Note that after removing a subarray, the elements on the left and on the right of that subarray move to fill the gap left by the removal. \n \n Return the minimum number of moves needed to remove all numbers from the array . \n\n Example 1: \n \n```\nInput:\n arr = [1,2]\n\nOutput:\n 2\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,3,4,1,5]\n\nOutput:\n 3\n\nExplanation: \nRemove [4] then remove [1,3,1] then remove [5].\n```\n\n Constraints: \n\n 1 <= arr.length <= 100 \n \n 1 <= arr[i] <= 20",
+  "code": "class Solution {\npublic:\n    int minimumMoves(vector<int>& arr) {\n        int n = arr.size();\n        if (n == 0) {\n            return 0;\n        }\n        vector<vector<int>> dp(n, vector<int>(n, 0));\n        for (int i = n - 1; i >= 0; --i) {\n            dp[i][i] = 1;\n            for (int j = i + 1; j < n; ++j) {\n                dp[i][j] = 1 + dp[i + 1][j];\n                if (arr[i] == arr[i + 1]) {\n                    dp[i][j] = min(dp[i][j], 1 + (i + 2 <= j ? dp[i + 2][j] : 0));\n                }\n                for (int k = i + 2; k <= j; ++k) {\n                    if (arr[i] == arr[k]) {\n                        int middle = dp[i + 1][k - 1];\n                        int suffix = k < j ? dp[k + 1][j] : 0;\n                        dp[i][j] = min(dp[i][j], middle + suffix);\n                    }\n                }\n            }\n        }\n        return dp[0][n - 1];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178563241",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

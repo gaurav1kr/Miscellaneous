@@ -1,0 +1,27 @@
+{
+  "id": "849",
+  "title": "Maximize Distance to Closest Person",
+  "slug": "maximize-distance-to-closest-person",
+  "url": "https://leetcode.com/problems/maximize-distance-to-closest-person/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array representing a row of seats where seats[i] = 1 represents a person sitting in the i th seat, and seats[i] = 0 represents that the i th seat is empty (0-indexed) . \n \n There is at least one empty seat, and at least one person sitting. \n \n Alex wants to sit in the seat such that the distance between him and the closest person to him is maximized.  \n \n Return that maximum distance to the closest person . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/10/distance.jpg] \n \n```\nInput:\n seats = [1,0,0,0,1,0,1]\n\nOutput:\n 2\n\nExplanation: \n\nIf Alex sits in the second open seat (i.e. seats[2]), then the closest person has distance 2.\nIf Alex sits in any other open seat, the closest person has distance 1.\nThus, the maximum distance to the closest person is 2.\n```\n\n Example 2: \n \n```\nInput:\n seats = [1,0,0,0]\n\nOutput:\n 3\n\nExplanation: \n\nIf Alex sits in the last seat (i.e. seats[3]), the closest person is 3 seats away.\nThis is the maximum distance possible, so the answer is 3.\n```\n\n Example 3: \n \n```\nInput:\n seats = [0,1]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 2 <= seats.length <= 2 * 10 4 \n \n seats[i]  is 0 or  1 . \n \n At least one seat is empty . \n \n At least one seat is occupied .",
+  "code": "class Solution {\npublic:\n    int maxDistToClosest(vector<int>& seats) \n    {\n         int res = 0, n = seats.size(), last = -1;\n         for (int i = 0; i < n; ++i) \n         {\n            if (seats[i] == 1) \n            {\n                res = last < 0 ? i : max(res, (i - last) / 2);\n                last = i;\n            }\n        }\n        res = max(res, n - last - 1);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1153782327",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

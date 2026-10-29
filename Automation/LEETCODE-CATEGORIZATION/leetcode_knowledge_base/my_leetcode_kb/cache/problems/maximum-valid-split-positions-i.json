@@ -1,0 +1,31 @@
+{
+  "id": "4035",
+  "title": "Maximum Valid Split Positions I",
+  "slug": "maximum-valid-split-positions-i",
+  "url": "https://leetcode.com/problems/maximum-valid-split-positions-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Enumeration",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n You may remove at most one element from nums . Let arr be the array of remaining elements in their original order, and let m be its length. \n \n A split position i of arr is valid if: \n\n 0 <= i < m - 1 , and \n \n gcd(arr[0..i]) == gcd(arr[i + 1..m - 1]) . \n\n An array of length 1 has no valid split positions. \n \n The score of arr is the number of valid split positions in it. \n \n Return the maximum possible score of arr . \n \n Here, gcd(a) denotes the greatest common divisor of all elements in the array a . \n\n Example 1: \n\n Input: nums = [10,30,15,10] \n \n Output: 2 \n \n Explanation: \n \n One optimal solution is to remove nums[2] = 15 . Then arr = [10, 30, 10] . \n \n The split positions are: \n\n Split Position i \n gcd(arr[0..i]) \n gcd(arr[i + 1..m - 1]) \n\n 0 \n 10 \n 10 \n\n 1 \n 10 \n 10 \n\n All split positions are valid. Thus, the answer is 2. \n\n Example 2: \n\n Input: nums = [2,10,14] \n \n Output: 1 \n \n Explanation: \n \n One optimal solution is to not remove any element. Then arr = [2, 10, 14] . \n \n The split positions are: \n\n Split Position i \n gcd(arr[0..i]) \n gcd(arr[i + 1..m - 1]) \n\n 0 \n 2 \n 2 \n\n 1 \n 2 \n 14 \n\n Only the split position at index 0 is valid. Thus, the answer is 1. \n\n Example 3: \n\n Input: nums = [2,4] \n \n Output: 0 \n \n Explanation: \n \n The only remaining array that has a split position is arr = [2, 4] . \n \n The split positions are: \n\n Split Position i \n gcd(arr[0..i]) \n gcd(arr[i + 1..m - 1]) \n\n 0 \n 2 \n 4 \n\n There are no valid split positions. Thus, the answer is 0. \n\n Constraints: \n\n 2 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 10 9 ​​​​​​​",
+  "code": "class Solution {\n    int gcd2(int a, int b) {\n        while (b) { int t = a % b; a = b; b = t; }\n        return a;\n    }\npublic:\n    int maxValidSplits(vector<int>& nums) {\n        int n = nums.size(), best = 0;\n        for (int removed = -1; removed < n; ++removed) {\n            vector<int> a;\n            a.reserve(n);\n            for (int i = 0; i < n; ++i)\n                if (i != removed) a.push_back(nums[i]);\n            int m = a.size();\n            if (m < 2) continue;\n            vector<int> pref(m), suff(m);\n            pref[0] = a[0];\n            for (int i = 1; i < m; ++i) pref[i] = gcd2(pref[i - 1], a[i]);\n            suff[m - 1] = a[m - 1];\n            for (int i = m - 2; i >= 0; --i) suff[i] = gcd2(suff[i + 1], a[i]);\n            int score = 0;\n            for (int i = 0; i + 1 < m; ++i)\n                if (pref[i] == suff[i + 1]) ++score;\n            best = max(best, score);\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181119351",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "2781",
+  "title": "Length of the Longest Valid Substring",
+  "slug": "length-of-the-longest-valid-substring",
+  "url": "https://leetcode.com/problems/length-of-the-longest-valid-substring/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string word and an array of strings forbidden . \n \n A string is called valid if none of its substrings are present in forbidden . \n \n Return the length of the longest valid substring of the string word . \n \n A substring is a contiguous sequence of characters in a string, possibly empty. \n\n Example 1: \n \n```\nInput:\n word = \"cbaaaabc\", forbidden = [\"aaa\",\"cb\"]\n\nOutput:\n 4\n\nExplanation:\n There are 11 valid substrings in word: \"c\", \"b\", \"a\", \"ba\", \"aa\", \"bc\", \"baa\", \"aab\", \"ab\", \"abc\" and \"aabc\". The length of the longest valid substring is 4. \nIt can be shown that all other substrings contain either \"aaa\" or \"cb\" as a substring.\n```\n\n Example 2: \n \n```\nInput:\n word = \"leetcode\", forbidden = [\"de\",\"le\",\"e\"]\n\nOutput:\n 4\n\nExplanation:\n There are 11 valid substrings in word: \"l\", \"t\", \"c\", \"o\", \"d\", \"tc\", \"co\", \"od\", \"tco\", \"cod\", and \"tcod\". The length of the longest valid substring is 4.\nIt can be shown that all other substrings contain either \"de\", \"le\", or \"e\" as a substring.\n```\n\n Constraints: \n\n 1 <= word.length <= 10 5 \n \n word consists only of lowercase English letters. \n \n 1 <= forbidden.length <= 10 5 \n \n 1 <= forbidden[i].length <= 10 \n \n forbidden[i] consists only of lowercase English letters.",
+  "code": "class Solution {public:int longestValidSubstring(string word,vector<string>& forbidden){unordered_set<string> bad(forbidden.begin(),forbidden.end());int l=0,ans=0;for(int r=0;r<(int)word.size();++r){for(int i=r;i>=l&&i>r-10;--i)if(bad.count(word.substr(i,r-i+1)))l=i+1;ans=max(ans,r-l+1);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176699577",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "4082",
+  "title": "Minimum Operations to Stabilize a Binary Tree",
+  "slug": "minimum-operations-to-stabilize-a-binary-tree",
+  "url": "https://leetcode.com/problems/minimum-operations-to-stabilize-a-binary-tree/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Hash map",
+    "Ordered map",
+    "Priority queue",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given the root of a binary tree . Each node contains an integer value representing its current state. \n \n A binary tree is considered stable if for every node u : \n\n If u.left exists, then |u.val - u.left.val| <= 1 \n \n If u.right exists, then |u.val - u.right.val| <= 1 \n\n In one operation, you may choose any node and increase or decrease its value by 1. \n \n Return the minimum number of operations required to make the entire binary tree stable . \n\n Example 1: \n\n Input: root = [5,8,3] \n \n Output: 3 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2026/02/16/screenshot-2026-02-16-at-21240pm.png] \n\n Let u be the root node with value 5. Decrease the left child value from 8 to 6 using 2 operations. Then |u.val - u.left.val| = |5 - 6| = 1 . \n \n Increase the right child value from 3 to 4 using 1 operation. Then |u.val - u.right.val| = |5 - 4| = 1 . \n \n Thus, the answer is 2 + 1 = 3 . \n\n Example 2: \n\n Input: root = [2,-1,-4] \n \n Output: 5 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2026/02/16/screenshot-2026-02-16-at-21340pm.png] \n\n Let u be the root node with value 2. Decrease the value of u from 2 to −2 using 4 operations. \n \n Decrease the right child value from −4 to −3 using 1 operation. Then |u.val - u.right.val| = |-2 - (−3)| = 1 . \n \n Thus, the answer is 4 + 1 = 5 . \n\n Example 3: \n\n Input: root = [0,-2,2,-3,null,1] \n \n Output: 3 \n \n Explanation: \n \n ​​​​​​​ [Figure: https://assets.leetcode.com/uploads/2026/02/16/screenshot-2026-02-16-at-21826pm.png] ​​​​​​​​​​​​​​ \n\n Let u be the root node with value 0. Increase the left child value from −2 to −1 using 1 operation, and decrease the right child value from 2 to 1 using 1 operation. \n \n Now |u.val - u.left.val| = |0 - (−1)| = 1 and |u.val - u.right.val| = |0 - 1| = 1 . \n \n Let v be the left child of u , now having value −1. Increase its left child from −3 to −2 using 1 operation so that |v.val - v.left.val| = |−1 - (−2)| = 1 . \n \n The right subtree already satisfies the condition since |1 - 1| = 0 . \n \n Thus, the answer is 1 + 1 + 1 = 3 .​​​​​​​ \n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 5 * 10 4 ] . \n \n -10 5 <= Node.val <= 10 5",
+  "code": "class Solution {\n    struct Slope {\n        priority_queue<long long> L;\n        priority_queue<long long,vector<long long>,greater<long long>> R;\n        long long shiftL=0,shiftR=0,cost=0;\n        void addLeft(long long x) { // max(x-v,0)\n            if(!R.empty())cost+=max(0LL,x-(R.top()+shiftR));\n            R.push(x-shiftR);\n            long long y=R.top()+shiftR;R.pop();\n            L.push(y-shiftL);\n        }\n        void addRight(long long x) { // max(v-x,0)\n            if(!L.empty())cost+=max(0LL,(L.top()+shiftL)-x);\n            L.push(x-shiftL);\n            long long y=L.top()+shiftL;L.pop();\n            R.push(y-shiftR);\n        }\n        void window() {--shiftL;++shiftR;}\n        size_t size()const{return L.size()+R.size();}\n        void absorb(Slope &other) {\n            cost+=other.cost;\n            while(!other.L.empty()) {\n                long long x=other.L.top()+other.shiftL;other.L.pop();\n                addLeft(x);\n            }\n            while(!other.R.empty()) {\n                long long x=other.R.top()+other.shiftR;other.R.pop();\n                addRight(x);\n            }\n        }\n    };\npublic:\n    long long stabilizeBinaryTree(TreeNode* root) {\n        if(!root)return 0;\n        vector<TreeNode*> order(1,root);\n        for(size_t i=0;i<order.size();++i) {\n            TreeNode* u=order[i];\n            if(u->left)order.push_back(u->left);\n            if(u->right)order.push_back(u->right);\n        }\n        unordered_map<TreeNode*,Slope*> dp;\n        for(int i=(int)order.size()-1;i>=0;--i) {\n            TreeNode* u=order[i];\n            Slope* cur=new Slope();\n            cur->addLeft(u->val);cur->addRight(u->val);\n            for(TreeNode* v:{u->left,u->right})if(v) {\n                Slope* child=dp[v];\n                child->window();\n                if(cur->size()<child->size())swap(cur,child);\n                cur->absorb(*child);\n                delete child;\n                dp.erase(v);\n            }\n            dp[u]=cur;\n        }\n        long long result=dp[root]->cost;\n        delete dp[root];\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181507417",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

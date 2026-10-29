@@ -1,0 +1,31 @@
+{
+  "id": "715",
+  "title": "Range Module",
+  "slug": "range-module",
+  "url": "https://leetcode.com/problems/range-module/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Design",
+    "Segment Tree",
+    "Ordered Set"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Ordered set",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "A Range Module is a module that tracks ranges of numbers. Design a data structure to track the ranges represented as half-open intervals and query about them. \n \n A half-open interval [left, right) denotes all the real numbers x where left <= x < right . \n \n Implement the RangeModule class: \n\n RangeModule() Initializes the object of the data structure. \n \n void addRange(int left, int right) Adds the half-open interval [left, right) , tracking every real number in that interval. Adding an interval that partially overlaps with currently tracked numbers should add any numbers in the interval [left, right) that are not already tracked. \n \n boolean queryRange(int left, int right) Returns true if every real number in the interval [left, right) is currently being tracked, and false otherwise. \n \n void removeRange(int left, int right) Stops tracking every real number currently being tracked in the half-open interval [left, right) . \n\n Example 1: \n \n```\nInput\n\n[\"RangeModule\", \"addRange\", \"removeRange\", \"queryRange\", \"queryRange\", \"queryRange\"]\n[[], [10, 20], [14, 16], [10, 14], [13, 15], [16, 17]]\n\nOutput\n\n[null, null, null, true, false, true]\n\nExplanation\n\nRangeModule rangeModule = new RangeModule();\nrangeModule.addRange(10, 20);\nrangeModule.removeRange(14, 16);\nrangeModule.queryRange(10, 14); // return True,(Every number in [10, 14) is being tracked)\nrangeModule.queryRange(13, 15); // return False,(Numbers like 14, 14.03, 14.17 in [13, 15) are not being tracked)\nrangeModule.queryRange(16, 17); // return True, (The number 16 in [16, 17) is still being tracked, despite the remove operation)\n```\n\n Constraints: \n\n 1 <= left < right <= 10 9 \n \n At most 10 4 calls will be made to addRange , queryRange , and removeRange .",
+  "code": "#include <set>\n\nusing namespace std;\n\nclass RangeModule {\n    set<pair<int, int>> intervals;\n\npublic:\n    void addRange(int left, int right) {\n        auto it = intervals.lower_bound({left, 0});\n        if (it != intervals.begin()) --it;\n        while (it != intervals.end() && it->first <= right) {\n            if (it->second < left) ++it;\n            else {\n                left = min(left, it->first);\n                right = max(right, it->second);\n                it = intervals.erase(it);\n            }\n        }\n        intervals.insert({left, right});\n    }\n\n    bool queryRange(int left, int right) {\n        auto it = intervals.upper_bound({left, INT_MAX});\n        if (it == intervals.begin()) return false;\n        --it;\n        return it->first <= left && it->second >= right;\n    }\n\n    void removeRange(int left, int right) {\n        auto it = intervals.lower_bound({left, 0});\n        if (it != intervals.begin()) --it;\n        vector<pair<int, int>> toAdd;\n        while (it != intervals.end() && it->first < right) {\n            if (it->second <= left) {\n                ++it;\n                continue;\n            }\n            if (it->first < left) toAdd.emplace_back(it->first, left);\n            if (it->second > right) toAdd.emplace_back(right, it->second);\n            it = intervals.erase(it);\n        }\n        for (auto& p : toAdd) intervals.insert(p);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593834635",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

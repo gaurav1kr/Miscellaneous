@@ -1,0 +1,28 @@
+{
+  "id": "1750",
+  "title": "Minimum Length of String After Deleting Similar Ends",
+  "slug": "minimum-length-of-string-after-deleting-similar-ends",
+  "url": "https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s consisting only of characters 'a' , 'b' , and 'c' . You are asked to apply the following algorithm on the string any number of times: \n\n Pick a non-empty prefix from the string s where all the characters in the prefix are equal. \n \n Pick a non-empty suffix from the string s where all the characters in this suffix are equal. \n \n The prefix and the suffix should not intersect at any index. \n \n The characters from the prefix and suffix must be the same. \n \n Delete both the prefix and the suffix. \n\n Return the minimum length of s after performing the above operation any number of times (possibly zero times) . \n\n Example 1: \n \n```\nInput:\n s = \"ca\"\n\nOutput:\n 2\n\nExplanation: \nYou can't remove any characters, so the string stays as is.\n```\n\n Example 2: \n \n```\nInput:\n s = \"cabaabac\"\n\nOutput:\n 0\n\nExplanation:\n An optimal sequence of operations is:\n- Take prefix = \"c\" and suffix = \"c\" and remove them, s = \"abaaba\".\n- Take prefix = \"a\" and suffix = \"a\" and remove them, s = \"baab\".\n- Take prefix = \"b\" and suffix = \"b\" and remove them, s = \"aa\".\n- Take prefix = \"a\" and suffix = \"a\" and remove them, s = \"\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"aabccabba\"\n\nOutput:\n 3\n\nExplanation:\n An optimal sequence of operations is:\n- Take prefix = \"aa\" and suffix = \"a\" and remove them, s = \"bccabb\".\n- Take prefix = \"b\" and suffix = \"bb\" and remove them, s = \"cca\".\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s only consists of characters 'a' , 'b' , and 'c' .",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minimumLength(string s) {\n        int l = 0, r = s.size() - 1;\n        while (l < r && s[l] == s[r]) {\n            char c = s[l];\n            while (l <= r && s[l] == c) ++l;\n            while (l <= r && s[r] == c) --r;\n        }\n        return r - l + 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610657847",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "524",
+  "title": "Longest Word in Dictionary through Deleting",
+  "slug": "longest-word-in-dictionary-through-deleting",
+  "url": "https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s and a string array dictionary , return the longest string in the dictionary that can be formed by deleting some of the given string characters . If there is more than one possible result, return the longest word with the smallest lexicographical order. If there is no possible result, return the empty string. \n\n Example 1: \n \n```\nInput:\n s = \"abpcplea\", dictionary = [\"ale\",\"apple\",\"monkey\",\"plea\"]\n\nOutput:\n \"apple\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"abpcplea\", dictionary = [\"a\",\"b\",\"c\"]\n\nOutput:\n \"a\"\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n 1 <= dictionary.length <= 1000 \n \n 1 <= dictionary[i].length <= 1000 \n \n s and dictionary[i] consist of lowercase English letters.",
+  "code": "#include <vector>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    string findLongestWord(string s, vector<string>& dictionary) {\n        sort(dictionary.begin(), dictionary.end(), [](string &a, string &b) {\n            return a.size() == b.size() ? a < b : a.size() > b.size();\n        });\n\n        for (string& word : dictionary) {\n            int i = 0, j = 0;\n            while (i < s.size() && j < word.size()) {\n                if (s[i] == word[j]) j++;\n                i++;\n            }\n            if (j == word.size()) return word;\n        }\n        return \"\";\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591358898",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

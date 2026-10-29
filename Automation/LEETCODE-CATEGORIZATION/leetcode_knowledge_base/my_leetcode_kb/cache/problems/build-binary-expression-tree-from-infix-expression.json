@@ -1,0 +1,34 @@
+{
+  "id": "1597",
+  "title": "Build Binary Expression Tree From Infix Expression",
+  "slug": "build-binary-expression-tree-from-infix-expression",
+  "url": "https://leetcode.com/problems/build-binary-expression-tree-from-infix-expression/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "String",
+    "Stack",
+    "Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Stack",
+    "String",
+    "Tree adjacency list"
+  ],
+  "description": "A binary expression tree is a kind of binary tree used to represent arithmetic expressions. Each node of a binary expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (numbers), and internal nodes (nodes with 2 children) correspond to the operators '+' (addition), '-' (subtraction), '*' (multiplication), and '/' (division). \n \n For each internal node with operator o , the infix expression it represents is (A o B) , where A is the expression the left subtree represents and B is the expression the right subtree represents. \n \n You are given a string s , an infix expression containing operands, the operators described above, and parentheses '(' and ')' . \n \n Return any valid binary expression tree , whose in-order traversal reproduces s after omitting the parenthesis from it. \n \n Please note that order of operations applies in s . That is, expressions in parentheses are evaluated first, and multiplication and division happen before addition and subtraction. \n \n Operands must also appear in the same order in both s and the in-order traversal of the tree. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/02/ex1-4.png] \n \n```\nInput:\n s = \"3*4-2*5\"\n\nOutput:\n [-,*,*,3,4,2,5]\n\nExplanation:\n The tree above is the only valid tree whose inorder traversal produces s.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/10/02/ex1-2.png] \n \n```\nInput:\n s = \"2-3/(5*2)+1\"\n\nOutput:\n [+,-,1,2,/,null,null,null,null,3,*,null,null,5,2]\n\nExplanation:\n The inorder traversal of the tree above is 2-3/5*2+1 which is the same as s without the parenthesis. The tree also produces the correct result and its operands are in the same order as they appear in s.\nThe tree below is also a valid binary expression tree with the same inorder traversal as s, but it not a valid answer because it does not evaluate to the same value.\n\nThe third tree below is also not valid. Although it produces the same result and is equivalent to the above trees, its inorder traversal does not produce s and its operands are not in the same order as s.\n```\n\n Example 3: \n \n```\nInput:\n s = \"1+2+3+4+5\"\n\nOutput:\n [+,+,5,+,4,null,null,+,3,null,null,1,2]\n\nExplanation:\n The tree [+,+,5,+,+,null,null,1,2,3,4] is also one of many other valid trees.\n```\n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists of digits and the characters '(' , ')' , '+' , '-' , '*' , and '/' . \n \n Operands in s are exactly 1 digit. \n \n It is guaranteed that s is a valid expression.",
+  "code": "class Solution {\n    int priority(char op) { return (op == '+' || op == '-') ? 1 : 2; }\n\npublic:\n    Node* expTree(string s) {\n        stack<Node*> nodes;\n        stack<char> ops;\n        auto reduce = [&]() {\n            char op = ops.top(); ops.pop();\n            Node* right = nodes.top(); nodes.pop();\n            Node* left = nodes.top(); nodes.pop();\n            Node* root = new Node(op);\n            root->left = left;\n            root->right = right;\n            nodes.push(root);\n        };\n        for (char c : s) {\n            if (isdigit(static_cast<unsigned char>(c))) {\n                nodes.push(new Node(c));\n            } else if (c == '(') {\n                ops.push(c);\n            } else if (c == ')') {\n                while (ops.top() != '(') reduce();\n                ops.pop();\n            } else {\n                while (!ops.empty() && ops.top() != '(' && priority(ops.top()) >= priority(c)) reduce();\n                ops.push(c);\n            }\n        }\n        while (!ops.empty()) reduce();\n        return nodes.top();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178592714",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

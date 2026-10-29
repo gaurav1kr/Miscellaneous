@@ -1,0 +1,32 @@
+{
+  "id": "88",
+  "title": "Merge Sorted Array",
+  "slug": "merge-sorted-array",
+  "url": "https://leetcode.com/problems/merge-sorted-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays nums1 and nums2 , sorted in non-decreasing order , and two integers m and n , representing the number of elements in nums1 and nums2 respectively. \n \n Merge nums1 and nums2 into a single array sorted in non-decreasing order . \n \n The final sorted array should not be returned by the function, but instead be stored inside the array nums1 . To accommodate this, nums1 has a length of m + n , where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n . \n\n Example 1: \n \n```\nInput:\n nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3\n\nOutput:\n [1,2,2,3,5,6]\n\nExplanation:\n The arrays we are merging are [1,2,3] and [2,5,6].\nThe result of the merge is [\n1\n,\n2\n,2,\n3\n,5,6] with the underlined elements coming from nums1.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [1], m = 1, nums2 = [], n = 0\n\nOutput:\n [1]\n\nExplanation:\n The arrays we are merging are [1] and [].\nThe result of the merge is [1].\n```\n\n Example 3: \n \n```\nInput:\n nums1 = [0], m = 0, nums2 = [1], n = 1\n\nOutput:\n [1]\n\nExplanation:\n The arrays we are merging are [] and [1].\nThe result of the merge is [1].\nNote that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.\n```\n\n Constraints: \n\n nums1.length == m + n \n \n nums2.length == n \n \n 0 <= m, n <= 200 \n \n 1 <= m + n <= 200 \n \n -10 9 <= nums1[i], nums2[j] <= 10 9 \n\n Follow up: Can you come up with an algorithm that runs in O(m + n) time?",
+  "code": "class Solution {\npublic:\n    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {\n        int i = m - 1, j = n - 1, k = m + n - 1;\n        while (j >= 0) {\n            nums1[k--] = (i >= 0 && nums1[i] > nums2[j]) ? nums1[i--] : nums2[j--];\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588103966",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

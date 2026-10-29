@@ -1,0 +1,35 @@
+{
+  "id": "3815",
+  "title": "Design Auction System",
+  "slug": "design-auction-system",
+  "url": "https://leetcode.com/problems/design-auction-system/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Design",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Ordered set",
+    "Priority queue / heap"
+  ],
+  "description": "You are asked to design an auction system that manages bids from multiple users in real time. \n \n Each bid is associated with a userId , an itemId , and a bidAmount . \n \n Implement the AuctionSystem class:​​​​​​​ \n\n AuctionSystem() : Initializes the AuctionSystem object. \n \n void addBid(int userId, int itemId, int bidAmount) : Adds a new bid for itemId by userId with bidAmount . If the same userId already has a bid on itemId , replace it with the new bidAmount . \n \n void updateBid(int userId, int itemId, int newAmount) : Updates the existing bid of userId for itemId to newAmount . It is guaranteed that this bid exists . \n \n void removeBid(int userId, int itemId) : Removes the bid of userId for itemId . It is guaranteed that this bid exists . \n \n int getHighestBidder(int itemId) : Returns the userId of the highest bidder for itemId . If multiple users have the same highest bidAmount , return the user with the highest userId . If no bids exist for the item, return -1. \n\n Example 1: \n\n Input: \n [\"AuctionSystem\", \"addBid\", \"addBid\", \"getHighestBidder\", \"updateBid\", \"getHighestBidder\", \"removeBid\", \"getHighestBidder\", \"getHighestBidder\"] \n[[], [1, 7, 5], [2, 7, 6], [7], [1, 7, 8], [7], [2, 7], [7], [3]] \n \n Output: \n [null, null, null, 2, null, 1, null, 1, -1] \n \n Explanation \nAuctionSystem auctionSystem = new AuctionSystem(); // Initialize the Auction system \nauctionSystem.addBid(1, 7, 5); // User 1 bids 5 on item 7 \nauctionSystem.addBid(2, 7, 6); // User 2 bids 6 on item 7 \nauctionSystem.getHighestBidder(7); // return 2 as User 2 has the highest bid \nauctionSystem.updateBid(1, 7, 8); // User 1 updates bid to 8 on item 7 \nauctionSystem.getHighestBidder(7); // return 1 as User 1 now has the highest bid \nauctionSystem.removeBid(2, 7); // Remove User 2's bid on item 7 \nauctionSystem.getHighestBidder(7); // return 1 as User 1 is the current highest bidder \nauctionSystem.getHighestBidder(3); // return -1 as no bids exist for item 3 \n\n Constraints: \n\n 1 <= userId, itemId <= 5 * 10 4 \n \n 1 <= bidAmount, newAmount <= 10 9 \n \n At most 5 * 10 4 total calls to addBid , updateBid , removeBid , and getHighestBidder . \n \n The input is generated such that for updateBid and removeBid , the bid from the given userId for the given itemId will be valid.",
+  "code": "class AuctionSystem {\n    unordered_map<int, set<pair<int,int>>> bids;\n    unordered_map<int, unordered_map<int,int>> amounts;\npublic:\n    AuctionSystem() {}\n    void addBid(int userId, int itemId, int bidAmount) {\n        auto &byUser = amounts[itemId];\n        auto it = byUser.find(userId);\n        if (it != byUser.end()) bids[itemId].erase({it->second, userId});\n        byUser[userId] = bidAmount;\n        bids[itemId].insert({bidAmount, userId});\n    }\n    void updateBid(int userId, int itemId, int newAmount) {\n        addBid(userId, itemId, newAmount);\n    }\n    void removeBid(int userId, int itemId) {\n        int amount = amounts[itemId][userId];\n        bids[itemId].erase({amount, userId});\n        amounts[itemId].erase(userId);\n    }\n    int getHighestBidder(int itemId) {\n        auto it = bids.find(itemId);\n        return it == bids.end() || it->second.empty() ? -1 : it->second.rbegin()->second;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181044105",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

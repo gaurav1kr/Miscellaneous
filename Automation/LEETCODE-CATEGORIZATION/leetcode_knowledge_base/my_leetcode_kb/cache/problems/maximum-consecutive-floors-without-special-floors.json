@@ -1,0 +1,30 @@
+{
+  "id": "2274",
+  "title": "Maximum Consecutive Floors Without Special Floors",
+  "slug": "maximum-consecutive-floors-without-special-floors",
+  "url": "https://leetcode.com/problems/maximum-consecutive-floors-without-special-floors/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Alice manages a company and has rented some floors of a building as office space. Alice has decided some of these floors should be special floors , used for relaxation only. \n \n You are given two integers bottom and top , which denote that Alice has rented all the floors from bottom to top ( inclusive ). You are also given the integer array special , where special[i] denotes a special floor that Alice has designated for relaxation. \n \n Return the maximum number of consecutive floors without a special floor . \n\n Example 1: \n \n```\nInput:\n bottom = 2, top = 9, special = [4,6]\n\nOutput:\n 3\n\nExplanation:\n The following are the ranges (inclusive) of consecutive floors without a special floor:\n- (2, 3) with a total amount of 2 floors.\n- (5, 5) with a total amount of 1 floor.\n- (7, 9) with a total amount of 3 floors.\nTherefore, we return the maximum number which is 3 floors.\n```\n\n Example 2: \n \n```\nInput:\n bottom = 6, top = 8, special = [7,6,8]\n\nOutput:\n 0\n\nExplanation:\n Every floor rented is a special floor, so we return 0.\n```\n\n Constraints: \n\n 1 <= special.length <= 10 5 \n \n 1 <= bottom <= special[i] <= top <= 10 9 \n \n All the values of special are unique .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:int maxConsecutive(int bottom,int top,vector<int>& special){sort(special.begin(),special.end());int ans=special[0]-bottom;for(int i=1;i<(int)special.size();++i)ans=max(ans,special[i]-special[i-1]-1);return max(ans,top-special.back());} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175903755",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

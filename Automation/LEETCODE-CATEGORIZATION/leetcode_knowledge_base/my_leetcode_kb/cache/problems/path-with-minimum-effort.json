@@ -1,0 +1,42 @@
+{
+  "id": "1631",
+  "title": "Path With Minimum Effort",
+  "slug": "path-with-minimum-effort",
+  "url": "https://leetcode.com/problems/path-with-minimum-effort/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Dijkstra's Algorithm"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are a hiker preparing for an upcoming hike. You are given heights , a 2D array of size rows x columns , where heights[row][col] represents the height of cell (row, col) . You are situated in the top-left cell, (0, 0) , and you hope to travel to the bottom-right cell, (rows-1, columns-1) (i.e.,  0-indexed ). You can move up , down , left , or right , and you wish to find a route that requires the minimum effort . \n \n A route's effort is the maximum absolute difference in heights between two consecutive cells of the route. \n \n Return the minimum effort required to travel from the top-left cell to the bottom-right cell. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/10/04/ex1.png] \n \n```\nInput:\n heights = [[1,2,2],[3,8,2],[5,3,5]]\n\nOutput:\n 2\n\nExplanation:\n The route of [1,3,5,3,5] has a maximum absolute difference of 2 in consecutive cells.\nThis is better than the route of [1,2,2,2,5], where the maximum absolute difference is 3.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2020/10/04/ex2.png] \n \n```\nInput:\n heights = [[1,2,3],[3,8,4],[5,3,5]]\n\nOutput:\n 1\n\nExplanation:\n The route of [1,2,3,4,5] has a maximum absolute difference of 1 in consecutive cells, which is better than route [1,3,5,3,5].\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/10/04/ex3.png] \n \n```\nInput:\n heights = [[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]\n\nOutput:\n 0\n\nExplanation:\n This route does not require any effort.\n```\n\n Constraints: \n\n rows == heights.length \n \n columns == heights[i].length \n \n 1 <= rows, columns <= 100 \n \n 1 <= heights[i][j] <= 10 6",
+  "code": "\nclass Solution \n{\n    using p = tuple<int, int, int>;\n\npublic:\n    int minimumEffortPath(vector<vector<int>>& A) \n    {\n        int m = A.size(), n = A[0].size();\n        priority_queue<p, vector<p>, greater<p>> q;\n\n        vector<vector<int>> Eff(m, vector<int>(n, INT_MAX));\n        q.push({0, 0, 0}); Eff[0][0]=0;\n\n        vector<pair<int, int>> dirn = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};\n        while (!q.empty()) \n        {\n            auto [eff, i, j] = q.top();\n            q.pop();\n\n            if (eff > Eff[i][j])\n                continue;\n\n            for (auto& dir : dirn) \n            {\n                int x = i + dir.first, y = j + dir.second;\n                if (x >= 0 && x < m && y >= 0 && y < n) \n                {\n                    int diff = abs(A[x][y] - A[i][j]), effort = max(eff, diff);\n                    if(effort<Eff[x][y])\n                    {\n                        Eff[x][y] = effort, q.push({effort, x, y});\n                    }\n                }\n            }\n        }\n        return Eff[m - 1][n - 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1362419427",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

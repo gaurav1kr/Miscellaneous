@@ -1,0 +1,30 @@
+{
+  "id": "3127",
+  "title": "Make a Square with the Same Color",
+  "slug": "make-a-square-with-the-same-color",
+  "url": "https://leetcode.com/problems/make-a-square-with-the-same-color/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Enumeration"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 2D matrix grid of size 3 x 3 consisting only of characters 'B' and 'W' . Character 'W' represents the white color , and character 'B' represents the black color . \n \n Your task is to change the color of at most one cell so that the matrix has a 2 x 2 square where all cells are of the same color. \n \n Return true if it is possible to create a 2 x 2 square of the same color, otherwise, return false . \n\n Example 1: \n\n Input: grid = [[\"B\",\"W\",\"B\"],[\"B\",\"W\",\"W\"],[\"B\",\"W\",\"B\"]] \n \n Output: true \n \n Explanation: \n \n It can be done by changing the color of the grid[0][2] . \n\n Example 2: \n\n Input: grid = [[\"B\",\"W\",\"B\"],[\"W\",\"B\",\"W\"],[\"B\",\"W\",\"B\"]] \n \n Output: false \n \n Explanation: \n \n It cannot be done by changing at most one cell. \n\n Example 3: \n\n Input: grid = [[\"B\",\"W\",\"B\"],[\"B\",\"W\",\"W\"],[\"B\",\"W\",\"W\"]] \n \n Output: true \n \n Explanation: \n \n The grid already contains a 2 x 2 square of the same color. \n\n Constraints: \n\n grid.length == 3 \n \n grid[i].length == 3 \n \n grid[i][j] is either 'W' or 'B' .",
+  "code": "class Solution { public: bool canMakeSquare(vector<vector<char>>& grid){for(int i=0;i<2;++i)for(int j=0;j<2;++j){int b=0;for(int x=i;x<i+2;++x)for(int y=j;y<j+2;++y)b+=grid[x][y]=='B';if(b!=2)return true;}return false;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177383679",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

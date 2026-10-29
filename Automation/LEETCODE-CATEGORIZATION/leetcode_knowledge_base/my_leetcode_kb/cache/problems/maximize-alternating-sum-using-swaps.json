@@ -1,0 +1,35 @@
+{
+  "id": "3695",
+  "title": "Maximize Alternating Sum Using Swaps",
+  "slug": "maximize-alternating-sum-using-swaps",
+  "url": "https://leetcode.com/problems/maximize-alternating-sum-using-swaps/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Union-Find",
+    "Sorting"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n You want to maximize the alternating sum of nums , which is defined as the value obtained by adding elements at even indices and subtracting elements at odd indices. That is, nums[0] - nums[1] + nums[2] - nums[3]... \n \n You are also given a 2D integer array swaps where swaps[i] = [p i , q i ] . For each pair [p i , q i ] in swaps , you are allowed to swap the elements at indices p i and q i . These swaps can be performed any number of times and in any order. \n \n Return the maximum possible alternating sum of nums . \n\n Example 1: \n\n Input: nums = [1,2,3], swaps = [[0,2],[1,2]] \n \n Output: 4 \n \n Explanation: \n \n The maximum alternating sum is achieved when nums is [2, 1, 3] or [3, 1, 2] . As an example, you can obtain nums = [2, 1, 3] as follows. \n\n Swap nums[0] and nums[2] . nums is now [3, 2, 1] . \n \n Swap nums[1] and nums[2] . nums is now [3, 1, 2] . \n \n Swap nums[0] and nums[2] . nums is now [2, 1, 3] . \n\n Example 2: \n\n Input: nums = [1,2,3], swaps = [[1,2]] \n \n Output: 2 \n \n Explanation: \n \n The maximum alternating sum is achieved by not performing any swaps. \n\n Example 3: \n\n Input: nums = [1,1000000000,1,1000000000,1,1000000000], swaps = [] \n \n Output: -2999999997 \n \n Explanation: \n \n Since we cannot perform any swaps, the maximum alternating sum is achieved by not performing any swaps. \n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 0 <= swaps.length <= 10 5 \n \n swaps[i] = [p i , q i ] \n \n 0 <= p i < q i <= nums.length - 1 \n \n [p i , q i ] != [p j , q j ]",
+  "code": "class Solution {\n    vector<int> p,sz;\n    int find(int x){return p[x]==x?x:p[x]=find(p[x]);}\n    void unite(int a,int b){a=find(a);b=find(b);if(a==b)return;if(sz[a]<sz[b])swap(a,b);p[b]=a;sz[a]+=sz[b];}\npublic:\n    long long maxAlternatingSum(vector<int>& nums,vector<vector<int>>& swaps){\n        int n=nums.size();p.resize(n);sz.assign(n,1);iota(p.begin(),p.end(),0);\n        for(auto&e:swaps)unite(e[0],e[1]);\n        vector<vector<int>> ids(n);\n        for(int i=0;i<n;++i)ids[find(i)].push_back(i);\n        long long ans=0;\n        for(auto&v:ids)if(!v.empty()){\n            vector<int> vals;int plus=0;\n            for(int i:v){vals.push_back(nums[i]);if(i%2==0)++plus;}\n            sort(vals.begin(),vals.end());\n            for(int i=0;i<(int)vals.size();++i)\n                ans+=(i<(int)vals.size()-plus?-1LL:1LL)*vals[i];\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181137295",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

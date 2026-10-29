@@ -1,0 +1,26 @@
+{
+  "id": "1240",
+  "title": "Tiling a Rectangle with the Fewest Squares",
+  "slug": "tiling-a-rectangle-with-the-fewest-squares",
+  "url": "https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "Given a rectangle of size n x m , return the minimum number of integer-sided squares that tile the rectangle . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2019/10/17/sample_11_1592.png] \n \n```\nInput:\n n = 2, m = 3\n\nOutput:\n 3\n\nExplanation:\n \n3\n squares are necessary to cover the rectangle.\n\n2\n (squares of \n1x1\n)\n\n1\n (square of \n2x2\n)\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2019/10/17/sample_22_1592.png] \n \n```\nInput:\n n = 5, m = 8\n\nOutput:\n 5\n```\n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2019/10/17/sample_33_1592.png] \n \n```\nInput:\n n = 11, m = 13\n\nOutput:\n 6\n```\n\n Constraints: \n\n 1 <= n, m <= 13",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int res = INT_MAX;\n\n    void dfs(int n, int m, vector<int>& height, int cur) {\n        if (cur >= res) return;\n        int minH = INT_MAX, idx = -1;\n        for (int i = 0; i < m; ++i) {\n            if (height[i] < minH) {\n                minH = height[i];\n                idx = i;\n            }\n        }\n        if (minH == n) {\n            res = min(res, cur);\n            return;\n        }\n\n        int j = idx;\n        while (j < m && height[j] == minH && j - idx + 1 + minH <= n) ++j;\n        --j;\n\n        for (int len = j - idx + 1; len >= 1; --len) {\n            for (int k = 0; k < len; ++k) height[idx + k] += len;\n            dfs(n, m, height, cur + 1);\n            for (int k = 0; k < len; ++k) height[idx + k] -= len;\n        }\n    }\n\n    int tilingRectangle(int n, int m) {\n        if (n < m) swap(n, m);\n        vector<int> height(m, 0);\n        dfs(n, m, height, 0);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610597208",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

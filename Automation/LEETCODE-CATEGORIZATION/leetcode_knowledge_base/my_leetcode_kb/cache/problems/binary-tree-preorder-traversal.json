@@ -1,0 +1,34 @@
+{
+  "id": "144",
+  "title": "Binary Tree Preorder Traversal",
+  "slug": "binary-tree-preorder-traversal",
+  "url": "https://leetcode.com/problems/binary-tree-preorder-traversal/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Stack",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Stack",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree, return the preorder traversal of its nodes' values . \n\n Example 1: \n\n Input: root = [1,null,2,3] \n \n Output: [1,2,3] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/29/screenshot-2024-08-29-202743.png] \n\n Example 2: \n\n Input: root = [1,2,3,4,5,null,8,null,null,6,7,9] \n \n Output: [1,2,4,5,6,7,3,8,9] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/29/tree_2.png] \n\n Example 3: \n\n Input: root = [] \n \n Output: [] \n\n Example 4: \n\n Input: root = [1] \n \n Output: [1] \n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 100] . \n \n -100 <= Node.val <= 100 \n\n Follow up: Recursive solution is trivial, could you do it iteratively?",
+  "code": "class Solution {\npublic:\nvector<int> preorderTraversal(TreeNode* root) {\n    vector<int> result;\n    if (!root) return result;\n    stack<TreeNode*> s;\n    s.push(root);\n    while (!s.empty()) {\n        TreeNode* node = s.top(); s.pop();\n        result.push_back(node->val);\n        if (node->right) s.push(node->right);\n        if (node->left) s.push(node->left);\n    }\n    return result;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588095024",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

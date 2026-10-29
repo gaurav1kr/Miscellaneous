@@ -1,0 +1,30 @@
+{
+  "id": "2431",
+  "title": "Maximize Total Tastiness of Purchased Fruits",
+  "slug": "maximize-total-tastiness-of-purchased-fruits",
+  "url": "https://leetcode.com/problems/maximize-total-tastiness-of-purchased-fruits/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two non-negative integer arrays price and tastiness , both arrays have the same length n . You are also given two non-negative integers maxAmount and maxCoupons . \n \n For every integer i in range [0, n - 1] : \n\n price[i] describes the price of i th fruit. \n \n tastiness[i] describes the tastiness of i th fruit. \n\n You want to purchase some fruits such that total tastiness is maximized and the total price does not exceed maxAmount . \n \n Additionally, you can use a coupon to purchase fruit for half of its price (rounded down to the closest integer). You can use at most maxCoupons of such coupons. \n \n Return the maximum total tastiness that can be purchased . \n \n Note that: \n\n You can purchase each fruit at most once. \n \n You can use coupons on some fruit at most once. \n\n Example 1: \n \n```\nInput:\n price = [10,20,20], tastiness = [5,8,8], maxAmount = 20, maxCoupons = 1\n\nOutput:\n 13\n\nExplanation:\n It is possible to make total tastiness 13 in following way:\n- Buy first fruit without coupon, so that total price = 0 + 10 and total tastiness = 0 + 5.\n- Buy second fruit with coupon, so that total price = 10 + 10 and total tastiness = 5 + 8.\n- Do not buy third fruit, so that total price = 20 and total tastiness = 13.\nIt can be proven that 13 is the maximum total tastiness that can be obtained.\n```\n\n Example 2: \n \n```\nInput:\n price = [10,15,7], tastiness = [5,8,20], maxAmount = 10, maxCoupons = 2\n\nOutput:\n 28\n\nExplanation:\n It is possible to make total tastiness 20 in following way:\n- Do not buy first fruit, so that total price = 0 and total tastiness = 0.\n- Buy second fruit with coupon, so that total price = 0 + 7 and total tastiness = 0 + 8.\n- Buy third fruit with coupon, so that total price = 7 + 3 and total tastiness = 8 + 20.\nIt can be proven that 28 is the maximum total tastiness that can be obtained.\n```\n\n Constraints: \n\n n == price.length == tastiness.length \n \n 1 <= n <= 100 \n \n 0 <= price[i], tastiness[i], maxAmount <= 1000 \n \n 0 <= maxCoupons <= 5",
+  "code": "class Solution {\npublic:\n    int maxTastiness(vector<int>& price, vector<int>& tastiness, int maxAmount, int maxCoupons) {\n        vector<vector<int>> dp(maxCoupons + 1, vector<int>(maxAmount + 1, 0));\n        for (int i = 0; i < (int)price.size(); ++i) {\n            for (int coupon = maxCoupons; coupon >= 0; --coupon) {\n                for (int money = maxAmount; money >= 0; --money) {\n                    if (money >= price[i])\n                        dp[coupon][money] = max(dp[coupon][money], dp[coupon][money - price[i]] + tastiness[i]);\n                    if (coupon > 0 && money >= price[i] / 2)\n                        dp[coupon][money] = max(dp[coupon][money], dp[coupon - 1][money - price[i] / 2] + tastiness[i]);\n                }\n            }\n        }\n        return dp[maxCoupons][maxAmount];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178871162",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

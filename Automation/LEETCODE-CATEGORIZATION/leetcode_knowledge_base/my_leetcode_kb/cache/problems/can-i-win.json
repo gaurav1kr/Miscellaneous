@@ -1,0 +1,36 @@
+{
+  "id": "464",
+  "title": "Can I Win",
+  "slug": "can-i-win",
+  "url": "https://leetcode.com/problems/can-i-win/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Memoization",
+    "Game Theory",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "In the \"100 game\" two players take turns adding, to a running total, any integer from 1 to 10 . The player who first causes the running total to reach or exceed 100 wins. \n \n What if we change the game so that players cannot re-use integers? \n \n For example, two players might take turns drawing from a common pool of numbers from 1 to 15 without replacement until they reach a total >= 100. \n \n Given two integers maxChoosableInteger and desiredTotal , return true if the first player to move can force a win, otherwise, return false . Assume both players play optimally . \n\n Example 1: \n \n```\nInput:\n maxChoosableInteger = 10, desiredTotal = 11\n\nOutput:\n false\n\nExplanation:\n\nNo matter which integer the first player choose, the first player will lose.\nThe first player can choose an integer from 1 up to 10.\nIf the first player choose 1, the second player can only choose integers from 2 up to 10.\nThe second player will win by choosing 10 and get a total = 11, which is >= desiredTotal.\nSame with other integers chosen by the first player, the second player will always win.\n```\n\n Example 2: \n \n```\nInput:\n maxChoosableInteger = 10, desiredTotal = 0\n\nOutput:\n true\n```\n\n Example 3: \n \n```\nInput:\n maxChoosableInteger = 10, desiredTotal = 1\n\nOutput:\n true\n```\n\n Constraints: \n\n 1 <= maxChoosableInteger <= 20 \n \n 0 <= desiredTotal <= 300",
+  "code": "class Solution {\n    int n;\n    vector<int> memo;  // 0 unknown, 1 win, -1 lose\n\n    bool dfs(int mask, int remaining) {\n        if (memo[mask] != 0)\n            return memo[mask] == 1;\n\n        for (int i = 1; i <= n; ++i) {\n            int bit = 1 << (i - 1);\n\n            // Already used\n            if (mask & bit)\n                continue;\n\n            // Case 1: Pick i and win immediately\n            // Case 2: Pick i and put opponent in losing state\n            if (i >= remaining ||\n                !dfs(mask | bit, remaining - i)) {\n\n                memo[mask] = 1;\n                return true;\n            }\n        }\n\n        memo[mask] = -1;\n        return false;\n    }\n\npublic:\n    bool canIWin(int maxChoosableInteger, int desiredTotal) {\n        n = maxChoosableInteger;\n\n        if (desiredTotal <= 0)\n            return true;\n\n        if (n >= desiredTotal)\n            return true;\n\n        int sum = n * (n + 1) / 2;\n\n        if (sum < desiredTotal)\n            return false;\n\n        memo.assign(1 << n, 0);\n\n        return dfs(0, desiredTotal);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163971091",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

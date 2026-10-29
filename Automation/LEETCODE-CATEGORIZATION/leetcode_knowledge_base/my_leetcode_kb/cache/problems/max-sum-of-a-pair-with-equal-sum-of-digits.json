@@ -1,0 +1,38 @@
+{
+  "id": "2342",
+  "title": "Max Sum of a Pair With Equal Sum of Digits",
+  "slug": "max-sum-of-a-pair-with-equal-sum-of-digits",
+  "url": "https://leetcode.com/problems/max-sum-of-a-pair-with-equal-sum-of-digits/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array nums consisting of positive integers. You can choose two indices i and j , such that i != j , and the sum of digits of the number nums[i] is equal to that of nums[j] . \n \n Return the maximum value of nums[i] + nums[j] that you can obtain over all possible indices i and j that satisfy the conditions. If no such pair of indices exists, return -1. \n\n Example 1: \n \n```\nInput:\n nums = [18,43,36,13,7]\n\nOutput:\n 54\n\nExplanation:\n The pairs (i, j) that satisfy the conditions are:\n- (0, 2), both numbers have a sum of digits equal to 9, and their sum is 18 + 36 = 54.\n- (1, 4), both numbers have a sum of digits equal to 7, and their sum is 43 + 7 = 50.\nSo the maximum sum that we can obtain is 54.\n```\n\n Example 2: \n \n```\nInput:\n nums = [10,12,19,14]\n\nOutput:\n -1\n\nExplanation:\n There are no two numbers that satisfy the conditions, so we return -1.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution { public:\n    int maximumSum(vector<int>& nums) {\n        unordered_map<int,int> best; int ans=-1;\n        for(int x:nums){int d=0,t=x;while(t){d+=t%10;t/=10;}\n            if(best.count(d)) ans=max(ans,x+best[d]);\n            best[d]=max(best[d],x);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175921485",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

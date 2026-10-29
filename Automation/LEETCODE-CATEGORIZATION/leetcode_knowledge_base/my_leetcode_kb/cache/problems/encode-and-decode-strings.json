@@ -1,0 +1,32 @@
+{
+  "id": "271",
+  "title": "Encode and Decode Strings",
+  "slug": "encode-and-decode-strings",
+  "url": "https://leetcode.com/problems/encode-and-decode-strings/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String",
+    "Design"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Design an algorithm to encode a list of strings to a string . The encoded string is then sent over the network and is decoded back to the original list of strings. \n \n Machine 1 (sender) has the function: \n \n```\nstring encode(vector<string> strs) {\n // ... your code\n return encoded_string;\n}\n```\n \nMachine 2 (receiver) has the function:\n\n```\nvector<string> decode(string s) {\n //... your code\n return strs;\n}\n```\n\n So Machine 1 does: \n \n```\nstring encoded_string = encode(strs);\n```\n\n and Machine 2 does: \n \n```\nvector<string> strs2 = decode(encoded_string);\n```\n\n strs2 in Machine 2 should be the same as strs in Machine 1. \n \n Implement the encode and decode methods. \n \n You are not allowed to solve the problem using any serialize methods (such as eval ). \n\n Example 1: \n \n```\nInput:\n dummy_input = [\"Hello\",\"World\"]\n\nOutput:\n [\"Hello\",\"World\"]\n\nExplanation:\n\nMachine 1:\nCodec encoder = new Codec();\nString msg = encoder.encode(strs);\nMachine 1 ---msg---> Machine 2\n\nMachine 2:\nCodec decoder = new Codec();\nString[] strs = decoder.decode(msg);\n```\n\n Example 2: \n \n```\nInput:\n dummy_input = [\"\"]\n\nOutput:\n [\"\"]\n```\n\n Constraints: \n\n 1 <= strs.length <= 200 \n \n 0 <= strs[i].length <= 200 \n \n strs[i] contains any possible characters out of 256 valid ASCII characters. \n\n Follow up: Could you write a generalized algorithm to work on any possible set of characters?",
+  "code": "class Codec {\npublic:\n    string encode(vector<string>& strs) {\n        string result;\n        for (const string& s : strs) {\n            result += to_string(s.size()) + \"#\" + s;\n        }\n        return result;\n    }\n    vector<string> decode(string s) {\n        vector<string> result;\n        size_t i = 0;\n        while (i < s.size()) {\n            size_t marker = s.find('#', i);\n            size_t length = stoul(s.substr(i, marker - i));\n            i = marker + 1;\n            result.push_back(s.substr(i, length));\n            i += length;\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179682493",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

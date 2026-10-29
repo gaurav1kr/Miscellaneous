@@ -1,0 +1,28 @@
+{
+  "id": "3106",
+  "title": "Lexicographically Smallest String After Operations With Constraint",
+  "slug": "lexicographically-smallest-string-after-operations-with-constraint",
+  "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-operations-with-constraint/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s and an integer k . \n \n Define a function distance(s 1 , s 2 ) between two strings s 1 and s 2 of the same length n as: \n\n The sum of the minimum distance between s 1 [i] and s 2 [i] when the characters from 'a' to 'z' are placed in a cyclic order, for all i in the range [0, n - 1] . \n\n For example, distance(\"ab\", \"cd\") == 4 , and distance(\"a\", \"z\") == 1 . \n \n You can change any letter of s to any other lowercase English letter, any number of times. \n \n Return a string denoting the lexicographically smallest string t you can get after some changes, such that distance(s, t) <= k . \n\n Example 1: \n\n Input: s = \"zbbz\", k = 3 \n \n Output: \"aaaz\" \n \n Explanation: \n \n Change s to \"aaaz\" . The distance between \"zbbz\" and \"aaaz\" is equal to k = 3 . \n\n Example 2: \n\n Input: s = \"xaxcd\", k = 4 \n \n Output: \"aawcd\" \n \n Explanation: \n \n The distance between \"xaxcd\" and \"aawcd\" is equal to k = 4. \n\n Example 3: \n\n Input: s = \"lol\", k = 0 \n \n Output: \"lol\" \n \n Explanation: \n \n It's impossible to change any character as k = 0 . \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n 0 <= k <= 2000 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {public:string getSmallestString(string s,int k){for(char &c:s){int toA=min(c-'a','z'-c+1);if(toA<=k){c='a';k-=toA;}else{c=char(c-k);break;}}return s;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177372073",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

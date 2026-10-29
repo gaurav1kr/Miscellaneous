@@ -1,0 +1,28 @@
+{
+  "id": "1616",
+  "title": "Split Two Strings to Make Palindrome",
+  "slug": "split-two-strings-to-make-palindrome",
+  "url": "https://leetcode.com/problems/split-two-strings-to-make-palindrome/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given two strings a and b of the same length. Choose an index and split both strings at the same index , splitting a into two strings: a prefix and a suffix where a = a prefix + a suffix , and splitting b into two strings: b prefix and b suffix where b = b prefix + b suffix . Check if a prefix + b suffix or b prefix + a suffix forms a palindrome. \n \n When you split a string s into s prefix and s suffix , either s suffix or s prefix is allowed to be empty. For example, if s = \"abc\" , then \"\" + \"abc\" , \"a\" + \"bc\" , \"ab\" + \"c\" , and \"abc\" + \"\" are valid splits. \n \n Return true if it is possible to form a palindrome string, otherwise return false . \n \n Notice that  x + y denotes the concatenation of strings x and y . \n\n Example 1: \n \n```\nInput:\n a = \"x\", b = \"y\"\n\nOutput:\n true\n\nExplaination:\n If either a or b are palindromes the answer is true since you can split in the following way:\na\nprefix\n = \"\", a\nsuffix\n = \"x\"\nb\nprefix\n = \"\", b\nsuffix\n = \"y\"\nThen, a\nprefix\n + b\nsuffix\n = \"\" + \"y\" = \"y\", which is a palindrome.\n```\n\n Example 2: \n \n```\nInput:\n a = \"xbdef\", b = \"xecab\"\n\nOutput:\n false\n```\n\n Example 3: \n \n```\nInput:\n a = \"ulacfd\", b = \"jizalu\"\n\nOutput:\n true\n\nExplaination:\n Split them at index 3:\na\nprefix\n = \"ula\", a\nsuffix\n = \"cfd\"\nb\nprefix\n = \"jiz\", b\nsuffix\n = \"alu\"\nThen, a\nprefix\n + b\nsuffix\n = \"ula\" + \"alu\" = \"ulaalu\", which is a palindrome.\n```\n\n Constraints: \n\n 1 <= a.length, b.length <= 10 5 \n \n a.length == b.length \n \n a and b consist of lowercase English letters",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool checkPalindrome(string& a, int l, int r) {\n        while (l < r) {\n            if (a[l++] != a[r--]) return false;\n        }\n        return true;\n    }\n\n    bool check(string& a, string& b) {\n        int i = 0, j = b.size() - 1;\n        while (i < j && a[i] == b[j]) {\n            i++;\n            j--;\n        }\n        return checkPalindrome(a, i, j) || checkPalindrome(b, i, j);\n    }\n\n    bool checkPalindromeFormation(string a, string b) {\n        return check(a, b) || check(b, a);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610583274",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "632",
+  "title": "Smallest Range Covering Elements from K Lists",
+  "slug": "smallest-range-covering-elements-from-k-lists",
+  "url": "https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Sliding Window",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You have k lists of sorted integers in non-decreasing order . Find the smallest range that includes at least one number from each of the k lists. \n \n We define the range [a, b] is smaller than range [c, d] if b - a < d - c or a < c if b - a == d - c . \n\n Example 1: \n \n```\nInput:\n nums = [[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]\n\nOutput:\n [20,24]\n\nExplanation: \n\nList 1: [4, 10, 15, 24,26], 24 is in range [20,24].\nList 2: [0, 9, 12, 20], 20 is in range [20,24].\nList 3: [5, 18, 22, 30], 22 is in range [20,24].\n```\n\n Example 2: \n \n```\nInput:\n nums = [[1,2,3],[1,2,3],[1,2,3]]\n\nOutput:\n [1,1]\n```\n\n Constraints: \n\n nums.length == k \n \n 1 <= k <= 3500 \n \n 1 <= nums[i].length <= 50 \n \n -10 5 <= nums[i][j] <= 10 5 \n \n nums[i]  is sorted in non-decreasing order.",
+  "code": "class Solution \n{\npublic:\n    vector<int> smallestRange(vector<vector<int>>& nums) \n    {\n        priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>>pq;\n        int n=nums.size(),maxi=-1e9;\n        for(int i=0;i<n;i++){\n            pq.push({nums[i][0],i,0});\n            maxi=max(maxi,nums[i][0]);\n        }\n        int left,right,range=1e9;\n        while(pq.size()>0){\n            auto it=pq.top();\n            pq.pop();\n            int mini=it[0],i=it[1],j=it[2];\n            if(maxi-mini<range){\n                left=mini;\n                right=maxi;\n                range=maxi-mini;\n            }\n            if(j>=nums[i].size()) break;\n            pq.push({nums[i][j],i,j+1});\n            maxi=max(maxi,nums[i][j]);\n        }\n        return {left,right};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1367389495",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

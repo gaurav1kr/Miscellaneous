@@ -1,0 +1,37 @@
+{
+  "id": "105",
+  "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+  "slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+  "url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Divide and Conquer",
+    "Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "Hash map / hash set",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/19/tree.jpg] \n \n```\nInput:\n preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]\n\nOutput:\n [3,9,20,null,null,15,7]\n```\n\n Example 2: \n \n```\nInput:\n preorder = [-1], inorder = [-1]\n\nOutput:\n [-1]\n```\n\n Constraints: \n\n 1 <= preorder.length <= 3000 \n \n inorder.length == preorder.length \n \n -3000 <= preorder[i], inorder[i] <= 3000 \n \n preorder and inorder consist of unique values. \n \n Each value of inorder also appears in preorder . \n \n preorder is guaranteed to be the preorder traversal of the tree. \n \n inorder is guaranteed to be the inorder traversal of the tree.",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution \n{\npublic:\n    \n    TreeNode* build(vector<int>& preorder, vector<int>& inorder,int preS,int preE,int inS,int inE)\n    {\n        if(preS>preE || inS>inE)\n            return NULL;\n        \n        TreeNode* root=new TreeNode(preorder[preS]);\n        \n        int rootindex=-1;\n        for(int i=inS;i<=inE;i++)\n        {\n            if(inorder[i]==preorder[preS])\n               rootindex=i; \n        }\n        \n        int inSL=inS;\n        int inEL=rootindex-1;\n        int preSL=preS+1;\n        int preEL=inEL-inSL+preSL;\n        \n        int preSR=preEL+1;\n        int preER=preE;\n        int inSR=rootindex+1;\n        int inER=inE;\n        \n        \n        root->left=build(preorder,inorder,preSL,preEL,inSL,inEL);\n        root->right=build(preorder,inorder,preSR,preER,inSR,inER);\n        \n        return root;\n        \n    }\n    \n    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) \n\t{ \n        int n=preorder.size();\n        TreeNode* ans=build(preorder,inorder,0,n-1,0,n-1);\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "401338864",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

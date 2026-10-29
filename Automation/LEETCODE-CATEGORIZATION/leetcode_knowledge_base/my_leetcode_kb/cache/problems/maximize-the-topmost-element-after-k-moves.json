@@ -1,0 +1,29 @@
+{
+  "id": "2202",
+  "title": "Maximize the Topmost Element After K Moves",
+  "slug": "maximize-the-topmost-element-after-k-moves",
+  "url": "https://leetcode.com/problems/maximize-the-topmost-element-after-k-moves/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums representing the contents of a pile , where nums[0] is the topmost element of the pile. \n \n In one move, you can perform either of the following: \n\n If the pile is not empty, remove the topmost element of the pile. \n \n If there are one or more removed elements, add any one of them back onto the pile. This element becomes the new topmost element. \n\n You are also given an integer k , which denotes the total number of moves to be made. \n \n Return the maximum value of the topmost element of the pile possible after exactly k moves . In case it is not possible to obtain a non-empty pile after k moves, return -1 . \n\n Example 1: \n \n```\nInput:\n nums = [5,2,2,4,0,6], k = 4\n\nOutput:\n 5\n\nExplanation:\n\nOne of the ways we can end with 5 at the top of the pile after 4 moves is as follows:\n- Step 1: Remove the topmost element = 5. The pile becomes [2,2,4,0,6].\n- Step 2: Remove the topmost element = 2. The pile becomes [2,4,0,6].\n- Step 3: Remove the topmost element = 2. The pile becomes [4,0,6].\n- Step 4: Add 5 back onto the pile. The pile becomes [5,4,0,6].\nNote that this is not the only way to end with 5 at the top of the pile. It can be shown that 5 is the largest answer possible after 4 moves.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2], k = 1\n\nOutput:\n -1\n\nExplanation:\n \nIn the first move, our only option is to pop the topmost element of the pile.\nSince it is not possible to obtain a non-empty pile after one move, we return -1.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i], k <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int maximumTop(vector<int>& nums,int k){int n=nums.size();if(n==1)return k%2?-1:nums[0];if(k==0)return nums[0];\n  int ans=-1;for(int i=0;i<min(n,k-1);++i)ans=max(ans,nums[i]);if(k<n)ans=max(ans,nums[k]);return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175885648",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

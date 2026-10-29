@@ -1,0 +1,30 @@
+{
+  "id": "3892",
+  "title": "Minimum Operations to Achieve At Least K Peaks",
+  "slug": "minimum-operations-to-achieve-at-least-k-peaks",
+  "url": "https://leetcode.com/problems/minimum-operations-to-achieve-at-least-k-peaks/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a ​​​​​​​circular integer array​​​​​​​ nums of length n . \n \n An index i is a peak if its value is strictly greater than its neighbors: \n\n The previous neighbor of i is nums[i - 1] if i > 0 , otherwise nums[n - 1] . \n \n The next neighbor of i is nums[i + 1] if i < n - 1 , otherwise nums[0] . \n\n You are allowed to perform the following operation any number of times: \n\n Choose any index i and increase nums[i] by 1. \n\n Return an integer denoting the minimum number of operations required to make the array contain at least k peaks. If it is impossible, return -1. \n\n Example 1: \n\n Input: nums = [2,1,2], k = 1 \n \n Output: 1 \n \n Explanation: \n\n To achieve at least k = 1 peak, we can increase nums[2] = 2 to 3. \n \n After this operation, nums[2] = 3 is strictly greater than its neighbors nums[0] = 2 and nums[1] = 1 . \n \n Therefore, the minimum number of operations required is 1. \n\n Example 2: \n\n Input: nums = [4,5,3,6], k = 2 \n \n Output: 0 \n \n Explanation: \n\n The array already contains at least k = 2 peaks with zero operations. \n \n Index 1: nums[1] = 5 is strictly greater than its neighbors nums[0] = 4 and nums[2] = 3 . \n \n Index 3: nums[3] = 6 is strictly greater than its neighbors nums[2] = 3 and nums[0] = 4 . \n \n Therefore, the minimum number of operations required is 0. \n\n Example 3: \n\n Input: nums = [3,7,3], k = 2 \n \n Output: -1 \n \n Explanation: \n \n It is impossible to have at least k = 2 peaks in this array. Therefore, the answer is -1. \n\n Constraints: \n\n 2 <= n == nums.length <= 5000 \n \n -10 5 <= nums[i] <= 10 5 \n \n 0 <= k <= n ​​​​​​​",
+  "code": "class Solution {\npublic:\n    int minOperations(vector<int>& nums,int k){\n        int n=nums.size();if(k==0)return 0;if(k>n/2)return -1;\n        vector<int> c(n);\n        for(int i=0;i<n;++i)c[i]=max(0,max(nums[(i+n-1)%n],nums[(i+1)%n])+1-nums[i]);\n        const int INF=1000000000;int answer=INF;\n        for(int first=0;first<=1;++first){\n            vector<int> no(k+1,INF),yes(k+1,INF);\n            if(first==0)no[0]=0;else yes[1]=c[0];\n            for(int i=1;i<n;++i){\n                vector<int> nn(k+1,INF),yy(k+1,INF);\n                for(int j=0;j<=k;++j){\n                    nn[j]=min(no[j],yes[j]);\n                    if(j&&!(first&&i==n-1)&&no[j-1]!=INF)\n                        yy[j]=no[j-1]+c[i];\n                }\n                no.swap(nn);yes.swap(yy);\n            }\n            answer=min(answer,no[k]);if(!first)answer=min(answer,yes[k]);\n        }\n        return answer==INF?-1:answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181164931",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

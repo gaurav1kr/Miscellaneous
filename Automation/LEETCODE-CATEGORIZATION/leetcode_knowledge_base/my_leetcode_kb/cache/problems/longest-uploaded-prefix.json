@@ -1,0 +1,43 @@
+{
+  "id": "2424",
+  "title": "Longest Uploaded Prefix",
+  "slug": "longest-uploaded-prefix",
+  "url": "https://leetcode.com/problems/longest-uploaded-prefix/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Binary Search",
+    "Union-Find",
+    "Design",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Fenwick tree",
+    "Hash map / hash set",
+    "Priority queue / heap",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given a stream of n videos, each represented by a distinct number from 1 to n that you need to \"upload\" to a server. You need to implement a data structure that calculates the length of the longest uploaded prefix at various points in the upload process. \n \n We consider i to be an uploaded prefix if all videos in the range 1 to i ( inclusive ) have been uploaded to the server. The longest uploaded prefix is the maximum value of i that satisfies this definition. \n \nImplement the LUPrefix class: \n\n LUPrefix(int n) Initializes the object for a stream of n videos. \n \n void upload(int video) Uploads video to the server. \n \n int longest() Returns the length of the longest uploaded prefix defined above. \n\n Example 1: \n \n```\nInput\n\n[\"LUPrefix\", \"upload\", \"longest\", \"upload\", \"longest\", \"upload\", \"longest\"]\n[[4], [3], [], [1], [], [2], []]\n\nOutput\n\n[null, null, 0, null, 1, null, 3]\n\nExplanation\n\nLUPrefix server = new LUPrefix(4); // Initialize a stream of 4 videos.\nserver.upload(3); // Upload video 3.\nserver.longest(); // Since video 1 has not been uploaded yet, there is no prefix.\n // So, we return 0.\nserver.upload(1); // Upload video 1.\nserver.longest(); // The prefix [1] is the longest uploaded prefix, so we return 1.\nserver.upload(2); // Upload video 2.\nserver.longest(); // The prefix [1,2,3] is the longest uploaded prefix, so we return 3.\n```\n\n Constraints: \n\n 1 <= n <= 10 5 \n \n 1 <= video <= n \n \n All values of video are distinct . \n \n At most 2 * 10 5 calls in total will be made to upload and longest . \n \n At least one call will be made to longest .",
+  "code": "class LUPrefix {vector<char>seen;int ptr=0;public:LUPrefix(int n):seen(n+2,0){}void upload(int video){seen[video]=1;while(seen[ptr+1])ptr++;}int longest(){return ptr;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176553835",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

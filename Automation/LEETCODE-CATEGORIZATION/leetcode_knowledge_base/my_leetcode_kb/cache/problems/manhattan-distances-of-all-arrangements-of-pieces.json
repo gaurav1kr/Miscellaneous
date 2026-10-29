@@ -1,0 +1,27 @@
+{
+  "id": "3426",
+  "title": "Manhattan Distances of All Arrangements of Pieces",
+  "slug": "manhattan-distances-of-all-arrangements-of-pieces",
+  "url": "https://leetcode.com/problems/manhattan-distances-of-all-arrangements-of-pieces/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Combinatorics"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given three integers m , n , and k . \n \n There is a rectangular grid of size m × n containing k identical pieces. Return the sum of Manhattan distances between every pair of pieces over all valid arrangements of pieces. \n \n A valid arrangement is a placement of all k pieces on the grid with at most one piece per cell. \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n \n The Manhattan Distance between two cells (x i , y i ) and (x j , y j ) is |x i - x j | + |y i - y j | . \n\n Example 1: \n\n Input: m = 2, n = 2, k = 2 \n \n Output: 8 \n \n Explanation: \n \n The valid arrangements of pieces on the board are: \n \n [Figure: https://assets.leetcode.com/uploads/2024/12/25/4040example1.drawio] [Figure: https://assets.leetcode.com/uploads/2024/12/25/untitled-diagramdrawio.png] \n\n In the first 4 arrangements, the Manhattan distance between the two pieces is 1. \n \n In the last 2 arrangements, the Manhattan distance between the two pieces is 2. \n\n Thus, the total Manhattan distance across all valid arrangements is 1 + 1 + 1 + 1 + 2 + 2 = 8 . \n\n Example 2: \n\n Input: m = 1, n = 4, k = 3 \n \n Output: 20 \n \n Explanation: \n \n The valid arrangements of pieces on the board are: \n \n [Figure: https://assets.leetcode.com/uploads/2024/12/25/4040example2drawio.png] \n\n The first and last arrangements have a total Manhattan distance of 1 + 1 + 2 = 4 . \n \n The middle two arrangements have a total Manhattan distance of 1 + 2 + 3 = 6 . \n\n The total Manhattan distance between all pairs of pieces across all arrangements is 4 + 6 + 6 + 4 = 20 . \n\n Constraints: \n\n 1 <= m, n <= 10 5 \n \n 2 <= m * n <= 10 5 \n \n 2 <= k <= m * n",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int distanceSum(int m,int n,int k){const long long P=1000000007;int N=m*n;vector<long long> fact(N+1,1),inv(N+1,1);for(int i=1;i<=N;i++)fact[i]=fact[i-1]*i%P;auto power=[&](long long a,int b){long long v=1;while(b){if(b&1)v=v*a%P;a=a*a%P;b>>=1;}return v;};inv[N]=power(fact[N],P-2);for(int i=N;i>0;i--)inv[i-1]=inv[i]*i%P;long long ways=fact[N-2]*inv[k-2]%P*inv[N-k]%P;long long row=(long long)m*(m-1)%P*(m+1)%P*power(6,P-2)%P*(long long)n*n%P;long long col=(long long)n*(n-1)%P*(n+1)%P*power(6,P-2)%P*(long long)m*m%P;return (row+col)%P*ways%P;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181232309",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

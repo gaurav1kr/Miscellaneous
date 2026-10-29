@@ -1,0 +1,35 @@
+{
+  "id": "1578",
+  "title": "Minimum Time to Make Rope Colorful",
+  "slug": "minimum-time-to-make-rope-colorful",
+  "url": "https://leetcode.com/problems/minimum-time-to-make-rope-colorful/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the color of the i th balloon. \n \n Alice wants the rope to be colorful . She does not want two consecutive balloons to be of the same color, so she asks Bob for help. Bob can remove some balloons from the rope to make it colorful . You are given a 0-indexed integer array neededTime where neededTime[i] is the time (in seconds) that Bob needs to remove the i th balloon from the rope. \n \n Return the minimum time Bob needs to make the rope colorful . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/12/13/ballon1.jpg] \n \n```\nInput:\n colors = \"abaac\", neededTime = [1,2,3,4,5]\n\nOutput:\n 3\n\nExplanation:\n In the above image, 'a' is blue, 'b' is red, and 'c' is green.\nBob can remove the blue balloon at index 2. This takes 3 seconds.\nThere are no longer two consecutive balloons of the same color. Total time = 3.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/12/13/balloon2.jpg] \n \n```\nInput:\n colors = \"abc\", neededTime = [1,2,3]\n\nOutput:\n 0\n\nExplanation:\n The rope is already colorful. Bob does not need to remove any balloons from the rope.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/12/13/balloon3.jpg] \n \n```\nInput:\n colors = \"aabaa\", neededTime = [1,2,3,4,1]\n\nOutput:\n 2\n\nExplanation:\n Bob will remove the balloons at indices 0 and 4. Each balloons takes 1 second to remove.\nThere are no longer two consecutive balloons of the same color. Total time = 1 + 1 = 2.\n```\n\n Constraints: \n\n n == colors.length == neededTime.length \n \n 1 <= n <= 10 5 \n \n 1 <= neededTime[i] <= 10 4 \n \n colors contains only lowercase English letters.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minCost(string colors, vector<int>& neededTime) {\n        int total = 0, maxTime = 0;\n        for (int i = 0; i < colors.size(); ++i) {\n            if (i > 0 && colors[i] != colors[i - 1])\n                maxTime = 0;\n            total += min(neededTime[i], maxTime);\n            maxTime = max(maxTime, neededTime[i]);\n        }\n        return total;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593839302",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "860",
+  "title": "Lemonade Change",
+  "slug": "lemonade-change",
+  "url": "https://leetcode.com/problems/lemonade-change/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "At a lemonade stand, each lemonade costs $5 . Customers are standing in a queue to buy from you and order one at a time (in the order specified by bills). Each customer will only buy one lemonade and pay with either a $5 , $10 , or $20 bill. You must provide the correct change to each customer so that the net transaction is that the customer pays $5 . \n \n Note that you do not have any change in hand at first. \n \n Given an integer array bills where bills[i] is the bill the i th customer pays, return true if you can provide every customer with the correct change, or false otherwise . \n\n Example 1: \n \n```\nInput:\n bills = [5,5,5,10,20]\n\nOutput:\n true\n\nExplanation:\n \nFrom the first 3 customers, we collect three $5 bills in order.\nFrom the fourth customer, we collect a $10 bill and give back a $5.\nFrom the fifth customer, we give a $10 bill and a $5 bill.\nSince all customers got correct change, we output true.\n```\n\n Example 2: \n \n```\nInput:\n bills = [5,5,10,10,20]\n\nOutput:\n false\n\nExplanation:\n \nFrom the first two customers in order, we collect two $5 bills.\nFor the next two customers in order, we collect a $10 bill and give back a $5 bill.\nFor the last customer, we can not give the change of $15 back because we only have two $10 bills.\nSince not every customer received the correct change, the answer is false.\n```\n\n Constraints: \n\n 1 <= bills.length <= 10 5 \n \n bills[i] is either 5 , 10 , or 20 .",
+  "code": "\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool lemonadeChange(vector<int>& bills) {\n        int five = 0, ten = 0;\n        for (int bill : bills) {\n            if (bill == 5) five++;\n            else if (bill == 10) {\n                if (five == 0) return false;\n                five--;\n                ten++;\n            } else {\n                if (ten > 0 && five > 0) {\n                    ten--;\n                    five--;\n                } else if (five >= 3) {\n                    five -= 3;\n                } else {\n                    return false;\n                }\n            }\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592316250",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

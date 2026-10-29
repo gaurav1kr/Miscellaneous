@@ -1,0 +1,30 @@
+{
+  "id": "3693",
+  "title": "Climbing Stairs II",
+  "slug": "climbing-stairs-ii",
+  "url": "https://leetcode.com/problems/climbing-stairs-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are climbing a staircase with n + 1 steps, numbered from 0 to n . \n \n You are also given a 1-indexed integer array costs of length n , where costs[i] is the cost of step i . \n \n From step i , you can jump only to step i + 1 , i + 2 , or i + 3 . The cost of jumping from step i to step j is defined as: costs[j] + (j - i) 2 \n \n You start from step 0 with cost = 0 . \n \n Return the minimum total cost to reach step n . \n\n Example 1: \n\n Input: n = 4, costs = [1,2,3,4] \n \n Output: 13 \n \n Explanation: \n \n One optimal path is 0 → 1 → 2 → 4 \n\n Jump \n Cost Calculation \n Cost \n\n 0 → 1 \n costs[1] + (1 - 0) 2 = 1 + 1 \n 2 \n\n 1 → 2 \n costs[2] + (2 - 1) 2 = 2 + 1 \n 3 \n\n 2 → 4 \n costs[4] + (4 - 2) 2 = 4 + 4 \n 8 \n\n Thus, the minimum total cost is 2 + 3 + 8 = 13 \n\n Example 2: \n\n Input: n = 4, costs = [5,1,6,2] \n \n Output: 11 \n \n Explanation: \n \n One optimal path is 0 → 2 → 4 \n\n Jump \n Cost Calculation \n Cost \n\n 0 → 2 \n costs[2] + (2 - 0) 2 = 1 + 4 \n 5 \n\n 2 → 4 \n costs[4] + (4 - 2) 2 = 2 + 4 \n 6 \n\n Thus, the minimum total cost is 5 + 6 = 11 \n\n Example 3: \n\n Input: n = 3, costs = [9,8,3] \n \n Output: 12 \n \n Explanation: \n \n The optimal path is 0 → 3 with total cost = costs[3] + (3 - 0) 2 = 3 + 9 = 12 \n\n Constraints: \n\n 1 <= n == costs.length <= 10 5 ​​​​​​​ \n \n 1 <= costs[i] <= 10 4",
+  "code": "class Solution {public: int climbStairs(int n, vector<int>& costs) {vector<long long> dp(n+1,LLONG_MAX/4);dp[0]=0;for(int i=1;i<=n;++i)for(int j=1;j<=3&&j<=i;++j)dp[i]=min(dp[i],dp[i-j]+costs[i-1]+1LL*j*j);return (int)dp[n];}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177667046",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

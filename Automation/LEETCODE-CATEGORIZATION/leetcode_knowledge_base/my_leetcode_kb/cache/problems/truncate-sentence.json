@@ -1,0 +1,29 @@
+{
+  "id": "1816",
+  "title": "Truncate Sentence",
+  "slug": "truncate-sentence",
+  "url": "https://leetcode.com/problems/truncate-sentence/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String"
+  ],
+  "description": "A sentence is a list of words that are separated by a single space with no leading or trailing spaces. Each of the words consists of only uppercase and lowercase English letters (no punctuation). \n\n For example, \"Hello World\" , \"HELLO\" , and \"hello world hello world\" are all sentences. \n\n You are given a sentence s ​​​​​​ and an integer k ​​​​​​. You want to truncate s ​​​​​​ such that it contains only the first k ​​​​​​ words. Return s ​​​​ ​​ after truncating it. \n\n Example 1: \n \n```\nInput:\n s = \"Hello how are you Contestant\", k = 4\n\nOutput:\n \"Hello how are you\"\n\nExplanation:\n\nThe words in s are [\"Hello\", \"how\", \"are\", \"you\", \"Contestant\"].\nThe first 4 words are [\"Hello\", \"how\", \"are\", \"you\"].\nHence, you should return \"Hello how are you\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"What is the solution to this problem\", k = 4\n\nOutput:\n \"What is the solution\"\n\nExplanation:\n\nThe words in s are [\"What\", \"is\", \"the\", \"solution\", \"to\", \"this\", \"problem\"].\nThe first 4 words are [\"What\", \"is\", \"the\", \"solution\"].\nHence, you should return \"What is the solution\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"chopper is not a tanuki\", k = 5\n\nOutput:\n \"chopper is not a tanuki\"\n```\n\n Constraints: \n\n 1 <= s.length <= 500 \n \n k is in the range [1, the number of words in s] . \n \n s consist of only lowercase and uppercase English letters and spaces. \n \n The words in s are separated by a single space. \n \n There are no leading or trailing spaces.",
+  "code": "#include <string>\n#include <sstream>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string truncateSentence(string s, int k) {\n        stringstream ss(s);\n        string word, res;\n        while (k-- && ss >> word) {\n            if (!res.empty()) res += \" \";\n            res += word;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610616460",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

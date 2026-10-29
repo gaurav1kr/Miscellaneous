@@ -1,0 +1,36 @@
+{
+  "id": "3556",
+  "title": "Sum of Largest Prime Substrings",
+  "slug": "sum-of-largest-prime-substrings",
+  "url": "https://leetcode.com/problems/sum-of-largest-prime-substrings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Sorting",
+    "Number Theory"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered set",
+    "Sorted array",
+    "String"
+  ],
+  "description": "Given a string s , find the sum of the 3 largest unique prime numbers that can be formed using any of its substrings . \n \n Return the sum of the three largest unique prime numbers that can be formed. If fewer than three exist, return the sum of all available primes. If no prime numbers can be formed, return 0. \n \n Note: Each prime number should be counted only once , even if it appears in multiple substrings. Additionally, when converting a substring to an integer, any leading zeros are ignored. \n\n Example 1: \n\n Input: s = \"12234\" \n \n Output: 1469 \n \n Explanation: \n\n The unique prime numbers formed from the substrings of \"12234\" are 2, 3, 23, 223, and 1223. \n \n The 3 largest primes are 1223, 223, and 23. Their sum is 1469. \n\n Example 2: \n\n Input: s = \"111\" \n \n Output: 11 \n \n Explanation: \n\n The unique prime number formed from the substrings of \"111\" is 11. \n \n Since there is only one prime number, the sum is 11. \n\n Constraints: \n\n 1 <= s.length <= 10 \n \n s consists of only digits.",
+  "code": "class Solution {bool prime(long long x){if(x<2)return false;for(long long d=2;d*d<=x;d++)if(x%d==0)return false;return true;}public:long long sumOfLargestPrimes(string s){set<long long,greater<long long>> p;for(int i=0;i<(int)s.size();i++){long long x=0;for(int j=i;j<(int)s.size();j++){x=x*10+s[j]-'0';if(prime(x))p.insert(x);}}long long ans=0;int k=0;for(long long x:p){if(k++==3)break;ans+=x;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177578811",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

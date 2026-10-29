@@ -1,0 +1,29 @@
+{
+  "id": "186",
+  "title": "Reverse Words in a String II",
+  "slug": "reverse-words-in-a-string-ii",
+  "url": "https://leetcode.com/problems/reverse-words-in-a-string-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "Given a character array s , reverse the order of the words . \n \n A word is defined as a sequence of non-space characters. The words in s will be separated by a single space. \n \n Your code must solve the problem  in-place, i.e. without allocating extra space. \n\n Example 1: \n \n```\nInput:\n s = [\"t\",\"h\",\"e\",\" \",\"s\",\"k\",\"y\",\" \",\"i\",\"s\",\" \",\"b\",\"l\",\"u\",\"e\"]\n\nOutput:\n [\"b\",\"l\",\"u\",\"e\",\" \",\"i\",\"s\",\" \",\"s\",\"k\",\"y\",\" \",\"t\",\"h\",\"e\"]\n```\n \n Example 2: \n \n```\nInput:\n s = [\"a\"]\n\nOutput:\n [\"a\"]\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is an English letter (uppercase or lowercase), digit, or space ' ' . \n \n There is at least one word in s . \n \n s does not contain leading or trailing spaces. \n \n All the words in s are guaranteed to be separated by a single space.",
+  "code": "class Solution\n{\npublic:\n    void reverseWords(vector< char>& s)\n    {\n        reverse(s.begin(), s.end());\n        int n = s.size();\n        for (int i = 0; i < n;)\n        {\n            int j = i;\n            while (j < n && s[j] != ' ')++j;\n            reverse(s.begin() + i, s.begin() + j);\n            i = j + 1;\n        }\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178433152",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

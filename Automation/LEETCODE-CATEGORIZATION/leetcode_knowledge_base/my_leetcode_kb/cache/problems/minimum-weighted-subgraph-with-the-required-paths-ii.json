@@ -1,0 +1,37 @@
+{
+  "id": "3553",
+  "title": "Minimum Weighted Subgraph With the Required Paths II",
+  "slug": "minimum-weighted-subgraph-with-the-required-paths-ii",
+  "url": "https://leetcode.com/problems/minimum-weighted-subgraph-with-the-required-paths-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an undirected weighted tree with n nodes, numbered from 0 to n - 1 . It is represented by a 2D integer array edges of length n - 1 , where edges[i] = [u i , v i , w i ] indicates that there is an edge between nodes u i and v i with weight w i .​ \n \n Additionally, you are given a 2D integer array queries , where queries[j] = [src1 j , src2 j , dest j ] . \n \n Return an array answer of length equal to queries.length , where answer[j] is the minimum total weight of a subtree such that it is possible to reach dest j from both src1 j and src2 j using edges in this subtree. \n \n A subtree here is any connected subset of nodes and edges of the original tree forming a valid tree. \n\n Example 1: \n\n Input: edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], queries = [[2,3,4],[0,2,5]] \n \n Output: [12,11] \n \n Explanation: \n \n The blue edges represent one of the subtrees that yield the optimal answer. \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/02/tree1-4.jpg] \n\n answer[0] : The total weight of the selected subtree that ensures a path from src1 = 2 and src2 = 3 to dest = 4 is 3 + 5 + 4 = 12 . \n\n answer[1] : The total weight of the selected subtree that ensures a path from src1 = 0 and src2 = 2 to dest = 5 is 2 + 3 + 6 = 11 . \n\n Example 2: \n\n Input: edges = [[1,0,8],[0,2,7]], queries = [[0,1,2]] \n \n Output: [15] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/02/tree1-5.jpg] \n\n answer[0] : The total weight of the selected subtree that ensures a path from src1 = 0 and src2 = 1 to dest = 2 is 8 + 7 = 15 . \n\n Constraints: \n\n 3 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i].length == 3 \n \n 0 <= u i , v i < n \n \n 1 <= w i <= 10 4 \n \n 1 <= queries.length <= 10 5 \n \n queries[j].length == 3 \n \n 0 <= src1 j , src2 j , dest j < n \n \n src1 j , src2 j , and dest j are pairwise distinct. \n \n The input is generated such that edges represents a valid tree.",
+  "code": "class Solution {\npublic:\n    vector<int> minimumWeight(vector<vector<int>>& edges, vector<vector<int>>& queries) {\n        int n = (int)edges.size() + 1;\n        vector<vector<pair<int,int>>> g(n);\n        for (auto &e : edges) {\n            g[e[0]].push_back({e[1],e[2]});\n            g[e[1]].push_back({e[0],e[2]});\n        }\n        const int LOG = 18;\n        vector<vector<int>> up(LOG, vector<int>(n));\n        vector<int> depth(n,0), order(1,0);\n        vector<long long> dist(n,0);\n        up[0][0] = 0;\n        for (int i=0;i<(int)order.size();++i) {\n            int u=order[i];\n            for (auto e:g[u]) {\n                int v=e.first;\n                if (v==up[0][u] && u!=0) continue;\n                up[0][v]=u; depth[v]=depth[u]+1;\n                dist[v]=dist[u]+e.second; order.push_back(v);\n            }\n        }\n        for (int j=1;j<LOG;++j)\n            for (int v=0;v<n;++v) up[j][v]=up[j-1][up[j-1][v]];\n        auto lca = [&](int a,int b) {\n            if(depth[a]<depth[b]) swap(a,b);\n            int d=depth[a]-depth[b];\n            for(int j=0;j<LOG;++j) if(d&(1<<j)) a=up[j][a];\n            if(a==b) return a;\n            for(int j=LOG-1;j>=0;--j) if(up[j][a]!=up[j][b]) {\n                a=up[j][a]; b=up[j][b];\n            }\n            return up[0][a];\n        };\n        auto distance = [&](int a,int b) -> long long {\n            return dist[a]+dist[b]-2*dist[lca(a,b)];\n        };\n        vector<int> ans;\n        for(auto &q:queries) {\n            long long sum=distance(q[0],q[1])+distance(q[0],q[2])+distance(q[1],q[2]);\n            ans.push_back((int)(sum/2));\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179748947",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

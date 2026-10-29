@@ -1,0 +1,29 @@
+{
+  "id": "2120",
+  "title": "Execution of All Suffix Instructions Staying in a Grid",
+  "slug": "execution-of-all-suffix-instructions-staying-in-a-grid",
+  "url": "https://leetcode.com/problems/execution-of-all-suffix-instructions-staying-in-a-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "There is an n x n grid, with the top-left cell at (0, 0) and the bottom-right cell at (n - 1, n - 1) . You are given the integer n and an integer array startPos where startPos = [start row , start col ] indicates that a robot is initially at cell (start row , start col ) . \n \n You are also given a 0-indexed string s of length m where s[i] is the i th instruction for the robot: 'L' (move left), 'R' (move right), 'U' (move up), and 'D' (move down). \n \n The robot can begin executing from any i th instruction in s . It executes the instructions one by one towards the end of s but it stops if either of these conditions is met: \n\n The next instruction will move the robot off the grid. \n \n There are no more instructions left to execute. \n\n Return an array answer of length m where answer[i] is the number of instructions the robot can execute if the robot begins executing from the i th instruction in s . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/12/09/1.png] \n \n```\nInput:\n n = 3, startPos = [0,1], s = \"RRDDLU\"\n\nOutput:\n [1,5,4,3,1,0]\n\nExplanation:\n Starting from startPos and beginning execution from the i\nth\n instruction:\n- 0\nth\n: \"\nR\nRDDLU\". Only one instruction \"R\" can be executed before it moves off the grid.\n- 1\nst\n: \"\nRDDLU\n\". All five instructions can be executed while it stays in the grid and ends at (1, 1).\n- 2\nnd\n: \"\nDDLU\n\". All four instructions can be executed while it stays in the grid and ends at (1, 0).\n- 3\nrd\n: \"\nDLU\n\". All three instructions can be executed while it stays in the grid and ends at (0, 0).\n- 4\nth\n: \"\nL\nU\". Only one instruction \"L\" can be executed before it moves off the grid.\n- 5\nth\n: \"U\". If moving up, it would move off the grid.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/12/09/2.png] \n \n```\nInput:\n n = 2, startPos = [1,1], s = \"LURD\"\n\nOutput:\n [4,1,0,0]\n\nExplanation:\n\n- 0\nth\n: \"\nLURD\n\".\n- 1\nst\n: \"\nU\nRD\".\n- 2\nnd\n: \"RD\".\n- 3\nrd\n: \"D\".\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/12/09/3.png] \n \n```\nInput:\n n = 1, startPos = [0,0], s = \"LRUD\"\n\nOutput:\n [0,0,0,0]\n\nExplanation:\n No matter which instruction the robot begins execution from, it would move off the grid.\n```\n\n Constraints: \n\n m == s.length \n \n 1 <= n, m <= 500 \n \n startPos.length == 2 \n \n 0 <= start row , start col < n \n \n s consists of 'L' , 'R' , 'U' , and 'D' .",
+  "code": "class Solution {\npublic:\n vector<int> executeInstructions(int n,vector<int>& startPos,string s){\n  vector<int> ans;int m=s.size();\n  for(int i=0;i<m;++i){int r=startPos[0],c=startPos[1],j=i;\n   for(;j<m;++j){char x=s[j];r+=(x=='D')-(x=='U');c+=(x=='R')-(x=='L');\n    if(r<0||r>=n||c<0||c>=n)break;\n   }\n   ans.push_back(j-i);\n  }\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175736692",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "285",
+  "title": "Inorder Successor in BST",
+  "slug": "inorder-successor-in-bst",
+  "url": "https://leetcode.com/problems/inorder-successor-in-bst/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary search tree and a node p in it, return the in-order successor of that node in the BST . If the given node has no in-order successor in the tree, return null . \n \n The successor of a node p is the node with the smallest key greater than p.val . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/01/23/285_example_1.PNG] \n \n```\nInput:\n root = [2,1,3], p = 1\n\nOutput:\n 2\n\nExplanation:\n 1's in-order successor node is 2. Note that both p and the return value is of TreeNode type.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/01/23/285_example_2.PNG] \n \n```\nInput:\n root = [5,3,6,2,4,null,null,1], p = 6\n\nOutput:\n null\n\nExplanation:\n There is no in-order successor of the current node, so the answer is \nnull\n.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n -10 5 <= Node.val <= 10 5 \n \n All Nodes will have unique values.",
+  "code": "class Solution\n{\npublic:\n    TreeNode*inorderSuccessor(TreeNode*root, TreeNode*p)\n    {\n        TreeNode*ans = nullptr;\n        while (root)\n        {\n            if (p->val < root->val)\n            {\n                ans = root;\n                root = root->left;\n            }\n            else root = root->right;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178445783",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

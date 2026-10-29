@@ -1,0 +1,32 @@
+{
+  "id": "3007",
+  "title": "Maximum Number That Sum of the Prices Is Less Than or Equal to K",
+  "slug": "maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k",
+  "url": "https://leetcode.com/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search",
+    "Dynamic Programming",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You are given an integer k and an integer x . The price of a number  num is calculated by the count of set bits at positions x , 2x , 3x , etc., in its binary representation, starting from the least significant bit. The following table contains examples of how price is calculated. \n\n x \n num \n Binary Representation \n Price \n\n 1 \n 13 \n 0 0 0 0 0 1 1 0 1 \n 3 \n\n 2 \n 13 \n 0 0 0 0 0 1 1 0 1 \n 1 \n\n 2 \n 233 \n 0 1 1 1 0 1 0 0 1 \n 3 \n\n 3 \n 13 \n 0 00 0 01 1 01 \n 1 \n\n 3 \n 362 \n 1 01 1 01 0 10 \n 2 \n\n The  accumulated price  of  num  is the total  price of numbers from 1 to num . num  is considered  cheap  if its accumulated price is less than or equal to k . \n \n Return the greatest  cheap number. \n\n Example 1: \n\n Input: k = 9, x = 1 \n \n Output: 6 \n \n Explanation: \n \n As shown in the table below, 6 is the greatest cheap number. \n\n x \n num \n Binary Representation \n Price \n Accumulated Price \n\n 1 \n 1 \n 0 0 1 \n 1 \n 1 \n\n 1 \n 2 \n 0 1 0 \n 1 \n 2 \n\n 1 \n 3 \n 0 1 1 \n 2 \n 4 \n\n 1 \n 4 \n 1 0 0 \n 1 \n 5 \n\n 1 \n 5 \n 1 0 1 \n 2 \n 7 \n\n 1 \n 6 \n 1 1 0 \n 2 \n 9 \n\n 1 \n 7 \n 1 1 1 \n 3 \n 12 \n\n Example 2: \n\n Input: k = 7, x = 2 \n \n Output: 9 \n \n Explanation: \n \n As shown in the table below, 9 is the greatest cheap number. \n\n x \n num \n Binary Representation \n Price \n Accumulated Price \n\n 2 \n 1 \n 0 0 0 1 \n 0 \n 0 \n\n 2 \n 2 \n 0 0 1 0 \n 1 \n 1 \n\n 2 \n 3 \n 0 0 1 1 \n 1 \n 2 \n\n 2 \n 4 \n 0 1 0 0 \n 0 \n 2 \n\n 2 \n 5 \n 0 1 0 1 \n 0 \n 2 \n\n 2 \n 6 \n 0 1 1 0 \n 1 \n 3 \n\n 2 \n 7 \n 0 1 1 1 \n 1 \n 4 \n\n 2 \n 8 \n 1 0 0 0 \n 1 \n 5 \n\n 2 \n 9 \n 1 0 0 1 \n 1 \n 6 \n\n 2 \n 10 \n 1 0 1 0 \n 2 \n 8 \n\n Constraints: \n\n 1 <= k <= 10 15 \n \n 1 <= x <= 8",
+  "code": "class Solution {long long price(long long n,int x){__int128 sum=0;for(int b=x-1;b<60;b+=x){long long half=1LL<<b,period=half*2;long long cycles=(n+1)/period,rem=(n+1)%period;sum+=(__int128)cycles*half+max(0LL,rem-half);if(sum>LLONG_MAX)return LLONG_MAX;}return (long long)sum;}public:long long findMaximumNumber(long long k,int x){long long lo=0,hi=1000000000000000LL;while(lo<hi){long long mid=lo+(hi-lo+1)/2;if(price(mid,x)<=k)lo=mid;else hi=mid-1;}return lo;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176808982",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

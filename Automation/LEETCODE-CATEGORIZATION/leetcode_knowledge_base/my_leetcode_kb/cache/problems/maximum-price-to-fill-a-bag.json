@@ -1,0 +1,32 @@
+{
+  "id": "2548",
+  "title": "Maximum Price to Fill a Bag",
+  "slug": "maximum-price-to-fill-a-bag",
+  "url": "https://leetcode.com/problems/maximum-price-to-fill-a-bag/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array items where items[i] = [price i , weight i ] denotes the price and weight of the i th item, respectively. \n \n You are also given a positive integer capacity . \n \n Each item can be divided into two items with ratios part1 and part2 , where part1 + part2 == 1 . \n\n The weight of the first item is weight i * part1 and the price of the first item is price i * part1 . \n \n Similarly, the weight of the second item is weight i * part2 and the price of the second item is price i * part2 . \n\n Return the maximum total price to fill a bag of capacity capacity with given items . If it is impossible to fill a bag return -1 . Answers within 10 -5 of the actual answer will be considered accepted. \n\n Example 1: \n \n```\nInput:\n items = [[50,1],[10,8]], capacity = 5\n\nOutput:\n 55.00000\n\nExplanation:\n \nWe divide the 2\nnd\n item into two parts with part1 = 0.5 and part2 = 0.5.\nThe price and weight of the 1\nst\n item are 5, 4. And similarly, the price and the weight of the 2\nnd\n item are 5, 4.\nThe array items after operation becomes [[50,1],[5,4],[5,4]]. \nTo fill a bag with capacity 5 we take the 1\nst\n element with a price of 50 and the 2\nnd\n element with a price of 5.\nIt can be proved that 55.0 is the maximum total price that we can achieve.\n```\n\n Example 2: \n \n```\nInput:\n items = [[100,30]], capacity = 50\n\nOutput:\n -1.00000\n\nExplanation:\n It is impossible to fill a bag with the given item.\n```\n\n Constraints: \n\n 1 <= items.length <= 10 5 \n \n items[i].length == 2 \n \n 1 <= price i , weight i <= 10 4 \n \n 1 <= capacity <= 10 9",
+  "code": "class Solution {\npublic:\n    double maxPrice(vector<vector<int>>& items, int capacity) {\n        sort(items.begin(), items.end(), [](const vector<int>& a, const vector<int>& b) {\n            return 1LL * a[0] * b[1] > 1LL * b[0] * a[1];\n        });\n        double result = 0;\n        for (const auto& item : items) {\n            int take = min(capacity, item[1]);\n            result += (double)item[0] * take / item[1];\n            capacity -= take;\n            if (!capacity) return result;\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178888054",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

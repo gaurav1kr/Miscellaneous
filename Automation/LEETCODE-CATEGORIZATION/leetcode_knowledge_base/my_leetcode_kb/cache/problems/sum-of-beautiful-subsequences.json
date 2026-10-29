@@ -1,0 +1,33 @@
+{
+  "id": "3671",
+  "title": "Sum of Beautiful Subsequences",
+  "slug": "sum-of-beautiful-subsequences",
+  "url": "https://leetcode.com/problems/sum-of-beautiful-subsequences/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Indexed Tree",
+    "Number Theory"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n . \n \n For every positive integer g , we define the beauty of g as the product of g and the number of strictly increasing subsequences of nums whose greatest common divisor (GCD) is exactly g . \n \n Return the sum of beauty values for all positive integers g . \n \n Since the answer could be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: nums = [1,2,3] \n \n Output: 10 \n \n Explanation: \n \n All strictly increasing subsequences and their GCDs are: \n\n Subsequence \n GCD \n\n [1] \n 1 \n\n [2] \n 2 \n\n [3] \n 3 \n\n [1,2] \n 1 \n\n [1,3] \n 1 \n\n [2,3] \n 1 \n\n [1,2,3] \n 1 \n\n Calculating beauty for each GCD: \n\n GCD \n Count of subsequences \n Beauty (GCD × Count) \n\n 1 \n 5 \n 1 × 5 = 5 \n\n 2 \n 1 \n 2 × 1 = 2 \n\n 3 \n 1 \n 3 × 1 = 3 \n\n Total beauty is 5 + 2 + 3 = 10 . \n\n Example 2: \n\n Input: nums = [4,6] \n \n Output: 12 \n \n Explanation: \n \n All strictly increasing subsequences and their GCDs are: \n\n Subsequence \n GCD \n\n [4] \n 4 \n\n [6] \n 6 \n\n [4,6] \n 2 \n\n Calculating beauty for each GCD: \n\n GCD \n Count of subsequences \n Beauty (GCD × Count) \n\n 2 \n 1 \n 2 × 1 = 2 \n\n 4 \n 1 \n 4 × 1 = 4 \n\n 6 \n 1 \n 6 × 1 = 6 \n\n Total beauty is 2 + 4 + 6 = 12 . \n\n Constraints: \n\n 1 <= n == nums.length <= 10 4 \n \n 1 <= nums[i] <= 7 * 10 4",
+  "code": "class Solution {\n    static const int MOD=1000000007;\n    struct BIT {\n        vector<int> t;\n        BIT(int n):t(n+1,0){}\n        void add(int i,int v){for(int n=t.size();i<n;i+=i&-i){t[i]+=v;if(t[i]>=MOD)t[i]-=MOD;}}\n        int sum(int i){int s=0;for(;i>0;i-=i&-i){s+=t[i];if(s>=MOD)s-=MOD;}return s;}\n    };\npublic:\n    int totalBeauty(vector<int>& nums){\n        int V=*max_element(nums.begin(),nums.end());\n        vector<int> phi(V+1),primes;vector<bool> composite(V+1,false);\n        phi[1]=1;\n        for(int i=2;i<=V;++i){\n            if(!composite[i]){primes.push_back(i);phi[i]=i-1;}\n            for(int p:primes){if(1LL*i*p>V)break;composite[i*p]=true;\n                if(i%p==0){phi[i*p]=phi[i]*p;break;}\n                phi[i*p]=phi[i]*(p-1);\n            }\n        }\n        vector<vector<int>> lists(V+1);\n        for(int x:nums){\n            for(int d=1;1LL*d*d<=x;++d)if(x%d==0){\n                lists[d].push_back(x/d);\n                if(d*d!=x)lists[x/d].push_back(d);\n            }\n        }\n        long long ans=0;\n        for(int d=1;d<=V;++d)if(!lists[d].empty()){\n            BIT bit(V/d);int count=0;\n            for(int x:lists[d]){\n                int ways=bit.sum(x-1)+1;if(ways>=MOD)ways-=MOD;\n                bit.add(x,ways);count+=ways;if(count>=MOD)count-=MOD;\n            }\n            ans=(ans+1LL*phi[d]*count)%MOD;\n        }\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181135530",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

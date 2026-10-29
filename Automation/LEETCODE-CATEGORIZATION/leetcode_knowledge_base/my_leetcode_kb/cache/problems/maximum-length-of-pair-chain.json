@@ -1,0 +1,36 @@
+{
+  "id": "646",
+  "title": "Maximum Length of Pair Chain",
+  "slug": "maximum-length-of-pair-chain",
+  "url": "https://leetcode.com/problems/maximum-length-of-pair-chain/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy",
+    "Sorting",
+    "Longest Increasing Subsequence"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array of n pairs pairs where pairs[i] = [left i , right i ] and left i < right i . \n \n A pair p2 = [c, d] follows a pair p1 = [a, b] if b < c . A chain of pairs can be formed in this fashion. \n \n Return the length longest chain which can be formed . \n \n You do not need to use up all the given intervals. You can select pairs in any order. \n\n Example 1: \n \n```\nInput:\n pairs = [[1,2],[2,3],[3,4]]\n\nOutput:\n 2\n\nExplanation:\n The longest chain is [1,2] -> [3,4].\n```\n\n Example 2: \n \n```\nInput:\n pairs = [[1,2],[7,8],[4,5]]\n\nOutput:\n 3\n\nExplanation:\n The longest chain is [1,2] -> [4,5] -> [7,8].\n```\n\n Constraints: \n\n n == pairs.length \n \n 1 <= n <= 1000 \n \n -1000 <= left i < right i <= 1000",
+  "code": "class Solution {\npublic:\n    int dp[2002];\n    int end_to_min_len[2002];\n    int findLongestChain(vector<vector<int>>& pairs) {\n        memset(dp, 0, sizeof(dp));\n        memset(end_to_min_len, 0, sizeof(end_to_min_len));\n        int pmax = -1001;\n        int pmin = 1001;\n        for(const auto& p: pairs){\n            end_to_min_len[p[1]+1000] = end_to_min_len[p[1]+1000] == 0 ? p[1]-p[0] :\n            min(end_to_min_len[p[1]+1000], p[1]-p[0]);\n            pmin = min(p[0], pmin);\n            pmax = max(p[1], pmax);\n        }\n        for(int i = pmin; i <= pmax; i++){\n            dp[i+1001] = dp[i+1000];\n            if(end_to_min_len[i+1000]){\n                dp[i+1001] = max(dp[i+1001], dp[i+1000-end_to_min_len[i+1000]]+1);\n            }\n        }\n        return dp[pmax+1001];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1373280296",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "312",
+  "title": "Burst Balloons",
+  "slug": "burst-balloons",
+  "url": "https://leetcode.com/problems/burst-balloons/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given n balloons, indexed from 0 to n - 1 . Each balloon is painted with a number on it represented by an array nums . You are asked to burst all the balloons. \n \n If you burst the i th balloon, you will get nums[i - 1] * nums[i] * nums[i + 1] coins. If i - 1 or i + 1 goes out of bounds of the array, then treat it as if there is a balloon with a 1 painted on it. \n \n Return the maximum coins you can collect by bursting the balloons wisely . \n\n Example 1: \n \n```\nInput:\n nums = [3,1,5,8]\n\nOutput:\n 167\n\nExplanation:\n\nnums = [3,1,5,8] --> [3,5,8] --> [3,8] --> [8] --> []\ncoins = 3*1*5 + 3*5*8 + 1*3*8 + 1*8*1 = 167\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,5]\n\nOutput:\n 10\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 300 \n \n 0 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    int maxCoins(vector<int>& nums) {\n        int n = nums.size();\n        \n        // Add virtual balloons with value 1 at both ends\n        nums.insert(nums.begin(), 1);\n        nums.push_back(1);\n        \n        // DP table\n        vector<vector<int>> dp(n + 2, vector<int>(n + 2, 0));\n        \n        // Fill the DP table\n        for (int len = 1; len <= n; ++len) { // Length of the subarray\n            for (int left = 1; left <= n - len + 1; ++left) {\n                int right = left + len - 1;\n                \n                // Find the maximum coins for the subarray nums[left:right]\n                for (int k = left; k <= right; ++k) {\n                    // Coins gained by bursting balloon k last\n                    int coins = nums[left - 1] * nums[k] * nums[right + 1];\n                    coins += dp[left][k - 1]; // Left subarray\n                    coins += dp[k + 1][right]; // Right subarray\n                    dp[left][right] = max(dp[left][right], coins);\n                }\n            }\n        }\n        \n        // The result is the maximum coins for the entire array\n        return dp[1][n];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541009965",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "2531",
+  "title": "Make Number of Distinct Characters Equal",
+  "slug": "make-number-of-distinct-characters-equal",
+  "url": "https://leetcode.com/problems/make-number-of-distinct-characters-equal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given two 0-indexed strings word1 and word2 . \n \n A move consists of choosing two indices i and j such that 0 <= i < word1.length and 0 <= j < word2.length and swapping word1[i] with word2[j] . \n \n Return true if it is possible to get the number of distinct characters in word1 and word2 to be equal with exactly one move. Return false otherwise . \n\n Example 1: \n \n```\nInput:\n word1 = \"ac\", word2 = \"b\"\n\nOutput:\n false\n\nExplanation:\n Any pair of swaps would yield two distinct characters in the first string, and one in the second string.\n```\n\n Example 2: \n \n```\nInput:\n word1 = \"abcc\", word2 = \"aab\"\n\nOutput:\n true\n\nExplanation:\n We swap index 2 of the first string with index 0 of the second string. The resulting strings are word1 = \"abac\" and word2 = \"cab\", which both have 3 distinct characters.\n```\n\n Example 3: \n \n```\nInput:\n word1 = \"abcde\", word2 = \"fghij\"\n\nOutput:\n true\n\nExplanation:\n Both resulting strings will have 5 distinct characters, regardless of which indices we swap.\n```\n\n Constraints: \n\n 1 <= word1.length, word2.length <= 10 5 \n \n word1 and word2 consist of only lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n bool isItPossible(string word1,string word2){\n  int a[26]={},b[26]={};for(char c:word1)++a[c-'a'];for(char c:word2)++b[c-'a'];\n  int da=0,db=0;for(int i=0;i<26;++i){da+=a[i]>0;db+=b[i]>0;}\n  for(int i=0;i<26;++i)for(int j=0;j<26;++j){\n   if(!a[i]||!b[j])continue;\n   if(i==j){if(da==db)return true;continue;}\n   int na=da-(a[i]==1)+(a[j]==0),nb=db-(b[j]==1)+(b[i]==0);\n   if(na==nb)return true;\n  }\n  return false;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176602751",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

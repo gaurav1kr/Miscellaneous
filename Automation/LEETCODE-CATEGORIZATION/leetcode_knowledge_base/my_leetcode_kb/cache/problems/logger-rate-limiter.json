@@ -1,0 +1,31 @@
+{
+  "id": "359",
+  "title": "Logger Rate Limiter",
+  "slug": "logger-rate-limiter",
+  "url": "https://leetcode.com/problems/logger-rate-limiter/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Design",
+    "Data Stream"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map"
+  ],
+  "description": "Design a logger system that receives a stream of messages along with their timestamps. Each unique message should only be printed at most every 10 seconds (i.e. a message printed at timestamp t will prevent other identical messages from being printed until timestamp t + 10 ). \n \n All messages will come in chronological order. Several messages may arrive at the same timestamp. \n \n Implement the Logger class: \n\n Logger() Initializes the logger object. \n \n bool shouldPrintMessage(int timestamp, string message) Returns true if the message should be printed in the given timestamp , otherwise returns false . \n\n Example 1: \n \n```\nInput\n\n[\"Logger\", \"shouldPrintMessage\", \"shouldPrintMessage\", \"shouldPrintMessage\", \"shouldPrintMessage\", \"shouldPrintMessage\", \"shouldPrintMessage\"]\n[[], [1, \"foo\"], [2, \"bar\"], [3, \"foo\"], [8, \"bar\"], [10, \"foo\"], [11, \"foo\"]]\n\nOutput\n\n[null, true, true, false, false, false, true]\n\nExplanation\n\nLogger logger = new Logger();\nlogger.shouldPrintMessage(1, \"foo\"); // return true, next allowed timestamp for \"foo\" is 1 + 10 = 11\nlogger.shouldPrintMessage(2, \"bar\"); // return true, next allowed timestamp for \"bar\" is 2 + 10 = 12\nlogger.shouldPrintMessage(3, \"foo\"); // 3 < 11, return false\nlogger.shouldPrintMessage(8, \"bar\"); // 8 < 12, return false\nlogger.shouldPrintMessage(10, \"foo\"); // 10 < 11, return false\nlogger.shouldPrintMessage(11, \"foo\"); // 11 >= 11, return true, next allowed timestamp for \"foo\" is 11 + 10 = 21\n```\n\n Constraints: \n\n 0 <= timestamp <= 10 9 \n \n Every timestamp will be passed in non-decreasing order (chronological order). \n \n 1 <= message.length <= 30 \n \n At most 10 4 calls will be made to shouldPrintMessage .",
+  "code": "class Logger\n{\n    unordered_map<string, int> lastPrinted;\npublic:\n    Logger() {}\n    bool shouldPrintMessage(int timestamp, string message)\n    {\n        auto it = lastPrinted.find(message);\n        if (it != lastPrinted.end() && timestamp - it->second < 10)\n        {\n            return false;\n        }\n        lastPrinted[message] = timestamp;\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178458936",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

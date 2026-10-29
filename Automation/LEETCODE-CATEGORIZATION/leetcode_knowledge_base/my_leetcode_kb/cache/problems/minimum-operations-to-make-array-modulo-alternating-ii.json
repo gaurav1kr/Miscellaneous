@@ -1,0 +1,28 @@
+{
+  "id": "3944",
+  "title": "Minimum Operations to Make Array Modulo Alternating II",
+  "slug": "minimum-operations-to-make-array-modulo-alternating-ii",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-array-modulo-alternating-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Enumeration"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n In one operation, you can increase or decrease any element of nums by 1. \n \n An array is called modulo alternating if there exist two distinct integers x and y ( 0 <= x, y < k ) such that: \n\n For every even index i , nums[i] % k == x \n \n For every odd index i , nums[i] % k == y \n\n Return the minimum number of operations required to make nums modulo alternating . \n\n Example 1: \n\n Input: nums = [1,4,2,8], k = 3 \n \n Output: 2 \n \n Explanation: \n\n Let's choose x = 1 for even indices and y = 2 for odd indices. \n \n Perform the following operations:\n\n Increment nums[1] = 4 by 1, giving nums = [1, 5, 2, 8] . \n \n Decrement nums[2] = 2 by 1, giving nums = [1, 5, 1, 8] . \n\n Now, for even indices, nums[i] % k = 1 , and for odd indices, nums[i] % k = 2 . \n \n Thus, the total number of operations required is 2. \n\n Example 2: \n\n Input: nums = [1,1,1], k = 3 \n \n Output: 1 \n \n Explanation: \n\n Incrementing nums[1] by 1 gives nums = [1, 2, 1] , which satisfies the condition with x = 1 and y = 2 . \n \n Thus, the total number of operations required is 1. \n\n Example 3: \n\n Input: nums = [6,7,8], k = 2 \n \n Output: 0 \n \n Explanation: \n \n The array already satisfies the condition with x = 0 and y = 1 . Thus, no operations are required. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 2 <= k <= 10 5",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\n vector<long long> costs(const vector<int>& nums,int k,int parity){\n  vector<long long>freq(2*k),pc(2*k+1),ps(2*k+1),res(k);\n  for(int i=parity;i<(int)nums.size();i+=2)++freq[nums[i]%k];\n  for(int i=0;i<k;++i)freq[i+k]=freq[i];\n  for(int i=0;i<2*k;++i){pc[i+1]=pc[i]+freq[i];ps[i+1]=ps[i]+freq[i]*i;}\n  for(int x=0;x<k;++x){int mid=x+k/2, end=x+k;\n   long long c1=ps[mid+1]-ps[x]-1LL*x*(pc[mid+1]-pc[x]);\n   long long c2=1LL*(x+k)*(pc[end]-pc[mid+1])-(ps[end]-ps[mid+1]);\n   res[x]=c1+c2;\n  }\n  return res;\n }\npublic:\n long long minOperations(vector<int>& nums,int k){\n  auto a=costs(nums,k,0),b=costs(nums,k,1);\n  int b1=-1,b2=-1;\n  for(int i=0;i<k;++i)if(b1<0||b[i]<b[b1]){b2=b1;b1=i;}else if(b2<0||b[i]<b[b2])b2=i;\n  long long ans=LLONG_MAX;\n  for(int i=0;i<k;++i)ans=min(ans,a[i]+b[i==b1?b2:b1]);\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181244641",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

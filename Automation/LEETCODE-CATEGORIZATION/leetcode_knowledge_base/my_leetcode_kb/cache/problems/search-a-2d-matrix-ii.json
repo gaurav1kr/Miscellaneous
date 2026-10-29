@@ -1,0 +1,33 @@
+{
+  "id": "240",
+  "title": "Search a 2D Matrix II",
+  "slug": "search-a-2d-matrix-ii",
+  "url": "https://leetcode.com/problems/search-a-2d-matrix-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Divide and Conquer",
+    "Matrix"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Write an efficient algorithm that searches for a value target in an m x n integer matrix matrix . This matrix has the following properties: \n\n Integers in each row are sorted in ascending from left to right. \n \n Integers in each column are sorted in ascending from top to bottom. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/24/searchgrid2.jpg] \n \n```\nInput:\n matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/11/24/searchgrid.jpg] \n \n```\nInput:\n matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20\n\nOutput:\n false\n```\n\n Constraints: \n\n m == matrix.length \n \n n == matrix[i].length \n \n 1 <= n, m <= 300 \n \n -10 9 <= matrix[i][j] <= 10 9 \n \n All the integers in each row are sorted in ascending order. \n \n All the integers in each column are sorted in ascending order. \n \n -10 9 <= target <= 10 9",
+  "code": "class Solution {\npublic:\n    bool searchMatrix(vector<vector<int>>& matrix, int target) {\n        if (matrix.empty() || matrix[0].empty()) return false;\n\n        int rows = matrix.size();\n        int cols = matrix[0].size();\n\n        // Start from the top-right corner\n        int row = 0;\n        int col = cols - 1;\n\n        while (row < rows && col >= 0) {\n            if (matrix[row][col] == target) {\n                return true; // Found the target\n            } else if (matrix[row][col] > target) {\n                col--; // Move left\n            } else {\n                row++; // Move down\n            }\n        }\n\n        return false; // Target not found\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541879527",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "16",
+  "title": "3Sum Closest",
+  "slug": "3sum-closest",
+  "url": "https://leetcode.com/problems/3sum-closest/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and an integer target . \n \n Find three integers at distinct indices in nums such that the sum is closest to target . \n \n Return the sum of the three integers. \n \n You may assume that each input would have exactly one solution. \n\n Example 1: \n \n```\nInput:\n nums = [-1,2,1,-4], target = 1\n\nOutput:\n 2\n\nExplanation:\n The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,0,0], target = 1\n\nOutput:\n 0\n\nExplanation:\n The sum that is closest to the target is 0. (0 + 0 + 0 = 0).\n```\n\n Constraints: \n\n 3 <= nums.length <= 500 \n \n -1000 <= nums[i] <= 1000 \n \n -10 4 <= target <= 10 4",
+  "code": "class Solution {\npublic:\n    int threeSumClosest(vector<int>& nums, int target) {\n        sort(nums.begin(), nums.end());\n        int closest = nums[0] + nums[1] + nums[2];\n        \n        for (int i = 0; i < nums.size() - 2; ++i) {\n            int left = i + 1, right = nums.size() - 1;\n            while (left < right) {\n                int sum = nums[i] + nums[left] + nums[right];\n                if (abs(target - sum) < abs(target - closest))\n                    closest = sum;\n                \n                if (sum < target)\n                    ++left;\n                else if (sum > target)\n                    --right;\n                else\n                    return sum; // Exact match found\n            }\n        }\n        return closest;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1539880429",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

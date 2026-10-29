@@ -1,0 +1,30 @@
+{
+  "id": "129",
+  "title": "Sum Root to Leaf Numbers",
+  "slug": "sum-root-to-leaf-numbers",
+  "url": "https://leetcode.com/problems/sum-root-to-leaf-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "You are given the root of a binary tree containing digits from 0 to 9 only. \n \n Each root-to-leaf path in the tree represents a number. \n\n For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123 . \n\n Return the total sum of all root-to-leaf numbers . Test cases are generated so that the answer will fit in a 32-bit integer. \n \n A leaf node is a node with no children. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/19/num1tree.jpg] \n \n```\nInput:\n root = [1,2,3]\n\nOutput:\n 25\n\nExplanation:\n\nThe root-to-leaf path \n1->2\n represents the number \n12\n.\nThe root-to-leaf path \n1->3\n represents the number \n13\n.\nTherefore, sum = 12 + 13 = \n25\n.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/02/19/num2tree.jpg] \n \n```\nInput:\n root = [4,9,0,5,1]\n\nOutput:\n 1026\n\nExplanation:\n\nThe root-to-leaf path \n4->9->5\n represents the number 495.\nThe root-to-leaf path \n4->9->1\n represents the number 491.\nThe root-to-leaf path \n4->0\n represents the number 40.\nTherefore, sum = 495 + 491 + 40 = \n1026\n.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 1000] . \n \n 0 <= Node.val <= 9 \n \n The depth of the tree will not exceed 10 .",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    int helper(TreeNode *root, int sum){\n        if (root==NULL){\n            return 0;\n        }\n        sum = sum*10+root->val;\n        int l = helper(root->left,sum);\n        int r = helper(root->right,sum);\n        if (l==0 && r==0){\n            return sum;\n        }\n        return l+r;\n    }\n    int sumNumbers(TreeNode* root) {\n        return helper(root,0);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1535834616",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

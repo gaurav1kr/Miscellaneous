@@ -1,0 +1,20 @@
+{
+  "id": "2753",
+  "title": "Count Houses in a Circular Street II",
+  "slug": "count-houses-in-a-circular-street-ii",
+  "url": "https://leetcode.com/problems/count-houses-in-a-circular-street-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "You are given an object street of class Street that represents a circular street and a positive integer k which represents a maximum bound for the number of houses in that street (in other words, the number of houses is less than or equal to k ). Houses' doors could be open or closed initially (at least one is open). \n \n Initially, you are standing in front of a door to a house on this street. Your task is to count the number of houses in the street. \n \n The class Street contains the following functions which may help you: \n\n void closeDoor() : Close the door of the house you are in front of. \n \n boolean isDoorOpen() : Returns true if the door of the current house is open and false otherwise. \n \n void moveRight() : Move to the right house. \n\n Note that by circular street, we mean if you number the houses from 1 to n , then the right house of house i is house i+1 for i < n , and the right house of house n is house 1 . \n \n Return ans which represents the number of houses on this street. \n\n Example 1: \n \n```\nInput:\n street = [1,1,1,1], k = 10\n\nOutput:\n 4\n\nExplanation:\n There are 4 houses, and all their doors are open. \nThe number of houses is less than k, which is 10.\n```\n\n Example 2: \n \n```\nInput:\n street = [1,0,1,1,0], k = 5\n\nOutput:\n 5\n\nExplanation:\n There are 5 houses, and the doors of the 1st, 3rd, and 4th house (moving in the right direction) are open, and the rest are closed.\nThe number of houses is equal to k, which is 5.\n```\n\n Constraints: \n\n n == number of houses \n \n 1 <= n <= k <= 10 5 \n \n street is circular by definition provided in the statement. \n \n The input is generated such that at least one of the doors is open.",
+  "code": "class Solution {\npublic:\n    int houseCount(Street* street, int k) {\n        while (!street->isDoorOpen()) street->moveRight();\n        int answer=0;\n        for (int distance=1;distance<=k;++distance) {\n            street->moveRight();\n            if(street->isDoorOpen()) {\n                answer=distance;\n                street->closeDoor();\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181531969",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

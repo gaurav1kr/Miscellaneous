@@ -1,0 +1,35 @@
+{
+  "id": "2184",
+  "title": "Number of Ways to Build Sturdy Brick Wall",
+  "slug": "number-of-ways-to-build-sturdy-brick-wall",
+  "url": "https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given integers height and width which specify the dimensions of a brick wall you are building. You are also given a 0-indexed array of unique integers bricks , where the i th brick has a height of 1 and a width of bricks[i] . You have an infinite supply of each type of brick and bricks may not be rotated. \n \n Each row in the wall must be exactly width units long. For the wall to be sturdy , adjacent rows in the wall should not join bricks at the same location, except at the ends of the wall. \n \n Return the number of ways to build a sturdy wall. Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/02/20/image-20220220190749-1.png] \n \n```\nInput:\n height = 2, width = 3, bricks = [1,2]\n\nOutput:\n 2\n\nExplanation:\n\nThe first two walls in the diagram show the only two ways to build a sturdy brick wall.\nNote that the third wall in the diagram is not sturdy because adjacent rows join bricks 2 units from the left.\n```\n\n Example 2: \n \n```\nInput:\n height = 1, width = 1, bricks = [5]\n\nOutput:\n 0\n\nExplanation:\n\nThere are no ways to build a sturdy wall because the only type of brick we have is longer than the width of the wall.\n```\n\n Constraints: \n\n 1 <= height <= 100 \n \n 1 <= width <= 10 \n \n 1 <= bricks.length <= 10 \n \n 1 <= bricks[i] <= 10 \n \n All the values of bricks are unique .",
+  "code": "class Solution {\n    static const int MOD = 1000000007;\n    vector<int> masks;\n    void build(int pos, int width, const vector<int>& bricks, int mask) {\n        if (pos == width) { masks.push_back(mask); return; }\n        for (int b : bricks) {\n            if (pos + b <= width) {\n                int next = mask;\n                if (pos + b < width) next |= 1 << (pos + b);\n                build(pos + b, width, bricks, next);\n            }\n        }\n    }\npublic:\n    int buildWall(int height, int width, vector<int>& bricks) {\n        masks.clear();\n        build(0, width, bricks, 0);\n        int n = masks.size();\n        vector<vector<int>> compatible(n);\n        for (int i = 0; i < n; ++i)\n            for (int j = 0; j < n; ++j)\n                if ((masks[i] & masks[j]) == 0) compatible[i].push_back(j);\n        vector<int> dp(n, 1);\n        for (int row = 1; row < height; ++row) {\n            vector<int> next(n);\n            for (int i = 0; i < n; ++i)\n                for (int j : compatible[i])\n                    next[i] = (next[i] + (long long)dp[j]) % MOD;\n            dp.swap(next);\n        }\n        long long answer = 0;\n        for (int x : dp) answer = (answer + x) % MOD;\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178646220",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

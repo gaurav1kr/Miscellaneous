@@ -1,0 +1,29 @@
+{
+  "id": "2076",
+  "title": "Process Restricted Friend Requests",
+  "slug": "process-restricted-friend-requests",
+  "url": "https://leetcode.com/problems/process-restricted-friend-requests/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer n indicating the number of people in a network. Each person is labeled from 0 to n - 1 . \n \n You are also given a 0-indexed 2D integer array restrictions , where restrictions[i] = [x i , y i ] means that person x i and person y i cannot become friends , either directly or indirectly through other people. \n \n Initially, no one is friends with each other. You are given a list of friend requests as a 0-indexed 2D integer array requests , where requests[j] = [u j , v j ] is a friend request between person u j and person v j . \n \n A friend request is successful if u j and v j can be friends . Each friend request is processed in the given order (i.e., requests[j] occurs before requests[j + 1] ), and upon a successful request, u j and v j become direct friends for all future friend requests. \n \n Return a boolean array result , where each result[j] is true if the j th friend request is successful or false if it is not . \n \n Note: If u j and v j are already direct friends, the request is still successful . \n\n Example 1: \n \n```\nInput:\n n = 3, restrictions = [[0,1]], requests = [[0,2],[2,1]]\n\nOutput:\n [true,false]\n\nExplanation:\n\nRequest 0: Person 0 and person 2 can be friends, so they become direct friends. \nRequest 1: Person 2 and person 1 cannot be friends since person 0 and person 1 would be indirect friends (1--2--0).\n```\n\n Example 2: \n \n```\nInput:\n n = 3, restrictions = [[0,1]], requests = [[1,2],[0,2]]\n\nOutput:\n [true,false]\n\nExplanation:\n\nRequest 0: Person 1 and person 2 can be friends, so they become direct friends.\nRequest 1: Person 0 and person 2 cannot be friends since person 0 and person 1 would be indirect friends (0--2--1).\n```\n\n Example 3: \n \n```\nInput:\n n = 5, restrictions = [[0,1],[1,2],[2,3]], requests = [[0,4],[1,2],[3,1],[3,4]]\n\nOutput:\n [true,false,true,false]\n\nExplanation:\n\nRequest 0: Person 0 and person 4 can be friends, so they become direct friends.\nRequest 1: Person 1 and person 2 cannot be friends since they are directly restricted.\nRequest 2: Person 3 and person 1 can be friends, so they become direct friends.\nRequest 3: Person 3 and person 4 cannot be friends since person 0 and person 1 would be indirect friends (0--4--3--1).\n```\n\n Constraints: \n\n 2 <= n <= 1000 \n \n 0 <= restrictions.length <= 1000 \n \n restrictions[i].length == 2 \n \n 0 <= x i , y i <= n - 1 \n \n x i != y i \n \n 1 <= requests.length <= 1000 \n \n requests[j].length == 2 \n \n 0 <= u j , v j <= n - 1 \n \n u j != v j",
+  "code": "#include <vector>\nusing namespace std;\n\nclass DSU {\n    vector<int> p;\npublic:\n    DSU(int n) : p(n) {\n        for (int i = 0; i < n; ++i) p[i] = i;\n    }\n\n    int find(int x) {\n        return p[x] == x ? x : p[x] = find(p[x]);\n    }\n\n    void unite(int x, int y) {\n        p[find(x)] = find(y);\n    }\n\n    void reset(int x, int val) {\n        p[x] = val;\n    }\n\n    vector<int> get() { return p; }\n};\n\nclass Solution {\npublic:\n    bool check(int x, int y, vector<vector<int>>& restrictions, DSU& dsu) {\n        for (auto& r : restrictions)\n            if ((dsu.find(r[0]) == dsu.find(x) && dsu.find(r[1]) == dsu.find(y)) ||\n                (dsu.find(r[0]) == dsu.find(y) && dsu.find(r[1]) == dsu.find(x)))\n                return false;\n        return true;\n    }\n\n    vector<bool> friendRequests(int n, vector<vector<int>>& restrictions, vector<vector<int>>& requests) {\n        DSU dsu(n);\n        vector<bool> res;\n        for (auto& r : requests) {\n            int x = dsu.find(r[0]), y = dsu.find(r[1]);\n            if (x == y) {\n                res.push_back(true);\n                continue;\n            }\n            if (!check(x, y, restrictions, dsu)) {\n                res.push_back(false);\n                continue;\n            }\n            dsu.unite(x, y);\n            res.push_back(true);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610657114",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

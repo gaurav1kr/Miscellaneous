@@ -1,0 +1,32 @@
+{
+  "id": "2215",
+  "title": "Find the Difference of Two Arrays",
+  "slug": "find-the-difference-of-two-arrays",
+  "url": "https://leetcode.com/problems/find-the-difference-of-two-arrays/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "Given two 0-indexed integer arrays nums1 and nums2 , return a list answer of size 2 where: \n\n answer[0] is a list of all distinct integers in nums1 which are not present in nums2 . \n \n answer[1] is a list of all distinct integers in nums2 which are not present in nums1 . \n\n Note that the integers in the lists may be returned in any order. \n\n Example 1: \n \n```\nInput:\n nums1 = [1,2,3], nums2 = [2,4,6]\n\nOutput:\n [[1,3],[4,6]]\n\nExplanation:\n\nFor nums1, nums1[1] = 2 is present at index 0 of nums2, whereas nums1[0] = 1 and nums1[2] = 3 are not present in nums2. Therefore, answer[0] = [1,3].\nFor nums2, nums2[0] = 2 is present at index 1 of nums1, whereas nums2[1] = 4 and nums2[2] = 6 are not present in nums1. Therefore, answer[1] = [4,6].\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [1,2,3,3], nums2 = [1,1,2,2]\n\nOutput:\n [[3],[]]\n\nExplanation:\n\nFor nums1, nums1[2] and nums1[3] are not present in nums2. Since nums1[2] == nums1[3], their value is only included once and answer[0] = [3].\nEvery integer in nums2 is present in nums1. Therefore, answer[1] = [].\n```\n\n Constraints: \n\n 1 <= nums1.length, nums2.length <= 1000 \n \n -1000 <= nums1[i], nums2[i] <= 1000",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n vector<vector<int>> findDifference(vector<int>& nums1,vector<int>& nums2){unordered_set<int>a(nums1.begin(),nums1.end()),b(nums2.begin(),nums2.end());vector<vector<int>>ans(2);\n  for(int x:a)if(!b.count(x))ans[0].push_back(x);for(int x:b)if(!a.count(x))ans[1].push_back(x);return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175888825",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

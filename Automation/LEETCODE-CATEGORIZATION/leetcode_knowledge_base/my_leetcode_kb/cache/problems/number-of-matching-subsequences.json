@@ -1,0 +1,46 @@
+{
+  "id": "792",
+  "title": "Number of Matching Subsequences",
+  "slug": "number-of-matching-subsequences",
+  "url": "https://leetcode.com/problems/number-of-matching-subsequences/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Binary Search",
+    "Dynamic Programming",
+    "Trie",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given a string s and an array of strings words , return the number of words[i] that is a subsequence of s . \n \n A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters. \n\n For example, \"ace\" is a subsequence of \"abcde\" . \n\n Example 1: \n \n```\nInput:\n s = \"abcde\", words = [\"a\",\"bb\",\"acd\",\"ace\"]\n\nOutput:\n 3\n\nExplanation:\n There are three strings in words that are a subsequence of s: \"a\", \"acd\", \"ace\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"dsahjpjauf\", words = [\"ahjpjau\",\"ja\",\"ahbwzgqnuk\",\"tnmlanowax\"]\n\nOutput:\n 2\n```\n\n Constraints: \n\n 1 <= s.length <= 5 * 10 4 \n \n 1 <= words.length <= 5000 \n \n 1 <= words[i].length <= 50 \n \n s and words[i] consist of only lowercase English letters.",
+  "code": "class Solution \n{\npublic:\n    bool check(string s1,string s2)\n    {\n        if(s1.length()<s2.length())\n            return false;\n\n        int i = 0, j = 0;\n        while(i<s1.length() && j<s2.length())\n        {\n            if(s1[i]==s2[j])\n            {\n                i++;\n                j++;\n            }\n            else\n            {\n                i++;\n            }\n        }\n        return (j==s2.length());\n    }\n    int numMatchingSubseq(string s, vector<string>& words)\n    {\n        int ans = 0;\n        unordered_map<string,int> mp;\n        for(auto &i: words)\n        {\n            if(mp.count(i))\n            {\n                ans += mp[i];\n            }\n            else\n            {\n                ans += mp[i] = check(s,i);\n            }\n        }\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1484124960",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "443",
+  "title": "String Compression",
+  "slug": "string-compression",
+  "url": "https://leetcode.com/problems/string-compression/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of characters chars , compress it using the following algorithm: \n \n Begin with an empty string s . For each group of consecutive repeating characters in chars : \n\n If the group's length is 1 , append the character to s . \n \n Otherwise, append the character followed by the group's length. \n\n The compressed string s should not be returned separately , but instead, be stored in the input character array chars . Note that group lengths that are 10 or longer will be split into multiple characters in chars . \n \n After you are done modifying the input array, return the new length of the array . \n \n You must write an algorithm that uses only constant extra space. \n \n Note: The characters in the array beyond the returned length do not matter and should be ignored. \n\n Example 1: \n \n```\nInput:\n chars = [\"a\",\"a\",\"b\",\"b\",\"c\",\"c\",\"c\"]\n\nOutput:\n 6\n\nExplanation:\n The groups are \n\"aa\"\n, \n\"bb\"\n, and \n\"ccc\"\n. This compresses to \n\"a2b2c3\"\n.\nAfter modifying the input array in-place, the first 6 characters of \nchars\n should be \n[\"a\",\"2\",\"b\",\"2\",\"c\",\"3\"]\n.\n```\n\n Example 2: \n \n```\nInput:\n chars = [\"a\"]\n\nOutput:\n 1\n\nExplanation:\n The only group is \n\"a\"\n, which remains uncompressed since it is a single character.\nAfter modifying the input array in-place, the first character of \nchars\n should be \n[\"a\"]\n.\n```\n\n Example 3: \n \n```\nInput:\n chars = [\"a\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\"]\n\nOutput:\n 4\n\nExplanation:\n The groups are \n\"a\"\n and \n\"bbbbbbbbbbbb\"\n. This compresses to \n\"ab12\"\n.\nAfter modifying the input array in-place, the first 4 characters of \nchars\n should be \n[\"a\",\"b\",\"1\",\"2\"]\n.\n```\n\n Constraints: \n\n 1 <= chars.length <= 2000 \n \n chars[i] is a lowercase English letter, uppercase English letter, digit, or symbol.",
+  "code": "class Solution {\npublic:\n    int compress(vector<char>& s) \n    {\n        int c=1;\n        for(int i=0;i<s.size()-1;i++)\n        {\n            if(s[i]==s[i+1])\n            {\n                c++, i--;\n                s.erase(s.begin()+i+1);\n            }\n            else\n            {\n                if(c>1)\n                    for(char c:to_string(c))\n                    {\n                        s.insert(s.begin()+i+1,c),i++;\n                    }\n                c=1;\n            }\n        }\n        if(c>1)\n        {\n            for(char c:to_string(c))\n            {\n                s.insert(s.end(),c);\n            }\n        }\n        return s.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1362182542",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

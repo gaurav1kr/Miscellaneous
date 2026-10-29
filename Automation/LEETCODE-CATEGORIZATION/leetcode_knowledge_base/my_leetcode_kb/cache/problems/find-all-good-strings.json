@@ -1,0 +1,31 @@
+{
+  "id": "1397",
+  "title": "Find All Good Strings",
+  "slug": "find-all-good-strings",
+  "url": "https://leetcode.com/problems/find-all-good-strings/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "String Matching"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given the strings s1 and s2 of size n and the string evil , return the number of good strings . \n \n A good string has size n , it is alphabetically greater than or equal to s1 , it is alphabetically smaller than or equal to s2 , and it does not contain the string evil as a substring. Since the answer can be a huge number, return this modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 2, s1 = \"aa\", s2 = \"da\", evil = \"b\"\n\nOutput:\n 51 \n\nExplanation:\n There are 25 good strings starting with 'a': \"aa\",\"ac\",\"ad\",...,\"az\". Then there are 25 good strings starting with 'c': \"ca\",\"cc\",\"cd\",...,\"cz\" and finally there is one good string starting with 'd': \"da\".\n```\n\n Example 2: \n \n```\nInput:\n n = 8, s1 = \"leetcode\", s2 = \"leetgoes\", evil = \"leet\"\n\nOutput:\n 0 \n\nExplanation:\n All strings greater than or equal to s1 and smaller than or equal to s2 start with the prefix \"leet\", therefore, there is not any good string.\n```\n\n Example 3: \n \n```\nInput:\n n = 2, s1 = \"gx\", s2 = \"gz\", evil = \"x\"\n\nOutput:\n 2\n```\n\n Constraints: \n\n s1.length == n \n \n s2.length == n \n \n s1 <= s2 \n \n 1 <= n <= 500 \n \n 1 <= evil.length <= 50 \n \n All strings consist of lowercase English letters.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\n    const int MOD = 1e9 + 7;\n\n    vector<int> buildLPS(string evil) {\n        int m = evil.size(), j = 0;\n        vector<int> lps(m, 0);\n        for (int i = 1; i < m; ++i) {\n            while (j > 0 && evil[i] != evil[j]) j = lps[j - 1];\n            if (evil[i] == evil[j]) lps[i] = ++j;\n        }\n        return lps;\n    }\n\n    int dp[501][51][2][2];\n\n    int dfs(string& s1, string& s2, string& evil, vector<int>& lps, int i, int j, bool lo, bool hi) {\n        if (j == evil.size()) return 0;\n        if (i == s1.size()) return 1;\n        if (dp[i][j][lo][hi] != -1) return dp[i][j][lo][hi];\n\n        char from = lo ? s1[i] : 'a';\n        char to = hi ? s2[i] : 'z';\n        int res = 0;\n\n        for (char c = from; c <= to; ++c) {\n            int k = j;\n            while (k > 0 && evil[k] != c) k = lps[k - 1];\n            if (c == evil[k]) ++k;\n            res = (res + dfs(s1, s2, evil, lps, i + 1, k, lo && c == from, hi && c == to)) % MOD;\n        }\n\n        return dp[i][j][lo][hi] = res;\n    }\n\npublic:\n    int findGoodStrings(int n, string s1, string s2, string evil) {\n        vector<int> lps = buildLPS(evil);\n        memset(dp, -1, sizeof(dp));\n        return dfs(s1, s2, evil, lps, 0, 0, true, true);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610648566",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

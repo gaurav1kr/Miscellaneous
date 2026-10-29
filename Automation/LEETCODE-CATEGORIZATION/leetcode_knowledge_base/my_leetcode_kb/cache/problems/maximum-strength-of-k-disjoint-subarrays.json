@@ -1,0 +1,33 @@
+{
+  "id": "3077",
+  "title": "Maximum Strength of K Disjoint Subarrays",
+  "slug": "maximum-strength-of-k-disjoint-subarrays",
+  "url": "https://leetcode.com/problems/maximum-strength-of-k-disjoint-subarrays/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums with length n , and a positive odd integer k . \n \n Select exactly k disjoint subarrays sub 1 , sub 2 , ..., sub k from nums such that the last element of sub i appears before the first element of sub {i+1} for all 1 <= i <= k-1 . The goal is to maximize their combined strength. \n \n The strength of the selected subarrays is defined as: \n \n strength = k * sum(sub 1 )- (k - 1) * sum(sub 2 ) + (k - 2) * sum(sub 3 ) - ... - 2 * sum(sub {k-1} ) + sum(sub k ) \n \n where sum(sub i ) is the sum of the elements in the i -th subarray. \n \n Return the maximum possible strength that can be obtained from selecting exactly k disjoint subarrays from nums . \n \n Note that the chosen subarrays don't need to cover the entire array. \n\n Example 1: \n \n Input: nums = [1,2,3,-1,2], k = 3 \n \n Output: 22 \n \n Explanation: \n \n The best possible way to select 3 subarrays is: nums[0..2], nums[3..3], and nums[4..4]. The strength is calculated as follows: \n \n strength = 3 * (1 + 2 + 3) - 2 * (-1) + 2 = 22 \n\n Example 2: \n \n Input: nums = [12,-2,-2,-2,-2], k = 5 \n \n Output: 64 \n \n Explanation: \n \n The only possible way to select 5 disjoint subarrays is: nums[0..0], nums[1..1], nums[2..2], nums[3..3], and nums[4..4]. The strength is calculated as follows: \n \n strength = 5 * 12 - 4 * (-2) + 3 * (-2) - 2 * (-2) + (-2) = 64 \n \n Example 3: \n \n Input: nums = [-1,-2,-3], k = 1 \n \n Output: -1 \n \n Explanation: \n \n The best possible way to select 1 subarray is: nums[0..0]. The strength is -1. \n\n Constraints: \n\n 1 <= n <= 10 4 \n \n -10 9 <= nums[i] <= 10 9 \n \n 1 <= k <= n \n \n 1 <= n * k <= 10 6 \n \n k is odd.",
+  "code": "class Solution {public:long long maximumStrength(vector<int>& nums,int k){\n const long long NEG=LLONG_MIN/4;vector<long long> done(k+1,NEG),active(k+1,NEG);done[0]=0;\n for(int x:nums){for(int j=k;j>=1;j--){long long w=(long long)(k-j+1)*(j%2?1:-1)*x;\n active[j]=max(active[j],done[j-1])+w;done[j]=max(done[j],active[j]);}}\n return done[k];\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176852006",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "3721",
+  "title": "Longest Balanced Subarray II",
+  "slug": "longest-balanced-subarray-ii",
+  "url": "https://leetcode.com/problems/longest-balanced-subarray-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Divide and Conquer",
+    "Segment Tree",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n A subarray is called balanced if the number of distinct even numbers in the subarray is equal to the number of distinct odd numbers. \n \n Return the length of the longest balanced subarray. \n\n Example 1: \n\n Input: nums = [2,5,4,3] \n \n Output: 4 \n \n Explanation: \n\n The longest balanced subarray is [2, 5, 4, 3] . \n \n It has 2 distinct even numbers [2, 4] and 2 distinct odd numbers [5, 3] . Thus, the answer is 4. \n\n Example 2: \n\n Input: nums = [3,2,2,5,4] \n \n Output: 5 \n \n Explanation: \n\n The longest balanced subarray is [3, 2, 2, 5, 4] . \n \n It has 2 distinct even numbers [2, 4] and 2 distinct odd numbers [3, 5] . Thus, the answer is 5. \n\n Example 3: \n\n Input: nums = [1,2,3,2] \n \n Output: 3 \n \n Explanation: \n\n The longest balanced subarray is [2, 3, 2] . \n \n It has 1 distinct even number [2] and 1 distinct odd number [3] . Thus, the answer is 3. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\n    struct Node{int mn=0,mx=0,lazy=0;};\n    vector<Node> tr;\n    void apply(int p,int d){tr[p].mn+=d;tr[p].mx+=d;tr[p].lazy+=d;}\n    void push(int p){if(tr[p].lazy){apply(p*2,tr[p].lazy);apply(p*2+1,tr[p].lazy);tr[p].lazy=0;}}\n    void upd(int p,int l,int r,int ql,int qr,int d){if(ql>r||qr<l)return;if(ql<=l&&r<=qr){apply(p,d);return;}push(p);int m=(l+r)/2;upd(p*2,l,m,ql,qr,d);upd(p*2+1,m+1,r,ql,qr,d);tr[p].mn=min(tr[p*2].mn,tr[p*2+1].mn);tr[p].mx=max(tr[p*2].mx,tr[p*2+1].mx);}\n    int first(int p,int l,int r,int limit){if(l>limit||tr[p].mn>0||tr[p].mx<0)return -1;if(l==r)return l;push(p);int m=(l+r)/2;int x=first(p*2,l,m,limit);return x>=0?x:first(p*2+1,m+1,r,limit);}\npublic:\n    int longestBalanced(vector<int>& nums){int n=nums.size(),ans=0;tr.assign(4*n+5,Node());vector<int> prev(100001,-1);\n        for(int r=0;r<n;++r){int x=nums[r];upd(1,0,n-1,prev[x]+1,r,(x%2)?-1:1);prev[x]=r;int l=first(1,0,n-1,r);if(l>=0)ans=max(ans,r-l+1);}return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181142412",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

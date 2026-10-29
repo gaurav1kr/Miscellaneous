@@ -1,0 +1,37 @@
+{
+  "id": "307",
+  "title": "Range Sum Query - Mutable",
+  "slug": "range-sum-query-mutable",
+  "url": "https://leetcode.com/problems/range-sum-query-mutable/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Design",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Sqrt Decomposition"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , handle multiple queries of the following types: \n\n Update the value of an element in nums . \n \n Calculate the sum of the elements of nums between indices left and right inclusive where left <= right . \n\n Implement the NumArray class: \n\n NumArray(int[] nums) Initializes the object with the integer array nums . \n \n void update(int index, int val) Updates the value of nums[index] to be val . \n \n int sumRange(int left, int right) Returns the sum of the elements of nums between indices left and right inclusive (i.e. nums[left] + nums[left + 1] + ... + nums[right] ). \n\n Example 1: \n \n```\nInput\n\n[\"NumArray\", \"sumRange\", \"update\", \"sumRange\"]\n[[[1, 3, 5]], [0, 2], [1, 2], [0, 2]]\n\nOutput\n\n[null, 9, null, 8]\n\nExplanation\n\nNumArray numArray = new NumArray([1, 3, 5]);\nnumArray.sumRange(0, 2); // return 1 + 3 + 5 = 9\nnumArray.update(1, 2); // nums = [1, 2, 5]\nnumArray.sumRange(0, 2); // return 1 + 2 + 5 = 8\n```\n\n Constraints: \n\n 1 <= nums.length <= 3 * 10 4 \n \n -100 <= nums[i] <= 100 \n \n 0 <= index < nums.length \n \n -100 <= val <= 100 \n \n 0 <= left <= right < nums.length \n \n At most 3 * 10 4 calls will be made to update and sumRange .",
+  "code": "class NumArray {\n    vector<int> values, bit;\n    int n;\n\n    void add(int index, int delta) {\n        for (++index; index <= n; index += index & -index)\n            bit[index] += delta;\n    }\n    int prefixSum(int index) const {\n        int result = 0;\n        for (++index; index > 0; index -= index & -index)\n            result += bit[index];\n        return result;\n    }\npublic:\n    NumArray(vector<int>& nums)\n        : values(nums), bit(nums.size() + 1, 0), n(nums.size()) {\n        for (int i = 0; i < n; ++i) add(i, values[i]);\n    }\n    void update(int index, int val) {\n        add(index, val - values[index]);\n        values[index] = val;\n    }\n    int sumRange(int left, int right) {\n        return prefixSum(right) - (left ? prefixSum(left - 1) : 0);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175687071",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

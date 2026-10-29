@@ -1,0 +1,26 @@
+{
+  "id": "3765",
+  "title": "Complete Prime Number",
+  "slug": "complete-prime-number",
+  "url": "https://leetcode.com/problems/complete-prime-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Enumeration",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given an integer num . \n \n A number num is called a Complete Prime Number if every prefix and every suffix of num is prime . \n \n Return true if num is a Complete Prime Number, otherwise return false . \n \n Note : \n\n A prefix of a number is formed by the first k digits of the number. \n \n A suffix of a number is formed by the last k digits of the number. \n \n Single-digit numbers are considered Complete Prime Numbers only if they are prime . \n\n Example 1: \n\n Input: num = 23 \n \n Output: true \n \n Explanation: \n\n ​​​​​​​ Prefixes of num = 23 are 2 and 23, both are prime. \n \n Suffixes of num = 23 are 3 and 23, both are prime. \n \n All prefixes and suffixes are prime, so 23 is a Complete Prime Number and the answer is true . \n\n Example 2: \n\n Input: num = 39 \n \n Output: false \n \n Explanation: \n\n Prefixes of num = 39 are 3 and 39. 3 is prime, but 39 is not prime. \n \n Suffixes of num = 39 are 9 and 39. Both 9 and 39 are not prime. \n \n At least one prefix or suffix is not prime, so 39 is not a Complete Prime Number and the answer is false . \n\n Example 3: \n\n Input: num = 7 \n \n Output: true \n \n Explanation: \n\n 7 is prime, so all its prefixes and suffixes are prime and the answer is true . \n\n Constraints: \n\n 1 <= num <= 10 9",
+  "code": "class Solution { bool prime(int x){if(x<2)return false;for(int d=2;1LL*d*d<=x;++d)if(x%d==0)return false;return true;} public: bool completePrime(int num) { string s=to_string(num);for(int i=1;i<=(int)s.size();++i)if(!prime(stoi(s.substr(0,i)))||!prime(stoi(s.substr(s.size()-i))))return false;return true; } };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177752982",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "1810",
+  "title": "Minimum Path Cost in a Hidden Grid",
+  "slug": "minimum-path-cost-in-a-hidden-grid",
+  "url": "https://leetcode.com/problems/minimum-path-cost-in-a-hidden-grid/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Interactive",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Ordered map",
+    "Ordered set",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "This is an interactive problem . \n \n There is a robot in a hidden grid, and you are trying to get it from its starting cell to the target cell in this grid. The grid is of size m x n , and each cell in the grid is either empty or blocked. It is guaranteed that the starting cell and the target cell are different, and neither of them is blocked. \n \n Each cell has a cost that you need to pay each time you move to the cell. The starting cell's cost is not applied before the robot moves. \n \n You want to find the minimum total cost to move the robot to the target cell. However, you do not know the grid's dimensions, the starting cell, nor the target cell. You are only allowed to ask queries to the GridMaster object. \n \n The GridMaster class has the following functions: \n\n boolean canMove(char direction) Returns true if the robot can move in that direction. Otherwise, it returns false . \n \n int move(char direction) Moves the robot in that direction and returns the cost of moving to that cell. If this move would move the robot to a blocked cell or off the grid, the move will be ignored , the robot will remain in the same position, and the function will return -1 . \n \n boolean isTarget() Returns true if the robot is currently on the target cell. Otherwise, it returns false . \n\n Note that direction in the above functions should be a character from {'U','D','L','R'} , representing the directions up, down, left, and right, respectively. \n \n Return the minimum total cost to get the robot from its initial starting cell to the target cell. If there is no valid path between the cells, return -1 . \n \n Custom testing: \n \n The test input is read as a 2D matrix grid of size m x n and four integers r1 , c1 , r2 , and c2 where: \n\n grid[i][j] == 0 indicates that the cell (i, j) is blocked. \n \n grid[i][j] >= 1 indicates that the cell (i, j) is empty and grid[i][j] is the cost to move to that cell. \n \n (r1, c1) is the starting cell of the robot. \n \n (r2, c2) is the target cell of the robot. \n\n Remember that you will not have this information in your code. \n\n Example 1: \n \n```\nInput:\n grid = [[2,3],[1,1]], r1 = 0, c1 = 1, r2 = 1, c2 = 0\n\nOutput:\n 2\n\nExplanation:\n One possible interaction is described below:\nThe robot is initially standing on cell (0, 1), denoted by the 3.\n- master.canMove('U') returns false.\n- master.canMove('D') returns true.\n- master.canMove('L') returns true.\n- master.canMove('R') returns false.\n- master.move('L') moves the robot to the cell (0, 0) and returns 2.\n- master.isTarget() returns false.\n- master.canMove('U') returns false.\n- master.canMove('D') returns true.\n- master.canMove('L') returns false.\n- master.canMove('R') returns true.\n- master.move('D') moves the robot to the cell (1, 0) and returns 1.\n- master.isTarget() returns true.\n- master.move('L') doesn't move the robot and returns -1.\n- master.move('R') moves the robot to the cell (1, 1) and returns 1.\nWe now know that the target is the cell (1, 0), and the minimum total cost to reach it is 2.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[0,3,1],[3,4,2],[1,2,0]], r1 = 2, c1 = 0, r2 = 0, c2 = 2\n\nOutput:\n 9\n\nExplanation:\n The minimum cost path is (2,0) -> (2,1) -> (1,1) -> (1,2) -> (0,2).\n```\n\n Example 3: \n \n```\nInput:\n grid = [[1,0],[0,1]], r1 = 0, c1 = 0, r2 = 1, c2 = 1\n\nOutput:\n -1\n\nExplanation:\n There is no path from the robot to the target cell.\n```\n\n Constraints: \n\n 1 <= n, m <= 100 \n \n m == grid.length \n \n n == grid[i].length \n \n 0 <= grid[i][j] <= 100",
+  "code": "class Solution {\n    map<pair<int, int>, vector<pair<pair<int, int>, int>>> graph;\n    set<pair<int, int>> visited;\n    pair<int, int> target;\n    bool found = false;\n    int dr[4] = {-1, 1, 0, 0};\n    int dc[4] = {0, 0, -1, 1};\n    char direction[4] = {'U', 'D', 'L', 'R'};\n    char back[4] = {'D', 'U', 'R', 'L'};\n\n    void explore(GridMaster& master, int r, int c) {\n        pair<int, int> here = {r, c};\n        visited.insert(here);\n        if (master.isTarget()) { found = true; target = here; }\n        for (int d = 0; d < 4; ++d) {\n            pair<int, int> next = {r + dr[d], c + dc[d]};\n            if (!master.canMove(direction[d])) continue;\n            int cost = master.move(direction[d]);\n            graph[here].push_back({next, cost});\n            if (!visited.count(next)) explore(master, next.first, next.second);\n            int returnCost = master.move(back[d]);\n            graph[next].push_back({here, returnCost});\n        }\n    }\npublic:\n    int findShortestPath(GridMaster& master) {\n        graph.clear(); visited.clear(); found = false;\n        explore(master, 0, 0);\n        if (!found) return -1;\n        using State = pair<int, pair<int, int>>;\n        priority_queue<State, vector<State>, greater<State>> pq;\n        map<pair<int, int>, int> distance;\n        distance[{0, 0}] = 0;\n        pq.push({0, {0, 0}});\n        while (!pq.empty()) {\n            State state = pq.top(); pq.pop();\n            int cost = state.first;\n            auto here = state.second;\n            if (cost != distance[here]) continue;\n            if (here == target) return cost;\n            for (const auto& edge : graph[here]) {\n                auto next = edge.first;\n                int candidate = cost + edge.second;\n                if (!distance.count(next) || candidate < distance[next]) {\n                    distance[next] = candidate;\n                    pq.push({candidate, next});\n                }\n            }\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178614506",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "1428",
+  "title": "Leftmost Column with at Least a One",
+  "slug": "leftmost-column-with-at-least-a-one",
+  "url": "https://leetcode.com/problems/leftmost-column-with-at-least-a-one/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Matrix",
+    "Interactive"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "A row-sorted binary matrix means that all elements are 0 or 1 and each row of the matrix is sorted in non-decreasing order. \n \n Given a row-sorted binary matrix binaryMatrix , return the index (0-indexed) of the leftmost column with a 1 in it . If such an index does not exist, return -1 . \n \n You can't access the Binary Matrix directly. You may only access the matrix using a BinaryMatrix interface: \n\n BinaryMatrix.get(row, col) returns the element of the matrix at index (row, col) (0-indexed). \n \n BinaryMatrix.dimensions() returns the dimensions of the matrix as a list of 2 elements [rows, cols] , which means the matrix is rows x cols . \n\n Submissions making more than 1000 calls to BinaryMatrix.get will be judged Wrong Answer . Also, any solutions that attempt to circumvent the judge will result in disqualification. \n \n For custom testing purposes, the input will be the entire binary matrix mat . You will not have access to the binary matrix directly. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/10/25/untitled-diagram-5.jpg] \n \n```\nInput:\n mat = [[0,0],[1,1]]\n\nOutput:\n 0\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/10/25/untitled-diagram-4.jpg] \n \n```\nInput:\n mat = [[0,0],[0,1]]\n\nOutput:\n 1\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2019/10/25/untitled-diagram-3.jpg] \n \n```\nInput:\n mat = [[0,0],[0,0]]\n\nOutput:\n -1\n```\n\n Constraints: \n\n rows == mat.length \n \n cols == mat[i].length \n \n 1 <= rows, cols <= 100 \n \n mat[i][j] is either 0 or 1 . \n \n mat[i] is sorted in non-decreasing order.",
+  "code": "class Solution {\npublic:\n    int leftMostColumnWithOne(BinaryMatrix& binaryMatrix) {\n        vector<int> dimensions = binaryMatrix.dimensions();\n        int rows = dimensions[0];\n        int cols = dimensions[1];\n        int r = 0;\n        int c = cols - 1;\n        int answer = -1;\n        while (r < rows && c >= 0) {\n            if (binaryMatrix.get(r, c) == 1) {\n                answer = c;\n                --c;\n            } else {\n                ++r;\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178575401",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "1735",
+  "title": "Count Ways to Make Array With Product",
+  "slug": "count-ways-to-make-array-with-product",
+  "url": "https://leetcode.com/problems/count-ways-to-make-array-with-product/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics",
+    "Number Theory",
+    "Prime Factorization",
+    "Fermat's Little Theorem"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array, queries . For each queries[i] , where queries[i] = [n i , k i ] , find the number of different ways you can place positive integers into an array of size n i such that the product of the integers is k i . As the number of ways may be too large, the answer to the i th query is the number of ways modulo 10 9 + 7 . \n \n Return an integer array answer where answer.length == queries.length , and answer[i] is the answer to the i th query. \n\n Example 1: \n \n```\nInput:\n queries = [[2,6],[5,1],[73,660]]\n\nOutput:\n [4,1,50734910]\n\nExplanation:\n Each query is independent.\n[2,6]: There are 4 ways to fill an array of size 2 that multiply to 6: [1,6], [2,3], [3,2], [6,1].\n[5,1]: There is 1 way to fill an array of size 5 that multiply to 1: [1,1,1,1,1].\n[73,660]: There are 1050734917 ways to fill an array of size 73 that multiply to 660. 1050734917 modulo 10\n9\n + 7 = 50734910.\n```\n\n Example 2: \n \n```\nInput:\n queries = [[1,1],[2,2],[3,3],[4,4],[5,5]]\n\nOutput:\n [1,2,3,10,5]\n```\n\n Constraints: \n\n 1 <= queries.length <= 10 4 \n \n 1 <= n i , k i <= 10 4",
+  "code": "class Solution {\n static const int MOD=1000000007;\n long long power(long long a,long long b){long long r=1;for(;b;b>>=1,a=a*a%MOD)if(b&1)r=r*a%MOD;return r;}\npublic:\n vector<int> waysToFillArray(vector<vector<int>>& queries){\n  int maxN=0;for(auto& q:queries)maxN=max(maxN,q[0]+15);\n  vector<long long> fact(maxN+1,1),inv(maxN+1,1);\n  for(int i=1;i<=maxN;++i)fact[i]=fact[i-1]*i%MOD;\n  inv[maxN]=power(fact[maxN],MOD-2);\n  for(int i=maxN;i>0;--i)inv[i-1]=inv[i]*i%MOD;\n  auto choose=[&](int n,int r)->long long{return fact[n]*inv[r]%MOD*inv[n-r]%MOD;};\n  vector<int> ans;\n  for(auto& q:queries){int n=q[0],k=q[1];long long ways=1;\n   for(int p=2;p*p<=k;++p)if(k%p==0){int e=0;while(k%p==0){k/=p;++e;}ways=ways*choose(n+e-1,e)%MOD;}\n   if(k>1)ways=ways*n%MOD;\n   ans.push_back(ways);\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175759517",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "2129",
+  "title": "Capitalize the Title",
+  "slug": "capitalize-the-title",
+  "url": "https://leetcode.com/problems/capitalize-the-title/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string title consisting of one or more words separated by a single space, where each word consists of English letters. Capitalize the string by changing the capitalization of each word such that: \n\n If the length of the word is 1 or 2 letters, change all letters to lowercase. \n \n Otherwise, change the first letter to uppercase and the remaining letters to lowercase. \n\n Return the capitalized title . \n\n Example 1: \n \n```\nInput:\n title = \"capiTalIze tHe titLe\"\n\nOutput:\n \"Capitalize The Title\"\n\nExplanation:\n\nSince all the words have a length of at least 3, the first letter of each word is uppercase, and the remaining letters are lowercase.\n```\n\n Example 2: \n \n```\nInput:\n title = \"First leTTeR of EACH Word\"\n\nOutput:\n \"First Letter of Each Word\"\n\nExplanation:\n\nThe word \"of\" has length 2, so it is all lowercase.\nThe remaining words have a length of at least 3, so the first letter of each remaining word is uppercase, and the remaining letters are lowercase.\n```\n\n Example 3: \n \n```\nInput:\n title = \"i lOve leetcode\"\n\nOutput:\n \"i Love Leetcode\"\n\nExplanation:\n\nThe word \"i\" has length 1, so it is lowercase.\nThe remaining words have a length of at least 3, so the first letter of each remaining word is uppercase, and the remaining letters are lowercase.\n```\n\n Constraints: \n\n 1 <= title.length <= 100 \n \n title consists of words separated by a single space without any leading or trailing spaces. \n \n Each word consists of uppercase and lowercase English letters and is non-empty .",
+  "code": "class Solution {\npublic:\n string capitalizeTitle(string title){\n  int n=title.size();for(int i=0;i<n;){int j=i;while(j<n && title[j]!=' ')++j;\n   for(int k=i;k<j;++k)title[k]=tolower(title[k]);\n   if(j-i>2)title[i]=toupper(title[i]);i=j+1;\n  }\n  return title;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175737707",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

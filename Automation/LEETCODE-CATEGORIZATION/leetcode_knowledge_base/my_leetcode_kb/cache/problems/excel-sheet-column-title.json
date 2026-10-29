@@ -1,0 +1,28 @@
+{
+  "id": "168",
+  "title": "Excel Sheet Column Title",
+  "slug": "excel-sheet-column-title",
+  "url": "https://leetcode.com/problems/excel-sheet-column-title/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given an integer columnNumber , return its corresponding column title as it appears in an Excel sheet . \n \n For example: \n \n```\nA -> 1\nB -> 2\nC -> 3\n...\nZ -> 26\nAA -> 27\nAB -> 28 \n...\n```\n\n Example 1: \n \n```\nInput:\n columnNumber = 1\n\nOutput:\n \"A\"\n```\n\n Example 2: \n \n```\nInput:\n columnNumber = 28\n\nOutput:\n \"AB\"\n```\n\n Example 3: \n \n```\nInput:\n columnNumber = 701\n\nOutput:\n \"ZY\"\n```\n\n Constraints: \n\n 1 <= columnNumber <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    string convertToTitle(int columnNumber) {\n        string result = \"\";\n        while (columnNumber) {\n            columnNumber--;\n            result = char('A' + columnNumber % 26) + result;\n            columnNumber /= 26;\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588126183",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "2037",
+  "title": "Minimum Number of Moves to Seat Everyone",
+  "slug": "minimum-number-of-moves-to-seat-everyone",
+  "url": "https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Counting Sort"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There are n availabe seats and n students standing in a room. You are given an array seats of length n , where seats[i] is the position of the i th seat. You are also given the array students of length n , where students[j] is the position of the j th student. \n \n You may perform the following move any number of times: \n\n Increase or decrease the position of the i th student by 1 (i.e., moving the i th student from position  x  to x + 1 or x - 1 ) \n\n Return the minimum number of moves required to move each student to a seat such that no two students are in the same seat. \n \n Note that there may be multiple seats or students in the same position at the beginning. \n\n Example 1: \n \n```\nInput:\n seats = [3,1,5], students = [2,7,4]\n\nOutput:\n 4\n\nExplanation:\n The students are moved as follows:\n- The first student is moved from position 2 to position 1 using 1 move.\n- The second student is moved from position 7 to position 5 using 2 moves.\n- The third student is moved from position 4 to position 3 using 1 move.\nIn total, 1 + 2 + 1 = 4 moves were used.\n```\n\n Example 2: \n \n```\nInput:\n seats = [4,1,5,9], students = [1,3,2,6]\n\nOutput:\n 7\n\nExplanation:\n The students are moved as follows:\n- The first student is not moved.\n- The second student is moved from position 3 to position 4 using 1 move.\n- The third student is moved from position 2 to position 5 using 3 moves.\n- The fourth student is moved from position 6 to position 9 using 3 moves.\nIn total, 0 + 1 + 3 + 3 = 7 moves were used.\n```\n\n Example 3: \n \n```\nInput:\n seats = [2,2,6,6], students = [1,3,2,6]\n\nOutput:\n 4\n\nExplanation:\n Note that there are two seats at position 2 and two seats at position 6.\nThe students are moved as follows:\n- The first student is moved from position 1 to position 2 using 1 move.\n- The second student is moved from position 3 to position 6 using 3 moves.\n- The third student is not moved.\n- The fourth student is not moved.\nIn total, 1 + 3 + 0 + 0 = 4 moves were used.\n```\n\n Constraints: \n\n n == seats.length == students.length \n \n 1 <= n <= 100 \n \n 1 <= seats[i], students[j] <= 100",
+  "code": "class Solution {\npublic:\n    int minMovesToSeat(vector<int>& seats,vector<int>& students){\n        sort(seats.begin(),seats.end());sort(students.begin(),students.end());\n        int ans=0;for(int i=0;i<(int)seats.size();++i)ans+=abs(seats[i]-students[i]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175769798",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

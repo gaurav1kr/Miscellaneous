@@ -1,0 +1,29 @@
+{
+  "id": "4028",
+  "title": "Minimum Operations to Make a Rotated Palindrome II",
+  "slug": "minimum-operations-to-make-a-rotated-palindrome-ii",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-a-rotated-palindrome-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. \n \n You can perform the following operations any number of times (including zero) and in any order: \n\n Increment : Choose any index i and replace s[i] with the next lowercase English letter. The letter after 'z' is 'a' . \n \n Left rotate : Move the first character of the string to the end. \n\n Return the minimum number of operations required to make s a palindrome . \n\n Example 1: \n\n Input: s = \"abc\" \n \n Output: 2 \n \n Explanation: \nOne optimal solution:\n\n Left rotate the string: \"abc\" -> \"bca\" . \n \n Increment 'a' to 'b' : \"bca\" -> \"bcb\" . \n \n \"bcb\" is a palindrome. Thus, the answer is 2. \n\n Example 2: \n\n Input: s = \"yb\" \n \n Output: 3 \n \n Explanation: \n\n Increment the first character three times: \"yb\" -> \"zb\" -> \"ab\" -> \"bb\" . \n \n \"bb\" is a palindrome. Thus, the answer is 3. \n\n Constraints: \n\n 2 <= s.length <= 5 * 10 4 \n \n s​​​​​​​​​​​​​​ consists only of lowercase English letters.",
+  "code": "class Solution {\n    using cd=complex<double>;\n    const double PI=acos(-1.0);\n    void fft(vector<cd>& a,bool invert) {\n        int n=a.size();\n        for(int i=1,j=0;i<n;++i) {\n            int bit=n>>1;\n            for(;j&bit;bit>>=1)j^=bit;\n            j^=bit;\n            if(i<j)swap(a[i],a[j]);\n        }\n        for(int len=2;len<=n;len<<=1) {\n            double ang=2*PI/len*(invert?-1:1);\n            cd wlen(cos(ang),sin(ang));\n            for(int i=0;i<n;i+=len) {\n                cd w(1);\n                for(int j=0;j<len/2;++j) {\n                    cd u=a[i+j],v=a[i+j+len/2]*w;\n                    a[i+j]=u+v;\n                    a[i+j+len/2]=u-v;\n                    w*=wlen;\n                }\n            }\n        }\n        if(invert)for(cd &x:a)x/=n;\n    }\npublic:\n    int minOperations(string s) {\n        int n=s.size(),size=1;\n        while(size<2*n)size<<=1;\n        vector<long long> mismatch(n,0);\n        for(int feature=0;feature<13;++feature) {\n            vector<cd> a(size);\n            int cnt=0;\n            for(int i=0;i<n;++i) {\n                int x=s[i]-'a';\n                int delta=(x-feature+26)%26;\n                if(delta<13) {a[i]=1;++cnt;}\n            }\n            fft(a,false);\n            for(cd &v:a)v*=v;\n            fft(a,true);\n            for(int c=0;c<n;++c) {\n                long long conv=llround(a[c].real());\n                if(c+n<2*n-1)conv+=llround(a[c+n].real());\n                mismatch[c]+=cnt-conv;\n            }\n        }\n        long long ans=LLONG_MAX;\n        for(int r=0;r<n;++r) {\n            int c=(2LL*r+n-1)%n;\n            ans=min(ans,mismatch[c]+r);\n        }\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181503748",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

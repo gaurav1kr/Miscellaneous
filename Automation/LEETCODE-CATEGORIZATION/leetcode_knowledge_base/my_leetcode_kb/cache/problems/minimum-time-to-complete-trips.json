@@ -1,0 +1,29 @@
+{
+  "id": "2187",
+  "title": "Minimum Time to Complete Trips",
+  "slug": "minimum-time-to-complete-trips",
+  "url": "https://leetcode.com/problems/minimum-time-to-complete-trips/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array time where time[i] denotes the time taken by the i th bus to complete one trip . \n \n Each bus can make multiple trips successively ; that is, the next trip can start immediately after completing the current trip. Also, each bus operates independently ; that is, the trips of one bus do not influence the trips of any other bus. \n \n You are also given an integer totalTrips , which denotes the number of trips all buses should make in total . Return the minimum time required for all buses to complete at least totalTrips trips . \n\n Example 1: \n \n```\nInput:\n time = [1,2,3], totalTrips = 5\n\nOutput:\n 3\n\nExplanation:\n\n- At time t = 1, the number of trips completed by each bus are [1,0,0]. \n The total number of trips completed is 1 + 0 + 0 = 1.\n- At time t = 2, the number of trips completed by each bus are [2,1,0]. \n The total number of trips completed is 2 + 1 + 0 = 3.\n- At time t = 3, the number of trips completed by each bus are [3,1,1]. \n The total number of trips completed is 3 + 1 + 1 = 5.\nSo the minimum time needed for all buses to complete at least 5 trips is 3.\n```\n\n Example 2: \n \n```\nInput:\n time = [2], totalTrips = 1\n\nOutput:\n 2\n\nExplanation:\n\nThere is only one bus, and it will complete its first trip at t = 2.\nSo the minimum time needed to complete 1 trip is 2.\n```\n\n Constraints: \n\n 1 <= time.length <= 10 5 \n \n 1 <= time[i], totalTrips <= 10 7",
+  "code": "class Solution {\npublic:\n    long long minimumTime(vector<int>& time, int totalTrips) {\n        long long lo=1,hi=1LL*(*min_element(time.begin(),time.end()))*totalTrips;\n        while(lo<hi) {\n            long long mid=lo+(hi-lo)/2,trips=0;\n            for(int t:time) {trips+=mid/t;if(trips>=totalTrips) break;}\n            if(trips>=totalTrips) hi=mid;else lo=mid+1;\n        }\n        return lo;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175882105",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

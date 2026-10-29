@@ -1,0 +1,37 @@
+{
+  "id": "2612",
+  "title": "Minimum Reverse Operations",
+  "slug": "minimum-reverse-operations",
+  "url": "https://leetcode.com/problems/minimum-reverse-operations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Breadth-First Search",
+    "Union-Find",
+    "Ordered Set"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map / hash set",
+    "Ordered set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer n and an integer p representing an array arr of length n where all elements are set to 0's, except position p which is set to 1. You are also given an integer array banned containing restricted positions. Perform the following operation on arr : \n\n Reverse a subarray with size k if the single 1 is not set to a position in banned . \n\n Return an integer array answer with n results where the i th result is the minimum number of operations needed to bring the single 1 to position i in arr , or -1 if it is impossible. \n\n Example 1: \n\n Input: n = 4, p = 0, banned = [1,2], k = 4 \n \n Output: [0,-1,-1,1] \n \n Explanation: \n\n Initially 1 is placed at position 0 so the number of operations we need for position 0 is 0. \n \n We can never place 1 on the banned positions, so the answer for positions 1 and 2 is -1. \n \n Perform the operation of size 4 to reverse the whole array. \n \n After a single operation 1 is at position 3 so the answer for position 3 is 1. \n\n Example 2: \n\n Input: n = 5, p = 0, banned = [2,4], k = 3 \n \n Output: [0,-1,-1,-1,-1] \n \n Explanation: \n\n Initially 1 is placed at position 0 so the number of operations we need for position 0 is 0. \n \n We cannot perform the operation on the subarray positions [0, 2] because position 2 is in banned. \n \n Because 1 cannot be set at position 2, it is impossible to set 1 at other positions in more operations. \n\n Example 3: \n\n Input: n = 4, p = 2, banned = [0,1,3], k = 1 \n \n Output: [-1,-1,0,-1] \n \n Explanation: \n \n Perform operations of size 1 and 1 never changes its position. \n\n Constraints: \n\n 1 <= n <= 10 5 \n \n 0 <= p <= n - 1 \n \n 0 <= banned.length <= n - 1 \n \n 0 <= banned[i] <= n - 1 \n \n 1 <= k <= n  \n \n banned[i] != p \n \n all values in banned  are unique",
+  "code": "class Solution {\npublic:\n vector<int> minReverseOperations(int n,int p,vector<int>& banned,int k) {\n  vector<int> dist(n,-1);\n  set<int> unused[2];\n  vector<char> blocked(n,false);\n  for(int b:banned)blocked[b]=true;\n  for(int i=0;i<n;++i)if(i!=p&&!blocked[i])unused[i&1].insert(i);\n  queue<int> q;q.push(p);dist[p]=0;\n  while(!q.empty()){\n   int i=q.front();q.pop();\n   int lo=2*max(0,i-k+1)+k-1-i;\n   int hi=2*min(i,n-k)+k-1-i;\n   auto &s=unused[lo&1];\n   auto it=s.lower_bound(lo);\n   while(it!=s.end()&&*it<=hi){int j=*it;it=s.erase(it);dist[j]=dist[i]+1;q.push(j);}\n  }\n  return dist;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176628728",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

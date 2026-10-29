@@ -1,0 +1,30 @@
+{
+  "id": "3662",
+  "title": "Filter Characters by Frequency",
+  "slug": "filter-characters-by-frequency",
+  "url": "https://leetcode.com/problems/filter-characters-by-frequency/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters and an integer k . \n \n Your task is to construct a new string that contains only those characters from s which appear fewer than k times in the entire string. The order of characters in the new string must be the same as their order in s . \n \n Return the resulting string. If no characters qualify, return an empty string. \n \n Note: Every occurrence of a character that occurs fewer than k times is kept. \n\n Example 1: \n\n Input: s = \"aadbbcccca\", k = 3 \n \n Output: \"dbb\" \n \n Explanation: \n \n Character frequencies in s : \n\n 'a' appears 3 times \n \n 'd' appears 1 time \n \n 'b' appears 2 times \n \n 'c' appears 4 times \n\n Only 'd' and 'b' appear fewer than 3 times. Preserving their order, the result is \"dbb\" . \n\n Example 2: \n\n Input: s = \"xyz\", k = 2 \n \n Output: \"xyz\" \n \n Explanation: \n \n All characters ( 'x' , 'y' , 'z' ) appear exactly once, which is fewer than 2. Thus the whole string is returned. \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists of lowercase English letters. \n \n 1 <= k <= s.length",
+  "code": "class Solution {\npublic:\n    string filterCharacters(string s, int k) {\n        int freq[26] = {};\n        for (char c : s) ++freq[c - 'a'];\n        string ans;\n        for (char c : s) {\n            if (freq[c - 'a'] < k) ans.push_back(c);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179673509",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

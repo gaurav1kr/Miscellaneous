@@ -1,0 +1,32 @@
+{
+  "id": "1031",
+  "title": "Maximum Sum of Two Non-Overlapping Subarrays",
+  "slug": "maximum-sum-of-two-non-overlapping-subarrays",
+  "url": "https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and two integers firstLen and secondLen , return the maximum sum of elements in two non-overlapping subarrays with lengths firstLen and secondLen . \n \n The array with length firstLen could occur before or after the array with length secondLen , but they have to be non-overlapping. \n \n A subarray is a contiguous part of an array. \n\n Example 1: \n \n```\nInput:\n nums = [0,6,5,2,2,5,1,9,4], firstLen = 1, secondLen = 2\n\nOutput:\n 20\n\nExplanation:\n One choice of subarrays is [9] with length 1, and [6,5] with length 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,8,1,3,2,1,8,9,0], firstLen = 3, secondLen = 2\n\nOutput:\n 29\n\nExplanation:\n One choice of subarrays is [3,8,1] with length 3, and [8,9] with length 2.\n```\n\n Example 3: \n \n```\nInput:\n nums = [2,1,5,6,0,9,5,0,3,8], firstLen = 4, secondLen = 3\n\nOutput:\n 31\n\nExplanation:\n One choice of subarrays is [5,6,0,9] with length 4, and [0,3,8] with length 3.\n```\n\n Constraints: \n\n 1 <= firstLen, secondLen <= 1000 \n \n 2 <= firstLen + secondLen <= 1000 \n \n firstLen + secondLen <= nums.length <= 1000 \n \n 0 <= nums[i] <= 1000",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxSumTwoNoOverlap(vector<int>& nums, int L, int M) {\n        return max(helper(nums, L, M), helper(nums, M, L));\n    }\n\n    int helper(vector<int>& nums, int L, int M) {\n        int n = nums.size(), maxL = 0, result = 0;\n        vector<int> prefix(n + 1, 0);\n        \n        for (int i = 1; i <= n; i++) {\n            prefix[i] = prefix[i - 1] + nums[i - 1];\n        }\n        \n        for (int i = L + M; i <= n; i++) {\n            maxL = max(maxL, prefix[i - M] - prefix[i - M - L]);\n            result = max(result, maxL + prefix[i] - prefix[i - M]);\n        }\n        \n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590142220",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

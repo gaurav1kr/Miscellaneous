@@ -1,0 +1,36 @@
+{
+  "id": "407",
+  "title": "Trapping Rain Water II",
+  "slug": "trapping-rain-water-ii",
+  "url": "https://leetcode.com/problems/trapping-rain-water-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Heap (Priority Queue)",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given an m x n integer matrix heightMap representing the height of each unit cell in a 2D elevation map, return the volume of water it can trap after raining . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/08/trap1-3d.jpg] \n \n```\nInput:\n heightMap = [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]]\n\nOutput:\n 4\n\nExplanation:\n After the rain, water is trapped between the blocks.\nWe have two small ponds 1 and 3 units trapped.\nThe total volume of water trapped is 4.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/08/trap2-3d.jpg] \n \n```\nInput:\n heightMap = [[3,3,3,3,3],[3,2,2,2,3],[3,2,1,2,3],[3,2,2,2,3],[3,3,3,3,3]]\n\nOutput:\n 10\n```\n\n Constraints: \n\n m == heightMap.length \n \n n == heightMap[i].length \n \n 1 <= m, n <= 200 \n \n 0 <= heightMap[i][j] <= 2 * 10 4",
+  "code": "#define pii pair<int, int>\n#define piii pair<int, pii>\n#define f first\n#define s second\n\nclass Solution {\npublic:\n    int m,n;\n    bool isValid(int x, int y){\n        return min(x,y) >= 0 && x < m && y < n;\n    }\n\n    int trapRainWater(vector<vector<int>>& matrix) {\n        m = matrix.size();\n        n = matrix[0].size();\n\n        vector<vector<bool>> visited(m+1, vector<bool>(n+1, false));\n        priority_queue<piii, vector<piii>, greater<piii>> pq;\n        int dx[4] = {1, -1, 0, 0};\n        int dy[4] = {0, 0, 1, -1};\n\n        for (int i = 0; i < m; i++){\n            for (int j = 0; j < n; j++){\n                if (i == 0 || i == m-1 || j == 0 || j == n-1){\n                    pq.push({matrix[i][j], {i, j}});\n                }\n            }\n        }\n\n        int ans = 0;\n        while(!pq.empty()){\n            int i = pq.top().s.f;\n            int j = pq.top().s.s;\n            int h = pq.top().f;\n            pq.pop();\n\n            if (visited[i][j]) continue;\n            visited[i][j] = 1;\n            ans += h - matrix[i][j];\n\n            for (int k = 0; k < 4; k++){\n                int nx = i + dx[k];\n                int ny = j + dy[k];\n                if (isValid(nx, ny) && !visited[nx][ny]){\n                    pq.push({max(h, matrix[nx][ny]), {nx, ny}});\n                }\n            }\n        }\n\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1482419882",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

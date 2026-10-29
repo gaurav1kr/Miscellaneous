@@ -1,0 +1,31 @@
+{
+  "id": "1156",
+  "title": "Swap For Longest Repeated Character Substring",
+  "slug": "swap-for-longest-repeated-character-substring",
+  "url": "https://leetcode.com/problems/swap-for-longest-repeated-character-substring/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string text . You can swap two of the characters in the text . \n \n Return the length of the longest substring with repeated characters . \n\n Example 1: \n \n```\nInput:\n text = \"ababa\"\n\nOutput:\n 3\n\nExplanation:\n We can swap the first 'b' with the last 'a', or the last 'b' with the first 'a'. Then, the longest repeated character substring is \"aaa\" with length 3.\n```\n\n Example 2: \n \n```\nInput:\n text = \"aaabaaa\"\n\nOutput:\n 6\n\nExplanation:\n Swap 'b' with the last 'a' (or the first 'a'), and we get longest repeated character substring \"aaaaaa\" with length 6.\n```\n\n Example 3: \n \n```\nInput:\n text = \"aaaaa\"\n\nOutput:\n 5\n\nExplanation:\n No need to swap, longest repeated character substring is \"aaaaa\" with length is 5.\n```\n\n Constraints: \n\n 1 <= text.length <= 2 * 10 4 \n \n text consist of lowercase English characters only.",
+  "code": "class Solution {\npublic:\n    int maxRepOpt1(string text) {\n        int freq[26] = {0};\n        for(char c : text) freq[c - 'a']++;\n\n        int ans = 0, n = text.size();\n        for(int i = 0; i < n; i++) {\n            int j = i, diff = 0, cnt = 0;\n            while(j < n && (text[j] == text[i] || diff == 0) && cnt < freq[text[i] - 'a']){\n                if(text[j] != text[i]) diff++;\n                cnt++;\n                j++;\n            }\n            if(cnt < freq[text[i] - 'a'] && diff == 0) cnt++;\n            ans = max(ans, cnt);\n        }\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617067764",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

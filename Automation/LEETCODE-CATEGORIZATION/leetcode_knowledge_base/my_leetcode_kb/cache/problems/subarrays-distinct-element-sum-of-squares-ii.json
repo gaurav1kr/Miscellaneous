@@ -1,0 +1,37 @@
+{
+  "id": "2916",
+  "title": "Subarrays Distinct Element Sum of Squares II",
+  "slug": "subarrays-distinct-element-sum-of-squares-ii",
+  "url": "https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Indexed Tree",
+    "Segment Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . \n \n The distinct count of a subarray of nums is defined as: \n\n Let nums[i..j] be a subarray of nums consisting of all the indices from i to j such that 0 <= i <= j < nums.length . Then the number of distinct values in nums[i..j] is called the distinct count of nums[i..j] . \n\n Return the sum of the squares of distinct counts of all subarrays of nums . \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n \n A subarray is a contiguous non-empty sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,1]\n\nOutput:\n 15\n\nExplanation:\n Six possible subarrays are:\n[1]: 1 distinct value\n[2]: 1 distinct value\n[1]: 1 distinct value\n[1,2]: 2 distinct values\n[2,1]: 2 distinct values\n[1,2,1]: 2 distinct values\nThe sum of the squares of the distinct counts in all subarrays is equal to 1\n2\n + 1\n2\n + 1\n2\n + 2\n2\n + 2\n2\n + 2\n2\n = 15.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,2]\n\nOutput:\n 3\n\nExplanation:\n Three possible subarrays are:\n[2]: 1 distinct value\n[2]: 1 distinct value\n[2,2]: 1 distinct value\nThe sum of the squares of the distinct counts in all subarrays is equal to 1\n2\n + 1\n2\n + 1\n2\n = 3.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {static const int MOD=1000000007;struct Node{long long sum=0,sq=0,lazy=0;};vector<Node> tr;void apply(int p,int l,int r,long long x){long long len=r-l+1;tr[p].sq=(tr[p].sq+2*x*tr[p].sum%MOD+x*x%MOD*len)%MOD;tr[p].sum=(tr[p].sum+x*len)%MOD;tr[p].lazy=(tr[p].lazy+x)%MOD;}void push(int p,int l,int r){if(tr[p].lazy&&l<r){int m=(l+r)/2;apply(p*2,l,m,tr[p].lazy);apply(p*2+1,m+1,r,tr[p].lazy);tr[p].lazy=0;}}void upd(int p,int l,int r,int ql,int qr){if(ql<=l&&r<=qr){apply(p,l,r,1);return;}push(p,l,r);int m=(l+r)/2;if(ql<=m)upd(p*2,l,m,ql,qr);if(qr>m)upd(p*2+1,m+1,r,ql,qr);tr[p].sum=(tr[p*2].sum+tr[p*2+1].sum)%MOD;tr[p].sq=(tr[p*2].sq+tr[p*2+1].sq)%MOD;}public:int sumCounts(vector<int>& nums){int n=nums.size();tr.assign(4*n+4,Node());unordered_map<int,int> last;long long ans=0;for(int i=0;i<n;i++){int start=last.count(nums[i])?last[nums[i]]+1:0;upd(1,0,n-1,start,i);last[nums[i]]=i;ans=(ans+tr[1].sq)%MOD;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176749688",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

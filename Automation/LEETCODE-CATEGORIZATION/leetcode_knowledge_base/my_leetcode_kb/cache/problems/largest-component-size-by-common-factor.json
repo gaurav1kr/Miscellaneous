@@ -1,0 +1,39 @@
+{
+  "id": "952",
+  "title": "Largest Component Size by Common Factor",
+  "slug": "largest-component-size-by-common-factor",
+  "url": "https://leetcode.com/problems/largest-component-size-by-common-factor/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Union-Find",
+    "Number Theory",
+    "Prime Factorization"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array of unique positive integers nums . Consider the following graph: \n\n There are nums.length nodes, labeled nums[0] to nums[nums.length - 1] , \n \n There is an undirected edge between nums[i] and nums[j] if nums[i] and nums[j] share a common factor greater than 1 . \n\n Return the size of the largest connected component in the graph . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2018/12/01/ex1.png] \n \n```\nInput:\n nums = [4,6,15,35]\n\nOutput:\n 4\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2018/12/01/ex2.png] \n \n```\nInput:\n nums = [20,50,9,63]\n\nOutput:\n 2\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2018/12/01/ex3.png] \n \n```\nInput:\n nums = [2,3,6,7,4,12,21,39]\n\nOutput:\n 8\n```\n\n Constraints: \n\n 1 <= nums.length <= 2 * 10 4 \n \n 1 <= nums[i] <= 10 5 \n \n All the values of nums are unique .",
+  "code": "#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> parent;\n\n    int find(int x) {\n        if (parent[x] != x) parent[x] = find(parent[x]);\n        return parent[x];\n    }\n\n    void unionNodes(int x, int y) {\n        parent[find(x)] = find(y);\n    }\n\n    int largestComponentSize(vector<int>& nums) {\n        int n = nums.size();\n        int maxNum = *max_element(nums.begin(), nums.end());\n        parent.resize(maxNum + 1);\n        for (int i = 0; i <= maxNum; i++) parent[i] = i;\n\n        for (int num : nums) {\n            for (int i = 2; i * i <= num; i++) {\n                if (num % i == 0) {\n                    unionNodes(num, i);\n                    unionNodes(num, num / i);\n                }\n            }\n        }\n\n        unordered_map<int, int> componentCount;\n        int maxComponentSize = 0;\n        for (int num : nums) {\n            int root = find(num);\n            maxComponentSize = max(maxComponentSize, ++componentCount[root]);\n        }\n        return maxComponentSize;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591365417",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

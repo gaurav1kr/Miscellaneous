@@ -1,0 +1,40 @@
+{
+  "id": "2297",
+  "title": "Jump Game VIII",
+  "slug": "jump-game-viii",
+  "url": "https://leetcode.com/problems/jump-game-viii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Graph Theory",
+    "Monotonic Stack",
+    "Shortest Path"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums of length n . You are initially standing at index 0 . You can jump from index i to index j where i < j if: \n\n nums[i] <= nums[j] and nums[k] < nums[i] for all indexes k in the range i < k < j , or \n \n nums[i] > nums[j] and nums[k] >= nums[i] for all indexes k in the range i < k < j . \n\n You are also given an integer array costs of length n where costs[i] denotes the cost of jumping to index i . \n \n Return the minimum cost to jump to the index n - 1 . \n\n Example 1: \n \n```\nInput:\n nums = [3,2,4,4,1], costs = [3,7,6,4,2]\n\nOutput:\n 8\n\nExplanation:\n You start at index 0.\n- Jump to index 2 with a cost of costs[2] = 6.\n- Jump to index 4 with a cost of costs[4] = 2.\nThe total cost is 8. It can be proven that 8 is the minimum cost needed.\nTwo other possible paths are from index 0 -> 1 -> 4 and index 0 -> 2 -> 3 -> 4.\nThese have a total cost of 9 and 12, respectively.\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,1,2], costs = [1,1,1]\n\nOutput:\n 2\n\nExplanation:\n Start at index 0.\n- Jump to index 1 with a cost of costs[1] = 1.\n- Jump to index 2 with a cost of costs[2] = 1.\nThe total cost is 2. Note that you cannot jump directly from index 0 to index 2 because nums[0] <= nums[1].\n```\n\n Constraints: \n\n n == nums.length == costs.length \n \n 1 <= n <= 10 5 \n \n 0 <= nums[i], costs[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    long long minCost(vector<int>& nums, vector<int>& costs) {\n        int n = nums.size();\n        vector<long long> dp(n, LLONG_MAX / 4);\n        vector<int> inc, dec;\n        dp[0] = 0;\n        for (int i = 0; i < n; ++i) {\n            while (!inc.empty() && nums[inc.back()] <= nums[i]) {\n                dp[i] = min(dp[i], dp[inc.back()] + costs[i]); inc.pop_back();\n            }\n            while (!dec.empty() && nums[dec.back()] > nums[i]) {\n                dp[i] = min(dp[i], dp[dec.back()] + costs[i]); dec.pop_back();\n            }\n            inc.push_back(i); dec.push_back(i);\n        }\n        return dp[n - 1];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178855402",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

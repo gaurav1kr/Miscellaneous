@@ -1,0 +1,38 @@
+{
+  "id": "353",
+  "title": "Design Snake Game",
+  "slug": "design-snake-game",
+  "url": "https://leetcode.com/problems/design-snake-game/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Design",
+    "Queue",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Deque",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Design a Snake game that is played on a device with screen size height x width . Play the game online if you are not familiar with the game. \n \n The snake is initially positioned at the top left corner (0, 0) with a length of 1 unit. \n \n You are given an array food where food[i] = (r i , c i ) is the row and column position of a piece of food that the snake can eat. When a snake eats a piece of food, its length and the game's score both increase by 1 . \n \n Each piece of food appears one by one on the screen, meaning the second piece of food will not appear until the snake eats the first piece of food. \n \n When a piece of food appears on the screen, it is guaranteed that it will not appear on a block occupied by the snake. \n \n The game is over if the snake goes out of bounds (hits a wall) or if its head occupies a space that its body occupies after moving (i.e. a snake of length 4 cannot run into itself). \n \n Implement the SnakeGame class: \n\n SnakeGame(int width, int height, int[][] food) Initializes the object with a screen of size height x width and the positions of the food . \n \n int move(String direction) Returns the score of the game after applying one direction move by the snake. If the game is over, return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/13/snake.jpg] \n \n```\nInput\n\n[\"SnakeGame\", \"move\", \"move\", \"move\", \"move\", \"move\", \"move\"]\n[[3, 2, [[1, 2], [0, 1]]], [\"R\"], [\"D\"], [\"R\"], [\"U\"], [\"L\"], [\"U\"]]\n\nOutput\n\n[null, 0, 0, 1, 1, 2, -1]\n\nExplanation\n\nSnakeGame snakeGame = new SnakeGame(3, 2, [[1, 2], [0, 1]]);\nsnakeGame.move(\"R\"); // return 0\nsnakeGame.move(\"D\"); // return 0\nsnakeGame.move(\"R\"); // return 1, snake eats the first piece of food. The second piece of food appears at (0, 1).\nsnakeGame.move(\"U\"); // return 1\nsnakeGame.move(\"L\"); // return 2, snake eats the second food. No more food appears.\nsnakeGame.move(\"U\"); // return -1, game over because snake collides with border\n```\n\n Constraints: \n\n 1 <= width, height <= 10 4 \n \n 1 <= food.length <= 50 \n \n food[i].length == 2 \n \n 0 <= r i < height \n \n 0 <= c i < width \n \n direction.length == 1 \n \n direction is 'U' , 'D' , 'L' , or 'R' . \n \n At most 10 4 calls will be made to move .",
+  "code": "class SnakeGame\n{\n    int width, height, foodIndex = 0;\n    vector<vector<int>> food;\n    deque<int> body;\n    unordered_set<int> occupied;\n    bool dead = false;\npublic:\n    SnakeGame(int width, int height, vector<vector<int>>& food)\n        : width(width), height(height), food(food) {\n        body.push_front(0);\n        occupied.insert(0);\n    }\n    int move(string direction)\n    {\n        if (dead) return -1;\n        int head = body.front();\n        int r = head / width, c = head % width;\n        if (direction == \"U\") --r;\n        else if (direction == \"D\") ++r;\n        else if (direction == \"L\") --c;\n        else if (direction == \"R\") ++c;\n        if (r < 0 || r >= height || c < 0 || c >= width)\n        {\n            dead = true;\n            return -1;\n        }\n        bool eats = foodIndex < (int)food.size() &&\n                    food[foodIndex][0] == r && food[foodIndex][1] == c;\n        if (!eats)\n        {\n            occupied.erase(body.back());\n            body.pop_back();\n        }\n        int next = r * width + c;\n        if (occupied.count(next))\n        {\n            dead = true;\n            return -1;\n        }\n        body.push_front(next);\n        occupied.insert(next);\n        if (eats) ++foodIndex;\n        return foodIndex;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178457390",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

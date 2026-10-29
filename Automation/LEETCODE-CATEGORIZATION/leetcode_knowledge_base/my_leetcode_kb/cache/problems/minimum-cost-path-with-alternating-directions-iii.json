@@ -1,0 +1,38 @@
+{
+  "id": "4003",
+  "title": "Minimum Cost Path with Alternating Directions III",
+  "slug": "minimum-cost-path-with-alternating-directions-iii",
+  "url": "https://leetcode.com/problems/minimum-cost-path-with-alternating-directions-iii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given two integers m and n representing the number of rows and columns of a grid. Your goal is to reach cell (m - 1, n - 1) . You are also given a 2D integer array penalty . \n \n The cost to enter cell (i, j) is (i + 1) * (j + 1) . \n \n You begin at cell (0, 0) and initially pay its entrance cost. Actions performed after entering (0, 0) are numbered starting from 1. \n \n On each action, you may move to an adjacent cell or wait in the current cell. A move follows the parity rule if: \n\n On an odd-numbered action, you move right or down . \n \n On an even-numbered action, you move left or up . \n\n The cost of an action is determined as follows: \n\n If you move according to the parity rule, pay only the entrance cost of the destination cell. \n \n If you move in a direction that violates the parity rule, pay the entrance cost of the destination cell plus penalty[i][j] , where (i, j) is the cell you move from. \n \n If you wait in cell (i, j) , pay penalty[i][j] . \n\n After every move or wait, the action number increases by 1. Therefore, the required parity alternates after every action, regardless of whether a penalty was paid. \n \n Return the minimum total cost required to reach (m - 1, n - 1) . \n\n Example 1: \n\n Input: m = 2, n = 2, penalty = [[5,3],[1,4]] \n \n Output: 8 \n \n Explanation: \n \n The optimal path is: \n\n Start at cell (0, 0) with entry cost (0 + 1) * (0 + 1) = 1 . \n \n Move 1 : Move down to cell (1, 0) with entry cost (1 + 1) * (0 + 1) = 2 . \n \n Move 2 : Move right to cell (1, 1) with entry cost (1 + 1) * (1 + 1) = 4 and an extra cost of penalty[1][0] = 1 for violating the even parity rule. \n\n Thus, the total cost is 1 + 2 + 4 + 1 = 8 . \n\n Example 2: \n\n Input: m = 2, n = 2, penalty = [[0,7],[3,2]] \n \n Output: 7 \n \n Explanation: \n \n The optimal path is: \n\n Start at cell (0, 0) with entry cost (0 + 1) * (0 + 1) = 1 . \n \n Move 1 : Wait at cell (0, 0) with an extra cost of penalty[0][0] = 0 to flip to even parity. \n \n Move 2 : Move right to cell (0, 1) with entry cost (0 + 1) * (1 + 1) = 2 and an extra cost of penalty[0][0] = 0 for violating the even parity rule. \n \n Move 3 : Move down to cell (1, 1) with entry cost (1 + 1) * (1 + 1) = 4 . \n\n Thus, the total cost is 1 + 0 + 2 + 0 + 4 = 7 . \n\n Example 3: \n\n Input: m = 2, n = 3, penalty = [[8,0,9],[7,4,1]] \n \n Output: 12 \n \n Explanation: \n \n The optimal path is: \n\n Start at cell (0, 0) with entry cost (0 + 1) * (0 + 1) = 1 . \n \n Move 1 : Move right to cell (0, 1) with entry cost (0 + 1) * (1 + 1) = 2 . \n \n Move 2 : Move right to cell (0, 2) with entry cost (0 + 1) * (2 + 1) = 3 and an extra cost of penalty[0][1] = 0 for violating the even parity rule. \n \n Move 3 : Move down to cell (1, 2) with entry cost (1 + 1) * (2 + 1) = 6 . \n\n Thus, the total cost is 1 + 2 + 3 + 0 + 6 = 12 . \n\n Constraints: \n\n 1 <= m, n <= 10 5 \n \n 2 <= m * n <= 10 5 \n \n penalty.length == m \n \n penalty[i].length == n \n \n 0 <= penalty[i][j] <= 10 5",
+  "code": "class Solution {\npublic:\n    long long minCost(int m,int n,vector<vector<int>>& penalty){\n        const long long INF=LLONG_MAX/4;vector<vector<array<long long,2>>> dist(m,vector<array<long long,2>>(n,{INF,INF}));\n        typedef tuple<long long,int,int,int> State;priority_queue<State,vector<State>,greater<State>> pq;\n        dist[0][0][0]=1;pq.push(make_tuple(1,0,0,0));int dr[4]={0,1,0,-1},dc[4]={1,0,-1,0};\n        while(!pq.empty()){auto t=pq.top();pq.pop();long long d=get<0>(t);int r=get<1>(t),c=get<2>(t),p=get<3>(t);\n            if(d!=dist[r][c][p])continue;if(r==m-1&&c==n-1)return d;\n            if(d+penalty[r][c]<dist[r][c][1-p]){dist[r][c][1-p]=d+penalty[r][c];pq.push(make_tuple(dist[r][c][1-p],r,c,1-p));}\n            for(int z=0;z<4;z++){int nr=r+dr[z],nc=c+dc[z];if(nr<0||nr>=m||nc<0||nc>=n)continue;\n                bool permitted=p==0?z<2:z>=2;long long nd=d+1LL*(nr+1)*(nc+1)+(permitted?0:penalty[r][c]);\n                if(nd<dist[nr][nc][1-p]){dist[nr][nc][1-p]=nd;pq.push(make_tuple(nd,nr,nc,1-p));}}\n        }return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181181824",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

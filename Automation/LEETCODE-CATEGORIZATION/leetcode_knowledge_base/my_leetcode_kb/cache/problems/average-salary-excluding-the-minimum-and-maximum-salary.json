@@ -1,0 +1,30 @@
+{
+  "id": "1491",
+  "title": "Average Salary Excluding the Minimum and Maximum Salary",
+  "slug": "average-salary-excluding-the-minimum-and-maximum-salary",
+  "url": "https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array of unique integers salary where salary[i] is the salary of the i th employee. \n \n Return the average salary of employees excluding the minimum and maximum salary . Answers within 10 -5 of the actual answer will be accepted. \n\n Example 1: \n \n```\nInput:\n salary = [4000,3000,1000,2000]\n\nOutput:\n 2500.00000\n\nExplanation:\n Minimum salary and maximum salary are 1000 and 4000 respectively.\nAverage salary excluding minimum and maximum salary is (2000+3000) / 2 = 2500\n```\n\n Example 2: \n \n```\nInput:\n salary = [1000,2000,3000]\n\nOutput:\n 2000.00000\n\nExplanation:\n Minimum salary and maximum salary are 1000 and 3000 respectively.\nAverage salary excluding minimum and maximum salary is (2000) / 1 = 2000\n```\n\n Constraints: \n\n 3 <= salary.length <= 100 \n \n 1000 <= salary[i] <= 10 6 \n \n All the integers of salary are unique .",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    double average(vector<int>& salary) {\n        int total = 0, mn = INT_MAX, mx = INT_MIN;\n        for (int s : salary) {\n            total += s;\n            mn = min(mn, s);\n            mx = max(mx, s);\n        }\n        return (total - mn - mx) / (double)(salary.size() - 2);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610604085",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

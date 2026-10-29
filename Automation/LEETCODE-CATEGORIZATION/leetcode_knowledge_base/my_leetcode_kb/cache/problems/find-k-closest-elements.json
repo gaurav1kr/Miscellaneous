@@ -1,0 +1,40 @@
+{
+  "id": "658",
+  "title": "Find K Closest Elements",
+  "slug": "find-k-closest-elements",
+  "url": "https://leetcode.com/problems/find-k-closest-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sliding Window",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given a sorted integer array arr , two integers k and x , return the k closest integers to x in the array. The result should also be sorted in ascending order. \n \n An integer a is closer to x than an integer b if: \n\n |a - x| < |b - x| , or \n \n |a - x| == |b - x| and a < b \n\n Example 1: \n\n Input: arr = [1,2,3,4,5], k = 4, x = 3 \n \n Output: [1,2,3,4] \n\n Example 2: \n\n Input: arr = [1,1,2,3,4,5], k = 4, x = -1 \n \n Output: [1,1,2,3] \n\n Constraints: \n\n 1 <= k <= arr.length \n \n 1 <= arr.length <= 10 4 \n \n arr is sorted in ascending order. \n \n -10 4 <= arr[i], x <= 10 4",
+  "code": "class Solution \n{\npublic:\n    vector<int> findClosestElements(vector<int>& arr, int k, int x) \n    {\n        priority_queue<pair<int,int>> p;\n        vector<int>v;\n        for(auto i:arr)\n        {\n            int n=abs(x-i);\n            p.push({n,i});\n\n            if(p.size()>k)\n            {\n                 p.pop();\n            }\n        }\n        while(p.size()>0)\n        {\n            v.push_back(p.top().second);\n            p.pop();\n        }\n        sort(v.begin(),v.end());\n        return v;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1534903169",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

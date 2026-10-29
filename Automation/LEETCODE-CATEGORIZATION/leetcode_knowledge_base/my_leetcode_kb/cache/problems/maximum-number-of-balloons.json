@@ -1,0 +1,32 @@
+{
+  "id": "1189",
+  "title": "Maximum Number of Balloons",
+  "slug": "maximum-number-of-balloons",
+  "url": "https://leetcode.com/problems/maximum-number-of-balloons/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given a string text , you want to use the characters of text to form as many instances of the word \"balloon\" as possible. \n \n You can use each character in text at most once . Return the maximum number of instances that can be formed. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2019/09/05/1536_ex1_upd.JPG] \n \n```\nInput:\n text = \"nlaebolko\"\n\nOutput:\n 1\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2019/09/05/1536_ex2_upd.JPG] \n \n```\nInput:\n text = \"loonbalxballpoon\"\n\nOutput:\n 2\n```\n\n Example 3: \n \n```\nInput:\n text = \"leetcode\"\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= text.length <= 10 4 \n \n text consists of lower case English letters only. \n\n Note: This question is the same as 2287: Rearrange Characters to Make Target String.",
+  "code": "\n#include <string>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxNumberOfBalloons(string text) {\n        unordered_map<char, int> count;\n        for (char c : text) count[c]++;\n        \n        count['b'] = min(count['b'], min(count['a'], min(count['l'] / 2, min(count['o'] / 2, count['n']))));\n        \n        return count['b'];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592351774",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

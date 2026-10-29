@@ -1,0 +1,30 @@
+{
+  "id": "3394",
+  "title": "Check if Grid can be Cut into Sections",
+  "slug": "check-if-grid-can-be-cut-into-sections",
+  "url": "https://leetcode.com/problems/check-if-grid-can-be-cut-into-sections/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer n representing the dimensions of an n x n grid, with the origin at the bottom-left corner of the grid. You are also given a 2D array of coordinates rectangles , where rectangles[i] is in the form [start x , start y , end x , end y ] , representing a rectangle on the grid. Each rectangle is defined as follows: \n\n (start x , start y ) : The bottom-left corner of the rectangle. \n \n (end x , end y ) : The top-right corner of the rectangle. \n\n Note that the rectangles do not overlap. Your task is to determine if it is possible to make either two horizontal or two vertical cuts on the grid such that: \n\n Each of the three resulting sections formed by the cuts contains at least one rectangle. \n \n Every rectangle belongs to exactly one section. \n\n Return true if such cuts can be made; otherwise, return false . \n\n Example 1: \n\n Input: n = 5, rectangles = [[1,0,5,2],[0,2,2,4],[3,2,5,3],[0,4,4,5]] \n \n Output: true \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/10/23/tt1drawio.png] \n \n The grid is shown in the diagram. We can make horizontal cuts at y = 2 and y = 4 . Hence, output is true. \n\n Example 2: \n\n Input: n = 4, rectangles = [[0,0,1,1],[2,0,3,4],[0,2,2,3],[3,0,4,3]] \n \n Output: true \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/10/23/tc2drawio.png] \n \n We can make vertical cuts at x = 2 and x = 3 . Hence, output is true. \n\n Example 3: \n\n Input: n = 4, rectangles = [[0,2,2,4],[1,0,3,2],[2,2,3,4],[3,0,4,2],[3,2,4,4]] \n \n Output: false \n \n Explanation: \n \n We cannot make two horizontal or two vertical cuts that satisfy the conditions. Hence, output is false. \n\n Constraints: \n\n 3 <= n <= 10 9 \n \n 3 <= rectangles.length <= 10 5 \n \n 0 <= rectangles[i][0] < rectangles[i][2] <= n \n \n 0 <= rectangles[i][1] < rectangles[i][3] <= n \n \n No two rectangles overlap.",
+  "code": "class Solution {bool ok(vector<vector<int>>&a,int axis){vector<pair<int,int>>v;for(auto&r:a)v.push_back({r[axis],r[axis+2]});sort(v.begin(),v.end());int groups=0,end=-1;for(auto p:v){if(groups==0||p.first>=end){groups++;end=p.second;}else end=max(end,p.second);}return groups>=3;}public:bool checkValidCuts(int n,vector<vector<int>>&rectangles){return ok(rectangles,0)||ok(rectangles,1);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177515087",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

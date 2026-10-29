@@ -1,0 +1,22 @@
+{
+  "id": "4089",
+  "title": "Count Subarrays With Loose Bounds",
+  "slug": "count-subarrays-with-loose-bounds",
+  "url": "https://leetcode.com/problems/count-subarrays-with-loose-bounds/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers minK and maxK . \n \n A loose-bound subarray is a subarray in which every element is greater than or equal to minK and less than or equal to maxK . \n \n Return the number of loose-bound subarrays in nums . \n \n A subarray is a contiguous non-empty sequence of elements within an array. \n\n Example 1: \n\n Input: nums = [1,4,7,3], minK = 1, maxK = 5 \n \n Output: 4 \n \n Explanation: \n \n The loose-bound subarrays are [1] , [4] , [3] , and [1, 4] . The minimum value in these subarrays is at least minK = 1 and the maximum value is at most maxK = 5 . \n\n Example 2: \n\n Input: nums = [1,1], minK = 1, maxK = 1 \n \n Output: 3 \n \n Explanation: \n \n The loose-bound subarrays are [1] , [1] , and [1, 1] . The minimum value in these subarrays is at least minK = 1 and the maximum value is at most maxK = 1 . \n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n 1 <= nums[i], minK, maxK <= 10 6",
+  "code": "class Solution {\npublic:\n    long long countSubarrays(vector<int>& nums,int minK,int maxK) {\n        vector<int> vornelqixa=nums;\n        long long ans=0,run=0;\n        for(int x:vornelqixa) {run=(x>=minK && x<=maxK)?run+1:0;ans+=run;}\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181126604",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

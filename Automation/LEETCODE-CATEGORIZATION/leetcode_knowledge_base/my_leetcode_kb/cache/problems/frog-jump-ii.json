@@ -1,0 +1,31 @@
+{
+  "id": "2498",
+  "title": "Frog Jump II",
+  "slug": "frog-jump-ii",
+  "url": "https://leetcode.com/problems/frog-jump-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array stones sorted in strictly increasing order representing the positions of stones in a river. \n \n A frog, initially on the first stone, wants to travel to the last stone and then return to the first stone. However, it can jump to any stone at most once . \n \n The length of a jump is the absolute difference between the position of the stone the frog is currently on and the position of the stone to which the frog jumps. \n\n More formally, if the frog is at stones[i] and is jumping to stones[j] , the length of the jump is |stones[i] - stones[j]| . \n\n The cost of a path is the maximum length of a jump among all jumps in the path. \n \n Return the minimum cost of a path for the frog . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2026/02/23/2498_ex0.png] \n \n```\nInput:\n stones = [0,2,5,6,7]\n\nOutput:\n 5\n\nExplanation:\n The above figure represents one of the optimal paths the frog can take.\nThe cost of this path is 5, which is the maximum length of a jump.\nSince it is not possible to achieve a cost of less than 5, we return it.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2026/02/23/2498_ex1.png] \n \n```\nInput:\n stones = [0,3,9]\n\nOutput:\n 9\n\nExplanation:\n \nThe frog can jump directly to the last stone and come back to the first stone. \nIn this case, the length of each jump will be 9. The cost for the path will be max(9, 9) = 9.\nIt can be shown that this is the minimum achievable cost.\n```\n\n Constraints: \n\n 2 <= stones.length <= 10 5 \n \n 0 <= stones[i] <= 10 9 \n \n stones[0] == 0 \n \n stones is sorted in a strictly increasing order.",
+  "code": "class Solution {public:int maxJump(vector<int>& stones){int n=stones.size(),ans=stones[1]-stones[0];for(int i=2;i<n;i++)ans=max(ans,stones[i]-stones[i-2]);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176589590",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

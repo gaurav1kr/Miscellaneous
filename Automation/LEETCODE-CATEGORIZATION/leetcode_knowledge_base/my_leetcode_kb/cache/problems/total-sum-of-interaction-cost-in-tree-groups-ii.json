@@ -1,0 +1,37 @@
+{
+  "id": "4018",
+  "title": "Total Sum of Interaction Cost in Tree Groups II",
+  "slug": "total-sum-of-interaction-cost-in-tree-groups-ii",
+  "url": "https://leetcode.com/problems/total-sum-of-interaction-cost-in-tree-groups-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search",
+    "Sorting"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Ordered map",
+    "Sorted array",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer n and an undirected tree rooted at node 0 with n nodes numbered from 0 to n - 1 . The tree is represented by a 2D integer array edges of length n - 1 , where edges[i] = [u i , v i ] indicates an undirected edge between nodes u i and v i . \n \n You are also given an integer array group of length n , where group[i] denotes the group label assigned to node i . \n\n Two nodes u and v belong to the same group if and only if group[u] == group[v] . \n \n The interaction cost between two nodes is the shortest distance between them in the tree. \n\n Return the sum of interaction costs over all pairs of node indices (u, v) such that 0 <= u < v < n and group[u] == group[v] . \n \n The shortest distance between two nodes is the number of edges on the unique path connecting them in the tree. \n\n Example 1: \n\n Input: n = 3, edges = [[0,1],[1,2]], group = [1,1,1] \n \n Output: 4 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2026/05/04/screenshot-2026-05-05-at-40329am.png] \n \n All nodes belong to group 1. The interaction costs between the pairs of nodes are: \n\n Nodes [0, 1] : 1 \n \n Nodes [1, 2] : 1 \n \n Nodes [0, 2] : 2 \n\n Thus, the total interaction cost is 1 + 1 + 2 = 4 . \n\n Example 2: \n\n Input: n = 3, edges = [[0,1],[1,2]], group = [3,2,3] \n \n Output: 2 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2026/05/04/screenshot-2026-05-05-at-40416am.png] \n\n Nodes 0 and 2 belong to group 3. The interaction cost between this pair is 2. \n \n Node 1 belongs to a different group and forms no valid pair. Therefore, the total interaction cost is 2. \n\n Example 3: \n\n Input: n = 4, edges = [[0,1],[0,2],[0,3]], group = [1,1,4,4] \n \n Output: 3 \n \n Explanation: \n \n ​​​​​​​​​​​​​​ [Figure: https://assets.leetcode.com/uploads/2026/05/04/screenshot-2026-05-05-at-40819am.png] \n \n Nodes belonging to the same groups and their interaction costs are: \n\n Group 1: Nodes [0, 1] : 1 \n \n Group 4: Nodes [2, 3] : 2 \n\n Thus, the total interaction cost is 1 + 2 = 3 . \n\n Example 4: \n\n Input: n = 2, edges = [[0,1]], group = [1,2] \n \n Output: 0 \n \n Explanation: \n \n All nodes belong to different groups and there are no valid pairs. Therefore, the total interaction cost is 0. \n\n Constraints: \n\n 1 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i] = [u i , v i ] \n \n 0 <= u i , v i <= n - 1 \n \n group.length == n \n \n 1 <= group[i] <= n \n \n The input is generated such that edges represents a valid tree.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n    long long interactionCosts(int n,vector<vector<int>>& edges,vector<int>& group){\n        vector<vector<int>>g(n);for(auto&e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}\n        const int LOG=18;vector<array<int,18>>up(n);vector<int>depth(n),tin(n),tout(n),order;\n        order.reserve(n);vector<int>par(n,-1),it(n),stack(1,0);int timer=0;\n        while(!stack.empty()){\n            int u=stack.back();\n            if(it[u]==0){tin[u]=timer++;order.push_back(u);up[u][0]=par[u]<0?u:par[u];\n                for(int j=1;j<LOG;j++)up[u][j]=up[up[u][j-1]][j-1];}\n            if(it[u]==(int)g[u].size()){tout[u]=timer;stack.pop_back();continue;}\n            int v=g[u][it[u]++];if(v==par[u])continue;\n            par[v]=u;depth[v]=depth[u]+1;stack.push_back(v);\n        }\n        auto ancestor=[&](int a,int b){return tin[a]<=tin[b]&&tout[b]<=tout[a];};\n        auto lca=[&](int a,int b){\n            if(ancestor(a,b))return a;if(ancestor(b,a))return b;\n            for(int j=LOG-1;j>=0;j--)if(!ancestor(up[a][j],b))a=up[a][j];\n            return up[a][0];\n        };\n        unordered_map<int,vector<int>>groups;\n        for(int i=0;i<n;i++)groups[group[i]].push_back(i);\n        long long ans=0;\n        for(auto &entry:groups){\n            vector<int>v=entry.second;int k=v.size();if(k<2)continue;\n            sort(v.begin(),v.end(),[&](int a,int b){return tin[a]<tin[b];});\n            int sz=v.size();for(int i=1;i<sz;i++)v.push_back(lca(v[i-1],v[i]));\n            sort(v.begin(),v.end(),[&](int a,int b){return tin[a]<tin[b];});\n            v.erase(unique(v.begin(),v.end()),v.end());\n            vector<int>st;vector<long long>cnt(v.size(),0);\n            for(int u:v){\n                while(!st.empty()&&!ancestor(st.back(),u))st.pop_back();\n                if(!st.empty()){\n                    // Parent links of virtual tree are saved separately.\n                }\n                st.push_back(u);\n            }\n            vector<int>vp(v.size(),-1);st.clear();\n            for(int i=0;i<(int)v.size();i++){\n                while(!st.empty()&&!ancestor(v[st.back()],v[i]))st.pop_back();\n                if(!st.empty())vp[i]=st.back();st.push_back(i);\n                cnt[i]=(group[v[i]]==entry.first);\n            }\n            for(int i=(int)v.size()-1;i>0;i--){\n                int p=vp[i];long long c=cnt[i];\n                ans+=c*(k-c)*(depth[v[i]]-depth[v[p]]);\n                cnt[p]+=c;\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181556395",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "2439",
+  "title": "Minimize Maximum of Array",
+  "slug": "minimize-maximum-of-array",
+  "url": "https://leetcode.com/problems/minimize-maximum-of-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Greedy",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array nums comprising of n non-negative integers. \n \n In one operation, you must: \n\n Choose an integer i such that 1 <= i < n and nums[i] > 0 . \n \n Decrease nums[i] by 1. \n \n Increase nums[i - 1] by 1. \n\n Return the minimum possible value of the maximum integer of nums after performing any number of operations . \n\n Example 1: \n \n```\nInput:\n nums = [3,7,1,6]\n\nOutput:\n 5\n\nExplanation:\n\nOne set of optimal operations is as follows:\n1. Choose i = 1, and nums becomes [4,6,1,6].\n2. Choose i = 3, and nums becomes [4,6,2,5].\n3. Choose i = 1, and nums becomes [5,5,2,5].\nThe maximum integer of nums is 5. It can be shown that the maximum number cannot be less than 5.\nTherefore, we return 5.\n```\n\n Example 2: \n \n```\nInput:\n nums = [10,1]\n\nOutput:\n 10\n\nExplanation:\n\nIt is optimal to leave nums as is, and since 10 is the maximum value, we return 10.\n```\n\n Constraints: \n\n n == nums.length \n \n 2 <= n <= 10 5 \n \n 0 <= nums[i] <= 10 9",
+  "code": "class Solution { public: int minimizeArrayValue(vector<int>& nums){long long sum=0,ans=0;for(int i=0;i<(int)nums.size();++i){sum+=nums[i];ans=max(ans,(sum+i)/(i+1));}return (int)ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176562206",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

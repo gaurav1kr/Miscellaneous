@@ -1,0 +1,33 @@
+{
+  "id": "44",
+  "title": "Wildcard Matching",
+  "slug": "wildcard-matching",
+  "url": "https://leetcode.com/problems/wildcard-matching/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Greedy",
+    "Recursion"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an input string ( s ) and a pattern ( p ), implement wildcard pattern matching with support for '?' and '*' where: \n\n '?' Matches any single character. \n \n '*' Matches any sequence of characters (including the empty sequence). \n\n The matching should cover the entire input string (not partial). \n\n Example 1: \n \n```\nInput:\n s = \"aa\", p = \"a\"\n\nOutput:\n false\n\nExplanation:\n \"a\" does not match the entire string \"aa\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"aa\", p = \"*\"\n\nOutput:\n true\n\nExplanation:\n '*' matches any sequence.\n```\n\n Example 3: \n \n```\nInput:\n s = \"cb\", p = \"?a\"\n\nOutput:\n false\n\nExplanation:\n '?' matches 'c', but the second letter is 'a', which does not match 'b'.\n```\n\n Constraints: \n\n 0 <= s.length, p.length <= 2000 \n \n s contains only lowercase English letters. \n \n p contains only lowercase English letters, '?' or '*' .",
+  "code": "class Solution {\npublic:\n    bool isMatch(string s, string p) {\n        int n = s.size(), m = p.size();\n        \n        // DP table where dp[i][j] means if s[0..i-1] matches p[0..j-1]\n        vector<vector<bool>> dp(n + 1, vector<bool>(m + 1, false));\n        \n        // Base case: empty string matches empty pattern\n        dp[0][0] = true;\n\n        // Handle cases where the pattern starts with '*' characters\n        for (int j = 1; j <= m; ++j) {\n            if (p[j - 1] == '*') {\n                dp[0][j] = dp[0][j - 1];\n            }\n        }\n\n        // Fill the DP table\n        for (int i = 1; i <= n; ++i) {\n            for (int j = 1; j <= m; ++j) {\n                if (p[j - 1] == s[i - 1] || p[j - 1] == '?') {\n                    dp[i][j] = dp[i - 1][j - 1];\n                } else if (p[j - 1] == '*') {\n                    dp[i][j] = dp[i - 1][j] || dp[i][j - 1];\n                }\n            }\n        }\n\n        return dp[n][m];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536213174",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "279",
+  "title": "Perfect Squares",
+  "slug": "perfect-squares",
+  "url": "https://leetcode.com/problems/perfect-squares/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Breadth-First Search",
+    "Knapsack Problem",
+    "Complete Knapsack"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer n , return the least number of perfect square numbers that sum to n . \n \n A perfect square is an integer that is the square of an integer; in other words, it is the product of some integer with itself. For example, 1 , 4 , 9 , and 16 are perfect squares while 3 and 11 are not. \n\n Example 1: \n \n```\nInput:\n n = 12\n\nOutput:\n 3\n\nExplanation:\n 12 = 4 + 4 + 4.\n```\n\n Example 2: \n \n```\nInput:\n n = 13\n\nOutput:\n 2\n\nExplanation:\n 13 = 4 + 9.\n```\n\n Constraints: \n\n 1 <= n <= 10 4",
+  "code": "class Solution {\npublic:\n    int numSquares(int n) {\n        // DP array to store the minimum number of perfect squares for each number\n        std::vector<int> dp(n + 1, INT_MAX);\n        \n        // Base case: 0 can be represented as the sum of 0 perfect squares\n        dp[0] = 0;\n\n        // Precompute all perfect squares less than or equal to n\n        std::vector<int> perfectSquares;\n        for (int i = 1; i * i <= n; ++i) {\n            perfectSquares.push_back(i * i);\n        }\n\n        // Fill the DP array\n        for (int i = 1; i <= n; ++i) {\n            for (int square : perfectSquares) {\n                if (i < square) break; // No need to check further if the square exceeds i\n                dp[i] = std::min(dp[i], dp[i - square] + 1);\n            }\n        }\n\n        return dp[n];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541849901",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

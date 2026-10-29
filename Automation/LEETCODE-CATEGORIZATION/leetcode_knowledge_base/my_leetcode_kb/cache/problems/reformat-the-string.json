@@ -1,0 +1,26 @@
+{
+  "id": "1417",
+  "title": "Reformat The String",
+  "slug": "reformat-the-string",
+  "url": "https://leetcode.com/problems/reformat-the-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given an alphanumeric string s . ( Alphanumeric string is a string consisting of lowercase English letters and digits). \n \n You have to find a permutation of the string where no letter is followed by another letter and no digit is followed by another digit. That is, no two adjacent characters have the same type. \n \n Return the reformatted string or return an empty string if it is impossible to reformat the string. \n\n Example 1: \n \n```\nInput:\n s = \"a0b1c2\"\n\nOutput:\n \"0a1b2c\"\n\nExplanation:\n No two adjacent characters have the same type in \"0a1b2c\". \"a0b1c2\", \"0a1b2c\", \"0c2a1b\" are also valid permutations.\n```\n\n Example 2: \n \n```\nInput:\n s = \"leetcode\"\n\nOutput:\n \"\"\n\nExplanation:\n \"leetcode\" has only characters so we cannot separate them by digits.\n```\n\n Example 3: \n \n```\nInput:\n s = \"1229857369\"\n\nOutput:\n \"\"\n\nExplanation:\n \"1229857369\" has only digits so we cannot separate them by characters.\n```\n\n Constraints: \n\n 1 <= s.length <= 500 \n \n s consists of only lowercase English letters and/or digits.",
+  "code": "class Solution {\npublic:\n    string reformat(string s) {\n        string letters, digits;\n        for (char c : s) {\n            if (isdigit((unsigned char)c)) digits += c;\n            else letters += c;\n        }\n        if (abs((int)letters.size() - (int)digits.size()) > 1) return \"\";\n        if (digits.size() > letters.size()) swap(digits, letters);\n        string ans;\n        for (int i = 0; i < (int)letters.size(); ++i) {\n            ans += letters[i];\n            if (i < (int)digits.size()) ans += digits[i];\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175752209",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

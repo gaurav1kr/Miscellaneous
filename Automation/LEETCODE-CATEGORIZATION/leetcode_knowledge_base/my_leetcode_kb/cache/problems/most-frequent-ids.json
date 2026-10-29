@@ -1,0 +1,37 @@
+{
+  "id": "3092",
+  "title": "Most Frequent IDs",
+  "slug": "most-frequent-ids",
+  "url": "https://leetcode.com/problems/most-frequent-ids/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Ordered set",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "The problem involves tracking the frequency of IDs in a collection that changes over time. You have two integer arrays, nums and freq , of equal length n . Each element in nums represents an ID, and the corresponding element in freq indicates how many times that ID should be added to or removed from the collection at each step. \n\n Addition of IDs: If freq[i] is positive, it means freq[i] IDs with the value nums[i] are added to the collection at step i . \n \n Removal of IDs: If freq[i] is negative, it means -freq[i] IDs with the value nums[i] are removed from the collection at step i . \n\n Return an array ans of length n , where ans[i] represents the count of the most frequent ID in the collection after the i th  step. If the collection is empty at any step, ans[i] should be 0 for that step. \n\n Example 1: \n\n Input: nums = [2,3,2,1], freq = [3,2,-3,1] \n \n Output: [3,3,2,2] \n \n Explanation: \n \n After step 0, we have 3 IDs with the value of 2. So ans[0] = 3 . \nAfter step 1, we have 3 IDs with the value of 2 and 2 IDs with the value of 3. So ans[1] = 3 . \nAfter step 2, we have 2 IDs with the value of 3. So ans[2] = 2 . \nAfter step 3, we have 2 IDs with the value of 3 and 1 ID with the value of 1. So ans[3] = 2 . \n\n Example 2: \n\n Input: nums = [5,5,3], freq = [2,-2,1] \n \n Output: [2,0,1] \n \n Explanation: \n \n After step 0, we have 2 IDs with the value of 5. So ans[0] = 2 . \nAfter step 1, there are no IDs. So ans[1] = 0 . \nAfter step 2, we have 1 ID with the value of 3. So ans[2] = 1 . \n\n Constraints: \n\n 1 <= nums.length == freq.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n -10 5 <= freq[i] <= 10 5 \n \n freq[i] != 0 \n \n The input is generated such that the occurrences of an ID will not be negative in any step.",
+  "code": "class Solution {public:vector<long long> mostFrequentIDs(vector<int>& nums,vector<int>& freq){\n unordered_map<int,long long> f;multiset<long long> ms;vector<long long> ans;\n for(int i=0;i<(int)nums.size();i++){long long old=f[nums[i]];if(old>0)ms.erase(ms.find(old));long long now=f[nums[i]]+=freq[i];if(now>0)ms.insert(now);ans.push_back(ms.empty()?0:*ms.rbegin());}return ans;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176860938",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

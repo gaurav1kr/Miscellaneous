@@ -1,0 +1,29 @@
+{
+  "id": "3083",
+  "title": "Existence of a Substring in a String and Its Reverse",
+  "slug": "existence-of-a-substring-in-a-string-and-its-reverse",
+  "url": "https://leetcode.com/problems/existence-of-a-substring-in-a-string-and-its-reverse/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Given a string s , find any substring of length 2 which is also present in the reverse of s . \n \n Return true if such a substring exists, and false otherwise. \n\n Example 1: \n\n Input: s = \"leetcode\" \n \n Output: true \n \n Explanation: Substring \"ee\" is of length 2 which is also present in reverse(s) == \"edocteel\" . \n\n Example 2: \n\n Input: s = \"abcba\" \n \n Output: true \n \n Explanation: All of the substrings of length 2 \"ab\" , \"bc\" , \"cb\" , \"ba\" are also present in reverse(s) == \"abcba\" . \n\n Example 3: \n\n Input: s = \"abcd\" \n \n Output: false \n \n Explanation: There is no substring of length 2 in s , which is also present in the reverse of s . \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {public:bool isSubstringPresent(string s){bool seen[26][26]={};for(int i=1;i<(int)s.size();i++)seen[s[i-1]-'a'][s[i]-'a']=true;for(int i=1;i<(int)s.size();i++)if(seen[s[i]-'a'][s[i-1]-'a'])return true;return false;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176856147",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

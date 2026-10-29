@@ -1,0 +1,32 @@
+{
+  "id": "822",
+  "title": "Card Flipping Game",
+  "slug": "card-flipping-game",
+  "url": "https://leetcode.com/problems/card-flipping-game/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given two 0-indexed integer arrays fronts and backs of length n , where the i th card has the positive integer fronts[i] printed on the front and backs[i] printed on the back. Initially, each card is placed on a table such that the front number is facing up and the other is facing down. You may flip over any number of cards (possibly zero). \n \n After flipping the cards, an integer is considered good if it is facing down on some card and not facing up on any card. \n \n Return the minimum possible good integer after flipping the cards . If there are no good integers, return 0 . \n\n Example 1: \n \n```\nInput:\n fronts = [1,2,4,4,7], backs = [1,3,4,1,3]\n\nOutput:\n 2\n\nExplanation:\n\nIf we flip the second card, the face up numbers are [1,3,4,4,7] and the face down are [1,2,4,1,3].\n2 is the minimum good integer as it appears facing down but not facing up.\nIt can be shown that 2 is the minimum possible good integer obtainable after flipping some cards.\n```\n\n Example 2: \n \n```\nInput:\n fronts = [1], backs = [1]\n\nOutput:\n 0\n\nExplanation:\n\nThere are no good integers no matter how we flip the cards, so we return 0.\n```\n\n Constraints: \n\n n == fronts.length == backs.length \n \n 1 <= n <= 1000 \n \n 1 <= fronts[i], backs[i] <= 2000",
+  "code": "class Solution {\npublic:\n    int flipgame(vector<int>& fronts, vector<int>& backs) {\n        unordered_set<int> forbidden;\n        for (int i = 0; i < (int)fronts.size(); ++i)\n            if (fronts[i] == backs[i]) forbidden.insert(fronts[i]);\n        int best = INT_MAX;\n        for (int x : fronts) if (!forbidden.count(x)) best = min(best, x);\n        for (int x : backs) if (!forbidden.count(x)) best = min(best, x);\n        return best == INT_MAX ? 0 : best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175741724",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

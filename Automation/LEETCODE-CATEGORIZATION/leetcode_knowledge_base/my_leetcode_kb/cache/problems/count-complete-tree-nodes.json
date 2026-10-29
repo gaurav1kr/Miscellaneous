@@ -1,0 +1,32 @@
+{
+  "id": "222",
+  "title": "Count Complete Tree Nodes",
+  "slug": "count-complete-tree-nodes",
+  "url": "https://leetcode.com/problems/count-complete-tree-nodes/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Binary Search",
+    "Bit Manipulation",
+    "Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a complete binary tree, return the number of the nodes in the tree. \n \n According to Wikipedia , every level, except possibly the last, is completely filled in a complete binary tree, and all nodes in the last level are as far left as possible. It can have between 1 and 2 h nodes inclusive at the last level h . \n \n Design an algorithm that runs in less than  O(n)  time complexity. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/14/complete.jpg] \n \n```\nInput:\n root = [1,2,3,4,5,6]\n\nOutput:\n 6\n```\n\n Example 2: \n \n```\nInput:\n root = []\n\nOutput:\n 0\n```\n\n Example 3: \n \n```\nInput:\n root = [1]\n\nOutput:\n 1\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 5 * 10 4 ] . \n \n 0 <= Node.val <= 5 * 10 4 \n \n The tree is guaranteed to be complete .",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution \n{\n    int sum ;\npublic:\n    Solution()\n    {\n        sum = 0 ;\n    }\n    int countNodes(TreeNode* root) \n    {\n        Traverse(root) ;\n        return sum ;\n    }\n    void Traverse(TreeNode *root)\n    {\n        if(root)\n        {\n            Traverse(root->left) ;\n            sum++;\n            Traverse(root->right) ;\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536934194",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "1779",
+  "title": "Find Nearest Point That Has the Same X or Y Coordinate",
+  "slug": "find-nearest-point-that-has-the-same-x-or-y-coordinate",
+  "url": "https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given two integers, x and y , which represent your current location on a Cartesian grid: (x, y) . You are also given an array points where each points[i] = [a i , b i ] represents that a point exists at (a i , b i ) . A point is valid if it shares the same x-coordinate or the same y-coordinate as your location. \n \n Return the index (0-indexed) of the valid point with the smallest Manhattan distance from your current location . If there are multiple, return the valid point with the smallest index . If there are no valid points, return -1 . \n \n The Manhattan distance between two points (x 1 , y 1 ) and (x 2 , y 2 ) is abs(x 1 - x 2 ) + abs(y 1 - y 2 ) . \n\n Example 1: \n \n```\nInput:\n x = 3, y = 4, points = [[1,2],[3,1],[2,4],[2,3],[4,4]]\n\nOutput:\n 2\n\nExplanation:\n Of all the points, only [3,1], [2,4] and [4,4] are valid. Of the valid points, [2,4] and [4,4] have the smallest Manhattan distance from your current location, with a distance of 1. [2,4] has the smallest index, so return 2.\n```\n\n Example 2: \n \n```\nInput:\n x = 3, y = 4, points = [[3,4]]\n\nOutput:\n 0\n\nExplanation:\n The answer is allowed to be on the same location as your current location.\n```\n\n Example 3: \n \n```\nInput:\n x = 3, y = 4, points = [[2,3]]\n\nOutput:\n -1\n\nExplanation:\n There are no valid points.\n```\n\n Constraints: \n\n 1 <= points.length <= 10 4 \n \n points[i].length == 2 \n \n 1 <= x, y, a i , b i <= 10 4",
+  "code": "#include <vector>\n#include <climits>\nusing namespace std;\n\nclass Solution {\npublic:\n    int nearestValidPoint(int x, int y, vector<vector<int>>& points) {\n        int res = -1, minDist = INT_MAX;\n        for (int i = 0; i < points.size(); ++i) {\n            if (points[i][0] == x || points[i][1] == y) {\n                int dist = abs(x - points[i][0]) + abs(y - points[i][1]);\n                if (dist < minDist) {\n                    minDist = dist;\n                    res = i;\n                }\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610666912",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

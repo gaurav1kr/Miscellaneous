@@ -1,0 +1,32 @@
+{
+  "id": "2493",
+  "title": "Divide Nodes Into the Maximum Number of Groups",
+  "slug": "divide-nodes-into-the-maximum-number-of-groups",
+  "url": "https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n . \n \n You are also given a 2D integer array edges , where edges[i] = [a i, b i ] indicates that there is a bidirectional edge between nodes a i and b i . Notice that the given graph may be disconnected. \n \n Divide the nodes of the graph into m groups ( 1-indexed ) such that: \n\n Each node in the graph belongs to exactly one group. \n \n For every pair of nodes in the graph that are connected by an edge [a i, b i ] , if a i belongs to the group with index x , and b i belongs to the group with index y , then |y - x| = 1 . \n\n Return the maximum number of groups (i.e., maximum m ) into which you can divide the nodes . Return -1 if it is impossible to group the nodes with the given conditions . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/10/13/example1.png] \n \n```\nInput:\n n = 6, edges = [[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]\n\nOutput:\n 4\n\nExplanation:\n As shown in the image we:\n- Add node 5 to the first group.\n- Add node 1 to the second group.\n- Add nodes 2 and 4 to the third group.\n- Add nodes 3 and 6 to the fourth group.\nWe can see that every edge is satisfied.\nIt can be shown that that if we create a fifth group and move any node from the third or fourth group to it, at least on of the edges will not be satisfied.\n```\n\n Example 2: \n \n```\nInput:\n n = 3, edges = [[1,2],[2,3],[3,1]]\n\nOutput:\n -1\n\nExplanation:\n If we add node 1 to the first group, node 2 to the second group, and node 3 to the third group to satisfy the first two edges, we can see that the third edge will not be satisfied.\nIt can be shown that no grouping is possible.\n```\n\n Constraints: \n\n 1 <= n <= 500 \n \n 1 <= edges.length <= 10 4 \n \n edges[i].length == 2 \n \n 1 <= a i , b i <= n \n \n a i != b i \n \n There is at most one edge between any pair of vertices.",
+  "code": "class Solution {public:int magnificentSets(int n,vector<vector<int>>& edges){vector<vector<int>> g(n);for(auto&e:edges){int u=e[0]-1,v=e[1]-1;g[u].push_back(v);g[v].push_back(u);}vector<int> color(n,-1),comp(n,-1);int cid=0;for(int s=0;s<n;s++)if(color[s]<0){queue<int>q;q.push(s);color[s]=0;comp[s]=cid;while(!q.empty()){int u=q.front();q.pop();for(int v:g[u]){if(color[v]<0){color[v]=color[u]^1;comp[v]=cid;q.push(v);}else if(color[v]==color[u])return -1;}}cid++;}vector<int> best(cid);for(int s=0;s<n;s++){vector<int>dist(n,-1);queue<int>q;q.push(s);dist[s]=0;int depth=0;while(!q.empty()){int u=q.front();q.pop();depth=max(depth,dist[u]);for(int v:g[u])if(dist[v]<0){dist[v]=dist[u]+1;q.push(v);}}best[comp[s]]=max(best[comp[s]],depth+1);}return accumulate(best.begin(),best.end(),0);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176588029",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

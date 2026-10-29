@@ -1,0 +1,22 @@
+{
+  "id": "4074",
+  "title": "Maximum Product Pair With Target Sum",
+  "slug": "maximum-product-pair-with-target-sum",
+  "url": "https://leetcode.com/problems/maximum-product-pair-with-target-sum/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer target . \n \n A pair of distinct indices (i, j) is valid if: \n\n nums[i] + nums[j] == target \n \n nums[i] > nums[j] \n\n Return a valid pair [i, j] whose product nums[i] * nums[j] is maximum among all valid pairs. If no valid pair exists, return [-1, -1] . \n \n If multiple valid pairs achieve the maximum product, you may return any of them. \n\n Example 1: \n\n Input: nums = [1,2,3,4], target = 5 \n \n Output: [2,1] \n \n Explanation: \n \n There are 2 valid pairs: \n\n No. \n (i, j) \n nums[i] \n nums[j] \n Sum \n Product \n\n 1 \n (3, 0) \n 4 \n 1 \n 5 \n 4 \n\n 2 \n (2, 1) \n 3 \n 2 \n 5 \n 6 \n\n Both pairs sum to 5 and satisfy nums[i] > nums[j] . The second pair has the larger product, 3 * 2 = 6 , so the answer is [2, 1] . \n\n Example 2: \n\n Input: nums = [-3,-1,4,2], target = 1 \n \n Output: [3,1] \n \n Explanation: \n \n There are 2 valid pairs: \n\n No. \n (i, j) \n nums[i] \n nums[j] \n Sum \n Product \n\n 1 \n (2, 0) \n 4 \n -3 \n 1 \n -12 \n\n 2 \n (3, 1) \n 2 \n -1 \n 1 \n -2 \n\n Since -2 > -12 , the pair at indices (3, 1) is chosen and the answer is [3, 1] . \n\n Example 3: \n\n Input: nums = [3,3,5], target = 6 \n \n Output: [-1,-1] \n \n Explanation: \n \n ​​​​​​​ No valid pair exists, since nums[0] and nums[1] sum to 6 but are equal. \n\n Constraints: \n\n 2 <= nums.length <= 100 \n \n -100 <= nums[i], target <= 100 ​​​​​​​",
+  "code": "class Solution {\n    public: vector<int> maxProductPair(vector<int>& a,int target) {\n        long long best=LLONG_MIN;\n        vector<int> ans= {\n            -1,-1\n        }\n        ;\n        for(int i=0; i<(int)a.size(); i++)for(int j=0; j<(int)a.size(); j++)if(i!=j&&a[i]>a[j]&&a[i]+a[j]==target) {\n            long long p=1LL*a[i]*a[j];\n            if(p>best) {\n                best=p;\n                ans= {\n                    i,j\n                }\n                ;\n            }\n        }\n        return ans;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179338892",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

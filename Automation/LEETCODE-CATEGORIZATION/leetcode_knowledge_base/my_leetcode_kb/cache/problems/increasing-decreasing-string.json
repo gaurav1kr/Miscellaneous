@@ -1,0 +1,31 @@
+{
+  "id": "1370",
+  "title": "Increasing Decreasing String",
+  "slug": "increasing-decreasing-string",
+  "url": "https://leetcode.com/problems/increasing-decreasing-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "You are given a string s . Reorder the string using the following algorithm: \n\n Remove the smallest character from s and append it to the result. \n \n Remove the smallest character from s that is greater than the last appended character, and append it to the result. \n \n Repeat step 2 until no more characters can be removed. \n \n Remove the largest character from s and append it to the result. \n \n Remove the largest character from s that is smaller than the last appended character, and append it to the result. \n \n Repeat step 5 until no more characters can be removed. \n \n Repeat steps 1 through 6 until all characters from s have been removed. \n\n If the smallest or largest character appears more than once, you may choose any occurrence to append to the result. \n \n Return the resulting string after reordering s using this algorithm. \n\n Example 1: \n \n```\nInput:\n s = \"aaaabbbbcccc\"\n\nOutput:\n \"abccbaabccba\"\n\nExplanation:\n After steps 1, 2 and 3 of the first iteration, result = \"abc\"\nAfter steps 4, 5 and 6 of the first iteration, result = \"abccba\"\nFirst iteration is done. Now s = \"aabbcc\" and we go back to step 1\nAfter steps 1, 2 and 3 of the second iteration, result = \"abccbaabc\"\nAfter steps 4, 5 and 6 of the second iteration, result = \"abccbaabccba\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"rat\"\n\nOutput:\n \"art\"\n\nExplanation:\n The word \"rat\" becomes \"art\" after re-ordering it with the mentioned algorithm.\n```\n\n Constraints: \n\n 1 <= s.length <= 500 \n \n s consists of only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string ans;\n    void CharErase(map<char, int> &mp, char ch)\n    {\n        if(mp.find(ch) != mp.end())\n        {\n            ans += ch;\n            mp[ch]--;\n            if(not mp[ch]) mp.erase(ch);\n        }\n    }\n    string sortString(string s) \n    {\n        map<char, int> mp;\n        for(char ch:s) mp[ch]++;\n        \n        while(mp.size())\n        {\n            for(char ch='a'; ch <= 'z'; ch++)\n                CharErase(mp, ch);\n            for(char ch='z'; ch >= 'a'; ch--)\n                CharErase(mp, ch);\n        }\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617066468",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

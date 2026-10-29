@@ -1,0 +1,36 @@
+{
+  "id": "354",
+  "title": "Russian Doll Envelopes",
+  "slug": "russian-doll-envelopes",
+  "url": "https://leetcode.com/problems/russian-doll-envelopes/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sorting",
+    "Longest Increasing Subsequence"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D array of integers envelopes where envelopes[i] = [w i , h i ] represents the width and the height of an envelope. \n \n One envelope can fit into another if and only if both the width and height of one envelope are greater than the other envelope's width and height. \n \n Return the maximum number of envelopes you can Russian doll (i.e., put one inside the other) . \n \n Note: You cannot rotate an envelope. \n\n Example 1: \n \n```\nInput:\n envelopes = [[5,4],[6,4],[6,7],[2,3]]\n\nOutput:\n 3\n\nExplanation:\n The maximum number of envelopes you can Russian doll is \n3\n ([2,3] => [5,4] => [6,7]).\n```\n\n Example 2: \n \n```\nInput:\n envelopes = [[1,1],[1,1],[1,1]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= envelopes.length <= 10 5 \n \n envelopes[i].length == 2 \n \n 1 <= w i , h i <= 10 5",
+  "code": "class Solution \n{\npublic:\n    static bool comp(vector<int> &a,vector<int>&b)\n\t{\n        if(a[0]==b[0])\n\t\t{\n            return a[1]>b[1];\n        }\n        else\n\t\t{\n            return a[0]<b[0];\n        }\n    }\n    int maxEnvelopes(vector<vector<int>>& envelopes) \n\t{\n        sort(envelopes.begin(),envelopes.end(),comp);\n        vector<int> temp;\n        temp.push_back(envelopes[0][1]);\n        for(int i=1;i<envelopes.size();i++)\n\t\t{\n            if(temp.back()<envelopes[i][1])\n\t\t\t{\n                temp.push_back(envelopes[i][1]);\n            }\n            else\n\t\t\t{\n                auto ind=lower_bound(temp.begin(),temp.end(),envelopes[i][1])-temp.begin();\n                temp[ind]=envelopes[i][1];\n            }\n        }\n        return temp.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1490543237",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

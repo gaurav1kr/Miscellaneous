@@ -1,0 +1,31 @@
+{
+  "id": "1143",
+  "title": "Longest Common Subsequence",
+  "slug": "longest-common-subsequence",
+  "url": "https://leetcode.com/problems/longest-common-subsequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Longest Common Subsequence"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings text1 and text2 , return the length of their longest common subsequence . If there is no common subsequence , return 0 . \n \n A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters. \n\n For example, \"ace\" is a subsequence of \"abcde\" . \n\n A common subsequence of two strings is a subsequence that is common to both strings. \n\n Example 1: \n \n```\nInput:\n text1 = \"abcde\", text2 = \"ace\" \n\nOutput:\n 3 \n\nExplanation:\n The longest common subsequence is \"ace\" and its length is 3.\n```\n\n Example 2: \n \n```\nInput:\n text1 = \"abc\", text2 = \"abc\"\n\nOutput:\n 3\n\nExplanation:\n The longest common subsequence is \"abc\" and its length is 3.\n```\n\n Example 3: \n \n```\nInput:\n text1 = \"abc\", text2 = \"def\"\n\nOutput:\n 0\n\nExplanation:\n There is no such common subsequence, so the result is 0.\n```\n\n Constraints: \n\n 1 <= text1.length, text2.length <= 1000 \n \n text1 and text2 consist of only lowercase English characters.",
+  "code": "class Solution {\npublic:\n    int longestCommonSubsequence(string text1, string text2) {\n    int m = text1.size(), n = text2.size();\n    vector<int> prev(n + 1, 0), curr(n + 1, 0);\n\n    for (int i = 1; i <= m; ++i) {\n        for (int j = 1; j <= n; ++j) {\n            if (text1[i - 1] == text2[j - 1]) {\n                curr[j] = 1 + prev[j - 1];\n            } else {\n                curr[j] = max(prev[j], curr[j - 1]);\n            }\n        }\n        prev = curr;\n    }\n\n    return prev[n];\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1540742983",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

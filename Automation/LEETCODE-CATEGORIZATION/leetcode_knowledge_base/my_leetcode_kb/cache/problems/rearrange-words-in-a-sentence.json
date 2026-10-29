@@ -1,0 +1,30 @@
+{
+  "id": "1451",
+  "title": "Rearrange Words in a Sentence",
+  "slug": "rearrange-words-in-a-sentence",
+  "url": "https://leetcode.com/problems/rearrange-words-in-a-sentence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a sentence  text (A  sentence  is a string of space-separated words) in the following format: \n\n First letter is in upper case. \n \n Each word in text are separated by a single space. \n\n Your task is to rearrange the words in text such that all words are rearranged in an increasing order of their lengths. If two words have the same length, arrange them in their original order. \n \n Return the new text following the format shown above. \n\n Example 1: \n \n```\nInput:\n text = \"Leetcode is cool\"\n\nOutput:\n \"Is cool leetcode\"\n\nExplanation: \nThere are 3 words, \"Leetcode\" of length 8, \"is\" of length 2 and \"cool\" of length 4.\nOutput is ordered by length and the new first word starts with capital letter.\n```\n\n Example 2: \n \n```\nInput:\n text = \"Keep calm and code on\"\n\nOutput:\n \"On and keep calm code\"\n\nExplanation: \nOutput is ordered as follows:\n\"On\" 2 letters.\n\"and\" 3 letters.\n\"keep\" 4 letters in case of tie order by position in original text.\n\"calm\" 4 letters.\n\"code\" 4 letters.\n```\n\n Example 3: \n \n```\nInput:\n text = \"To be or not to be\"\n\nOutput:\n \"To be or to be not\"\n```\n\n Constraints: \n\n text begins with a capital letter and then contains lowercase letters and single space between words. \n \n 1 <= text.length <= 10^5",
+  "code": "#include <string>\n#include <sstream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string arrangeWords(string text) {\n        vector<string> words;\n        stringstream ss(text);\n        string word;\n        while (ss >> word) {\n            word[0] = tolower(word[0]);\n            words.push_back(word);\n        }\n        stable_sort(words.begin(), words.end(), [](const string& a, const string& b) {\n            return a.size() < b.size();\n        });\n        words[0][0] = toupper(words[0][0]);\n        string res;\n        for (string& w : words) res += w + \" \";\n        res.pop_back();\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610588040",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

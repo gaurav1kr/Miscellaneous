@@ -1,0 +1,28 @@
+{
+  "id": "925",
+  "title": "Long Pressed Name",
+  "slug": "long-pressed-name",
+  "url": "https://leetcode.com/problems/long-pressed-name/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Your friend is typing his name into a keyboard. Sometimes, when typing a character c , the key might get long pressed , and the character will be typed 1 or more times. \n \n You examine the typed characters of the keyboard. Return True if it is possible that it was your friends name, with some characters (possibly none) being long pressed. \n\n Example 1: \n \n```\nInput:\n name = \"alex\", typed = \"aaleex\"\n\nOutput:\n true\n\nExplanation: \n'a' and 'e' in 'alex' were long pressed.\n```\n\n Example 2: \n \n```\nInput:\n name = \"saeed\", typed = \"ssaaedd\"\n\nOutput:\n false\n\nExplanation: \n'e' must have been pressed twice, but it was not in the typed output.\n```\n\n Constraints: \n\n 1 <= name.length, typed.length <= 1000 \n \n name and typed consist of only lowercase English letters.",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isLongPressedName(string name, string typed) {\n        int i = 0, j = 0;\n        while (j < typed.size()) {\n            if (i < name.size() && name[i] == typed[j]) {\n                i++;\n                j++;\n            } else if (j > 0 && typed[j] == typed[j - 1]) {\n                j++;\n            } else {\n                return false;\n            }\n        }\n        return i == name.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590157733",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

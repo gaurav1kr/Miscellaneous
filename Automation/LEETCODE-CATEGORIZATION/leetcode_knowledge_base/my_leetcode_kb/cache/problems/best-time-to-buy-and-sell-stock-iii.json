@@ -1,0 +1,30 @@
+{
+  "id": "123",
+  "title": "Best Time to Buy and Sell Stock III",
+  "slug": "best-time-to-buy-and-sell-stock-iii",
+  "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an array prices where prices[i] is the price of a given stock on the i th day. \n \n Find the maximum profit you can achieve. You may complete at most two transactions . \n \n Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again). \n\n Example 1: \n \n```\nInput:\n prices = [3,3,5,0,0,3,1,4]\n\nOutput:\n 6\n\nExplanation:\n Buy on day 4 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.\nThen buy on day 7 (price = 1) and sell on day 8 (price = 4), profit = 4-1 = 3.\n```\n\n Example 2: \n \n```\nInput:\n prices = [1,2,3,4,5]\n\nOutput:\n 4\n\nExplanation:\n Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.\nNote that you cannot buy on day 1, buy on day 2 and sell them later, as you are engaging multiple transactions at the same time. You must sell before buying again.\n```\n\n Example 3: \n \n```\nInput:\n prices = [7,6,4,3,1]\n\nOutput:\n 0\n\nExplanation:\n In this case, no transaction is done, i.e. max profit = 0.\n```\n\n Constraints: \n\n 1 <= prices.length <= 10 5 \n \n 0 <= prices[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int maxProfit(vector<int>& prices) {\n    int n = prices.size();\n    if (n == 0) return 0;\n\n    // Initialize variables for two transactions\n    int firstBuy = INT_MIN, firstSell = 0;\n    int secondBuy = INT_MIN, secondSell = 0;\n\n    for (int price : prices) {\n        // Maximize profit for the first buy\n        firstBuy = max(firstBuy, -price);\n\n        // Maximize profit for the first sell\n        firstSell = max(firstSell, firstBuy + price);\n\n        // Maximize profit for the second buy\n        secondBuy = max(secondBuy, firstSell - price);\n\n        // Maximize profit for the second sell\n        secondSell = max(secondSell, secondBuy + price);\n    }\n\n    return secondSell;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1540696253",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

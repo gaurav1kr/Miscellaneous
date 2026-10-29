@@ -1,0 +1,37 @@
+{
+  "id": "902",
+  "title": "Numbers At Most N Given Digit Set",
+  "slug": "numbers-at-most-n-given-digit-set",
+  "url": "https://leetcode.com/problems/numbers-at-most-n-given-digit-set/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "String",
+    "Binary Search",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of digits which is sorted in non-decreasing order. You can write numbers using each digits[i] as many times as we want. For example, if digits = ['1','3','5'] , we may write numbers such as '13' , '551' , and '1351315' . \n \n Return the number of positive integers that can be generated that are less than or equal to a given integer n . \n\n Example 1: \n \n```\nInput:\n digits = [\"1\",\"3\",\"5\",\"7\"], n = 100\n\nOutput:\n 20\n\nExplanation: \n\nThe 20 numbers that can be written are:\n1, 3, 5, 7, 11, 13, 15, 17, 31, 33, 35, 37, 51, 53, 55, 57, 71, 73, 75, 77.\n```\n\n Example 2: \n \n```\nInput:\n digits = [\"1\",\"4\",\"9\"], n = 1000000000\n\nOutput:\n 29523\n\nExplanation: \n\nWe can write 3 one digit numbers, 9 two digit numbers, 27 three digit numbers,\n81 four digit numbers, 243 five digit numbers, 729 six digit numbers,\n2187 seven digit numbers, 6561 eight digit numbers, and 19683 nine digit numbers.\nIn total, this is 29523 integers that can be written using the digits array.\n```\n\n Example 3: \n \n```\nInput:\n digits = [\"7\"], n = 8\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= digits.length <= 9 \n \n digits[i].length == 1 \n \n digits[i] is a digit from  '1'  to '9' . \n \n All the values in  digits are unique . \n \n digits is sorted in  non-decreasing order. \n \n 1 <= n <= 10 9",
+  "code": "#include <vector>\n#include <string>\n#include <cmath>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int atMostNGivenDigitSet(vector<string>& digits, int n) {\n        string strN = to_string(n);\n        int len = strN.size(), d = digits.size(), res = 0;\n\n        for (int i = 1; i < len; ++i)\n            res += pow(d, i);\n\n        for (int i = 0; i < len; ++i) {\n            bool samePrefix = false;\n            for (string& digit : digits) {\n                if (digit[0] < strN[i]) {\n                    res += pow(d, len - i - 1);\n                } else if (digit[0] == strN[i]) {\n                    samePrefix = true;\n                }\n            }\n            if (!samePrefix) return res;\n        }\n\n        return res + 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593693830",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

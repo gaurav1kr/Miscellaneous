@@ -1,0 +1,29 @@
+{
+  "id": "1129",
+  "title": "Shortest Path with Alternating Colors",
+  "slug": "shortest-path-with-alternating-colors",
+  "url": "https://leetcode.com/problems/shortest-path-with-alternating-colors/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer n , the number of nodes in a directed graph where the nodes are labeled from 0 to n - 1 . Each edge is red or blue in this graph, and there could be self-edges and parallel edges. \n \n You are given two arrays redEdges and blueEdges where: \n\n redEdges[i] = [a i , b i ] indicates that there is a directed red edge from node a i to node b i in the graph, and \n \n blueEdges[j] = [u j , v j ] indicates that there is a directed blue edge from node u j to node v j in the graph. \n\n Return an array answer of length n , where each answer[x] is the length of the shortest path from node 0 to node x such that the edge colors alternate along the path, or -1 if such a path does not exist. \n\n Example 1: \n \n```\nInput:\n n = 3, redEdges = [[0,1],[1,2]], blueEdges = []\n\nOutput:\n [0,1,-1]\n```\n\n Example 2: \n \n```\nInput:\n n = 3, redEdges = [[0,1]], blueEdges = [[2,1]]\n\nOutput:\n [0,1,-1]\n```\n\n Constraints: \n\n 1 <= n <= 100 \n \n 0 <= redEdges.length, blueEdges.length <= 400 \n \n redEdges[i].length == blueEdges[j].length == 2 \n \n 0 <= a i , b i , u j , v j < n",
+  "code": "class Solution {\npublic:\n\n    void bfs(int src, int n, vector<int> &dist, vector<vector<int>>& redAdj, vector<vector<int>>& blueAdj) {\n        \n        vector<vector<int>> vis(n, vector<int>(2, 0)); \n        queue<pair<int, int>> q; \n\n        dist[src] = 0;\n        q.push({src, 0}); \n        q.push({src, 1}); \n\n        int level = 0;\n\n        while (!q.empty()) {\n            int size = q.size();\n            while (size--) {\n                auto [node, color] = q.front();\n                q.pop();\n\n                vector<int>& neighbors = (color == 0) ? redAdj[node] : blueAdj[node];\n\n                for (int ngh : neighbors) {\n                    if (!vis[ngh][color]) {\n                        vis[ngh][color] = 1;\n                        dist[ngh] = min(dist[ngh], level + 1);\n                        q.push({ngh, 1 - color}); \n                    }\n                }\n            }\n            level++;\n        }\n    }\n\n    vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& redEdges, vector<vector<int>>& blueEdges) {\n        \n        vector<vector<int>> redAdj(n), blueAdj(n);\n        for (auto &edge : redEdges) redAdj[edge[0]].push_back(edge[1]);\n        for (auto &edge : blueEdges) blueAdj[edge[0]].push_back(edge[1]);\n\n        vector<int> dist(n, INT_MAX);\n        bfs(0, n, dist, redAdj, blueAdj);\n\n        for (int &d : dist) {\n            if (d == INT_MAX) d = -1;\n        }\n\n        return dist;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617069226",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

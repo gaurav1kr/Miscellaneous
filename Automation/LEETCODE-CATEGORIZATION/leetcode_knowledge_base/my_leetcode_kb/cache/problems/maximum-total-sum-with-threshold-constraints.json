@@ -1,0 +1,37 @@
+{
+  "id": "3763",
+  "title": "Maximum Total Sum with Threshold Constraints",
+  "slug": "maximum-total-sum-with-threshold-constraints",
+  "url": "https://leetcode.com/problems/maximum-total-sum-with-threshold-constraints/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays nums and threshold , both of length n . \n \n Starting at step = 1 , you perform the following repeatedly: \n\n Choose an unused index i such that threshold[i] <= step .\n\n If no such index exists, the process ends. \n\n Add nums[i] to your running total. \n \n Mark index i as used and increment step by 1. \n\n Return the maximum total sum you can obtain by choosing indices optimally. \n\n Example 1: \n\n Input: nums = [1,10,4,2,1,6], threshold = [5,1,5,5,2,2] \n \n Output: 17 \n \n Explanation: \n\n At step = 1 , choose i = 1 since threshold[1] <= step . The total sum becomes 10. Mark index 1. \n \n At step = 2 , choose i = 4 since threshold[4] <= step . The total sum becomes 11. Mark index 4. \n \n At step = 3 , choose i = 5 since threshold[5] <= step . The total sum becomes 17. Mark index 5. \n \n At step = 4 , we cannot choose indices 0, 2, or 3 because their thresholds are > 4 , so we end the process. \n\n Example 2: \n\n Input: nums = [4,1,5,2,3], threshold = [3,3,2,3,3] \n \n Output: 0 \n \n Explanation: \n \n At step = 1 there is no index i with threshold[i] <= 1 , so the process ends immediately. Thus, the total sum is 0. \n\n Example 3: \n\n Input: nums = [2,6,10,13], threshold = [2,1,1,1] \n \n Output: 31 \n \n Explanation: \n\n At step = 1 , choose i = 3 since threshold[3] <= step . The total sum becomes 13. Mark index 3. \n \n At step = 2 , choose i = 2 since threshold[2] <= step . The total sum becomes 23. Mark index 2. \n \n At step = 3 , choose i = 1 since threshold[1] <= step . The total sum becomes 29. Mark index 1. \n \n At step = 4 , choose i = 0 since threshold[0] <= step . The total sum becomes 31. Mark index 0. \n \n After step = 4 all indices have been chosen, so the process ends. \n\n Constraints: \n\n n == nums.length == threshold.length \n \n 1 <= n <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= threshold[i] <= n",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    long long maxSum(vector<int>& nums, vector<int>& threshold) {\n        int n = nums.size();\n        vector<pair<int,int>> items;\n        for (int i = 0; i < n; ++i) items.push_back({threshold[i], nums[i]});\n        sort(items.begin(), items.end());\n        priority_queue<int> pq;\n        long long ans = 0;\n        int j = 0;\n        for (int step = 1; step <= n; ++step) {\n            while (j < n && items[j].first <= step) pq.push(items[j++].second);\n            if (pq.empty()) break;\n            ans += pq.top(); pq.pop();\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181019361",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

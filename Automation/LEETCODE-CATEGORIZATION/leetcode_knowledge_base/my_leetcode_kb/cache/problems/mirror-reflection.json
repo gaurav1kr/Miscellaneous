@@ -1,0 +1,28 @@
+{
+  "id": "858",
+  "title": "Mirror Reflection",
+  "slug": "mirror-reflection",
+  "url": "https://leetcode.com/problems/mirror-reflection/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Geometry",
+    "Number Theory",
+    "Least Common Multiple",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "There is a special square room with mirrors on each of the four walls. Except for the southwest corner, there are receptors on each of the remaining corners, numbered 0 , 1 , and 2 . \n \n The square room has walls of length p  and a laser ray from the southwest corner first meets the east wall at a distance q from the 0 th receptor. \n \n Given the two integers p and q , return the number of the receptor that the ray meets first . \n \n The test cases are guaranteed so that the ray will meet a receptor eventually. \n\n Example 1: \n [Figure: https://s3-lc-upload.s3.amazonaws.com/uploads/2018/06/18/reflection.png] \n \n```\nInput:\n p = 2, q = 1\n\nOutput:\n 2\n\nExplanation:\n The ray meets receptor 2 the first time it gets reflected back to the left wall.\n```\n\n Example 2: \n \n```\nInput:\n p = 3, q = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= q <= p <= 1000",
+  "code": "class Solution {\n    int gcd(int a, int b) {\n        while (b) { int r = a % b; a = b; b = r; }\n        return a;\n    }\npublic:\n    int mirrorReflection(int p, int q) {\n        int g = gcd(p, q);\n        p /= g; q /= g;\n        if (p % 2 == 0) return 2;\n        return q % 2 == 0 ? 0 : 1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175742873",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "4010",
+  "title": "Maximize Pair Strength Using GCD",
+  "slug": "maximize-pair-strength-using-gcd",
+  "url": "https://leetcode.com/problems/maximize-pair-strength-using-gcd/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Enumeration",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Choose exactly one pair of distinct indices i and j . The strength of the pair is defined as (nums[i] * nums[j]) / gcd(nums[i], nums[j]) 2 . \n \n Return the maximum strength over all possible pairs. \n\n Example 1: \n\n Input: nums = [2,3,5] \n \n Output: 15 \n \n Explanation: \n \n Choosing i = 1 and j = 2 gives strength (3 * 5) / gcd(3, 5) 2 = 15 / 1 = 15 , which is the maximum over all pairs. \n\n Example 2: \n\n Input: nums = [4,6,8] \n \n Output: 12 \n \n Explanation: \n \n Choosing i = 1 and j = 2 gives strength (6 * 8) / gcd(6, 8) 2 = 48 / 4 = 12 , which is the maximum over all pairs. \n\n Example 3: \n\n Input: nums = [3,3] \n \n Output: 1 \n \n Explanation: \n \n Choosing i = 0 and j = 1 gives strength (3 * 3) / gcd(3, 3) 2 = 9 / 9 = 1 , the maximum over all pairs. \n\n Constraints: \n\n 2 <= nums.length <= 2000 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    long long maxPairStrength(vector<int>& nums) {\n        auto gcd11 = [](int a, int b) {\n            while (b) { int r = a % b; a = b; b = r; }\n            return a;\n        };\n        long long best = 0;\n        for (int i = 0; i < (int)nums.size(); ++i)\n            for (int j = i + 1; j < (int)nums.size(); ++j) {\n                long long g = gcd11(nums[i], nums[j]);\n                best = max(best, (long long)(nums[i] / g) * (nums[j] / g));\n            }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179330009",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

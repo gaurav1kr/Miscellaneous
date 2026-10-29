@@ -1,0 +1,30 @@
+{
+  "id": "2018",
+  "title": "Check if Word Can Be Placed In Crossword",
+  "slug": "check-if-word-can-be-placed-in-crossword",
+  "url": "https://leetcode.com/problems/check-if-word-can-be-placed-in-crossword/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Enumeration"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an m x n matrix board , representing the current state of a crossword puzzle. The crossword contains lowercase English letters (from solved words), ' ' to represent any empty cells, and '#' to represent any blocked cells. \n \n A word can be placed horizontally (left to right or right to left) or vertically (top to bottom or bottom to top) in the board if: \n\n It does not occupy a cell containing the character '#' . \n \n The cell each letter is placed in must either be ' ' (empty) or match the letter already on the board . \n \n There must not be any empty cells ' ' or other lowercase letters directly left or right of the word if the word was placed horizontally . \n \n There must not be any empty cells ' ' or other lowercase letters directly above or below the word if the word was placed vertically . \n\n Given a string word , return true if word can be placed in board , or false otherwise . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/10/04/crossword-ex1-1.png] \n \n```\nInput:\n board = [[\"#\", \" \", \"#\"], [\" \", \" \", \"#\"], [\"#\", \"c\", \" \"]], word = \"abc\"\n\nOutput:\n true\n\nExplanation:\n The word \"abc\" can be placed as shown above (top to bottom).\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/10/04/crossword-ex2-1.png] \n \n```\nInput:\n board = [[\" \", \"#\", \"a\"], [\" \", \"#\", \"c\"], [\" \", \"#\", \"a\"]], word = \"ac\"\n\nOutput:\n false\n\nExplanation:\n It is impossible to place the word because there will always be a space/letter above or below it.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/10/04/crossword-ex3-1.png] \n \n```\nInput:\n board = [[\"#\", \" \", \"#\"], [\" \", \" \", \"#\"], [\"#\", \" \", \"c\"]], word = \"ca\"\n\nOutput:\n true\n\nExplanation:\n The word \"ca\" can be placed as shown above (right to left).\n```\n\n Constraints: \n\n m == board.length \n \n n == board[i].length \n \n 1 <= m * n <= 2 * 10 5 \n \n board[i][j] will be ' ' , '#' , or a lowercase English letter. \n \n 1 <= word.length <= max(m, n) \n \n word will contain only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    bool placeWordInCrossword(vector<vector<char>>& board,string word){\n        int m=board.size(),n=board[0].size(),L=word.size();\n        auto fits=[&](const vector<char>&line,int start,int end){\n            if(end-start!=L)return false;\n            bool f=true,b=true;\n            for(int i=0;i<L;++i){char c=line[start+i];\n                if(c!=' '&&c!=word[i])f=false;\n                if(c!=' '&&c!=word[L-1-i])b=false;\n            }\n            return f||b;\n        };\n        for(int r=0;r<m;++r){int st=0;\n            for(int c=0;c<=n;++c)if(c==n||board[r][c]=='#'){\n                if(fits(board[r],st,c))return true;st=c+1;\n            }\n        }\n        for(int c=0;c<n;++c){vector<char>line;\n            for(int r=0;r<m;++r)line.push_back(board[r][c]);\n            int st=0;for(int r=0;r<=m;++r)if(r==m||line[r]=='#'){\n                if(fits(line,st,r))return true;st=r+1;\n            }\n        }\n        return false;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175768726",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

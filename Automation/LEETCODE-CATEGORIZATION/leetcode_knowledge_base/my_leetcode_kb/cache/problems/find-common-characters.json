@@ -1,0 +1,33 @@
+{
+  "id": "1002",
+  "title": "Find Common Characters",
+  "slug": "find-common-characters",
+  "url": "https://leetcode.com/problems/find-common-characters/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string array words , return an array of all characters that show up in all strings within the words (including duplicates) . You may return the answer in any order . \n\n Example 1: \n \n```\nInput:\n words = [\"bella\",\"label\",\"roller\"]\n\nOutput:\n [\"e\",\"l\",\"l\"]\n```\n \n Example 2: \n \n```\nInput:\n words = [\"cool\",\"lock\",\"cook\"]\n\nOutput:\n [\"c\",\"o\"]\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length <= 100 \n \n words[i] consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    vector<string> commonChars(vector<string>& words) {\n        vector<int> common(26, INT_MAX);\n        for (const string& word : words) {\n            vector<int> freq(26, 0);\n            for (char c : word) freq[c - 'a']++;\n            for (int i = 0; i < 26; ++i)\n                common[i] = min(common[i], freq[i]);\n        }\n        vector<string> result;\n        for (int i = 0; i < 26; ++i)\n            while (common[i]-- > 0)\n                result.push_back(string(1, 'a' + i));\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588071118",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

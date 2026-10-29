@@ -1,0 +1,35 @@
+{
+  "id": "765",
+  "title": "Couples Holding Hands",
+  "slug": "couples-holding-hands",
+  "url": "https://leetcode.com/problems/couples-holding-hands/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Greedy",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Greedy / Intervals"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "There are n couples sitting in 2n seats arranged in a row and want to hold hands. \n \n The people and seats are represented by an integer array row where row[i] is the ID of the person sitting in the i th seat. The couples are numbered in order, the first couple being (0, 1) , the second couple being (2, 3) , and so on with the last couple being (2n - 2, 2n - 1) . \n \n Return the minimum number of swaps so that every couple is sitting side by side . A swap consists of choosing any two people, then they stand up and switch seats. \n\n Example 1: \n \n```\nInput:\n row = [0,2,1,3]\n\nOutput:\n 1\n\nExplanation:\n We only need to swap the second (row[1]) and third (row[2]) person.\n```\n\n Example 2: \n \n```\nInput:\n row = [3,2,0,1]\n\nOutput:\n 0\n\nExplanation:\n All couples are already seated side by side.\n```\n\n Constraints: \n\n 2n == row.length \n \n 2 <= n <= 30 ​​​​​​​ \n \n 0 <= row[i] < 2n \n \n All the elements of row are unique .",
+  "code": "class Solution {\npublic:\n    int minSwapsCouples(vector<int>& row) {\n        int n = row.size(), res = 0;\n        unordered_map<int, int> pos;\n        for (int i = 0; i < n; ++i)\n            pos[row[i]] = i;\n        for (int i = 0; i < n; i += 2) {\n            int x = row[i];\n            int y = x ^ 1;\n            if (row[i + 1] != y) {\n                ++res;\n                int j = pos[y];\n                swap(row[i + 1], row[j]);\n                pos[row[j]] = j;\n                pos[row[i + 1]] = i + 1;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1613531154",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

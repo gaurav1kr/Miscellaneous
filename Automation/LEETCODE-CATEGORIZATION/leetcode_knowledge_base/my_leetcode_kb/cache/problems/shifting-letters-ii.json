@@ -1,0 +1,33 @@
+{
+  "id": "2381",
+  "title": "Shifting Letters II",
+  "slug": "shifting-letters-ii",
+  "url": "https://leetcode.com/problems/shifting-letters-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s of lowercase English letters and a 2D integer array shifts where shifts[i] = [start i , end i , direction i ] . For every i , shift the characters in s from the index start i to the index end i ( inclusive ) forward if direction i = 1 , or shift the characters backward if direction i = 0 . \n \n Shifting a character forward means replacing it with the next letter in the alphabet (wrapping around so that 'z' becomes 'a' ). Similarly, shifting a character backward means replacing it with the previous letter in the alphabet (wrapping around so that 'a' becomes 'z' ). \n \n Return the final string after all such shifts to s are applied . \n\n Example 1: \n \n```\nInput:\n s = \"abc\", shifts = [[0,1,0],[1,2,1],[0,2,1]]\n\nOutput:\n \"ace\"\n\nExplanation:\n Firstly, shift the characters from index 0 to index 1 backward. Now s = \"zac\".\nSecondly, shift the characters from index 1 to index 2 forward. Now s = \"zbd\".\nFinally, shift the characters from index 0 to index 2 forward. Now s = \"ace\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"dztz\", shifts = [[0,0,0],[1,1,1]]\n\nOutput:\n \"catz\"\n\nExplanation:\n Firstly, shift the characters from index 0 to index 0 backward. Now s = \"cztz\".\nFinally, shift the characters from index 1 to index 1 forward. Now s = \"catz\".\n```\n\n Constraints: \n\n 1 <= s.length, shifts.length <= 5 * 10 4 \n \n shifts[i].length == 3 \n \n 0 <= start i <= end i < s.length \n \n 0 <= direction i <= 1 \n \n s consists of lowercase English letters.",
+  "code": "class Solution { public:\n    string shiftingLetters(string s,vector<vector<int>>& shifts) {\n        vector<int> diff(s.size()+1,0);\n        for(auto &q:shifts){int d=q[2]?1:-1;diff[q[0]]+=d;diff[q[1]+1]-=d;}\n        int cur=0;for(int i=0;i<(int)s.size();++i){cur+=diff[i];s[i]=char('a'+((s[i]-'a'+cur)%26+26)%26);}\n        return s;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175931417",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

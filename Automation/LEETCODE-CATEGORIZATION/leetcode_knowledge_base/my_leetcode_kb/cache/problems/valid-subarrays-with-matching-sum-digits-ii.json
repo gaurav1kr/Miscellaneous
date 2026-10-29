@@ -1,0 +1,35 @@
+{
+  "id": "3972",
+  "title": "Valid Subarrays With Matching Sum Digits II",
+  "slug": "valid-subarrays-with-matching-sum-digits-ii",
+  "url": "https://leetcode.com/problems/valid-subarrays-with-matching-sum-digits-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer digit x . \n \n A subarray nums[l..r] is considered valid if the sum of its elements satisfies both of the following conditions: \n\n The first digit of the sum is equal to x . \n \n The last digit of the sum is equal to x . \n\n Return the number of valid subarrays. \n\n Example 1: \n\n Input: nums = [1,100,1], x = 1 \n \n Output: 4 \n \n Explanation: \n \n The valid subarrays are: \n\n nums[0..0] : sum = 1 \n \n nums[0..1] : sum = 1 + 100 = 101 \n \n nums[1..2] : sum = 100 + 1 = 101 \n \n nums[2..2] : sum = 1 \n\n Thus, the answer is 4. \n\n Example 2: \n\n Input: nums = [1], x = 2 \n \n Output: 0 \n \n Explanation: \n \n The only subarray is nums[0..0] with a sum of 1, which does not satisfy the conditions. \n \n Thus, the answer is 0. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= x <= 9",
+  "code": "class Solution {\npublic:\n    int countValidSubarrays(vector<int>& nums,int x){\n        vector<long long> a[10];a[0].push_back(0);long long prefix=0,ans=0;\n        for(int v:nums){prefix+=v;int residue=(int)((prefix-x%10+10)%10);\n            for(long long p=1;p<=prefix;p*=10){long long low=(long long)x*p,high=(long long)(x+1)*p-1;\n                if(low>prefix)break;\n                long long L=max(0LL,prefix-high),R=prefix-low;\n                ans+=upper_bound(a[residue].begin(),a[residue].end(),R)-lower_bound(a[residue].begin(),a[residue].end(),L);\n                if(p>LLONG_MAX/10)break;\n            }\n            a[prefix%10].push_back(prefix);\n        }return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181178617",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

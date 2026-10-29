@@ -1,0 +1,42 @@
+{
+  "id": "2152",
+  "title": "Minimum Number of Lines to Cover Points",
+  "slug": "minimum-number-of-lines-to-cover-points",
+  "url": "https://leetcode.com/problems/minimum-number-of-lines-to-cover-points/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Geometry",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an array points where points[i] = [x i , y i ] represents a point on an X-Y plane. \n \n Straight lines are going to be added to the X-Y plane, such that every point is covered by at least one line. \n \n Return the minimum number of straight lines needed to cover all the points . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/01/23/image-20220123200023-1.png] \n \n```\nInput:\n points = [[0,1],[2,3],[4,5],[4,3]]\n\nOutput:\n 2\n\nExplanation:\n The minimum number of straight lines needed is two. One possible solution is to add:\n- One line connecting the point at (0, 1) to the point at (4, 5).\n- Another line connecting the point at (2, 3) to the point at (4, 3).\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/01/23/image-20220123200057-3.png] \n \n```\nInput:\n points = [[0,2],[-2,-2],[1,4]]\n\nOutput:\n 1\n\nExplanation:\n The minimum number of straight lines needed is one. The only solution is to add:\n- One line connecting the point at (-2, -2) to the point at (1, 4).\n```\n\n Constraints: \n\n 1 <= points.length <= 10 \n \n points[i].length == 2 \n \n -100 <= x i , y i <= 100 \n \n All the points are unique .",
+  "code": "class Solution {\npublic:\n    int minimumLines(vector<vector<int>>& points) {\n        int n = points.size();\n        if (n <= 2) return n == 0 ? 0 : 1;\n        vector<vector<int>> line(n, vector<int>(n, 0));\n        for (int i = 0; i < n; ++i) {\n            for (int j = i + 1; j < n; ++j) {\n                int mask = 0;\n                long long dx = points[j][0] - points[i][0];\n                long long dy = points[j][1] - points[i][1];\n                for (int k = 0; k < n; ++k) {\n                    long long x = points[k][0] - points[i][0];\n                    long long y = points[k][1] - points[i][1];\n                    if (dx * y == dy * x) mask |= 1 << k;\n                }\n                line[i][j] = line[j][i] = mask;\n            }\n        }\n        int full = (1 << n) - 1;\n        vector<int> memo(1 << n, -1);\n        function<int(int)> dfs = [&](int mask) {\n            if (mask == full) return 0;\n            int& result = memo[mask];\n            if (result != -1) return result;\n            int i = 0;\n            while (mask & (1 << i)) ++i;\n            result = 1 + dfs(mask | (1 << i));\n            for (int j = i + 1; j < n; ++j) {\n                if (!(mask & (1 << j))) {\n                    result = min(result, 1 + dfs(mask | line[i][j]));\n                }\n            }\n            return result;\n        };\n        return dfs(0);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178643768",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

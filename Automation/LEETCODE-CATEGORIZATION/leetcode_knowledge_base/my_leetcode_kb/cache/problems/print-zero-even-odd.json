@@ -1,0 +1,22 @@
+{
+  "id": "1116",
+  "title": "Print Zero Even Odd",
+  "slug": "print-zero-even-odd",
+  "url": "https://leetcode.com/problems/print-zero-even-odd/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Concurrency"
+  ],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "You have a function printNumber that can be called with an integer parameter and prints it to the console. \n\n For example, calling printNumber(7) prints 7 to the console. \n\n You are given an instance of the class ZeroEvenOdd that has three functions: zero , even , and odd . The same instance of ZeroEvenOdd will be passed to three different threads: \n\n Thread A: calls zero() that should only output 0 's. \n \n Thread B: calls even() that should only output even numbers. \n \n Thread C: calls odd() that should only output odd numbers. \n\n Modify the given class to output the series \"010203040506...\" where the length of the series must be 2n . \n \n Implement the ZeroEvenOdd class: \n\n ZeroEvenOdd(int n) Initializes the object with the number n that represents the numbers that should be printed. \n \n void zero(printNumber) Calls printNumber to output one zero. \n \n void even(printNumber) Calls printNumber to output one even number. \n \n void odd(printNumber) Calls printNumber to output one odd number. \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n \"0102\"\n\nExplanation:\n There are three threads being fired asynchronously.\nOne of them calls zero(), the other calls even(), and the last one calls odd().\n\"0102\" is the correct output.\n```\n\n Example 2: \n \n```\nInput:\n n = 5\n\nOutput:\n \"0102030405\"\n```\n\n Constraints: \n\n 1 <= n <= 1000",
+  "code": "class ZeroEvenOdd {\n    int n, next = 1, turn = 0; // 0 zero, 1 odd, 2 even\n    mutex mu;\n    condition_variable cv;\npublic:\n    ZeroEvenOdd(int n) : n(n) {}\n    void zero(function<void(int)> printNumber) {\n        for (int i = 1; i <= n; ++i) {\n            unique_lock<mutex> lock(mu);\n            cv.wait(lock, [&] { return turn == 0; });\n            printNumber(0);\n            turn = (i % 2 ? 1 : 2);\n            cv.notify_all();\n        }\n    }\n    void odd(function<void(int)> printNumber) {\n        for (int i = 1; i <= n; i += 2) {\n            unique_lock<mutex> lock(mu);\n            cv.wait(lock, [&] { return turn == 1; });\n            printNumber(i);\n            turn = 0;\n            cv.notify_all();\n        }\n    }\n    void even(function<void(int)> printNumber) {\n        for (int i = 2; i <= n; i += 2) {\n            unique_lock<mutex> lock(mu);\n            cv.wait(lock, [&] { return turn == 2; });\n            printNumber(i);\n            turn = 0;\n            cv.notify_all();\n        }\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175747101",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

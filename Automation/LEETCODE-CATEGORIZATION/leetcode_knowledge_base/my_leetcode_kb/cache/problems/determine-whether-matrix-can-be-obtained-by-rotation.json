@@ -1,0 +1,29 @@
+{
+  "id": "1886",
+  "title": "Determine Whether Matrix Can Be Obtained By Rotation",
+  "slug": "determine-whether-matrix-can-be-obtained-by-rotation",
+  "url": "https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given two n x n binary matrices mat and target , return true if it is possible to make mat equal to target by rotating mat in 90-degree increments , or false otherwise. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/05/20/grid3.png] \n \n```\nInput:\n mat = [[0,1],[1,0]], target = [[1,0],[0,1]]\n\nOutput:\n true\n\nExplanation: \nWe can rotate mat 90 degrees clockwise to make mat equal target.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/05/20/grid4.png] \n \n```\nInput:\n mat = [[0,1],[1,1]], target = [[1,0],[0,1]]\n\nOutput:\n false\n\nExplanation:\n It is impossible to make mat equal to target by rotating mat.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/05/26/grid4.png] \n \n```\nInput:\n mat = [[0,0,0],[0,1,0],[1,1,1]], target = [[1,1,1],[0,1,0],[0,0,0]]\n\nOutput:\n true\n\nExplanation: \nWe can rotate mat 90 degrees clockwise two times to make mat equal target.\n```\n\n Constraints: \n\n n == mat.length == target.length \n \n n == mat[i].length == target[i].length \n \n 1 <= n <= 10 \n \n mat[i][j] and target[i][j] are either 0 or 1 .",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool findRotation(vector<vector<int>>& mat, vector<vector<int>>& target) {\n        for (int k = 0; k < 4; ++k) {\n            if (mat == target) return true;\n            rotate(mat);\n        }\n        return false;\n    }\n\n    void rotate(vector<vector<int>>& mat) {\n        int n = mat.size();\n        for (int i = 0; i < n / 2; ++i)\n            for (int j = i; j < n - i - 1; ++j) {\n                int tmp = mat[i][j];\n                mat[i][j] = mat[n - j - 1][i];\n                mat[n - j - 1][i] = mat[n - i - 1][n - j - 1];\n                mat[n - i - 1][n - j - 1] = mat[j][n - i - 1];\n                mat[j][n - i - 1] = tmp;\n            }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610602197",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

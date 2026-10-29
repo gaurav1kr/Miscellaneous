@@ -1,0 +1,37 @@
+{
+  "id": "1489",
+  "title": "Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree",
+  "slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
+  "url": "https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Union-Find",
+    "Graph Theory",
+    "Sorting",
+    "Minimum Spanning Tree",
+    "Strongly Connected Component",
+    "Prim's Algorithm",
+    "Kruskal's Algorithm",
+    "Borůvka's Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given a weighted undirected connected graph with n  vertices numbered from 0 to n - 1 , and an array edges  where edges[i] = [a i , b i , weight i ] represents a bidirectional and weighted edge between nodes  a i  and b i . A minimum spanning tree (MST) is a subset of the graph's edges that connects all vertices without cycles and with the minimum possible total edge weight. \n \n Find all the critical and pseudo-critical edges in the given graph's minimum spanning tree (MST) . An MST edge whose deletion from the graph would cause the MST weight to increase is called a  critical edge . On the other hand, a pseudo-critical edge is that which can appear in some MSTs but not all. \n \n Note that you can return the indices of the edges in any order. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/06/04/ex1.png] \n \n```\nInput:\n n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]]\n\nOutput:\n [[0,1],[2,3,4,5]]\n\nExplanation:\n The figure above describes the graph.\nThe following figure shows all the possible MSTs:\n\nNotice that the two edges 0 and 1 appear in all MSTs, therefore they are critical edges, so we return them in the first list of the output.\nThe edges 2, 3, 4, and 5 are only part of some MSTs, therefore they are considered pseudo-critical edges. We add them to the second list of the output.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2020/06/04/ex2.png] \n \n```\nInput:\n n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]]\n\nOutput:\n [[],[0,1,2,3]]\n\nExplanation:\n We can observe that since all 4 edges have equal weight, choosing any 3 edges from the given 4 will yield an MST. Therefore all 4 edges are pseudo-critical.\n```\n\n Constraints: \n\n 2 <= n <= 100 \n \n 1 <= edges.length <= min(200, n * (n - 1) / 2) \n \n edges[i].length == 3 \n \n 0 <= a i < b i < n \n \n 1 <= weight i  <= 1000 \n \n All pairs (a i , b i ) are distinct .",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass DSU {\n    vector<int> parent;\npublic:\n    DSU(int n): parent(n) { iota(parent.begin(), parent.end(), 0); }\n    int find(int x) {\n        if (x != parent[x]) parent[x] = find(parent[x]);\n        return parent[x];\n    }\n    bool unite(int x, int y) {\n        int fx = find(x), fy = find(y);\n        if (fx == fy) return false;\n        parent[fx] = fy;\n        return true;\n    }\n};\n\nclass Solution {\n    int kruskal(int n, vector<vector<int>>& edges, int skip = -1, int pick = -1) {\n        DSU dsu(n);\n        int cost = 0;\n        if (pick != -1) {\n            dsu.unite(edges[pick][0], edges[pick][1]);\n            cost += edges[pick][2];\n        }\n        for (int i = 0; i < edges.size(); ++i) {\n            if (i == skip) continue;\n            if (dsu.unite(edges[i][0], edges[i][1]))\n                cost += edges[i][2];\n        }\n        for (int i = 1; i < n; ++i)\n            if (dsu.find(i) != dsu.find(0)) return 1e9;\n        return cost;\n    }\n\npublic:\n    vector<vector<int>> findCriticalAndPseudoCriticalEdges(int n, vector<vector<int>>& edges) {\n        for (int i = 0; i < edges.size(); ++i) edges[i].push_back(i);\n        sort(edges.begin(), edges.end(), [](auto& a, auto& b) { return a[2] < b[2]; });\n        int minCost = kruskal(n, edges);\n        vector<int> critical, pseudo;\n\n        for (int i = 0; i < edges.size(); ++i) {\n            if (kruskal(n, edges, i) > minCost)\n                critical.push_back(edges[i][3]);\n            else if (kruskal(n, edges, -1, i) == minCost)\n                pseudo.push_back(edges[i][3]);\n        }\n        return {critical, pseudo};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610697348",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

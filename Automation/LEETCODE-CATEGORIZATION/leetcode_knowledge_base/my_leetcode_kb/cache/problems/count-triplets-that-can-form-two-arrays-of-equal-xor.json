@@ -1,0 +1,37 @@
+{
+  "id": "1442",
+  "title": "Count Triplets That Can Form Two Arrays of Equal XOR",
+  "slug": "count-triplets-that-can-form-two-arrays-of-equal-xor",
+  "url": "https://leetcode.com/problems/count-triplets-that-can-form-two-arrays-of-equal-xor/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an array of integers arr . \n \n We want to select three indices i , j and k where (0 <= i < j <= k < arr.length) . \n \n Let's define a and b as follows: \n\n a = arr[i] ^ arr[i + 1] ^ ... ^ arr[j - 1] \n \n b = arr[j] ^ arr[j + 1] ^ ... ^ arr[k] \n\n Note that ^ denotes the bitwise-xor operation. \n \n Return the number of triplets ( i , j and k ) Where a == b . \n\n Example 1: \n \n```\nInput:\n arr = [2,3,1,6,7]\n\nOutput:\n 4\n\nExplanation:\n The triplets are (0,1,2), (0,2,2), (2,3,4) and (2,4,4)\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,1,1,1,1]\n\nOutput:\n 10\n```\n\n Constraints: \n\n 1 <= arr.length <= 300 \n \n 1 <= arr[i] <= 10 8",
+  "code": "class Solution {\npublic:\n    int countTriplets(vector<int>& arr) {\n        int n = arr.size();\n        int count = 0;\n        for(int i=0;i<n-1;i++){\n            int x = arr[i];\n            for(int j=i+1;j<n;j++){\n                x = x^arr[j];\n                if(x == 0)count += (j-i);\n            }\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617068516",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

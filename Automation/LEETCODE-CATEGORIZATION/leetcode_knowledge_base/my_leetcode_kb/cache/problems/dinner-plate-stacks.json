@@ -1,0 +1,35 @@
+{
+  "id": "1172",
+  "title": "Dinner Plate Stacks",
+  "slug": "dinner-plate-stacks",
+  "url": "https://leetcode.com/problems/dinner-plate-stacks/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Stack",
+    "Design",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered set",
+    "Priority queue / heap",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You have an infinite number of stacks arranged in a row and numbered (left to right) from 0 , each of the stacks has the same maximum capacity. \n \n Implement the DinnerPlates class: \n\n DinnerPlates(int capacity) Initializes the object with the maximum capacity of the stacks capacity . \n \n void push(int val) Pushes the given integer val into the leftmost stack with a size less than capacity . \n \n int pop() Returns the value at the top of the rightmost non-empty stack and removes it from that stack, and returns -1 if all the stacks are empty. \n \n int popAtStack(int index) Returns the value at the top of the stack with the given index index and removes it from that stack or returns -1 if the stack with that given index is empty. \n\n Example 1: \n \n```\nInput\n\n[\"DinnerPlates\", \"push\", \"push\", \"push\", \"push\", \"push\", \"popAtStack\", \"push\", \"push\", \"popAtStack\", \"popAtStack\", \"pop\", \"pop\", \"pop\", \"pop\", \"pop\"]\n[[2], [1], [2], [3], [4], [5], [0], [20], [21], [0], [2], [], [], [], [], []]\n\nOutput\n\n[null, null, null, null, null, null, 2, null, null, 20, 21, 5, 4, 3, 1, -1]\n\nExplanation:\n \nDinnerPlates D = DinnerPlates(2); // Initialize with capacity = 2\nD.push(1);\nD.push(2);\nD.push(3);\nD.push(4);\nD.push(5); // The stacks are now: 2 4\n 1 3 5\n ﹈ ﹈ ﹈\nD.popAtStack(0); // Returns 2. The stacks are now: 4\n 1 3 5\n ﹈ ﹈ ﹈\nD.push(20); // The stacks are now: 20 4\n 1 3 5\n ﹈ ﹈ ﹈\nD.push(21); // The stacks are now: 20 4 21\n 1 3 5\n ﹈ ﹈ ﹈\nD.popAtStack(0); // Returns 20. The stacks are now: 4 21\n 1 3 5\n ﹈ ﹈ ﹈\nD.popAtStack(2); // Returns 21. The stacks are now: 4\n 1 3 5\n ﹈ ﹈ ﹈ \nD.pop() // Returns 5. The stacks are now: 4\n 1 3 \n ﹈ ﹈ \nD.pop() // Returns 4. The stacks are now: 1 3 \n ﹈ ﹈ \nD.pop() // Returns 3. The stacks are now: 1 \n ﹈ \nD.pop() // Returns 1. There are no stacks.\nD.pop() // Returns -1. There are still no stacks.\n```\n\n Constraints: \n\n 1 <= capacity <= 2 * 10 4 \n \n 1 <= val <= 2 * 10 4 \n \n 0 <= index <= 10 5 \n \n At most 2 * 10 5 calls will be made to push , pop , and popAtStack .",
+  "code": "#include <vector>\n#include <stack>\n#include <set>\n\nusing namespace std;\n\nclass DinnerPlates {\n    int cap;\n    vector<stack<int>> stacks;\n    set<int> available;\n\npublic:\n    DinnerPlates(int capacity) : cap(capacity) {}\n\n    void push(int val) {\n        if (available.empty()) stacks.emplace_back();\n        int idx = available.empty() ? stacks.size() - 1 : *available.begin();\n        if (idx == stacks.size()) stacks.emplace_back();\n        stacks[idx].push(val);\n        if (stacks[idx].size() == cap) available.erase(idx);\n        else available.insert(idx);\n    }\n\n    int pop() {\n        while (!stacks.empty() && stacks.back().empty()) stacks.pop_back();\n        if (stacks.empty()) return -1;\n        int val = stacks.back().top(); stacks.back().pop();\n        available.insert(stacks.size() - 1);\n        return val;\n    }\n\n    int popAtStack(int index) {\n        if (index >= stacks.size() || stacks[index].empty()) return -1;\n        int val = stacks[index].top(); stacks[index].pop();\n        available.insert(index);\n        return val;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610618622",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

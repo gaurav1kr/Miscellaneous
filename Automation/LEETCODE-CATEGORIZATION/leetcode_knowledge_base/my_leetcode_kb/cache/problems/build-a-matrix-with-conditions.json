@@ -1,0 +1,35 @@
+{
+  "id": "2392",
+  "title": "Build a Matrix With Conditions",
+  "slug": "build-a-matrix-with-conditions",
+  "url": "https://leetcode.com/problems/build-a-matrix-with-conditions/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Topological Sort",
+    "Matrix",
+    "Directed Acyclic Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a positive integer k . You are also given: \n\n a 2D integer array rowConditions of size n where rowConditions[i] = [above i , below i ] , and \n \n a 2D integer array colConditions of size m where colConditions[i] = [left i , right i ] . \n\n The two arrays contain integers from 1 to k . \n \n You have to build a k x k matrix that contains each of the numbers from 1 to k exactly once . The remaining cells should have the value 0 . \n \n The matrix should also satisfy the following conditions: \n\n The number above i should appear in a row that is strictly above the row at which the number below i appears for all i from 0 to n - 1 . \n \n The number left i should appear in a column that is strictly left of the column at which the number right i appears for all i from 0 to m - 1 . \n\n Return any matrix that satisfies the conditions . If no answer exists, return an empty matrix. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/07/06/gridosdrawio.png] \n \n```\nInput:\n k = 3, rowConditions = [[1,2],[3,2]], colConditions = [[2,1],[3,2]]\n\nOutput:\n [[3,0,0],[0,0,1],[0,2,0]]\n\nExplanation:\n The diagram above shows a valid example of a matrix that satisfies all the conditions.\nThe row conditions are the following:\n- Number 1 is in row \n1\n, and number 2 is in row \n2\n, so 1 is above 2 in the matrix.\n- Number 3 is in row \n0\n, and number 2 is in row \n2\n, so 3 is above 2 in the matrix.\nThe column conditions are the following:\n- Number 2 is in column \n1\n, and number 1 is in column \n2\n, so 2 is left of 1 in the matrix.\n- Number 3 is in column \n0\n, and number 2 is in column \n1\n, so 3 is left of 2 in the matrix.\nNote that there may be multiple correct answers.\n```\n\n Example 2: \n \n```\nInput:\n k = 3, rowConditions = [[1,2],[2,3],[3,1],[2,3]], colConditions = [[2,1]]\n\nOutput:\n []\n\nExplanation:\n From the first two conditions, 3 has to be below 1 but the third conditions needs 3 to be above 1 to be satisfied.\nNo matrix can satisfy all the conditions, so we return the empty matrix.\n```\n\n Constraints: \n\n 2 <= k <= 400 \n \n 1 <= rowConditions.length, colConditions.length <= 10 4 \n \n rowConditions[i].length == colConditions[i].length == 2 \n \n 1 <= above i , below i , left i , right i <= k \n \n above i != below i \n \n left i != right i",
+  "code": "class Solution {vector<int> topo(int k,vector<vector<int>>& edges){vector<vector<int>>g(k+1);vector<int>in(k+1);for(auto&e:edges){g[e[0]].push_back(e[1]);in[e[1]]++;}queue<int>q;for(int i=1;i<=k;i++)if(!in[i])q.push(i);vector<int>order;while(!q.empty()){int u=q.front();q.pop();order.push_back(u);for(int v:g[u])if(!--in[v])q.push(v);}return order;}public:vector<vector<int>> buildMatrix(int k,vector<vector<int>>& rowConditions,vector<vector<int>>& colConditions){auto r=topo(k,rowConditions),c=topo(k,colConditions);if((int)r.size()!=k||(int)c.size()!=k)return {};vector<int>rp(k+1),cp(k+1);for(int i=0;i<k;i++){rp[r[i]]=i;cp[c[i]]=i;}vector<vector<int>>ans(k,vector<int>(k));for(int x=1;x<=k;x++)ans[rp[x]][cp[x]]=x;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176533837",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

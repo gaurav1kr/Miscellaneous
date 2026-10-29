@@ -1,0 +1,35 @@
+{
+  "id": "2440",
+  "title": "Create Components With Same Value",
+  "slug": "create-components-with-same-value",
+  "url": "https://leetcode.com/problems/create-components-with-same-value/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Tree",
+    "Depth-First Search",
+    "Enumeration"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There is an undirected tree with n nodes labeled from 0 to n - 1 . \n \n You are given a 0-indexed integer array nums of length n where nums[i] represents the value of the i th node. You are also given a 2D integer array edges of length n - 1 where edges[i] = [a i , b i ] indicates that there is an edge between nodes a i and b i in the tree. \n \n You are allowed to delete some edges, splitting the tree into multiple connected components. Let the value of a component be the sum of all nums[i] for which node i is in the component. \n \n Return the maximum number of edges you can delete, such that every connected component in the tree has the same value. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/08/26/diagramdrawio.png] \n \n```\nInput:\n nums = [6,2,2,2,6], edges = [[0,1],[1,2],[1,3],[3,4]] \n\nOutput:\n 2 \n\nExplanation:\n The above figure shows how we can delete the edges [0,1] and [3,4]. The created components are nodes [0], [1,2,3] and [4]. The sum of the values in each component equals 6. It can be proven that no better deletion exists, so the answer is 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2], edges = []\n\nOutput:\n 0\n\nExplanation:\n There are no edges to be deleted.\n```\n\n Constraints: \n\n 1 <= n <= 2 * 10 4 \n \n nums.length == n \n \n 1 <= nums[i] <= 50 \n \n edges.length == n - 1 \n \n edges[i].length == 2 \n \n 0 <= edges[i][0], edges[i][1] <= n - 1 \n \n edges represents a valid tree.",
+  "code": "class Solution { public: int componentValue(vector<int>& nums,vector<vector<int>>& edges){int n=nums.size();vector<vector<int>> g(n);for(auto &e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}long long total=accumulate(nums.begin(),nums.end(),0LL);int mx=*max_element(nums.begin(),nums.end());function<long long(int,int,long long)> dfs=[&](int u,int p,long long target)->long long{long long sum=nums[u];for(int v:g[u])if(v!=p){long long x=dfs(v,u,target);if(x<0)return -1;sum+=x;}if(sum>target)return -1;return sum==target?0:sum;};for(int cnt=n;cnt>=1;--cnt){if(total%cnt)continue;long long target=total/cnt;if(target<mx)continue;if(dfs(0,-1,target)==0)return cnt-1;}return 0;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176562857",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

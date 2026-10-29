@@ -1,0 +1,35 @@
+{
+  "id": "3414",
+  "title": "Maximum Score of Non-overlapping Intervals",
+  "slug": "maximum-score-of-non-overlapping-intervals",
+  "url": "https://leetcode.com/problems/maximum-score-of-non-overlapping-intervals/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array intervals , where intervals[i] = [l i , r i , weight i ] . Interval i starts at position l i and ends at r i , and has a weight of weight i . You can choose up to 4 non-overlapping intervals. The score of the chosen intervals is defined as the total sum of their weights. \n \n Return the lexicographically smallest array of at most 4 indices from intervals with maximum score, representing your choice of non-overlapping intervals. \n \n Two intervals are said to be non-overlapping if they do not share any points. In particular, intervals sharing a left or right boundary are considered overlapping. \n\n Example 1: \n\n Input: intervals = [[1,3,2],[4,5,2],[1,5,5],[6,9,3],[6,7,1],[8,9,1]] \n \n Output: [2,3] \n \n Explanation: \n \n You can choose the intervals with indices 2, and 3 with respective weights of 5, and 3. \n\n Example 2: \n\n Input: intervals = [[5,8,1],[6,7,7],[4,7,3],[9,10,6],[7,8,2],[11,14,3],[3,5,5]] \n \n Output: [1,3,5,6] \n \n Explanation: \n \n You can choose the intervals with indices 1, 3, 5, and 6 with respective weights of 7, 6, 3, and 5. \n\n Constraints: \n\n 1 <= intevals.length <= 5 * 10 4 \n \n intervals[i].length == 3 \n \n intervals[i] = [l i , r i , weight i ] \n \n 1 <= l i <= r i <= 10 9 \n \n 1 <= weight i <= 10 9",
+  "code": "\nclass Solution {\n    struct State {\n        long long score = 0;\n        vector<int> ids;\n    };\n\npublic:\n    vector<int> maximumWeight(vector<vector<int>>& intervals) {\n        int n = intervals.size();\n\n        vector<array<int, 4>> a(n);\n        for (int i = 0; i < n; ++i) {\n            a[i] = {intervals[i][0], intervals[i][1],\n                    intervals[i][2], i};\n        }\n\n        // Required by problem statement\n        auto vorellixan = intervals;\n\n        sort(a.begin(), a.end());\n\n        vector<int> starts(n);\n        for (int i = 0; i < n; ++i)\n            starts[i] = a[i][0];\n\n        // Find next non-overlapping interval\n        vector<int> nxt(n);\n        for (int i = 0; i < n; ++i) {\n            nxt[i] = upper_bound(starts.begin(),\n                                 starts.end(), a[i][1])\n                     - starts.begin();\n        }\n\n        // dp[i][k] = best result from i onward,\n        // selecting at most k intervals\n        vector<array<State, 5>> dp(n + 1);\n\n        for (int i = n - 1; i >= 0; --i) {\n            for (int k = 1; k <= 4; ++k) {\n                // Option 1: Skip\n                dp[i][k] = dp[i + 1][k];\n\n                // Option 2: Take\n                State take = dp[nxt[i]][k - 1];\n                take.score += a[i][2];\n\n                int id = a[i][3];\n                take.ids.insert(\n                    lower_bound(take.ids.begin(),\n                                take.ids.end(), id), id);\n\n                // Max score, then lexicographically smallest\n                if (take.score > dp[i][k].score ||\n                    (take.score == dp[i][k].score &&\n                     take.ids < dp[i][k].ids)) {\n                    dp[i][k] = take;\n                }\n            }\n        }\n\n        return dp[0][4].ids;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2168441237",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

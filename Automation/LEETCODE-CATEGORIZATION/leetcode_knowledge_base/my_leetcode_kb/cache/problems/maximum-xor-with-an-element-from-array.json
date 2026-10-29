@@ -1,0 +1,34 @@
+{
+  "id": "1707",
+  "title": "Maximum XOR With an Element From Array",
+  "slug": "maximum-xor-with-an-element-from-array",
+  "url": "https://leetcode.com/problems/maximum-xor-with-an-element-from-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitset",
+    "Ordered set",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given an array nums consisting of non-negative integers. You are also given a queries array, where queries[i] = [x i , m i ] . \n \n The answer to the i th query is the maximum bitwise XOR value of x i and any element of nums that does not exceed m i . In other words, the answer is max(nums[j] XOR x i ) for all j such that nums[j] <= m i . If all elements in nums are larger than m i , then the answer is -1 . \n \n Return an integer array answer where answer.length == queries.length and answer[i] is the answer to the i th query. \n\n Example 1: \n \n```\nInput:\n nums = [0,1,2,3,4], queries = [[3,1],[1,3],[5,6]]\n\nOutput:\n [3,3,7]\n\nExplanation:\n\n1) 0 and 1 are the only two integers not greater than 1. 0 XOR 3 = 3 and 1 XOR 3 = 2. The larger of the two is 3.\n2) 1 XOR 2 = 3.\n3) 5 XOR 2 = 7.\n```\n\n Example 2: \n \n```\nInput:\n nums = [5,2,4,6,6,3], queries = [[12,4],[8,1],[6,3]]\n\nOutput:\n [15,-1,5]\n```\n\n Constraints: \n\n 1 <= nums.length, queries.length <= 10 5 \n \n queries[i].length == 2 \n \n 0 <= nums[j], x i , m i <= 10 9",
+  "code": "class Solution {\npublic:\n    struct TrieNode {\n        TrieNode* left = 0, * right = 0;\n    };\n\n    void addNode(TrieNode* head, int st)\n    {\n        bitset<32> p = bitset<32>(st);\n        for (int i = 31; i >= 0; i--)\n        {\n            if (p.test(i))\n            {\n                if (!head->right)\n                    head->right = new TrieNode();\n                head = head->right;\n            }\n            else\n            {\n                if (!head->left)\n                    head->left = new TrieNode();\n                head = head->left;\n            }\n        }\n    }\n\n    int getMax(TrieNode* head, int st)\n    {\n        if (!head)\n            return -1;\n        bitset<32> p = bitset<32>(st);\n\n        int ans = 0;\n  \n        for (int i = 31; i >= 0; i--)\n        {\n            if (!head->right && !head->left)\n                return -1;\n            ans *= 2;\n\n            if (p.test(i))\n            {\n                if (head->left)\n                    head = head->left;\n                else\n                {\n                    head = head->right;\n                    ans++;\n                }\n            }\n            else   \n            {\n                if (head->right)\n                {\n                    head = head->right;\n                    ans++;\n                }\n                else\n                    head = head->left;\n            }\n        }\n\n        return ans;\n    }\n\n    vector<int> maximizeXor(vector<int>& nums, vector<vector<int>>& que) {\n        sort(nums.begin(), nums.end());\n        for (int  i = 0; i < que.size(); i++)\n        {\n            reverse(que[i].begin(), que[i].end());\n            que[i].push_back(i);\n        }\n        vector<int> ans(que.size());\n\n        sort(que.begin(), que.end());\n\n        TrieNode* head = new TrieNode();\n\n        int ind = 0;\n\n        for (auto e : que)\n        {\n            while (nums[ind] <= e[0] && ind < nums.size())\n            {\n                addNode(head, nums[ind]);\n                ind++;\n            }\n\n            ans[e[2]] = getMax(head, e[1]);\n            if (ans[e[2]] != -1)\n                ans[e[2]] ^= e[1];\n        }\n\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "786688608",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

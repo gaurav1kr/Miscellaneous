@@ -1,0 +1,29 @@
+{
+  "id": "2217",
+  "title": "Find Palindrome With Fixed Length",
+  "slug": "find-palindrome-with-fixed-length",
+  "url": "https://leetcode.com/problems/find-palindrome-with-fixed-length/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array queries and a positive integer intLength , return an array answer where answer[i] is either the queries[i] th smallest positive palindrome of length intLength or -1 if no such palindrome exists . \n \n A palindrome is a number that reads the same backwards and forwards. Palindromes cannot have leading zeros. \n\n Example 1: \n \n```\nInput:\n queries = [1,2,3,4,5,90], intLength = 3\n\nOutput:\n [101,111,121,131,141,999]\n\nExplanation:\n\nThe first few palindromes of length 3 are:\n101, 111, 121, 131, 141, 151, 161, 171, 181, 191, 202, ...\nThe 90\nth\n palindrome of length 3 is 999.\n```\n\n Example 2: \n \n```\nInput:\n queries = [2,4,6], intLength = 4\n\nOutput:\n [1111,1331,1551]\n\nExplanation:\n\nThe first six palindromes of length 4 are:\n1001, 1111, 1221, 1331, 1441, and 1551.\n```\n\n Constraints: \n\n 1 <= queries.length <= 5 * 10 4 \n \n 1 <= queries[i] <= 10 9 \n \n 1 <= intLength <= 15",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n vector<long long> kthPalindrome(vector<int>& queries,int intLength){int half=(intLength+1)/2;long long base=1;for(int i=1;i<half;++i)base*=10;\n  vector<long long>ans;for(int q:queries){long long h=base+q-1;if(h>=base*10){ans.push_back(-1);continue;}\n   string a=to_string(h),b=a;reverse(b.begin(),b.end());if(intLength%2)b.erase(b.begin());ans.push_back(stoll(a+b));\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175889427",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

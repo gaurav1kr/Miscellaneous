@@ -1,0 +1,31 @@
+{
+  "id": "944",
+  "title": "Delete Columns to Make Sorted",
+  "slug": "delete-columns-to-make-sorted",
+  "url": "https://leetcode.com/problems/delete-columns-to-make-sorted/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Longest Increasing Subsequence"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of n strings strs , all of the same length. \n \n The strings can be arranged such that there is one on each line, making a grid. \n\n For example, strs = [\"abc\", \"bce\", \"cae\"] can be arranged as follows: \n\n```\nabc\nbce\ncae\n```\n\n You want to delete the columns that are not sorted lexicographically . In the above example ( 0-indexed ), columns 0 ( 'a' , 'b' , 'c' ) and 2 ( 'c' , 'e' , 'e' ) are sorted, while column 1 ( 'b' , 'c' , 'a' ) is not, so you would delete column 1. \n \n Return the number of columns that you will delete . \n\n Example 1: \n \n```\nInput:\n strs = [\"cba\",\"daf\",\"ghi\"]\n\nOutput:\n 1\n\nExplanation:\n The grid looks as follows:\n cba\n daf\n ghi\nColumns 0 and 2 are sorted, but column 1 is not, so you only need to delete 1 column.\n```\n\n Example 2: \n \n```\nInput:\n strs = [\"a\",\"b\"]\n\nOutput:\n 0\n\nExplanation:\n The grid looks as follows:\n a\n b\nColumn 0 is the only column and is sorted, so you will not delete any columns.\n```\n\n Example 3: \n \n```\nInput:\n strs = [\"zyx\",\"wvu\",\"tsr\"]\n\nOutput:\n 3\n\nExplanation:\n The grid looks as follows:\n zyx\n wvu\n tsr\nAll 3 columns are not sorted, so you will delete all 3.\n```\n\n Constraints: \n\n n == strs.length \n \n 1 <= n <= 100 \n \n 1 <= strs[i].length <= 1000 \n \n strs[i] consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int minDeletionSize(vector<string>& strs) {\n        int answer = 0;\n        for (int col = 0; col < (int)strs[0].size(); ++col)\n            for (int row = 1; row < (int)strs.size(); ++row)\n                if (strs[row][col] < strs[row - 1][col]) {\n                    ++answer;\n                    break;\n                }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175744226",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

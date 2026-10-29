@@ -1,0 +1,34 @@
+{
+  "id": "302",
+  "title": "Smallest Rectangle Enclosing Black Pixels",
+  "slug": "smallest-rectangle-enclosing-black-pixels",
+  "url": "https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an m x n binary matrix image where 0 represents a white pixel and 1 represents a black pixel. \n \n The black pixels are connected (i.e., there is only one black region). Pixels are connected horizontally and vertically. \n \n Given two integers x and y that represents the location of one of the black pixels, return the area of the smallest (axis-aligned) rectangle that encloses all black pixels . \n \n You must write an algorithm with less than O(mn) runtime complexity \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/14/pixel-grid.jpg] \n \n```\nInput:\n image = [[\"0\",\"0\",\"1\",\"0\"],[\"0\",\"1\",\"1\",\"0\"],[\"0\",\"1\",\"0\",\"0\"]], x = 0, y = 2\n\nOutput:\n 6\n```\n\n Example 2: \n \n```\nInput:\n image = [[\"1\"]], x = 0, y = 0\n\nOutput:\n 1\n```\n\n Constraints: \n\n m == image.length \n \n n == image[i].length \n \n 1 <= m, n <= 100 \n \n image[i][j] is either '0' or '1' . \n \n 0 <= x < m \n \n 0 <= y < n \n \n image[x][y] == '1'. \n \n The black pixels in the image only form one component .",
+  "code": "class Solution\n{\npublic:\n    int minArea(vector<vector<char>>& image, int x, int y)\n    {\n        int m = image.size(), n = image[0].size();\n        auto rowHasBlack = [&](int r) {\n            for (int c = 0; c < n; ++c)\n            {\n                if (image[r][c] == '1') return true;\n            }\n            return false;\n        };\n        auto colHasBlack = [&](int c) {\n            for (int r = 0; r < m; ++r)\n            {\n                if (image[r][c] == '1') return true;\n            }\n            return false;\n        };\n        int lo = 0, hi = x;\n        while (lo < hi)\n        {\n            int mid = lo + (hi - lo) / 2;\n            if (rowHasBlack(mid)) hi = mid;\n            else lo = mid + 1;\n        }\n        int top = lo;\n        lo = x; hi = m;\n        while (lo < hi)\n        {\n            int mid = lo + (hi - lo) / 2;\n            if (rowHasBlack(mid)) lo = mid + 1;\n            else hi = mid;\n        }\n        int bottom = lo;\n        lo = 0; hi = y;\n        while (lo < hi)\n        {\n            int mid = lo + (hi - lo) / 2;\n            if (colHasBlack(mid)) hi = mid;\n            else lo = mid + 1;\n        }\n        int left = lo;\n        lo = y; hi = n;\n        while (lo < hi)\n        {\n            int mid = lo + (hi - lo) / 2;\n            if (colHasBlack(mid)) lo = mid + 1;\n            else hi = mid;\n        }\n        return (bottom - top) * (hi - left);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178449672",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

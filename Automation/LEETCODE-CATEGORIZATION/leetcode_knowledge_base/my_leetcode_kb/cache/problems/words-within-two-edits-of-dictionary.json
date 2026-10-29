@@ -1,0 +1,33 @@
+{
+  "id": "2452",
+  "title": "Words Within Two Edits of Dictionary",
+  "slug": "words-within-two-edits-of-dictionary",
+  "url": "https://leetcode.com/problems/words-within-two-edits-of-dictionary/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given two string arrays, queries and dictionary . All words in each array comprise of lowercase English letters and have the same length. \n \n In one edit you can take a word from queries , and change any letter in it to any other letter. Find all words from queries that, after a maximum of two edits, equal some word from dictionary . \n \n Return a list of all words from queries , that match with some word from dictionary after a maximum of two edits . Return the words in the same order they appear in queries . \n\n Example 1: \n \n```\nInput:\n queries = [\"word\",\"note\",\"ants\",\"wood\"], dictionary = [\"wood\",\"joke\",\"moat\"]\n\nOutput:\n [\"word\",\"note\",\"wood\"]\n\nExplanation:\n\n- Changing the 'r' in \"word\" to 'o' allows it to equal the dictionary word \"wood\".\n- Changing the 'n' to 'j' and the 't' to 'k' in \"note\" changes it to \"joke\".\n- It would take more than 2 edits for \"ants\" to equal a dictionary word.\n- \"wood\" can remain unchanged (0 edits) and match the corresponding dictionary word.\nThus, we return [\"word\",\"note\",\"wood\"].\n```\n\n Example 2: \n \n```\nInput:\n queries = [\"yes\"], dictionary = [\"not\"]\n\nOutput:\n []\n\nExplanation:\n\nApplying any two edits to \"yes\" cannot make it equal to \"not\". Thus, we return an empty array.\n```\n\n Constraints: \n\n 1 <= queries.length, dictionary.length <= 100 \n \n n == queries[i].length == dictionary[j].length \n \n 1 <= n <= 100 \n \n All queries[i] and dictionary[j] are composed of lowercase English letters.",
+  "code": "class Solution { public: vector<string> twoEditWords(vector<string>& queries,vector<string>& dictionary){vector<string> ans;for(auto &q:queries)for(auto &d:dictionary){int diff=0;for(int i=0;i<(int)q.size();++i)diff+=q[i]!=d[i];if(diff<=2){ans.push_back(q);break;}}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176569102",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "3947",
+  "title": "Maximum Number of Items From Sale II",
+  "slug": "maximum-number-of-items-from-sale-ii",
+  "url": "https://leetcode.com/problems/maximum-number-of-items-from-sale-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array items , where items[i] = [factor i , price i ] represents the i th item. You are also given an integer budget . \n \n There are unlimited copies of each item available for purchase. You may buy any number of copies of any items such that the total cost of the purchased copies is at most budget . \n \n After buying items, you may receive free copies according to the following rules: \n\n Each purchased copy of item i can give you at most one free copy of another item j . \n \n The free item must satisfy i != j and factor i divides factor j . \n \n For each ordered pair (i, j) , you can receive a free copy of item j from purchases of item i at most once , regardless of how many copies of item i you buy. \n \n The same item j can be received multiple times for free if it is received from purchases of different item types. \n\n Return the maximum total number of item copies you can obtain, including both purchased copies and free copies, while spending at most budget on purchased items. \n\n Example 1: \n\n Input: items = [[1,6],[2,4],[3,5]], budget = 19 \n \n Output: 5 \n \n Explanation: \n\n You can buy 2 copies of item 0 and 1 copy of item 1 for a total cost of 2 * 6 + 4 = 16 , which is not greater than budget = 19 . \n \n One purchased copy of item 0 gives 1 free copy of item 1, because factor 0 = 1 divides factor 1 = 2 . \n \n The other purchased copy of item 0 gives 1 free copy of item 2, because factor 0 = 1 divides factor 2 = 3 . \n \n You leave with 3 purchased copies and 2 free copies, for a total of 5 item copies. \n\n Example 2: \n\n Input: items = [[2,8],[1,10],[6,6],[4,12],[5,20],[5,17]], budget = 35 \n \n Output: 7 \n \n Explanation: \n\n You can buy 2 copies of item 0, 1 copy of item 1, and 1 copy of item 2 for a total cost of 2 * 8 + 10 + 6 = 32 , which is not greater than budget = 35 . \n \n One purchased copy of item 0 gives 1 free copy of item 2, because factor 0 = 2 divides factor 2 = 6 . \n \n The other purchased copy of item 0 gives 1 free copy of item 3, because factor 0 = 2 divides factor 3 = 4 . \n \n The purchased copy of item 1 gives 1 free copy of item 2, because factor 1 = 1 divides factor 2 = 6 . \n \n Buying item 2 gives no free copy, because factor 2 = 6 does not divide the factor of any other item. \n \n You leave with 4 purchased copies and 3 free copies, for a total of 7 item copies. \n\n Constraints: \n\n 1 <= items.length <= 10 5 \n \n items[i] = [factor i , price i ] \n \n 1 <= factor i <= items.length \n \n 1 <= price i <= 10 9 \n \n 1 <= budget <= 10 9",
+  "code": "class Solution {\npublic:\n    int maximumSaleItems(vector<vector<int>>& items, int budget) {\n        int n = items.size();\n        vector<int> count(n + 1, 0);\n        int cheapest = INT_MAX;\n        for (auto &x : items) {\n            ++count[x[0]];\n            cheapest = min(cheapest, x[1]);\n        }\n        vector<int> gain(n + 1, 0);\n        for (int d = 1; d <= n; ++d)\n            for (int v = d; v <= n; v += d)\n                gain[d] += count[v];\n        vector<pair<int,int>> boosted;\n        long long totalBoost = 0;\n        for (int i = 0; i < n; ++i) {\n            int g = gain[items[i][0]] - 1;\n            if (g > 0) {\n                boosted.push_back({items[i][1], g});\n                totalBoost += g;\n            }\n        }\n        sort(boosted.begin(), boosted.end());\n        vector<long long> qty(1, 0), cost(1, 0);\n        for (auto &x : boosted) {\n            qty.push_back(qty.back() + x.second);\n            cost.push_back(cost.back() + 1LL * x.first * x.second);\n        }\n        auto minCost = [&](long long target) -> long long {\n            long long t = target / 2;\n            // Only boosted units costing less than two ordinary copies help.\n            long long useful = 0;\n            for (auto &p : boosted) {\n                if (p.first >= 2LL * cheapest) break;\n                useful += p.second;\n            }\n            t = min(t, useful);\n            int i = upper_bound(qty.begin(), qty.end(), t) - qty.begin() - 1;\n            long long c = cost[i];\n            if (i < (int)boosted.size()) c += (t - qty[i]) * boosted[i].first;\n            return c + (target - 2 * t) * cheapest;\n        };\n        long long low = 0, high = 2LL * budget / cheapest;\n        while (low < high) {\n            long long mid = (low + high + 1) / 2;\n            if (minCost(mid) <= budget) low = mid;\n            else high = mid - 1;\n        }\n        return (int)low;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181495920",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "2285",
+  "title": "Maximum Total Importance of Roads",
+  "slug": "maximum-total-importance-of-roads",
+  "url": "https://leetcode.com/problems/maximum-total-importance-of-roads/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Greedy",
+    "Graph Theory",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer n denoting the number of cities in a country. The cities are numbered from 0 to n - 1 . \n \n You are also given a 2D integer array roads where roads[i] = [a i , b i ] denotes that there exists a bidirectional road connecting cities a i and b i . \n \n You need to assign each city with an integer value from 1 to n , where each value can only be used once . The importance of a road is then defined as the sum of the values of the two cities it connects. \n \n Return the maximum total importance of all roads possible after assigning the values optimally. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/04/07/ex1drawio.png] \n \n```\nInput:\n n = 5, roads = [[0,1],[1,2],[2,3],[0,2],[1,3],[2,4]]\n\nOutput:\n 43\n\nExplanation:\n The figure above shows the country and the assigned values of [2,4,5,3,1].\n- The road (0,1) has an importance of 2 + 4 = 6.\n- The road (1,2) has an importance of 4 + 5 = 9.\n- The road (2,3) has an importance of 5 + 3 = 8.\n- The road (0,2) has an importance of 2 + 5 = 7.\n- The road (1,3) has an importance of 4 + 3 = 7.\n- The road (2,4) has an importance of 5 + 1 = 6.\nThe total importance of all roads is 6 + 9 + 8 + 7 + 7 + 6 = 43.\nIt can be shown that we cannot obtain a greater total importance than 43.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/04/07/ex2drawio.png] \n \n```\nInput:\n n = 5, roads = [[0,3],[2,4],[1,3]]\n\nOutput:\n 20\n\nExplanation:\n The figure above shows the country and the assigned values of [4,3,2,5,1].\n- The road (0,3) has an importance of 4 + 5 = 9.\n- The road (2,4) has an importance of 2 + 1 = 3.\n- The road (1,3) has an importance of 3 + 5 = 8.\nThe total importance of all roads is 9 + 3 + 8 = 20.\nIt can be shown that we cannot obtain a greater total importance than 20.\n```\n\n Constraints: \n\n 2 <= n <= 5 * 10 4 \n \n 1 <= roads.length <= 5 * 10 4 \n \n roads[i].length == 2 \n \n 0 <= a i , b i <= n - 1 \n \n a i != b i \n \n There are no duplicate roads.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:long long maximumImportance(int n,vector<vector<int>>& roads){vector<int> deg(n);for(auto &e:roads){++deg[e[0]];++deg[e[1]];}sort(deg.begin(),deg.end());long long ans=0;for(int i=0;i<n;++i)ans+=1LL*deg[i]*(i+1);return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175906761",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

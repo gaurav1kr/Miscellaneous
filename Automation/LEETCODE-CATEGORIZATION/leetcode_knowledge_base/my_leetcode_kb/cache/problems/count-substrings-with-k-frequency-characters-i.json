@@ -1,0 +1,31 @@
+{
+  "id": "3325",
+  "title": "Count Substrings With K-Frequency Characters I",
+  "slug": "count-substrings-with-k-frequency-characters-i",
+  "url": "https://leetcode.com/problems/count-substrings-with-k-frequency-characters-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Given a string s and an integer k , return the total number of substrings of s where at least one character appears at least k times. \n\n Example 1: \n\n Input: s = \"abacb\", k = 2 \n \n Output: 4 \n \n Explanation: \n \n The valid substrings are: \n\n \"aba\" (character 'a' appears 2 times). \n \n \"abac\" (character 'a' appears 2 times). \n \n \"abacb\" (character 'a' appears 2 times). \n \n \"bacb\" (character 'b' appears 2 times). \n\n Example 2: \n\n Input: s = \"abcde\", k = 1 \n \n Output: 15 \n \n Explanation: \n \n All substrings are valid because every character appears at least once. \n\n Constraints: \n\n 1 <= s.length <= 3000 \n \n 1 <= k <= s.length \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {public:int numberOfSubstrings(string s,int k){int f[26]={},l=0;long long good=0;for(int r=0;r<(int)s.size();r++){f[s[r]-'a']++;while(f[s[r]-'a']>=k)f[s[l++]-'a']--;good+=r-l+1;}long long n=s.size();return n*(n+1)/2-good;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177460116",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

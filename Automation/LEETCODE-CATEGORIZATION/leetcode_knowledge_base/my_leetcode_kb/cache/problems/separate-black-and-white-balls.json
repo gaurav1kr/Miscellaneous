@@ -1,0 +1,30 @@
+{
+  "id": "2938",
+  "title": "Separate Black and White Balls",
+  "slug": "separate-black-and-white-balls",
+  "url": "https://leetcode.com/problems/separate-black-and-white-balls/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "There are n balls on a table, each ball has a color black or white. \n \n You are given a 0-indexed binary string s of length n , where 1 and 0 represent black and white balls, respectively. \n \n In each step, you can choose two adjacent balls and swap them. \n \n Return the minimum number of steps to group all the black balls to the right and all the white balls to the left . \n\n Example 1: \n \n```\nInput:\n s = \"101\"\n\nOutput:\n 1\n\nExplanation:\n We can group all the black balls to the right in the following way:\n- Swap s[0] and s[1], s = \"011\".\nInitially, 1s are not grouped together, requiring at least 1 step to group them to the right.\n```\n\n Example 2: \n \n```\nInput:\n s = \"100\"\n\nOutput:\n 2\n\nExplanation:\n We can group all the black balls to the right in the following way:\n- Swap s[0] and s[1], s = \"010\".\n- Swap s[1] and s[2], s = \"001\".\nIt can be proven that the minimum number of steps needed is 2.\n```\n\n Example 3: \n \n```\nInput:\n s = \"0111\"\n\nOutput:\n 0\n\nExplanation:\n All the black balls are already grouped to the right.\n```\n\n Constraints: \n\n 1 <= n == s.length <= 10 5 \n \n s[i] is either '0' or '1' .",
+  "code": "class Solution{public:long long minimumSteps(string s){long long ones=0,ans=0;for(char c:s){if(c=='1')ones++;else ans+=ones;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176762780",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

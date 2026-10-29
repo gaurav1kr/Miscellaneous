@@ -1,0 +1,38 @@
+{
+  "id": "2638",
+  "title": "Count the Number of K-Free Subsets",
+  "slug": "count-the-number-of-k-free-subsets",
+  "url": "https://leetcode.com/problems/count-the-number-of-k-free-subsets/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Sorting",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Ordered map",
+    "Ordered set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums , which contains distinct elements and an integer k . \n \n A subset is called a k-Free subset if it contains no two elements with an absolute difference equal to k . Notice that the empty set is a k-Free subset. \n \n Return the number of k-Free subsets of nums . \n \n A subset of an array is a selection of elements (possibly none) of the array. \n\n Example 1: \n \n```\nInput:\n nums = [5,4,6], k = 1\n\nOutput:\n 5\n\nExplanation:\n There are 5 valid subsets: {}, {5}, {4}, {6} and {4, 6}.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,3,5,8], k = 5\n\nOutput:\n 12\n\nExplanation:\n There are 12 valid subsets: {}, {2}, {3}, {5}, {8}, {2, 3}, {2, 3, 5}, {2, 5}, {2, 5, 8}, {2, 8}, {3, 5} and {5, 8}.\n```\n\n Example 3: \n \n```\nInput:\n nums = [10,5,9,11], k = 20\n\nOutput:\n 16\n\nExplanation:\n All subsets are valid. Since the total count of subsets is 2\n4 \n= 16, so the answer is 16.\n```\n\n Constraints: \n\n 1 <= nums.length <= 50 \n \n 1 <= nums[i] <= 1000 \n \n 1 <= k <= 1000",
+  "code": "class Solution {\npublic:\n    long long countTheNumOfKFreeSubsets(vector<int>& nums, int k) {\n        map<int, int> freq;\n        for (int x : nums) ++freq[x];\n        set<int> visited;\n        long long result = 1;\n        for (const auto& item : freq) {\n            int start = item.first;\n            if (visited.count(start)) continue;\n            if (freq.count(start - k)) continue;\n            long long skip = 1, take = 0;\n            for (int x = start; freq.count(x); x += k) {\n                visited.insert(x);\n                long long choices = (1LL << freq[x]) - 1;\n                long long newSkip = skip + take;\n                long long newTake = skip * choices;\n                skip = newSkip;\n                take = newTake;\n            }\n            result *= skip + take;\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178893865",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

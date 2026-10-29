@@ -1,0 +1,44 @@
+{
+  "id": "3292",
+  "title": "Minimum Number of Valid Strings to Form Target II",
+  "slug": "minimum-number-of-valid-strings-to-form-target-ii",
+  "url": "https://leetcode.com/problems/minimum-number-of-valid-strings-to-form-target-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Binary Search",
+    "Dynamic Programming",
+    "Greedy",
+    "Segment Tree",
+    "Rolling Hash",
+    "String Matching",
+    "Hash Function"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Segment tree",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings words and a string target . \n \n A string x is called valid if x is a prefix of any string in words . \n \n Return the minimum number of valid strings that can be concatenated to form target . If it is not possible to form target , return -1 . \n\n Example 1: \n\n Input: words = [\"abc\",\"aaaaa\",\"bcdef\"], target = \"aabcdabc\" \n \n Output: 3 \n \n Explanation: \n \n The target string can be formed by concatenating: \n\n Prefix of length 2 of words[1] , i.e. \"aa\" . \n \n Prefix of length 3 of words[2] , i.e. \"bcd\" . \n \n Prefix of length 3 of words[0] , i.e. \"abc\" . \n\n Example 2: \n\n Input: words = [\"abababab\",\"ab\"], target = \"ababaababa\" \n \n Output: 2 \n \n Explanation: \n \n The target string can be formed by concatenating: \n\n Prefix of length 5 of words[0] , i.e. \"ababa\" . \n \n Prefix of length 5 of words[0] , i.e. \"ababa\" . \n\n Example 3: \n\n Input: words = [\"abcdef\"], target = \"xyz\" \n \n Output: -1 \n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length <= 5 * 10 4 \n \n The input is generated such that sum(words[i].length) <= 10 5 . \n \n words[i] consists only of lowercase English letters. \n \n 1 <= target.length <= 5 * 10 4 \n \n target consists only of lowercase English letters.",
+  "code": "class Solution { public: int minValidStrings(vector<string>&words,string target){int n=target.size();vector<int>reach(n);for(auto&w:words){string s=w+'#'+target;int m=s.size();vector<int>z(m);for(int i=1,l=0,r=0;i<m;++i){if(i<=r)z[i]=min(r-i+1,z[i-l]);while(i+z[i]<m&&s[z[i]]==s[i+z[i]])++z[i];if(i+z[i]-1>r)l=i,r=i+z[i]-1;}int off=w.size()+1;for(int i=0;i<n;++i)reach[i]=max(reach[i],i+min((int)w.size(),z[off+i]));}int end=0,far=0,steps=0;for(int i=0;i<n;++i){if(i>far)return -1;far=max(far,reach[i]);if(i==end){if(far<=i)return -1;end=far;++steps;if(end>=n)return steps;}}return -1;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177450870",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

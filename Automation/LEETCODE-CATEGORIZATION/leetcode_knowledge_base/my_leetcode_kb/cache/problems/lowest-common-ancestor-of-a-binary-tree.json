@@ -1,0 +1,32 @@
+{
+  "id": "236",
+  "title": "Lowest Common Ancestor of a Binary Tree",
+  "slug": "lowest-common-ancestor-of-a-binary-tree",
+  "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree",
+    "Binary Lifting",
+    "Lowest Common Ancestor"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree. \n \n According to the definition of LCA on Wikipedia : “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself ).” \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2018/12/14/binarytree.png] \n \n```\nInput:\n root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1\n\nOutput:\n 3\n\nExplanation:\n The LCA of nodes 5 and 1 is 3.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2018/12/14/binarytree.png] \n \n```\nInput:\n root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4\n\nOutput:\n 5\n\nExplanation:\n The LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.\n```\n\n Example 3: \n \n```\nInput:\n root = [1,2], p = 1, q = 2\n\nOutput:\n 1\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [2, 10 5 ] . \n \n -10 9 <= Node.val <= 10 9 \n \n All Node.val are unique . \n \n p != q \n \n p and q will exist in the tree.",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution \n{\npublic:\n    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* n1, TreeNode* n2) \n    {\n       if (root == NULL) \n           return NULL; \n       if (root->val == n1->val || root->val == n2->val) \n            return root; \n  \n       TreeNode *left_lca  =  lowestCommonAncestor(root->left, n1, n2); \n       TreeNode *right_lca =  lowestCommonAncestor(root->right, n1, n2); \n  \n       if (left_lca && right_lca)  return root; \n            return (left_lca != NULL)? left_lca: right_lca; \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "344664048",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

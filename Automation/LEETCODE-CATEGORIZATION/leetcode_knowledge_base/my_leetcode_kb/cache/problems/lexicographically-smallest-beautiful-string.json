@@ -1,0 +1,28 @@
+{
+  "id": "2663",
+  "title": "Lexicographically Smallest Beautiful String",
+  "slug": "lexicographically-smallest-beautiful-string",
+  "url": "https://leetcode.com/problems/lexicographically-smallest-beautiful-string/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A string is beautiful if: \n\n It consists of the first k letters of the English lowercase alphabet. \n \n It does not contain any substring of length 2 or more which is a palindrome. \n\n You are given a beautiful string s of length n and a positive integer k . \n \n Return the lexicographically smallest string of length n , which is larger than s and is beautiful . If there is no such string, return an empty string. \n \n A string a is lexicographically larger than a string b (of the same length) if in the first position where a and b differ, a has a character strictly larger than the corresponding character in b . \n\n For example, \"abcd\" is lexicographically larger than \"abcc\" because the first position they differ is at the fourth character, and d is greater than c . \n\n Example 1: \n \n```\nInput:\n s = \"abcz\", k = 26\n\nOutput:\n \"abda\"\n\nExplanation:\n The string \"abda\" is beautiful and lexicographically larger than the string \"abcz\".\nIt can be proven that there is no string that is lexicographically larger than the string \"abcz\", beautiful, and lexicographically smaller than the string \"abda\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"dc\", k = 4\n\nOutput:\n \"\"\n\nExplanation:\n It can be proven that there is no string that is lexicographically larger than the string \"dc\" and is beautiful.\n```\n\n Constraints: \n\n 1 <= n == s.length <= 10 5 \n \n 4 <= k <= 26 \n \n s is a beautiful string.",
+  "code": "class Solution {public:string smallestBeautifulString(string s,int k){int n=s.size();for(int i=n-1;i>=0;i--){for(char c=s[i]+1;c<char('a'+k);c++){if(i>0&&s[i-1]==c||i>1&&s[i-2]==c)continue;s[i]=c;for(int j=i+1;j<n;j++)for(char x='a';x<char('a'+k);x++)if((j<1||s[j-1]!=x)&&(j<2||s[j-2]!=x)){s[j]=x;break;}return s;}}return \"\";}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176635872",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

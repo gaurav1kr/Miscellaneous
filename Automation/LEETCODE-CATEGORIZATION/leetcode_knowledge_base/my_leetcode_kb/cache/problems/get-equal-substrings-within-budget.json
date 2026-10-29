@@ -1,0 +1,33 @@
+{
+  "id": "1208",
+  "title": "Get Equal Substrings Within Budget",
+  "slug": "get-equal-substrings-within-budget",
+  "url": "https://leetcode.com/problems/get-equal-substrings-within-budget/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Binary Search",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "You are given two strings s and t of the same length and an integer maxCost . \n \n You want to change s to t . Changing the i th character of s to i th character of t costs |s[i] - t[i]| (i.e., the absolute difference between the ASCII values of the characters). \n \n Return the maximum length of a substring of s that can be changed to be the same as the corresponding substring of t with a cost less than or equal to maxCost . If there is no substring from s that can be changed to its corresponding substring from t , return 0 . \n\n Example 1: \n \n```\nInput:\n s = \"abcd\", t = \"bcdf\", maxCost = 3\n\nOutput:\n 3\n\nExplanation:\n \"abc\" of s can change to \"bcd\".\nThat costs 3, so the maximum length is 3.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abcd\", t = \"cdef\", maxCost = 3\n\nOutput:\n 1\n\nExplanation:\n Each character in s costs 2 to change to character in t, so the maximum length is 1.\n```\n\n Example 3: \n \n```\nInput:\n s = \"abcd\", t = \"acde\", maxCost = 0\n\nOutput:\n 1\n\nExplanation:\n You cannot make any change, so the maximum length is 1.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n t.length == s.length \n \n 0 <= maxCost <= 10 6 \n \n s and t consist of only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int equalSubstring(string s, string t, int maxCost) {\n        int left = 0, cost = 0, best = 0;\n        for (int right = 0; right < static_cast<int>(s.size()); ++right) {\n            cost += abs(s[right] - t[right]);\n            while (cost > maxCost) {\n                cost -= abs(s[left] - t[left]);\n                ++left;\n            }\n            best = max(best, right - left + 1);\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175748086",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

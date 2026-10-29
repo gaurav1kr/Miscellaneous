@@ -1,0 +1,34 @@
+{
+  "id": "1307",
+  "title": "Verbal Arithmetic Puzzle",
+  "slug": "verbal-arithmetic-puzzle",
+  "url": "https://leetcode.com/problems/verbal-arithmetic-puzzle/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "String",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an equation, represented by words on the left side and the result on the right side. \n \n You need to check if the equation is solvable under the following rules: \n\n Each character is decoded as one digit (0 - 9). \n \n No two characters can map to the same digit. \n \n Each words[i] and result are decoded as one number without leading zeros. \n \n Sum of numbers on the left side ( words ) will equal to the number on the right side ( result ). \n\n Return true if the equation is solvable, otherwise return false . \n\n Example 1: \n \n```\nInput:\n words = [\"SEND\",\"MORE\"], result = \"MONEY\"\n\nOutput:\n true\n\nExplanation:\n Map 'S'-> 9, 'E'->5, 'N'->6, 'D'->7, 'M'->1, 'O'->0, 'R'->8, 'Y'->'2'\nSuch that: \"SEND\" + \"MORE\" = \"MONEY\" , 9567 + 1085 = 10652\n```\n\n Example 2: \n \n```\nInput:\n words = [\"SIX\",\"SEVEN\",\"SEVEN\"], result = \"TWENTY\"\n\nOutput:\n true\n\nExplanation:\n Map 'S'-> 6, 'I'->5, 'X'->0, 'E'->8, 'V'->7, 'N'->2, 'T'->1, 'W'->'3', 'Y'->4\nSuch that: \"SIX\" + \"SEVEN\" + \"SEVEN\" = \"TWENTY\" , 650 + 68782 + 68782 = 138214\n```\n\n Example 3: \n \n```\nInput:\n words = [\"LEET\",\"CODE\"], result = \"POINT\"\n\nOutput:\n false\n\nExplanation:\n There is no possible mapping to satisfy the equation, so we return false.\nNote that two different characters cannot map to the same digit.\n```\n\n Constraints: \n\n 2 <= words.length <= 5 \n \n 1 <= words[i].length, result.length <= 7 \n \n words[i], result contain only uppercase English letters. \n \n The number of different characters used in the expression is at most 10 .",
+  "code": "class Solution {\n    int map[256];\n    int visited[10];\npublic:\n    bool isSolvable(vector<string>& words, string result) {\n        for(int i=0; i<256; i++)\n            map[i] = -1;\n        reverse(result.begin(), result.end());\n        for(auto& word: words) {\n            if(word.size()>result.size())\n                return false;\n            reverse(word.begin(), word.end());\n        }\n        return dfs(words, result, 0, 0, 0);\n    }\n    bool dfs(vector<string>& words, string result, int j, int i, int sum) {\n        if( j == result.size() ) {\n            if( sum != 0 )\n                return false;\n            if(result.size()>1 && map[result.back()]==0) //result has leading zero.\n                return false;\n            return true;\n        };\n        if( i == words.size() ) { //result row\n            if(map[ result[j] ] != -1) {//already mapped.\n                if(map[ result[j] ] != sum%10)\n                    return false;\n                else\n                    return dfs(words, result, j+1, 0, sum/10);\n            } else {\n                if(visited[sum%10] == 1)\n                    return false;\n                map[result[j]] = sum%10;\n                visited[sum%10] = 1;\n                if(dfs(words, result, j+1, 0, sum/10))\n                    return true;\n                map[result[j]] = -1;\n                visited[sum%10] = 0;\n                return false;\n            }\n        };\n\n        if( j >= words[i].length() )\n            return dfs(words, result, j, i+1, sum);\n        char ch = words[i][j];\n        if(map[ch]!=-1) {\n            if(words[i].size()>1 && j==words.size()-1 && map[ch]==0) //leading zero\n                return false;\n            return dfs(words, result, j, i+1, sum+map[ch]);\n        } else {\n            for(int d=0; d<=9; d++) {\n                if(visited[d])\n                    continue;\n                if(d==0 && words[i].size()>1 && j==words[i].size()-1)\n                    continue;\n                map[ch] = d;\n                visited[d] = 1;\n                if(dfs(words, result, j, i+1, sum+d))\n                    return true;\n                map[ch] = -1;\n                visited[d] = 0;\n            }\n            return false;\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617063953",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

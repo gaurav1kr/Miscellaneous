@@ -1,0 +1,33 @@
+{
+  "id": "362",
+  "title": "Design Hit Counter",
+  "slug": "design-hit-counter",
+  "url": "https://leetcode.com/problems/design-hit-counter/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Design",
+    "Queue",
+    "Data Stream"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Queue"
+  ],
+  "description": "Design a hit counter which counts the number of hits received in the past 5 minutes (i.e., the past 300 seconds). \n \n Your system should accept a timestamp parameter ( in seconds granularity), and you may assume that calls are being made to the system in chronological order (i.e., timestamp is monotonically increasing). Several hits may arrive roughly at the same time. \n \n Implement the HitCounter class: \n\n HitCounter() Initializes the object of the hit counter system. \n \n void hit(int timestamp) Records a hit that happened at timestamp ( in seconds ). Several hits may happen at the same timestamp . \n \n int getHits(int timestamp) Returns the number of hits in the past 5 minutes from timestamp (i.e., the past 300 seconds). \n\n Example 1: \n \n```\nInput\n\n[\"HitCounter\", \"hit\", \"hit\", \"hit\", \"getHits\", \"hit\", \"getHits\", \"getHits\"]\n[[], [1], [2], [3], [4], [300], [300], [301]]\n\nOutput\n\n[null, null, null, null, 3, null, 4, 3]\n\nExplanation\n\nHitCounter hitCounter = new HitCounter();\nhitCounter.hit(1); // hit at timestamp 1.\nhitCounter.hit(2); // hit at timestamp 2.\nhitCounter.hit(3); // hit at timestamp 3.\nhitCounter.getHits(4); // get hits at timestamp 4, return 3.\nhitCounter.hit(300); // hit at timestamp 300.\nhitCounter.getHits(300); // get hits at timestamp 300, return 4.\nhitCounter.getHits(301); // get hits at timestamp 301, return 3.\n```\n\n Constraints: \n\n 1 <= timestamp <= 2 * 10 9 \n \n All the calls are being made to the system in chronological order (i.e., timestamp is monotonically increasing). \n \n At most 300 calls will be made to hit and getHits . \n\n Follow up: What if the number of hits per second could be huge? Does your design scale?",
+  "code": "class HitCounter\n{\n    queue<int> hits;\n    void expire(int timestamp)\n    {\n        while (!hits.empty() && timestamp - hits.front() >= 300)\n        {\n            hits.pop();\n        }\n    }\npublic:\n    HitCounter() {}\n    void hit(int timestamp)\n    {\n        expire(timestamp);\n        hits.push(timestamp);\n    }\n    int getHits(int timestamp)\n    {\n        expire(timestamp);\n        return hits.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178460656",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

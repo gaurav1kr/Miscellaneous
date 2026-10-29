@@ -1,0 +1,31 @@
+{
+  "id": "1918",
+  "title": "Kth Smallest Subarray Sum",
+  "slug": "kth-smallest-subarray-sum",
+  "url": "https://leetcode.com/problems/kth-smallest-subarray-sum/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array nums of length n and an integer k , return the k th smallest subarray sum . \n \n A subarray is defined as a non-empty contiguous sequence of elements in an array. A subarray sum is the sum of all elements in the subarray. \n\n Example 1: \n \n```\nInput:\n nums = [2,1,3], k = 4\n\nOutput:\n 3\n\nExplanation: \nThe subarrays of [2,1,3] are:\n- [2] with sum 2\n- [1] with sum 1\n- [3] with sum 3\n- [2,1] with sum 3\n- [1,3] with sum 4\n- [2,1,3] with sum 6 \nOrdering the sums from smallest to largest gives 1, 2, 3, \n3\n, 4, 6. The 4th smallest is 3.\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,3,5,5], k = 7\n\nOutput:\n 10\n\nExplanation: \nThe subarrays of [3,3,5,5] are:\n- [3] with sum 3\n- [3] with sum 3\n- [5] with sum 5\n- [5] with sum 5\n- [3,3] with sum 6\n- [3,5] with sum 8\n- [5,5] with sum 10\n- [3,3,5], with sum 11\n- [3,5,5] with sum 13\n- [3,3,5,5] with sum 16\nOrdering the sums from smallest to largest gives 3, 3, 5, 5, 6, 8, \n10\n, 11, 13, 16. The 7th smallest is 10.\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 2 * 10 4 \n \n 1 <= nums[i] <= 5 * 10 4 \n \n 1 <= k <= n * (n + 1) / 2",
+  "code": "class Solution {\n    long long countAtMost(const vector<int>& nums, long long limit) {\n        long long count = 0, sum = 0;\n        int left = 0;\n        for (int right = 0; right < (int)nums.size(); ++right) {\n            sum += nums[right];\n            while (sum > limit) {\n                sum -= nums[left++];\n            }\n            count += right - left + 1;\n        }\n        return count;\n    }\npublic:\n    int kthSmallestSubarraySum(vector<int>& nums, int k) {\n        long long lo = 1, hi = accumulate(nums.begin(), nums.end(), 0LL);\n        while (lo < hi) {\n            long long mid = lo + (hi - lo) / 2;\n            if (countAtMost(nums, mid) >= k) {\n                hi = mid;\n            } else {\n                lo = mid + 1;\n            }\n        }\n        return (int)lo;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178623878",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

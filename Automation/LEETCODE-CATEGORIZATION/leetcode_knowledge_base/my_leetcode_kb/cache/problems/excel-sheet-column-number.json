@@ -1,0 +1,28 @@
+{
+  "id": "171",
+  "title": "Excel Sheet Column Number",
+  "slug": "excel-sheet-column-number",
+  "url": "https://leetcode.com/problems/excel-sheet-column-number/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string columnTitle that represents the column title as appears in an Excel sheet, return its corresponding column number . \n \n For example: \n \n```\nA -> 1\nB -> 2\nC -> 3\n...\nZ -> 26\nAA -> 27\nAB -> 28 \n...\n```\n\n Example 1: \n \n```\nInput:\n columnTitle = \"A\"\n\nOutput:\n 1\n```\n\n Example 2: \n \n```\nInput:\n columnTitle = \"AB\"\n\nOutput:\n 28\n```\n\n Example 3: \n \n```\nInput:\n columnTitle = \"ZY\"\n\nOutput:\n 701\n```\n\n Constraints: \n\n 1 <= columnTitle.length <= 7 \n \n columnTitle consists only of uppercase English letters. \n \n columnTitle is in the range [\"A\", \"FXSHRXW\"] .",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    int titleToNumber(string columnTitle) {\n        int result = 0;\n        for (char c : columnTitle) {\n            result = result * 26 + (c - 'A' + 1);\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588374732",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "3615",
+  "title": "Longest Palindromic Path in Graph",
+  "slug": "longest-palindromic-path-in-graph",
+  "url": "https://leetcode.com/problems/longest-palindromic-path-in-graph/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Graph Theory",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Bitmask",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an integer n and an undirected graph with n nodes labeled from 0 to n - 1 and a 2D array edges , where edges[i] = [u i , v i ] indicates an edge between nodes u i and v i . \n \n You are also given a string label of length n , where label[i] is the character associated with node i . \n \n You may start at any node and move to any adjacent node, visiting each node at most once. \n \n Return the maximum possible length of a palindrome that can be formed by visiting a set of unique nodes along a valid path. \n\n Example 1: \n\n Input: n = 3, edges = [[0,1],[1,2]], label = \"aba\" \n \n Output: 3 \n \n Exp lanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/06/13/screenshot-2025-06-13-at-230714.png] \n\n The longest palindromic path is from node 0 to node 2 via node 1, following the path 0 → 1 → 2 forming string \"aba\" . \n \n This is a valid palindrome of length 3. \n\n Example 2: \n\n Input: n = 3, edges = [[0,1],[0,2]], label = \"abc\" \n \n Output: 1 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/06/13/screenshot-2025-06-13-at-230017.png] \n\n No path with more than one node forms a palindrome. \n \n The best option is any single node, giving a palindrome of length 1. \n\n Example 3: \n\n Input: n = 4, edges = [[0,2],[0,3],[3,1]], label = \"bbac\" \n \n Output: 3 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/06/13/screenshot-2025-06-13-at-230508.png] \n\n The longest palindromic path is from node 0 to node 1, following the path 0 → 3 → 1 , forming string \"bcb\" . \n \n This is a valid palindrome of length 3. \n\n Constraints: \n\n 1 <= n <= 14 \n \n n - 1 <= edges.length <= n * (n - 1) / 2 \n \n edges[i] == [u i , v i ] \n \n 0 <= u i , v i <= n - 1 \n \n u i != v i \n \n label.length == n \n \n label consists of lowercase English letters. \n \n There are no duplicate edges.",
+  "code": "class Solution {\npublic:\n int maxLen(int n,vector<vector<int>>& edges,string label){\n  vector<int>adj(n);for(auto&e:edges){adj[e[0]]|=1<<e[1];adj[e[1]]|=1<<e[0];}\n  vector<vector<unsigned char>>dp(1<<n,vector<unsigned char>(n*n));queue<array<int,3>>q;int ans=0;\n  auto push=[&](int m,int a,int b){if(!dp[m][a*n+b]){dp[m][a*n+b]=1;q.push({m,a,b});}};\n  for(int i=0;i<n;++i)push(1<<i,i,i);\n  for(auto&e:edges)if(label[e[0]]==label[e[1]])push((1<<e[0])|(1<<e[1]),e[0],e[1]);\n  while(!q.empty()){auto t=q.front();q.pop();int m=t[0],a=t[1],b=t[2];ans=max(ans,__builtin_popcount((unsigned)m));\n   for(int x=0;x<n;++x)if(!(m>>x&1)&&(adj[a]>>x&1))for(int y=0;y<n;++y)if(x!=y&&!(m>>y&1)&&(adj[b]>>y&1)&&label[x]==label[y])push(m|(1<<x)|(1<<y),x,y);\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177617926",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

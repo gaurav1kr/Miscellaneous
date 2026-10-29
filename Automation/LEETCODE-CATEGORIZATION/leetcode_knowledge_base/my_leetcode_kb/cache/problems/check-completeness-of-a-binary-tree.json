@@ -1,0 +1,31 @@
+{
+  "id": "958",
+  "title": "Check Completeness of a Binary Tree",
+  "slug": "check-completeness-of-a-binary-tree",
+  "url": "https://leetcode.com/problems/check-completeness-of-a-binary-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, determine if it is a complete binary tree . \n \n In a complete binary tree , every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2 h nodes inclusive at the last level h . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2018/12/15/complete-binary-tree-1.png] \n \n```\nInput:\n root = [1,2,3,4,5,6]\n\nOutput:\n true\n\nExplanation:\n Every level before the last is full (ie. levels with node-values {1} and {2, 3}), and all nodes in the last level ({4, 5, 6}) are as far left as possible.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2018/12/15/complete-binary-tree-2.png] \n \n```\nInput:\n root = [1,2,3,4,5,null,7]\n\nOutput:\n false\n\nExplanation:\n The node with value 7 isn't as far left as possible.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 100] . \n \n 1 <= Node.val <= 1000",
+  "code": "class Solution {\npublic:\n    bool isCompleteTree(TreeNode* root) {\n        queue<TreeNode*> q;\n        int n;\n        bool a = false;\n        TreeNode* node;\n        q.push(root);\n        while (!q.empty()) \n        {\n                node = q.front();\n                q.pop();\n                if (a && (node->left || node->right))return false;\n                if (node->left) {\n                    q.push(node->left);\n                }\n                else {\n                    a = true;\n                }\n                if (a && node->right)return false;\n                if (node->right) {\n                    q.push(node->right);\n                }\n                else {\n                    a = true;\n                }\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1156944794",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

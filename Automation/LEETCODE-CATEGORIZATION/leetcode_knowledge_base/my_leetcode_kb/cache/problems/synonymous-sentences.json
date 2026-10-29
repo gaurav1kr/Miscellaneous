@@ -1,0 +1,41 @@
+{
+  "id": "1258",
+  "title": "Synonymous Sentences",
+  "slug": "synonymous-sentences",
+  "url": "https://leetcode.com/problems/synonymous-sentences/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Backtracking",
+    "Sort",
+    "Union-Find"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a list of equivalent string pairs synonyms where synonyms[i] = [s i , t i ] indicates that s i and t i are equivalent strings. You are also given a sentence text . \n \n Return all possible synonymous sentences sorted lexicographically . \n\n Example 1: \n \n```\nInput:\n synonyms = [[\"happy\",\"joy\"],[\"sad\",\"sorrow\"],[\"joy\",\"cheerful\"]], text = \"I am happy today but was sad yesterday\"\n\nOutput:\n [\"I am cheerful today but was sad yesterday\",\"I am cheerful today but was sorrow yesterday\",\"I am happy today but was sad yesterday\",\"I am happy today but was sorrow yesterday\",\"I am joy today but was sad yesterday\",\"I am joy today but was sorrow yesterday\"]\n```\n\n Example 2: \n \n```\nInput:\n synonyms = [[\"happy\",\"joy\"],[\"cheerful\",\"glad\"]], text = \"I am happy today but was sad yesterday\"\n\nOutput:\n [\"I am happy today but was sad yesterday\",\"I am joy today but was sad yesterday\"]\n```\n\n Constraints: \n\n 0 <= synonyms.length <= 10 \n \n synonyms[i].length == 2 \n \n 1 <= s i .length, t i .length <= 10 \n \n s i != t i \n \n text consists of at most 10 words. \n \n All the pairs of  synonyms are unique . \n \n The words of text are separated by single spaces.",
+  "code": "class Solution {\n    unordered_map<string, string> parent;\n\n    string root(const string& s) {\n        if (!parent.count(s)) {\n            parent[s] = s;\n        }\n        if (parent[s] != s) {\n            parent[s] = root(parent[s]);\n        }\n        return parent[s];\n    }\n\npublic:\n    vector<string> generateSentences(vector<vector<string>>& synonyms,\n                                     string text) {\n        parent.clear();\n        for (const auto& pair : synonyms) {\n            string a = root(pair[0]);\n            string b = root(pair[1]);\n            parent[a] = b;\n        }\n        map<string, vector<string>> groups;\n        for (const auto& item : parent) {\n            groups[root(item.first)].push_back(item.first);\n        }\n        for (auto& item : groups) {\n            sort(item.second.begin(), item.second.end());\n        }\n        vector<string> words;\n        stringstream ss(text);\n        string word;\n        while (ss >> word) {\n            words.push_back(word);\n        }\n        vector<string> answer;\n        function<void(int, string)> dfs = [&](int i, string sentence) {\n            if (i == static_cast<int>(words.size())) {\n                answer.push_back(sentence);\n                return;\n            }\n            string key = root(words[i]);\n            vector<string> choices = groups.count(key) ? groups[key]\n                                                      : vector<string>{words[i]};\n            for (const string& choice : choices) {\n                dfs(i + 1, sentence + (i == 0 ? \"\" : \" \") + choice);\n            }\n        };\n        dfs(0, \"\");\n        sort(answer.begin(), answer.end());\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178566020",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "1195",
+  "title": "Fizz Buzz Multithreaded",
+  "slug": "fizz-buzz-multithreaded",
+  "url": "https://leetcode.com/problems/fizz-buzz-multithreaded/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Concurrency"
+  ],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "You have the four functions: \n\n printFizz that prints the word \"fizz\" to the console, \n \n printBuzz that prints the word \"buzz\" to the console, \n \n printFizzBuzz that prints the word \"fizzbuzz\" to the console, and \n \n printNumber that prints a given integer to the console. \n\n You are given an instance of the class FizzBuzz that has four functions: fizz , buzz , fizzbuzz and number . The same instance of FizzBuzz will be passed to four different threads: \n\n Thread A: calls fizz() that should output the word \"fizz\" . \n \n Thread B: calls buzz() that should output the word \"buzz\" . \n \n Thread C: calls fizzbuzz() that should output the word \"fizzbuzz\" . \n \n Thread D: calls number() that should only output the integers. \n\n Modify the given class to output the series [1, 2, \"fizz\", 4, \"buzz\", ...] where the i th token ( 1-indexed ) of the series is: \n\n \"fizzbuzz\" if i is divisible by 3 and 5 , \n \n \"fizz\" if i is divisible by 3 and not 5 , \n \n \"buzz\" if i is divisible by 5 and not 3 , or \n \n i if i is not divisible by 3 or 5 . \n\n Implement the FizzBuzz class: \n\n FizzBuzz(int n) Initializes the object with the number n that represents the length of the sequence that should be printed. \n \n void fizz(printFizz) Calls printFizz to output \"fizz\" . \n \n void buzz(printBuzz) Calls printBuzz to output \"buzz\" . \n \n void fizzbuzz(printFizzBuzz) Calls printFizzBuzz to output \"fizzbuzz\" . \n \n void number(printNumber) Calls printnumber to output the numbers. \n\n Example 1: \n \n```\nInput:\n n = 15\n\nOutput:\n [1,2,\"fizz\",4,\"buzz\",\"fizz\",7,8,\"fizz\",\"buzz\",11,\"fizz\",13,14,\"fizzbuzz\"]\n```\n \n Example 2: \n \n```\nInput:\n n = 5\n\nOutput:\n [1,2,\"fizz\",4,\"buzz\"]\n```\n\n Constraints: \n\n 1 <= n <= 50",
+  "code": "class FizzBuzz {\n    int n, cur = 1;\n    mutex mu;\n    condition_variable cv;\n    void run(int type, function<void()> word, function<void(int)> number) {\n        while (true) {\n            unique_lock<mutex> lock(mu);\n            cv.wait(lock, [&] {\n                if (cur > n) return true;\n                int t = (cur % 15 == 0) ? 3 :\n                        (cur % 3 == 0) ? 1 : (cur % 5 == 0) ? 2 : 0;\n                return t == type;\n            });\n            if (cur > n) return;\n            if (type == 0) number(cur);\n            else word();\n            ++cur;\n            cv.notify_all();\n        }\n    }\npublic:\n    FizzBuzz(int n) : n(n) {}\n    void fizz(function<void()> printFizz) { run(1, printFizz, {}); }\n    void buzz(function<void()> printBuzz) { run(2, printBuzz, {}); }\n    void fizzbuzz(function<void()> printFizzBuzz) { run(3, printFizzBuzz, {}); }\n    void number(function<void(int)> printNumber) { run(0, {}, printNumber); }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175747748",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

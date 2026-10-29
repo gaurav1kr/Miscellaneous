@@ -1,0 +1,30 @@
+{
+  "id": "2145",
+  "title": "Count the Hidden Sequences",
+  "slug": "count-the-hidden-sequences",
+  "url": "https://leetcode.com/problems/count-the-hidden-sequences/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of n integers differences , which describes the differences between each pair of consecutive integers of a hidden sequence of length (n + 1) . More formally, call the hidden sequence hidden , then we have that differences[i] = hidden[i + 1] - hidden[i] . \n \n You are further given two integers lower and upper that describe the inclusive range of values [lower, upper] that the hidden sequence can contain. \n\n For example, given differences = [1, -3, 4] , lower = 1 , upper = 6 , the hidden sequence is a sequence of length 4 whose elements are in between 1 and 6 ( inclusive ).\n\n [3, 4, 1, 5] and [4, 5, 2, 6] are possible hidden sequences. \n \n [5, 6, 3, 7] is not possible since it contains an element greater than 6 . \n \n [1, 2, 3, 4] is not possible since the differences are not correct. \n\n Return the number of possible hidden sequences there are. If there are no possible sequences, return 0 . \n\n Example 1: \n \n```\nInput:\n differences = [1,-3,4], lower = 1, upper = 6\n\nOutput:\n 2\n\nExplanation:\n The possible hidden sequences are:\n- [3, 4, 1, 5]\n- [4, 5, 2, 6]\nThus, we return 2.\n```\n\n Example 2: \n \n```\nInput:\n differences = [3,-4,5,1,-2], lower = -4, upper = 5\n\nOutput:\n 4\n\nExplanation:\n The possible hidden sequences are:\n- [-3, 0, -4, 1, 2, 0]\n- [-2, 1, -3, 2, 3, 1]\n- [-1, 2, -2, 3, 4, 2]\n- [0, 3, -1, 4, 5, 3]\nThus, we return 4.\n```\n\n Example 3: \n \n```\nInput:\n differences = [4,-7,2], lower = 3, upper = 6\n\nOutput:\n 0\n\nExplanation:\n There are no possible hidden sequences. Thus, we return 0.\n```\n\n Constraints: \n\n n == differences.length \n \n 1 <= n <= 10 5 \n \n -10 5 <= differences[i] <= 10 5 \n \n -10 5 <= lower <= upper <= 10 5",
+  "code": "class Solution {\npublic:\n    int numberOfArrays(vector<int>& differences, int lower, int upper) {\n        long long sum=0,lo=0,hi=0;\n        for(int x:differences) { sum+=x;lo=min(lo,sum);hi=max(hi,sum); }\n        return max(0LL,(long long)upper-lower-(hi-lo)+1);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175872620",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

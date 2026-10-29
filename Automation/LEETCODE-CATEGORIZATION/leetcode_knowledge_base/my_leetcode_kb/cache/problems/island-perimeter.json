@@ -1,0 +1,32 @@
+{
+  "id": "463",
+  "title": "Island Perimeter",
+  "slug": "island-perimeter",
+  "url": "https://leetcode.com/problems/island-perimeter/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given row x col grid representing a map where grid[i][j] = 1 represents land and grid[i][j] = 0 represents water. \n \n Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells). \n \n The island doesn't have \"lakes\", meaning the water inside isn't connected to the water around the island. One cell is a square with side length 1. The grid is rectangular, width and height don't exceed 100. Determine the perimeter of the island. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2018/10/12/island.png] \n \n```\nInput:\n grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]\n\nOutput:\n 16\n\nExplanation:\n The perimeter is the 16 yellow stripes in the image above.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[1]]\n\nOutput:\n 4\n```\n\n Example 3: \n \n```\nInput:\n grid = [[1,0]]\n\nOutput:\n 4\n```\n\n Constraints: \n\n row == grid.length \n \n col == grid[i].length \n \n 1 <= row, col <= 100 \n \n grid[i][j] is 0 or 1 . \n \n There is exactly one island in grid .",
+  "code": "class Solution {\npublic:\n    int islandPerimeter(vector<vector<int>>& grid) {\n        int perimeter = 0;\n        int rows = grid.size(), cols = grid[0].size();\n        for (int i = 0; i < rows; i++) {\n            for (int j = 0; j < cols; j++) {\n                if (grid[i][j] == 1) {\n                    perimeter += 4;\n                    if (i > 0 && grid[i-1][j] == 1) perimeter -= 2;\n                    if (j > 0 && grid[i][j-1] == 1) perimeter -= 2;\n                }\n            }\n        }\n        return perimeter;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588088951",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

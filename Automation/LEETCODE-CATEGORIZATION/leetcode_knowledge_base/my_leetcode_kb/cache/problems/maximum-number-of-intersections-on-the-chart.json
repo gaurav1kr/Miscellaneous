@@ -1,0 +1,41 @@
+{
+  "id": "3009",
+  "title": "Maximum Number of Intersections on the Chart",
+  "slug": "maximum-number-of-intersections-on-the-chart",
+  "url": "https://leetcode.com/problems/maximum-number-of-intersections-on-the-chart/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Binary Indexed Tree",
+    "Geometry",
+    "Sweep Line",
+    "Sorting"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There is a line chart consisting of n points connected by line segments. You are given a 1-indexed integer array y . The k th point has coordinates (k, y[k]) . There are no horizontal lines; that is, no two consecutive points have the same y-coordinate. \n \n We can draw an infinitely long horizontal line. Return the maximum number of points of intersection of the line with the chart . \n\n Example 1: \n [Figure: https://assets.leetcode.com/static_assets/others/20231208-020549.jpeg] \n \n```\nInput:\n y = [1,2,1,2,1,3,2]\n\nOutput:\n 5\n\nExplanation:\n As you can see in the image above, the line y = 1.5 has 5 intersections with the chart (in red crosses). You can also see the line y = 2 which intersects the chart in 4 points (in red crosses). It can be shown that there is no horizontal line intersecting the chart at more than 5 points. So the answer would be 5.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/static_assets/others/20231208-020557.jpeg] \n \n```\nInput:\n y = [2,1,3,4,5]\n\nOutput:\n 2\n\nExplanation:\n As you can see in the image above, the line y = 1.5 has 2 intersections with the chart (in red crosses). You can also see the line y = 2 which intersects the chart in 2 points (in red crosses). It can be shown that there is no horizontal line intersecting the chart at more than 2 points. So the answer would be 2.\n```\n\n Constraints: \n\n 2 <= y.length <= 10 5 \n \n 1 <= y[i] <= 10 9 \n \n y[i] != y[i + 1] for i in range [1, n - 1]",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n int maxIntersectionCount(vector<int>& y){map<long long,int>diff;\n  int n=y.size();for(int i=0;i+1<n;i++){\n   long long a=2LL*min(y[i],y[i+1]),b=2LL*max(y[i],y[i+1]);\n   // Half-open edges: include lower endpoint, exclude upper endpoint.\n   diff[a]++;diff[b]--;\n  }\n  // At an internal local maximum, the vertex is one intersection, not zero;\n  // at an internal local minimum, it is one, not two.\n  for(int i=1;i+1<n;i++){\n   long long h=2LL*y[i];if(y[i]>y[i-1]&&y[i]>y[i+1]){diff[h]++;diff[h+1]--;}\n   if(y[i]<y[i-1]&&y[i]<y[i+1]){diff[h]--;diff[h+1]++;}\n  }\n  // The final endpoint is excluded by the half-open convention if it is a maximum.\n  if(y.back()>y[n-2]){diff[2LL*y.back()]++;diff[2LL*y.back()+1]--;}\n  int cur=0,ans=0;for(auto e:diff){cur+=e.second;ans=max(ans,cur);}return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181219489",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

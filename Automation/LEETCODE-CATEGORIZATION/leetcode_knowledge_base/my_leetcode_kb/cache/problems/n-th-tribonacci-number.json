@@ -1,0 +1,29 @@
+{
+  "id": "1137",
+  "title": "N-th Tribonacci Number",
+  "slug": "n-th-tribonacci-number",
+  "url": "https://leetcode.com/problems/n-th-tribonacci-number/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Memoization"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "The Tribonacci sequence T n is defined as follows:  \n \n T 0 = 0, T 1 = 1, T 2 = 1, and T n+3 = T n + T n+1 + T n+2 for n >= 0. \n \n Given n , return the value of T n . \n\n Example 1: \n \n```\nInput:\n n = 4\n\nOutput:\n 4\n\nExplanation:\n\nT_3 = 0 + 1 + 1 = 2\nT_4 = 1 + 1 + 2 = 4\n```\n\n Example 2: \n \n```\nInput:\n n = 25\n\nOutput:\n 1389537\n```\n\n Constraints: \n\n 0 <= n <= 37 \n \n The answer is guaranteed to fit within a 32-bit integer, ie. answer <= 2^31 - 1 .",
+  "code": "class Solution {\npublic:\n    int tribonacci(int n) {\n        if (n == 0) return 0;\n        if (n == 1 || n == 2) return 1;\n        \n        int a = 0, b = 1, c = 1;\n        for (int i = 3; i <= n; i++) {\n            int d = a + b + c;\n            a = b;\n            b = c;\n            c = d;\n        }\n        return c;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590167643",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

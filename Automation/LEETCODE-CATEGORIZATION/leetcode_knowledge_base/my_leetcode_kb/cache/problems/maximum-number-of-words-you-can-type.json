@@ -1,0 +1,31 @@
+{
+  "id": "1935",
+  "title": "Maximum Number of Words You Can Type",
+  "slug": "maximum-number-of-words-you-can-type",
+  "url": "https://leetcode.com/problems/maximum-number-of-words-you-can-type/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String"
+  ],
+  "description": "There is a malfunctioning keyboard where some letter keys do not work. All other keys on the keyboard work properly. \n \n Given a string text of words separated by a single space (no leading or trailing spaces) and a string brokenLetters of all distinct letter keys that are broken, return the number of words in text you can fully type using this keyboard . \n\n Example 1: \n \n```\nInput:\n text = \"hello world\", brokenLetters = \"ad\"\n\nOutput:\n 1\n\nExplanation:\n We cannot type \"world\" because the 'd' key is broken.\n```\n\n Example 2: \n \n```\nInput:\n text = \"leet code\", brokenLetters = \"lt\"\n\nOutput:\n 1\n\nExplanation:\n We cannot type \"leet\" because the 'l' and 't' keys are broken.\n```\n\n Example 3: \n \n```\nInput:\n text = \"leet code\", brokenLetters = \"e\"\n\nOutput:\n 0\n\nExplanation:\n We cannot type either word because the 'e' key is broken.\n```\n\n Constraints: \n\n 1 <= text.length <= 10 4 \n \n 0 <= brokenLetters.length <= 26 \n \n text consists of words separated by a single space without any leading or trailing spaces. \n \n Each word only consists of lowercase English letters. \n \n brokenLetters consists of distinct lowercase English letters.",
+  "code": "#include <string>\n#include <unordered_set>\n#include <sstream>\nusing namespace std;\n\nclass Solution {\npublic:\n    int canBeTypedWords(string text, string brokenLetters) {\n        unordered_set<char> broken(brokenLetters.begin(), brokenLetters.end());\n        stringstream ss(text);\n        string word;\n        int count = 0;\n        while (ss >> word) {\n            bool valid = true;\n            for (char c : word)\n                if (broken.count(c)) {\n                    valid = false;\n                    break;\n                }\n            if (valid) count++;\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610672523",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

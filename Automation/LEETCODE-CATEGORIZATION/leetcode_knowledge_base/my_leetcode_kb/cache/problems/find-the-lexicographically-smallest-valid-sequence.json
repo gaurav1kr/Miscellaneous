@@ -1,0 +1,34 @@
+{
+  "id": "3302",
+  "title": "Find the Lexicographically Smallest Valid Sequence",
+  "slug": "find-the-lexicographically-smallest-valid-sequence",
+  "url": "https://leetcode.com/problems/find-the-lexicographically-smallest-valid-sequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings word1 and word2 . \n \n A string x is called almost equal to y if you can change at most one character in x to make it identical to y . \n \n A sequence of indices seq is called valid if: \n\n The indices are sorted in ascending order. \n \n Concatenating the characters at these indices in word1 in the same order results in a string that is almost equal to word2 . \n\n Return an array of size word2.length representing the lexicographically smallest valid sequence of indices. If no such sequence of indices exists, return an empty array. \n \n Note that the answer must represent the lexicographically smallest array , not the corresponding string formed by those indices. \n\n Example 1: \n\n Input: word1 = \"vbcca\", word2 = \"abc\" \n \n Output: [0,1,2] \n \n Explanation: \n \n The lexicographically smallest valid sequence of indices is [0, 1, 2] : \n\n Change word1[0] to 'a' . \n \n word1[1] is already 'b' . \n \n word1[2] is already 'c' . \n\n Example 2: \n\n Input: word1 = \"bacdc\", word2 = \"abc\" \n \n Output: [1,2,4] \n \n Explanation: \n \n The lexicographically smallest valid sequence of indices is [1, 2, 4] : \n\n word1[1] is already 'a' . \n \n Change word1[2] to 'b' . \n \n word1[4] is already 'c' . \n\n Example 3: \n\n Input: word1 = \"aaaaaa\", word2 = \"aaabc\" \n \n Output: [] \n \n Explanation: \n \n There is no valid sequence of indices. \n\n Example 4: \n\n Input: word1 = \"abc\", word2 = \"ab\" \n \n Output: [0,1] \n\n Constraints: \n\n 1 <= word2.length < word1.length <= 3 * 10 5 \n \n word1 and word2 consist only of lowercase English letters.",
+  "code": "class Solution { public: vector<int> validSequence(string word1,string word2){int n=word1.size(),m=word2.size();vector<int>suf(n+1);for(int i=n-1;i>=0;--i)suf[i]=suf[i+1]+(suf[i+1]<m&&word1[i]==word2[m-1-suf[i+1]]);vector<int>ans;int j=0;bool used=false;for(int i=0;i<n&&j<m;++i){if(word1[i]==word2[j]){ans.push_back(i);++j;}else if(!used&&suf[i+1]>=m-j-1){used=true;ans.push_back(i);++j;}}return j==m?ans:vector<int>{};} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177453467",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

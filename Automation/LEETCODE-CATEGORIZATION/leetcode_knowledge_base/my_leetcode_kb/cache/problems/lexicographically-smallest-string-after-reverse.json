@@ -1,0 +1,27 @@
+{
+  "id": "3722",
+  "title": "Lexicographically Smallest String After Reverse",
+  "slug": "lexicographically-smallest-string-after-reverse",
+  "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-reverse/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "Binary Search",
+    "Enumeration"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search"
+  ],
+  "data_structures": [],
+  "description": "You are given a string s of length n consisting of lowercase English letters. \n \n You must perform exactly one operation by choosing any integer k such that 1 <= k <= n and either: \n\n reverse the first k characters of s , or \n \n reverse the last k characters of s . \n\n Return the lexicographically smallest string that can be obtained after exactly one such operation. \n\n Example 1: \n\n Input: s = \"dcab\" \n \n Output: \"acdb\" \n \n Explanation: \n\n Choose k = 3 , reverse the first 3 characters. \n \n Reverse \"dca\" to \"acd\" , resulting string s = \"acdb\" , which is the lexicographically smallest string achievable. \n\n Example 2: \n\n Input: s = \"abba\" \n \n Output: \"aabb\" \n \n Explanation: \n\n Choose k = 3 , reverse the last 3 characters. \n \n Reverse \"bba\" to \"abb\" , so the resulting string is \"aabb\" , which is the lexicographically smallest string achievable. \n\n Example 3: \n\n Input: s = \"zxy\" \n \n Output: \"xzy\" \n \n Explanation: \n\n Choose k = 2 , reverse the first 2 characters. \n \n Reverse \"zx\" to \"xz\" , so the resulting string is \"xzy\" , which is the lexicographically smallest string achievable. \n\n Constraints: \n\n 1 <= n == s.length <= 1000 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {public: string lexSmallest(string s) {string best=s;int n=s.size();for(int k=1;k<=n;++k){string t=s;reverse(t.begin(),t.begin()+k);best=min(best,t);t=s;reverse(t.end()-k,t.end());best=min(best,t);}return best;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177675895",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

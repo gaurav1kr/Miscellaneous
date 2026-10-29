@@ -1,0 +1,30 @@
+{
+  "id": "238",
+  "title": "Product of Array Except Self",
+  "slug": "product-of-array-except-self",
+  "url": "https://leetcode.com/problems/product-of-array-except-self/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i] . \n \n The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer. \n \n You must write an algorithm that runs in  O(n)  time and without using the division operation. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4]\n\nOutput:\n [24,12,8,6]\n```\n \n Example 2: \n \n```\nInput:\n nums = [-1,1,0,-3,3]\n\nOutput:\n [0,0,9,0,0]\n```\n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n -30 <= nums[i] <= 30 \n \n The input is generated such that answer[i] is guaranteed to fit in a 32-bit integer. \n\n Follow up:  Can you solve the problem in O(1)  extra space complexity? (The output array does not count as extra space for space complexity analysis.)",
+  "code": "class Solution {\npublic:\n   vector<int> productExceptSelf(vector<int>& nums) {\n    int n = nums.size();\n    vector<int> result(n, 1);\n    \n    int left = 1, right = 1;\n    for (int i = 0; i < n; ++i) {\n        result[i] *= left;\n        left *= nums[i];\n        \n        result[n - 1 - i] *= right;\n        right *= nums[n - 1 - i];\n    }\n    \n    return result;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542575441",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

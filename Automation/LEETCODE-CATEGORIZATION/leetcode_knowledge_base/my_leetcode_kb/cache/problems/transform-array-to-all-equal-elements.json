@@ -1,0 +1,29 @@
+{
+  "id": "3576",
+  "title": "Transform Array to All Equal Elements",
+  "slug": "transform-array-to-all-equal-elements",
+  "url": "https://leetcode.com/problems/transform-array-to-all-equal-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of size n containing only 1 and -1 , and an integer k . \n \n You can perform the following operation at most k times: \n\n Choose an index i ( 0 <= i < n - 1 ), and multiply both nums[i] and nums[i + 1] by -1 . \n\n Note that you can choose the same index i more than once in different operations. \n \n Return true if it is possible to make all elements of the array equal after at most k operations, and false otherwise. \n\n Example 1: \n\n Input: nums = [1,-1,1,-1,1], k = 3 \n \n Output: true \n \n Explanation: \n \n We can make all elements in the array equal in 2 operations as follows: \n\n Choose index i = 1 , and multiply both nums[1] and nums[2] by -1. Now nums = [1,1,-1,-1,1] . \n \n Choose index i = 2 , and multiply both nums[2] and nums[3] by -1. Now nums = [1,1,1,1,1] . \n\n Example 2: \n\n Input: nums = [-1,-1,-1,1,1,1], k = 5 \n \n Output: false \n \n Explanation: \n \n It is not possible to make all array elements equal in at most 5 operations. \n\n Constraints: \n\n 1 <= n == nums.length <= 10 5 \n \n nums[i] is either -1 or 1. \n \n 1 <= k <= n",
+  "code": "class Solution {public:\n bool canMakeEqual(vector<int>& nums,int k){\n  int n=nums.size();\n  for(int target:{-1,1}){auto a=nums;int moves=0;\n   for(int i=0;i+1<n;++i)if(a[i]!=target){a[i]=-a[i];a[i+1]=-a[i+1];++moves;}\n   if(a.back()==target&&moves<=k)return true;\n  }return false;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177591176",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "660",
+  "title": "Remove 9",
+  "slug": "remove-9",
+  "url": "https://leetcode.com/problems/remove-9/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Start from integer 1 , remove any integer that contains 9 such as 9 , 19 , 29 ... \n \n Now, you will have a new integer sequence [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, ...] . \n \n Given an integer n , return the n th ( 1-indexed ) integer in the new sequence. \n\n Example 1: \n \n```\nInput:\n n = 9\n\nOutput:\n 10\n```\n\n Example 2: \n \n```\nInput:\n n = 10\n\nOutput:\n 11\n```\n\n Constraints: \n\n 1 <= n <= 8 * 10 8",
+  "code": "class Solution {\npublic:\n    int newInteger(int n) {\n        long long answer = 0;\n        long long place = 1;\n        while (n > 0) {\n            answer += (n % 9) * place;\n            n /= 9;\n            place *= 10;\n        }\n        return static_cast<int>(answer);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178493969",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "280",
+  "title": "Wiggle Sort",
+  "slug": "wiggle-sort",
+  "url": "https://leetcode.com/problems/wiggle-sort/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , reorder it such that nums[0] <= nums[1] >= nums[2] <= nums[3]... . \n \n You may assume the input array always has a valid answer. \n\n Example 1: \n \n```\nInput:\n nums = [3,5,2,1,6,4]\n\nOutput:\n [3,5,1,6,2,4]\n\nExplanation:\n [1,6,2,5,3,4] is also accepted.\n```\n\n Example 2: \n \n```\nInput:\n nums = [6,6,5,6,3,8]\n\nOutput:\n [6,6,5,6,3,8]\n```\n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n 0 <= nums[i] <= 10 4 \n \n It is guaranteed that there will be an answer for the given input nums . \n\n Follow up: Could you solve the problem in O(n) time complexity?",
+  "code": "class Solution\n{\npublic:\n    void wiggleSort(vector< int>& nums)\n    {\n        for (int i = 1; i < (int) nums.size();++i) if((i % 2 == 1 && nums[i] < nums[i - 1]) || (i % 2 == 0 && nums[i]>nums[i - 1]))\n        {\n            swap(nums[i], nums[i - 1]);\n        }\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178444755",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

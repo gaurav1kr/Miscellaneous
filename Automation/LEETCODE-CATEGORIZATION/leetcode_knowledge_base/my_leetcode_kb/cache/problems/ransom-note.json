@@ -1,0 +1,32 @@
+{
+  "id": "383",
+  "title": "Ransom Note",
+  "slug": "ransom-note",
+  "url": "https://leetcode.com/problems/ransom-note/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given two strings ransomNote and magazine , return true if ransomNote can be constructed by using the letters from magazine and false otherwise . \n \n Each letter in magazine can only be used once in ransomNote . \n\n Example 1: \n \n```\nInput:\n ransomNote = \"a\", magazine = \"b\"\n\nOutput:\n false\n```\n \n Example 2: \n \n```\nInput:\n ransomNote = \"aa\", magazine = \"ab\"\n\nOutput:\n false\n```\n \n Example 3: \n \n```\nInput:\n ransomNote = \"aa\", magazine = \"aab\"\n\nOutput:\n true\n```\n\n Constraints: \n\n 1 <= ransomNote.length, magazine.length <= 10 5 \n \n ransomNote and magazine consist of lowercase English letters.",
+  "code": "#include <string>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool canConstruct(string ransomNote, string magazine) {\n        unordered_map<char, int> charCount;\n        for (char c : magazine) charCount[c]++;\n        for (char c : ransomNote) {\n            if (charCount[c]-- <= 0) return false;\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590159982",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

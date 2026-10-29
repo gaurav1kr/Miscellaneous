@@ -1,0 +1,38 @@
+{
+  "id": "1776",
+  "title": "Car Fleet II",
+  "slug": "car-fleet-ii",
+  "url": "https://leetcode.com/problems/car-fleet-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Stack",
+    "Heap (Priority Queue)",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Heap / Priority Queue",
+    "Math / Number Theory",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Priority queue / heap",
+    "Stack",
+    "Vector"
+  ],
+  "description": "There are n cars traveling at different speeds in the same direction along a one-lane road. You are given an array cars of length n , where cars[i] = [position i , speed i ] represents: \n\n position i is the distance between the i th car and the beginning of the road in meters. It is guaranteed that position i < position i+1 . \n \n speed i is the initial speed of the i th car in meters per second. \n\n For simplicity, cars can be considered as points moving along the number line. Two cars collide when they occupy the same position. Once a car collides with another car, they unite and form a single car fleet. The cars in the formed fleet will have the same position and the same speed, which is the initial speed of the slowest car in the fleet. \n \n Return an array answer , where answer[i] is the time, in seconds, at which the i th car collides with the next car, or -1 if the car does not collide with the next car. Answers within 10 -5 of the actual answers are accepted. \n\n Example 1: \n \n```\nInput:\n cars = [[1,2],[2,1],[4,3],[7,2]]\n\nOutput:\n [1.00000,-1.00000,3.00000,-1.00000]\n\nExplanation:\n After exactly one second, the first car will collide with the second car, and form a car fleet with speed 1 m/s. After exactly 3 seconds, the third car will collide with the fourth car, and form a car fleet with speed 2 m/s.\n```\n\n Example 2: \n \n```\nInput:\n cars = [[3,4],[5,4],[6,3],[9,1]]\n\nOutput:\n [2.00000,1.00000,1.50000,-1.00000]\n```\n\n Constraints: \n\n 1 <= cars.length <= 10 5 \n \n 1 <= position i , speed i <= 10 6 \n \n position i < position i+1",
+  "code": "#include <vector>\n#include <stack>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<double> getCollisionTimes(vector<vector<int>>& cars) {\n        int n = cars.size();\n        vector<double> res(n, -1);\n        stack<int> st;\n\n        for (int i = n - 1; i >= 0; --i) {\n            int p = cars[i][0], s = cars[i][1];\n            while (!st.empty()) {\n                int j = st.top();\n                int pj = cars[j][0], sj = cars[j][1];\n                if (s <= sj || (res[j] > 0 && (pj - p) / double(s - sj) > res[j])) {\n                    st.pop();\n                } else {\n                    break;\n                }\n            }\n\n            if (!st.empty()) {\n                int j = st.top();\n                res[i] = (cars[j][0] - p) / double(s - cars[j][1]);\n            }\n            st.push(i);\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610559876",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

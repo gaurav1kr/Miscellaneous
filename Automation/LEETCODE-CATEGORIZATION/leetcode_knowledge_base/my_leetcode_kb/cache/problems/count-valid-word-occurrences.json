@@ -1,0 +1,36 @@
+{
+  "id": "3926",
+  "title": "Count Valid Word Occurrences",
+  "slug": "count-valid-word-occurrences",
+  "url": "https://leetcode.com/problems/count-valid-word-occurrences/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings chunks . Concatenate all strings in chunks in order to form a string s . \n \n You are also given an array of strings queries . \n \n A joiner hyphen is a hyphen character '-' in s whose previous and next characters both exist and are lowercase English letters. \n \n A word is a maximal substring of s consisting only of lowercase English letters and joiner hyphens . \n \n All other characters, including spaces and hyphens that are not joiner hyphens , are treated as separators. \n \n Return an integer array ans , where ans[i] is the number of times queries[i] appears as a word in s . \n\n Example 1: \n\n Input: chunks = [\"hello wor\",\"ld hello\"], queries = [\"hello\",\"world\",\"wor\"] \n \n Output: [2,1,0] \n \n Explanation: \n\n After concatenating all strings in chunks , s = \"hello world hello\" . \n \n The words are \"hello\" , \"world\" , and \"hello\" . \n \n The substring \"wor\" appears inside \"world\" , but it is not a full word. \n\n Example 2: \n\n Input: chunks = [\"a-b a--b \",\"a-\",\"b\"], queries = [\"a-b\",\"a\",\"b\"] \n \n Output: [2,1,1] \n \n Explanation: \n\n After concatenating all strings in chunks , s = \"a-b a--b a-b\" . \n \n In \"a-b\" , the hyphen is a joiner hyphen because it is between two lowercase English letters, so \"a-b\" is one word. \n \n In \"a--b\" , neither hyphen is a joiner hyphen, so it is split into the words \"a\" and \"b\" . \n \n Therefore, the words are \"a-b\" , \"a\" , \"b\" , and \"a-b\" . \n\n Example 3: \n\n Input: chunks = [\"-cat dog- mouse\"], queries = [\"cat\",\"dog\",\"mouse\",\"cat-dog\"] \n \n Output: [1,1,1,0] \n \n Explanation: \n\n After concatenating all strings in chunks , s = \"-cat dog- mouse\" . \n \n The leading hyphen before \"cat\" and the trailing hyphen after \"dog\" are not joiner hyphens, so they are separators. \n \n The words are \"cat\" , \"dog\" , and \"mouse\" . \n\n Constraints: \n\n 1 <= chunks.length <= 10 5 \n \n 1 <= chunks[i].length <= 10 5 \n \n The total length of all strings in chunks does not exceed 10 5 . \n \n chunks[i] consists only of lowercase English letters, spaces, and '-' . \n \n 1 <= queries.length <= 10 5 \n \n 1 <= queries[i].length <= 10 5 \n \n The total length of all strings in queries does not exceed 10 5 . \n \n queries[i] consists only of lowercase English letters and '-' . \n \n queries[i] is a valid word: it does not start or end with '-' , and it does not contain two consecutive hyphens.",
+  "code": "class Solution {\npublic:\n    vector<int> countWordOccurrences(vector<string>& chunks,vector<string>& queries){\n        string s;\n        for(const string& part:chunks) s+=part;\n        auto letter=[](char c){return c>='a'&&c<='z';};\n        unordered_map<string,int> freq;\n        string word;\n        for(int i=0;i<=(int)s.size();++i){\n            bool valid=false;\n            if(i<(int)s.size()){\n                valid=letter(s[i]) ||\n                  (s[i]=='-' && i>0 && i+1<(int)s.size() &&\n                   letter(s[i-1]) && letter(s[i+1]));\n            }\n            if(valid) word+=s[i];\n            else if(!word.empty()){++freq[word];word.clear();}\n        }\n        vector<int> ans;\n        for(const string& q:queries) ans.push_back(freq[q]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181086994",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

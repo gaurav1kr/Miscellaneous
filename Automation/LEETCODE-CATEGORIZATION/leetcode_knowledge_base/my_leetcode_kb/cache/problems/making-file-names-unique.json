@@ -1,0 +1,35 @@
+{
+  "id": "1487",
+  "title": "Making File Names Unique",
+  "slug": "making-file-names-unique",
+  "url": "https://leetcode.com/problems/making-file-names-unique/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of strings names of size n . You will create n folders in your file system such that , at the i th minute, you will create a folder with the name names[i] . \n \n Since two files cannot have the same name, if you enter a folder name that was previously used, the system will have a suffix addition to its name in the form of (k) , where, k is the smallest positive integer such that the obtained name remains unique. \n \n Return an array of strings of length n where ans[i] is the actual name the system will assign to the i th folder when you create it. \n\n Example 1: \n \n```\nInput:\n names = [\"pes\",\"fifa\",\"gta\",\"pes(2019)\"]\n\nOutput:\n [\"pes\",\"fifa\",\"gta\",\"pes(2019)\"]\n\nExplanation:\n Let's see how the file system creates folder names:\n\"pes\" --> not assigned before, remains \"pes\"\n\"fifa\" --> not assigned before, remains \"fifa\"\n\"gta\" --> not assigned before, remains \"gta\"\n\"pes(2019)\" --> not assigned before, remains \"pes(2019)\"\n```\n\n Example 2: \n \n```\nInput:\n names = [\"gta\",\"gta(1)\",\"gta\",\"avalon\"]\n\nOutput:\n [\"gta\",\"gta(1)\",\"gta(2)\",\"avalon\"]\n\nExplanation:\n Let's see how the file system creates folder names:\n\"gta\" --> not assigned before, remains \"gta\"\n\"gta(1)\" --> not assigned before, remains \"gta(1)\"\n\"gta\" --> the name is reserved, system adds (k), since \"gta(1)\" is also reserved, systems put k = 2. it becomes \"gta(2)\"\n\"avalon\" --> not assigned before, remains \"avalon\"\n```\n\n Example 3: \n \n```\nInput:\n names = [\"onepiece\",\"onepiece(1)\",\"onepiece(2)\",\"onepiece(3)\",\"onepiece\"]\n\nOutput:\n [\"onepiece\",\"onepiece(1)\",\"onepiece(2)\",\"onepiece(3)\",\"onepiece(4)\"]\n\nExplanation:\n When the last folder is created, the smallest positive valid k is 4, and it becomes \"onepiece(4)\".\n```\n\n Constraints: \n\n 1 <= names.length <= 5 * 10 4 \n \n 1 <= names[i].length <= 20 \n \n names[i] consists of lowercase English letters, digits, and/or round brackets.",
+  "code": "#include <vector>\n#include <string>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> getFolderNames(vector<string>& names) {\n        unordered_map<string, int> mp;\n        vector<string> res;\n        for (auto& name : names) {\n            if (mp.count(name) == 0) {\n                res.push_back(name);\n                mp[name] = 1;\n            } else {\n                int k = mp[name];\n                string newName;\n                while (mp.count(newName = name + \"(\" + to_string(k) + \")\")) {\n                    ++k;\n                }\n                res.push_back(newName);\n                mp[name] = k + 1;\n                mp[newName] = 1;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610621111",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

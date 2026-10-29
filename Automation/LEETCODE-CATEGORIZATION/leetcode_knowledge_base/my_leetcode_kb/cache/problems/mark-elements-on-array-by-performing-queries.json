@@ -1,0 +1,39 @@
+{
+  "id": "3080",
+  "title": "Mark Elements on Array by Performing Queries",
+  "slug": "mark-elements-on-array-by-performing-queries",
+  "url": "https://leetcode.com/problems/mark-elements-on-array-by-performing-queries/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Simulation"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array nums of size n consisting of positive integers. \n \n You are also given a 2D array queries of size m where queries[i] = [index i , k i ] . \n \n Initially all elements of the array are unmarked . \n \n You need to apply m queries on the array in order, where on the i th query you do the following: \n\n Mark the element at index index i if it is not already marked. \n \n Then mark k i unmarked elements in the array with the smallest values. If multiple such elements exist, mark the ones with the smallest indices. And if less than k i unmarked elements exist, then mark all of them. \n\n Return an array answer of size m where answer[i] is the sum of unmarked elements in the array after the i th query . \n\n Example 1: \n\n Input: nums = [1,2,2,1,2,3,1], queries = [[1,2],[3,3],[4,2]] \n \n Output: [8,3,0] \n \n Explanation: \n \n We do the following queries on the array: \n\n Mark the element at index 1 , and 2 of the smallest unmarked elements with the smallest indices if they exist, the marked elements now are nums = [ 1 , 2 ,2, 1 ,2,3,1] . The sum of unmarked elements is 2 + 2 + 3 + 1 = 8 . \n \n Mark the element at index 3 , since it is already marked we skip it. Then we mark 3 of the smallest unmarked elements with the smallest indices, the marked elements now are nums = [ 1 , 2 , 2 , 1 , 2 ,3, 1 ] . The sum of unmarked elements is 3 . \n \n Mark the element at index 4 , since it is already marked we skip it. Then we mark 2 of the smallest unmarked elements with the smallest indices if they exist, the marked elements now are nums = [ 1 , 2 , 2 , 1 , 2 , 3 , 1 ] . The sum of unmarked elements is 0 . \n\n Example 2: \n\n Input: nums = [1,4,2,3], queries = [[0,1]] \n \n Output: [7] \n \n Explanation: We do one query which is mark the element at index 0 and mark the smallest element among unmarked elements. The marked elements will be nums = [ 1 ,4, 2 ,3] , and the sum of unmarked elements is 4 + 3 = 7 . \n\n Constraints: \n\n n == nums.length \n \n m == queries.length \n \n 1 <= m <= n <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n queries[i].length == 2 \n \n 0 <= index i , k i <= n - 1",
+  "code": "class Solution {public:vector<long long> unmarkedSumArray(vector<int>& nums,vector<vector<int>>& queries){\n int n=nums.size();long long sum=accumulate(nums.begin(),nums.end(),0LL);\n priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;\n for(int i=0;i<n;i++)pq.push({nums[i],i});vector<char> marked(n);vector<long long> ans;\n for(auto &q:queries){int i=q[0],k=q[1];if(!marked[i]){marked[i]=1;sum-=nums[i];}\n while(k&&!pq.empty()){auto p=pq.top();pq.pop();if(marked[p.second])continue;marked[p.second]=1;sum-=p.first;--k;}ans.push_back(sum);}return ans;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176853665",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

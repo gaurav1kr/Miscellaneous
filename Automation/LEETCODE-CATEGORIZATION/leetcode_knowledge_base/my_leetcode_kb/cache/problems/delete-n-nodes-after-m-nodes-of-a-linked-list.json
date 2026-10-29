@@ -1,0 +1,26 @@
+{
+  "id": "1474",
+  "title": "Delete N Nodes After M Nodes of a Linked List",
+  "slug": "delete-n-nodes-after-m-nodes-of-a-linked-list",
+  "url": "https://leetcode.com/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Linked List"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "You are given the head of a linked list and two integers m and n . \n \n Traverse the linked list and remove some nodes in the following way: \n\n Start with the head as the current node. \n \n Keep the first m nodes starting with the current node. \n \n Remove the next n nodes \n \n Keep repeating steps 2 and 3 until you reach the end of the list. \n\n Return the head of the modified list after removing the mentioned nodes . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/06/06/sample_1_1848.png] \n \n```\nInput:\n head = [1,2,3,4,5,6,7,8,9,10,11,12,13], m = 2, n = 3\n\nOutput:\n [1,2,6,7,11,12]\n\nExplanation:\n Keep the first (m = 2) nodes starting from the head of the linked List (1 ->2) show in black nodes.\nDelete the next (n = 3) nodes (3 -> 4 -> 5) show in read nodes.\nContinue with the same procedure until reaching the tail of the Linked List.\nHead of the linked list after removing nodes is returned.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/06/06/sample_2_1848.png] \n \n```\nInput:\n head = [1,2,3,4,5,6,7,8,9,10,11], m = 1, n = 3\n\nOutput:\n [1,5,9]\n\nExplanation:\n Head of linked list after removing nodes is returned.\n```\n\n Constraints: \n\n The number of nodes in the list is in the range [1, 10 4 ] . \n \n 1 <= Node.val <= 10 6 \n \n 1 <= m, n <= 1000 \n\n Follow up: Could you solve this problem by modifying the list in-place?",
+  "code": "class Solution {\npublic:\n    ListNode* deleteNodes(ListNode* head, int m, int n) {\n        ListNode* current = head;\n        while (current) {\n            for (int kept = 1; kept < m && current; ++kept) {\n                current = current->next;\n            }\n            if (!current) {\n                break;\n            }\n            ListNode* removed = current->next;\n            for (int i = 0; i < n && removed; ++i) {\n                ListNode* next = removed->next;\n                delete removed;\n                removed = next;\n            }\n            current->next = removed;\n            current = removed;\n        }\n        return head;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178579240",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

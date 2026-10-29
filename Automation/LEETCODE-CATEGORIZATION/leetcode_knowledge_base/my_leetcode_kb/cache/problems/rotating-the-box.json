@@ -1,0 +1,31 @@
+{
+  "id": "1861",
+  "title": "Rotating the Box",
+  "slug": "rotating-the-box",
+  "url": "https://leetcode.com/problems/rotating-the-box/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Matrix"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an m x n matrix of characters boxGrid representing a side-view of a box. Each cell of the box is one of the following: \n\n A stone '#' \n \n A stationary obstacle '*' \n \n Empty '.' \n\n The box is rotated 90 degrees clockwise , causing some of the stones to fall due to gravity. Each stone falls down until it lands on an obstacle, another stone, or the bottom of the box. Gravity does not affect the obstacles' positions, and the inertia from the box's rotation does not affect the stones' horizontal positions. \n \n It is guaranteed that each stone in boxGrid rests on an obstacle, another stone, or the bottom of the box. \n \n Return an n x m matrix representing the box after the rotation described above . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2021/04/08/rotatingtheboxleetcodewithstones.png] \n \n```\nInput:\n boxGrid = [[\"#\",\".\",\"#\"]]\n\nOutput:\n [[\".\"],\n  [\"#\"],\n  [\"#\"]]\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2021/04/08/rotatingtheboxleetcode2withstones.png] \n \n```\nInput:\n boxGrid = [[\"#\",\".\",\"*\",\".\"],\n  [\"#\",\"#\",\"*\",\".\"]]\n\nOutput:\n [[\"#\",\".\"],\n  [\"#\",\"#\"],\n  [\"*\",\"*\"],\n  [\".\",\".\"]]\n```\n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2021/04/08/rotatingtheboxleetcode3withstone.png] \n \n```\nInput:\n boxGrid = [[\"#\",\"#\",\"*\",\".\",\"*\",\".\"],\n  [\"#\",\"#\",\"#\",\"*\",\".\",\".\"],\n  [\"#\",\"#\",\"#\",\".\",\"#\",\".\"]]\n\nOutput:\n [[\".\",\"#\",\"#\"],\n  [\".\",\"#\",\"#\"],\n  [\"#\",\"#\",\"*\"],\n  [\"#\",\"*\",\".\"],\n  [\"#\",\".\",\"*\"],\n  [\"#\",\".\",\".\"]]\n```\n\n Constraints: \n\n m == boxGrid.length \n \n n == boxGrid[i].length \n \n 1 <= m, n <= 500 \n \n boxGrid[i][j] is either '#' , '*' , or '.' .",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<char>> rotateTheBox(vector<vector<char>>& box) {\n        int m = box.size(), n = box[0].size();\n        for (int i = 0; i < m; ++i) {\n            int empty = n - 1;\n            for (int j = n - 1; j >= 0; --j) {\n                if (box[i][j] == '*') {\n                    empty = j - 1;\n                } else if (box[i][j] == '#') {\n                    swap(box[i][j], box[i][empty--]);\n                }\n            }\n        }\n\n        vector<vector<char>> res(n, vector<char>(m));\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                res[j][m - 1 - i] = box[i][j];\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610580893",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

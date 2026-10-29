@@ -1,0 +1,40 @@
+{
+  "id": "2234",
+  "title": "Maximum Total Beauty of the Gardens",
+  "slug": "maximum-total-beauty-of-the-gardens",
+  "url": "https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Greedy",
+    "Sorting",
+    "Enumeration",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Alice is a caretaker of n gardens and she wants to plant flowers to maximize the total beauty of all her gardens. \n \n You are given a 0-indexed integer array flowers of size n , where flowers[i] is the number of flowers already planted in the i th garden. Flowers that are already planted cannot be removed. You are then given another integer newFlowers , which is the maximum number of flowers that Alice can additionally plant. You are also given the integers target , full , and partial . \n \n A garden is considered complete if it has at least target flowers. The total beauty of the gardens is then determined as the sum of the following: \n\n The number of complete gardens multiplied by full . \n \n The minimum number of flowers in any of the incomplete gardens multiplied by partial . If there are no incomplete gardens, then this value will be 0 . \n\n Return the maximum total beauty that Alice can obtain after planting at most newFlowers flowers. \n\n Example 1: \n \n```\nInput:\n flowers = [1,3,1,1], newFlowers = 7, target = 6, full = 12, partial = 1\n\nOutput:\n 14\n\nExplanation:\n Alice can plant\n- 2 flowers in the 0\nth\n garden\n- 3 flowers in the 1\nst\n garden\n- 1 flower in the 2\nnd\n garden\n- 1 flower in the 3\nrd\n garden\nThe gardens will then be [3,6,2,2]. She planted a total of 2 + 3 + 1 + 1 = 7 flowers.\nThere is 1 garden that is complete.\nThe minimum number of flowers in the incomplete gardens is 2.\nThus, the total beauty is 1 * 12 + 2 * 1 = 12 + 2 = 14.\nNo other way of planting flowers can obtain a total beauty higher than 14.\n```\n\n Example 2: \n \n```\nInput:\n flowers = [2,4,5,3], newFlowers = 10, target = 5, full = 2, partial = 6\n\nOutput:\n 30\n\nExplanation:\n Alice can plant\n- 3 flowers in the 0\nth\n garden\n- 0 flowers in the 1\nst\n garden\n- 0 flowers in the 2\nnd\n garden\n- 2 flowers in the 3\nrd\n garden\nThe gardens will then be [5,4,5,5]. She planted a total of 3 + 0 + 0 + 2 = 5 flowers.\nThere are 3 gardens that are complete.\nThe minimum number of flowers in the incomplete gardens is 4.\nThus, the total beauty is 3 * 2 + 4 * 6 = 6 + 24 = 30.\nNo other way of planting flowers can obtain a total beauty higher than 30.\nNote that Alice could make all the gardens complete but in this case, she would obtain a lower total beauty.\n```\n\n Constraints: \n\n 1 <= flowers.length <= 10 5 \n \n 1 <= flowers[i], target <= 10 5 \n \n 1 <= newFlowers <= 10 10 \n \n 1 <= full, partial <= 10 5",
+  "code": "\nclass Solution {\npublic:\n    long long maximumBeauty(vector<int>& flowers,\n                            long long newFlowers,\n                            int target,\n                            int full,\n                            int partial) {\n        int n = flowers.size();\n\n        for (int& x : flowers)\n            x = min(x, target);\n\n        sort(flowers.begin(), flowers.end());\n\n        // Count gardens that are already complete.\n        int incompleteCount = 0;\n\n        while (incompleteCount < n &&\n               flowers[incompleteCount] < target) {\n            ++incompleteCount;\n        }\n\n        // All gardens already complete.\n        if (incompleteCount == 0)\n            return 1LL * n * full;\n\n        // Prefix sums of incomplete gardens.\n        vector<long long> prefix(incompleteCount + 1, 0);\n\n        for (int i = 0; i < incompleteCount; ++i) {\n            prefix[i + 1] = prefix[i] + flowers[i];\n        }\n\n        long long ans = 0;\n        long long remaining = newFlowers;\n\n        int alreadyFull = n - incompleteCount;\n\n        // Complete the largest incomplete gardens first.\n        for (int complete = 0;\n             complete <= incompleteCount;\n             ++complete) {\n\n            if (complete > 0) {\n                int idx = incompleteCount - complete;\n\n                remaining -= target - flowers[idx];\n            }\n\n            if (remaining < 0)\n                break;\n\n            int left = incompleteCount - complete;\n\n            long long beauty =\n                1LL * (alreadyFull + complete) * full;\n\n            if (left == 0) {\n                ans = max(ans, beauty);\n                continue;\n            }\n\n            int low = 0;\n            int high = left - 1;\n            int best = 0;\n\n            while (low <= high) {\n                int mid = low + (high - low) / 2;\n\n                long long cost =\n                    1LL * flowers[mid] * (mid + 1)\n                    - prefix[mid + 1];\n\n                if (cost <= remaining) {\n                    best = mid;\n                    low = mid + 1;\n                } else {\n                    high = mid - 1;\n                }\n            }\n\n            long long cost =\n                1LL * flowers[best] * (best + 1)\n                - prefix[best + 1];\n\n            long long minFlowers =\n                flowers[best] +\n                (remaining - cost) / (best + 1);\n\n            minFlowers = min(minFlowers,\n                             1LL * target - 1);\n\n            beauty += minFlowers * partial;\n\n            ans = max(ans, beauty);\n        }\n\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181645815",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

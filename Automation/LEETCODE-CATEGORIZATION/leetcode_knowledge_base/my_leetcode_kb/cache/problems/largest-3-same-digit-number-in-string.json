@@ -1,0 +1,26 @@
+{
+  "id": "2264",
+  "title": "Largest 3-Same-Digit Number in String",
+  "slug": "largest-3-same-digit-number-in-string",
+  "url": "https://leetcode.com/problems/largest-3-same-digit-number-in-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string num representing a large integer. An integer is good if it meets the following conditions: \n\n It is a substring of num with length 3 . \n \n It consists of only one unique digit. \n\n Return the maximum good integer as a string or an empty string \"\" if no such integer exists . \n \n Note: \n\n A substring is a contiguous sequence of characters within a string. \n \n There may be leading zeroes in num or a good integer. \n\n Example 1: \n \n```\nInput:\n num = \"6\n777\n133339\"\n\nOutput:\n \"777\"\n\nExplanation:\n There are two distinct good integers: \"777\" and \"333\".\n\"777\" is the largest, so we return \"777\".\n```\n\n Example 2: \n \n```\nInput:\n num = \"23\n000\n19\"\n\nOutput:\n \"000\"\n\nExplanation:\n \"000\" is the only good integer.\n```\n\n Example 3: \n \n```\nInput:\n num = \"42352338\"\n\nOutput:\n \"\"\n\nExplanation:\n No substring of length 3 consists of only one unique digit. Therefore, there are no good integers.\n```\n\n Constraints: \n\n 3 <= num.length <= 1000 \n \n num only consists of digits.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:string largestGoodInteger(string num){string ans=\"\";for(int i=0;i+2<(int)num.size();++i)if(num[i]==num[i+1]&&num[i]==num[i+2])ans=max(ans,num.substr(i,3));return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175900766",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

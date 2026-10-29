@@ -1,0 +1,39 @@
+{
+  "id": "1477",
+  "title": "Find Two Non-overlapping Sub-arrays Each With Target Sum",
+  "slug": "find-two-non-overlapping-sub-arrays-each-with-target-sum",
+  "url": "https://leetcode.com/problems/find-two-non-overlapping-sub-arrays-each-with-target-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an array of integers arr and an integer target . \n \n You have to find two non-overlapping sub-arrays of arr each with a sum equal target . There can be multiple answers so you have to find an answer where the sum of the lengths of the two sub-arrays is minimum . \n \n Return the minimum sum of the lengths of the two required sub-arrays, or return -1 if you cannot find such two sub-arrays. \n\n Example 1: \n \n```\nInput:\n arr = [3,2,2,4,3], target = 3\n\nOutput:\n 2\n\nExplanation:\n Only two sub-arrays have sum = 3 ([3] and [3]). The sum of their lengths is 2.\n```\n\n Example 2: \n \n```\nInput:\n arr = [7,3,4,7], target = 7\n\nOutput:\n 2\n\nExplanation:\n Although we have three non-overlapping sub-arrays of sum = 7 ([7], [3,4] and [7]), but we will choose the first and third sub-arrays as the sum of their lengths is 2.\n```\n\n Example 3: \n \n```\nInput:\n arr = [4,3,2,6,2,3,4], target = 6\n\nOutput:\n -1\n\nExplanation:\n We have only one sub-array of sum = 6.\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 5 \n \n 1 <= arr[i] <= 1000 \n \n 1 <= target <= 10 8",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <climits>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minSumOfLengths(vector<int>& arr, int target) {\n        int n = arr.size();\n        vector<int> dp(n, INT_MAX);\n        unordered_map<int, int> prefixSum;\n        int sum = 0, minLen = INT_MAX, res = INT_MAX;\n\n        prefixSum[0] = -1;\n\n        for (int i = 0; i < n; ++i) {\n            sum += arr[i];\n            if (prefixSum.count(sum - target)) {\n                int j = prefixSum[sum - target];\n                int currLen = i - j;\n                if (j >= 0 && dp[j] != INT_MAX) {\n                    res = min(res, currLen + dp[j]);\n                }\n                dp[i] = min(currLen, (i > 0 ? dp[i - 1] : INT_MAX));\n            } else {\n                dp[i] = (i > 0 ? dp[i - 1] : INT_MAX);\n            }\n            prefixSum[sum] = i;\n        }\n\n        return res == INT_MAX ? -1 : res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593692349",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

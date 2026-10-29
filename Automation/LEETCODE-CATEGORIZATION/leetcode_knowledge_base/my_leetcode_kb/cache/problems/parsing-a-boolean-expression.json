@@ -1,0 +1,32 @@
+{
+  "id": "1106",
+  "title": "Parsing A Boolean Expression",
+  "slug": "parsing-a-boolean-expression",
+  "url": "https://leetcode.com/problems/parsing-a-boolean-expression/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash set",
+    "Ordered set",
+    "Stack",
+    "String"
+  ],
+  "description": "A boolean expression is an expression that evaluates to either true or false . It can be in one of the following shapes: \n\n 't' that evaluates to true . \n \n 'f' that evaluates to false . \n \n '!(subExpr)' that evaluates to the logical NOT of the inner expression subExpr . \n \n '&(subExpr 1 , subExpr 2 , ..., subExpr n )' that evaluates to the logical AND of the inner expressions subExpr 1 , subExpr 2 , ..., subExpr n where n >= 1 . \n \n '|(subExpr 1 , subExpr 2 , ..., subExpr n )' that evaluates to the logical OR of the inner expressions subExpr 1 , subExpr 2 , ..., subExpr n where n >= 1 . \n\n Given a string expression that represents a boolean expression , return the evaluation of that expression . \n \n It is guaranteed that the given expression is valid and follows the given rules. \n\n Example 1: \n \n```\nInput:\n expression = \"&(|(f))\"\n\nOutput:\n false\n\nExplanation:\n \nFirst, evaluate |(f) --> f. The expression is now \"&(f)\".\nThen, evaluate &(f) --> f. The expression is now \"f\".\nFinally, return false.\n```\n\n Example 2: \n \n```\nInput:\n expression = \"|(f,f,f,t)\"\n\nOutput:\n true\n\nExplanation:\n The evaluation of (false OR false OR false OR true) is true.\n```\n\n Example 3: \n \n```\nInput:\n expression = \"!(&(f,t))\"\n\nOutput:\n true\n\nExplanation:\n \nFirst, evaluate &(f,t) --> (false AND true) --> false --> f. The expression is now \"!(f)\".\nThen, evaluate !(f) --> NOT false --> true. We return true.\n```\n\n Constraints: \n\n 1 <= expression.length <= 2 * 10 4 \n \n expression[i] is one following characters: '(' , ')' , '&' , '|' , '!' , 't' , 'f' , and ',' .",
+  "code": "class Solution {\npublic:\n    bool parseBoolExpr(string expression) {\n        stack<char> st;\n        for (char ch : expression) {\n            if (ch == ',') continue;\n            else if (ch != ')') st.push(ch);\n            else {\n                unordered_set<char> seen;\n                while (st.top() != '(') {\n                    seen.insert(st.top());\n                    st.pop();\n                }\n                st.pop(); // '('\n                char op = st.top(); st.pop();\n                if (op == '&') st.push(seen.count('f') ? 'f' : 't');\n                else if (op == '|') st.push(seen.count('t') ? 't' : 'f');\n                else st.push(seen.count('t') ? 'f' : 't');\n            }\n        }\n        return st.top() == 't';\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1615777841",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

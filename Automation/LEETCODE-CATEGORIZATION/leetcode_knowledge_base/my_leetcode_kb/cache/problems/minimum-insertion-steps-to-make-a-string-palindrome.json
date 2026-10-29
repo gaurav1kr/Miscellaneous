@@ -1,0 +1,30 @@
+{
+  "id": "1312",
+  "title": "Minimum Insertion Steps to Make a String Palindrome",
+  "slug": "minimum-insertion-steps-to-make-a-string-palindrome",
+  "url": "https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s . In one step you can insert any character at any index of the string. \n \n Return the minimum number of steps to make s  palindrome. \n \n A  Palindrome String  is one that reads the same backward as well as forward. \n\n Example 1: \n \n```\nInput:\n s = \"zzazz\"\n\nOutput:\n 0\n\nExplanation:\n The string \"zzazz\" is already palindrome we do not need any insertions.\n```\n\n Example 2: \n \n```\nInput:\n s = \"mbadm\"\n\nOutput:\n 2\n\nExplanation:\n String can be \"mbdadbm\" or \"mdbabdm\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"leetcode\"\n\nOutput:\n 5\n\nExplanation:\n Inserting 5 characters the string becomes \"leetcodocteel\".\n```\n\n Constraints: \n\n 1 <= s.length <= 500 \n \n s consists of lowercase English letters.",
+  "code": "#include <vector>\n#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minInsertions(string s) {\n        int n = s.size();\n        vector<vector<int>> dp(n, vector<int>(n, 0));\n        \n        for (int len = 2; len <= n; len++) {\n            for (int i = 0; i <= n - len; i++) {\n                int j = i + len - 1;\n                if (s[i] == s[j]) {\n                    dp[i][j] = dp[i + 1][j - 1];\n                } else {\n                    dp[i][j] = min(dp[i + 1][j], dp[i][j - 1]) + 1;\n                }\n            }\n        }\n        return dp[0][n - 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590166022",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

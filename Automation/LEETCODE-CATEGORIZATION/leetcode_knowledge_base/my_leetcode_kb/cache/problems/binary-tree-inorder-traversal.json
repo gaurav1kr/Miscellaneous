@@ -1,0 +1,34 @@
+{
+  "id": "94",
+  "title": "Binary Tree Inorder Traversal",
+  "slug": "binary-tree-inorder-traversal",
+  "url": "https://leetcode.com/problems/binary-tree-inorder-traversal/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Stack",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Stack",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree, return the inorder traversal of its nodes' values . \n\n Example 1: \n\n Input: root = [1,null,2,3] \n \n Output: [1,3,2] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/29/screenshot-2024-08-29-202743.png] \n\n Example 2: \n\n Input: root = [1,2,3,4,5,null,8,null,null,6,7,9] \n \n Output: [4,2,6,5,7,1,3,9,8] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/29/tree_2.png] \n\n Example 3: \n\n Input: root = [] \n \n Output: [] \n\n Example 4: \n\n Input: root = [1] \n \n Output: [1] \n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 100] . \n \n -100 <= Node.val <= 100 \n\n Follow up: Recursive solution is trivial, could you do it iteratively?",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    vector<int> inorderTraversal(TreeNode* root) \n    {\n        vector<int> final_vector ;\n\t    stack<TreeNode *> stk1;\n\t    TreeNode *curr = root ;\n\t    while(curr || !stk1.empty())\n\t    {\n\t\t    while(curr)\n\t\t    {\n\t\t\t    stk1.push(curr) ;\n\t\t\t    curr = curr->left ;\n            }\n            curr = stk1.top() ;\n            stk1.pop() ;\n            final_vector.push_back(curr->val);\n            curr = curr->right ;\n        }\n        return final_vector ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "343395523",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "4092",
+  "title": "Binary Digit Score",
+  "slug": "binary-digit-score",
+  "url": "https://leetcode.com/problems/binary-digit-score/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "You are given two integers a and b . \n \n Let s1 and s2 be the number of set bits in the binary representations of a and b , respectively. \n \n The score of these integers is defined as follows: \n\n If s1 >= s2 , the score is s1 * s2 . \n \n Otherwise, the score is s2 / s1 using integer division. \n\n Return an integer representing the score of a and b . \n \n A set bit refers to a bit in the binary representation of a number that has a value of 1. \n\n Example 1: \n\n Input: a = 14, b = 6 \n \n Output: 6 \n \n Explanation: \n\n The binary representation of a = 14 is \"1110\" , so s1 = 3 . \n \n The binary representation of b = 6 is \"110\" , so s2 = 2 . \n \n Since s1 > s2 , the score of a and b is s1 * s2 = 3 * 2 = 6 . \n\n Example 2: \n\n Input: a = 5, b = 15 \n \n Output: 2 \n \n Explanation: \n\n The binary representation of a = 5 is \"101\" , so s1 = 2 . \n \n The binary representation of b = 15 is \"1111\" , so s2 = 4 . \n \n Since s1 < s2 , the score of a and b is s2 / s1 = 4 / 2 = 2 . \n\n Example 3: \n\n Input: a = 10, b = 12 \n \n Output: 4 \n \n Explanation: \n\n The binary representation of a = 10 is \"1010\" , so s1 = 2 . \n \n The binary representation of b = 12 is \"1100\" , so s2 = 2 . \n \n Since s1 == s2 , the score of a and b is s1 * s2 = 2 * 2 = 4 . \n\n Constraints: \n\n 1 <= a, b <= 100",
+  "code": "class Solution {\n    int bits(int x) {\n        int cnt = 0;\n        while (x) {\n            x &= x - 1;\n            ++cnt;\n        }\n        return cnt;\n    }\npublic:\n    int calculateScore(int a, int b) {\n        int x = bits(a), y = bits(b);\n        return x >= y ? x * y : y / x;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181492492",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

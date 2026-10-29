@@ -1,0 +1,33 @@
+{
+  "id": "2203",
+  "title": "Minimum Weighted Subgraph With the Required Paths",
+  "slug": "minimum-weighted-subgraph-with-the-required-paths",
+  "url": "https://leetcode.com/problems/minimum-weighted-subgraph-with-the-required-paths/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer n denoting the number of nodes of a weighted directed graph. The nodes are numbered from 0 to n - 1 . \n \n You are also given a 2D integer array edges where edges[i] = [from i , to i , weight i ] denotes that there exists a directed edge from from i to to i with weight weight i . \n \n Lastly, you are given three distinct integers src1 , src2 , and dest denoting three distinct nodes of the graph. \n \n Return the minimum weight of a subgraph of the graph such that it is possible to reach dest from both src1 and src2 via a set of edges of this subgraph . In case such a subgraph does not exist, return -1 . \n \n A subgraph is a graph whose vertices and edges are subsets of the original graph. The weight of a subgraph is the sum of weights of its constituent edges. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/02/17/example1drawio.png] \n \n```\nInput:\n n = 6, edges = [[0,2,2],[0,5,6],[1,0,3],[1,4,5],[2,1,1],[2,3,3],[2,3,4],[3,4,2],[4,5,1]], src1 = 0, src2 = 1, dest = 5\n\nOutput:\n 9\n\nExplanation:\n\nThe above figure represents the input graph.\nThe blue edges represent one of the subgraphs that yield the optimal answer.\nNote that the subgraph [[1,0,3],[0,5,6]] also yields the optimal answer. It is not possible to get a subgraph with less weight satisfying all the constraints.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/02/17/example2-1drawio.png] \n \n```\nInput:\n n = 3, edges = [[0,1,1],[2,1,1]], src1 = 0, src2 = 1, dest = 2\n\nOutput:\n -1\n\nExplanation:\n\nThe above figure represents the input graph.\nIt can be seen that there does not exist any path from node 1 to node 2, hence there are no subgraphs satisfying all the constraints.\n```\n\n Constraints: \n\n 3 <= n <= 10 5 \n \n 0 <= edges.length <= 10 5 \n \n edges[i].length == 3 \n \n 0 <= from i , to i , src1, src2, dest <= n - 1 \n \n from i != to i \n \n src1 , src2 , and dest are pairwise distinct. \n \n 1 <= weight[i] <= 10 5",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\n vector<long long> dijkstra(int src,const vector<vector<pair<int,int>>>& g){const long long INF=LLONG_MAX/4;int n=g.size();vector<long long>d(n,INF);\n  priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>> pq;d[src]=0;pq.push({0,src});\n  while(!pq.empty()){auto cur=pq.top();pq.pop();long long dist=cur.first;int u=cur.second;if(dist!=d[u])continue;\n   for(auto e:g[u])if(dist+e.second<d[e.first]){d[e.first]=dist+e.second;pq.push({d[e.first],e.first});}\n  }return d;\n }\n public:\n long long minimumWeight(int n,vector<vector<int>>& edges,int src1,int src2,int dest){vector<vector<pair<int,int>>> g(n),rg(n);\n  for(auto&e:edges){g[e[0]].push_back({e[1],e[2]});rg[e[1]].push_back({e[0],e[2]});}\n  auto a=dijkstra(src1,g),b=dijkstra(src2,g),c=dijkstra(dest,rg);long long ans=LLONG_MAX/4;\n  for(int i=0;i<n;++i)if(a[i]<LLONG_MAX/4&&b[i]<LLONG_MAX/4&&c[i]<LLONG_MAX/4)ans=min(ans,a[i]+b[i]+c[i]);return ans==LLONG_MAX/4?-1:ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175885944",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

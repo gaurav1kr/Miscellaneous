@@ -1,0 +1,34 @@
+{
+  "id": "1424",
+  "title": "Diagonal Traverse II",
+  "slug": "diagonal-traverse-ii",
+  "url": "https://leetcode.com/problems/diagonal-traverse-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Ordered map",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given a 2D integer array nums , return all elements of nums in diagonal order as shown in the below images . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/04/08/sample_1_1784.png] \n \n```\nInput:\n nums = [[1,2,3],[4,5,6],[7,8,9]]\n\nOutput:\n [1,4,2,7,5,3,8,6,9]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/04/08/sample_2_1784.png] \n \n```\nInput:\n nums = [[1,2,3,4,5],[6,7],[8],[9,10,11],[12,13,14,15,16]]\n\nOutput:\n [1,6,2,8,7,3,9,4,12,10,5,13,11,14,15,16]\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i].length <= 10 5 \n \n 1 <= sum(nums[i].length) <= 10 5 \n \n 1 <= nums[i][j] <= 10 5",
+  "code": "#include <vector>\n#include <map>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> findDiagonalOrder(vector<vector<int>>& nums) {\n        map<int, vector<int>> diag;\n        for (int i = 0; i < nums.size(); ++i) {\n            for (int j = 0; j < nums[i].size(); ++j) {\n                diag[i + j].push_back(nums[i][j]);\n            }\n        }\n\n        vector<int> res;\n        for (auto& [_, v] : diag) {\n            reverse(v.begin(), v.end());\n            res.insert(res.end(), v.begin(), v.end());\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593852719",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "3630",
+  "title": "Partition Array for Maximum XOR and AND",
+  "slug": "partition-array-for-maximum-xor-and-and",
+  "url": "https://leetcode.com/problems/partition-array-for-maximum-xor-and-and/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Greedy",
+    "Bit Manipulation",
+    "Enumeration"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Partition the array into three (possibly empty) subsequences A , B , and C such that every element of nums belongs to exactly one subsequence. \n \n Your goal is to maximize the value of: XOR(A) + AND(B) + XOR(C) \n \n where: \n\n XOR(arr) denotes the bitwise XOR of all elements in arr . If arr is empty, its value is defined as 0. \n \n AND(arr) denotes the bitwise AND of all elements in arr . If arr is empty, its value is defined as 0. \n\n Return the maximum value achievable. \n \n Note: If multiple partitions result in the same maximum sum, you can consider any one of them. \n\n Example 1: \n\n Input: nums = [2,3] \n \n Output: 5 \n \n Explanation: \n \n One optimal partition is: \n\n A = [3], XOR(A) = 3 \n \n B = [2], AND(B) = 2 \n \n C = [], XOR(C) = 0 \n\n The maximum value of: XOR(A) + AND(B) + XOR(C) = 3 + 2 + 0 = 5 . Thus, the answer is 5. \n\n Example 2: \n\n Input: nums = [1,3,2] \n \n Output: 6 \n \n Explanation: \n \n One optimal partition is: \n\n A = [1], XOR(A) = 1 \n \n B = [2], AND(B) = 2 \n \n C = [3], XOR(C) = 3 \n\n The maximum value of: XOR(A) + AND(B) + XOR(C) = 1 + 2 + 3 = 6 . Thus, the answer is 6. \n\n Example 3: \n\n Input: nums = [2,3,6,7] \n \n Output: 15 \n \n Explanation: \n \n One optimal partition is: \n\n A = [7], XOR(A) = 7 \n \n B = [2,3], AND(B) = 2 \n \n C = [6], XOR(C) = 6 \n\n The maximum value of: XOR(A) + AND(B) + XOR(C) = 7 + 2 + 6 = 15 . Thus, the answer is 15. \n\n Constraints: \n\n 1 <= nums.length <= 19 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {\npublic:\n long long maximizeXorAndXor(vector<int>& nums){int n=nums.size();long long best=0;\n  for(int mask=0;mask<(1<<n);++mask){int aand=-1,x=0;vector<int>v;for(int i=0;i<n;++i)if(mask>>i&1)aand&=nums[i];else{x^=nums[i];v.push_back(nums[i]);}\n   if(aand<0)aand=0;int basis[31]={};int freeBits=~x;\n   for(int z:v){z&=freeBits;for(int b=30;b>=0;--b)if(z>>b&1){if(!basis[b]){basis[b]=z;break;}z^=basis[b];}}\n   int y=0;for(int b=30;b>=0;--b)y=max(y,y^basis[b]);\n   best=max(best,(long long)aand+x+2LL*y);\n  }return best;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177629030",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

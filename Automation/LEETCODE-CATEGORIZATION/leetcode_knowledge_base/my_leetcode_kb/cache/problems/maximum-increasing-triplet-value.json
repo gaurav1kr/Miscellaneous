@@ -1,0 +1,28 @@
+{
+  "id": "3073",
+  "title": "Maximum Increasing Triplet Value",
+  "slug": "maximum-increasing-triplet-value",
+  "url": "https://leetcode.com/problems/maximum-increasing-triplet-value/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Ordered Set"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array nums , return the maximum value of a triplet (i, j, k) such that i < j < k and nums[i] < nums[j] < nums[k] . \n \n The value of a triplet (i, j, k) is nums[i] - nums[j] + nums[k] . \n\n Example 1: \n\n Input: nums = [5,6,9] \n \n Output: 8 \n \n Explanation: We only have one choice for an increasing triplet and that is choosing all three elements. The value of this triplet would be 5 - 6 + 9 = 8 . \n\n Example 2: \n\n Input: nums = [1,5,3,6] \n \n Output: 4 \n \n Explanation: There are only two increasing triplets: \n \n (0, 1, 3) : The value of this triplet is nums[0] - nums[1] + nums[3] = 1 - 5 + 6 = 2 . \n \n (0, 2, 3) : The value of this triplet is nums[0] - nums[2] + nums[3] = 1 - 3 + 6 = 4 . \n \n Thus the answer would be 4 . \n\n Constraints: \n\n 3 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n The input is generated such that at least one triplet meets the given condition.",
+  "code": "class Solution {struct BIT{vector<long long> t;BIT(int n):t(n+1,LLONG_MIN/4){}void add(int i,long long v){for(;i<(int)t.size();i+=i&-i)t[i]=max(t[i],v);}long long get(int i){long long v=LLONG_MIN/4;for(;i;i-=i&-i)v=max(v,t[i]);return v;}};public:int maximumTripletValue(vector<int>& a){vector<int> v=a;sort(v.begin(),v.end());v.erase(unique(v.begin(),v.end()),v.end());BIT b(v.size()),c(v.size());long long ans=LLONG_MIN/4;for(int x:a){int i=lower_bound(v.begin(),v.end(),x)-v.begin()+1;ans=max(ans,c.get(i-1)+x);c.add(i,b.get(i-1)-x);b.add(i,x);}return (int)ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181200920",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

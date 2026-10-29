@@ -1,0 +1,37 @@
+{
+  "id": "425",
+  "title": "Word Squares",
+  "slug": "word-squares",
+  "url": "https://leetcode.com/problems/word-squares/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String",
+    "Backtracking",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Ordered map",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an array of unique strings words , return all the word squares you can build from words . The same word from words can be used multiple times . You can return the answer in any order . \n \n A sequence of strings forms a valid word square if the k th row and column read the same string, where 0 <= k < max(numRows, numColumns) . \n\n For example, the word sequence [\"ball\",\"area\",\"lead\",\"lady\"] forms a word square because each word reads the same both horizontally and vertically. \n\n Example 1: \n \n```\nInput:\n words = [\"area\",\"lead\",\"wall\",\"lady\",\"ball\"]\n\nOutput:\n [[\"ball\",\"area\",\"lead\",\"lady\"],[\"wall\",\"area\",\"lead\",\"lady\"]]\n\nExplanation:\n\nThe output consists of two word squares. The order of output does not matter (just the order of words in each word square matters).\n```\n\n Example 2: \n \n```\nInput:\n words = [\"abat\",\"baba\",\"atan\",\"atal\"]\n\nOutput:\n [[\"baba\",\"abat\",\"baba\",\"atal\"],[\"baba\",\"abat\",\"baba\",\"atan\"]]\n\nExplanation:\n\nThe output consists of two word squares. The order of output does not matter (just the order of words in each word square matters).\n```\n\n Constraints: \n\n 1 <= words.length <= 1000 \n \n 1 <= words[i].length <= 4 \n \n All words[i] have the same length. \n \n words[i] consists of only lowercase English letters. \n \n All words[i] are unique .",
+  "code": "class Solution\n{\n    unordered_map<string, vector<string>> prefixWords;\n    vector<vector<string>> result;\n    vector<string> square;\n    int side;\n    void dfs(int depth)\n    {\n        if (depth == side)\n        {\n            result.push_back(square);\n            return;\n        }\n        string prefix;\n        for (const string& row : square) prefix += row[depth];\n        auto it = prefixWords.find(prefix);\n        if (it == prefixWords.end()) return;\n        for (const string& candidate : it->second) {\n            square.push_back(candidate);\n            dfs(depth + 1);\n            square.pop_back();\n        }\n    }\npublic:\n    vector<vector<string>> wordSquares(vector<string>& words) {\n        result.clear();\n        prefixWords.clear();\n        square.clear();\n        if (words.empty()) return result;\n        side = words[0].size();\n        for (const string& word : words) {\n            for (int len = 0; len < side; ++len)\n            {\n                prefixWords[word.substr(0, len)].push_back(word);\n            }\n        }\n        dfs(0);\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178466429",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

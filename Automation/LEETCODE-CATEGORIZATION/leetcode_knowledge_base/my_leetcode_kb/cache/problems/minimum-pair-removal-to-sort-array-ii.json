@@ -1,0 +1,41 @@
+{
+  "id": "3510",
+  "title": "Minimum Pair Removal to Sort Array II",
+  "slug": "minimum-pair-removal-to-sort-array-ii",
+  "url": "https://leetcode.com/problems/minimum-pair-removal-to-sort-array-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Linked List",
+    "Heap (Priority Queue)",
+    "Simulation",
+    "Doubly-Linked List",
+    "Ordered Set"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Linked List / Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Linked list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given an array nums , you can perform the following operation any number of times: \n\n Select the adjacent pair with the minimum sum in nums . If multiple such pairs exist, choose the leftmost one. \n \n Replace the pair with their sum. \n\n Return the minimum number of operations needed to make the array non-decreasing . \n \n An array is said to be non-decreasing if each element is greater than or equal to its previous element (if it exists). \n\n Example 1: \n\n Input: nums = [5,2,3,1] \n \n Output: 2 \n \n Explanation: \n\n The pair (3,1) has the minimum sum of 4. After replacement, nums = [5,2,4] . \n \n The pair (2,4) has the minimum sum of 6. After replacement, nums = [5,6] . \n\n The array nums became non-decreasing in two operations. \n\n Example 2: \n\n Input: nums = [1,2,2] \n \n Output: 0 \n \n Explanation: \n \n The array nums is already sorted. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 9 <= nums[i] <= 10 9",
+  "code": "class Solution {public:int minimumPairRemoval(vector<int>&nums){int n=nums.size();vector<long long>v(nums.begin(),nums.end());vector<int>pr(n),nx(n),ver(n);vector<bool>alive(n,true);for(int i=0;i<n;i++){pr[i]=i-1;nx[i]=i+1;}using T=tuple<long long,int,int>;priority_queue<T,vector<T>,greater<T>>pq;int bad=0;for(int i=0;i+1<n;i++){pq.emplace(v[i]+v[i+1],i,0);bad+=v[i]>v[i+1];}int ans=0;while(bad){auto [sum,i,stamp]=pq.top();pq.pop();int j=nx[i];if(!alive[i]||j>=n||!alive[j]||ver[i]!=stamp||v[i]+v[j]!=sum)continue;int a=pr[i],b=nx[j];bad-=v[i]>v[j];if(a>=0)bad-=v[a]>v[i];if(b<n)bad-=v[j]>v[b];v[i]+=v[j];alive[j]=false;nx[i]=b;if(b<n)pr[b]=i;ver[i]++;if(a>=0){bad+=v[a]>v[i];ver[a]++;pq.emplace(v[a]+v[i],a,ver[a]);}if(b<n){bad+=v[i]>v[b];pq.emplace(v[i]+v[b],i,ver[i]);}ans++;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177553755",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

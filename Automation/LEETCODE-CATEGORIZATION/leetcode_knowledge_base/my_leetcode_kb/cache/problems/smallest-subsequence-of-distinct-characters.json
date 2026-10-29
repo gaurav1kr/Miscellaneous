@@ -1,0 +1,38 @@
+{
+  "id": "1081",
+  "title": "Smallest Subsequence of Distinct Characters",
+  "slug": "smallest-subsequence-of-distinct-characters",
+  "url": "https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash set",
+    "Monotonic stack",
+    "Ordered map",
+    "Ordered set",
+    "Stack",
+    "String"
+  ],
+  "description": "Given a string s , return the lexicographically smallest subsequence of s that contains all the distinct characters of s exactly once . \n\n Example 1: \n \n```\nInput:\n s = \"bcabc\"\n\nOutput:\n \"abc\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"cbacdcbc\"\n\nOutput:\n \"acdb\"\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of lowercase English letters. \n\n Note: This question is the same as 316: https://leetcode.com/problems/remove-duplicate-letters/",
+  "code": "#include <string>\n#include <unordered_map>\n#include <unordered_set>\n#include <stack>\nusing namespace std;\n\nclass Solution {\npublic:\n    string smallestSubsequence(string s) {\n        unordered_map<char, int> freq;\n        unordered_set<char> seen;\n        stack<char> st;\n\n        for (char c : s) freq[c]++;\n\n        for (char c : s) {\n            freq[c]--;\n            if (seen.find(c) != seen.end()) continue;\n\n            while (!st.empty() && st.top() > c && freq[st.top()] > 0) {\n                seen.erase(st.top());\n                st.pop();\n            }\n\n            st.push(c);\n            seen.insert(c);\n        }\n\n        string result;\n        while (!st.empty()) {\n            result = st.top() + result;\n            st.pop();\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590172749",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

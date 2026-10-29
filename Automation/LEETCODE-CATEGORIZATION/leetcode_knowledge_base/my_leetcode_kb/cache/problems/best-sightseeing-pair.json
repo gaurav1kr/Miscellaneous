@@ -1,0 +1,30 @@
+{
+  "id": "1014",
+  "title": "Best Sightseeing Pair",
+  "slug": "best-sightseeing-pair",
+  "url": "https://leetcode.com/problems/best-sightseeing-pair/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array values where values[i] represents the value of the i th sightseeing spot. Two sightseeing spots i and j have a distance j - i between them. \n \n The score of a pair ( i < j ) of sightseeing spots is values[i] + values[j] + i - j : the sum of the values of the sightseeing spots, minus the distance between them. \n \n Return the maximum score of a pair of sightseeing spots . \n\n Example 1: \n \n```\nInput:\n values = [8,1,5,2,6]\n\nOutput:\n 11\n\nExplanation:\n i = 0, j = 2, values[i] + values[j] + i - j = 8 + 5 + 0 - 2 = 11\n```\n\n Example 2: \n \n```\nInput:\n values = [1,2]\n\nOutput:\n 2\n```\n\n Constraints: \n\n 2 <= values.length <= 5 * 10 4 \n \n 1 <= values[i] <= 1000",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxScoreSightseeingPair(vector<int>& values) {\n        int maxScore = 0;\n        int maxVal = values[0];\n        for (int i = 1; i < values.size(); i++) {\n            maxScore = max(maxScore, maxVal + values[i] - i);\n            maxVal = max(maxVal, values[i] + i);\n        }\n        return maxScore;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591358233",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

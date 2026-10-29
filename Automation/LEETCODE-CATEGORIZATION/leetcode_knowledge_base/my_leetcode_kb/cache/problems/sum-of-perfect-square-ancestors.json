@@ -1,0 +1,39 @@
+{
+  "id": "3715",
+  "title": "Sum of Perfect Square Ancestors",
+  "slug": "sum-of-perfect-square-ancestors",
+  "url": "https://leetcode.com/problems/sum-of-perfect-square-ancestors/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Tree",
+    "Depth-First Search",
+    "Counting",
+    "Number Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer n and an undirected tree rooted at node 0 with n nodes numbered from 0 to n - 1 . This is represented by a 2D array edges of length n - 1 , where edges[i] = [u i , v i ] indicates an undirected edge between nodes u i and v i . \n \n You are also given an integer array nums , where nums[i] is the positive integer assigned to node i . \n \n Define a value t i as the number of ancestors of node i such that the product nums[i] * nums[ancestor] is a perfect square . \n \n Return the sum of all t i values for all nodes i in range [1, n - 1] . \n \n Note : \n\n In a rooted tree, the ancestors of node i are all nodes on the path from node i to the root node 0, excluding i itself. \n\n Example 1: \n\n Input: n = 3, edges = [[0,1],[1,2]], nums = [2,8,2] \n \n Output: 3 \n \n Explanation: \n\n i \n Ancestors \n nums[i] * nums[ancestor] \n Square Check \n t i \n\n 1 \n [0] \n nums[1] * nums[0] = 8 * 2 = 16 \n 16 is a perfect square \n 1 \n\n 2 \n [1, 0] \n nums[2] * nums[1] = 2 * 8 = 16 \n nums[2] * nums[0] = 2 * 2 = 4 \n Both 4 and 16 are perfect squares \n 2 \n\n Thus, the total number of valid ancestor pairs across all non-root nodes is 1 + 2 = 3 . \n\n Example 2: \n\n Input: n = 3, edges = [[0,1],[0,2]], nums = [1,2,4] \n \n Output: 1 \n \n Explanation: \n\n i \n Ancestors \n nums[i] * nums[ancestor] \n Square Check \n t i \n\n 1 \n [0] \n nums[1] * nums[0] = 2 * 1 = 2 \n 2 is not a perfect square \n 0 \n\n 2 \n [0] \n nums[2] * nums[0] = 4 * 1 = 4 \n 4 is a perfect square \n 1 \n\n Thus, the total number of valid ancestor pairs across all non-root nodes is 1. \n\n Example 3: \n\n Input: n = 4, edges = [[0,1],[0,2],[1,3]], nums = [1,2,9,4] \n \n Output: 2 \n \n Explanation: \n\n i \n Ancestors \n nums[i] * nums[ancestor] \n Square Check \n t i \n\n 1 \n [0] \n nums[1] * nums[0] = 2 * 1 = 2 \n 2 is not a perfect square \n 0 \n\n 2 \n [0] \n nums[2] * nums[0] = 9 * 1 = 9 \n 9 is a perfect square \n 1 \n\n 3 \n [1, 0] \n nums[3] * nums[1] = 4 * 2 = 8 \n nums[3] * nums[0] = 4 * 1 = 4 \n Only 4 is a perfect square \n 1 \n\n Thus, the total number of valid ancestor pairs across all non-root nodes is 0 + 1 + 1 = 2 . \n\n Constraints: \n\n 1 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i] = [u i , v i ] \n \n 0 <= u i , v i <= n - 1 \n \n nums.length == n \n \n 1 <= nums[i] <= 10 5 \n \n The input is generated such that edges represents a valid tree.",
+  "code": "class Solution {\npublic:\n    long long sumOfAncestors(int n, vector<vector<int>>& edges, vector<int>& nums) {\n        int mx=*max_element(nums.begin(),nums.end());\n        vector<int> spf(mx+1); for(int i=2;i<=mx;++i) if(!spf[i]) {\n            for(int j=i;j<=mx;j+=i) if(!spf[j]) spf[j]=i;\n        }\n        vector<int> key(n);\n        for(int i=0;i<n;++i){int x=nums[i],v=1;while(x>1){int p=spf[x],par=0;while(x%p==0){x/=p;par^=1;}if(par)v*=p;}key[i]=v;}\n        vector<vector<int>> g(n);for(auto &e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}\n        vector<int> cnt(mx+1,0);\n        struct Frame{int u,p,phase;}; vector<Frame> st={{0,-1,0}};long long ans=0;\n        while(!st.empty()){Frame f=st.back();st.pop_back();\n            if(f.phase){--cnt[key[f.u]];continue;}\n            ans+=cnt[key[f.u]]; ++cnt[key[f.u]];\n            st.push_back({f.u,f.p,1});\n            for(int v:g[f.u])if(v!=f.p)st.push_back({v,f.u,0});\n        }return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181141587",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

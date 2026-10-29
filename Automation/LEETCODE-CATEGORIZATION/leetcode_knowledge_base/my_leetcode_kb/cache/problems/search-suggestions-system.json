@@ -1,0 +1,41 @@
+{
+  "id": "1268",
+  "title": "Search Suggestions System",
+  "slug": "search-suggestions-system",
+  "url": "https://leetcode.com/problems/search-suggestions-system/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Binary Search",
+    "Trie",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Heap / Priority Queue",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given an array of strings products and a string searchWord . \n \n Design a system that suggests at most three product names from products after each character of searchWord is typed. Suggested products should have common prefix with searchWord . If there are more than three products with a common prefix return the three lexicographically minimums products. \n \n Return a list of lists of the suggested products after each character of searchWord is typed . \n\n Example 1: \n \n```\nInput:\n products = [\"mobile\",\"mouse\",\"moneypot\",\"monitor\",\"mousepad\"], searchWord = \"mouse\"\n\nOutput:\n [[\"mobile\",\"moneypot\",\"monitor\"],[\"mobile\",\"moneypot\",\"monitor\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"],[\"mouse\",\"mousepad\"]]\n\nExplanation:\n products sorted lexicographically = [\"mobile\",\"moneypot\",\"monitor\",\"mouse\",\"mousepad\"].\nAfter typing m and mo all products match and we show user [\"mobile\",\"moneypot\",\"monitor\"].\nAfter typing mou, mous and mouse the system suggests [\"mouse\",\"mousepad\"].\n```\n\n Example 2: \n \n```\nInput:\n products = [\"havana\"], searchWord = \"havana\"\n\nOutput:\n [[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"],[\"havana\"]]\n\nExplanation:\n The only word \"havana\" will be always suggested while typing the search word.\n```\n\n Constraints: \n\n 1 <= products.length <= 1000 \n \n 1 <= products[i].length <= 3000 \n \n 1 <= sum(products[i].length) <= 2 * 10 4 \n \n All the strings of products are unique . \n \n products[i] consists of lowercase English letters. \n \n 1 <= searchWord.length <= 1000 \n \n searchWord consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    vector<vector<string>> suggestedProducts(vector<string> &products, string &searchWord) {\n        vector<vector<string>> res;\n        sort(products.begin(), products.end());\n        int l = 0, r = products.size() - 1;\n        for (int i = 0; i < searchWord.size(); i++) {\n            char ch = searchWord[i];\n            while(l<=r && (products[l].size() <= i || products[l][i]!=ch)) l++;\n            while(l<=r && (products[r].size() <= i || products[r][i]!=ch)) r--;\n            res.push_back(vector<string>());\n            int m = min(3, r - l + 1);\n            for (int j = 0; j < m; j++) {\n                res.back().push_back(products[l + j]);\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1362403115",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

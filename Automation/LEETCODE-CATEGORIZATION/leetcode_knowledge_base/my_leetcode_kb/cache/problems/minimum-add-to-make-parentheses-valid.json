@@ -1,0 +1,32 @@
+{
+  "id": "921",
+  "title": "Minimum Add to Make Parentheses Valid",
+  "slug": "minimum-add-to-make-parentheses-valid",
+  "url": "https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy",
+    "Bracket Sequences"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "A parentheses string is valid if and only if: \n\n It is the empty string, \n \n It can be written as AB ( A concatenated with B ), where A and B are valid strings, or \n \n It can be written as (A) , where A is a valid string. \n\n You are given a parentheses string s . In one move, you can insert a parenthesis at any position of the string. \n\n For example, if s = \"()))\" , you can insert an opening parenthesis to be \"( ( )))\" or a closing parenthesis to be \"()) ) )\" . \n\n Return the minimum number of moves required to make s valid . \n\n Example 1: \n \n```\nInput:\n s = \"())\"\n\nOutput:\n 1\n```\n\n Example 2: \n \n```\nInput:\n s = \"(((\"\n\nOutput:\n 3\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s[i] is either '(' or ')' .",
+  "code": "class Solution \n{\n    stack<char> stk1 ;\npublic:\n    int minAddToMakeValid(string s) \n    {\n        int count = 0 ;\n        for(auto & e:s)\n        {\n            if(e==')')\n            {\n                if(stk1.empty())\n                {\n                    count++ ;\n                }\n                else\n                {\n                    stk1.pop() ;\n                }\n            }\n            else\n            {\n                stk1.push(e) ;\n            }\n        }\n\t\tcount += stk1.size() ;\n\t\treturn count ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1373344289",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

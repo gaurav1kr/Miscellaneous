@@ -1,0 +1,31 @@
+{
+  "id": "2130",
+  "title": "Maximum Twin Sum of a Linked List",
+  "slug": "maximum-twin-sum-of-a-linked-list",
+  "url": "https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Two Pointers",
+    "Stack"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Linked list",
+    "Stack"
+  ],
+  "description": "In a linked list of size n , where n is even , the i th node ( 0-indexed ) of the linked list is known as the twin of the (n-1-i) th node, if 0 <= i <= (n / 2) - 1 . \n\n For example, if n = 4 , then node 0 is the twin of node 3 , and node 1 is the twin of node 2 . These are the only nodes with twins for n = 4 . \n\n The twin sum is defined as the sum of a node and its twin. \n \n Given the head of a linked list with even length, return the maximum twin sum of the linked list . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/12/03/eg1drawio.png] \n \n```\nInput:\n head = [5,4,2,1]\n\nOutput:\n 6\n\nExplanation:\n\nNodes 0 and 1 are the twins of nodes 3 and 2, respectively. All have twin sum = 6.\nThere are no other nodes with twins in the linked list.\nThus, the maximum twin sum of the linked list is 6.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/12/03/eg2drawio.png] \n \n```\nInput:\n head = [4,2,2,3]\n\nOutput:\n 7\n\nExplanation:\n\nThe nodes with twins present in this linked list are:\n- Node 0 is the twin of node 3 having a twin sum of 4 + 3 = 7.\n- Node 1 is the twin of node 2 having a twin sum of 2 + 2 = 4.\nThus, the maximum twin sum of the linked list is max(7, 4) = 7.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/12/03/eg3drawio.png] \n \n```\nInput:\n head = [1,100000]\n\nOutput:\n 100001\n\nExplanation:\n\nThere is only one node with a twin in the linked list having twin sum of 1 + 100000 = 100001.\n```\n\n Constraints: \n\n The number of nodes in the list is an even integer in the range [2, 10 5 ] . \n \n 1 <= Node.val <= 10 5",
+  "code": "class Solution {\npublic:\n int pairSum(ListNode* head){\n  ListNode* slow=head,*fast=head;\n  while(fast && fast->next){slow=slow->next;fast=fast->next->next;}\n  ListNode* rev=nullptr;\n  while(slow){ListNode* next=slow->next;slow->next=rev;rev=slow;slow=next;}\n  int ans=0;for(ListNode* p=head;rev;p=p->next,rev=rev->next)ans=max(ans,p->val+rev->val);\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175737891",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

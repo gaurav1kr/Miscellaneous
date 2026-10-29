@@ -1,0 +1,31 @@
+{
+  "id": "299",
+  "title": "Bulls and Cows",
+  "slug": "bulls-and-cows",
+  "url": "https://leetcode.com/problems/bulls-and-cows/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are playing the Bulls and Cows game with your friend. \n \n You write down a secret number and ask your friend to guess what the number is. When your friend makes a guess, you provide a hint with the following info: \n\n The number of \"bulls\", which are digits in the guess that are in the correct position. \n \n The number of \"cows\", which are digits in the guess that are in your secret number but are located in the wrong position. Specifically, the non-bull digits in the guess that could be rearranged such that they become bulls. \n\n Given the secret number secret and your friend's guess guess , return the hint for your friend's guess . \n \n The hint should be formatted as \"xAyB\" , where x is the number of bulls and y is the number of cows. Note that both secret and guess may contain duplicate digits. \n\n Example 1: \n \n```\nInput:\n secret = \"1807\", guess = \"7810\"\n\nOutput:\n \"1A3B\"\n\nExplanation:\n Bulls are connected with a '|' and cows are underlined:\n\"1807\"\n |\n\"\n7\n8\n10\n\"\n```\n\n Example 2: \n \n```\nInput:\n secret = \"1123\", guess = \"0111\"\n\nOutput:\n \"1A1B\"\n\nExplanation:\n Bulls are connected with a '|' and cows are underlined:\n\"1123\" \"1123\"\n | or |\n\"01\n1\n1\" \"011\n1\n\"\nNote that only one of the two unmatched 1s is counted as a cow since the non-bull digits can only be rearranged to allow one 1 to be a bull.\n```\n\n Constraints: \n\n 1 <= secret.length, guess.length <= 1000 \n \n secret.length == guess.length \n \n secret and guess consist of digits only.",
+  "code": "#include <string>\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    string getHint(string secret, string guess) {\n        int bulls = 0, cows = 0;\n        vector<int> sCount(10, 0), gCount(10, 0);\n        \n        for (int i = 0; i < secret.size(); i++) {\n            if (secret[i] == guess[i]) {\n                bulls++;\n            } else {\n                sCount[secret[i] - '0']++;\n                gCount[guess[i] - '0']++;\n            }\n        }\n        \n        for (int i = 0; i < 10; i++) {\n            cows += min(sCount[i], gCount[i]);\n        }\n        \n        return to_string(bulls) + \"A\" + to_string(cows) + \"B\";\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591361313",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

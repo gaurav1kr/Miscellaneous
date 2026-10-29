@@ -1,0 +1,38 @@
+{
+  "id": "426",
+  "title": "Convert Binary Search Tree to Sorted Doubly Linked List",
+  "slug": "convert-binary-search-tree-to-sorted-doubly-linked-list",
+  "url": "https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Linked List",
+    "Stack",
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree",
+    "Doubly-Linked List"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Linked list",
+    "Stack",
+    "Tree adjacency list"
+  ],
+  "description": "Convert a Binary Search Tree to a sorted Circular Doubly-Linked List in place. \n \n You can think of the left and right pointers as synonymous to the predecessor and successor pointers in a doubly-linked list. For a circular doubly linked list, the predecessor of the first element is the last element, and the successor of the last element is the first element. \n \n We want to do the transformation in place . After the transformation, the left pointer of the tree node should point to its predecessor, and the right pointer should point to its successor. You should return the pointer to the smallest element of the linked list. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2018/10/12/bstdlloriginalbst.png] \n \n```\nInput:\n root = [4,2,5,1,3]\n\nOutput:\n [1,2,3,4,5]\n\nExplanation:\n The figure below shows the transformed BST. The solid line indicates the successor relationship, while the dashed line means the predecessor relationship.\n```\n\n Example 2: \n \n```\nInput:\n root = [2,1,3]\n\nOutput:\n [1,2,3]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 2000] . \n \n -1000 <= Node.val <= 1000 \n \n All the values of the tree are unique .",
+  "code": "class Solution\n{\n    Node* first = nullptr;\n    Node* previous = nullptr;\n    void inorder(Node* node)\n    {\n        if (!node) return;\n        inorder(node->left);\n        if (!previous)\n        {\n            first = node;\n        } else\n        {\n            previous->right = node;\n            node->left = previous;\n        }\n        previous = node;\n        inorder(node->right);\n    }\npublic:\n    Node* treeToDoublyList(Node* root)\n    {\n        first = nullptr;\n        previous = nullptr;\n        if (!root) return nullptr;\n        inorder(root);\n        first->left = previous;\n        previous->right = first;\n        return first;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178466999",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

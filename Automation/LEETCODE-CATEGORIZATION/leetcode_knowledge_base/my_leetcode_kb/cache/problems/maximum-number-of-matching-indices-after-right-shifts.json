@@ -1,0 +1,30 @@
+{
+  "id": "3400",
+  "title": "Maximum Number of Matching Indices After Right Shifts",
+  "slug": "maximum-number-of-matching-indices-after-right-shifts",
+  "url": "https://leetcode.com/problems/maximum-number-of-matching-indices-after-right-shifts/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Simulation"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays, nums1 and nums2 , of the same length. \n \n An index i is considered matching if nums1[i] == nums2[i] . \n \n Return the maximum number of matching indices after performing any number of right shifts on nums1 . \n \n A right shift is defined as shifting the element at index i to index (i + 1) % n , for all indices. \n\n Example 1: \n\n Input: nums1 = [3,1,2,3,1,2], nums2 = [1,2,3,1,2,3] \n \n Output: 6 \n \n Explanation: \n \n If we right shift nums1 2 times, it becomes [1, 2, 3, 1, 2, 3] . Every index matches, so the output is 6. \n\n Example 2: \n\n Input: nums1 = [1,4,2,5,3,1], nums2 = [2,3,1,2,4,6] \n \n Output: 3 \n \n Explanation: \n \n If we right shift nums1 3 times, it becomes [5, 3, 1, 1, 4, 2] . Indices 1, 2, and 4 match, so the output is 3. \n\n Constraints: \n\n nums1.length == nums2.length \n \n 1 <= nums1.length, nums2.length <= 3000 \n \n 1 <= nums1[i], nums2[i] <= 10 9",
+  "code": "class Solution {\npublic:\n    int maximumMatchingIndices(vector<int>& nums1, vector<int>& nums2) {\n        int n = nums1.size(), answer = 0;\n        for (int shift = 0; shift < n; ++shift) {\n            int matches = 0;\n            for (int i = 0; i < n; ++i) {\n                if (nums1[i] == nums2[(i - shift + n) % n]) ++matches;\n            }\n            answer = max(answer, matches);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178975998",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

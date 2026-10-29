@@ -1,0 +1,37 @@
+{
+  "id": "1086",
+  "title": "High Five",
+  "slug": "high-five",
+  "url": "https://leetcode.com/problems/high-five/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given a list of the scores of different students, items , where items[i] = [ID i , score i ] represents one score from a student with ID i , calculate each student's top five average . \n \n Return the answer as an array of pairs result , where result[j] = [ID j , topFiveAverage j ] represents the student with ID j and their top five average . Sort result by ID j in increasing order . \n \n A student's top five average is calculated by taking the sum of their top five scores and dividing it by 5 using integer division . \n\n Example 1: \n \n```\nInput:\n items = [[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]]\n\nOutput:\n [[1,87],[2,88]]\n\nExplanation: \n\nThe student with ID = 1 got scores 91, 92, 60, 65, 87, and 100. Their top five average is (100 + 92 + 91 + 87 + 65) / 5 = 87.\nThe student with ID = 2 got scores 93, 97, 77, 100, and 76. Their top five average is (100 + 97 + 93 + 77 + 76) / 5 = 88.6, but with integer division their average converts to 88.\n```\n\n Example 2: \n \n```\nInput:\n items = [[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100]]\n\nOutput:\n [[1,100],[7,100]]\n```\n\n Constraints: \n\n 1 <= items.length <= 1000 \n \n items[i].length == 2 \n \n 1 <= ID i <= 1000 \n \n 0 <= score i <= 100 \n \n For each ID i , there will be at least five scores.",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> highFive(vector<vector<int>>& items) {\n        map<int, vector<int>> scores;\n        for (const auto& item : items) {\n            scores[item[0]].push_back(item[1]);\n        }\n        vector<vector<int>> result;\n        for (auto& entry : scores) {\n            auto& values = entry.second;\n            sort(values.rbegin(), values.rend());\n            int sum = accumulate(values.begin(), values.begin() + 5, 0);\n            result.push_back({entry.first, sum / 5});\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178524824",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

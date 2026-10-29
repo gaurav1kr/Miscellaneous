@@ -1,0 +1,28 @@
+{
+  "id": "985",
+  "title": "Sum of Even Numbers After Queries",
+  "slug": "sum-of-even-numbers-after-queries",
+  "url": "https://leetcode.com/problems/sum-of-even-numbers-after-queries/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an array queries where queries[i] = [val i , index i ] . \n \n For each query i , first, apply nums[index i ] = nums[index i ] + val i , then print the sum of the even values of nums . \n \n Return an integer array answer where answer[i] is the answer to the i th query . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4], queries = [[1,0],[-3,1],[-4,0],[2,3]]\n\nOutput:\n [8,6,2,4]\n\nExplanation:\n At the beginning, the array is [1,2,3,4].\nAfter adding 1 to nums[0], the array is [2,2,3,4], and the sum of even values is 2 + 2 + 4 = 8.\nAfter adding -3 to nums[1], the array is [2,-1,3,4], and the sum of even values is 2 + 4 = 6.\nAfter adding -4 to nums[0], the array is [-2,-1,3,4], and the sum of even values is -2 + 4 = 2.\nAfter adding 2 to nums[3], the array is [-2,-1,3,6], and the sum of even values is -2 + 6 = 4.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1], queries = [[4,0]]\n\nOutput:\n [0]\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 4 \n \n -10 4 <= nums[i] <= 10 4 \n \n 1 <= queries.length <= 10 4 \n \n -10 4 <= val i <= 10 4 \n \n 0 <= index i < nums.length",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> sumEvenAfterQueries(vector<int>& A, vector<vector<int>>& queries) {\n        int sum = 0;\n        for (int a : A)\n            if (a % 2 == 0) sum += a;\n\n        vector<int> res;\n        for (auto& q : queries) {\n            int val = q[0], i = q[1];\n            if (A[i] % 2 == 0) sum -= A[i];\n            A[i] += val;\n            if (A[i] % 2 == 0) sum += A[i];\n            res.push_back(sum);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595391445",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

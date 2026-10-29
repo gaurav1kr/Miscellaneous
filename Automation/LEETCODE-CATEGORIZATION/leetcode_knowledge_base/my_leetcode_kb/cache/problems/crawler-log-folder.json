@@ -1,0 +1,33 @@
+{
+  "id": "1598",
+  "title": "Crawler Log Folder",
+  "slug": "crawler-log-folder",
+  "url": "https://leetcode.com/problems/crawler-log-folder/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Stack"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "The Leetcode file system keeps a log each time some user performs a change folder operation. \n \n The operations are described below: \n\n \"../\" : Move to the parent folder of the current folder. (If you are already in the main folder, remain in the same folder ). \n \n \"./\" : Remain in the same folder. \n \n \"x/\" : Move to the child folder named x (This folder is guaranteed to always exist ). \n\n You are given a list of strings logs where logs[i] is the operation performed by the user at the i th step. \n \n The file system starts in the main folder, then the operations in logs are performed. \n \n Return the minimum number of operations needed to go back to the main folder after the change folder operations. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/09/09/sample_11_1957.png] \n \n```\nInput:\n logs = [\"d1/\",\"d2/\",\"../\",\"d21/\",\"./\"]\n\nOutput:\n 2\n\nExplanation: \nUse this change folder operation \"../\" 2 times and go back to the main folder.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2020/09/09/sample_22_1957.png] \n \n```\nInput:\n logs = [\"d1/\",\"d2/\",\"./\",\"d3/\",\"../\",\"d31/\"]\n\nOutput:\n 3\n```\n\n Example 3: \n \n```\nInput:\n logs = [\"d1/\",\"../\",\"../\",\"../\"]\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= logs.length <= 10 3 \n \n 2 <= logs[i].length <= 10 \n \n logs[i] contains lowercase English letters, digits, '.' , and '/' . \n \n logs[i] follows the format described in the statement. \n \n Folder names consist of lowercase English letters and digits.",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minOperations(vector<string>& logs) {\n        int depth = 0;\n        for (const string& log : logs) {\n            if (log == \"./\") continue;\n            else if (log == \"../\") depth = max(0, depth - 1);\n            else depth++;\n        }\n        return depth;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610608388",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

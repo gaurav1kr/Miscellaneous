@@ -1,0 +1,28 @@
+{
+  "id": "1271",
+  "title": "Hexspeak",
+  "slug": "hexspeak",
+  "url": "https://leetcode.com/problems/hexspeak/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A decimal number can be converted to its Hexspeak representation by first converting it to an uppercase hexadecimal string, then replacing all occurrences of the digit '0' with the letter 'O' , and the digit '1' with the letter 'I' . Such a representation is valid if and only if it consists only of the letters in the set {'A', 'B', 'C', 'D', 'E', 'F', 'I', 'O'} . \n \n Given a string num representing a decimal integer n , return the Hexspeak representation of n if it is valid, otherwise return \"ERROR\" . \n\n Example 1: \n \n```\nInput:\n num = \"257\"\n\nOutput:\n \"IOI\"\n\nExplanation:\n 257 is 101 in hexadecimal.\n```\n\n Example 2: \n \n```\nInput:\n num = \"3\"\n\nOutput:\n \"ERROR\"\n```\n\n Constraints: \n\n 1 <= num.length <= 12 \n \n num does not contain leading zeros. \n \n num represents an integer in the range [1, 10 12 ] .",
+  "code": "class Solution {\npublic:\n    string toHexspeak(string num) {\n        unsigned long long value = stoull(num);\n        const string hex = \"0123456789ABCDEF\";\n        string answer;\n        while (value > 0) {\n            int digit = value % 16;\n            if (digit >= 2 && digit <= 9) {\n                return \"ERROR\";\n            }\n            answer.push_back(digit == 0 ? 'O' : (digit == 1 ? 'I' : hex[digit]));\n            value /= 16;\n        }\n        reverse(answer.begin(), answer.end());\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178568867",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

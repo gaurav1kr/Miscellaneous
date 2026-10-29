@@ -1,0 +1,38 @@
+{
+  "id": "3143",
+  "title": "Maximum Points Inside the Square",
+  "slug": "maximum-points-inside-the-square",
+  "url": "https://leetcode.com/problems/maximum-points-inside-the-square/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 2D array points and a string s where, points[i] represents the coordinates of point i , and s[i] represents the tag of point i . \n \n A valid square is a square centered at the origin (0, 0) , has edges parallel to the axes, and does not contain two points with the same tag. \n \n Return the maximum number of points contained in a valid square. \n \n Note: \n\n A point is considered to be inside the square if it lies on or within the square's boundaries. \n \n The side length of the square can be zero. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2024/03/29/3708-tc1.png] \n\n Input: points = [[2,2],[-1,-2],[-4,4],[-3,1],[3,-3]], s = \"abdca\" \n \n Output: 2 \n \n Explanation: \n \n The square of side length 4 covers two points points[0] and points[1] . \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2024/03/29/3708-tc2.png] \n\n Input: points = [[1,1],[-2,-2],[-2,2]], s = \"abb\" \n \n Output: 1 \n \n Explanation: \n \n The square of side length 2 covers one point, which is points[0] . \n\n Example 3: \n\n Input: points = [[1,1],[-1,-1],[2,-2]], s = \"ccd\" \n \n Output: 0 \n \n Explanation: \n \n It's impossible to make any valid squares centered at the origin such that it covers only one point among points[0] and points[1] . \n\n Constraints: \n\n 1 <= s.length, points.length <= 10 5 \n \n points[i].length == 2 \n \n -10 9 <= points[i][0], points[i][1] <= 10 9 \n \n s.length == points.length \n \n points consists of distinct coordinates. \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {public:int maxPointsInsideSquare(vector<vector<int>>& points,string s){vector<int>first(26,INT_MAX);int bad=INT_MAX;for(int i=0;i<(int)points.size();++i){int d=max(abs(points[i][0]),abs(points[i][1])),c=s[i]-'a';if(d<first[c]){bad=min(bad,first[c]);first[c]=d;}else bad=min(bad,d);}int ans=0;for(int d:first)if(d<bad)++ans;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177393219",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

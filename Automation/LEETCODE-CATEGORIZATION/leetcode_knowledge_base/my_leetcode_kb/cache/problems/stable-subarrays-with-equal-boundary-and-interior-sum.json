@@ -1,0 +1,34 @@
+{
+  "id": "3728",
+  "title": "Stable Subarrays With Equal Boundary and Interior Sum",
+  "slug": "stable-subarrays-with-equal-boundary-and-interior-sum",
+  "url": "https://leetcode.com/problems/stable-subarrays-with-equal-boundary-and-interior-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array capacity . \n \n A subarray capacity[l..r] is considered stable if: \n\n Its length is at least 3. \n \n The first and last elements are each equal to the sum of all elements strictly between them (i.e., capacity[l] = capacity[r] = capacity[l + 1] + capacity[l + 2] + ... + capacity[r - 1] ). \n\n Return an integer denoting the number of stable subarrays . \n\n Example 1: \n\n Input: capacity = [9,3,3,3,9] \n \n Output: 2 \n \n Explanation: \n\n [9,3,3,3,9] is stable because the first and last elements are both 9, and the sum of the elements strictly between them is 3 + 3 + 3 = 9 . \n \n [3,3,3] is stable because the first and last elements are both 3, and the sum of the elements strictly between them is 3. \n\n Example 2: \n\n Input: capacity = [1,2,3,4,5] \n \n Output: 0 \n \n Explanation: \n \n No subarray of length at least 3 has equal first and last elements, so the answer is 0. \n\n Example 3: \n\n Input: capacity = [-4,4,0,0,-8,-4] \n \n Output: 1 \n \n Explanation: \n \n [-4,4,0,0,-8,-4] is stable because the first and last elements are both -4, and the sum of the elements strictly between them is 4 + 0 + 0 + (-8) = -4 \n\n Constraints: \n\n 3 <= capacity.length <= 10 5 \n \n -10 9 <= capacity[i] <= 10 9",
+  "code": "class Solution {public: long long countStableSubarrays(vector<int>& nums) {int n=nums.size();long long sum=0,ans=0;map<pair<int,long long>,long long> f;for(int j=0;j<n;++j){if(j>=2){long long prefBefore=sum-nums[j-1];++f[{nums[j-2],prefBefore}];}ans+=f[{nums[j],sum-nums[j]}];sum+=nums[j];}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177738321",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

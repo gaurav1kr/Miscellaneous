@@ -1,0 +1,32 @@
+{
+  "id": "553",
+  "title": "Optimal Division",
+  "slug": "optimal-division",
+  "url": "https://leetcode.com/problems/optimal-division/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . The adjacent integers in nums will perform the float division. \n\n For example, for nums = [2,3,4] , we will evaluate the expression \"2/3/4\" . \n\n However, you can add any number of parenthesis at any position to change the priority of operations. You want to add these parentheses such the value of the expression after the evaluation is maximum. \n \n Return the corresponding expression that has the maximum value in string format . \n \n Note: your expression should not contain redundant parenthesis. \n\n Example 1: \n \n```\nInput:\n nums = [1000,100,10,2]\n\nOutput:\n \"1000/(100/10/2)\"\n\nExplanation:\n 1000/(100/10/2) = 1000/((100/10)/2) = 200\nHowever, the bold parenthesis in \"1000/(\n(\n100/10\n)\n/2)\" are redundant since they do not influence the operation priority.\nSo you should return \"1000/(100/10/2)\".\nOther cases:\n1000/(100/10)/2 = 50\n1000/(100/(10/2)) = 50\n1000/100/10/2 = 0.5\n1000/100/(10/2) = 2\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,3,4]\n\nOutput:\n \"2/(3/4)\"\n\nExplanation:\n (2/(3/4)) = 8/3 = 2.667\nIt can be shown that after trying all possibilities, we cannot get an expression with evaluation greater than 2.667\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 \n \n 2 <= nums[i] <= 1000 \n \n There is only one optimal division for the given input.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string optimalDivision(vector<int>& nums) {\n        if (nums.size() == 1) return to_string(nums[0]);\n        if (nums.size() == 2) return to_string(nums[0]) + \"/\" + to_string(nums[1]);\n\n        string res = to_string(nums[0]) + \"/(\" + to_string(nums[1]);\n        for (int i = 2; i < nums.size(); ++i)\n            res += \"/\" + to_string(nums[i]);\n        return res + \")\";\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610653237",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

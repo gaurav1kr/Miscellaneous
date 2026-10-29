@@ -1,0 +1,36 @@
+{
+  "id": "3337",
+  "title": "Total Characters in String After Transformations II",
+  "slug": "total-characters-in-string-after-transformations-ii",
+  "url": "https://leetcode.com/problems/total-characters-in-string-after-transformations-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "Counting"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters, an integer t representing the number of transformations to perform, and an array nums of size 26. In one transformation , every character in s is replaced according to the following rules: \n\n Replace s[i] with the next nums[s[i] - 'a'] consecutive characters in the alphabet. For example, if s[i] = 'a' and nums[0] = 3 , the character 'a' transforms into the next 3 consecutive characters ahead of it, which results in \"bcd\" . \n \n The transformation wraps around the alphabet if it exceeds 'z' . For example, if s[i] = 'y' and nums[24] = 3 , the character 'y' transforms into the next 3 consecutive characters ahead of it, which results in \"zab\" . \n\n Return the length of the resulting string after exactly t transformations. \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: s = \"abcyy\", t = 2, nums = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2] \n \n Output: 7 \n \n Explanation: \n\n First Transformation (t = 1): \n\n 'a' becomes 'b' as nums[0] == 1 \n \n 'b' becomes 'c' as nums[1] == 1 \n \n 'c' becomes 'd' as nums[2] == 1 \n \n 'y' becomes 'z' as nums[24] == 1 \n \n 'y' becomes 'z' as nums[24] == 1 \n \n String after the first transformation: \"bcdzz\" \n\n Second Transformation (t = 2): \n\n 'b' becomes 'c' as nums[1] == 1 \n \n 'c' becomes 'd' as nums[2] == 1 \n \n 'd' becomes 'e' as nums[3] == 1 \n \n 'z' becomes 'ab' as nums[25] == 2 \n \n 'z' becomes 'ab' as nums[25] == 2 \n \n String after the second transformation: \"cdeabab\" \n\n Final Length of the string: The string is \"cdeabab\" , which has 7 characters. \n\n Example 2: \n\n Input: s = \"azbk\", t = 1, nums = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2] \n \n Output: 8 \n \n Explanation: \n\n First Transformation (t = 1): \n\n 'a' becomes 'bc' as nums[0] == 2 \n \n 'z' becomes 'ab' as nums[25] == 2 \n \n 'b' becomes 'cd' as nums[1] == 2 \n \n 'k' becomes 'lm' as nums[10] == 2 \n \n String after the first transformation: \"bcabcdlm\" \n\n Final Length of the string: The string is \"bcabcdlm\" , which has 8 characters. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists only of lowercase English letters. \n \n 1 <= t <= 10 9 \n \n nums.length == 26 \n \n 1 <= nums[i] <= 25",
+  "code": "class Solution {using Mat=vector<vector<long long>>;static const int MOD=1000000007;Mat mul(const Mat&a,const Mat&b){Mat c(26,vector<long long>(26));for(int i=0;i<26;i++)for(int k=0;k<26;k++)if(a[i][k])for(int j=0;j<26;j++)c[i][j]=(c[i][j]+a[i][k]*b[k][j])%MOD;return c;}public:int lengthAfterTransformations(string s,int t,vector<int>& nums){Mat m(26,vector<long long>(26)),res(26,vector<long long>(26));for(int i=0;i<26;i++){res[i][i]=1;for(int j=1;j<=nums[i];j++)m[(i+j)%26][i]++;}while(t){if(t&1)res=mul(res,m);m=mul(m,m);t>>=1;}vector<long long> f(26);for(char c:s)f[c-'a']++;long long ans=0;for(int i=0;i<26;i++)for(int j=0;j<26;j++)ans=(ans+res[i][j]*f[j])%MOD;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177463444",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

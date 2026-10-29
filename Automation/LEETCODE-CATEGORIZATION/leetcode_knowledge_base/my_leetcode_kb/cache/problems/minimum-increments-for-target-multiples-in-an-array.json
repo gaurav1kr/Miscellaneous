@@ -1,0 +1,38 @@
+{
+  "id": "3444",
+  "title": "Minimum Increments for Target Multiples in an Array",
+  "slug": "minimum-increments-for-target-multiples-in-an-array",
+  "url": "https://leetcode.com/problems/minimum-increments-for-target-multiples-in-an-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Number Theory",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two arrays, nums and target . \n \n In a single operation, you may increment any element of nums by 1. \n \n Return the minimum number of operations required so that each element in target has at least one multiple in nums . \n\n Example 1: \n\n Input: nums = [1,2,3], target = [4] \n \n Output: 1 \n \n Explanation: \n \n The minimum number of operations required to satisfy the condition is 1. \n\n Increment 3 to 4 with just one operation, making 4 a multiple of itself. \n\n Example 2: \n\n Input: nums = [8,4], target = [10,5] \n \n Output: 2 \n \n Explanation: \n \n The minimum number of operations required to satisfy the condition is 2. \n\n Increment 8 to 10 with 2 operations, making 10 a multiple of both 5 and 10. \n\n Example 3: \n\n Input: nums = [7,9,10], target = [7] \n \n Output: 0 \n \n Explanation: \n \n Target 7 already has a multiple in nums, so no additional operations are needed. \n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n 1 <= target.length <= 4 \n \n target.length <= nums.length \n \n 1 <= nums[i], target[i] <= 10 4",
+  "code": "\nclass Solution {\npublic:\n    int minimumIncrements(vector<int>& nums, vector<int>& target) {\n        int m = target.size();\n        int N = 1 << m;\n        const long long INF = LLONG_MAX / 4;\n\n        vector<long long> lcm(N, 1);\n\n        for (int mask = 1; mask < N; ++mask) {\n            int bit = __builtin_ctz(mask);\n            int prev = mask & (mask - 1);\n\n            long long a = lcm[prev];\n            long long b = target[bit];\n\n            lcm[mask] = a / __gcd(a, b) * b;\n        }\n\n        vector<long long> dp(N, INF);\n        dp[0] = 0;\n\n        for (int x : nums) {\n            vector<long long> cost(N, 0);\n\n            for (int mask = 1; mask < N; ++mask) {\n                long long L = lcm[mask];\n                cost[mask] = (L - x % L) % L;\n            }\n\n            for (int mask = N - 1; mask >= 0; --mask) {\n                if (dp[mask] == INF) continue;\n\n                int remaining = (N - 1) ^ mask;\n\n                for (int sub = remaining; sub;\n                     sub = (sub - 1) & remaining) {\n                    dp[mask | sub] = min(\n                        dp[mask | sub],\n                        dp[mask] + cost[sub]\n                    );\n                }\n            }\n        }\n\n        return (int)dp[N - 1];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2167659629",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "229",
+  "title": "Majority Element II",
+  "slug": "majority-element-ii",
+  "url": "https://leetcode.com/problems/majority-element-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Counting",
+    "Boyer–Moore Majority Vote Algorithm"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array of size n , find all elements that appear more than ⌊n / 3⌋ times. \n\n Example 1: \n \n```\nInput:\n nums = [3,2,3]\n\nOutput:\n [3]\n```\n\n Example 2: \n \n```\nInput:\n nums = [1]\n\nOutput:\n [1]\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2]\n\nOutput:\n [1,2]\n```\n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n -10 9 <= nums[i] <= 10 9 \n\n Follow up: Could you solve the problem in linear time and in O(1) space?",
+  "code": "class Solution {\npublic:\n    vector<int> majorityElement(vector<int>& nums) {\n        int n = nums.size();\n        int candidate1 = 0, candidate2 = 1, count1 = 0, count2 = 0;\n\n        // Phase 1: Find potential candidates\n        for (int num : nums) {\n            if (num == candidate1) count1++;\n            else if (num == candidate2) count2++;\n            else if (count1 == 0) candidate1 = num, count1 = 1;\n            else if (count2 == 0) candidate2 = num, count2 = 1;\n            else count1--, count2--;\n        }\n\n        // Phase 2: Verify candidates\n        count1 = count2 = 0;\n        for (int num : nums) {\n            if (num == candidate1) count1++;\n            else if (num == candidate2) count2++;\n        }\n\n        vector<int> result;\n        if (count1 > n / 3) result.push_back(candidate1);\n        if (count2 > n / 3) result.push_back(candidate2);\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536152204",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

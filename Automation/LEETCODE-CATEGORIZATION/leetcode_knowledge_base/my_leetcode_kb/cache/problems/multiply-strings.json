@@ -1,0 +1,31 @@
+{
+  "id": "43",
+  "title": "Multiply Strings",
+  "slug": "multiply-strings",
+  "url": "https://leetcode.com/problems/multiply-strings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2 , also represented as a string. \n \n Note:  You must not use any built-in BigInteger library or convert the inputs to integer directly. \n\n Example 1: \n \n```\nInput:\n num1 = \"2\", num2 = \"3\"\n\nOutput:\n \"6\"\n```\n \n Example 2: \n \n```\nInput:\n num1 = \"123\", num2 = \"456\"\n\nOutput:\n \"56088\"\n```\n\n Constraints: \n\n 1 <= num1.length, num2.length <= 200 \n \n num1 and num2 consist of digits only. \n \n Both num1 and num2  do not contain any leading zero, except the number 0 itself.",
+  "code": "class Solution {\npublic:\n    string multiply(string num1, string num2) {\n    if (num1 == \"0\" || num2 == \"0\") return \"0\"; // If any number is 0, result is 0\n    \n    int n = num1.size(), m = num2.size();\n    vector<int> result(n + m, 0); // To store intermediate results\n\n    // Multiply each digit of num1 with each digit of num2\n    for (int i = n - 1; i >= 0; i--) {\n        for (int j = m - 1; j >= 0; j--) {\n            int mul = (num1[i] - '0') * (num2[j] - '0'); // Multiply digits\n            int sum = mul + result[i + j + 1];           // Add to the current position\n\n            result[i + j + 1] = sum % 10;               // Store single digit at current position\n            result[i + j] += sum / 10;                  // Carry to the next position\n        }\n    }\n\n    // Convert result vector to string, skipping leading zeros\n    string product;\n    for (int num : result) {\n        if (!(product.empty() && num == 0)) { // Skip leading zeros\n            product.push_back(num + '0');\n        }\n    }\n    \n    return product;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536030543",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

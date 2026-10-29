@@ -1,0 +1,33 @@
+{
+  "id": "848",
+  "title": "Shifting Letters",
+  "slug": "shifting-letters",
+  "url": "https://leetcode.com/problems/shifting-letters/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s of lowercase English letters and an integer array shifts of the same length. \n \n Call the shift() of a letter, the next letter in the alphabet, (wrapping around so that 'z' becomes 'a' ). \n\n For example, shift('a') = 'b' , shift('t') = 'u' , and shift('z') = 'a' . \n\n Now for each shifts[i] = x , we want to shift the first i + 1 letters of s , x times. \n \n Return the final string after all such shifts to s are applied . \n\n Example 1: \n \n```\nInput:\n s = \"abc\", shifts = [3,5,9]\n\nOutput:\n \"rpl\"\n\nExplanation:\n We start with \"abc\".\nAfter shifting the first 1 letters of s by 3, we have \"dbc\".\nAfter shifting the first 2 letters of s by 5, we have \"igc\".\nAfter shifting the first 3 letters of s by 9, we have \"rpl\", the answer.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aaa\", shifts = [1,2,3]\n\nOutput:\n \"gfd\"\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters. \n \n shifts.length == s.length \n \n 0 <= shifts[i] <= 10 9",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string shiftingLetters(string s, vector<int>& shifts) {\n        int n = s.size();\n        long sum = 0;\n        for (int i = n - 1; i >= 0; --i) {\n            sum = (sum + shifts[i]) % 26;\n            s[i] = (s[i] - 'a' + sum) % 26 + 'a';\n        }\n        return s;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593842655",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

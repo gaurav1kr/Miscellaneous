@@ -1,0 +1,40 @@
+{
+  "id": "1438",
+  "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
+  "slug": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit",
+  "url": "https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Queue",
+    "Sliding Window",
+    "Heap (Priority Queue)",
+    "Ordered Set",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Heap / Priority Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic deque",
+    "Ordered set",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums and an integer limit . \n \n Return the size of the longest non-empty subarray such that the absolute difference between every pair of elements in this subarray is less than or equal to limit . \n\n Example 1: \n\n Input: nums = [8,2,4,7], limit = 4 \n \n Output: 2 \n \n Explanation: \n \n Checking every subarray, where the absolute difference is taken over all pairs of its elements: \n [8] with maximum absolute diff |8-8| = 0 <= 4 . \n [8,2] with maximum absolute diff |8-2| = 6 > 4 . \n [8,2,4] with maximum absolute diff |8-2| = 6 > 4 . \n [8,2,4,7] with maximum absolute diff |8-2| = 6 > 4 . \n [2] with maximum absolute diff |2-2| = 0 <= 4 . \n [2,4] with maximum absolute diff |4-2| = 2 <= 4 . \n [2,4,7] with maximum absolute diff |7-2| = 5 > 4 . Note that the pair (2, 7) is not adjacent, but it is still compared. \n [4] with maximum absolute diff |4-4| = 0 <= 4 . \n [4,7] with maximum absolute diff |7-4| = 3 <= 4 . \n [7] with maximum absolute diff |7-7| = 0 <= 4 . \nTherefore, the size of the longest subarray is 2. \n\n Example 2: \n\n Input: nums = [10,1,2,4,7,2], limit = 5 \n \n Output: 4 \n \n Explanation: \n \n The subarray [2,4,7,2] is valid because every pair of its elements differs by at most 5 , the largest being |7-2| = 5 . \n \n It cannot be extended to the left, since [1,2,4,7,2] contains the pair (1, 7) with |7-1| = 6 > 5 . Therefore, the size of the longest subarray is 4. \n\n Example 3: \n\n Input: nums = [4,2,2,2,4,4,2,2], limit = 0 \n \n Output: 3 \n \n Explanation: \n \n Since limit = 0 , every pair of elements in the subarray must be equal, so only runs of identical values qualify. \n \n The longest such run is [2,2,2] , of size 3. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 0 <= limit <= 10 9",
+  "code": "class Solution \n{\npublic:\n    int longestSubarray(vector<int>& nums, int limit) \n    {\n        int n = nums.size();\n        multiset<int> st;\n        int i = 0, j = 0, maxLength = 0;\n        while (j < n) {\n            st.insert(nums[j]);\n            while (*st.rbegin() - *st.begin() > limit)\n            {\n                st.erase(st.find(nums[i]));\n                i++;\n            }\n            maxLength = max(maxLength, j - i + 1);\n            j++;\n        }\n        return maxLength;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1364528445",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

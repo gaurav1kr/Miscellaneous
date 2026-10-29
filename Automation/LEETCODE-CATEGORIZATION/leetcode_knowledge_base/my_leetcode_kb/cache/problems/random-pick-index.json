@@ -1,0 +1,31 @@
+{
+  "id": "398",
+  "title": "Random Pick Index",
+  "slug": "random-pick-index",
+  "url": "https://leetcode.com/problems/random-pick-index/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "Reservoir Sampling",
+    "Randomized"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Given an integer array nums with possible duplicates , randomly output the index of a given target number. You can assume that the given target number must exist in the array. \n \n Implement the Solution class: \n\n Solution(int[] nums) Initializes the object with the array nums . \n \n int pick(int target) Picks a random index i from nums where nums[i] == target . If there are multiple valid i's, then each index should have an equal probability of returning. \n\n Example 1: \n \n```\nInput\n\n[\"Solution\", \"pick\", \"pick\", \"pick\"]\n[[[1, 2, 3, 3, 3]], [3], [1], [3]]\n\nOutput\n\n[null, 4, 0, 2]\n\nExplanation\n\nSolution solution = new Solution([1, 2, 3, 3, 3]);\nsolution.pick(3); // It should return either index 2, 3, or 4 randomly. Each index should have equal probability of returning.\nsolution.pick(1); // It should return 0. Since in the array only nums[0] is equal to 1.\nsolution.pick(3); // It should return either index 2, 3, or 4 randomly. Each index should have equal probability of returning.\n```\n\n Constraints: \n\n 1 <= nums.length <= 2 * 10 4 \n \n -2 31 <= nums[i] <= 2 31 - 1 \n \n target is an integer from nums . \n \n At most 10 4 calls will be made to pick .",
+  "code": "#include <vector>\n#include <cstdlib>\n\nusing namespace std;\n\nclass Solution {\n    vector<int> nums;\n\npublic:\n    Solution(vector<int>& nums) : nums(nums) {}\n\n    int pick(int target) {\n        int res = -1, count = 0;\n        for (int i = 0; i < nums.size(); ++i) {\n            if (nums[i] == target) {\n                if (rand() % (++count) == 0)\n                    res = i;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593834371",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

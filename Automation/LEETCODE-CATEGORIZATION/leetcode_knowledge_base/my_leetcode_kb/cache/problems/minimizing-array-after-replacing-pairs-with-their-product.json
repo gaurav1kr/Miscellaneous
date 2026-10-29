@@ -1,0 +1,32 @@
+{
+  "id": "2892",
+  "title": "Minimizing Array After Replacing Pairs With Their Product",
+  "slug": "minimizing-array-after-replacing-pairs-with-their-product",
+  "url": "https://leetcode.com/problems/minimizing-array-after-replacing-pairs-with-their-product/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and an integer k , you can perform the following operation on the array any number of times: \n\n Select two adjacent elements of the array like x and y , such that x * y <= k , and replace both of them with a single element with value x * y (e.g. in one operation the array [1, 2, 2, 3] with k = 5 can become [1, 4, 3] or [2, 2, 3] , but can't become [1, 2, 6] ). \n\n Return the minimum possible length of nums after any number of operations . \n\n Example 1: \n \n```\nInput:\n nums = [2,3,3,7,3,5], k = 20\n\nOutput:\n 3\n\nExplanation:\n We perform these operations:\n1. [\n2,3\n,3,7,3,5] -> [\n6\n,3,7,3,5]\n2. [\n6,3\n,7,3,5] -> [\n18\n,7,3,5]\n3. [18,7,\n3,5\n] -> [18,7,\n15\n]\nIt can be shown that 3 is the minimum length possible to achieve with the given operation.\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,3,3,3], k = 6\n\nOutput:\n 4\n\nExplanation:\n We can't perform any operations since the product of every two adjacent elements is greater than 6.\nHence, the answer is 4.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 9 \n \n 1 <= k <= 10 9",
+  "code": "\nclass Solution {\npublic:\n    int minArrayLength(vector<int>& nums, int k) {\n        int n = nums.size();\n\n        // A zero allows the entire array to collapse.\n        for (int x : nums) {\n            if (x == 0)\n                return 1;\n        }\n\n        int ans = 1;\n        long long product = nums[0];\n\n        for (int i = 1; i < n; ++i) {\n            if (product * nums[i] <= k) {\n                // Merge adjacent elements.\n                product *= nums[i];\n            } else {\n                // Start a new segment.\n                ++ans;\n                product = nums[i];\n            }\n        }\n\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181647889",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

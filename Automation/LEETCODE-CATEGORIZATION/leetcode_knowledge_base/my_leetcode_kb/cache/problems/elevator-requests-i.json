@@ -1,0 +1,28 @@
+{
+  "id": "4020",
+  "title": "Elevator Requests I",
+  "slug": "elevator-requests-i",
+  "url": "https://leetcode.com/problems/elevator-requests-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer n denoting the number of floors in a building, where the floors are numbered from 0 to n - 1 . \n \n You are also given an integer array requests , where requests represents the sequence of floor requests. \n \n An elevator starts at floor 0 and follows these rules: \n\n The elevator moves one floor per second. \n \n The elevator serves requests in the given order. \n \n If the elevator is already on the requested floor, no movement is needed. \n \n After serving a request, the elevator immediately starts moving toward the next request. \n\n Return the total time in seconds required to serve all requests. \n\n Example 1: \n\n Input: n = 5, requests = [2,1,4,3] \n \n Output: 7 \n \n Explanation: \n\n requests[0] = 2 : Moving from floor 0 to floor 2 takes 2 seconds. \n \n requests[1] = 1 : Moving from floor 2 to floor 1 takes 1 second. \n \n requests[2] = 4 : Moving from floor 1 to floor 4 takes 3 seconds. \n \n requests[3] = 3 : Moving from floor 4 to floor 3 takes 1 second. \n\n The total time required is 2 + 1 + 3 + 1 = 7 seconds. \n\n Example 2: \n\n Input: n = 3, requests = [2,0,0] \n \n Output: 4 \n \n Explanation: \n\n requests[0] = 2 : Moving from floor 0 to floor 2 takes 2 seconds. \n \n requests[1] = 0 : Moving from floor 2 to floor 0 takes 2 seconds. \n \n requests[2] = 0 : No movement is needed. \n\n The total time required is 2 + 2 + 0 = 4 seconds. \n\n Constraints: \n\n 1 <= n <= 100 \n \n 1 <= requests.length <= 100 \n \n 0 <= requests[i] <= n - 1",
+  "code": "class Solution {\npublic:\n    int elevatorRequests(int n, vector<int>& requests) {\n        int current = 0, total = 0;\n        for (int floor : requests) { total += abs(floor - current); current = floor; }\n        return total;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179330757",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

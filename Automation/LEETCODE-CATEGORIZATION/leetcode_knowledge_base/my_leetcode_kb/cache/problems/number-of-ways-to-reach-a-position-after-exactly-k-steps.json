@@ -1,0 +1,30 @@
+{
+  "id": "2400",
+  "title": "Number of Ways to Reach a Position After Exactly k Steps",
+  "slug": "number-of-ways-to-reach-a-position-after-exactly-k-steps",
+  "url": "https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two positive integers startPos and endPos . Initially, you are standing at position startPos on an infinite number line. With one step, you can move either one position to the left, or one position to the right. \n \n Given a positive integer k , return the number of different ways to reach the position endPos starting from startPos , such that you perform exactly k steps . Since the answer may be very large, return it modulo 10 9 + 7 . \n \n Two ways are considered different if the order of the steps made is not exactly the same. \n \n Note that the number line includes negative integers. \n\n Example 1: \n \n```\nInput:\n startPos = 1, endPos = 2, k = 3\n\nOutput:\n 3\n\nExplanation:\n We can reach position 2 from 1 in exactly 3 steps in three ways:\n- 1 -> 2 -> 3 -> 2.\n- 1 -> 2 -> 1 -> 2.\n- 1 -> 0 -> 1 -> 2.\nIt can be proven that no other way is possible, so we return 3.\n```\n\n Example 2: \n \n```\nInput:\n startPos = 2, endPos = 5, k = 10\n\nOutput:\n 0\n\nExplanation:\n It is impossible to reach position 5 from position 2 in exactly 10 steps.\n```\n\n Constraints: \n\n 1 <= startPos, endPos, k <= 1000",
+  "code": "class Solution {public:int numberOfWays(int startPos,int endPos,int k){const long long MOD=1000000007;int d=endPos-startPos;if(abs(d)>k||((k+d)&1))return 0;int r=(k+d)/2;vector<long long>fact(k+1,1);for(int i=1;i<=k;i++)fact[i]=fact[i-1]*i%MOD;auto power=[&](long long a,int e){long long v=1;while(e){if(e&1)v=v*a%MOD;a=a*a%MOD;e>>=1;}return v;};return fact[k]*power(fact[r]*fact[k-r]%MOD,MOD-2)%MOD;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176538416",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

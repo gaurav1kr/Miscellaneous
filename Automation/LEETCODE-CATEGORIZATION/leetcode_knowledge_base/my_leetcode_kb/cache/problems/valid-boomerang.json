@@ -1,0 +1,30 @@
+{
+  "id": "1037",
+  "title": "Valid Boomerang",
+  "slug": "valid-boomerang",
+  "url": "https://leetcode.com/problems/valid-boomerang/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array points where points[i] = [x i , y i ] represents a point on the X-Y plane, return true if these points are a boomerang . \n \n A boomerang is a set of three points that are all distinct and not in a straight line . \n\n Example 1: \n \n```\nInput:\n points = [[1,1],[2,3],[3,2]]\n\nOutput:\n true\n```\n \n Example 2: \n \n```\nInput:\n points = [[1,1],[2,2],[3,3]]\n\nOutput:\n false\n```\n\n Constraints: \n\n points.length == 3 \n \n points[i].length == 2 \n \n 0 <= x i , y i <= 100",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isBoomerang(vector<vector<int>>& points) {\n        int x1 = points[0][0], y1 = points[0][1];\n        int x2 = points[1][0], y2 = points[1][1];\n        int x3 = points[2][0], y3 = points[2][1];\n        return (y2 - y1)*(x3 - x2) != (y3 - y2)*(x2 - x1);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610676276",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

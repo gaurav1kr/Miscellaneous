@@ -1,0 +1,33 @@
+{
+  "id": "861",
+  "title": "Score After Flipping Matrix",
+  "slug": "score-after-flipping-matrix",
+  "url": "https://leetcode.com/problems/score-after-flipping-matrix/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Bit Manipulation",
+    "Matrix"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an m x n binary matrix grid . \n \n A move consists of choosing any row or column and toggling each value in that row or column (i.e., changing all 0 's to 1 's, and all 1 's to 0 's). \n \n Every row of the matrix is interpreted as a binary number, and the score of the matrix is the sum of these numbers. \n \n Return the highest possible score after making any number of moves (including zero moves) . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/07/23/lc-toogle1.jpg] \n \n```\nInput:\n grid = [[0,0,1,1],[1,0,1,0],[1,1,0,0]]\n\nOutput:\n 39\n\nExplanation:\n 0b1111 + 0b1001 + 0b1111 = 15 + 9 + 15 = 39\n```\n\n Example 2: \n \n```\nInput:\n grid = [[0]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 20 \n \n grid[i][j] is either 0 or 1 .",
+  "code": "\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int matrixScore(vector<vector<int>>& A) {\n        int m = A.size(), n = A[0].size();\n        for (int i = 0; i < m; ++i) {\n            if (A[i][0] == 0) {\n                for (int j = 0; j < n; ++j) A[i][j] ^= 1;\n            }\n        }\n        \n        int score = 0;\n        for (int j = 0; j < n; ++j) {\n            int count = 0;\n            for (int i = 0; i < m; ++i) count += A[i][j];\n            score += max(count, m - count) * (1 << (n - j - 1));\n        }\n        \n        return score;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592348652",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "2588",
+  "title": "Count the Number of Beautiful Subarrays",
+  "slug": "count-the-number-of-beautiful-subarrays",
+  "url": "https://leetcode.com/problems/count-the-number-of-beautiful-subarrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . In one operation, you can: \n\n Choose two different indices i and j such that 0 <= i, j < nums.length . \n \n Choose a non-negative integer k such that the k th bit ( 0-indexed ) in the binary representation of nums[i] and nums[j] is 1 . \n \n Subtract 2 k from nums[i] and nums[j] . \n\n A subarray is beautiful if it is possible to make all of its elements equal to 0 after applying the above operation any number of times (including zero). \n \n Return the number of beautiful subarrays in the array nums . \n \n A subarray is a contiguous non-empty sequence of elements within an array. \n \n Note : Subarrays where all elements are initially 0 are considered beautiful, as no operation is needed. \n\n Example 1: \n \n```\nInput:\n nums = [4,3,1,2,4]\n\nOutput:\n 2\n\nExplanation:\n There are 2 beautiful subarrays in nums: [4,\n3,1,2\n,4] and [\n4,3,1,2,4\n].\n- We can make all elements in the subarray [3,1,2] equal to 0 in the following way:\n - Choose [\n3\n, 1, \n2\n] and k = 1. Subtract 2\n1\n from both numbers. The subarray becomes [1, 1, 0].\n - Choose [\n1\n, \n1\n, 0] and k = 0. Subtract 2\n0\n from both numbers. The subarray becomes [0, 0, 0].\n- We can make all elements in the subarray [4,3,1,2,4] equal to 0 in the following way:\n - Choose [\n4\n, 3, 1, 2, \n4\n] and k = 2. Subtract 2\n2\n from both numbers. The subarray becomes [0, 3, 1, 2, 0].\n - Choose [0, \n3\n, \n1\n, 2, 0] and k = 0. Subtract 2\n0\n from both numbers. The subarray becomes [0, 2, 0, 2, 0].\n - Choose [0, \n2\n, 0, \n2\n, 0] and k = 1. Subtract 2\n1\n from both numbers. The subarray becomes [0, 0, 0, 0, 0].\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,10,4]\n\nOutput:\n 0\n\nExplanation:\n There are no beautiful subarrays in nums.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 6",
+  "code": "class Solution {public:long long beautifulSubarrays(vector<int>& nums){unordered_map<int,long long> freq;freq[0]=1;int x=0;long long ans=0;for(int a:nums){x^=a;ans+=freq[x]++;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176622145",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1060",
+  "title": "Missing Element in Sorted Array",
+  "slug": "missing-element-in-sorted-array",
+  "url": "https://leetcode.com/problems/missing-element-in-sorted-array/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array nums which is sorted in ascending order and all of its elements are unique and given also an integer k , return the k th missing number starting from the leftmost number of the array. \n\n Example 1: \n \n```\nInput:\n nums = [4,7,9,10], k = 1\n\nOutput:\n 5\n\nExplanation:\n The first missing number is 5.\n```\n\n Example 2: \n \n```\nInput:\n nums = [4,7,9,10], k = 3\n\nOutput:\n 8\n\nExplanation:\n The missing numbers are [5,6,8,...], hence the third missing number is 8.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,4], k = 3\n\nOutput:\n 6\n\nExplanation:\n The missing numbers are [3,5,6,7,...], hence the third missing number is 6.\n```\n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n 1 <= nums[i] <= 10 7 \n \n nums is sorted in ascending order, and all the elements are unique . \n \n 1 <= k <= 10 8 \n\n Follow up: Can you find a logarithmic time complexity (i.e., O(log(n)) ) solution?",
+  "code": "class Solution {\npublic:\n    int missingElement(vector<int>& nums, int k) {\n        int n = nums.size();\n        auto missing = [&](int i) {\n            return nums[i] - nums[0] - i;\n        };\n        if (k > missing(n - 1)) {\n            return nums[n - 1] + k - missing(n - 1);\n        }\n        int left = 0;\n        int right = n - 1;\n        while (left < right) {\n            int mid = left + (right - left) / 2;\n            if (missing(mid) < k) {\n                left = mid + 1;\n            } else {\n                right = mid;\n            }\n        }\n        return nums[left - 1] + k - missing(left - 1);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178518157",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

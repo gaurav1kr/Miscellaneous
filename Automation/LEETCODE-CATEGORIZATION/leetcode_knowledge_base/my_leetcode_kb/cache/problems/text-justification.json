@@ -1,0 +1,31 @@
+{
+  "id": "68",
+  "title": "Text Justification",
+  "slug": "text-justification",
+  "url": "https://leetcode.com/problems/text-justification/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of strings words and a width maxWidth , format the text such that each line has exactly maxWidth characters and is fully (left and right) justified. \n \n You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters. \n \n Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right. \n \n For the last line of text, it should be left-justified, and no extra space is inserted between words. \n \n Note: \n\n A word is defined as a character sequence consisting of non-space characters only. \n \n Each word's length is guaranteed to be greater than 0 and not exceed maxWidth . \n \n The input array words contains at least one word. \n\n Example 1: \n \n```\nInput:\n words = [\"This\", \"is\", \"an\", \"example\", \"of\", \"text\", \"justification.\"], maxWidth = 16\n\nOutput:\n\n[\n   \"This    is    an\",\n   \"example  of text\",\n   \"justification.  \"\n]\n```\n\n Example 2: \n \n```\nInput:\n words = [\"What\",\"must\",\"be\",\"acknowledgment\",\"shall\",\"be\"], maxWidth = 16\n\nOutput:\n\n[\n  \"What   must   be\",\n  \"acknowledgment  \",\n  \"shall be        \"\n]\n\nExplanation:\n Note that the last line is \"shall be \" instead of \"shall be\", because the last line must be left-justified instead of fully-justified.\nNote that the second line is also left-justified because it contains only one word.\n```\n\n Example 3: \n \n```\nInput:\n words = [\"Science\",\"is\",\"what\",\"we\",\"understand\",\"well\",\"enough\",\"to\",\"explain\",\"to\",\"a\",\"computer.\",\"Art\",\"is\",\"everything\",\"else\",\"we\",\"do\"], maxWidth = 20\n\nOutput:\n\n[\n  \"Science  is  what we\",\n \"understand      well\",\n  \"enough to explain to\",\n  \"a  computer.  Art is\",\n  \"everything  else  we\",\n  \"do                  \"\n]\n```\n\n Constraints: \n\n 1 <= words.length <= 300 \n \n 1 <= words[i].length <= 20 \n \n words[i] consists of only English letters and symbols. \n \n 1 <= maxWidth <= 100 \n \n words[i].length <= maxWidth",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> fullJustify(vector<string>& words, int maxWidth) {\n        vector<string> result;\n        int n = words.size(), index = 0;\n        \n        while (index < n) {\n            int totalChars = words[index].size();\n            int last = index + 1;\n            while (last < n && totalChars + 1 + words[last].size() <= maxWidth) {\n                totalChars += 1 + words[last].size();\n                last++;\n            }\n\n            string line = words[index];\n            int gaps = last - index - 1;\n\n            if (last == n || gaps == 0) {\n                for (int i = index + 1; i < last; i++) {\n                    line += \" \" + words[i];\n                }\n                while (line.size() < maxWidth) {\n                    line += \" \";\n                }\n            } else {\n                int spaces = (maxWidth - totalChars + gaps) / gaps;\n                int extra = (maxWidth - totalChars + gaps) % gaps;\n\n                for (int i = index + 1; i < last; i++) {\n                    line += string(spaces + (i - index <= extra ? 1 : 0), ' ') + words[i];\n                }\n            }\n\n            result.push_back(line);\n            index = last;\n        }\n\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590136185",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

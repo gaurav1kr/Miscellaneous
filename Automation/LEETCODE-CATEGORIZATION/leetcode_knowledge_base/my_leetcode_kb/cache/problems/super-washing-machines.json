@@ -1,0 +1,29 @@
+{
+  "id": "517",
+  "title": "Super Washing Machines",
+  "slug": "super-washing-machines",
+  "url": "https://leetcode.com/problems/super-washing-machines/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You have n super washing machines on a line. Initially, each washing machine has some dresses or is empty. \n \n For each move, you could choose any m ( 1 <= m <= n ) washing machines, and pass one dress of each washing machine to one of its adjacent washing machines at the same time. \n \n Given an integer array machines representing the number of dresses in each washing machine from left to right on the line, return the minimum number of moves to make all the washing machines have the same number of dresses . If it is not possible to do it, return -1 . \n\n Example 1: \n \n```\nInput:\n machines = [1,0,5]\n\nOutput:\n 3\n\nExplanation:\n\n1st move: 1 0 <-- 5 => 1 1 4\n2nd move: 1 <-- 1 <-- 4 => 2 1 3\n3rd move: 2 1 <-- 3 => 2 2 2\n```\n\n Example 2: \n \n```\nInput:\n machines = [0,3,0]\n\nOutput:\n 2\n\nExplanation:\n\n1st move: 0 <-- 3 0 => 1 2 0\n2nd move: 1 2 --> 0 => 1 1 1\n```\n\n Example 3: \n \n```\nInput:\n machines = [0,2,0]\n\nOutput:\n -1\n\nExplanation:\n\nIt's impossible to make all three washing machines have the same number of dresses.\n```\n\n Constraints: \n\n n == machines.length \n \n 1 <= n <= 10 4 \n \n 0 <= machines[i] <= 10 5",
+  "code": "#include <vector>\n#include <algorithm>\n#include <numeric>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findMinMoves(vector<int>& machines) {\n        int total = accumulate(machines.begin(), machines.end(), 0);\n        int n = machines.size();\n        if (total % n != 0) return -1;\n\n        int target = total / n, res = 0, balance = 0;\n        for (int load : machines) {\n            balance += load - target;\n            res = max(res, max(abs(balance), load - target));\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610565379",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "710",
+  "title": "Random Pick with Blacklist",
+  "slug": "random-pick-with-blacklist",
+  "url": "https://leetcode.com/problems/random-pick-with-blacklist/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Binary Search",
+    "Sorting",
+    "Randomized"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer n and an array of unique integers blacklist . Design an algorithm to pick a random integer in the range [0, n - 1] that is not in blacklist . Any integer that is in the mentioned range and not in blacklist should be equally likely to be returned. \n \n Optimize your algorithm such that it minimizes the number of calls to the built-in random function of your language. \n \n Implement the Solution class: \n\n Solution(int n, int[] blacklist) Initializes the object with the integer n and the blacklisted integers blacklist . \n \n int pick() Returns a random integer in the range [0, n - 1] and not in blacklist . \n\n Example 1: \n \n```\nInput\n\n[\"Solution\", \"pick\", \"pick\", \"pick\", \"pick\", \"pick\", \"pick\", \"pick\"]\n[[7, [2, 3, 5]], [], [], [], [], [], [], []]\n\nOutput\n\n[null, 0, 4, 1, 6, 1, 0, 4]\n\nExplanation\n\nSolution solution = new Solution(7, [2, 3, 5]);\nsolution.pick(); // return 0, any integer from [0,1,4,6] should be ok. Note that for every call of pick,\n // 0, 1, 4, and 6 must be equally likely to be returned (i.e., with probability 1/4).\nsolution.pick(); // return 4\nsolution.pick(); // return 1\nsolution.pick(); // return 6\nsolution.pick(); // return 1\nsolution.pick(); // return 0\nsolution.pick(); // return 4\n```\n\n Constraints: \n\n 1 <= n <= 10 9 \n \n 0 <= blacklist.length <= min(10 5 , n - 1) \n \n 0 <= blacklist[i] < n \n \n All the values of blacklist are unique . \n \n At most 2 * 10 4 calls will be made to pick .",
+  "code": "class Solution {\n    int bound;\n    unordered_map<int, int> remap;\n    mt19937 rng;\npublic:\n    Solution(int n, vector<int>& blacklist) : bound(n - blacklist.size()), rng(random_device{}()) {\n        unordered_set<int> blocked(blacklist.begin(), blacklist.end());\n        int candidate = bound;\n        for (int x : blacklist) {\n            if (x >= bound) continue;\n            while (blocked.count(candidate)) ++candidate;\n            remap[x] = candidate++;\n        }\n    }\n    int pick() {\n        uniform_int_distribution<int> dist(0, bound - 1);\n        int x = dist(rng);\n        auto it = remap.find(x);\n        return it == remap.end() ? x : it->second;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175739825",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

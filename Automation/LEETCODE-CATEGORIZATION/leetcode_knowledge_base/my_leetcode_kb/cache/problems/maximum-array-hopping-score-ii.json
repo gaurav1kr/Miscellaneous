@@ -1,0 +1,35 @@
+{
+  "id": "3221",
+  "title": "Maximum Array Hopping Score II",
+  "slug": "maximum-array-hopping-score-ii",
+  "url": "https://leetcode.com/problems/maximum-array-hopping-score-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Greedy / Intervals",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given an array nums , you have to get the maximum score starting from index 0 and hopping until you reach the last element of the array. \n \n In each hop , you can jump from index i to an index j > i , and you get a score of (j - i) * nums[j] . \n \n Return the maximum score you can get. \n\n Example 1: \n\n Input: nums = [1,5,8] \n \n Output: 16 \n \n Explanation: \n \n There are two possible ways to reach the last element: \n\n 0 -> 1 -> 2 with a score of (1 - 0) * 5 + (2 - 1) * 8 = 13 . \n \n 0 -> 2 with a score of (2 - 0) * 8 = 16 . \n\n Example 2: \n\n Input: nums = [4,5,2,8,9,1,3] \n \n Output: 42 \n \n Explanation: \n \n We can do the hopping 0 -> 4 -> 6 with a score of  (4 - 0) * 9 + (6 - 4) * 3 = 42 . \n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {public:long long maxScore(vector<int>& a){long long ans=0;int mx=0;for(int i=(int)a.size()-1;i>=1;--i){mx=max(mx,a[i]);ans+=mx;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181203817",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

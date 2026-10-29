@@ -1,0 +1,31 @@
+{
+  "id": "207",
+  "title": "Course Schedule",
+  "slug": "course-schedule",
+  "url": "https://leetcode.com/problems/course-schedule/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort",
+    "Directed Acyclic Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1 . You are given an array prerequisites where prerequisites[i] = [a i , b i ] indicates that you must take course b i first if you want to take course a i . \n\n For example, the pair [0, 1] , indicates that to take course 0 you have to first take course 1 . \n\n Return true if you can finish all courses. Otherwise, return false . \n\n Example 1: \n \n```\nInput:\n numCourses = 2, prerequisites = [[1,0]]\n\nOutput:\n true\n\nExplanation:\n There are a total of 2 courses to take. \nTo take course 1 you should have finished course 0. So it is possible.\n```\n\n Example 2: \n \n```\nInput:\n numCourses = 2, prerequisites = [[1,0],[0,1]]\n\nOutput:\n false\n\nExplanation:\n There are a total of 2 courses to take. \nTo take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.\n```\n\n Constraints: \n\n 1 <= numCourses <= 2000 \n \n 0 <= prerequisites.length <= 5000 \n \n prerequisites[i].length == 2 \n \n 0 <= a i , b i < numCourses \n \n All the pairs prerequisites[i] are unique .",
+  "code": "class Solution \n{\n    list<int>* adj;\npublic:\n    ~Solution()\n    {\n        delete []adj ;\n    }\n    bool isCyclicUtil(int v, bool visited[], bool* recStack)\n    {\n        if (visited[v] == false)\n        {\n            visited[v] = true;\n            recStack[v] = true;\n\n            list<int>::iterator i;\n            for (i = adj[v].begin(); i != adj[v].end(); ++i)\n            {\n                if (!visited[*i] && isCyclicUtil(*i, visited, recStack))\n                    return true;\n                else if (recStack[*i])\n                    return true;\n            }\n\n        }\n        recStack[v] = false;  \n        return false;\n    }\n    \n    void addEdge(int v, int w)\n    {\n        adj[v].push_back(w);\n    }\n    \n    bool isCyclic(int V)\n    {\n        bool* visited = new bool[V];\n        bool* recStack = new bool[V];\n        for (int i = 0; i < V; i++)\n        {\n            visited[i] = false;\n            recStack[i] = false;\n        }\n        for (int i = 0; i < V; i++)\n            if (isCyclicUtil(i, visited, recStack))\n                return true;\n\n        return false;\n    }\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) \n    {\n        int i = 0;\n        int edges = prerequisites.size();\n        adj = new list<int>[numCourses] ;\n        \n        for (i = 0; i < edges; i++)\n        {\n            addEdge(prerequisites[i][0], prerequisites[i][1]);\n        }\n        if (isCyclic(numCourses))\n            return false;\n        \n        return true;    \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "344575023",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

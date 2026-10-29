@@ -1,0 +1,31 @@
+{
+  "id": "3145",
+  "title": "Find Products of Elements of Big Array",
+  "slug": "find-products-of-elements-of-big-array",
+  "url": "https://leetcode.com/problems/find-products-of-elements-of-big-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "The powerful array of a non-negative integer x is defined as the shortest sorted array of powers of two that sum up to x . The table below illustrates examples of how the powerful array is determined. It can be proven that the powerful array of x is unique. \n\n num \n Binary Representation \n powerful array \n\n 1 \n 0000 1 \n [1] \n\n 8 \n 0 1 000 \n [8] \n\n 10 \n 0 1 0 1 0 \n [2, 8] \n\n 13 \n 0 11 0 1 \n [1, 4, 8] \n\n 23 \n 1 0 111 \n [1, 2, 4, 16] \n\n The array big_nums is created by concatenating the powerful arrays for every positive integer i in ascending order: 1, 2, 3, and so on. Thus, big_nums begins as [ 1 , 2 , 1, 2 , 4 , 1, 4 , 2, 4 , 1, 2, 4 , 8 , ...] . \n \n You are given a 2D integer matrix queries , where for queries[i] = [from i , to i , mod i ] you should calculate (big_nums[from i ] * big_nums[from i + 1] * ... * big_nums[to i ]) % mod i . \n \n Return an integer array answer such that answer[i] is the answer to the i th query. \n\n Example 1: \n\n Input: queries = [[1,3,7]] \n \n Output: [4] \n \n Explanation: \n \n There is one query. \n \n big_nums[1..3] = [2,1,2] . The product of them is 4. The result is 4 % 7 = 4. \n\n Example 2: \n\n Input: queries = [[2,5,3],[7,7,4]] \n \n Output: [2,2] \n \n Explanation: \n \n There are two queries. \n \n First query: big_nums[2..5] = [1,2,4,1] . The product of them is 8. The result is 8 % 3 = 2 . \n \n Second query: big_nums[7] = 2 . The result is 2 % 4 = 2 . \n\n Constraints: \n\n 1 <= queries.length <= 500 \n \n queries[i].length == 3 \n \n 0 <= queries[i][0] <= queries[i][1] <= 10 15 \n \n 1 <= queries[i][2] <= 10 5",
+  "code": "class Solution {\n using ll=long long;\n pair<ll,ll> pref(ll x){ll cnt=0,sum=0;for(int b=0;b<61;++b){ll half=1LL<<b;if(half>x)break;ll cycle=half<<1;ll full=(x+1)/cycle,rem=(x+1)%cycle;ll ones=full*half+max(0LL,rem-half);cnt+=ones;sum+=ones*b;}return {cnt,sum};}\n ll exponentPrefix(ll len){if(len<=0)return 0;ll lo=0,hi=1000000000000000LL;while(lo<hi){ll mid=lo+(hi-lo)/2;if(pref(mid).first>=len)hi=mid;else lo=mid+1;}ll x=lo;auto p=pref(x-1);ll left=len-p.first,ans=p.second;for(int b=0;b<61&&left;++b)if((x>>b)&1LL){ans+=b;--left;}return ans;}\n ll power(ll a,ll e,ll mod){ll r=1%mod;while(e){if(e&1)r=(__int128)r*a%mod;a=(__int128)a*a%mod;e>>=1;}return r;}\n public:vector<int> findProductsOfElements(vector<vector<long long>>& queries){vector<int>ans;for(auto&q:queries){ll e=exponentPrefix(q[1]+1)-exponentPrefix(q[0]);ans.push_back((int)power(2,e,q[2]));}return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177394603",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

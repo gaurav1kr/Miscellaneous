@@ -1,0 +1,28 @@
+{
+  "id": "633",
+  "title": "Sum of Square Numbers",
+  "slug": "sum-of-square-numbers",
+  "url": "https://leetcode.com/problems/sum-of-square-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Two Pointers",
+    "Binary Search"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given a non-negative integer c , decide whether there're two integers a and b such that a 2 + b 2 = c . \n\n Example 1: \n \n```\nInput:\n c = 5\n\nOutput:\n true\n\nExplanation:\n 1 * 1 + 2 * 2 = 5\n```\n\n Example 2: \n \n```\nInput:\n c = 3\n\nOutput:\n false\n```\n\n Constraints: \n\n 0 <= c <= 2 31 - 1",
+  "code": "#include <cmath>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool judgeSquareSum(int c) {\n        long long left = 0, right = sqrt(c);\n        while (left <= right) {\n            long long sum = left * left + right * right;\n            if (sum == c) return true;\n            else if (sum < c) left++;\n            else right--;\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591366397",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

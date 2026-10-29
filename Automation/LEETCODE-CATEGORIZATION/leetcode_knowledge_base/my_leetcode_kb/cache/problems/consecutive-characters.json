@@ -1,0 +1,26 @@
+{
+  "id": "1446",
+  "title": "Consecutive Characters",
+  "slug": "consecutive-characters",
+  "url": "https://leetcode.com/problems/consecutive-characters/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "The power of the string is the maximum length of a non-empty substring that contains only one unique character. \n \n Given a string s , return the power of s . \n\n Example 1: \n \n```\nInput:\n s = \"leetcode\"\n\nOutput:\n 2\n\nExplanation:\n The substring \"ee\" is of length 2 with the character 'e' only.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abbcccddddeeeeedcba\"\n\nOutput:\n 5\n\nExplanation:\n The substring \"eeeee\" is of length 5 with the character 'e' only.\n```\n\n Constraints: \n\n 1 <= s.length <= 500 \n \n s consists of only lowercase English letters.",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxPower(string s) {\n        int maxLen = 1, curLen = 1;\n        for (int i = 1; i < s.size(); i++) {\n            if (s[i] == s[i - 1]) {\n                curLen++;\n                maxLen = max(maxLen, curLen);\n            } else {\n                curLen = 1;\n            }\n        }\n        return maxLen;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591370311",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

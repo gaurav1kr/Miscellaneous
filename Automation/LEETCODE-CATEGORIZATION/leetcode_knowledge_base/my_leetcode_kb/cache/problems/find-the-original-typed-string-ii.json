@@ -1,0 +1,33 @@
+{
+  "id": "3333",
+  "title": "Find the Original Typed String II",
+  "slug": "find-the-original-typed-string-ii",
+  "url": "https://leetcode.com/problems/find-the-original-typed-string-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "Alice is attempting to type a specific string on her computer. However, she tends to be clumsy and may press a key for too long, resulting in a character being typed multiple times. \n \n You are given a string word , which represents the final output displayed on Alice's screen. You are also given a positive integer k . \n \n Return the total number of possible original strings that Alice might have intended to type, if she was trying to type a string of size at least k . \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: word = \"aabbccdd\", k = 7 \n \n Output: 5 \n \n Explanation: \n \n The possible strings are: \"aabbccdd\" , \"aabbccd\" , \"aabbcdd\" , \"aabccdd\" , and \"abbccdd\" . \n\n Example 2: \n\n Input: word = \"aabbccdd\", k = 8 \n \n Output: 1 \n \n Explanation: \n \n The only possible string is \"aabbccdd\" . \n\n Example 3: \n\n Input: word = \"aaabbb\", k = 3 \n \n Output: 8 \n\n Constraints: \n\n 1 <= word.length <= 5 * 10 5 \n \n word consists only of lowercase English letters. \n \n 1 <= k <= 2000",
+  "code": "class Solution {public:int possibleStringCount(string word,int k){const int M=1000000007;vector<int> runs;for(int i=0,j;i<(int)word.size();i=j){j=i;while(j<(int)word.size()&&word[j]==word[i])j++;runs.push_back(j-i);}long long all=1;for(int c:runs)all=all*c%M;if((int)runs.size()>=k)return all;vector<int> dp(k),ndp(k);dp[0]=1;for(int c:runs){long long window=0;fill(ndp.begin(),ndp.end(),0);for(int j=1;j<k;j++){window=(window+dp[j-1]-(j-c-1>=0?dp[j-c-1]:0)+M)%M;ndp[j]=window;}dp.swap(ndp);}long long bad=0;for(int v:dp)bad=(bad+v)%M;return (all-bad+M)%M;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177462079",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

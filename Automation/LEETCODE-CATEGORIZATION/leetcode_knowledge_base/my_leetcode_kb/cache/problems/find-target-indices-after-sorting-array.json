@@ -1,0 +1,32 @@
+{
+  "id": "2089",
+  "title": "Find Target Indices After Sorting Array",
+  "slug": "find-target-indices-after-sorting-array",
+  "url": "https://leetcode.com/problems/find-target-indices-after-sorting-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums and a target element target . \n \n A target index is an index i such that nums[i] == target . \n \n Return a list of the target indices of nums after sorting nums in non-decreasing order . If there are no target indices, return an empty list . The returned list must be sorted in increasing order. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,5,2,3], target = 2\n\nOutput:\n [1,2]\n\nExplanation:\n After sorting, nums is [1,\n2\n,\n2\n,3,5].\nThe indices where nums[i] == 2 are 1 and 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,5,2,3], target = 3\n\nOutput:\n [3]\n\nExplanation:\n After sorting, nums is [1,2,2,\n3\n,5].\nThe index where nums[i] == 3 is 3.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,5,2,3], target = 5\n\nOutput:\n [4]\n\nExplanation:\n After sorting, nums is [1,2,2,3,\n5\n].\nThe index where nums[i] == 5 is 4.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i], target <= 100",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> targetIndices(vector<int>& nums, int target) {\n        int less = 0, equal = 0;\n        for (int x : nums) {\n            if (x < target) ++less;\n            else if (x == target) ++equal;\n        }\n        vector<int> res;\n        for (int i = 0; i < equal; ++i)\n            res.push_back(less + i);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610637554",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

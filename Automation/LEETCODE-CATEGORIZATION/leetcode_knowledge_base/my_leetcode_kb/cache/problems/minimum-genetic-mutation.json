@@ -1,0 +1,36 @@
+{
+  "id": "433",
+  "title": "Minimum Genetic Mutation",
+  "slug": "minimum-genetic-mutation",
+  "url": "https://leetcode.com/problems/minimum-genetic-mutation/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Breadth-First Search",
+    "Bidirectional Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "A gene string can be represented by an 8-character long string, with choices from 'A' , 'C' , 'G' , and 'T' . \n \n Suppose we need to investigate a mutation from a gene string startGene to a gene string endGene where one mutation is defined as one single character changed in the gene string. \n\n For example, \"AACCGGTT\" --> \"AACCGGTA\" is one mutation. \n\n There is also a gene bank bank that records all the valid gene mutations. A gene must be in bank to make it a valid gene string. \n \n Given the two gene strings startGene and endGene and the gene bank bank , return the minimum number of mutations needed to mutate from startGene to endGene . If there is no such a mutation, return -1 . \n \n Note that the starting point is assumed to be valid, so it might not be included in the bank. \n\n Example 1: \n \n```\nInput:\n startGene = \"AACCGGTT\", endGene = \"AACCGGTA\", bank = [\"AACCGGTA\"]\n\nOutput:\n 1\n```\n\n Example 2: \n \n```\nInput:\n startGene = \"AACCGGTT\", endGene = \"AAACGGTA\", bank = [\"AACCGGTA\",\"AACCGCTA\",\"AAACGGTA\"]\n\nOutput:\n 2\n```\n\n Constraints: \n\n 0 <= bank.length <= 10 \n \n startGene.length == endGene.length == bank[i].length == 8 \n \n startGene , endGene , and bank[i] consist of only the characters ['A', 'C', 'G', 'T'] .",
+  "code": "#include <string>\n#include <vector>\n#include <unordered_set>\n#include <queue>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minMutation(string start, string end, vector<string>& bank) {\n        unordered_set<string> dict(bank.begin(), bank.end());\n        if (!dict.count(end)) return -1;\n\n        queue<pair<string, int>> q;\n        q.push({start, 0});\n        vector<char> genes = {'A', 'C', 'G', 'T'};\n\n        while (!q.empty()) {\n            auto [cur, steps] = q.front(); q.pop();\n            if (cur == end) return steps;\n\n            for (int i = 0; i < cur.size(); ++i) {\n                char orig = cur[i];\n                for (char g : genes) {\n                    cur[i] = g;\n                    if (dict.count(cur)) {\n                        q.push({cur, steps + 1});\n                        dict.erase(cur);\n                    }\n                }\n                cur[i] = orig;\n            }\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593855980",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

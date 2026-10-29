@@ -1,0 +1,32 @@
+{
+  "id": "1409",
+  "title": "Queries on a Permutation With Key",
+  "slug": "queries-on-a-permutation-with-key",
+  "url": "https://leetcode.com/problems/queries-on-a-permutation-with-key/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Indexed Tree",
+    "Simulation",
+    "Sqrt Decomposition"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Vector"
+  ],
+  "description": "Given the array queries of positive integers between 1 and m , you have to process all queries[i] (from i=0 to i=queries.length-1 ) according to the following rules: \n\n In the beginning, you have the permutation P=[1,2,3,...,m] . \n \n For the current i , find the position of queries[i] in the permutation P ( indexing from 0 ) and then move this at the beginning of the permutation P . Notice that the position of queries[i] in P is the result for queries[i] . \n\n Return an array containing the result for the given queries . \n\n Example 1: \n \n```\nInput:\n queries = [3,1,2,1], m = 5\n\nOutput:\n [2,1,2,1] \n\nExplanation:\n The queries are processed as follow: \nFor i=0: queries[i]=3, P=[1,2,3,4,5], position of 3 in P is \n2\n, then we move 3 to the beginning of P resulting in P=[3,1,2,4,5]. \nFor i=1: queries[i]=1, P=[3,1,2,4,5], position of 1 in P is \n1\n, then we move 1 to the beginning of P resulting in P=[1,3,2,4,5]. \nFor i=2: queries[i]=2, P=[1,3,2,4,5], position of 2 in P is \n2\n, then we move 2 to the beginning of P resulting in P=[2,1,3,4,5]. \nFor i=3: queries[i]=1, P=[2,1,3,4,5], position of 1 in P is \n1\n, then we move 1 to the beginning of P resulting in P=[1,2,3,4,5]. \nTherefore, the array containing the result is [2,1,2,1].\n```\n\n Example 2: \n \n```\nInput:\n queries = [4,1,2,2], m = 4\n\nOutput:\n [3,1,2,0]\n```\n\n Example 3: \n \n```\nInput:\n queries = [7,5,5,8,3], m = 8\n\nOutput:\n [6,5,0,7,5]\n```\n\n Constraints: \n\n 1 <= m <= 10^3 \n \n 1 <= queries.length <= m \n \n 1 <= queries[i] <= m",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> processQueries(vector<int>& queries, int m) {\n        vector<int> perm(m);\n        for (int i = 0; i < m; ++i) perm[i] = i + 1;\n        vector<int> res;\n        for (int q : queries) {\n            for (int i = 0; i < m; ++i) {\n                if (perm[i] == q) {\n                    res.push_back(i);\n                    perm.erase(perm.begin() + i);\n                    perm.insert(perm.begin(), q);\n                    break;\n                }\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610620372",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "1197",
+  "title": "Minimum Knight Moves",
+  "slug": "minimum-knight-moves",
+  "url": "https://leetcode.com/problems/minimum-knight-moves/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Breadth-First Search",
+    "Heuristic Search",
+    "Bidirectional Search",
+    "A* Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Ordered set",
+    "Queue"
+  ],
+  "description": "In an infinite chess board with coordinates from -infinity to +infinity , you have a knight at square [0, 0] . \n \n A knight has 8 possible moves it can make, as illustrated below. Each move is two squares in a cardinal direction, then one square in an orthogonal direction. \n [Figure: https://assets.leetcode.com/uploads/2018/10/12/knight.png] \n \n Return the minimum number of steps needed to move the knight to the square [x, y] . It is guaranteed the answer exists. \n\n Example 1: \n \n```\nInput:\n x = 2, y = 1\n\nOutput:\n 1\n\nExplanation: \n[0, 0] → [2, 1]\n```\n\n Example 2: \n \n```\nInput:\n x = 5, y = 5\n\nOutput:\n 4\n\nExplanation: \n[0, 0] → [2, 1] → [4, 2] → [3, 4] → [5, 5]\n```\n\n Constraints: \n\n -300 <= x, y <= 300 \n \n 0 <= |x| + |y| <= 300",
+  "code": "class Solution {\npublic:\n    int minKnightMoves(int x, int y) {\n        x = abs(x);\n        y = abs(y);\n        queue<pair<int, int>> q;\n        set<pair<int, int>> seen;\n        q.push({0, 0});\n        seen.insert({0, 0});\n        int dx[8] = {1, 1, 2, 2, -1, -1, -2, -2};\n        int dy[8] = {2, -2, 1, -1, 2, -2, 1, -1};\n        int steps = 0;\n        while (!q.empty()) {\n            int count = q.size();\n            while (count-- > 0) {\n                auto p = q.front();\n                q.pop();\n                if (p.first == x && p.second == y) {\n                    return steps;\n                }\n                for (int d = 0; d < 8; ++d) {\n                    int nx = p.first + dx[d];\n                    int ny = p.second + dy[d];\n                    if (nx >= -2 && ny >= -2 && nx <= x + 2 && ny <= y + 2\n                        && seen.insert({nx, ny}).second) {\n                        q.push({nx, ny});\n                    }\n                }\n            }\n            ++steps;\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178549179",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

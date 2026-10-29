@@ -1,0 +1,26 @@
+{
+  "id": "440",
+  "title": "K-th Smallest in Lexicographical Order",
+  "slug": "k-th-smallest-in-lexicographical-order",
+  "url": "https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Trie"
+  ],
+  "description": "Given two integers n and k , return the k th lexicographically smallest integer in the range [1, n] . \n\n Example 1: \n \n```\nInput:\n n = 13, k = 2\n\nOutput:\n 10\n\nExplanation:\n The lexicographical order is [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9], so the second smallest number is 10.\n```\n\n Example 2: \n \n```\nInput:\n n = 1, k = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= k <= n <= 10 9",
+  "code": "class Solution {\npublic:\n    int findKthNumber(int n, int k) {\n        int curr = 1;\n        k -= 1;\n\n        while (k > 0) {\n            long steps = calcSteps(n, curr, curr + 1);\n            if (steps <= k) {\n                curr += 1;\n                k -= steps;\n            } else {\n                curr *= 10;\n                k -= 1;\n            }\n        }\n\n        return curr;\n    }\n\n    long calcSteps(long n, long curr, long next) {\n        long steps = 0;\n        while (curr <= n) {\n            steps += min(n + 1, next) - curr;\n            curr *= 10;\n            next *= 10;\n        }\n        return steps;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610560653",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

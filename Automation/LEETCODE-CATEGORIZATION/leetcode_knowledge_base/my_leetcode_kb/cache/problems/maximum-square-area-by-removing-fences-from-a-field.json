@@ -1,0 +1,33 @@
+{
+  "id": "2975",
+  "title": "Maximum Square Area by Removing Fences From a Field",
+  "slug": "maximum-square-area-by-removing-fences-from-a-field",
+  "url": "https://leetcode.com/problems/maximum-square-area-by-removing-fences-from-a-field/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Enumeration"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "There is a large (m - 1) x (n - 1) rectangular field with corners at (1, 1) and (m, n) containing some horizontal and vertical fences given in arrays hFences and vFences respectively. \n \n Horizontal fences are from the coordinates (hFences[i], 1) to (hFences[i], n) and vertical fences are from the coordinates (1, vFences[i]) to (m, vFences[i]) . \n \n Return the maximum area of a square field that can be formed by removing some fences ( possibly none ) or -1 if it is impossible to make a square field . \n \n Since the answer may be large, return it modulo 10 9 + 7 . \n \n Note: The field is surrounded by two horizontal fences from the coordinates (1, 1) to (1, n) and (m, 1) to (m, n) and two vertical fences from the coordinates (1, 1) to (m, 1) and (1, n) to (m, n) . These fences cannot be removed. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2023/11/05/screenshot-from-2023-11-05-22-40-25.png] \n \n```\nInput:\n m = 4, n = 3, hFences = [2,3], vFences = [2]\n\nOutput:\n 4\n\nExplanation:\n Removing the horizontal fence at 2 and the vertical fence at 2 will give a square field of area 4.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2023/11/22/maxsquareareaexample1.png] \n \n```\nInput:\n m = 6, n = 7, hFences = [2], vFences = [4]\n\nOutput:\n -1\n\nExplanation:\n It can be proved that there is no way to create a square field by removing fences.\n```\n\n Constraints: \n\n 3 <= m, n <= 10 9 \n \n 1 <= hF ences .length, vFences.length <= 600 \n \n 1 < hFences[i] < m \n \n 1 < vFences[i] < n \n \n hFences and vFences are unique.",
+  "code": "class Solution {public:int maximizeSquareArea(int m,int n,vector<int>& hFences,vector<int>& vFences){const long long MOD=1e9+7;hFences.push_back(1);hFences.push_back(m);vFences.push_back(1);vFences.push_back(n);unordered_set<int>hs;for(int i=0;i<(int)hFences.size();++i)for(int j=0;j<i;++j)hs.insert(abs(hFences[i]-hFences[j]));long long best=-1;for(int i=0;i<(int)vFences.size();++i)for(int j=0;j<i;++j){int d=abs(vFences[i]-vFences[j]);if(hs.count(d))best=max(best,1LL*d);}return best<0?-1:best*best%MOD;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176788553",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

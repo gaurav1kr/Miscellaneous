@@ -1,0 +1,32 @@
+{
+  "id": "2144",
+  "title": "Minimum Cost of Buying Candies With Discount",
+  "slug": "minimum-cost-of-buying-candies-with-discount",
+  "url": "https://leetcode.com/problems/minimum-cost-of-buying-candies-with-discount/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "A shop is selling candies at a discount. For every two candies sold, the shop gives a third candy for free . \n \n The customer can choose any candy to take away for free as long as the cost of the chosen candy is less than or equal to the minimum cost of the two candies bought. \n\n For example, if there are 4 candies with costs 1 , 2 , 3 , and 4 , and the customer buys candies with costs 2 and 3 , they can take the candy with cost 1 for free, but not the candy with cost 4 . \n\n Given a 0-indexed integer array cost , where cost[i] denotes the cost of the i th candy, return the minimum cost of buying all the candies . \n\n Example 1: \n \n```\nInput:\n cost = [1,2,3]\n\nOutput:\n 5\n\nExplanation:\n We buy the candies with costs 2 and 3, and take the candy with cost 1 for free.\nThe total cost of buying all candies is 2 + 3 = 5. This is the \nonly\n way we can buy the candies.\nNote that we cannot buy candies with costs 1 and 3, and then take the candy with cost 2 for free.\nThe cost of the free candy has to be less than or equal to the minimum cost of the purchased candies.\n```\n\n Example 2: \n \n```\nInput:\n cost = [6,5,7,9,2,2]\n\nOutput:\n 23\n\nExplanation:\n The way in which we can get the minimum cost is described below:\n- Buy candies with costs 9 and 7\n- Take the candy with cost 6 for free\n- We buy candies with costs 5 and 2\n- Take the last remaining candy with cost 2 for free\nHence, the minimum cost to buy all candies is 9 + 7 + 5 + 2 = 23.\n```\n\n Example 3: \n \n```\nInput:\n cost = [5,5]\n\nOutput:\n 10\n\nExplanation:\n Since there are only 2 candies, we buy both of them. There is not a third candy we can take for free.\nHence, the minimum cost to buy all candies is 5 + 5 = 10.\n```\n\n Constraints: \n\n 1 <= cost.length <= 100 \n \n 1 <= cost[i] <= 100",
+  "code": "class Solution {\npublic:\n    int minimumCost(vector<int>& cost) {\n        sort(cost.rbegin(),cost.rend()); int ans=0;\n        for(int i=0;i<(int)cost.size();++i) if(i%3!=2) ans+=cost[i];\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175872375",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

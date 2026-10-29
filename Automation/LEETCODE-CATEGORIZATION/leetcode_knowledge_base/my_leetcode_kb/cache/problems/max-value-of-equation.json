@@ -1,0 +1,39 @@
+{
+  "id": "1499",
+  "title": "Max Value of Equation",
+  "slug": "max-value-of-equation",
+  "url": "https://leetcode.com/problems/max-value-of-equation/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Queue",
+    "Sliding Window",
+    "Heap (Priority Queue)",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Heap / Priority Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Deque",
+    "Monotonic deque",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an array points containing the coordinates of points on a 2D plane, sorted by the x-values, where points[i] = [x i , y i ] such that x i < x j for all 1 <= i < j <= points.length . You are also given an integer k . \n \n Return the maximum value of the equation y i + y j + |x i - x j | where |x i - x j | <= k and 1 <= i < j <= points.length . \n \n It is guaranteed that there exists at least one pair of points that satisfy the constraint |x i - x j | <= k . \n\n Example 1: \n \n```\nInput:\n points = [[1,3],[2,0],[5,10],[6,-10]], k = 1\n\nOutput:\n 4\n\nExplanation:\n The first two points satisfy the condition |x\ni\n - x\nj\n| <= 1 and if we calculate the equation we get 3 + 0 + |1 - 2| = 4. Third and fourth points also satisfy the condition and give a value of 10 + -10 + |5 - 6| = 1.\nNo other pairs satisfy the condition, so we return the max of 4 and 1.\n```\n\n Example 2: \n \n```\nInput:\n points = [[0,0],[3,0],[9,2]], k = 3\n\nOutput:\n 3\n\nExplanation: \nOnly the first two points have an absolute difference of 3 or less in the x-values, and give the value of 0 + 0 + |0 - 3| = 3.\n```\n\n Constraints: \n\n 2 <= points.length <= 10 5 \n \n points[i].length == 2 \n \n -10 8 <= x i , y i <= 10 8 \n \n 0 <= k <= 2 * 10 8 \n \n x i < x j for all 1 <= i < j <= points.length \n \n x i form a strictly increasing sequence.",
+  "code": "#include <vector>\n#include <deque>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findMaxValueOfEquation(vector<vector<int>>& points, int k) {\n        deque<pair<int, int>> dq; // (y - x, x)\n        int res = INT_MIN;\n\n        for (auto& p : points) {\n            int x = p[0], y = p[1];\n\n            while (!dq.empty() && x - dq.front().second > k)\n                dq.pop_front();\n\n            if (!dq.empty())\n                res = max(res, dq.front().first + y + x);\n\n            while (!dq.empty() && dq.back().first <= y - x)\n                dq.pop_back();\n\n            dq.emplace_back(y - x, x);\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593855644",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

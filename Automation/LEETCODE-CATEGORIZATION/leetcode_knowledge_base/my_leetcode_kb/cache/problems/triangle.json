@@ -1,0 +1,30 @@
+{
+  "id": "120",
+  "title": "Triangle",
+  "slug": "triangle",
+  "url": "https://leetcode.com/problems/triangle/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given a triangle array, return the minimum path sum from top to bottom . \n \n For each step, you may move to an adjacent number of the row below. More formally, if you are on index i on the current row, you may move to either index i or index i + 1 on the next row. \n\n Example 1: \n \n```\nInput:\n triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]\n\nOutput:\n 11\n\nExplanation:\n The triangle looks like:\n \n2\n\n3\n 4\n 6 \n5\n 7\n4 \n1\n 8 3\nThe minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11 (underlined above).\n```\n\n Example 2: \n \n```\nInput:\n triangle = [[-10]]\n\nOutput:\n -10\n```\n\n Constraints: \n\n 1 <= triangle.length <= 200 \n \n triangle[0].length == 1 \n \n triangle[i].length == triangle[i - 1].length + 1 \n \n -10 4 <= triangle[i][j] <= 10 4 \n\n Follow up: Could you do this using only O(n) extra space, where n is the total number of rows in the triangle?",
+  "code": "class Solution {\npublic:\n    int minimumTotal(vector<vector<int>>& triangle) {\n        for (int row = triangle.size() - 2; row >= 0; --row) {\n            for (int col = 0; col < triangle[row].size(); ++col) {\n                triangle[row][col] += min(triangle[row + 1][col], triangle[row + 1][col + 1]);\n            }\n        }\n        return triangle[0][0];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536826275",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

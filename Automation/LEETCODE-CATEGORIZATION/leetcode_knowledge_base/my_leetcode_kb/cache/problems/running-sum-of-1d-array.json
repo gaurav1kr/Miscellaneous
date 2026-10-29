@@ -1,0 +1,30 @@
+{
+  "id": "1480",
+  "title": "Running Sum of 1d Array",
+  "slug": "running-sum-of-1d-array",
+  "url": "https://leetcode.com/problems/running-sum-of-1d-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an array nums . We define a running sum of an array as  runningSum[i] = sum(nums[0]…nums[i]) . \n \n Return the running sum of nums . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4]\n\nOutput:\n [1,3,6,10]\n\nExplanation:\n Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,1,1,1]\n\nOutput:\n [1,2,3,4,5]\n\nExplanation:\n Running sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].\n```\n\n Example 3: \n \n```\nInput:\n nums = [3,1,2,10,1]\n\nOutput:\n [3,4,6,16,17]\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n -10^6 <= nums[i] <= 10^6",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> runningSum(vector<int>& nums) {\n        for (int i = 1; i < nums.size(); i++) {\n            nums[i] += nums[i - 1];\n        }\n        return nums;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588376675",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

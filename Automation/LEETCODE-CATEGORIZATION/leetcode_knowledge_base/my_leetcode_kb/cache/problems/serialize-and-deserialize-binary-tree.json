@@ -1,0 +1,37 @@
+{
+  "id": "297",
+  "title": "Serialize and Deserialize Binary Tree",
+  "slug": "serialize-and-deserialize-binary-tree",
+  "url": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Design",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "String",
+    "Tree adjacency list"
+  ],
+  "description": "Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment. \n \n Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure. \n \n Clarification: The input/output format is the same as how LeetCode serializes a binary tree . You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/15/serdeser.jpg] \n \n```\nInput:\n root = [1,2,3,null,null,4,5]\n\nOutput:\n [1,2,3,null,null,4,5]\n```\n\n Example 2: \n \n```\nInput:\n root = []\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 4 ] . \n \n -1000 <= Node.val <= 1000",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Codec {\npublic:\n    // Encodes a tree to a single string.\n    string serialize(TreeNode* root) {\n        if (!root) return \"#\";\n        \n        queue<TreeNode*> q;\n        q.push(root);\n        stringstream ss;\n        \n        while (!q.empty()) {\n            TreeNode* node = q.front();\n            q.pop();\n            \n            if (node) {\n                ss << node->val << \" \";\n                q.push(node->left);\n                q.push(node->right);\n            } else {\n                ss << \"# \";\n            }\n        }\n        \n        return ss.str();\n    }\n\n    // Decodes your encoded data to tree.\n    TreeNode* deserialize(string data) {\n        if (data == \"#\") return nullptr;\n\n        stringstream ss(data);\n        string val;\n        ss >> val;\n\n        TreeNode* root = new TreeNode(stoi(val));\n        queue<TreeNode*> q;\n        q.push(root);\n\n        while (!q.empty()) {\n            TreeNode* node = q.front();\n            q.pop();\n\n            if (ss >> val && val != \"#\") {\n                node->left = new TreeNode(stoi(val));\n                q.push(node->left);\n            }\n\n            if (ss >> val && val != \"#\") {\n                node->right = new TreeNode(stoi(val));\n                q.push(node->right);\n            }\n        }\n\n        return root;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541480130",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

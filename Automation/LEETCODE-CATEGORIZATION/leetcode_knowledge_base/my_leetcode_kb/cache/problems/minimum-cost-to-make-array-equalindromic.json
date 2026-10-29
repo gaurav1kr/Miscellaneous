@@ -1,0 +1,36 @@
+{
+  "id": "2967",
+  "title": "Minimum Cost to Make Array Equalindromic",
+  "slug": "minimum-cost-to-make-array-equalindromic",
+  "url": "https://leetcode.com/problems/minimum-cost-to-make-array-equalindromic/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n In one operation , you may choose an index i and either increment or decrement nums[i] by 1. \n \n Return the minimum number of operations required to make every element in nums equal to the same positive palindromic integer . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4,5]\n\nOutput:\n 6\n\nExplanation:\n Increment nums[0] twice and nums[1] once, then decrement nums[3] once and nums[4] twice. After 6 operations, nums becomes [3,3,3,3,3], and 3 is a positive palindromic integer.\nIt can be shown that this is the minimum number of operations required.\n```\n\n Example 2: \n \n```\nInput:\n nums = [10,12,13,14,15]\n\nOutput:\n 11\n\nExplanation:\n Increment nums[0] once, then decrement nums[1], nums[2], nums[3], and nums[4] by 1, 2, 3, and 4, respectively. After 11 operations, nums becomes [11,11,11,11,11], and 11 is a positive palindromic integer.\nIt can be shown that this is the minimum number of operations required.\n```\n\n Example 3: \n \n```\nInput:\n nums = [22,33,22,33,22]\n\nOutput:\n 22\n\nExplanation:\n Decrement nums[1] and nums[3] by 11 each. After 22 operations, nums becomes [22,22,22,22,22], and 22 is a positive palindromic integer.\nIt can be shown that this is the minimum number of operations required.\n```\n\n Constraints: \n\n 1 <= n <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {bool pal(long long x){string s=to_string(x),t=s;reverse(t.begin(),t.end());return s==t;}public:long long minimumCost(vector<int>& nums){sort(nums.begin(),nums.end());long long m=nums[nums.size()/2],lo=m,hi=m;while(lo>0&&!pal(lo))--lo;while(!pal(hi))++hi;auto cost=[&](long long v){long long sum=0;for(int x:nums)sum+=llabs(x-v);return sum;};return min(cost(lo),cost(hi));}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176782433",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

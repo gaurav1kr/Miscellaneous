@@ -1,0 +1,32 @@
+{
+  "id": "1611",
+  "title": "Minimum One Bit Operations to Make Integers Zero",
+  "slug": "minimum-one-bit-operations-to-make-integers-zero",
+  "url": "https://leetcode.com/problems/minimum-one-bit-operations-to-make-integers-zero/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Recursion",
+    "Memoization"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "Given an integer n , you must transform it into 0 using the following operations any number of times: \n\n Change the rightmost ( 0 th ) bit in the binary representation of n . \n \n Change the i th bit in the binary representation of n if the (i-1) th bit is set to 1 and the (i-2) th through 0 th bits are set to 0 . \n\n Return the minimum number of operations to transform n into 0 . \n\n Example 1: \n \n```\nInput:\n n = 3\n\nOutput:\n 2\n\nExplanation:\n The binary representation of 3 is \"11\".\n\"\n1\n1\" -> \"\n0\n1\" with the 2\nnd\n operation since the 0\nth\n bit is 1.\n\"0\n1\n\" -> \"0\n0\n\" with the 1\nst\n operation.\n```\n\n Example 2: \n \n```\nInput:\n n = 6\n\nOutput:\n 4\n\nExplanation:\n The binary representation of 6 is \"110\".\n\"\n1\n10\" -> \"\n0\n10\" with the 2\nnd\n operation since the 1\nst\n bit is 1 and 0\nth\n through 0\nth\n bits are 0.\n\"01\n0\n\" -> \"01\n1\n\" with the 1\nst\n operation.\n\"0\n1\n1\" -> \"0\n0\n1\" with the 2\nnd\n operation since the 0\nth\n bit is 1.\n\"00\n1\n\" -> \"00\n0\n\" with the 1\nst\n operation.\n```\n\n Constraints: \n\n 0 <= n <= 10 9",
+  "code": "// Your solution here\nclass Solution {\npublic:\n    int minimumOneBitOperations(int n) {\n        if (n == 0) return 0;\n        int k = 0;\n        while ((1 << (k + 1)) <= n) ++k;\n        return (1 << (k + 1)) - 1 - minimumOneBitOperations(n ^ (1 << k));\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617063661",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

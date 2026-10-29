@@ -1,0 +1,33 @@
+{
+  "id": "934",
+  "title": "Shortest Bridge",
+  "slug": "shortest-bridge",
+  "url": "https://leetcode.com/problems/shortest-bridge/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an n x n binary matrix grid where 1 represents land and 0 represents water. \n \n An island is a 4-directionally connected group of 1 's not connected to any other 1 's. There are exactly two islands in grid . \n \n You may change 0 's to 1 's to connect the two islands to form one island . \n \n Return the smallest number of 0 's you must flip to connect the two islands . \n\n Example 1: \n \n```\nInput:\n grid = [[0,1],[1,0]]\n\nOutput:\n 1\n```\n\n Example 2: \n \n```\nInput:\n grid = [[0,1,0],[0,0,0],[0,0,1]]\n\nOutput:\n 2\n```\n\n Example 3: \n \n```\nInput:\n grid = [[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n n == grid.length == grid[i].length \n \n 2 <= n <= 100 \n \n grid[i][j] is either 0 or 1 . \n \n There are exactly two islands in grid .",
+  "code": "class Solution\n{\npublic:\n    int dx[4] = {1, -1, 0, 0};\n    int dy[4] = {0, 0, 1, -1};\n    queue<pair<int, int>> q;\n    void change(vector<vector<int>> &grid, int x, int y)\n    {\n        q.push({x, y});\n        int n = grid.size();\n        int m = grid[0].size();\n        grid[x][y] = 2;\n        for (int k = 0; k < 4; k++)\n        {\n            int nx = x + dx[k];\n            int ny = y + dy[k];\n            if (nx >= 0 && ny >= 0 && nx < n && ny < m && grid[nx][ny] == 1)\n            {\n                change(grid, nx, ny);\n            }\n        }\n    }\n    int shortestBridge(vector<vector<int>> &grid)\n    {\n        int n = grid.size();\n        int m = grid[0].size();\n        bool f = false;\n        for (int i = 0; i < n; i++)\n        {\n            for (int j = 0; j < m; j++)\n            {\n                if (grid[i][j])\n                {\n                    change(grid, i, j);\n                    f = true;\n                    break;\n                }\n            }\n            if (f)\n                break;\n        }\n        int ans = 0;\n        while (q.size())\n        {\n            int total = q.size();\n            ans++;\n            while (total--)\n            {\n                int x = q.front().first;\n                int y = q.front().second;\n                q.pop();\n                for (int i = 0; i < 4; i++)\n                {\n                    int nx = x + dx[i];\n                    int ny = y + dy[i];\n                    if (nx >= 0 && ny >= 0 && nx < n && ny < m)\n                    {\n                        if (grid[nx][ny] == 1)\n                            return ans - 1;\n                        else if (grid[nx][ny] == 0)\n                        {\n                            grid[nx][ny] = 2;\n                            q.push({nx, ny});\n                        }\n                    }\n                }\n            }\n        }\n        return ans;\n    }\n};\n\n\n// Find the first island:\n// Use DFS to mark all parts of the first island with 2s and store their coordinates in the queue.\n\n// Breadth-First Search (BFS) for Shortest Path:\n// Start from the marked cells in the queue and explore outward.\n// For each 0 encountered, mark it as 2 and add it to the queue.\n// If a 1 is found, return the number of steps taken to reach it, \n// which represents the shortest bridge.\n\n// Complexity\n// Time Complexity: O(N × M), where N is the number of rows and M is the number of columns. This is because every cell is processed at most once.\n// Space Complexity: O(N × M) for the queue and recursion stack in the worst case.",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1405967052",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

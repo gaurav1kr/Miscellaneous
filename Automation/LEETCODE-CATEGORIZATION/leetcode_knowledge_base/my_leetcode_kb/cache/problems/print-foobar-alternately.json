@@ -1,0 +1,22 @@
+{
+  "id": "1115",
+  "title": "Print FooBar Alternately",
+  "slug": "print-foobar-alternately",
+  "url": "https://leetcode.com/problems/print-foobar-alternately/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Concurrency"
+  ],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "Suppose you are given the following code: \n \n```\nclass FooBar {\n public void foo() {\n for (int i = 0; i < n; i++) {\n print(\"foo\");\n }\n }\n\n public void bar() {\n for (int i = 0; i < n; i++) {\n print(\"bar\");\n }\n }\n}\n```\n\n The same instance of FooBar will be passed to two different threads: \n\n thread A will call foo() , while \n \n thread B will call bar() . \n\n Modify the given program to output \"foobar\" n times. \n\n Example 1: \n \n```\nInput:\n n = 1\n\nOutput:\n \"foobar\"\n\nExplanation:\n There are two threads being fired asynchronously. One of them calls foo(), while the other calls bar().\n\"foobar\" is being output 1 time.\n```\n\n Example 2: \n \n```\nInput:\n n = 2\n\nOutput:\n \"foobarfoobar\"\n\nExplanation:\n \"foobar\" is being output 2 times.\n```\n\n Constraints: \n\n 1 <= n <= 1000",
+  "code": "class FooBar {\n    int n;\n    mutex mu;\n    condition_variable cv;\n    bool fooTurn = true;\npublic:\n    FooBar(int n) : n(n) {}\n    void foo(function<void()> printFoo) {\n        for (int i = 0; i < n; ++i) {\n            unique_lock<mutex> lock(mu);\n            cv.wait(lock, [&] { return fooTurn; });\n            printFoo();\n            fooTurn = false;\n            cv.notify_all();\n        }\n    }\n    void bar(function<void()> printBar) {\n        for (int i = 0; i < n; ++i) {\n            unique_lock<mutex> lock(mu);\n            cv.wait(lock, [&] { return !fooTurn; });\n            printBar();\n            fooTurn = true;\n            cv.notify_all();\n        }\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175746938",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

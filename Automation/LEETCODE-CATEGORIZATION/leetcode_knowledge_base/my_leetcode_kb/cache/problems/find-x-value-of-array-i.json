@@ -1,0 +1,32 @@
+{
+  "id": "3524",
+  "title": "Find X Value of Array I",
+  "slug": "find-x-value-of-array-i",
+  "url": "https://leetcode.com/problems/find-x-value-of-array-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an array of positive integers nums , and a positive integer k . \n \n You are allowed to perform an operation once on nums , where in each operation you can remove any non-overlapping prefix and suffix from nums such that nums remains non-empty . \n \n You need to find the x-value of nums , which is the number of ways to perform this operation so that the product of the remaining elements leaves a remainder of x when divided by k . \n \n Return an array result of size k where result[x] is the x-value of nums for 0 <= x <= k - 1 . \n \n A prefix of an array is a subarray that starts from the beginning of the array and extends to any point within it. \n \n A suffix of an array is a subarray that starts at any point within the array and extends to the end of the array. \n \n Note that the prefix and suffix to be chosen for the operation can be empty . \n\n Example 1: \n\n Input: nums = [1,2,3,4,5], k = 3 \n \n Output: [9,2,4] \n \n Explanation: \n\n For x = 0 , the possible operations include all possible ways to remove non-overlapping prefix/suffix that do not remove nums[2] == 3 . \n \n For x = 1 , the possible operations are:\n\n Remove the empty prefix and the suffix [2, 3, 4, 5] . nums becomes [1] . \n \n Remove the prefix [1, 2, 3] and the suffix [5] . nums becomes [4] . \n\n For x = 2 , the possible operations are:\n\n Remove the empty prefix and the suffix [3, 4, 5] . nums becomes [1, 2] . \n \n Remove the prefix [1] and the suffix [3, 4, 5] . nums becomes [2] . \n \n Remove the prefix [1, 2, 3] and the empty suffix. nums becomes [4, 5] . \n \n Remove the prefix [1, 2, 3, 4] and the empty suffix. nums becomes [5] . \n\n Example 2: \n\n Input: nums = [1,2,4,8,16,32], k = 4 \n \n Output: [18,1,2,0] \n \n Explanation: \n\n For x = 0 , the only operations that do not result in x = 0 are:\n\n Remove the empty prefix and the suffix [4, 8, 16, 32] . nums becomes [1, 2] . \n \n Remove the empty prefix and the suffix [2, 4, 8, 16, 32] . nums becomes [1] . \n \n Remove the prefix [1] and the suffix [4, 8, 16, 32] . nums becomes [2] . \n\n For x = 1 , the only possible operation is:\n\n Remove the empty prefix and the suffix [2, 4, 8, 16, 32] . nums becomes [1] . \n\n For x = 2 , the possible operations are:\n\n Remove the empty prefix and the suffix [4, 8, 16, 32] . nums becomes [1, 2] . \n \n Remove the prefix [1] and the suffix [4, 8, 16, 32] . nums becomes [2] . \n\n For x = 3 , there is no possible way to perform the operation. \n\n Example 3: \n\n Input: nums = [1,1,2,1,1], k = 2 \n \n Output: [9,6] \n\n Constraints: \n\n 1 <= nums[i] <= 10 9 \n \n 1 <= nums.length <= 10 5 \n \n 1 <= k <= 5",
+  "code": "class Solution {public:vector<long long> resultArray(vector<int>& nums,int k){vector<long long> dp(k),ans(k);for(int x:nums){vector<long long> nxt(k);for(int r=0;r<k;r++)nxt[(long long)r*x%k]+=dp[r];nxt[x%k]++;dp.swap(nxt);for(int r=0;r<k;r++)ans[r]+=dp[r];}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177560522",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

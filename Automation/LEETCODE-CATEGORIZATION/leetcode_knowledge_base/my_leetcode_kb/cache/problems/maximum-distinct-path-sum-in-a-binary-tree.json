@@ -1,0 +1,38 @@
+{
+  "id": "3879",
+  "title": "Maximum Distinct Path Sum in a Binary Tree",
+  "slug": "maximum-distinct-path-sum-in-a-binary-tree",
+  "url": "https://leetcode.com/problems/maximum-distinct-path-sum-in-a-binary-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given the root of a binary tree , where each node contains an integer value. \n \n A valid path in the tree is a sequence of connected nodes such that: \n\n The path can start and end at any node in the tree. \n \n The path does not need to pass through the root. \n \n All node values along the path are distinct . \n\n Return an integer denoting the maximum possible sum of node values among all valid paths. \n\n Example 1: \n\n [Figure: https://assets.leetcode.com/uploads/2026/01/28/screenshot-2026-01-29-at-12940am.png] \n \n Input: root = [2,2,1] \n \n Output: 3 \n \n Explanation: \n\n The path 2 → 2 is invalid because the value 2 is not distinct. \n \n The maximum-sum valid path is 2 → 1 , with a sum = 2 + 1 = 3 . \n\n Example 2: \n\n [Figure: https://assets.leetcode.com/uploads/2026/01/28/screenshot-2026-01-29-at-15149am.png] \n \n Input: root = [1,-2,5,null,null,3,5] \n \n Output: 9 \n \n Explanation: \n\n The path 3 → 5 → 5 is invalid due to duplicate value 5. \n \n The maximum-sum valid path is 1 → 5 → 3 , with a sum = 1 + 5 + 3 = 9 . \n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2026/01/28/screenshot-2026-01-29-at-15555am.png] ​​​​​​​ \n\n Input: root = [4,6,6,null,null,null,9] \n \n Output: 19 \n \n Explanation: \n\n The path 6 → 4 → 6 → 9 is invalid because the value 6 appears more than once. \n \n The maximum-sum valid path is 4 → 6 → 9 , with a sum = 4 + 6 + 9 = 19 . \n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 1000] . \n \n -1000 <= Node.val <= 1000​​​​​​​",
+  "code": "class Solution {\n    int best;\n    void walk(TreeNode* node, TreeNode* parent, int sum,\n              unordered_set<int>& seen) {\n        if (!node || seen.count(node->val)) return;\n        seen.insert(node->val);\n        sum += node->val;\n        best = max(best, sum);\n        if (node->left != parent) walk(node->left, node, sum, seen);\n        if (node->right != parent) walk(node->right, node, sum, seen);\n        seen.erase(node->val);\n    }\npublic:\n    int maxSum(TreeNode* root) {\n        vector<TreeNode*> nodes;\n        unordered_map<TreeNode*, TreeNode*> parent;\n        vector<TreeNode*> stack(1, root);\n        parent[root] = nullptr;\n        while (!stack.empty()) {\n            TreeNode* u = stack.back(); stack.pop_back();\n            nodes.push_back(u);\n            if (u->left) { parent[u->left] = u; stack.push_back(u->left); }\n            if (u->right) { parent[u->right] = u; stack.push_back(u->right); }\n        }\n        best = INT_MIN;\n        for (TreeNode* start : nodes) {\n            unordered_set<int> seen;\n            // Traverse the undirected tree via parent and children.\n            struct State { TreeNode* u; TreeNode* from; int sum; bool exit; };\n            vector<State> st(1, {start, nullptr, 0, false});\n            while (!st.empty()) {\n                State s = st.back(); st.pop_back();\n                if (s.exit) { seen.erase(s.u->val); continue; }\n                if (seen.count(s.u->val)) continue;\n                seen.insert(s.u->val);\n                int sum = s.sum + s.u->val;\n                best = max(best, sum);\n                st.push_back({s.u, s.from, sum, true});\n                if (s.u->left && s.u->left != s.from)\n                    st.push_back({s.u->left, s.u, sum, false});\n                if (s.u->right && s.u->right != s.from)\n                    st.push_back({s.u->right, s.u, sum, false});\n                if (parent[s.u] && parent[s.u] != s.from)\n                    st.push_back({parent[s.u], s.u, sum, false});\n            }\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181073682",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

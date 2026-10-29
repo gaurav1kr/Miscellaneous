@@ -1,0 +1,29 @@
+{
+  "id": "430",
+  "title": "Flatten a Multilevel Doubly Linked List",
+  "slug": "flatten-a-multilevel-doubly-linked-list",
+  "url": "https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Depth-First Search",
+    "Doubly-Linked List"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "You are given a doubly linked list, which contains nodes that have a next pointer, a previous pointer, and an additional child pointer . This child pointer may or may not point to a separate doubly linked list, also containing these special nodes. These child lists may have one or more children of their own, and so on, to produce a multilevel data structure as shown in the example below. \n \n Given the head of the first level of the list, flatten the list so that all the nodes appear in a single-level, doubly linked list. Let curr be a node with a child list. The nodes in the child list should appear after curr and before curr.next in the flattened list. \n \n Return the head of the flattened list. The nodes in the list must have all of their child pointers set to null . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/11/09/flatten11.jpg] \n \n```\nInput:\n head = [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]\n\nOutput:\n [1,2,3,7,8,11,12,9,10,4,5,6]\n\nExplanation:\n The multilevel linked list in the input is shown.\nAfter flattening the multilevel linked list it becomes:\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/11/09/flatten2.1jpg] \n \n```\nInput:\n head = [1,2,null,3]\n\nOutput:\n [1,3,2]\n\nExplanation:\n The multilevel linked list in the input is shown.\nAfter flattening the multilevel linked list it becomes:\n```\n\n Example 3: \n \n```\nInput:\n head = []\n\nOutput:\n []\n\nExplanation:\n There could be empty list in the input.\n```\n\n Constraints: \n\n The number of Nodes will not exceed 1000 . \n \n 1 <= Node.val <= 10 5 \n\n How the multilevel linked list is represented in test cases: \n \n We use the multilevel linked list from Example 1 above: \n \n```\n1---2---3---4---5---6--NULL\n |\n 7---8---9---10--NULL\n |\n 11--12--NULL\n```\n\n The serialization of each level is as follows: \n \n```\n[1,2,3,4,5,6,null]\n[7,8,9,10,null]\n[11,12,null]\n```\n\n To serialize all levels together, we will add nulls in each level to signify no node connects to the upper node of the previous level. The serialization becomes: \n \n```\n[1, 2, 3, 4, 5, 6, null]\n |\n[null, null, 7, 8, 9, 10, null]\n |\n[ null, 11, 12, null]\n```\n\n Merging the serialization of each level and removing trailing nulls we obtain: \n \n```\n[1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]\n```",
+  "code": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* prev;\n    Node* next;\n    Node* child;\n};\n*/\n\nclass Solution {\npublic:\n    Node* flatten(Node* head) {\n        Node* temp=head;\n\n        while(temp!=NULL){\n            if(temp->child!=NULL){\n                Node* forward=temp->next;\n                Node* temp_child=temp;\n                temp=temp->child;\n                temp_child->child=NULL;\n                temp_child->next=temp;\n                temp->prev=temp_child;\n\n                while(temp->next!=NULL){\n                    temp=temp->next;\n                }\n\n                temp->next=forward;\n                if(forward!=NULL) forward->prev=temp;\n                temp=temp_child;\n            }\n            temp=temp->next;\n        }\n\n        return head;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1514582721",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "2193",
+  "title": "Minimum Number of Moves to Make Palindrome",
+  "slug": "minimum-number-of-moves-to-make-palindrome",
+  "url": "https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Greedy",
+    "Binary Indexed Tree"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Tree / Trie",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Fenwick tree",
+    "String"
+  ],
+  "description": "You are given a string s consisting only of lowercase English letters. \n \n In one move , you can select any two adjacent characters of s and swap them. \n \n Return the minimum number of moves needed to make s a palindrome . \n \n Note that the input will be generated such that s can always be converted to a palindrome. \n\n Example 1: \n \n```\nInput:\n s = \"aabb\"\n\nOutput:\n 2\n\nExplanation:\n\nWe can obtain two palindromes from s, \"abba\" and \"baab\". \n- We can obtain \"abba\" from s in 2 moves: \"a\nab\nb\" -> \"ab\nab\n\" -> \"abba\".\n- We can obtain \"baab\" from s in 2 moves: \"a\nab\nb\" -> \"\nab\nab\" -> \"baab\".\nThus, the minimum number of moves needed to make s a palindrome is 2.\n```\n\n Example 2: \n \n```\nInput:\n s = \"letelt\"\n\nOutput:\n 2\n\nExplanation:\n\nOne of the palindromes we can obtain from s in 2 moves is \"lettel\".\nOne of the ways we can obtain it is \"lete\nlt\n\" -> \"let\net\nl\" -> \"lettel\".\nOther palindromes such as \"tleelt\" can also be obtained in 2 moves.\nIt can be shown that it is not possible to obtain a palindrome in less than 2 moves.\n```\n\n Constraints: \n\n 1 <= s.length <= 2000 \n \n s consists only of lowercase English letters. \n \n s can be converted to a palindrome using a finite number of moves.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int minMovesToMakePalindrome(string s){int ans=0;int l=0,r=(int)s.size()-1;\n  while(l<r){int k=r;while(k>l&&s[k]!=s[l])--k;\n   if(k==l){swap(s[l],s[l+1]);++ans;}\n   else{for(int j=k;j<r;++j){swap(s[j],s[j+1]);++ans;}++l;--r;}\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175883579",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

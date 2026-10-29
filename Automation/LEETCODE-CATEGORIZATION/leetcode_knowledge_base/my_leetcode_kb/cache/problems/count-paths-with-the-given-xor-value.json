@@ -1,0 +1,34 @@
+{
+  "id": "3393",
+  "title": "Count Paths With the Given XOR Value",
+  "slug": "count-paths-with-the-given-xor-value",
+  "url": "https://leetcode.com/problems/count-paths-with-the-given-xor-value/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array grid with size m x n . You are also given an integer k . \n \n Your task is to calculate the number of paths you can take from the top-left cell (0, 0) to the bottom-right cell (m - 1, n - 1) satisfying the following constraints : \n\n You can either move to the right or down. Formally, from the cell (i, j) you may move to the cell (i, j + 1) or to the cell (i + 1, j) if the target cell exists . \n \n The XOR of all the numbers on the path must be equal to k . \n\n Return the total number of such paths. \n \n Since the answer can be very large, return the result modulo 10 9 + 7 . \n\n Example 1: \n\n Input: grid = [[2, 1, 5], [7, 10, 0], [12, 6, 4]], k = 11 \n \n Output: 3 \n \n Explanation:   \n \n The 3 paths are: \n\n (0, 0) → (1, 0) → (2, 0) → (2, 1) → (2, 2) \n \n (0, 0) → (1, 0) → (1, 1) → (1, 2) → (2, 2) \n \n (0, 0) → (0, 1) → (1, 1) → (2, 1) → (2, 2) \n\n Example 2: \n\n Input: grid = [[1, 3, 3, 3], [0, 3, 3, 2], [3, 0, 1, 1]], k = 2 \n \n Output: 5 \n \n Explanation: \n \n The 5 paths are: \n\n (0, 0) → (1, 0) → (2, 0) → (2, 1) → (2, 2) → (2, 3) \n \n (0, 0) → (1, 0) → (1, 1) → (2, 1) → (2, 2) → (2, 3) \n \n (0, 0) → (1, 0) → (1, 1) → (1, 2) → (1, 3) → (2, 3) \n \n (0, 0) → (0, 1) → (1, 1) → (1, 2) → (2, 2) → (2, 3) \n \n (0, 0) → (0, 1) → (0, 2) → (1, 2) → (2, 2) → (2, 3) \n\n Example 3: \n\n Input: grid = [[1, 1, 1, 2], [3, 0, 3, 2], [3, 0, 2, 2]], k = 10 \n \n Output: 0 \n\n Constraints: \n\n 1 <= m == grid.length <= 300 \n \n 1 <= n == grid[r].length <= 300 \n \n 0 <= grid[r][c] < 16 \n \n 0 <= k < 16",
+  "code": "\nclass Solution {\npublic:\n    int countPathsWithXorValue(vector<vector<int>>& grid,\n                               int k) {\n        const int MOD = 1000000007;\n        int m = grid.size(), n = grid[0].size();\n\n        // dp[j][x] = number of paths reaching\n        // current row's column j with XOR x\n        vector<array<int, 16>> dp(n);\n\n        dp[0][grid[0][0]] = 1;\n\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if (i == 0 && j == 0)\n                    continue;\n\n                array<int, 16> curr = {};\n\n                for (int x = 0; x < 16; ++x) {\n                    int prev = x ^ grid[i][j];\n\n                    // From top\n                    if (i > 0) {\n                        curr[x] = dp[j][prev];\n                    }\n\n                    // From left\n                    if (j > 0) {\n                        curr[x] = (curr[x] +\n                                   dp[j-1][prev]) % MOD;\n                    }\n                }\n\n                dp[j] = curr;\n            }\n        }\n\n        return dp[n-1][k];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2168447014",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

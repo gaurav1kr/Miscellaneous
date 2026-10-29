@@ -1,0 +1,29 @@
+{
+  "id": "2608",
+  "title": "Shortest Cycle in a Graph",
+  "slug": "shortest-cycle-in-a-graph",
+  "url": "https://leetcode.com/problems/shortest-cycle-in-a-graph/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is a bi-directional graph with n vertices, where each vertex is labeled from 0 to n - 1 . The edges in the graph are represented by a given 2D integer array edges , where edges[i] = [u i , v i ] denotes an edge between vertex u i and vertex v i . Every vertex pair is connected by at most one edge, and no vertex has an edge to itself. \n \n Return the length of the shortest cycle in the graph . If no cycle exists, return -1 . \n \n A cycle is a path that starts and ends at the same node, and each edge in the path is used only once. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/01/04/cropped.png] \n \n```\nInput:\n n = 7, edges = [[0,1],[1,2],[2,0],[3,4],[4,5],[5,6],[6,3]]\n\nOutput:\n 3\n\nExplanation:\n The cycle with the smallest length is : 0 -> 1 -> 2 -> 0\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/01/04/croppedagin.png] \n \n```\nInput:\n n = 4, edges = [[0,1],[0,2]]\n\nOutput:\n -1\n\nExplanation:\n There are no cycles in this graph.\n```\n\n Constraints: \n\n 2 <= n <= 1000 \n \n 1 <= edges.length <= 1000 \n \n edges[i].length == 2 \n \n 0 <= u i , v i < n \n \n u i != v i \n \n There are no repeated edges.",
+  "code": "class Solution {public:int findShortestCycle(int n,vector<vector<int>>& edges){vector<vector<int>> g(n);for(auto &e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}int ans=INT_MAX;for(int s=0;s<n;s++){vector<int> dist(n,-1),parent(n,-1);queue<int> q;q.push(s);dist[s]=0;while(!q.empty()){int u=q.front();q.pop();for(int v:g[u]){if(dist[v]==-1){dist[v]=dist[u]+1;parent[v]=u;q.push(v);}else if(parent[u]!=v)ans=min(ans,dist[u]+dist[v]+1);}}}return ans==INT_MAX?-1:ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176627476",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

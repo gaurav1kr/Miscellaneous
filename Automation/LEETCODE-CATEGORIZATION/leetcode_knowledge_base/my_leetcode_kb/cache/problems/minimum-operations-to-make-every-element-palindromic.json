@@ -1,0 +1,29 @@
+{
+  "id": "4053",
+  "title": "Minimum Operations to Make Every Element Palindromic",
+  "slug": "minimum-operations-to-make-every-element-palindromic",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-every-element-palindromic/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n In one operation , you may choose an index i and either increment or decrement nums[i] by 2. \n \n Return the minimum number of operations required to make every element in nums a positive palindrome . Different elements may be changed into different palindromic integers. \n\n Example 1: \n\n Input: nums = [10,12,14,16] \n \n Output: 9 \n \n Explanation: \n \n One optimal sequence of operations is: \n\n Decrement nums[0] by 2 once to change it from 10 to 8. \n \n Decrement nums[1] by 2 twice to change it from 12 to 8. \n \n Decrement nums[2] by 2 three times to change it from 14 to 8. \n \n Increment nums[3] by 2 three times to change it from 16 to 22. \n\n After 1 + 2 + 3 + 3 = 9 operations, nums = [8, 8, 8, 22] , and every element is a positive palindromic integer. \n \n It can be shown that fewer than 9 operations cannot achieve this. \n\n Example 2: \n\n Input: nums = [9,10,11,10] \n \n Output: 2 \n \n Explanation: \n \n Decrement nums[1] and nums[3] by 2 once each. \n \n After 2 operations, nums = [9, 8, 11, 8] , and every element is a positive palindromic integer. \n \n At least one operation is needed for each of these two elements, so the minimum number of operations is 2. \n\n Example 3: \n\n Input: nums = [125] \n \n Output: 2 \n \n Explanation: \n \n Decrement nums[0] by 2 twice to change it from 125 to 121, which is a positive palindromic integer. \n \n A single operation would change it to 123 or 127, neither of which is palindromic. Thus, the minimum number of operations is 2. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {\n    static bool palindrome(int x) {\n        int original=x, reverse=0;\n        while (x) { reverse=reverse*10+x%10; x/=10; }\n        return original==reverse;\n    }\n    static vector<vector<int>>& lists() {\n        static vector<vector<int>> p = [] {\n            vector<vector<int>> a(2);\n            for (int len=1;len<=10;++len) {\n                int half=(len+1)/2, lo=1;\n                for(int i=1;i<half;++i) lo*=10;\n                int hi=lo*10;\n                for(int v=lo;v<hi;++v) {\n                    string s=to_string(v), t=s;\n                    int end=(len%2 ? (int)s.size()-2 : (int)s.size()-1);\n                    for(int j=end;j>=0;--j) t+=s[j];\n                    long long x=stoll(t);\n                    if(x<=2000000002LL) a[x%2].push_back((int)x);\n                }\n            }\n            for(auto &v:a) sort(v.begin(),v.end());\n            return a;\n        }();\n        return p;\n    }\npublic:\n    long long minOperations(vector<int>& nums) {\n        auto &p=lists(); long long result=0;\n        for(int x:nums) {\n            const auto &v=p[x%2];\n            auto it=lower_bound(v.begin(),v.end(),x);\n            long long best=LLONG_MAX;\n            if(it!=v.end()) best=min(best,llabs((long long)*it-x));\n            if(it!=v.begin()) best=min(best,llabs((long long)*prev(it)-x));\n            result+=best/2;\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181525894",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

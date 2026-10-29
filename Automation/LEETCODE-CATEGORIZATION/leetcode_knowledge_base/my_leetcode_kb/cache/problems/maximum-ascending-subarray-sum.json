@@ -1,0 +1,27 @@
+{
+  "id": "1800",
+  "title": "Maximum Ascending Subarray Sum",
+  "slug": "maximum-ascending-subarray-sum",
+  "url": "https://leetcode.com/problems/maximum-ascending-subarray-sum/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of positive integers nums , return the maximum possible sum of an strictly increasing subarray in nums . \n \n A subarray is defined as a contiguous sequence of numbers in an array. \n\n Example 1: \n \n```\nInput:\n nums = [10,20,30,5,10,50]\n\nOutput:\n 65\n\nExplanation: \n[5,10,50] is the ascending subarray with the maximum sum of 65.\n```\n\n Example 2: \n \n```\nInput:\n nums = [10,20,30,40,50]\n\nOutput:\n 150\n\nExplanation: \n[10,20,30,40,50] is the ascending subarray with the maximum sum of 150.\n```\n\n Example 3: \n \n```\nInput:\n nums = [12,17,15,13,10,11,12]\n\nOutput:\n 33\n\nExplanation: \n[10,11,12] is the ascending subarray with the maximum sum of 33.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n int maxAscendingSum(vector<int>& nums){\n  int cur=0,best=0;\n  for(int i=0;i<(int)nums.size();++i){cur=(i && nums[i]>nums[i-1])?cur+nums[i]:nums[i];best=max(best,cur);}\n  return best;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175761517",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

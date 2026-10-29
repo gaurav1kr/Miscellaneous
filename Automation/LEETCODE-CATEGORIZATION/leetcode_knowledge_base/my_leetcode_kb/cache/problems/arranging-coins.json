@@ -1,0 +1,26 @@
+{
+  "id": "441",
+  "title": "Arranging Coins",
+  "slug": "arranging-coins",
+  "url": "https://leetcode.com/problems/arranging-coins/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You have n coins and you want to build a staircase with these coins. The staircase consists of k rows where the i th row has exactly i coins. The last row of the staircase may be incomplete. \n \n Given the integer n , return the number of complete rows of the staircase you will build . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/09/arrangecoins1-grid.jpg] \n \n```\nInput:\n n = 5\n\nOutput:\n 2\n\nExplanation:\n Because the 3\nrd\n row is incomplete, we return 2.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/09/arrangecoins2-grid.jpg] \n \n```\nInput:\n n = 8\n\nOutput:\n 3\n\nExplanation:\n Because the 4\nth\n row is incomplete, we return 3.\n```\n\n Constraints: \n\n 1 <= n <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    int arrangeCoins(int n) {\n        long left = 0, right = n;\n        while (left <= right) {\n            long mid = left + (right - left) / 2;\n            long coins = mid * (mid + 1) / 2;\n            if (coins == n) return mid;\n            if (coins < n) left = mid + 1;\n            else right = mid - 1;\n        }\n        return right;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588073147",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

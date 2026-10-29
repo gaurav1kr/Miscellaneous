@@ -1,0 +1,35 @@
+{
+  "id": "528",
+  "title": "Random Pick with Weight",
+  "slug": "random-pick-with-weight",
+  "url": "https://leetcode.com/problems/random-pick-with-weight/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Prefix Sum",
+    "Randomized"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of positive integers w where w[i] describes the weight of the i th index. \n \n You need to implement the function pickIndex() , which randomly picks an index in the range [0, w.length - 1] ( inclusive ) and returns it. The probability of picking an index i is w[i] / sum(w) . \n\n For example, if w = [1, 3] , the probability of picking index 0 is 1 / (1 + 3) = 0.25 (i.e., 25% ), and the probability of picking index 1 is 3 / (1 + 3) = 0.75 (i.e., 75% ). \n\n Example 1: \n \n```\nInput\n\n[\"Solution\",\"pickIndex\"]\n[[[1]],[]]\n\nOutput\n\n[null,0]\n\nExplanation\n\nSolution solution = new Solution([1]);\nsolution.pickIndex(); // return 0. The only option is to return 0 since there is only one element in w.\n```\n\n Example 2: \n \n```\nInput\n\n[\"Solution\",\"pickIndex\",\"pickIndex\",\"pickIndex\",\"pickIndex\",\"pickIndex\"]\n[[[1,3]],[],[],[],[],[]]\n\nOutput\n\n[null,1,1,1,1,0]\n\nExplanation\n\nSolution solution = new Solution([1, 3]);\nsolution.pickIndex(); // return 1. It is returning the second element (index = 1) that has a probability of 3/4.\nsolution.pickIndex(); // return 1\nsolution.pickIndex(); // return 1\nsolution.pickIndex(); // return 1\nsolution.pickIndex(); // return 0. It is returning the first element (index = 0) that has a probability of 1/4.\n\nSince this is a randomization problem, multiple answers are allowed.\nAll of the following outputs can be considered correct:\n[null,1,1,1,1,0]\n[null,1,1,1,1,1]\n[null,1,1,1,0,0]\n[null,1,1,1,0,1]\n[null,1,0,1,0,0]\n......\nand so on.\n```\n\n Constraints: \n\n 1 <= w.length <= 10 4 \n \n 1 <= w[i] <= 10 5 \n \n pickIndex will be called at most 10 4 times.",
+  "code": "#include <vector>\n#include <cstdlib>\n\nusing namespace std;\n\nclass Solution {\n    vector<int> prefix;\n    int total = 0;\n\npublic:\n    Solution(vector<int>& w) {\n        for (int weight : w) {\n            total += weight;\n            prefix.push_back(total);\n        }\n    }\n\n    int pickIndex() {\n        int target = rand() % total;\n        return upper_bound(prefix.begin(), prefix.end(), target) - prefix.begin();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610628568",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

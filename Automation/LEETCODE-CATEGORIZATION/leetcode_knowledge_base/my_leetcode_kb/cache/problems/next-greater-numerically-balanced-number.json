@@ -1,0 +1,32 @@
+{
+  "id": "2048",
+  "title": "Next Greater Numerically Balanced Number",
+  "slug": "next-greater-numerically-balanced-number",
+  "url": "https://leetcode.com/problems/next-greater-numerically-balanced-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "Backtracking",
+    "Counting",
+    "Enumeration"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map / hash set"
+  ],
+  "description": "An integer x is numerically balanced if for every digit d in the number x , there are exactly d occurrences of that digit in x . \n \n Given an integer n , return the smallest numerically balanced number strictly greater than n . \n\n Example 1: \n \n```\nInput:\n n = 1\n\nOutput:\n 22\n\nExplanation:\n \n22 is numerically balanced since:\n- The digit 2 occurs 2 times. \nIt is also the smallest numerically balanced number strictly greater than 1.\n```\n\n Example 2: \n \n```\nInput:\n n = 1000\n\nOutput:\n 1333\n\nExplanation:\n \n1333 is numerically balanced since:\n- The digit 1 occurs 1 time.\n- The digit 3 occurs 3 times. \nIt is also the smallest numerically balanced number strictly greater than 1000.\nNote that 1022 cannot be the answer because 0 appeared more than 0 times.\n```\n\n Example 3: \n \n```\nInput:\n n = 3000\n\nOutput:\n 3133\n\nExplanation:\n \n3133 is numerically balanced since:\n- The digit 1 occurs 1 time.\n- The digit 3 occurs 3 times.\nIt is also the smallest numerically balanced number strictly greater than 3000.\n```\n\n Constraints: \n\n 0 <= n <= 10 6",
+  "code": "class Solution {\npublic:\n    int nextBeautifulNumber(int n){int best=INT_MAX;\n        for(int mask=1;mask<(1<<7);++mask){string s;\n            for(int d=1;d<=7;++d)if(mask>>(d-1)&1)s.append(d,char('0'+d));\n            if(s.size()>7)continue;\n            sort(s.begin(),s.end());\n            do{int x=stoi(s);if(x>n)best=min(best,x);}\n            while(next_permutation(s.begin(),s.end()));\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175770534",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

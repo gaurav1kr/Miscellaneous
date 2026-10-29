@@ -1,0 +1,30 @@
+{
+  "id": "3017",
+  "title": "Count the Number of Houses at a Certain Distance II",
+  "slug": "count-the-number-of-houses-at-a-certain-distance-ii",
+  "url": "https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Graph Theory",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Prefix Sum / Difference Array"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given three positive integers n , x , and y . \n \n In a city, there exist houses numbered 1 to n connected by n streets. There is a street connecting the house numbered i with the house numbered i + 1 for all 1 <= i <= n - 1 . An additional street connects the house numbered x with the house numbered y . \n \n For each k , such that 1 <= k <= n , you need to find the number of pairs of houses (house 1 , house 2 ) such that the minimum number of streets that need to be traveled to reach house 2 from house 1 is k . \n \n Return a 1-indexed array result of length n where result[k] represents the total number of pairs of houses such that the minimum streets required to reach one house from the other is k . \n \n Note that x and y can be equal . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/12/20/example2.png] \n \n```\nInput:\n n = 3, x = 1, y = 3\n\nOutput:\n [6,0,0]\n\nExplanation:\n Let's look at each pair of houses:\n- For the pair (1, 2), we can go from house 1 to house 2 directly.\n- For the pair (2, 1), we can go from house 2 to house 1 directly.\n- For the pair (1, 3), we can go from house 1 to house 3 directly.\n- For the pair (3, 1), we can go from house 3 to house 1 directly.\n- For the pair (2, 3), we can go from house 2 to house 3 directly.\n- For the pair (3, 2), we can go from house 3 to house 2 directly.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/12/20/example3.png] \n \n```\nInput:\n n = 5, x = 2, y = 4\n\nOutput:\n [10,8,2,0,0]\n\nExplanation:\n For each distance k the pairs are:\n- For k == 1, the pairs are (1, 2), (2, 1), (2, 3), (3, 2), (2, 4), (4, 2), (3, 4), (4, 3), (4, 5), and (5, 4).\n- For k == 2, the pairs are (1, 3), (3, 1), (1, 4), (4, 1), (2, 5), (5, 2), (3, 5), and (5, 3).\n- For k == 3, the pairs are (1, 5), and (5, 1).\n- For k == 4 and k == 5, there are no pairs.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2023/12/20/example5.png] \n \n```\nInput:\n n = 4, x = 1, y = 1\n\nOutput:\n [6,4,2,0]\n\nExplanation:\n For each distance k the pairs are:\n- For k == 1, the pairs are (1, 2), (2, 1), (2, 3), (3, 2), (3, 4), and (4, 3).\n- For k == 2, the pairs are (1, 3), (3, 1), (2, 4), and (4, 2).\n- For k == 3, the pairs are (1, 4), and (4, 1).\n- For k == 4, there are no pairs.\n```\n\n Constraints: \n\n 2 <= n <= 10 5 \n \n 1 <= x, y <= n",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n vector<long long> countOfPairs(int n,int x,int y){vector<long long>delta(n+3,0);\n  auto range=[&](int l,int r,long long a,long long b){if(l>r)return;\n   long long d1=a*l+b,d2=a*r+b;\n   int lo=(int)min(d1,d2),hi=(int)max(d1,d2);\n   if(lo<1||hi>n)return;\n   if(lo==hi){delta[lo]+=2LL*(r-l+1);delta[lo+1]-=2LL*(r-l+1);}\n   else{delta[lo]+=2;delta[hi+1]-=2;}\n  };\n  for(int i=1;i<=n;i++){\n   vector<int>cuts={i+1,n+1,x,y,x+1,y+1};\n   // Candidate shortest-path expressions are affine on either side of x and y.\n   for(int a=0;a<3;a++)for(int b=a+1;b<3;b++){\n    for(int j0:vector<int>{i+1,x+1,y+1}){\n     if(j0>n)continue;\n     auto coeff=[&](int t,int j)->pair<long long,long long>{\n      if(t==0)return {1,-i};\n      int z=t==1?y:x;long long base=llabs((long long)i-(t==1?x:y))+1;\n      return j<z?make_pair(-1LL,base+z):make_pair(1LL,base-z);\n     };\n     auto A=coeff(a,j0),B=coeff(b,j0);\n     if(A.first!=B.first){long long p=(B.second-A.second)/(A.first-B.first);\n      for(long long q=p-2;q<=p+2;q++)if(q>=i+1&&q<=n)cuts.push_back((int)q);\n     }\n    }\n   }\n   sort(cuts.begin(),cuts.end());cuts.erase(unique(cuts.begin(),cuts.end()),cuts.end());\n   for(int t=0;t+1<(int)cuts.size();t++){\n    int l=max(i+1,cuts[t]),r=min(n,cuts[t+1]-1);if(l>r)continue;\n    auto eval=[&](int j,int kind)->long long{\n     if(kind==0)return j-i;\n     if(kind==1)return llabs((long long)i-x)+1+llabs((long long)j-y);\n     return llabs((long long)i-y)+1+llabs((long long)j-x);\n    };\n    int best=0;for(int z=1;z<3;z++)if(eval(l,z)<eval(l,best))best=z;\n    long long d1=eval(l,best),d2=eval(r,best);\n    range(l,r,d1==d2?0:(d2>d1?1:-1),d1-(d1==d2?0:(d2>d1?1:-1))*l);\n   }\n  }\n  vector<long long>ans(n);long long cur=0;for(int d=1;d<=n;d++){cur+=delta[d];ans[d-1]=cur;}return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181220154",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "2982",
+  "title": "Find Longest Special Substring That Occurs Thrice II",
+  "slug": "find-longest-special-substring-that-occurs-thrice-ii",
+  "url": "https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Binary Search",
+    "Sliding Window",
+    "Counting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s that consists of lowercase English letters. \n \n A string is called special if it is made up of only a single character. For example, the string \"abc\" is not special, whereas the strings \"ddd\" , \"zz\" , and \"f\" are special. \n \n Return the length of the longest special substring of s which occurs at least thrice , or -1 if no special substring occurs at least thrice . \n \n A substring is a contiguous non-empty sequence of characters within a string. \n\n Example 1: \n \n```\nInput:\n s = \"aaaa\"\n\nOutput:\n 2\n\nExplanation:\n The longest special substring which occurs thrice is \"aa\": substrings \"\naa\naa\", \"a\naa\na\", and \"aa\naa\n\".\nIt can be shown that the maximum length achievable is 2.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abcdef\"\n\nOutput:\n -1\n\nExplanation:\n There exists no special substring which occurs at least thrice. Hence return -1.\n```\n\n Example 3: \n \n```\nInput:\n s = \"abcaba\"\n\nOutput:\n 1\n\nExplanation:\n The longest special substring which occurs thrice is \"a\": substrings \"\na\nbcaba\", \"abc\na\nba\", and \"abcab\na\n\".\nIt can be shown that the maximum length achievable is 1.\n```\n\n Constraints: \n\n 3 <= s.length <= 5 * 10 5 \n \n s consists of only lowercase English letters.",
+  "code": "class Solution {public:int maximumLength(string s){vector<vector<int>>runs(26);for(int i=0;i<(int)s.size();){int j=i;while(j<(int)s.size()&&s[j]==s[i])++j;runs[s[i]-'a'].push_back(j-i);i=j;}int ans=-1;for(auto&v:runs){sort(v.begin(),v.end(),greater<int>());while(v.size()<3)v.push_back(0);ans=max(ans,max({v[0]-2,min(v[0]-1,v[1]),v[2]}));}return ans>0?ans:-1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176792860",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

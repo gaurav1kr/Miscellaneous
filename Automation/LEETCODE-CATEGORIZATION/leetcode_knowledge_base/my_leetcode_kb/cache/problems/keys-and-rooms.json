@@ -1,0 +1,30 @@
+{
+  "id": "841",
+  "title": "Keys and Rooms",
+  "slug": "keys-and-rooms",
+  "url": "https://leetcode.com/problems/keys-and-rooms/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There are n rooms labeled from 0 to n - 1  and all the rooms are locked except for room 0 . Your goal is to visit all the rooms. However, you cannot enter a locked room without having its key. \n \n When you visit a room, you may find a set of distinct keys in it. Each key has a number on it, denoting which room it unlocks, and you can take all of them with you to unlock the other rooms. \n \n Given an array rooms where rooms[i] is the set of keys that you can obtain if you visited room i , return true if you can visit all the rooms, or false otherwise . \n\n Example 1: \n \n```\nInput:\n rooms = [[1],[2],[3],[]]\n\nOutput:\n true\n\nExplanation:\n \nWe visit room 0 and pick up key 1.\nWe then visit room 1 and pick up key 2.\nWe then visit room 2 and pick up key 3.\nWe then visit room 3.\nSince we were able to visit every room, we return true.\n```\n\n Example 2: \n \n```\nInput:\n rooms = [[1,3],[3,0,1],[2],[0]]\n\nOutput:\n false\n\nExplanation:\n We can not enter room number 2 since the only key that unlocks it is in that room.\n```\n\n Constraints: \n\n n == rooms.length \n \n 2 <= n <= 1000 \n \n 0 <= rooms[i].length <= 1000 \n \n 1 <= sum(rooms[i].length) <= 3000 \n \n 0 <= rooms[i][j] < n \n \n All the values of rooms[i] are unique .",
+  "code": "class Solution {\npublic:\n    bool canVisitAllRooms(vector<vector<int>>& rooms) {\n        vector<bool> seen(rooms.size(), false);\n        queue<int> q;\n        q.push(0);\n        seen[0] = true;\n        int count = 0;\n        while (!q.empty()) {\n            int room = q.front(); q.pop(); ++count;\n            for (int next : rooms[room]) if (!seen[next]) {\n                seen[next] = true;\n                q.push(next);\n            }\n        }\n        return count == (int)rooms.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175742560",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

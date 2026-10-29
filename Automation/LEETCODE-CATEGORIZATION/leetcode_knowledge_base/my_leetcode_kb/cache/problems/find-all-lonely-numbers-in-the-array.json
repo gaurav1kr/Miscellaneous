@@ -1,0 +1,33 @@
+{
+  "id": "2150",
+  "title": "Find All Lonely Numbers in the Array",
+  "slug": "find-all-lonely-numbers-in-the-array",
+  "url": "https://leetcode.com/problems/find-all-lonely-numbers-in-the-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . A number x is lonely when it appears only once , and no adjacent numbers (i.e. x + 1 and x - 1) appear in the array. \n \n Return all lonely numbers in nums . You may return the answer in any order . \n\n Example 1: \n \n```\nInput:\n nums = [10,6,5,8]\n\nOutput:\n [10,8]\n\nExplanation:\n \n- 10 is a lonely number since it appears exactly once and 9 and 11 does not appear in nums.\n- 8 is a lonely number since it appears exactly once and 7 and 9 does not appear in nums.\n- 5 is not a lonely number since 6 appears in nums and vice versa.\nHence, the lonely numbers in nums are [10, 8].\nNote that [8, 10] may also be returned.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,3,5,3]\n\nOutput:\n [1,5]\n\nExplanation:\n \n- 1 is a lonely number since it appears exactly once and 0 and 2 does not appear in nums.\n- 5 is a lonely number since it appears exactly once and 4 and 6 does not appear in nums.\n- 3 is not a lonely number since it appears twice.\nHence, the lonely numbers in nums are [1, 5].\nNote that [5, 1] may also be returned.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 6",
+  "code": "class Solution {\npublic:\n    vector<int> findLonely(vector<int>& nums) {\n        unordered_map<int,int> f;for(int x:nums) ++f[x];\n        vector<int> ans;\n        for(auto &p:f) if(p.second==1&&!f.count(p.first-1)&&!f.count(p.first+1)) ans.push_back(p.first);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175874025",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

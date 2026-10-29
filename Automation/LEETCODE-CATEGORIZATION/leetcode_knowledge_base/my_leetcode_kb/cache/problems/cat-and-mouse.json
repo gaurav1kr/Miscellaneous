@@ -1,0 +1,38 @@
+{
+  "id": "913",
+  "title": "Cat and Mouse",
+  "slug": "cat-and-mouse",
+  "url": "https://leetcode.com/problems/cat-and-mouse/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Graph Theory",
+    "Topological Sort",
+    "Memoization",
+    "Minimax",
+    "Game Theory",
+    "Zero-Sum Game"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "A game on an undirected graph is played by two players, Mouse and Cat, who alternate turns. \n \n The graph is given as follows: graph[a] is a list of all nodes b such that ab is an edge of the graph. \n \n The mouse starts at node 1 and goes first, the cat starts at node 2 and goes second, and there is a hole at node 0 . \n \n During each player's turn, they must travel along one edge of the graph that meets where they are.  For example, if the Mouse is at node 1, it must travel to any node in graph[1] . \n \n Additionally, it is not allowed for the Cat to travel to the Hole (node 0 ). \n \n Then, the game can end in three ways: \n\n If ever the Cat occupies the same node as the Mouse, the Cat wins. \n \n If ever the Mouse reaches the Hole, the Mouse wins. \n \n If ever a position is repeated (i.e., the players are in the same position as a previous turn, and it is the same player's turn to move), the game is a draw. \n\n Given a graph , and assuming both players play optimally, return \n\n 1  if the mouse wins the game, \n \n 2  if the cat wins the game, or \n \n 0  if the game is a draw. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/17/cat1.jpg] \n \n```\nInput:\n graph = [[2,5],[3],[0,4,5],[1,4,5],[2,3],[0,2,3]]\n\nOutput:\n 0\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/11/17/cat2.jpg] \n \n```\nInput:\n graph = [[1,3],[0],[3],[0,2]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 3 <= graph.length <= 50 \n \n 1 <= graph[i].length < graph.length \n \n 0 <= graph[i][j] < graph.length \n \n graph[i][j] != i \n \n graph[i] is unique. \n \n The mouse and the cat can always move.",
+  "code": "class Solution {\npublic:\n    int catMouseGame(vector<vector<int>>& graph) {\n        int n = graph.size();\n        vector<vector<array<int, 2>>> result(n, vector<array<int, 2>>(n, {0, 0}));\n        vector<vector<array<int, 2>>> degree(n, vector<array<int, 2>>(n, {0, 0}));\n        queue<array<int, 3>> q;\n        for (int m = 0; m < n; ++m) for (int c = 1; c < n; ++c) {\n            degree[m][c][0] = graph[m].size();\n            for (int v : graph[c]) if (v != 0) ++degree[m][c][1];\n        }\n        for (int c = 1; c < n; ++c) for (int t = 0; t < 2; ++t) {\n            result[0][c][t] = 1;\n            q.push({0, c, t});\n        }\n        for (int m = 1; m < n; ++m) for (int t = 0; t < 2; ++t) {\n            result[m][m][t] = 2;\n            q.push({m, m, t});\n        }\n        while (!q.empty()) {\n            auto state = q.front(); q.pop();\n            int m = state[0], c = state[1], turn = state[2];\n            int winner = result[m][c][turn];\n            int previousTurn = 1 - turn;\n            const vector<int>& parents = previousTurn == 0 ? graph[m] : graph[c];\n            for (int prev : parents) {\n                if (previousTurn == 1 && prev == 0) continue;\n                int pm = previousTurn == 0 ? prev : m;\n                int pc = previousTurn == 1 ? prev : c;\n                if (result[pm][pc][previousTurn] != 0) continue;\n                if (winner == previousTurn + 1) {\n                    result[pm][pc][previousTurn] = winner;\n                    q.push({pm, pc, previousTurn});\n                } else if (--degree[pm][pc][previousTurn] == 0) {\n                    result[pm][pc][previousTurn] = winner;\n                    q.push({pm, pc, previousTurn});\n                }\n            }\n        }\n        return result[1][2][0];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175743855",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "892",
+  "title": "Surface Area of 3D Shapes",
+  "slug": "surface-area-of-3d-shapes",
+  "url": "https://leetcode.com/problems/surface-area-of-3d-shapes/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry",
+    "Matrix"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an n x n grid where you have placed some 1 x 1 x 1 cubes. Each value v = grid[i][j] represents a tower of v cubes placed on top of cell (i, j) . \n \n After placing these cubes, you have decided to glue any directly adjacent cubes to each other, forming several irregular 3D shapes. \n \n Return the total surface area of the resulting shapes . \n \n Note: The bottom face of each shape counts toward its surface area. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/08/tmp-grid2.jpg] \n \n```\nInput:\n grid = [[1,2],[3,4]]\n\nOutput:\n 34\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/01/08/tmp-grid4.jpg] \n \n```\nInput:\n grid = [[1,1,1],[1,0,1],[1,1,1]]\n\nOutput:\n 32\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/01/08/tmp-grid5.jpg] \n \n```\nInput:\n grid = [[2,2,2],[2,1,2],[2,2,2]]\n\nOutput:\n 46\n```\n\n Constraints: \n\n n == grid.length == grid[i].length \n \n 1 <= n <= 50 \n \n 0 <= grid[i][j] <= 50",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int surfaceArea(vector<vector<int>>& grid) {\n        int area = 0, n = grid.size();\n        for (int i = 0; i < n; ++i)\n            for (int j = 0; j < n; ++j) {\n                if (grid[i][j]) area += 6 * grid[i][j] - 2 * (grid[i][j] - 1);\n                if (i) area -= 2 * min(grid[i][j], grid[i - 1][j]);\n                if (j) area -= 2 * min(grid[i][j], grid[i][j - 1]);\n            }\n        return area;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610696584",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

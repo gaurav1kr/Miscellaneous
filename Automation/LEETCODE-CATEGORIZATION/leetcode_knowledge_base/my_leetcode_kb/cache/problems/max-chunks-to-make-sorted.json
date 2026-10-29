@@ -1,0 +1,38 @@
+{
+  "id": "769",
+  "title": "Max Chunks To Make Sorted",
+  "slug": "max-chunks-to-make-sorted",
+  "url": "https://leetcode.com/problems/max-chunks-to-make-sorted/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Greedy",
+    "Sorting",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Sorted array",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an integer array arr of length n that represents a permutation of the integers in the range [0, n - 1] . \n \n We split arr into some number of chunks (i.e., partitions), and individually sort each chunk. After concatenating them, the result should equal the sorted array. \n \n Return the largest number of chunks we can make to sort the array . \n\n Example 1: \n \n```\nInput:\n arr = [4,3,2,1,0]\n\nOutput:\n 1\n\nExplanation:\n\nSplitting into two or more chunks will not return the required result.\nFor example, splitting into [4, 3], [2, 1, 0] will result in [3, 4, 0, 1, 2], which isn't sorted.\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,0,2,3,4]\n\nOutput:\n 4\n\nExplanation:\n\nWe can split into two chunks, such as [1, 0], [2, 3, 4].\nHowever, splitting into [1, 0], [2], [3], [4] is the highest number of chunks possible.\n```\n\n Constraints: \n\n n == arr.length \n \n 1 <= n <= 10 \n \n 0 <= arr[i] < n \n \n All the elements of arr are unique .",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxChunksToSorted(vector<int>& arr) {\n        int maxVal = 0, chunks = 0;\n        for (int i = 0; i < arr.size(); i++) {\n            maxVal = max(maxVal, arr[i]);\n            if (maxVal == i) chunks++;\n        }\n        return chunks;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590125490",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

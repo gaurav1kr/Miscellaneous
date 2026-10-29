@@ -1,0 +1,29 @@
+{
+  "id": "3865",
+  "title": "Reverse K Subarrays",
+  "slug": "reverse-k-subarrays",
+  "url": "https://leetcode.com/problems/reverse-k-subarrays/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and an integer k . \n \n You must partition the array into k contiguous subarrays of equal length and reverse each subarray. \n \n It is guaranteed that n is divisible by k . \n \n Return the resulting array after performing the above operation. \n\n Example 1: \n\n Input: nums = [1,2,4,3,5,6], k = 3 \n \n Output: [2,1,3,4,6,5] \n \n Explanation: \n\n The array is partitioned into k = 3 subarrays: [1, 2] , [4, 3] , and [5, 6] . \n \n After reversing each subarray: [2, 1] , [3, 4] , and [6, 5] . \n \n Combining them gives the final array [2, 1, 3, 4, 6, 5] . \n\n Example 2: \n\n Input: nums = [5,4,4,2], k = 1 \n \n Output: [2,4,4,5] \n \n Explanation: \n\n The array is partitioned into k = 1 subarray: [5, 4, 4, 2] . \n \n Reversing it produces [2, 4, 4, 5] , which is the final array. \n\n Constraints: \n\n 1 <= n == nums.length <= 1000 \n \n 1 <= nums[i] <= 1000 \n \n 1 <= k <= n \n \n n is divisible by k .",
+  "code": "class Solution {\npublic:\n    vector<int> reverseSubarrays(vector<int>& nums, int k) {\n        int len = (int)nums.size() / k;\n        for (int start = 0; start < (int)nums.size(); start += len)\n            reverse(nums.begin() + start, nums.begin() + start + len);\n        return nums;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181069188",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

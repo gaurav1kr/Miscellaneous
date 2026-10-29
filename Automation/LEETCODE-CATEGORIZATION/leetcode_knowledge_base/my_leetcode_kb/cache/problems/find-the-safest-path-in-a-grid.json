@@ -1,0 +1,40 @@
+{
+  "id": "2812",
+  "title": "Find the Safest Path in a Grid",
+  "slug": "find-the-safest-path-in-a-grid",
+  "url": "https://leetcode.com/problems/find-the-safest-path-in-a-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Heap (Priority Queue)",
+    "Matrix"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed 2D matrix grid of size n x n , where (r, c) represents: \n\n A cell containing a thief if grid[r][c] = 1 \n \n An empty cell if grid[r][c] = 0 \n\n You are initially positioned at cell (0, 0) . In one move, you can move to any adjacent cell in the grid, including cells containing thieves. \n \n The safeness factor of a path on the grid is defined as the minimum manhattan distance from any cell in the path to any thief in the grid. \n \n Return the maximum safeness factor of all paths leading to cell (n - 1, n - 1) . \n \n An adjacent cell of cell (r, c) , is one of the cells (r, c + 1) , (r, c - 1) , (r + 1, c) and (r - 1, c) if it exists. \n \n The Manhattan distance between two cells (a, b) and (x, y) is equal to |a - x| + |b - y| , where |val| denotes the absolute value of val. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/07/02/example1.png] \n \n```\nInput:\n grid = [[1,0,0],[0,0,0],[0,0,1]]\n\nOutput:\n 0\n\nExplanation:\n All paths from (0, 0) to (n - 1, n - 1) go through the thieves in cells (0, 0) and (n - 1, n - 1).\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/07/02/example2.png] \n \n```\nInput:\n grid = [[0,0,1],[0,0,0],[0,0,0]]\n\nOutput:\n 2\n\nExplanation:\n The path depicted in the picture above has a safeness factor of 2 since:\n- The closest cell of the path to the thief at cell (0, 2) is cell (0, 0). The distance between them is | 0 - 0 | + | 0 - 2 | = 2.\nIt can be shown that there are no other paths with a higher safeness factor.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2023/07/02/example3.png] \n \n```\nInput:\n grid = [[0,0,0,1],[0,0,0,0],[0,0,0,0],[1,0,0,0]]\n\nOutput:\n 2\n\nExplanation:\n The path depicted in the picture above has a safeness factor of 2 since:\n- The closest cell of the path to the thief at cell (0, 3) is cell (1, 2). The distance between them is | 0 - 1 | + | 3 - 2 | = 2.\n- The closest cell of the path to the thief at cell (3, 0) is cell (3, 2). The distance between them is | 3 - 3 | + | 0 - 2 | = 2.\nIt can be shown that there are no other paths with a higher safeness factor.\n```\n\n Constraints: \n\n 1 <= grid.length == n <= 400 \n \n grid[i].length == n \n \n grid[i][j] is either 0 or 1 . \n \n There is at least one thief in the grid .",
+  "code": "class Solution {public:int maximumSafenessFactor(vector<vector<int>>& grid){int n=grid.size(),INF=1000000000;vector<vector<int>> dist(n,vector<int>(n,INF));queue<pair<int,int>> q;for(int i=0;i<n;++i)for(int j=0;j<n;++j)if(grid[i][j]){dist[i][j]=0;q.push({i,j});}int dr[4]={1,-1,0,0},dc[4]={0,0,1,-1};while(!q.empty()){auto p=q.front();q.pop();for(int z=0;z<4;++z){int r=p.first+dr[z],c=p.second+dc[z];if(r>=0&&r<n&&c>=0&&c<n&&dist[r][c]==INF){dist[r][c]=dist[p.first][p.second]+1;q.push({r,c});}}}priority_queue<tuple<int,int,int>> pq;pq.push(make_tuple(dist[0][0],0,0));vector<vector<int>> best(n,vector<int>(n,-1));best[0][0]=dist[0][0];while(!pq.empty()){int val,r,c;tie(val,r,c)=pq.top();pq.pop();if(val!=best[r][c])continue;if(r==n-1&&c==n-1)return val;for(int z=0;z<4;++z){int nr=r+dr[z],nc=c+dc[z];if(nr<0||nr>=n||nc<0||nc>=n)continue;int nv=min(val,dist[nr][nc]);if(nv>best[nr][nc]){best[nr][nc]=nv;pq.push(make_tuple(nv,nr,nc));}}}return 0;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176708796",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

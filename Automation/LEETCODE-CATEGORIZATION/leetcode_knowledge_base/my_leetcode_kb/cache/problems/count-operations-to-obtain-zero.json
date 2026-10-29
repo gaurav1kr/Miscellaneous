@@ -1,0 +1,26 @@
+{
+  "id": "2169",
+  "title": "Count Operations to Obtain Zero",
+  "slug": "count-operations-to-obtain-zero",
+  "url": "https://leetcode.com/problems/count-operations-to-obtain-zero/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Simulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [],
+  "description": "You are given two non-negative integers num1 and num2 . \n \n In one operation , if num1 >= num2 , you must subtract num2 from num1 , otherwise subtract num1 from num2 . \n\n For example, if num1 = 5 and num2 = 4 , subtract num2 from num1 , thus obtaining num1 = 1 and num2 = 4 . However, if num1 = 4 and num2 = 5 , after one operation, num1 = 4 and num2 = 1 . \n\n Return the number of operations required to make either num1 = 0 or num2 = 0 . \n\n Example 1: \n \n```\nInput:\n num1 = 2, num2 = 3\n\nOutput:\n 3\n\nExplanation:\n \n- Operation 1: num1 = 2, num2 = 3. Since num1 < num2, we subtract num1 from num2 and get num1 = 2, num2 = 3 - 2 = 1.\n- Operation 2: num1 = 2, num2 = 1. Since num1 > num2, we subtract num2 from num1.\n- Operation 3: num1 = 1, num2 = 1. Since num1 == num2, we subtract num2 from num1.\nNow num1 = 0 and num2 = 1. Since num1 == 0, we do not need to perform any further operations.\nSo the total number of operations required is 3.\n```\n\n Example 2: \n \n```\nInput:\n num1 = 10, num2 = 10\n\nOutput:\n 1\n\nExplanation:\n \n- Operation 1: num1 = 10, num2 = 10. Since num1 == num2, we subtract num2 from num1 and get num1 = 10 - 10 = 0.\nNow num1 = 0 and num2 = 10. Since num1 == 0, we are done.\nSo the total number of operations required is 1.\n```\n\n Constraints: \n\n 0 <= num1, num2 <= 10 5",
+  "code": "class Solution {\npublic:\n    int countOperations(int num1, int num2) {\n        int ans=0;\n        while(num1&&num2) {\n            if(num1>=num2) num1-=num2;else num2-=num1;\n            ++ans;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175878032",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "1930",
+  "title": "Unique Length-3 Palindromic Subsequences",
+  "slug": "unique-length-3-palindromic-subsequences",
+  "url": "https://leetcode.com/problems/unique-length-3-palindromic-subsequences/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "Given a string s , return the number of unique palindromes of length three that are a subsequence of s . \n \n Note that even if there are multiple ways to obtain the same subsequence, it is still only counted once . \n \n A palindrome is a string that reads the same forwards and backwards. \n \n A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters. \n\n For example, \"ace\" is a subsequence of \" a b c d e \" . \n\n Example 1: \n \n```\nInput:\n s = \"aabca\"\n\nOutput:\n 3\n\nExplanation:\n The 3 palindromic subsequences of length 3 are:\n- \"aba\" (subsequence of \"\na\na\nb\nc\na\n\")\n- \"aaa\" (subsequence of \"\naa\nbc\na\n\")\n- \"aca\" (subsequence of \"\na\nab\nca\n\")\n```\n\n Example 2: \n \n```\nInput:\n s = \"adc\"\n\nOutput:\n 0\n\nExplanation:\n There are no palindromic subsequences of length 3 in \"adc\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"bbcbaba\"\n\nOutput:\n 4\n\nExplanation:\n The 4 palindromic subsequences of length 3 are:\n- \"bbb\" (subsequence of \"\nbb\nc\nb\naba\")\n- \"bcb\" (subsequence of \"\nb\nb\ncb\naba\")\n- \"bab\" (subsequence of \"\nb\nbcb\nab\na\")\n- \"aba\" (subsequence of \"bbcb\naba\n\")\n```\n\n Constraints: \n\n 3 <= s.length <= 10 5 \n \n s consists of only lowercase English letters.",
+  "code": "#include <string>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int countPalindromicSubsequence(string s) {\n        int res = 0;\n        for (char c = 'a'; c <= 'z'; ++c) {\n            int l = s.find(c), r = s.rfind(c);\n            if (l < r) {\n                unordered_set<char> mid(s.begin() + l + 1, s.begin() + r);\n                res += mid.size();\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610617167",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

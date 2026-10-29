@@ -1,0 +1,36 @@
+{
+  "id": "2983",
+  "title": "Palindrome Rearrangement Queries",
+  "slug": "palindrome-rearrangement-queries",
+  "url": "https://leetcode.com/problems/palindrome-rearrangement-queries/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed string s having an even length n . \n \n You are also given a 0-indexed 2D integer array, queries , where queries[i] = [a i , b i , c i , d i ] . \n \n For each query i , you are allowed to perform the following operations: \n\n Rearrange the characters within the substring s[a i :b i ] , where 0 <= a i <= b i < n / 2 . \n \n Rearrange the characters within the substring s[c i :d i ] , where n / 2 <= c i <= d i < n . \n\n For each query, your task is to determine whether it is possible to make s a palindrome by performing the operations. \n \n Each query is answered independently of the others. \n \n Return a 0-indexed array answer , where answer[i] == true if it is possible to make s a palindrome by performing operations specified by the i th query, and false otherwise. \n\n A substring is a contiguous sequence of characters within a string. \n \n s[x:y] represents the substring consisting of characters from the index x to index y in s , both inclusive . \n\n Example 1: \n \n```\nInput:\n s = \"abcabc\", queries = [[1,1,3,5],[0,2,5,5]]\n\nOutput:\n [true,true]\n\nExplanation:\n In this example, there are two queries:\nIn the first query:\n- a\n0\n = 1, b\n0\n = 1, c\n0\n = 3, d\n0\n = 5.\n- So, you are allowed to rearrange s[1:1] => a\nb\ncabc and s[3:5] => abc\nabc\n.\n- To make s a palindrome, s[3:5] can be rearranged to become => abc\ncba\n.\n- Now, s is a palindrome. So, answer[0] = true.\nIn the second query:\n- a\n1\n = 0, b\n1\n = 2, c\n1\n = 5, d\n1\n = 5.\n- So, you are allowed to rearrange s[0:2] => \nabc\nabc and s[5:5] => abcab\nc\n.\n- To make s a palindrome, s[0:2] can be rearranged to become => \ncba\nabc.\n- Now, s is a palindrome. So, answer[1] = true.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abbcdecbba\", queries = [[0,2,7,9]]\n\nOutput:\n [false]\n\nExplanation:\n In this example, there is only one query.\na\n0\n = 0, b\n0\n = 2, c\n0\n = 7, d\n0\n = 9.\nSo, you are allowed to rearrange s[0:2] => \nabb\ncdecbba and s[7:9] => abbcdec\nbba\n.\nIt is not possible to make s a palindrome by rearranging these substrings because s[3:6] is not a palindrome.\nSo, answer[0] = false.\n```\n\n Example 3: \n \n```\nInput:\n s = \"acbcab\", queries = [[1,2,4,5]]\n\nOutput:\n [true]\n\nExplanation: \nIn this example, there is only one query.\na\n0\n = 1, b\n0\n = 2, c\n0\n = 4, d\n0\n = 5.\nSo, you are allowed to rearrange s[1:2] => a\ncb\ncab and s[4:5] => acbc\nab\n.\nTo make s a palindrome s[1:2] can be rearranged to become a\nbc\ncab.\nThen, s[4:5] can be rearranged to become abcc\nba\n.\nNow, s is a palindrome. So, answer[0] = true.\n```\n\n Constraints: \n\n 2 <= n == s.length <= 10 5 \n \n 1 <= queries.length <= 10 5 \n \n queries[i].length == 4 \n \n a i == queries[i][0], b i == queries[i][1] \n \n c i == queries[i][2], d i == queries[i][3] \n \n 0 <= a i <= b i < n / 2 \n \n n / 2 <= c i <= d i < n \n \n n is even. \n \n s consists of only lowercase English letters.",
+  "code": "class Solution {\n    vector<int> get(const vector<array<int, 26>>& pref, int l, int r) {\n        vector<int> cnt(26, 0);\n        if (l > r) return cnt;\n        for (int j = 0; j < 26; ++j) cnt[j] = pref[r + 1][j] - pref[l][j];\n        return cnt;\n    }\npublic:\n    vector<bool> canMakePalindromeQueries(string s, vector<vector<int>>& queries) {\n        int m = s.size() / 2;\n        string a = s.substr(0, m), b = s.substr(m);\n        reverse(b.begin(), b.end());\n        vector<array<int, 26>> pa(m + 1), pb(m + 1);\n        pa[0].fill(0); pb[0].fill(0);\n        vector<int> bad(m + 1, 0);\n        for (int i = 0; i < m; ++i) {\n            pa[i + 1] = pa[i]; pb[i + 1] = pb[i];\n            ++pa[i + 1][a[i] - 'a']; ++pb[i + 1][b[i] - 'a'];\n            bad[i + 1] = bad[i] + (a[i] != b[i]);\n        }\n        vector<bool> ans;\n        for (const auto& q : queries) {\n            int l = q[0], r = q[1], x = 2 * m - 1 - q[3], y = 2 * m - 1 - q[2];\n            int il = max(l, x), ir = min(r, y);\n            int covered = bad[r + 1] - bad[l] + bad[y + 1] - bad[x];\n            if (il <= ir) covered -= bad[ir + 1] - bad[il];\n            if (covered != bad[m]) { ans.push_back(false); continue; }\n            vector<int> ca = get(pa, l, r), cb = get(pb, x, y);\n            vector<int> fixedB = get(pb, l, r), fixedA = get(pa, x, y);\n            vector<int> overlapB = get(pb, il, ir), overlapA = get(pa, il, ir);\n            bool ok = true;\n            for (int j = 0; j < 26; ++j) {\n                ca[j] -= fixedB[j] - overlapB[j];\n                cb[j] -= fixedA[j] - overlapA[j];\n                if (ca[j] < 0 || cb[j] < 0 || ca[j] != cb[j]) ok = false;\n            }\n            ans.push_back(ok);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179634606",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

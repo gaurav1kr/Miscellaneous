@@ -1,0 +1,32 @@
+{
+  "id": "3988",
+  "title": "Create Grid With Exactly K Paths I",
+  "slug": "create-grid-with-exactly-k-paths-i",
+  "url": "https://leetcode.com/problems/create-grid-with-exactly-k-paths-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Matrix",
+    "Combinatorics"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given three integers m , n , and k . \n \n Construct any m x n grid consisting only of the characters '.' and '#' , where: \n\n '.' represents a free cell. \n \n '#' represents an obstacle cell. \n\n A valid path is a sequence of free cells that: \n\n Starts at the top-left cell (0, 0) . \n \n Ends at the bottom-right cell (m - 1, n - 1) . \n \n Moves only:\n\n Right, from (i, j) to (i, j + 1) , or \n \n Down, from (i, j) to (i + 1, j) . \n\n Return any grid such that there are exactly k valid paths from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array. \n\n Example 1: \n\n Input: m = 2, n = 3, k = 2 \n \n Output: [\"...\",\"#..\"] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2026/05/26/screenshot-2026-05-27-at-113554am.png] \n \n There are exactly k = 2 valid paths from (0, 0) to (1, 2) : \n\n (0, 0) → (0, 1) → (0, 2) → (1, 2) \n \n (0, 0) → (0, 1) → (1, 1) → (1, 2) \n\n Example 2: \n\n Input: m = 3, n = 3, k = 4 \n \n Output: [\"..#\",\"...\",\"#..\"] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2026/05/26/screenshot-2026-05-27-at-113452am.png] \n \n There are exactly k = 4 valid paths from (0, 0) to (2, 2) : \n\n (0, 0) → (0, 1) → (1, 1) → (1, 2) → (2, 2) \n \n (0, 0) → (0, 1) → (1, 1) → (2, 1) → (2, 2) \n \n (0, 0) → (1, 0) → (1, 1) → (1, 2) → (2, 2) \n \n (0, 0) → (1, 0) → (1, 1) → (2, 1) → (2, 2) \n\n Example 3: \n\n Input: m = 1, n = 4, k = 2 \n \n Output: [] \n \n Explanation: ​ \n \n No grid exists with exactly k = 2 valid paths for a 1 x 4 grid, so the answer is an empty array. \n\n Constraints: \n\n 1 <= m, n <= 10 \n \n 1 <= k <= 4",
+  "code": "class Solution {\n    long long paths(const vector<string>& g) {\n        int m=g.size(),n=g[0].size();\n        vector<vector<long long>> dp(m,vector<long long>(n));\n        if(g[0][0]=='.') dp[0][0]=1;\n        for(int i=0;i<m;i++)for(int j=0;j<n;j++){\n            if(g[i][j]=='#'){dp[i][j]=0;continue;}\n            if(i)dp[i][j]+=dp[i-1][j];\n            if(j)dp[i][j]+=dp[i][j-1];\n        }\n        return dp[m-1][n-1];\n    }\npublic:\n    vector<string> createGrid(int m,int n,int k) {\n        if(m==1||n==1) return k==1?vector<string>(m,string(n,'.')):vector<string>();\n        // With two rows or columns, use the full short strip as a gadget.\n        int a=min(m,3), b=min(n,3);\n        if(m==2) b=min(n,5);\n        if(n==2) a=min(m,5);\n        int cells=a*b;\n        for(int mask=0;mask<(1<<cells);mask++) {\n            vector<string> g(m,string(n,'#'));\n            for(int i=0;i<a;i++)for(int j=0;j<b;j++)\n                if(!(mask&(1<<(i*b+j))))g[i][j]='.';\n            // Extend from the gadget's exit (a-1,b-1) along a single corridor.\n            for(int j=b;j<n;j++)g[a-1][j]='.';\n            for(int i=a;i<m;i++)g[i][n-1]='.';\n            if(paths(g)==k)return g;\n        }\n        return {};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181627767",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

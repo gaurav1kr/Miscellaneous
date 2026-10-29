@@ -1,0 +1,39 @@
+{
+  "id": "3413",
+  "title": "Maximum Coins From K Consecutive Bags",
+  "slug": "maximum-coins-from-k-consecutive-bags",
+  "url": "https://leetcode.com/problems/maximum-coins-from-k-consecutive-bags/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Sliding Window",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There are an infinite amount of bags on a number line, one bag for each coordinate. Some of these bags contain coins. \n \n You are given a 2D array coins , where coins[i] = [l i , r i , c i ] denotes that every bag from l i to r i contains c i coins. \n \n The segments that coins contain are non-overlapping. \n \n You are also given an integer k . \n \n Return the maximum amount of coins you can obtain by collecting k consecutive bags. \n\n Example 1: \n\n Input: coins = [[8,10,1],[1,3,2],[5,6,4]], k = 4 \n \n Output: 10 \n \n Explanation: \n \n Selecting bags at positions [3, 4, 5, 6] gives the maximum number of coins:  2 + 0 + 4 + 4 = 10 . \n\n Example 2: \n\n Input: coins = [[1,10,3]], k = 2 \n \n Output: 6 \n \n Explanation: \n \n Selecting bags at positions [1, 2] gives the maximum number of coins:  3 + 3 = 6 . \n\n Constraints: \n\n 1 <= coins.length <= 10 5 \n \n 1 <= k <= 10 9 \n \n coins[i] == [l i , r i , c i ] \n \n 1 <= l i <= r i <= 10 9 \n \n 1 <= c i <= 1000 \n \n The given segments are non-overlapping.",
+  "code": "class Solution {long long scan(vector<vector<int>>v,long long k){int n=v.size(),j=0;long long sum=0,ans=0;for(int i=0;i<n;i++){long long end=1LL*v[i][0]+k-1;while(j<n&&v[j][1]<=end){sum+=1LL*(v[j][1]-v[j][0]+1)*v[j][2];j++;}long long cur=sum;if(j<n&&v[j][0]<=end)cur+=(end-v[j][0]+1)*v[j][2];ans=max(ans,cur);if(j>i)sum-=1LL*(v[i][1]-v[i][0]+1)*v[i][2];else j=i+1;}return ans;}public:long long maximumCoins(vector<vector<int>>&coins,int k){sort(coins.begin(),coins.end());long long a=scan(coins,k);for(auto &v:coins){int l=v[0],r=v[1];v[0]=-r;v[1]=-l;}sort(coins.begin(),coins.end());return max(a,scan(coins,k));}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177520665",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

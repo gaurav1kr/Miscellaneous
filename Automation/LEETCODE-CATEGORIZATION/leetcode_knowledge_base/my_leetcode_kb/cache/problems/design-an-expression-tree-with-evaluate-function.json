@@ -1,0 +1,38 @@
+{
+  "id": "1628",
+  "title": "Design an Expression Tree With Evaluate Function",
+  "slug": "design-an-expression-tree-with-evaluate-function",
+  "url": "https://leetcode.com/problems/design-an-expression-tree-with-evaluate-function/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Stack",
+    "Tree",
+    "Design",
+    "Binary Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Math / Number Theory",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "Stack",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the postfix tokens of an arithmetic expression, build and return the binary expression tree that represents this expression. \n \n Postfix notation is a notation for writing arithmetic expressions in which the operands (numbers) appear before their operators. For example, the postfix tokens of the expression 4*(5-(7+2)) are represented in the array postfix = [\"4\",\"5\",\"7\",\"2\",\"+\",\"-\",\"*\"] . \n \n The class Node is an interface you should use to implement the binary expression tree. The returned tree will be tested using the evaluate function, which is supposed to evaluate the tree's value. You should not remove the Node class; however, you can modify it as you wish, and you can define other classes to implement it if needed. \n \n A binary expression tree is a kind of binary tree used to represent arithmetic expressions. Each node of a binary expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (numbers), and internal nodes (nodes with two children) correspond to the operators '+' (addition), '-' (subtraction), '*' (multiplication), and '/' (division). \n \n It's guaranteed that no subtree will yield a value that exceeds 10 9 in absolute value, and all the operations are valid (i.e., no division by zero). \n \n Follow up: Could you design the expression tree such that it is more modular? For example, is your design able to support additional operators without making changes to your existing evaluate implementation? \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/15/untitled-diagram.png] \n \n```\nInput:\n s = [\"3\",\"4\",\"+\",\"2\",\"*\",\"7\",\"/\"]\n\nOutput:\n 2\n\nExplanation:\n this expression evaluates to the above binary tree with expression (\n(3+4)*2)/7) = 14/7 = 2.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/10/15/untitled-diagram2.png] \n \n```\nInput:\n s = [\"4\",\"5\",\"2\",\"7\",\"+\",\"-\",\"*\"]\n\nOutput:\n -16\n\nExplanation:\n this expression evaluates to the above binary tree with expression 4*(5-\n(2+7)) = 4*(-4) = -16.\n```\n\n Constraints: \n\n 1 <= s.length < 100 \n \n s.length is odd. \n \n s consists of numbers and the characters '+' , '-' , '*' , and '/' . \n \n If s[i] is a number, its integer representation is no more than 10 5 . \n \n It is guaranteed that s is a valid expression. \n \n The absolute value of the result and intermediate values will not exceed 10 9 . \n \n It is guaranteed that no expression will include division by zero.",
+  "code": "class Node {\npublic:\n    virtual ~Node() {}\n    virtual int evaluate() const=0;\n};\nclass ExprNode:public Node {\n    string op;\n    Node *l,*r;\npublic:\n    ExprNode(string s,Node *a=nullptr,Node *b=nullptr):op(s),l(a),r(b){}\n    ~ExprNode(){delete l;delete r;}\n    int evaluate() const override {\n        if(!l)return stoi(op);\n        int a=l->evaluate(),b=r->evaluate();\n        if(op==\"+\")return a+b;\n        if(op==\"-\")return a-b;\n        if(op==\"*\")return a*b;\n        return a/b;\n    }\n};\nclass TreeBuilder {\npublic:\n    Node* buildTree(vector<string>& postfix) {\n        stack<Node*> st;\n        for(const string &s:postfix){\n            if(s==\"+\"||s==\"-\"||s==\"*\"||s==\"/\"){\n                Node *b=st.top();st.pop();Node *a=st.top();st.pop();\n                st.push(new ExprNode(s,a,b));\n            }else st.push(new ExprNode(s));\n        }\n        return st.top();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181511892",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

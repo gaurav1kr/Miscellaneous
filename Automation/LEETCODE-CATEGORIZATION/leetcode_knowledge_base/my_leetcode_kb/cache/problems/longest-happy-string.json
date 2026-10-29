@@ -1,0 +1,33 @@
+{
+  "id": "1405",
+  "title": "Longest Happy String",
+  "slug": "longest-happy-string",
+  "url": "https://leetcode.com/problems/longest-happy-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "String"
+  ],
+  "description": "A string s is called happy if it satisfies the following conditions: \n\n s only contains the letters 'a' , 'b' , and 'c' . \n \n s does not contain any of \"aaa\" , \"bbb\" , or \"ccc\" as a substring. \n \n s contains at most a occurrences of the letter 'a' . \n \n s contains at most b occurrences of the letter 'b' . \n \n s contains at most c occurrences of the letter 'c' . \n\n Given three integers a , b , and c , return the longest possible happy string . If there are multiple longest happy strings, return any of them . If there is no such string, return the empty string \"\" . \n \n A substring is a contiguous sequence of characters within a string. \n\n Example 1: \n \n```\nInput:\n a = 1, b = 1, c = 7\n\nOutput:\n \"ccaccbcc\"\n\nExplanation:\n \"ccbccacc\" would also be a correct answer.\n```\n\n Example 2: \n \n```\nInput:\n a = 7, b = 1, c = 0\n\nOutput:\n \"aabaa\"\n\nExplanation:\n It is the only correct answer in this case.\n```\n\n Constraints: \n\n 0 <= a, b, c <= 100 \n \n a + b + c > 0",
+  "code": "#include <string>\n#include <queue>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string longestDiverseString(int a, int b, int c) {\n        priority_queue<pair<int, char>> pq;\n        if (a) pq.push({a, 'a'});\n        if (b) pq.push({b, 'b'});\n        if (c) pq.push({c, 'c'});\n\n        string res;\n\n        while (!pq.empty()) {\n            auto [cnt1, ch1] = pq.top(); pq.pop();\n            if (res.size() >= 2 && res.back() == ch1 && res[res.size() - 2] == ch1) {\n                if (pq.empty()) break;\n                auto [cnt2, ch2] = pq.top(); pq.pop();\n                res += ch2;\n                if (--cnt2) pq.push({cnt2, ch2});\n                pq.push({cnt1, ch1});\n            } else {\n                res += ch1;\n                if (--cnt1) pq.push({cnt1, ch1});\n            }\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593831531",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

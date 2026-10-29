@@ -1,0 +1,27 @@
+{
+  "id": "485",
+  "title": "Max Consecutive Ones",
+  "slug": "max-consecutive-ones",
+  "url": "https://leetcode.com/problems/max-consecutive-ones/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a binary array nums , return the maximum number of consecutive 1 's in the array . \n\n Example 1: \n \n```\nInput:\n nums = [1,1,0,1,1,1]\n\nOutput:\n 3\n\nExplanation:\n The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,0,1,1,0,1]\n\nOutput:\n 2\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n nums[i] is either 0 or 1 .",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int findMaxConsecutiveOnes(vector<int>& nums) {\n        int maxCount = 0, count = 0;\n        for (int num : nums) {\n            count = (num == 1) ? count + 1 : 0;\n            maxCount = max(maxCount, count);\n        }\n        return maxCount;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588376206",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "3896",
+  "title": "Minimum Operations to Transform Array into Alternating Prime",
+  "slug": "minimum-operations-to-transform-array-into-alternating-prime",
+  "url": "https://leetcode.com/problems/minimum-operations-to-transform-array-into-alternating-prime/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting",
+    "Number Theory"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n An array is considered alternating prime if: \n\n Elements at even indices (0-based) are prime numbers. \n \n Elements at odd indices are non-prime numbers. \n\n In one operation, you may increment any element by 1. \n \n Return the minimum number of operations required to transform nums into an alternating prime array. \n \n A prime number is a natural number greater than 1 with only two factors, 1 and itself. \n\n Example 1: \n\n Input: nums = [1,2,3,4] \n \n Output: 3 \n \n Explanation: \n\n The element at index 0 must be prime. Increment nums[0] = 1 to 2, using 1 operation. \n \n The element at index 1 must be non-prime. Increment nums[1] = 2 to 4, using 2 operations. \n \n The element at index 2 is already prime. \n \n The element at index 3 is already non-prime. \n\n Total operations = 1 + 2 = 3 . \n\n Example 2: \n\n Input: nums = [5,6,7,8] \n \n Output: 0 \n \n Explanation: \n\n The elements at indices 0 and 2 are already prime. \n \n The elements at indices 1 and 3 are already non-prime. \n\n No operations are needed. \n\n Example 3: \n\n Input: nums = [4,4] \n \n Output: 1 \n \n Explanation: \n\n The element at index 0 must be prime. Increment nums[0] = 4 to 5, using 1 operation. \n \n The element at index 1 is already non-prime. \n\n Total operations = 1. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        const int M = 200000;\n        vector<bool> prime(M+1, true);\n        prime[0] = prime[1] = false;\n        for (int p = 2; p*p <= M; ++p)\n            if (prime[p])\n                for (int x = p*p; x <= M; x += p) prime[x] = false;\n        int ans = 0;\n        for (int i = 0; i < (int)nums.size(); ++i) {\n            int x = nums[i];\n            if ((i & 1) == 0) {\n                while (!prime[x]) { ++x; ++ans; }\n            } else if (prime[x]) {\n                ans += (x == 2 ? 2 : 1);\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181078613",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

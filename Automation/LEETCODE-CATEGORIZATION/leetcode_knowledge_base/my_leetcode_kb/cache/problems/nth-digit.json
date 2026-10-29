@@ -1,0 +1,26 @@
+{
+  "id": "400",
+  "title": "Nth Digit",
+  "slug": "nth-digit",
+  "url": "https://leetcode.com/problems/nth-digit/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given an integer n , return the n th digit of the infinite integer sequence [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ...] . \n\n Example 1: \n \n```\nInput:\n n = 3\n\nOutput:\n 3\n```\n\n Example 2: \n \n```\nInput:\n n = 11\n\nOutput:\n 0\n\nExplanation:\n The 11\nth\n digit of the sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ... is a 0, which is part of the number 10.\n```\n\n Constraints: \n\n 1 <= n <= 2 31 - 1",
+  "code": "#include <cmath>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findNthDigit(int n) {\n        long len = 1, base = 1, digits = 9;\n        while (n > digits * len) {\n            n -= digits * len;\n            len++;\n            base *= 10;\n            digits *= 10;\n        }\n        base += (n - 1) / len;\n        string s = to_string(base);\n        return s[(n - 1) % len] - '0';\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595399167",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

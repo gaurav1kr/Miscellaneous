@@ -1,0 +1,36 @@
+{
+  "id": "2418",
+  "title": "Sort the People",
+  "slug": "sort-the-people",
+  "url": "https://leetcode.com/problems/sort-the-people/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings names , and an array heights that consists of distinct positive integers. Both arrays are of length n . \n \n For each index i , names[i] and heights[i] denote the name and height of the i th person. \n \n Return names sorted in descending order by the people's heights . \n\n Example 1: \n \n```\nInput:\n names = [\"Mary\",\"John\",\"Emma\"], heights = [180,165,170]\n\nOutput:\n [\"Mary\",\"Emma\",\"John\"]\n\nExplanation:\n Mary is the tallest, followed by Emma and John.\n```\n\n Example 2: \n \n```\nInput:\n names = [\"Alice\",\"Bob\",\"Bob\"], heights = [155,185,150]\n\nOutput:\n [\"Bob\",\"Alice\",\"Bob\"]\n\nExplanation:\n The first Bob is the tallest, followed by Alice and the second Bob.\n```\n\n Constraints: \n\n n == names.length == heights.length \n \n 1 <= n <= 10 3 \n \n 1 <= names[i].length <= 20 \n \n 1 <= heights[i] <= 10 5 \n \n names[i] consists of lower and upper case English letters. \n \n All the values of heights are distinct.",
+  "code": "class Solution {public:vector<string> sortPeople(vector<string>& names,vector<int>& heights){int n=names.size();vector<int>ids(n);iota(ids.begin(),ids.end(),0);sort(ids.begin(),ids.end(),[&](int a,int b){return heights[a]>heights[b];});vector<string>ans;for(int i:ids)ans.push_back(names[i]);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176550298",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

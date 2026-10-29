@@ -1,0 +1,26 @@
+{
+  "id": "3136",
+  "title": "Valid Word",
+  "slug": "valid-word",
+  "url": "https://leetcode.com/problems/valid-word/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A word is considered valid if: \n\n It contains a minimum of 3 characters. \n \n It contains only digits (0-9), and English letters (uppercase and lowercase). \n \n It includes at least one vowel . \n \n It includes at least one consonant . \n\n You are given a string word . \n \n Return true if word is valid, otherwise, return false . \n \n Notes: \n\n 'a' , 'e' , 'i' , 'o' , 'u' , and their uppercases are vowels . \n \n A consonant is an English letter that is not a vowel. \n\n Example 1: \n\n Input: word = \"234Adas\" \n \n Output: true \n \n Explanation: \n \n This word satisfies the conditions. \n\n Example 2: \n\n Input: word = \"b3\" \n \n Output: false \n \n Explanation: \n \n The length of this word is fewer than 3, and does not have a vowel. \n\n Example 3: \n\n Input: word = \"a3$e\" \n \n Output: false \n \n Explanation: \n \n This word contains a '$' character and does not have a consonant. \n\n Constraints: \n\n 1 <= word.length <= 20 \n \n word consists of English uppercase and lowercase letters, digits, '@' , '#' , and '$' .",
+  "code": "class Solution {public:bool isValid(string word){if(word.size()<3)return false;bool v=false,c=false;for(char ch:word){if(!isalnum((unsigned char)ch))return false;if(isalpha((unsigned char)ch)){char x=tolower(ch);if(string(\"aeiou\").find(x)!=string::npos)v=true;else c=true;}}return v&&c;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177389716",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

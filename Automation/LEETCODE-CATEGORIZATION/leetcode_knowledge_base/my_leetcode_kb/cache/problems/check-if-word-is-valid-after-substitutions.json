@@ -1,0 +1,29 @@
+{
+  "id": "1003",
+  "title": "Check If Word Is Valid After Substitutions",
+  "slug": "check-if-word-is-valid-after-substitutions",
+  "url": "https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given a string s , determine if it is valid . \n \n A string s is valid if, starting with an empty string t = \"\" , you can transform t into s after performing the following operation any number of times : \n\n Insert string \"abc\" into any position in t . More formally, t becomes t left + \"abc\" + t right , where t == t left + t right . Note that t left and t right may be empty . \n\n Return true if s is a valid string, otherwise, return false . \n\n Example 1: \n \n```\nInput:\n s = \"aabcbc\"\n\nOutput:\n true\n\nExplanation:\n\n\"\" -> \"\nabc\n\" -> \"a\nabc\nbc\"\nThus, \"aabcbc\" is valid.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abcabcababcc\"\n\nOutput:\n true\n\nExplanation:\n\n\"\" -> \"\nabc\n\" -> \"abc\nabc\n\" -> \"abcabc\nabc\n\" -> \"abcabcab\nabc\nc\"\nThus, \"abcabcababcc\" is valid.\n```\n\n Example 3: \n \n```\nInput:\n s = \"abccba\"\n\nOutput:\n false\n\nExplanation:\n It is impossible to get \"abccba\" using the operation.\n```\n\n Constraints: \n\n 1 <= s.length <= 2 * 10 4 \n \n s consists of letters 'a' , 'b' , and 'c'",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isValid(string s) {\n        string stack;\n        for (char c : s) {\n            stack.push_back(c);\n            if (stack.size() >= 3 && stack.substr(stack.size() - 3) == \"abc\") {\n                stack.erase(stack.end() - 3, stack.end());\n            }\n        }\n        return stack.empty();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610564699",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

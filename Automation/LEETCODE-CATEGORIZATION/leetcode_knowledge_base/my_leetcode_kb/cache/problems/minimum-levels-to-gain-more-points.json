@@ -1,0 +1,30 @@
+{
+  "id": "3096",
+  "title": "Minimum Levels to Gain More Points",
+  "slug": "minimum-levels-to-gain-more-points",
+  "url": "https://leetcode.com/problems/minimum-levels-to-gain-more-points/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a binary array possible of length n . \n \n Alice and Bob are playing a game that consists of n levels. Some of the levels in the game are impossible to clear while others can always be cleared. In particular, if possible[i] == 0 , then the i th level is impossible to clear for both the players. A player gains 1 point on clearing a level and loses 1 point if the player fails to clear it. \n \n At the start of the game, Alice will play some levels in the given order starting from the 0 th level, after which Bob will play for the rest of the levels. \n \n Alice wants to know the minimum number of levels she should play to gain more points than Bob, if both players play optimally to maximize their points. \n \n Return the minimum number of levels Alice should play to gain more points . If this is not possible, return -1 . \n \n Note that each player must play at least 1 level. \n\n Example 1: \n\n Input: possible = [1,0,1,0] \n \n Output: 1 \n \n Explanation: \n \n Let's look at all the levels that Alice can play up to: \n\n If Alice plays only level 0 and Bob plays the rest of the levels, Alice has 1 point, while Bob has -1 + 1 - 1 = -1 point. \n \n If Alice plays till level 1 and Bob plays the rest of the levels, Alice has 1 - 1 = 0 points, while Bob has 1 - 1 = 0 points. \n \n If Alice plays till level 2 and Bob plays the rest of the levels, Alice has 1 - 1 + 1 = 1 point, while Bob has -1 point. \n\n Alice must play a minimum of 1 level to gain more points. \n\n Example 2: \n\n Input: possible = [1,1,1,1,1] \n \n Output: 3 \n \n Explanation: \n \n Let's look at all the levels that Alice can play up to: \n\n If Alice plays only level 0 and Bob plays the rest of the levels, Alice has 1 point, while Bob has 4 points. \n \n If Alice plays till level 1 and Bob plays the rest of the levels, Alice has 2 points, while Bob has 3 points. \n \n If Alice plays till level 2 and Bob plays the rest of the levels, Alice has 3 points, while Bob has 2 points. \n \n If Alice plays till level 3 and Bob plays the rest of the levels, Alice has 4 points, while Bob has 1 point. \n\n Alice must play a minimum of 3 levels to gain more points. \n\n Example 3: \n\n Input: possible = [0,0] \n \n Output: -1 \n \n Explanation: \n \n The only possible way is for both players to play 1 level each. Alice plays level 0 and loses 1 point. Bob plays level 1 and loses 1 point. As both players have equal points, Alice can't gain more points than Bob. \n\n Constraints: \n\n 2 <= n == possible.length <= 10 5 \n \n possible[i] is either 0 or 1 .",
+  "code": "class Solution {public:int minimumLevels(vector<int>& possible){int total=0;for(int x:possible)total+=x?1:-1;int s=0;for(int i=0;i+1<(int)possible.size();i++){s+=possible[i]?1:-1;if(s>total-s)return i+1;}return -1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176863405",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

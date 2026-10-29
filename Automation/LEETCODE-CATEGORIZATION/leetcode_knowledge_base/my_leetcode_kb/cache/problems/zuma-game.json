@@ -1,0 +1,38 @@
+{
+  "id": "488",
+  "title": "Zuma Game",
+  "slug": "zuma-game",
+  "url": "https://leetcode.com/problems/zuma-game/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Stack",
+    "Breadth-First Search",
+    "Memoization"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "You are playing a variation of the game Zuma. \n \n In this variation of Zuma, there is a single row of colored balls on a board, where each ball can be colored red 'R' , yellow 'Y' , blue 'B' , green 'G' , or white 'W' . You also have several colored balls in your hand. \n \n Your goal is to clear all of the balls from the board. On each turn: \n\n Pick any ball from your hand and insert it in between two balls in the row or on either end of the row. \n \n If there is a group of three or more consecutive balls of the same color , remove the group of balls from the board.\n\n If this removal causes more groups of three or more of the same color to form, then continue removing each group until there are none left. \n\n If there are no more balls on the board, then you win the game. \n \n Repeat this process until you either win or do not have any more balls in your hand. \n\n Given a string board , representing the row of balls on the board, and a string hand , representing the balls in your hand, return the minimum number of balls you have to insert to clear all the balls from the board. If you cannot clear all the balls from the board using the balls in your hand, return -1 . \n\n Example 1: \n \n```\nInput:\n board = \"WRRBBW\", hand = \"RB\"\n\nOutput:\n -1\n\nExplanation:\n It is impossible to clear all the balls. The best you can do is:\n- Insert 'R' so the board becomes WRR\nR\nBBW. W\nRRR\nBBW -> WBBW.\n- Insert 'B' so the board becomes WBB\nB\nW. W\nBBB\nW -> WW.\nThere are still balls remaining on the board, and you are out of balls to insert.\n```\n\n Example 2: \n \n```\nInput:\n board = \"WWRRBBWW\", hand = \"WRBRW\"\n\nOutput:\n 2\n\nExplanation:\n To make the board empty:\n- Insert 'R' so the board becomes WWRR\nR\nBBWW. WW\nRRR\nBBWW -> WWBBWW.\n- Insert 'B' so the board becomes WWBB\nB\nWW. WW\nBBB\nWW -> \nWWWW\n -> empty.\n2 balls from your hand were needed to clear the board.\n```\n\n Example 3: \n \n```\nInput:\n board = \"G\", hand = \"GGGGG\"\n\nOutput:\n 2\n\nExplanation:\n To make the board empty:\n- Insert 'G' so the board becomes G\nG\n.\n- Insert 'G' so the board becomes GG\nG\n. \nGGG\n -> empty.\n2 balls from your hand were needed to clear the board.\n```\n\n Constraints: \n\n 1 <= board.length <= 16 \n \n 1 <= hand.length <= 5 \n \n board and hand consist of the characters 'R' , 'Y' , 'B' , 'G' , and 'W' . \n \n The initial row of balls on the board will not have any groups of three or more consecutive balls of the same color.",
+  "code": "\nclass Solution {\n    unordered_map<string, int> memo;\n    const int INF = 1000000;\n\n    string shrink(string s) {\n        bool changed = true;\n\n        while (changed) {\n            changed = false;\n\n            for (int i = 0; i < (int)s.size();) {\n                int j = i;\n\n                while (j < (int)s.size() && s[j] == s[i])\n                    ++j;\n\n                if (j - i >= 3) {\n                    s.erase(i, j - i);\n                    changed = true;\n                    break;\n                }\n\n                i = j;\n            }\n        }\n\n        return s;\n    }\n\n    int dfs(string board, vector<int>& hand) {\n        board = shrink(board);\n\n        if (board.empty())\n            return 0;\n\n        string key = board + \"#\";\n        for (char c : string(\"RYBGW\"))\n            key += to_string(hand[c - 'A']) + \",\";\n\n        if (memo.count(key))\n            return memo[key];\n\n        int ans = INF;\n\n        // Option 1: Complete and remove an existing group.\n        for (int i = 0; i < (int)board.size();) {\n            int j = i;\n\n            while (j < (int)board.size() &&\n                   board[j] == board[i])\n                ++j;\n\n            int need = 3 - (j - i);\n            int idx = board[i] - 'A';\n\n            if (need > 0 && hand[idx] >= need) {\n                hand[idx] -= need;\n\n                string next = board.substr(0, i) +\n                              board.substr(j);\n\n                int steps = dfs(next, hand);\n\n                if (steps != INF)\n                    ans = min(ans, need + steps);\n\n                hand[idx] += need;\n            }\n\n            i = j;\n        }\n\n        // Option 2: Insert a different-colored ball\n        // between two identical adjacent balls.\n        for (int i = 1; i < (int)board.size(); ++i) {\n            if (board[i - 1] != board[i])\n                continue;\n\n            for (char c : string(\"RYBGW\")) {\n                if (c == board[i])\n                    continue;\n\n                int idx = c - 'A';\n\n                if (hand[idx] == 0)\n                    continue;\n\n                hand[idx]--;\n\n                string next = board;\n                next.insert(next.begin() + i, c);\n\n                int steps = dfs(next, hand);\n\n                if (steps != INF)\n                    ans = min(ans, 1 + steps);\n\n                hand[idx]++;\n            }\n        }\n\n        return memo[key] = ans;\n    }\n\npublic:\n    int findMinStep(string board, string handStr) {\n        memo.clear();\n\n        vector<int> hand(26, 0);\n\n        for (char c : handStr)\n            hand[c - 'A']++;\n\n        int ans = dfs(board, hand);\n\n        return ans == INF ? -1 : ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181639237",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

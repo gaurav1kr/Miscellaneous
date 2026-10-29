@@ -1,0 +1,33 @@
+{
+  "id": "1394",
+  "title": "Find Lucky Integer in an Array",
+  "slug": "find-lucky-integer-in-an-array",
+  "url": "https://leetcode.com/problems/find-lucky-integer-in-an-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an array of integers arr , a lucky integer is an integer that has a frequency in the array equal to its value. \n \n Return the largest lucky integer in the array . If there is no lucky integer return -1 . \n\n Example 1: \n \n```\nInput:\n arr = [2,2,3,4]\n\nOutput:\n 2\n\nExplanation:\n The only lucky number in the array is 2 because frequency[2] == 2.\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,2,2,3,3,3]\n\nOutput:\n 3\n\nExplanation:\n 1, 2 and 3 are all lucky numbers, return the largest of them.\n```\n\n Example 3: \n \n```\nInput:\n arr = [2,2,2,3,3]\n\nOutput:\n -1\n\nExplanation:\n There are no lucky numbers in the array.\n```\n\n Constraints: \n\n 1 <= arr.length <= 500 \n \n 1 <= arr[i] <= 500",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findLucky(vector<int>& arr) {\n        unordered_map<int, int> count;\n        for (int n : arr) count[n]++;\n        int res = -1;\n        for (auto& [k, v] : count)\n            if (k == v) res = max(res, k);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612878226",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

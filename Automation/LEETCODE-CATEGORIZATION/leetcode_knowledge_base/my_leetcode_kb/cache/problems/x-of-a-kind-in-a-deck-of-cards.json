@@ -1,0 +1,38 @@
+{
+  "id": "914",
+  "title": "X of a Kind in a Deck of Cards",
+  "slug": "x-of-a-kind-in-a-deck-of-cards",
+  "url": "https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Counting",
+    "Number Theory",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array deck where deck[i] represents the number written on the i th card. \n \n Partition the cards into one or more groups such that: \n\n Each group has exactly x cards where x > 1 , and \n \n All the cards in one group have the same integer written on them. \n\n Return true if such partition is possible, or false otherwise . \n\n Example 1: \n \n```\nInput:\n deck = [1,2,3,4,4,3,2,1]\n\nOutput:\n true\n\nExplanation\n: Possible partition [1,1],[2,2],[3,3],[4,4].\n```\n\n Example 2: \n \n```\nInput:\n deck = [1,1,1,2,2,2,3,3]\n\nOutput:\n false\n\nExplanation\n: No possible partition.\n```\n\n Constraints: \n\n 1 <= deck.length <= 10 4 \n \n 0 <= deck[i] < 10 4",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <numeric>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool hasGroupsSizeX(vector<int>& deck) {\n        unordered_map<int, int> count;\n        for (int card : deck) count[card]++;\n        int gcdVal = 0;\n        for (auto& pair : count) gcdVal = gcd(gcdVal, pair.second);\n        return gcdVal >= 2;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591376070",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

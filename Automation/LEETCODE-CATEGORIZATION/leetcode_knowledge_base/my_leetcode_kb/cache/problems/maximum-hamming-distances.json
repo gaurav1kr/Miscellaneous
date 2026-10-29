@@ -1,0 +1,32 @@
+{
+  "id": "3141",
+  "title": "Maximum Hamming Distances",
+  "slug": "maximum-hamming-distances",
+  "url": "https://leetcode.com/problems/maximum-hamming-distances/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given an array nums and an integer m , with each element nums[i] satisfying 0 <= nums[i] < 2 m , return an array answer . The answer array should be of the same length as nums , where each element answer[i] represents the maximum Hamming distance between nums[i] and any other element nums[j] in the array. \n \n The Hamming distance between two binary integers is defined as the number of positions at which the corresponding bits differ (add leading zeroes if needed). \n\n Example 1: \n\n Input: nums = [9,12,9,11], m = 4 \n \n Output: [2,3,2,3] \n \n Explanation: \n \n The binary representation of nums = [1001,1100,1001,1011] . \n \n The maximum hamming distances for each index are: \n\n nums[0] : 1001 and 1100 have a distance of 2. \n \n nums[1] : 1100 and 1011 have a distance of 3. \n \n nums[2] : 1001 and 1100 have a distance of 2. \n \n nums[3] : 1011 and 1100 have a distance of 3. \n\n Example 2: \n\n Input: nums = [3,4,6,10], m = 4 \n \n Output: [3,3,2,3] \n \n Explanation: \n \n The binary representation of nums = [0011,0100,0110,1010] . \n \n The maximum hamming distances for each index are: \n\n nums[0] : 0011 and 0100 have a distance of 3. \n \n nums[1] : 0100 and 0011 have a distance of 3. \n \n nums[2] : 0110 and 1010 have a distance of 2. \n \n nums[3] : 1010 and 0100 have a distance of 3. \n\n Constraints: \n\n 1 <= m <= 17 \n \n 2 <= nums.length <= 2 m \n \n 0 <= nums[i] < 2 m",
+  "code": "class Solution {\npublic:\n    vector<int> maxHammingDistances(vector<int>& nums, int m) {\n        int N = 1 << m;\n        vector<int> dist(N, -1);\n        queue<int> q;\n        for (int x : nums) {\n            int complement = (N - 1) ^ x;\n            if (dist[complement] == -1) { dist[complement] = 0; q.push(complement); }\n        }\n        while (!q.empty()) {\n            int x = q.front(); q.pop();\n            for (int b = 0; b < m; ++b) {\n                int y = x ^ (1 << b);\n                if (dist[y] == -1) { dist[y] = dist[x] + 1; q.push(y); }\n            }\n        }\n        vector<int> ans;\n        for (int x : nums) ans.push_back(m - dist[x]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178950976",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

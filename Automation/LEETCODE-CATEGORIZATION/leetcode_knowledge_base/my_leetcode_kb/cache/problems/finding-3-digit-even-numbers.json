@@ -1,0 +1,35 @@
+{
+  "id": "2094",
+  "title": "Finding 3-Digit Even Numbers",
+  "slug": "finding-3-digit-even-numbers",
+  "url": "https://leetcode.com/problems/finding-3-digit-even-numbers/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Recursion",
+    "Sorting",
+    "Enumeration"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array digits , where each element is a digit. The array may contain duplicates. \n \n You need to find all the unique integers that follow the given requirements: \n\n The integer consists of the concatenation of three elements from digits in any arbitrary order. \n \n The integer does not have leading zeros . \n \n The integer is even . \n\n For example, if the given digits were [1, 2, 3] , integers 132 and 312 follow the requirements. \n \n Return a sorted array of the unique integers. \n\n Example 1: \n \n```\nInput:\n digits = [2,1,3,0]\n\nOutput:\n [102,120,130,132,210,230,302,310,312,320]\n\nExplanation:\n All the possible integers that follow the requirements are in the output array. \nNotice that there are no \nodd\n integers or integers with \nleading zeros\n.\n```\n\n Example 2: \n \n```\nInput:\n digits = [2,2,8,8,2]\n\nOutput:\n [222,228,282,288,822,828,882]\n\nExplanation:\n The same digit can be used as many times as it appears in digits. \nIn this example, the digit 8 is used twice each time in 288, 828, and 882.\n```\n\n Example 3: \n \n```\nInput:\n digits = [3,7,5]\n\nOutput:\n []\n\nExplanation:\n No \neven\n integers can be formed using the given digits.\n```\n\n Constraints: \n\n 3 <= digits.length <= 100 \n \n 0 <= digits[i] <= 9",
+  "code": "class Solution {\npublic:\n vector<int> findEvenNumbers(vector<int>& digits){\n  int have[10]={};for(int x:digits)++have[x];vector<int> ans;\n  for(int x=100;x<=998;x+=2){\n   int cnt[10]={},v=x;for(int j=0;j<3;++j){++cnt[v%10];v/=10;}\n   bool ok=true;for(int d=0;d<10;++d)if(cnt[d]>have[d])ok=false;\n   if(ok)ans.push_back(x);\n  }\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175734793",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

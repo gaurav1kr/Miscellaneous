@@ -1,0 +1,38 @@
+{
+  "id": "819",
+  "title": "Most Common Word",
+  "slug": "most-common-word",
+  "url": "https://leetcode.com/problems/most-common-word/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string paragraph and a string array of the banned words banned , return the most frequent word that is not banned . It is guaranteed there is at least one word that is not banned, and that the answer is unique . \n \n The words in paragraph are case-insensitive and the answer should be returned in lowercase . \n \n Note that words can not contain punctuation symbols. \n\n Example 1: \n \n```\nInput:\n paragraph = \"Bob hit a ball, the hit BALL flew far after it was hit.\", banned = [\"hit\"]\n\nOutput:\n \"ball\"\n\nExplanation:\n \n\"hit\" occurs 3 times, but it is a banned word.\n\"ball\" occurs twice (and no other word does), so it is the most frequent non-banned word in the paragraph. \nNote that words in the paragraph are not case sensitive,\nthat punctuation is ignored (even if adjacent to words, such as \"ball,\"), \nand that \"hit\" isn't the answer even though it occurs more because it is banned.\n```\n\n Example 2: \n \n```\nInput:\n paragraph = \"a.\", banned = []\n\nOutput:\n \"a\"\n```\n\n Constraints: \n\n 1 <= paragraph.length <= 1000 \n \n paragraph consists of English letters, space ' ' , or one of the symbols: \"!?',;.\" . \n \n 0 <= banned.length <= 100 \n \n 1 <= banned[i].length <= 10 \n \n banned[i] consists of only lowercase English letters.",
+  "code": "#include <string>\n#include <unordered_map>\n#include <unordered_set>\n#include <sstream>\n#include <cctype>\nusing namespace std;\n\nclass Solution {\npublic:\n    string mostCommonWord(string paragraph, vector<string>& banned) {\n        unordered_set<string> bannedSet(banned.begin(), banned.end());\n        unordered_map<string, int> wordCount;\n        string word, result;\n        int maxCount = 0;\n\n        for (char& c : paragraph) {\n            c = isalpha(c) ? tolower(c) : ' ';\n        }\n\n        stringstream ss(paragraph);\n        while (ss >> word) {\n            if (!bannedSet.count(word)) {\n                maxCount = max(maxCount, ++wordCount[word]);\n                if (wordCount[word] == maxCount) result = word;\n            }\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591367068",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

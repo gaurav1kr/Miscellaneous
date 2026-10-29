@@ -1,0 +1,28 @@
+{
+  "id": "650",
+  "title": "2 Keys Keyboard",
+  "slug": "2-keys-keyboard",
+  "url": "https://leetcode.com/problems/2-keys-keyboard/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "There is only one character 'A' on the screen of a notepad. You can perform one of two operations on this notepad for each step: \n\n Copy All: You can copy all the characters present on the screen (a partial copy is not allowed). \n \n Paste: You can paste the characters which are copied last time. \n\n Given an integer n , return the minimum number of operations to get the character 'A' exactly n times on the screen . \n\n Example 1: \n \n```\nInput:\n n = 3\n\nOutput:\n 3\n\nExplanation:\n Initially, we have one character 'A'.\nIn step 1, we use Copy All operation.\nIn step 2, we use Paste operation to get 'AA'.\nIn step 3, we use Paste operation to get 'AAA'.\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= n <= 1000",
+  "code": "class Solution \n{\npublic:\n    int minSteps(int n) \n\t{\n        int curr = 1 ;\n\t\tint steps = 0;\n\t\tint copy = 0 ;\n\t\twhile(curr < n)\n\t\t{\n\t\t\tif ( (n-curr)%curr ==0)  \n\t\t\t{\n\t\t\t\tsteps += 2 ;\n\t\t\t\tcopy = curr ;\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\tsteps += 1 ;\n\t\t\t}\n\t\t\tcurr += copy ;\n\t\t}\n\t\treturn steps ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1416382986",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

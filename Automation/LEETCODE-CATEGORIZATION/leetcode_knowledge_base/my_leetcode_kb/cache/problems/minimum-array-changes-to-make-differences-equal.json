@@ -1,0 +1,33 @@
+{
+  "id": "3224",
+  "title": "Minimum Array Changes to Make Differences Equal",
+  "slug": "minimum-array-changes-to-make-differences-equal",
+  "url": "https://leetcode.com/problems/minimum-array-changes-to-make-differences-equal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of size n where n is even , and an integer k . \n \n You can perform some changes on the array, where in one change you can replace any element in the array with any integer in the range from 0 to k . \n \n You need to perform some changes (possibly none) such that the final array satisfies the following condition: \n\n There exists an integer X such that abs(a[i] - a[n - i - 1]) = X for all (0 <= i < n) . \n\n Return the minimum number of changes required to satisfy the above condition. \n\n Example 1: \n\n Input: nums = [1,0,1,2,4,3], k = 4 \n \n Output: 2 \n \n Explanation: \nWe can perform the following changes: \n\n Replace nums[1] by 2. The resulting array is nums = [1, 2 ,1,2,4,3] . \n \n Replace nums[3] by 3. The resulting array is nums = [1,2,1, 3 ,4,3] . \n\n The integer X will be 2. \n\n Example 2: \n\n Input: nums = [0,1,2,3,3,6,5,4], k = 6 \n \n Output: 2 \n \n Explanation: \nWe can perform the following operations: \n\n Replace nums[3] by 0. The resulting array is nums = [0,1,2, 0 ,3,6,5,4] . \n \n Replace nums[4] by 4. The resulting array is nums = [0,1,2,0, 4 ,6,5,4] . \n\n The integer X will be 4. \n\n Constraints: \n\n 2 <= n == nums.length <= 10 5 \n \n n is even. \n \n 0 <= nums[i] <= k <= 10 5",
+  "code": "class Solution { public:\n int minChanges(vector<int>& nums,int k) {\n  int n=nums.size(); vector<int> diff(k+2); \n  for(int i=0;i<n/2;++i) { int a=nums[i],b=nums[n-1-i],d=abs(a-b),reach=max({a,b,k-a,k-b});\n   diff[0]++; diff[d]--; diff[d+1]++; diff[reach+1]++; }\n  int best=INT_MAX,cur=0; for(int x=0;x<=k;++x) {cur+=diff[x];best=min(best,cur);} return best;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177428497",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

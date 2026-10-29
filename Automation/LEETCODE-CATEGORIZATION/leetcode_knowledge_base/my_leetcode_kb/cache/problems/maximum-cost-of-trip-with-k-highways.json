@@ -1,0 +1,35 @@
+{
+  "id": "2247",
+  "title": "Maximum Cost of Trip With K Highways",
+  "slug": "maximum-cost-of-trip-with-k-highways",
+  "url": "https://leetcode.com/problems/maximum-cost-of-trip-with-k-highways/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Graph Theory",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Bitmask",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "A series of highways connect n cities numbered from 0 to n - 1 . You are given a 2D integer array highways where highways[i] = [city1 i , city2 i , toll i ] indicates that there is a highway that connects city1 i and city2 i , allowing a car to go from city1 i to city2 i and vice versa for a cost of toll i . \n \n You are also given an integer k . You are going on a trip that crosses exactly k highways. You may start at any city, but you may only visit each city at most once during your trip. \n \n Return the maximum cost of your trip. If there is no trip that meets the requirements, return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/04/18/image-20220418173304-1.png] \n \n```\nInput:\n n = 5, highways = [[0,1,4],[2,1,3],[1,4,11],[3,2,3],[3,4,2]], k = 3\n\nOutput:\n 17\n\nExplanation:\n\nOne possible trip is to go from 0 -> 1 -> 4 -> 3. The cost of this trip is 4 + 11 + 2 = 17.\nAnother possible trip is to go from 4 -> 1 -> 2 -> 3. The cost of this trip is 11 + 3 + 3 = 17.\nIt can be proven that 17 is the maximum possible cost of any valid trip.\n\nNote that the trip 4 -> 1 -> 0 -> 1 is not allowed because you visit the city 1 twice.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/04/18/image-20220418173342-2.png] \n \n```\nInput:\n n = 4, highways = [[0,1,3],[2,3,2]], k = 2\n\nOutput:\n -1\n\nExplanation:\n There are no valid trips of length 2, so return -1.\n```\n\n Constraints: \n\n 2 <= n <= 15 \n \n 1 <= highways.length <= 50 \n \n highways[i].length == 3 \n \n 0 <= city1 i , city2 i <= n - 1 \n \n city1 i != city2 i \n \n 0 <= toll i <= 100 \n \n 1 <= k <= 50 \n \n There are no duplicate highways.",
+  "code": "class Solution {\npublic:\n    int maximumCost(int n, vector<vector<int>>& highways, int k) {\n        if (k >= n) return -1;\n        vector<vector<pair<int, int>>> graph(n);\n        for (auto& e : highways) {\n            graph[e[0]].push_back({e[1], e[2]});\n            graph[e[1]].push_back({e[0], e[2]});\n        }\n        int states = 1 << n;\n        vector<vector<int>> dp(states, vector<int>(n, -1));\n        for (int i = 0; i < n; ++i) dp[1 << i][i] = 0;\n        int answer = -1;\n        for (int mask = 1; mask < states; ++mask) {\n            int count = __builtin_popcount((unsigned)mask);\n            if (count > k + 1) continue;\n            for (int u = 0; u < n; ++u) if (dp[mask][u] >= 0) {\n                if (count == k + 1) { answer = max(answer, dp[mask][u]); continue; }\n                for (auto edge : graph[u]) if (!(mask & (1 << edge.first))) {\n                    int next = mask | (1 << edge.first);\n                    dp[next][edge.first] = max(dp[next][edge.first], dp[mask][u] + edge.second);\n                }\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178848543",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

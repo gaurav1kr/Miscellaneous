@@ -1,0 +1,27 @@
+{
+  "id": "3708",
+  "title": "Longest Fibonacci Subarray",
+  "slug": "longest-fibonacci-subarray",
+  "url": "https://leetcode.com/problems/longest-fibonacci-subarray/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array of positive integers nums . \n \n A Fibonacci array is a contiguous sequence whose third and subsequent terms each equal the sum of the two preceding terms. \n \n Return the length of the longest Fibonacci subarray in nums . \n \n Note: Subarrays of length 1 or 2 are always Fibonacci . \n\n Example 1: \n\n Input: nums = [1,1,1,1,2,3,5,1] \n \n Output: 5 \n \n Explanation: \n \n The longest Fibonacci subarray is nums[2..6] = [1, 1, 2, 3, 5] . \n \n [1, 1, 2, 3, 5] is Fibonacci because 1 + 1 = 2 , 1 + 2 = 3 , and 2 + 3 = 5 . \n\n Example 2: \n\n Input: nums = [5,2,7,9,16] \n \n Output: 5 \n \n Explanation: \n \n The longest Fibonacci subarray is nums[0..4] = [5, 2, 7, 9, 16] . \n \n [5, 2, 7, 9, 16] is Fibonacci because 5 + 2 = 7 , 2 + 7 = 9 , and 7 + 9 = 16 . \n\n Example 3: \n\n Input: nums = [1000000000,1000000000,1000000000] \n \n Output: 2 \n \n Explanation: \n \n The longest Fibonacci subarray is nums[1..2] = [1000000000, 1000000000] . \n \n [1000000000, 1000000000] is Fibonacci because its length is 2. \n\n Constraints: \n\n 3 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {\npublic:\n    int longestSubarray(vector<int>& nums) {\n        int n = nums.size(), run = 2, best = min(n, 2);\n        for (int i = 2; i < n; ++i) {\n            if (1LL * nums[i - 2] + nums[i - 1] == nums[i]) ++run;\n            else run = 2;\n            best = max(best, run);\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179732422",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

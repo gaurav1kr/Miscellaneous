@@ -1,0 +1,35 @@
+{
+  "id": "736",
+  "title": "Parse Lisp Expression",
+  "slug": "parse-lisp-expression",
+  "url": "https://leetcode.com/problems/parse-lisp-expression/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a string expression representing a Lisp-like expression to return the integer value of. \n \n The syntax for these expressions is given as follows. \n\n An expression is either an integer, let expression, add expression, mult expression, or an assigned variable. Expressions always evaluate to a single integer. \n \n (An integer could be positive or negative.) \n \n A let expression takes the form \"(let v 1 e 1 v 2 e 2 ... v n e n expr)\" , where let is always the string \"let\" , then there are one or more pairs of alternating variables and expressions, meaning that the first variable v 1 is assigned the value of the expression e 1 , the second variable v 2 is assigned the value of the expression e 2 , and so on sequentially; and then the value of this let expression is the value of the expression expr . \n \n An add expression takes the form \"(add e 1 e 2 )\" where add is always the string \"add\" , there are always two expressions e 1 , e 2 and the result is the addition of the evaluation of e 1 and the evaluation of e 2 . \n \n A mult expression takes the form \"(mult e 1 e 2 )\" where mult is always the string \"mult\" , there are always two expressions e 1 , e 2 and the result is the multiplication of the evaluation of e1 and the evaluation of e2. \n \n For this question, we will use a smaller subset of variable names. A variable starts with a lowercase letter, then zero or more lowercase letters or digits. Additionally, for your convenience, the names \"add\" , \"let\" , and \"mult\" are protected and will never be used as variable names. \n \n Finally, there is the concept of scope. When an expression of a variable name is evaluated, within the context of that evaluation, the innermost scope (in terms of parentheses) is checked first for the value of that variable, and then outer scopes are checked sequentially. It is guaranteed that every expression is legal. Please see the examples for more details on the scope. \n\n Example 1: \n \n```\nInput:\n expression = \"(let x 2 (mult x (let x 3 y 4 (add x y))))\"\n\nOutput:\n 14\n\nExplanation:\n In the expression (add x y), when checking for the value of the variable x,\nwe check from the innermost scope to the outermost in the context of the variable we are trying to evaluate.\nSince x = 3 is found first, the value of x is 3.\n```\n\n Example 2: \n \n```\nInput:\n expression = \"(let x 3 x 2 x)\"\n\nOutput:\n 2\n\nExplanation:\n Assignment in let statements is processed sequentially.\n```\n\n Example 3: \n \n```\nInput:\n expression = \"(let x 1 y 2 x (add x y) (add x y))\"\n\nOutput:\n 5\n\nExplanation:\n The first (add x y) evaluates as 3, and is assigned to x.\nThe second (add x y) evaluates as 3+2 = 5.\n```\n\n Constraints: \n\n 1 <= expression.length <= 2000 \n \n There are no leading or trailing spaces in expression . \n \n All tokens are separated by a single space in expression . \n \n The answer and all intermediate calculations of that answer are guaranteed to fit in a 32-bit integer. \n \n The expression is guaranteed to be legal and evaluate to an integer.",
+  "code": "class Solution {\npublic:\n\n    string read_inst(string& exp, int& i){\n        string inst;\n        if (exp[i] == '-') inst += exp[i++];\n        while(i<size(exp) && isalnum(exp[i])){\n            inst += exp[i++];\n        }\n        return inst;\n    }\n    void restore_vars(unordered_map<string, int>& vars,unordered_map<string, int>& new_vars){\n        for(auto& [var_name, prev_val]: new_vars){\n            if (prev_val == INT_MAX)\n                vars.erase(var_name);\n            else\n                vars[var_name] = prev_val;\n        }\n    }\n\n    // Returns value of expression starts in indx i\n    // expression is a variable, integer or one of [\"let\",\"add\",\"mult\"]\n    int eval_aux(string& exp,unordered_map<string, int>& vars, int& i){\n        int n = size(exp);\n        if (exp[i] == '(' ) i++;\n        \n        while(i< n){\n            string inst = read_inst(exp,i);\n            \n            // integer exp\n            if (inst[0] == '-' || isdigit(inst[0]))\n                return stoi(inst);\n            \n            //  variable exp\n            if(vars.count(inst)){\n                return vars[inst];\n            }\n            if (inst == \"let\"){\n                unordered_map<string, int> new_vars;\n\n                while (true){\n                    string var_name = read_inst(exp, ++i);\n                    // last operand reached\n                    if (var_name.empty() || exp[i] == ')'){\n                        int return_val;\n                        if (var_name.empty()) // new parentheses expression\n                            return_val =  eval_aux(exp,vars, i);\n                        else                  // a variable name or an integer\n                            return_val = islower(var_name[0]) ? vars[var_name] : stoi(var_name);\n                        ++i; // skip ')'\n                        restore_vars(vars, new_vars);\n                        return return_val;\n                    }\n                    // store a new variable\n                    if (new_vars.count(var_name) == 0)\n                        new_vars[var_name] = vars.count(var_name) ? vars[var_name] : INT_MAX;\n                    vars[var_name] = eval_aux(exp,vars, ++i);\n                }\n\n            }\n            // instruction is \"add\" or \"mult\"\n            else{\n                int arg1 = eval_aux(exp, vars, ++i);\n                int arg2 = eval_aux(exp, vars, ++i);\n                ++i; // skip ')'\n                return (inst == \"add\") ? arg1+arg2 : arg1*arg2;\n\n            }\n        }\n        return -1; // should not reach here\n    }\n\n    int evaluate(string exp) {\n        int i=0;\n        unordered_map<string, int> vars;\n        return eval_aux(exp,vars,i);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617064686",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "2917",
+  "title": "Find the K-or of an Array",
+  "slug": "find-the-k-or-of-an-array",
+  "url": "https://leetcode.com/problems/find-the-k-or-of-an-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums , and an integer k . Let's introduce  K-or operation by extending the standard bitwise OR. In K-or, a bit position in the result is set to 1  if at least k numbers in nums have a 1 in that position. \n \n Return the K-or of nums . \n\n Example 1: \n\n Input: nums = [7,12,9,8,9,15], k = 4 \n \n Output: 9 \n \n Explanation: \n \n Represent numbers in binary: \n\n Number \n Bit 3 \n Bit 2 \n Bit 1 \n Bit 0 \n\n 7 \n 0 \n 1 \n 1 \n 1 \n\n 12 \n 1 \n 1 \n 0 \n 0 \n\n 9 \n 1 \n 0 \n 0 \n 1 \n\n 8 \n 1 \n 0 \n 0 \n 0 \n\n 9 \n 1 \n 0 \n 0 \n 1 \n\n 15 \n 1 \n 1 \n 1 \n 1 \n\n Result = 9 \n 1 \n 0 \n 0 \n 1 \n\n Bit 0 is set in 7, 9, 9, and 15. Bit 3 is set in 12, 9, 8, 9, and 15. \nOnly bits 0 and 3 qualify. The result is (1001) 2 = 9 . \n\n Example 2: \n\n Input: nums = [2,12,1,11,4,5], k = 6 \n \n Output: 0 \n \n Explanation:  No bit appears as 1 in all six array numbers, as required for K-or with k = 6 . Thus, the result is 0. \n\n Example 3: \n\n Input: nums = [10,8,5,9,11,6,8], k = 1 \n \n Output: 15 \n \n Explanation: Since k == 1 , the 1-or of the array is equal to the bitwise OR of all its elements. Hence, the answer is 10 OR 8 OR 5 OR 9 OR 11 OR 6 OR 8 = 15 . \n\n Constraints: \n\n 1 <= nums.length <= 50 \n \n 0 <= nums[i] < 2 31 \n \n 1 <= k <= nums.length",
+  "code": "class Solution{public:int findKOr(vector<int>& nums,int k){int ans=0;for(int b=0;b<31;b++){int c=0;for(int x:nums)c+=(x>>b)&1;if(c>=k)ans|=1<<b;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176750389",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

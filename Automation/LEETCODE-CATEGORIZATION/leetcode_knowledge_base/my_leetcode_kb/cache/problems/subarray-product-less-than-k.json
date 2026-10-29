@@ -1,0 +1,34 @@
+{
+  "id": "713",
+  "title": "Subarray Product Less Than K",
+  "slug": "subarray-product-less-than-k",
+  "url": "https://leetcode.com/problems/subarray-product-less-than-k/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums and an integer k . \n \n Return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k . \n\n Example 1: \n \n```\nInput:\n nums = [10,5,2,6], k = 100\n\nOutput:\n 8\n\nExplanation:\n The 8 subarrays that have product less than 100 are:\n[10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6]\nNote that [10, 5, 2] is not included as the product of 100 is not strictly less than k.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3], k = 0\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= nums.length <= 3 * 10 4 \n \n 1 <= nums[i] <= 1000 \n \n 0 <= k <= 10 6",
+  "code": "class Solution \n{\npublic:\n    int numSubarrayProductLessThanK(vector<int>& nums, int k) {\n        ios_base::sync_with_stdio(false), cin.tie(NULL), cout.tie(NULL);\n        if (k == 0)\n            return 0;\n        int n = nums.size(), product = 1, cnt {};\n        int l = 0, r = 0;\n        while(r < n)\n        {\n            product *= nums[r++];\n            while(l < r && product >= k)\n                product /= nums[l++];\n            \n            cnt += (r - l);\n        }\n        return cnt;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1514591772",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

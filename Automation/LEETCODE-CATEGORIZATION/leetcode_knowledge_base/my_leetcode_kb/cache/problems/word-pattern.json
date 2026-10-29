@@ -1,0 +1,32 @@
+{
+  "id": "290",
+  "title": "Word Pattern",
+  "slug": "word-pattern",
+  "url": "https://leetcode.com/problems/word-pattern/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a pattern and a string s , find if s  follows the same pattern. \n \n Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s . Specifically: \n\n Each letter in pattern maps to exactly one unique word in s . \n \n Each unique word in s maps to exactly one letter in pattern . \n \n No two letters map to the same word, and no two words map to the same letter. \n\n Example 1: \n\n Input: pattern = \"abba\", s = \"dog cat cat dog\" \n \n Output: true \n \n Explanation: \n \n The bijection can be established as: \n\n 'a' maps to \"dog\" . \n \n 'b' maps to \"cat\" . \n\n Example 2: \n\n Input: pattern = \"abba\", s = \"dog cat cat fish\" \n \n Output: false \n\n Example 3: \n\n Input: pattern = \"aaaa\", s = \"dog cat cat dog\" \n \n Output: false \n\n Constraints: \n\n 1 <= pattern.length <= 300 \n \n pattern contains only lower-case English letters. \n \n 1 <= s.length <= 3000 \n \n s contains only lowercase English letters and spaces ' ' . \n \n s does not contain any leading or trailing spaces. \n \n All the words in s are separated by a single space .",
+  "code": "class Solution {\npublic:\n    bool wordPattern(string pattern, string s) {\n        unordered_map<char, string> pToS;\n        unordered_map<string, char> sToP;\n        istringstream in(s);\n        string word;\n        vector<string> words;\n        while (in >> word) words.push_back(word);\n        if (words.size() != pattern.size()) return false;\n        \n        for (int i = 0; i < pattern.size(); ++i) {\n            if (pToS.count(pattern[i]) && pToS[pattern[i]] != words[i]) return false;\n            if (sToP.count(words[i]) && sToP[words[i]] != pattern[i]) return false;\n            pToS[pattern[i]] = words[i];\n            sToP[words[i]] = pattern[i];\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588129297",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

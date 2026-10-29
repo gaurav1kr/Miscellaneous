@@ -1,0 +1,39 @@
+{
+  "id": "3378",
+  "title": "Count Connected Components in LCM Graph",
+  "slug": "count-connected-components-in-lcm-graph",
+  "url": "https://leetcode.com/problems/count-connected-components-in-lcm-graph/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Union-Find",
+    "Number Theory",
+    "Least Common Multiple",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums of size n and a positive integer threshold . \n \n There is a graph consisting of n nodes with the  i th  node having a value of nums[i] . Two nodes i and j in the graph are connected via an undirected edge if lcm(nums[i], nums[j]) <= threshold . \n \n Return the number of connected components in this graph. \n \n A connected component is a subgraph of a graph in which there exists a path between any two vertices, and no vertex of the subgraph shares an edge with a vertex outside of the subgraph. \n \n The term lcm(a, b) denotes the least common multiple of a and b . \n\n Example 1: \n\n Input: nums = [2,4,8,3,9], threshold = 5 \n \n Output: 4 \n \n Explanation:   \n \n [Figure: https://assets.leetcode.com/uploads/2024/10/31/example0.png] \n\n The four connected components are (2, 4) , (3) , (8) , (9) . \n\n Example 2: \n\n Input: nums = [2,4,8,3,9,12], threshold = 10 \n \n Output: 2 \n \n Explanation:   \n \n [Figure: https://assets.leetcode.com/uploads/2024/10/31/example1.png] \n \n The two connected components are (2, 3, 4, 8, 9) , and (12) . \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n All elements of nums are unique. \n \n 1 <= threshold <= 2 * 10 5",
+  "code": "class Solution {public:int countComponents(vector<int>&nums,int threshold){int n=nums.size();vector<int>p(n),sz(n,1);iota(p.begin(),p.end(),0);function<int(int)>find=[&](int x){return p[x]==x?x:p[x]=find(p[x]);};auto join=[&](int a,int b){a=find(a);b=find(b);if(a!=b)p[b]=a;};vector<int>first(threshold+1,-1);for(int i=0;i<n;i++)if(nums[i]<=threshold)for(int m=nums[i];m<=threshold;m+=nums[i]){if(first[m]==-1)first[m]=i;else join(i,first[m]);}int ans=0;for(int i=0;i<n;i++)if(find(i)==i)ans++;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177473098",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "3966",
+  "title": "Count Good Integers in a Range",
+  "slug": "count-good-integers-in-a-range",
+  "url": "https://leetcode.com/problems/count-good-integers-in-a-range/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You are given three integers l , r and k . \n \n A number is considered good if the absolute difference between every pair of adjacent digits is at most k . \n \n Return the number of good integers in the range [l, r] (inclusive). \n \n The absolute difference between values x and y is defined as abs(x - y) . \n\n Example 1: \n\n Input: l = 10, r = 15, k = 1 \n \n Output: 3 \n \n Explanation: \n\n The good integers in the range are 10, 11, and 12. \n \n For 10, abs(1 - 0) = 1 . \n \n For 11, abs(1 - 1) = 0 . \n \n For 12, abs(1 - 2) = 1 . \n \n All these differences are at most k = 1 . Thus, the answer is 3. \n\n Example 2: \n\n Input: l = 201, r = 204, k = 2 \n \n Output: 2 \n \n Explanation: \n\n The good integers in the range are 201 and 202. \n \n For 201, abs(2 - 0) = 2 and abs(0 - 1) = 1 . \n \n For 202, abs(2 - 0) = 2 and abs(0 - 2) = 2 . \n \n Thus, the answer is 2. \n\n Constraints: \n\n 10 <= l <= r <= 10 15 \n \n 0 <= k <= 9",
+  "code": "class Solution {\n    string s; int k; long long memo[20][11];\n    long long dfs(int p,int prev,bool tight){\n        if(p==(int)s.size())return 1;\n        if(!tight&&memo[p][prev]!=-1)return memo[p][prev];\n        int lim=tight?s[p]-'0':9;long long ans=0;\n        for(int d=0;d<=lim;d++){\n            if(prev!=10 && abs(prev-d)>k)continue;\n            int nxt=(prev==10&&d==0)?10:d;\n            ans+=dfs(p+1,nxt,tight&&d==lim);\n        }\n        if(!tight)memo[p][prev]=ans;\n        return ans;\n    }\n    long long calc(long long x){if(x<0)return 0;s=to_string(x);memset(memo,-1,sizeof(memo));return dfs(0,10,true);}\npublic:\n    long long goodIntegers(long long l,long long r,int K){k=K;return calc(r)-calc(l-1);}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181176090",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "823",
+  "title": "Binary Trees With Factors",
+  "slug": "binary-trees-with-factors",
+  "url": "https://leetcode.com/problems/binary-trees-with-factors/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an array of unique integers, arr , where each integer arr[i] is strictly greater than 1 . \n \n We make a binary tree using these integers, and each number may be used for any number of times. Each non-leaf node's value should be equal to the product of the values of its children. \n \n Return the number of binary trees we can make . The answer may be too large so return the answer modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n arr = [2,4]\n\nOutput:\n 3\n\nExplanation:\n We can make these trees: \n[2], [4], [4, 2, 2]\n```\n\n Example 2: \n \n```\nInput:\n arr = [2,4,5,10]\n\nOutput:\n 7\n\nExplanation:\n We can make these trees: \n[2], [4], [5], [10], [4, 2, 2], [10, 2, 5], [10, 5, 2]\n.\n```\n\n Constraints: \n\n 1 <= arr.length <= 1000 \n \n 2 <= arr[i] <= 10 9 \n \n All the values of arr are unique .",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numFactoredBinaryTrees(vector<int>& arr) {\n        const int MOD = 1e9 + 7;\n        sort(arr.begin(), arr.end());\n        unordered_map<int, long> dp;\n        for (int i = 0; i < arr.size(); ++i) {\n            dp[arr[i]] = 1;\n            for (int j = 0; j < i; ++j) {\n                if (arr[i] % arr[j] == 0 && dp.count(arr[i] / arr[j])) {\n                    dp[arr[i]] = (dp[arr[i]] + dp[arr[j]] * dp[arr[i] / arr[j]]) % MOD;\n                }\n            }\n        }\n\n        long res = 0;\n        for (auto& [k, v] : dp) res = (res + v) % MOD;\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593843051",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

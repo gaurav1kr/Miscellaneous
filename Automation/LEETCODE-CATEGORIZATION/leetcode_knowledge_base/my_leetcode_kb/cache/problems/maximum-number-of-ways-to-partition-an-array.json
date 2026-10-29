@@ -1,0 +1,37 @@
+{
+  "id": "2025",
+  "title": "Maximum Number of Ways to Partition an Array",
+  "slug": "maximum-number-of-ways-to-partition-an-array",
+  "url": "https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting",
+    "Enumeration",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums of length n . The number of ways to partition nums is the number of pivot indices that satisfy both conditions: \n\n 1 <= pivot < n \n \n nums[0] + nums[1] + ... + nums[pivot - 1] == nums[pivot] + nums[pivot + 1] + ... + nums[n - 1] \n\n You are also given an integer k . You can choose to change the value of one element of nums to k , or to leave the array unchanged . \n \n Return the maximum possible number of ways to partition nums to satisfy both conditions after changing at most one element . \n\n Example 1: \n \n```\nInput:\n nums = [2,-1,2], k = 3\n\nOutput:\n 1\n\nExplanation:\n One optimal approach is to change nums[0] to k. The array becomes [\n3\n,-1,2].\nThere is one way to partition the array:\n- For pivot = 2, we have the partition [3,-1 | 2]: 3 + -1 == 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,0,0], k = 1\n\nOutput:\n 2\n\nExplanation:\n The optimal approach is to leave the array unchanged.\nThere are two ways to partition the array:\n- For pivot = 1, we have the partition [0 | 0,0]: 0 == 0 + 0.\n- For pivot = 2, we have the partition [0,0 | 0]: 0 + 0 == 0.\n```\n\n Example 3: \n \n```\nInput:\n nums = [22,4,-25,-20,-15,15,-16,7,19,-10,0,-13,-14], k = -33\n\nOutput:\n 4\n\nExplanation:\n One optimal approach is to change nums[2] to k. The array becomes [22,4,\n-33\n,-20,-15,15,-16,7,19,-10,0,-13,-14].\nThere are four ways to partition the array.\n```\n\n Constraints: \n\n n == nums.length \n \n 2 <= n <= 10 5 \n \n -10 5 <= k, nums[i] <= 10 5",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int waysToPartition(vector<int>& nums, int k) {\n        int n = nums.size();\n        long long total = 0;\n        for (int x : nums) total += x;\n\n        vector<long long> prefix(n);\n        prefix[0] = nums[0];\n        for (int i = 1; i < n; ++i)\n            prefix[i] = prefix[i - 1] + nums[i];\n\n        unordered_map<long long, int> left, right;\n        for (int i = 0; i < n - 1; ++i)\n            right[prefix[i]]++;\n\n        int res = right[total / 2 * 2 == total ? total / 2 : LLONG_MIN];\n\n        for (int i = 0; i < n; ++i) {\n            long long delta = k - nums[i];\n            int cnt = 0;\n            if ((total + delta) % 2 == 0) {\n                long long target = (total + delta) / 2;\n                cnt = left[target] + right[target - delta];\n            }\n            res = max(res, cnt);\n            if (i < n - 1) {\n                right[prefix[i]]--;\n                left[prefix[i]]++;\n            }\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1603202946",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

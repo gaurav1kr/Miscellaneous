@@ -1,0 +1,32 @@
+{
+  "id": "2438",
+  "title": "Range Product Queries of Powers",
+  "slug": "range-product-queries-of-powers",
+  "url": "https://leetcode.com/problems/range-product-queries-of-powers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given a positive integer n , there exists a 0-indexed array called powers , composed of the minimum number of powers of 2 that sum to n . The array is sorted in non-decreasing order, and there is only one way to form the array. \n \n You are also given a 0-indexed 2D integer array queries , where queries[i] = [left i , right i ] . Each queries[i] represents a query where you have to find the product of all powers[j] with left i <= j <= right i . \n \n Return an array answers , equal in length to queries , where answers[i] is the answer to the i th query . Since the answer to the i th query may be too large, each answers[i] should be returned modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 15, queries = [[0,1],[2,2],[0,3]]\n\nOutput:\n [2,4,64]\n\nExplanation:\n\nFor n = 15, powers = [1,2,4,8]. It can be shown that powers cannot be a smaller size.\nAnswer to 1st query: powers[0] * powers[1] = 1 * 2 = 2.\nAnswer to 2nd query: powers[2] = 4.\nAnswer to 3rd query: powers[0] * powers[1] * powers[2] * powers[3] = 1 * 2 * 4 * 8 = 64.\nEach answer modulo 10\n9\n + 7 yields the same answer, so [2,4,64] is returned.\n```\n\n Example 2: \n \n```\nInput:\n n = 2, queries = [[0,0]]\n\nOutput:\n [2]\n\nExplanation:\n\nFor n = 2, powers = [2].\nThe answer to the only query is powers[0] = 2. The answer modulo 10\n9\n + 7 is the same, so [2] is returned.\n```\n\n Constraints: \n\n 1 <= n <= 10 9 \n \n 1 <= queries.length <= 10 5 \n \n 0 <= start i <= end i < powers.length",
+  "code": "class Solution { public: vector<int> productQueries(int n,vector<vector<int>>& queries){const long long MOD=1000000007;vector<long long> a;for(int b=0;b<31;++b)if(n&(1<<b))a.push_back(1LL<<b);vector<int> ans;for(auto &q:queries){long long p=1;for(int i=q[0];i<=q[1];++i)p=p*a[i]%MOD;ans.push_back((int)p);}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176561602",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

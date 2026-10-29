@@ -1,0 +1,31 @@
+{
+  "id": "2534",
+  "title": "Time Taken to Cross the Door",
+  "slug": "time-taken-to-cross-the-door",
+  "url": "https://leetcode.com/problems/time-taken-to-cross-the-door/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Queue",
+    "Simulation"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There are n persons numbered from 0 to n - 1 and a door. Each person can enter or exit through the door once, taking one second. \n \n You are given a non-decreasing integer array arrival of size n , where arrival[i] is the arrival time of the i th person at the door. You are also given an array state of size n , where state[i] is 0 if person i wants to enter through the door or 1 if they want to exit through the door. \n \n If two or more persons want to use the door at the same time, they follow the following rules: \n\n If the door was not used in the previous second, then the person who wants to exit goes first. \n \n If the door was used in the previous second for entering , the person who wants to enter goes first. \n \n If the door was used in the previous second for exiting , the person who wants to exit goes first. \n \n If multiple persons want to go in the same direction, the person with the smallest index goes first. \n\n Return an array answer of size n where answer[i] is the second at which the i th person crosses the door . \n \n Note that: \n\n Only one person can cross the door at each second. \n \n A person may arrive at the door and wait without entering or exiting to follow the mentioned rules. \n\n Example 1: \n \n```\nInput:\n arrival = [0,1,1,2,4], state = [0,1,0,0,1]\n\nOutput:\n [0,3,1,2,4]\n\nExplanation:\n At each second we have the following:\n- At t = 0: Person 0 is the only one who wants to enter, so they just enter through the door.\n- At t = 1: Person 1 wants to exit, and person 2 wants to enter. Since the door was used the previous second for entering, person 2 enters.\n- At t = 2: Person 1 still wants to exit, and person 3 wants to enter. Since the door was used the previous second for entering, person 3 enters.\n- At t = 3: Person 1 is the only one who wants to exit, so they just exit through the door.\n- At t = 4: Person 4 is the only one who wants to exit, so they just exit through the door.\n```\n\n Example 2: \n \n```\nInput:\n arrival = [0,0,0], state = [1,0,1]\n\nOutput:\n [0,2,1]\n\nExplanation:\n At each second we have the following:\n- At t = 0: Person 1 wants to enter while persons 0 and 2 want to exit. Since the door was not used in the previous second, the persons who want to exit get to go first. Since person 0 has a smaller index, they exit first.\n- At t = 1: Person 1 wants to enter, and person 2 wants to exit. Since the door was used in the previous second for exiting, person 2 exits.\n- At t = 2: Person 1 is the only one who wants to enter, so they just enter through the door.\n```\n\n Constraints: \n\n n == arrival.length == state.length \n \n 1 <= n <= 10 5 \n \n 0 <= arrival[i] <= n \n \n arrival is sorted in non-decreasing order. \n \n state[i] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n    vector<int> timeTaken(vector<int>& arrival, vector<int>& state) {\n        int n = arrival.size();\n        queue<int> q[2];\n        vector<int> result(n);\n        int i = 0, done = 0, t = 0, previous = 1;\n        while (done < n) {\n            if (q[0].empty() && q[1].empty() && i < n && t < arrival[i]) {\n                t = arrival[i];\n                previous = 1;\n            }\n            while (i < n && arrival[i] <= t) {\n                q[state[i]].push(i++);\n            }\n            int direction = !q[previous].empty() ? previous : 1 - previous;\n            if (q[direction].empty()) continue;\n            int person = q[direction].front();\n            q[direction].pop();\n            result[person] = t++;\n            previous = direction;\n            ++done;\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178886092",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

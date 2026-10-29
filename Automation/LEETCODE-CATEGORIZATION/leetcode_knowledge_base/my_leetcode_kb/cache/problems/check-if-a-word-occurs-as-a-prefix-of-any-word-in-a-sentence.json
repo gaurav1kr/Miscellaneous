@@ -1,0 +1,29 @@
+{
+  "id": "1455",
+  "title": "Check If a Word Occurs As a Prefix of Any Word in a Sentence",
+  "slug": "check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence",
+  "url": "https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "String Matching"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a sentence that consists of some words separated by a single space , and a searchWord , check if searchWord is a prefix of any word in sentence . \n \n Return the index of the word in sentence ( 1-indexed ) where searchWord is a prefix of this word . If searchWord is a prefix of more than one word, return the index of the first word (minimum index) . If there is no such word return -1 . \n \n A prefix of a string s is any leading contiguous substring of s . \n\n Example 1: \n \n```\nInput:\n sentence = \"i love eating burger\", searchWord = \"burg\"\n\nOutput:\n 4\n\nExplanation:\n \"burg\" is prefix of \"burger\" which is the 4th word in the sentence.\n```\n\n Example 2: \n \n```\nInput:\n sentence = \"this problem is an easy problem\", searchWord = \"pro\"\n\nOutput:\n 2\n\nExplanation:\n \"pro\" is prefix of \"problem\" which is the 2nd and the 6th word in the sentence, but we return 2 as it's the minimal index.\n```\n\n Example 3: \n \n```\nInput:\n sentence = \"i am tired\", searchWord = \"you\"\n\nOutput:\n -1\n\nExplanation:\n \"you\" is not a prefix of any word in the sentence.\n```\n\n Constraints: \n\n 1 <= sentence.length <= 100 \n \n 1 <= searchWord.length <= 10 \n \n sentence consists of lowercase English letters and spaces. \n \n searchWord consists of lowercase English letters.",
+  "code": "#include <string>\n#include <sstream>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int isPrefixOfWord(string sentence, string searchWord) {\n        stringstream ss(sentence);\n        string word;\n        int index = 1;\n        while (ss >> word) {\n            if (word.find(searchWord) == 0) return index;\n            index++;\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610583959",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "1062",
+  "title": "Longest Repeating Substring",
+  "slug": "longest-repeating-substring",
+  "url": "https://leetcode.com/problems/longest-repeating-substring/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Binary Search",
+    "Dynamic Programming",
+    "Rolling Hash",
+    "Suffix Array",
+    "Hash Function",
+    "Suffix Automaton",
+    "Suffix Tree"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , return the length of the longest repeating substrings . If no repeating substring exists, return 0 . \n\n Example 1: \n \n```\nInput:\n s = \"abcd\"\n\nOutput:\n 0\n\nExplanation: \nThere is no repeating substring.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abbaba\"\n\nOutput:\n 2\n\nExplanation: \nThe longest repeating substrings are \"ab\" and \"ba\", each of which occurs twice.\n```\n\n Example 3: \n \n```\nInput:\n s = \"aabcaabdaab\"\n\nOutput:\n 3\n\nExplanation: \nThe longest repeating substring is \"aab\", which occurs \n3\n times.\n```\n\n Constraints: \n\n 1 <= s.length <= 2000 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int longestRepeatingSubstring(string s) {\n        int n = s.size();\n        vector<int> dp(n + 1, 0);\n        int answer = 0;\n        for (int i = 1; i <= n; ++i) {\n            for (int j = n; j > i; --j) {\n                if (s[i - 1] == s[j - 1]) {\n                    dp[j] = dp[j - 1] + 1;\n                    answer = max(answer, dp[j]);\n                } else {\n                    dp[j] = 0;\n                }\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178519010",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "1185",
+  "title": "Day of the Week",
+  "slug": "day-of-the-week",
+  "url": "https://leetcode.com/problems/day-of-the-week/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "Given a date, return the corresponding day of the week for that date. \n \n The input is given as three integers representing the day , month and year respectively. \n \n Return the answer as one of the following values  {\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"} . \n \n Note: January 1, 1971 was a Friday. \n\n Example 1: \n \n```\nInput:\n day = 31, month = 8, year = 2019\n\nOutput:\n \"Saturday\"\n```\n\n Example 2: \n \n```\nInput:\n day = 18, month = 7, year = 1999\n\nOutput:\n \"Sunday\"\n```\n\n Example 3: \n \n```\nInput:\n day = 15, month = 8, year = 1993\n\nOutput:\n \"Sunday\"\n```\n\n Constraints: \n\n The given dates are valid dates between the years 1971 and 2100 .",
+  "code": "class Solution {\npublic:\n    string dayOfTheWeek(int day, int month, int year) {\n        vector<string> days = {\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"};\n        tm time_in = {};\n        time_in.tm_year = year - 1900;\n        time_in.tm_mon = month - 1;\n        time_in.tm_mday = day;\n        mktime(&time_in);\n        return days[time_in.tm_wday];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612881594",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "564",
+  "title": "Find the Closest Palindrome",
+  "slug": "find-the-closest-palindrome",
+  "url": "https://leetcode.com/problems/find-the-closest-palindrome/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Ordered set",
+    "String"
+  ],
+  "description": "Given a string n representing an integer, return the closest integer (not including itself), which is a palindrome . If there is a tie, return the smaller one . \n \n The closest is defined as the absolute difference minimized between two integers. \n\n Example 1: \n \n```\nInput:\n n = \"123\"\n\nOutput:\n \"121\"\n```\n\n Example 2: \n \n```\nInput:\n n = \"1\"\n\nOutput:\n \"0\"\n\nExplanation:\n 0 and 2 are the closest palindromes but we return the smallest which is 0.\n```\n\n Constraints: \n\n 1 <= n.length <= 18 \n \n n consists of only digits. \n \n n does not have leading zeros. \n \n n is representing an integer in the range [1, 10 18 - 1] .",
+  "code": "#include <string>\n#include <cmath>\n#include <set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string nearestPalindromic(string n) {\n        long num = stol(n);\n        int len = n.size();\n        set<long> candidates;\n\n        candidates.insert((long)pow(10, len) + 1);\n        candidates.insert((long)pow(10, len - 1) - 1);\n\n        long prefix = stol(n.substr(0, (len + 1) / 2));\n        for (int i = -1; i <= 1; ++i) {\n            string p = to_string(prefix + i);\n            string pal = p + string(p.rbegin() + (len % 2), p.rend());\n            candidates.insert(stol(pal));\n        }\n\n        candidates.erase(num);\n        long res = -1, diff = LONG_MAX;\n        for (long c : candidates) {\n            if (abs(c - num) < diff || (abs(c - num) == diff && c < res)) {\n                diff = abs(c - num);\n                res = c;\n            }\n        }\n        return to_string(res);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610582593",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

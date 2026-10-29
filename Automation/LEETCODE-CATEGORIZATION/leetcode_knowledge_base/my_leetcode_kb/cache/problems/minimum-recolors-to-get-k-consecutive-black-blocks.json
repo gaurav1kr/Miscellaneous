@@ -1,0 +1,28 @@
+{
+  "id": "2379",
+  "title": "Minimum Recolors to Get K Consecutive Black Blocks",
+  "slug": "minimum-recolors-to-get-k-consecutive-black-blocks",
+  "url": "https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a 0-indexed string blocks of length n , where blocks[i] is either 'W' or 'B' , representing the color of the i th block. The characters 'W' and 'B' denote the colors white and black, respectively. \n \n You are also given an integer k , which is the desired number of consecutive black blocks. \n \n In one operation, you can recolor a white block such that it becomes a black block. \n \n Return the minimum number of operations needed such that there is at least one occurrence of k consecutive black blocks. \n\n Example 1: \n \n```\nInput:\n blocks = \"WBBWWBBWBW\", k = 7\n\nOutput:\n 3\n\nExplanation:\n\nOne way to achieve 7 consecutive black blocks is to recolor the 0th, 3rd, and 4th blocks\nso that blocks = \"BBBBBBBWBW\". \nIt can be shown that there is no way to achieve 7 consecutive black blocks in less than 3 operations.\nTherefore, we return 3.\n```\n\n Example 2: \n \n```\nInput:\n blocks = \"WBWBBBW\", k = 2\n\nOutput:\n 0\n\nExplanation:\n\nNo changes need to be made, since 2 consecutive black blocks already exist.\nTherefore, we return 0.\n```\n\n Constraints: \n\n n == blocks.length \n \n 1 <= n <= 100 \n \n blocks[i] is either 'W' or 'B' . \n \n 1 <= k <= n",
+  "code": "class Solution { public:\n    int minimumRecolors(string blocks,int k) {\n        int white=0;for(int i=0;i<k;++i)white+=blocks[i]=='W';int ans=white;\n        for(int i=k;i<(int)blocks.size();++i){white+=(blocks[i]=='W')-(blocks[i-k]=='W');ans=min(ans,white);}\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175930721",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "111",
+  "title": "Minimum Depth of Binary Tree",
+  "slug": "minimum-depth-of-binary-tree",
+  "url": "https://leetcode.com/problems/minimum-depth-of-binary-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list"
+  ],
+  "description": "Given a binary tree, find its minimum depth. \n \n The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node. \n \n Note:  A leaf is a node with no children. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/12/ex_depth.jpg] \n \n```\nInput:\n root = [3,9,20,null,null,15,7]\n\nOutput:\n 2\n```\n\n Example 2: \n \n```\nInput:\n root = [2,null,3,null,4,null,5,null,6]\n\nOutput:\n 5\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 5 ] . \n \n -1000 <= Node.val <= 1000",
+  "code": "class Solution {\npublic:\nint minDepth(TreeNode* root) {\n    if (!root) return 0;\n    queue<pair<TreeNode*, int>> q;\n    q.push({root, 1});\n    while (!q.empty()) {\n        auto [node, depth] = q.front(); q.pop();\n        if (!node->left && !node->right) return depth;\n        if (node->left) q.push({node->left, depth + 1});\n        if (node->right) q.push({node->right, depth + 1});\n    }\n    return 0;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588094701",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

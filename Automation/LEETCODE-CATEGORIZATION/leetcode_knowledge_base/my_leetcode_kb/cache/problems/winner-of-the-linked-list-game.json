@@ -1,0 +1,26 @@
+{
+  "id": "3062",
+  "title": "Winner of the Linked List Game",
+  "slug": "winner-of-the-linked-list-game",
+  "url": "https://leetcode.com/problems/winner-of-the-linked-list-game/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Linked List"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "You are given the head of a linked list of even length containing integers. \n \n Each odd-indexed node contains an odd integer and each even-indexed node contains an even integer. \n \n We call each even-indexed node and its next node a pair , e.g., the nodes with indices 0 and 1 are a pair, the nodes with indices 2 and 3 are a pair, and so on. \n \n For every pair , we compare the values of the nodes in the pair: \n\n If the odd-indexed node is higher, the \"Odd\" team gets a point. \n \n If the even-indexed node is higher, the \"Even\" team gets a point. \n\n Return the name of the team with the higher points, if the points are equal, return \"Tie\" . \n\n Example 1: \n\n Input: head = [2,1] \n \n Output: \"Even\" \n \n Explanation: There is only one pair in this linked list and that is (2,1) . Since 2 > 1 , the Even team gets the point. \n \n Hence, the answer would be \"Even\" . \n\n Example 2: \n\n Input: head = [2,5,4,7,20,5] \n \n Output: \"Odd\" \n \n Explanation: There are 3 pairs in this linked list. Let's investigate each pair individually: \n \n (2,5) -> Since 2 < 5 , The Odd team gets the point. \n \n (4,7) -> Since 4 < 7 , The Odd team gets the point. \n \n (20,5) -> Since 20 > 5 , The Even team gets the point. \n \n The Odd team earned 2 points while the Even team got 1 point and the Odd team has the higher points. \n \n Hence, the answer would be \"Odd\" . \n\n Example 3: \n\n Input: head = [4,5,2,1] \n \n Output: \"Tie\" \n \n Explanation: There are 2 pairs in this linked list. Let's investigate each pair individually: \n \n (4,5) -> Since 4 < 5 , the Odd team gets the point. \n \n (2,1) -> Since 2 > 1 , the Even team gets the point. \n \n Both teams earned 1 point. \n \n Hence, the answer would be \"Tie\" . \n\n Constraints: \n\n The number of nodes in the list is in the range [2, 100] . \n \n The number of nodes in the list is even. \n \n 1 <= Node.val <= 100 \n \n The value of each odd-indexed node is odd. \n \n The value of each even-indexed node is even.",
+  "code": "class Solution {\npublic:\n    string gameResult(ListNode* head) {\n        int even = 0, odd = 0;\n        while (head && head->next) {\n            if (head->val > head->next->val) ++even;\n            else ++odd;\n            head = head->next->next;\n        }\n        return even > odd ? \"Even\" : odd > even ? \"Odd\" : \"Tie\";\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178938525",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

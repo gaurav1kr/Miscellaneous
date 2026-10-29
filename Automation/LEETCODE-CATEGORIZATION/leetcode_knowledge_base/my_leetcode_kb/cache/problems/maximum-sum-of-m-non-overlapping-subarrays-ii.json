@@ -1,0 +1,44 @@
+{
+  "id": "3957",
+  "title": "Maximum Sum of M Non-Overlapping Subarrays II",
+  "slug": "maximum-sum-of-m-non-overlapping-subarrays-ii",
+  "url": "https://leetcode.com/problems/maximum-sum-of-m-non-overlapping-subarrays-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Queue",
+    "Sliding Window",
+    "Prefix Sum",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Deque",
+    "Monotonic deque",
+    "Prefix-sum array",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n , and three integers m , l , and r . \n \n Your task is to select at least one and at most m non-overlapping subarrays from nums such that: \n\n Each selected subarray has a length between [l, r] (inclusive). \n \n The total sum of all selected subarrays is maximized . \n\n Return the maximum total sum you can achieve. \n\n Example 1: \n\n Input: nums = [4,1,-5,2], m = 2, l = 1, r = 3 \n \n Output: 7 \n \n Explanation: \n \n One optimal strategy is to: \n\n Select the subarray [4, 1] with sum 4 + 1 = 5 and the subarray [2] with sum 2. Both subarrays have length between [l, r] . \n \n The total sum of these subarrays is 5 + 2 = 7 , which is the maximum achievable sum with at most m = 2 subarrays. \n\n Example 2: \n\n Input: nums = [1,0,3,4], m = 2, l = 1, r = 2 \n \n Output: 8 \n \n Explanation: \n \n One optimal strategy is to: \n\n Select the subarray [1] with sum 1 and the subarray [3, 4] with sum 3 + 4 = 7 . Both subarrays have length between [l, r] . \n \n The total sum of these subarrays is 1 + 7 = 8 , which is the maximum achievable sum with at most m = 2 subarrays. \n\n Example 3: \n\n Input: nums = [-1,7,-4], m = 1, l = 2, r = 3 \n \n Output: 6 \n \n Explanation: \n\n Select the subarray [-1, 7] from nums which has length between [l, r] . \n \n The total sum of this subarray is -1 + 7 = 6 , which is the maximum achievable sum with at most m = 1 subarray. \n\n Example 4: \n\n Input: nums = [-3,-4,-1], m = 2, l = 1, r = 2 \n \n Output: -1 \n \n Explanation: \n\n All subarrays of nums have negative sums. The optimal strategy is to select the subarray [-1] , which has length between [l, r] . \n \n The total sum of this subarray is -1, which is the maximum achievable sum with at most m = 2 subarrays. \n\n Constraints: \n\n 1 <= n == nums.length <= 10 5 \n \n -10 5 <= nums[i] <= 10 5 ​​​​​​​ \n \n 1 <= m <= n \n \n 1 <= l <= r <= n",
+  "code": "\nclass Solution {\n    using ll = long long;\n\n    struct State {\n        ll score;\n        int count;\n    };\n\n    int n, L, R;\n    vector<ll> pref;\n\n    bool better(const State& a, const State& b) {\n        if (a.score != b.score)\n            return a.score > b.score;\n        return a.count > b.count;\n    }\n\n    State solve(ll penalty) {\n        vector<State> dp(n + 1, {0, 0});\n        deque<int> dq;\n\n        auto candidateBetter = [&](int a, int b) {\n            ll va = dp[a].score - pref[a];\n            ll vb = dp[b].score - pref[b];\n\n            if (va != vb)\n                return va > vb;\n\n            return dp[a].count >= dp[b].count;\n        };\n\n        for (int i = 1; i <= n; ++i) {\n            dp[i] = dp[i - 1];\n\n            int add = i - L;\n\n            if (add >= 0) {\n                while (!dq.empty() &&\n                       candidateBetter(add, dq.back())) {\n                    dq.pop_back();\n                }\n\n                dq.push_back(add);\n            }\n\n            while (!dq.empty() &&\n                   dq.front() < i - R) {\n                dq.pop_front();\n            }\n\n            if (!dq.empty()) {\n                int j = dq.front();\n\n                State take = {\n                    dp[j].score + pref[i] - pref[j]\n                        - penalty,\n                    dp[j].count + 1\n                };\n\n                if (better(take, dp[i]))\n                    dp[i] = take;\n            }\n        }\n\n        return dp[n];\n    }\n\n    ll bestSingleSubarray() {\n        deque<int> dq;\n        ll ans = LLONG_MIN;\n\n        for (int i = L; i <= n; ++i) {\n            int add = i - L;\n\n            while (!dq.empty() &&\n                   pref[dq.back()] >= pref[add]) {\n                dq.pop_back();\n            }\n\n            dq.push_back(add);\n\n            while (!dq.empty() &&\n                   dq.front() < i - R) {\n                dq.pop_front();\n            }\n\n            if (!dq.empty()) {\n                ans = max(ans,\n                          pref[i] - pref[dq.front()]);\n            }\n        }\n\n        return ans;\n    }\n\npublic:\n    long long maximumSum(vector<int>& nums,\n                         int m, int l, int r) {\n        n = (int)nums.size();\n        L = l;\n        R = r;\n\n        // Required intermediate copy.\n        vector<int> fentoluric = nums;\n\n        pref.assign(n + 1, 0);\n\n        for (int i = 0; i < n; ++i) {\n            pref[i + 1] =\n                pref[i] + fentoluric[i];\n        }\n\n        // At least one subarray must be selected.\n        ll single = bestSingleSubarray();\n\n        // Without a penalty, find the unconstrained optimum.\n        State zero = solve(0);\n\n        if (zero.count == 0)\n            return single;\n\n        if (zero.count <= m)\n            return zero.score;\n\n        // Find the largest penalty that still selects\n        // more than m subarrays.\n        ll low = 0;\n        ll high = 20000000001LL;\n\n        while (low < high) {\n            ll mid = low + (high - low + 1) / 2;\n\n            State cur = solve(mid);\n\n            if (cur.count > m)\n                low = mid;\n            else\n                high = mid - 1;\n        }\n\n        State result = solve(low);\n\n        return max(single,\n                   result.score + low * (ll)m);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181670992",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

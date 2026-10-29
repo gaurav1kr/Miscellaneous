@@ -1,0 +1,29 @@
+{
+  "id": "2716",
+  "title": "Minimize String Length",
+  "slug": "minimize-string-length",
+  "url": "https://leetcode.com/problems/minimize-string-length/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Given a string s , you have two types of operation: \n\n Choose an index i in the string, and let c be the character in position i . Delete the closest occurrence of c to the left of i (if exists). \n \n Choose an index i in the string, and let c be the character in position i . Delete the closest occurrence of c to the right of i (if exists). \n\n Your task is to minimize the length of s by performing the above operations zero or more times. \n \n Return an integer denoting the length of the minimized string. \n\n Example 1: \n\n Input: s = \"aaabc\" \n \n Output: 3 \n \n Explanation: \n\n Operation 2: we choose i = 1 so c is 'a', then we remove s[2] as it is closest 'a' character to the right of s[1] . \n s becomes \"aabc\" after this. \n \n Operation 1: we choose i = 1 so c is 'a', then we remove s[0] as it is closest 'a' character to the left of s[1] . \n s becomes \"abc\" after this. \n\n Example 2: \n\n Input: s = \"cbbd\" \n \n Output: 3 \n \n Explanation: \n\n Operation 1: we choose i = 2 so c is 'b', then we remove s[1] as it is closest 'b' character to the left of s[1] . \n s becomes \"cbd\" after this. \n\n Example 3: \n\n Input: s = \"baadccab\" \n \n Output: 4 \n \n Explanation: \n\n Operation 1: we choose i = 6 so c is 'a', then we remove s[2] as it is closest 'a' character to the left of s[6] . \n s becomes \"badccab\" after this. \n \n Operation 2: we choose i = 0 so c is 'b', then we remove s[6] as it is closest 'b' character to the right of s[0] . \n s becomes \"badcca\" fter this. \n \n Operation 2: we choose i = 3 so c is 'c', then we remove s[4] as it is closest 'c' character to the right of s[3] . \n s becomes \"badca\" after this. \n \n Operation 1: we choose i = 4 so c is 'a', then we remove s[1] as it is closest 'a' character to the left of s[4] . \n s becomes \"bdca\" after this. \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s contains only lowercase English letters",
+  "code": "class Solution {public:int minimizedStringLength(string s){bool seen[26]={};int ans=0;for(char c:s)if(!seen[c-'a']){seen[c-'a']=true;++ans;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176682905",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

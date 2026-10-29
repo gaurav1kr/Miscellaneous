@@ -1,0 +1,41 @@
+{
+  "id": "2368",
+  "title": "Reachable Nodes With Restrictions",
+  "slug": "reachable-nodes-with-restrictions",
+  "url": "https://leetcode.com/problems/reachable-nodes-with-restrictions/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Hash map / hash set",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There is an undirected tree with n nodes labeled from 0 to n - 1 and n - 1 edges. \n \n You are given a 2D integer array edges of length n - 1 where edges[i] = [a i , b i ] indicates that there is an edge between nodes a i and b i in the tree. You are also given an integer array restricted which represents restricted nodes. \n \n Return the maximum number of nodes you can reach from node 0 without visiting a restricted node. \n \n Note that node 0 will not be a restricted node. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/06/15/ex1drawio.png] \n \n```\nInput:\n n = 7, edges = [[0,1],[1,2],[3,1],[4,0],[0,5],[5,6]], restricted = [4,5]\n\nOutput:\n 4\n\nExplanation:\n The diagram above shows the tree.\nWe have that [0,1,2,3] are the only nodes that can be reached from node 0 without visiting a restricted node.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/06/15/ex2drawio.png] \n \n```\nInput:\n n = 7, edges = [[0,1],[0,2],[0,5],[0,4],[3,2],[6,5]], restricted = [4,2,1]\n\nOutput:\n 3\n\nExplanation:\n The diagram above shows the tree.\nWe have that [0,5,6] are the only nodes that can be reached from node 0 without visiting a restricted node.\n```\n\n Constraints: \n\n 2 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i].length == 2 \n \n 0 <= a i , b i < n \n \n a i != b i \n \n edges represents a valid tree. \n \n 1 <= restricted.length < n \n \n 1 <= restricted[i] < n \n \n All the values of restricted are unique .",
+  "code": "class Solution { public:\n    int reachableNodes(int n,vector<vector<int>>& edges,vector<int>& restricted) {\n        vector<vector<int>> adj(n);for(auto &e:edges){adj[e[0]].push_back(e[1]);adj[e[1]].push_back(e[0]);}\n        vector<char> seen(n,0);for(int x:restricted)seen[x]=1;\n        queue<int> q;q.push(0);seen[0]=1;int ans=0;\n        while(!q.empty()){int u=q.front();q.pop();++ans;\n            for(int v:adj[u])if(!seen[v]){seen[v]=1;q.push(v);}\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175928257",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

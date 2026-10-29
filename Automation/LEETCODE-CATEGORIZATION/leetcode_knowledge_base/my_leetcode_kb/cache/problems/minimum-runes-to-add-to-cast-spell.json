@@ -1,0 +1,33 @@
+{
+  "id": "3383",
+  "title": "Minimum Runes to Add to Cast Spell",
+  "slug": "minimum-runes-to-add-to-cast-spell",
+  "url": "https://leetcode.com/problems/minimum-runes-to-add-to-cast-spell/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "Alice has just graduated from wizard school, and wishes to cast a magic spell to celebrate. The magic spell contains certain focus points where magic needs to be concentrated, and some of these focus points contain magic crystals which serve as the spell's energy source. Focus points can be linked through directed runes , which channel magic flow from one focus point to another. \n \n You are given a integer n denoting the number of focus points and an array of integers crystals where crystals[i] indicates a focus point which holds a magic crystal. You are also given two integer arrays flowFrom and flowTo , which represent the existing directed runes . The i th rune allows magic to freely flow from focus point flowFrom[i] to focus point flowTo[i] . \n \n You need to find the number of directed runes Alice must add to her spell, such that each focus point either: \n\n Contains a magic crystal. \n \n Receives magic flow from another focus point. \n\n Return the minimum number of directed runes that she should add. \n\n Example 1: \n\n Input: n = 6, crystals = [0], flowFrom = [0,1,2,3], flowTo = [1,2,3,0] \n \n Output: 2 \n \n Explanation:   \n \n [Figure: https://assets.leetcode.com/uploads/2024/11/08/runesexample0.png] \n \n Add two directed runes: \n\n From focus point 0 to focus point 4. \n \n From focus point 0 to focus point 5. \n\n Example 2: \n\n Input: n = 7, crystals = [3,5], flowFrom = [0,1,2,3,5], flowTo = [1,2,0,4,6] \n \n Output: 1 \n \n Explanation:   \n \n [Figure: https://assets.leetcode.com/uploads/2024/11/08/runesexample1.png] \n \n Add a directed rune from focus point 4 to focus point 2. \n\n Constraints: \n\n 2 <= n <= 10 5 \n \n 1 <= crystals.length <= n \n \n 0 <= crystals[i] <= n - 1 \n \n 1 <= flowFrom.length == flowTo.length <= min(2 * 10 5 , (n * (n - 1)) / 2) \n \n 0 <= flowFrom[i], flowTo[i] <= n - 1 \n \n flowFrom[i] != flowTo[i] \n \n All pre-existing directed runes are distinct .",
+  "code": "class Solution {\npublic:\n    int minRunesToAdd(int n, vector<int>& crystals, vector<int>& flowFrom, vector<int>& flowTo) {\n        vector<vector<int>> g(n), rev(n);\n        for (int i = 0; i < (int)flowFrom.size(); ++i) {\n            g[flowFrom[i]].push_back(flowTo[i]);\n            rev[flowTo[i]].push_back(flowFrom[i]);\n        }\n        vector<char> seen(n, false);\n        vector<int> order;\n        for (int s = 0; s < n; ++s) {\n            if (seen[s]) continue;\n            vector<pair<int, int>> st(1, {s, 0}); seen[s] = true;\n            while (!st.empty()) {\n                int u = st.back().first;\n                int& idx = st.back().second;\n                if (idx == (int)g[u].size()) { order.push_back(u); st.pop_back(); continue; }\n                int v = g[u][idx++];\n                if (!seen[v]) { seen[v] = true; st.push_back({v, 0}); }\n            }\n        }\n        vector<int> comp(n, -1);\n        int count = 0;\n        for (int i = n - 1; i >= 0; --i) {\n            int s = order[i];\n            if (comp[s] != -1) continue;\n            vector<int> st(1, s); comp[s] = count;\n            while (!st.empty()) {\n                int u = st.back(); st.pop_back();\n                for (int v : rev[u]) if (comp[v] == -1) { comp[v] = count; st.push_back(v); }\n            }\n            ++count;\n        }\n        vector<int> indeg(count, 0);\n        vector<char> sourceCrystal(count, false);\n        for (int x : crystals) sourceCrystal[comp[x]] = true;\n        for (int i = 0; i < (int)flowFrom.size(); ++i)\n            if (comp[flowFrom[i]] != comp[flowTo[i]]) ++indeg[comp[flowTo[i]]];\n        int ans = 0;\n        for (int i = 0; i < count; ++i)\n            if (indeg[i] == 0 && !sourceCrystal[i]) ++ans;\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179638287",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

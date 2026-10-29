@@ -1,0 +1,27 @@
+{
+  "id": "203",
+  "title": "Remove Linked List Elements",
+  "slug": "remove-linked-list-elements",
+  "url": "https://leetcode.com/problems/remove-linked-list-elements/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Recursion"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Given the head of a linked list and an integer val , remove all the nodes of the linked list that has Node.val == val , and return the new head . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/06/removelinked-list.jpg] \n \n```\nInput:\n head = [1,2,6,3,4,5,6], val = 6\n\nOutput:\n [1,2,3,4,5]\n```\n\n Example 2: \n \n```\nInput:\n head = [], val = 1\n\nOutput:\n []\n```\n\n Example 3: \n \n```\nInput:\n head = [7,7,7,7], val = 7\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the list is in the range [0, 10 4 ] . \n \n 1 <= Node.val <= 50 \n \n 0 <= val <= 50",
+  "code": "class Solution {\npublic:\n    ListNode* removeElements(ListNode* head, int val) {\n        ListNode dummy(0), *prev = &dummy;\n        dummy.next = head;\n        while (head) {\n            if (head->val == val) prev->next = head->next;\n            else prev = head;\n            head = head->next;\n        }\n        return dummy.next;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588088394",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

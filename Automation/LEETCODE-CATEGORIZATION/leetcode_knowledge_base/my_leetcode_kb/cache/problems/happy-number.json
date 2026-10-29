@@ -1,0 +1,31 @@
+{
+  "id": "202",
+  "title": "Happy Number",
+  "slug": "happy-number",
+  "url": "https://leetcode.com/problems/happy-number/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "Two Pointers",
+    "Floyd's Cycle Finding Algorithm"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map / hash set"
+  ],
+  "description": "Write an algorithm to determine if a number n is happy. \n \n A happy number is a number defined by the following process: \n\n Starting with any positive integer, replace the number by the sum of the squares of its digits. \n \n Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. \n \n Those numbers for which this process ends in 1 are happy. \n\n Return true if n is a happy number, and false if not . \n\n Example 1: \n \n```\nInput:\n n = 19\n\nOutput:\n true\n\nExplanation:\n\n1\n2\n + 9\n2\n = 82\n8\n2\n + 2\n2\n = 68\n6\n2\n + 8\n2\n = 100\n1\n2\n + 0\n2\n + 0\n2\n = 1\n```\n\n Example 2: \n \n```\nInput:\n n = 2\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= n <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    int getNext(int n) {\n        int sum = 0;\n        while (n) {\n            sum += (n % 10) * (n % 10);\n            n /= 10;\n        }\n        return sum;\n    }\n    bool isHappy(int n) {\n        int slow = n, fast = getNext(n);\n        while (fast != 1 && slow != fast) {\n            slow = getNext(slow);\n            fast = getNext(getNext(fast));\n        }\n        return fast == 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588086258",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "1556",
+  "title": "Thousand Separator",
+  "slug": "thousand-separator",
+  "url": "https://leetcode.com/problems/thousand-separator/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given an integer n , add a dot (\".\") as the thousands separator and return it in string format. \n\n Example 1: \n \n```\nInput:\n n = 987\n\nOutput:\n \"987\"\n```\n\n Example 2: \n \n```\nInput:\n n = 1234\n\nOutput:\n \"1.234\"\n```\n\n Constraints: \n\n 0 <= n <= 2 31 - 1",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string thousandSeparator(int n) {\n        if (n == 0) return \"0\";\n        string s = to_string(n), res;\n        int len = s.size();\n        for (int i = 0; i < len; ++i) {\n            if (i && (len - i) % 3 == 0) res += '.';\n            res += s[i];\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610622610",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "3582",
+  "title": "Generate Tag for Video Caption",
+  "slug": "generate-tag-for-video-caption",
+  "url": "https://leetcode.com/problems/generate-tag-for-video-caption/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string caption representing the caption for a video. \n \n The following actions must be performed in order to generate a valid tag for the video: \n\n Combine all words in the string into a single camelCase string prefixed with '#' . A camelCase string is one where the first letter of all words except the first one is capitalized. All characters after the first character in each word must be lowercase. \n\n Remove all characters that are not an English letter, except the first '#' . \n\n Truncate the result to a maximum of 100 characters. \n\n Return the tag after performing the actions on caption . \n\n Example 1: \n\n Input: caption = \"Leetcode daily streak achieved\" \n \n Output: \"#leetcodeDailyStreakAchieved\" \n \n Explanation: \n \n The first letter for all words except \"leetcode\" should be capitalized. \n\n Example 2: \n\n Input: caption = \"can I Go There\" \n \n Output: \"#canIGoThere\" \n \n Explanation: \n \n The first letter for all words except \"can\" should be capitalized. \n\n Example 3: \n\n Input: caption = \"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\" \n \n Output: \"#hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\" \n \n Explanation: \n \n Since the first word has length 101, we need to truncate the last two letters from the word. \n\n Constraints: \n\n 1 <= caption.length <= 150 \n \n caption consists only of English letters and ' ' .",
+  "code": "class Solution {public:\n string generateTag(string caption){\n  stringstream ss(caption);string w,ans=\"#\";bool first=true;\n  while(ss>>w){for(char &c:w)c=tolower((unsigned char)c);if(!first)w[0]=toupper((unsigned char)w[0]);ans+=w;first=false;}\n  if(ans.size()>100)ans.resize(100);return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177594468",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

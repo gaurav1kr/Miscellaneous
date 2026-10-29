@@ -1,0 +1,39 @@
+{
+  "id": "1617",
+  "title": "Count Subtrees With Max Distance Between Cities",
+  "slug": "count-subtrees-with-max-distance-between-cities",
+  "url": "https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Tree",
+    "Enumeration",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Backtracking / Bitmask",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Bitmask",
+    "DP array / memo table",
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There are n cities numbered from 1 to n . You are given an array edges of size n-1 , where edges[i] = [u i , v i ] represents a bidirectional edge between cities u i and v i . There exists a unique path between each pair of cities. In other words, the cities form a tree . \n \n A subtree is a subset of cities where every city is reachable from every other city in the subset, where the path between each pair passes through only the cities from the subset. Two subtrees are different if there is a city in one subtree that is not present in the other. \n \n For each d from 1 to n-1 , find the number of subtrees in which the maximum distance between any two cities in the subtree is equal to d . \n \n Return an array of size n-1 where the d th element (1-indexed) is the number of subtrees in which the maximum distance between any two cities is equal to d . \n \n Notice  that the distance between the two cities is the number of edges in the path between them. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/09/21/p1.png] \n \n```\nInput:\n n = 4, edges = [[1,2],[2,3],[2,4]]\r\n\nOutput:\n [3,4,0]\r\n\nExplanation:\r\n\nThe subtrees with subsets {1,2}, {2,3} and {2,4} have a max distance of 1.\r\nThe subtrees with subsets {1,2,3}, {1,2,4}, {2,3,4} and {1,2,3,4} have a max distance of 2.\r\nNo subtree has two nodes where the max distance between them is 3.\n```\n\n Example 2: \n \n```\nInput:\n n = 2, edges = [[1,2]]\r\n\nOutput:\n [1]\n```\n\n Example 3: \n \n```\nInput:\n n = 3, edges = [[1,2],[2,3]]\r\n\nOutput:\n [2,1]\n```\n\n Constraints: \n\n 2 <= n <= 15 \n \n edges.length == n-1 \n \n edges[i].length == 2 \n \n 1 <= u i , v i <= n \n \n All pairs (u i , v i ) are distinct.",
+  "code": "#include <vector>\n#include <queue>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> countSubgraphsForEachDiameter(int n, vector<vector<int>>& edges) {\n        vector<vector<int>> g(n);\n        for (auto& e : edges) {\n            g[e[0] - 1].push_back(e[1] - 1);\n            g[e[1] - 1].push_back(e[0] - 1);\n        }\n\n        vector<int> res(n - 1);\n        for (int mask = 1; mask < (1 << n); ++mask) {\n            vector<int> nodes;\n            for (int i = 0; i < n; ++i)\n                if (mask & (1 << i)) nodes.push_back(i);\n            if (nodes.size() < 2) continue;\n\n            unordered_set<int> seen;\n            queue<int> q;\n            q.push(nodes[0]);\n            seen.insert(nodes[0]);\n\n            while (!q.empty()) {\n                int u = q.front(); q.pop();\n                for (int v : g[u])\n                    if ((mask & (1 << v)) && !seen.count(v)) {\n                        seen.insert(v);\n                        q.push(v);\n                    }\n            }\n\n            if (seen.size() != nodes.size()) continue;\n\n            int maxDist = 0;\n            for (int u : nodes) {\n                vector<int> dist(n, -1);\n                queue<int> q;\n                q.push(u);\n                dist[u] = 0;\n                while (!q.empty()) {\n                    int x = q.front(); q.pop();\n                    for (int v : g[x])\n                        if ((mask & (1 << v)) && dist[v] == -1) {\n                            dist[v] = dist[x] + 1;\n                            maxDist = max(maxDist, dist[v]);\n                            q.push(v);\n                        }\n                }\n            }\n\n            if (maxDist > 0) res[maxDist - 1]++;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610643743",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

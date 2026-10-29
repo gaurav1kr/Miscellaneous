@@ -1,0 +1,31 @@
+{
+  "id": "226",
+  "title": "Invert Binary Tree",
+  "slug": "invert-binary-tree",
+  "url": "https://leetcode.com/problems/invert-binary-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, invert the tree, and return its root . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/14/invert1-tree.jpg] \n \n```\nInput:\n root = [4,2,7,1,3,6,9]\n\nOutput:\n [4,7,2,9,6,3,1]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/14/invert2-tree.jpg] \n \n```\nInput:\n root = [2,1,3]\n\nOutput:\n [2,3,1]\n```\n\n Example 3: \n \n```\nInput:\n root = []\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 100] . \n \n -100 <= Node.val <= 100",
+  "code": "class Solution {\npublic:\n    TreeNode* invertTree(TreeNode* root) {\n        if (!root) return nullptr;\n        swap(root->left, root->right);\n        invertTree(root->left);\n        invertTree(root->right);\n        return root;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588076956",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

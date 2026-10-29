@@ -1,0 +1,27 @@
+{
+  "id": "489",
+  "title": "Robot Room Cleaner",
+  "slug": "robot-room-cleaner",
+  "url": "https://leetcode.com/problems/robot-room-cleaner/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Backtracking",
+    "Interactive"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask"
+  ],
+  "data_structures": [
+    "Ordered set"
+  ],
+  "description": "You are controlling a robot that is located somewhere in a room. The room is modeled as an m x n binary grid where 0 represents a wall and 1 represents an empty slot. \n \n The robot starts at an unknown location in the room that is guaranteed to be empty, and you do not have access to the grid, but you can move the robot using the given API Robot . \n \n You are tasked to use the robot to clean the entire room (i.e., clean every empty cell in the room). The robot with the four given APIs can move forward, turn left, or turn right. Each turn is 90 degrees. \n \n When the robot tries to move into a wall cell, its bumper sensor detects the obstacle, and it stays on the current cell. \n \n Design an algorithm to clean the entire room using the following APIs: \n \n```\ninterface Robot {\n // returns true if next cell is open and robot moves into the cell.\n // returns false if next cell is obstacle and robot stays on the current cell.\n boolean move();\n\n // Robot will stay on the same cell after calling turnLeft/turnRight.\n // Each turn will be 90 degrees.\n void turnLeft();\n void turnRight();\n\n // Clean the current cell.\n void clean();\n}\n```\n\n Note that the initial direction of the robot will be facing up. You can assume all four edges of the grid are all surrounded by a wall. \n\n Custom testing: \n \n The input is only given to initialize the room and the robot's position internally. You must solve this problem \"blindfolded\". In other words, you must control the robot using only the four mentioned APIs without knowing the room layout and the initial robot's position. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/07/17/lc-grid.jpg] \n \n```\nInput:\n room = [[1,1,1,1,1,0,1,1],[1,1,1,1,1,0,1,1],[1,0,1,1,1,1,1,1],[0,0,0,1,0,0,0,0],[1,1,1,1,1,1,1,1]], row = 1, col = 3\n\nOutput:\n Robot cleaned all rooms.\n\nExplanation:\n All grids in the room are marked by either 0 or 1.\n0 means the cell is blocked, while 1 means the cell is accessible.\nThe robot initially starts at the position of row=1, col=3.\nFrom the top left corner, its position is one row below and three columns right.\n```\n\n Example 2: \n \n```\nInput:\n room = [[1]], row = 0, col = 0\n\nOutput:\n Robot cleaned all rooms.\n```\n\n Constraints: \n\n m == room.length \n \n n == room[i].length \n \n 1 <= m <= 100 \n \n 1 <= n <= 200 \n \n room[i][j] is either 0 or 1 . \n \n 0 <= row < m \n \n 0 <= col < n \n \n room[row][col] == 1 \n \n All the empty cells can be visited from the starting position.",
+  "code": "class Solution {\n    set<pair<int, int>> visited;\n    const int dr[4] = {-1, 0, 1, 0};\n    const int dc[4] = {0, 1, 0, -1};\n\n    void goBack(Robot& robot) {\n        robot.turnRight();\n        robot.turnRight();\n        robot.move();\n        robot.turnRight();\n        robot.turnRight();\n    }\n\n    void dfs(Robot& robot, int row, int col, int direction) {\n        visited.insert({row, col});\n        robot.clean();\n        for (int step = 0; step < 4; ++step) {\n            int nextDirection = (direction + step) % 4;\n            int nr = row + dr[nextDirection];\n            int nc = col + dc[nextDirection];\n            if (!visited.count({nr, nc}) && robot.move()) {\n                dfs(robot, nr, nc, nextDirection);\n                goBack(robot);\n            }\n            robot.turnRight();\n        }\n    }\n\npublic:\n    void cleanRoom(Robot& robot) {\n        dfs(robot, 0, 0, 0);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178473146",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

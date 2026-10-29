@@ -1,0 +1,28 @@
+{
+  "id": "61",
+  "title": "Rotate List",
+  "slug": "rotate-list",
+  "url": "https://leetcode.com/problems/rotate-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Given the head of a linked list, rotate the list to the right by k places. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/13/rotate1.jpg] \n \n```\nInput:\n head = [1,2,3,4,5], k = 2\n\nOutput:\n [4,5,1,2,3]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/11/13/roate2.jpg] \n \n```\nInput:\n head = [0,1,2], k = 4\n\nOutput:\n [2,0,1]\n```\n\n Constraints: \n\n The number of nodes in the list is in the range [0, 500] . \n \n -100 <= Node.val <= 100 \n \n 0 <= k <= 2 * 10 9",
+  "code": "\n/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* rotateRight(ListNode* head, int k) {\n        if(!head || !head->next) return head;\n        int len = 1;\n        ListNode* curr = head;\n        while(curr->next){\n            curr = curr->next;\n            len++;\n        }\n        k = len - (k%len);\n        if(k==len) return head;\n\n        ListNode* last = head;\n        while(--k){\n            last = last->next;\n        }\n        ListNode* ans = last->next;\n        curr->next = head;\n        last->next = NULL;\n\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1535853402",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

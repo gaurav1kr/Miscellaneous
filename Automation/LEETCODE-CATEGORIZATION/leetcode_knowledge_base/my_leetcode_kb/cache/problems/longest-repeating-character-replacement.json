@@ -1,0 +1,33 @@
+{
+  "id": "424",
+  "title": "Longest Repeating Character Replacement",
+  "slug": "longest-repeating-character-replacement",
+  "url": "https://leetcode.com/problems/longest-repeating-character-replacement/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "You are given a string s and an integer k . You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times. \n \n Return the length of the longest substring containing the same letter you can get after performing the above operations . \n\n Example 1: \n \n```\nInput:\n s = \"ABAB\", k = 2\n\nOutput:\n 4\n\nExplanation:\n Replace the two 'A's with two 'B's or vice versa.\n```\n\n Example 2: \n \n```\nInput:\n s = \"AABABBA\", k = 1\n\nOutput:\n 4\n\nExplanation:\n Replace the one 'A' in the middle with 'B' and form \"AABBBBA\".\nThe substring \"BBBB\" has the longest repeating letters, which is 4.\nThere may exists other ways to achieve this answer too.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of only uppercase English letters. \n \n 0 <= k <= s.length",
+  "code": "class Solution {\npublic:\n     int characterReplacement(string s, int k) {\n        unordered_map<char, int> alphabets;\n        int ans = 0;\n        int left = 0;\n        int right = 0;\n        int maxf = 0;\n\n        for (right = 0; right < s.size(); right++) {\n            alphabets[s[right]] = 1 + alphabets[s[right]];\n            maxf = max(maxf, alphabets[s[right]]);\n\n            if ((right - left + 1) - maxf > k) {\n                alphabets[s[left]] -= 1;\n                left++;\n            } else {\n                ans = max(ans, (right - left + 1));\n            }\n        }\n\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1534669131",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

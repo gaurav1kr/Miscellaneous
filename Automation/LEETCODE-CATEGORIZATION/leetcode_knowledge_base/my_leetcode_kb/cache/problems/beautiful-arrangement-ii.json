@@ -1,0 +1,29 @@
+{
+  "id": "667",
+  "title": "Beautiful Arrangement II",
+  "slug": "beautiful-arrangement-ii",
+  "url": "https://leetcode.com/problems/beautiful-arrangement-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given two integers n and k , construct a list answer that contains n different positive integers ranging from 1 to n and obeys the following requirement: \n\n Suppose this list is answer = [a 1 , a 2 , a 3 , ... , a n ] , then the list [|a 1 - a 2 |, |a 2 - a 3 |, |a 3 - a 4 |, ... , |a n-1 - a n |] has exactly k distinct integers. \n\n Return the list answer . If there multiple valid answers, return any of them . \n\n Example 1: \n \n```\nInput:\n n = 3, k = 1\n\nOutput:\n [1,2,3]\nExplanation: The [1,2,3] has three different positive integers ranging from 1 to 3, and the [1,1] has exactly 1 distinct integer: 1\n```\n\n Example 2: \n \n```\nInput:\n n = 3, k = 2\n\nOutput:\n [1,3,2]\nExplanation: The [1,3,2] has three different positive integers ranging from 1 to 3, and the [2,1] has exactly 2 distinct integers: 1 and 2.\n```\n\n Constraints: \n\n 1 <= k < n <= 10 4",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> constructArray(int n, int k) {\n        vector<int> res;\n        int l = 1, r = n;\n        while (l <= r) {\n            if (k > 1) {\n                if (k % 2)\n                    res.push_back(l++);\n                else\n                    res.push_back(r--);\n                k--;\n            } else {\n                res.push_back(l++);\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595391783",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

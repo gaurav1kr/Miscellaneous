@@ -1,0 +1,27 @@
+{
+  "id": "24",
+  "title": "Swap Nodes in Pairs",
+  "slug": "swap-nodes-in-pairs",
+  "url": "https://leetcode.com/problems/swap-nodes-in-pairs/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Recursion"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.) \n\n Example 1: \n\n Input: head = [1,2,3,4] \n \n Output: [2,1,4,3] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2020/10/03/swap_ex1.jpg] \n\n Example 2: \n\n Input: head = [] \n \n Output: [] \n\n Example 3: \n\n Input: head = [1] \n \n Output: [1] \n\n Example 4: \n\n Input: head = [1,2,3] \n \n Output: [2,1,3] \n\n Constraints: \n\n The number of nodes in the list is in the range [0, 100] . \n \n 0 <= Node.val <= 100",
+  "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* swapPairs(ListNode* head) {\n        if (!head || !head->next) return head; // Base case: If list has 0 or 1 node, no swapping needed.\n        \n        ListNode* newHead = head->next; // The new head will be the second node.\n        ListNode* prev = nullptr;\n        while (head && head->next) {\n            ListNode* first = head;\n            ListNode* second = head->next;\n            \n            // Swap the pair\n            first->next = second->next;\n            second->next = first;\n            if (prev) prev->next = second; // Connect the previous pair to the current swapped pair.\n            \n            // Move pointers forward\n            prev = first;\n            head = first->next;\n        }\n        return newHead;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1540990334",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

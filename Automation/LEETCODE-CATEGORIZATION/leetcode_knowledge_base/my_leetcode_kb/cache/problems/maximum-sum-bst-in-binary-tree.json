@@ -1,0 +1,35 @@
+{
+  "id": "1373",
+  "title": "Maximum Sum BST in Binary Tree",
+  "slug": "maximum-sum-bst-in-binary-tree",
+  "url": "https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "DP array / memo table",
+    "Tree adjacency list"
+  ],
+  "description": "Given a binary tree root , return the maximum sum of all keys of any sub-tree which is also a Binary Search Tree (BST) . \n \n Assume a BST is defined as follows: \n\n The left subtree of a node contains only nodes with keys less than the node's key. \n \n The right subtree of a node contains only nodes with keys greater than the node's key. \n \n Both the left and right subtrees must also be binary search trees. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/01/30/sample_1_1709.png] \n \n```\nInput:\n root = [1,4,3,2,4,2,5,null,null,null,null,null,null,4,6]\n\nOutput:\n 20\n\nExplanation:\n Maximum sum in a valid Binary search tree is obtained in root node with key equal to 3.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2020/01/30/sample_2_1709.png] \n \n```\nInput:\n root = [4,3,null,1,2]\n\nOutput:\n 2\n\nExplanation:\n Maximum sum in a valid Binary search tree is obtained in a single root node with key equal to 2.\n```\n\n Example 3: \n \n```\nInput:\n root = [-4,-2,-5]\n\nOutput:\n 0\n\nExplanation:\n All values are negatives. Return an empty BST.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 4 * 10 4 ] . \n \n -4 * 10 4 <= Node.val <= 4 * 10 4",
+  "code": "\nclass Solution {\n    int maxSum = 0;\n\npublic:\n    int maxSumBST(TreeNode* root) {\n        dfs(root);\n        return maxSum;\n    }\n\n    tuple<bool, int, int, int> dfs(TreeNode* node) {\n        if (!node) return {true, 0, INT_MAX, INT_MIN};\n\n        auto [l_bst, l_sum, l_min, l_max] = dfs(node->left);\n        auto [r_bst, r_sum, r_min, r_max] = dfs(node->right);\n\n        if (l_bst && r_bst && node->val > l_max && node->val < r_min) {\n            int sum = l_sum + r_sum + node->val;\n            maxSum = max(maxSum, sum);\n            return {true, sum, min(node->val, l_min), max(node->val, r_max)};\n        }\n\n        return {false, 0, 0, 0};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593833763",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

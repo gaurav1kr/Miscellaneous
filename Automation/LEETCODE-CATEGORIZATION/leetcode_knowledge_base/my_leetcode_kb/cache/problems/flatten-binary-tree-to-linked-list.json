@@ -1,0 +1,36 @@
+{
+  "id": "114",
+  "title": "Flatten Binary Tree to Linked List",
+  "slug": "flatten-binary-tree-to-linked-list",
+  "url": "https://leetcode.com/problems/flatten-binary-tree-to-linked-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Stack",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Linked list",
+    "Stack",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, flatten the tree into a \"linked list\": \n\n The \"linked list\" should use the same TreeNode class where the right child pointer points to the next node in the list and the left child pointer is always null . \n \n The \"linked list\" should be in the same order as a pre-order traversal of the binary tree. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/14/flaten.jpg] \n \n```\nInput:\n root = [1,2,5,3,4,null,6]\n\nOutput:\n [1,null,2,null,3,null,4,null,5,null,6]\n```\n\n Example 2: \n \n```\nInput:\n root = []\n\nOutput:\n []\n```\n\n Example 3: \n \n```\nInput:\n root = [0]\n\nOutput:\n [0]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 2000] . \n \n -100 <= Node.val <= 100 \n\n Follow up: Can you flatten the tree in-place (with O(1) extra space)?",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    void flatten(TreeNode* root) {\n        TreeNode* prev = nullptr;\n\n        function<void(TreeNode*)> dfs = [&](TreeNode* node) {\n            if (!node) return;\n\n            // Process the right subtree first\n            dfs(node->right);\n            // Then process the left subtree\n            dfs(node->left);\n\n            // Flatten the current node\n            node->right = prev;\n            node->left = nullptr;\n            prev = node;\n        };\n\n        dfs(root);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541871642",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

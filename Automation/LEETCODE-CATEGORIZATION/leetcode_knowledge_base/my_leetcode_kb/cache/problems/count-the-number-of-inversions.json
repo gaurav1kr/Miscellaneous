@@ -1,0 +1,30 @@
+{
+  "id": "3193",
+  "title": "Count the Number of Inversions",
+  "slug": "count-the-number-of-inversions",
+  "url": "https://leetcode.com/problems/count-the-number-of-inversions/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer n and a 2D array requirements , where requirements[i] = [end i , cnt i ] represents the end index and the inversion count of each requirement. \n \n A pair of indices (i, j) from an integer array nums is called an inversion if: \n\n i < j and nums[i] > nums[j] \n\n Return the number of permutations perm of [0, 1, 2, ..., n - 1] such that for all requirements[i] , perm[0..end i ] has exactly cnt i inversions. \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: n = 3, requirements = [[2,2],[0,0]] \n \n Output: 2 \n \n Explanation: \n \n The two permutations are: \n\n [2, 0, 1] \n\n Prefix [2, 0, 1] has inversions (0, 1) and (0, 2) . \n \n Prefix [2] has 0 inversions. \n\n [1, 2, 0] \n\n Prefix [1, 2, 0] has inversions (0, 2) and (1, 2) . \n \n Prefix [1] has 0 inversions. \n\n Example 2: \n\n Input: n = 3, requirements = [[2,2],[1,1],[0,0]] \n \n Output: 1 \n \n Explanation: \n \n The only satisfying permutation is [2, 0, 1] : \n\n Prefix [2, 0, 1] has inversions (0, 1) and (0, 2) . \n \n Prefix [2, 0] has an inversion (0, 1) . \n \n Prefix [2] has 0 inversions. \n\n Example 3: \n\n Input: n = 2, requirements = [[0,0],[1,0]] \n \n Output: 1 \n \n Explanation: \n \n The only satisfying permutation is [0, 1] : \n\n Prefix [0] has 0 inversions. \n \n Prefix [0, 1] has no inversions. \n\n Constraints: \n\n 2 <= n <= 300 \n \n 1 <= requirements.length <= n \n \n requirements[i] = [end i , cnt i ] \n \n 0 <= end i <= n - 1 \n \n 0 <= cnt i <= 400 \n \n The input is generated such that there is at least one i such that end i == n - 1 . \n \n The input is generated such that all end i are unique.",
+  "code": "class Solution {public:int numberOfPermutations(int n,vector<vector<int>>& requirements){const int MOD=1000000007;vector<int>need(n,-1);for(auto&r:requirements)need[r[0]]=r[1];int maxInv=n*(n-1)/2;vector<int>dp(maxInv+1);dp[0]=1;for(int len=1;len<=n;++len){vector<int>ndp(maxInv+1);long long window=0;for(int j=0;j<=len*(len-1)/2;++j){window+=dp[j];if(j>=len)window-=dp[j-len];window=(window%MOD+MOD)%MOD;if(need[len-1]==-1||need[len-1]==j)ndp[j]=window;}dp.swap(ndp);}long long ans=0;for(int v:dp)ans=(ans+v)%MOD;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177416857",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

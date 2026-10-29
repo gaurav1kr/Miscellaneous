@@ -1,0 +1,33 @@
+{
+  "id": "4056",
+  "title": "Number of Intersecting Interval Pairs I",
+  "slug": "number-of-intersecting-interval-pairs-i",
+  "url": "https://leetcode.com/problems/number-of-intersecting-interval-pairs-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting",
+    "Enumeration"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array intervals of n elements, where intervals[i] = [start i , end i ] represents the closed interval from start i to end i . \n \n Return the number of pairs of indices (i, j) such that 0 <= i < j < n and intervals[i] and intervals[j] intersect . \n \n Two intervals intersect if they have at least one point in common, including when they only share an endpoint. \n\n Example 1: \n\n Input: intervals = [[1,2],[2,3],[3,4]] \n \n Output: 2 \n \n Explanation: \n \n There are 2 intersecting interval pairs: \n\n Intervals [1, 2] and [2, 3] intersect at the point 2. \n \n Intervals [2, 3] and [3, 4] intersect at the point 3. \n\n Example 2: \n\n Input: intervals = [[1,5],[2,4],[3,6]] \n \n Output: 3 \n \n Explanation: \n \n There are 3 intersecting interval pairs: \n\n The intersection of [1, 5] and [2, 4] is [2, 4] . \n \n The intersection of [1, 5] and [3, 6] is [3, 5] . \n \n The intersection of [2, 4] and [3, 6] is [3, 4] . \n\n Example 3: \n\n Input: intervals = [[1,2],[3,4],[5,6]] \n \n Output: 0 \n \n Explanation: \n \n There are no intersecting interval pairs. Hence, the answer is 0. \n\n Constraints: \n\n 2 <= n == intervals.length <= 100 \n \n intervals[i] = [start i , end i ] \n \n 0 <= start i <= end i <= 100",
+  "code": "class Solution {\n    public: int countIntersectingIntervals(vector<vector<int>>& a) {\n        int ans=0;\n        for(int i=0; i<(int)a.size(); i++)for(int j=i+1; j<(int)a.size(); j++)if(max(a[i][0],a[j][0])<=min(a[i][1],a[j][1]))ans++;\n        return ans;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179335893",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

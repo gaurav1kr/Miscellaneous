@@ -1,0 +1,35 @@
+{
+  "id": "3037",
+  "title": "Find Pattern in Infinite Stream II",
+  "slug": "find-pattern-in-infinite-stream-ii",
+  "url": "https://leetcode.com/problems/find-pattern-in-infinite-stream-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Sliding Window",
+    "Rolling Hash",
+    "String Matching",
+    "Interactive",
+    "Hash Function"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a binary array pattern and an object stream of class InfiniteStream representing a 0-indexed infinite stream of bits. \n \n The class InfiniteStream contains the following function: \n\n int next() : Reads a single bit (which is either 0 or 1 ) from the stream and returns it. \n\n Return the first starting index where the pattern matches the bits read from the stream . For example, if the pattern is [1, 0] , the first match is the highlighted part in the stream [0, 1, 0 , 1, ...] . \n\n Example 1: \n \n```\nInput:\n stream = [1,1,1,0,1,1,1,...], pattern = [0,1]\n\nOutput:\n 3\n\nExplanation:\n The first occurrence of the pattern [0,1] is highlighted in the stream [1,1,1,\n0,1\n,...], which starts at index 3.\n```\n\n Example 2: \n \n```\nInput:\n stream = [0,0,0,0,...], pattern = [0]\n\nOutput:\n 0\n\nExplanation:\n The first occurrence of the pattern [0] is highlighted in the stream [\n0\n,...], which starts at index 0.\n```\n\n Example 3: \n \n```\nInput:\n stream = [1,0,1,1,0,1,1,0,1,...], pattern = [1,1,0,1]\n\nOutput:\n 2\n\nExplanation:\n The first occurrence of the pattern [1,1,0,1] is highlighted in the stream [1,0,\n1,1,0,1\n,...], which starts at index 2.\n```\n\n Constraints: \n\n 1 <= pattern.length <= 10 4 \n \n pattern consists only of 0 and 1 . \n \n stream consists only of 0 and 1 . \n \n The input is generated such that the pattern's start index exists in the first 10 5 bits of the stream.",
+  "code": "class Solution {\npublic:\n    int findPattern(InfiniteStream* stream, vector<int>& pattern) {\n        int m = pattern.size();\n        vector<int> pi(m);\n        for (int i = 1, j = 0; i < m; ++i) {\n            while (j && pattern[i] != pattern[j]) j = pi[j - 1];\n            if (pattern[i] == pattern[j]) ++j;\n            pi[i] = j;\n        }\n        int j = 0;\n        for (int i = 0; ; ++i) {\n            int bit = stream->next();\n            while (j && bit != pattern[j]) j = pi[j - 1];\n            if (bit == pattern[j]) ++j;\n            if (j == m) return i - m + 1;\n        }\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178937487",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

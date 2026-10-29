@@ -1,0 +1,30 @@
+{
+  "id": "3309",
+  "title": "Maximum Possible Number by Binary Concatenation",
+  "slug": "maximum-possible-number-by-binary-concatenation",
+  "url": "https://leetcode.com/problems/maximum-possible-number-by-binary-concatenation/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Enumeration"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums of size 3. \n \n Return the maximum possible number whose binary representation can be formed by concatenating the binary representation of all elements in nums in some order. \n \n Note that the binary representation of any number does not contain leading zeros. \n\n Example 1: \n\n Input: nums = [1,2,3] \n \n Output: 30 \n \n Explanation: \n \n Concatenate the numbers in the order [3, 1, 2] to get the result \"11110\" , which is the binary representation of 30. \n\n Example 2: \n\n Input: nums = [2,8,16] \n \n Output: 1296 \n \n Explanation: \n \n Concatenate the numbers in the order [2, 8, 16] to get the result \"10100010000\" , which is the binary representation of 1296. \n\n Constraints: \n\n nums.length == 3 \n \n 1 <= nums[i] <= 127",
+  "code": "class Solution { public: int maxGoodNumber(vector<int>&nums){sort(nums.begin(),nums.end());int best=0;do{int v=0;for(int x:nums){int bits=32-__builtin_clz((unsigned)x);v=(v<<bits)|x;}best=max(best,v);}while(next_permutation(nums.begin(),nums.end()));return best;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177455610",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

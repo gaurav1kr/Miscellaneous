@@ -1,0 +1,32 @@
+{
+  "id": "3332",
+  "title": "Maximum Points Tourist Can Earn",
+  "slug": "maximum-points-tourist-can-earn",
+  "url": "https://leetcode.com/problems/maximum-points-tourist-can-earn/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two integers, n and k , along with two 2D integer arrays, stayScore and travelScore . \n \n A tourist is visiting a country with n cities, where each city is directly connected to every other city. The tourist's journey consists of exactly k 0-indexed days, and they can choose any city as their starting point. \n \n Each day, the tourist has two choices: \n\n Stay in the current city : If the tourist stays in their current city curr during day i , they will earn stayScore[i][curr] points. \n \n Move to another city : If the tourist moves from their current city curr to city dest , they will earn travelScore[curr][dest] points. \n\n Return the maximum possible points the tourist can earn. \n\n Example 1: \n\n Input: n = 2, k = 1, stayScore = [[2,3]], travelScore = [[0,2],[1,0]] \n \n Output: 3 \n \n Explanation: \n \n The tourist earns the maximum number of points by starting in city 1 and staying in that city. \n\n Example 2: \n\n Input: n = 3, k = 2, stayScore = [[3,4,2],[2,1,2]], travelScore = [[0,2,1],[2,0,4],[3,2,0]] \n \n Output: 8 \n \n Explanation: \n \n The tourist earns the maximum number of points by starting in city 1, staying in that city on day 0, and traveling to city 2 on day 1. \n\n Constraints: \n\n 1 <= n <= 200 \n \n 1 <= k <= 200 \n \n n == travelScore.length == travelScore[i].length == stayScore[i].length \n \n k == stayScore.length \n \n 1 <= stayScore[i][j] <= 100 \n \n 0 <= travelScore[i][j] <= 100 \n \n travelScore[i][i] == 0",
+  "code": "class Solution {public:int maxScore(int n,int k,vector<vector<int>>& stayScore,vector<vector<int>>& travelScore){vector<int> dp(n,0);for(int d=0;d<k;d++){vector<int> next(n,INT_MIN);for(int j=0;j<n;j++){next[j]=max(next[j],dp[j]+stayScore[d][j]);for(int i=0;i<n;i++)if(i!=j)next[j]=max(next[j],dp[i]+travelScore[i][j]);}dp.swap(next);}return *max_element(dp.begin(),dp.end());}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177461758",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

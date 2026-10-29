@@ -1,0 +1,42 @@
+{
+  "id": "3117",
+  "title": "Minimum Sum of Values by Dividing Array",
+  "slug": "minimum-sum-of-values-by-dividing-array",
+  "url": "https://leetcode.com/problems/minimum-sum-of-values-by-dividing-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Segment Tree",
+    "Queue"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Bit Manipulation",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "Queue",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given two arrays nums and andValues of length n and m respectively. \n \n The value of an array is equal to the last element of that array. \n \n You have to divide nums into m disjoint contiguous subarrays such that for the i th subarray [l i , r i ] , the bitwise AND of the subarray elements is equal to andValues[i] , in other words, nums[l i ] & nums[l i + 1] & ... & nums[r i ] == andValues[i] for all 1 <= i <= m , where & represents the bitwise AND operator. \n \n Return the minimum possible sum of the values of the m subarrays nums is divided into . If it is not possible to divide nums into m subarrays satisfying these conditions, return -1 . \n\n Example 1: \n\n Input: nums = [1,4,3,3,2], andValues = [0,3,3,2] \n \n Output: 12 \n \n Explanation: \n \n The only possible way to divide nums is: \n\n [1,4] as 1 & 4 == 0 . \n \n [3] as the bitwise AND of a single element subarray is that element itself. \n \n [3] as the bitwise AND of a single element subarray is that element itself. \n \n [2] as the bitwise AND of a single element subarray is that element itself. \n\n The sum of the values for these subarrays is 4 + 3 + 3 + 2 = 12 . \n\n Example 2: \n\n Input: nums = [2,3,5,7,7,7,5], andValues = [0,7,5] \n \n Output: 17 \n \n Explanation: \n \n There are three ways to divide nums : \n\n [[2,3,5],[7,7,7],[5]] with the sum of the values 5 + 7 + 5 == 17 . \n \n [[2,3,5,7],[7,7],[5]] with the sum of the values 7 + 7 + 5 == 19 . \n \n [[2,3,5,7,7],[7],[5]] with the sum of the values 7 + 7 + 5 == 19 . \n\n The minimum possible sum of the values is 17 . \n\n Example 3: \n\n Input: nums = [1,2,3,4], andValues = [2] \n \n Output: -1 \n \n Explanation: \n \n The bitwise AND of the entire array nums is 0 . As there is no possible way to divide nums into a single subarray to have the bitwise AND of elements 2 , return -1 . \n\n Constraints: \n\n 1 <= n == nums.length <= 10 4 \n \n 1 <= m == andValues.length <= min(n, 10) \n \n 1 <= nums[i] < 10 5 \n \n 0 <= andValues[j] < 10 5",
+  "code": "class Solution {public:int minimumValueSum(vector<int>& nums,vector<int>& andValues){\n int n=nums.size(),m=andValues.size(),INF=1000000000;\n vector<vector<unordered_map<int,int>>> memo(n+1,vector<unordered_map<int,int>>(m+1));\n function<int(int,int,int)> dfs=[&](int i,int j,int cur)->int{\n  if(i==n)return j==m?0:INF;if(j==m)return INF;\n  auto it=memo[i][j].find(cur);if(it!=memo[i][j].end())return it->second;\n  int v=cur&nums[i],best=INF;if((v&andValues[j])==andValues[j]){\n   best=dfs(i+1,j,v);\n   if(v==andValues[j]){int next=dfs(i+1,j+1,-1);if(next<INF)best=min(best,nums[i]+next);}\n  }\n  return memo[i][j][cur]=best;\n };\n int ans=dfs(0,0,-1);return ans>=INF?-1:ans;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177379947",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

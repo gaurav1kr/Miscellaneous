@@ -1,0 +1,30 @@
+{
+  "id": "516",
+  "title": "Longest Palindromic Subsequence",
+  "slug": "longest-palindromic-subsequence",
+  "url": "https://leetcode.com/problems/longest-palindromic-subsequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , find the longest palindromic subsequence 's length in s . \n \n A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements. \n\n Example 1: \n \n```\nInput:\n s = \"bbbab\"\n\nOutput:\n 4\n\nExplanation:\n One possible longest palindromic subsequence is \"bbbb\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"cbbd\"\n\nOutput:\n 2\n\nExplanation:\n One possible longest palindromic subsequence is \"bb\".\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int longestPalindromeSubseq(const std::string& s) {\n        int n = s.size();\n        std::vector<int> dp(n, 0), prev_dp(n, 0);\n\n        for (int i = n - 1; i >= 0; --i) {\n            dp[i] = 1; // Single characters are palindromes of length 1\n            for (int j = i + 1; j < n; ++j) {\n                if (s[i] == s[j]) {\n                    dp[j] = prev_dp[j - 1] + 2;\n                } else {\n                    dp[j] = std::max(prev_dp[j], dp[j - 1]);\n                }\n            }\n            prev_dp.swap(dp); // Save the current row for the next iteration\n        }\n\n        return prev_dp[n - 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1538742502",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "2019",
+  "title": "The Score of Students Solving Math Expression",
+  "slug": "the-score-of-students-solving-math-expression",
+  "url": "https://leetcode.com/problems/the-score-of-students-solving-math-expression/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "Stack",
+    "Memoization"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Ordered set",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s that contains digits 0-9 , addition symbols '+' , and multiplication symbols '*' only , representing a valid math expression of single digit numbers (e.g., 3+5*2 ). This expression was given to n elementary school students. The students were instructed to get the answer of the expression by following this order of operations : \n\n Compute multiplication , reading from left to right ; Then, \n \n Compute addition , reading from left to right . \n\n You are given an integer array answers of length n , which are the submitted answers of the students in no particular order. You are asked to grade the answers , by following these rules : \n\n If an answer equals the correct answer of the expression, this student will be rewarded 5 points; \n \n Otherwise, if the answer could be interpreted as if the student applied the operators in the wrong order but had correct arithmetic , this student will be rewarded 2 points; \n \n Otherwise, this student will be rewarded 0 points. \n\n Return the sum of the points of the students . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/09/17/student_solving_math.png] \n \n```\nInput:\n s = \"7+3*1*2\", answers = [20,13,42]\n\nOutput:\n 7\n\nExplanation:\n As illustrated above, the correct answer of the expression is 13, therefore one student is rewarded 5 points: [20,\n13\n,42]\nA student might have applied the operators in this wrong order: ((7+3)*1)*2 = 20. Therefore one student is rewarded 2 points: [\n20\n,13,42]\nThe points for the students are: [2,5,0]. The sum of the points is 2+5+0=7.\n```\n\n Example 2: \n \n```\nInput:\n s = \"3+5*2\", answers = [13,0,10,13,13,16,16]\n\nOutput:\n 19\n\nExplanation:\n The correct answer of the expression is 13, therefore three students are rewarded 5 points each: [\n13\n,0,10,\n13\n,\n13\n,16,16]\nA student might have applied the operators in this wrong order: ((3+5)*2 = 16. Therefore two students are rewarded 2 points: [13,0,10,13,13,\n16\n,\n16\n]\nThe points for the students are: [5,0,0,5,5,2,2]. The sum of the points is 5+0+0+5+5+2+2=19.\n```\n\n Example 3: \n \n```\nInput:\n s = \"6+0*1\", answers = [12,9,6,4,8,6]\n\nOutput:\n 10\n\nExplanation:\n The correct answer of the expression is 6.\nIf a student had incorrectly done (6+0)*1, the answer would also be 6.\nBy the rules of grading, the students will still be rewarded 5 points (as they got the correct answer), not 2 points.\nThe points for the students are: [0,0,5,0,0,5]. The sum of the points is 10.\n```\n\n Constraints: \n\n 3 <= s.length <= 31 \n \n s represents a valid expression that contains only digits 0-9 , '+' , and '*' only. \n \n All the integer operands in the expression are in the inclusive range [0, 9] . \n \n 1 <= The count of all operators ( '+' and '*' ) in the math expression <= 15 \n \n Test data are generated such that the correct answer of the expression is in the range of [0, 1000] . \n \n Test data are generated such that value never exceeds 10 9 in intermediate steps of multiplication. \n \n n == answers.length \n \n 1 <= n <= 10 4 \n \n 0 <= answers[i] <= 1000",
+  "code": "class Solution {\npublic:\n    int scoreOfStudents(string s,vector<int>& answers){\n        vector<int>v;vector<char>op;\n        for(char c:s){if(isdigit(c))v.push_back(c-'0');else op.push_back(c);}\n        int correct=0,term=v[0];\n        for(int i=0;i<(int)op.size();++i){\n            if(op[i]=='*')term*=v[i+1];\n            else{correct+=term;term=v[i+1];}\n        }\n        correct+=term;\n        int n=v.size();vector<vector<set<int>>>dp(n,vector<set<int>>(n));\n        for(int i=0;i<n;++i)dp[i][i].insert(v[i]);\n        for(int len=2;len<=n;++len)for(int l=0;l+len<=n;++l){int r=l+len-1;\n            for(int k=l;k<r;++k)for(int a:dp[l][k])for(int b:dp[k+1][r]){\n                int x=op[k]=='+'?a+b:a*b;if(x<=1000)dp[l][r].insert(x);\n            }\n        }\n        int ans=0;for(int a:answers){\n            if(a==correct)ans+=5;else if(dp[0][n-1].count(a))ans+=2;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175768873",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

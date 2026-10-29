@@ -1,0 +1,32 @@
+{
+  "id": "931",
+  "title": "Minimum Falling Path Sum",
+  "slug": "minimum-falling-path-sum",
+  "url": "https://leetcode.com/problems/minimum-falling-path-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an n x n array of integers matrix , return the minimum sum of any falling path through matrix . \n \n A falling path starts at any element in the first row and chooses the element in the next row that is either directly below or diagonally left/right. Specifically, the next element from position (row, col) will be (row + 1, col - 1) , (row + 1, col) , or (row + 1, col + 1) . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/11/03/failing1-grid.jpg] \n \n```\nInput:\n matrix = [[2,1,3],[6,5,4],[7,8,9]]\n\nOutput:\n 13\n\nExplanation:\n There are two falling paths with a minimum sum as shown.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/11/03/failing2-grid.jpg] \n \n```\nInput:\n matrix = [[-19,57],[-40,-5]]\n\nOutput:\n -59\n\nExplanation:\n The falling path with a minimum sum is shown.\n```\n\n Constraints: \n\n n == matrix.length == matrix[i].length \n \n 1 <= n <= 100 \n \n -100 <= matrix[i][j] <= 100",
+  "code": "class Solution {\npublic:\n    int minFallingPathSum(vector<vector<int>>& matrix) {\n        int n = matrix.size();\n\n        if(n==1)return matrix[0][0];\n        for(int i = n-2;i>=0;i--){\n            for(int j =0;j<n;j++){\n                if(j==0)matrix[i][j]+= min(matrix[i+1][j],matrix[i+1][j+1]);\n                else if(j==n-1)matrix[i][j]+= min(matrix[i+1][j],matrix[i+1][j-1]);\n                else{\n                    int temp =  min(matrix[i+1][j],matrix[i+1][j+1]);\n                    matrix[i][j]+= min(temp,matrix[i+1][j-1]);\n                }\n            }\n        }\n        return  *min_element(matrix[0].begin(), matrix[0].end());\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1364819748",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

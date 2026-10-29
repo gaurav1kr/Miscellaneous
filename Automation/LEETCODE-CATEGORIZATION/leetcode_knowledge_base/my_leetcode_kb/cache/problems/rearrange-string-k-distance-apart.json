@@ -1,0 +1,42 @@
+{
+  "id": "358",
+  "title": "Rearrange String k Distance Apart",
+  "slug": "rearrange-string-k-distance-apart",
+  "url": "https://leetcode.com/problems/rearrange-string-k-distance-apart/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "String"
+  ],
+  "description": "Given a string s and an integer k , rearrange s such that the same characters are at least distance k from each other. If it is not possible to rearrange the string, return an empty string \"\" . \n\n Example 1: \n \n```\nInput:\n s = \"aabbcc\", k = 3\n\nOutput:\n \"abcabc\"\n\nExplanation:\n The same letters are at least a distance of 3 from each other.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aaabc\", k = 3\n\nOutput:\n \"\"\n\nExplanation:\n It is not possible to rearrange the string.\n```\n\n Example 3: \n \n```\nInput:\n s = \"aaadbbcc\", k = 2\n\nOutput:\n \"abacabcd\"\n\nExplanation:\n The same letters are at least a distance of 2 from each other.\n```\n\n Constraints: \n\n 1 <= s.length <= 3 * 10 5 \n \n s consists of only lowercase English letters. \n \n 0 <= k <= s.length",
+  "code": "class Solution\n{\npublic:\n    string rearrangeString(string s, int k)\n    {\n        if (k <= 1) return s;\n        unordered_map<char, int> freq;\n        for (char c : s) ++freq[c];\n        priority_queue<pair<int, char>> available;\n        for (const auto& p : freq) available.push({p.second, p.first});\n        queue<pair<int, pair<int, char>>> cooldown;\n        string result;\n        for (int pos = 0; pos < (int)s.size(); ++pos)\n        {\n            while (!cooldown.empty() && cooldown.front().first <= pos)\n            {\n                available.push(cooldown.front().second);\n                cooldown.pop();\n            }\n            if (available.empty()) return \"\";\n            auto current = available.top();\n            available.pop();\n            result += current.second;\n            if (--current.first > 0)\n            {\n                cooldown.push({pos + k, current});\n            }\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178458410",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

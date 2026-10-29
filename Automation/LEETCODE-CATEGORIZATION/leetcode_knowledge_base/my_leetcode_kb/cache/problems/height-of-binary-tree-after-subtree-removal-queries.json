@@ -1,0 +1,37 @@
+{
+  "id": "2458",
+  "title": "Height of Binary Tree After Subtree Removal Queries",
+  "slug": "height-of-binary-tree-after-subtree-removal-queries",
+  "url": "https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "Hash map",
+    "Ordered map",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given the root of a binary tree with n nodes. Each node is assigned a unique value from 1 to n . You are also given an array queries of size m . \n \n You have to perform m independent queries on the tree where in the i th query you do the following: \n\n Remove the subtree rooted at the node with the value queries[i] from the tree. It is guaranteed that queries[i] will not be equal to the value of the root. \n\n Return an array answer of size m where answer[i] is the height of the tree after performing the i th query . \n \n Note : \n\n The queries are independent, so the tree returns to its initial state after each query. \n \n The height of a tree is the number of edges in the longest simple path from the root to some node in the tree. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/09/07/binaryytreeedrawio-1.png] \n \n```\nInput:\n root = [1,3,4,2,null,6,5,null,null,null,null,null,7], queries = [4]\n\nOutput:\n [2]\n\nExplanation:\n The diagram above shows the tree after removing the subtree rooted at node with value 4.\nThe height of the tree is 2 (The path 1 -> 3 -> 2).\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/09/07/binaryytreeedrawio-2.png] \n \n```\nInput:\n root = [5,8,9,2,1,3,7,4,6], queries = [3,2,4,8]\n\nOutput:\n [3,2,3,2]\n\nExplanation:\n We have the following queries:\n- Removing the subtree rooted at node with value 3. The height of the tree becomes 3 (The path 5 -> 8 -> 2 -> 4).\n- Removing the subtree rooted at node with value 2. The height of the tree becomes 2 (The path 5 -> 8 -> 1).\n- Removing the subtree rooted at node with value 4. The height of the tree becomes 3 (The path 5 -> 8 -> 2 -> 6).\n- Removing the subtree rooted at node with value 8. The height of the tree becomes 2 (The path 5 -> 9 -> 3).\n```\n\n Constraints: \n\n The number of nodes in the tree is n . \n \n 2 <= n <= 10 5 \n \n 1 <= Node.val <= n \n \n All the values in the tree are unique . \n \n m == queries.length \n \n 1 <= m <= min(n, 10 4 ) \n \n 1 <= queries[i] <= n \n \n queries[i] != root.val",
+  "code": "class Solution { unordered_map<int,int> h,ans;int height(TreeNode* u){if(!u)return -1;return h[u->val]=1+max(height(u->left),height(u->right));}void walk(TreeNode* u,int depth,int outside){if(!u)return;ans[u->val]=outside;int lh=u->left?h[u->left->val]:-1,rh=u->right?h[u->right->val]:-1;walk(u->left,depth+1,max(outside,depth+1+rh));walk(u->right,depth+1,max(outside,depth+1+lh));}public:vector<int> treeQueries(TreeNode* root,vector<int>& queries){height(root);walk(root,0,0);vector<int>res;for(int q:queries)res.push_back(ans[q]);return res;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176572620",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

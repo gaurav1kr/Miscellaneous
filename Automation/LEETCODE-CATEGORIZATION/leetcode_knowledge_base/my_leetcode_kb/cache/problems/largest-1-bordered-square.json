@@ -1,0 +1,32 @@
+{
+  "id": "1139",
+  "title": "Largest 1-Bordered Square",
+  "slug": "largest-1-bordered-square",
+  "url": "https://leetcode.com/problems/largest-1-bordered-square/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given a 2D grid of 0 s and 1 s, return the number of elements in the largest square  subgrid that has all 1 s on its border , or 0 if such a subgrid doesn't exist in the grid . \n\n Example 1: \n \n```\nInput:\n grid = [[1,1,1],[1,0,1],[1,1,1]]\r\n\nOutput:\n 9\n```\n\n Example 2: \n \n```\nInput:\n grid = [[1,1,0,0]]\r\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= grid.length <= 100 \n \n 1 <= grid[0].length <= 100 \n \n grid[i][j] is 0 or 1",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int largest1BorderedSquare(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size(), res = 0;\n        vector<vector<int>> h(m, vector<int>(n)), v(m, vector<int>(n));\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                if (grid[i][j]) {\n                    h[i][j] = (j == 0 ? 0 : h[i][j - 1]) + 1;\n                    v[i][j] = (i == 0 ? 0 : v[i - 1][j]) + 1;\n                }\n\n        for (int i = m - 1; i >= 0; --i)\n            for (int j = n - 1; j >= 0; --j)\n                for (int k = min(h[i][j], v[i][j]); k > 0; --k)\n                    if (v[i][j - k + 1] >= k && h[i - k + 1][j] >= k) {\n                        res = max(res, k);\n                        break;\n                    }\n\n        return res * res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610581593",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

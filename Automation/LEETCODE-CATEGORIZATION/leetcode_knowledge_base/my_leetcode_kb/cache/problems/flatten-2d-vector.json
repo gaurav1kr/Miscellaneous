@@ -1,0 +1,32 @@
+{
+  "id": "251",
+  "title": "Flatten 2D Vector",
+  "slug": "flatten-2d-vector",
+  "url": "https://leetcode.com/problems/flatten-2d-vector/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Design",
+    "Iterator"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Design an iterator to flatten a 2D vector. It should support the next and hasNext operations. \n \n Implement the Vector2D class: \n\n Vector2D(int[][] vec) initializes the object with the 2D vector vec . \n \n next() returns the next element from the 2D vector and moves the pointer one step forward. You may assume that all the calls to next are valid. \n \n hasNext() returns true if there are still some elements in the vector, and false otherwise. \n\n Example 1: \n \n```\nInput\n\n[\"Vector2D\", \"next\", \"next\", \"next\", \"hasNext\", \"hasNext\", \"next\", \"hasNext\"]\n[[[[1, 2], [3], [4]]], [], [], [], [], [], [], []]\n\nOutput\n\n[null, 1, 2, 3, true, true, 4, false]\n\nExplanation\n\nVector2D vector2D = new Vector2D([[1, 2], [3], [4]]);\nvector2D.next(); // return 1\nvector2D.next(); // return 2\nvector2D.next(); // return 3\nvector2D.hasNext(); // return True\nvector2D.hasNext(); // return True\nvector2D.next(); // return 4\nvector2D.hasNext(); // return False\n```\n\n Constraints: \n\n 0 <= vec.length <= 200 \n \n 0 <= vec[i].length <= 500 \n \n -500 <= vec[i][j] <= 500 \n \n At most 10 5 calls will be made to next and hasNext . \n\n Follow up: As an added challenge, try to code it using only iterators in C++ or iterators in Java .",
+  "code": "class Vector2D\n{\n    vector< vector< int >>a;\n    int r = 0, c = 0;\n    void skip()\n    {\n        while (r < (int) a.size() && c == (int) a[r].size())\n        {\n            ++r;\n            c = 0;\n        }\n    }\npublic:\n    Vector2D(vector< vector< int >>& vec) : a(vec)\n    {\n    }\n    int next()\n    {\n        skip();\n        return a[r][c++];\n    }\n    bool hasNext()\n    {\n        skip();\n        return r < (int) a.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178436820",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

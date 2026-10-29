@@ -1,0 +1,35 @@
+{
+  "id": "645",
+  "title": "Set Mismatch",
+  "slug": "set-mismatch",
+  "url": "https://leetcode.com/problems/set-mismatch/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You have a set of integers s , which originally contains all the numbers from 1 to n . Unfortunately, due to some error, one of the numbers in s got duplicated to another number in the set, which results in repetition of one number and loss of another number. \n \n You are given an integer array nums representing the data status of this set after the error. \n \n Find the number that occurs twice and the number that is missing and return them in the form of an array . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,2,4]\n\nOutput:\n [2,3]\n```\n \n Example 2: \n \n```\nInput:\n nums = [1,1]\n\nOutput:\n [1,2]\n```\n\n Constraints: \n\n 2 <= nums.length <= 10 4 \n \n 1 <= nums[i] <= 10 4",
+  "code": "#define MAX 10001\nclass Solution {\n    int hash[MAX] ;\npublic:\n    Solution()\n    {\n        for(int i=0;i<MAX;i++)\n        {\n            hash[i] =0 ;\n        }\n     }\n    vector<int> findErrorNums(vector<int>& nums) \n    {\n        vector<int> res ;\n        int size_nums = nums.size() ;\n        for(auto & i : nums)\n        {\n            hash[i]++ ;\n            if(hash[i] == 2) res.push_back(i) ;\n        }\n        for(int i=1;i<MAX;i++)\n        {\n           if (hash[i] == 0) \n           {\n               res.push_back(i) ;\n               break ;\n           }\n        }\n\n        return res ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "982595349",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "1998",
+  "title": "GCD Sort of an Array",
+  "slug": "gcd-sort-of-an-array",
+  "url": "https://leetcode.com/problems/gcd-sort-of-an-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Union-Find",
+    "Sorting",
+    "Number Theory",
+    "Prime Factorization",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums , and you can perform the following operation any number of times on nums : \n\n Swap the positions of two elements nums[i] and nums[j] if gcd(nums[i], nums[j]) > 1 where gcd(nums[i], nums[j]) is the greatest common divisor of nums[i] and nums[j] . \n\n Return true if it is possible to sort nums in non-decreasing order using the above swap method, or false otherwise. \n\n Example 1: \n \n```\nInput:\n nums = [7,21,3]\n\nOutput:\n true\n\nExplanation:\n We can sort [7,21,3] by performing the following operations:\n- Swap 7 and 21 because gcd(7,21) = 7. nums = [\n21\n,\n7\n,3]\n- Swap 21 and 3 because gcd(21,3) = 3. nums = [\n3\n,7,\n21\n]\n```\n\n Example 2: \n \n```\nInput:\n nums = [5,2,6,2]\n\nOutput:\n false\n\nExplanation:\n It is impossible to sort the array because 5 cannot be swapped with any other element.\n```\n\n Example 3: \n \n```\nInput:\n nums = [10,5,9,3,15]\n\nOutput:\n true\nWe can sort [10,5,9,3,15] by performing the following operations:\n- Swap 10 and 15 because gcd(10,15) = 5. nums = [\n15\n,5,9,3,\n10\n]\n- Swap 15 and 3 because gcd(15,3) = 3. nums = [\n3\n,5,9,\n15\n,10]\n- Swap 10 and 15 because gcd(10,15) = 5. nums = [3,5,9,\n10\n,\n15\n]\n```\n\n Constraints: \n\n 1 <= nums.length <= 3 * 10 4 \n \n 2 <= nums[i] <= 10 5",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\n    vector<int> parent;\n\n    int find(int x) {\n        if (parent[x] != x) parent[x] = find(parent[x]);\n        return parent[x];\n    }\n\n    void unite(int x, int y) {\n        parent[find(x)] = find(y);\n    }\n\npublic:\n    bool gcdSort(vector<int>& nums) {\n        int maxVal = *max_element(nums.begin(), nums.end());\n        parent.resize(maxVal + 1);\n        for (int i = 0; i <= maxVal; ++i) parent[i] = i;\n\n        vector<bool> isPrime(maxVal + 1, true);\n        for (int i = 2; i * i <= maxVal; ++i) {\n            if (isPrime[i]) {\n                for (int j = i * i; j <= maxVal; j += i) isPrime[j] = false;\n            }\n        }\n\n        for (int x : nums) {\n            int temp = x;\n            for (int i = 2; i * i <= temp; ++i) {\n                if (temp % i == 0) {\n                    unite(x, i);\n                    while (temp % i == 0) temp /= i;\n                }\n            }\n            if (temp > 1) unite(x, temp);\n        }\n\n        vector<int> sorted = nums;\n        sort(sorted.begin(), sorted.end());\n        for (int i = 0; i < nums.size(); ++i)\n            if (find(nums[i]) != find(sorted[i])) return false;\n\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610670472",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

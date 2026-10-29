@@ -1,0 +1,44 @@
+{
+  "id": "3534",
+  "title": "Path Existence Queries in a Graph II",
+  "slug": "path-existence-queries-in-a-graph-ii",
+  "url": "https://leetcode.com/problems/path-existence-queries-in-a-graph-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Dynamic Programming",
+    "Greedy",
+    "Bit Manipulation",
+    "Graph Theory",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer n representing the number of nodes in a graph, labeled from 0 to n - 1 . \n \n You are also given an integer array nums of length n and an integer maxDiff . \n \n An undirected edge exists between nodes i and j if the absolute difference between nums[i] and nums[j] is at most maxDiff (i.e., |nums[i] - nums[j]| <= maxDiff ). \n \n You are also given a 2D integer array queries . For each queries[i] = [u i , v i ] , find the minimum distance between nodes u i and v i . If no path exists between the two nodes, return -1 for that query. \n \n Return an array answer , where answer[i] is the result of the i th query. \n \n Note: The edges between the nodes are unweighted. \n\n Example 1: \n\n Input: n = 5, nums = [1,8,3,4,2], maxDiff = 3, queries = [[0,3],[2,4]] \n \n Output: [1,1] \n \n Explanation: \n \n The resulting graph is: \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/25/4149example1drawio.png] \n\n Query \n Shortest Path \n Minimum Distance \n\n [0, 3] \n 0 → 3 \n 1 \n\n [2, 4] \n 2 → 4 \n 1 \n\n Thus, the output is [1, 1] . \n\n Example 2: \n\n Input: n = 5, nums = [5,3,1,9,10], maxDiff = 2, queries = [[0,1],[0,2],[2,3],[4,3]] \n \n Output: [1,2,-1,1] \n \n Explanation: \n \n The resulting graph is: \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/25/4149example2drawio.png] \n\n Query \n Shortest Path \n Minimum Distance \n\n [0, 1] \n 0 → 1 \n 1 \n\n [0, 2] \n 0 → 1 → 2 \n 2 \n\n [2, 3] \n None \n -1 \n\n [4, 3] \n 3 → 4 \n 1 \n\n Thus, the output is [1, 2, -1, 1] . \n \n Example 3: \n\n Input: n = 3, nums = [3,6,1], maxDiff = 1, queries = [[0,0],[0,1],[1,2]] \n \n Output: [0,-1,-1] \n \n Explanation: \n \n There are no edges between any two nodes because: \n\n Nodes 0 and 1: |nums[0] - nums[1]| = |3 - 6| = 3 > 1 \n \n Nodes 0 and 2: |nums[0] - nums[2]| = |3 - 1| = 2 > 1 \n \n Nodes 1 and 2: |nums[1] - nums[2]| = |6 - 1| = 5 > 1 \n\n Thus, no node can reach any other node, and the output is [0, -1, -1] . \n\n Constraints: \n\n 1 <= n == nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5 \n \n 0 <= maxDiff <= 10 5 \n \n 1 <= queries.length <= 10 5 \n \n queries[i] == [u i , v i ] \n \n 0 <= u i , v i < n",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:vector<int> pathExistenceQueries(int n,vector<int>& nums,int maxDiff,vector<vector<int>>& queries){vector<pair<int,int>>a;for(int i=0;i<n;i++)a.push_back({nums[i],i});sort(a.begin(),a.end());vector<int>pos(n);for(int i=0;i<n;i++)pos[a[i].second]=i;const int LOG=18;vector<vector<int>>up(LOG,vector<int>(n));int r=0;for(int i=0;i<n;i++){r=max(r,i);while(r+1<n&&a[r+1].first-a[i].first<=maxDiff)r++;up[0][i]=r;}for(int j=1;j<LOG;j++)for(int i=0;i<n;i++)up[j][i]=up[j-1][up[j-1][i]];vector<int>ans;for(auto&q:queries){int l=pos[q[0]],r=pos[q[1]];if(l>r)swap(l,r);if(l==r){ans.push_back(0);continue;}int steps=0;for(int j=LOG-1;j>=0;j--)if(up[j][l]<r&&up[j][l]>l){l=up[j][l];steps+=1<<j;}ans.push_back(up[0][l]>=r?steps+1:-1);}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181238628",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

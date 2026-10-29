@@ -1,0 +1,36 @@
+{
+  "id": "907",
+  "title": "Sum of Subarray Minimums",
+  "slug": "sum-of-subarray-minimums",
+  "url": "https://leetcode.com/problems/sum-of-subarray-minimums/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Dynamic Programming",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given an array of integers arr, find the sum of min(b) , where b ranges over every (contiguous) subarray of arr . Since the answer may be large, return the answer modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n arr = [3,1,2,4]\n\nOutput:\n 17\n\nExplanation:\n \nSubarrays are [3], [1], [2], [4], [3,1], [1,2], [2,4], [3,1,2], [1,2,4], [3,1,2,4]. \nMinimums are 3, 1, 2, 4, 1, 1, 2, 1, 1, 1.\nSum is 17.\n```\n\n Example 2: \n \n```\nInput:\n arr = [11,81,94,43,3]\n\nOutput:\n 444\n```\n\n Constraints: \n\n 1 <= arr.length <= 3 * 10 4 \n \n 1 <= arr[i] <= 3 * 10 4",
+  "code": "class Solution \n{\npublic:    \n    int sumSubarrayMins(vector<int>& A) \n\t{ \n        int n = A.size();\n        int MOD = 1e9 + 7;\n        vector<int> left(n), right(n);\n        \n        stack<int>st;\n        st.push(0);\n        left[0] = 1; \n        for(int i=1; i<n; i++)\n        {\n            while(!st.empty() && A[i] < A[st.top()]) \n                st.pop();\n            \n            if(st.empty()) \n                left[i] = i+1; \n            else \n                left[i] = i - st.top(); \n            \n            st.push(i);\n            \n        }\n        \n        while(st.size()) \n            st.pop();\n         \n        st.push(n-1);\n        right[n-1] = 1; \n        for(int i=n-2; i>=0; i--)\n        {\n            while(!st.empty() && A[i] <= A[st.top()]) \n                st.pop();\n            \n            if(st.empty()) \n                right[i] = n-i; // distance\n            else \n                right[i] = st.top()-i;\n            \n            st.push(i);\n        }\n        \n        \n        for(int i=0; i<n; i++) \n             cout << left[i] << \" : \" << right[i] << endl;\n        \n        int res = 0;\n        for(int i=0; i<n; i++)\n        {\n            long long prod = (left[i]*right[i])%MOD;\n            prod = (prod*A[i])%MOD;\n            res = (res + prod)%MOD;\n        }\n        \n        return res%MOD;\n    }\n    \n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1498117691",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

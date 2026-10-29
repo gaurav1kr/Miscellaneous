@@ -1,0 +1,32 @@
+{
+  "id": "2133",
+  "title": "Check if Every Row and Column Contains All Numbers",
+  "slug": "check-if-every-row-and-column-contains-all-numbers",
+  "url": "https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "An n x n matrix is valid if every row and every column contains all the integers from 1 to n ( inclusive ). \n \n Given an n x n integer matrix matrix , return true if the matrix is valid . Otherwise, return false . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/12/21/example1drawio.png] \n \n```\nInput:\n matrix = [[1,2,3],[3,1,2],[2,3,1]]\n\nOutput:\n true\n\nExplanation:\n In this case, n = 3, and every row and column contains the numbers 1, 2, and 3.\nHence, we return true.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/12/21/example2drawio.png] \n \n```\nInput:\n matrix = [[1,1,1],[1,2,3],[1,2,3]]\n\nOutput:\n false\n\nExplanation:\n In this case, n = 3, but the first row and the first column do not contain the numbers 2 or 3.\nHence, we return false.\n```\n\n Constraints: \n\n n == matrix.length == matrix[i].length \n \n 1 <= n <= 100 \n \n 1 <= matrix[i][j] <= n",
+  "code": "class Solution {\npublic:\n bool checkValid(vector<vector<int>>& matrix){\n  int n=matrix.size();for(int i=0;i<n;++i){vector<int>a(n+1),b(n+1);\n   for(int j=0;j<n;++j){int x=matrix[i][j],y=matrix[j][i];\n    if(x<1||x>n||y<1||y>n||++a[x]>1||++b[y]>1)return false;\n   }\n  }\n  return true;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175738374",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

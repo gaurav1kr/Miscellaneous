@@ -1,0 +1,31 @@
+{
+  "id": "392",
+  "title": "Is Subsequence",
+  "slug": "is-subsequence",
+  "url": "https://leetcode.com/problems/is-subsequence/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "Given two strings s and t , return true if s is a subsequence of t , or false otherwise . \n \n A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., \"ace\" is a subsequence of \" a b c d e \" while \"aec\" is not). \n\n Example 1: \n \n```\nInput:\n s = \"abc\", t = \"ahbgdc\"\n\nOutput:\n true\n```\n \n Example 2: \n \n```\nInput:\n s = \"axc\", t = \"ahbgdc\"\n\nOutput:\n false\n```\n\n Constraints: \n\n 0 <= s.length <= 100 \n \n 0 <= t.length <= 10 4 \n \n s and t consist only of lowercase English letters. \n\n Follow up: Suppose there are lots of incoming s , say s 1 , s 2 , ..., s k where k >= 10 9 , and you want to check one by one to see if t has its subsequence. In this scenario, how would you change your code?",
+  "code": "class Solution {\npublic:\nbool isSubsequence(string s, string t) {\n    int i = 0, j = 0;\n    while (i < s.size() && j < t.size()) {\n        if (s[i] == t[j]) i++;\n        j++;\n    }\n    return i == s.size();\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588093679",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

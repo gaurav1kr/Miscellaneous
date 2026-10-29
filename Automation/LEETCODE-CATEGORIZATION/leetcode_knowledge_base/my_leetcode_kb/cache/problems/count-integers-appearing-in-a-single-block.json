@@ -1,0 +1,33 @@
+{
+  "id": "4038",
+  "title": "Count Integers Appearing in a Single Block",
+  "slug": "count-integers-appearing-in-a-single-block",
+  "url": "https://leetcode.com/problems/count-integers-appearing-in-a-single-block/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n An integer x is special if all occurrences of x in nums appear in a single contiguous block. \n \n Return the number of distinct special integers in nums . \n\n Example 1: \n\n Input: nums = [1,2,2,1] \n \n Output: 1 \n \n Explanation: \n\n 1 appears at indices 0 and 3, forming two separate blocks, so it is not special. \n \n 2 appears in a single contiguous block at indices [1, 2] , so it is special. \n\n Therefore, there is one special integer. \n\n Example 2: \n\n Input: nums = [3,3,1,2,2,1] \n \n Output: 2 \n \n Explanation: \n\n 3 appears in a single contiguous block at indices [0, 1] , so it is special. \n \n 1 appears at indices 2 and 5, forming two separate blocks, so it is not special. \n \n 2 appears in a single contiguous block at indices [3, 4] , so it is special. \n\n Therefore, there are two special integers. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    int countSpecialIntegers(vector<int>& nums) {\n        unordered_set<int> seen, repeated;\n        for (int i = 0; i < (int)nums.size(); ++i) {\n            if (i > 0 && nums[i] == nums[i - 1]) continue;\n            if (!seen.insert(nums[i]).second) repeated.insert(nums[i]);\n        }\n        return (int)seen.size() - (int)repeated.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179332933",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

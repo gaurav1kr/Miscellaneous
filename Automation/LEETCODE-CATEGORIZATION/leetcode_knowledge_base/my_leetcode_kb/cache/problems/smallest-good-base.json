@@ -1,0 +1,26 @@
+{
+  "id": "483",
+  "title": "Smallest Good Base",
+  "slug": "smallest-good-base",
+  "url": "https://leetcode.com/problems/smallest-good-base/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given an integer n represented as a string, return the smallest good base of n . \n \n We call k >= 2 a good base of n , if all digits of n base k are 1 's. \n\n Example 1: \n \n```\nInput:\n n = \"13\"\n\nOutput:\n \"3\"\n\nExplanation:\n 13 base 3 is 111.\n```\n\n Example 2: \n \n```\nInput:\n n = \"4681\"\n\nOutput:\n \"8\"\n\nExplanation:\n 4681 base 8 is 11111.\n```\n\n Example 3: \n \n```\nInput:\n n = \"1000000000000000000\"\n\nOutput:\n \"999999999999999999\"\n\nExplanation:\n 1000000000000000000 base 999999999999999999 is 11.\n```\n\n Constraints: \n\n n is an integer in the range [3, 10 18 ] . \n \n n does not contain any leading zeros.",
+  "code": "#include <string>\n#include <cmath>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string smallestGoodBase(string n) {\n        long long N = stoll(n);\n        for (int m = log2(N); m >= 1; --m) {\n            long long k = pow(N, 1.0 / m);\n            long long sum = 1, curr = 1;\n            for (int i = 0; i < m; ++i)\n                sum = sum * k + 1;\n            if (sum == N) return to_string(k);\n        }\n        return to_string(N - 1);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610648939",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

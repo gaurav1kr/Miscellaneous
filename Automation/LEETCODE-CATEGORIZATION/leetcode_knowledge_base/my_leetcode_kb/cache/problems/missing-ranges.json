@@ -1,0 +1,27 @@
+{
+  "id": "163",
+  "title": "Missing Ranges",
+  "slug": "missing-ranges",
+  "url": "https://leetcode.com/problems/missing-ranges/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an inclusive range [lower, upper] and a sorted unique integer array nums , where all elements are within the inclusive range. \n \n A number x is considered missing if x is in the range [lower, upper] and x is not in nums . \n \n Return the shortest sorted list of ranges that exactly covers all the missing numbers . That is, no element of nums is included in any of the ranges, and each missing number is covered by one of the ranges. \n\n Example 1: \n \n```\nInput:\n nums = [0,1,3,50,75], lower = 0, upper = 99\n\nOutput:\n [[2,2],[4,49],[51,74],[76,99]]\n\nExplanation:\n The ranges are:\n[2,2]\n[4,49]\n[51,74]\n[76,99]\n```\n\n Example 2: \n \n```\nInput:\n nums = [-1], lower = -1, upper = -1\n\nOutput:\n []\n\nExplanation:\n There are no missing ranges since there are no missing numbers.\n```\n\n Constraints: \n\n -10 9 <= lower <= upper <= 10 9 \n \n 0 <= nums.length <= 100 \n \n lower <= nums[i] <= upper \n \n All the values of nums are unique .",
+  "code": "class Solution\n{\npublic:\n    vector< vector< int >>findMissingRanges(vector< int>& nums, int lower, int upper)\n    {\n        vector< vector< int >>ans;\n        long long prev = (long long) lower - 1;\n        for (int i = 0; i <= (int) nums.size();++i)\n        {\n            long long cur = i == (int) nums.size() ? (long long) upper + 1 : nums[i];\n            if (cur - prev >1) ans.push_back( { (int) (prev + 1), (int) (cur - 1) });\n            prev = cur;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178432410",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

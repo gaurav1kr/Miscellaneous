@@ -1,0 +1,33 @@
+{
+  "id": "3093",
+  "title": "Longest Common Suffix Queries",
+  "slug": "longest-common-suffix-queries",
+  "url": "https://leetcode.com/problems/longest-common-suffix-queries/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given two arrays of strings wordsContainer and wordsQuery . \n \n For each wordsQuery[i] , you need to find a string from wordsContainer that has the longest common suffix with wordsQuery[i] . If there are two or more strings in wordsContainer that share the longest common suffix, find the string that is the smallest in length. If there are two or more such strings that have the same smallest length, find the one that occurred earlier in wordsContainer . \n \n Return an array of integers ans , where ans[i] is the index of the string in wordsContainer that has the longest common suffix with wordsQuery[i] . \n\n Example 1: \n\n Input: wordsContainer = [\"abcd\",\"bcd\",\"xbcd\"], wordsQuery = [\"cd\",\"bcd\",\"xyz\"] \n \n Output: [1,1,1] \n \n Explanation: \n \n Let's look at each wordsQuery[i] separately: \n\n For wordsQuery[0] = \"cd\" , strings from wordsContainer that share the longest common suffix \"cd\" are at indices 0, 1, and 2. Among these, the answer is the string at index 1 because it has the shortest length of 3. \n \n For wordsQuery[1] = \"bcd\" , strings from wordsContainer that share the longest common suffix \"bcd\" are at indices 0, 1, and 2. Among these, the answer is the string at index 1 because it has the shortest length of 3. \n \n For wordsQuery[2] = \"xyz\" , there is no string from wordsContainer that shares a common suffix. Hence the longest common suffix is \"\" , that is shared with strings at index 0, 1, and 2. Among these, the answer is the string at index 1 because it has the shortest length of 3. \n\n Example 2: \n\n Input: wordsContainer = [\"abcdefgh\",\"poiuygh\",\"ghghgh\"], wordsQuery = [\"gh\",\"acbfgh\",\"acbfegh\"] \n \n Output: [2,0,2] \n \n Explanation: \n \n Let's look at each wordsQuery[i] separately: \n\n For wordsQuery[0] = \"gh\" , strings from wordsContainer that share the longest common suffix \"gh\" are at indices 0, 1, and 2. Among these, the answer is the string at index 2 because it has the shortest length of 6. \n \n For wordsQuery[1] = \"acbfgh\" , only the string at index 0 shares the longest common suffix \"fgh\" . Hence it is the answer, even though the string at index 2 is shorter. \n \n For wordsQuery[2] = \"acbfegh\" , strings from wordsContainer that share the longest common suffix \"gh\" are at indices 0, 1, and 2. Among these, the answer is the string at index 2 because it has the shortest length of 6. \n\n Constraints: \n\n 1 <= wordsContainer.length, wordsQuery.length <= 10 4 \n \n 1 <= wordsContainer[i].length <= 5 * 10 3 \n \n 1 <= wordsQuery[i].length <= 5 * 10 3 \n \n wordsContainer[i] consists only of lowercase English letters. \n \n wordsQuery[i] consists only of lowercase English letters. \n \n Sum of wordsContainer[i].length is at most 5 * 10 5 . \n \n Sum of wordsQuery[i].length is at most 5 * 10 5 .",
+  "code": "class Solution {struct Node{int nxt[26],best;Node():best(-1){fill(nxt,nxt+26,-1);}};\npublic:vector<int> stringIndices(vector<string>& wordsContainer,vector<string>& wordsQuery){\n vector<Node> t(1);auto improve=[&](int u,int i){int old=t[u].best;if(old==-1||wordsContainer[i].size()<wordsContainer[old].size())t[u].best=i;};\n for(int i=0;i<(int)wordsContainer.size();i++){int u=0;improve(u,i);for(auto it=wordsContainer[i].rbegin();it!=wordsContainer[i].rend();it++){\n int c=*it-'a';if(t[u].nxt[c]==-1){int id=t.size();t[u].nxt[c]=id;t.emplace_back();}u=t[u].nxt[c];improve(u,i);}}\n vector<int> ans;for(auto &s:wordsQuery){int u=0;for(auto it=s.rbegin();it!=s.rend();it++){int v=t[u].nxt[*it-'a'];if(v==-1)break;u=v;}ans.push_back(t[u].best);}return ans;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176861731",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

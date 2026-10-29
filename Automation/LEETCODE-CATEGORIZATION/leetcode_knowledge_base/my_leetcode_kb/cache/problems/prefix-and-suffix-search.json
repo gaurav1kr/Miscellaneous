@@ -1,0 +1,40 @@
+{
+  "id": "745",
+  "title": "Prefix and Suffix Search",
+  "slug": "prefix-and-suffix-search",
+  "url": "https://leetcode.com/problems/prefix-and-suffix-search/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Design",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Design a special dictionary that searches the words in it by a prefix and a suffix. \n \n Implement the WordFilter class: \n\n WordFilter(string[] words) Initializes the object with the words in the dictionary. \n \n f(string pref, string suff) Returns the index of the word in the dictionary, which has the prefix pref and the suffix suff . If there is more than one valid index, return the largest of them. If there is no such word in the dictionary, return -1 . \n\n Example 1: \n \n```\nInput\n\n[\"WordFilter\", \"f\"]\n[[[\"apple\"]], [\"a\", \"e\"]]\n\nOutput\n\n[null, 0]\n\nExplanation\n\nWordFilter wordFilter = new WordFilter([\"apple\"]);\nwordFilter.f(\"a\", \"e\"); // return 0, because the word at index 0 has prefix = \"a\" and suffix = \"e\".\n```\n\n Constraints: \n\n 1 <= words.length <= 10 4 \n \n 1 <= words[i].length <= 7 \n \n 1 <= pref.length, suff.length <= 7 \n \n words[i] , pref and suff consist of lowercase English letters only. \n \n At most 10 4 calls will be made to the function f .",
+  "code": "\n#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nclass WordFilter {\n    unordered_map<string, int> prefixSuffixMap;\n    \npublic:\n    WordFilter(vector<string>& words) {\n        for (int i = 0; i < words.size(); ++i) {\n            for (int j = 0; j <= words[i].size(); ++j) {\n                for (int k = 0; k <= words[i].size(); ++k) {\n                    prefixSuffixMap[words[i].substr(0, j) + \"-\" + words[i].substr(words[i].size() - k)] = i;\n                }\n            }\n        }\n    }\n\n    int f(string prefix, string suffix) {\n        string key = prefix + \"-\" + suffix;\n        if (prefixSuffixMap.count(key)) return prefixSuffixMap[key];\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592345769",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

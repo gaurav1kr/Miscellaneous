@@ -1,0 +1,29 @@
+{
+  "id": "1343",
+  "title": "Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold",
+  "slug": "number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold",
+  "url": "https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of integers arr and two integers k and threshold , return the number of sub-arrays of size k and average greater than or equal to threshold . \n\n Example 1: \n \n```\nInput:\n arr = [2,2,2,2,5,5,5,8], k = 3, threshold = 4\n\nOutput:\n 3\n\nExplanation:\n Sub-arrays [2,5,5],[5,5,5] and [5,5,8] have averages 4, 5 and 6 respectively. All other sub-arrays of size 3 have averages less than 4 (the threshold).\n```\n\n Example 2: \n \n```\nInput:\n arr = [11,13,17,23,29,31,7,5,2,3], k = 3, threshold = 5\n\nOutput:\n 6\n\nExplanation:\n The first 6 sub-arrays of size 3 have averages greater than 5. Note that averages are not integers.\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 5 \n \n 1 <= arr[i] <= 10 4 \n \n 1 <= k <= arr.length \n \n 0 <= threshold <= 10 4",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numOfSubarrays(vector<int>& arr, int k, int threshold) {\n        int sum = 0, count = 0;\n        for (int i = 0; i < k; ++i) sum += arr[i];\n        if (sum >= threshold * k) count++;\n\n        for (int i = k; i < arr.size(); ++i) {\n            sum += arr[i] - arr[i - k];\n            if (sum >= threshold * k) count++;\n        }\n\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610580202",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

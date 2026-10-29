@@ -1,0 +1,38 @@
+{
+  "id": "526",
+  "title": "Beautiful Arrangement",
+  "slug": "beautiful-arrangement",
+  "url": "https://leetcode.com/problems/beautiful-arrangement/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Suppose you have n integers labeled 1 through n . A permutation of those n integers perm ( 1-indexed ) is considered a beautiful arrangement if for every i ( 1 <= i <= n ), either of the following is true: \n\n perm[i] is divisible by i . \n \n i is divisible by perm[i] . \n\n Given an integer n , return the number of the beautiful arrangements that you can construct . \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n 2\n\nExplanation:\n \nThe first beautiful arrangement is [1,2]:\n - perm[1] = 1 is divisible by i = 1\n - perm[2] = 2 is divisible by i = 2\nThe second beautiful arrangement is [2,1]:\n - perm[1] = 2 is divisible by i = 1\n - i = 2 is divisible by perm[2] = 1\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= n <= 15",
+  "code": "class Solution {\npublic:\n    unordered_map<int,vector<int>> m;\n    int countArrangement(int n) {\n        vector<int> v(n+1,0);\n        for(int i=1;i<=n;i++)\n        {\n            for(int j=1;j<=n;j++)\n            {\n                if(i%j==0 || j%i==0)\n                    m[i].push_back(j);\n            }\n        }\n        return fun(v,n);\n    }\n    int fun(vector<int>& vis,int n)\n    {\n        if(n<=0)\n            return 1;\n                \n        int t=0;\n        for(auto x:m[n])\n        {\n            if(vis[x]==0)\n            {\n                vis[x]=1;\n                t+=fun(vis,n-1);\n                vis[x]=0;\n            }\n        }\n        return t;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1365815437",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

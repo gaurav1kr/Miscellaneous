@@ -1,0 +1,26 @@
+{
+  "id": "1309",
+  "title": "Decrypt String from Alphabet to Integer Mapping",
+  "slug": "decrypt-string-from-alphabet-to-integer-mapping",
+  "url": "https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s formed by digits and '#' . We want to map s to English lowercase characters as follows: \n\n Characters ( 'a' to 'i' ) are represented by ( '1' to '9' ) respectively. \n \n Characters ( 'j' to 'z' ) are represented by ( '10#' to '26#' ) respectively. \n\n Return the string formed after mapping . \n \n The test cases are generated so that a unique mapping will always exist. \n\n Example 1: \n \n```\nInput:\n s = \"10#11#12\"\n\nOutput:\n \"jkab\"\n\nExplanation:\n \"j\" -> \"10#\" , \"k\" -> \"11#\" , \"a\" -> \"1\" , \"b\" -> \"2\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"1326#\"\n\nOutput:\n \"acz\"\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of digits and the '#' letter. \n \n s will be a valid string such that mapping is always possible.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string freqAlphabets(string s) {\n        string res;\n        for (int i = s.size() - 1; i >= 0; --i) {\n            if (s[i] == '#') {\n                int val = stoi(s.substr(i - 2, 2));\n                res += 'a' + val - 1;\n                i -= 2;\n            } else {\n                res += 'a' + (s[i] - '0') - 1;\n            }\n        }\n        reverse(res.begin(), res.end());\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593848881",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

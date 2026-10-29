@@ -1,0 +1,32 @@
+{
+  "id": "2836",
+  "title": "Maximize Value of Function in a Ball Passing Game",
+  "slug": "maximize-value-of-function-in-a-ball-passing-game",
+  "url": "https://leetcode.com/problems/maximize-value-of-function-in-a-ball-passing-game/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array receiver of length n and an integer k . n players are playing a ball-passing game. \n \n You choose the starting player, i . The game proceeds as follows: player i passes the ball to player receiver[i] , who then passes it to receiver[receiver[i]] , and so on, for k passes in total. The game's score is the sum of the indices of the players who touched the ball, including repetitions, i.e. i + receiver[i] + receiver[receiver[i]] + ... + receiver (k) [i] . \n \n Return the maximum  possible score. \n \n Notes: \n\n receiver may contain duplicates. \n \n receiver[i] may be equal to i . \n\n Example 1: \n\n Input: receiver = [2,0,1], k = 4 \n \n Output: 6 \n \n Explanation: \n \n Starting with player i = 2 the initial score is 2: \n\n Pass \n Sender Index \n Receiver Index \n Score \n\n 1 \n 2 \n 1 \n 3 \n\n 2 \n 1 \n 0 \n 3 \n\n 3 \n 0 \n 2 \n 5 \n\n 4 \n 2 \n 1 \n 6 \n\n Example 2: \n\n Input: receiver = [1,1,1,2,3], k = 3 \n \n Output: 10 \n \n Explanation: \n \n Starting with player i = 4 the initial score is 4: \n\n Pass \n Sender Index \n Receiver Index \n Score \n\n 1 \n 4 \n 3 \n 7 \n\n 2 \n 3 \n 2 \n 9 \n\n 3 \n 2 \n 1 \n 10 \n\n Constraints: \n\n 1 <= receiver.length == n <= 10 5 \n \n 0 <= receiver[i] <= n - 1 \n \n 1 <= k <= 10 10",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:long long getMaxFunctionValue(vector<int>& receiver,long long k){int n=receiver.size(),B=0;while((1LL<<B)<=k&&B<62)++B;vector<vector<int>> up(B,vector<int>(n));vector<vector<long long>> sum(B,vector<long long>(n));for(int i=0;i<n;++i){up[0][i]=receiver[i];sum[0][i]=receiver[i];}for(int b=1;b<B;++b)for(int i=0;i<n;++i){up[b][i]=up[b-1][up[b-1][i]];sum[b][i]=sum[b-1][i]+sum[b-1][up[b-1][i]];}long long ans=0;for(int i=0;i<n;++i){long long cur=i;int v=i;for(int b=0;b<B;++b)if((k>>b)&1){cur+=sum[b][v];v=up[b][v];}ans=max(ans,cur);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176718122",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

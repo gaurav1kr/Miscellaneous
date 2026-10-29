@@ -1,0 +1,32 @@
+{
+  "id": "3933",
+  "title": "Largest Local Values in a Matrix II",
+  "slug": "largest-local-values-in-a-matrix-ii",
+  "url": "https://leetcode.com/problems/largest-local-values-in-a-matrix-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an n x m integer matrix matrix containing non-negative integers. \n \n A non-zero cell (row, col) checks the cells near it as follows: \n\n Let x = matrix[row][col] . \n \n Consider every cell within x rows and x columns of (row, col) . \n \n Ignore cells that are outside the matrix. \n \n Ignore the cells where both the row distance and column distance are exactly x . \n\n The cell (row, col) is a local maximum if it is non-zero and no considered cell has a value greater than x . \n \n Return an integer denoting the number of local maximums in matrix . \n\n ​​​​​​​Example 1: \n\n Input: matrix = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]] \n \n Output: 1 \n \n [Figure: https://assets.leetcode.com/uploads/2026/05/13/chatgpt-image-may-14-2026-01_53_19-am.png] ​​​​​​​​​​​​​​​​​​​​​ \n \n Explanation: \n\n For the non-zero cell (3, 3) , x = matrix[3][3] = 2 . \n \n The highlighted cells are the considered cells within x rows and x columns of (3, 3) . \n \n The four cells with both row and column distances equal to x = 2 are ignored. \n \n No considered cell has a value greater than 2, so (3, 3) is a local maximum. \n \n There are no other non-zero cells, so the answer is 1. \n\n Example 2: \n\n Input: matrix = [[1,2],[3,4]] \n \n Output: 1 \n \n Explanation: \n \n Only the cell with value 4 is a local maximum. Every other non-zero cell considers a cell with a greater value. \n\n Example 3: \n\n Input: matrix = [[1,0,1],[0,1,0],[1,0,1]] \n \n Output: 5 \n \n Explanation: \n\n For a cell with value 1, the considered cells are the cell itself and its 4-directionally adjacent cells that are inside the matrix. \n \n Each of the five cells with value 1 only considers cells with values 0 or 1, so all five of them are local maximums. \n\n Example 4: \n\n Input: matrix = [[1,1],[1,1]] \n \n Output: 4 \n \n Explanation: \n \n All cells have the same value. Therefore, no cell considers another cell with a greater value, so all 4 cells are local maximums. \n\n Constraints: \n\n 1 <= n == matrix.length <= 200 \n \n 1 <= m == matrix[i].length <= 200 \n \n 0 <= matrix[i][j] <= 200",
+  "code": "class Solution {\npublic:\n    int countLocalMaximums(vector<vector<int>>& matrix){\n        int n=matrix.size(),m=matrix[0].size();\n        int A=1,B=1;\n        while((1<<A)<=n) ++A;\n        while((1<<B)<=m) ++B;\n        vector<vector<vector<vector<int>>>> st(\n            A,vector<vector<vector<int>>>(B,vector<vector<int>>(n,vector<int>(m,0))));\n        st[0][0]=matrix;\n        for(int a=0;a<A;++a) for(int b=0;b<B;++b){\n            if(a==0&&b==0) continue;\n            for(int i=0;i+(1<<a)<=n;++i)\n                for(int j=0;j+(1<<b)<=m;++j){\n                    if(a>0) st[a][b][i][j]=max(st[a-1][b][i][j],\n                        st[a-1][b][i+(1<<(a-1))][j]);\n                    else st[a][b][i][j]=max(st[a][b-1][i][j],\n                        st[a][b-1][i][j+(1<<(b-1))]);\n                }\n        }\n        vector<int> lg(max(n,m)+1,0);\n        for(int i=2;i<(int)lg.size();++i) lg[i]=lg[i/2]+1;\n        auto rect=[&](int r1,int c1,int r2,int c2)->int{\n            r1=max(0,r1);c1=max(0,c1);\n            r2=min(n-1,r2);c2=min(m-1,c2);\n            if(r1>r2||c1>c2) return -1;\n            int a=lg[r2-r1+1],b=lg[c2-c1+1];\n            int rr=r2-(1<<a)+1,cc=c2-(1<<b)+1;\n            return max(max(st[a][b][r1][c1],st[a][b][rr][c1]),\n                       max(st[a][b][r1][cc],st[a][b][rr][cc]));\n        };\n        int ans=0;\n        for(int r=0;r<n;++r) for(int c=0;c<m;++c){\n            int x=matrix[r][c];\n            if(x==0) continue;\n            int v=rect(r-x+1,c-x,r+x-1,c+x);\n            v=max(v,rect(r-x,c-x+1,r-x,c+x-1));\n            v=max(v,rect(r+x,c-x+1,r+x,c+x-1));\n            if(v<=x) ++ans;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181088988",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

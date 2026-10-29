@@ -1,0 +1,28 @@
+{
+  "id": "2069",
+  "title": "Walking Robot Simulation II",
+  "slug": "walking-robot-simulation-ii",
+  "url": "https://leetcode.com/problems/walking-robot-simulation-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Design",
+    "Simulation"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "A width x height grid is on an XY-plane with the bottom-left cell at (0, 0) and the top-right cell at (width - 1, height - 1) . The grid is aligned with the four cardinal directions ( \"North\" , \"East\" , \"South\" , and \"West\" ). A robot is initially at cell (0, 0) facing direction \"East\" . \n \n The robot can be instructed to move for a specific number of steps . For each step, it does the following. \n\n Attempts to move forward one cell in the direction it is facing. \n \n If the cell the robot is moving to is out of bounds , the robot instead turns 90 degrees counterclockwise and retries the step. \n\n After the robot finishes moving the number of steps required, it stops and awaits the next instruction. \n \n Implement the Robot class: \n\n Robot(int width, int height) Initializes the width x height grid with the robot at (0, 0) facing \"East\" . \n \n void step(int num) Instructs the robot to move forward num steps. \n \n int[] getPos() Returns the current cell the robot is at, as an array of length 2, [x, y] . \n \n String getDir() Returns the current direction of the robot, \"North\" , \"East\" , \"South\" , or \"West\" . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/10/09/example-1.png] \n \n```\nInput\n\n[\"Robot\", \"step\", \"step\", \"getPos\", \"getDir\", \"step\", \"step\", \"step\", \"getPos\", \"getDir\"]\n[[6, 3], [2], [2], [], [], [2], [1], [4], [], []]\n\nOutput\n\n[null, null, null, [4, 0], \"East\", null, null, null, [1, 2], \"West\"]\n\nExplanation\n\nRobot robot = new Robot(6, 3); // Initialize the grid and the robot at (0, 0) facing East.\nrobot.step(2); // It moves two steps East to (2, 0), and faces East.\nrobot.step(2); // It moves two steps East to (4, 0), and faces East.\nrobot.getPos(); // return [4, 0]\nrobot.getDir(); // return \"East\"\nrobot.step(2); // It moves one step East to (5, 0), and faces East.\n // Moving the next step East would be out of bounds, so it turns and faces North.\n // Then, it moves one step North to (5, 1), and faces North.\nrobot.step(1); // It moves one step North to (5, 2), and faces \nNorth\n (not West).\nrobot.step(4); // Moving the next step North would be out of bounds, so it turns and faces West.\n // Then, it moves four steps West to (1, 2), and faces West.\nrobot.getPos(); // return [1, 2]\nrobot.getDir(); // return \"West\"\n```\n\n Constraints: \n\n 2 <= width, height <= 100 \n \n 1 <= num <= 10 5 \n \n At most 10 4 calls in total will be made to step , getPos , and getDir .",
+  "code": "class Robot {\n int w,h,per,pos=0; bool moved=false;\npublic:\n Robot(int width,int height):w(width),h(height),per(2*(width+height-2)){}\n void step(int num){moved=true; pos=(pos+num%per)%per;}\n vector<int> getPos(){\n  int t=pos;\n  if(t<w-1) return {t,0}; t-=w-1;\n  if(t<h-1) return {w-1,t}; t-=h-1;\n  if(t<w-1) return {w-1-t,h-1}; t-=w-1;\n  return {0,h-1-t};\n }\n string getDir(){\n  if(!moved) return \"East\";\n  if(pos==0) return \"South\";\n  if(pos<=w-1) return \"East\";\n  if(pos<=w+h-2) return \"North\";\n  if(pos<=2*w+h-3) return \"West\";\n  return \"South\";\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175730750",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

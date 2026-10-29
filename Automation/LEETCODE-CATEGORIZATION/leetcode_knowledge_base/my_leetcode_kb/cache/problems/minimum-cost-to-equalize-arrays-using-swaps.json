@@ -1,0 +1,33 @@
+{
+  "id": "3868",
+  "title": "Minimum Cost to Equalize Arrays Using Swaps",
+  "slug": "minimum-cost-to-equalize-arrays-using-swaps",
+  "url": "https://leetcode.com/problems/minimum-cost-to-equalize-arrays-using-swaps/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays nums1 and nums2 of size n . \n \n You can perform the following two operations any number of times on these two arrays: \n\n Swap within the same array : Choose two indices i and j . Then, choose either to swap nums1[i] and nums1[j] , or nums2[i] and nums2[j] . This operation is free of charge . \n \n Swap between two arrays : Choose an index i . Then, swap nums1[i] and nums2[i] . This operation incurs a cost of 1 . \n\n Return an integer denoting the minimum cost to make nums1 and nums2 identical . If this is not possible, return -1. \n\n Example 1: \n\n Input: nums1 = [10,20], nums2 = [20,10] \n \n Output: 0 \n \n Explanation: \n\n Swap nums2[0] = 20 and nums2[1] = 10 .\n\n nums2 becomes [10, 20] . \n \n This operation is free of charge. \n\n nums1 and nums2 are now identical. The cost is 0. \n\n Example 2: \n\n Input: nums1 = [10,10], nums2 = [20,20] \n \n Output: 1 \n \n Explanation: \n\n Swap nums1[0] = 10 and nums2[0] = 20 .\n\n nums1 becomes [20, 10] . \n \n nums2 becomes [10, 20] . \n \n This operation costs 1. \n\n Swap nums2[0] = 10 and nums2[1] = 20 .\n\n nums2 becomes [20, 10] . \n \n This operation is free of charge. \n\n nums1 and nums2 are now identical. The cost is 1. \n\n Example 3: \n\n Input: nums1 = [10,20], nums2 = [30,40] \n \n Output: -1 \n \n Explanation: \n \n It is impossible to make the two arrays identical. Therefore, the answer is -1. \n\n Constraints: \n\n 2 <= n == nums1.length == nums2.length <= 8 * 10 4 \n \n 1 <= nums1[i], nums2[i] <= 8 * 10 4",
+  "code": "class Solution {\npublic:\n    int minCost(vector<int>& nums1, vector<int>& nums2) {\n        vector<int> diff(80001, 0);\n        for (int x : nums1) ++diff[x];\n        for (int x : nums2) --diff[x];\n        int swaps = 0;\n        for (int d : diff) {\n            if (abs(d) % 2 != 0) return -1;\n            if (d > 0) swaps += d / 2;\n        }\n        return swaps;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181070418",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

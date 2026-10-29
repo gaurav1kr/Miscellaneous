@@ -1,0 +1,39 @@
+{
+  "id": "2554",
+  "title": "Maximum Number of Integers to Choose From a Range I",
+  "slug": "maximum-number-of-integers-to-choose-from-a-range-i",
+  "url": "https://leetcode.com/problems/maximum-number-of-integers-to-choose-from-a-range-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array banned and two integers n and maxSum . You are choosing some number of integers following the below rules: \n\n The chosen integers have to be in the range [1, n] . \n \n Each integer can be chosen at most once . \n \n The chosen integers should not be in the array banned . \n \n The sum of the chosen integers should not exceed maxSum . \n\n Return the maximum number of integers you can choose following the mentioned rules . \n\n Example 1: \n \n```\nInput:\n banned = [1,6,5], n = 5, maxSum = 6\n\nOutput:\n 2\n\nExplanation:\n You can choose the integers 2 and 4.\n2 and 4 are from the range [1, 5], both did not appear in banned, and their sum is 6, which did not exceed maxSum.\n```\n\n Example 2: \n \n```\nInput:\n banned = [1,2,3,4,5,6,7], n = 8, maxSum = 1\n\nOutput:\n 0\n\nExplanation:\n You cannot choose any integer while following the mentioned conditions.\n```\n\n Example 3: \n \n```\nInput:\n banned = [11], n = 7, maxSum = 50\n\nOutput:\n 7\n\nExplanation:\n You can choose the integers 1, 2, 3, 4, 5, 6, and 7.\nThey are from the range [1, 7], all did not appear in banned, and their sum is 28, which did not exceed maxSum.\n```\n\n Constraints: \n\n 1 <= banned.length <= 10 4 \n \n 1 <= banned[i], n <= 10 4 \n \n 1 <= maxSum <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int maxCount(vector<int>& banned,int n,int maxSum){\n  unordered_set<int> bad(banned.begin(),banned.end());int ans=0;\n  for(int i=1;i<=n;++i){if(bad.count(i))continue;if(maxSum<i)break;maxSum-=i;++ans;}return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176610514",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

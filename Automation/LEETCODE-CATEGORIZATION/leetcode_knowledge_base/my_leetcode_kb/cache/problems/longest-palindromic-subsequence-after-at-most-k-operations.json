@@ -1,0 +1,30 @@
+{
+  "id": "3472",
+  "title": "Longest Palindromic Subsequence After at Most K Operations",
+  "slug": "longest-palindromic-subsequence-after-at-most-k-operations",
+  "url": "https://leetcode.com/problems/longest-palindromic-subsequence-after-at-most-k-operations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s and an integer k . \n \n In one operation, you can replace the character at any position with the next or previous letter in the alphabet (wrapping around so that 'a' is after 'z' ). For example, replacing 'a' with the next letter results in 'b' , and replacing 'a' with the previous letter results in 'z' . Similarly, replacing 'z' with the next letter results in 'a' , and replacing 'z' with the previous letter results in 'y' . \n \n Return the length of the longest palindromic subsequence of s that can be obtained after performing at most k operations. \n\n Example 1: \n\n Input: s = \"abced\", k = 2 \n \n Output: 3 \n \n Explanation: \n\n Replace s[1] with the next letter, and s becomes \"acced\" . \n \n Replace s[4] with the previous letter, and s becomes \"accec\" . \n\n The subsequence \"ccc\" forms a palindrome of length 3, which is the maximum. \n\n Example 2: \n\n Input: s = \" aaazzz \", k = 4 \n \n Output: 6 \n \n Explanation: \n\n Replace s[0] with the previous letter, and s becomes \"zaazzz\" . \n \n Replace s[4] with the next letter, and s becomes \"zaazaz\" . \n \n Replace s[3] with the next letter, and s becomes \"zaaaaz\" . \n\n The entire string forms a palindrome of length 6. \n\n Constraints: \n\n 1 <= s.length <= 200 \n \n 1 <= k <= 200 \n \n s consists of only lowercase English letters.",
+  "code": "class Solution {public:int longestPalindromicSubsequence(string s,int k){int n=s.size();vector<vector<vector<int>>>dp(n,vector<vector<int>>(n,vector<int>(k+1,-1)));function<int(int,int,int)>dfs=[&](int l,int r,int b){if(l>r)return 0;if(l==r)return 1;int&res=dp[l][r][b];if(res!=-1)return res;res=max(dfs(l+1,r,b),dfs(l,r-1,b));int d=abs(s[l]-s[r]);d=min(d,26-d);if(d<=b)res=max(res,2+dfs(l+1,r-1,b-d));return res;};return dfs(0,n-1,k);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177537577",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

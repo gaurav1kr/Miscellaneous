@@ -1,0 +1,28 @@
+{
+  "id": "1507",
+  "title": "Reformat Date",
+  "slug": "reformat-date",
+  "url": "https://leetcode.com/problems/reformat-date/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given a date string in the form  Day Month Year , where: \n\n Day  is in the set {\"1st\", \"2nd\", \"3rd\", \"4th\", ..., \"30th\", \"31st\"} . \n \n Month  is in the set {\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"} . \n \n Year  is in the range [1900, 2100] . \n\n Convert the date string to the format YYYY-MM-DD , where: \n\n YYYY denotes the 4 digit year. \n \n MM denotes the 2 digit month. \n \n DD denotes the 2 digit day. \n\n Example 1: \n \n```\nInput:\n date = \"20th Oct 2052\"\n\nOutput:\n \"2052-10-20\"\n```\n\n Example 2: \n \n```\nInput:\n date = \"6th Jun 1933\"\n\nOutput:\n \"1933-06-06\"\n```\n\n Example 3: \n \n```\nInput:\n date = \"26th May 1960\"\n\nOutput:\n \"1960-05-26\"\n```\n\n Constraints: \n\n The given dates are guaranteed to be valid, so no error handling is necessary.",
+  "code": "#include <string>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    string reformatDate(string date) {\n        unordered_map<string, string> month = {\n            {\"Jan\",\"01\"},{\"Feb\",\"02\"},{\"Mar\",\"03\"},{\"Apr\",\"04\"},{\"May\",\"05\"},{\"Jun\",\"06\"},\n            {\"Jul\",\"07\"},{\"Aug\",\"08\"},{\"Sep\",\"09\"},{\"Oct\",\"10\"},{\"Nov\",\"11\"},{\"Dec\",\"12\"}\n        };\n        string day = date.substr(0, date.find_first_not_of(\"0123456789\"));\n        if (day.size() == 1) day = \"0\" + day;\n        string mon = month[date.substr(date.find(' ') + 1, 3)];\n        string year = date.substr(date.size() - 4);\n        return year + \"-\" + mon + \"-\" + day;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610678137",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

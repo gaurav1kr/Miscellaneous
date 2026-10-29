@@ -1,0 +1,30 @@
+{
+  "id": "1614",
+  "title": "Maximum Nesting Depth of the Parentheses",
+  "slug": "maximum-nesting-depth-of-the-parentheses",
+  "url": "https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Bracket Sequences"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given a valid parentheses string s , return the nesting depth of s . The nesting depth is the maximum number of nested parentheses. \n\n Example 1: \n\n Input: s = \"(1+(2*3)+((8)/4))+1\" \n \n Output: 3 \n \n Explanation: \n \n Digit 8 is inside of 3 nested parentheses in the string. \n\n Example 2: \n\n Input: s = \"(1)+((2))+(((3)))\" \n \n Output: 3 \n \n Explanation: \n \n Digit 3 is inside of 3 nested parentheses in the string. \n\n Example 3: \n\n Input: s = \"()(())((()()))\" \n \n Output: 3 \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists of digits 0-9 and characters '+' , '-' , '*' , '/' , '(' , and ')' . \n \n It is guaranteed that parentheses expression s is a VPS.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxDepth(string s) {\n        int depth = 0, maxDepth = 0;\n        for (char c : s) {\n            if (c == '(') maxDepth = max(maxDepth, ++depth);\n            else if (c == ')') depth--;\n        }\n        return maxDepth;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595379579",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

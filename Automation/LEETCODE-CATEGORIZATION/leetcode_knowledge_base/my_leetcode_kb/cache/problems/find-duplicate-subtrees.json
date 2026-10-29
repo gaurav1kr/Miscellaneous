@@ -1,0 +1,36 @@
+{
+  "id": "652",
+  "title": "Find Duplicate Subtrees",
+  "slug": "find-duplicate-subtrees",
+  "url": "https://leetcode.com/problems/find-duplicate-subtrees/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root  of a binary tree, return all duplicate subtrees . \n \n For each kind of duplicate subtrees, you only need to return the root node of any one of them. \n \n Two trees are duplicate if they have the same structure with the same node values . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/08/16/e1.jpg] \n \n```\nInput:\n root = [1,2,3,4,null,2,4,null,null,4]\n\nOutput:\n [[2,4],[4]]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/08/16/e2.jpg] \n \n```\nInput:\n root = [2,1,1]\n\nOutput:\n [[1]]\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/08/16/e33.jpg] \n \n```\nInput:\n root = [2,2,2,3,null,3,null]\n\nOutput:\n [[2,3],[3]]\n```\n\n Constraints: \n\n The number of the nodes in the tree will be in the range [1, 5000] \n \n -200 <= Node.val <= 200",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    string inorder(TreeNode* root, unordered_map<string, int>& mp, vector<TreeNode*>& res)                \n{\n        if(!root)\n         return \"\";\n\n        string str = \"(\";\n        str += inorder(root -> left, mp, res);\n        str += to_string(root -> val);\n        str += inorder(root -> right, mp, res);\n        str += \")\";\n\n        if(mp[str] == 1)\n            res.push_back(root);\n    \n        mp[str]++;\n\n        return str;\n}\n    \nvector<TreeNode*> findDuplicateSubtrees(TreeNode* root) \n{\n\tunordered_map<string, int> mp;\n\tvector<TreeNode*> res;\n\tinorder(root, mp, res);\n\treturn res;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1493203893",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "3372",
+  "title": "Maximize the Number of Target Nodes After Connecting Trees I",
+  "slug": "maximize-the-number-of-target-nodes-after-connecting-trees-i",
+  "url": "https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There exist two undirected trees with n and m nodes, with distinct labels in ranges [0, n - 1] and [0, m - 1] , respectively. \n \n You are given two 2D integer arrays edges1 and edges2 of lengths n - 1 and m - 1 , respectively, where edges1[i] = [a i , b i ] indicates that there is an edge between nodes a i and b i in the first tree and edges2[i] = [u i , v i ] indicates that there is an edge between nodes u i and v i in the second tree. You are also given an integer k . \n \n Node u is target to node v if the number of edges on the path from u to v is less than or equal to k . Note that a node is always target to itself. \n \n Return an array of n integers answer , where answer[i] is the maximum possible number of nodes target to node i of the first tree if you have to connect one node from the first tree to another node in the second tree. \n \n Note that queries are independent from each other. That is, for every query you will remove the added edge before proceeding to the next query. \n\n Example 1: \n\n Input: edges1 = [[0,1],[0,2],[2,3],[2,4]], edges2 = [[0,1],[0,2],[0,3],[2,7],[1,4],[4,5],[4,6]], k = 2 \n \n Output: [9,7,9,8,8] \n \n Explanation: \n\n For i = 0 , connect node 0 from the first tree to node 0 from the second tree. \n \n For i = 1 , connect node 1 from the first tree to node 0 from the second tree. \n \n For i = 2 , connect node 2 from the first tree to node 4 from the second tree. \n \n For i = 3 , connect node 3 from the first tree to node 4 from the second tree. \n \n For i = 4 , connect node 4 from the first tree to node 4 from the second tree. \n \n [Figure: https://assets.leetcode.com/uploads/2024/09/24/3982-1.png] \n \n Example 2: \n\n Input: edges1 = [[0,1],[0,2],[0,3],[0,4]], edges2 = [[0,1],[1,2],[2,3]], k = 1 \n \n Output: [6,3,3,3,3] \n \n Explanation: \n \n For every i , connect node i of the first tree with any node of the second tree. \n [Figure: https://assets.leetcode.com/uploads/2024/09/24/3928-2.png] \n\n Constraints: \n\n 2 <= n, m <= 1000 \n \n edges1.length == n - 1 \n \n edges2.length == m - 1 \n \n edges1[i].length == edges2[i].length == 2 \n \n edges1[i] = [a i , b i ] \n \n 0 <= a i , b i < n \n \n edges2[i] = [u i , v i ] \n \n 0 <= u i , v i < m \n \n The input is generated such that edges1 and edges2 represent valid trees. \n \n 0 <= k <= 1000",
+  "code": "class Solution {vector<int>counts(vector<vector<int>>&e,int d){int n=e.size()+1;vector<vector<int>>g(n);for(auto &x:e){g[x[0]].push_back(x[1]);g[x[1]].push_back(x[0]);}vector<int>ans(n);for(int s=0;s<n;s++){queue<pair<int,int>>q;q.push({s,0});vector<int>seen(n);seen[s]=1;while(!q.empty()){auto z=q.front();q.pop();if(z.second>d)continue;ans[s]++;for(int v:g[z.first])if(!seen[v]){seen[v]=1;q.push({v,z.second+1});}}}return ans;}public:vector<int>maxTargetNodes(vector<vector<int>>&edges1,vector<vector<int>>&edges2,int k){auto a=counts(edges1,k);auto b=counts(edges2,k-1);int best=*max_element(b.begin(),b.end());for(int &x:a)x+=best;return a;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177471701",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

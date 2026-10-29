@@ -1,0 +1,29 @@
+{
+  "id": "625",
+  "title": "Minimum Factorization",
+  "slug": "minimum-factorization",
+  "url": "https://leetcode.com/problems/minimum-factorization/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Greedy",
+    "Prime Factorization"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "Given a positive integer num, return the smallest positive integer x whose multiplication of each digit equals num . If there is no answer or the answer is not fit in 32-bit signed integer, return 0 . \n\n Example 1: \n \n```\nInput:\n num = 48\n\nOutput:\n 68\n```\n \n Example 2: \n \n```\nInput:\n num = 15\n\nOutput:\n 35\n```\n\n Constraints: \n\n 1 <= num <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    int smallestFactorization(int a) {\n        if (a < 10) {\n            return a;\n        }\n        vector<int> digits;\n        for (int digit = 9; digit >= 2; --digit) {\n            while (a % digit == 0) {\n                digits.push_back(digit);\n                a /= digit;\n            }\n        }\n        if (a != 1) {\n            return 0;\n        }\n        long long result = 0;\n        for (auto it = digits.rbegin(); it != digits.rend(); ++it) {\n            result = result * 10 + *it;\n            if (result > INT_MAX) {\n                return 0;\n            }\n        }\n        return static_cast<int>(result);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178487847",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

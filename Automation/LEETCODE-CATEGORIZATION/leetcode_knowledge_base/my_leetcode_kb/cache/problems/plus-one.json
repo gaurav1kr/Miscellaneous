@@ -1,0 +1,29 @@
+{
+  "id": "66",
+  "title": "Plus One",
+  "slug": "plus-one",
+  "url": "https://leetcode.com/problems/plus-one/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a large integer represented as an integer array digits , where each digits[i] is the i th digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0 's. \n \n Increment the large integer by one and return the resulting array of digits . \n\n Example 1: \n \n```\nInput:\n digits = [1,2,3]\n\nOutput:\n [1,2,4]\n\nExplanation:\n The array represents the integer 123.\nIncrementing by one gives 123 + 1 = 124.\nThus, the result should be [1,2,4].\n```\n\n Example 2: \n \n```\nInput:\n digits = [4,3,2,1]\n\nOutput:\n [4,3,2,2]\n\nExplanation:\n The array represents the integer 4321.\nIncrementing by one gives 4321 + 1 = 4322.\nThus, the result should be [4,3,2,2].\n```\n\n Example 3: \n \n```\nInput:\n digits = [9]\n\nOutput:\n [1,0]\n\nExplanation:\n The array represents the integer 9.\nIncrementing by one gives 9 + 1 = 10.\nThus, the result should be [1,0].\n```\n\n Constraints: \n\n 1 <= digits.length <= 100 \n \n 0 <= digits[i] <= 9 \n \n digits does not contain any leading 0 's.",
+  "code": "class Solution {\npublic:\nvector<int> plusOne(vector<int>& digits) {\n    int n = digits.size();\n    for (int i = n - 1; i >= 0; i--) {\n        if (digits[i] < 9) {\n            digits[i]++;\n            return digits;\n        }\n        digits[i] = 0;\n    }\n    digits.insert(digits.begin(), 1);\n    return digits;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588095499",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

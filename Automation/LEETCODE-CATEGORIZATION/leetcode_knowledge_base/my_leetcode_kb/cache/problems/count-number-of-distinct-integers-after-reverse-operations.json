@@ -1,0 +1,35 @@
+{
+  "id": "2442",
+  "title": "Count Number of Distinct Integers After Reverse Operations",
+  "slug": "count-number-of-distinct-integers-after-reverse-operations",
+  "url": "https://leetcode.com/problems/count-number-of-distinct-integers-after-reverse-operations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an array nums consisting of positive integers. \n \n You have to take each integer in the array, reverse its digits , and add it to the end of the array. You should apply this operation to the original integers in nums . \n \n Return the number of distinct integers in the final array . \n\n Example 1: \n \n```\nInput:\n nums = [1,13,10,12,31]\n\nOutput:\n 6\n\nExplanation:\n After including the reverse of each number, the resulting array is [1,13,10,12,31,\n1,31,1,21,13\n].\nThe reversed integers that were added to the end of the array are underlined. Note that for the integer 10, after reversing it, it becomes 01 which is just 1.\nThe number of distinct integers in this array is 6 (The numbers 1, 10, 12, 13, 21, and 31).\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,2,2]\n\nOutput:\n 1\n\nExplanation:\n After including the reverse of each number, the resulting array is [2,2,2,\n2,2,2\n].\nThe number of distinct integers in this array is 1 (The number 2).\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 6",
+  "code": "class Solution { public: int countDistinctIntegers(vector<int>& nums){unordered_set<int>s;for(int x:nums){s.insert(x);int r=0;while(x){r=r*10+x%10;x/=10;}s.insert(r);}return s.size();} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176564115",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

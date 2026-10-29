@@ -1,0 +1,36 @@
+{
+  "id": "1371",
+  "title": "Find the Longest Substring Containing Vowels in Even Counts",
+  "slug": "find-the-longest-substring-containing-vowels-in-even-counts",
+  "url": "https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "Given the string s , return the size of the longest substring containing each vowel an even number of times. That is, 'a', 'e', 'i', 'o', and 'u' must appear an even number of times. \n\n Example 1: \n \n```\nInput:\n s = \"eleetminicoworoep\"\n\nOutput:\n 13\n\nExplanation: \nThe longest substring is \"leetminicowor\" which contains two each of the vowels: \ne\n, \ni\n and \no\n and zero of the vowels: \na\n and \nu\n.\n```\n\n Example 2: \n \n```\nInput:\n s = \"leetcodeisgreat\"\n\nOutput:\n 5\n\nExplanation:\n The longest substring is \"leetc\" which contains two e's.\n```\n\n Example 3: \n \n```\nInput:\n s = \"bcbcbc\"\n\nOutput:\n 6\n\nExplanation:\n In this case, the given string \"bcbcbc\" is the longest because all vowels: \na\n, \ne\n, \ni\n, \no\n and \nu\n appear zero times.\n```\n\n Constraints: \n\n 1 <= s.length <= 5 x 10^5 \n \n s  contains only lowercase English letters.",
+  "code": "\n#include <string>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    int findTheLongestSubstring(string s) {\n        unordered_map<int, int> seen;\n        seen[0] = -1;\n        int mask = 0, result = 0;\n        \n        for (int i = 0; i < s.size(); ++i) {\n            if (s[i] == 'a') mask ^= 1;\n            if (s[i] == 'e') mask ^= 2;\n            if (s[i] == 'i') mask ^= 4;\n            if (s[i] == 'o') mask ^= 8;\n            if (s[i] == 'u') mask ^= 16;\n            \n            if (seen.count(mask)) result = max(result, i - seen[mask]);\n            else seen[mask] = i;\n        }\n        \n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592333427",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1936",
+  "title": "Add Minimum Number of Rungs",
+  "slug": "add-minimum-number-of-rungs",
+  "url": "https://leetcode.com/problems/add-minimum-number-of-rungs/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a strictly increasing integer array rungs that represents the height of rungs on a ladder. You are currently on the floor at height 0 , and you want to reach the last rung. \n \n You are also given an integer dist . You can only climb to the next highest rung if the distance between where you are currently at (the floor or on a rung) and the next rung is at most dist . You are able to insert rungs at any positive integer height if a rung is not already there. \n \n Return the minimum number of rungs that must be added to the ladder in order for you to climb to the last rung. \n\n Example 1: \n \n```\nInput:\n rungs = [1,3,5,10], dist = 2\n\nOutput:\n 2\n\nExplanation:\n\nYou currently cannot reach the last rung.\nAdd rungs at heights 7 and 8 to climb this ladder. \nThe ladder will now have rungs at [1,3,5,\n7\n,\n8\n,10].\n```\n\n Example 2: \n \n```\nInput:\n rungs = [3,6,8,10], dist = 3\n\nOutput:\n 0\n\nExplanation:\n\nThis ladder can be climbed without adding additional rungs.\n```\n\n Example 3: \n \n```\nInput:\n rungs = [3,4,6,7], dist = 2\n\nOutput:\n 1\n\nExplanation:\n\nYou currently cannot reach the first rung from the ground.\nAdd a rung at height 1 to climb this ladder.\nThe ladder will now have rungs at [\n1\n,3,4,6,7].\n```\n\n Constraints: \n\n 1 <= rungs.length <= 10 5 \n \n 1 <= rungs[i] <= 10 9 \n \n 1 <= dist <= 10 9 \n \n rungs is strictly increasing .",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int addRungs(vector<int>& rungs, int dist) {\n        int prev = 0, res = 0;\n        for (int r : rungs) {\n            if (r - prev > dist)\n                res += (r - prev - 1) / dist;\n            prev = r;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610689676",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

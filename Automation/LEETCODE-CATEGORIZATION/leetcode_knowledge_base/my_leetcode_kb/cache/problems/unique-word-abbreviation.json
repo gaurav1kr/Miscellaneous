@@ -1,0 +1,37 @@
+{
+  "id": "288",
+  "title": "Unique Word Abbreviation",
+  "slug": "unique-word-abbreviation",
+  "url": "https://leetcode.com/problems/unique-word-abbreviation/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Design"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "The abbreviation of a word is a concatenation of its first letter, the number of characters between the first and last letter, and its last letter. If a word has only two characters, then it is an abbreviation of itself. \n \n For example: \n\n dog --> d1g because there is one letter between the first letter 'd' and the last letter 'g' . \n \n internationalization --> i18n because there are 18 letters between the first letter 'i' and the last letter 'n' . \n \n it --> it because any word with only two characters is an abbreviation of itself. \n\n Implement the ValidWordAbbr class: \n\n ValidWordAbbr(String[] dictionary) Initializes the object with a dictionary of words. \n \n boolean isUnique(string word) Returns true if either of the following conditions are met (otherwise returns false ):\n\n There is no word in dictionary whose abbreviation is equal to word 's abbreviation . \n \n For any word in dictionary whose abbreviation is equal to word 's abbreviation , that word and word are the same . \n\n Example 1: \n \n```\nInput\n\n[\"ValidWordAbbr\", \"isUnique\", \"isUnique\", \"isUnique\", \"isUnique\", \"isUnique\"]\n[[[\"deer\", \"door\", \"cake\", \"card\"]], [\"dear\"], [\"cart\"], [\"cane\"], [\"make\"], [\"cake\"]]\n\nOutput\n\n[null, false, true, false, true, true]\n\nExplanation\n\nValidWordAbbr validWordAbbr = new ValidWordAbbr([\"deer\", \"door\", \"cake\", \"card\"]);\nvalidWordAbbr.isUnique(\"dear\"); // return false, dictionary word \"deer\" and word \"dear\" have the same abbreviation \"d2r\" but are not the same.\nvalidWordAbbr.isUnique(\"cart\"); // return true, no words in the dictionary have the abbreviation \"c2t\".\nvalidWordAbbr.isUnique(\"cane\"); // return false, dictionary word \"cake\" and word \"cane\" have the same abbreviation \"c2e\" but are not the same.\nvalidWordAbbr.isUnique(\"make\"); // return true, no words in the dictionary have the abbreviation \"m2e\".\nvalidWordAbbr.isUnique(\"cake\"); // return true, because \"cake\" is already in the dictionary and no other word in the dictionary has \"c2e\" abbreviation.\n```\n\n Constraints: \n\n 1 <= dictionary.length <= 3 * 10 4 \n \n 1 <= dictionary[i].length <= 20 \n \n dictionary[i] consists of lowercase English letters. \n \n 1 <= word.length <= 20 \n \n word consists of lowercase English letters. \n \n At most 5000 calls will be made to isUnique .",
+  "code": "class ValidWordAbbr\n{\n    unordered_map< string, string>dict;\n    string abbr(const string&s)\n    {\n        if (s.size() <= 2)\n        {\n            return s;\n        }\n        return s.substr(0, 1) + to_string(s.size() - 2) + s.back();\n    }\npublic:\n    ValidWordAbbr(vector< string>& dictionary)\n    {\n        for (auto&s : dictionary)\n        {\n            string k = abbr(s);\n            auto it = dict.find(k);\n            if (it == dict.end())\n            {\n                dict[k] = s;\n            }\n            else if (it->second != s) it->second = \"\";\n        }\n    }\n    bool isUnique(string word)\n    {\n        string k = abbr(word);\n        auto it = dict.find(k);\n        return it == dict.end() || it->second == word;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178446778",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

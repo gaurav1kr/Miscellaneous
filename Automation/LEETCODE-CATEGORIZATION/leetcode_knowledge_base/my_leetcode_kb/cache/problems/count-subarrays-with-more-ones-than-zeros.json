@@ -1,0 +1,41 @@
+{
+  "id": "2031",
+  "title": "Count Subarrays With More Ones Than Zeros",
+  "slug": "count-subarrays-with-more-ones-than-zeros",
+  "url": "https://leetcode.com/problems/count-subarrays-with-more-ones-than-zeros/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Merge Sort",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Hash map / hash set",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given a binary array nums containing only the integers 0 and 1 . Return the number of subarrays in nums that have more 1 ' s than 0 's. Since the answer may be very large, return it modulo 10 9 + 7 . \n \n A subarray is a contiguous sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n nums = [0,1,1,0,1]\n\nOutput:\n 9\n\nExplanation:\n\nThe subarrays of size 1 that have more ones than zeros are: [1], [1], [1]\nThe subarrays of size 2 that have more ones than zeros are: [1,1]\nThe subarrays of size 3 that have more ones than zeros are: [0,1,1], [1,1,0], [1,0,1]\nThe subarrays of size 4 that have more ones than zeros are: [1,1,0,1]\nThe subarrays of size 5 that have more ones than zeros are: [0,1,1,0,1]\n```\n\n Example 2: \n \n```\nInput:\n nums = [0]\n\nOutput:\n 0\n\nExplanation:\n\nNo subarrays have more ones than zeros.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1]\n\nOutput:\n 1\n\nExplanation:\n\nThe subarrays of size 1 that have more ones than zeros are: [1]\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 1",
+  "code": "class Solution {\npublic:\n    int subarraysWithMoreOnesThanZeroes(vector<int>& nums) {\n        const int MOD=1000000007;\n        int n=nums.size(), shift=n+2;\n        vector<int> bit(2*n+5,0);\n        auto update=[&](int i){for(;i<(int)bit.size();i+=i&-i) ++bit[i];};\n        auto query=[&](int i){long long v=0;for(;i>0;i-=i&-i)v+=bit[i];return v;};\n        int sum=0; long long ans=0;\n        update(shift);\n        for (int x:nums) {\n            sum+=x?1:-1;\n            int idx=sum+shift;\n            ans=(ans+query(idx-1))%MOD;\n            update(idx);\n        }\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179691968",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

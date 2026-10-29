@@ -1,0 +1,35 @@
+{
+  "id": "348",
+  "title": "Design Tic-Tac-Toe",
+  "slug": "design-tic-tac-toe",
+  "url": "https://leetcode.com/problems/design-tic-tac-toe/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Design",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Assume the following rules are for the tic-tac-toe game on an n x n board between two players: \n\n A move is guaranteed to be valid and is placed on an empty block. \n \n Once a winning condition is reached, no more moves are allowed. \n \n A player who succeeds in placing n of their marks in a horizontal, vertical, or diagonal row wins the game. \n\n Implement the TicTacToe class: \n\n TicTacToe(int n) Initializes the object the size of the board n . \n \n int move(int row, int col, int player) Indicates that the player with id player plays at the cell (row, col) of the board. The move is guaranteed to be a valid move, and the two players alternate in making moves. Return\n\n 0 if there is no winner after the move, \n \n 1 if player 1 is the winner after the move, or \n \n 2 if player 2 is the winner after the move. \n\n Example 1: \n \n```\nInput\n\n[\"TicTacToe\", \"move\", \"move\", \"move\", \"move\", \"move\", \"move\", \"move\"]\n[[3], [0, 0, 1], [0, 2, 2], [2, 2, 1], [1, 1, 2], [2, 0, 1], [1, 0, 2], [2, 1, 1]]\n\nOutput\n\n[null, 0, 0, 0, 0, 0, 0, 1]\n\nExplanation\n\nTicTacToe ticTacToe = new TicTacToe(3);\nAssume that player 1 is \"X\" and player 2 is \"O\" in the board.\nticTacToe.move(0, 0, 1); // return 0 (no one wins)\n|X| | |\n| | | | // Player 1 makes a move at (0, 0).\n| | | |\n\nticTacToe.move(0, 2, 2); // return 0 (no one wins)\n|X| |O|\n| | | | // Player 2 makes a move at (0, 2).\n| | | |\n\nticTacToe.move(2, 2, 1); // return 0 (no one wins)\n|X| |O|\n| | | | // Player 1 makes a move at (2, 2).\n| | |X|\n\nticTacToe.move(1, 1, 2); // return 0 (no one wins)\n|X| |O|\n| |O| | // Player 2 makes a move at (1, 1).\n| | |X|\n\nticTacToe.move(2, 0, 1); // return 0 (no one wins)\n|X| |O|\n| |O| | // Player 1 makes a move at (2, 0).\n|X| |X|\n\nticTacToe.move(1, 0, 2); // return 0 (no one wins)\n|X| |O|\n|O|O| | // Player 2 makes a move at (1, 0).\n|X| |X|\n\nticTacToe.move(2, 1, 1); // return 1 (player 1 wins)\n|X| |O|\n|O|O| | // Player 1 makes a move at (2, 1).\n|X|X|X|\n```\n\n Constraints: \n\n 2 <= n <= 100 \n \n player is 1 or 2 . \n \n 0 <= row, col < n \n \n (row, col) are unique for each different call to move . \n \n At most n 2 calls will be made to move . \n\n Follow-up: Could you do better than O(n 2 ) per move() operation?",
+  "code": "class TicTacToe\n{\n    vector<int> rows, cols;\n    int diagonal = 0, antiDiagonal = 0, n;\npublic:\n    TicTacToe(int n) : rows(n, 0), cols(n, 0), n(n) {}\n    int move(int row, int col, int player)\n    {\n        int delta = player == 1 ? 1 : -1;\n        rows[row] += delta;\n        cols[col] += delta;\n        if (row == col) diagonal += delta;\n        if (row + col == n - 1) antiDiagonal += delta;\n        if (abs(rows[row]) == n || abs(cols[col]) == n ||\n            abs(diagonal) == n || abs(antiDiagonal) == n)\n            {\n            return player;\n        }\n        return 0;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178456259",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

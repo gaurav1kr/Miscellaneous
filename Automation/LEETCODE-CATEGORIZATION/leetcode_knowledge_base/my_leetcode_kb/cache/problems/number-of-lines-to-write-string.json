@@ -1,0 +1,30 @@
+{
+  "id": "806",
+  "title": "Number of Lines To Write String",
+  "slug": "number-of-lines-to-write-string",
+  "url": "https://leetcode.com/problems/number-of-lines-to-write-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s of lowercase English letters and an array widths denoting how many pixels wide each lowercase English letter is. Specifically, widths[0] is the width of 'a' , widths[1] is the width of 'b' , and so on. \n \n You are trying to write s across several lines, where each line is no longer than 100 pixels . Starting at the beginning of s , write as many letters on the first line such that the total width does not exceed 100 pixels. Then, from where you stopped in s , continue writing as many letters as you can on the second line. Continue this process until you have written all of s . \n \n Return an array result of length 2 where: \n\n result[0] is the total number of lines. \n \n result[1] is the width of the last line in pixels. \n\n Example 1: \n \n```\nInput:\n widths = [10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = \"abcdefghijklmnopqrstuvwxyz\"\n\nOutput:\n [3,60]\n\nExplanation:\n You can write s as follows:\nabcdefghij // 100 pixels wide\nklmnopqrst // 100 pixels wide\nuvwxyz // 60 pixels wide\nThere are a total of 3 lines, and the last line is 60 pixels wide.\n```\n\n Example 2: \n \n```\nInput:\n widths = [4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = \"bbbcccdddaaa\"\n\nOutput:\n [2,4]\n\nExplanation:\n You can write s as follows:\nbbbcccdddaa // 98 pixels wide\na // 4 pixels wide\nThere are a total of 2 lines, and the last line is 4 pixels wide.\n```\n\n Constraints: \n\n widths.length == 26 \n \n 2 <= widths[i] <= 10 \n \n 1 <= s.length <= 1000 \n \n s contains only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    vector<int> numberOfLines(vector<int>& widths, string s) {\n        int lines = 1, width = 0;\n        for (char c : s) {\n            int w = widths[c - 'a'];\n            if (width + w > 100) { ++lines; width = 0; }\n            width += w;\n        }\n        return {lines, width};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175741389",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

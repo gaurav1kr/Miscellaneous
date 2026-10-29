@@ -1,0 +1,38 @@
+{
+  "id": "820",
+  "title": "Short Encoding of Words",
+  "slug": "short-encoding-of-words",
+  "url": "https://leetcode.com/problems/short-encoding-of-words/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "A valid encoding of an array of words is any reference string s and array of indices indices such that: \n\n words.length == indices.length \n \n The reference string s ends with the '#' character. \n \n For each index indices[i] , the substring of s starting from indices[i] and up to (but not including) the next '#' character is equal to words[i] . \n\n Given an array of words , return the length of the shortest reference string s possible of any valid encoding of words . \n\n Example 1: \n \n```\nInput:\n words = [\"time\", \"me\", \"bell\"]\n\nOutput:\n 10\n\nExplanation:\n A valid encoding would be s = \n\"time#bell#\" and indices = [0, 2, 5\n].\nwords[0] = \"time\", the substring of s starting from indices[0] = 0 to the next '#' is underlined in \"\ntime\n#bell#\"\nwords[1] = \"me\", the substring of s starting from indices[1] = 2 to the next '#' is underlined in \"ti\nme\n#bell#\"\nwords[2] = \"bell\", the substring of s starting from indices[2] = 5 to the next '#' is underlined in \"time#\nbell\n#\"\n```\n\n Example 2: \n \n```\nInput:\n words = [\"t\"]\n\nOutput:\n 2\n\nExplanation:\n A valid encoding would be s = \"t#\" and indices = [0].\n```\n\n Constraints: \n\n 1 <= words.length <= 2000 \n \n 1 <= words[i].length <= 7 \n \n words[i] consists of only lowercase letters.",
+  "code": "#include <vector>\n#include <string>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minimumLengthEncoding(vector<string>& words) {\n        unordered_set<string> s(words.begin(), words.end());\n        for (string w : words)\n            for (int i = 1; i < w.size(); ++i)\n                s.erase(w.substr(i));\n\n        int res = 0;\n        for (const string& w : s)\n            res += w.size() + 1;\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595378511",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

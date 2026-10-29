@@ -1,0 +1,37 @@
+{
+  "id": "1740",
+  "title": "Find Distance in a Binary Tree",
+  "slug": "find-distance-in-a-binary-tree",
+  "url": "https://leetcode.com/problems/find-distance-in-a-binary-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree",
+    "Binary Lifting",
+    "Lowest Common Ancestor"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map / hash set",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree and two integers p and q , return the distance between the nodes of value p and value q in the tree . \n \n The distance between two nodes is the number of edges on the path from one to the other. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2018/12/14/binarytree.png] \n \n```\nInput:\n root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 0\n\nOutput:\n 3\n\nExplanation:\n There are 3 edges between 5 and 0: 5-3-1-0.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2018/12/14/binarytree.png] \n \n```\nInput:\n root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 7\n\nOutput:\n 2\n\nExplanation:\n There are 2 edges between 5 and 7: 5-2-7.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2018/12/14/binarytree.png] \n \n```\nInput:\n root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 5\n\nOutput:\n 0\n\nExplanation:\n The distance between a node and itself is 0.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n 0 <= Node.val <= 10 9 \n \n All Node.val are unique . \n \n p and q are values in the tree.",
+  "code": "class Solution {\n    bool path(TreeNode* node, int target, vector<TreeNode*>& out) {\n        if (!node) return false;\n        out.push_back(node);\n        if (node->val == target) return true;\n        if (path(node->left, target, out) || path(node->right, target, out)) return true;\n        out.pop_back();\n        return false;\n    }\npublic:\n    int findDistance(TreeNode* root, int p, int q) {\n        vector<TreeNode*> a, b;\n        path(root, p, a);\n        path(root, q, b);\n        int common = 0;\n        while (common < static_cast<int>(min(a.size(), b.size())) && a[common] == b[common]) ++common;\n        return static_cast<int>(a.size() + b.size() - 2 * common);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178607585",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

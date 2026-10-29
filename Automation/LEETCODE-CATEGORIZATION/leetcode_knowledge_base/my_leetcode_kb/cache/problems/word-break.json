@@ -1,0 +1,43 @@
+{
+  "id": "139",
+  "title": "Word Break",
+  "slug": "word-break",
+  "url": "https://leetcode.com/problems/word-break/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Trie",
+    "Memoization",
+    "Brute-Force Search"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given a string s and a dictionary of strings wordDict , return true if s can be segmented into a space-separated sequence of one or more dictionary words. \n \n Note that the same word in the dictionary may be reused multiple times in the segmentation. \n\n Example 1: \n \n```\nInput:\n s = \"leetcode\", wordDict = [\"leet\",\"code\"]\n\nOutput:\n true\n\nExplanation:\n Return true because \"leetcode\" can be segmented as \"leet code\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"applepenapple\", wordDict = [\"apple\",\"pen\"]\n\nOutput:\n true\n\nExplanation:\n Return true because \"applepenapple\" can be segmented as \"apple pen apple\".\nNote that you are allowed to reuse a dictionary word.\n```\n\n Example 3: \n \n```\nInput:\n s = \"catsandog\", wordDict = [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= s.length <= 300 \n \n 1 <= wordDict.length <= 1000 \n \n 1 <= wordDict[i].length <= 20 \n \n s and wordDict[i] consist of only lowercase English letters. \n \n All the strings of wordDict are unique .",
+  "code": "class Solution {\npublic:\n   bool wordBreak(string s, vector<string>& wordDict) {\n    unordered_set<string> wordSet(wordDict.begin(), wordDict.end());\n    vector<bool> dp(s.size() + 1, false);\n    dp[0] = true;\n\n    for (int i = 1; i <= s.size(); i++) {\n        for (int j = 0; j < i; j++) {\n            if (dp[j] && wordSet.count(s.substr(j, i - j))) {\n                dp[i] = true;\n                break;\n            }\n        }\n    }\n    return dp[s.size()];\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542471859",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

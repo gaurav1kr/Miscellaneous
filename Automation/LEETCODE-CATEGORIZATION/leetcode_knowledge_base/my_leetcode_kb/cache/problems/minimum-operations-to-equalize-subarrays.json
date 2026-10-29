@@ -1,0 +1,39 @@
+{
+  "id": "3762",
+  "title": "Minimum Operations to Equalize Subarrays",
+  "slug": "minimum-operations-to-equalize-subarrays",
+  "url": "https://leetcode.com/problems/minimum-operations-to-equalize-subarrays/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Segment tree",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n In one operation, you can increase or decrease any element of nums by exactly k . \n \n You are also given a 2D integer array queries , where each queries[i] = [l i , r i ] . \n \n For each query, find the minimum number of operations required to make all elements in the subarray nums[l i ..r i ] equal . If it is impossible, the answer for that query is -1 . \n \n Return an array ans , where ans[i] is the answer for the i th query. \n\n Example 1: \n\n Input: nums = [1,4,7], k = 3, queries = [[0,1],[0,2]] \n \n Output: [1,2] \n \n Explanation: \n \n One optimal set of operations: \n\n i \n [l i , r i ] \n nums[l i ..r i ] \n Possibility \n Operations \n Final \n nums[l i ..r i ] \n ans[i] \n\n 0 \n [0, 1] \n [1, 4] \n Yes \n nums[0] + k = 1 + 3 = 4 = nums[1] \n [4, 4] \n 1 \n\n 1 \n [0, 2] \n [1, 4, 7] \n Yes \n nums[0] + k = 1 + 3 = 4 = nums[1] \n nums[2] - k = 7 - 3 = 4 = nums[1] \n [4, 4, 4] \n 2 \n\n Thus, ans = [1, 2] . \n\n Example 2: \n\n Input: nums = [1,2,4], k = 2, queries = [[0,2],[0,0],[1,2]] \n \n Output: [-1,0,1] \n \n Explanation: \n \n One optimal set of operations: \n\n i \n [l i , r i ] \n nums[l i ..r i ] \n Possibility \n Operations \n Final \n nums[l i ..r i ] \n ans[i] \n\n 0 \n [0, 2] \n [1, 2, 4] \n No \n - \n [1, 2, 4] \n -1 \n\n 1 \n [0, 0] \n [1] \n Yes \n Already equal \n [1] \n 0 \n\n 2 \n [1, 2] \n [2, 4] \n Yes \n nums[1] + k = 2 + 2 = 4 = nums[2] \n [4, 4] \n 1 \n\n Thus, ans = [-1, 0, 1] . \n\n Constraints: \n\n 1 <= n == nums.length <= 4 × 10 4 \n \n 1 <= nums[i] <= 10 9 ​​​​​​​ \n \n 1 <= k <= 10 9 \n \n 1 <= queries.length <= 4 × 10 4 \n \n ​​​​​​​ queries[i] = [l i , r i ] \n \n 0 <= l i <= r i <= n - 1",
+  "code": "class Solution {\n    struct Node{int l=0,r=0,cnt=0;long long sum=0;};vector<Node> tr;vector<int> roots,vals;\n    int insert(int old,int lo,int hi,int idx,int value){int p=tr.size();tr.push_back(tr[old]);++tr[p].cnt;tr[p].sum+=value;\n        if(lo!=hi){int mid=(lo+hi)/2;if(idx<=mid)tr[p].l=insert(tr[old].l,lo,mid,idx,value);else tr[p].r=insert(tr[old].r,mid+1,hi,idx,value);}return p;}\n    int kth(int a,int b,int l,int r,int k){if(l==r)return l;int m=(l+r)/2,c=tr[tr[a].l].cnt-tr[tr[b].l].cnt;\n        if(k<=c)return kth(tr[a].l,tr[b].l,l,m,k);return kth(tr[a].r,tr[b].r,m+1,r,k-c);}\n    pair<long long,long long> upto(int a,int b,int l,int r,int idx){if(idx<l)return {0,0};if(r<=idx)return {tr[a].cnt-tr[b].cnt,tr[a].sum-tr[b].sum};int m=(l+r)/2;\n        auto x=upto(tr[a].l,tr[b].l,l,m,idx);if(idx>m){auto y=upto(tr[a].r,tr[b].r,m+1,r,idx);x.first+=y.first;x.second+=y.second;}return x;}\npublic:\n    vector<long long> minOperations(vector<int>& nums,int k,vector<vector<int>>& queries){int n=nums.size();vals=nums;sort(vals.begin(),vals.end());vals.erase(unique(vals.begin(),vals.end()),vals.end());int m=vals.size();\n        tr.clear();tr.push_back(Node());roots.assign(n+1,0);\n        vector<int> rem(n),minr(n+1,INT_MAX),maxr(n+1,INT_MIN);for(int i=0;i<n;++i){rem[i]=nums[i]%k;minr[i+1]=min(minr[i],rem[i]);maxr[i+1]=max(maxr[i],rem[i]);}\n        // Sparse tables answer min/max remainder for arbitrary ranges.\n        int L=1;while((1<<L)<=n)++L;vector<vector<int>> mn(L,vector<int>(n)),mx(L,vector<int>(n));mn[0]=mx[0]=rem;\n        for(int j=1;j<L;++j)for(int i=0;i+(1<<j)<=n;++i){mn[j][i]=min(mn[j-1][i],mn[j-1][i+(1<<(j-1))]);mx[j][i]=max(mx[j-1][i],mx[j-1][i+(1<<(j-1))]);}\n        for(int i=0;i<n;++i){int pos=lower_bound(vals.begin(),vals.end(),nums[i])-vals.begin();roots[i+1]=insert(roots[i],0,m-1,pos,nums[i]);}\n        vector<long long> ans;ans.reserve(queries.size());for(auto &q:queries){int l=q[0],r=q[1],len=r-l+1,j=31-__builtin_clz(len);\n            if(min(mn[j][l],mn[j][r-(1<<j)+1])!=max(mx[j][l],mx[j][r-(1<<j)+1])){ans.push_back(-1);continue;}\n            int id=kth(roots[r+1],roots[l],0,m-1,(len+1)/2);long long med=vals[id];auto a=upto(roots[r+1],roots[l],0,m-1,id);\n            long long total=tr[roots[r+1]].sum-tr[roots[l]].sum;\n            long long cost=med*a.first-a.second+(total-a.second)-med*(len-a.first);ans.push_back(cost/k);\n        }return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181151231",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

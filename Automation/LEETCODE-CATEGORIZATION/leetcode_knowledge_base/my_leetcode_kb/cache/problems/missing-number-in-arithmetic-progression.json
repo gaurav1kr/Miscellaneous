@@ -1,0 +1,29 @@
+{
+  "id": "1228",
+  "title": "Missing Number In Arithmetic Progression",
+  "slug": "missing-number-in-arithmetic-progression",
+  "url": "https://leetcode.com/problems/missing-number-in-arithmetic-progression/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "In some array arr , the values were in arithmetic progression: the values arr[i + 1] - arr[i] are all equal for every 0 <= i < arr.length - 1 . \n \n A value from arr was removed that was not the first or last value in the array . \n \n Given arr , return the removed value . \n\n Example 1: \n \n```\nInput:\n arr = [5,7,11,13]\n\nOutput:\n 9\n\nExplanation:\n The previous array was [5,7,\n9\n,11,13].\n```\n\n Example 2: \n \n```\nInput:\n arr = [15,13,12]\n\nOutput:\n 14\n\nExplanation:\n The previous array was [15,\n14\n,13,12].\n```\n\n Constraints: \n\n 3 <= arr.length <= 1000 \n \n 0 <= arr[i] <= 10 5 \n \n The given array is guaranteed to be a valid array.",
+  "code": "class Solution {\npublic:\n    int missingNumber(vector<int>& arr) {\n        int n = arr.size();\n        int diff = (arr[n - 1] - arr[0]) / n;\n        for (int i = 1; i < n; ++i) {\n            if (arr[i] - arr[i - 1] != diff) {\n                return arr[i - 1] + diff;\n            }\n        }\n        return arr[0];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178555121",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

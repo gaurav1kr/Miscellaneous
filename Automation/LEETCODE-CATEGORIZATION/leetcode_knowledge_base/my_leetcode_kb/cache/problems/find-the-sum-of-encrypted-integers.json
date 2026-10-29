@@ -1,0 +1,29 @@
+{
+  "id": "3079",
+  "title": "Find the Sum of Encrypted Integers",
+  "slug": "find-the-sum-of-encrypted-integers",
+  "url": "https://leetcode.com/problems/find-the-sum-of-encrypted-integers/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums containing positive integers. We define a function encrypt such that encrypt(x) replaces every digit in x with the largest digit in x . For example, encrypt(523) = 555 and encrypt(213) = 333 . \n \n Return the sum of encrypted elements . \n\n Example 1: \n\n Input: nums = [1,2,3] \n \n Output: 6 \n \n Explanation: The encrypted elements are  [1,2,3] . The sum of encrypted elements is 1 + 2 + 3 == 6 . \n\n Example 2: \n\n Input: nums = [10,21,31] \n \n Output: 66 \n \n Explanation: The encrypted elements are [11,22,33] . The sum of encrypted elements is 11 + 22 + 33 == 66 . \n\n Constraints: \n\n 1 <= nums.length <= 50 \n \n 1 <= nums[i] <= 1000",
+  "code": "class Solution {public:int sumOfEncryptedInt(vector<int>& nums){int ans=0;for(int x:nums){int t=x,d=0,v=0;do{d=max(d,t%10);t/=10;v=v*10+1;}while(t);ans+=d*v;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176852819",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

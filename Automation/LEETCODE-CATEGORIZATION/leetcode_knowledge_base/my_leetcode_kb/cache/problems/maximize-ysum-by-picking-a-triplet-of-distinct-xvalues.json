@@ -1,0 +1,40 @@
+{
+  "id": "3572",
+  "title": "Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values",
+  "slug": "maximize-ysum-by-picking-a-triplet-of-distinct-xvalues",
+  "url": "https://leetcode.com/problems/maximize-ysum-by-picking-a-triplet-of-distinct-xvalues/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays x and y , each of length n . You must choose three distinct indices i , j , and k such that: \n\n x[i] != x[j] \n \n x[j] != x[k] \n \n x[k] != x[i] \n\n Your goal is to maximize the value of y[i] + y[j] + y[k] under these conditions. Return the maximum possible sum that can be obtained by choosing such a triplet of indices. \n \n If no such triplet exists, return -1. \n\n Example 1: \n\n Input: x = [1,2,1,3,2], y = [5,3,4,6,2] \n \n Output: 14 \n \n Explanation: \n\n Choose i = 0 ( x[i] = 1 , y[i] = 5 ), j = 1 ( x[j] = 2 , y[j] = 3 ), k = 3 ( x[k] = 3 , y[k] = 6 ). \n \n All three values chosen from x are distinct. 5 + 3 + 6 = 14 is the maximum we can obtain. Hence, the output is 14. \n\n Example 2: \n\n Input: x = [1,2,1,2], y = [4,5,6,7] \n \n Output: -1 \n \n Explanation: \n\n There are only two distinct values in x . Hence, the output is -1. \n\n Constraints: \n\n n == x.length == y.length \n \n 3 <= n <= 10 5 \n \n 1 <= x[i], y[i] <= 10 6",
+  "code": "class Solution {public:\n int maxSumDistinctTriplet(vector<int>& x,vector<int>& y){\n  unordered_map<int,int> best;for(int i=0;i<(int)x.size();++i)best[x[i]]=max(best.count(x[i])?best[x[i]]:INT_MIN,y[i]);\n  if(best.size()<3)return -1;vector<int> v;for(auto &p:best)v.push_back(p.second);\n  sort(v.rbegin(),v.rend());return v[0]+v[1]+v[2];\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177588015",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

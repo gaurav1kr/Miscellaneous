@@ -1,0 +1,39 @@
+{
+  "id": "2343",
+  "title": "Query Kth Smallest Trimmed Number",
+  "slug": "query-kth-smallest-trimmed-number",
+  "url": "https://leetcode.com/problems/query-kth-smallest-trimmed-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Divide and Conquer",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Radix Sort",
+    "Quickselect"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of strings nums , where each string is of equal length and consists of only digits. \n \n You are also given a 0-indexed 2D integer array queries where queries[i] = [k i , trim i ] . For each queries[i] , you need to: \n\n Trim each number in nums to its rightmost trim i digits. \n \n Determine the index of the k i th smallest trimmed number in nums . If two trimmed numbers are equal, the number with the lower index is considered to be smaller. \n \n Reset each number in nums to its original length. \n\n Return an array answer of the same length as queries , where answer[i] is the answer to the i th query. \n \n Note : \n\n To trim to the rightmost x digits means to keep removing the leftmost digit, until only x digits remain. \n \n Strings in nums may contain leading zeros. \n\n Example 1: \n \n```\nInput:\n nums = [\"102\",\"473\",\"251\",\"814\"], queries = [[1,1],[2,3],[4,2],[1,2]]\n\nOutput:\n [2,2,1,0]\n\nExplanation:\n\n1. After trimming to the last digit, nums = [\"2\",\"3\",\"1\",\"4\"]. The smallest number is 1 at index 2.\n2. Trimmed to the last 3 digits, nums is unchanged. The 2\nnd\n smallest number is 251 at index 2.\n3. Trimmed to the last 2 digits, nums = [\"02\",\"73\",\"51\",\"14\"]. The 4\nth\n smallest number is 73.\n4. Trimmed to the last 2 digits, the smallest number is 2 at index 0.\n Note that the trimmed number \"02\" is evaluated as 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [\"24\",\"37\",\"96\",\"04\"], queries = [[2,1],[2,2]]\n\nOutput:\n [3,0]\n\nExplanation:\n\n1. Trimmed to the last digit, nums = [\"4\",\"7\",\"6\",\"4\"]. The 2\nnd\n smallest number is 4 at index 3.\n There are two occurrences of 4, but the one at index 0 is considered smaller than the one at index 3.\n2. Trimmed to the last 2 digits, nums is unchanged. The 2\nnd\n smallest number is 24.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i].length <= 100 \n \n nums[i] consists of only digits. \n \n All nums[i].length are equal . \n \n 1 <= queries.length <= 100 \n \n queries[i].length == 2 \n \n 1 <= k i <= nums.length \n \n 1 <= trim i <= nums[i].length \n\n Follow up: Could you use the Radix Sort Algorithm to solve this problem? What will be the complexity of that solution?",
+  "code": "class Solution { public:\n    vector<int> smallestTrimmedNumbers(vector<string>& nums, vector<vector<int>>& queries) {\n        int n=nums.size(),L=nums[0].size();\n        vector<vector<int>> order(L+1,vector<int>(n)); iota(order[0].begin(),order[0].end(),0);\n        for(int len=1;len<=L;++len){\n            vector<vector<int>> bucket(10);\n            for(int idx:order[len-1]) bucket[nums[idx][L-len]-'0'].push_back(idx);\n            int j=0;for(auto &b:bucket)for(int idx:b)order[len][j++]=idx;\n        }\n        vector<int> ans;for(auto &q:queries)ans.push_back(order[q[1]][q[0]-1]);return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175921764",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

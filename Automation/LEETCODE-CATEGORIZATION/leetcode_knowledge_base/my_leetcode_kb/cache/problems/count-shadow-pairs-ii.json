@@ -1,0 +1,45 @@
+{
+  "id": "4055",
+  "title": "Count Shadow Pairs II",
+  "slug": "count-shadow-pairs-ii",
+  "url": "https://leetcode.com/problems/count-shadow-pairs-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Divide and Conquer",
+    "Stack",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Sorting",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Monotonic stack",
+    "Ordered set",
+    "Segment tree",
+    "Sorted array",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n . \n \n A pair of indices (i, j) is called a shadow pair if all of the following conditions are satisfied: \n\n 0 <= i < j < n \n \n nums[i] < nums[j] \n \n There does not exist an index k such that i < k < j and nums[i] < nums[k] < nums[j] . \n\n Return the total number of shadow pairs . \n\n Example 1: \n\n Input: nums = [3,1,4,2,5] \n \n Output: 5 \n \n Explanation: \n\n (i, j) \n nums[i] \n nums[j] \n Shadow Pair \n\n (0, 2) \n 3 \n 4 \n nums[1] = 1 is not strictly between 3 and 4 \n\n (1, 2) \n 1 \n 4 \n No index k exists such that 1 < k < 2 \n\n (1, 3) \n 1 \n 2 \n nums[2] = 4 is not strictly between 1 and 2 \n\n (2, 4) \n 4 \n 5 \n nums[3] = 2 is not strictly between 4 and 5 \n\n (3, 4) \n 2 \n 5 \n No index k exists such that 3 < k < 4 \n\n Thus, the answer is 5. \n \n Example 2: \n\n Input: nums = [6,7,8,9] \n \n Output: 3 \n \n Explanation: \n\n (i, j) \n nums[i] \n nums[j] \n Shadow Pair \n\n (0, 1) \n 6 \n 7 \n No index k exists such that 0 < k < 1 \n\n (1, 2) \n 7 \n 8 \n No index k exists such that 1 < k < 2 \n\n (2, 3) \n 8 \n 9 \n No index k exists such that 2 < k < 3 \n\n Thus, the answer is 3. \n\n Constraints: \n\n 3 <= n == nums.length <= 5 * 10 4 \n \n 1 <= nums[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\n    vector<int>a;\n    long long solve(int l,int r){\n        if(r-l<=1)return 0;\n        int m=(l+r)/2;long long ans=solve(l,m)+solve(m,r);\n        vector<pair<int,int>> left,right;\n        set<int>seen;\n        for(int i=m-1;i>=l;i--){\n            auto it=seen.upper_bound(a[i]);int bound=it==seen.end()?INT_MAX:*it;\n            left.push_back({a[i],bound});seen.insert(a[i]);\n        }\n        seen.clear();\n        for(int j=m;j<r;j++){\n            auto it=seen.lower_bound(a[j]);int bound=it==seen.begin()?INT_MIN:*prev(it);\n            right.push_back({a[j],bound});seen.insert(a[j]);\n        }\n        sort(left.begin(),left.end(),[](pair<int,int>x,pair<int,int>y){return x.second<y.second;});\n        sort(right.begin(),right.end());\n        vector<int>vals;for(auto &p:left)vals.push_back(p.first);\n        sort(vals.begin(),vals.end());vals.erase(unique(vals.begin(),vals.end()),vals.end());\n        vector<int>bit(vals.size()+1);auto add=[&](int i){for(;i<(int)bit.size();i+=i&-i)bit[i]++;};\n        auto sum=[&](int i){int z=0;for(;i;i-=i&-i)z+=bit[i];return z;};\n        int ptr=0,total=0;\n        for(auto &p:right){\n            while(ptr<(int)left.size()&&left[ptr].second>=p.first){\n                // Bounds sorted ascending: handled by descending sweep below.\n                break;\n            }\n        }\n        sort(left.begin(),left.end(),[](pair<int,int>x,pair<int,int>y){return x.second>y.second;});\n        sort(right.begin(),right.end(),[](pair<int,int>x,pair<int,int>y){return x.first>y.first;});\n        ptr=0;\n        for(auto &p:right){\n            while(ptr<(int)left.size()&&left[ptr].second>=p.first){\n                int id=lower_bound(vals.begin(),vals.end(),left[ptr].first)-vals.begin()+1;\n                add(id);ptr++;total++;\n            }\n            int low=lower_bound(vals.begin(),vals.end(),p.second)-vals.begin();\n            int high=lower_bound(vals.begin(),vals.end(),p.first)-vals.begin();\n            ans+=sum(high)-sum(low);\n        }\n        return ans;\n    }\npublic:\n    int shadowPairs(vector<int>& nums){a=nums;return (int)solve(0,a.size());}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181558420",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

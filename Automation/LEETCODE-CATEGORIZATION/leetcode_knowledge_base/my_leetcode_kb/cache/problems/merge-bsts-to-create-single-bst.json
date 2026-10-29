@@ -1,0 +1,42 @@
+{
+  "id": "1932",
+  "title": "Merge BSTs to Create Single BST",
+  "slug": "merge-bsts-to-create-single-bst",
+  "url": "https://leetcode.com/problems/merge-bsts-to-create-single-bst/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given n BST (binary search tree) root nodes for n separate BSTs stored in an array trees ( 0-indexed ). Each BST in trees has at most 3 nodes , and no two roots have the same value. In one operation, you can: \n\n Select two distinct indices i and j such that the value stored at one of the leaves of trees[i] is equal to the root value of trees[j] . \n \n Replace the leaf node in trees[i] with trees[j] . \n \n Remove trees[j] from trees . \n\n Return the root of the resulting BST if it is possible to form a valid BST after performing n - 1 operations, or null if it is impossible to create a valid BST . \n \n A BST (binary search tree) is a binary tree where each node satisfies the following property: \n\n Every node in the node's left subtree has a value  strictly less  than the node's value. \n \n Every node in the node's right subtree has a value  strictly greater  than the node's value. \n\n A leaf is a node that has no children. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/08/d1.png] \n \n```\nInput:\n trees = [[2,1],[3,2,5],[5,4]]\n\nOutput:\n [3,2,5,1,null,4]\n\nExplanation:\n\nIn the first operation, pick i=1 and j=0, and merge trees[0] into trees[1].\nDelete trees[0], so trees = [[3,2,5,1],[5,4]].\n\nIn the second operation, pick i=0 and j=1, and merge trees[1] into trees[0].\nDelete trees[1], so trees = [[3,2,5,1,null,4]].\n\nThe resulting tree, shown above, is a valid BST, so return its root.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/08/d2.png] \n \n```\nInput:\n trees = [[5,3,8],[3,2,6]]\n\nOutput:\n []\n\nExplanation:\n\nPick i=0 and j=1 and merge trees[1] into trees[0].\nDelete trees[1], so trees = [[5,3,8,2,6]].\n\nThe resulting tree is shown above. This is the only valid operation that can be performed, but the resulting tree is not a valid BST, so return null.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/06/08/d3.png] \n \n```\nInput:\n trees = [[5,4],[3]]\n\nOutput:\n []\n\nExplanation:\n It is impossible to perform any operations.\n```\n\n Constraints: \n\n n == trees.length \n \n 1 <= n <= 5 * 10 4 \n \n The number of nodes in each tree is in the range [1, 3] . \n \n Each node in the input may have children but no grandchildren. \n \n No two roots of trees have the same value. \n \n All the trees in the input are valid BSTs . \n \n 1 <= TreeNode.val <= 5 * 10 4 .",
+  "code": "class Solution {\npublic:\n    TreeNode* canMerge(vector<TreeNode*>& trees) {\n        unordered_map<int, TreeNode*> m;\n        unordered_set<int> leaves;\n        for (auto t : trees) {\n            m[t->val] = t;\n            if (t->left) leaves.insert(t->left->val);\n            if (t->right) leaves.insert(t->right->val);\n        }\n        TreeNode* root = nullptr;\n        for (auto t : trees) {\n            if (!leaves.count(t->val)) {\n                root = t;\n                break;\n            }\n        }\n        if (!root) return nullptr;\n\n        m.erase(root->val);\n        function<bool(TreeNode*, int, int)> dfs = [&](TreeNode* node, int lo, int hi) {\n            if (!node) return true;\n            if (node->val <= lo || node->val >= hi) return false;\n            if (!node->left && !node->right && m.count(node->val)) {\n                TreeNode* t = m[node->val];\n                node->left = t->left;\n                node->right = t->right;\n                m.erase(node->val);\n            }\n            return dfs(node->left, lo, node->val) && dfs(node->right, node->val, hi);\n        };\n\n        if (!dfs(root, INT_MIN, INT_MAX) || !m.empty()) return nullptr;\n        return root;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1613567785",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

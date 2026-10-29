@@ -1,0 +1,28 @@
+{
+  "id": "4060",
+  "title": "Count Evenly Good Integers",
+  "slug": "count-evenly-good-integers",
+  "url": "https://leetcode.com/problems/count-evenly-good-integers/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You are given two integers l and r . \n \n An integer is called evenly good if it contains an even number of even digits. \n \n Return the number of evenly good integers in the inclusive range [l, r] . \n\n Example 1: \n\n Input: l = 18, r = 22 \n \n Output: 3 \n \n Explanation: \n \n The evenly good integers in the range [18, 22] are: \n\n 19, because it contains 0 even digits. \n \n 20, because it contains 2 even digits. \n \n 22, because it contains 2 even digits. \n\n Thus, the answer is 3. \n\n Example 2: \n\n Input: l = 98, r = 101 \n \n Output: 2 \n \n Explanation: \n \n The evenly good integers in the range [98, 101] are: \n\n 99, because it contains 0 even digits. \n \n 100, because it contains 2 even digits. \n\n Thus, the answer is 2. \n\n Example 3: \n\n Input: l = 1, r = 10 \n \n Output: 5 \n \n Explanation: \n \n The evenly good integers in the range [1, 10] are 1, 3, 5, 7, and 9, because each of them contains 0 even digits. Thus, the answer is 5. \n\n Constraints: \n\n 1 <= l <= r <= 10 15",
+  "code": "class Solution {\n    string digits;\n    long long memo[20][2][2];\n    long long dfs(int pos, int parity, int started, bool tight) {\n        if (pos == (int)digits.size()) return started && parity == 0;\n        if (!tight && memo[pos][parity][started] != -1)\n            return memo[pos][parity][started];\n        int limit = tight ? digits[pos] - '0' : 9;\n        long long ways = 0;\n        for (int d = 0; d <= limit; ++d) {\n            int nextStarted = started || d != 0;\n            int nextParity = parity ^ (nextStarted && d % 2 == 0);\n            ways += dfs(pos + 1, nextParity, nextStarted, tight && d == limit);\n        }\n        if (!tight) memo[pos][parity][started] = ways;\n        return ways;\n    }\n    long long count(long long x) {\n        if (x <= 0) return 0;\n        digits = to_string(x);\n        memset(memo, -1, sizeof(memo));\n        return dfs(0, 0, 0, true);\n    }\npublic:\n    long long countEvenlyGoodIntegers(long long l, long long r) {\n        return count(r) - count(l - 1);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179660978",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

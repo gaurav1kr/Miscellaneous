@@ -1,0 +1,31 @@
+{
+  "id": "2405",
+  "title": "Optimal Partition of String",
+  "slug": "optimal-partition-of-string",
+  "url": "https://leetcode.com/problems/optimal-partition-of-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Given a string s , partition the string into one or more substrings such that the characters in each substring are unique . That is, no letter appears in a single substring more than once . \n \n Return the minimum number of substrings in such a partition. \n \n Note that each character should belong to exactly one substring in a partition. \n\n Example 1: \n \n```\nInput:\n s = \"abacaba\"\n\nOutput:\n 4\n\nExplanation:\n\nTwo possible partitions are (\"a\",\"ba\",\"cab\",\"a\") and (\"ab\",\"a\",\"ca\",\"ba\").\nIt can be shown that 4 is the minimum number of substrings needed.\n```\n\n Example 2: \n \n```\nInput:\n s = \"ssssss\"\n\nOutput:\n 6\n\nExplanation:\n\nThe only valid partition is (\"s\",\"s\",\"s\",\"s\",\"s\",\"s\").\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of only English lowercase letters.",
+  "code": "class Solution {public:int partitionString(string s){int mask=0,ans=1;for(char c:s){int bit=1<<(c-'a');if(mask&bit){ans++;mask=0;}mask|=bit;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176541490",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

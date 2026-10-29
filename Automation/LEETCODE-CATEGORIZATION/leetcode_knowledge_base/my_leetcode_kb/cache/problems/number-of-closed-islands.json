@@ -1,0 +1,34 @@
+{
+  "id": "1254",
+  "title": "Number of Closed Islands",
+  "slug": "number-of-closed-islands",
+  "url": "https://leetcode.com/problems/number-of-closed-islands/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Vector"
+  ],
+  "description": "Given a 2D  grid consists of 0s (land) and 1s (water).  An island is a maximal 4-directionally connected group of 0 s and a closed island  is an island totally  (all left, top, right, bottom) surrounded by 1s. \n \n Return the number of closed islands . \n\n Example 1: \n\n [Figure: https://assets.leetcode.com/uploads/2026/10/27/sample_3_1610.png] \n \n Input: grid = [[1,1,1,1,1,1,1,0],[1,0,0,0,0,1,1,0],[1,0,1,0,1,1,1,0],[1,0,0,0,0,1,0,1],[1,1,1,1,1,1,1,0]] \n \n Output: 2 \n \n Explanation: \n\n The grid contains four islands of 0s. \n \n The island spanning rows 1 to 3 and columns 1 to 4 is surrounded entirely by 1s. It also encloses the water cell at row 2, column 2. It is therefore closed. \n \n The single 0 at row 3, column 6 has 1s on all four sides, so it is also closed. \n \n The two remaining islands both lie in column 7, which is on the border of the grid, so neither of them is closed. \n \n Two islands are closed, shown in gray, so the answer is 2. \n\n Example 2: \n\n [Figure: https://assets.leetcode.com/uploads/2026/10/27/sample_4_1610.png] \n \n Input: grid = [[0,0,1,0,0],[0,1,0,1,0],[0,1,1,1,0]] \n \n Output: 1 \n \n Explanation: \n\n The grid contains three islands of 0s. \n \n The single 0 at row 1, column 2 has 1s above it, below it, to its left and to its right, so it is closed. It is shown in gray. \n \n The island formed by rows 0 to 2 of column 0 together with row 0, column 1 lies on the border, so it is not closed. \n \n The island formed by rows 0 to 2 of column 4 together with row 0, column 3 also lies on the border, so it is not closed. \n \n One island is closed, so the answer is 1. \n\n Example 3: \n\n Input: grid = [[1,1,1,1,1,1,1],[1,0,0,0,0,0,1],[1,0,1,1,1,0,1],[1,0,1,0,1,0,1],[1,0,1,1,1,0,1],[1,0,0,0,0,0,1],[1,1,1,1,1,1,1]] \n \n Output: 2 \n \n Explanation: \n\n The grid contains two islands of 0s, one nested inside the other. \n \n The outer island is the ring of 0s occupying rows 1 to 5 and columns 1 to 5. It is enclosed by the outer border of 1s, so it is closed. \n \n The inner island is the single 0 at row 3, column 3. It is enclosed by the inner ring of 1s, so it is also closed. \n \n Both islands are closed, so the answer is 2. \n\n Constraints: \n\n 1 <= grid.length, grid[0].length <= 100 \n \n 0 <= grid[i][j] <=1",
+  "code": "\nclass Solution {\n    int rows, cols;\n\n    void dfs(vector<vector<int>>& grid, int r, int c) {\n        if (r < 0 || r >= rows ||\n            c < 0 || c >= cols ||\n            grid[r][c] != 0) {\n            return;\n        }\n\n        // Mark land as visited.\n        grid[r][c] = 1;\n\n        dfs(grid, r + 1, c);\n        dfs(grid, r - 1, c);\n        dfs(grid, r, c + 1);\n        dfs(grid, r, c - 1);\n    }\n\npublic:\n    int closedIsland(vector<vector<int>>& grid) {\n        rows = grid.size();\n        cols = grid[0].size();\n\n        // Step 1: Remove land connected to boundaries.\n        for (int r = 0; r < rows; ++r) {\n            dfs(grid, r, 0);\n            dfs(grid, r, cols - 1);\n        }\n\n        for (int c = 0; c < cols; ++c) {\n            dfs(grid, 0, c);\n            dfs(grid, rows - 1, c);\n        }\n\n        // Step 2: Count remaining closed islands.\n        int count = 0;\n\n        for (int r = 1; r < rows - 1; ++r) {\n            for (int c = 1; c < cols - 1; ++c) {\n                if (grid[r][c] == 0) {\n                    ++count;\n                    dfs(grid, r, c);\n                }\n            }\n        }\n\n        return count;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181679662",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

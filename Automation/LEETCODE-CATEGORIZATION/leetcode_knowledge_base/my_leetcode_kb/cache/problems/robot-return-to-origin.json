@@ -1,0 +1,28 @@
+{
+  "id": "657",
+  "title": "Robot Return to Origin",
+  "slug": "robot-return-to-origin",
+  "url": "https://leetcode.com/problems/robot-return-to-origin/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "There is a robot starting at the position (0, 0) , the origin, on a 2D plane. Given a sequence of its moves, judge if this robot ends up at (0, 0) after it completes its moves. \n \n You are given a string moves that represents the move sequence of the robot where moves[i] represents its i th move. Valid moves are 'R' (right), 'L' (left), 'U' (up), and 'D' (down). \n \n Return true if the robot returns to the origin after it finishes all of its moves, or false otherwise . \n \n Note : The way that the robot is \"facing\" is irrelevant. 'R' will always make the robot move to the right once, 'L' will always make it move left, etc. Also, assume that the magnitude of the robot's movement is the same for each move. \n\n Example 1: \n \n```\nInput:\n moves = \"UD\"\n\nOutput:\n true\n\nExplanation\n: The robot moves up once, and then down once. All moves have the same magnitude, so it ended up at the origin where it started. Therefore, we return true.\n```\n\n Example 2: \n \n```\nInput:\n moves = \"LL\"\n\nOutput:\n false\n\nExplanation\n: The robot moves left twice. It ends up two \"moves\" to the left of the origin. We return false because it is not at the origin at the end of its moves.\n```\n\n Constraints: \n\n 1 <= moves.length <= 2 * 10 4 \n \n moves only contains the characters 'U' , 'D' , 'L' and 'R' .",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool judgeCircle(string moves) {\n        int x = 0, y = 0;\n        for (char move : moves) {\n            if (move == 'U') y++;\n            else if (move == 'D') y--;\n            else if (move == 'L') x--;\n            else if (move == 'R') x++;\n        }\n        return x == 0 && y == 0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590129592",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

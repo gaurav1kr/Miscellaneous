@@ -1,0 +1,38 @@
+{
+  "id": "1649",
+  "title": "Create Sorted Array through Instructions",
+  "slug": "create-sorted-array-through-instructions",
+  "url": "https://leetcode.com/problems/create-sorted-array-through-instructions/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Merge Sort",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "Given an integer array instructions , you are asked to create a sorted array from the elements in instructions . You start with an empty container nums . For each element from left to right in instructions , insert it into nums . The cost of each insertion is the minimum of the following: \n\n The number of elements currently in nums that are strictly less than instructions[i] . \n \n The number of elements currently in nums that are strictly greater than instructions[i] . \n\n For example, if inserting element 3 into nums = [1,2,3,5] , the cost of insertion is min(2, 1) (elements 1 and 2 are less than 3 , element 5 is greater than 3 ) and nums will become [1,2,3,3,5] . \n \n Return the total cost to insert all elements from instructions into nums . Since the answer may be large, return it modulo 10 9 + 7 \n\n Example 1: \n \n```\nInput:\n instructions = [1,5,6,2]\r\n\nOutput:\n 1\r\n\nExplanation:\n Begin with nums = [].\r\nInsert 1 with cost min(0, 0) = 0, now nums = [1].\r\nInsert 5 with cost min(1, 0) = 0, now nums = [1,5].\r\nInsert 6 with cost min(2, 0) = 0, now nums = [1,5,6].\r\nInsert 2 with cost min(1, 2) = 1, now nums = [1,2,5,6].\r\nThe total cost is 0 + 0 + 0 + 1 = 1.\n```\n\n Example 2: \n \n```\nInput:\n instructions = [1,2,3,6,5,4]\r\n\nOutput:\n 3\r\n\nExplanation:\n Begin with nums = [].\r\nInsert 1 with cost min(0, 0) = 0, now nums = [1].\r\nInsert 2 with cost min(1, 0) = 0, now nums = [1,2].\r\nInsert 3 with cost min(2, 0) = 0, now nums = [1,2,3].\r\nInsert 6 with cost min(3, 0) = 0, now nums = [1,2,3,6].\r\nInsert 5 with cost min(3, 1) = 1, now nums = [1,2,3,5,6].\r\nInsert 4 with cost min(3, 2) = 2, now nums = [1,2,3,4,5,6].\r\nThe total cost is 0 + 0 + 0 + 0 + 1 + 2 = 3.\n```\n\n Example 3: \n \n```\nInput:\n instructions = [1,3,3,3,2,4,2,1,2]\r\n\nOutput:\n 4\r\n\nExplanation:\n Begin with nums = [].\r\nInsert 1 with cost min(0, 0) = 0, now nums = [1].\r\nInsert 3 with cost min(1, 0) = 0, now nums = [1,3].\r\nInsert 3 with cost min(1, 0) = 0, now nums = [1,3,3].\r\nInsert 3 with cost min(1, 0) = 0, now nums = [1,3,3,3].\r\nInsert 2 with cost min(1, 3) = 1, now nums = [1,2,3,3,3].\r\nInsert 4 with cost min(5, 0) = 0, now nums = [1,2,3,3,3,4].\r\n​​​​​​​Insert 2 with cost min(1, 4) = 1, now nums = [1,2,2,3,3,3,4].\r\n​​​​​​​Insert 1 with cost min(0, 6) = 0, now nums = [1,1,2,2,3,3,3,4].\r\n​​​​​​​Insert 2 with cost min(2, 4) = 2, now nums = [1,1,2,2,2,3,3,3,4].\r\nThe total cost is 0 + 0 + 0 + 0 + 1 + 0 + 1 + 0 + 2 = 4.\n```\n\n Constraints: \n\n 1 <= instructions.length <= 10 5 \n \n 1 <= instructions[i] <= 10 5",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\n    vector<int> bit;\n\n    void update(int i) {\n        for (; i < bit.size(); i += i & -i) bit[i]++;\n    }\n\n    int query(int i) {\n        int res = 0;\n        for (; i > 0; i -= i & -i) res += bit[i];\n        return res;\n    }\n\npublic:\n    int createSortedArray(vector<int>& instructions) {\n        const int MOD = 1e9 + 7;\n        int maxVal = *max_element(instructions.begin(), instructions.end());\n        bit.resize(maxVal + 2);\n        long cost = 0;\n        for (int i = 0; i < instructions.size(); ++i) {\n            int x = instructions[i];\n            int less = query(x - 1);\n            int greater = i - query(x);\n            cost = (cost + min(less, greater)) % MOD;\n            update(x);\n        }\n        return cost;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610587381",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

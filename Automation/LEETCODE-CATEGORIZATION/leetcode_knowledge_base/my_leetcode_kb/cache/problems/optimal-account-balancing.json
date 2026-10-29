@@ -1,0 +1,38 @@
+{
+  "id": "465",
+  "title": "Optimal Account Balancing",
+  "slug": "optimal-account-balancing",
+  "url": "https://leetcode.com/problems/optimal-account-balancing/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an array of transactions transactions where transactions[i] = [from i , to i , amount i ] indicates that the person with ID = from i gave amount i $ to the person with ID = to i . \n \n Return the minimum number of transactions required to settle the debt . \n\n Example 1: \n \n```\nInput:\n transactions = [[0,1,10],[2,0,5]]\n\nOutput:\n 2\n\nExplanation:\n\nPerson #0 gave person #1 $10.\nPerson #2 gave person #0 $5.\nTwo transactions are needed. One way to settle the debt is person #1 pays person #0 and #2 $5 each.\n```\n\n Example 2: \n \n```\nInput:\n transactions = [[0,1,10],[1,0,1],[1,2,5],[2,0,5]]\n\nOutput:\n 1\n\nExplanation:\n\nPerson #0 gave person #1 $10.\nPerson #1 gave person #0 $1.\nPerson #1 gave person #2 $5.\nPerson #2 gave person #0 $5.\nTherefore, person #1 only need to give person #0 $4, and all debt is settled.\n```\n\n Constraints: \n\n 1 <= transactions.length <= 8 \n \n transactions[i].length == 3 \n \n 0 <= from i , to i < 12 \n \n from i != to i \n \n 1 <= amount i <= 100",
+  "code": "class Solution {\n    int settle(int start, vector<long long>& debt) {\n        while (start < static_cast<int>(debt.size()) && debt[start] == 0) {\n            ++start;\n        }\n        if (start == static_cast<int>(debt.size())) {\n            return 0;\n        }\n        int best = INT_MAX;\n        for (int j = start + 1; j < static_cast<int>(debt.size()); ++j) {\n            if (debt[start] * debt[j] >= 0) {\n                continue;\n            }\n            long long old = debt[j];\n            debt[j] += debt[start];\n            best = min(best, 1 + settle(start + 1, debt));\n            debt[j] = old;\n            if (old + debt[start] == 0) {\n                break;\n            }\n        }\n        return best;\n    }\n\npublic:\n    int minTransfers(vector<vector<int>>& transactions) {\n        unordered_map<int, long long> balance;\n        for (const auto& t : transactions) {\n            balance[t[0]] -= t[2];\n            balance[t[1]] += t[2];\n        }\n        vector<long long> debt;\n        for (const auto& entry : balance) {\n            if (entry.second != 0) {\n                debt.push_back(entry.second);\n            }\n        }\n        return settle(0, debt);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178469969",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

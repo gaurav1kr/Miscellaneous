@@ -1,0 +1,30 @@
+{
+  "id": "3014",
+  "title": "Minimum Number of Pushes to Type Word I",
+  "slug": "minimum-number-of-pushes-to-type-word-i",
+  "url": "https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string word containing distinct lowercase English letters. \n \n Telephone keypads have keys mapped with distinct collections of lowercase English letters, which can be used to form words by pushing them. For example, the key 2 is mapped with [\"a\",\"b\",\"c\"] , we need to push the key one time to type \"a\" , two times to type \"b\" , and three times to type \"c\" . \n \n It is allowed to remap the keys numbered 2 to 9 to distinct collections of letters. The keys can be remapped to any amount of letters, but each letter must be mapped to exactly one key. You need to find the minimum number of times the keys will be pushed to type the string word . \n \n Return the minimum number of pushes needed to type word after remapping the keys . \n \n An example mapping of letters to keys on a telephone keypad is given below. Note that 1 , * , # , and 0 do not map to any letters. \n [Figure: https://assets.leetcode.com/uploads/2023/12/26/keypaddesc.png] \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/12/26/keypadv1e1.png] \n \n```\nInput:\n word = \"abcde\"\n\nOutput:\n 5\n\nExplanation:\n The remapped keypad given in the image provides the minimum cost.\n\"a\" -> one push on key 2\n\"b\" -> one push on key 3\n\"c\" -> one push on key 4\n\"d\" -> one push on key 5\n\"e\" -> one push on key 6\nTotal cost is 1 + 1 + 1 + 1 + 1 = 5.\nIt can be shown that no other mapping can provide a lower cost.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/12/26/keypadv1e2.png] \n \n```\nInput:\n word = \"xycdefghij\"\n\nOutput:\n 12\n\nExplanation:\n The remapped keypad given in the image provides the minimum cost.\n\"x\" -> one push on key 2\n\"y\" -> two pushes on key 2\n\"c\" -> one push on key 3\n\"d\" -> two pushes on key 3\n\"e\" -> one push on key 4\n\"f\" -> one push on key 5\n\"g\" -> one push on key 6\n\"h\" -> one push on key 7\n\"i\" -> one push on key 8\n\"j\" -> one push on key 9\nTotal cost is 1 + 2 + 1 + 2 + 1 + 1 + 1 + 1 + 1 + 1 = 12.\nIt can be shown that no other mapping can provide a lower cost.\n```\n\n Constraints: \n\n 1 <= word.length <= 26 \n \n word consists of lowercase English letters. \n \n All letters in word are distinct.",
+  "code": "class Solution {public:int minimumPushes(string word){int n=word.size();return 8*(n/8)*(n/8+1)/2+(n%8)*(n/8+1);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176814670",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

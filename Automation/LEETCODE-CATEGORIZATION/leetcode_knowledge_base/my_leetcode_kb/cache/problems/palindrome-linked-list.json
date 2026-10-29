@@ -1,0 +1,32 @@
+{
+  "id": "234",
+  "title": "Palindrome Linked List",
+  "slug": "palindrome-linked-list",
+  "url": "https://leetcode.com/problems/palindrome-linked-list/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Two Pointers",
+    "Stack",
+    "Recursion"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Linked list",
+    "Stack"
+  ],
+  "description": "Given the head of a singly linked list, return true if it is a palindrome or false otherwise . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/03/pal1linked-list.jpg] \n \n```\nInput:\n head = [1,2,2,1]\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/03/pal2linked-list.jpg] \n \n```\nInput:\n head = [1,2]\n\nOutput:\n false\n```\n\n Constraints: \n\n The number of nodes in the list is in the range [1, 10 5 ] . \n \n 0 <= Node.val <= 9 \n\n Follow up: Could you do it in O(n) time and O(1) space?",
+  "code": "\n\nclass Solution {\npublic:\n    bool isPalindrome(ListNode* head) {\n        ListNode *slow = head, *fast = head, *prev = nullptr;\n        while (fast && fast->next) {\n            fast = fast->next->next;\n            ListNode* temp = slow;\n            slow = slow->next;\n            temp->next = prev;\n            prev = temp;\n        }\n        if (fast) slow = slow->next;\n        while (slow) {\n            if (slow->val != prev->val) return false;\n            slow = slow->next;\n            prev = prev->next;\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588076423",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

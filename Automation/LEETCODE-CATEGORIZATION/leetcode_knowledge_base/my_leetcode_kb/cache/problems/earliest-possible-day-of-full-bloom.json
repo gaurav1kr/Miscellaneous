@@ -1,0 +1,32 @@
+{
+  "id": "2136",
+  "title": "Earliest Possible Day of Full Bloom",
+  "slug": "earliest-possible-day-of-full-bloom",
+  "url": "https://leetcode.com/problems/earliest-possible-day-of-full-bloom/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You have n flower seeds. Every seed must be planted first before it can begin to grow, then bloom. Planting a seed takes time and so does the growth of a seed. You are given two 0-indexed integer arrays plantTime and growTime , of length n each: \n\n plantTime[i] is the number of full days it takes you to plant the i th seed. Every day, you can work on planting exactly one seed. You do not have to work on planting the same seed on consecutive days, but the planting of a seed is not complete until you have worked plantTime[i] days on planting it in total. \n \n growTime[i] is the number of full days it takes the i th seed to grow after being completely planted. After the last day of its growth, the flower blooms and stays bloomed forever. \n\n From the beginning of day 0 , you can plant the seeds in any order. \n \n Return the earliest possible day where all seeds are blooming . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/12/21/1.png] \n \n```\nInput:\n plantTime = [1,4,3], growTime = [2,3,1]\n\nOutput:\n 9\n\nExplanation:\n The grayed out pots represent planting days, colored pots represent growing days, and the flower represents the day it blooms.\nOne optimal way is:\nOn day 0, plant the 0\nth\n seed. The seed grows for 2 full days and blooms on day 3.\nOn days 1, 2, 3, and 4, plant the 1\nst\n seed. The seed grows for 3 full days and blooms on day 8.\nOn days 5, 6, and 7, plant the 2\nnd\n seed. The seed grows for 1 full day and blooms on day 9.\nThus, on day 9, all the seeds are blooming.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/12/21/2.png] \n \n```\nInput:\n plantTime = [1,2,3,2], growTime = [2,1,2,1]\n\nOutput:\n 9\n\nExplanation:\n The grayed out pots represent planting days, colored pots represent growing days, and the flower represents the day it blooms.\nOne optimal way is:\nOn day 1, plant the 0\nth\n seed. The seed grows for 2 full days and blooms on day 4.\nOn days 0 and 3, plant the 1\nst\n seed. The seed grows for 1 full day and blooms on day 5.\nOn days 2, 4, and 5, plant the 2\nnd\n seed. The seed grows for 2 full days and blooms on day 8.\nOn days 6 and 7, plant the 3\nrd\n seed. The seed grows for 1 full day and blooms on day 9.\nThus, on day 9, all the seeds are blooming.\n```\n\n Example 3: \n \n```\nInput:\n plantTime = [1], growTime = [1]\n\nOutput:\n 2\n\nExplanation:\n On day 0, plant the 0\nth\n seed. The seed grows for 1 full day and blooms on day 2.\nThus, on day 2, all the seeds are blooming.\n```\n\n Constraints: \n\n n == plantTime.length == growTime.length \n \n 1 <= n <= 10 5 \n \n 1 <= plantTime[i], growTime[i] <= 10 4",
+  "code": "class Solution {\npublic:\n int earliestFullBloom(vector<int>& plantTime,vector<int>& growTime){\n  int n=plantTime.size();vector<int> order(n);iota(order.begin(),order.end(),0);\n  sort(order.begin(),order.end(),[&](int a,int b){return growTime[a]>growTime[b];});\n  int day=0,ans=0;for(int i:order){day+=plantTime[i];ans=max(ans,day+growTime[i]);}\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175738874",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

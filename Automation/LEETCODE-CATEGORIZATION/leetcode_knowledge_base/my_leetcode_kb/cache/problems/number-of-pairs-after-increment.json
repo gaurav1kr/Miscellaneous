@@ -1,0 +1,35 @@
+{
+  "id": "3943",
+  "title": "Number of Pairs After Increment",
+  "slug": "number-of-pairs-after-increment",
+  "url": "https://leetcode.com/problems/number-of-pairs-after-increment/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Divide and Conquer",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays nums1 and nums2 , and a 2D integer array queries . \n \n Each queries[i] is one of the following types: \n\n [1, x, y, val] – Add val to every element in nums2[x..y] . \n \n [2, tot] – Compute the number of pairs (j, k) such that nums1[j] + nums2[k] == tot . \n\n Return an integer array answer , where answer[j] is the number of pairs for the j th query of type 2. \n\n Example 1: \n\n Input: nums1 = [1,2], nums2 = [3,4], queries = [[2,5],[1,0,0,2],[2,5]] \n \n Output: [2,1] \n \n Explanation: \n\n queries[0] = [2, 5] : Valid pairs are nums1[0] + nums2[1] = 1 + 4 = 5 and nums1[1] + nums2[0] = 2 + 3 = 5 . \n \n queries[1] = [1, 0, 0, 2] : Add 2 to nums2[0] , resulting in nums2 = [5, 4] . \n \n queries[2] = [2, 5] : Valid pair is nums1[0] + nums2[1] = 1 + 4 = 5 . \n \n Thus, the answer = [2, 1] . \n\n Example 2: \n\n Input: nums1 = [1,1], nums2 = [2,2,3], queries = [[2,4],[1,0,1,1],[2,4]] \n \n Output: [2,6] \n \n Explanation: \n\n queries[0] = [2, 4] : Valid pairs are nums1[0] + nums2[2] = 1 + 3 and nums1[1] + nums2[2] = 1 + 3 . \n \n queries[1] = [1, 0, 1, 1] : Add 1 to nums2[0] and nums2[1] , resulting in nums2 = [3, 3, 3] . \n \n queries[2] = [2, 4] : Every element of nums1 = [1, 1] pairs with every element of nums2 = [3, 3, 3] as 1 + 3 = 4 . That gives 2 × 3 = 6 pairs in total. \n \n Thus, the answer = [2, 6] . \n\n Example 3: \n\n Input: nums1 = [2,5,8,4], nums2 = [1,3,8], queries = [[2,9],[1,1,2,1],[2,10]] \n \n Output: [1,0] \n \n Explanation: \n\n queries[0] = [2, 9] : Only valid pair is nums1[2] + nums2[0] = 8 + 1 = 9 . \n \n queries[1] = [1, 1, 2, 1] : Add 1 to nums2[1] and nums2[2] , resulting in​​​​​​​ nums2 = [1, 4, 9] . \n \n queries[2] = [2, 10] : No pair sums to 10 . \n \n Thus, the answer = [1, 0] . \n\n Constraints: \n\n 1 <= nums1.length <= 5 \n \n 1 <= nums2.length <= 5 * 10 4 \n \n 1 <= nums1[i], nums2[i] <= 10 5 \n \n 1 <= queries.length <= 5 * 10 4 \n \n queries[i].length == 2 or 4 \n\n queries[i] == [1, x, y, val], or \n \n queries[i] == [2, tot] \n \n 0 <= x <= y < nums2.length \n \n 1 <= val <= 10 5 \n \n 1 <= tot <= 10 9 ​​​​​​​",
+  "code": "\nclass Solution {\npublic:\n    vector<int> numberOfPairs(\n        vector<int>& nums1,\n        vector<int>& nums2,\n        vector<vector<int>>& queries) {\n\n        int n = nums2.size();\n        int B = 320;\n        int blocks = (n + B - 1) / B;\n\n        vector<long long> a(nums2.begin(), nums2.end());\n        vector<long long> lazy(blocks, 0);\n\n        vector<unordered_map<long long, int>> freq(blocks);\n\n        // Build frequency maps for every block.\n        for (int i = 0; i < n; ++i) {\n            freq[i / B][a[i]]++;\n        }\n\n        auto updatePartial = [&](int b, int l,\n                                 int r, long long val) {\n            for (int i = l; i <= r; ++i) {\n                long long oldValue = a[i];\n                long long newValue = oldValue + val;\n\n                auto it = freq[b].find(oldValue);\n\n                if (--it->second == 0)\n                    freq[b].erase(it);\n\n                freq[b][newValue]++;\n                a[i] = newValue;\n            }\n        };\n\n        vector<int> answer;\n        answer.reserve(queries.size());\n\n        for (const auto& q : queries) {\n\n            if (q[0] == 1) {\n                int l = q[1];\n                int r = q[2];\n                long long val = q[3];\n\n                int leftBlock = l / B;\n                int rightBlock = r / B;\n\n                if (leftBlock == rightBlock) {\n                    updatePartial(leftBlock, l, r, val);\n                } else {\n                    int leftEnd =\n                        min(n - 1, (leftBlock + 1) * B - 1);\n\n                    updatePartial(leftBlock, l, leftEnd, val);\n\n                    for (int b = leftBlock + 1;\n                         b < rightBlock; ++b) {\n                        lazy[b] += val;\n                    }\n\n                    int rightStart = rightBlock * B;\n                    updatePartial(rightBlock, rightStart, r, val);\n                }\n\n            } else {\n                long long target = q[1];\n                int count = 0;\n\n                for (int x : nums1) {\n                    long long needed = target - x;\n\n                    for (int b = 0; b < blocks; ++b) {\n                        long long key = needed - lazy[b];\n\n                        auto it = freq[b].find(key);\n\n                        if (it != freq[b].end())\n                            count += it->second;\n                    }\n                }\n\n                answer.push_back(count);\n            }\n        }\n\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181670034",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

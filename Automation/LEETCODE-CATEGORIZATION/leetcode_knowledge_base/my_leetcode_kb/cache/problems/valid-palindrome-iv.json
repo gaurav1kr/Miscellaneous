@@ -1,0 +1,28 @@
+{
+  "id": "2330",
+  "title": "Valid Palindrome IV",
+  "slug": "valid-palindrome-iv",
+  "url": "https://leetcode.com/problems/valid-palindrome-iv/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a 0-indexed string s consisting of only lowercase English letters. In one operation, you can change any character of s to any other character. \n \n Return true if you can make s a palindrome after performing exactly one or two operations, or return false otherwise. \n\n Example 1: \n \n```\nInput:\n s = \"abcdba\"\n\nOutput:\n true\n\nExplanation:\n One way to make s a palindrome using 1 operation is:\n- Change s[2] to 'd'. Now, s = \"abddba\".\nOne operation could be performed to make s a palindrome so return true.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aa\"\n\nOutput:\n true\n\nExplanation:\n One way to make s a palindrome using 2 operations is:\n- Change s[0] to 'b'. Now, s = \"ba\".\n- Change s[1] to 'b'. Now, s = \"bb\".\nTwo operations could be performed to make s a palindrome so return true.\n```\n\n Example 3: \n \n```\nInput:\n s = \"abcdef\"\n\nOutput:\n false\n\nExplanation:\n It is not possible to make s a palindrome using one or two operations so return false.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    bool makePalindrome(string s) {\n        int mismatch = 0;\n        for (int i = 0, j = (int)s.size() - 1; i < j; ++i, --j)\n            mismatch += s[i] != s[j];\n        return mismatch <= 2;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178859388",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

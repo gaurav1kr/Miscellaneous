@@ -1,0 +1,33 @@
+{
+  "id": "797",
+  "title": "All Paths From Source to Target",
+  "slug": "all-paths-from-source-to-target",
+  "url": "https://leetcode.com/problems/all-paths-from-source-to-target/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Backtracking",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Directed Acyclic Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given a directed acyclic graph ( DAG ) of n nodes labeled from 0 to n - 1 , find all possible paths from node 0 to node n - 1 and return them in any order . \n \n The graph is given as follows: graph[i] is a list of all nodes you can visit from node i (i.e., there is a directed edge from node i to node graph[i][j] ). \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/28/all_1.jpg] \n \n```\nInput:\n graph = [[1,2],[3],[3],[]]\n\nOutput:\n [[0,1,3],[0,2,3]]\n\nExplanation:\n There are two paths: 0 -> 1 -> 3 and 0 -> 2 -> 3.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/09/28/all_2.jpg] \n \n```\nInput:\n graph = [[4,3,1],[3,2,4],[3],[4],[]]\n\nOutput:\n [[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]\n```\n\n Constraints: \n\n n == graph.length \n \n 2 <= n <= 15 \n \n 0 <= graph[i][j] < n \n \n graph[i][j] != i (i.e., there will be no self-loops). \n \n All the elements of graph[i] are unique . \n \n The input graph is guaranteed to be a DAG .",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {\n        int target = graph.size() - 1;\n        vector<vector<int>> res;\n        if (graph.size() == 0) return res;\n\n        vector<int> path;\n        queue<vector<int>> q;\n        path.push_back(0);\n        q.push(path);\n\n        while (!q.empty()) {\n            auto temp = q.front();\n            q.pop();\n            int node = temp.back();\n\n            for (auto next : graph[node]) {\n                auto tempPath = temp;\n                tempPath.push_back(next);\n                if (next == target) \n                    res.push_back(tempPath);\n                else\n                    q.push(tempPath);\n            }\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1527855089",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "886",
+  "title": "Possible Bipartition",
+  "slug": "possible-bipartition",
+  "url": "https://leetcode.com/problems/possible-bipartition/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory",
+    "Graph Coloring",
+    "Bipartite Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "We want to split a group of n people (labeled from 1 to n ) into two groups of any size . Each person may dislike some other people, and they should not go into the same group. \n \n Given the integer n and the array dislikes where dislikes[i] = [a i , b i ] indicates that the person labeled a i does not like the person labeled b i , return true if it is possible to split everyone into two groups in this way . \n\n Example 1: \n \n```\nInput:\n n = 4, dislikes = [[1,2],[1,3],[2,4]]\n\nOutput:\n true\n\nExplanation:\n The first group has [1,4], and the second group has [2,3].\n```\n\n Example 2: \n \n```\nInput:\n n = 3, dislikes = [[1,2],[1,3],[2,3]]\n\nOutput:\n false\n\nExplanation:\n We need at least 3 groups to divide them. We cannot put them in two groups.\n```\n\n Constraints: \n\n 1 <= n <= 2000 \n \n 0 <= dislikes.length <= 10 4 \n \n dislikes[i].length == 2 \n \n 1 <= a i < b i <= n \n \n All the pairs of dislikes are unique .",
+  "code": "class Solution \n{\n    private:\n\t\tvoid solve(vector<vector<int>>& adj ,int src, vector<int>& vis,bool &ans , int color)\n\t\t{\n\t\t\tvis[src] = color;\n\t\t\tfor(auto a : adj[src])\n\t\t\t{\n\t\t\t\tif(vis[a]==-1)\n\t\t\t\t{\n\t\t\t\t\tsolve(adj,a,vis,ans,1-color);\n\t\t\t\t}\n\t\t\t\telse\n\t\t\t\t{\n\t\t\t\t\tif(vis[a]==color)\n\t\t\t\t\t{\n\t\t\t\t\t\tans=false;\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\n\t\t}\n\tpublic:\n\t\tbool possibleBipartition(int n, vector<vector<int>>& dislikes) \n\t\t{\n\t\t   vector<vector<int>> adj(n+1);\n\t\t   for(int i=0; i<dislikes.size(); i++)\n\t\t   {\n\t\t\t   int u = dislikes[i][0];\n\t\t\t   int v = dislikes[i][1];\n\t\t\t   adj[u].push_back(v);\n\t\t\t   adj[v].push_back(u);\n\t\t   }\n\n\t\t   vector<int>vis(n+1,-1);\n\t\t   bool ans = true;\n\t\t   for(int i=1;i<=n;i++)\n\t\t   {\n\t\t\t   if(vis[i]==-1)\n\t\t\t   {\n\t\t\t\t   solve(adj,i,vis,ans,0);\n\t\t\t   }\n\t\t   }\n\t\t   return ans;\n\t\t}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1373255736",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

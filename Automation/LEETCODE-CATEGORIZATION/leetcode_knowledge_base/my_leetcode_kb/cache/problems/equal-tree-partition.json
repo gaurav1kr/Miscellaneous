@@ -1,0 +1,31 @@
+{
+  "id": "663",
+  "title": "Equal Tree Partition",
+  "slug": "equal-tree-partition",
+  "url": "https://leetcode.com/problems/equal-tree-partition/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree, return true if you can partition the tree into two trees with equal sums of values after removing exactly one edge on the original tree . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/05/03/split1-tree.jpg] \n \n```\nInput:\n root = [5,10,10,null,null,2,3]\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/05/03/split2-tree.jpg] \n \n```\nInput:\n root = [1,2,10,null,null,2,20]\n\nOutput:\n false\n\nExplanation:\n You cannot split the tree into two trees with equal sums after removing exactly one edge on the tree.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n -10 5 <= Node.val <= 10 5",
+  "code": "class Solution {\n    vector<long long> sums;\n\n    long long dfs(TreeNode* node) {\n        if (!node) {\n            return 0;\n        }\n        long long sum = node->val + dfs(node->left) + dfs(node->right);\n        sums.push_back(sum);\n        return sum;\n    }\n\npublic:\n    bool checkEqualTree(TreeNode* root) {\n        if (!root) {\n            return false;\n        }\n        long long total = dfs(root);\n        sums.pop_back();\n        if (total % 2 != 0) {\n            return false;\n        }\n        return find(sums.begin(), sums.end(), total / 2) != sums.end();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178494789",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "2730",
+  "title": "Find the Longest Semi-Repetitive Substring",
+  "slug": "find-the-longest-semi-repetitive-substring",
+  "url": "https://leetcode.com/problems/find-the-longest-semi-repetitive-substring/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a digit string s that consists of digits from 0 to 9. \n \n A string is called semi-repetitive if there is at most one adjacent pair of the same digit. For example, \"0010\" , \"002020\" , \"0123\" , \"2002\" , and \"54944\" are semi-repetitive while the following are not: \"00101022\" (adjacent same digit pairs are 00 and 22), and \"1101234883\" (adjacent same digit pairs are 11 and 88). \n \n Return the length of the longest semi-repetitive substring of s . \n\n Example 1: \n\n Input: s = \"52233\" \n \n Output: 4 \n \n Explanation: \n \n The longest semi-repetitive substring is \"5223\". Picking the whole string \"52233\" has two adjacent same digit pairs 22 and 33, but at most one is allowed. \n\n Example 2: \n\n Input: s = \"5494\" \n \n Output: 4 \n \n Explanation: \n \n s is a semi-repetitive string. \n\n Example 3: \n\n Input: s = \"1111111\" \n \n Output: 2 \n \n Explanation: \n \n The longest semi-repetitive substring is \"11\". Picking the substring \"111\" has two adjacent same digit pairs, but at most one is allowed. \n\n Constraints: \n\n 1 <= s.length <= 50 \n \n '0' <= s[i] <= '9'",
+  "code": "class Solution {public:int longestSemiRepetitiveSubstring(string s){int l=0,pairs=0,ans=0;for(int r=0;r<(int)s.size();++r){if(r&&s[r]==s[r-1])++pairs;while(pairs>1){if(l+1<=r&&s[l]==s[l+1])--pairs;++l;}ans=max(ans,r-l+1);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176684779",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

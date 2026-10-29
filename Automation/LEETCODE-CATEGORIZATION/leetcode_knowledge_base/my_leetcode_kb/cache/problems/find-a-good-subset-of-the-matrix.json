@@ -1,0 +1,34 @@
+{
+  "id": "2732",
+  "title": "Find a Good Subset of the Matrix",
+  "slug": "find-a-good-subset-of-the-matrix",
+  "url": "https://leetcode.com/problems/find-a-good-subset-of-the-matrix/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Matrix"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed m x n binary matrix grid . \n \n Let us call a non-empty subset of rows good if the sum of each column of the subset is at most half of the length of the subset. \n \n More formally, if the length of the chosen subset of rows is k , then the sum of each column should be at most floor(k / 2) . \n \n Return an integer array that contains row indices of a good subset sorted in ascending order. \n \n If there are multiple good subsets, you can return any of them. If there are no good subsets, return an empty array. \n \n A subset of rows of the matrix grid is any matrix that can be obtained by deleting some (possibly none or all) rows from grid . \n\n Example 1: \n \n```\nInput:\n grid = [[0,1,1,0],[0,0,0,1],[1,1,1,1]]\n\nOutput:\n [0,1]\n\nExplanation:\n We can choose the 0\nth\n and 1\nst\n rows to create a good subset of rows.\nThe length of the chosen subset is 2.\n- The sum of the 0\nth\n column is 0 + 0 = 0, which is at most half of the length of the subset.\n- The sum of the 1\nst\n column is 1 + 0 = 1, which is at most half of the length of the subset.\n- The sum of the 2\nnd\n column is 1 + 0 = 1, which is at most half of the length of the subset.\n- The sum of the 3\nrd\n column is 0 + 1 = 1, which is at most half of the length of the subset.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[0]]\n\nOutput:\n [0]\n\nExplanation:\n We can choose the 0\nth\n row to create a good subset of rows.\nThe length of the chosen subset is 1.\n- The sum of the 0\nth\n column is 0, which is at most half of the length of the subset.\n```\n\n Example 3: \n \n```\nInput:\n grid = [[1,1,1],[1,1,1]]\n\nOutput:\n []\n\nExplanation:\n It is impossible to choose any subset of rows to create a good subset.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m <= 10 4 \n \n 1 <= n <= 5 \n \n grid[i][j] is either 0 or 1 .",
+  "code": "class Solution {public:vector<int> goodSubsetofBinaryMatrix(vector<vector<int>>& grid){int m=grid.size(),n=grid[0].size();vector<int> first(1<<n,-1);for(int i=0;i<m;++i){int mask=0;for(int j=0;j<n;++j)mask|=grid[i][j]<<j;if(mask==0)return {i};if(first[mask]<0)first[mask]=i;}for(int a=0;a<(1<<n);++a)if(first[a]>=0)for(int b=a+1;b<(1<<n);++b)if(first[b]>=0&&(a&b)==0){int x=first[a],y=first[b];if(x>y)swap(x,y);return {x,y};}return {};}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176685580",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

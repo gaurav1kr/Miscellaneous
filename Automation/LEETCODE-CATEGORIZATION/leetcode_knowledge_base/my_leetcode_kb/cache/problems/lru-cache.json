@@ -1,0 +1,34 @@
+{
+  "id": "146",
+  "title": "LRU Cache",
+  "slug": "lru-cache",
+  "url": "https://leetcode.com/problems/lru-cache/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Linked List",
+    "Design",
+    "Doubly-Linked List"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Linked list",
+    "Ordered map"
+  ],
+  "description": "Design a data structure that follows the constraints of a Least Recently Used (LRU) cache . \n \n Implement the LRUCache class: \n\n LRUCache(int capacity) Initialize the LRU cache with positive size capacity . \n \n int get(int key) Return the value of the key if the key exists, otherwise return -1 . \n \n void put(int key, int value) Update the value of the key if the key exists. Otherwise, add the key-value pair to the cache. If the number of keys exceeds the capacity from this operation, evict the least recently used key. \n\n The functions get and put must each run in O(1) average time complexity. \n\n Example 1: \n \n```\nInput\n\n[\"LRUCache\", \"put\", \"put\", \"get\", \"put\", \"get\", \"put\", \"get\", \"get\", \"get\"]\n[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]\n\nOutput\n\n[null, null, null, 1, null, -1, null, -1, 3, 4]\n\nExplanation\n\nLRUCache lRUCache = new LRUCache(2);\nlRUCache.put(1, 1); // cache is {1=1}\nlRUCache.put(2, 2); // cache is {1=1, 2=2}\nlRUCache.get(1); // return 1\nlRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}\nlRUCache.get(2); // returns -1 (not found)\nlRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}\nlRUCache.get(1); // return -1 (not found)\nlRUCache.get(3); // return 3\nlRUCache.get(4); // return 4\n```\n\n Constraints: \n\n 1 <= capacity <= 3000 \n \n 0 <= key <= 10 4 \n \n 0 <= value <= 10 5 \n \n At most 2 * 10 5 calls will be made to get and put .",
+  "code": "class LRUCache {\nprivate:\n    int capacity;\n\n    // front = MRU, back = LRU\n    list<pair<int, int>> cache;\n\n    // key -> iterator pointing to node in list\n    unordered_map<int, list<pair<int, int>>::iterator> m;\n\npublic:\n    LRUCache(int capacity) {\n        this->capacity = capacity;\n    }\n\n    int get(int key) {\n\n        // Key not found\n        if (m.find(key) == m.end()) {\n            return -1;\n        }\n\n        auto it = m[key];\n\n        int value = it->second;\n\n        // Remove from current position\n        cache.erase(it);\n\n        // Move to front (MRU)\n        cache.push_front({key, value});\n\n        // Update iterator in map\n        m[key] = cache.begin();\n\n        return value;\n    }\n\n    void put(int key, int value) {\n\n        // Case 1: Key already exists\n        if (m.find(key) != m.end()) {\n\n            // Remove old position\n            cache.erase(m[key]);\n\n            // Add updated value at front\n            cache.push_front({key, value});\n\n            // Update iterator\n            m[key] = cache.begin();\n\n            return;\n        }\n\n        // Case 2: Cache is full\n        if (cache.size() == capacity) {\n\n            // Get LRU key\n            int lruKey = cache.back().first;\n\n            // Remove from map\n            m.erase(lruKey);\n\n            // Remove from list\n            cache.pop_back();\n        }\n\n        // Case 3: Insert new key as MRU\n        cache.push_front({key, value});\n\n        m[key] = cache.begin();\n    }\n};\n\n/**\n * Your LRUCache object will be instantiated and called as such:\n * LRUCache* obj = new LRUCache(capacity);\n * int param_1 = obj->get(key);\n * obj->put(key,value);\n */",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2152250838",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

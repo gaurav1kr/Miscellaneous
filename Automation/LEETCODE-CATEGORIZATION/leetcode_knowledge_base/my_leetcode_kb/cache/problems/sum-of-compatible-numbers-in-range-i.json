@@ -1,0 +1,29 @@
+{
+  "id": "3954",
+  "title": "Sum of Compatible Numbers in Range I",
+  "slug": "sum-of-compatible-numbers-in-range-i",
+  "url": "https://leetcode.com/problems/sum-of-compatible-numbers-in-range-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Enumeration"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You are given two integers n and k . \n \n A positive integer x is called compatible if it satisfies both of the following conditions: \n\n abs(n - x) <= k \n \n (n & x) == 0 \n\n Return the sum of all compatible integers x . \n \n Note : \n\n Here, & denotes the bitwise AND operator. \n \n The absolute difference between integers i and j is defined as abs(i - j) . \n\n Example 1: \n\n Input: n = 2, k = 3 \n \n Output: 10 \n \n Explanation: \n \n The compatible integers are: \n\n x = 1 , since abs(2 - 1) = 1 and 2 & 1 = 0 . \n \n x = 4 , since abs(2 - 4) = 2 and 2 & 4 = 0 . \n \n x = 5 , since abs(2 - 5) = 3 and 2 & 5 = 0 . \n\n Thus, the answer is 1 + 4 + 5 = 10 . \n\n Example 2: \n\n Input: n = 5, k = 1 \n \n Output: 0 \n \n Explanation: \n \n There are no compatible integers in the range [4, 6] . Thus, the answer is 0. \n\n Constraints: \n\n 1 <= n <= 100 \n \n 1 <= k <= 100",
+  "code": "class Solution {\npublic:\n    int sumOfGoodIntegers(int n, int k) {\n        int sum = 0;\n        for (int x = max(1, n - k); x <= n + k; ++x)\n            if ((n & x) == 0) sum += x;\n        return sum;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179322681",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

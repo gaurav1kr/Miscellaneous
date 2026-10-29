@@ -1,0 +1,44 @@
+{
+  "id": "862",
+  "title": "Shortest Subarray with Sum at Least K",
+  "slug": "shortest-subarray-with-sum-at-least-k",
+  "url": "https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Queue",
+    "Sliding Window",
+    "Heap (Priority Queue)",
+    "Prefix Sum",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Heap / Priority Queue",
+    "Prefix Sum / Difference Array",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Deque",
+    "Monotonic deque",
+    "Prefix-sum array",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and an integer k , return the length of the shortest non-empty subarray of nums with a sum of at least k . If there is no such subarray , return -1 . \n \n A subarray is a contiguous part of an array. \n\n Example 1: \n \n```\nInput:\n nums = [1], k = 1\n\nOutput:\n 1\n```\n \n Example 2: \n \n```\nInput:\n nums = [1,2], k = 4\n\nOutput:\n -1\n```\n \n Example 3: \n \n```\nInput:\n nums = [2,-1,2], k = 3\n\nOutput:\n 3\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 5 <= nums[i] <= 10 5 \n \n 1 <= k <= 10 9",
+  "code": "class Solution {\npublic:\n    int shortestSubarray(vector<int>& nums, int k) {\n        int n = nums.size(), answer = n + 1;\n        vector<long long> prefix(n + 1, 0);\n        for (int i = 0; i < n; ++i) prefix[i + 1] = prefix[i] + nums[i];\n        deque<int> dq;\n        for (int i = 0; i <= n; ++i) {\n            while (!dq.empty() && prefix[i] - prefix[dq.front()] >= k) {\n                answer = min(answer, i - dq.front());\n                dq.pop_front();\n            }\n            while (!dq.empty() && prefix[i] <= prefix[dq.back()]) dq.pop_back();\n            dq.push_back(i);\n        }\n        return answer <= n ? answer : -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175743017",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

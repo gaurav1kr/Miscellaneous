@@ -1,0 +1,29 @@
+{
+  "id": "2829",
+  "title": "Determine the Minimum Sum of a k-avoiding Array",
+  "slug": "determine-the-minimum-sum-of-a-k-avoiding-array",
+  "url": "https://leetcode.com/problems/determine-the-minimum-sum-of-a-k-avoiding-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash set",
+    "Ordered set"
+  ],
+  "description": "You are given two integers,  n and k . \n \n An array of distinct positive integers is called a k-avoiding array if there does not exist any pair of distinct elements that sum to k . \n \n Return the minimum possible sum of a k-avoiding array of length n . \n\n Example 1: \n \n```\nInput:\n n = 5, k = 4\n\nOutput:\n 18\n\nExplanation:\n Consider the k-avoiding array [1,2,4,5,6], which has a sum of 18.\nIt can be proven that there is no k-avoiding array with a sum less than 18.\n```\n\n Example 2: \n \n```\nInput:\n n = 2, k = 6\n\nOutput:\n 3\n\nExplanation:\n We can construct the array [1,2], which has a sum of 3.\nIt can be proven that there is no k-avoiding array with a sum less than 3.\n```\n\n Constraints: \n\n 1 <= n, k <= 50",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int minimumSum(int n,int k){unordered_set<int> used;int ans=0;for(int x=1;n; ++x)if(!used.count(k-x)){ans+=x;used.insert(x);--n;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176714858",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "3364",
+  "title": "Minimum Positive Sum Subarray ",
+  "slug": "minimum-positive-sum-subarray",
+  "url": "https://leetcode.com/problems/minimum-positive-sum-subarray/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers l and r . Your task is to find the minimum sum of a subarray whose size is between l and r (inclusive) and whose sum is greater than 0. \n \n Return the minimum sum of such a subarray. If no such subarray exists, return -1. \n \n A subarray is a contiguous non-empty sequence of elements within an array. \n\n Example 1: \n\n Input: nums = [3, -2, 1, 4], l = 2, r = 3 \n \n Output: 1 \n \n Explanation: \n \n The subarrays of length between l = 2 and r = 3 where the sum is greater than 0 are: \n\n [3, -2] with a sum of 1 \n \n [1, 4] with a sum of 5 \n \n [3, -2, 1] with a sum of 2 \n \n [-2, 1, 4] with a sum of 3 \n\n Out of these, the subarray [3, -2] has a sum of 1, which is the smallest positive sum. Hence, the answer is 1. \n\n Example 2: \n\n Input: nums = [-2, 2, -3, 1], l = 2, r = 3 \n \n Output: -1 \n \n Explanation: \n \n There is no subarray of length between l and r that has a sum greater than 0. So, the answer is -1. \n\n Example 3: \n\n Input: nums = [1, 2, 3, 4], l = 2, r = 4 \n \n Output: 3 \n \n Explanation: \n \n The subarray [1, 2] has a length of 2 and the minimum sum greater than 0. So, the answer is 3. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= l <= r <= nums.length \n \n -1000 <= nums[i] <= 1000",
+  "code": "class Solution {public:int minimumSumSubarray(vector<int>& nums,int l,int r){int n=nums.size(),best=INT_MAX;vector<int>p(n+1);for(int i=0;i<n;i++)p[i+1]=p[i]+nums[i];for(int i=0;i<n;i++)for(int len=l;len<=r&&i+len<=n;len++){int s=p[i+len]-p[i];if(s>0)best=min(best,s);}return best==INT_MAX?-1:best;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177470054",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

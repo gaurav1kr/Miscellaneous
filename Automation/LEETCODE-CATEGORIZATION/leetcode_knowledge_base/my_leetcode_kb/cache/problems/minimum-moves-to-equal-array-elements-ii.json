@@ -1,0 +1,32 @@
+{
+  "id": "462",
+  "title": "Minimum Moves to Equal Array Elements II",
+  "slug": "minimum-moves-to-equal-array-elements-ii",
+  "url": "https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Sorting"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums of size n , return the minimum number of moves required to make all array elements equal . \n \n In one move, you can increment or decrement an element of the array by 1 . \n \n Test cases are designed so that the answer will fit in a 32-bit integer. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n 2\n\nExplanation:\n\nOnly two moves are needed (remember each move increments or decrements one element):\n[\n1\n,2,3] => [2,2,\n3\n] => [2,2,2]\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,10,2,9]\n\nOutput:\n 16\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= nums.length <= 10 5 \n \n -10 9 <= nums[i] <= 10 9",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minMoves2(vector<int>& nums) {\n        sort(nums.begin(), nums.end());\n        int median = nums[nums.size() / 2];\n        int moves = 0;\n        for (int num : nums) {\n            moves += abs(num - median);\n        }\n        return moves;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591363030",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

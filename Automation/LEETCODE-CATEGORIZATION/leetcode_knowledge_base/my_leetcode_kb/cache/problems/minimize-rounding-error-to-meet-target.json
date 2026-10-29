@@ -1,0 +1,37 @@
+{
+  "id": "1058",
+  "title": "Minimize Rounding Error to Meet Target",
+  "slug": "minimize-rounding-error-to-meet-target",
+  "url": "https://leetcode.com/problems/minimize-rounding-error-to-meet-target/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "String",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of prices [p 1 ,p 2 ...,p n ] and a target , round each price p i to Round i (p i ) so that the rounded array [Round 1 (p 1 ),Round 2 (p 2 )...,Round n (p n )] sums to the given target . Each operation Round i (p i ) could be either Floor(p i ) or Ceil(p i ) . \n \n Return the string \"-1\" if the rounded array is impossible to sum to target . Otherwise, return the smallest rounding error, which is defined as Σ |Round i (p i ) - (p i )| for i from 1 to n , as a string with three places after the decimal. \n\n Example 1: \n \n```\nInput:\n prices = [\"0.700\",\"2.800\",\"4.900\"], target = 8\n\nOutput:\n \"1.000\"\n\nExplanation:\n\nUse Floor, Ceil and Ceil operations to get (0.7 - 0) + (3 - 2.8) + (5 - 4.9) = 0.7 + 0.2 + 0.1 = 1.0 .\n```\n\n Example 2: \n \n```\nInput:\n prices = [\"1.500\",\"2.500\",\"3.500\"], target = 10\n\nOutput:\n \"-1\"\n\nExplanation:\n It is impossible to meet the target.\n```\n\n Example 3: \n \n```\nInput:\n prices = [\"1.500\",\"2.500\",\"3.500\"], target = 9\n\nOutput:\n \"1.500\"\n```\n\n Constraints: \n\n 1 <= prices.length <= 500 \n \n Each string  prices[i] represents a real number in the range [0.0, 1000.0] and has exactly 3 decimal places. \n \n 0 <= target <= 10 6",
+  "code": "class Solution {\npublic:\n    string minimizeError(vector<string>& prices, int target) {\n        int floorSum = 0;\n        vector<int> fractions;\n        for (const string& price : prices) {\n            int value = stoi(price.substr(0, price.find('.')));\n            int fraction = stoi(price.substr(price.find('.') + 1));\n            floorSum += value;\n            if (fraction > 0) {\n                fractions.push_back(fraction);\n            }\n        }\n        int up = target - floorSum;\n        if (up < 0 || up > static_cast<int>(fractions.size())) {\n            return \"-1\";\n        }\n        sort(fractions.rbegin(), fractions.rend());\n        int error = 0;\n        for (int i = 0; i < static_cast<int>(fractions.size()); ++i) {\n            error += (i < up) ? (1000 - fractions[i]) : fractions[i];\n        }\n        ostringstream out;\n        out << fixed << setprecision(3) << error / 1000.0;\n        return out.str();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178516543",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

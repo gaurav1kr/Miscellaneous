@@ -1,0 +1,36 @@
+{
+  "id": "3527",
+  "title": "Find the Most Common Response",
+  "slug": "find-the-most-common-response",
+  "url": "https://leetcode.com/problems/find-the-most-common-response/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 2D string array responses where each responses[i] is an array of strings representing survey responses from the i th day. \n \n Return the most common response across all days after removing duplicate responses within each responses[i] . If there is a tie, return the lexicographically smallest response. \n\n Example 1: \n\n Input: responses = [[\"good\",\"ok\",\"good\",\"ok\"],[\"ok\",\"bad\",\"good\",\"ok\",\"ok\"],[\"good\"],[\"bad\"]] \n \n Output: \"good\" \n \n Explanation: \n\n After removing duplicates within each list, responses = [[\"good\", \"ok\"], [\"ok\", \"bad\", \"good\"], [\"good\"], [\"bad\"]] . \n \n \"good\" appears 3 times, \"ok\" appears 2 times, and \"bad\" appears 2 times. \n \n Return \"good\" because it has the highest frequency. \n\n Example 2: \n\n Input: responses = [[\"good\",\"ok\",\"good\"],[\"ok\",\"bad\"],[\"bad\",\"notsure\"],[\"great\",\"good\"]] \n \n Output: \"bad\" \n \n Explanation: \n\n After removing duplicates within each list we have responses = [[\"good\", \"ok\"], [\"ok\", \"bad\"], [\"bad\", \"notsure\"], [\"great\", \"good\"]] . \n \n \"bad\" , \"good\" , and \"ok\" each occur 2 times. \n \n The output is \"bad\" because it is the lexicographically smallest amongst the words with the highest frequency. \n\n Constraints: \n\n 1 <= responses.length <= 1000 \n \n 1 <= responses[i].length <= 1000 \n \n 1 <= responses[i][j].length <= 10 \n \n responses[i][j] consists of only lowercase English letters",
+  "code": "class Solution {public:string findCommonResponse(vector<vector<string>>& responses){map<string,int> freq;for(auto &day:responses){set<string> unique(day.begin(),day.end());for(auto &s:unique)freq[s]++;}string ans;int best=-1;for(auto &p:freq)if(p.second>best){best=p.second;ans=p.first;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177561842",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "1492",
+  "title": "The kth Factor of n",
+  "slug": "the-kth-factor-of-n",
+  "url": "https://leetcode.com/problems/the-kth-factor-of-n/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Number Theory",
+    "Prime Factorization"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given two positive integers n and k . A factor of an integer n is defined as an integer i where n % i == 0 . \n \n Consider a list of all factors of n sorted in ascending order , return the k th factor in this list or return -1 if n has less than k factors. \n\n Example 1: \n \n```\nInput:\n n = 12, k = 3\n\nOutput:\n 3\n\nExplanation:\n Factors list is [1, 2, 3, 4, 6, 12], the 3\nrd\n factor is 3.\n```\n\n Example 2: \n \n```\nInput:\n n = 7, k = 2\n\nOutput:\n 7\n\nExplanation:\n Factors list is [1, 7], the 2\nnd\n factor is 7.\n```\n\n Example 3: \n \n```\nInput:\n n = 4, k = 4\n\nOutput:\n -1\n\nExplanation:\n Factors list is [1, 2, 4], there is only 3 factors. We should return -1.\n```\n\n Constraints: \n\n 1 <= k <= n <= 1000 \n\n Follow up: \n \n Could you solve this problem in less than O(n) complexity?",
+  "code": "class Solution {\npublic:\n    int kthFactor(int n, int k) {\n        for (int i = 1; i <= n; ++i) {\n            if (n % i == 0 && --k == 0)\n                return i;\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612876843",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

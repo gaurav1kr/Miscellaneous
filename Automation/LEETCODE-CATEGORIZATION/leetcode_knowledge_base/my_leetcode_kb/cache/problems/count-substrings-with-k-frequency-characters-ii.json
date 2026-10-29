@@ -1,0 +1,32 @@
+{
+  "id": "3329",
+  "title": "Count Substrings With K-Frequency Characters II",
+  "slug": "count-substrings-with-k-frequency-characters-ii",
+  "url": "https://leetcode.com/problems/count-substrings-with-k-frequency-characters-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s and an integer k , return the total number of substrings of s where at least one character appears at least k times. \n\n Example 1: \n\n Input: s = \"abacb\", k = 2 \n \n Output: 4 \n \n Explanation: \n \n The valid substrings are: \n\n \" aba\" (character 'a' appears 2 times). \n \n \"abac\" (character 'a' appears 2 times). \n \n \"abacb\" (character 'a' appears 2 times). \n \n \"bacb\" (character 'b' appears 2 times). \n\n Example 2: \n\n Input: s = \"abcde\", k = 1 \n \n Output: 15 \n \n Explanation: \n \n All substrings are valid because every character appears at least once. \n\n Constraints: \n\n 1 <= s.length <= 3 * 10 5 \n \n 1 <= k <= s.length \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    long long numberOfSubstrings(string s, int k) {\n        vector<int> freq(26, 0);\n        long long ans = 0;\n        int left = 0, valid = 0;\n        for (int right = 0; right < static_cast<int>(s.size()); ++right) {\n            if (++freq[s[right] - 'a'] == k) ++valid;\n            while (valid > 0) {\n                if (freq[s[left] - 'a']-- == k) --valid;\n                ++left;\n            }\n            ans += left;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178972644",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

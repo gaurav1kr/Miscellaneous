@@ -1,0 +1,29 @@
+{
+  "id": "1359",
+  "title": "Count All Valid Pickup and Delivery Options",
+  "slug": "count-all-valid-pickup-and-delivery-options",
+  "url": "https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "Given n orders, each order consists of a pickup and a delivery service. \n \n Count all valid pickup/delivery possible sequences such that delivery(i) is always after of pickup(i).  \n \n Since the answer may be too large, return it modulo 10^9 + 7. \n\n Example 1: \n \n```\nInput:\n n = 1\n\nOutput:\n 1\n\nExplanation:\n Unique order (P1, D1), Delivery 1 always is after of Pickup 1.\n```\n\n Example 2: \n \n```\nInput:\n n = 2\n\nOutput:\n 6\n\nExplanation:\n All possible orders: \n(P1,P2,D1,D2), (P1,P2,D2,D1), (P1,D1,P2,D2), (P2,P1,D1,D2), (P2,P1,D2,D1) and (P2,D2,P1,D1).\nThis is an invalid order (P1,D2,P2,D1) because Pickup 2 is after of Delivery 2.\n```\n\n Example 3: \n \n```\nInput:\n n = 3\n\nOutput:\n 90\n```\n\n Constraints: \n\n 1 <= n <= 500",
+  "code": "class Solution {\npublic:\n    int countOrders(int n) {\n        const int MOD = 1e9 + 7;\n        long res = 1;\n        for (int i = 1; i <= n; ++i) {\n            res = res * i % MOD;\n            res = res * (2 * i - 1) % MOD;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610580511",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

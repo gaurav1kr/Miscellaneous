@@ -1,0 +1,33 @@
+{
+  "id": "1893",
+  "title": "Check if All the Integers in a Range Are Covered",
+  "slug": "check-if-all-the-integers-in-a-range-are-covered",
+  "url": "https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array ranges and two integers left and right . Each ranges[i] = [start i , end i ] represents an inclusive interval between start i and end i . \n \n Return true if each integer in the inclusive range [left, right] is covered by at least one interval in ranges . Return false otherwise . \n \n An integer x is covered by an interval ranges[i] = [start i , end i ] if start i <= x <= end i . \n\n Example 1: \n \n```\nInput:\n ranges = [[1,2],[3,4],[5,6]], left = 2, right = 5\n\nOutput:\n true\n\nExplanation:\n Every integer between 2 and 5 is covered:\n- 2 is covered by the first range.\n- 3 and 4 are covered by the second range.\n- 5 is covered by the third range.\n```\n\n Example 2: \n \n```\nInput:\n ranges = [[1,10],[10,20]], left = 21, right = 21\n\nOutput:\n false\n\nExplanation:\n 21 is not covered by any range.\n```\n\n Constraints: \n\n 1 <= ranges.length <= 50 \n \n 1 <= start i <= end i <= 50 \n \n 1 <= left <= right <= 50",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isCovered(vector<vector<int>>& ranges, int left, int right) {\n        vector<bool> covered(51, false);\n        for (auto& r : ranges)\n            for (int i = r[0]; i <= r[1]; ++i)\n                covered[i] = true;\n\n        for (int i = left; i <= right; ++i)\n            if (!covered[i]) return false;\n\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610674061",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

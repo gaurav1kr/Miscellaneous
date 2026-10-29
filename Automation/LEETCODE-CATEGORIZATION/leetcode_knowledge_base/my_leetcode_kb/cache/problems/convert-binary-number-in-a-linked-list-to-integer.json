@@ -1,0 +1,28 @@
+{
+  "id": "1290",
+  "title": "Convert Binary Number in a Linked List to Integer",
+  "slug": "convert-binary-number-in-a-linked-list-to-integer",
+  "url": "https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Given head which is a reference node to a singly-linked list. The value of each node in the linked list is either 0 or 1 . The linked list holds the binary representation of a number. \n \n Return the decimal value of the number in the linked list. \n \n The most significant bit is at the head of the linked list. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/12/05/graph-1.png] \n \n```\nInput:\n head = [1,0,1]\n\nOutput:\n 5\n\nExplanation:\n (101) in base 2 = (5) in base 10\n```\n\n Example 2: \n \n```\nInput:\n head = [0]\n\nOutput:\n 0\n```\n\n Constraints: \n\n The Linked List is not empty. \n \n Number of nodes will not exceed 30 . \n \n Each node's value is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n    int getDecimalValue(ListNode* head) {\n        int num = 0;\n        while (head) {\n            num = (num << 1) | head->val;\n            head = head->next;\n        }\n        return num;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588375715",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

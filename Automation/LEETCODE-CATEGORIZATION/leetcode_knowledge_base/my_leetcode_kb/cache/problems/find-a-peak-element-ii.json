@@ -1,0 +1,31 @@
+{
+  "id": "1901",
+  "title": "Find a Peak Element II",
+  "slug": "find-a-peak-element-ii",
+  "url": "https://leetcode.com/problems/find-a-peak-element-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Matrix"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "A peak element in a 2D grid is an element that is strictly greater than all of its adjacent neighbors to the left, right, top, and bottom. \n \n Given a 0-indexed m x n matrix mat where no two adjacent cells are equal , find any peak element mat[i][j] and return the length 2 array [i,j] . \n \n You may assume that the entire matrix is surrounded by an outer perimeter with the value -1 in each cell. \n \n You must write an algorithm that runs in O(m log(n)) or O(n log(m)) time. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2021/06/08/1.png] \n \n```\nInput:\n mat = [[1,4],[3,2]]\n\nOutput:\n [0,1]\n\nExplanation:\n Both 3 and 4 are peak elements so [1,0] and [0,1] are both acceptable answers.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2021/06/07/3.png] \n \n```\nInput:\n mat = [[10,20,15],[21,30,14],[7,16,32]]\n\nOutput:\n [1,1]\n\nExplanation:\n Both 30 and 32 are peak elements so [1,1] and [2,2] are both acceptable answers.\n```\n\n Constraints: \n\n m == mat.length \n \n n == mat[i].length \n \n 1 <= m, n <= 500 \n \n 1 <= mat[i][j] <= 10 5 \n \n No two adjacent cells are equal.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> findPeakGrid(vector<vector<int>>& mat) {\n        int m = mat.size(), n = mat[0].size();\n        int left = 0, right = n - 1;\n\n        while (left <= right) {\n            int mid = left + (right - left) / 2;\n            int maxRow = 0;\n            for (int i = 0; i < m; ++i) {\n                if (mat[i][mid] > mat[maxRow][mid])\n                    maxRow = i;\n            }\n\n            if ((mid == 0 || mat[maxRow][mid] > mat[maxRow][mid - 1]) &&\n                (mid == n - 1 || mat[maxRow][mid] > mat[maxRow][mid + 1]))\n                return {maxRow, mid};\n\n            if (mid > 0 && mat[maxRow][mid - 1] > mat[maxRow][mid])\n                right = mid - 1;\n            else\n                left = mid + 1;\n        }\n\n        return {-1, -1};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610570376",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

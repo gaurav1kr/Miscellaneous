@@ -1,0 +1,30 @@
+{
+  "id": "1538",
+  "title": "Guess the Majority in a Hidden Array",
+  "slug": "guess-the-majority-in-a-hidden-array",
+  "url": "https://leetcode.com/problems/guess-the-majority-in-a-hidden-array/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Interactive",
+    "Boyer–Moore Majority Vote Algorithm"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector"
+  ],
+  "description": "We have an integer array nums , where all the integers in nums are 0 or 1 . You will not be given direct access to the array, instead, you will have an API ArrayReader which have the following functions: \n\n int query(int a, int b, int c, int d) : where 0 <= a < b < c < d < ArrayReader.length() . The function returns the distribution of the value of the 4 elements and returns:\n\n 4 : if the values of the 4 elements are the same (0 or 1). \n \n 2 : if three elements have a value equal to 0 and one element has value equal to 1 or vice versa. \n \n 0 : if two element have a value equal to 0 and two elements have a value equal to 1. \n\n int length() : Returns the size of the array. \n\n You are allowed to call query() 2 * n times at most where n is equal to ArrayReader.length() . \n \n Return any index of the most frequent value in nums , in case of tie, return -1. \n\n Example 1: \n \n```\nInput:\n nums = [0,0,1,0,1,1,1,1]\n\nOutput:\n 5\n\nExplanation:\n The following calls to the API\nreader.length() // returns 8 because there are 8 elements in the hidden array.\nreader.query(0,1,2,3) // returns 2 this is a query that compares the elements nums[0], nums[1], nums[2], nums[3]\n// Three elements have a value equal to 0 and one element has value equal to 1 or viceversa.\nreader.query(4,5,6,7) // returns 4 because nums[4], nums[5], nums[6], nums[7] have the same value.\nwe can infer that the most frequent value is found in the last 4 elements.\nIndex 2, 4, 6, 7 is also a correct answer.\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,0,1,1,0]\n\nOutput:\n 0\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,0,1,0,1,0,1,0]\n\nOutput:\n -1\n```\n\n Constraints: \n\n 5 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 1 \n\n Follow up: What is the minimum number of calls needed to find the majority element?",
+  "code": "class Solution {\npublic:\n    int guessMajority(ArrayReader& reader) {\n        int n = reader.length();\n        int base = reader.query(0, 1, 2, 3);\n        int reference = reader.query(1, 2, 3, 4);\n        int compare = reader.query(0, 2, 3, 4);\n        int same = 1;\n        int different = 0;\n        int differentIndex = -1;\n\n        // For i >= 4, equality of the query scores means arr[i] == arr[0].\n        for (int i = 4; i < n; ++i) {\n            int current = reader.query(1, 2, 3, i);\n            if (current == base) {\n                ++same;\n            } else {\n                ++different;\n                differentIndex = i;\n            }\n        }\n        // Compare indices 1, 2, and 3 against index 0.\n        // The overlapping queries expose equality through their scores.\n        int q1 = reader.query(0, 1, 3, 4);\n        int q2 = reader.query(0, 1, 2, 4);\n        int score[3] = {compare, q1, q2};\n        for (int i = 0; i < 3; ++i) {\n            int index = i + 1;\n            if (score[i] == reference) {\n                ++same;\n            } else {\n                ++different;\n                differentIndex = index;\n            }\n        }\n        if (same == different) {\n            return -1;\n        }\n        return same > different ? 0 : differentIndex;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178586415",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

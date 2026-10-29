@@ -1,0 +1,38 @@
+{
+  "id": "3422",
+  "title": "Minimum Operations to Make Subarray Elements Equal",
+  "slug": "minimum-operations-to-make-subarray-elements-equal",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-subarray-elements-equal/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Sliding Window",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered set",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . You can perform the following operation any number of times: \n\n Increase or decrease any element of nums by 1. \n\n Return the minimum number of operations required to ensure that at least one subarray of size k in nums has all elements equal. \n\n Example 1: \n\n Input: nums = [4,-3,2,1,-4,6], k = 3 \n \n Output: 5 \n \n Explanation: \n\n Use 4 operations to add 4 to nums[1] . The resulting array is [4, 1, 2, 1, -4, 6] . \n \n Use 1 operation to subtract 1 from nums[2] . The resulting array is [4, 1, 1, 1, -4, 6] . \n \n The array now contains a subarray [1, 1, 1] of size k = 3 with all elements equal. Hence, the answer is 5. \n\n Example 2: \n\n Input: nums = [-2,-2,3,1,4], k = 2 \n \n Output: 0 \n \n Explanation: \n\n The subarray [-2, -2] of size k = 2 already contains all equal elements, so no operations are needed. Hence, the answer is 0. \n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n -10 6 <= nums[i] <= 10 6 \n \n 2 <= k <= nums.length",
+  "code": "class Solution {\n    public:long long minOperations(vector<int>& a,int k) {\n        multiset<int> lo,hi;\n        long long sl=0,sh=0,ans=LLONG_MAX;\n        auto rebalance=[&]() {\n            while((int)lo.size()>(k+1)/2) {\n                int x=*lo.rbegin();\n                lo.erase(prev(lo.end()));\n                sl-=x;\n                hi.insert(x);\n                sh+=x;\n            }\n            while((int)lo.size()<(k+1)/2 && !hi.empty()) {\n                int x=*hi.begin();\n                hi.erase(hi.begin());\n                sh-=x;\n                lo.insert(x);\n                sl+=x;\n            }\n        }\n        ;\n        auto insert=[&](int x) {\n            if(lo.empty()||x<=*lo.rbegin()) {\n                lo.insert(x);\n                sl+=x;\n            }\n            else {\n                hi.insert(x);\n                sh+=x;\n            }\n            rebalance();\n        }\n        ;\n        auto erase=[&](int x) {\n            auto it=lo.find(x);\n            if(it!=lo.end()) {\n                sl-=x;\n                lo.erase(it);\n            }\n            else {\n                it=hi.find(x);\n                sh-=x;\n                hi.erase(it);\n            }\n            rebalance();\n        }\n        ;\n        for(int i=0; i<(int)a.size(); i++) {\n            insert(a[i]);\n            if(i>=k)erase(a[i-k]);\n            if(i>=k-1) {\n                long long med=*lo.rbegin();\n                ans=min(ans,med*(long long)lo.size()-sl+sh-med*(long long)hi.size());\n            }\n        }\n        return ans;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179343513",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

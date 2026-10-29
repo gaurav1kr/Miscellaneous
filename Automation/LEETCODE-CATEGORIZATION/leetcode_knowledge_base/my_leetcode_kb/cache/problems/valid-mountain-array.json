@@ -1,0 +1,27 @@
+{
+  "id": "941",
+  "title": "Valid Mountain Array",
+  "slug": "valid-mountain-array",
+  "url": "https://leetcode.com/problems/valid-mountain-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of integers arr , return true if and only if it is a valid mountain array . \n \n Recall that arr is a mountain array if and only if: \n\n arr.length >= 3 \n \n There exists some i with 0 < i < arr.length - 1 such that:\n\n arr[0] < arr[1] < ... < arr[i - 1] < arr[i] \n \n arr[i] > arr[i + 1] > ... > arr[arr.length - 1] \n\n [Figure: https://assets.leetcode.com/uploads/2019/10/20/hint_valid_mountain_array.png] \n\n Example 1: \n \n```\nInput:\n arr = [2,1]\n\nOutput:\n false\n```\n \n Example 2: \n \n```\nInput:\n arr = [3,5,5]\n\nOutput:\n false\n```\n \n Example 3: \n \n```\nInput:\n arr = [0,3,2,1]\n\nOutput:\n true\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 4 \n \n 0 <= arr[i] <= 10 4",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool validMountainArray(vector<int>& arr) {\n        int n = arr.size(), i = 0, j = n - 1;\n        \n        while (i + 1 < n && arr[i] < arr[i + 1]) i++;\n        while (j > 0 && arr[j] < arr[j - 1]) j--;\n        \n        return i > 0 && i == j && j < n - 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590168769",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

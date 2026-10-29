@@ -1,0 +1,31 @@
+{
+  "id": "414",
+  "title": "Third Maximum Number",
+  "slug": "third-maximum-number",
+  "url": "https://leetcode.com/problems/third-maximum-number/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Ordered set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number. \n\n Example 1: \n \n```\nInput:\n nums = [3,2,1]\n\nOutput:\n 1\n\nExplanation:\n\nThe first distinct maximum is 3.\nThe second distinct maximum is 2.\nThe third distinct maximum is 1.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2]\n\nOutput:\n 2\n\nExplanation:\n\nThe first distinct maximum is 2.\nThe second distinct maximum is 1.\nThe third distinct maximum does not exist, so the maximum (2) is returned instead.\n```\n\n Example 3: \n \n```\nInput:\n nums = [2,2,3,1]\n\nOutput:\n 1\n\nExplanation:\n\nThe first distinct maximum is 3.\nThe second distinct maximum is 2 (both 2's are counted together since they have the same value).\nThe third distinct maximum is 1.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 4 \n \n -2 31 <= nums[i] <= 2 31 - 1 \n\n Follow up: Can you find an O(n) solution?",
+  "code": "#include <vector>\n#include <set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int thirdMax(vector<int>& nums) {\n        set<int> maxSet;\n        for (int num : nums) {\n            maxSet.insert(num);\n            if (maxSet.size() > 3) {\n                maxSet.erase(maxSet.begin());\n            }\n        }\n        return maxSet.size() == 3 ? *maxSet.begin() : *maxSet.rbegin();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590149381",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

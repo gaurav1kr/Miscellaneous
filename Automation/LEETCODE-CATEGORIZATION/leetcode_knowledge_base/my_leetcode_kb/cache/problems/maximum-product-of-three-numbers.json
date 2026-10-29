@@ -1,0 +1,32 @@
+{
+  "id": "628",
+  "title": "Maximum Product of Three Numbers",
+  "slug": "maximum-product-of-three-numbers",
+  "url": "https://leetcode.com/problems/maximum-product-of-three-numbers/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Sorting"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Find three numbers whose product is maximum and return the maximum product. \n\n Example 1: \n\n Input: nums = [1,2,-3] \n \n Output: -6 \n \n Explanation: \n \n The only three numbers are 1, 2, and -3, so the maximum product is 1 * 2 * -3 = -6 . \n\n Example 2: \n\n Input: nums = [1,2,3,4] \n \n Output: 24 \n \n Explanation: \n \n The largest product comes from the three greatest numbers: 2 * 3 * 4 = 24 . \n\n Example 3: \n\n Input: nums = [-1,-2,-3] \n \n Output: -6 \n \n Explanation: \n \n The only three numbers are -1, -2, and -3, so the maximum product is (-1) * (-2) * (-3) = -6 . \n\n Constraints: \n\n 3 <= nums.length <= 10 4 \n \n -1000 <= nums[i] <= 1000",
+  "code": "class Solution {\npublic:\n    int maximumProduct(vector<int>& nums) {\n        sort(nums.begin(), nums.end());\n        int n = nums.size();\n        return max(nums[0] * nums[1] * nums[n - 1],\n                   nums[n - 1] * nums[n - 2] * nums[n - 3]);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588125571",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

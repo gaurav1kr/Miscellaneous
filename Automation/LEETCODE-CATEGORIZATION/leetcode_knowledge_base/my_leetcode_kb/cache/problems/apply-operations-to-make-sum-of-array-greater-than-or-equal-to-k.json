@@ -1,0 +1,27 @@
+{
+  "id": "3091",
+  "title": "Apply Operations to Make Sum of Array Greater Than or Equal to k",
+  "slug": "apply-operations-to-make-sum-of-array-greater-than-or-equal-to-k",
+  "url": "https://leetcode.com/problems/apply-operations-to-make-sum-of-array-greater-than-or-equal-to-k/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy",
+    "Enumeration"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given a positive integer k . Initially, you have an array nums = [1] . \n \n You can perform any of the following operations on the array any number of times ( possibly zero ): \n\n Choose any element in the array and increase its value by 1 . \n \n Duplicate any element in the array and add it to the end of the array. \n\n Return the minimum number of operations required to make the sum of elements of the final array greater than or equal to k . \n\n Example 1: \n\n Input: k = 11 \n \n Output: 5 \n \n Explanation: \n \n We can do the following operations on the array nums = [1] : \n\n Increase the element by 1 three times. The resulting array is nums = [4] . \n \n Duplicate the element two times. The resulting array is nums = [4,4,4] . \n\n The sum of the final array is 4 + 4 + 4 = 12 which is greater than or equal to k = 11 . \nThe total number of operations performed is 3 + 2 = 5 . \n\n Example 2: \n\n Input: k = 1 \n \n Output: 0 \n \n Explanation: \n \n The sum of the original array is already greater than or equal to 1 , so no operations are needed. \n\n Constraints: \n\n 1 <= k <= 10 5",
+  "code": "class Solution {public:int minOperations(int k){int ans=k-1;for(int a=1;a*a<=k+k;a++)ans=min(ans,a-1+(k+a-1)/a-1);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176860175",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "343",
+  "title": "Integer Break",
+  "slug": "integer-break",
+  "url": "https://leetcode.com/problems/integer-break/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "Given an integer n , break it into the sum of k positive integers , where k >= 2 , and maximize the product of those integers. \n \n Return the maximum product you can get . \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n 1\n\nExplanation:\n 2 = 1 + 1, 1 × 1 = 1.\n```\n\n Example 2: \n \n```\nInput:\n n = 10\n\nOutput:\n 36\n\nExplanation:\n 10 = 3 + 3 + 4, 3 × 3 × 4 = 36.\n```\n\n Constraints: \n\n 2 <= n <= 58",
+  "code": "class Solution \n{\npublic:\n    int integerBreak(int n) \n    {\n         if(n==2) \n         {\n             return 1 ;\n         }\n         else if(n==3)\n         {\n            return 2 ;\n         }\n         int ans = 1 ;\n         \n         while(n>4)\n         {\n            ans *= 3 ;\n            n -= 3 ;\n         }\n\n         return ans*n ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1480001384",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

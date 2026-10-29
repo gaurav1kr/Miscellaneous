@@ -1,0 +1,33 @@
+{
+  "id": "3381",
+  "title": "Maximum Subarray Sum With Length Divisible by K",
+  "slug": "maximum-subarray-sum-with-length-divisible-by-k",
+  "url": "https://leetcode.com/problems/maximum-subarray-sum-with-length-divisible-by-k/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums and an integer k . \n \n Return the maximum sum of a subarray of nums , such that the size of the subarray is divisible by k . \n\n Example 1: \n\n Input: nums = [1,2], k = 1 \n \n Output: 3 \n \n Explanation: \n \n The subarray [1, 2] with sum 3 has length equal to 2 which is divisible by 1. \n\n Example 2: \n\n Input: nums = [-1,-2,-3,-4,-5], k = 4 \n \n Output: -10 \n \n Explanation: \n \n The maximum sum subarray is [-1, -2, -3, -4] which has length equal to 4 which is divisible by 4. \n\n Example 3: \n\n Input: nums = [-5,1,2,-3,4], k = 2 \n \n Output: 4 \n \n Explanation: \n \n The maximum sum subarray is [1, 2, -3, 4] which has length equal to 4 which is divisible by 2. \n\n Constraints: \n\n 1 <= k <= nums.length <= 2 * 10 5 \n \n -10 9 <= nums[i] <= 10 9",
+  "code": "class Solution {public:long long maxSubarraySum(vector<int>&nums,int k){const long long INF=LLONG_MAX/4;vector<long long>mn(k,INF);mn[0]=0;long long sum=0,ans=LLONG_MIN;for(int i=0;i<(int)nums.size();i++){sum+=nums[i];int r=(i+1)%k;if(mn[r]!=INF)ans=max(ans,sum-mn[r]);mn[r]=min(mn[r],sum);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177473887",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "3260",
+  "title": "Find the Largest Palindrome Divisible by K",
+  "slug": "find-the-largest-palindrome-divisible-by-k",
+  "url": "https://leetcode.com/problems/find-the-largest-palindrome-divisible-by-k/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "Greedy",
+    "Number Theory"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two positive integers n and k . \n \n An integer x is called k-palindromic if: \n\n x is a palindrome . \n \n x is divisible by k . \n\n Return the largest integer having n digits (as a string) that is k-palindromic . \n \n Note that the integer must not have leading zeros. \n\n Example 1: \n\n Input: n = 3, k = 5 \n \n Output: \"595\" \n \n Explanation: \n \n 595 is the largest k-palindromic integer with 3 digits. \n\n Example 2: \n\n Input: n = 1, k = 4 \n \n Output: \"8\" \n \n Explanation: \n \n 4 and 8 are the only k-palindromic integers with 1 digit. \n\n Example 3: \n\n Input: n = 5, k = 6 \n \n Output: \"89898\" \n\n Constraints: \n\n 1 <= n <= 10 5 \n \n 1 <= k <= 9",
+  "code": "class Solution { public:\n string largestPalindrome(int n,int k){int half=(n+1)/2;vector<int> pow10(n);pow10[0]=1%k;for(int i=1;i<n;++i)pow10[i]=pow10[i-1]*10%k;\n vector<int> weight(half);for(int i=0;i<half;++i){weight[i]=pow10[i];if(i!=n-1-i)weight[i]=(weight[i]+pow10[n-1-i])%k;}\n vector<vector<char>> can(half+1,vector<char>(k));can[half][0]=1;\n for(int i=half-1;i>=0;--i)for(int d=0;d<=9;++d)for(int r=0;r<k;++r)if(can[i+1][r])can[i][(r+d*weight[i])%k]=1;\n string ans(n,'0');int rem=0;\n for(int i=0;i<half;++i){for(int d=9;d>=1;--d){int nr=(rem+d*weight[i])%k;if(can[i+1][(k-nr)%k]){ans[i]=ans[n-1-i]=char('0'+d);rem=nr;break;}}}\n return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177440741",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

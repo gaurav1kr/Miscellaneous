@@ -1,0 +1,34 @@
+{
+  "id": "36",
+  "title": "Valid Sudoku",
+  "slug": "valid-sudoku",
+  "url": "https://leetcode.com/problems/valid-sudoku/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "Determine if a  9 x 9 Sudoku board is valid. Only the filled cells need to be validated  according to the following rules : \n\n Each row must contain the digits  1-9 without repetition. \n \n Each column must contain the digits  1-9  without repetition. \n \n Each of the nine  3 x 3 sub-boxes of the grid must contain the digits  1-9  without repetition. \n\n Note: \n\n A Sudoku board (partially filled) could be valid but is not necessarily solvable. \n \n Only the filled cells need to be validated according to the mentioned rules. \n\n Example 1: \n [Figure: https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png] \n \n```\nInput:\n board = \n[[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n\nOutput:\n true\n```\n\n Example 2: \n \n```\nInput:\n board = \n[[\"8\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n\nOutput:\n false\n\nExplanation:\n Same as Example 1, except with the \n5\n in the top left corner being modified to \n8\n. Since there are two 8's in the top left 3x3 sub-box, it is invalid.\n```\n\n Constraints: \n\n board.length == 9 \n \n board[i].length == 9 \n \n board[i][j] is a digit 1-9 or '.' .",
+  "code": "class Solution {\npublic:\n    bool isValidSudoku(vector<vector<char>>& board) {\n        // Arrays of hash sets to track rows, columns, and sub-boxes\n        unordered_set<char> rows[9];\n        unordered_set<char> cols[9];\n        unordered_set<char> boxes[9];\n\n        // Iterate through the board\n        for (int i = 0; i < 9; ++i) {\n            for (int j = 0; j < 9; ++j) {\n                char num = board[i][j];\n                if (num == '.') continue; // Skip empty cells\n\n                // Calculate the index for the 3x3 sub-box\n                int boxIndex = (i / 3) * 3 + j / 3;\n\n                // Check for duplicates in the row, column, or box\n                if (rows[i].count(num) || cols[j].count(num) || boxes[boxIndex].count(num)) {\n                    return false;\n                }\n\n                // Add the number to the respective row, column, and box sets\n                rows[i].insert(num);\n                cols[j].insert(num);\n                boxes[boxIndex].insert(num);\n            }\n        }\n\n        return true; // All checks passed\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536807396",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

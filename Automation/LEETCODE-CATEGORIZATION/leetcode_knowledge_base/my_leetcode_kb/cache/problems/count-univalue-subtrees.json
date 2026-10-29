@@ -1,0 +1,31 @@
+{
+  "id": "250",
+  "title": "Count Univalue Subtrees",
+  "slug": "count-univalue-subtrees",
+  "url": "https://leetcode.com/problems/count-univalue-subtrees/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, return the number of uni-value subtrees . \n \n A uni-value subtree means all nodes of the subtree have the same value. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/08/21/unival_e1.jpg] \n \n```\nInput:\n root = [5,1,5,5,5,null,5]\n\nOutput:\n 4\n```\n\n Example 2: \n \n```\nInput:\n root = []\n\nOutput:\n 0\n```\n\n Example 3: \n \n```\nInput:\n root = [5,5,5,5,5,null,5]\n\nOutput:\n 6\n```\n\n Constraints: \n\n The number of the node in the tree will be in the range [0, 1000] . \n \n -1000 <= Node.val <= 1000",
+  "code": "class Solution\n{\n    int count = 0;\n    bool dfs(TreeNode*node)\n    {\n        if (!node)\n        {\n            return true;\n        }\n        bool a = dfs(node->left), b = dfs(node->right);\n        if (!a || !b)\n        {\n            return false;\n        }\n        if (node->left && node->left->val != node->val)\n        {\n            return false;\n        }\n        if (node->right && node->right->val != node->val)\n        {\n            return false;\n        }\n        ++count;\n        return true;\n    }\npublic:\n    int countUnivalSubtrees(TreeNode*root)\n    {\n        dfs(root);\n        return count;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178436392",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

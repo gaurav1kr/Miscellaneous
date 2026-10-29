@@ -1,0 +1,29 @@
+{
+  "id": "2861",
+  "title": "Maximum Number of Alloys",
+  "slug": "maximum-number-of-alloys",
+  "url": "https://leetcode.com/problems/maximum-number-of-alloys/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are the owner of a company that creates alloys using various types of metals. There are n different types of metals available, and you have access to k machines that can be used to create alloys. Each machine requires a specific amount of each metal type to create an alloy. \n \n For the i th machine to create an alloy, it needs composition[i][j] units of metal of type j . Initially, you have stock[i] units of metal type i , and purchasing one unit of metal type i costs cost[i] coins. \n \n Given integers n , k , budget , a 1-indexed 2D array composition , and 1-indexed arrays stock and cost , your goal is to maximize the number of alloys the company can create while staying within the budget of budget coins. \n \n All alloys must be created with the same machine. \n \n Return the maximum number of alloys that the company can create . \n\n Example 1: \n \n```\nInput:\n n = 3, k = 2, budget = 15, composition = [[1,1,1],[1,1,10]], stock = [0,0,0], cost = [1,2,3]\n\nOutput:\n 2\n\nExplanation:\n It is optimal to use the 1\nst\n machine to create alloys.\nTo create 2 alloys we need to buy the:\n- 2 units of metal of the 1\nst\n type.\n- 2 units of metal of the 2\nnd\n type.\n- 2 units of metal of the 3\nrd\n type.\nIn total, we need 2 * 1 + 2 * 2 + 2 * 3 = 12 coins, which is smaller than or equal to budget = 15.\nNotice that we have 0 units of metal of each type and we have to buy all the required units of metal.\nIt can be proven that we can create at most 2 alloys.\n```\n\n Example 2: \n \n```\nInput:\n n = 3, k = 2, budget = 15, composition = [[1,1,1],[1,1,10]], stock = [0,0,100], cost = [1,2,3]\n\nOutput:\n 5\n\nExplanation:\n It is optimal to use the 2\nnd\n machine to create alloys.\nTo create 5 alloys we need to buy:\n- 5 units of metal of the 1\nst\n type.\n- 5 units of metal of the 2\nnd\n type.\n- 0 units of metal of the 3\nrd\n type.\nIn total, we need 5 * 1 + 5 * 2 + 0 * 3 = 15 coins, which is smaller than or equal to budget = 15.\nIt can be proven that we can create at most 5 alloys.\n```\n\n Example 3: \n \n```\nInput:\n n = 2, k = 3, budget = 10, composition = [[2,1],[1,2],[1,1]], stock = [1,1], cost = [5,5]\n\nOutput:\n 2\n\nExplanation:\n It is optimal to use the 3\nrd\n machine to create alloys.\nTo create 2 alloys we need to buy the:\n- 1 unit of metal of the 1\nst\n type.\n- 1 unit of metal of the 2\nnd\n type.\nIn total, we need 1 * 5 + 1 * 5 = 10 coins, which is smaller than or equal to budget = 10.\nIt can be proven that we can create at most 2 alloys.\n```\n\n Constraints: \n\n 1 <= n, k <= 100 \n \n 0 <= budget <= 10 8 \n \n composition.length == k \n \n composition[i].length == n \n \n 1 <= composition[i][j] <= 100 \n \n stock.length == cost.length == n \n \n 0 <= stock[i] <= 10 8 \n \n 1 <= cost[i] <= 100",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int maxNumberOfAlloys(int n,int k,int budget,vector<vector<int>>& composition,vector<int>& stock,vector<int>& cost){long long ans=0;for(auto &c:composition){long long lo=0,hi=1000000000LL;while(lo<hi){long long mid=lo+(hi-lo+1)/2,expense=0;for(int i=0;i<n;++i){expense+=max(0LL,mid*c[i]-stock[i])*cost[i];if(expense>budget)break;}if(expense<=budget)lo=mid;else hi=mid-1;}ans=max(ans,lo);}return (int)ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176729122",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

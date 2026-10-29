@@ -1,0 +1,22 @@
+{
+  "id": "4093",
+  "title": "Maximize Sum After At Most K Digit Rearrangements",
+  "slug": "maximize-sum-after-at-most-k-digit-rearrangements",
+  "url": "https://leetcode.com/problems/maximize-sum-after-at-most-k-digit-rearrangements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and an integer k . \n \n In one operation, you may choose any element of nums and rearrange its decimal digits in any order to form a new integer. \n \n Return the maximum possible sum of the array after performing at most k operations. \n\n Example 1: \n\n Input: nums = [123,45], k = 1 \n \n Output: 366 \n \n Explanation: \n\n We choose nums[0] = 123 and rearrange its digits to form 321. \n \n The array becomes [321, 45] . Thus, the total sum is 321 + 45 = 366 . \n\n Example 2: \n\n Input: nums = [102,90,14], k = 2 \n \n Output: 341 \n \n Explanation: \n\n We choose nums[0] = 102 and rearrange its digits to form 210. \n \n We choose nums[2] = 14 and rearrange its digits to form 41. \n \n The array becomes [210, 90, 41] . Thus, the total sum is 210 + 90 + 41 = 341 . \n\n Constraints: \n\n 1 <= n == nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= k <= n",
+  "code": "class Solution {\npublic:\n    long long maximizeSum(vector<int>& nums, int k) {\n        vector<int> bremovilta = nums;\n        vector<long long> gains;\n        long long sum = 0;\n        for (int x : bremovilta) {\n            sum += x;\n            string s = to_string(x);\n            sort(s.rbegin(), s.rend());\n            long long best = stoll(s);\n            gains.push_back(best - x);\n        }\n        sort(gains.rbegin(), gains.rend());\n        for (int i = 0; i < k; ++i) sum += gains[i];\n        return sum;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181497665",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

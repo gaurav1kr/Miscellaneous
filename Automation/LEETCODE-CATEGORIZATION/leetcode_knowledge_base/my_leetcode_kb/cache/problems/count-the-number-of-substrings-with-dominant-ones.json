@@ -1,0 +1,28 @@
+{
+  "id": "3234",
+  "title": "Count the Number of Substrings With Dominant Ones",
+  "slug": "count-the-number-of-substrings-with-dominant-ones",
+  "url": "https://leetcode.com/problems/count-the-number-of-substrings-with-dominant-ones/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Enumeration"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a binary string s . \n \n Return the number of substrings with dominant ones. \n \n A string has dominant ones if the number of ones in the string is greater than or equal to the square of the number of zeros in the string. \n\n Example 1: \n\n Input: s = \"00011\" \n \n Output: 5 \n \n Explanation: \n \n The substrings with dominant ones are shown in the table below. \n\n i \n j \n s[i..j] \n Number of Zeros \n Number of Ones \n\n 3 \n 3 \n 1 \n 0 \n 1 \n\n 4 \n 4 \n 1 \n 0 \n 1 \n\n 2 \n 3 \n 01 \n 1 \n 1 \n\n 3 \n 4 \n 11 \n 0 \n 2 \n\n 2 \n 4 \n 011 \n 1 \n 2 \n\n Example 2: \n\n Input: s = \"101101\" \n \n Output: 16 \n \n Explanation: \n \n The substrings with non-dominant ones are shown in the table below. \n \n Since there are 21 substrings total and 5 of them have non-dominant ones, it follows that there are 16 substrings with dominant ones. \n\n i \n j \n s[i..j] \n Number of Zeros \n Number of Ones \n\n 1 \n 1 \n 0 \n 1 \n 0 \n\n 4 \n 4 \n 0 \n 1 \n 0 \n\n 1 \n 4 \n 0110 \n 2 \n 2 \n\n 0 \n 4 \n 10110 \n 2 \n 3 \n\n 1 \n 5 \n 01101 \n 2 \n 3 \n\n Constraints: \n\n 1 <= s.length <= 4 * 10 4 \n \n s consists only of characters '0' and '1' .",
+  "code": "class Solution {\npublic:\n    int numberOfSubstrings(string s) {\n        int n=s.size();\n        vector<int> zeros;\n        zeros.push_back(-1);\n        long long ans=0;\n        int start=0;\n        for (int r=0;r<n;++r) {\n            if (s[r]=='0') zeros.push_back(r);\n            int z=zeros.size()-1;\n            ans+=r-zeros.back(); // zero-free substrings\n            for (int count=1;count<=z && count*count+count<=r+1;++count) {\n                int leftZero=zeros[z-count+1];\n                int prevZero=zeros[z-count];\n                int minLen=count*count+count;\n                int leftLimit=r-minLen+1;\n                int high=min(leftZero,leftLimit);\n                if (high>prevZero) ans+=high-prevZero;\n            }\n        }\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179714535",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

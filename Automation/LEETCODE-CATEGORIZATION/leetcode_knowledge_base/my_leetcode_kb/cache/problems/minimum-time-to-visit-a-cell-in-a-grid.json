@@ -1,0 +1,39 @@
+{
+  "id": "2577",
+  "title": "Minimum Time to Visit a Cell In a Grid",
+  "slug": "minimum-time-to-visit-a-cell-in-a-grid",
+  "url": "https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a m x n matrix grid consisting of non-negative integers where grid[row][col] represents the minimum time required to be able to visit the cell (row, col) , which means you can visit the cell (row, col) only when the time you visit it is greater than or equal to grid[row][col] . \n \n You are standing in the top-left cell of the matrix in the 0 th second, and you must move to any adjacent cell in the four directions: up, down, left, and right. Each move you make takes 1 second. \n \n Return the minimum time required in which you can visit the bottom-right cell of the matrix . If you cannot visit the bottom-right cell, then return -1 . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2023/02/14/yetgriddrawio-8.png] \n \n```\nInput:\n grid = [[0,1,3,2],[5,1,2,5],[4,3,8,6]]\n\nOutput:\n 7\n\nExplanation:\n One of the paths that we can take is the following:\n- at t = 0, we are on the cell (0,0).\n- at t = 1, we move to the cell (0,1). It is possible because grid[0][1] <= 1.\n- at t = 2, we move to the cell (1,1). It is possible because grid[1][1] <= 2.\n- at t = 3, we move to the cell (1,2). It is possible because grid[1][2] <= 3.\n- at t = 4, we move to the cell (1,1). It is possible because grid[1][1] <= 4.\n- at t = 5, we move to the cell (1,2). It is possible because grid[1][2] <= 5.\n- at t = 6, we move to the cell (1,3). It is possible because grid[1][3] <= 6.\n- at t = 7, we move to the cell (2,3). It is possible because grid[2][3] <= 7.\nThe final time is 7. It can be shown that it is the minimum time possible.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2023/02/14/yetgriddrawio-9.png] \n \n```\nInput:\n grid = [[0,2,4],[3,2,1],[1,0,4]]\n\nOutput:\n -1\n\nExplanation:\n There is no path from the top left to the bottom-right cell.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 2 <= m, n <= 1000 \n \n 4 <= m * n <= 10 5 \n \n 0 <= grid[i][j] <= 10 5 \n \n grid[0][0] == 0",
+  "code": "class Solution {public:int minimumTime(vector<vector<int>>& grid){int m=grid.size(),n=grid[0].size();if(m==1&&n==1)return 0;if((m==1||grid[1][0]>1)&&(n==1||grid[0][1]>1))return -1;const int INF=1e9;vector<vector<int>> dist(m,vector<int>(n,INF));using T=tuple<int,int,int>;priority_queue<T,vector<T>,greater<T>> pq;dist[0][0]=0;pq.push(make_tuple(0,0,0));int dr[]={1,-1,0,0},dc[]={0,0,1,-1};while(!pq.empty()){int t,r,c;tie(t,r,c)=pq.top();pq.pop();if(t!=dist[r][c])continue;if(r==m-1&&c==n-1)return t;for(int d=0;d<4;d++){int x=r+dr[d],y=c+dc[d];if(x<0||y<0||x>=m||y>=n)continue;int nt=max(t+1,grid[x][y]);if((nt-t)%2==0)nt++;if(nt<dist[x][y]){dist[x][y]=nt;pq.push(make_tuple(nt,x,y));}}}return -1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176618527",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "3735",
+  "title": "Lexicographically Smallest String After Reverse II",
+  "slug": "lexicographically-smallest-string-after-reverse-ii",
+  "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-reverse-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "String",
+    "Binary Search",
+    "Rolling Hash",
+    "Suffix Array",
+    "Hash Function"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s of length n consisting of lowercase English letters. \n \n You must perform exactly one operation by choosing any integer k such that 1 <= k <= n and either: \n\n reverse the first k characters of s , or \n \n reverse the last k characters of s . \n\n Return the lexicographically smallest string that can be obtained after exactly one such operation. \n\n Example 1: \n\n Input: s = \"dcab\" \n \n Output: \"acdb\" \n \n Explanation: \n\n Choose k = 3 , reverse the first 3 characters. \n \n Reverse \"dca\" to \"acd\" , resulting string s = \"acdb\" , which is the lexicographically smallest string achievable. \n\n Example 2: \n\n Input: s = \"abba\" \n \n Output: \"aabb\" \n \n Explanation: \n\n Choose k = 3 , reverse the last 3 characters. \n \n Reverse \"bba\" to \"abb\" , so the resulting string is \"aabb\" , which is the lexicographically smallest string achievable. \n\n Example 3: \n\n Input: s = \"zxy\" \n \n Output: \"xzy\" \n \n Explanation: \n\n Choose k = 2 , reverse the first 2 characters. \n \n Reverse \"zx\" to \"xz\" , so the resulting string is \"xzy\" , which is the lexicographically smallest string achievable. \n\n Constraints: \n\n 1 <= n == s.length <= 10 5 \n \n s consists of lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\n    using ull=unsigned long long;\n    static const ull B=1315423911ULL;\n    string s,t; int n; vector<ull> p,h,hr;\n    ull get(const vector<ull>& a,int l,int r){return a[r]-a[l]*p[r-l];}\n    // Candidate [0,n) is reverse prefix k if type=0, otherwise reverse suffix k.\n    char at(int type,int k,int i){\n        if(type==0) return i<k?s[k-1-i]:s[i];\n        int q=n-k; return i<q?s[i]:s[n-1-(i-q)];\n    }\n    ull prefix(int type,int k,int len){\n        if(type==0){\n            if(len<=k) return get(hr,n-k,n-k+len);\n            return get(hr,n-k,n)*p[len-k]+get(h,k,len);\n        }\n        int q=n-k;\n        if(len<=q) return get(h,0,len);\n        return get(h,0,q)*p[len-q]+get(hr,0,len-q);\n    }\n    bool less(int a,int ka,int b,int kb){\n        int lo=0,hi=n;\n        while(lo<hi){int m=(lo+hi+1)/2;\n            if(prefix(a,ka,m)==prefix(b,kb,m))lo=m;else hi=m-1;\n        }\n        return lo<n && at(a,ka,lo)<at(b,kb,lo);\n    }\npublic:\n    string lexSmallest(string x){\n        s=x;n=s.size();t=s;reverse(t.begin(),t.end());\n        p.assign(n+1,1);h.assign(n+1,0);hr.assign(n+1,0);\n        for(int i=0;i<n;i++){\n            p[i+1]=p[i]*B;\n            h[i+1]=h[i]*B+(s[i]-'a'+1);\n            hr[i+1]=hr[i]*B+(t[i]-'a'+1);\n        }\n        int bt=0,bk=1;\n        for(int ty=0;ty<2;ty++)for(int k=1;k<=n;k++)\n            if(less(ty,k,bt,bk))bt=ty,bk=k;\n        string ans=s;\n        if(bt==0)reverse(ans.begin(),ans.begin()+bk);\n        else reverse(ans.end()-bk,ans.end());\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181542904",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

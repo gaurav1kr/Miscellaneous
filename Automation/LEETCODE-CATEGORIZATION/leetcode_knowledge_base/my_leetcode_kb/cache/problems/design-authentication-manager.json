@@ -1,0 +1,34 @@
+{
+  "id": "1797",
+  "title": "Design Authentication Manager",
+  "slug": "design-authentication-manager",
+  "url": "https://leetcode.com/problems/design-authentication-manager/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Linked List",
+    "Design",
+    "Doubly-Linked List"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Linked list",
+    "Ordered map"
+  ],
+  "description": "There is an authentication system that works with authentication tokens. For each session, the user will receive a new authentication token that will expire timeToLive seconds after the currentTime . If the token is renewed, the expiry time will be extended to expire timeToLive seconds after the (potentially different) currentTime . \n \n Implement the AuthenticationManager class: \n\n AuthenticationManager(int timeToLive) constructs the AuthenticationManager and sets the timeToLive . \n \n generate(string tokenId, int currentTime) generates a new token with the given tokenId at the given currentTime in seconds. \n \n renew(string tokenId, int currentTime) renews the unexpired token with the given tokenId at the given currentTime in seconds. If there are no unexpired tokens with the given tokenId , the request is ignored, and nothing happens. \n \n countUnexpiredTokens(int currentTime) returns the number of unexpired tokens at the given currentTime. \n\n Note that if a token expires at time t , and another action happens on time t ( renew or countUnexpiredTokens ), the expiration takes place before the other actions. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/25/copy-of-pc68_q2.png] \n \n```\nInput\n\n[\"AuthenticationManager\", \"\nrenew\n\", \"generate\", \"\ncountUnexpiredTokens\n\", \"generate\", \"\nrenew\n\", \"\nrenew\n\", \"\ncountUnexpiredTokens\n\"]\n[[5], [\"aaa\", 1], [\"aaa\", 2], [6], [\"bbb\", 7], [\"aaa\", 8], [\"bbb\", 10], [15]]\n\nOutput\n\n[null, null, null, 1, null, null, null, 0]\n\nExplanation\n\nAuthenticationManager authenticationManager = new AuthenticationManager(5); // Constructs the AuthenticationManager with \ntimeToLive\n = 5 seconds.\nauthenticationManager.\nrenew\n(\"aaa\", 1); // No token exists with tokenId \"aaa\" at time 1, so nothing happens.\nauthenticationManager.generate(\"aaa\", 2); // Generates a new token with tokenId \"aaa\" at time 2.\nauthenticationManager.\ncountUnexpiredTokens\n(6); // The token with tokenId \"aaa\" is the only unexpired one at time 6, so return 1.\nauthenticationManager.generate(\"bbb\", 7); // Generates a new token with tokenId \"bbb\" at time 7.\nauthenticationManager.\nrenew\n(\"aaa\", 8); // The token with tokenId \"aaa\" expired at time 7, and 8 >= 7, so at time 8 the \nrenew\n request is ignored, and nothing happens.\nauthenticationManager.\nrenew\n(\"bbb\", 10); // The token with tokenId \"bbb\" is unexpired at time 10, so the \nrenew\n request is fulfilled and now the token will expire at time 15.\nauthenticationManager.\ncountUnexpiredTokens\n(15); // The token with tokenId \"bbb\" expires at time 15, and the token with tokenId \"aaa\" expired at time 7, so currently no token is unexpired, so return 0.\n```\n\n Constraints: \n\n 1 <= timeToLive <= 10 8 \n \n 1 <= currentTime <= 10 8 \n \n 1 <= tokenId.length <= 5 \n \n tokenId consists only of lowercase letters. \n \n All calls to generate will contain unique values of tokenId . \n \n The values of currentTime across all the function calls will be strictly increasing . \n \n At most 2000 calls will be made to all functions combined.",
+  "code": "class AuthenticationManager {\n int ttl;unordered_map<string,int> expiry;\npublic:\n AuthenticationManager(int timeToLive):ttl(timeToLive){}\n void generate(string tokenId,int currentTime){expiry[tokenId]=currentTime+ttl;}\n void renew(string tokenId,int currentTime){\n  auto it=expiry.find(tokenId);\n  if(it!=expiry.end() && it->second>currentTime)it->second=currentTime+ttl;\n }\n int countUnexpiredTokens(int currentTime){\n  int ans=0;for(auto it=expiry.begin();it!=expiry.end();){\n   if(it->second<=currentTime)it=expiry.erase(it);\n   else {++ans;++it;}\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175761246",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "445",
+  "title": "Add Two Numbers II",
+  "slug": "add-two-numbers-ii",
+  "url": "https://leetcode.com/problems/add-two-numbers-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Math",
+    "Stack"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Linked list",
+    "Stack"
+  ],
+  "description": "You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list. \n \n You may assume the two numbers do not contain any leading zero, except the number 0 itself. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/09/sumii-linked-list.jpg] \n \n```\nInput:\n l1 = [7,2,4,3], l2 = [5,6,4]\n\nOutput:\n [7,8,0,7]\n```\n\n Example 2: \n \n```\nInput:\n l1 = [2,4,3], l2 = [5,6,4]\n\nOutput:\n [8,0,7]\n```\n\n Example 3: \n \n```\nInput:\n l1 = [0], l2 = [0]\n\nOutput:\n [0]\n```\n\n Constraints: \n\n The number of nodes in each linked list is in the range [1, 100] . \n \n 0 <= Node.val <= 9 \n \n It is guaranteed that the list represents a number that does not have leading zeros. \n\n Follow up:  Could you solve it without reversing the input lists?",
+  "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n   ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) \n{\n        stack<int> s1, s2;\n        ListNode* head = NULL;  // new head of result LL\n        int carry = 0;\n        \n\t\t// insert elements of both linked lists into stacks\n        ListNode* h1 = l1;\n        while(h1) \n\t\t{\n            s1.push(h1->val);\n            h1 = h1->next;\n        }\n        \n        ListNode* h2 = l2;\n        while(h2) \n\t\t{\n            s2.push(h2->val);\n            h2 = h2->next;\n        }\n        \n        while(!s1.empty() || !s2.empty())\n\t\t{\n            int sum = (s1.empty() ? 0 : s1.top()) + (s2.empty() ? 0 : s2.top()) + carry;\n            carry = sum>=10 ? 1 : 0;\n            ListNode * temp = new ListNode(sum%10);\n            \n            if(head==NULL)\n                head = temp;\n            else\n\t\t\t{\n                temp->next = head;\n                head = temp;\n            }\n            \n            if(!s1.empty()) s1.pop();\n            if(!s2.empty()) s2.pop();\n            \n        }\n        // 9->9 + 9->9 = 1->9->8 type of case\n        if(carry == 1)\n\t\t{\n            ListNode * temp = new ListNode(1);\n            temp->next = head;\n            head = temp;\n        }\n        \n        return head;\n  }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1502091900",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "4068",
+  "title": "Maximize Meeting Earnings with Idle Gaps",
+  "slug": "maximize-meeting-earnings-with-idle-gaps",
+  "url": "https://leetcode.com/problems/maximize-meeting-earnings-with-idle-gaps/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array meetings , where meetings[i] = [start i , end i , revenue i ] represents a meeting starting at time start i , ending at time end i , with revenue revenue i . \n \n All meetings use half-open intervals [start, end) , so meetings that only touch at endpoints do not overlap. \n \n You may select any non-empty subset of meetings such that no two selected meetings overlap. You earn the revenue of each selected meeting. \n \n Arrange the selected meetings in increasing order of their start times . For each pair of adjacent meetings in this order, you also earn 1 unit of revenue per unit of idle time between them. This idle time equals the later meeting's start time minus the earlier meeting's end time. \n \n No idle revenue is earned before the earliest selected meeting starts or after the latest selected meeting ends. If only one meeting is selected, no idle revenue is earned. \n \n Return the maximum total earnings achievable. \n\n Example 1: \n\n Input: meetings = [[2,5,4],[6,8,3]] \n \n Output: 8 \n \n Explanation: \n\n Select both meetings. They do not overlap and earn 4 + 3 = 7 units of meeting revenue. \n \n The first meeting ends at time 5, and the second starts at time 6. This idle gap earns 6 - 5 = 1 additional unit. \n \n The maximum total earnings are 7 + 1 = 8 . \n\n Example 2: \n\n Input: meetings = [[3,5,4],[4,7,8],[8,10,3]] \n \n Output: 12 \n \n Explanation: \n\n Select the meetings at indices 1 and 2. They do not overlap and earn 8 + 3 = 11 units of meeting revenue. \n \n In chronological order, these meetings run from time 4 to 7 and from time 8 to 10. The idle gap earns 8 - 7 = 1 additional unit. \n \n The maximum total earnings are 11 + 1 = 12 . \n\n Example 3: \n\n Input: meetings = [[1,2,2],[4,5,2],[7,9,3]] \n \n Output: 11 \n \n Explanation: \n\n Select all three meetings. They do not overlap and earn 2 + 2 + 3 = 7 units of meeting revenue. \n \n The idle gap from time 2 to 4 earns 4 - 2 = 2 additional units. \n \n The idle gap from time 5 to 7 earns 7 - 5 = 2 additional units. \n \n The maximum total earnings are 7 + 2 + 2 = 11 . \n\n Constraints \n\n 1 <= meetings.length <= 10 5 \n \n meetings[i] = [start i , end i , revenue i ] \n \n 0 <= start i < end i <= 10 9 \n \n 1 <= revenue i <= 10 9",
+  "code": "class Solution {\npublic:\n    long long maxEarnings(vector<vector<int>>& meetings) {\n\n        // Sort meetings by end time\n        sort(meetings.begin(), meetings.end(),\n             [](const vector<int>& a, const vector<int>& b) {\n                 return a[1] < b[1];\n             });\n\n        int n = meetings.size();\n\n        vector<long long> ends(n);\n\n        // best[i] =\n        // maximum (dp[j] - end[j]) among meetings [0 ... i-1]\n        //\n        // best has size n+1 so best[0] means no previous meeting.\n        vector<long long> best(n + 1, LLONG_MIN);\n\n        long long answer = 0;\n\n        for (int i = 0; i < n; ++i) {\n\n            long long start   = meetings[i][0];\n            long long end     = meetings[i][1];\n            long long revenue = meetings[i][2];\n\n            ends[i] = end;\n\n            // Case 1:\n            // This is the first selected meeting.\n            long long dp = revenue;\n\n            // Number of previous meetings whose end <= start.\n            //\n            // upper_bound(start) gives first end > start.\n            int pos = upper_bound(\n                          ends.begin(),\n                          ends.begin() + i,\n                          start\n                      ) - ends.begin();\n\n            // Case 2:\n            // Connect this meeting to a previous compatible meeting.\n            if (pos > 0) {\n                dp = max(dp,\n                         revenue + start + best[pos]);\n            }\n\n            // Store prefix maximum of:\n            // dp[j] - end[j]\n            best[i + 1] = max(best[i],\n                              dp - end);\n\n            answer = max(answer, dp);\n        }\n\n        return answer;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163636693",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

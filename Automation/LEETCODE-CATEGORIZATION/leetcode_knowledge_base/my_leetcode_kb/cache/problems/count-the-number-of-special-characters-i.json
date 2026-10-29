@@ -1,0 +1,29 @@
+{
+  "id": "3120",
+  "title": "Count the Number of Special Characters I",
+  "slug": "count-the-number-of-special-characters-i",
+  "url": "https://leetcode.com/problems/count-the-number-of-special-characters-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string word . A letter is called special if it appears both in lowercase and uppercase in word . \n \n Return the number of special letters in word . \n\n Example 1: \n\n Input: word = \"aaAbcBC\" \n \n Output: 3 \n \n Explanation: \n \n The special characters in word are 'a' , 'b' , and 'c' . \n\n Example 2: \n\n Input: word = \"abc\" \n \n Output: 0 \n \n Explanation: \n \n No character in word appears in uppercase. \n\n Example 3: \n\n Input: word = \"abBCab\" \n \n Output: 1 \n \n Explanation: \n \n The only special character in word is 'b' . \n\n Constraints: \n\n 1 <= word.length <= 50 \n \n word consists of only lowercase and uppercase English letters.",
+  "code": "class Solution { public: int numberOfSpecialChars(string word) {\n int lo=0,hi=0; for(char c:word){if(islower(c))lo|=1<<(c-'a');else hi|=1<<(c-'A');} return __builtin_popcount((unsigned)(lo&hi));\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177380682",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

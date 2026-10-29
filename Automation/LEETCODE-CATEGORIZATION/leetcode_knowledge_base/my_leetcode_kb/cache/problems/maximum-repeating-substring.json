@@ -1,0 +1,31 @@
+{
+  "id": "1668",
+  "title": "Maximum Repeating Substring",
+  "slug": "maximum-repeating-substring",
+  "url": "https://leetcode.com/problems/maximum-repeating-substring/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "String Matching"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "For a string sequence , a string word is k -repeating if word concatenated k times is a substring of sequence . The word 's maximum k -repeating value is the highest value k where word is k -repeating in sequence . If word is not a substring of sequence , word 's maximum k -repeating value is 0 . \n \n Given strings sequence and word , return the maximum k -repeating value of word in sequence . \n\n Example 1: \n \n```\nInput:\n sequence = \"ababc\", word = \"ab\"\n\nOutput:\n 2\n\nExplanation: \n\"abab\" is a substring in \"\nabab\nc\".\n```\n\n Example 2: \n \n```\nInput:\n sequence = \"ababc\", word = \"ba\"\n\nOutput:\n 1\n\nExplanation: \n\"ba\" is a substring in \"a\nba\nbc\". \"baba\" is not a substring in \"ababc\".\n```\n\n Example 3: \n \n```\nInput:\n sequence = \"ababc\", word = \"ac\"\n\nOutput:\n 0\n\nExplanation: \n\"ac\" is not a substring in \"ababc\".\n```\n\n Constraints: \n\n 1 <= sequence.length <= 100 \n \n 1 <= word.length <= 100 \n \n sequence and word  contains only lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxRepeating(string sequence, string word) {\n        int n = sequence.size(), m = word.size(), best = 0;\n        vector<int> dp(n + 1, 0);\n        for (int i = m; i <= n; ++i) {\n            if (sequence.compare(i - m, m, word) == 0) {\n                dp[i] = dp[i - m] + 1;\n                best = max(best, dp[i]);\n            }\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175757748",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

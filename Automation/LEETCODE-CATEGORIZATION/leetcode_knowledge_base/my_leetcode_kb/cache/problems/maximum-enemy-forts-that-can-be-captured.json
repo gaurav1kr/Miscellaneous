@@ -1,0 +1,29 @@
+{
+  "id": "2511",
+  "title": "Maximum Enemy Forts That Can Be Captured",
+  "slug": "maximum-enemy-forts-that-can-be-captured",
+  "url": "https://leetcode.com/problems/maximum-enemy-forts-that-can-be-captured/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array forts of length n representing the positions of several forts. forts[i] can be -1 , 0 , or 1 where: \n\n -1 represents there is no fort at the i th position. \n \n 0 indicates there is an enemy fort at the i th position. \n \n 1 indicates the fort at the i th the position is under your command. \n\n Now you have decided to move your army from one of your forts at position i to an empty position j such that: \n\n 0 <= i, j <= n - 1 \n \n The army travels over enemy forts only . Formally, for all k where min(i,j) < k < max(i,j) , forts[k] == 0. \n\n While moving the army, all the enemy forts that come in the way are captured . \n \n Return the maximum number of enemy forts that can be captured . In case it is impossible to move your army, or you do not have any fort under your command, return 0 . \n\n Example 1: \n \n```\nInput:\n forts = [1,0,0,-1,0,0,0,0,1]\n\nOutput:\n 4\n\nExplanation:\n\n- Moving the army from position 0 to position 3 captures 2 enemy forts, at 1 and 2.\n- Moving the army from position 8 to position 3 captures 4 enemy forts.\nSince 4 is the maximum number of enemy forts that can be captured, we return 4.\n```\n\n Example 2: \n \n```\nInput:\n forts = [0,0,1,-1]\n\nOutput:\n 0\n\nExplanation:\n Since no enemy fort can be captured, 0 is returned.\n```\n\n Constraints: \n\n 1 <= forts.length <= 1000 \n \n -1 <= forts[i] <= 1",
+  "code": "class Solution {public:int captureForts(vector<int>& forts){int last=-1,ans=0;for(int i=0;i<(int)forts.size();i++)if(forts[i]){if(last!=-1&&forts[last]!=forts[i])ans=max(ans,i-last-1);last=i;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176594547",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

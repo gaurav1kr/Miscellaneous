@@ -1,0 +1,34 @@
+{
+  "id": "402",
+  "title": "Remove K Digits",
+  "slug": "remove-k-digits",
+  "url": "https://leetcode.com/problems/remove-k-digits/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Monotonic stack",
+    "Stack",
+    "String"
+  ],
+  "description": "Given string num representing a non-negative integer num , and an integer k , return the smallest possible integer after removing k digits from num . \n\n Example 1: \n \n```\nInput:\n num = \"1432219\", k = 3\n\nOutput:\n \"1219\"\n\nExplanation:\n Remove the three digits 4, 3, and 2 to form the new number 1219 which is the smallest.\n```\n\n Example 2: \n \n```\nInput:\n num = \"10200\", k = 1\n\nOutput:\n \"200\"\n\nExplanation:\n Remove the leading 1 and the number is 200. Note that the output must not contain leading zeroes.\n```\n\n Example 3: \n \n```\nInput:\n num = \"10\", k = 2\n\nOutput:\n \"0\"\n\nExplanation:\n Remove all the digits from the number and it is left with nothing which is 0.\n```\n\n Constraints: \n\n 1 <= k <= num.length <= 10 5 \n \n num consists of only digits. \n \n num does not have any leading zeros except for the zero itself.",
+  "code": "class Solution {\npublic:\n    string removeKdigits(string num, int k) {\n        if (k == num.size()) return \"0\";\n\n        string result; // Acts as a stack\n        for (char c : num) {\n            while (!result.empty() && result.back() > c && k > 0) {\n                result.pop_back();\n                --k;\n            }\n            result.push_back(c);\n        }\n\n        // Remove remaining digits from the end if k > 0\n        while (k > 0) {\n            result.pop_back();\n            --k;\n        }\n\n        // Remove leading zeros\n        int nonZeroIndex = 0;\n        while (nonZeroIndex < result.size() && result[nonZeroIndex] == '0') {\n            ++nonZeroIndex;\n        }\n        \n        result = result.substr(nonZeroIndex);\n\n        return result.empty() ? \"0\" : result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1538656371",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

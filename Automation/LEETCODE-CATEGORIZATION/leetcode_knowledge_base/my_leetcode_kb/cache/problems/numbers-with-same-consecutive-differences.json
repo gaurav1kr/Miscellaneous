@@ -1,0 +1,28 @@
+{
+  "id": "967",
+  "title": "Numbers With Same Consecutive Differences",
+  "slug": "numbers-with-same-consecutive-differences",
+  "url": "https://leetcode.com/problems/numbers-with-same-consecutive-differences/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Backtracking",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "Given two integers n and k, return an array of all the integers of length n where the difference between every two consecutive digits is k . You may return the answer in any order . \n \n Note that the integers should not have leading zeros. Integers as 02 and 043 are not allowed. \n\n Example 1: \n \n```\nInput:\n n = 3, k = 7\n\nOutput:\n [181,292,707,818,929]\n\nExplanation:\n Note that 070 is not a valid number, because it has leading zeroes.\n```\n\n Example 2: \n \n```\nInput:\n n = 2, k = 1\n\nOutput:\n [10,12,21,23,32,34,43,45,54,56,65,67,76,78,87,89,98]\n```\n\n Constraints: \n\n 2 <= n <= 9 \n \n 0 <= k <= 9",
+  "code": "#include <vector>\n#include <cmath>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> res;\n\n    void dfs(int num, int n, int k) {\n        if (n == 0) {\n            res.push_back(num);\n            return;\n        }\n\n        int last = num % 10;\n        if (last + k < 10)\n            dfs(num * 10 + last + k, n - 1, k);\n        if (k != 0 && last - k >= 0)\n            dfs(num * 10 + last - k, n - 1, k);\n    }\n\n    vector<int> numsSameConsecDiff(int n, int k) {\n        for (int i = 1; i <= 9; ++i)\n            dfs(i, n - 1, k);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593842287",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2000",
+  "title": "Reverse Prefix of Word",
+  "slug": "reverse-prefix-of-word",
+  "url": "https://leetcode.com/problems/reverse-prefix-of-word/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Stack"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given a 0-indexed string word and a character ch , reverse the segment of word that starts at index 0 and ends at the index of the first occurrence of ch ( inclusive ). If the character ch does not exist in word , do nothing. \n\n For example, if word = \"abcdefd\" and ch = \"d\" , then you should reverse the segment that starts at 0 and ends at 3 ( inclusive ). The resulting string will be \" dcba efd\" . \n\n Return the resulting string . \n\n Example 1: \n \n```\nInput:\n word = \"\nabcd\nefd\", ch = \"d\"\n\nOutput:\n \"\ndcba\nefd\"\n\nExplanation:\n The first occurrence of \"d\" is at index 3. \nReverse the part of word from 0 to 3 (inclusive), the resulting string is \"dcbaefd\".\n```\n\n Example 2: \n \n```\nInput:\n word = \"\nxyxz\nxe\", ch = \"z\"\n\nOutput:\n \"\nzxyx\nxe\"\n\nExplanation:\n The first and only occurrence of \"z\" is at index 3.\nReverse the part of word from 0 to 3 (inclusive), the resulting string is \"zxyxxe\".\n```\n\n Example 3: \n \n```\nInput:\n word = \"abcd\", ch = \"z\"\n\nOutput:\n \"abcd\"\n\nExplanation:\n \"z\" does not exist in word.\nYou should not do any reverse operation, the resulting string is \"abcd\".\n```\n\n Constraints: \n\n 1 <= word.length <= 250 \n \n word consists of lowercase English letters. \n \n ch is a lowercase English letter.",
+  "code": "#include <string>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    string reversePrefix(string word, char ch) {\n        int idx = word.find(ch);\n        if (idx != string::npos)\n            reverse(word.begin(), word.begin() + idx + 1);\n        return word;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610675922",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "2138",
+  "title": "Divide a String Into Groups of Size k",
+  "slug": "divide-a-string-into-groups-of-size-k",
+  "url": "https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "A string s can be partitioned into groups of size k using the following procedure: \n\n The first group consists of the first k characters of the string, the second group consists of the next k characters of the string, and so on. Each element can be a part of exactly one group. \n \n For the last group, if the string does not have k characters remaining, a character fill is used to complete the group. \n\n Note that the partition is done so that after removing the fill character from the last group (if it exists) and concatenating all the groups in order, the resultant string should be s . \n \n Given the string s , the size of each group k and the character fill , return a string array denoting the composition of every group s has been divided into, using the above procedure . \n\n Example 1: \n \n```\nInput:\n s = \"abcdefghi\", k = 3, fill = \"x\"\n\nOutput:\n [\"abc\",\"def\",\"ghi\"]\n\nExplanation:\n\nThe first 3 characters \"abc\" form the first group.\nThe next 3 characters \"def\" form the second group.\nThe last 3 characters \"ghi\" form the third group.\nSince all groups can be completely filled by characters from the string, we do not need to use fill.\nThus, the groups formed are \"abc\", \"def\", and \"ghi\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"abcdefghij\", k = 3, fill = \"x\"\n\nOutput:\n [\"abc\",\"def\",\"ghi\",\"jxx\"]\n\nExplanation:\n\nSimilar to the previous example, we are forming the first three groups \"abc\", \"def\", and \"ghi\".\nFor the last group, we can only use the character 'j' from the string. To complete this group, we add 'x' twice.\nThus, the 4 groups formed are \"abc\", \"def\", \"ghi\", and \"jxx\".\n```\n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists of lowercase English letters only. \n \n 1 <= k <= 100 \n \n fill is a lowercase English letter.",
+  "code": "class Solution {\npublic:\n vector<string> divideString(string s,int k,char fill){\n  while(s.size()%k)s+=fill;vector<string> ans;\n  for(int i=0;i<(int)s.size();i+=k)ans.push_back(s.substr(i,k));return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175739031",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

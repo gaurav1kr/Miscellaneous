@@ -1,0 +1,33 @@
+{
+  "id": "1063",
+  "title": "Number of Valid Subarrays",
+  "slug": "number-of-valid-subarrays",
+  "url": "https://leetcode.com/problems/number-of-valid-subarrays/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return the number of non-empty subarrays with the leftmost element of the subarray not larger than other elements in the subarray . \n \n A subarray is a contiguous part of an array. \n\n Example 1: \n \n```\nInput:\n nums = [1,4,2,5,3]\n\nOutput:\n 11\n\nExplanation:\n There are 11 valid subarrays: [1],[4],[2],[5],[3],[1,4],[2,5],[1,4,2],[2,5,3],[1,4,2,5],[1,4,2,5,3].\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,2,1]\n\nOutput:\n 3\n\nExplanation:\n The 3 valid subarrays are: [3],[2],[1].\n```\n\n Example 3: \n \n```\nInput:\n nums = [2,2,2]\n\nOutput:\n 6\n\nExplanation:\n There are 6 valid subarrays: [2],[2],[2],[2,2],[2,2],[2,2,2].\n```\n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n 0 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int validSubarrays(vector<int>& nums) {\n        stack<int> st;\n        int answer = 0;\n        for (int x : nums) {\n            while (!st.empty() && st.top() > x) {\n                st.pop();\n            }\n            st.push(x);\n            answer += st.size();\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178519855",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

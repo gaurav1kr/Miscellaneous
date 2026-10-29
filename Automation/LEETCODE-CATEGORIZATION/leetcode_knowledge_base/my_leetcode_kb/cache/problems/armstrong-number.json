@@ -1,0 +1,24 @@
+{
+  "id": "1134",
+  "title": "Armstrong Number",
+  "slug": "armstrong-number",
+  "url": "https://leetcode.com/problems/armstrong-number/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given an integer n , return true if and only if it is an Armstrong number . \n \n The k -digit number n is an Armstrong number if and only if the k th power of each digit sums to n . \n\n Example 1: \n \n```\nInput:\n n = 153\n\nOutput:\n true\n\nExplanation:\n 153 is a 3-digit number, and 153 = 1\n3\n + 5\n3\n + 3\n3\n.\n```\n\n Example 2: \n \n```\nInput:\n n = 123\n\nOutput:\n false\n\nExplanation:\n 123 is a 3-digit number, and 123 != 1\n3\n + 2\n3\n + 3\n3\n = 36.\n```\n\n Constraints: \n\n 1 <= n <= 10 8",
+  "code": "class Solution {\npublic:\n    bool isArmstrong(int n) {\n        string s = to_string(n);\n        long long sum = 0;\n        for (char c : s) {\n            long long power = 1;\n            for (int i = 0; i < static_cast<int>(s.size()); ++i) {\n                power *= c - '0';\n            }\n            sum += power;\n        }\n        return sum == n;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178534574",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

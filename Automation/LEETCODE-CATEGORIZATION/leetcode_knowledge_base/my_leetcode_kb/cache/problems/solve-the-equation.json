@@ -1,0 +1,31 @@
+{
+  "id": "640",
+  "title": "Solve the Equation",
+  "slug": "solve-the-equation",
+  "url": "https://leetcode.com/problems/solve-the-equation/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Simulation",
+    "Linear Algebra"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Solve a given equation and return the value of 'x' in the form of a string \"x=#value\" . The equation contains only '+' , '-' operation, the variable 'x' and its coefficient. You should return \"No solution\" if there is no solution for the equation, or \"Infinite solutions\" if there are infinite solutions for the equation. \n \n If there is exactly one solution for the equation, we ensure that the value of 'x' is an integer. \n\n Example 1: \n \n```\nInput:\n equation = \"x+5-3+x=6+x-2\"\n\nOutput:\n \"x=2\"\n```\n\n Example 2: \n \n```\nInput:\n equation = \"x=x\"\n\nOutput:\n \"Infinite solutions\"\n```\n\n Example 3: \n \n```\nInput:\n equation = \"2x=x\"\n\nOutput:\n \"x=0\"\n```\n\n Constraints: \n\n 3 <= equation.length <= 1000 \n \n equation has exactly one '=' . \n \n equation consists of integers with an absolute value in the range [0, 100] without any leading zeros, and the variable 'x' . \n \n The input is generated that if there is a single solution, it will be an integer.",
+  "code": "class Solution {\n    std::pair<int, int> parse(const std::string& s) {\n        int coef = 0, constant = 0, sign = 1;\n        for (int i = 0; i < (int)s.size();) {\n            if (s[i] == '+') { sign = 1; ++i; continue; }\n            if (s[i] == '-') { sign = -1; ++i; continue; }\n            int num = 0, start = i;\n            while (i < (int)s.size() && std::isdigit(s[i]))\n                num = num * 10 + s[i++] - '0';\n            if (i < (int)s.size() && s[i] == 'x') {\n                coef += sign * (i == start ? 1 : num);\n                ++i;\n            } else constant += sign * num;\n        }\n        return {coef, constant};\n    }\npublic:\n    std::string solveEquation(std::string equation) {\n        int eq = equation.find('=');\n        auto a = parse(equation.substr(0, eq));\n        auto b = parse(equation.substr(eq + 1));\n        int coef = a.first - b.first;\n        int value = b.second - a.second;\n        if (coef == 0) return value == 0 ? \"Infinite solutions\" : \"No solution\";\n        return \"x=\" + std::to_string(value / coef);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175701731",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "3038",
+  "title": "Maximum Number of Operations With the Same Score I",
+  "slug": "maximum-number-of-operations-with-the-same-score-i",
+  "url": "https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums . Consider the following operation: \n\n Delete the first two elements nums and define the score of the operation as the sum of these two elements. \n\n You can perform this operation until nums contains fewer than two elements. Additionally, the same score must be achieved in all operations. \n \n Return the maximum number of operations you can perform. \n\n Example 1: \n\n Input: nums = [3,2,1,4,5] \n \n Output: 2 \n \n Explanation: \n\n We can perform the first operation with the score 3 + 2 = 5 . After this operation, nums = [1,4,5] . \n \n We can perform the second operation as its score is 4 + 1 = 5 , the same as the previous operation. After this operation, nums = [5] . \n \n As there are fewer than two elements, we can't perform more operations. \n\n Example 2: \n\n Input: nums = [1,5,3,3,4,1,3,2,2,3] \n \n Output: 2 \n \n Explanation: \n\n We can perform the first operation with the score 1 + 5 = 6 . After this operation, nums = [3,3,4,1,3,2,2,3] . \n \n We can perform the second operation as its score is 3 + 3 = 6 , the same as the previous operation. After this operation, nums = [4,1,3,2,2,3] . \n \n We cannot perform the next operation as its score is 4 + 1 = 5 , which is different from the previous scores. \n\n Example 3: \n\n Input: nums = [5,3] \n \n Output: 1 \n\n Constraints: \n\n 2 <= nums.length <= 100 \n \n 1 <= nums[i] <= 1000",
+  "code": "class Solution {public:int maxOperations(vector<int>&a){int sum=a[0]+a[1],ans=0;for(int i=0;i+1<(int)a.size();i+=2){if(a[i]+a[i+1]!=sum)break;ans++;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176832087",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

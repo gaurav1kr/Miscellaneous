@@ -1,0 +1,32 @@
+{
+  "id": "446",
+  "title": "Arithmetic Slices II - Subsequence",
+  "slug": "arithmetic-slices-ii-subsequence",
+  "url": "https://leetcode.com/problems/arithmetic-slices-ii-subsequence/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return the number of all the arithmetic subsequences of nums . \n \n A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same. \n\n For example, [1, 3, 5, 7, 9] , [7, 7, 7, 7] , and [3, -1, -5, -9] are arithmetic sequences. \n \n For example, [1, 1, 2, 5, 7] is not an arithmetic sequence. \n\n A subsequence of an array is a sequence that can be formed by removing some elements (possibly none) of the array. \n\n For example, [2,5,10] is a subsequence of [1,2,1, 2 ,4,1, 5 , 10 ] . \n\n The test cases are generated so that the answer fits in 32-bit integer. \n\n Example 1: \n \n```\nInput:\n nums = [2,4,6,8,10]\n\nOutput:\n 7\n\nExplanation:\n All arithmetic subsequence slices are:\n[2,4,6]\n[4,6,8]\n[6,8,10]\n[2,4,6,8]\n[4,6,8,10]\n[2,4,6,8,10]\n[2,6,10]\n```\n\n Example 2: \n \n```\nInput:\n nums = [7,7,7,7,7]\n\nOutput:\n 16\n\nExplanation:\n Any subsequence of this array is arithmetic.\n```\n\n Constraints: \n\n 1  <= nums.length <= 1000 \n \n -2 31 <= nums[i] <= 2 31 - 1",
+  "code": "#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numberOfArithmeticSlices(vector<int>& nums) {\n        int n = nums.size(), res = 0;\n        vector<unordered_map<long long, int>> dp(n);\n\n        for (int i = 1; i < n; i++) {\n            for (int j = 0; j < i; j++) {\n                long long diff = (long long)nums[i] - nums[j];\n                int count = dp[j].count(diff) ? dp[j][diff] : 0;\n                dp[i][diff] += count + 1;\n                res += count;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591362719",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

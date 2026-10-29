@@ -1,0 +1,32 @@
+{
+  "id": "1968",
+  "title": "Array With Elements Not Equal to Average of Neighbors",
+  "slug": "array-with-elements-not-equal-to-average-of-neighbors",
+  "url": "https://leetcode.com/problems/array-with-elements-not-equal-to-average-of-neighbors/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array nums of distinct integers. You want to rearrange the elements in the array such that every element in the rearranged array is not equal to the average of its neighbors. \n \n More formally, the rearranged array should have the property such that for every i in the range 1 <= i < nums.length - 1 , (nums[i-1] + nums[i+1]) / 2 is not equal to nums[i] . \n \n Return any rearrangement of nums that meets the requirements . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4,5]\n\nOutput:\n [1,2,4,5,3]\n\nExplanation:\n\nWhen i=1, nums[i] = 2, and the average of its neighbors is (1+4) / 2 = 2.5.\nWhen i=2, nums[i] = 4, and the average of its neighbors is (2+5) / 2 = 3.5.\nWhen i=3, nums[i] = 5, and the average of its neighbors is (4+3) / 2 = 3.5.\n```\n\n Example 2: \n \n```\nInput:\n nums = [6,2,0,9,7]\n\nOutput:\n [9,7,6,2,0]\n\nExplanation:\n\nWhen i=1, nums[i] = 7, and the average of its neighbors is (9+6) / 2 = 7.5.\nWhen i=2, nums[i] = 6, and the average of its neighbors is (7+2) / 2 = 4.5.\nWhen i=3, nums[i] = 2, and the average of its neighbors is (6+0) / 2 = 3.\nNote that the original array [6,2,0,9,7] also satisfies the conditions.\n```\n\n Constraints: \n\n 3 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> rearrangeArray(vector<int>& nums) {\n        sort(nums.begin(), nums.end());\n        int n = nums.size();\n        vector<int> res(n);\n        int left = 0, right = (n + 1) / 2, idx = 0;\n\n        for (int i = 0; i < n; ++i) {\n            if (i % 2 == 0)\n                res[i] = nums[left++];\n            else\n                res[i] = nums[right++];\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610672910",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

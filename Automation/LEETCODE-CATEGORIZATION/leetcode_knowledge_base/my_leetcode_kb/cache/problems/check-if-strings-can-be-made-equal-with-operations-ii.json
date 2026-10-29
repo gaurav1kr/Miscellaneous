@@ -1,0 +1,32 @@
+{
+  "id": "2840",
+  "title": "Check if Strings Can be Made Equal With Operations II",
+  "slug": "check-if-strings-can-be-made-equal-with-operations-ii",
+  "url": "https://leetcode.com/problems/check-if-strings-can-be-made-equal-with-operations-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Sorted array",
+    "String"
+  ],
+  "description": "You are given two strings s1 and s2 , both of length n , consisting of lowercase English letters. \n \n You can apply the following operation on any of the two strings any number of times: \n\n Choose any two indices i and j such that i < j and the difference j - i is even , then swap the two characters at those indices in the string. \n\n Return true if you can make the strings s1 and s2 equal, and  false otherwise . \n\n Example 1: \n \n```\nInput:\n s1 = \"abcdba\", s2 = \"cabdab\"\n\nOutput:\n true\n\nExplanation:\n We can apply the following operations on s1:\n- Choose the indices i = 0, j = 2. The resulting string is s1 = \"cbadba\".\n- Choose the indices i = 2, j = 4. The resulting string is s1 = \"cbbdaa\".\n- Choose the indices i = 1, j = 5. The resulting string is s1 = \"cabdab\" = s2.\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"abe\", s2 = \"bea\"\n\nOutput:\n false\n\nExplanation:\n It is not possible to make the two strings equal.\n```\n\n Constraints: \n\n n == s1.length == s2.length \n \n 1 <= n <= 10 5 \n \n s1 and s2 consist only of lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:bool checkStrings(string s1,string s2){for(int parity=0;parity<2;++parity){string a,b;for(int i=parity;i<(int)s1.size();i+=2){a+=s1[i];b+=s2[i];}sort(a.begin(),a.end());sort(b.begin(),b.end());if(a!=b)return false;}return true;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176719244",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

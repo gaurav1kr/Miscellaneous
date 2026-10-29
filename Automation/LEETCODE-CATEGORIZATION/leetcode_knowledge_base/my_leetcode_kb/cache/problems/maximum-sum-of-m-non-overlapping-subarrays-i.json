@@ -1,0 +1,44 @@
+{
+  "id": "3956",
+  "title": "Maximum Sum of M Non-Overlapping Subarrays I",
+  "slug": "maximum-sum-of-m-non-overlapping-subarrays-i",
+  "url": "https://leetcode.com/problems/maximum-sum-of-m-non-overlapping-subarrays-i/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Queue",
+    "Sliding Window",
+    "Prefix Sum",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Deque",
+    "Monotonic deque",
+    "Prefix-sum array",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n , and three integers m , l , and r . \n \n Your task is to select at least one and at most m non-overlapping subarrays from nums such that: \n\n Each selected subarray has a length between [l, r] (inclusive). \n \n The total sum of all selected subarrays is maximized . \n\n Return the maximum total sum you can achieve. \n\n Example 1: \n\n Input: nums = [4,1,-5,2], m = 2, l = 1, r = 3 \n \n Output: 7 \n \n Explanation: \n \n One optimal strategy is to: \n\n Select the subarray [4, 1] with sum 4 + 1 = 5 and the subarray [2] with sum 2. Both subarrays have length between [l, r] . \n \n The total sum of these subarrays is 5 + 2 = 7 , which is the maximum achievable sum with at most m = 2 subarrays. \n\n Example 2: \n\n Input: nums = [1,0,3,4], m = 2, l = 1, r = 2 \n \n Output: 8 \n \n Explanation: \n \n One optimal strategy is to: \n\n Select the subarray [1] with sum 1 and the subarray [3, 4] with sum 3 + 4 = 7 . Both subarrays have length between [l, r] . \n \n The total sum of these subarrays is 1 + 7 = 8 , which is the maximum achievable sum with at most m = 2 subarrays. \n\n Example 3: \n\n Input: nums = [-1,7,-4], m = 1, l = 2, r = 3 \n \n Output: 6 \n \n Explanation: \n\n Select the subarray [-1, 7] from nums which has length between [l, r] . \n \n The total sum of this subarray is -1 + 7 = 6 , which is the maximum achievable sum with at most m = 1 subarray. \n\n Example 4: \n\n Input: nums = [-3,-4,-1], m = 2, l = 1, r = 2 \n \n Output: -1 \n \n Explanation: \n\n All subarrays of nums have negative sums. The optimal strategy is to select the subarray [-1] , which has length between [l, r] . \n \n The total sum of this subarray is -1, which is the maximum achievable sum with at most m = 2 subarrays. \n\n Constraints: \n\n 1 <= n == nums.length <= 1000 \n \n -10 9 <= nums[i] <= 10 9 ​​​​​​​ \n \n 1 <= m <= n \n \n 1 <= l <= r <= n",
+  "code": "class Solution {\npublic:\n    long long maximumSum(vector<int>& nums, int m, int l, int r) {\n        int n=nums.size();\n        const long long NEG=-(1LL<<60);\n        vector<long long> pre(n+1,0);\n        for(int i=0;i<n;++i) pre[i+1]=pre[i]+nums[i];\n        vector<long long> prev(n+1,0),cur(n+1,NEG);\n        long long answer=NEG;\n        for(int t=1;t<=m;++t) {\n            deque<int> dq;\n            fill(cur.begin(),cur.end(),NEG);\n            for(int i=1;i<=n;++i) {\n                int add=i-l;\n                if(add>=0 && prev[add]!=NEG) {\n                    while(!dq.empty() && prev[dq.back()]-pre[dq.back()]<=prev[add]-pre[add]) dq.pop_back();\n                    dq.push_back(add);\n                }\n                while(!dq.empty() && dq.front()<i-r) dq.pop_front();\n                cur[i]=cur[i-1];\n                if(!dq.empty()) cur[i]=max(cur[i],pre[i]+prev[dq.front()]-pre[dq.front()]);\n            }\n            answer=max(answer,cur[n]);\n            prev.swap(cur);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179657497",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

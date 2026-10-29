@@ -1,0 +1,33 @@
+{
+  "id": "1894",
+  "title": "Find the Student that Will Replace the Chalk",
+  "slug": "find-the-student-that-will-replace-the-chalk",
+  "url": "https://leetcode.com/problems/find-the-student-that-will-replace-the-chalk/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Simulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "There are n students in a class numbered from 0 to n - 1 . The teacher will give each student a problem starting with the student number 0 , then the student number 1 , and so on until the teacher reaches the student number n - 1 . After that, the teacher will restart the process, starting with the student number 0 again. \n \n You are given a 0-indexed integer array chalk and an integer k . There are initially k pieces of chalk. When the student number i is given a problem to solve, they will use chalk[i] pieces of chalk to solve that problem. However, if the current number of chalk pieces is strictly less than chalk[i] , then the student number i will be asked to replace the chalk. \n \n Return the index of the student that will replace the chalk pieces . \n\n Example 1: \n \n```\nInput:\n chalk = [5,1,5], k = 22\n\nOutput:\n 0\n\nExplanation: \nThe students go in turns as follows:\n- Student number 0 uses 5 chalk, so k = 17.\n- Student number 1 uses 1 chalk, so k = 16.\n- Student number 2 uses 5 chalk, so k = 11.\n- Student number 0 uses 5 chalk, so k = 6.\n- Student number 1 uses 1 chalk, so k = 5.\n- Student number 2 uses 5 chalk, so k = 0.\nStudent number 0 does not have enough chalk, so they will have to replace it.\n```\n\n Example 2: \n \n```\nInput:\n chalk = [3,4,1,2], k = 25\n\nOutput:\n 1\n\nExplanation: \nThe students go in turns as follows:\n- Student number 0 uses 3 chalk so k = 22.\n- Student number 1 uses 4 chalk so k = 18.\n- Student number 2 uses 1 chalk so k = 17.\n- Student number 3 uses 2 chalk so k = 15.\n- Student number 0 uses 3 chalk so k = 12.\n- Student number 1 uses 4 chalk so k = 8.\n- Student number 2 uses 1 chalk so k = 7.\n- Student number 3 uses 2 chalk so k = 5.\n- Student number 0 uses 3 chalk so k = 2.\nStudent number 1 does not have enough chalk, so they will have to replace it.\n```\n\n Constraints: \n\n chalk.length == n \n \n 1 <= n <= 10 5 \n \n 1 <= chalk[i] <= 10 5 \n \n 1 <= k <= 10 9",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int chalkReplacer(vector<int>& chalk, int k) {\n        long long sum = 0;\n        for (int c : chalk) sum += c;\n        k %= sum;\n        for (int i = 0; i < chalk.size(); ++i) {\n            if (k < chalk[i]) return i;\n            k -= chalk[i];\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610688486",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "3921",
+  "title": "Score Validator",
+  "slug": "score-validator",
+  "url": "https://leetcode.com/problems/score-validator/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string array events . \n \n Initially, score = 0 and counter = 0 . Each element in events is one of the following: \n\n \"0\" , \"1\" , \"2\" , \"3\" , \"4\" , \"6\" : Add that value to the total score. \n \n \"W\" : Increase the counter by 1. No score is added. \n \n \"WD\" : Add 1 to the total score. \n \n \"NB\" : Add 1 to the total score. \n\n Process the array from left to right. Stop processing when either: \n\n All elements in events have been processed, or \n \n The counter becomes 10. \n\n Return an integer array [score, counter] , where: \n\n score is the final total score. \n \n counter is the final counter value. \n\n Example 1: \n\n Input: events = [\"1\",\"4\",\"W\",\"6\",\"WD\"] \n \n Output: [12,1] \n \n Explanation: \n\n Event \n Score \n Counter \n\n \"1\" \n 1 \n 0 \n\n \"4\" \n 5 \n 0 \n\n \"W\" \n 5 \n 1 \n\n \"6\" \n 11 \n 1 \n\n \"WD\" \n 12 \n 1 \n\n Final result: [12, 1] . \n\n Example 2: \n\n Input: events = [\"WD\",\"NB\",\"0\",\"4\",\"4\"] \n \n Output: [10,0] \n \n Explanation: \n\n Event \n Score \n Counter \n\n \"WD\" \n 1 \n 0 \n\n \"NB\" \n 2 \n 0 \n\n \"0\" \n 2 \n 0 \n\n \"4\" \n 6 \n 0 \n\n \"4\" \n 10 \n 0 \n\n Final result: [10, 0] . \n\n Example 3: \n\n Input: events = [\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\",\"W\"] \n \n Output: [0,10] \n \n Explanation: \n \n After 10 occurrences of \"W\" , the counter reaches 10, so processing stops. The remaining events are ignored. \n\n Constraints: \n\n 1 <= events.length <= 1000 \n \n events[i] is one of \"0\" , \"1\" , \"2\" , \"3\" , \"4\" , \"6\" , \"W\" , \"WD\" , or \"NB\" .",
+  "code": "class Solution {\npublic:\n    vector<int> scoreValidator(vector<string>& events) {\n        int score = 0, counter = 0;\n        for (const string& event : events) {\n            if (event == \"W\") ++counter;\n            else if (event == \"WD\" || event == \"NB\") ++score;\n            else score += event[0] - '0';\n            if (counter == 10) break;\n        }\n        return {score, counter};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179318065",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

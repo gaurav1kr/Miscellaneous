@@ -1,0 +1,28 @@
+{
+  "id": "1842",
+  "title": "Next Palindrome Using Same Digits",
+  "slug": "next-palindrome-using-same-digits",
+  "url": "https://leetcode.com/problems/next-palindrome-using-same-digits/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a numeric string num , representing a very large palindrome . \n \n Return the smallest palindrome larger than num that can be created by rearranging its digits. If no such palindrome exists, return an empty string \"\" . \n \n A palindrome is a number that reads the same backward as forward. \n\n Example 1: \n \n```\nInput:\n num = \"1221\"\n\nOutput:\n \"2112\"\n\nExplanation:\n The next palindrome larger than \"1221\" is \"2112\".\n```\n\n Example 2: \n \n```\nInput:\n num = \"32123\"\n\nOutput:\n \"\"\n\nExplanation:\n No palindromes larger than \"32123\" can be made by rearranging the digits.\n```\n\n Example 3: \n \n```\nInput:\n num = \"45544554\"\n\nOutput:\n \"54455445\"\n\nExplanation:\n The next palindrome larger than \"45544554\" is \"54455445\".\n```\n\n Constraints: \n\n 1 <= num.length <= 10 5 \n \n num is a palindrome .",
+  "code": "class Solution {\npublic:\n    string nextPalindrome(string num) {\n        int half = num.size() / 2;\n        string left = num.substr(0, half);\n        if (!next_permutation(left.begin(), left.end())) return \"\";\n        string right = left;\n        reverse(right.begin(), right.end());\n        return left + (num.size() % 2 ? num.substr(half, 1) : \"\") + right;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178617440",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

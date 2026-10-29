@@ -1,0 +1,27 @@
+{
+  "id": "1220",
+  "title": "Count Vowels Permutation",
+  "slug": "count-vowels-permutation",
+  "url": "https://leetcode.com/problems/count-vowels-permutation/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer n , your task is to count how many strings of length n can be formed under the following rules: \n\n Each character is a lower case vowel ( 'a' , 'e' , 'i' , 'o' , 'u' ) \n \n Each vowel  'a' may only be followed by an 'e' . \n \n Each vowel  'e' may only be followed by an 'a'  or an 'i' . \n \n Each vowel  'i' may not be followed by another 'i' . \n \n Each vowel  'o' may only be followed by an 'i' or a  'u' . \n \n Each vowel  'u' may only be followed by an 'a' . \n\n Since the answer may be too large, return it modulo  10^9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 1\n\nOutput:\n 5\n\nExplanation:\n All possible strings are: \"a\", \"e\", \"i\" , \"o\" and \"u\".\n```\n\n Example 2: \n \n```\nInput:\n n = 2\n\nOutput:\n 10\n\nExplanation:\n All possible strings are: \"ae\", \"ea\", \"ei\", \"ia\", \"ie\", \"io\", \"iu\", \"oi\", \"ou\" and \"ua\".\n```\n\n Example 3:  \n \n```\nInput:\n n = 5\n\nOutput:\n 68\n```\n\n Constraints: \n\n 1 <= n <= 2 * 10^4",
+  "code": "class Solution {\npublic:\n    int countVowelPermutation(int n) {\n        const int MOD = 1e9 + 7;\n        vector<long> a(5, 1);\n        for (int i = 1; i < n; ++i) {\n            vector<long> b(5);\n            b[0] = (a[1] + a[2] + a[4]) % MOD; // 'a'\n            b[1] = (a[0] + a[2]) % MOD;         // 'e'\n            b[2] = (a[1] + a[3]) % MOD;         // 'i'\n            b[3] = a[2];                        // 'o'\n            b[4] = (a[2] + a[3]) % MOD;         // 'u'\n            a = b;\n        }\n        return accumulate(a.begin(), a.end(), 0L) % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593830909",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

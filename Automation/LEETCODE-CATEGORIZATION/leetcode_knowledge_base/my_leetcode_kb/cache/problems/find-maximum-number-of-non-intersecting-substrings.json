@@ -1,0 +1,34 @@
+{
+  "id": "3557",
+  "title": "Find Maximum Number of Non Intersecting Substrings",
+  "slug": "find-maximum-number-of-non-intersecting-substrings",
+  "url": "https://leetcode.com/problems/find-maximum-number-of-non-intersecting-substrings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string word . \n \n Return the maximum number of non-intersecting substrings of word that are at least four characters long and start and end with the same letter. \n\n Example 1: \n\n Input: word = \"abcdeafdef\" \n \n Output: 2 \n \n Explanation: \n \n The two substrings are \"abcdea\" and \"fdef\" . \n\n Example 2: \n\n Input: word = \"bcdaaaab\" \n \n Output: 1 \n \n Explanation: \n \n The only substring is \"aaaa\" . Note that we cannot also choose \"bcdaaaab\" since it intersects with the other substring. \n\n Constraints: \n\n 1 <= word.length <= 2 * 10 5 \n \n word consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int maxSubstrings(string word) {\n        int first[26];fill(first,first+26,-1);\n        int count=0;\n        for (int i=0;i<(int)word.size();++i) {\n            int c=word[i]-'a';\n            if (first[c]!=-1 && i-first[c]>=3) {\n                ++count;\n                fill(first,first+26,-1);\n            } else if (first[c]==-1) first[c]=i;\n        }\n        return count;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179723061",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "3834",
+  "title": "Merge Adjacent Equal Elements",
+  "slug": "merge-adjacent-equal-elements",
+  "url": "https://leetcode.com/problems/merge-adjacent-equal-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n You must repeatedly apply the following merge operation until no more changes can be made: \n\n If any two adjacent elements are equal , choose the leftmost such adjacent pair in the current array and replace them with a single element equal to their sum . \n\n After each merge operation, the array size decreases by 1. Repeat the process on the updated array until no more changes can be made. \n \n Return the final array after all possible merge operations. \n\n Example 1: \n\n Input: nums = [3,1,1,2] \n \n Output: [3,4] \n \n Explanation: \n\n The middle two elements are equal and merged into 1 + 1 = 2 , resulting in [3, 2, 2] . \n \n The last two elements are equal and merged into 2 + 2 = 4 , resulting in [3, 4] . \n \n No adjacent equal elements remain. Thus, the answer is [3, 4] . \n\n Example 2: \n\n Input: nums = [2,2,4] \n \n Output: [8] \n \n Explanation: \n\n The first two elements are equal and merged into 2 + 2 = 4 , resulting in [4, 4] . \n \n The first two elements are equal and merged into 4 + 4 = 8 , resulting in [8] . \n\n Example 3: \n\n Input: nums = [3,7,5] \n \n Output: [3,7,5] \n \n Explanation: \n \n There are no adjacent equal elements in the array, so no operations are performed. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 ​​​​​​​",
+  "code": "class Solution {\npublic:\n    vector<long long> mergeAdjacent(vector<int>& nums) {\n        vector<long long> st;\n        for(int x:nums){\n            st.push_back(x);\n            while(st.size()>1 && st.back()==st[st.size()-2]){\n                long long v=st.back();st.pop_back();st.back()+=v;\n            }\n        }\n        return st;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177770590",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

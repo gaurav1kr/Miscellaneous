@@ -1,0 +1,36 @@
+{
+  "id": "4046",
+  "title": "Minimum Cost Path With At Most K Turns",
+  "slug": "minimum-cost-path-with-at-most-k-turns",
+  "url": "https://leetcode.com/problems/minimum-cost-path-with-at-most-k-turns/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Heap",
+    "Graph Theory",
+    "Matrix",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array grid of size m x n , where grid[i][j] represents the cost of visiting cell (i, j) , and an integer k . \n \n You start at the top-left cell (0, 0) and want to reach the bottom-right cell (m - 1, n - 1) . \n \n From each cell, you may move one step in any of the four directions: up , down , left , or right . \n \n The cost of a path is the sum of the values of all visited cells, including the starting and ending cells. If a cell is visited more than once, its value is included each time it is visited. \n \n Return the minimum possible path cost to reach (m - 1, n - 1) using at most k turns. If no such path exists, return -1 . \n \n A turn occurs when the direction changes between two consecutive moves. For example, moving right and then down counts as one turn, while moving right and then right does not. \n\n Example 1: \n\n Input: grid = [[2,7,3],[1,4,5]], k = 1 \n \n Output: 12 \n \n Explanation: \n\n An optimal path is (0, 0) → (1, 0) → (1, 1) → (1, 2) . The moves are down, right, right. \n \n The direction changes from down to right once, so the path uses exactly k = 1 turn. \n \n The total path cost is 2 + 1 + 4 + 5 = 12 . \n\n Example 2: \n\n Input: grid = [[4,1,9],[3,2,5],[4,8,6]], k = 2 \n \n Output: 20 \n \n Explanation: ​​​​​​​ \n\n An optimal path is (0, 0) → (1, 0) → (1, 1) → (1, 2) → (2, 2) . The moves are down, right, right, down. \n \n The direction changes from down to right and from right to down, so the path uses exactly k = 2 turns. \n \n The total path cost is 4 + 3 + 2 + 5 + 6 = 20 . \n\n Example 3: \n\n Input: grid = [[1,9],[3,4]], k = 0 \n \n Output: -1 \n \n Explanation: \n\n It is impossible to reach (1, 1) using k = 0 turns. Thus, the answer is -1. \n\n Constraints: \n\n 1 <= m == grid.length <= 75 \n \n 1 <= n == grid[i].length <= 75 \n \n 0 <= grid[i][j] <= 1000 \n \n 0 <= k < min(m, n)",
+  "code": "class Solution {\npublic:\n int minCost(vector<vector<int>>& g,int k) {\n  int m=g.size(),n=g[0].size();\n  const int INF=1000000000;\n  vector<vector<vector<vector<int>>>> dist(m,vector<vector<vector<int>>>(n,vector<vector<int>>(k+1,vector<int>(5,INF))));\n  typedef tuple<int,int,int,int,int> State;\n  priority_queue<State,vector<State>,greater<State>> pq;\n  dist[0][0][0][4]=g[0][0];pq.push(make_tuple(g[0][0],0,0,0,4));\n  int dr[]={-1,1,0,0},dc[]={0,0,-1,1};\n  while(!pq.empty()) {\n   int cost,r,c,t,d;tie(cost,r,c,t,d)=pq.top();pq.pop();\n   if(cost!=dist[r][c][t][d])continue;\n   if(r==m-1&&c==n-1)return cost;\n   for(int z=0;z<4;++z){int nr=r+dr[z],nc=c+dc[z],nt=t+(d!=4&&d!=z);\n    if(nr<0||nr>=m||nc<0||nc>=n||nt>k)continue;\n    int nd=cost+g[nr][nc];if(nd<dist[nr][nc][nt][z]){dist[nr][nc][nt][z]=nd;pq.push(make_tuple(nd,nr,nc,nt,z));}\n   }\n  }\n  return -1;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181187673",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "3168",
+  "title": "Minimum Number of Chairs in a Waiting Room",
+  "slug": "minimum-number-of-chairs-in-a-waiting-room",
+  "url": "https://leetcode.com/problems/minimum-number-of-chairs-in-a-waiting-room/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s . Simulate events at each second i : \n\n If s[i] == 'E' , a person enters the waiting room and takes one of the chairs in it. \n \n If s[i] == 'L' , a person leaves the waiting room, freeing up a chair. \n\n Return the minimum number of chairs needed so that a chair is available for every person who enters the waiting room given that it is initially empty . \n\n Example 1: \n\n Input: s = \"EEEEEEE\" \n \n Output: 7 \n \n Explanation: \n \n After each second, a person enters the waiting room and no person leaves it. Therefore, a minimum of 7 chairs is needed. \n\n Example 2: \n\n Input: s = \"ELELEEL\" \n \n Output: 2 \n \n Explanation: \n \n Let's consider that there are 2 chairs in the waiting room. The table below shows the state of the waiting room at each second. \n\n Second \n Event \n People in the Waiting Room \n Available Chairs \n\n 0 \n Enter \n 1 \n 1 \n\n 1 \n Leave \n 0 \n 2 \n\n 2 \n Enter \n 1 \n 1 \n\n 3 \n Leave \n 0 \n 2 \n\n 4 \n Enter \n 1 \n 1 \n\n 5 \n Enter \n 2 \n 0 \n\n 6 \n Leave \n 1 \n 1 \n\n Example 3: \n\n Input: s = \"ELEELEELLL\" \n \n Output: 3 \n \n Explanation: \n \n Let's consider that there are 3 chairs in the waiting room. The table below shows the state of the waiting room at each second. \n\n Second \n Event \n People in the Waiting Room \n Available Chairs \n\n 0 \n Enter \n 1 \n 2 \n\n 1 \n Leave \n 0 \n 3 \n\n 2 \n Enter \n 1 \n 2 \n\n 3 \n Enter \n 2 \n 1 \n\n 4 \n Leave \n 1 \n 2 \n\n 5 \n Enter \n 2 \n 1 \n\n 6 \n Enter \n 3 \n 0 \n\n 7 \n Leave \n 2 \n 1 \n\n 8 \n Leave \n 1 \n 2 \n\n 9 \n Leave \n 0 \n 3 \n\n Constraints: \n\n 1 <= s.length <= 50 \n \n s consists only of the letters 'E' and 'L' . \n \n s represents a valid sequence of entries and exits.",
+  "code": "class Solution {public:int minimumChairs(string s){int cur=0,ans=0;for(char c:s){cur+=(c=='E'?1:-1);ans=max(ans,cur);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177405734",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

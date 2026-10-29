@@ -1,0 +1,31 @@
+{
+  "id": "1790",
+  "title": "Check if One String Swap Can Make Strings Equal",
+  "slug": "check-if-one-string-swap-can-make-strings-equal",
+  "url": "https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings s1 and s2 of equal length. A string swap is an operation where you choose two indices in a string (not necessarily different) and swap the characters at these indices. \n \n Return true if it is possible to make both strings equal by performing at most one string swap on exactly one of the strings. Otherwise, return false . \n\n Example 1: \n \n```\nInput:\n s1 = \"bank\", s2 = \"kanb\"\n\nOutput:\n true\n\nExplanation:\n For example, swap the first character with the last character of s2 to make \"bank\".\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"attack\", s2 = \"defend\"\n\nOutput:\n false\n\nExplanation:\n It is impossible to make them equal with one string swap.\n```\n\n Example 3: \n \n```\nInput:\n s1 = \"kelb\", s2 = \"kelb\"\n\nOutput:\n true\n\nExplanation:\n The two strings are already equal, so no string swap operation is required.\n```\n\n Constraints: \n\n 1 <= s1.length, s2.length <= 100 \n \n s1.length == s2.length \n \n s1 and s2 consist of only lowercase English letters.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool areAlmostEqual(string s1, string s2) {\n        vector<int> diff;\n        for (int i = 0; i < s1.size(); ++i)\n            if (s1[i] != s2[i]) diff.push_back(i);\n        if (diff.empty()) return true;\n        if (diff.size() != 2) return false;\n        return s1[diff[0]] == s2[diff[1]] && s1[diff[1]] == s2[diff[0]];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610618962",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

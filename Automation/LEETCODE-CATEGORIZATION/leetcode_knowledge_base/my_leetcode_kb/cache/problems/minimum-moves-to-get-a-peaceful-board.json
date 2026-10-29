@@ -1,0 +1,33 @@
+{
+  "id": "3189",
+  "title": "Minimum Moves to Get a Peaceful Board",
+  "slug": "minimum-moves-to-get-a-peaceful-board",
+  "url": "https://leetcode.com/problems/minimum-moves-to-get-a-peaceful-board/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Counting Sort"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given a 2D array rooks of length n , where rooks[i] = [x i , y i ] indicates the position of a rook on an n x n chess board. Your task is to move the rooks 1 cell at a time vertically or horizontally (to an adjacent cell) such that the board becomes peaceful . \n \n A board is peaceful if there is exactly one rook in each row and each column. \n \n Return the minimum number of moves required to get a peaceful board . \n \n Note that at no point can there be two rooks in the same cell. \n\n Example 1: \n\n Input: rooks = [[0,0],[1,0],[1,1]] \n \n Output: 3 \n \n Explanation: \n [Figure: https://assets.leetcode.com/uploads/2024/06/17/ex1-edited.gif] \n \n Example 2: \n\n Input: rooks = [[0,0],[0,1],[0,2],[0,3]] \n \n Output: 6 \n \n Explanation: \n [Figure: https://assets.leetcode.com/uploads/2024/06/17/ex2-edited.gif] \n\n Constraints: \n\n 1 <= n == rooks.length <= 500 \n \n 0 <= x i , y i <= n - 1 \n \n The input is generated such that there are no 2 rooks in the same cell.",
+  "code": "class Solution {\npublic:\n    int minMoves(vector<vector<int>>& rooks) {\n        int n = rooks.size();\n        vector<int> rows, cols;\n        for (auto& p : rooks) { rows.push_back(p[0]); cols.push_back(p[1]); }\n        sort(rows.begin(), rows.end());\n        sort(cols.begin(), cols.end());\n        int ans = 0;\n        for (int i = 0; i < n; ++i) ans += abs(rows[i] - i) + abs(cols[i] - i);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178957294",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

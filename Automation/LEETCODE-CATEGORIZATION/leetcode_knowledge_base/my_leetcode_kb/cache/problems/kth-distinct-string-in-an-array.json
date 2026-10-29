@@ -1,0 +1,36 @@
+{
+  "id": "2053",
+  "title": "Kth Distinct String in an Array",
+  "slug": "kth-distinct-string-in-an-array",
+  "url": "https://leetcode.com/problems/kth-distinct-string-in-an-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "A distinct string is a string that is present only once in an array. \n \n Given an array of strings arr , and an integer k , return the k th distinct string present in arr . If there are fewer than k distinct strings, return an empty string \"\" . \n \n Note that the strings are considered in the order in which they appear in the array. \n\n Example 1: \n \n```\nInput:\n arr = [\"d\",\"b\",\"c\",\"b\",\"c\",\"a\"], k = 2\n\nOutput:\n \"a\"\n\nExplanation:\n\nThe only distinct strings in arr are \"d\" and \"a\".\n\"d\" appears 1\nst\n, so it is the 1\nst\n distinct string.\n\"a\" appears 2\nnd\n, so it is the 2\nnd\n distinct string.\nSince k == 2, \"a\" is returned.\n```\n\n Example 2: \n \n```\nInput:\n arr = [\"aaa\",\"aa\",\"a\"], k = 1\n\nOutput:\n \"aaa\"\n\nExplanation:\n\nAll strings in arr are distinct, so the 1\nst\n string \"aaa\" is returned.\n```\n\n Example 3: \n \n```\nInput:\n arr = [\"a\",\"b\",\"a\"], k = 3\n\nOutput:\n \"\"\n\nExplanation:\n\nThe only distinct string is \"b\". Since there are fewer than 3 distinct strings, we return an empty string \"\".\n```\n\n Constraints: \n\n 1 <= k <= arr.length <= 1000 \n \n 1 <= arr[i].length <= 5 \n \n arr[i] consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string kthDistinct(vector<string>& arr,int k){unordered_map<string,int>freq;\n        for(const string& s:arr)++freq[s];\n        for(const string& s:arr)if(freq[s]==1&&--k==0)return s;\n        return \"\";\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175770674",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

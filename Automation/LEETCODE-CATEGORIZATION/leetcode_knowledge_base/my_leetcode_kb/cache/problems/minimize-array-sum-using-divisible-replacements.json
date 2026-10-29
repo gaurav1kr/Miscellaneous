@@ -1,0 +1,35 @@
+{
+  "id": "3927",
+  "title": "Minimize Array Sum Using Divisible Replacements",
+  "slug": "minimize-array-sum-using-divisible-replacements",
+  "url": "https://leetcode.com/problems/minimize-array-sum-using-divisible-replacements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Greedy",
+    "Number Theory"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n You can perform the following operation any number of times: \n\n Choose two indices a and b such that nums[a] % nums[b] == 0 . \n \n Replace nums[a] with nums[b] . \n\n Return the minimum possible sum of the array after performing any number of operations. \n\n Example 1: \n\n Input: nums = [3,6,2] \n \n Output: 7 \n \n Explanation: \n\n Choose a = 1 , b = 2 , where nums[a] = 6 and nums[b] = 2 . Since 6 % 2 == 0 , replace nums[1] with nums[2] . \n \n The array becomes [3, 2, 2] . \n \n No further operation reduces the sum. Thus, the final sum is 3 + 2 + 2 = 7 . \n\n Example 2: \n\n Input: nums = [4,2,8,3] \n \n Output: 9 \n \n Explanation: \n\n Choose a = 0 , b = 1 , where nums[a] = 4 and nums[b] = 2 . Since 4 % 2 == 0 , replace nums[0] with nums[1] . \n \n Choose a = 2 , b = 1 , where nums[a] = 8 and nums[b] = 2 . Since 8 % 2 == 0 , replace nums[2] with nums[1] . \n \n The array becomes [2, 2, 2, 3] . \n \n No further operation reduces the sum. Thus, the final sum is 2 + 2 + 2 + 3 = 9 . \n\n Example 3: \n\n Input: nums = [7,5,9] \n \n Output: 21 \n \n Explanation: \n\n There is no pair (a, b) such that nums[a] % nums[b] == 0 . \n \n Hence, no operation can be performed. The sum remains 7 + 5 + 9 = 21 . \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 ​​​​​​​5",
+  "code": "class Solution {\npublic:\n    long long minArraySum(vector<int>& nums){\n        int M=*max_element(nums.begin(),nums.end());\n        vector<bool> present(M+1,false);\n        for(int x:nums) present[x]=true;\n        vector<int> best(M+1,0);\n        for(int d=1;d<=M;++d) if(present[d])\n            for(int multiple=d;multiple<=M;multiple+=d)\n                if(best[multiple]==0) best[multiple]=d;\n        long long ans=0;\n        for(int x:nums) ans+=best[x];\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181087680",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

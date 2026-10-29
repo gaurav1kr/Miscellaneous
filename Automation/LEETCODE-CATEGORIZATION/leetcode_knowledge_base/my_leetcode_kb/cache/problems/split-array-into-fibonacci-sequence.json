@@ -1,0 +1,29 @@
+{
+  "id": "842",
+  "title": "Split Array into Fibonacci Sequence",
+  "slug": "split-array-into-fibonacci-sequence",
+  "url": "https://leetcode.com/problems/split-array-into-fibonacci-sequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string of digits num , such as \"123456579\" . We can split it into a Fibonacci-like sequence [123, 456, 579] . \n \n Formally, a Fibonacci-like sequence is a list f of non-negative integers such that: \n\n 0 <= f[i] < 2 31 , (that is, each integer fits in a 32-bit signed integer type), \n \n f.length >= 3 , and \n \n f[i] + f[i + 1] == f[i + 2] for all 0 <= i < f.length - 2 . \n\n Note that when splitting the string into pieces, each piece must not have extra leading zeroes, except if the piece is the number 0 itself. \n \n Return any Fibonacci-like sequence split from num , or return [] if it cannot be done. \n\n Example 1: \n \n```\nInput:\n num = \"1101111\"\n\nOutput:\n [11,0,11,11]\n\nExplanation:\n The output [110, 1, 111] would also be accepted.\n```\n\n Example 2: \n \n```\nInput:\n num = \"112358130\"\n\nOutput:\n []\n\nExplanation:\n The task is impossible.\n```\n\n Example 3: \n \n```\nInput:\n num = \"0123\"\n\nOutput:\n []\n\nExplanation:\n Leading zeroes are not allowed, so \"01\", \"2\", \"3\" is not valid.\n```\n\n Constraints: \n\n 1 <= num.length <= 200 \n \n num contains only digits.",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool dfs(int idx, string& s, vector<int>& seq) {\n        if (idx == s.size()) return seq.size() >= 3;\n\n        long num = 0;\n        for (int i = idx; i < s.size(); ++i) {\n            if (i > idx && s[idx] == '0') break;\n            num = num * 10 + (s[i] - '0');\n            if (num > INT_MAX) break;\n\n            if (seq.size() >= 2 && num != (long)seq[seq.size() - 1] + seq[seq.size() - 2])\n                continue;\n\n            seq.push_back(num);\n            if (dfs(i + 1, s, seq)) return true;\n            seq.pop_back();\n        }\n        return false;\n    }\n\n    vector<int> splitIntoFibonacci(string num) {\n        vector<int> seq;\n        dfs(0, num, seq);\n        return seq;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593845473",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

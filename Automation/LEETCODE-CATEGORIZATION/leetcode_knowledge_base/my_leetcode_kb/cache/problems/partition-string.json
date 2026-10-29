@@ -1,0 +1,37 @@
+{
+  "id": "3597",
+  "title": "Partition String ",
+  "slug": "partition-string",
+  "url": "https://leetcode.com/problems/partition-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Trie",
+    "Simulation"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given a string s , partition it into unique segments according to the following procedure: \n\n Start building a segment beginning at index 0. \n \n Continue extending the current segment character by character until the current segment has not been seen before. \n \n Once the segment is unique, add it to your list of segments, mark it as seen, and begin a new segment from the next index. \n \n Repeat until you reach the end of s . \n\n Return an array of strings segments , where segments[i] is the i th segment created. \n\n Example 1: \n\n Input: s = \"abbccccd\" \n \n Output: [\"a\",\"b\",\"bc\",\"c\",\"cc\",\"d\"] \n \n Explanation: \n\n Index \n Segment After Adding \n Seen Segments \n Current Segment Seen Before? \n New Segment \n Updated Seen Segments \n\n 0 \n \"a\" \n [] \n No \n \"\" \n [\"a\"] \n\n 1 \n \"b\" \n [\"a\"] \n No \n \"\" \n [\"a\", \"b\"] \n\n 2 \n \"b\" \n [\"a\", \"b\"] \n Yes \n \"b\" \n [\"a\", \"b\"] \n\n 3 \n \"bc\" \n [\"a\", \"b\"] \n No \n \"\" \n [\"a\", \"b\", \"bc\"] \n\n 4 \n \"c\" \n [\"a\", \"b\", \"bc\"] \n No \n \"\" \n [\"a\", \"b\", \"bc\", \"c\"] \n\n 5 \n \"c\" \n [\"a\", \"b\", \"bc\", \"c\"] \n Yes \n \"c\" \n [\"a\", \"b\", \"bc\", \"c\"] \n\n 6 \n \"cc\" \n [\"a\", \"b\", \"bc\", \"c\"] \n No \n \"\" \n [\"a\", \"b\", \"bc\", \"c\", \"cc\"] \n\n 7 \n \"d\" \n [\"a\", \"b\", \"bc\", \"c\", \"cc\"] \n No \n \"\" \n [\"a\", \"b\", \"bc\", \"c\", \"cc\", \"d\"] \n\n Hence, the final output is [\"a\", \"b\", \"bc\", \"c\", \"cc\", \"d\"] . \n\n Example 2: \n\n Input: s = \"aaaa\" \n \n Output: [\"a\",\"aa\"] \n \n Explanation: \n\n Index \n Segment After Adding \n Seen Segments \n Current Segment Seen Before? \n New Segment \n Updated Seen Segments \n\n 0 \n \"a\" \n [] \n No \n \"\" \n [\"a\"] \n\n 1 \n \"a\" \n [\"a\"] \n Yes \n \"a\" \n [\"a\"] \n\n 2 \n \"aa\" \n [\"a\"] \n No \n \"\" \n [\"a\", \"aa\"] \n\n 3 \n \"a\" \n [\"a\", \"aa\"] \n Yes \n \"a\" \n [\"a\", \"aa\"] \n\n Hence, the final output is [\"a\", \"aa\"] . \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s contains only lowercase English letters.",
+  "code": "class Solution {public:\n vector<string> partitionString(string s){\n  unordered_set<string> seen;vector<string> ans;string cur;\n  for(char c:s){cur+=c;if(!seen.count(cur)){seen.insert(cur);ans.push_back(cur);cur.clear();}}\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177604384",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

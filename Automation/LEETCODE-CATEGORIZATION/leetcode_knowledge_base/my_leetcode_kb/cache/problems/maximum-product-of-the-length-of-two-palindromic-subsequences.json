@@ -1,0 +1,36 @@
+{
+  "id": "2002",
+  "title": "Maximum Product of the Length of Two Palindromic Subsequences",
+  "slug": "maximum-product-of-the-length-of-two-palindromic-subsequences",
+  "url": "https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-subsequences/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Bitmask",
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , find two disjoint palindromic subsequences of s such that the product of their lengths is maximized . The two subsequences are disjoint if they do not both pick a character at the same index. \n \n Return the maximum possible product of the lengths of the two palindromic subsequences . \n \n A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters. A string is palindromic if it reads the same forward and backward. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/08/24/two-palindromic-subsequences.png] \n \n```\nInput:\n s = \"leetcodecom\"\n\nOutput:\n 9\n\nExplanation\n: An optimal solution is to choose \"ete\" for the 1\nst\n subsequence and \"cdc\" for the 2\nnd\n subsequence.\nThe product of their lengths is: 3 * 3 = 9.\n```\n\n Example 2: \n \n```\nInput:\n s = \"bb\"\n\nOutput:\n 1\n\nExplanation\n: An optimal solution is to choose \"b\" (the first character) for the 1\nst\n subsequence and \"b\" (the second character) for the 2\nnd\n subsequence.\nThe product of their lengths is: 1 * 1 = 1.\n```\n\n Example 3: \n \n```\nInput:\n s = \"accbcaxxcxx\"\n\nOutput:\n 25\n\nExplanation\n: An optimal solution is to choose \"accca\" for the 1\nst\n subsequence and \"xxcxx\" for the 2\nnd\n subsequence.\nThe product of their lengths is: 5 * 5 = 25.\n```\n\n Constraints: \n\n 2 <= s.length <= 12 \n \n s consists of lowercase English letters only.",
+  "code": "class Solution {\npublic:\n    int maxProduct(string s){int n=s.size(),full=(1<<n)-1;\n        vector<int>best(1<<n,0);\n        for(int mask=1;mask<=full;++mask){string t;\n            for(int i=0;i<n;++i)if(mask>>i&1)t+=s[i];\n            string rev=t;reverse(rev.begin(),rev.end());\n            if(t==rev)best[mask]=t.size();\n        }\n        for(int i=0;i<n;++i)for(int mask=0;mask<=full;++mask)\n            if(mask>>i&1)best[mask]=max(best[mask],best[mask^(1<<i)]);\n        int ans=0;for(int mask=0;mask<=full;++mask)\n            ans=max(ans,best[mask]*best[full^mask]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175768062",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

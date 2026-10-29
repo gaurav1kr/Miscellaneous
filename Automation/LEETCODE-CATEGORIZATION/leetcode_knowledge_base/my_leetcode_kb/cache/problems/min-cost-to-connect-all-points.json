@@ -1,0 +1,38 @@
+{
+  "id": "1584",
+  "title": "Min Cost to Connect All Points",
+  "slug": "min-cost-to-connect-all-points",
+  "url": "https://leetcode.com/problems/min-cost-to-connect-all-points/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Union-Find",
+    "Graph Theory",
+    "Minimum Spanning Tree",
+    "Prim's Algorithm",
+    "Kruskal's Algorithm",
+    "Borůvka's Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Priority queue",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an array points representing integer coordinates of some points on a 2D-plane, where points[i] = [x i , y i ] . \n \n The cost of connecting two points [x i , y i ] and [x j , y j ] is the manhattan distance between them: |x i - x j | + |y i - y j | , where |val| denotes the absolute value of val . \n \n Return the minimum cost to make all points connected. All points are connected if there is exactly one simple path between any two points. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/08/26/d.png] \n \n```\nInput:\n points = [[0,0],[2,2],[3,10],[5,2],[7,0]]\n\nOutput:\n 20\n\nExplanation:\n\nWe can connect the points as shown above to get the minimum cost of 20.\nNotice that there is a unique path between every pair of points.\n```\n\n Example 2: \n \n```\nInput:\n points = [[3,12],[-2,5],[-4,1]]\n\nOutput:\n 18\n```\n\n Constraints: \n\n 1 <= points.length <= 1000 \n \n -10 6 <= x i , y i <= 10 6 \n \n All pairs (x i , y i ) are distinct.",
+  "code": "\n#include <vector>\n#include <queue>\n#include <cmath>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minCostConnectPoints(vector<vector<int>>& points) {\n        int n = points.size();\n        vector<bool> visited(n, false);\n        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;\n        pq.push({0, 0});\n        \n        int result = 0;\n        \n        while (!pq.empty()) {\n            auto [cost, node] = pq.top(); pq.pop();\n            if (visited[node]) continue;\n            visited[node] = true;\n            result += cost;\n            \n            for (int i = 0; i < n; ++i) {\n                if (!visited[i]) {\n                    int dist = abs(points[node][0] - points[i][0]) + abs(points[node][1] - points[i][1]);\n                    pq.push({dist, i});\n                }\n            }\n        }\n        \n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592349885",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

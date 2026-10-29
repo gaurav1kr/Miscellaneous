@@ -1,0 +1,24 @@
+{
+  "id": "3870",
+  "title": "Count Commas in Range",
+  "slug": "count-commas-in-range",
+  "url": "https://leetcode.com/problems/count-commas-in-range/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given an integer n . \n \n Return the total number of commas used when writing all integers from [1, n] (inclusive) in standard number formatting. \n \n In standard formatting: \n\n A comma is inserted after every three digits from the right. \n \n Numbers with fewer than 4 digits contain no commas. \n\n Example 1: \n\n Input: n = 1002 \n \n Output: 3 \n \n Explanation: \n \n The numbers \"1,000\" , \"1,001\" , and \"1,002\" each contain one comma, giving a total of 3. \n\n Example 2: \n\n Input: n = 998 \n \n Output: 0 \n \n Explanation: \n \n All numbers from 1 to 998 have fewer than four digits. Therefore, no commas are used. \n\n Constraints: \n\n 1 <= n <= 10 5",
+  "code": "class Solution {\npublic:\n    long long countCommas(long long n) {\n        long long ans=0;\n        for(long long p=1000;p<=n;) {\n            ans+=n-p+1;\n            if(p>LLONG_MAX/1000) break;\n            p*=1000;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177774493",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

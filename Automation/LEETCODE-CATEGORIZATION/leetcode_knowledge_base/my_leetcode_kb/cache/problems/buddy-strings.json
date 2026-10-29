@@ -1,0 +1,32 @@
+{
+  "id": "859",
+  "title": "Buddy Strings",
+  "slug": "buddy-strings",
+  "url": "https://leetcode.com/problems/buddy-strings/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings s and goal , return true if you can swap two letters in s so the result is equal to goal , otherwise, return false . \n \n Swapping letters is defined as taking two indices i and j (0-indexed) such that i != j and swapping the characters at s[i] and s[j] . \n\n For example, swapping at indices 0 and 2 in \"abcd\" results in \"cbad\" . \n\n Example 1: \n \n```\nInput:\n s = \"ab\", goal = \"ba\"\n\nOutput:\n true\n\nExplanation:\n You can swap s[0] = 'a' and s[1] = 'b' to get \"ba\", which is equal to goal.\n```\n\n Example 2: \n \n```\nInput:\n s = \"ab\", goal = \"ab\"\n\nOutput:\n false\n\nExplanation:\n The only letters you can swap are s[0] = 'a' and s[1] = 'b', which results in \"ba\" != goal.\n```\n\n Example 3: \n \n```\nInput:\n s = \"aa\", goal = \"aa\"\n\nOutput:\n true\n\nExplanation:\n You can swap s[0] = 'a' and s[1] = 'a' to get \"aa\", which is equal to goal.\n```\n\n Constraints: \n\n 1 <= s.length, goal.length <= 2 * 10 4 \n \n s and goal consist of lowercase letters.",
+  "code": "#include <string>\n#include <unordered_set>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool buddyStrings(string s, string goal) {\n        if (s.size() != goal.size()) return false;\n        if (s == goal) {\n            unordered_set<char> seen(s.begin(), s.end());\n            return seen.size() < s.size();\n        }\n        vector<int> diff;\n        for (int i = 0; i < s.size(); ++i) {\n            if (s[i] != goal[i]) diff.push_back(i);\n        }\n        return diff.size() == 2 && s[diff[0]] == goal[diff[1]] && s[diff[1]] == goal[diff[0]];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591354618",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

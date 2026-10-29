@@ -1,0 +1,29 @@
+{
+  "id": "2760",
+  "title": "Longest Even Odd Subarray With Threshold",
+  "slug": "longest-even-odd-subarray-with-threshold",
+  "url": "https://leetcode.com/problems/longest-even-odd-subarray-with-threshold/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums and an integer threshold . \n \n Find the length of the longest subarray of nums starting at index l and ending at index r (0 <= l <= r < nums.length) that satisfies the following conditions: \n\n nums[l] % 2 == 0 \n \n For all indices i in the range [l, r - 1] , nums[i] % 2 != nums[i + 1] % 2 \n \n For all indices i in the range [l, r] , nums[i] <= threshold \n\n Return an integer denoting the length of the longest such subarray. \n \n Note: A subarray is a contiguous non-empty sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n nums = [3,2,5,4], threshold = 5\n\nOutput:\n 3\n\nExplanation:\n In this example, we can select the subarray that starts at l = 1 and ends at r = 3 => [2,5,4]. This subarray satisfies the conditions.\nHence, the answer is the length of the subarray, 3. We can show that 3 is the maximum possible achievable length.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2], threshold = 2\n\nOutput:\n 1\n\nExplanation:\n In this example, we can select the subarray that starts at l = 1 and ends at r = 1 => [2]. \nIt satisfies all the conditions and we can show that 1 is the maximum possible achievable length.\n```\n\n Example 3: \n \n```\nInput:\n nums = [2,3,4,5], threshold = 4\n\nOutput:\n 3\n\nExplanation:\n In this example, we can select the subarray that starts at l = 0 and ends at r = 2 => [2,3,4]. \nIt satisfies all the conditions.\nHence, the answer is the length of the subarray, 3. We can show that 3 is the maximum possible achievable length.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100 \n \n 1 <= threshold <= 100",
+  "code": "class Solution {public:int longestAlternatingSubarray(vector<int>& nums,int threshold){int n=nums.size(),ans=0,len=0;for(int i=0;i<n;++i){if(nums[i]>threshold){len=0;continue;}if(nums[i]%2==0){if(i>0&&len>0&&nums[i-1]%2==1)++len;else len=1;}else if(i>0&&len>0&&nums[i-1]%2==0)++len;else len=0;ans=max(ans,len);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176692853",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "1049",
+  "title": "Last Stone Weight II",
+  "slug": "last-stone-weight-ii",
+  "url": "https://leetcode.com/problems/last-stone-weight-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Knapsack Problem",
+    "0-1 Knapsack"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an array of integers stones where stones[i] is the weight of the i th stone. \n \n We are playing a game with the stones. On each turn, we choose any two stones and smash them together. Suppose the stones have weights x and y with x <= y . The result of this smash is: \n\n If x == y , both stones are destroyed, and \n \n If x != y , the stone of weight x is destroyed, and the stone of weight y has new weight y - x . \n\n At the end of the game, there is at most one stone left. \n \n Return the smallest possible weight of the left stone . If there are no stones left, return 0 . \n\n Example 1: \n \n```\nInput:\n stones = [2,7,4,1,8,1]\n\nOutput:\n 1\n\nExplanation:\n\nWe can combine 2 and 4 to get 2, so the array converts to [2,7,1,8,1] then,\nwe can combine 7 and 8 to get 1, so the array converts to [2,1,1,1] then,\nwe can combine 2 and 1 to get 1, so the array converts to [1,1,1] then,\nwe can combine 1 and 1 to get 0, so the array converts to [1], then that's the optimal value.\n```\n\n Example 2: \n \n```\nInput:\n stones = [31,26,33,21,40]\n\nOutput:\n 5\n```\n\n Constraints: \n\n 1 <= stones.length <= 30 \n \n 1 <= stones[i] <= 100",
+  "code": "class Solution {\npublic:\n    int lastStoneWeightII(vector<int>& stones) {\n            int sum = 0;\n    int total = 0;\n    int n = stones.size();\n    for(int i = 0;i<n;i++) {\n        total+=stones[i];\n    }\n    sum = total/2;\n    vector<vector<int>> dp(n+1,vector<int>(sum+1,0));\n    for(int i =1;i<=n;i++) {\n        for(int j = 1;j<=sum;j++) {\n            if(stones[i-1]>j) {\n                dp[i][j] = dp[i-1][j];\n            }\n            else {\n                dp[i][j] = max(dp[i-1][j],dp[i-1][j-stones[i-1]]+stones[i-1]);\n            }\n        }\n    }\n    return total-(2*dp[n][sum]);\n}\n    };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1366530350",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

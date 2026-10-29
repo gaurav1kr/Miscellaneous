@@ -1,0 +1,27 @@
+{
+  "id": "2543",
+  "title": "Check if Point Is Reachable",
+  "slug": "check-if-point-is-reachable",
+  "url": "https://leetcode.com/problems/check-if-point-is-reachable/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Number Theory",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "There exists an infinitely large grid. You are currently at point (1, 1) , and you need to reach the point (targetX, targetY) using a finite number of steps. \n \n In one step , you can move from point (x, y) to any one of the following points: \n\n (x, y - x) \n \n (x - y, y) \n \n (2 * x, y) \n \n (x, 2 * y) \n\n Given two integers targetX and targetY representing the X-coordinate and Y-coordinate of your final position, return true if you can reach the point from (1, 1) using some number of steps, and false otherwise . \n\n Example 1: \n \n```\nInput:\n targetX = 6, targetY = 9\n\nOutput:\n false\n\nExplanation:\n It is impossible to reach (6,9) from (1,1) using any sequence of moves, so false is returned.\n```\n\n Example 2: \n \n```\nInput:\n targetX = 4, targetY = 7\n\nOutput:\n true\n\nExplanation:\n You can follow the path (1,1) -> (1,2) -> (1,4) -> (1,8) -> (1,7) -> (2,7) -> (4,7).\n```\n\n Constraints: \n\n 1 <= targetX, targetY <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n bool isReachable(int targetX,int targetY){int g=targetX;int y=targetY;while(y){int z=g%y;g=y;y=z;}return (g&(g-1))==0;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176606639",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

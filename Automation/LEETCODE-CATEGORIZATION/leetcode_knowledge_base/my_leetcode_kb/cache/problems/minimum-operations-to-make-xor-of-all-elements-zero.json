@@ -1,0 +1,36 @@
+{
+  "id": "4047",
+  "title": "Minimum Operations to Make XOR of All Elements Zero",
+  "slug": "minimum-operations-to-make-xor-of-all-elements-zero",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-xor-of-all-elements-zero/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums consisting of positive integers. \n \n You may perform the following operation any number of times: \n\n Choose two distinct indices i and j such that nums[i] != nums[j] , and replace either nums[i] or nums[j] with nums[i] ^ nums[j] , where ^ denotes the bitwise XOR . \n\n Return the minimum number of operations required to make the bitwise XOR of all elements in nums equal to 0. If it is impossible, return -1. \n\n Example 1: \n\n Input: nums = [8,1,4,8,2] \n \n Output: 3 \n \n Explanation: \n \n One optimal sequence of operations is: \n\n Choose indices 0 and 1, and replace nums[0] with 8 ^ 1 = 9 . The array becomes [9, 1, 4, 8, 2] . \n \n Choose indices 2 and 3, and replace nums[3] with 4 ^ 8 = 12 . The array becomes [9, 1, 4, 12, 2] . \n \n Choose indices 0 and 4, and replace nums[0] with 9 ^ 2 = 11 . The array becomes [11, 1, 4, 12, 2] . \n\n The XOR of all elements of nums is 11 ^ 1 ^ 4 ^ 12 ^ 2 = 0 , so the answer is 3. \n\n Example 2: \n\n Input: nums = [1,2,3] \n \n Output: 0 \n \n Explanation: \n \n The XOR of all elements of nums is 1 ^ 2 ^ 3 = 0 , so no operations are required. \n\n Example 3: \n\n Input: nums = [1,2,4] \n \n Output: -1 \n \n Explanation: \n \n It is impossible to make the XOR of all elements of nums equal to 0, so the answer is -1. \n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 2000",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n    int minOperations(vector<int>& a){\n        int x=0;for(int v:a)x^=v;if(x==0)return 0;\n        vector<int>v=a;sort(v.begin(),v.end());v.erase(unique(v.begin(),v.end()),v.end());\n        if(v.size()==1)return -1;\n        vector<int>d(2048,-1);queue<int>q;q.push(0);d[0]=0;\n        while(!q.empty()){\n            int u=q.front();q.pop();\n            for(int z:v){int w=u^z;if(d[w]>=0)continue;\n                d[w]=d[u]+1;if(w==x)return d[w]<(int)a.size()?d[w]:-1;\n                q.push(w);\n            }\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181557404",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

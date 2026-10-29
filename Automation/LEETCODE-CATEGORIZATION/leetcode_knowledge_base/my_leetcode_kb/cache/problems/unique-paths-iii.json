@@ -1,0 +1,34 @@
+{
+  "id": "980",
+  "title": "Unique Paths III",
+  "slug": "unique-paths-iii",
+  "url": "https://leetcode.com/problems/unique-paths-iii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Backtracking",
+    "Bit Manipulation",
+    "Matrix",
+    "Hamiltonian Path"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an m x n integer array grid where grid[i][j] could be: \n\n 1 representing the starting square. There is exactly one starting square. \n \n 2 representing the ending square. There is exactly one ending square. \n \n 0 representing empty squares we can walk over. \n \n -1 representing obstacles that we cannot walk over. \n\n Return the number of 4-directional walks from the starting square to the ending square, that walk over every non-obstacle square exactly once . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/08/02/lc-unique1.jpg] \n \n```\nInput:\n grid = [[1,0,0,0],[0,0,0,0],[0,0,2,-1]]\n\nOutput:\n 2\n\nExplanation:\n We have the following two paths: \n1. (0,0),(0,1),(0,2),(0,3),(1,3),(1,2),(1,1),(1,0),(2,0),(2,1),(2,2)\n2. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2)\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/08/02/lc-unique2.jpg] \n \n```\nInput:\n grid = [[1,0,0,0],[0,0,0,0],[0,0,0,2]]\n\nOutput:\n 4\n\nExplanation:\n We have the following four paths: \n1. (0,0),(0,1),(0,2),(0,3),(1,3),(1,2),(1,1),(1,0),(2,0),(2,1),(2,2),(2,3)\n2. (0,0),(0,1),(1,1),(1,0),(2,0),(2,1),(2,2),(1,2),(0,2),(0,3),(1,3),(2,3)\n3. (0,0),(1,0),(2,0),(2,1),(2,2),(1,2),(1,1),(0,1),(0,2),(0,3),(1,3),(2,3)\n4. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2),(2,3)\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/08/02/lc-unique3-.jpg] \n \n```\nInput:\n grid = [[0,1],[2,0]]\n\nOutput:\n 0\n\nExplanation:\n There is no path that walks over every empty square exactly once.\nNote that the starting and ending square can be anywhere in the grid.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 20 \n \n 1 <= m * n <= 20 \n \n -1 <= grid[i][j] <= 2 \n \n There is exactly one starting cell and one ending cell.",
+  "code": "class Solution \n{\n    // Dimensions \n    int m, n;\n\n    // Direction Vectors\n    vector<int> dx = {-1, 1, 0, 0};\n    vector<int> dy = {0, 0, -1, 1};\n\npublic:\n    // function to check for the validity of CELLij\n    bool isvalid(int i, int j)\n    {\n        return i >= 0 and j >= 0 and i < m and j < n;\n    }\n\n    int dfs(int i, int j, int left, pair<int, int> dest, vector<vector<int>> &grid)\n    {\n        // Base case\n        if (left == -1 and pair<int, int>(i, j) == dest)\n            return 1;\n\n        // Mark visited\n        grid[i][j] = -1;\n\n        int ans = 0;\n        for (int k = 0; k < 4; k++)\n        {\n            int x = i + dx[k];\n            int y = j + dy[k];\n\n            // Add up all possibilities to answer\n            if (isvalid(x, y) and grid[x][y] != -1)\n                ans += dfs(x, y, left - 1, dest, grid);\n        }\n\n        // Backtrack\n        grid[i][j] = 0;\n\n        return ans;\n    }\n\n    int uniquePathsIII(vector<vector<int>> &grid)\n    {\n        m = grid.size(), n = grid[0].size();\n\n        pair<int, int> src, dest;\n        int empty = 0;\n\n        for (int i = 0; i < m; i++)\n        {\n            for (int j = 0; j < n; j++)\n            {\n                if (grid[i][j] == 0)\n                    empty++;\n                if (grid[i][j] == 1)\n                    src = {i, j};\n                if (grid[i][j] == 2)\n                    dest = {i, j};\n            }\n        }\n\n        return dfs(src.first, src.second, empty, dest, grid);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1485467846",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

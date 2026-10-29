@@ -1,0 +1,32 @@
+{
+  "id": "423",
+  "title": "Reconstruct Original Digits from English",
+  "slug": "reconstruct-original-digits-from-english",
+  "url": "https://leetcode.com/problems/reconstruct-original-digits-from-english/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s containing an out-of-order English representation of digits 0-9 , return the digits in ascending order . \n\n Example 1: \n \n```\nInput:\n s = \"owoztneoer\"\n\nOutput:\n \"012\"\n```\n \n Example 2: \n \n```\nInput:\n s = \"fviefuro\"\n\nOutput:\n \"45\"\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is one of the characters [\"e\",\"g\",\"f\",\"i\",\"h\",\"o\",\"n\",\"s\",\"r\",\"u\",\"t\",\"w\",\"v\",\"x\",\"z\"] . \n \n s is guaranteed to be valid.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string originalDigits(string s) {\n        vector<int> count(26, 0), digit(10, 0);\n        for (char c : s) count[c - 'a']++;\n\n        digit[0] = count['z' - 'a'];\n        digit[2] = count['w' - 'a'];\n        digit[4] = count['u' - 'a'];\n        digit[6] = count['x' - 'a'];\n        digit[8] = count['g' - 'a'];\n\n        digit[1] = count['o' - 'a'] - digit[0] - digit[2] - digit[4];\n        digit[3] = count['h' - 'a'] - digit[8];\n        digit[5] = count['f' - 'a'] - digit[4];\n        digit[7] = count['s' - 'a'] - digit[6];\n        digit[9] = count['i' - 'a'] - digit[5] - digit[6] - digit[8];\n\n        string res;\n        for (int i = 0; i < 10; ++i)\n            res.append(digit[i], '0' + i);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610562501",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

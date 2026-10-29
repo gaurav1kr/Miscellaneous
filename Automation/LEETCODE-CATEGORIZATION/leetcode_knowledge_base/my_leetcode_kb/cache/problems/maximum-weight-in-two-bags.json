@@ -1,0 +1,30 @@
+{
+  "id": "3647",
+  "title": "Maximum Weight in Two Bags",
+  "slug": "maximum-weight-in-two-bags",
+  "url": "https://leetcode.com/problems/maximum-weight-in-two-bags/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array weights and two integers w1 and w2 representing the maximum capacities of two bags. \n \n Each item may be placed in at most one bag such that: \n\n Bag 1 holds at most w1 total weight. \n \n Bag 2 holds at most w2 total weight. \n\n Return the maximum total weight that can be packed into the two bags. \n\n Example 1: \n\n Input: weights = [1,4,3,2], w1 = 5, w2 = 4 \n \n Output: 9 \n \n Explanation: \n\n Bag 1: Place weights[2] = 3 and weights[3] = 2 as 3 + 2 = 5 <= w1 \n \n Bag 2: Place weights[1] = 4 as 4 <= w2 \n \n Total weight: 5 + 4 = 9 \n\n Example 2: \n\n Input: weights = [3,6,4,8], w1 = 9, w2 = 7 \n \n Output: 15 \n \n Explanation: \n\n Bag 1: Place weights[3] = 8 as 8 <= w1 \n \n Bag 2: Place weights[0] = 3 and weights[2] = 4 as 3 + 4 = 7 <= w2 \n \n Total weight: 8 + 7 = 15 \n\n Example 3: \n\n Input: weights = [5,7], w1 = 2, w2 = 3 \n \n Output: 0 \n \n Explanation: \n \n No weight fits in either bag, thus the answer is 0. \n\n Constraints: \n\n 1 <= weights.length <= 100 \n \n 1 <= weights[i] <= 100 \n \n 1 <= w1, w2 <= 300",
+  "code": "class Solution {\npublic:\n    int maxWeight(vector<int>& weights,int w1,int w2) {\n        vector<vector<char>> dp(w1+1,vector<char>(w2+1,0));dp[0][0]=1;\n        for(int w:weights) {\n            for(int a=w1;a>=0;--a) for(int b=w2;b>=0;--b) {\n                if(a>=w && dp[a-w][b]) dp[a][b]=1;\n                if(b>=w && dp[a][b-w]) dp[a][b]=1;\n            }\n        }\n        int best=0;\n        for(int a=0;a<=w1;++a) for(int b=0;b<=w2;++b)\n            if(dp[a][b]) best=max(best,a+b);\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180983290",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

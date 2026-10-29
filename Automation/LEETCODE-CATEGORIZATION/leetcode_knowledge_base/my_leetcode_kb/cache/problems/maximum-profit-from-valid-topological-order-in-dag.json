@@ -1,0 +1,39 @@
+{
+  "id": "3530",
+  "title": "Maximum Profit from Valid Topological Order in DAG",
+  "slug": "maximum-profit-from-valid-topological-order-in-dag",
+  "url": "https://leetcode.com/problems/maximum-profit-from-valid-topological-order-in-dag/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Graph Theory",
+    "Topological Sort",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a Directed Acyclic Graph (DAG) with n nodes labeled from 0 to n - 1 , represented by a 2D array edges , where edges[i] = [u i , v i ] indicates a directed edge from node u i to v i . Each node has an associated score given in an array score , where score[i] represents the score of node i . \n \n You must process the nodes in a valid topological order . Each node is assigned a 1-based position in the processing order. \n \n The profit is calculated by summing up the product of each node's score and its position in the ordering. \n \n Return the maximum possible profit achievable with an optimal topological order. \n \n A topological order of a DAG is a linear ordering of its nodes such that for every directed edge u → v , node u comes before v in the ordering. \n\n Example 1: \n\n Input: n = 2, edges = [[0,1]], score = [2,3] \n \n Output: 8 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/10/screenshot-2025-03-11-at-021131.png] \n \n Node 1 depends on node 0, so a valid order is [0, 1] . \n\n Node \n Processing Order \n Score \n Multiplier \n Profit Calculation \n\n 0 \n 1st \n 2 \n 1 \n 2 × 1 = 2 \n\n 1 \n 2nd \n 3 \n 2 \n 3 × 2 = 6 \n\n The maximum total profit achievable over all valid topological orders is 2 + 6 = 8 . \n\n Example 2: \n\n Input: n = 3, edges = [[0,1],[0,2]], score = [1,6,3] \n \n Output: 25 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/10/screenshot-2025-03-11-at-023558.png] \n \n Nodes 1 and 2 depend on node 0, so the most optimal valid order is [0, 2, 1] . \n\n Node \n Processing Order \n Score \n Multiplier \n Profit Calculation \n\n 0 \n 1st \n 1 \n 1 \n 1 × 1 = 1 \n\n 2 \n 2nd \n 3 \n 2 \n 3 × 2 = 6 \n\n 1 \n 3rd \n 6 \n 3 \n 6 × 3 = 18 \n\n The maximum total profit achievable over all valid topological orders is 1 + 6 + 18 = 25 . \n\n Constraints: \n\n 1 <= n == score.length <= 22 \n \n 1 <= score[i] <= 10 5 \n \n 0 <= edges.length <= n * (n - 1) / 2 \n \n edges[i] == [u i , v i ] denotes a directed edge from u i to v i . \n \n 0 <= u i , v i < n \n \n u i != v i \n \n The input graph is guaranteed to be a DAG . \n \n There are no duplicate edges.",
+  "code": "class Solution {public:int maxProfit(int n,vector<vector<int>>&edges,vector<int>&score){vector<int> pre(n);for(auto&e:edges)pre[e[1]]|=1<<e[0];vector<long long> dp(1<<n,LLONG_MIN/4);dp[0]=0;for(int mask=0;mask<(1<<n);mask++)if(dp[mask]>LLONG_MIN/8){int pos=__builtin_popcount((unsigned)mask)+1;for(int v=0;v<n;v++)if(!(mask>>v&1)&&(pre[v]&mask)==pre[v])dp[mask|1<<v]=max(dp[mask|1<<v],dp[mask]+(long long)pos*score[v]);}return (int)dp.back();}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177563830",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

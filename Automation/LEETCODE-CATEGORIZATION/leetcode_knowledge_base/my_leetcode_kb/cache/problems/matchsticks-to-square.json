@@ -1,0 +1,36 @@
+{
+  "id": "473",
+  "title": "Matchsticks to Square",
+  "slug": "matchsticks-to-square",
+  "url": "https://leetcode.com/problems/matchsticks-to-square/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array matchsticks where matchsticks[i] is the length of the i th matchstick. You want to use all the matchsticks to make one square. You should not break any stick, but you can link them up, and each matchstick must be used exactly one time . \n \n Return true if you can make this square and false otherwise. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/09/matchsticks1-grid.jpg] \n \n```\nInput:\n matchsticks = [1,1,2,2,2]\n\nOutput:\n true\n\nExplanation:\n You can form a square with length 2, one side of the square came two sticks with length 1.\n```\n\n Example 2: \n \n```\nInput:\n matchsticks = [3,3,3,3,4]\n\nOutput:\n false\n\nExplanation:\n You cannot find a way to form a square with all the matchsticks.\n```\n\n Constraints: \n\n 1 <= matchsticks.length <= 15 \n \n 1 <= matchsticks[i] <= 10 8",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool makesquare(vector<int>& matchsticks) {\n        int sum = accumulate(matchsticks.begin(), matchsticks.end(), 0);\n        if (sum % 4 != 0) return false;\n        vector<int> sides(4, 0);\n        sort(matchsticks.rbegin(), matchsticks.rend());\n        return dfs(matchsticks, sides, 0, sum / 4);\n    }\n\n    bool dfs(vector<int>& matchsticks, vector<int>& sides, int index, int target) {\n        if (index == matchsticks.size()) {\n            return sides[0] == target && sides[1] == target && sides[2] == target;\n        }\n        \n        for (int i = 0; i < 4; i++) {\n            if (sides[i] + matchsticks[index] > target) continue;\n            sides[i] += matchsticks[index];\n            if (dfs(matchsticks, sides, index + 1, target)) return true;\n            sides[i] -= matchsticks[index];\n            if (sides[i] == 0) break;\n        }\n        \n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590148279",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

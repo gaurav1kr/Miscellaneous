@@ -1,0 +1,36 @@
+{
+  "id": "2764",
+  "title": "Is Array a Preorder of Some ‌Binary Tree",
+  "slug": "is-array-a-preorder-of-some-binary-tree",
+  "url": "https://leetcode.com/problems/is-array-a-preorder-of-some-binary-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Stack",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash set",
+    "Ordered set",
+    "Stack",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given a 0-indexed integer 2D array nodes , your task is to determine if the given array represents the preorder traversal of some binary tree. \n \n For each index i , nodes[i] = [id, parentId] , where id is the id of the node at the index i and parentId is the id of its parent in the tree (if the node has no parent, then parentId == -1 ). \n \n Return true if the given array represents the preorder traversal of some tree, and false otherwise. \n \n Note: the preorder traversal of a tree is a recursive way to traverse a tree in which we first visit the current node, then we do the preorder traversal for the left child, and finally, we do it for the right child. \n\n Example 1: \n \n```\nInput:\n nodes = [[0,-1],[1,0],[2,0],[3,2],[4,2]]\n\nOutput:\n true\n\nExplanation:\n The given nodes make the tree in the picture below.\nWe can show that this is the preorder traversal of the tree, first we visit node 0, then we do the preorder traversal of the right child which is [1], then we do the preorder traversal of the left child which is [2,3,4].\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/07/04/1.png] \n \n Example 2: \n \n```\nInput:\n nodes = [[0,-1],[1,0],[2,0],[3,1],[4,1]]\n\nOutput:\n false\n\nExplanation:\n The given nodes make the tree in the picture below.\nFor the preorder traversal, first we visit node 0, then we do the preorder traversal of the right child which is [1,3,4], but we can see that in the given order, 2 comes between 1 and 3, so, it's not the preorder traversal of the tree.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/07/04/2.png] \n\n Constraints: \n\n 1 <= nodes.length <= 10 5 \n \n nodes[i].length == 2 \n \n 0 <= nodes[i][0] <= 10 5 \n \n -1 <= nodes[i][1] <= 10 5 \n \n The input is generated such that nodes make a binary tree.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isPreorder(vector<vector<int>>& nodes) {\n        if (nodes.empty() || nodes[0][1] != -1) return false;\n        unordered_set<int> seen;\n        vector<int> ancestors;\n        for (auto& node : nodes) {\n            int id = node[0], parent = node[1];\n            if (!seen.insert(id).second) return false;\n            while (!ancestors.empty() && ancestors.back() != parent) ancestors.pop_back();\n            if (parent != -1 && ancestors.empty()) return false;\n            if (parent == -1 && !ancestors.empty()) return false;\n            ancestors.push_back(id);\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178905333",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

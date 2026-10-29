@@ -1,0 +1,33 @@
+{
+  "id": "1542",
+  "title": "Find Longest Awesome Substring",
+  "slug": "find-longest-awesome-substring",
+  "url": "https://leetcode.com/problems/find-longest-awesome-substring/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "You are given a string s . An awesome substring is a non-empty substring of s such that we can make any number of swaps in order to make it a palindrome. \n \n Return the length of the maximum length awesome substring of s . \n\n Example 1: \n \n```\nInput:\n s = \"3242415\"\n\nOutput:\n 5\n\nExplanation:\n \"24241\" is the longest awesome substring, we can form the palindrome \"24142\" with some swaps.\n```\n\n Example 2: \n \n```\nInput:\n s = \"12345678\"\n\nOutput:\n 1\n```\n\n Example 3: \n \n```\nInput:\n s = \"213123\"\n\nOutput:\n 6\n\nExplanation:\n \"213123\" is the longest awesome substring, we can form the palindrome \"231132\" with some swaps.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists only of digits.",
+  "code": "#include <string>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int longestAwesome(string s) {\n        unordered_map<int, int> seen;\n        seen[0] = -1;\n        int mask = 0, res = 0;\n        for (int i = 0; i < s.size(); ++i) {\n            mask ^= 1 << (s[i] - '0');\n            if (seen.count(mask)) res = max(res, i - seen[mask]);\n            for (int j = 0; j < 10; ++j) {\n                int alt = mask ^ (1 << j);\n                if (seen.count(alt)) res = max(res, i - seen[alt]);\n            }\n            if (!seen.count(mask)) seen[mask] = i;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610577338",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

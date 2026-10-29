@@ -1,0 +1,40 @@
+{
+  "id": "1686",
+  "title": "Stone Game VI",
+  "slug": "stone-game-vi",
+  "url": "https://leetcode.com/problems/stone-game-vi/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Greedy",
+    "Minimax",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Game Theory",
+    "Zero-Sum Game"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Alice and Bob take turns playing a game, with Alice starting first. \n \n There are n stones in a pile. On each player's turn, they can remove a stone from the pile and receive points based on the stone's value. Alice and Bob may value the stones differently . \n \n You are given two integer arrays of length n , aliceValues and bobValues . Each aliceValues[i] and bobValues[i] represents how Alice and Bob, respectively, value the i th stone. \n \n The winner is the person with the most points after all the stones are chosen. If both players have the same amount of points, the game results in a draw. Both players will play optimally . Both players know the other's values. \n \n Determine the result of the game, and: \n\n If Alice wins, return 1 . \n \n If Bob wins, return -1 . \n \n If the game results in a draw, return 0 . \n\n Example 1: \n \n```\nInput:\n aliceValues = [1,3], bobValues = [2,1]\n\nOutput:\n 1\n\nExplanation:\n\nIf Alice takes stone 1 (0-indexed) first, Alice will receive 3 points.\nBob can only choose stone 0, and will only receive 2 points.\nAlice wins.\n```\n\n Example 2: \n \n```\nInput:\n aliceValues = [1,2], bobValues = [3,1]\n\nOutput:\n 0\n\nExplanation:\n\nIf Alice takes stone 0, and Bob takes stone 1, they will both have 1 point.\nDraw.\n```\n\n Example 3: \n \n```\nInput:\n aliceValues = [2,4,3], bobValues = [1,6,7]\n\nOutput:\n -1\n\nExplanation:\n\nRegardless of how Alice plays, Bob will be able to have more points than Alice.\nFor example, if Alice takes stone 1, Bob can take stone 2, and Alice takes stone 0, Alice will have 6 points to Bob's 7.\nBob wins.\n```\n\n Constraints: \n\n n == aliceValues.length == bobValues.length \n \n 1 <= n <= 10 5 \n \n 1 <= aliceValues[i], bobValues[i] <= 100",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int stoneGameVI(vector<int>& A, vector<int>& B) {\n        int n = A.size(), score = 0;\n        vector<tuple<int, int, int>> stones;\n        for (int i = 0; i < n; ++i)\n            stones.emplace_back(A[i] + B[i], A[i], B[i]);\n        sort(stones.rbegin(), stones.rend());\n        for (int i = 0; i < n; ++i) {\n            if (i % 2 == 0) score += get<1>(stones[i]);\n            else score -= get<2>(stones[i]);\n        }\n        return score > 0 ? 1 : score < 0 ? -1 : 0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610600493",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

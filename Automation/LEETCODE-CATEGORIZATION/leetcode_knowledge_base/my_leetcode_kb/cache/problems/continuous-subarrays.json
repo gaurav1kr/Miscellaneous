@@ -1,0 +1,40 @@
+{
+  "id": "2762",
+  "title": "Continuous Subarrays",
+  "slug": "continuous-subarrays",
+  "url": "https://leetcode.com/problems/continuous-subarrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Queue",
+    "Sliding Window",
+    "Heap (Priority Queue)",
+    "Ordered Set",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Heap / Priority Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Deque",
+    "Monotonic deque",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . A subarray of nums is called continuous if: \n\n Let i , i + 1 , ..., j be the indices in the subarray. Then, for each pair of indices i <= i 1 , i 2 <= j , 0 <= |nums[i 1 ] - nums[i 2 ]| <= 2 . \n\n Return the total number of continuous subarrays. \n \n A subarray is a contiguous non-empty sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n nums = [5,4,2,4]\n\nOutput:\n 8\n\nExplanation:\n \nContinuous subarray of size 1: [5], [4], [2], [4].\nContinuous subarray of size 2: [5,4], [4,2], [2,4].\nContinuous subarray of size 3: [4,2,4].\nThere are no subarrys of size 4.\nTotal continuous subarrays = 4 + 3 + 1 = 8.\nIt can be shown that there are no more continuous subarrays.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n 6\n\nExplanation:\n \nContinuous subarray of size 1: [1], [2], [3].\nContinuous subarray of size 2: [1,2], [2,3].\nContinuous subarray of size 3: [1,2,3].\nTotal continuous subarrays = 3 + 2 + 1 = 6.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {public: long long continuousSubarrays(vector<int>& nums) {deque<int> lo,hi; long long ans=0; int l=0; for(int r=0;r<(int)nums.size();++r){while(!lo.empty()&&nums[lo.back()]>=nums[r])lo.pop_back(); while(!hi.empty()&&nums[hi.back()]<=nums[r])hi.pop_back();lo.push_back(r);hi.push_back(r);while(nums[hi.front()]-nums[lo.front()]>2){if(lo.front()==l)lo.pop_front();if(hi.front()==l)hi.pop_front();++l;}ans+=r-l+1;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176693761",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

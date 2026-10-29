@@ -1,0 +1,31 @@
+{
+  "id": "205",
+  "title": "Isomorphic Strings",
+  "slug": "isomorphic-strings",
+  "url": "https://leetcode.com/problems/isomorphic-strings/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given two strings s and t , determine if they are isomorphic . \n \n Two strings s and t are isomorphic if the characters in s can be replaced to get t . \n \n All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself. \n\n Example 1: \n\n Input: s = \"egg\", t = \"add\" \n \n Output: true \n \n Explanation: \n \n The strings s and t can be made identical by: \n\n Mapping 'e' to 'a' . \n \n Mapping 'g' to 'd' . \n\n Example 2: \n\n Input: s = \"f11\", t = \"b23\" \n \n Output: false \n \n Explanation: \n \n The strings s and t can not be made identical as '1' needs to be mapped to both '2' and '3' . \n\n Example 3: \n\n Input: s = \"paper\", t = \"title\" \n \n Output: true \n\n Constraints: \n\n 1 <= s.length <= 5 * 10 4 \n \n t.length == s.length \n \n s and t consist of any valid ascii character.",
+  "code": "class Solution {\npublic:\n    bool isIsomorphic(string s, string t) {\n        unordered_map<char, char> s_map, t_map;\n        for (int i = 0; i < s.size(); i++) {\n            if (s_map[s[i]] && s_map[s[i]] != t[i]) return false;\n            if (t_map[t[i]] && t_map[t[i]] != s[i]) return false;\n            s_map[s[i]] = t[i];\n            t_map[t[i]] = s[i];\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588099080",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

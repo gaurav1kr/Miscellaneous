@@ -1,0 +1,32 @@
+{
+  "id": "4041",
+  "title": "Minimum Operations to Form Subset Sum II",
+  "slug": "minimum-operations-to-form-subset-sum-ii",
+  "url": "https://leetcode.com/problems/minimum-operations-to-form-subset-sum-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer sum . \n \n In one operation , choose an element with current value x and replace it with either 2 * x or floor(x / 2) . \n \n For each element, multiplication and division operations may be performed in any order. \n \n Return the minimum number of operations needed so that some subset of the resulting array has a sum exactly equal to sum . If it is impossible, return -1. \n \n The floor() function returns the integer part of the division. \n\n Example 1: \n\n Input: nums = [10,2], sum = 13 \n \n Output: 3 \n \n Explanation: \n\n Divide nums[0] = 10 once: 10 → 5 , costing 1 operation. \n \n Multiply nums[1] = 2 twice: 2 → 4 → 8 , costing 2 operations. \n \n After these operations, nums = [5, 8] . The subset {5, 8} sums to 13 using 3 operations in total. \n\n Example 2: \n\n Input: nums = [6,3], sum = 8 \n \n Output: 2 \n \n Explanation: ​​​​​​​ \n\n Turn nums[1] = 3 into 2 using 2 operations:\n\n Divide nums[1] to get 1. \n \n Multiply nums[1] = 1 to get 2. \n\n After these operations, nums = [6, 2] . The subset {6, 2} sums to 8 using 2 operations in total. \n\n Example 3: \n\n Input: nums = [2,2], sum = 7 \n \n Output: -1 \n \n Explanation: \n\n No sequence of operations lets a subset of nums sum to 7, so the answer is -1. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 500 \n \n 1 <= sum <= 5000",
+  "code": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, int target) {\n        const int INF = 1e9;\n\n        // dp[s] = minimum operations to form sum s\n        vector<int> dp(target + 1, INF);\n        dp[0] = 0;\n\n        for (int x : nums) {\n\n            // Generate only reachable values.\n            // best[v] = minimum cost to transform x -> v\n            vector<pair<int, int> > options;\n\n            // Temporarily keep best cost.\n            unordered_map<int, int> best;\n\n            int cur = x;\n            int divOps = 0;\n\n            // x -> x/2 -> x/4 -> ...\n            while (cur > 0) {\n\n                long long value = cur;\n                int mulOps = 0;\n\n                // Then multiply by 2 repeatedly.\n                while (value <= target) {\n\n                    int v = (int)value;\n                    int cost = divOps + mulOps;\n\n                    auto it = best.find(v);\n\n                    if (it == best.end() || cost < it->second)\n                        best[v] = cost;\n\n                    value *= 2;\n                    ++mulOps;\n                }\n\n                cur /= 2;\n                ++divOps;\n            }\n\n            // Convert to compact list.\n            for (auto &p : best) {\n                options.push_back({p.first, p.second});\n            }\n\n            // 0/1 knapsack\n            vector<int> next = dp;\n\n            for (int s = 0; s <= target; ++s) {\n\n                if (dp[s] == INF)\n                    continue;\n\n                for (int j = 0; j < (int)options.size(); ++j) {\n\n                    int value = options[j].first;\n                    int cost  = options[j].second;\n\n                    if (s + value <= target) {\n                        next[s + value] =\n                            min(next[s + value],\n                                dp[s] + cost);\n                    }\n                }\n            }\n\n            dp.swap(next);\n\n            // Can't do better than 0 operations.\n            if (dp[target] == 0)\n                return 0;\n        }\n\n        return dp[target] == INF ? -1 : dp[target];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163645696",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

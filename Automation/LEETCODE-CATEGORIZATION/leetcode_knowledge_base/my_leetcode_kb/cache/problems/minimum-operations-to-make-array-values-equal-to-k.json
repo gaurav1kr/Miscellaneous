@@ -1,0 +1,32 @@
+{
+  "id": "3375",
+  "title": "Minimum Operations to Make Array Values Equal to K",
+  "slug": "minimum-operations-to-make-array-values-equal-to-k",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-array-values-equal-to-k/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n An integer h is called valid if all values in the array that are strictly greater than h are identical . \n \n For example, if nums = [10, 8, 10, 8] , a valid integer is h = 9 because all nums[i] > 9  are equal to 10, but 5 is not a valid integer. \n \n You are allowed to perform the following operation on nums : \n\n Select an integer h that is valid for the current values in nums . \n \n For each index i where nums[i] > h , set nums[i] to h . \n\n Return the minimum number of operations required to make every element in nums equal to k . If it is impossible to make all elements equal to k , return -1. \n\n Example 1: \n\n Input: nums = [5,2,5,4,5], k = 2 \n \n Output: 2 \n \n Explanation: \n \n The operations can be performed in order using valid integers 4 and then 2. \n\n Example 2: \n\n Input: nums = [2,1,2], k = 2 \n \n Output: -1 \n \n Explanation: \n \n It is impossible to make all the values equal to 2. \n\n Example 3: \n\n Input: nums = [9,7,5,3], k = 1 \n \n Output: 4 \n \n Explanation: \n \n The operations can be performed using valid integers in the order 7, 5, 3, and 1. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100 \n \n 1 <= k <= 100",
+  "code": "class Solution {public:int minOperations(vector<int>&nums,int k){unordered_set<int>s;for(int x:nums){if(x<k)return -1;if(x>k)s.insert(x);}return s.size();}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177472278",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

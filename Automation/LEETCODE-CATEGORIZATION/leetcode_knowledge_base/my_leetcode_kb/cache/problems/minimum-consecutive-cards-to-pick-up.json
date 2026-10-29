@@ -1,0 +1,34 @@
+{
+  "id": "2260",
+  "title": "Minimum Consecutive Cards to Pick Up",
+  "slug": "minimum-consecutive-cards-to-pick-up",
+  "url": "https://leetcode.com/problems/minimum-consecutive-cards-to-pick-up/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array cards where cards[i] represents the value of the i th card. A pair of cards are matching if the cards have the same value. \n \n Return the minimum number of consecutive cards you have to pick up to have a pair of matching cards among the picked cards. If it is impossible to have matching cards, return -1 . \n\n Example 1: \n \n```\nInput:\n cards = [3,4,2,3,4,7]\n\nOutput:\n 4\n\nExplanation:\n We can pick up the cards [3,4,2,3] which contain a matching pair of cards with value 3. Note that picking up the cards [4,2,3,4] is also optimal.\n```\n\n Example 2: \n \n```\nInput:\n cards = [1,0,5,3]\n\nOutput:\n -1\n\nExplanation:\n There is no way to pick up a set of consecutive cards that contain a pair of matching cards.\n```\n\n Constraints: \n\n 1 <= cards.length <= 10 5 \n \n 0 <= cards[i] <= 10 6",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:int minimumCardPickup(vector<int>& cards){unordered_map<int,int> last;int ans=INT_MAX;for(int i=0;i<(int)cards.size();++i){if(last.count(cards[i]))ans=min(ans,i-last[cards[i]]+1);last[cards[i]]=i;}return ans==INT_MAX?-1:ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175899765",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

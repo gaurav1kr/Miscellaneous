@@ -1,0 +1,35 @@
+{
+  "id": "96",
+  "title": "Unique Binary Search Trees",
+  "slug": "unique-binary-search-trees",
+  "url": "https://leetcode.com/problems/unique-binary-search-trees/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Tree",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given an integer n , return the number of structurally unique BST' s (binary search trees) which has exactly n nodes of unique values from 1 to n . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/18/uniquebstn3.jpg] \n \n```\nInput:\n n = 3\n\nOutput:\n 5\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= n <= 19",
+  "code": "#include <vector>\n\nclass Solution {\npublic:\n    int numTrees(int n) {\n        std::vector<int> dp(n + 1, 0);\n        dp[0] = 1; // Base case: Empty tree\n        dp[1] = 1; // Base case: Tree with one node\n\n        for (int i = 2; i <= n; ++i) { // Compute dp[i] for all 2 <= i <= n\n            for (int j = 1; j <= i; ++j) { // Consider each node as root\n                dp[i] += dp[j - 1] * dp[i - j];\n            }\n        }\n\n        return dp[n];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542019915",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

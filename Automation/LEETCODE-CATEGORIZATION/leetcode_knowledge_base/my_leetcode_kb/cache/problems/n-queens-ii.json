@@ -1,0 +1,27 @@
+{
+  "id": "52",
+  "title": "N-Queens II",
+  "slug": "n-queens-ii",
+  "url": "https://leetcode.com/problems/n-queens-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Backtracking",
+    "Algorithm X"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other. \n \n Given an integer n , return the number of distinct solutions to the  n-queens puzzle . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/13/queens.jpg] \n \n```\nInput:\n n = 4\n\nOutput:\n 2\n\nExplanation:\n There are two distinct solutions to the 4-queens puzzle as shown.\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= n <= 9",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int totalNQueens(int n) {\n        vector<int> cols(n, 0), diag1(2 * n, 0), diag2(2 * n, 0);\n        return solve(0, n, cols, diag1, diag2);\n    }\n\n    int solve(int row, int n, vector<int>& cols, vector<int>& diag1, vector<int>& diag2) {\n        if (row == n) return 1;\n        int count = 0;\n        for (int col = 0; col < n; col++) {\n            if (cols[col] || diag1[row - col + n] || diag2[row + col]) continue;\n            cols[col] = diag1[row - col + n] = diag2[row + col] = 1;\n            count += solve(row + 1, n, cols, diag1, diag2);\n            cols[col] = diag1[row - col + n] = diag2[row + col] = 0;\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590156039",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

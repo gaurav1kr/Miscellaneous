@@ -1,0 +1,30 @@
+{
+  "id": "3196",
+  "title": "Maximize Total Cost of Alternating Subarrays",
+  "slug": "maximize-total-cost-of-alternating-subarrays",
+  "url": "https://leetcode.com/problems/maximize-total-cost-of-alternating-subarrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums with length n . \n \n The cost of a subarray nums[l..r] , where 0 <= l <= r < n , is defined as: \n \n cost(l, r) = nums[l] - nums[l + 1] + ... + nums[r] * (−1) r − l \n \n Your task is to split nums into subarrays such that the total cost of the subarrays is maximized , ensuring each element belongs to exactly one subarray. \n \n Formally, if nums is split into k subarrays, where k > 1 , at indices i 1 , i 2 , ..., i k − 1 , where 0 <= i 1 < i 2 < ... < i k - 1 < n - 1 , then the total cost will be: \n \n cost(0, i 1 ) + cost(i 1 + 1, i 2 ) + ... + cost(i k − 1 + 1, n − 1) \n \n Return an integer denoting the maximum total cost of the subarrays after splitting the array optimally. \n \n Note: If nums is not split into subarrays, i.e. k = 1 , the total cost is simply cost(0, n - 1) . \n\n Example 1: \n\n Input: nums = [1,-2,3,4] \n \n Output: 10 \n \n Explanation: \n \n One way to maximize the total cost is by splitting [1, -2, 3, 4] into subarrays [1, -2, 3] and [4] . The total cost will be (1 + 2 + 3) + 4 = 10 . \n\n Example 2: \n\n Input: nums = [1,-1,1,-1] \n \n Output: 4 \n \n Explanation: \n \n One way to maximize the total cost is by splitting [1, -1, 1, -1] into subarrays [1, -1] and [1, -1] . The total cost will be (1 + 1) + (1 + 1) = 4 . \n\n Example 3: \n\n Input: nums = [0] \n \n Output: 0 \n \n Explanation: \n \n We cannot split the array further, so the answer is 0. \n\n Example 4: \n\n Input: nums = [1,-1] \n \n Output: 2 \n \n Explanation: \n \n Selecting the whole array gives a total cost of 1 + 1 = 2 , which is the maximum. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 9 <= nums[i] <= 10 9",
+  "code": "class Solution {public:long long maximumTotalCost(vector<int>& nums){long long plus=nums[0],minus=LLONG_MIN/4;for(int i=1;i<(int)nums.size();++i){long long np=max(plus,minus)+nums[i];long long nm=plus-nums[i];plus=np;minus=nm;}return max(plus,minus);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177418430",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

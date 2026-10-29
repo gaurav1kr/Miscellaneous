@@ -1,0 +1,36 @@
+{
+  "id": "743",
+  "title": "Network Delay Time",
+  "slug": "network-delay-time",
+  "url": "https://leetcode.com/problems/network-delay-time/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path",
+    "Dijkstra's Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a network of n nodes, labeled from 1 to n . You are also given times , a list of travel times as directed edges times[i] = (u i , v i , w i ) , where u i is the source node, v i is the target node, and w i is the time it takes for a signal to travel from source to target. \n \n We will send a signal from a given node k . Return the minimum time it takes for all the n nodes to receive the signal . If it is impossible for all the n nodes to receive the signal, return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/05/23/931_example_1.png] \n \n```\nInput:\n times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2\n\nOutput:\n 2\n```\n\n Example 2: \n \n```\nInput:\n times = [[1,2,1]], n = 2, k = 1\n\nOutput:\n 1\n```\n\n Example 3: \n \n```\nInput:\n times = [[1,2,1]], n = 2, k = 2\n\nOutput:\n -1\n```\n\n Constraints: \n\n 1 <= k <= n <= 100 \n \n 1 <= times.length <= 6000 \n \n times[i].length == 3 \n \n 1 <= u i , v i <= n \n \n u i != v i \n \n 0 <= w i <= 100 \n \n All the pairs (u i , v i ) are unique . (i.e., no multiple edges.)",
+  "code": "\nclass Solution {\npublic:\n    int networkDelayTime(vector<vector<int>>& times, int n, int k) {\n        \n        vector<vector<pair<int, int>>> graph(n + 1);\n        for (auto& t : times) {\n            int src = t[0], des = t[1], time = t[2];\n            graph[src].push_back({des, time});\n        }\n\n       \n        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;\n        vector<int> dist(n + 1, INT_MAX);\n        \n        dist[k] = 0;\n        pq.push({0, k}); // {time, node}\n\n        while (!pq.empty()) {\n            auto [cost, node] = pq.top();\n            pq.pop();\n\n            if (cost > dist[node]) continue;\n            \n            for (auto& [neighbor, weight] : graph[node]) {\n                if (cost + weight < dist[neighbor]) {\n                    dist[neighbor] = cost + weight;\n                    pq.push({dist[neighbor], neighbor});\n                }\n            }\n        }\n\n        int ans = 0;\n        for (int i = 1; i <= n; i++) {\n            if (dist[i] == INT_MAX) return -1;\n            ans = max(ans, dist[i]);\n        }\n\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1534141062",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

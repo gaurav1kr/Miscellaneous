@@ -1,0 +1,40 @@
+{
+  "id": "1525",
+  "title": "Number of Good Ways to Split a String",
+  "slug": "number-of-good-ways-to-split-a-string",
+  "url": "https://leetcode.com/problems/number-of-good-ways-to-split-a-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s . \n \n A split is called good if you can split s into two non-empty strings s left and s right where their concatenation is equal to s (i.e., s left + s right = s ) and the number of distinct letters in s left and s right is the same. \n \n Return the number of good splits you can make in s . \n\n Example 1: \n \n```\nInput:\n s = \"aacaba\"\n\nOutput:\n 2\n\nExplanation:\n There are 5 ways to split \n\"aacaba\"\n and 2 of them are good. \n(\"a\", \"acaba\") Left string and right string contains 1 and 3 different letters respectively.\n(\"aa\", \"caba\") Left string and right string contains 1 and 3 different letters respectively.\n(\"aac\", \"aba\") Left string and right string contains 2 and 2 different letters respectively (good split).\n(\"aaca\", \"ba\") Left string and right string contains 2 and 2 different letters respectively (good split).\n(\"aacab\", \"a\") Left string and right string contains 3 and 1 different letters respectively.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abcd\"\n\nOutput:\n 1\n\nExplanation:\n Split the string as follows (\"ab\", \"cd\").\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of only lowercase English letters.",
+  "code": "#include <string>\n#include <vector>\n#include <unordered_set>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numSplits(string s) {\n        int n = s.size();\n        vector<int> left(n), right(n);\n        unordered_set<char> uniqueLeft, uniqueRight;\n\n        for (int i = 0; i < n; i++) {\n            uniqueLeft.insert(s[i]);\n            left[i] = uniqueLeft.size();\n        }\n\n        for (int i = n - 1; i >= 0; i--) {\n            uniqueRight.insert(s[i]);\n            right[i] = uniqueRight.size();\n        }\n\n        int count = 0;\n        for (int i = 0; i < n - 1; i++) {\n            if (left[i] == right[i + 1]) count++;\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591372721",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

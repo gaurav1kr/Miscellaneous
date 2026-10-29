@@ -1,0 +1,38 @@
+{
+  "id": "3542",
+  "title": "Minimum Operations to Convert All Elements to Zero",
+  "slug": "minimum-operations-to-convert-all-elements-to-zero",
+  "url": "https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an array nums of size n , consisting of non-negative integers. Your task is to apply some (possibly zero) operations on the array so that all elements become 0. \n \n In one operation, you can select a subarray [i, j] (where 0 <= i <= j < n ) and set all occurrences of the minimum non-negative integer in that subarray to 0. \n \n Return the minimum number of operations required to make all elements in the array 0. \n\n Example 1: \n\n Input: nums = [0,2] \n \n Output: 1 \n \n Explanation: \n\n Select the subarray [1,1] (which is [2] ), where the minimum non-negative integer is 2. Setting all occurrences of 2 to 0 results in [0,0] . \n \n Thus, the minimum number of operations required is 1. \n\n Example 2: \n\n Input: nums = [3,1,2,1] \n \n Output: 3 \n \n Explanation: \n\n Select subarray [1,3] (which is [1,2,1] ), where the minimum non-negative integer is 1. Setting all occurrences of 1 to 0 results in [3,0,2,0] . \n \n Select subarray [2,2] (which is [2] ), where the minimum non-negative integer is 2. Setting all occurrences of 2 to 0 results in [3,0,0,0] . \n \n Select subarray [0,0] (which is [3] ), where the minimum non-negative integer is 3. Setting all occurrences of 3 to 0 results in [0,0,0,0] . \n \n Thus, the minimum number of operations required is 3. \n\n Example 3: \n\n Input: nums = [1,2,1,2,1,2] \n \n Output: 4 \n \n Explanation: \n\n Select subarray [0,5] (which is [1,2,1,2,1,2] ), where the minimum non-negative integer is 1. Setting all occurrences of 1 to 0 results in [0,2,0,2,0,2] . \n \n Select subarray [1,1] (which is [2] ), where the minimum non-negative integer is 2. Setting all occurrences of 2 to 0 results in [0,0,0,2,0,2] . \n \n Select subarray [3,3] (which is [2] ), where the minimum non-negative integer is 2. Setting all occurrences of 2 to 0 results in [0,0,0,0,0,2] . \n \n Select subarray [5,5] (which is [2] ), where the minimum non-negative integer is 2. Setting all occurrences of 2 to 0 results in [0,0,0,0,0,0] . \n \n Thus, the minimum number of operations required is 4. \n\n Constraints: \n\n 1 <= n == nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5",
+  "code": "class Solution {public:int minOperations(vector<int>&nums){vector<int>st;int ans=0;for(int x:nums){while(!st.empty()&&st.back()>x)st.pop_back();if(x>0&&(st.empty()||st.back()<x)){st.push_back(x);ans++;}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177570777",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

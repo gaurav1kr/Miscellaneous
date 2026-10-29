@@ -1,0 +1,27 @@
+{
+  "id": "293",
+  "title": "Flip Game",
+  "slug": "flip-game",
+  "url": "https://leetcode.com/problems/flip-game/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are playing a Flip Game with your friend. \n \n You are given a string currentState that contains only '+' and '-' . You and your friend take turns to flip two consecutive \"++\" into \"--\" . The game ends when a person can no longer make a move, and therefore the other person will be the winner. \n \n Return all possible states of the string currentState after one valid move . You may return the answer in any order . If there is no valid move, return an empty list [] . \n\n Example 1: \n \n```\nInput:\n currentState = \"++++\"\n\nOutput:\n [\"--++\",\"+--+\",\"++--\"]\n```\n\n Example 2: \n \n```\nInput:\n currentState = \"+\"\n\nOutput:\n []\n```\n\n Constraints: \n\n 1 <= currentState.length <= 500 \n \n currentState[i] is either '+' or '-' .",
+  "code": "class Solution\n{\npublic:\n    vector<string> generatePossibleNextMoves(string currentState) {\n        vector<string> result;\n        for (int i = 0; i + 1 < (int)currentState.size(); ++i)\n        {\n            if (currentState[i] == '+' && currentState[i + 1] == '+')\n            {\n                string next = currentState;\n                next[i] = '-';\n                next[i + 1] = '-';\n                result.push_back(next);\n            }\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178447792",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

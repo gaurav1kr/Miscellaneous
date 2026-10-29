@@ -1,0 +1,32 @@
+{
+  "id": "1465",
+  "title": "Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts",
+  "slug": "maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts",
+  "url": "https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a rectangular cake of size h x w and two arrays of integers horizontalCuts and verticalCuts where: \n\n horizontalCuts[i] is the distance from the top of the rectangular cake to the i th horizontal cut and similarly, and \n \n verticalCuts[j] is the distance from the left of the rectangular cake to the j th vertical cut. \n\n Return the maximum area of a piece of cake after you cut at each horizontal and vertical position provided in the arrays horizontalCuts and verticalCuts . Since the answer can be a large number, return this modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/05/14/leetcode_max_area_2.png] \n \n```\nInput:\n h = 5, w = 4, horizontalCuts = [1,2,4], verticalCuts = [1,3]\n\nOutput:\n 4 \n\nExplanation:\n The figure above represents the given rectangular cake. Red lines are the horizontal and vertical cuts. After you cut the cake, the green piece of cake has the maximum area.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/05/14/leetcode_max_area_3.png] \n \n```\nInput:\n h = 5, w = 4, horizontalCuts = [3,1], verticalCuts = [1]\n\nOutput:\n 6\n\nExplanation:\n The figure above represents the given rectangular cake. Red lines are the horizontal and vertical cuts. After you cut the cake, the green and yellow pieces of cake have the maximum area.\n```\n\n Example 3: \n \n```\nInput:\n h = 5, w = 4, horizontalCuts = [3], verticalCuts = [3]\n\nOutput:\n 9\n```\n\n Constraints: \n\n 2 <= h, w <= 10 9 \n \n 1 <= horizontalCuts.length <= min(h - 1, 10 5 ) \n \n 1 <= verticalCuts.length <= min(w - 1, 10 5 ) \n \n 1 <= horizontalCuts[i] < h \n \n 1 <= verticalCuts[i] < w \n \n All the elements in horizontalCuts are distinct. \n \n All the elements in verticalCuts are distinct.",
+  "code": "\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxArea(int h, int w, vector<int>& horizontalCuts, vector<int>& verticalCuts) {\n        horizontalCuts.push_back(0);\n        horizontalCuts.push_back(h);\n        verticalCuts.push_back(0);\n        verticalCuts.push_back(w);\n        \n        sort(horizontalCuts.begin(), horizontalCuts.end());\n        sort(verticalCuts.begin(), verticalCuts.end());\n        \n        int maxH = 0, maxV = 0;\n        for (int i = 1; i < horizontalCuts.size(); ++i) {\n            maxH = max(maxH, horizontalCuts[i] - horizontalCuts[i - 1]);\n        }\n        \n        for (int i = 1; i < verticalCuts.size(); ++i) {\n            maxV = max(maxV, verticalCuts[i] - verticalCuts[i - 1]);\n        }\n        \n        return (long long)maxH * maxV % 1000000007;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592340326",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

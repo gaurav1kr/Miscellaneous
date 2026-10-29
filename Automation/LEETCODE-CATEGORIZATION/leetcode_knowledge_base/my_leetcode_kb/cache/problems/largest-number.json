@@ -1,0 +1,35 @@
+{
+  "id": "179",
+  "title": "Largest Number",
+  "slug": "largest-number",
+  "url": "https://leetcode.com/problems/largest-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a list of non-negative integers nums , arrange them such that they form the largest number and return it. \n \n Since the result may be very large, so you need to return a string instead of an integer. \n\n Example 1: \n \n```\nInput:\n nums = [10,2]\n\nOutput:\n \"210\"\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,30,34,5,9]\n\nOutput:\n \"9534330\"\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 0 <= nums[i] <= 10 9",
+  "code": "class Solution {\npublic:\n    string largestNumber(vector<int>& nums) {\n        // Convert integers to strings\n        vector<string> strNums;\n        for (int num : nums) {\n            strNums.push_back(to_string(num));\n        }\n\n        // Custom comparator to sort strings in the desired order\n        sort(strNums.begin(), strNums.end(), [](const string& a, const string& b) {\n            return a + b > b + a;\n        });\n\n        // If the largest number is \"0\", the entire number is \"0\"\n        if (strNums[0] == \"0\") {\n            return \"0\";\n        }\n\n        // Concatenate sorted strings to form the largest number\n        string result;\n        for (const string& str : strNums) {\n            result += str;\n        }\n\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536881737",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1672",
+  "title": "Richest Customer Wealth",
+  "slug": "richest-customer-wealth",
+  "url": "https://leetcode.com/problems/richest-customer-wealth/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an m x n integer grid accounts where accounts[i][j] is the amount of money the i​​​​​ ​​​​​​th ​​​​ customer has in the j​​​​​ ​​​​​​th ​​​​ bank. Return the wealth that the richest customer has. \n \n A customer's wealth is the amount of money they have in all their bank accounts. The richest customer is the customer that has the maximum wealth . \n\n Example 1: \n \n```\nInput:\n accounts = [[1,2,3],[3,2,1]]\n\nOutput:\n 6\n\nExplanation\n:\n\n1st customer has wealth = 1 + 2 + 3 = 6\n\n2nd customer has wealth = 3 + 2 + 1 = 6\n\nBoth customers are considered the richest with a wealth of 6 each, so return 6.\n```\n\n Example 2: \n \n```\nInput:\n accounts = [[1,5],[7,3],[3,5]]\n\nOutput:\n 10\n\nExplanation\n: \n1st customer has wealth = 6\n2nd customer has wealth = 10 \n3rd customer has wealth = 8\nThe 2nd customer is the richest with a wealth of 10.\n```\n\n Example 3: \n \n```\nInput:\n accounts = [[2,8,7],[7,1,3],[1,9,5]]\n\nOutput:\n 17\n```\n\n Constraints: \n\n m == accounts.length \n \n n == accounts[i].length \n \n 1 <= m, n <= 50 \n \n 1 <= accounts[i][j] <= 100",
+  "code": "\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maximumWealth(vector<vector<int>>& accounts) {\n        int maxWealth = 0;\n        for (auto& account : accounts) {\n            int sum = accumulate(account.begin(), account.end(), 0);\n            maxWealth = max(maxWealth, sum);\n        }\n        return maxWealth;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592328358",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

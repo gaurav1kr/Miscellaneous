@@ -1,0 +1,37 @@
+{
+  "id": "3606",
+  "title": "Coupon Code Validator",
+  "slug": "coupon-code-validator",
+  "url": "https://leetcode.com/problems/coupon-code-validator/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given three arrays of length n that describe the properties of n coupons: code , businessLine , and isActive . The i th coupon has: \n\n code[i] : a string representing the coupon identifier. \n \n businessLine[i] : a string denoting the business category of the coupon. \n \n isActive[i] : a boolean indicating whether the coupon is currently active. \n\n A coupon is considered valid if all of the following conditions hold: \n\n code[i] is non-empty and consists only of alphanumeric characters (a-z, A-Z, 0-9) and underscores ( _ ). \n \n businessLine[i] is one of the following four categories: \"electronics\" , \"grocery\" , \"pharmacy\" , \"restaurant\" . \n \n isActive[i] is true . \n\n Return an array of the codes of all valid coupons, sorted first by their businessLine in the order: \"electronics\" , \"grocery\" , \"pharmacy\", \"restaurant\" , and then by code in lexicographical (ascending) order within each category. \n\n Example 1: \n\n Input: code = [\"SAVE20\",\"\",\"PHARMA5\",\"SAVE@20\"], businessLine = [\"restaurant\",\"grocery\",\"pharmacy\",\"restaurant\"], isActive = [true,true,true,true] \n \n Output: [\"PHARMA5\",\"SAVE20\"] \n \n Explanation: \n\n First coupon is valid. \n \n Second coupon has empty code (invalid). \n \n Third coupon is valid. \n \n Fourth coupon has special character @ (invalid). \n\n Example 2: \n\n Input: code = [\"GROCERY15\",\"ELECTRONICS_50\",\"DISCOUNT10\"], businessLine = [\"grocery\",\"electronics\",\"invalid\"], isActive = [false,true,true] \n \n Output: [\"ELECTRONICS_50\"] \n \n Explanation: \n\n First coupon is inactive (invalid). \n \n Second coupon is valid. \n \n Third coupon has invalid business line (invalid). \n\n Constraints: \n\n n == code.length == businessLine.length == isActive.length \n \n 1 <= n <= 100 \n \n 0 <= code[i].length, businessLine[i].length <= 100 \n \n code[i] and businessLine[i] consist of printable ASCII characters. \n \n isActive[i] is either true or false .",
+  "code": "class Solution {\npublic:\n vector<string> validateCoupons(vector<string>& code,vector<string>& businessLine,vector<bool>& isActive){\n  map<string,int>ord={{\"electronics\",0},{\"grocery\",1},{\"pharmacy\",2},{\"restaurant\",3}};\n  vector<pair<pair<int,string>,string>>a;\n  for(int i=0;i<(int)code.size();++i){if(!isActive[i]||!ord.count(businessLine[i])||code[i].empty())continue;\n   bool ok=true;for(char c:code[i])if(!isalnum((unsigned char)c)&&c!='_')ok=false;\n   if(ok)a.push_back({{ord[businessLine[i]],code[i]},code[i]});}\n  sort(a.begin(),a.end());vector<string>ans;for(auto &p:a)ans.push_back(p.second);return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177611593",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

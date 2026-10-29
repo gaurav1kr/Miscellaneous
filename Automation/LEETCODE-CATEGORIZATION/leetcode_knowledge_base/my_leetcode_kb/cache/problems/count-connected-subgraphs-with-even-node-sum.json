@@ -1,0 +1,37 @@
+{
+  "id": "3910",
+  "title": "Count Connected Subgraphs with Even Node Sum",
+  "slug": "count-connected-subgraphs-with-even-node-sum",
+  "url": "https://leetcode.com/problems/count-connected-subgraphs-with-even-node-sum/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory",
+    "Enumeration"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an undirected graph with n nodes labeled from 0 to n - 1 . Node i has a value of nums[i] , which is either 0 or 1. The edges of the graph are given by a 2D array edges where edges[i] = [u i , v i ] represents an edge between node u i and node v i . \n \n For a non-empty subset s of nodes in the graph, we consider the induced subgraph of s generated as follows: \n\n We keep only the nodes in s . \n \n We keep only the edges whose two endpoints are both in s . \n\n Return an integer representing the number of non-empty subsets s of nodes in the graph such that: \n\n The induced subgraph of s is connected . \n \n The sum of node values in s is even . \n\n Example 1: \n\n Input: nums = [1,0,1], edges = [[0,1],[1,2]] \n \n Output: 2 \n \n Explanation: \n\n s \n connected? \n sum of node values \n counted? \n\n [0] \n Yes \n 1 \n No \n\n [1] \n Yes \n 0 \n Yes \n\n [2] \n Yes \n 1 \n No \n\n [0,1] \n Yes \n 1 \n No \n\n [0,2] \n No, node 0 and node 2 are disconnected. \n 2 \n No \n\n [1,2] \n Yes \n 1 \n No \n\n [0,1,2] \n Yes \n 2 \n Yes \n\n Example 2: \n\n Input: nums = [1], edges = [] \n \n Output: 0 \n \n Explanation: \n\n s \n connected? \n sum of node values \n counted? \n\n [0] \n Yes \n 1 \n No \n\n Constraints: \n\n 1 <= n == nums.length <= 13 \n \n nums[i] is 0 or 1. \n \n 0 <= edges.length <= n * (n - 1) / 2 \n \n edges[i] = [u i , v i ] \n \n 0 <= u i < v i < n \n \n All edges are distinct .",
+  "code": "class Solution {\npublic:\n    int evenSumSubgraphs(vector<int>& nums,vector<vector<int>>& edges){\n        int n=nums.size();vector<int> adj(n);\n        for(auto &e:edges){adj[e[0]]|=1<<e[1];adj[e[1]]|=1<<e[0];}\n        int ans=0;\n        for(int mask=1;mask<(1<<n);++mask){\n            int parity=0;for(int i=0;i<n;++i)if(mask>>i&1)parity^=nums[i];\n            if(parity)continue;\n            int seen=mask&-mask,old=-1;\n            while(seen!=old){old=seen;\n                for(int i=0;i<n;++i)if(seen>>i&1)seen|=adj[i]&mask;\n            }\n            ans+=seen==mask;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181168412",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

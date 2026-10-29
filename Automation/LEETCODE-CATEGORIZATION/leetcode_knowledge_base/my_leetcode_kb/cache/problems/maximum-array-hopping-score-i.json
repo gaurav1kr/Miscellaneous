@@ -1,0 +1,38 @@
+{
+  "id": "3205",
+  "title": "Maximum Array Hopping Score I",
+  "slug": "maximum-array-hopping-score-i",
+  "url": "https://leetcode.com/problems/maximum-array-hopping-score-i/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given an array nums , you have to get the maximum score starting from index 0 and hopping until you reach the last element of the array. \n \n In each hop , you can jump from index i to an index j > i , and you get a score of (j - i) * nums[j] . \n \n Return the maximum score you can get. \n\n Example 1: \n\n Input: nums = [1,5,8] \n \n Output: 16 \n \n Explanation: \n \n There are two possible ways to reach the last element: \n\n 0 -> 1 -> 2 with a score of  (1 - 0) * 5 + (2 - 1) * 8 = 13 . \n \n 0 -> 2 with a score of  (2 - 0) * 8 = 16 . \n\n Example 2: \n\n Input: nums = [4,5,2,8,9,1,3] \n \n Output: 42 \n \n Explanation: \n \n We can do the hopping 0 -> 4 -> 6 with a score of  (4 - 0) * 9 + (6 - 4) * 3 = 42 . \n\n Constraints: \n\n 2 <= nums.length <= 10 3 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    long long maxScore(vector<int>& nums) {\n        int n = nums.size();\n        vector<long long> dp(n, LLONG_MIN / 4);\n        dp[n - 1] = 0;\n        for (int i = n - 2; i >= 0; --i)\n            for (int j = i + 1; j < n; ++j)\n                dp[i] = max(dp[i], dp[j] + (long long)(j - i) * nums[j]);\n        return dp[0];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178959436",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

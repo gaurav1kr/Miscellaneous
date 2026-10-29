@@ -1,0 +1,38 @@
+{
+  "id": "4027",
+  "title": "Elevator Requests III",
+  "slug": "elevator-requests-iii",
+  "url": "https://leetcode.com/problems/elevator-requests-iii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Sorting",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Sorting / Divide and Conquer",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer n denoting the number of floors in a building, where the floors are numbered from 0 to n - 1 . \n \n You are also given an integer start and a 2D integer array requests , where requests[i] = [arrival i , floor i ] indicates that a request for floor i is made at time arrival i . \n \n At time 0, the elevator is at floor start . \n \n At each second, the elevator may move up by 1 floor, move down by 1 floor, or remain on its current floor. \n \n A request can be fulfilled only at or after its arrival time; it is fulfilled instantly when the elevator is on its requested floor at any time from its arrival time onward. \n \n Return the minimum time needed to fulfill all requests. \n\n Example 1: \n\n Input: n = 9, start = 0, requests = [[0,8],[6,5]] \n \n Output: 9 \n \n Explanation: \n\n Move from floor 0 ( start ) to floor 5 ( requests[1][1] ) in 5 seconds, reaching at time 5. Since requests[1][0] = 6 , wait until time 6 to fulfill it. \n \n Move from floor 5 to floor 8 ( requests[0][1] ) in 3 seconds, fulfilling it at time 9. \n\n Thus, all requests are fulfilled by time 9. \n\n Example 2: \n\n Input: n = 8, start = 5, requests = [[1,7],[7,3]] \n \n Output: 7 \n \n Explanation: \n\n Move from floor 5 ( start ) to floor 7 ( requests[0][1] ) in 2 seconds, reaching at time 2. Since requests[0][0] = 1 has already passed, floor 7 is fulfilled at time 2. \n \n Move from floor 7 to floor 3 ( requests[1][1] ) in 4 seconds, reaching at time 6. Since requests[1][0] = 7 , wait until time 7. \n\n Thus, all requests are fulfilled by time 7. \n\n Example 3: \n\n Input: n = 7, start = 3, requests = [[0,5],[0,1],[6,3]] \n \n Output: 8 \n \n Explanation: \n\n Move from floor 3 ( start ) to floor 5 ( requests[0][1] ) in 2 seconds, fulfilling it at time 2. \n \n Move from floor 5 to floor 1 ( requests[1][1] ) in 4 seconds, fulfilling it at time 6. \n \n Move from floor 1 to floor 3 ( requests[2][1] ) in 2 seconds, reaching at time 8. Its request arrived at requests[2][0] = 6 , so floor 3 is fulfilled at time 8. \n\n Thus, all requests are fulfilled by time 8. \n\n Constraints: \n\n 1 <= n <= 10 9 \n \n 1 <= requests.length <= 16 \n \n requests[i] == [arrival i , floor i ] \n \n 0 <= arrival i <= 10 9 \n \n 0 <= start, floor i <= n - 1",
+  "code": "class Solution {\npublic:\n    long long elevatorRequests(int n, int start,\n                               vector<vector<int>>& requests) {\n        \n        int m = requests.size();\n        int totalMasks = 1 << m;\n\n        const long long INF = (1LL << 60);\n\n        // dp[mask][i] =\n        // minimum time after fulfilling all requests in mask,\n        // with request i fulfilled last.\n        vector<vector<long long>> dp(\n            totalMasks,\n            vector<long long>(m, INF)\n        );\n\n        // ----------------------------------\n        // Initialize first request\n        // ----------------------------------\n        for (int i = 0; i < m; ++i) {\n\n            long long travel =\n                llabs((long long)start - requests[i][1]);\n\n            dp[1 << i][i] =\n                max(travel,\n                    (long long)requests[i][0]);\n        }\n\n        // ----------------------------------\n        // Bitmask DP\n        // ----------------------------------\n        for (int mask = 1; mask < totalMasks; ++mask) {\n\n            for (int i = 0; i < m; ++i) {\n\n                // i must be the last fulfilled request\n                if (!(mask & (1 << i)))\n                    continue;\n\n                if (dp[mask][i] == INF)\n                    continue;\n\n                // Choose next request j\n                for (int j = 0; j < m; ++j) {\n\n                    if (mask & (1 << j))\n                        continue;\n\n                    long long distance =\n                        llabs((long long)requests[i][1]\n                              - requests[j][1]);\n\n                    long long reachTime =\n                        dp[mask][i] + distance;\n\n                    // If we arrive before request j appears,\n                    // wait until its arrival time.\n                    long long newTime =\n                        max(reachTime,\n                            (long long)requests[j][0]);\n\n                    int newMask =\n                        mask | (1 << j);\n\n                    dp[newMask][j] =\n                        min(dp[newMask][j],\n                            newTime);\n                }\n            }\n        }\n\n        // ----------------------------------\n        // Answer\n        // ----------------------------------\n        int fullMask = totalMasks - 1;\n\n        long long answer = INF;\n\n        for (int i = 0; i < m; ++i) {\n            answer = min(answer,\n                         dp[fullMask][i]);\n        }\n\n        return answer;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163648642",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

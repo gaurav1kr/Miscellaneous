@@ -1,0 +1,31 @@
+{
+  "id": "3040",
+  "title": "Maximum Number of Operations With the Same Score II",
+  "slug": "maximum-number-of-operations-with-the-same-score-ii",
+  "url": "https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Memoization"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an array of integers called nums , you can perform any of the following operation while nums contains at least 2 elements: \n\n Choose the first two elements of nums and delete them. \n \n Choose the last two elements of nums and delete them. \n \n Choose the first and the last elements of nums and delete them. \n\n The score of the operation is the sum of the deleted elements. \n \n Your task is to find the maximum number of operations that can be performed, such that all operations have the same score . \n \n Return the maximum number of operations possible that satisfy the condition mentioned above . \n\n Example 1: \n \n```\nInput:\n nums = [3,2,1,2,3,4]\n\nOutput:\n 3\n\nExplanation:\n We perform the following operations:\n- Delete the first two elements, with score 3 + 2 = 5, nums = [1,2,3,4].\n- Delete the first and the last elements, with score 1 + 4 = 5, nums = [2,3].\n- Delete the first and the last elements, with score 2 + 3 = 5, nums = [].\nWe are unable to perform any more operations as nums is empty.\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,2,6,1,4]\n\nOutput:\n 2\n\nExplanation:\n We perform the following operations:\n- Delete the first two elements, with score 3 + 2 = 5, nums = [6,1,4].\n- Delete the last two elements, with score 1 + 4 = 5, nums = [6].\nIt can be proven that we can perform at most 2 operations.\n```\n\n Constraints: \n\n 2 <= nums.length <= 2000 \n \n 1 <= nums[i] <= 1000",
+  "code": "class Solution {int solve(vector<int>&a,int target){int n=a.size();vector<vector<int>>dp(n,vector<int>(n,-1));function<int(int,int)>f=[&](int l,int r)->int{if(l>=r)return 0;int &v=dp[l][r];if(v!=-1)return v;v=0;if(a[l]+a[l+1]==target)v=max(v,1+f(l+2,r));if(a[r]+a[r-1]==target)v=max(v,1+f(l,r-2));if(a[l]+a[r]==target)v=max(v,1+f(l+1,r-1));return v;};return f(0,n-1);}public:int maxOperations(vector<int>&a){int n=a.size();return max({solve(a,a[0]+a[1]),solve(a,a[0]+a[n-1]),solve(a,a[n-2]+a[n-1])});}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176833810",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

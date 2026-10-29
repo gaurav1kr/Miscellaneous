@@ -1,0 +1,33 @@
+{
+  "id": "1034",
+  "title": "Coloring A Border",
+  "slug": "coloring-a-border",
+  "url": "https://leetcode.com/problems/coloring-a-border/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an m x n integer matrix grid , and three integers row , col , and color . Each value in the grid represents the color of the grid square at that location. \n \n Two squares are called adjacent if they are next to each other in any of the 4 directions. \n \n Two squares belong to the same connected component if they have the same color and they are adjacent. \n \n The border of a connected component is all the squares in the connected component that are either adjacent to (at least) a square not in the component, or on the boundary of the grid (the first or last row or column). \n \n You should color the border of the connected component that contains the square grid[row][col] with color . \n \n Return the final grid . \n\n Example 1: \n \n```\nInput:\n grid = [[1,1],[1,2]], row = 0, col = 0, color = 3\n\nOutput:\n [[3,3],[3,2]]\n```\n \n Example 2: \n \n```\nInput:\n grid = [[1,2,2],[2,3,2]], row = 0, col = 1, color = 3\n\nOutput:\n [[1,3,3],[2,3,3]]\n```\n \n Example 3: \n \n```\nInput:\n grid = [[1,1,1],[1,1,1],[1,1,1]], row = 1, col = 1, color = 2\n\nOutput:\n [[2,2,2],[2,1,2],[2,2,2]]\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 50 \n \n 1 <= grid[i][j], color <= 1000 \n \n 0 <= row < m \n \n 0 <= col < n",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> colorBorder(vector<vector<int>>& grid, int row, int col, int color) {\n        int m = grid.size(), n = grid[0].size(), original = grid[row][col];\n        vector<vector<bool>> seen(m, vector<bool>(n, false));\n        vector<pair<int,int>> border;\n        queue<pair<int,int>> q;\n        q.push({row, col});\n        seen[row][col] = true;\n        const int dr[] = {1, -1, 0, 0}, dc[] = {0, 0, 1, -1};\n        while (!q.empty()) {\n            auto cell = q.front(); q.pop();\n            int r = cell.first, c = cell.second;\n            bool edge = false;\n            for (int d = 0; d < 4; ++d) {\n                int nr = r + dr[d], nc = c + dc[d];\n                if (nr < 0 || nr >= m || nc < 0 || nc >= n || grid[nr][nc] != original) {\n                    edge = true;\n                } else if (!seen[nr][nc]) {\n                    seen[nr][nc] = true;\n                    q.push({nr, nc});\n                }\n            }\n            if (edge) border.push_back({r, c});\n        }\n        for (const auto& cell : border) grid[cell.first][cell.second] = color;\n        return grid;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175745555",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

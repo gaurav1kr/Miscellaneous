@@ -1,0 +1,35 @@
+{
+  "id": "406",
+  "title": "Queue Reconstruction by Height",
+  "slug": "queue-reconstruction-by-height",
+  "url": "https://leetcode.com/problems/queue-reconstruction-by-height/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Sorting"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Segment tree",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array of people, people , which are the attributes of some people in a queue (not necessarily in order). Each people[i] = [h i , k i ] represents the i th person of height h i with exactly k i other people in front who have a height greater than or equal to h i . \n \n Reconstruct and return the queue that is represented by the input array people . The returned queue should be formatted as an array queue , where queue[j] = [h j , k j ] is the attributes of the j th person in the queue ( queue[0] is the person at the front of the queue). \n\n Example 1: \n \n```\nInput:\n people = [[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]\n\nOutput:\n [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]\n\nExplanation:\n\nPerson 0 has height 5 with no other people taller or the same height in front.\nPerson 1 has height 7 with no other people taller or the same height in front.\nPerson 2 has height 5 with two persons taller or the same height in front, which is person 0 and 1.\nPerson 3 has height 6 with one person taller or the same height in front, which is person 1.\nPerson 4 has height 4 with four people taller or the same height in front, which are people 0, 1, 2, and 3.\nPerson 5 has height 7 with one person taller or the same height in front, which is person 1.\nHence [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]] is the reconstructed queue.\n```\n\n Example 2: \n \n```\nInput:\n people = [[6,0],[5,0],[4,0],[3,2],[2,2],[1,4]]\n\nOutput:\n [[4,0],[5,0],[2,2],[3,2],[1,4],[6,0]]\n```\n\n Constraints: \n\n 1 <= people.length <= 2000 \n \n 0 <= h i <= 10 6 \n \n 0 <= k i < people.length \n \n It is guaranteed that the queue can be reconstructed.",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {\n        // Sort by height in descending order, and by k in ascending order if heights are equal\n        sort(people.begin(), people.end(), [](const vector<int>& a, const vector<int>& b) {\n            return a[0] > b[0] || (a[0] == b[0] && a[1] < b[1]);\n        });\n\n        vector<vector<int>> result;\n        // Insert each person at the index specified by their k value\n        for (const auto& person : people) {\n            result.insert(result.begin() + person[1], person);\n        }\n\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1538761381",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

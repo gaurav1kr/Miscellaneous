@@ -1,0 +1,34 @@
+{
+  "id": "130",
+  "title": "Surrounded Regions",
+  "slug": "surrounded-regions",
+  "url": "https://leetcode.com/problems/surrounded-regions/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Vector"
+  ],
+  "description": "You are given an m x n matrix board containing letters 'X' and 'O' , capture regions that are surrounded : \n\n Connect : A cell is connected to adjacent cells horizontally or vertically. \n \n Region : To form a region connect every 'O' cell. \n \n Surround : A region is surrounded if none of the 'O' cells in that region are on the edge of the board. Such regions are completely enclosed by 'X' cells. \n\n To capture a surrounded region , replace all 'O' s with 'X' s in-place within the original board. You do not need to return anything. \n\n Example 1: \n\n Input: board = [[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"O\",\"X\"],[\"X\",\"X\",\"O\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]] \n \n Output: [[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]] \n \n Explanation: \n [Figure: https://assets.leetcode.com/uploads/2021/02/19/xogrid.jpg] \n \n In the above diagram, the bottom region is not captured because it is on the edge of the board and cannot be surrounded. \n\n Example 2: \n\n Input: board = [[\"X\"]] \n \n Output: [[\"X\"]] \n\n Constraints: \n\n m == board.length \n \n n == board[i].length \n \n 1 <= m, n <= 200 \n \n board[i][j] is 'X' or 'O' .",
+  "code": "class Solution \n{\npublic:\n    void solve(vector<vector<char>>& board) \n    {\n        int rows = board.size(), cols = board[0].size();\n        \n        // Lambda function for DFS traversal\n        auto dfs = [&](int r, int c, auto& dfs) -> void {\n            if (r < 0 || r >= rows || c < 0 || c >= cols || board[r][c] != 'O') return;\n            board[r][c] = 'T'; // Mark the cell as temporarily safe\n            dfs(r + 1, c, dfs);\n            dfs(r - 1, c, dfs);\n            dfs(r, c + 1, dfs);\n            dfs(r, c - 1, dfs);\n        };\n\n        // Run DFS on 'O's connected to the border\n        for (int r = 0; r < rows; ++r) \n        {\n            dfs(r, 0, dfs);\n            dfs(r, cols - 1, dfs);\n        }\n        for (int c = 0; c < cols; ++c) \n        {\n            dfs(0, c, dfs);\n            dfs(rows - 1, c, dfs);\n        }\n\n        // Convert 'O' to 'X' (surrounded regions) and 'T' back to 'O' (safe regions)\n        for (int r = 0; r < rows; ++r) \n        {\n            for (int c = 0; c < cols; ++c) \n            {\n                if (board[r][c] == 'O') board[r][c] = 'X';\n                else if (board[r][c] == 'T') board[r][c] = 'O';\n            }\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1537026744",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

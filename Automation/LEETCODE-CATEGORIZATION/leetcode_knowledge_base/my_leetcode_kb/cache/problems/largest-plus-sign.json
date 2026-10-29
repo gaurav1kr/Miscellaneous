@@ -1,0 +1,32 @@
+{
+  "id": "764",
+  "title": "Largest Plus Sign",
+  "slug": "largest-plus-sign",
+  "url": "https://leetcode.com/problems/largest-plus-sign/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer n . You have an n x n binary grid grid with all values initially 1 's except for some indices given in the array mines . The i th element of the array mines is defined as mines[i] = [x i , y i ] where grid[x i ][y i ] == 0 . \n \n Return the order of the largest axis-aligned plus sign of 1 's contained in grid . If there is none, return 0 . \n \n An axis-aligned plus sign of 1 's of order k has some center grid[r][c] == 1 along with four arms of length k - 1 going up, down, left, and right, and made of 1 's. Note that there could be 0 's or 1 's beyond the arms of the plus sign, only the relevant area of the plus sign is checked for 1 's. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/13/plus1-grid.jpg] \n \n```\nInput:\n n = 5, mines = [[4,2]]\n\nOutput:\n 2\n\nExplanation:\n In the above grid, the largest plus sign can only be of order 2. One of them is shown.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/13/plus2-grid.jpg] \n \n```\nInput:\n n = 1, mines = [[0,0]]\n\nOutput:\n 0\n\nExplanation:\n There is no plus sign, so return 0.\n```\n\n Constraints: \n\n 1 <= n <= 500 \n \n 1 <= mines.length <= 5000 \n \n 0 <= x i , y i < n \n \n All the pairs (x i , y i ) are unique .",
+  "code": "#include <vector>\n#include <algorithm>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int orderOfLargestPlusSign(int n, vector<vector<int>>& mines) {\n        vector<vector<int>> grid(n, vector<int>(n, n));\n        unordered_set<int> banned;\n        for (auto& m : mines) {\n            banned.insert(m[0] * n + m[1]);\n        }\n\n        for (int i = 0; i < n; ++i) {\n            int count = 0;\n            for (int j = 0; j < n; ++j) {\n                count = banned.count(i * n + j) ? 0 : count + 1;\n                grid[i][j] = min(grid[i][j], count);\n            }\n            count = 0;\n            for (int j = n - 1; j >= 0; --j) {\n                count = banned.count(i * n + j) ? 0 : count + 1;\n                grid[i][j] = min(grid[i][j], count);\n            }\n        }\n\n        for (int j = 0; j < n; ++j) {\n            int count = 0;\n            for (int i = 0; i < n; ++i) {\n                count = banned.count(i * n + j) ? 0 : count + 1;\n                grid[i][j] = min(grid[i][j], count);\n            }\n            count = 0;\n            for (int i = n - 1; i >= 0; --i) {\n                count = banned.count(i * n + j) ? 0 : count + 1;\n                grid[i][j] = min(grid[i][j], count);\n            }\n        }\n\n        int res = 0;\n        for (auto& row : grid) {\n            for (int x : row)\n                res = max(res, x);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593693098",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

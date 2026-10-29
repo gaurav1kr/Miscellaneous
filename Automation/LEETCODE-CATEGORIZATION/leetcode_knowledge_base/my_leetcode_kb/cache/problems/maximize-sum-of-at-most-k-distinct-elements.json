@@ -1,0 +1,35 @@
+{
+  "id": "3684",
+  "title": "Maximize Sum of At Most K Distinct Elements",
+  "slug": "maximize-sum-of-at-most-k-distinct-elements",
+  "url": "https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a positive integer array nums and an integer k . \n \n Choose at most k elements from nums so that their sum is maximized. However, the chosen numbers must be distinct . \n \n Return an array containing the chosen numbers in strictly descending order. \n\n Example 1: \n\n Input: nums = [84,93,100,77,90], k = 3 \n \n Output: [100,93,90] \n \n Explanation: \n \n The maximum sum is 283, which is attained by choosing 93, 100 and 90. We rearrange them in strictly descending order as [100, 93, 90] . \n\n Example 2: \n\n Input: nums = [84,93,100,77,93], k = 3 \n \n Output: [100,93,84] \n \n Explanation: \n \n The maximum sum is 277, which is attained by choosing 84, 93 and 100. We rearrange them in strictly descending order as [100, 93, 84 ] . We cannot choose 93, 100 and 93 because the chosen numbers must be distinct. \n\n Example 3: \n\n Input: nums = [1,1,1,2,2,2], k = 6 \n \n Output: [2,1] \n \n Explanation: \n \n The maximum sum is 3, which is attained by choosing 1 and 2. We rearrange them in strictly descending order as [2, 1] . \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= k <= nums.length",
+  "code": "class Solution { public: vector<int> maxKDistinct(vector<int>& nums,int k){sort(nums.begin(),nums.end(),greater<int>());nums.erase(unique(nums.begin(),nums.end()),nums.end());if((int)nums.size()>k)nums.resize(k);return nums;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177659730",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

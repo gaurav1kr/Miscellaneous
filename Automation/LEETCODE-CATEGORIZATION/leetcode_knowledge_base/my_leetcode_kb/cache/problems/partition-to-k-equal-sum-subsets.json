@@ -1,0 +1,37 @@
+{
+  "id": "698",
+  "title": "Partition to K Equal Sum Subsets",
+  "slug": "partition-to-k-equal-sum-subsets",
+  "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Memoization",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and an integer k , return true if it is possible to divide this array into k non-empty subsets whose sums are all equal. \n\n Example 1: \n \n```\nInput:\n nums = [4,3,2,3,5,2,1], k = 4\n\nOutput:\n true\n\nExplanation:\n It is possible to divide it into 4 subsets (5), (1, 4), (2,3), (2,3) with equal sums.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4], k = 3\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= k <= nums.length <= 16 \n \n 1 <= nums[i] <= 10 4 \n \n The frequency of each element is in the range [1, 4] .",
+  "code": "class Solution {\npublic:\n    bool canPartitionKSubsets(vector<int>& nums, int k) {\n        int sum = accumulate(nums.begin(), nums.end(), 0);\n        if (sum % k != 0) return false;\n        int target = sum / k;\n\n        sort(nums.rbegin(), nums.rend()); // Sort in descending order to optimize\n        vector<int> buckets(k, 0);\n\n        return backtrack(nums, buckets, 0, target);\n    }\n\nprivate:\n    bool backtrack(const vector<int>& nums, vector<int>& buckets, int index, int target) {\n        if (index == nums.size())\n            return all_of(buckets.begin(), buckets.end(), [&](int sum) { return sum == target; });\n\n        for (int i = 0; i < buckets.size(); ++i) {\n            if (buckets[i] + nums[index] > target) continue;\n\n            buckets[i] += nums[index];\n            if (backtrack(nums, buckets, index + 1, target)) return true;\n            buckets[i] -= nums[index];\n\n            if (buckets[i] == 0) break; // Prune duplicate states\n        }\n\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536892013",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

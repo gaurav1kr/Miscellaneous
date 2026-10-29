@@ -1,0 +1,33 @@
+{
+  "id": "3104",
+  "title": "Find Longest Self-Contained Substring",
+  "slug": "find-longest-self-contained-substring",
+  "url": "https://leetcode.com/problems/find-longest-self-contained-substring/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , your task is to find the length of the longest self-contained substring of s . \n \n A substring t of a string s is called self-contained if t != s and for every character in t , it doesn't exist in the rest of s . \n \n Return the length of the longest self-contained substring of s if it exists, otherwise, return -1. \n\n Example 1: \n\n Input: s = \"abba\" \n \n Output: 2 \n \n Explanation: \nLet's check the substring \"bb\" . You can see that no other \"b\" is outside of this substring. Hence the answer is 2. \n\n Example 2: \n\n Input: s = \"abab\" \n \n Output: -1 \n \n Explanation: \nEvery substring we choose does not satisfy the described property (there is some character which is inside and outside of that substring). So the answer would be -1. \n\n Example 3: \n\n Input: s = \"abacd\" \n \n Output: 4 \n \n Explanation: \nLet's check the substring \" abac \" . There is only one character outside of this substring and that is \"d\" . There is no \"d\" inside the chosen substring, so it satisfies the condition and the answer is 4. \n\n Constraints: \n\n 2 <= s.length <= 5 * 10 4 \n \n s consists only of lowercase English letters.",
+  "code": "\nclass Solution {\npublic:\n    int maxSubstringLength(string s) {\n        int n = s.size();\n\n        vector<int> first(26, -1);\n        vector<int> last(26, -1);\n\n        for (int i = 0; i < n; ++i) {\n            int c = s[i] - 'a';\n\n            if (first[c] == -1)\n                first[c] = i;\n\n            last[c] = i;\n        }\n\n        int ans = -1;\n\n        // Every valid substring must begin at\n        // the first occurrence of its first character.\n        for (int c = 0; c < 26; ++c) {\n            int start = first[c];\n\n            if (start == -1)\n                continue;\n\n            int end = last[c];\n\n            for (int j = start; j < n; ++j) {\n                int ch = s[j] - 'a';\n\n                // This character also occurs before start.\n                // No longer substring starting here can work.\n                if (first[ch] < start)\n                    break;\n\n                end = max(end, last[ch]);\n\n                // All characters encountered so far\n                // are contained within [start, j].\n                if (j == end && j - start + 1 < n) {\n                    ans = max(ans, j - start + 1);\n                }\n            }\n        }\n\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181649336",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

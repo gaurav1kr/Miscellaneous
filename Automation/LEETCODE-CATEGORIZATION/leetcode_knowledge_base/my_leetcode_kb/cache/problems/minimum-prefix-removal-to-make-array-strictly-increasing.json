@@ -1,0 +1,27 @@
+{
+  "id": "3818",
+  "title": "Minimum Prefix Removal to Make Array Strictly Increasing",
+  "slug": "minimum-prefix-removal-to-make-array-strictly-increasing",
+  "url": "https://leetcode.com/problems/minimum-prefix-removal-to-make-array-strictly-increasing/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n You need to remove exactly one prefix (possibly empty) from nums. \n \n Return an integer denoting the minimum length of the removed prefix such that the remaining array is strictly increasing . \n\n Example 1: \n\n Input: nums = [1,-1,2,3,3,4,5] \n \n Output: 4 \n \n Explanation: \n \n Removing the prefix = [1, -1, 2, 3] leaves the remaining array [3, 4, 5] which is strictly increasing. \n\n Example 2: \n\n Input: nums = [4,3,-2,-5] \n \n Output: 3 \n \n Explanation: \n \n Removing the prefix = [4, 3, -2] leaves the remaining array [-5] which is strictly increasing. \n\n Example 3: \n\n Input: nums = [1,2,3,4] \n \n Output: 0 \n \n Explanation: \n \n The array nums = [1, 2, 3, 4] is already strictly increasing so removing an empty prefix is sufficient. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 9 <= nums[i] <= 10 9 ​​​​​​​",
+  "code": "class Solution {\npublic:\n    int minimumPrefixLength(vector<int>& nums) {\n        int i=(int)nums.size()-1;\n        while(i>0&&nums[i-1]<nums[i]) --i;\n        return i;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177767469",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

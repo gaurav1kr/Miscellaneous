@@ -1,0 +1,33 @@
+{
+  "id": "3900",
+  "title": "Longest Balanced Substring After One Swap",
+  "slug": "longest-balanced-substring-after-one-swap",
+  "url": "https://leetcode.com/problems/longest-balanced-substring-after-one-swap/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a binary string s consisting only of characters '0' and '1' . \n \n A string is balanced if it contains an equal number of '0' s and '1' s. \n \n You can perform at most one swap between any two characters in s . Then, you select a balanced substring from s . \n \n Return an integer representing the maximum length of the balanced substring you can select. \n\n Example 1: \n\n Input: s = \"100001\" \n \n Output: 4 \n \n Explanation: \n\n Swap \"10 0 00 1 \" . The string becomes \"101000\" . \n \n Select the substring \" 1010 00\" , which is balanced because it has two '0' s and two '1' s. \n\n Example 2: \n\n Input: s = \"111\" \n \n Output: 0 \n \n Explanation: \n\n Choose not to perform any swaps. \n \n Select the empty substring, which is balanced because it has zero '0' s and zero '1' s. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists only of the characters '0' and '1' .",
+  "code": "\nclass Solution {\npublic:\n    int longestBalanced(string s) {\n        int n = (int)s.size();\n\n        int total0 = 0, total1 = 0;\n        for (char c : s) {\n            if (c == '0') ++total0;\n            else ++total1;\n        }\n\n        int offset = n + 2;\n        vector<vector<int>> pos(2 * n + 5);\n\n        int balance = 0;\n        int ans = 0;\n\n        pos[offset].push_back(0);\n\n        for (int i = 1; i <= n; ++i) {\n            balance += (s[i - 1] == '1') ? 1 : -1;\n            int cur = balance + offset;\n\n            // No swap required.\n            if (!pos[cur].empty()) {\n                ans = max(ans, i - pos[cur][0]);\n            }\n\n            // Substring balance +2.\n            int target = cur - 2;\n            if (target >= 0 && !pos[target].empty()\n                && total0 > 0) {\n\n                // Length <= 2 * total0\n                int minStart = i - 2 * total0;\n\n                auto it = lower_bound(\n                    pos[target].begin(),\n                    pos[target].end(),\n                    minStart\n                );\n\n                if (it != pos[target].end()) {\n                    ans = max(ans, i - *it);\n                }\n            }\n\n            // Substring balance -2.\n            target = cur + 2;\n            if (target < (int)pos.size()\n                && !pos[target].empty()\n                && total1 > 0) {\n\n                // Length <= 2 * total1\n                int minStart = i - 2 * total1;\n\n                auto it = lower_bound(\n                    pos[target].begin(),\n                    pos[target].end(),\n                    minStart\n                );\n\n                if (it != pos[target].end()) {\n                    ans = max(ans, i - *it);\n                }\n            }\n\n            pos[cur].push_back(i);\n        }\n\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181668086",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

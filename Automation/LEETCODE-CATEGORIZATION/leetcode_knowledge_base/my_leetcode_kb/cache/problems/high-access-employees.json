@@ -1,0 +1,38 @@
+{
+  "id": "2933",
+  "title": "High-Access Employees",
+  "slug": "high-access-employees",
+  "url": "https://leetcode.com/problems/high-access-employees/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 2D 0-indexed array of strings, access_times , with size n . For each i where 0 <= i <= n - 1 , access_times[i][0] represents the name of an employee, and access_times[i][1] represents the access time of that employee. All entries in access_times are within the same day. \n \n The access time is represented as four digits using a 24-hour time format, for example, \"0800\" or \"2250\" . \n \n An employee is said to be high-access if he has accessed the system three or more times within a one-hour period . \n \n Times with exactly one hour of difference are not considered part of the same one-hour period. For example, \"0815\" and \"0915\" are not part of the same one-hour period. \n \n Access times at the start and end of the day are not counted within the same one-hour period. For example, \"0005\" and \"2350\" are not part of the same one-hour period. \n \n Return a list that contains the names of high-access employees with any order you want. \n\n Example 1: \n \n```\nInput:\n access_times = [[\"a\",\"0549\"],[\"b\",\"0457\"],[\"a\",\"0532\"],[\"a\",\"0621\"],[\"b\",\"0540\"]]\n\nOutput:\n [\"a\"]\n\nExplanation:\n \"a\" has three access times in the one-hour period of [05:32, 06:31] which are 05:32, 05:49, and 06:21.\nBut \"b\" does not have more than two access times at all.\nSo the answer is [\"a\"].\n```\n\n Example 2: \n \n```\nInput:\n access_times = [[\"d\",\"0002\"],[\"c\",\"0808\"],[\"c\",\"0829\"],[\"e\",\"0215\"],[\"d\",\"1508\"],[\"d\",\"1444\"],[\"d\",\"1410\"],[\"c\",\"0809\"]]\n\nOutput:\n [\"c\",\"d\"]\n\nExplanation:\n \"c\" has three access times in the one-hour period of [08:08, 09:07] which are 08:08, 08:09, and 08:29.\n\"d\" has also three access times in the one-hour period of [14:10, 15:09] which are 14:10, 14:44, and 15:08.\nHowever, \"e\" has just one access time, so it can not be in the answer and the final answer is [\"c\",\"d\"].\n```\n\n Example 3: \n \n```\nInput:\n access_times = [[\"cd\",\"1025\"],[\"ab\",\"1025\"],[\"cd\",\"1046\"],[\"cd\",\"1055\"],[\"ab\",\"1124\"],[\"ab\",\"1120\"]]\n\nOutput:\n [\"ab\",\"cd\"]\n\nExplanation:\n \"ab\" has three access times in the one-hour period of [10:25, 11:24] which are 10:25, 11:20, and 11:24.\n\"cd\" has also three access times in the one-hour period of [10:25, 11:24] which are 10:25, 10:46, and 10:55.\nSo the answer is [\"ab\",\"cd\"].\n```\n\n Constraints: \n\n 1 <= access_times.length <= 100 \n \n access_times[i].length == 2 \n \n 1 <= access_times[i][0].length <= 10 \n \n access_times[i][0] consists only of English small letters. \n \n access_times[i][1].length == 4 \n \n access_times[i][1] is in 24-hour time format. \n \n access_times[i][1] consists only of '0' to '9' .",
+  "code": "class Solution{public:vector<string> findHighAccessEmployees(vector<vector<string>>& access_times){unordered_map<string,vector<int>> mp;for(auto&a:access_times){string t=a[1];mp[a[0]].push_back(stoi(t.substr(0,2))*60+stoi(t.substr(2,2)));}vector<string> ans;for(auto&kv:mp){auto&v=kv.second;sort(v.begin(),v.end());for(int i=2;i<(int)v.size();i++)if(v[i]-v[i-2]<60){ans.push_back(kv.first);break;}}sort(ans.begin(),ans.end());return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176759754",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

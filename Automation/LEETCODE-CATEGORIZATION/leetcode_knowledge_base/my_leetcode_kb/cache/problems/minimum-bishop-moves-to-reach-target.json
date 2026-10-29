@@ -1,0 +1,29 @@
+{
+  "id": "4034",
+  "title": "Minimum Bishop Moves to Reach Target",
+  "slug": "minimum-bishop-moves-to-reach-target",
+  "url": "https://leetcode.com/problems/minimum-bishop-moves-to-reach-target/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "There is an 8 x 8 empty chessboard with 1-indexed rows and columns. \n \n You are given an array source = [sr, sc] representing the starting position of a bishop , and an array target = [tr, tc] representing the target position. \n \n In one move, the bishop travels one or more squares along a single diagonal direction, staying within the board. \n \n Return the minimum number of moves for the bishop to land exactly on target . If it can never reach target , return -1. \n\n Example 1: \n\n Input: source = [8,1], target = [1,8] \n \n Output: 1 \n \n Explanation: \n \n ​​​​​​​ [Figure: https://assets.leetcode.com/uploads/2026/08/31/111.png] ​​​​​​​ \n \n A single diagonal move takes the bishop straight from (8, 1) to (1, 8) . \n\n Example 2: \n\n Input: source = [4,2], target = [1,3] \n \n Output: 2 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2026/08/31/22-ezgifcom-invert-colors.png] \n \n The bishop moves from (4, 2) to (3, 1) , then from (3, 1) to (1, 3) , reaching the target in 2 moves. \n\n Example 3: \n\n Input: source = [1,1], target = [3,4] \n \n Output: -1 \n \n Explanation: \n \n No matter how many diagonal moves it makes, the bishop starting at (1, 1) can never land on (3, 4) . Thus, the answer is -1. \n\n Constraints: ​​​​​​​ \n\n source.length == target.length == 2 \n \n 1 <= sr, sc, tr, tc <= 8 \n \n source != target",
+  "code": "class Solution {\npublic:\n    int minBishopMoves(vector<int>& source, vector<int>& target) {\n        int dr = abs(source[0] - target[0]);\n        int dc = abs(source[1] - target[1]);\n        if ((dr + dc) % 2 != 0) return -1;\n        if (dr == 0 && dc == 0) return 0;\n        if (dr == dc) return 1;\n        return 2;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181118610",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

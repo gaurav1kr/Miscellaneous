@@ -1,0 +1,37 @@
+{
+  "id": "3408",
+  "title": "Design Task Manager",
+  "slug": "design-task-manager",
+  "url": "https://leetcode.com/problems/design-task-manager/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Design",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is a task management system that allows users to manage their tasks, each associated with a priority. The system should efficiently handle adding, modifying, executing, and removing tasks. \n \n Implement the TaskManager class: \n\n TaskManager(vector<vector<int>>& tasks) initializes the task manager with a list of user-task-priority triples. Each element in the input list is of the form [userId, taskId, priority] , which adds a task to the specified user with the given priority. \n\n void add(int userId, int taskId, int priority) adds a task with the specified taskId and priority to the user with userId . It is guaranteed that taskId does not exist in the system. \n\n void edit(int taskId, int newPriority) updates the priority of the existing taskId to newPriority . It is guaranteed that taskId exists in the system. \n\n void rmv(int taskId) removes the task identified by taskId from the system. It is guaranteed that taskId exists in the system. \n\n int execTop() executes the task with the highest priority across all users. If there are multiple tasks with the same highest priority, execute the one with the highest taskId . After executing, the taskId is removed from the system. Return the userId associated with the executed task. If no tasks are available, return -1. \n\n Note that a user may be assigned multiple tasks. \n\n Example 1: \n\n Input: \n [\"TaskManager\", \"add\", \"edit\", \"execTop\", \"rmv\", \"add\", \"execTop\"] \n[[[[1, 101, 10], [2, 102, 20], [3, 103, 15]]], [4, 104, 5], [102, 8], [], [101], [5, 105, 15], []] \n \n Output: \n [null, null, null, 3, null, null, 5] \n \n Explanation \nTaskManager taskManager = new TaskManager([[1, 101, 10], [2, 102, 20], [3, 103, 15]]); // Initializes with three tasks for Users 1, 2, and 3. \ntaskManager.add(4, 104, 5); // Adds task 104 with priority 5 for User 4. \ntaskManager.edit(102, 8); // Updates priority of task 102 to 8. \ntaskManager.execTop(); // return 3. Executes task 103 for User 3. \ntaskManager.rmv(101); // Removes task 101 from the system. \ntaskManager.add(5, 105, 15); // Adds task 105 with priority 15 for User 5. \ntaskManager.execTop(); // return 5. Executes task 105 for User 5. \n\n Constraints: \n\n 1 <= tasks.length <= 10 5 \n \n 0 <= userId <= 10 5 \n \n 0 <= taskId <= 10 5 \n \n 0 <= priority <= 10 9 \n \n 0 <= newPriority <= 10 9 \n \n At most 2 * 10 5 calls will be made in total to add , edit , rmv , and execTop methods. \n \n The input is generated such that taskId will be valid.",
+  "code": "class TaskManager {struct Item{int user,priority;};unordered_map<int,Item>tasks;priority_queue<pair<int,int>>pq;public:TaskManager(vector<vector<int>>&init){for(auto&t:init)add(t[0],t[1],t[2]);}void add(int userId,int taskId,int priority){tasks[taskId]={userId,priority};pq.push({priority,taskId});}void edit(int taskId,int newPriority){tasks[taskId].priority=newPriority;pq.push({newPriority,taskId});}void rmv(int taskId){tasks.erase(taskId);}int execTop(){while(!pq.empty()){auto p=pq.top();pq.pop();auto it=tasks.find(p.second);if(it==tasks.end()||it->second.priority!=p.first)continue;int user=it->second.user;tasks.erase(it);return user;}return -1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177519434",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "1855",
+  "title": "Maximum Distance Between a Pair of Values",
+  "slug": "maximum-distance-between-a-pair-of-values",
+  "url": "https://leetcode.com/problems/maximum-distance-between-a-pair-of-values/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given two non-increasing 0-indexed integer arrays nums1 ​​​​​​ and nums2 ​​​​​​. \n \n A pair of indices (i, j) , where 0 <= i < nums1.length and 0 <= j < nums2.length , is valid if both i <= j and nums1[i] <= nums2[j] . The distance of the pair is j - i ​​​​. \n \n Return the maximum distance of any valid pair (i, j) . If there are no valid pairs, return 0 . \n \n An array arr is non-increasing if arr[i-1] >= arr[i] for every 1 <= i < arr.length . \n\n Example 1: \n \n```\nInput:\n nums1 = [55,30,5,4,2], nums2 = [100,20,10,10,5]\n\nOutput:\n 2\n\nExplanation:\n The valid pairs are (0,0), (2,2), (2,3), (2,4), (3,3), (3,4), and (4,4).\nThe maximum distance is 2 with pair (2,4).\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [2,2,2], nums2 = [10,10,1]\n\nOutput:\n 1\n\nExplanation:\n The valid pairs are (0,0), (0,1), and (1,1).\nThe maximum distance is 1 with pair (0,1).\n```\n\n Example 3: \n \n```\nInput:\n nums1 = [30,29,19,5], nums2 = [25,25,25,25,25]\n\nOutput:\n 2\n\nExplanation:\n The valid pairs are (2,2), (2,3), (2,4), (3,3), and (3,4).\nThe maximum distance is 2 with pair (2,4).\n```\n\n Constraints: \n\n 1 <= nums1.length, nums2.length <= 10 5 \n \n 1 <= nums1[i], nums2[j] <= 10 5 \n \n Both nums1 and nums2 are non-increasing .",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxDistance(vector<int>& nums1, vector<int>& nums2) {\n        int res = 0, j = 0;\n        for (int i = 0; i < nums1.size(); ++i) {\n            j = max(j, i);\n            while (j < nums2.size() && nums1[i] <= nums2[j]) ++j;\n            res = max(res, j - i - 1);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610600832",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

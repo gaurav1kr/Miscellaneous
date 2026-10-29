@@ -1,0 +1,28 @@
+{
+  "id": "161",
+  "title": "One Edit Distance",
+  "slug": "one-edit-distance",
+  "url": "https://leetcode.com/problems/one-edit-distance/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given two strings s and t , return true if they are both one edit distance apart, otherwise return false . \n \n A string s is said to be one distance apart from a string t if you can: \n\n Insert exactly one character into s to get t . \n \n Delete exactly one character from s to get t . \n \n Replace exactly one character of s with a different character to get t . \n\n Example 1: \n \n```\nInput:\n s = \"ab\", t = \"acb\"\n\nOutput:\n true\n\nExplanation:\n We can insert 'c' into s to get t.\n```\n\n Example 2: \n \n```\nInput:\n s = \"\", t = \"\"\n\nOutput:\n false\n\nExplanation:\n We cannot get t from s by only one step.\n```\n\n Constraints: \n\n 0 <= s.length, t.length <= 10 4 \n \n s and t consist of lowercase letters, uppercase letters, and digits.",
+  "code": "class Solution {\npublic:\n    bool isOneEditDistance(string s, string t) {\n        int n = s.size(), m = t.size();\n        if (abs(n - m) > 1) return false;\n        int i = 0;\n        while (i < min(n, m) && s[i] == t[i]) ++i;\n        if (i == min(n, m)) return abs(n - m) == 1;\n        if (n == m) return s.substr(i + 1) == t.substr(i + 1);\n        if (n > m) return s.substr(i + 1) == t.substr(i);\n        return s.substr(i) == t.substr(i + 1);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179680616",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

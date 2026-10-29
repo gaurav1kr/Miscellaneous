@@ -1,0 +1,37 @@
+{
+  "id": "316",
+  "title": "Remove Duplicate Letters",
+  "slug": "remove-duplicate-letters",
+  "url": "https://leetcode.com/problems/remove-duplicate-letters/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Monotonic stack",
+    "Ordered map",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , remove duplicate letters so that every letter appears once and only once. You must make sure your result is the smallest in lexicographical order among all possible results. \n\n Example 1: \n \n```\nInput:\n s = \"bcabc\"\n\nOutput:\n \"abc\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"cbacdcbc\"\n\nOutput:\n \"acdb\"\n```\n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists of lowercase English letters. \n\n Note: This question is the same as 1081: https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/",
+  "code": "class Solution {  \npublic:  \n    string removeDuplicateLetters(string s) {  \n        unordered_map<char, int> charCount;  \n        vector<bool> inResult(26, false);  \n        stack<char> stack;  \n\n        for (char c : s) charCount[c]++;  \n\n        for (char c : s) {  \n            if (--charCount[c] < 0) continue;  \n            if (inResult[c - 'a']) continue;  \n            while (!stack.empty() && stack.top() > c && charCount[stack.top()] > 0) {  \n                inResult[stack.top() - 'a'] = false;  \n                stack.pop();  \n            }  \n            stack.push(c);  \n            inResult[c - 'a'] = true;  \n        }  \n\n        string result;  \n        while (!stack.empty()) {  \n            result += stack.top();  \n            stack.pop();  \n        }  \n        reverse(result.begin(), result.end());  \n        return result;  \n    }  \n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1535272716",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

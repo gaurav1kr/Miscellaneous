@@ -1,0 +1,35 @@
+{
+  "id": "542",
+  "title": "01 Matrix",
+  "slug": "01-matrix",
+  "url": "https://leetcode.com/problems/01-matrix/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given an m x n binary matrix mat , return the distance of the nearest 0 for each cell . \n \n The distance between two cells sharing a common edge is 1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/24/01-1-grid.jpg] \n \n```\nInput:\n mat = [[0,0,0],[0,1,0],[0,0,0]]\n\nOutput:\n [[0,0,0],[0,1,0],[0,0,0]]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/24/01-2-grid.jpg] \n \n```\nInput:\n mat = [[0,0,0],[0,1,0],[1,1,1]]\n\nOutput:\n [[0,0,0],[0,1,0],[1,2,1]]\n```\n\n Constraints: \n\n m == mat.length \n \n n == mat[i].length \n \n 1 <= m, n <= 10 4 \n \n 1 <= m * n <= 10 4 \n \n mat[i][j] is either 0 or 1 . \n \n There is at least one 0 in mat . \n\n Note: This question is the same as 1765: https://leetcode.com/problems/map-of-highest-peak/",
+  "code": "class Solution {\npublic:\n   vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {\n    int rows = mat.size(), cols = mat[0].size();\n    vector<vector<int>> dist(rows, vector<int>(cols, INT_MAX));\n    queue<pair<int, int>> q;\n\n    // Step 1: Initialize the queue with all 0 cells\n    for (int i = 0; i < rows; i++) {\n        for (int j = 0; j < cols; j++) {\n            if (mat[i][j] == 0) {\n                dist[i][j] = 0;\n                q.push({i, j});\n            }\n        }\n    }\n\n    // Step 2: Directions array for exploring neighbors\n    vector<pair<int, int>> directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};\n\n    // Step 3: Perform BFS\n    while (!q.empty()) {\n        auto [curRow, curCol] = q.front();\n        q.pop();\n\n        for (auto [dr, dc] : directions) {\n            int newRow = curRow + dr;\n            int newCol = curCol + dc;\n\n            // Check if the new cell is within bounds and can be updated\n            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {\n                if (dist[newRow][newCol] > dist[curRow][curCol] + 1) {\n                    dist[newRow][newCol] = dist[curRow][curCol] + 1;\n                    q.push({newRow, newCol}); // Add the updated cell to the queue\n                }\n            }\n        }\n    }\n\n    return dist;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536039227",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

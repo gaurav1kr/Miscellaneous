@@ -1,0 +1,33 @@
+{
+  "id": "1297",
+  "title": "Maximum Number of Occurrences of a Substring",
+  "slug": "maximum-number-of-occurrences-of-a-substring",
+  "url": "https://leetcode.com/problems/maximum-number-of-occurrences-of-a-substring/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given a string s , return the maximum number of occurrences of any substring under the following rules: \n\n The number of unique characters in the substring must be less than or equal to maxLetters . \n \n The substring size must be between minSize and maxSize inclusive. \n\n Example 1: \n \n```\nInput:\n s = \"aababcaab\", maxLetters = 2, minSize = 3, maxSize = 4\n\nOutput:\n 2\n\nExplanation:\n Substring \"aab\" has 2 occurrences in the original string.\nIt satisfies the conditions, 2 unique letters and size 3 (between minSize and maxSize).\n```\n\n Example 2: \n \n```\nInput:\n s = \"aaaa\", maxLetters = 1, minSize = 3, maxSize = 3\n\nOutput:\n 2\n\nExplanation:\n Substring \"aaa\" occur 2 times in the string. It can overlap.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n 1 <= maxLetters <= 26 \n \n 1 <= minSize <= maxSize <= min(26, s.length) \n \n s consists of only lowercase English letters.",
+  "code": "#include <string>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxFreq(string s, int maxLetters, int minSize, int maxSize) {\n        unordered_map<string, int> freq;\n        unordered_map<char, int> window;\n        int res = 0;\n\n        for (int i = 0; i <= (int)s.size() - minSize; ++i) {\n            window.clear();\n            for (int j = 0; j < minSize; ++j)\n                window[s[i + j]]++;\n            if (window.size() <= maxLetters) {\n                string sub = s.substr(i, minSize);\n                res = max(res, ++freq[sub]);\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610558082",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

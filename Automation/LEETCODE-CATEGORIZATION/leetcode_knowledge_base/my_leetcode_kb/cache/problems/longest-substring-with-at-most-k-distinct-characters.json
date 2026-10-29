@@ -1,0 +1,33 @@
+{
+  "id": "340",
+  "title": "Longest Substring with At Most K Distinct Characters",
+  "slug": "longest-substring-with-at-most-k-distinct-characters",
+  "url": "https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given a string s and an integer k , return the length of the longest substring of s that contains at most k distinct characters . \n\n Example 1: \n \n```\nInput:\n s = \"eceba\", k = 2\n\nOutput:\n 3\n\nExplanation:\n The substring is \"ece\" with length 3.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aa\", k = 1\n\nOutput:\n 2\n\nExplanation:\n The substring is \"aa\" with length 2.\n```\n\n Constraints: \n\n 1 <= s.length <= 5 * 10 4 \n \n 0 <= k <= 50",
+  "code": "class Solution\n{\npublic:\n    int lengthOfLongestSubstringKDistinct(string s, int k)\n    {\n        if (k <= 0) return 0;\n        unordered_map<char, int> frequency;\n        int left = 0, best = 0;\n        for (int right = 0; right < (int)s.size(); ++right)\n        {\n            ++frequency[s[right]];\n            while ((int)frequency.size() > k)\n            {\n                char c = s[left++];\n                if (--frequency[c] == 0) frequency.erase(c);\n            }\n            best = max(best, right - left + 1);\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178455237",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

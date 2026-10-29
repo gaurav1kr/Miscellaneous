@@ -1,0 +1,27 @@
+{
+  "id": "206",
+  "title": "Reverse Linked List",
+  "slug": "reverse-linked-list",
+  "url": "https://leetcode.com/problems/reverse-linked-list/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Recursion"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Given the head of a singly linked list, reverse the list, and return the reversed list . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/19/rev1ex1.jpg] \n \n```\nInput:\n head = [1,2,3,4,5]\n\nOutput:\n [5,4,3,2,1]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/02/19/rev1ex2.jpg] \n \n```\nInput:\n head = [1,2]\n\nOutput:\n [2,1]\n```\n\n Example 3: \n \n```\nInput:\n head = []\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the list is the range [0, 5000] . \n \n -5000 <= Node.val <= 5000 \n\n Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?",
+  "code": "class Solution {\npublic:\n    ListNode* reverseList(ListNode* head) {\n        ListNode *prev = nullptr, *curr = head;\n        while (curr) {\n            ListNode* next = curr->next;\n            curr->next = prev;\n            prev = curr;\n            curr = next;\n        }\n        return prev;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588370729",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

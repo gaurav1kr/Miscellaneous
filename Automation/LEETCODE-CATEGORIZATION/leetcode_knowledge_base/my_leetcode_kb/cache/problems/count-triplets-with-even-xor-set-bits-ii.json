@@ -1,0 +1,29 @@
+{
+  "id": "3215",
+  "title": "Count Triplets with Even XOR Set Bits II",
+  "slug": "count-triplets-with-even-xor-set-bits-ii",
+  "url": "https://leetcode.com/problems/count-triplets-with-even-xor-set-bits-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given three integer arrays a , b , and c , return the number of triplets (a[i], b[j], c[k]) , such that the bitwise XOR between the elements of each triplet has an even number of set bits .\n\n Example 1: \n\n Input: a = [1], b = [2], c = [3] \n \n Output: 1 \n \n Explanation: \n \n The only triplet is (a[0], b[0], c[0]) and their XOR is: 1 XOR 2 XOR 3 = 00 2 . \n\n Example 2: \n\n Input: a = [1,1], b = [2,3], c = [1,5] \n \n Output: 4 \n \n Explanation: \n \n Consider these four triplets: \n\n (a[0], b[1], c[0]) : 1 XOR 3 XOR 1 = 011 2 \n \n (a[1], b[1], c[0]) : 1 XOR 3 XOR 1 = 011 2 \n \n (a[0], b[0], c[1]) : 1 XOR 2 XOR 5 = 110 2 \n \n (a[1], b[0], c[1]) : 1 XOR 2 XOR 5 = 110 2 \n\n Constraints: \n\n 1 <= a.length, b.length, c.length <= 10 5 \n \n 0 <= a[i], b[i], c[i] <= 10 9",
+  "code": "class Solution {\npublic:\n    long long tripletCount(vector<int>& a,vector<int>& b,vector<int>& c) {\n        long long A[2]={},B[2]={},C[2]={};\n        for (int x:a) ++A[__builtin_parity((unsigned)x)];\n        for (int x:b) ++B[__builtin_parity((unsigned)x)];\n        for (int x:c) ++C[__builtin_parity((unsigned)x)];\n        return A[0]*B[0]*C[0]+A[0]*B[1]*C[1]\n             + A[1]*B[0]*C[1]+A[1]*B[1]*C[0];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179711719",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

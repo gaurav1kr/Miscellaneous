@@ -1,0 +1,31 @@
+{
+  "id": "3184",
+  "title": "Count Pairs That Form a Complete Day I",
+  "slug": "count-pairs-that-form-a-complete-day-i",
+  "url": "https://leetcode.com/problems/count-pairs-that-form-a-complete-day-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Given an integer array hours representing times in hours , return an integer denoting the number of pairs i , j where i < j and hours[i] + hours[j] forms a complete day . \n \n A complete day is defined as a time duration that is an exact multiple of 24 hours. \n \n For example, 1 day is 24 hours, 2 days is 48 hours, 3 days is 72 hours, and so on. \n\n Example 1: \n\n Input: hours = [12,12,30,24,24] \n \n Output: 2 \n \n Explanation: \n \n The pairs of indices that form a complete day are (0, 1) and (3, 4) . \n\n Example 2: \n\n Input: hours = [72,48,24,3] \n \n Output: 3 \n \n Explanation: \n \n The pairs of indices that form a complete day are (0, 1) , (0, 2) , and (1, 2) . \n\n Constraints: \n\n 1 <= hours.length <= 100 \n \n 1 <= hours[i] <= 10 9",
+  "code": "class Solution {public:int countCompleteDayPairs(vector<int>& hours){int cnt[24]={},ans=0;for(int x:hours){int r=x%24;ans+=cnt[(24-r)%24];++cnt[r];}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177412911",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

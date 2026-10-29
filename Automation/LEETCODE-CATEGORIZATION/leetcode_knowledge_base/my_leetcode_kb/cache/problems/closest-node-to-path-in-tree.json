@@ -1,0 +1,34 @@
+{
+  "id": "2277",
+  "title": "Closest Node to Path in Tree",
+  "slug": "closest-node-to-path-in-tree",
+  "url": "https://leetcode.com/problems/closest-node-to-path-in-tree/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n representing the number of nodes in a tree, numbered from 0 to n - 1 ( inclusive ). You are also given a 2D integer array edges of length n - 1 , where edges[i] = [node1 i , node2 i ] denotes that there is a bidirectional edge connecting node1 i and node2 i in the tree. \n \n You are given a 0-indexed integer array query of length m where query[i] = [start i , end i , node i ] means that for the i th query, you are tasked with finding the node on the path from start i to end i that is closest to node i . \n \n Return an integer array answer of length m , where answer[i] is the answer to the i th query . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/05/14/image-20220514132158-1.png] \n \n```\nInput:\n n = 7, edges = [[0,1],[0,2],[0,3],[1,4],[2,5],[2,6]], query = [[5,3,4],[5,3,6]]\n\nOutput:\n [0,2]\n\nExplanation:\n\nThe path from node 5 to node 3 consists of the nodes 5, 2, 0, and 3.\nThe distance between node 4 and node 0 is 2.\nNode 0 is the node on the path closest to node 4, so the answer to the first query is 0.\nThe distance between node 6 and node 2 is 1.\nNode 2 is the node on the path closest to node 6, so the answer to the second query is 2.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/05/14/image-20220514132318-2.png] \n \n```\nInput:\n n = 3, edges = [[0,1],[1,2]], query = [[0,1,2]]\n\nOutput:\n [1]\n\nExplanation:\n\nThe path from node 0 to node 1 consists of the nodes 0, 1.\nThe distance between node 2 and node 1 is 1.\nNode 1 is the node on the path closest to node 2, so the answer to the first query is 1.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2022/05/14/image-20220514132333-3.png] \n \n```\nInput:\n n = 3, edges = [[0,1],[1,2]], query = [[0,0,0]]\n\nOutput:\n [0]\n\nExplanation:\n\nThe path from node 0 to node 0 consists of the node 0.\nSince 0 is the only node on the path, the answer to the first query is 0.\n```\n\n Constraints: \n\n 1 <= n <= 1000 \n \n edges.length == n - 1 \n \n edges[i].length == 2 \n \n 0 <= node1 i , node2 i <= n - 1 \n \n node1 i != node2 i \n \n 1 <= query.length <= 1000 \n \n query[i].length == 3 \n \n 0 <= start i , end i , node i <= n - 1 \n \n The graph is a tree.",
+  "code": "class Solution {\npublic:\n    vector<int> closestNode(int n, vector<vector<int>>& edges, vector<vector<int>>& query) {\n        vector<vector<int>> g(n);\n        for (auto& e : edges) { g[e[0]].push_back(e[1]); g[e[1]].push_back(e[0]); }\n        vector<int> answer;\n        for (auto& item : query) {\n            int a = item[0], b = item[1], node = item[2];\n            vector<int> parent(n, -1);\n            queue<int> q; q.push(a); parent[a] = a;\n            while (!q.empty() && parent[b] == -1) {\n                int u = q.front(); q.pop();\n                for (int v : g[u]) if (parent[v] == -1) { parent[v] = u; q.push(v); }\n            }\n            vector<int> dist(n, -1), owner(n, -1);\n            queue<int> bfs;\n            for (int u = b;; u = parent[u]) {\n                dist[u] = 0; owner[u] = u; bfs.push(u);\n                if (u == a) break;\n            }\n            while (!bfs.empty() && dist[node] == -1) {\n                int u = bfs.front(); bfs.pop();\n                for (int v : g[u]) if (dist[v] == -1) {\n                    dist[v] = dist[u] + 1;\n                    owner[v] = owner[u]; bfs.push(v);\n                }\n            }\n            answer.push_back(owner[node]);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178852403",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

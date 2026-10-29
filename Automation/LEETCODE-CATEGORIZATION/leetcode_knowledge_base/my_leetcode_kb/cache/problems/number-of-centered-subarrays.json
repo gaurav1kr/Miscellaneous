@@ -1,0 +1,33 @@
+{
+  "id": "3804",
+  "title": "Number of Centered Subarrays",
+  "slug": "number-of-centered-subarrays",
+  "url": "https://leetcode.com/problems/number-of-centered-subarrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Enumeration"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n A subarray of nums is called centered if the sum of its elements is equal to at least one element within that same subarray . \n \n Return the number of centered subarrays of nums . \n\n Example 1: \n\n Input: nums = [-1,1,0] \n \n Output: 5 \n \n Explanation: \n\n All single-element subarrays ( [-1] , [1] , [0] ) are centered. \n \n The subarray [1, 0] has a sum of 1, which is present in the subarray. \n \n The subarray [-1, 1, 0] has a sum of 0, which is present in the subarray. \n \n Thus, the answer is 5. \n\n Example 2: \n\n Input: nums = [2,-3] \n \n Output: 2 \n \n Explanation: \n \n Only single-element subarrays ( [2] , [-3] ) are centered. \n\n Constraints: \n\n 1 <= nums.length <= 500 \n \n -10 5 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int centeredSubarrays(vector<int>& nums) {\n        int n = nums.size(), ans = 0;\n        for (int l = 0; l < n; ++l) {\n            unordered_set<long long> seen;\n            long long sum = 0;\n            for (int r = l; r < n; ++r) {\n                sum += nums[r];\n                seen.insert(nums[r]);\n                if (seen.count(sum)) ++ans;\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181035935",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

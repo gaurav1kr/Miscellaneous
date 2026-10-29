@@ -1,0 +1,30 @@
+{
+  "id": "3223",
+  "title": "Minimum Length of String After Operations",
+  "slug": "minimum-length-of-string-after-operations",
+  "url": "https://leetcode.com/problems/minimum-length-of-string-after-operations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string s . \n \n You can perform the following process on s any number of times: \n\n Choose an index i in the string such that there is at least one character to the left of index i that is equal to s[i] , and at least one character to the right that is also equal to s[i] . \n \n Delete the closest occurrence of s[i] located to the left of i . \n \n Delete the closest occurrence of s[i] located to the right of i . \n\n Return the minimum length of the final string s that you can achieve. \n\n Example 1: \n\n Input: s = \"abaacbcbb\" \n \n Output: 5 \n \n Explanation: \nWe do the following operations: \n\n Choose index 2, then remove the characters at indices 0 and 3. The resulting string is s = \"bacbcbb\" . \n \n Choose index 3, then remove the characters at indices 0 and 5. The resulting string is s = \"acbcb\" . \n\n Example 2: \n\n Input: s = \"aa\" \n \n Output: 2 \n \n Explanation: \nWe cannot perform any operations, so we return the length of the original string. \n\n Constraints: \n\n 1 <= s.length <= 2 * 10 5 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution { public:\n int minimumLength(string s) { int f[26]={}; for(char c:s) ++f[c-'a']; int ans=0; for(int x:f) if(x) ans+=x%2?1:2; return ans; }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177428032",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "3592",
+  "title": "Inverse Coin Change",
+  "slug": "inverse-coin-change",
+  "url": "https://leetcode.com/problems/inverse-coin-change/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 1-indexed integer array numWays , where numWays[i] represents the number of ways to select a total amount i using an infinite supply of some fixed coin denominations. Each denomination is a positive integer with value at most numWays.length . \n \n However, the exact coin denominations have been lost . Your task is to recover the set of denominations that could have resulted in the given numWays array. \n \n Return a sorted array containing unique integers which represents this set of denominations. \n \n If no such set exists, return an empty array. \n\n Example 1: \n\n Input: numWays = [0,1,0,2,0,3,0,4,0,5] \n \n Output: [2,4,6] \n \n Explanation: \n\n Amount \n Number of ways \n Explanation \n\n 1 \n 0 \n There is no way to select coins with total value 1. \n\n 2 \n 1 \n The only way is [2] . \n\n 3 \n 0 \n There is no way to select coins with total value 3. \n\n 4 \n 2 \n The ways are [2, 2] and [4] . \n\n 5 \n 0 \n There is no way to select coins with total value 5. \n\n 6 \n 3 \n The ways are [2, 2, 2] , [2, 4] , and [6] . \n\n 7 \n 0 \n There is no way to select coins with total value 7. \n\n 8 \n 4 \n The ways are [2, 2, 2, 2] , [2, 2, 4] , [2, 6] , and [4, 4] . \n\n 9 \n 0 \n There is no way to select coins with total value 9. \n\n 10 \n 5 \n The ways are [2, 2, 2, 2, 2] , [2, 2, 2, 4] , [2, 4, 4] , [2, 2, 6] , and [4, 6] . \n\n Example 2: \n\n Input: numWays = [1,2,2,3,4] \n \n Output: [1,2,5] \n \n Explanation: \n\n Amount \n Number of ways \n Explanation \n\n 1 \n 1 \n The only way is [1] . \n\n 2 \n 2 \n The ways are [1, 1] and [2] . \n\n 3 \n 2 \n The ways are [1, 1, 1] and [1, 2] . \n\n 4 \n 3 \n The ways are [1, 1, 1, 1] , [1, 1, 2] , and [2, 2] . \n\n 5 \n 4 \n The ways are [1, 1, 1, 1, 1] , [1, 1, 1, 2] , [1, 2, 2] , and [5] . \n\n Example 3: \n\n Input: numWays = [1,2,3,4,15] \n \n Output: [] \n \n Explanation: \n \n No set of denomination satisfies this array. \n\n Constraints: \n\n 1 <= numWays.length <= 100 \n \n 0 <= numWays[i] <= 2 * 10 8",
+  "code": "class Solution {public:\n vector<int> findCoins(vector<int>& numWays){\n  int n=numWays.size();vector<long long> dp(n+1);dp[0]=1;vector<int> coins;\n  for(int i=1;i<=n;++i){long long want=numWays[i-1];\n   if(dp[i]>want||want-dp[i]>1)return {};\n   if(dp[i]<want){coins.push_back(i);for(int j=i;j<=n;++j)dp[j]+=dp[j-i];}\n  }return coins;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177601833",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

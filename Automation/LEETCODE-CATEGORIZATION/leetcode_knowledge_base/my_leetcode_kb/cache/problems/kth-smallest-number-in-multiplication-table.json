@@ -1,0 +1,26 @@
+{
+  "id": "668",
+  "title": "Kth Smallest Number in Multiplication Table",
+  "slug": "kth-smallest-number-in-multiplication-table",
+  "url": "https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Nearly everyone has used the Multiplication Table . The multiplication table of size m x n is an integer matrix mat where mat[i][j] == i * j ( 1-indexed ). \n \n Given three integers m , n , and k , return the k th smallest element in the m x n multiplication table . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/05/02/multtable1-grid.jpg] \n \n```\nInput:\n m = 3, n = 3, k = 5\n\nOutput:\n 3\n\nExplanation:\n The 5\nth\n smallest number is 3.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/05/02/multtable2-grid.jpg] \n \n```\nInput:\n m = 2, n = 3, k = 6\n\nOutput:\n 6\n\nExplanation:\n The 6\nth\n smallest number is 6.\n```\n\n Constraints: \n\n 1 <= m, n <= 3 * 10 4 \n \n 1 <= k <= m * n",
+  "code": "class Solution {\npublic:\n    int findKthNumber(int m, int n, int k) {\n        int left = 1, right = m * n;\n        while (left < right) {\n            int mid = left + (right - left) / 2;\n            int count = 0;\n            for (int i = 1; i <= m; i++) {\n                count += min(mid / i, n);\n            }\n            if (count < k) left = mid + 1;\n            else right = mid;\n        }\n        return left;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590137252",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

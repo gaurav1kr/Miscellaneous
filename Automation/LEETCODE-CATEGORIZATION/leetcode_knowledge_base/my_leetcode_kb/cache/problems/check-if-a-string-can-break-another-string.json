@@ -1,0 +1,31 @@
+{
+  "id": "1433",
+  "title": "Check If a String Can Break Another String",
+  "slug": "check-if-a-string-can-break-another-string",
+  "url": "https://leetcode.com/problems/check-if-a-string-can-break-another-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Sorted array",
+    "String"
+  ],
+  "description": "Given two strings: s1 and s2 with the same size, check if some permutation of string s1 can break some permutation of string s2 or vice-versa. In other words s2 can break s1  or vice-versa. \n \n A string x  can break string y  (both of size n ) if x[i] >= y[i]  (in alphabetical order) for all i  between 0 and n-1 . \n\n Example 1: \n \n```\nInput:\n s1 = \"abc\", s2 = \"xya\"\n\nOutput:\n true\n\nExplanation:\n \"ayx\" is a permutation of s2=\"xya\" which can break to string \"abc\" which is a permutation of s1=\"abc\".\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"abe\", s2 = \"acd\"\n\nOutput:\n false \n\nExplanation:\n All permutations for s1=\"abe\" are: \"abe\", \"aeb\", \"bae\", \"bea\", \"eab\" and \"eba\" and all permutation for s2=\"acd\" are: \"acd\", \"adc\", \"cad\", \"cda\", \"dac\" and \"dca\". However, there is not any permutation from s1 which can break some permutation from s2 and vice-versa.\n```\n\n Example 3: \n \n```\nInput:\n s1 = \"leetcodee\", s2 = \"interview\"\n\nOutput:\n true\n```\n\n Constraints: \n\n s1.length == n \n \n s2.length == n \n \n 1 <= n <= 10^5 \n \n All strings consist of lowercase English letters.",
+  "code": "#include <string>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool checkIfCanBreak(string s1, string s2) {\n        sort(s1.begin(), s1.end());\n        sort(s2.begin(), s2.end());\n        return dominates(s1, s2) || dominates(s2, s1);\n    }\n\n    bool dominates(string& a, string& b) {\n        for (int i = 0; i < a.size(); ++i)\n            if (a[i] < b[i]) return false;\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610581253",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

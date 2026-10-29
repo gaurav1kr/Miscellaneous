@@ -1,0 +1,38 @@
+{
+  "id": "3458",
+  "title": "Select K Disjoint Special Substrings",
+  "slug": "select-k-disjoint-special-substrings",
+  "url": "https://leetcode.com/problems/select-k-disjoint-special-substrings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s of length n and an integer k , determine whether it is possible to select k disjoint special substrings . \n \n A special substring is a substring where: \n\n Any character present inside the substring should not appear outside it in the string. \n \n The substring is not the entire string s . \n\n Note that all k substrings must be disjoint, meaning they cannot overlap. \n \n Return true if it is possible to select k such disjoint special substrings; otherwise, return false . \n\n Example 1: \n\n Input: s = \"abcdbaefab\", k = 2 \n \n Output: true \n \n Explanation: \n\n We can select two disjoint special substrings: \"cd\" and \"ef\" . \n \n \"cd\" contains the characters 'c' and 'd' , which do not appear elsewhere in s . \n \n \"ef\" contains the characters 'e' and 'f' , which do not appear elsewhere in s . \n\n Example 2: \n\n Input: s = \"cdefdc\", k = 3 \n \n Output: false \n \n Explanation: \n \n There can be at most 2 disjoint special substrings: \"e\" and \"f\" . Since k = 3 , the output is false . \n\n Example 3: \n\n Input: s = \"abeabe\", k = 0 \n \n Output: true \n\n Constraints: \n\n 2 <= n == s.length <= 5 * 10 4 \n \n 0 <= k <= 26 \n \n s consists only of lowercase English letters.",
+  "code": "\nclass Solution {\npublic:\n    bool maxSubstringLength(string s, int k) {\n        if (k == 0) return true;\n\n        int n = s.size();\n        int first[26], last[26];\n\n        fill(first, first + 26, n);\n        fill(last, last + 26, -1);\n\n        for (int i = 0; i < n; ++i) {\n            int c = s[i] - 'a';\n            first[c] = min(first[c], i);\n            last[c] = i;\n        }\n\n        vector<pair<int, int>> intervals;\n\n        for (int c = 0; c < 26; ++c) {\n            if (last[c] == -1) continue;\n\n            int l = first[c], r = last[c];\n            bool valid = true;\n\n            for (int i = l; i <= r; ++i) {\n                int x = s[i] - 'a';\n\n                if (first[x] < l) {\n                    valid = false;\n                    break;\n                }\n\n                r = max(r, last[x]);\n            }\n\n            if (valid && (l != 0 || r != n - 1))\n                intervals.push_back({r, l});\n        }\n\n        sort(intervals.begin(), intervals.end());\n\n        int end = -1;\n\n        for (auto &p : intervals) {\n            if (p.second > end) {\n                end = p.first;\n                if (--k == 0) return true;\n            }\n        }\n\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2167656151",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

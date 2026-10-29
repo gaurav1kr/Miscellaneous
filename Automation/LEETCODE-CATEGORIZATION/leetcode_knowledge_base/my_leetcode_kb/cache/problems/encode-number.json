@@ -1,0 +1,30 @@
+{
+  "id": "1256",
+  "title": "Encode Number",
+  "slug": "encode-number",
+  "url": "https://leetcode.com/problems/encode-number/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Math",
+    "String",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a non-negative integer num , Return its encoding string. \n \n The encoding is done by converting the integer to a string using a secret function that you should deduce from the following table: \n \n [Figure: https://assets.leetcode.com/uploads/2019/06/21/encode_number.png] \n\n Example 1: \n \n```\nInput:\n num = 23\r\n\nOutput:\n \"1000\"\n```\n\n Example 2: \n \n```\nInput:\n num = 107\r\n\nOutput:\n \"101100\"\n```\n\n Constraints: \n\n 0 <= num <= 10^9",
+  "code": "class Solution {\npublic:\n    string encode(int num) {\n        long long value = static_cast<long long>(num) + 1;\n        string result;\n        while (value > 1) {\n            result.push_back(char('0' + (value & 1)));\n            value >>= 1;\n        }\n        reverse(result.begin(), result.end());\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178564190",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

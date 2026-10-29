@@ -1,0 +1,32 @@
+{
+  "id": "1423",
+  "title": "Maximum Points You Can Obtain from Cards",
+  "slug": "maximum-points-you-can-obtain-from-cards",
+  "url": "https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "There are several cards arranged in a row , and each card has an associated number of points. The points are given in the integer array cardPoints . \n \n In one step, you can take one card from the beginning or from the end of the row. You have to take exactly k cards. \n \n Your score is the sum of the points of the cards you have taken. \n \n Given the integer array cardPoints and the integer k , return the maximum score you can obtain. \n\n Example 1: \n \n```\nInput:\n cardPoints = [1,2,3,4,5,6,1], k = 3\n\nOutput:\n 12\n\nExplanation:\n After the first step, your score will always be 1. However, choosing the rightmost card first will maximize your total score. The optimal strategy is to take the three cards on the right, giving a final score of 1 + 6 + 5 = 12.\n```\n\n Example 2: \n \n```\nInput:\n cardPoints = [2,2,2], k = 2\n\nOutput:\n 4\n\nExplanation:\n Regardless of which two cards you take, your score will always be 4.\n```\n\n Example 3: \n \n```\nInput:\n cardPoints = [9,7,7,9,7,7,9], k = 7\n\nOutput:\n 55\n\nExplanation:\n You have to take all the cards. Your score is the sum of points of all cards.\n```\n\n Constraints: \n\n 1 <= cardPoints.length <= 10 5 \n \n 1 <= cardPoints[i] <= 10 4 \n \n 1 <= k <= cardPoints.length",
+  "code": "class Solution \n{\npublic:\n    int maxScore(vector<int>& cardPoints, int k) \n    {\n        int res = 0;\n\t\t\n\t\t//First k elements in our window\n        for(int i=0;i<k;i++) res+=cardPoints[i];\n        \n        int curr=res;\n        for(int i=k-1;i>=0;i--) \n        {\n\t\t\t//We remove the last visited element and add the non-visited element from the last\n            curr-=cardPoints[i];\n            curr+=cardPoints[cardPoints.size()-k+i];\n\t\t\t\n            //We check the maximum value any possible combination can give\n\t\t\tres = max(res, curr);\n        }\n        \n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1482411543",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

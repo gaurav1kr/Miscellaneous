@@ -1,0 +1,32 @@
+{
+  "id": "1400",
+  "title": "Construct K Palindrome Strings",
+  "slug": "construct-k-palindrome-strings",
+  "url": "https://leetcode.com/problems/construct-k-palindrome-strings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Given a string s and an integer k , return true if you can use all the characters in s to construct non-empty k palindrome strings or false otherwise. \n\n Example 1: \n \n```\nInput:\n s = \"annabelle\", k = 2\n\nOutput:\n true\n\nExplanation:\n You can construct two palindromes using all characters in s.\nSome possible constructions \"anna\" + \"elble\", \"anbna\" + \"elle\", \"anellena\" + \"b\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"leetcode\", k = 3\n\nOutput:\n false\n\nExplanation:\n It is impossible to construct 3 palindromes using all the characters of s.\n```\n\n Example 3: \n \n```\nInput:\n s = \"true\", k = 4\n\nOutput:\n true\n\nExplanation:\n The only possible solution is to put each character in a separate string.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters. \n \n 1 <= k <= 10 5",
+  "code": "class Solution {\npublic:\n    bool canConstruct(string s, int k) {\n        if (k > (int)s.size()) return false;\n        int mask = 0;\n        for (char c : s) mask ^= 1 << (c - 'a');\n        return __builtin_popcount((unsigned)mask) <= k;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175751441",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

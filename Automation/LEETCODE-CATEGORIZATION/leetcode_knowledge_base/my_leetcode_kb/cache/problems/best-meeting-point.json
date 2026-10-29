@@ -1,0 +1,34 @@
+{
+  "id": "296",
+  "title": "Best Meeting Point",
+  "slug": "best-meeting-point",
+  "url": "https://leetcode.com/problems/best-meeting-point/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Sorting",
+    "Matrix"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an m x n binary grid grid where each 1 marks the home of one friend, return the minimal total travel distance . \n \n The total travel distance is the sum of the distances between the houses of the friends and the meeting point. \n \n The distance is calculated using Manhattan Distance , where distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y| . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/14/meetingpoint-grid.jpg] \n \n```\nInput:\n grid = [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]\n\nOutput:\n 6\n\nExplanation:\n Given three friends living at (0,0), (0,4), and (2,2).\nThe point (0,2) is an ideal meeting point, as the total travel distance of 2 + 2 + 2 = 6 is minimal.\nSo return 6.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[1,1]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 200 \n \n grid[i][j] is either 0 or 1 . \n \n There will be at least two friends in the grid .",
+  "code": "class Solution\n{\npublic:\n    int minTotalDistance(vector<vector<int>>& grid)\n    {\n        vector<int> rows, cols;\n        for (int r = 0; r < (int)grid.size(); ++r)\n        {\n            for (int c = 0; c < (int)grid[r].size(); ++c)\n            {\n                if (grid[r][c] == 1)\n                {\n                    rows.push_back(r);\n                    cols.push_back(c);\n                }\n            }\n        }\n        if (rows.empty())\n        {\n            return 0;\n        }\n        sort(cols.begin(), cols.end());\n        int mr = rows[rows.size() / 2];\n        int mc = cols[cols.size() / 2];\n        int result = 0;\n        for (int r : rows) {\n            result += abs(r - mr);\n        }\n        for (int c : cols) {\n            result += abs(c - mc);\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178448754",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "106",
+  "title": "Construct Binary Tree from Inorder and Postorder Traversal",
+  "slug": "construct-binary-tree-from-inorder-and-postorder-traversal",
+  "url": "https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Divide and Conquer",
+    "Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given two integer arrays inorder and postorder where inorder is the inorder traversal of a binary tree and postorder is the postorder traversal of the same tree, construct and return the binary tree . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/19/tree.jpg] \n \n```\nInput:\n inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]\n\nOutput:\n [3,9,20,null,null,15,7]\n```\n\n Example 2: \n \n```\nInput:\n inorder = [-1], postorder = [-1]\n\nOutput:\n [-1]\n```\n\n Constraints: \n\n 1 <= inorder.length <= 3000 \n \n postorder.length == inorder.length \n \n -3000 <= inorder[i], postorder[i] <= 3000 \n \n inorder and postorder consist of unique values. \n \n Each value of postorder also appears in inorder . \n \n inorder is guaranteed to be the inorder traversal of the tree. \n \n postorder is guaranteed to be the postorder traversal of the tree.",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {\n        // Map to store the index of each value in inorder traversal\n        unordered_map<int, int> inorderIndexMap;\n        for (int i = 0; i < inorder.size(); i++) {\n            inorderIndexMap[inorder[i]] = i;\n        }\n\n        // Start building the tree\n        int postIndex = postorder.size() - 1;\n        return constructTree(inorder, postorder, inorderIndexMap, postIndex, 0, inorder.size() - 1);\n    }\n\nprivate:\n    TreeNode* constructTree(const vector<int>& inorder, const vector<int>& postorder,\n                            unordered_map<int, int>& inorderIndexMap, int& postIndex,\n                            int inStart, int inEnd) {\n        // Base case: no elements to construct the subtree\n        if (inStart > inEnd) return nullptr;\n\n        // Get the current root value and create a TreeNode\n        int rootValue = postorder[postIndex--];\n        TreeNode* root = new TreeNode(rootValue);\n\n        // Find the index of the root value in the inorder array\n        int rootIndex = inorderIndexMap[rootValue];\n\n        // Recursively build the right and left subtrees\n        root->right = constructTree(inorder, postorder, inorderIndexMap, postIndex, rootIndex + 1, inEnd);\n        root->left = constructTree(inorder, postorder, inorderIndexMap, postIndex, inStart, rootIndex - 1);\n\n        return root;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536146610",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

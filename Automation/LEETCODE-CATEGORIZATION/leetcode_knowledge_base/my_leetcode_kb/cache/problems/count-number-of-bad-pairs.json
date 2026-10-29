@@ -1,0 +1,35 @@
+{
+  "id": "2364",
+  "title": "Count Number of Bad Pairs",
+  "slug": "count-number-of-bad-pairs",
+  "url": "https://leetcode.com/problems/count-number-of-bad-pairs/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . A pair of indices (i, j) is a bad pair if i < j and j - i != nums[j] - nums[i] . \n \n Return the total number of bad pairs in nums . \n\n Example 1: \n \n```\nInput:\n nums = [4,1,3,3]\n\nOutput:\n 5\n\nExplanation:\n The pair (0, 1) is a bad pair since 1 - 0 != 1 - 4.\nThe pair (0, 2) is a bad pair since 2 - 0 != 3 - 4, 2 != -1.\nThe pair (0, 3) is a bad pair since 3 - 0 != 3 - 4, 3 != -1.\nThe pair (1, 2) is a bad pair since 2 - 1 != 3 - 1, 1 != 2.\nThe pair (2, 3) is a bad pair since 3 - 2 != 3 - 3, 1 != 0.\nThere are a total of 5 bad pairs, so we return 5.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4,5]\n\nOutput:\n 0\n\nExplanation:\n There are no bad pairs.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution { public:\n    long long countBadPairs(vector<int>& nums) {\n        unordered_map<long long,long long> f;long long good=0;\n        for(int i=0;i<(int)nums.size();++i)good+=f[(long long)nums[i]-i]++;\n        long long n=nums.size();return n*(n-1)/2-good;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175926815",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

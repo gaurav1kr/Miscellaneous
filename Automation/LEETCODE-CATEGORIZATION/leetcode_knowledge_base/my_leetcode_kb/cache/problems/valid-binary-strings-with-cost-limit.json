@@ -1,0 +1,32 @@
+{
+  "id": "3955",
+  "title": "Valid Binary Strings With Cost Limit",
+  "slug": "valid-binary-strings-with-cost-limit",
+  "url": "https://leetcode.com/problems/valid-binary-strings-with-cost-limit/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Bit Manipulation",
+    "Enumeration"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two integers n and k . \n \n The cost of a binary string s is defined as the sum of all indices i (0-based) such that s[i] == '1' . \n \n A binary string is considered valid if: \n\n It does not contain two consecutive '1' characters. \n \n Its cost is less than or equal to k . \n\n Return a list of all valid binary strings of length n in any order. \n\n Example 1: \n\n Input: n = 3, k = 1 \n \n Output: [\"000\",\"010\",\"100\"] \n \n Explanation: \n \n The binary strings of length 3 without consecutive '1' characters are: \n\n \"000\" : cost = 0 \n \n \" 100\" : cost = 0 \n \n \"010\" : cost = 1 \n \n \"001\" : cost = 2 \n \n \"101\" : cost = 0 + 2 = 2 \n\n Among these, the strings with cost less than or equal to k = 1 are \"000\" , \"010\" and \"100\" . \n \n Thus, the valid strings are [\"000\", \"010\", \"100\"] . \n\n Example 2: \n\n Input: n = 1, k = 0 \n \n Output: [\"0\",\"1\"] \n \n Explanation: \n \n The valid binary strings of length 1 are \"0\" and \"1\" . \n \n Thus the answer is [\"0\", \"1\"] . \n\n Constraints: \n\n 1 <= n <= 12 \n \n 0 <= k <= n * (n - 1) / 2",
+  "code": "class Solution {\n    void dfs(int i,int n,int budget,string& s,vector<string>& ans){\n        if(i==n){ans.push_back(s);return;}\n        s.push_back('0');\n        dfs(i+1,n,budget,s,ans);\n        s.pop_back();\n        if(budget>=i && (i==0||s.back()!='1')){\n            s.push_back('1');\n            dfs(i+1,n,budget-i,s,ans);\n            s.pop_back();\n        }\n    }\npublic:\n    vector<string> generateValidStrings(int n,int k){\n        vector<string> ans;string s;\n        dfs(0,n,k,s,ans);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181094538",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

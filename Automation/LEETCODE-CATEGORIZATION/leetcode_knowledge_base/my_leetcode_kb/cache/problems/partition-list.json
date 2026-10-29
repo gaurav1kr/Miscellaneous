@@ -1,0 +1,28 @@
+{
+  "id": "86",
+  "title": "Partition List",
+  "slug": "partition-list",
+  "url": "https://leetcode.com/problems/partition-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Given the head of a linked list and a value x , partition it such that all nodes less than x come before nodes greater than or equal to x . \n \n You should preserve the original relative order of the nodes in each of the two partitions. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/04/partition.jpg] \n \n```\nInput:\n head = [1,4,3,2,5,2], x = 3\n\nOutput:\n [1,2,2,4,3,5]\n```\n\n Example 2: \n \n```\nInput:\n head = [2,1], x = 2\n\nOutput:\n [1,2]\n```\n\n Constraints: \n\n The number of nodes in the list is in the range [0, 200] . \n \n -100 <= Node.val <= 100 \n \n -200 <= x <= 200",
+  "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution \n{\npublic:\n    ListNode* partition(ListNode* head, int x) \n\t{\n        ListNode *d1 = new ListNode(0), *d2 = new ListNode(0), *n1, *n2;\n        n1 = d1;\n        n2=d2;\n        while(head!=NULL)\n\t\t{\n            if(head->val < x)\n\t\t\t{\n                n1->next=head;\n                n1=n1->next;\n            } \n\t\t\telse\n\t\t\t{\n                n2->next=head;\n                n2=n2->next;\n            }\n            head=head->next;\n        }\n\n        n2->next=NULL;\n        n1->next=d2->next;\n        return d1->next;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1501901353",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

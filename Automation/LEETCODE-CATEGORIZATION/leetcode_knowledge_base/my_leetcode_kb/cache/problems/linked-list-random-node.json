@@ -1,0 +1,30 @@
+{
+  "id": "382",
+  "title": "Linked List Random Node",
+  "slug": "linked-list-random-node",
+  "url": "https://leetcode.com/problems/linked-list-random-node/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Math",
+    "Reservoir Sampling",
+    "Randomized"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Given a singly linked list, return a random node's value from the linked list. Each node must have the same probability of being chosen. \n \n Implement the Solution class: \n\n Solution(ListNode head) Initializes the object with the head of the singly-linked list head . \n \n int getRandom() Chooses a node randomly from the list and returns its value. All the nodes of the list should be equally likely to be chosen. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/16/getrand-linked-list.jpg] \n \n```\nInput\n\n[\"Solution\", \"getRandom\", \"getRandom\", \"getRandom\", \"getRandom\", \"getRandom\"]\n[[[1, 2, 3]], [], [], [], [], []]\n\nOutput\n\n[null, 1, 3, 2, 2, 3]\n\nExplanation\n\nSolution solution = new Solution([1, 2, 3]);\nsolution.getRandom(); // return 1\nsolution.getRandom(); // return 3\nsolution.getRandom(); // return 2\nsolution.getRandom(); // return 2\nsolution.getRandom(); // return 3\n// getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.\n```\n\n Constraints: \n\n The number of nodes in the linked list will be in the range [1, 10 4 ] . \n \n -10 4 <= Node.val <= 10 4 \n \n At most 10 4 calls will be made to getRandom . \n\n Follow up: \n\n What if the linked list is extremely large and its length is unknown to you? \n \n Could you solve this efficiently without using extra space?",
+  "code": "#include <vector>\n#include <cstdlib>\nusing namespace std;\n\n\nclass Solution {\npublic:\n    ListNode* head;\n\n    Solution(ListNode* head) {\n        this->head = head;\n    }\n\n    int getRandom() {\n        ListNode* curr = head;\n        int result = curr->val;\n        int i = 1;\n        while (curr->next) {\n            curr = curr->next;\n            if (rand() % (++i) == 0) {\n                result = curr->val;\n            }\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591375411",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

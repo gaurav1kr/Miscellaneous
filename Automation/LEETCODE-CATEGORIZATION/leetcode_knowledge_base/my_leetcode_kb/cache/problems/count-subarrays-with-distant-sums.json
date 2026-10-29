@@ -1,0 +1,37 @@
+{
+  "id": "4051",
+  "title": "Count Subarrays with Distant Sums",
+  "slug": "count-subarrays-with-distant-sums",
+  "url": "https://leetcode.com/problems/count-subarrays-with-distant-sums/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Prefix-sum array",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers goal and k . \n \n A subarray nums[i..j] is considered distant if the absolute difference between its sum and goal is at least k . \n \n Return the number of distant subarrays. \n\n Example 1: \n\n Input: nums = [1,2,1], goal = 4, k = 1 \n \n Output: 5 \n \n Explanation: \n \n The distant subarrays for k = 1 are: \n\n i \n j \n nums[i..j] \n Sum \n abs(sum - goal) \n\n 0 \n 0 \n [1] \n 1 \n 3 \n\n 1 \n 1 \n [2] \n 2 \n 2 \n\n 2 \n 2 \n [1] \n 1 \n 3 \n\n 0 \n 1 \n [1, 2] \n 3 \n 1 \n\n 1 \n 2 \n [2, 1] \n 3 \n 1 \n\n Thus, the answer is 5. \n\n Example 2: \n\n Input: nums = [2,-1,3], goal = 2, k = 2 \n \n Output: 2 \n \n Explanation: \n \n The distant subarrays for k = 2 are: \n\n i \n j \n nums[i..j] \n Sum \n abs(sum - goal) \n\n 1 \n 1 \n [-1] \n -1 \n 3 \n\n 0 \n 2 \n [2, -1, 3] \n 4 \n 2 \n\n Thus, the answer is 2. \n\n Example 3: \n\n Input: nums = [-3,1,2], goal = 0, k = 3 \n \n Output: 2 \n \n Explanation: \n \n The distant subarrays for k = 3 are: \n\n i \n j \n nums[i..j] \n Sum \n abs(sum - goal) \n\n 0 \n 0 \n [-3] \n -3 \n 3 \n\n 1 \n 2 \n [1, 2] \n 3 \n 3 \n\n Thus, the answer is 2. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 9 <= nums[i] <= 10 9 \n \n -10 9 <= goal <= 10 9 \n \n 0 <= k <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n long long distantSubarrays(vector<int>& nums,int goal,int k){\n  int n=nums.size();if(k==0)return 1LL*n*(n+1)/2;\n  vector<long long>p(n+1);for(int i=0;i<n;++i)p[i+1]=p[i]+nums[i];\n  vector<long long>v=p;sort(v.begin(),v.end());v.erase(unique(v.begin(),v.end()),v.end());\n  int z=v.size();vector<int>bit(z+1);\n  auto add=[&](int i){for(++i;i<=z;i+=i&-i)++bit[i];};\n  auto sum=[&](int i){int t=0;for(;i>0;i-=i&-i)t+=bit[i];return t;};\n  long long close=0;add(lower_bound(v.begin(),v.end(),p[0])-v.begin());\n  for(int i=1;i<=n;++i){\n   long long low=p[i]-goal-k+1,high=p[i]-goal+k-1;\n   int L=lower_bound(v.begin(),v.end(),low)-v.begin();\n   int R=upper_bound(v.begin(),v.end(),high)-v.begin();\n   close+=sum(R)-sum(L);add(lower_bound(v.begin(),v.end(),p[i])-v.begin());\n  }\n  return 1LL*n*(n+1)/2-close;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181245311",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

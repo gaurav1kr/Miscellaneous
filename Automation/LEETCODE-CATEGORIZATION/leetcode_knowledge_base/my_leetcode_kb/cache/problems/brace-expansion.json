@@ -1,0 +1,37 @@
+{
+  "id": "1087",
+  "title": "Brace Expansion",
+  "slug": "brace-expansion",
+  "url": "https://leetcode.com/problems/brace-expansion/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Stack",
+    "Breadth-First Search",
+    "Sorting"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Sorted array",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s representing a list of words. Each letter in the word has one or more options. \n\n If there is one option, the letter is represented as is. \n \n If there is more than one option, then curly braces delimit the options. For example, \"{a,b,c}\" represents options [\"a\", \"b\", \"c\"] . \n\n For example, if s = \"a{b,c}\" , the first character is always 'a' , but the second character can be 'b' or 'c' . The original list is [\"ab\", \"ac\"] . \n \n Return all words that can be formed in this manner, sorted in lexicographical order. \n\n Example 1: \n \n```\nInput:\n s = \"{a,b}c{d,e}f\"\n\nOutput:\n [\"acdf\",\"acef\",\"bcdf\",\"bcef\"]\n```\n \n Example 2: \n \n```\nInput:\n s = \"abcd\"\n\nOutput:\n [\"abcd\"]\n```\n\n Constraints: \n\n 1 <= s.length <= 50 \n \n s consists of curly brackets '{}' , commas  ',' , and lowercase English letters. \n \n s is guaranteed to be a valid input. \n \n There are no nested curly brackets. \n \n All characters inside a pair of consecutive opening and ending curly brackets are different.",
+  "code": "class Solution {\npublic:\n    vector<string> expand(string s) {\n        vector<string> result(1, \"\");\n        for (int i = 0; i < static_cast<int>(s.size());) {\n            vector<char> options;\n            if (s[i] == '{') {\n                ++i;\n                while (s[i] != '}') {\n                    if (s[i] != ',') {\n                        options.push_back(s[i]);\n                    }\n                    ++i;\n                }\n                ++i;\n            } else {\n                options.push_back(s[i++]);\n            }\n            sort(options.begin(), options.end());\n            vector<string> next;\n            for (const string& prefix : result) {\n                for (char c : options) {\n                    next.push_back(prefix + c);\n                }\n            }\n            result.swap(next);\n        }\n        sort(result.begin(), result.end());\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178525693",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

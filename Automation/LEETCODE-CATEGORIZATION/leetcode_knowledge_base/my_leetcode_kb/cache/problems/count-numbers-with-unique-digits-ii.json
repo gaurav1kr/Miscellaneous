@@ -1,0 +1,31 @@
+{
+  "id": "3032",
+  "title": "Count Numbers With Unique Digits II",
+  "slug": "count-numbers-with-unique-digits-ii",
+  "url": "https://leetcode.com/problems/count-numbers-with-unique-digits-ii/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map / hash set"
+  ],
+  "description": "Given two positive integers a and b , return the count of numbers having  unique digits in the range [a, b] ( inclusive ). \n\n Example 1: \n \n```\nInput:\n a = 1, b = 20\n\nOutput:\n 19\n\nExplanation:\n All the numbers in the range [1, 20] have unique digits except 11. Hence, the answer is 19.\n```\n\n Example 2: \n \n```\nInput:\n a = 9, b = 19\n\nOutput:\n 10\n\nExplanation:\n All the numbers in the range [9, 19] have unique digits except 11. Hence, the answer is 10.\n```\n\n Example 3: \n \n```\nInput:\n a = 80, b = 120\n\nOutput:\n 27\n\nExplanation:\n There are 41 numbers in the range [80, 120], 27 of which have unique digits.\n```\n\n Constraints: \n\n 1 <= a <= b <= 1000",
+  "code": "class Solution {\npublic:\n    int numberCount(int a, int b) {\n        int ans = 0;\n        for (int x = a; x <= b; ++x) {\n            int y = x, mask = 0;\n            bool ok = true;\n            do {\n                int d = y % 10;\n                if (mask & (1 << d)) { ok = false; break; }\n                mask |= 1 << d;\n                y /= 10;\n            } while (y);\n            ans += ok;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178936424",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

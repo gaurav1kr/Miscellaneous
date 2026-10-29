@@ -1,0 +1,34 @@
+{
+  "id": "2539",
+  "title": "Count the Number of Good Subsequences",
+  "slug": "count-the-number-of-good-subsequences",
+  "url": "https://leetcode.com/problems/count-the-number-of-good-subsequences/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Combinatorics",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "A subsequence of a string is good if it is not empty and the frequency of each one of its characters is the same. \n \n Given a string s , return the number of good subsequences of s . Since the answer may be too large, return it modulo 10 9 + 7 . \n \n A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters. \n\n Example 1: \n \n```\nInput:\n s = \"aabb\"\n\nOutput:\n 11\n\nExplanation:\n The total number of subsequences is \n2\n4\n. \nThere are five subsequences which are not good: \"\naab\nb\", \"a\nabb\n\", \"\na\na\nbb\n\", \"\naa\nb\nb\n\", and the empty subsequence. Hence, the number of good subsequences is \n2\n4\n-5 = 11\n.\n```\n\n Example 2: \n \n```\nInput:\n s = \"leet\"\n\nOutput:\n 12\n\nExplanation:\n There are four subsequences which are not good: \"\nl\nee\nt\", \"l\neet\n\", \"\nleet\n\", and the empty subsequence. Hence, the number of good subsequences is \n2\n4\n-4 = 12\n.\n```\n\n Example 3: \n \n```\nInput:\n s = \"abcd\"\n\nOutput:\n 15\n\nExplanation:\n All of the non-empty subsequences are good subsequences. Hence, the number of good subsequences is \n2\n4\n-1 = 15\n.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists of only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int countGoodSubsequences(string s) {\n        const long long MOD = 1000000007;\n        int n = s.size();\n        vector<int> freq(26);\n        for (char c : s) ++freq[c - 'a'];\n        vector<long long> fact(n + 1, 1), inv(n + 1, 1);\n        auto power = [&](long long a, long long b) {\n            long long r = 1;\n            while (b) {\n                if (b & 1) r = r * a % MOD;\n                a = a * a % MOD;\n                b >>= 1;\n            }\n            return r;\n        };\n        for (int i = 1; i <= n; ++i) fact[i] = fact[i - 1] * i % MOD;\n        inv[n] = power(fact[n], MOD - 2);\n        for (int i = n; i > 0; --i) inv[i - 1] = inv[i] * i % MOD;\n        long long answer = 0;\n        for (int k = 1; k <= *max_element(freq.begin(), freq.end()); ++k) {\n            long long ways = 1;\n            for (int f : freq) if (f >= k) {\n                long long choose = fact[f] * inv[k] % MOD * inv[f - k] % MOD;\n                ways = ways * (choose + 1) % MOD;\n            }\n            answer = (answer + ways - 1 + MOD) % MOD;\n        }\n        return (int)answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178887048",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

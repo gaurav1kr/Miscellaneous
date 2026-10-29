@@ -1,0 +1,31 @@
+{
+  "id": "11",
+  "title": "Container With Most Water",
+  "slug": "container-with-most-water",
+  "url": "https://leetcode.com/problems/container-with-most-water/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array height of length n . There are n vertical lines drawn such that the two endpoints of the i th line are (i, 0) and (i, height[i]) . \n \n Find two lines that together with the x-axis form a container, such that the container contains the most water. \n \n Return the maximum amount of water a container can store . \n \n Notice that you may not slant the container. \n\n Example 1: \n [Figure: https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg] \n \n```\nInput:\n height = [1,8,6,2,5,4,8,3,7]\n\nOutput:\n 49\n\nExplanation:\n The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.\n```\n\n Example 2: \n \n```\nInput:\n height = [1,1]\n\nOutput:\n 1\n```\n\n Constraints: \n\n n == height.length \n \n 2 <= n <= 10 5 \n \n 0 <= height[i] <= 10 4",
+  "code": "class Solution {\npublic:\n    int min1(int a , int b)\n    {\n        return ((a<b)?a:b) ;\n    }\n    int max1(int a , int b)\n    {\n        return ((a>b)?a:b) ;\n    }\n    int maxArea(vector<int>& A) \n    {\n        int l = 0;\n        int len = A.size() ;\n        int r = len - 1;\n        int area = 0;\n\n        while (l < r)\n        {\n            area = max1(area, min1(A[l], A[r]) * (r - l));\n\n            if (A[l] < A[r])\n                l += 1;\n\n        else\n            r -= 1;\n        }\n        return area;   \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "340652356",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

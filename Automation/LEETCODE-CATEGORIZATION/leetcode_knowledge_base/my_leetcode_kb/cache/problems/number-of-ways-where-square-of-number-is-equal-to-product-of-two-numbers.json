@@ -1,0 +1,36 @@
+{
+  "id": "1577",
+  "title": "Number of Ways Where Square of Number Is Equal to Product of Two Numbers",
+  "slug": "number-of-ways-where-square-of-number-is-equal-to-product-of-two-numbers",
+  "url": "https://leetcode.com/problems/number-of-ways-where-square-of-number-is-equal-to-product-of-two-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given two arrays of integers nums1 and nums2 , return the number of triplets formed (type 1 and type 2) under the following rules: \n\n Type 1: Triplet (i, j, k) if nums1[i] 2 == nums2[j] * nums2[k] where 0 <= i < nums1.length and 0 <= j < k < nums2.length . \n \n Type 2: Triplet (i, j, k) if nums2[i] 2 == nums1[j] * nums1[k] where 0 <= i < nums2.length and 0 <= j < k < nums1.length . \n\n Example 1: \n \n```\nInput:\n nums1 = [7,4], nums2 = [5,2,8,9]\n\nOutput:\n 1\n\nExplanation:\n Type 1: (1, 1, 2), nums1[1]\n2\n = nums2[1] * nums2[2]. (4\n2\n = 2 * 8).\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [1,1], nums2 = [1,1,1]\n\nOutput:\n 9\n\nExplanation:\n All Triplets are valid, because 1\n2\n = 1 * 1.\nType 1: (0,0,1), (0,0,2), (0,1,2), (1,0,1), (1,0,2), (1,1,2). nums1[i]\n2\n = nums2[j] * nums2[k].\nType 2: (0,0,1), (1,0,1), (2,0,1). nums2[i]\n2\n = nums1[j] * nums1[k].\n```\n\n Example 3: \n \n```\nInput:\n nums1 = [7,7,8,3], nums2 = [1,2,9,7]\n\nOutput:\n 2\n\nExplanation:\n There are 2 valid triplets.\nType 1: (3,0,2). nums1[3]\n2\n = nums2[0] * nums2[2].\nType 2: (3,0,1). nums2[3]\n2\n = nums1[0] * nums1[1].\n```\n\n Constraints: \n\n 1 <= nums1.length, nums2.length <= 1000 \n \n 1 <= nums1[i], nums2[i] <= 10 5",
+  "code": "#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numTriplets(vector<int>& nums1, vector<int>& nums2) {\n        return count(nums1, nums2) + count(nums2, nums1);\n    }\n\n    int count(vector<int>& A, vector<int>& B) {\n        unordered_map<long long, int> freq;\n        for (int b : B) freq[b]++;\n        int res = 0;\n        for (int a : A) {\n            long long target = (long long)a * a;\n            for (int b : B) {\n                if (target % b != 0) continue;\n                long long other = target / b;\n                if (other == b) res += freq[b] - 1;\n                else res += freq[other];\n            }\n        }\n        return res / 2;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610671272",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

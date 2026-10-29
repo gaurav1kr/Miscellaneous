@@ -1,0 +1,29 @@
+{
+  "id": "605",
+  "title": "Can Place Flowers",
+  "slug": "can-place-flowers",
+  "url": "https://leetcode.com/problems/can-place-flowers/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots. \n \n Given an integer array flowerbed containing 0 's and 1 's, where 0 means empty and 1 means not empty, and an integer n , return true   if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise . \n\n Example 1: \n \n```\nInput:\n flowerbed = [1,0,0,0,1], n = 1\n\nOutput:\n true\n```\n \n Example 2: \n \n```\nInput:\n flowerbed = [1,0,0,0,1], n = 2\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= flowerbed.length <= 2 * 10 4 \n \n flowerbed[i] is 0 or 1 . \n \n There are no two adjacent flowers in flowerbed . \n \n 0 <= n <= flowerbed.length",
+  "code": "class Solution {\npublic:\n    bool canPlaceFlowers(std::vector<int>& flowerbed, int n) {\n        for (int i = 0; i < (int)flowerbed.size() && n > 0; ++i) {\n            if (flowerbed[i] == 0 &&\n                (i == 0 || flowerbed[i - 1] == 0) &&\n                (i + 1 == (int)flowerbed.size() || flowerbed[i + 1] == 0)) {\n                flowerbed[i] = 1;\n                --n;\n            }\n        }\n        return n <= 0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175701118",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "3882",
+  "title": "Minimum XOR Path in a Grid",
+  "slug": "minimum-xor-path-in-a-grid",
+  "url": "https://leetcode.com/problems/minimum-xor-path-in-a-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Bitset",
+    "DP array / memo table",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array grid of size m * n . \n \n You start at the top-left cell (0, 0) and want to reach the bottom-right cell (m - 1, n - 1) . \n \n At each step, you may move either right or down . \n \n The cost of a path is defined as the bitwise XOR of all the values in the cells along that path, including the start and end cells. \n \n Return the minimum possible XOR value among all valid paths from (0, 0) to (m - 1, n - 1) . \n\n Example 1: \n\n Input: grid = [[1,2],[3,4]] \n \n Output: 6 \n \n Explanation: \n \n There are two valid paths: \n\n (0, 0) → (0, 1) → (1, 1) with XOR: 1 XOR 2 XOR 4 = 7 \n \n (0, 0) → (1, 0) → (1, 1) with XOR: 1 XOR 3 XOR 4 = 6 \n\n The minimum XOR value among all valid paths is 6. \n\n Example 2: \n\n Input: grid = [[6,7],[5,8]] \n \n Output: 9 \n \n Explanation: \n \n There are two valid paths: \n\n (0, 0) → (0, 1) → (1, 1) with XOR: 6 XOR 7 XOR 8 = 9 \n \n (0, 0) → (1, 0) → (1, 1) with XOR: 6 XOR 5 XOR 8 = 11 \n\n The minimum XOR value among all valid paths is 9. \n\n Example 3: \n\n Input: grid = [[2,7,5]] \n \n Output: 0 \n \n Explanation: \n \n There is only one valid path: \n\n (0, 0) → (0, 1) → (0, 2) with XOR: 2 XOR 7 XOR 5 = 0 \n\n The XOR value of this path is 0, which is the minimum possible. \n\n Constraints: \n\n 1 <= m == grid.length <= 1000 \n \n 1 <= n == grid[i].length <= 1000 \n \n m * n <= 1000 \n \n 0 <= grid[i][j] <= 1023​",
+  "code": "class Solution {\npublic:\n    int minCost(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        vector<bitset<1024>> dp(n);\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                bitset<1024> ways;\n                if (i == 0 && j == 0) ways.set(grid[i][j]);\n                else {\n                    bitset<1024> prev;\n                    if (i > 0) prev |= dp[j];\n                    if (j > 0) prev |= dp[j-1];\n                    for (int x = 0; x < 1024; ++x)\n                        if (prev.test(x)) ways.set(x ^ grid[i][j]);\n                }\n                dp[j] = ways;\n            }\n        }\n        for (int x = 0; x < 1024; ++x)\n            if (dp[n-1].test(x)) return x;\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181074914",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

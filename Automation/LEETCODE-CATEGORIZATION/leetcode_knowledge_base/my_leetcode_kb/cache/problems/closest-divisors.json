@@ -1,0 +1,27 @@
+{
+  "id": "1362",
+  "title": "Closest Divisors",
+  "slug": "closest-divisors",
+  "url": "https://leetcode.com/problems/closest-divisors/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Prime Factorization"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "Given an integer num , find the closest two integers in absolute difference whose product equals  num + 1  or num + 2 . \n \n Return the two integers in any order. \n\n Example 1: \n \n```\nInput:\n num = 8\n\nOutput:\n [3,3]\n\nExplanation:\n For num + 1 = 9, the closest divisors are 3 & 3, for num + 2 = 10, the closest divisors are 2 & 5, hence 3 & 3 is chosen.\n```\n\n Example 2: \n \n```\nInput:\n num = 123\n\nOutput:\n [5,25]\n```\n\n Example 3: \n \n```\nInput:\n num = 999\n\nOutput:\n [40,25]\n```\n\n Constraints: \n\n 1 <= num <= 10^9",
+  "code": "class Solution {\npublic:\n    vector<int> closestDivisors(int num) {\n        vector<int> best;\n        int diff = INT_MAX;\n        for (int x : {num + 1, num + 2}) {\n            for (int d = (int)sqrt(x); d >= 1; --d) {\n                if (x % d == 0) {\n                    if (x / d - d < diff) {\n                        diff = x / d - d;\n                        best = {d, x / d};\n                    }\n                    break;\n                }\n            }\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175750524",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

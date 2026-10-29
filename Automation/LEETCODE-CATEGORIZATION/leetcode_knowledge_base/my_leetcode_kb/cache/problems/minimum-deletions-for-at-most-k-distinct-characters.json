@@ -1,0 +1,36 @@
+{
+  "id": "3545",
+  "title": "Minimum Deletions for At Most K Distinct Characters",
+  "slug": "minimum-deletions-for-at-most-k-distinct-characters",
+  "url": "https://leetcode.com/problems/minimum-deletions-for-at-most-k-distinct-characters/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters, and an integer k . \n \n Your task is to delete some (possibly none) of the characters in the string so that the number of distinct characters in the resulting string is at most k . \n \n Return the minimum number of deletions required to achieve this. \n\n Example 1: \n\n Input: s = \"abc\", k = 2 \n \n Output: 1 \n \n Explanation: \n\n s has three distinct characters: 'a' , 'b' and 'c' , each with a frequency of 1. \n \n Since we can have at most k = 2 distinct characters, remove all occurrences of any one character from the string. \n \n For example, removing all occurrences of 'c' results in at most k distinct characters. Thus, the answer is 1. \n\n Example 2: \n\n Input: s = \"aabb\", k = 2 \n \n Output: 0 \n \n Explanation: \n\n s has two distinct characters ( 'a' and 'b' ) with frequencies of 2 and 2, respectively. \n \n Since we can have at most k = 2 distinct characters, no deletions are required. Thus, the answer is 0. \n\n Example 3: \n\n Input: s = \"yyyzz\", k = 1 \n \n Output: 2 \n \n Explanation: \n\n s has two distinct characters ( 'y' and 'z' ) with frequencies of 3 and 2, respectively. \n \n Since we can have at most k = 1 distinct character, remove all occurrences of any one character from the string. \n \n Removing all 'z' results in at most k distinct characters. Thus, the answer is 2. \n\n Constraints: \n\n 1 <= s.length <= 16 \n \n 1 <= k <= 16 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {public:int minDeletion(string s,int k){vector<int> f(26);for(char c:s)f[c-'a']++;sort(f.rbegin(),f.rend());int ans=0;for(int i=k;i<26;i++)ans+=f[i];return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177572919",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

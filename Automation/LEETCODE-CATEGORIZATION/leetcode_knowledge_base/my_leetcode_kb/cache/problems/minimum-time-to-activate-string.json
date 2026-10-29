@@ -1,0 +1,29 @@
+{
+  "id": "3639",
+  "title": "Minimum Time to Activate String",
+  "slug": "minimum-time-to-activate-string",
+  "url": "https://leetcode.com/problems/minimum-time-to-activate-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a string s of length n and an integer array order , where order is a permutation of the numbers in the range [0, n - 1] . \n \n Starting from time t = 0 , replace the character at index order[t] in s with '*' at each time step. \n \n A substring is valid if it contains at least one '*' . \n \n A string is active if the total number of valid substrings is greater than or equal to k . \n \n Return the minimum time t at which the string s becomes active . If it is impossible, return -1. \n\n Example 1: \n\n Input: s = \"abc\", order = [1,0,2], k = 2 \n \n Output: 0 \n \n Explanation: \n\n t \n order[t] \n Modified s \n Valid Substrings \n Count \n Active \n (Count >= k) \n\n 0 \n 1 \n \"a*c\" \n \"*\" , \"a*\" , \"*c\" , \"a*c\" \n 4 \n Yes \n\n The string s becomes active at t = 0 . Thus, the answer is 0. \n\n Example 2: \n\n Input: s = \"cat\", order = [0,2,1], k = 6 \n \n Output: 2 \n \n Explanation: \n\n t \n order[t] \n Modified s \n Valid Substrings \n Count \n Active \n (Count >= k) \n\n 0 \n 0 \n \"*at\" \n \"*\" , \"*a\" , \"*at\" \n 3 \n No \n\n 1 \n 2 \n \"*a*\" \n \"*\" , \"*a\" , \" *a*\" , \" a*\" , \"*\" \n 5 \n No \n\n 2 \n 1 \n \"***\" \n All substrings (contain '*' ) \n 6 \n Yes \n\n The string s becomes active at t = 2 . Thus, the answer is 2. \n\n Example 3: \n\n Input: s = \"xy\", order = [0,1], k = 4 \n \n Output: -1 \n \n Explanation: \n \n Even after all replacements, it is impossible to obtain k = 4 valid substrings. Thus, the answer is -1. \n\n Constraints: \n\n 1 <= n == s.length <= 10 5 \n \n order.length == n \n \n 0 <= order[i] <= n - 1 \n \n s consists of lowercase English letters. \n \n order is a permutation of integers from 0 to n - 1 . \n \n 1 <= k <= 10 9",
+  "code": "class Solution {\npublic:\n int minTime(string s,vector<int>& order,int k){int n=s.size();auto ok=[&](int t){vector<char>active(n);for(int i=0;i<=t;++i)active[order[i]]=1;\n  long long count=(long long)n*(n+1)/2,gap=0;for(int i=0;i<n;++i){if(active[i]){count-=gap*(gap+1)/2;gap=0;}else ++gap;}count-=gap*(gap+1)/2;return count>=k;};\n  if(!ok(n-1))return -1;int lo=0,hi=n-1;while(lo<hi){int m=(lo+hi)/2;if(ok(m))hi=m;else lo=m+1;}return lo;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177635575",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "1038",
+  "title": "Binary Search Tree to Greater Sum Tree",
+  "slug": "binary-search-tree-to-greater-sum-tree",
+  "url": "https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus the sum of all keys greater than the original key in BST. \n \n As a reminder, a binary search tree is a tree that satisfies these constraints: \n\n The left subtree of a node contains only nodes with keys less than the node's key. \n \n The right subtree of a node contains only nodes with keys greater than the node's key. \n \n Both the left and right subtrees must also be binary search trees. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/05/02/tree.png] \n \n```\nInput:\n root = [4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]\n\nOutput:\n [30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]\n```\n\n Example 2: \n \n```\nInput:\n root = [0,null,1]\n\nOutput:\n [1,null,1]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 100] . \n \n 0 <= Node.val <= 100 \n \n All the values in the tree are unique . \n\n Note: This question is the same as 538: https://leetcode.com/problems/convert-bst-to-greater-tree/",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution \n{\npublic:\n\tvoid bstToGstUtil(TreeNode *root, int & temp)\n\t{\n\t\tif(!root)\n\t\t{\n\t\t\treturn ;\n\t\t}\n\t\tbstToGstUtil(root->right , temp) ;\n\t\troot->val += temp ;\n        temp = root->val ;\n\t\tbstToGstUtil(root->left , temp) ;\n\t}\n    TreeNode* bstToGst(TreeNode* root) \n    {\n       int temp = 0;\n\t   bstToGstUtil(root, temp);\n       return root ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1412087845",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

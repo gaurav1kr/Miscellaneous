@@ -1,0 +1,32 @@
+{
+  "id": "3898",
+  "title": "Find the Degree of Each Vertex",
+  "slug": "find-the-degree-of-each-vertex",
+  "url": "https://leetcode.com/problems/find-the-degree-of-each-vertex/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array matrix of size n x n representing the adjacency matrix of an undirected graph with n vertices labeled from 0 to n - 1 . \n\n matrix[i][j] = 1 indicates that there is an edge between vertices i and j . \n \n matrix[i][j] = 0 indicates that there is no edge between vertices i and j . \n\n The degree of a vertex is the number of edges connected to it. \n \n Return an integer array ans of size n where ans[i] represents the degree of vertex i . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2026/03/14/g41f.png] \n\n Input: matrix = [[0,1,1],[1,0,1],[1,1,0]] \n \n Output: [2,2,2] \n \n Explanation: \n\n Vertex 0 is connected to vertices 1 and 2, so its degree is 2. \n \n Vertex 1 is connected to vertices 0 and 2, so its degree is 2. \n \n Vertex 2 is connected to vertices 0 and 1, so its degree is 2. \n\n Thus, the answer is [2, 2, 2] . \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2026/03/14/g42f.png] \n\n Input: matrix = [[0,1,0],[1,0,0],[0,0,0]] \n \n Output: [1,1,0] \n \n Explanation: \n\n Vertex 0 is connected to vertex 1, so its degree is 1. \n \n Vertex 1 is connected to vertex 0, so its degree is 1. \n \n Vertex 2 is not connected to any vertex, so its degree is 0. \n\n Thus, the answer is [1, 1, 0] . \n\n Example 3: \n\n Input: matrix = [[0]] \n \n Output: [0] \n \n Explanation: \n \n There is only one vertex and it has no edges connected to it. Thus, the answer is [0] . \n\n Constraints: \n\n 1 <= n == matrix.length == matrix[i].length <= 100 ​​​​​​​ \n \n ​​​​​​​matrix[i][i] == 0 \n \n matrix[i][j] is either 0 or 1 \n \n matrix[i][j] == matrix[j][i]",
+  "code": "class Solution {\npublic:\n    vector<int> findDegrees(vector<vector<int>>& matrix) {\n        vector<int> ans;\n        for (const auto& row : matrix) {\n            int count = 0;\n            for (int edge : row) count += edge;\n            ans.push_back(count);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179314957",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

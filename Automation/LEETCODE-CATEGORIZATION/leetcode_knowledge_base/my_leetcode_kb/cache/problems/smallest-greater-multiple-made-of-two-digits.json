@@ -1,0 +1,25 @@
+{
+  "id": "1999",
+  "title": "Smallest Greater Multiple Made of Two Digits",
+  "slug": "smallest-greater-multiple-made-of-two-digits",
+  "url": "https://leetcode.com/problems/smallest-greater-multiple-made-of-two-digits/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Enumeration"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given three integers, k , digit1 , and digit2 , you want to find the smallest integer that is: \n\n Larger than k , \n \n A multiple of k , and \n \n Comprised of only the digits digit1 and/or digit2 . \n\n Return the smallest such integer. If no such integer exists or the integer exceeds the limit of a signed 32-bit integer ( 2 31 - 1 ), return -1 . \n\n Example 1: \n \n```\nInput:\n k = 2, digit1 = 0, digit2 = 2\n\nOutput:\n 20\n\nExplanation:\n\n20 is the first integer larger than 2, a multiple of 2, and comprised of only the digits 0 and/or 2.\n```\n\n Example 2: \n \n```\nInput:\n k = 3, digit1 = 4, digit2 = 2\n\nOutput:\n 24\n\nExplanation:\n\n24 is the first integer larger than 3, a multiple of 3, and comprised of only the digits 4 and/or 2.\n```\n\n Example 3: \n \n```\nInput:\n k = 2, digit1 = 0, digit2 = 0\n\nOutput:\n -1\n\nExplanation:\n\nNo integer meets the requirements so return -1.\n```\n\n Constraints: \n\n 1 <= k <= 1000 \n \n 0 <= digit1 <= 9 \n \n 0 <= digit2 <= 9",
+  "code": "class Solution {\npublic:\n    int findInteger(int k, int digit1, int digit2) {\n        long long best = LLONG_MAX;\n        function<void(long long, int)> dfs = [&](long long value, int length) {\n            if (length > 10 || value > INT_MAX) return;\n            if (value > k && value % k == 0) best = min(best, value);\n            if (length == 10) return;\n            for (int d : {digit1, digit2}) {\n                if (value == 0 && d == 0) continue;\n                dfs(value * 10 + d, length + 1);\n            }\n        };\n        dfs(0, 0);\n        return best == LLONG_MAX ? -1 : (int)best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178630782",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

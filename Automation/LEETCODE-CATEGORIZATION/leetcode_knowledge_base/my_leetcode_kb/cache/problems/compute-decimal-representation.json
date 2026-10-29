@@ -1,0 +1,29 @@
+{
+  "id": "3697",
+  "title": "Compute Decimal Representation",
+  "slug": "compute-decimal-representation",
+  "url": "https://leetcode.com/problems/compute-decimal-representation/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n . \n \n A positive integer is a base-10 component if it is the product of a single digit from 1 to 9 and a non-negative power of 10. For example, 500, 30, and 7 are base-10 components , while 537, 102, and 11 are not. \n \n Express n as a sum of only base-10 components, using the fewest base-10 components possible. \n \n Return an array containing these base-10 components in descending order. \n\n Example 1: \n\n Input: n = 537 \n \n Output: [500,30,7] \n \n Explanation: \n \n We can express 537 as 500 + 30 + 7 . It is impossible to express 537 as a sum using fewer than 3 base-10 components. \n\n Example 2: \n\n Input: n = 102 \n \n Output: [100,2] \n \n Explanation: \n \n We can express 102 as 100 + 2 . 102 is not a base-10 component, which means 2 base-10 components are needed. \n\n Example 3: \n\n Input: n = 6 \n \n Output: [6] \n \n Explanation: \n \n 6 is a base-10 component. \n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "class Solution {public: vector<int> decimalRepresentation(int n) {vector<int> a;long long p=1;while(n){if(n%10)a.push_back((n%10)*p);n/=10;p*=10;}reverse(a.begin(),a.end());return a;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177668995",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "1942",
+  "title": "The Number of the Smallest Unoccupied Chair",
+  "slug": "the-number-of-the-smallest-unoccupied-chair",
+  "url": "https://leetcode.com/problems/the-number-of-the-smallest-unoccupied-chair/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is a party where n friends numbered from 0 to n - 1 are attending. There is an infinite number of chairs in this party that are numbered from 0 to infinity . When a friend arrives at the party, they sit on the unoccupied chair with the smallest number . \n\n For example, if chairs 0 , 1 , and 5 are occupied when a friend comes, they will sit on chair number 2 . \n\n When a friend leaves the party, their chair becomes unoccupied at the moment they leave. If another friend arrives at that same moment, they can sit in that chair. \n \n You are given a 0-indexed 2D integer array times where times[i] = [arrival i , leaving i ] , indicating the arrival and leaving times of the i th friend respectively, and an integer targetFriend . All arrival times are distinct . \n \n Return the chair number that the friend numbered targetFriend will sit on . \n\n Example 1: \n \n```\nInput:\n times = [[1,4],[2,3],[4,6]], targetFriend = 1\n\nOutput:\n 1\n\nExplanation:\n \n- Friend 0 arrives at time 1 and sits on chair 0.\n- Friend 1 arrives at time 2 and sits on chair 1.\n- Friend 1 leaves at time 3 and chair 1 becomes empty.\n- Friend 0 leaves at time 4 and chair 0 becomes empty.\n- Friend 2 arrives at time 4 and sits on chair 0.\nSince friend 1 sat on chair 1, we return 1.\n```\n\n Example 2: \n \n```\nInput:\n times = [[3,10],[1,5],[2,6]], targetFriend = 0\n\nOutput:\n 2\n\nExplanation:\n \n- Friend 1 arrives at time 1 and sits on chair 0.\n- Friend 2 arrives at time 2 and sits on chair 1.\n- Friend 0 arrives at time 3 and sits on chair 2.\n- Friend 1 leaves at time 5 and chair 0 becomes empty.\n- Friend 2 leaves at time 6 and chair 1 becomes empty.\n- Friend 0 leaves at time 10 and chair 2 becomes empty.\nSince friend 0 sat on chair 2, we return 2.\n```\n\n Constraints: \n\n n == times.length \n \n 2 <= n <= 10 4 \n \n times[i].length == 2 \n \n 1 <= arrival i < leaving i <= 10 5 \n \n 0 <= targetFriend <= n - 1 \n \n Each arrival i time is distinct .",
+  "code": "class Solution {public:int smallestChair(vector<vector<int>>& times,int targetFriend){int target=times[targetFriend][0],n=times.size();vector<array<int,3>> events;for(int i=0;i<n;++i)events.push_back({times[i][0],times[i][1],i});sort(events.begin(),events.end());priority_queue<int,vector<int>,greater<int>> free;priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> busy;int next=0;for(auto e:events){while(!busy.empty()&&busy.top().first<=e[0]){free.push(busy.top().second);busy.pop();}int chair;if(free.empty())chair=next++;else{chair=free.top();free.pop();}if(e[2]==targetFriend)return chair;busy.push({e[1],chair});}return -1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175765436",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

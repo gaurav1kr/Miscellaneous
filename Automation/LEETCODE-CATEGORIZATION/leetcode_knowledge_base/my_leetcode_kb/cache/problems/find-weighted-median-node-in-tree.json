@@ -1,0 +1,39 @@
+{
+  "id": "3585",
+  "title": "Find Weighted Median Node in Tree",
+  "slug": "find-weighted-median-node-in-tree",
+  "url": "https://leetcode.com/problems/find-weighted-median-node-in-tree/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer n and an undirected, weighted tree rooted at node 0 with n nodes numbered from 0 to n - 1 . This is represented by a 2D array edges of length n - 1 , where edges[i] = [u i , v i , w i ] indicates an edge from node u i to v i with weight w i . \n \n The weighted median node is defined as the first node x on the path from u i to v i such that the sum of edge weights from u i to x is greater than or equal to half of the total path weight. \n \n You are given a 2D integer array queries . For each queries[j] = [u j , v j ] , determine the weighted median node along the path from u j to v j . \n \n Return an array ans , where ans[j] is the node index of the weighted median for queries[j] . \n\n Example 1: \n\n Input: n = 2, edges = [[0,1,7]], queries = [[1,0],[0,1]] \n \n Output: [0,1] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/05/26/screenshot-2025-05-26-at-193447.png] \n\n Query \n Path \n Edge \n Weights \n Total \n Path \n Weight \n Half \n Explanation \n Answer \n\n [1, 0] \n 1 → 0 \n [7] \n 7 \n 3.5 \n Sum from 1 → 0 = 7 >= 3.5 , median is node 0. \n 0 \n\n [0, 1] \n 0 → 1 \n [7] \n 7 \n 3.5 \n Sum from 0 → 1 = 7 >= 3.5 , median is node 1. \n 1 \n\n Example 2: \n\n Input: n = 3, edges = [[0,1,2],[2,0,4]], queries = [[0,1],[2,0],[1,2]] \n \n Output: [1,0,2] \n \n E xplanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/05/26/screenshot-2025-05-26-at-193610.png] \n\n Query \n Path \n Edge \n Weights \n Total \n Path \n Weight \n Half \n Explanation \n Answer \n\n [0, 1] \n 0 → 1 \n [2] \n 2 \n 1 \n Sum from 0 → 1 = 2 >= 1 , median is node 1. \n 1 \n\n [2, 0] \n 2 → 0 \n [4] \n 4 \n 2 \n Sum from 2 → 0 = 4 >= 2 , median is node 0. \n 0 \n\n [1, 2] \n 1 → 0 → 2 \n [2, 4] \n 6 \n 3 \n Sum from 1 → 0 = 2 < 3 . \n Sum from 1 → 2 = 2 + 4 = 6 >= 3 , median is node 2. \n 2 \n\n Example 3: \n\n Input: n = 5, edges = [[0,1,2],[0,2,5],[1,3,1],[2,4,3]], queries = [[3,4],[1,2]] \n \n Output: [2,2] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/05/26/screenshot-2025-05-26-at-193857.png] \n\n Query \n Path \n Edge \n Weights \n Total \n Path \n Weight \n Half \n Explanation \n Answer \n\n [3, 4] \n 3 → 1 → 0 → 2 → 4 \n [1, 2, 5, 3] \n 11 \n 5.5 \n Sum from 3 → 1 = 1 < 5.5 . \n Sum from 3 → 0 = 1 + 2 = 3 < 5.5 . \n Sum from 3 → 2 = 1 + 2 + 5 = 8 >= 5.5 , median is node 2. \n 2 \n\n [1, 2] \n 1 → 0 → 2 \n [2, 5] \n 7 \n 3.5 \n\n Sum from 1 → 0 = 2 < 3.5 . \n Sum from 1 → 2 = 2 + 5 = 7 >= 3.5 , median is node 2. \n \n 2 \n\n Constraints: \n\n 2 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i] == [u i , v i , w i ] \n \n 0 <= u i , v i < n \n \n 1 <= w i <= 10 9 \n \n 1 <= queries.length <= 10 5 \n \n queries[j] == [u j , v j ] \n \n 0 <= u j , v j < n \n \n The input is generated such that edges represents a valid tree.",
+  "code": "class Solution {public:\n vector<int> findMedian(int n,vector<vector<int>>& edges,vector<vector<int>>& queries){\n  const int LOG=20;vector<vector<pair<int,int>>> g(n);for(auto&e:edges){g[e[0]].push_back({e[1],e[2]});g[e[1]].push_back({e[0],e[2]});}\n  vector<vector<int>> up(LOG,vector<int>(n));vector<int> depth(n),parent(n,-1);vector<long long> dist(n);\n  vector<int> order={0};parent[0]=0;\n  for(int z=0;z<(int)order.size();++z){int u=order[z];for(auto e:g[u])if(e.first!=parent[u]){\n   int v=e.first;parent[v]=u;depth[v]=depth[u]+1;dist[v]=dist[u]+e.second;order.push_back(v);\n  }}\n  for(int i=0;i<n;++i)up[0][i]=parent[i];\n  for(int j=1;j<LOG;++j)for(int i=0;i<n;++i)up[j][i]=up[j-1][up[j-1][i]];\n  auto lift=[&](int x,int k){for(int j=0;j<LOG;++j)if(k>>j&1)x=up[j][x];return x;};\n  auto lca=[&](int a,int b){if(depth[a]<depth[b])swap(a,b);a=lift(a,depth[a]-depth[b]);\n   if(a==b)return a;for(int j=LOG-1;j>=0;--j)if(up[j][a]!=up[j][b]){a=up[j][a];b=up[j][b];}return parent[a];};\n  vector<int> ans;\n  for(auto &q:queries){int u=q[0],v=q[1],w=lca(u,v);long long total=dist[u]+dist[v]-2*dist[w];\n   if(2*(dist[u]-dist[w])>=total){int cur=u;\n    for(int j=LOG-1;j>=0;--j){int a=up[j][cur];if(depth[a]>=depth[w]&&2*(dist[u]-dist[a])<total)cur=a;}\n    ans.push_back(2*(dist[u]-dist[cur])>=total?cur:parent[cur]);\n   }else{int cur=v;\n    for(int j=LOG-1;j>=0;--j){int a=up[j][cur];if(depth[a]>=depth[w]&&2*(dist[v]-dist[a])<=total)cur=a;}\n    ans.push_back(cur);\n   }\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177596870",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

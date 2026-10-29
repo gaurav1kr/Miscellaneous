@@ -1,0 +1,36 @@
+{
+  "id": "611",
+  "title": "Valid Triangle Number",
+  "slug": "valid-triangle-number",
+  "url": "https://leetcode.com/problems/valid-triangle-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle . \n\n Example 1: \n \n```\nInput:\n nums = [2,2,3,4]\n\nOutput:\n 3\n\nExplanation:\n Valid combinations are: \n2,3,4 (using the first 2)\n2,3,4 (using the second 2)\n2,2,3\n```\n\n Example 2: \n \n```\nInput:\n nums = [4,2,3,4]\n\nOutput:\n 4\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 0 <= nums[i] <= 1000",
+  "code": "class Solution {\npublic:\n    int triangleNumber(std::vector<int>& nums) {\n        std::sort(nums.begin(), nums.end());\n        int count = 0;\n        for (int k = (int)nums.size() - 1; k >= 2; --k) {\n            int i = 0, j = k - 1;\n            while (i < j) {\n                if (nums[i] + nums[j] > nums[k]) {\n                    count += j - i;\n                    --j;\n                } else ++i;\n            }\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175701335",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

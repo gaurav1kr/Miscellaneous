@@ -1,0 +1,36 @@
+{
+  "id": "1982",
+  "title": "Find Array Given Subset Sums",
+  "slug": "find-array-given-subset-sums",
+  "url": "https://leetcode.com/problems/find-array-given-subset-sums/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer n representing the length of an unknown array that you are trying to recover. You are also given an array sums containing the values of all 2 n subset sums of the unknown array (in no particular order). \n \n Return the array ans of length n representing the unknown array. If multiple answers exist, return any of them . \n \n An array sub is a subset of an array arr if sub can be obtained from arr by deleting some (possibly zero or all) elements of arr . The sum of the elements in sub is one possible subset sum of arr . The sum of an empty array is considered to be 0 . \n \n Note: Test cases are generated such that there will always be at least one correct answer. \n\n Example 1: \n \n```\nInput:\n n = 3, sums = [-3,-2,-1,0,0,1,2,3]\n\nOutput:\n [1,2,-3]\n\nExplanation: \n[1,2,-3] is able to achieve the given subset sums:\n- []: sum is 0\n- [1]: sum is 1\n- [2]: sum is 2\n- [1,2]: sum is 3\n- [-3]: sum is -3\n- [1,-3]: sum is -2\n- [2,-3]: sum is -1\n- [1,2,-3]: sum is 0\nNote that any permutation of [1,2,-3] and also any permutation of [-1,-2,3] will also be accepted.\n```\n\n Example 2: \n \n```\nInput:\n n = 2, sums = [0,0,0,0]\n\nOutput:\n [0,0]\n\nExplanation:\n The only correct answer is [0,0].\n```\n\n Example 3: \n \n```\nInput:\n n = 4, sums = [0,0,5,5,4,-1,4,9,9,-1,4,3,4,8,3,8]\n\nOutput:\n [0,-1,4,5]\n\nExplanation:\n [0,-1,4,5] is able to achieve the given subset sums.\n```\n\n Constraints: \n\n 1 <= n <= 15 \n \n sums.length == 2 n \n \n -10 4 <= sums[i] <= 10 4",
+  "code": "class Solution {\n    vector<int> recover(vector<int> sums,int n){\n        if(n==0)return {};\n        sort(sums.begin(),sums.end());\n        int delta=sums[1]-sums[0];\n        unordered_map<int,int>freq;\n        for(int x:sums)++freq[x];\n        vector<int>a,b;\n        for(int x:sums){\n            if(freq[x]==0)continue;\n            --freq[x];--freq[x+delta];a.push_back(x);b.push_back(x+delta);\n        }\n        if(find(a.begin(),a.end(),0)!=a.end()){\n            auto res=recover(a,n-1);res.push_back(delta);return res;\n        }\n        auto res=recover(b,n-1);res.push_back(-delta);return res;\n    }\npublic:\n    vector<int> recoverArray(int n,vector<int>& sums){return recover(sums,n);}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175767399",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

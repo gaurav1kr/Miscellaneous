@@ -1,0 +1,29 @@
+{
+  "id": "478",
+  "title": "Generate Random Point in a Circle",
+  "slug": "generate-random-point-in-a-circle",
+  "url": "https://leetcode.com/problems/generate-random-point-in-a-circle/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Geometry",
+    "Rejection Sampling",
+    "Randomized"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "Given the radius and the position of the center of a circle, implement the function randPoint which generates a uniform random point inside the circle. \n \n Implement the Solution class: \n\n Solution(double radius, double x_center, double y_center) initializes the object with the radius of the circle radius and the position of the center (x_center, y_center) . \n \n randPoint() returns a random point inside the circle. A point on the circumference of the circle is considered to be in the circle. The answer is returned as an array [x, y] . \n\n Example 1: \n \n```\nInput\n\n[\"Solution\", \"randPoint\", \"randPoint\", \"randPoint\"]\n[[1.0, 0.0, 0.0], [], [], []]\n\nOutput\n\n[null, [-0.02493, -0.38077], [0.82314, 0.38945], [0.36572, 0.17248]]\n\nExplanation\n\nSolution solution = new Solution(1.0, 0.0, 0.0);\nsolution.randPoint(); // return [-0.02493, -0.38077]\nsolution.randPoint(); // return [0.82314, 0.38945]\nsolution.randPoint(); // return [0.36572, 0.17248]\n```\n\n Constraints: \n\n 0 < radius <= 10 8 \n \n -10 7 <= x_center, y_center <= 10 7 \n \n At most 3 * 10 4 calls will be made to randPoint .",
+  "code": "class Solution {\n    double radius, cx, cy;\n    std::mt19937 gen{std::random_device{}()};\n    std::uniform_real_distribution<double> uniform{0.0, 1.0};\npublic:\n    Solution(double radius, double x_center, double y_center)\n        : radius(radius), cx(x_center), cy(y_center) {}\n    std::vector<double> randPoint() {\n        const double pi = std::acos(-1.0);\n        double angle = 2.0 * pi * uniform(gen);\n        double r = radius * std::sqrt(uniform(gen));\n        return {cx + r * std::cos(angle), cy + r * std::sin(angle)};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175698369",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

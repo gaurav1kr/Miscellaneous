@@ -1,0 +1,35 @@
+{
+  "id": "1830",
+  "title": "Minimum Number of Operations to Make String Sorted",
+  "slug": "minimum-number-of-operations-to-make-string-sorted",
+  "url": "https://leetcode.com/problems/minimum-number-of-operations-to-make-string-sorted/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Combinatorics",
+    "Counting",
+    "Fermat's Little Theorem"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s ( 0-indexed )​​​​​​. You are asked to perform the following operation on s ​​​​​​ until you get a sorted string: \n\n Find the largest index i such that 1 <= i < s.length and s[i] < s[i - 1] . \n \n Find the largest index j such that i <= j < s.length and s[k] < s[i - 1] for all the possible values of k in the range [i, j] inclusive. \n \n Swap the two characters at indices i - 1 ​​​​ and j ​​​​​. \n \n Reverse the suffix starting at index i ​​​​​​. \n\n Return the number of operations needed to make the string sorted. Since the answer can be too large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n s = \"cba\"\n\nOutput:\n 5\n\nExplanation:\n The simulation goes as follows:\nOperation 1: i=2, j=2. Swap s[1] and s[2] to get s=\"cab\", then reverse the suffix starting at 2. Now, s=\"cab\".\nOperation 2: i=1, j=2. Swap s[0] and s[2] to get s=\"bac\", then reverse the suffix starting at 1. Now, s=\"bca\".\nOperation 3: i=2, j=2. Swap s[1] and s[2] to get s=\"bac\", then reverse the suffix starting at 2. Now, s=\"bac\".\nOperation 4: i=1, j=1. Swap s[0] and s[1] to get s=\"abc\", then reverse the suffix starting at 1. Now, s=\"acb\".\nOperation 5: i=2, j=2. Swap s[1] and s[2] to get s=\"abc\", then reverse the suffix starting at 2. Now, s=\"abc\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"aabaa\"\n\nOutput:\n 2\n\nExplanation:\n The simulation goes as follows:\nOperation 1: i=3, j=4. Swap s[2] and s[4] to get s=\"aaaab\", then reverse the substring starting at 3. Now, s=\"aaaba\".\nOperation 2: i=4, j=4. Swap s[3] and s[4] to get s=\"aaaab\", then reverse the substring starting at 4. Now, s=\"aaaab\".\n```\n\n Constraints: \n\n 1 <= s.length <= 3000 \n \n s ​​​​​​ consists only of lowercase English letters.",
+  "code": "class Solution {static const int M=1000000007;long long power(long long a,int b){long long r=1;while(b){if(b&1)r=r*a%M;a=a*a%M;b>>=1;}return r;}public:int makeStringSorted(string s){int n=s.size();vector<long long> fact(n+1,1),inv(n+1,1);for(int i=1;i<=n;++i)fact[i]=fact[i-1]*i%M;inv[n]=power(fact[n],M-2);for(int i=n;i>0;--i)inv[i-1]=inv[i]*i%M;vector<int> f(26);for(char c:s)f[c-'a']++;long long ans=0;for(int i=0;i<n;++i){int c=s[i]-'a';long long smaller=0;for(int j=0;j<c;++j)smaller+=f[j];long long ways=fact[n-i-1]*smaller%M;for(int v:f)ways=ways*inv[v]%M;ans=(ans+ways)%M;--f[c];}return (int)ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175762465",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

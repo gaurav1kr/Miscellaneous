@@ -1,0 +1,32 @@
+{
+  "id": "562",
+  "title": "Longest Line of Consecutive One in Matrix",
+  "slug": "longest-line-of-consecutive-one-in-matrix",
+  "url": "https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an m x n binary matrix mat , return the length of the longest line of consecutive one in the matrix . \n \n The line could be horizontal, vertical, diagonal, or anti-diagonal. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/24/long1-grid.jpg] \n \n```\nInput:\n mat = [[0,1,1,0],[0,1,1,0],[0,0,0,1]]\n\nOutput:\n 3\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/24/long2-grid.jpg] \n \n```\nInput:\n mat = [[1,1,1,1],[0,1,1,0],[0,0,0,1]]\n\nOutput:\n 4\n```\n\n Constraints: \n\n m == mat.length \n \n n == mat[i].length \n \n 1 <= m, n <= 10 4 \n \n 1 <= m * n <= 10 4 \n \n mat[i][j] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n    int longestLine(vector<vector<int>>& mat) {\n        if (mat.empty() || mat[0].empty()) {\n            return 0;\n        }\n        int m = mat.size(), n = mat[0].size(), answer = 0;\n        vector<array<int, 4>> previous(n), current(n);\n        for (int r = 0; r < m; ++r) {\n            fill(current.begin(), current.end(), array<int, 4>{{0, 0, 0, 0}});\n            for (int c = 0; c < n; ++c) {\n                if (mat[r][c] == 0) {\n                    continue;\n                }\n                current[c][0] = (c ? current[c - 1][0] : 0) + 1;\n                current[c][1] = previous[c][1] + 1;\n                current[c][2] = (c ? previous[c - 1][2] : 0) + 1;\n                current[c][3] = (c + 1 < n ? previous[c + 1][3] : 0) + 1;\n                for (int length : current[c]) {\n                    answer = max(answer, length);\n                }\n            }\n            previous.swap(current);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178482721",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

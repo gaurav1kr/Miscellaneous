@@ -1,0 +1,33 @@
+{
+  "id": "1674",
+  "title": "Minimum Moves to Make Array Complementary",
+  "slug": "minimum-moves-to-make-array-complementary",
+  "url": "https://leetcode.com/problems/minimum-moves-to-make-array-complementary/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of even length n and an integer limit . In one move, you can replace any integer from nums with another integer between 1 and limit , inclusive. \n \n The array nums is complementary if for all indices i ( 0-indexed ), nums[i] + nums[n - 1 - i] equals the same number. For example, the array [1,2,3,4] is complementary because for all indices i , nums[i] + nums[n - 1 - i] = 5 . \n \n Return the minimum number of moves required to make nums complementary . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,4,3], limit = 4\n\nOutput:\n 1\n\nExplanation:\n In 1 move, you can change nums to [1,2,\n2\n,3] (underlined elements are changed).\nnums[0] + nums[3] = 1 + 3 = 4.\nnums[1] + nums[2] = 2 + 2 = 4.\nnums[2] + nums[1] = 2 + 2 = 4.\nnums[3] + nums[0] = 3 + 1 = 4.\nTherefore, nums[i] + nums[n-1-i] = 4 for every i, so nums is complementary.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,2,1], limit = 2\n\nOutput:\n 2\n\nExplanation:\n In 2 moves, you can change nums to [\n2\n,2,2,\n2\n]. You cannot change any number to 3 since 3 > limit.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,1,2], limit = 2\n\nOutput:\n 0\n\nExplanation:\n nums is already complementary.\n```\n\n Constraints: \n\n n == nums.length \n \n 2 <= n <= 10 5 \n \n 1 <= nums[i] <= limit <= 10 5 \n \n n is even.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minMoves(vector<int>& nums, int limit) {\n        vector<int> diff(2 * limit + 2);\n        int n = nums.size();\n        for (int i = 0; i < n / 2; ++i) {\n            int a = nums[i], b = nums[n - 1 - i];\n            int l = min(a, b) + 1, r = max(a, b) + limit;\n            diff[2] += 2;\n            diff[l] -= 1;\n            diff[a + b] -= 1;\n            diff[a + b + 1] += 1;\n            diff[r + 1] += 1;\n        }\n\n        int res = n, curr = 0;\n        for (int i = 2; i <= 2 * limit; ++i) {\n            curr += diff[i];\n            res = min(res, curr);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610610526",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

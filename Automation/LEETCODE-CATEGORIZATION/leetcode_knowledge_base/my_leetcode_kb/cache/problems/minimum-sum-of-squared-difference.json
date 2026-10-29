@@ -1,0 +1,37 @@
+{
+  "id": "2333",
+  "title": "Minimum Sum of Squared Difference",
+  "slug": "minimum-sum-of-squared-difference",
+  "url": "https://leetcode.com/problems/minimum-sum-of-squared-difference/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two positive 0-indexed integer arrays nums1 and nums2 , both of length n . \n \n The sum of squared difference of arrays nums1 and nums2 is defined as the sum of (nums1[i] - nums2[i]) 2 for each 0 <= i < n . \n \n You are also given two positive integers k1 and k2 . You can modify any of the elements of nums1 by +1 or -1 at most k1 times. Similarly, you can modify any of the elements of nums2 by +1 or -1 at most k2 times. \n \n Return the minimum sum of squared difference after modifying array nums1 at most k1 times and modifying array nums2 at most k2 times . \n \n Note : You are allowed to modify the array elements to become negative integers. \n\n Example 1: \n \n```\nInput:\n nums1 = [1,2,3,4], nums2 = [2,10,20,19], k1 = 0, k2 = 0\n\nOutput:\n 579\n\nExplanation:\n The elements in nums1 and nums2 cannot be modified because k1 = 0 and k2 = 0. \nThe sum of square difference will be: (1 - 2)\n2 \n+ (2 - 10)\n2 \n+ (3 - 20)\n2 \n+ (4 - 19)\n2\n = 579.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [1,4,10,12], nums2 = [5,8,6,9], k1 = 1, k2 = 1\n\nOutput:\n 43\n\nExplanation:\n One way to obtain the minimum sum of square difference is: \n- Increase nums1[0] once.\n- Increase nums2[2] once.\nThe minimum of the sum of square difference will be: \n(2 - 5)\n2 \n+ (4 - 8)\n2 \n+ (10 - 7)\n2 \n+ (12 - 9)\n2\n = 43.\nNote that, there are other ways to obtain the minimum of the sum of square difference, but there is no way to obtain a sum smaller than 43.\n```\n\n Constraints: \n\n n == nums1.length == nums2.length \n \n 1 <= n <= 10 5 \n \n 0 <= nums1[i], nums2[i] <= 10 5 \n \n 0 <= k1, k2 <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:long long minSumSquareDiff(vector<int>& nums1,vector<int>& nums2,int k1,int k2){int n=nums1.size();vector<long long> d(n);long long sum=0,hi=0;for(int i=0;i<n;++i){d[i]=abs((long long)nums1[i]-nums2[i]);sum+=d[i];hi=max(hi,d[i]);}long long k=(long long)k1+k2;if(sum<=k)return 0;long long lo=0;while(lo<hi){long long mid=(lo+hi)/2,need=0;for(long long x:d)if(x>mid)need+=x-mid;if(need<=k)hi=mid;else lo=mid+1;}long long cap=lo,used=0,ans=0;for(long long& x:d){if(x>cap){used+=x-cap;x=cap;}}long long left=k-used;for(long long& x:d)if(x==cap&&left){--x;--left;}for(long long x:d)ans+=x*x;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175919094",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

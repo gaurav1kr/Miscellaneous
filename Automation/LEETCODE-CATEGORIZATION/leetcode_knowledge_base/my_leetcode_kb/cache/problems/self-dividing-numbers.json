@@ -1,0 +1,26 @@
+{
+  "id": "728",
+  "title": "Self Dividing Numbers",
+  "slug": "self-dividing-numbers",
+  "url": "https://leetcode.com/problems/self-dividing-numbers/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "A self-dividing number is a number that is divisible by every digit it contains. \n\n For example, 128 is a self-dividing number because 128 % 1 == 0 , 128 % 2 == 0 , and 128 % 8 == 0 . \n\n A self-dividing number is not allowed to contain the digit zero. \n \n Given two integers left and right , return a list of all the self-dividing numbers in the range [left, right] (both inclusive ). \n\n Example 1: \n \n```\nInput:\n left = 1, right = 22\n\nOutput:\n [1,2,3,4,5,6,7,8,9,11,12,15,22]\n```\n \n Example 2: \n \n```\nInput:\n left = 47, right = 85\n\nOutput:\n [48,55,66,77]\n```\n\n Constraints: \n\n 1 <= left <= right <= 10 4",
+  "code": "\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isSelfDividing(int num) {\n        int original = num;\n        while (num > 0) {\n            int digit = num % 10;\n            if (digit == 0 || original % digit != 0) return false;\n            num /= 10;\n        }\n        return true;\n    }\n    \n    vector<int> selfDividingNumbers(int left, int right) {\n        vector<int> result;\n        for (int i = left; i <= right; ++i) {\n            if (isSelfDividing(i)) result.push_back(i);\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592320925",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

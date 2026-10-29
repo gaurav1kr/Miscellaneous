@@ -1,0 +1,30 @@
+{
+  "id": "1026",
+  "title": "Maximum Difference Between Node and Ancestor",
+  "slug": "maximum-difference-between-node-and-ancestor",
+  "url": "https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, find the maximum value v for which there exist different nodes a and b where v = |a.val - b.val| and a is an ancestor of b . \n \n A node a is an ancestor of b if either: any child of a is equal to b  or any child of a is an ancestor of b . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/09/tmp-tree.jpg] \n \n```\nInput:\n root = [8,3,10,1,6,null,14,null,null,4,7,13]\n\nOutput:\n 7\n\nExplanation: \nWe have various ancestor-node differences, some of which are given below :\n|8 - 3| = 5\n|3 - 7| = 4\n|8 - 1| = 7\n|10 - 13| = 3\nAmong all possible differences, the maximum value of 7 is obtained by |8 - 1| = 7.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/11/09/tmp-tree-1.jpg] \n \n```\nInput:\n root = [1,null,2,null,0,3]\n\nOutput:\n 3\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [2, 5000] . \n \n 0 <= Node.val <= 10 5",
+  "code": "class Solution \n{\n    int fun(TreeNode* root, int a, int b)\n    {\n        if(root==NULL) return abs(a-b);\n\n        a=max(a, root->val);\n        b=min(b, root->val);\n\n        int l=fun(root->left, a, b);\n        int r=fun(root->right, a, b);\n\n        return max(l,r);\n    }\npublic:\n    int maxAncestorDiff(TreeNode* root) {\n        return fun(root, INT_MIN, INT_MAX);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1409057210",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

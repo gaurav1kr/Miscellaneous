@@ -1,0 +1,34 @@
+{
+  "id": "2645",
+  "title": "Minimum Additions to Make Valid String",
+  "slug": "minimum-additions-to-make-valid-string",
+  "url": "https://leetcode.com/problems/minimum-additions-to-make-valid-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Stack",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Stack",
+    "String"
+  ],
+  "description": "Given a string word to which you can insert letters \"a\", \"b\" or \"c\" anywhere and any number of times, return the minimum number of letters that must be inserted so that word becomes valid . \n \n A string is called valid if it can be formed by concatenating the string \"abc\" several times. \n\n Example 1: \n \n```\nInput:\n word = \"b\"\n\nOutput:\n 2\n\nExplanation:\n Insert the letter \"a\" right before \"b\", and the letter \"c\" right next to \"b\" to obtain the valid string \"\na\nb\nc\n\".\n```\n\n Example 2: \n \n```\nInput:\n word = \"aaa\"\n\nOutput:\n 6\n\nExplanation:\n Insert letters \"b\" and \"c\" next to each \"a\" to obtain the valid string \"a\nbc\na\nbc\na\nbc\n\".\n```\n\n Example 3: \n \n```\nInput:\n word = \"abc\"\n\nOutput:\n 0\n\nExplanation:\n word is already valid. No modifications are needed.\n```\n\n Constraints: \n\n 1 <= word.length <= 50 \n \n word consists of letters \"a\", \"b\" and \"c\" only.",
+  "code": "class Solution {\npublic:\n int addMinimum(string word){\n  int groups=1;\n  for(int i=1;i<(int)word.size();++i)if(word[i]<=word[i-1])++groups;\n  return 3*groups-(int)word.size();\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176632005",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

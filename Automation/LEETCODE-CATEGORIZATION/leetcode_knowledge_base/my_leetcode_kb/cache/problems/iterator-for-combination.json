@@ -1,0 +1,32 @@
+{
+  "id": "1286",
+  "title": "Iterator for Combination",
+  "slug": "iterator-for-combination",
+  "url": "https://leetcode.com/problems/iterator-for-combination/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Design",
+    "Iterator"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "Design the CombinationIterator class: \n\n CombinationIterator(string characters, int combinationLength) Initializes the object with a string characters of sorted distinct lowercase English letters and a number combinationLength as arguments. \n \n next() Returns the next combination of length combinationLength in lexicographical order . \n \n hasNext() Returns true if and only if there exists a next combination. \n\n Example 1: \n \n```\nInput\n\n[\"CombinationIterator\", \"next\", \"hasNext\", \"next\", \"hasNext\", \"next\", \"hasNext\"]\n[[\"abc\", 2], [], [], [], [], [], []]\n\nOutput\n\n[null, \"ab\", true, \"ac\", true, \"bc\", false]\n\nExplanation\n\nCombinationIterator itr = new CombinationIterator(\"abc\", 2);\nitr.next(); // return \"ab\"\nitr.hasNext(); // return True\nitr.next(); // return \"ac\"\nitr.hasNext(); // return True\nitr.next(); // return \"bc\"\nitr.hasNext(); // return False\n```\n\n Constraints: \n\n 1 <= combinationLength <= characters.length <= 15 \n \n All the characters of characters are unique . \n \n At most 10 4 calls will be made to next and hasNext . \n \n It is guaranteed that all calls of the function next are valid.",
+  "code": "\n#include <vector>\nusing namespace std;\n\nclass CombinationIterator {\npublic:\n    vector<string> combinations;\n    int idx = 0;\n\n    CombinationIterator(string characters, int combinationLength) {\n        generateCombinations(characters, combinationLength, 0, \"\");\n    }\n\n    void generateCombinations(string& chars, int length, int start, string comb) {\n        if (comb.size() == length) {\n            combinations.push_back(comb);\n            return;\n        }\n        for (int i = start; i < chars.size(); ++i) {\n            generateCombinations(chars, length, i + 1, comb + chars[i]);\n        }\n    }\n\n    string next() {\n        return combinations[idx++];\n    }\n\n    bool hasNext() {\n        return idx < combinations.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592314913",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

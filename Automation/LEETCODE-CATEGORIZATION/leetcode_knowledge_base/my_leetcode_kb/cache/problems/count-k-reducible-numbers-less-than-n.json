@@ -1,0 +1,33 @@
+{
+  "id": "3352",
+  "title": "Count K-Reducible Numbers Less Than N",
+  "slug": "count-k-reducible-numbers-less-than-n",
+  "url": "https://leetcode.com/problems/count-k-reducible-numbers-less-than-n/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a binary string s representing a number n in its binary form. \n \n You are also given an integer k . \n \n An integer x is called k-reducible if performing the following operation at most k times reduces it to 1: \n\n Replace x with the count of set bits in its binary representation. \n\n For example, the binary representation of 6 is \"110\" . Applying the operation once reduces it to 2 (since \"110\" has two set bits). Applying the operation again to 2 (binary \"10\" ) reduces it to 1 (since \"10\" has one set bit). \n \n Return an integer denoting the number of positive integers less than n that are k-reducible . \n \n Since the answer may be too large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: s = \"111\", k = 1 \n \n Output: 3 \n \n Explanation: \n \n n = 7 . The 1-reducible integers less than 7 are 1, 2, and 4. \n\n Example 2: \n\n Input: s = \"1000\", k = 2 \n \n Output: 6 \n \n Explanation: \n \n n = 8 . The 2-reducible integers less than 8 are 1, 2, 3, 4, 5, and 6. \n\n Example 3: \n\n Input: s = \"1\", k = 3 \n \n Output: 0 \n \n Explanation: \n \n There are no positive integers less than n = 1 , so the answer is 0. \n\n Constraints: \n\n 1 <= s.length <= 800 \n \n s has no leading zeros. \n \n s consists only of the characters '0' and '1' . \n \n 1 <= k <= 5",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int countKReducibleNumbers(string s,int k){const int M=1000000007;int n=s.size();vector<vector<int>> C(n+1,vector<int>(n+1));for(int i=0;i<=n;i++){C[i][0]=C[i][i]=1;for(int j=1;j<i;j++)C[i][j]=(C[i-1][j-1]+(long long)C[i-1][j])%M;}vector<int> dep(n+1,100000);dep[1]=0;for(int i=2;i<=n;i++)dep[i]=1+dep[__builtin_popcount((unsigned)i)];vector<int> cnt(n+1);int ones=0;for(int i=0;i<n;i++){if(s[i]=='1'){int rem=n-i-1;for(int j=0;j<=rem;j++)cnt[ones+j]=(cnt[ones+j]+(long long)C[rem][j])%M;ones++;}}long long ans=0;for(int j=1;j<=n;j++)if(dep[j]+1<=k)ans+=cnt[j];return ans%M;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181230191",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

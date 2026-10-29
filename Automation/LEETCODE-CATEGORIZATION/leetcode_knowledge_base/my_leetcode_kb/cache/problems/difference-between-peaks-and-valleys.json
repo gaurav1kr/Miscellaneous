@@ -1,0 +1,22 @@
+{
+  "id": "4088",
+  "title": "Difference Between Peaks and Valleys",
+  "slug": "difference-between-peaks-and-valleys",
+  "url": "https://leetcode.com/problems/difference-between-peaks-and-valleys/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n . \n \n An index i is called a peak if all of the following conditions hold: \n\n 0 < i < n - 1 \n \n nums[i] > nums[i - 1] \n \n nums[i] > nums[i + 1] \n\n An index i is called a valley if all of the following conditions hold: \n\n 0 < i < n - 1 \n \n nums[i] < nums[i - 1] \n \n nums[i] < nums[i + 1] \n\n Return an integer denoting the difference between the sum of all peak values and the sum of all valley values. \n\n Example 1: \n\n Input: nums = [1,5,2,4,1,3,0] \n \n Output: 9 \n \n Explanation: \n\n The peak values are nums[1] = 5 , nums[3] = 4 , and nums[5] = 3 . \n \n The valley values are nums[2] = 2 and nums[4] = 1 . \n \n The difference between the sum of the peak values and the sum of the valley values is (5 + 4 + 3) - (2 + 1) = 9 . Hence, the answer is 9. \n\n Example 2: \n\n Input: nums = [-5,-6,-1,-2,5,3,2] \n \n Output: 12 \n \n Explanation: \n\n The peak values are nums[2] = -1 and nums[4] = 5 . \n \n The valley values are nums[1] = -6 and nums[3] = -2 . \n \n The difference between the sum of the peak values and the sum of the valley values is (-1 + 5) - (-6 + (-2)) = 12 . Hence, the answer is 12. \n\n Example 3: \n\n Input: nums = [6,5,2,5,5,3,6] \n \n Output: -5 \n \n Explanation: \n\n There are no peak values in the array. \n \n The valley values are nums[2] = 2 and nums[5] = 3 . \n \n The difference between the sum of the peak values and the sum of the valley values is (0) - (2 + 3) = -5 . Hence, the answer is -5. \n\n Constraints: \n\n 3 <= n == nums.length <= 100 \n \n -100 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    int peakValleyDifference(vector<int>& nums) {\n        int ans = 0;\n        for (int i = 1; i + 1 < (int)nums.size(); ++i) {\n            if (nums[i] > nums[i-1] && nums[i] > nums[i+1]) ans += nums[i];\n            if (nums[i] < nums[i-1] && nums[i] < nums[i+1]) ans -= nums[i];\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180965933",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

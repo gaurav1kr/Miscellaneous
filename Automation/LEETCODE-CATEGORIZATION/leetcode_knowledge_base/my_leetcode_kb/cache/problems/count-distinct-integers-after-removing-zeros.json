@@ -1,0 +1,29 @@
+{
+  "id": "3747",
+  "title": "Count Distinct Integers After Removing Zeros",
+  "slug": "count-distinct-integers-after-removing-zeros",
+  "url": "https://leetcode.com/problems/count-distinct-integers-after-removing-zeros/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n . \n \n For every integer x from 1 to n , we write down the integer obtained by removing all zeros from the decimal representation of x . \n \n Return an integer denoting the number of distinct integers written down. \n\n Example 1: \n\n Input: n = 10 \n \n Output: 9 \n \n Explanation: \n \n The integers we wrote down are 1, 2, 3, 4, 5, 6, 7, 8, 9, 1. There are 9 distinct integers (1, 2, 3, 4, 5, 6, 7, 8, 9). \n\n Example 2: \n\n Input: n = 3 \n \n Output: 3 \n \n Explanation: \n \n The integers we wrote down are 1, 2, 3. There are 3 distinct integers (1, 2, 3). \n\n Constraints: \n\n 1 <= n <= 10 15",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    long long countDistinct(long long n) {\n        string s = to_string(n);\n        int len = s.size();\n        vector<long long> pow9(len + 1, 1);\n        for (int i = 1; i <= len; ++i) pow9[i] = pow9[i-1] * 9;\n        long long ans = 0;\n        for (int i = 1; i < len; ++i) ans += pow9[i];\n        for (int i = 0; i < len; ++i) {\n            int d = s[i] - '0';\n            ans += (long long)max(0, d - 1) * pow9[len - i - 1];\n            if (d == 0) return ans;\n        }\n        return ans + 1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181012049",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

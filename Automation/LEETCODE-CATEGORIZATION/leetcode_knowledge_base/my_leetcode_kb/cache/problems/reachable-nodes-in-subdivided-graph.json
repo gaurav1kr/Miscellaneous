@@ -1,0 +1,36 @@
+{
+  "id": "882",
+  "title": "Reachable Nodes In Subdivided Graph",
+  "slug": "reachable-nodes-in-subdivided-graph",
+  "url": "https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path",
+    "Dijkstra's Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Hash map",
+    "Ordered map",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an undirected graph (the \"original graph\" ) with n nodes labeled from 0 to n - 1 . You decide to subdivide each edge in the graph into a chain of nodes, with the number of new nodes varying between each edge. \n \n The graph is given as a 2D array of edges where edges[i] = [u i , v i , cnt i ] indicates that there is an edge between nodes u i and v i in the original graph, and cnt i is the total number of new nodes that you will subdivide the edge into. Note that cnt i == 0 means you will not subdivide the edge. \n \n To subdivide the edge [u i , v i ] , replace it with (cnt i + 1) new edges and cnt i new nodes. The new nodes are x 1 , x 2 , ..., x cnt i , and the new edges are [u i , x 1 ] , [x 1 , x 2 ] , [x 2 , x 3 ] , ..., [x cnt i -1 , x cnt i ] , [x cnt i , v i ] . \n \n In this new graph , you want to know how many nodes are reachable from the node 0 , where a node is reachable if the distance is maxMoves or less. \n \n Given the original graph and maxMoves , return the number of nodes that are reachable from node 0 in the new graph . \n\n Example 1: \n [Figure: https://s3-lc-upload.s3.amazonaws.com/uploads/2018/08/01/origfinal.png] \n \n```\nInput:\n edges = [[0,1,10],[0,2,1],[1,2,2]], maxMoves = 6, n = 3\n\nOutput:\n 13\n\nExplanation:\n The edge subdivisions are shown in the image above.\nThe nodes that are reachable are highlighted in yellow.\n```\n\n Example 2: \n \n```\nInput:\n edges = [[0,1,4],[1,2,6],[0,2,8],[1,3,1]], maxMoves = 10, n = 4\n\nOutput:\n 23\n```\n\n Example 3: \n \n```\nInput:\n edges = [[1,2,4],[1,4,5],[1,3,1],[2,3,4],[3,4,5]], maxMoves = 17, n = 5\n\nOutput:\n 1\n\nExplanation:\n Node 0 is disconnected from the rest of the graph, so only node 0 is reachable.\n```\n\n Constraints: \n\n 0 <= edges.length <= min(n * (n - 1) / 2, 10 4 ) \n \n edges[i].length == 3 \n \n 0 <= u i < v i < n \n \n There are no multiple edges in the graph. \n \n 0 <= cnt i <= 10 4 \n \n 0 <= maxMoves <= 10 9 \n \n 1 <= n <= 3000",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <queue>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int reachableNodes(vector<vector<int>>& edges, int maxMoves, int n) {\n        vector<unordered_map<int, int>> graph(n);\n        for (auto& e : edges) {\n            graph[e[0]][e[1]] = e[2];\n            graph[e[1]][e[0]] = e[2];\n        }\n\n        vector<int> dist(n, -1);\n        priority_queue<pair<int, int>> pq;\n        pq.push({maxMoves, 0});\n\n        while (!pq.empty()) {\n            auto [moves, node] = pq.top(); pq.pop();\n            if (dist[node] != -1) continue;\n            dist[node] = moves;\n\n            for (auto& [nei, cnt] : graph[node]) {\n                int left = moves - cnt - 1;\n                if (dist[nei] == -1 && left >= 0) {\n                    pq.push({left, nei});\n                }\n            }\n        }\n\n        int res = 0;\n        for (int d : dist)\n            if (d >= 0) res++;\n\n        for (auto& e : edges) {\n            int a = dist[e[0]] >= 0 ? dist[e[0]] : 0;\n            int b = dist[e[1]] >= 0 ? dist[e[1]] : 0;\n            res += min(e[2], a + b);\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610571851",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

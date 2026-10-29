@@ -1,0 +1,26 @@
+{
+  "id": "2180",
+  "title": "Count Integers With Even Digit Sum",
+  "slug": "count-integers-with-even-digit-sum",
+  "url": "https://leetcode.com/problems/count-integers-with-even-digit-sum/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Simulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [],
+  "description": "Given a positive integer num , return the number of positive integers less than or equal to num whose digit sums are even . \n \n The digit sum of a positive integer is the sum of all its digits. \n\n Example 1: \n \n```\nInput:\n num = 4\n\nOutput:\n 2\n\nExplanation:\n\nThe only integers less than or equal to 4 whose digit sums are even are 2 and 4.\n```\n\n Example 2: \n \n```\nInput:\n num = 30\n\nOutput:\n 14\n\nExplanation:\n\nThe 14 integers less than or equal to 30 whose digit sums are even are\n2, 4, 6, 8, 11, 13, 15, 17, 19, 20, 22, 24, 26, and 28.\n```\n\n Constraints: \n\n 1 <= num <= 1000",
+  "code": "class Solution {\npublic:\n    int countEven(int num) {\n        int ans=0;\n        for(int x=1;x<=num;++x) {\n            int y=x,sum=0;while(y){sum+=y%10;y/=10;}\n            if(sum%2==0) ++ans;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175880314",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

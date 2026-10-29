@@ -1,0 +1,32 @@
+{
+  "id": "1358",
+  "title": "Number of Substrings Containing All Three Characters",
+  "slug": "number-of-substrings-containing-all-three-characters",
+  "url": "https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s  consisting only of characters a , b and c . \n \n Return the number of substrings containing at least  one occurrence of all these characters a , b and c . \n\n Example 1: \n \n```\nInput:\n s = \"abcabc\"\n\nOutput:\n 10\n\nExplanation:\n The substrings containing at least one occurrence of the characters \na\n, \nb\n and \nc are \"\nabc\n\", \"\nabca\n\", \"\nabcab\n\", \"\nabcabc\n\", \"\nbca\n\", \"\nbcab\n\", \"\nbcabc\n\", \"\ncab\n\", \"\ncabc\n\" \nand\n \"\nabc\n\" \n(\nagain\n)\n.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aaacb\"\n\nOutput:\n 3\n\nExplanation:\n The substrings containing at least one occurrence of the characters \na\n, \nb\n and \nc are \"\naaacb\n\", \"\naacb\n\" \nand\n \"\nacb\n\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"abc\"\n\nOutput:\n 1\n```\n\n Constraints: \n\n 3 <= s.length <= 5 x 10 4 \n \n s  only consists of 'a' , 'b' or 'c' characters.",
+  "code": "#include <string>\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numberOfSubstrings(string s) {\n        vector<int> count(3, 0);\n        int left = 0, res = 0;\n\n        for (int right = 0; right < s.size(); right++) {\n            count[s[right] - 'a']++;\n            while (count[0] > 0 && count[1] > 0 && count[2] > 0) {\n                count[s[left++] - 'a']--;\n            }\n            res += left;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591366743",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "699",
+  "title": "Falling Squares",
+  "slug": "falling-squares",
+  "url": "https://leetcode.com/problems/falling-squares/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Segment Tree",
+    "Ordered Set"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "There are several squares being dropped onto the X-axis of a 2D plane. \n \n You are given a 2D integer array positions where positions[i] = [left i , sideLength i ] represents the i th square with a side length of sideLength i that is dropped with its left edge aligned with X-coordinate left i . \n \n Each square is dropped one at a time from a height above any landed squares. It then falls downward (negative Y direction) until it either lands on the top side of another square or on the X-axis . A square brushing the left/right side of another square does not count as landing on it. Once it lands, it freezes in place and cannot be moved. \n \n After each square is dropped, you must record the height of the current tallest stack of squares . \n \n Return an integer array ans where ans[i] represents the height described above after dropping the i th square . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/28/fallingsq1-plane.jpg] \n \n```\nInput:\n positions = [[1,2],[2,3],[6,1]]\n\nOutput:\n [2,5,5]\n\nExplanation:\n\nAfter the first drop, the tallest stack is square 1 with a height of 2.\nAfter the second drop, the tallest stack is squares 1 and 2 with a height of 5.\nAfter the third drop, the tallest stack is still squares 1 and 2 with a height of 5.\nThus, we return an answer of [2, 5, 5].\n```\n\n Example 2: \n \n```\nInput:\n positions = [[100,100],[200,100]]\n\nOutput:\n [100,100]\n\nExplanation:\n\nAfter the first drop, the tallest stack is square 1 with a height of 100.\nAfter the second drop, the tallest stack is either square 1 or square 2, both with heights of 100.\nThus, we return an answer of [100, 100].\nNote that square 2 only brushes the right side of square 1, which does not count as landing on it.\n```\n\n Constraints: \n\n 1 <= positions.length <= 1000 \n \n 1 <= left i <= 10 8 \n \n 1 <= sideLength i <= 10 6",
+  "code": "class Solution {\npublic:\n    map < long long , long long > segment;\n    map < long long , long long > lazy;\nvoid lazy_prog ( long long seed , long long low , long long high )\n{\n    if ( lazy[seed] )\n    {\n        segment[seed] = lazy[seed];\n        if ( low != high )\n        {\n            lazy[seed*2+1] = lazy[seed];\n            lazy[seed*2+2] = lazy[seed];\n        }\n        lazy[seed] = 0;\n        \n    }\n}\nlong long findhighest ( long long seed , long long blow , long long bhigh , long long low , long long high )\n{\n    lazy_prog ( seed , blow , bhigh );\n    if ( blow >= low && bhigh <= high ) return segment[seed];\n    if ( blow > high || bhigh < low ) return 0;\n    long long mid = ( blow + bhigh ) / 2;\n    return max ( findhighest( seed*2 + 1 , blow , mid , low , high )\n                , findhighest ( seed*2 + 2 , mid + 1, bhigh , low , high ) );\n}\nvoid add ( long long seed , long long blow , long long bhigh , long long low , long long high , long long key )\n{\n    lazy_prog ( seed , blow , bhigh );\n    if ( blow >= low && bhigh <= high ){\n        segment[seed] = key;\n        lazy[seed] = key;\n        return;\n    }\n    if ( blow > high || bhigh < low ) return;\n    \n    long long mid = ( blow + bhigh ) / 2;\n    add ( seed*2 + 1 , blow , mid , low , high , key );\n    add ( seed*2 + 2 , mid + 1 , bhigh , low , high , key );\n    segment[seed] = max(segment[seed*2+1] , segment[seed*2+2] );\n}\n    vector<int> fallingSquares(vector<vector<int>>& positions) {\n        vector < int > result ;\n        long long l , r, height;\n        for ( int i = 0 ; i < positions.size() ; i ++ )\n        {\n            for ( int j = 0 ; j < 2 ; j ++ )\n            {\n                if ( j == 0 ) l = positions[i][j];\n                else {\n                    r = l + positions[i][j] - 1;\n                    height = positions[i][j];\n                }\n            }\n            long long highest = findhighest ( 0 , 0 , 101000005, l , r );\n            add ( 0 , 0 , 101000005, l , r, highest + height );\n            result.push_back(segment[0]);\n        }\n        return result ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617065429",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

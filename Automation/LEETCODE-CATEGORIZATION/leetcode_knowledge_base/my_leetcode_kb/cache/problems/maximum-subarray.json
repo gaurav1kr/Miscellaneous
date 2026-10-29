@@ -1,0 +1,32 @@
+{
+  "id": "53",
+  "title": "Maximum Subarray",
+  "slug": "maximum-subarray",
+  "url": "https://leetcode.com/problems/maximum-subarray/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , find the subarray with the largest sum, and return its sum . \n\n Example 1: \n \n```\nInput:\n nums = [-2,1,-3,4,-1,2,1,-5,4]\n\nOutput:\n 6\n\nExplanation:\n The subarray [4,-1,2,1] has the largest sum 6.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1]\n\nOutput:\n 1\n\nExplanation:\n The subarray [1] has the largest sum 1.\n```\n\n Example 3: \n \n```\nInput:\n nums = [5,4,-1,7,8]\n\nOutput:\n 23\n\nExplanation:\n The subarray [5,4,-1,7,8] has the largest sum 23.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 4 <= nums[i] <= 10 4 \n\n Follow up: If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxSubArray(vector<int>& nums) {\n        int maxSum = nums[0], currentSum = nums[0];\n        for (int i = 1; i < nums.size(); i++) {\n            currentSum = max(nums[i], currentSum + nums[i]);\n            maxSum = max(maxSum, currentSum);\n        }\n        return maxSum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588369208",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "3146",
+  "title": "Permutation Difference between Two Strings",
+  "slug": "permutation-difference-between-two-strings",
+  "url": "https://leetcode.com/problems/permutation-difference-between-two-strings/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given two strings s and t such that every character occurs at most once in s and t is a permutation of s . \n \n The permutation difference between s and t is defined as the sum of the absolute difference between the index of the occurrence of each character in s and the index of the occurrence of the same character in t . \n \n Return the permutation difference between s and t . \n\n Example 1: \n\n Input: s = \"abc\", t = \"bac\" \n \n Output: 2 \n \n Explanation: \n \n For s = \"abc\" and t = \"bac\" , the permutation difference of s and t is equal to the sum of: \n\n The absolute difference between the index of the occurrence of \"a\" in s and the index of the occurrence of \"a\" in t . \n \n The absolute difference between the index of the occurrence of \"b\" in s and the index of the occurrence of \"b\" in t . \n \n The absolute difference between the index of the occurrence of \"c\" in s and the index of the occurrence of \"c\" in t . \n\n That is, the permutation difference between s and t is equal to |0 - 1| + |1 - 0| + |2 - 2| = 2 . \n\n Example 2: \n\n Input: s = \"abcde\", t = \"edbac\" \n \n Output: 12 \n \n Explanation: The permutation difference between s and t is equal to |0 - 3| + |1 - 2| + |2 - 4| + |3 - 1| + |4 - 0| = 12 . \n\n Constraints: \n\n 1 <= s.length <= 26 \n \n Each character occurs at most once in s . \n \n t is a permutation of s . \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {public:int findPermutationDifference(string s,string t){int p[26];for(int i=0;i<(int)s.size();++i)p[s[i]-'a']=i;int ans=0;for(int i=0;i<(int)t.size();++i)ans+=abs(i-p[t[i]-'a']);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177395304",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "3517",
+  "title": "Smallest Palindromic Rearrangement I",
+  "slug": "smallest-palindromic-rearrangement-i",
+  "url": "https://leetcode.com/problems/smallest-palindromic-rearrangement-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Sorting",
+    "Counting Sort"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Sorted array",
+    "String"
+  ],
+  "description": "You are given a palindromic string s . \n \n Return the lexicographically smallest palindromic permutation of s . \n\n Example 1: \n\n Input: s = \"z\" \n \n Output: \"z\" \n \n Explanation: \n \n A string of only one character is already the lexicographically smallest palindrome. \n\n Example 2: \n\n Input: s = \"babab\" \n \n Output: \"abbba\" \n \n Explanation: \n \n Rearranging \"babab\" → \"abbba\" gives the smallest lexicographic palindrome. \n\n Example 3: \n\n Input: s = \"daccad\" \n \n Output: \"acddca\" \n \n Explanation: \n \n Rearranging \"daccad\" → \"acddca\" gives the smallest lexicographic palindrome. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters. \n \n s is guaranteed to be palindromic.",
+  "code": "class Solution {public:string smallestPalindrome(string s){int f[26]={};for(char c:s)++f[c-'a'];string h,mid;for(int i=0;i<26;i++){h+=string(f[i]/2,char('a'+i));if(f[i]%2)mid=char('a'+i);}string r=h;reverse(r.begin(),r.end());return h+mid+r;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177557400",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

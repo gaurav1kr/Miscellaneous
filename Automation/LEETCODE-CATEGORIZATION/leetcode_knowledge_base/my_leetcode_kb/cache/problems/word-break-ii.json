@@ -1,0 +1,46 @@
+{
+  "id": "140",
+  "title": "Word Break II",
+  "slug": "word-break-ii",
+  "url": "https://leetcode.com/problems/word-break-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Backtracking",
+    "Trie",
+    "Memoization"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given a string s and a dictionary of strings wordDict , add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in any order . \n \n Note that the same word in the dictionary may be reused multiple times in the segmentation. \n\n Example 1: \n \n```\nInput:\n s = \"catsanddog\", wordDict = [\"cat\",\"cats\",\"and\",\"sand\",\"dog\"]\n\nOutput:\n [\"cats and dog\",\"cat sand dog\"]\n```\n\n Example 2: \n \n```\nInput:\n s = \"pineapplepenapple\", wordDict = [\"apple\",\"pen\",\"applepen\",\"pine\",\"pineapple\"]\n\nOutput:\n [\"pine apple pen apple\",\"pineapple pen apple\",\"pine applepen apple\"]\n\nExplanation:\n Note that you are allowed to reuse a dictionary word.\n```\n\n Example 3: \n \n```\nInput:\n s = \"catsandog\", wordDict = [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]\n\nOutput:\n []\n```\n\n Constraints: \n\n 1 <= s.length <= 20 \n \n 1 <= wordDict.length <= 1000 \n \n 1 <= wordDict[i].length <= 10 \n \n s and wordDict[i] consist of only lowercase English letters. \n \n All the strings of wordDict are unique . \n \n Input is generated in a way that the length of the answer doesn't exceed 10 5 .",
+  "code": "class Solution \n{\npublic:\n    vector<string> wordBreak(string s, vector<string>& wordDict) \n    {\n        unordered_set<string> wordSet(wordDict.begin(), wordDict.end());\n        unordered_map<string, vector<string>> memo;\n        return dfs(s, wordSet, memo);\n    }\n\nprivate:\n    vector<string> dfs(const string& s, unordered_set<string>& wordSet, unordered_map<string, vector<string>>& memo) \n    {\n        if (memo.count(s)) return memo[s];\n        if (s.empty()) return {\"\"};\n        \n        vector<string> result;\n        for (int i = 1; i <= s.size(); ++i) \n        {\n            string word = s.substr(0, i);\n            if (wordSet.count(word)) \n            {\n                vector<string> subResults = dfs(s.substr(i), wordSet, memo);\n                for (const string& sub : subResults) \n                {\n                    result.push_back(word + (sub.empty() ? \"\" : \" \") + sub);\n                }\n            }\n        }\n        return memo[s] = result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536836579",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

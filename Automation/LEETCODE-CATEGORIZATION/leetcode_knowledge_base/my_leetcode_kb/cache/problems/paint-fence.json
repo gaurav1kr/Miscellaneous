@@ -1,0 +1,26 @@
+{
+  "id": "276",
+  "title": "Paint Fence",
+  "slug": "paint-fence",
+  "url": "https://leetcode.com/problems/paint-fence/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You are painting a fence of n posts with k different colors. You must paint the posts following these rules: \n\n Every post must be painted exactly one color. \n \n There cannot be three or more consecutive posts with the same color. \n\n Given the two integers n and k , return the number of ways you can paint the fence . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/28/paintfenceex1.png] \n \n```\nInput:\n n = 3, k = 2\n\nOutput:\n 6\n\nExplanation: \nAll the possibilities are shown.\nNote that painting all the posts red or all the posts green is invalid because there cannot be three posts in a row with the same color.\n```\n\n Example 2: \n \n```\nInput:\n n = 1, k = 1\n\nOutput:\n 1\n```\n\n Example 3: \n \n```\nInput:\n n = 7, k = 2\n\nOutput:\n 42\n```\n\n Constraints: \n\n 1 <= n <= 50 \n \n 1 <= k <= 10 5 \n \n The testcases are generated such that the answer is in the range [0, 2 31 - 1] for the given n and k .",
+  "code": "class Solution\n{\npublic:\n    int numWays(int n, int k)\n    {\n        if (n == 0)\n        {\n            return 0;\n        }\n        long long same = 0, diff = k;\n        for (int i = 2; i <= n;++i)\n        {\n            long long ns = diff, nd = (same + diff)*(k - 1);\n            same = ns;\n            diff = nd;\n        }\n        return(int) (same + diff);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178443841",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

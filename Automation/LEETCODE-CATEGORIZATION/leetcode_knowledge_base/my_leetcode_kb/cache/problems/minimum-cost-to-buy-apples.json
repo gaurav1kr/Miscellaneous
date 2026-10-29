@@ -1,0 +1,36 @@
+{
+  "id": "2473",
+  "title": "Minimum Cost to Buy Apples",
+  "slug": "minimum-cost-to-buy-apples",
+  "url": "https://leetcode.com/problems/minimum-cost-to-buy-apples/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n representing n cities numbered from 1 to n . You are also given a 2D array roads , where roads[i] = [a i , b i , cost i ] indicates that there is a bidirectional road between cities a i and b i with a cost of traveling equal to cost i . \n \n You can buy apples in any city you want, but some cities have different costs to buy apples. You are given the 1-based array appleCost where appleCost[i] is the cost of buying one apple from city i . \n \n You start at some city, traverse through various roads, and eventually buy exactly one apple from any city. After you buy that apple, you have to return back to the city you started at, but now the cost of all the roads will be multiplied by a given factor k . \n \n Given the integer k , return a 1-based array answer of size n where answer[i] is the minimum total cost to buy an apple if you start at city i . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/11/15/graph55.png] \n \n```\nInput:\n n = 4, roads = [[1,2,4],[2,3,2],[2,4,5],[3,4,1],[1,3,4]], appleCost = [56,42,102,301], k = 2\n\nOutput:\n [54,42,48,51]\n\nExplanation:\n The minimum cost for each starting city is the following:\n- Starting at city 1: You take the path 1 -> 2, buy an apple at city 2, and finally take the path 2 -> 1. The total cost is 4 + 42 + 4 * 2 = 54.\n- Starting at city 2: You directly buy an apple at city 2. The total cost is 42.\n- Starting at city 3: You take the path 3 -> 2, buy an apple at city 2, and finally take the path 2 -> 3. The total cost is 2 + 42 + 2 * 2 = 48.\n- Starting at city 4: You take the path 4 -> 3 -> 2 then you buy at city 2, and finally take the path 2 -> 3 -> 4. The total cost is 1 + 2 + 42 + 1 * 2 + 2 * 2 = 51.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/11/15/graph4.png] \n \n```\nInput:\n n = 3, roads = [[1,2,5],[2,3,1],[3,1,2]], appleCost = [2,3,1], k = 3\n\nOutput:\n [2,3,1]\n\nExplanation:\n It is always optimal to buy the apple in the starting city.\n```\n\n Constraints: \n\n 2 <= n <= 1000 \n \n 1 <= roads.length <= 2000 \n \n 1 <= a i , b i <= n \n \n a i != b i \n \n 1 <= cost i <= 10 5 \n \n appleCost.length == n \n \n 1 <= appleCost[i] <= 10 5 \n \n 1 <= k <= 100 \n \n There are no repeated edges.",
+  "code": "class Solution {\npublic:\n    vector<long long> minCost(int n, vector<vector<int>>& roads, vector<int>& appleCost, int k) {\n        vector<vector<pair<int,int>>> graph(n);\n        for (auto& e : roads) {\n            graph[e[0] - 1].push_back({e[1] - 1, e[2]});\n            graph[e[1] - 1].push_back({e[0] - 1, e[2]});\n        }\n        vector<long long> dist(appleCost.begin(), appleCost.end());\n        priority_queue<pair<long long,int>, vector<pair<long long,int>>, greater<pair<long long,int>>> pq;\n        for (int i = 0; i < n; ++i) pq.push({dist[i], i});\n        while (!pq.empty()) {\n            auto top = pq.top(); pq.pop();\n            long long d = top.first;\n            int u = top.second;\n            if (d != dist[u]) continue;\n            for (auto edge : graph[u]) {\n                long long next = d + (long long)(k + 1) * edge.second;\n                if (next < dist[edge.first]) {\n                    dist[edge.first] = next;\n                    pq.push({next, edge.first});\n                }\n            }\n        }\n        return dist;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178877157",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

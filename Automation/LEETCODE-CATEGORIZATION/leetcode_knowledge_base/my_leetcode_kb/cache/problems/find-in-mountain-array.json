@@ -1,0 +1,30 @@
+{
+  "id": "1095",
+  "title": "Find in Mountain Array",
+  "slug": "find-in-mountain-array",
+  "url": "https://leetcode.com/problems/find-in-mountain-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Interactive",
+    "Ternary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector"
+  ],
+  "description": "(This problem is an interactive problem .) \n \n You may recall that an array arr is a mountain array if and only if: \n\n arr.length >= 3 \n \n There exists some i with 0 < i < arr.length - 1 such that:\n\n arr[0] < arr[1] < ... < arr[i - 1] < arr[i] \n \n arr[i] > arr[i + 1] > ... > arr[arr.length - 1] \n\n Given a mountain array mountainArr , return the minimum index such that mountainArr.get(index) == target . If such an index does not exist, return -1 . \n \n You cannot access the mountain array directly. You may only access the array using a MountainArray interface: \n\n MountainArray.get(k) returns the element of the array at index k (0-indexed). \n \n MountainArray.length() returns the length of the array. \n\n Submissions making more than 100 calls to MountainArray.get will be judged Wrong Answer . Also, any solutions that attempt to circumvent the judge will result in disqualification. \n\n Example 1: \n \n```\nInput:\n mountainArr = [1,2,3,4,5,3,1], target = 3\n\nOutput:\n 2\n\nExplanation:\n 3 exists in the array, at index=2 and index=5. Return the minimum index, which is 2.\n```\n\n Example 2: \n \n```\nInput:\n mountainArr = [0,1,2,4,2,1], target = 3\n\nOutput:\n -1\n\nExplanation:\n 3 does not exist in \nthe array,\n so we return -1.\n```\n\n Constraints: \n\n 3 <= mountainArr.length() <= 10 4 \n \n 0 <= target <= 10 9 \n \n 0 <= mountainArr.get(index) <= 10 9",
+  "code": "\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int findInMountainArray(int target, MountainArray &mountainArr) {\n        int n = mountainArr.length();\n        int left = 0, right = n - 1;\n        \n        while (left < right) {\n            int mid = left + (right - left) / 2;\n            if (mountainArr.get(mid) < mountainArr.get(mid + 1)) left = mid + 1;\n            else right = mid;\n        }\n        \n        int peak = left;\n        left = 0, right = peak;\n        while (left <= right) {\n            int mid = left + (right - left) / 2;\n            if (mountainArr.get(mid) == target) return mid;\n            else if (mountainArr.get(mid) < target) left = mid + 1;\n            else right = mid - 1;\n        }\n        \n        left = peak, right = n - 1;\n        while (left <= right) {\n            int mid = left + (right - left) / 2;\n            if (mountainArr.get(mid) == target) return mid;\n            else if (mountainArr.get(mid) < target) right = mid - 1;\n            else left = mid + 1;\n        }\n        \n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592344946",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

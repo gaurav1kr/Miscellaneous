@@ -1,0 +1,33 @@
+{
+  "id": "270",
+  "title": "Closest Binary Search Tree Value",
+  "slug": "closest-binary-search-tree-value",
+  "url": "https://leetcode.com/problems/closest-binary-search-tree-value/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Binary Search",
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary search tree and a target value, return the value in the BST that is closest to the target . If there are multiple answers, print the smallest. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/12/closest1-1-tree.jpg] \n \n```\nInput:\n root = [4,2,5,1,3], target = 3.714286\n\nOutput:\n 4\n```\n\n Example 2: \n \n```\nInput:\n root = [1], target = 4.428571\n\nOutput:\n 1\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n 0 <= Node.val <= 10 9 \n \n -10 9 <= target <= 10 9",
+  "code": "class Solution\n{\npublic:\n    int closestValue(TreeNode*root, double target)\n    {\n        int ans = root->val;\n        while (root)\n        {\n            if (abs(root->val - target) < abs(ans - target) || (abs(root->val - target) == abs(ans - target) && root->val < ans))\n            {\n                ans = root->val;\n            }\n            root = target < root->val ? root->left : root->right;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178442447",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

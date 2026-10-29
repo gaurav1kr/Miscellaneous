@@ -1,0 +1,31 @@
+{
+  "id": "784",
+  "title": "Letter Case Permutation",
+  "slug": "letter-case-permutation",
+  "url": "https://leetcode.com/problems/letter-case-permutation/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , you can transform every letter individually to be lowercase or uppercase to create another string. \n \n Return a list of all possible strings we could create . Return the output in any order . \n\n Example 1: \n \n```\nInput:\n s = \"a1b2\"\n\nOutput:\n [\"a1b2\",\"a1B2\",\"A1b2\",\"A1B2\"]\n```\n\n Example 2: \n \n```\nInput:\n s = \"3z4\"\n\nOutput:\n [\"3z4\",\"3Z4\"]\n```\n\n Constraints: \n\n 1 <= s.length <= 12 \n \n s consists of lowercase English letters, uppercase English letters, and digits.",
+  "code": "class Solution {\npublic:\n    void permute(string s,vector<string> &res,int i){\n        if(i==s.length()){\n            res.push_back(s);\n            return;\n        }\n        if(isalpha(s[i])){\n            s[i]=toupper(s[i]);\n            permute(s,res,i+1);\n            s[i]=tolower(s[i]);\n            permute(s,res,i+1);\n        }else{\n            permute(s,res,i+1);\n        }\n    }\n    vector<string> letterCasePermutation(string s) {\n        vector<string> res;\n        permute(s,res,0);\n        return res;\n        \n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1493344094",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

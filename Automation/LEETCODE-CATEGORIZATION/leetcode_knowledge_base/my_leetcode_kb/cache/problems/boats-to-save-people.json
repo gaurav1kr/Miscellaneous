@@ -1,0 +1,35 @@
+{
+  "id": "881",
+  "title": "Boats to Save People",
+  "slug": "boats-to-save-people",
+  "url": "https://leetcode.com/problems/boats-to-save-people/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting",
+    "Timsort"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array people where people[i] is the weight of the i th person, and an infinite number of boats where each boat can carry a maximum weight of limit . Each boat carries at most two people at the same time, provided the sum of the weight of those people is at most limit . \n \n Return the minimum number of boats to carry every given person . \n\n Example 1: \n \n```\nInput:\n people = [1,2], limit = 3\n\nOutput:\n 1\n\nExplanation:\n 1 boat (1, 2)\n```\n\n Example 2: \n \n```\nInput:\n people = [3,2,2,1], limit = 3\n\nOutput:\n 3\n\nExplanation:\n 3 boats (1, 2), (2) and (3)\n```\n\n Example 3: \n \n```\nInput:\n people = [3,5,3,4], limit = 5\n\nOutput:\n 4\n\nExplanation:\n 4 boats (3), (3), (4), (5)\n```\n\n Constraints: \n\n 1 <= people.length <= 5 * 10 4 \n \n 1 <= people[i] <= limit <= 3 * 10 4",
+  "code": "class Solution \n{\npublic:\n    int numRescueBoats(vector<int>& people, int limit) \n    {\n        int low = 0 ;\n        int high = people.size() - 1 ;\n        int count = 0 ;\n        sort(people.begin() , people.end()) ;\n        while(low <= high)\n        {\n            if(people[low]+people[high] <= limit)\n            {\n                low++ ;\n                high-- ;              \n            }\n            else\n                high-- ;\n\n            count++ ;     \n        }  \n        return count ;  \n    }         \n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1012861973",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

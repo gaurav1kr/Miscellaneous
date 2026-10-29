@@ -1,0 +1,35 @@
+{
+  "id": "444",
+  "title": "Sequence Reconstruction",
+  "slug": "sequence-reconstruction",
+  "url": "https://leetcode.com/problems/sequence-reconstruction/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Topological Sort",
+    "Directed Acyclic Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n where nums is a permutation of the integers in the range [1, n] . You are also given a 2D integer array sequences where sequences[i] is a subsequence of nums . \n \n Check if nums is the shortest possible and the only supersequence . The shortest supersequence is a sequence with the shortest length and has all sequences[i] as subsequences. There could be multiple valid supersequences for the given array sequences . \n\n For example, for sequences = [[1,2],[1,3]] , there are two shortest supersequences , [1,2,3] and [1,3,2] . \n \n While for sequences = [[1,2],[1,3],[1,2,3]] , the only shortest supersequence possible is [1,2,3] . [1,2,3,4] is a possible supersequence but not the shortest. \n\n Return true if nums is the only shortest supersequence for sequences , or false otherwise . \n \n A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3], sequences = [[1,2],[1,3]]\n\nOutput:\n false\n\nExplanation:\n There are two possible supersequences: [1,2,3] and [1,3,2].\nThe sequence [1,2] is a subsequence of both: [\n1\n,\n2\n,3] and [\n1\n,3,\n2\n].\nThe sequence [1,3] is a subsequence of both: [\n1\n,2,\n3\n] and [\n1\n,\n3\n,2].\nSince nums is not the only shortest supersequence, we return false.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3], sequences = [[1,2]]\n\nOutput:\n false\n\nExplanation:\n The shortest possible supersequence is [1,2].\nThe sequence [1,2] is a subsequence of it: [\n1\n,\n2\n].\nSince nums is not the shortest supersequence, we return false.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3], sequences = [[1,2],[1,3],[2,3]]\n\nOutput:\n true\n\nExplanation:\n The shortest possible supersequence is [1,2,3].\nThe sequence [1,2] is a subsequence of it: [\n1\n,\n2\n,3].\nThe sequence [1,3] is a subsequence of it: [\n1\n,2,\n3\n].\nThe sequence [2,3] is a subsequence of it: [1,\n2\n,\n3\n].\nSince nums is the only shortest supersequence, we return true.\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 10 4 \n \n nums is a permutation of all the integers in the range [1, n] . \n \n 1 <= sequences.length <= 10 4 \n \n 1 <= sequences[i].length <= 10 4 \n \n 1 <= sum(sequences[i].length) <= 10 5 \n \n 1 <= sequences[i][j] <= n \n \n All the arrays of sequences are unique . \n \n sequences[i] is a subsequence of nums .",
+  "code": "class Solution {\npublic:\n    bool sequenceReconstruction(vector<int>& nums, vector<vector<int>>& sequences) {\n        int n = static_cast<int>(nums.size());\n        vector<unordered_set<int>> edges(n + 1);\n        vector<int> indegree(n + 1, 0);\n        vector<bool> seen(n + 1, false);\n        for (const auto& sequence : sequences) {\n            for (int value : sequence) {\n                if (value < 1 || value > n) {\n                    return false;\n                }\n                seen[value] = true;\n            }\n            for (int i = 1; i < static_cast<int>(sequence.size()); ++i) {\n                int u = sequence[i - 1], v = sequence[i];\n                if (edges[u].insert(v).second) {\n                    ++indegree[v];\n                }\n            }\n        }\n        for (int value = 1; value <= n; ++value) {\n            if (!seen[value]) {\n                return false;\n            }\n        }\n        queue<int> ready;\n        for (int value = 1; value <= n; ++value) {\n            if (indegree[value] == 0) {\n                ready.push(value);\n            }\n        }\n        int index = 0;\n        while (!ready.empty()) {\n            if (ready.size() != 1 || nums[index++] != ready.front()) {\n                return false;\n            }\n            int u = ready.front();\n            ready.pop();\n            for (int v : edges[u]) {\n                if (--indegree[v] == 0) {\n                    ready.push(v);\n                }\n            }\n        }\n        return index == n;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178469348",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

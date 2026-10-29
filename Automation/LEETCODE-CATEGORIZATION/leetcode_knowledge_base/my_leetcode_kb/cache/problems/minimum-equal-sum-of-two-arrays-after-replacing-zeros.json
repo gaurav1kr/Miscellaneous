@@ -1,0 +1,29 @@
+{
+  "id": "2918",
+  "title": "Minimum Equal Sum of Two Arrays After Replacing Zeros",
+  "slug": "minimum-equal-sum-of-two-arrays-after-replacing-zeros",
+  "url": "https://leetcode.com/problems/minimum-equal-sum-of-two-arrays-after-replacing-zeros/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given two arrays nums1 and nums2 consisting of positive integers. \n \n You have to replace all the 0 's in both arrays with strictly positive integers such that the sum of elements of both arrays becomes equal . \n \n Return the minimum equal sum you can obtain, or -1 if it is impossible . \n\n Example 1: \n \n```\nInput:\n nums1 = [3,2,0,1,0], nums2 = [6,5,0]\n\nOutput:\n 12\n\nExplanation:\n We can replace 0's in the following way:\n- Replace the two 0's in nums1 with the values 2 and 4. The resulting array is nums1 = [3,2,2,1,4].\n- Replace the 0 in nums2 with the value 1. The resulting array is nums2 = [6,5,1].\nBoth arrays have an equal sum of 12. It can be shown that it is the minimum sum we can obtain.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [2,0,2,0], nums2 = [1,4]\n\nOutput:\n -1\n\nExplanation:\n It is impossible to make the sum of both arrays equal.\n```\n\n Constraints: \n\n 1 <= nums1.length, nums2.length <= 10 5 \n \n 0 <= nums1[i], nums2[i] <= 10 6",
+  "code": "class Solution{public:long long minSum(vector<int>& nums1,vector<int>& nums2){long long a=0,b=0;int z1=0,z2=0;for(int x:nums1){a+=x;z1+=x==0;}for(int x:nums2){b+=x;z2+=x==0;}a+=z1;b+=z2;if((!z1&&a<b)||(!z2&&b<a))return -1;return max(a,b);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176751066",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

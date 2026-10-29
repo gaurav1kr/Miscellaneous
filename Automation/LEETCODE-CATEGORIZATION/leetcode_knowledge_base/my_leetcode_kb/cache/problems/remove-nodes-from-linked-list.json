@@ -1,0 +1,33 @@
+{
+  "id": "2487",
+  "title": "Remove Nodes From Linked List",
+  "slug": "remove-nodes-from-linked-list",
+  "url": "https://leetcode.com/problems/remove-nodes-from-linked-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Stack",
+    "Recursion",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Linked list",
+    "Monotonic stack",
+    "Stack"
+  ],
+  "description": "You are given the head of a linked list. \n \n Remove every node which has a node with a greater value anywhere to the right side of it. \n \n Return the head of the modified linked list. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/10/02/drawio.png] \n \n```\nInput:\n head = [5,2,13,3,8]\n\nOutput:\n [13,8]\n\nExplanation:\n The nodes that should be removed are 5, 2 and 3.\n- Node 13 is to the right of node 5.\n- Node 13 is to the right of node 2.\n- Node 8 is to the right of node 3.\n```\n\n Example 2: \n \n```\nInput:\n head = [1,1,1,1]\n\nOutput:\n [1,1,1,1]\n\nExplanation:\n Every node has value 1, so no nodes are removed.\n```\n\n Constraints: \n\n The number of the nodes in the given list is in the range [1, 10 5 ] . \n \n 1 <= Node.val <= 10 5",
+  "code": "class Solution {ListNode* rev(ListNode* h){ListNode* p=nullptr;while(h){auto t=h->next;h->next=p;p=h;h=t;}return p;}public:ListNode* removeNodes(ListNode* head){head=rev(head);int mx=INT_MIN;ListNode dummy(0);auto tail=&dummy;for(auto p=head;p;){auto next=p->next;if(p->val>=mx){mx=p->val;tail->next=p;tail=p;}p=next;}tail->next=nullptr;return rev(dummy.next);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176585516",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

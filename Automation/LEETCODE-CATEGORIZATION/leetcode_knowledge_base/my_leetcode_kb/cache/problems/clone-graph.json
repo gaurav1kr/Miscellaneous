@@ -1,0 +1,34 @@
+{
+  "id": "133",
+  "title": "Clone Graph",
+  "slug": "clone-graph",
+  "url": "https://leetcode.com/problems/clone-graph/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given a reference of a node in a connected undirected graph. \n \n Return a deep copy (clone) of the graph. \n \n Each node in the graph contains a value ( int ) and a list ( List[Node] ) of its neighbors. \n \n```\nclass Node {\n public int val;\n public List<Node> neighbors;\n}\n```\n\n Test case format: \n \n For simplicity, each node's value is the same as the node's index (1-indexed). For example, the first node with val == 1 , the second node with val == 2 , and so on. The graph is represented in the test case using an adjacency list. \n \n An adjacency list is a collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a node in the graph. \n \n The given node will always be the first node with val = 1 . You must return the copy of the given node as a reference to the cloned graph. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/11/04/133_clone_graph_question.png] \n \n```\nInput:\n adjList = [[2,4],[1,3],[2,4],[1,3]]\n\nOutput:\n [[2,4],[1,3],[2,4],[1,3]]\n\nExplanation:\n There are 4 nodes in the graph.\n1st node (val = 1)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).\n2nd node (val = 2)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).\n3rd node (val = 3)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).\n4th node (val = 4)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/01/07/graph.png] \n \n```\nInput:\n adjList = [[]]\n\nOutput:\n [[]]\n\nExplanation:\n Note that the input contains one empty list. The graph consists of only one node with val = 1 and it does not have any neighbors.\n```\n\n Example 3: \n \n```\nInput:\n adjList = []\n\nOutput:\n []\n\nExplanation:\n This an empty graph, it does not have any nodes.\n```\n\n Constraints: \n\n The number of nodes in the graph is in the range [0, 100] . \n \n 1 <= Node.val <= 100 \n \n Node.val is unique for each node. \n \n There are no repeated edges and no self-loops in the graph. \n \n The Graph is connected and all nodes can be visited starting from the given node.",
+  "code": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    vector<Node*> neighbors;\n    Node() {\n        val = 0;\n        neighbors = vector<Node*>();\n    }\n    Node(int _val) {\n        val = _val;\n        neighbors = vector<Node*>();\n    }\n    Node(int _val, vector<Node*> _neighbors) {\n        val = _val;\n        neighbors = _neighbors;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    unordered_map<Node*, Node*> cloneMap;\n\n    Node* cloneGraph(Node* node) {\n        if (!node) return nullptr;\n\n        // If node is already cloned, return the cloned node\n        if (cloneMap.find(node) != cloneMap.end()) {\n            return cloneMap[node];\n        }\n\n        // Create a clone of the current node\n        Node* clone = new Node(node->val);\n        cloneMap[node] = clone;\n\n        // Recursively clone neighbors\n        for (Node* neighbor : node->neighbors) {\n            clone->neighbors.push_back(cloneGraph(neighbor));\n        }\n\n        return clone;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1538701798",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

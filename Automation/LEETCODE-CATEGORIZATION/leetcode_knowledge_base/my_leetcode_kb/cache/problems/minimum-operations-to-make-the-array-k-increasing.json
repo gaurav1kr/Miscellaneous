@@ -1,0 +1,30 @@
+{
+  "id": "2111",
+  "title": "Minimum Operations to Make the Array K-Increasing",
+  "slug": "minimum-operations-to-make-the-array-k-increasing",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Longest Increasing Subsequence"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array arr consisting of n positive integers, and a positive integer k . \n \n The array arr is called K-increasing if arr[i-k] <= arr[i] holds for every index i , where k <= i <= n-1 . \n\n For example, arr = [4, 1, 5, 2, 6, 2] is K-increasing for k = 2 because:\n\n arr[0] <= arr[2] (4 <= 5) \n \n arr[1] <= arr[3] (1 <= 2) \n \n arr[2] <= arr[4] (5 <= 6) \n \n arr[3] <= arr[5] (2 <= 2) \n\n However, the same arr is not K-increasing for k = 1 (because arr[0] > arr[1] ) or k = 3 (because arr[0] > arr[3] ). \n\n In one operation , you can choose an index i and change arr[i] into any positive integer. \n \n Return the minimum number of operations required to make the array K-increasing for the given k . \n\n Example 1: \n \n```\nInput:\n arr = [5,4,3,2,1], k = 1\n\nOutput:\n 4\n\nExplanation:\n\nFor k = 1, the resultant array has to be non-decreasing.\nSome of the K-increasing arrays that can be formed are [5,\n6\n,\n7\n,\n8\n,\n9\n], [\n1\n,\n1\n,\n1\n,\n1\n,1], [\n2\n,\n2\n,3,\n4\n,\n4\n]. All of them require 4 operations.\nIt is suboptimal to change the array to, for example, [\n6\n,\n7\n,\n8\n,\n9\n,\n10\n] because it would take 5 operations.\nIt can be shown that we cannot make the array K-increasing in less than 4 operations.\n```\n\n Example 2: \n \n```\nInput:\n arr = [4,1,5,2,6,2], k = 2\n\nOutput:\n 0\n\nExplanation:\n\nThis is the same example as the one in the problem description.\nHere, for every index i where 2 <= i <= 5, arr[i-2] <=\n \narr[i].\nSince the given array is already K-increasing, we do not need to perform any operations.\n```\n\n Example 3: \n \n```\nInput:\n arr = [4,1,5,2,6,2], k = 3\n\nOutput:\n 2\n\nExplanation:\n\nIndices 3 and 5 are the only ones not satisfying arr[i-3] <= arr[i] for 3 <= i <= 5.\nOne of the ways we can make the array K-increasing is by changing arr[3] to 4 and arr[5] to 5.\nThe array will now be [4,1,5,\n4\n,6,\n5\n].\nNote that there can be other ways to make the array K-increasing, but none of them require less than 2 operations.\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 5 \n \n 1 <= arr[i], k <= arr.length",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int kIncreasing(vector<int>& arr, int k) {\n        int res = 0, n = arr.size();\n        for (int i = 0; i < k; ++i) {\n            vector<int> seq;\n            for (int j = i; j < n; j += k)\n                seq.push_back(arr[j]);\n            res += seq.size() - lengthOfLNDS(seq);\n        }\n        return res;\n    }\n\n    int lengthOfLNDS(vector<int>& nums) {\n        vector<int> sub;\n        for (int x : nums) {\n            auto it = upper_bound(sub.begin(), sub.end(), x);\n            if (it == sub.end()) sub.push_back(x);\n            else *it = x;\n        }\n        return sub.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1599282786",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

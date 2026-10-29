@@ -1,0 +1,28 @@
+{
+  "id": "2236",
+  "title": "Root Equals Sum of Children",
+  "slug": "root-equals-sum-of-children",
+  "url": "https://leetcode.com/problems/root-equals-sum-of-children/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "You are given the root of a binary tree that consists of exactly 3 nodes: the root, its left child, and its right child. \n \n Return true if the value of the root is equal to the sum of the values of its two children, or false otherwise . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/04/08/graph3drawio.png] \n \n```\nInput:\n root = [10,4,6]\n\nOutput:\n true\n\nExplanation:\n The values of the root, its left child, and its right child are 10, 4, and 6, respectively.\n10 is equal to 4 + 6, so we return true.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/04/08/graph3drawio-1.png] \n \n```\nInput:\n root = [5,3,1]\n\nOutput:\n false\n\nExplanation:\n The values of the root, its left child, and its right child are 5, 3, and 1, respectively.\n5 is not equal to 3 + 1, so we return false.\n```\n\n Constraints: \n\n The tree consists only of the root, its left child, and its right child. \n \n -100 <= Node.val <= 100",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    bool checkTree(TreeNode* root) {\n        if(root && root->left && root->right)\n        {\n            return (root->val == root->left->val + root->right->val) ;\n        }\n        return false ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1520836950",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

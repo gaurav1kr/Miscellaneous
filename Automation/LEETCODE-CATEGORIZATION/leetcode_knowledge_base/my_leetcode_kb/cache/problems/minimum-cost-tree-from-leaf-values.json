@@ -1,0 +1,39 @@
+{
+  "id": "1130",
+  "title": "Minimum Cost Tree From Leaf Values",
+  "slug": "minimum-cost-tree-from-leaf-values",
+  "url": "https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack",
+    "Cartesian Tree"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given an array arr of positive integers, consider all binary trees such that: \n\n Each node has either 0 or 2 children; \n \n The values of arr correspond to the values of each leaf in an in-order traversal of the tree. \n \n The value of each non-leaf node is equal to the product of the largest leaf value in its left and right subtree, respectively. \n\n Among all possible binary trees considered, return the smallest possible sum of the values of each non-leaf node . It is guaranteed this sum fits into a 32-bit integer. \n \n A node is a leaf if and only if it has zero children. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/08/10/tree1.jpg] \n \n```\nInput:\n arr = [6,2,4]\n\nOutput:\n 32\n\nExplanation:\n There are two possible trees shown.\nThe first has a non-leaf node sum 36, and the second has non-leaf node sum 32.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/08/10/tree2.jpg] \n \n```\nInput:\n arr = [4,11]\n\nOutput:\n 44\n```\n\n Constraints: \n\n 2 <= arr.length <= 40 \n \n 1 <= arr[i] <= 15 \n \n It is guaranteed that the answer fits into a 32-bit signed integer (i.e., it is less than 2 31 ).",
+  "code": "class Solution \n{\npublic:\n   int mctFromLeafValues(vector<int>& arr) \n    {\n        int sum=0;\n        vector<int> v;\n        for(int i=0; i<arr.size(); i++)\n        {\n            while(v.size()!=0 && v.back()<=arr[i])\n            {\n                if(v.size()>1 && arr[i]>v[v.size()-2])\n                    sum+=v.back()*v[v.size()-2];\n                else\n                    sum+=v.back()*arr[i];\n                v.pop_back();\n            }\n            v.push_back(arr[i]);\n        }\n        for(int i=v.size()-2; i>=0; i--)\n\t\t{\n            sum+=v[i]*v[i+1];\n\t\t}\n        return sum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1491044123",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

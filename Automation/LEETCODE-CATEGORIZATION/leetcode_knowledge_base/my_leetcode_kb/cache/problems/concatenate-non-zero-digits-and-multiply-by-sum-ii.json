@@ -1,0 +1,32 @@
+{
+  "id": "3756",
+  "title": "Concatenate Non-Zero Digits and Multiply by Sum II",
+  "slug": "concatenate-non-zero-digits-and-multiply-by-sum-ii",
+  "url": "https://leetcode.com/problems/concatenate-non-zero-digits-and-multiply-by-sum-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s of length m consisting of digits. You are also given a 2D integer array queries , where queries[i] = [l i , r i ] . \n \n For each queries[i] , extract the substring s[l i ..r i ] . Then, perform the following: \n\n Form a new integer x by concatenating all the non-zero digits from the substring in their original order. If there are no non-zero digits, x = 0 . \n \n Let sum be the sum of digits in x . The answer is x * sum . \n\n Return an array of integers answer where answer[i] is the answer to the i th query. \n \n Since the answers may be very large, return them modulo 10 9 + 7 . \n\n Example 1: \n\n Input: s = \"10203004\", queries = [[0,7],[1,3],[4,6]] \n \n Output: [12340, 4, 9] \n \n Explanation: \n\n s[0..7] = \"10203004\" \n\n x = 1234 \n \n sum = 1 + 2 + 3 + 4 = 10 \n \n Therefore, answer is 1234 * 10 = 12340 . \n\n s[1..3] = \"020\" \n\n x = 2 \n \n sum = 2 \n \n Therefore, the answer is 2 * 2 = 4 . \n\n s[4..6] = \"300\" \n\n x = 3 \n \n sum = 3 \n \n Therefore, the answer is 3 * 3 = 9 . \n\n Example 2: \n\n Input: s = \"1000\", queries = [[0,3],[1,1]] \n \n Output: [1, 0] \n \n Explanation: \n\n s[0..3] = \"1000\" \n\n x = 1 \n \n sum = 1 \n \n Therefore, the answer is 1 * 1 = 1 . \n\n s[1..1] = \"0\" \n\n x = 0 \n \n sum = 0 \n \n Therefore, the answer is 0 * 0 = 0 . \n\n Example 3: \n\n Input: s = \"9876543210\", queries = [[0,9]] \n \n Output: [444444137] \n \n Explanation: \n\n s[0..9] = \"9876543210\" \n\n x = 987654321 \n \n sum = 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45 \n \n Therefore, the answer is 987654321 * 45 = 44444444445 . \n \n We return 44444444445 modulo (10 9 + 7) = 444444137 . \n\n Constraints: \n\n 1 <= m == s.length <= 10 5 \n \n s consists of digits only. \n \n 1 <= queries.length <= 10 5 \n \n queries[i] = [l i , r i ] \n \n 0 <= l i <= r i < m",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> sumAndMultiply(string s, vector<vector<int>>& queries) {\n        const long long MOD = 1000000007LL;\n        int n = s.size();\n        vector<int> cnt(n+1,0), sum(n+1,0);\n        vector<long long> pref(n+1,0), pow10(n+1,1);\n        for (int i = 0; i < n; ++i) {\n            int d = s[i] - '0';\n            cnt[i+1] = cnt[i] + (d != 0);\n            sum[i+1] = sum[i] + d;\n            pref[i+1] = (pref[i] * (d ? 10 : 1) + d) % MOD;\n            pow10[i+1] = pow10[i] * 10 % MOD;\n        }\n        vector<int> ans;\n        for (const auto& q : queries) {\n            int l = q[0], r = q[1] + 1;\n            int digits = cnt[r] - cnt[l];\n            long long x = (pref[r] - pref[l]*pow10[digits]%MOD + MOD)%MOD;\n            ans.push_back((int)(x * (sum[r]-sum[l]) % MOD));\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181014967",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

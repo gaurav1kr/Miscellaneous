@@ -1,0 +1,25 @@
+{
+  "id": "278",
+  "title": "First Bad Version",
+  "slug": "first-bad-version",
+  "url": "https://leetcode.com/problems/first-bad-version/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Binary Search",
+    "Interactive"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search"
+  ],
+  "data_structures": [],
+  "description": "You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad. \n \n Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to be bad. \n \n You are given an API bool isBadVersion(version) which returns whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API. \n\n Example 1: \n \n```\nInput:\n n = 5, bad = 4\n\nOutput:\n 4\n\nExplanation:\n\ncall isBadVersion(3) -> false\ncall isBadVersion(5) -> true\ncall isBadVersion(4) -> true\nThen 4 is the first bad version.\n```\n\n Example 2: \n \n```\nInput:\n n = 1, bad = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= bad <= n <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    int firstBadVersion(int n) {\n        int left = 1, right = n;\n        while (left < right) {\n            int mid = left + (right - left) / 2;\n            if (isBadVersion(mid)) right = mid;\n            else left = mid + 1;\n        }\n        return left;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588090642",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

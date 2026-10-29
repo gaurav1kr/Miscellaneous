@@ -1,0 +1,36 @@
+{
+  "id": "1166",
+  "title": "Design File System",
+  "slug": "design-file-system",
+  "url": "https://leetcode.com/problems/design-file-system/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Design",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Trie"
+  ],
+  "description": "You are asked to design a file system that allows you to create new paths and associate them with different values. \n \n The format of a path is one or more concatenated strings of the form:  / followed by one or more lowercase English letters. For example, \" /leetcode\"  and \" /leetcode/problems\"  are valid paths while an empty string \"\" and \"/\"  are not. \n \n Implement the  FileSystem class: \n\n bool createPath(string path, int value)  Creates a new path and associates a value to it if possible and returns true . Returns false  if the path already exists or its parent path doesn't exist . \n \n int get(string path)  Returns the value associated with path or returns  -1  if the path doesn't exist. \n\n Example 1: \n \n```\nInput:\n \n[\"FileSystem\",\"createPath\",\"get\"]\n[[],[\"/a\",1],[\"/a\"]]\n\nOutput:\n \n[null,true,1]\n\nExplanation:\n \nFileSystem fileSystem = new FileSystem();\n\nfileSystem.createPath(\"/a\", 1); // return true\nfileSystem.get(\"/a\"); // return 1\n```\n\n Example 2: \n \n```\nInput:\n \n[\"FileSystem\",\"createPath\",\"createPath\",\"get\",\"createPath\",\"get\"]\n[[],[\"/leet\",1],[\"/leet/code\",2],[\"/leet/code\"],[\"/c/d\",1],[\"/c\"]]\n\nOutput:\n \n[null,true,true,2,false,-1]\n\nExplanation:\n \nFileSystem fileSystem = new FileSystem();\n\nfileSystem.createPath(\"/leet\", 1); // return true\nfileSystem.createPath(\"/leet/code\", 2); // return true\nfileSystem.get(\"/leet/code\"); // return 2\nfileSystem.createPath(\"/c/d\", 1); // return false because the parent path \"/c\" doesn't exist.\nfileSystem.get(\"/c\"); // return -1 because this path doesn't exist.\n```\n\n Constraints: \n\n 2 <= path.length <= 100 \n \n 1 <= value <= 10 9 \n \n Each path is valid and consists of lowercase English letters and '/' . \n \n At most 10 4 calls in total will be made to createPath and get .",
+  "code": "class FileSystem {\n    unordered_map<string, int> values;\n\npublic:\n    FileSystem() {}\n\n    bool createPath(string path, int value) {\n        if (path.empty() || path == \"/\" || values.count(path)) {\n            return false;\n        }\n        int slash = path.find_last_of('/');\n        string parent = path.substr(0, slash);\n        if (!parent.empty() && !values.count(parent)) {\n            return false;\n        }\n        values[path] = value;\n        return true;\n    }\n\n    int get(string path) {\n        auto it = values.find(path);\n        return it == values.end() ? -1 : it->second;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178540995",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

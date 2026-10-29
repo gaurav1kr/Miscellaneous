@@ -1,0 +1,32 @@
+{
+  "id": "3301",
+  "title": "Maximize the Total Height of Unique Towers",
+  "slug": "maximize-the-total-height-of-unique-towers",
+  "url": "https://leetcode.com/problems/maximize-the-total-height-of-unique-towers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array maximumHeight , where maximumHeight[i] denotes the maximum height the i th tower can be assigned. \n \n Your task is to assign a height to each tower so that: \n\n The height of the i th tower is a positive integer and does not exceed maximumHeight[i] . \n \n No two towers have the same height. \n\n Return the maximum possible total sum of the tower heights. If it's not possible to assign heights, return -1 . \n\n Example 1: \n\n Input: maximumHeight = [2,3,4,3] \n \n Output: 10 \n \n Explanation: \n \n We can assign heights in the following way: [1, 2, 4, 3] . \n\n Example 2: \n\n Input: maximumHeight = [15,10] \n \n Output: 25 \n \n Explanation: \n \n We can assign heights in the following way: [15, 10] . \n\n Example 3: \n\n Input: maximumHeight = [2,2,1] \n \n Output: -1 \n \n Explanation: \n \n It's impossible to assign positive heights to each index so that no two towers have the same height. \n\n Constraints: \n\n 1 <= maximumHeight.length <= 10 5 \n \n 1 <= maximumHeight[i] <= 10 9",
+  "code": "class Solution { public: long long maximumTotalSum(vector<int>&maximumHeight){sort(maximumHeight.rbegin(),maximumHeight.rend());long long ans=0,prev=LLONG_MAX;for(int x:maximumHeight){long long h=min((long long)x,prev-1);if(h<=0)return -1;ans+=h;prev=h;}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177453111",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

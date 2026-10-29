@@ -1,0 +1,30 @@
+{
+  "id": "3313",
+  "title": "Find the Last Marked Nodes in Tree",
+  "slug": "find-the-last-marked-nodes-in-tree",
+  "url": "https://leetcode.com/problems/find-the-last-marked-nodes-in-tree/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There exists an undirected tree with n nodes numbered 0 to n - 1 . You are given a 2D integer array edges of length n - 1 , where edges[i] = [u i , v i ] indicates that there is an edge between nodes u i and v i in the tree. \n \n Initially, all nodes are unmarked . After every second, you mark all unmarked nodes which have at least one marked node adjacent to them. \n \n Return an array nodes where nodes[i] is the last node to get marked in the tree, if you mark node i at time t = 0 . If nodes[i] has multiple answers for any node i , you can choose any one answer. \n\n Example 1: \n\n Input: edges = [[0,1],[0,2]] \n \n Output: [2,2,1] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/01/screenshot-2024-06-02-122236.png] \n\n For i = 0 , the nodes are marked in the sequence: [0] -> [0,1,2] . Either 1 or 2 can be the answer. \n \n For i = 1 , the nodes are marked in the sequence: [1] -> [0,1] -> [0,1,2] . Node 2 is marked last. \n \n For i = 2 , the nodes are marked in the sequence: [2] -> [0,2] -> [0,1,2] . Node 1 is marked last. \n\n Example 2: \n\n Input: edges = [[0,1]] \n \n Output: [1,0] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/01/screenshot-2024-06-02-122249.png] \n\n For i = 0 , the nodes are marked in the sequence: [0] -> [0,1] . \n \n For i = 1 , the nodes are marked in the sequence: [1] -> [0,1] . \n\n Example 3: \n\n Input: edges = [[0,1],[0,2],[2,3],[2,4]] \n \n Output: [3,3,1,1,1] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/03/screenshot-2024-06-03-210550.png] \n\n For i = 0 , the nodes are marked in the sequence: [0] -> [0,1,2] -> [0,1,2,3,4] . \n \n For i = 1 , the nodes are marked in the sequence: [1] -> [0,1] -> [0,1,2] -> [0,1,2,3,4] . \n \n For i = 2 , the nodes are marked in the sequence: [2] -> [0,2,3,4] -> [0,1,2,3,4] . \n \n For i = 3 , the nodes are marked in the sequence: [3] -> [2,3] -> [0,2,3,4] -> [0,1,2,3,4] . \n \n For i = 4 , the nodes are marked in the sequence: [4] -> [2,4] -> [0,2,3,4] -> [0,1,2,3,4] . \n\n Constraints: \n\n 2 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i].length == 2 \n \n 0 <= edges[i][0], edges[i][1] <= n - 1 \n \n The input is generated such that edges represents a valid tree.",
+  "code": "class Solution {\n    pair<int, vector<int>> bfs(int source, const vector<vector<int>>& adj) {\n        int n = adj.size();\n        vector<int> dist(n, -1);\n        queue<int> q;\n        q.push(source);\n        dist[source] = 0;\n        int far = source;\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            if (dist[u] > dist[far]) far = u;\n            for (int v : adj[u]) {\n                if (dist[v] == -1) {\n                    dist[v] = dist[u] + 1;\n                    q.push(v);\n                }\n            }\n        }\n        return {far, dist};\n    }\npublic:\n    vector<int> lastMarkedNodes(vector<vector<int>>& edges) {\n        int n = edges.size() + 1;\n        vector<vector<int>> adj(n);\n        for (auto& e : edges) {\n            adj[e[0]].push_back(e[1]);\n            adj[e[1]].push_back(e[0]);\n        }\n        int a = bfs(0, adj).first;\n        auto fromA = bfs(a, adj);\n        int b = fromA.first;\n        auto fromB = bfs(b, adj);\n        vector<int> ans(n);\n        for (int i = 0; i < n; ++i) {\n            ans[i] = fromA.second[i] >= fromB.second[i] ? a : b;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178970337",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

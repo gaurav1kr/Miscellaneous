@@ -1,0 +1,33 @@
+{
+  "id": "3531",
+  "title": "Count Covered Buildings",
+  "slug": "count-covered-buildings",
+  "url": "https://leetcode.com/problems/count-covered-buildings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n , representing an n x n city. You are also given a 2D grid buildings , where buildings[i] = [x, y] denotes a unique building located at coordinates [x, y] . \n \n A building is covered if there is at least one building in all four directions: left, right, above, and below. \n \n Return the number of covered buildings. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/04/telegram-cloud-photo-size-5-6212982906394101085-m.jpg] \n\n Input: n = 3, buildings = [[1,2],[2,2],[3,2],[2,1],[2,3]] \n \n Output: 1 \n \n Explanation: \n\n Only building [2,2] is covered as it has at least one building:\n\n above ( [1,2] ) \n \n below ( [3,2] ) \n \n left ( [2,1] ) \n \n right ( [2,3] ) \n\n Thus, the count of covered buildings is 1. \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/04/telegram-cloud-photo-size-5-6212982906394101086-m.jpg] \n\n Input: n = 3, buildings = [[1,1],[1,2],[2,1],[2,2]] \n \n Output: 0 \n \n Explanation: \n\n No building has at least one building in all four directions. \n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/16/telegram-cloud-photo-size-5-6248862251436067566-x.jpg] \n\n Input: n = 5, buildings = [[1,3],[3,2],[3,3],[3,5],[5,3]] \n \n Output: 1 \n \n Explanation: \n\n Only building [3,3] is covered as it has at least one building:\n\n above ( [1,3] ) \n \n below ( [5,3] ) \n \n left ( [3,2] ) \n \n right ( [3,5] ) \n\n Thus, the count of covered buildings is 1. \n\n Constraints: \n\n 2 <= n <= 10 5 \n \n 1 <= buildings.length <= 10 5 \n \n buildings[i] = [x, y] \n \n 1 <= x, y <= n \n \n All coordinates of buildings are unique .",
+  "code": "class Solution {public:int countCoveredBuildings(int n,vector<vector<int>>&buildings){vector<int> minR(n+1,INT_MAX),maxR(n+1),minC(n+1,INT_MAX),maxC(n+1);for(auto&p:buildings){int x=p[0],y=p[1];minR[x]=min(minR[x],y);maxR[x]=max(maxR[x],y);minC[y]=min(minC[y],x);maxC[y]=max(maxC[y],x);}int ans=0;for(auto&p:buildings){int x=p[0],y=p[1];ans+=(minR[x]<y&&y<maxR[x]&&minC[y]<x&&x<maxC[y]);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177564483",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

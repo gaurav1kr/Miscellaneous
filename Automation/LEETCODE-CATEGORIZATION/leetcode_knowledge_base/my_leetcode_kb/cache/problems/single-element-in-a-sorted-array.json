@@ -1,0 +1,29 @@
+{
+  "id": "540",
+  "title": "Single Element in a Sorted Array",
+  "slug": "single-element-in-a-sorted-array",
+  "url": "https://leetcode.com/problems/single-element-in-a-sorted-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a sorted array consisting of only integers where every element appears exactly twice, except for one element which appears exactly once. \n \n Return the single element that appears only once . \n \n Your solution must run in O(log n) time and O(1) space. \n\n Example 1: \n \n```\nInput:\n nums = [1,1,2,3,3,4,4,8,8]\n\nOutput:\n 2\n```\n \n Example 2: \n \n```\nInput:\n nums = [3,3,7,7,10,11,11]\n\nOutput:\n 10\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int singleNonDuplicate(vector<int>& nums) {\n        int left = 0, right = nums.size() - 1;\n        while (left < right) {\n            int mid = left + (right - left) / 2;\n            // Ensure mid is even for pair checking\n            if (mid % 2 == 1) mid--;\n\n            // Check if the pair is broken\n            if (nums[mid] == nums[mid + 1]) {\n                left = mid + 2; // Move right\n            } else {\n                right = mid; // Move left\n            }\n        }\n        return nums[left];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1538671748",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

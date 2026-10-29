@@ -1,0 +1,34 @@
+{
+  "id": "466",
+  "title": "Count The Repetitions",
+  "slug": "count-the-repetitions",
+  "url": "https://leetcode.com/problems/count-the-repetitions/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "We define str = [s, n] as the string str which consists of the string s concatenated n times. \n\n For example, str == [\"abc\", 3] ==\"abcabcabc\" . \n\n We define that string s1 can be obtained from string s2 if we can remove some characters from s2 such that it becomes s1 . \n\n For example, s1 = \"abc\" can be obtained from s2 = \"ab dbe c\" based on our definition by removing the bolded underlined characters. \n\n You are given two strings s1 and s2 and two integers n1 and n2 . You have the two strings str1 = [s1, n1] and str2 = [s2, n2] . \n \n Return the maximum integer m such that str = [str2, m] can be obtained from str1 . \n\n Example 1: \n \n```\nInput:\n s1 = \"acb\", n1 = 4, s2 = \"ab\", n2 = 2\n\nOutput:\n 2\n```\n \n Example 2: \n \n```\nInput:\n s1 = \"acb\", n1 = 1, s2 = \"acb\", n2 = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= s1.length, s2.length <= 100 \n \n s1 and s2 consist of lowercase English letters. \n \n 1 <= n1, n2 <= 10 6",
+  "code": "#include <string>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int getMaxRepetitions(string s1, int n1, string s2, int n2) {\n        int len1 = s1.size(), len2 = s2.size();\n        vector<int> repeatCount(n1 + 1), nextIndex(n1 + 1);\n        unordered_map<int, pair<int, int>> visited;\n        int j = 0, count = 0;\n        for (int k = 1; k <= n1; ++k) {\n            for (char c : s1) {\n                if (c == s2[j]) ++j;\n                if (j == len2) {\n                    ++count;\n                    j = 0;\n                }\n            }\n            repeatCount[k] = count;\n            nextIndex[k] = j;\n            if (visited.count(j)) {\n                int start = visited[j].first;\n                int prefixCount = visited[j].second;\n                int patternLength = k - start;\n                int patternCount = (n1 - start) / patternLength;\n                int suffix = (n1 - start) % patternLength;\n                return (repeatCount[start] + patternCount * (repeatCount[k] - repeatCount[start]) + repeatCount[start + suffix] - repeatCount[start]) / n2;\n            }\n            visited[j] = {k, count};\n        }\n        return repeatCount[n1] / n2;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610633747",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

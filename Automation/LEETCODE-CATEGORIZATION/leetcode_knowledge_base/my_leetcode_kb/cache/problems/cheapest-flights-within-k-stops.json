@@ -1,0 +1,38 @@
+{
+  "id": "787",
+  "title": "Cheapest Flights Within K Stops",
+  "slug": "cheapest-flights-within-k-stops",
+  "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There are n cities connected by some number of flights. You are given an array flights where flights[i] = [from i , to i , price i ] indicates that there is a flight from city from i to city to i with cost price i . \n \n You are also given three integers src , dst , and k , return the cheapest price from src to dst with at most k stops. If there is no such route, return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/03/18/cheapest-flights-within-k-stops-3drawio.png] \n \n```\nInput:\n n = 4, flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], src = 0, dst = 3, k = 1\n\nOutput:\n 700\n\nExplanation:\n\nThe graph is shown above.\nThe optimal path with at most 1 stop from city 0 to 3 is marked in red and has cost 100 + 600 = 700.\nNote that the path through cities [0,1,2,3] is cheaper but is invalid because it uses 2 stops.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/03/18/cheapest-flights-within-k-stops-1drawio.png] \n \n```\nInput:\n n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1\n\nOutput:\n 200\n\nExplanation:\n\nThe graph is shown above.\nThe optimal path with at most 1 stop from city 0 to 2 is marked in red and has cost 100 + 100 = 200.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2022/03/18/cheapest-flights-within-k-stops-2drawio.png] \n \n```\nInput:\n n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 0\n\nOutput:\n 500\n\nExplanation:\n\nThe graph is shown above.\nThe optimal path with no stops from city 0 to 2 is marked in red and has cost 500.\n```\n\n Constraints: \n\n 2 <= n <= 100 \n \n 0 <= flights.length <= (n * (n - 1) / 2) \n \n flights[i].length == 3 \n \n 0 <= from i , to i < n \n \n from i != to i \n \n 1 <= price i <= 10 4 \n \n There will not be any multiple flights between two cities. \n \n 0 <= src, dst, k < n \n \n src != dst",
+  "code": "class Solution {\npublic:\n    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {\n    // Adjacency list to store graph: {destination, cost}\n    vector<vector<pair<int, int>>> graph(n);\n    for (auto& flight : flights)\n        graph[flight[0]].emplace_back(flight[1], flight[2]);\n\n    // Priority queue: {cost, current_node, stops_remaining}\n    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<>> pq;\n    pq.emplace(0, src, k + 1);\n\n    // Minimum cost to reach each node with specific stops remaining\n    vector<vector<int>> minCost(n, vector<int>(k + 2, INT_MAX));\n    minCost[src][k + 1] = 0;\n\n    while (!pq.empty()) {\n        auto [cost, node, stops] = pq.top();\n        pq.pop();\n\n        if (node == dst) return cost; // Destination reached with minimum cost\n        if (stops > 0) {\n            for (auto& [nextNode, price] : graph[node]) {\n                int newCost = cost + price;\n                if (newCost < minCost[nextNode][stops - 1]) {\n                    minCost[nextNode][stops - 1] = newCost;\n                    pq.emplace(newCost, nextNode, stops - 1);\n                }\n            }\n        }\n    }\n    return -1; // No valid route found\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1538659578",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

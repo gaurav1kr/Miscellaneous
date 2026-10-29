@@ -1,0 +1,26 @@
+{
+  "id": "2582",
+  "title": "Pass the Pillow",
+  "slug": "pass-the-pillow",
+  "url": "https://leetcode.com/problems/pass-the-pillow/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Simulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [],
+  "description": "There are n people standing in a line labeled from 1 to n . The first person in the line is holding a pillow initially. Every second, the person holding the pillow passes it to the next person standing in the line. Once the pillow reaches the end of the line, the direction changes, and people continue passing the pillow in the opposite direction. \n\n For example, once the pillow reaches the n th person they pass it to the n - 1 th person, then to the n - 2 th person and so on. \n\n Given the two positive integers n and time , return the index of the person holding the pillow after time seconds . \n\n Example 1: \n \n```\nInput:\n n = 4, time = 5\n\nOutput:\n 2\n\nExplanation:\n People pass the pillow in the following way: 1 -> 2 -> 3 -> 4 -> 3 -> 2.\nAfter five seconds, the 2\nnd\n person is holding the pillow.\n```\n\n Example 2: \n \n```\nInput:\n n = 3, time = 2\n\nOutput:\n 3\n\nExplanation:\n People pass the pillow in the following way: 1 -> 2 -> 3.\nAfter two seconds, the 3\nr\nd\n person is holding the pillow.\n```\n\n Constraints: \n\n 2 <= n <= 1000 \n \n 1 <= time <= 1000 \n\n Note: This question is the same as 3178: Find the Child Who Has the Ball After K Seconds.",
+  "code": "class Solution {public:int passThePillow(int n,int time){int x=time%(2*(n-1));return x<n?x+1:2*n-1-x;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176620232",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

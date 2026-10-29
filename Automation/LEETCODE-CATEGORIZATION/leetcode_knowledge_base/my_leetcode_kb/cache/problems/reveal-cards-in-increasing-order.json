@@ -1,0 +1,34 @@
+{
+  "id": "950",
+  "title": "Reveal Cards In Increasing Order",
+  "slug": "reveal-cards-in-increasing-order",
+  "url": "https://leetcode.com/problems/reveal-cards-in-increasing-order/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Queue",
+    "Sorting",
+    "Simulation"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array deck . There is a deck of cards where every card has a unique integer. The integer on the i th card is deck[i] . \n \n You can order the deck in any order you want. Initially, all the cards start face down (unrevealed) in one deck. \n \n You will do the following steps repeatedly until all cards are revealed: \n\n Take the top card of the deck, reveal it, and take it out of the deck. \n \n If there are still cards in the deck then put the next top card of the deck at the bottom of the deck. \n \n If there are still unrevealed cards, go back to step 1. Otherwise, stop. \n\n Return an ordering of the deck that would reveal the cards in increasing order . \n \n Note that the first entry in the answer is considered to be the top of the deck. \n\n Example 1: \n \n```\nInput:\n deck = [17,13,11,2,3,5,7]\n\nOutput:\n [2,13,3,11,5,17,7]\n\nExplanation:\n \nWe get the deck in the order [17,13,11,2,3,5,7] (this order does not matter), and reorder it.\nAfter reordering, the deck starts as [2,13,3,11,5,17,7], where 2 is the top of the deck.\nWe reveal 2, and move 13 to the bottom. The deck is now [3,11,5,17,7,13].\nWe reveal 3, and move 11 to the bottom. The deck is now [5,17,7,13,11].\nWe reveal 5, and move 17 to the bottom. The deck is now [7,13,11,17].\nWe reveal 7, and move 13 to the bottom. The deck is now [11,17,13].\nWe reveal 11, and move 17 to the bottom. The deck is now [13,17].\nWe reveal 13, and move 17 to the bottom. The deck is now [17].\nWe reveal 17.\nSince all the cards revealed are in increasing order, the answer is correct.\n```\n\n Example 2: \n \n```\nInput:\n deck = [1,1000]\n\nOutput:\n [1,1000]\n```\n\n Constraints: \n\n 1 <= deck.length <= 1000 \n \n 1 <= deck[i] <= 10 6 \n \n All the values of deck are unique .",
+  "code": "class Solution\n {\npublic:\n    vector<int> deckRevealedIncreasing(vector<int>& deck) \n    {\n        sort(deck.begin() , deck.end()) ;\n        int n = deck.size();\n        int i=0;\n        queue<int> deck_queue;\n        vector<int> ans(n);\n        while(i<n)\n        {\n            deck_queue.push(i++);\n        }\n\n        for(i=0;i<n;i++)\n        {\n            ans[deck_queue.front()] = deck[i];\n            deck_queue.pop() ;\n            deck_queue.push(deck_queue.front()) ;\n            deck_queue.pop() ;\n        }\n        return ans ;\n    }\n};\n\t",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1151258976",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "4030",
+  "title": "Check ASCII Palindromic",
+  "slug": "check-ascii-palindromic",
+  "url": "https://leetcode.com/problems/check-ascii-palindromic/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. \n \n Construct a binary string by replacing each character in s with the 8-bit binary representation of its ASCII value, including leading zeros , while preserving the original order of the characters. \n \n Return true if the resulting binary string is a palindrome . Otherwise, return false . \n\n Example 1: \n\n Input: s = \"ff\" \n \n Output: true \n \n Explanation: \n\n The ASCII value of f is 102, whose 8-bit binary representation is 01100110 . \n \n Thus, the binary string is 0110011001100110 . \n \n Since this binary string is a palindrome , the output is true . \n\n Example 2: \n\n Input: s = \"leet\" \n \n Output: false \n \n Explanation: \n\n The ASCII values of l , e , e , and t are 108, 101, 101, and 116, respectively. \n \n Their 8-bit binary representations are 01101100 , 01100101 , 01100101 , and 01110100 . \n \n Thus, the binary string is 01101100011001010110010101110100 . \n \n Since this binary string is not a palindrome , the output is false . \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    bool isPalindromic(string s) {\n        int total = (int)s.size() * 8;\n        for (int left = 0, right = total - 1; left < right; ++left, --right) {\n            int a = (static_cast<unsigned char>(s[left / 8]) >> (7 - left % 8)) & 1;\n            int b = (static_cast<unsigned char>(s[right / 8]) >> (7 - right % 8)) & 1;\n            if (a != b) return false;\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179332212",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

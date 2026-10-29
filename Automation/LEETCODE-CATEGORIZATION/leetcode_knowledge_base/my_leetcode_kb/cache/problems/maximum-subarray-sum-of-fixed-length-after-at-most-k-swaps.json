@@ -1,0 +1,22 @@
+{
+  "id": "4087",
+  "title": "Maximum Subarray Sum of Fixed Length After at Most K Swaps",
+  "slug": "maximum-subarray-sum-of-fixed-length-after-at-most-k-swaps",
+  "url": "https://leetcode.com/problems/maximum-subarray-sum-of-fixed-length-after-at-most-k-swaps/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers length and k . \n \n You may perform at most k swap operations on nums . \n \n In one swap operation, you may choose two distinct indices i and j and swap nums[i] and nums[j] . \n \n Return the maximum possible sum of a subarray of length exactly length after performing the swaps. \n\n Example 1: \n\n Input: nums = [1,-1,0,2], length = 2, k = 1 \n \n Output: 3 \n \n Explanation: \n\n Swap the elements at indices 1 and 3, resulting in [1, 2, 0, -1] . \n \n The subarray [1, 2] has length 2 and sum 3. \n \n No subarray of length 2 can have a larger sum, since 1 and 2 are the two largest elements. \n\n Example 2: \n\n Input: nums = [4,3,2,4], length = 3, k = 2 \n \n Output: 11 \n \n Explanation: \n\n Swap the elements at indices 2 and 3, resulting in [4, 3, 4, 2] . \n \n The subarray [4, 3, 4] has length 3 and sum 11. \n \n This is the sum of the three largest elements, so no larger answer is possible. Only one swap is needed. \n\n Example 3: \n\n Input: nums = [-1,-2], length = 2, k = 0 \n \n Output: -3 \n \n Explanation: \n \n No swaps are allowed. The only subarray of length 2 is [-1, -2] , whose sum is -3. \n\n Constraints: \n\n 1 <= nums.length <= 300 \n \n -10 9 <= nums[i] <= 10 9 \n \n 1 <= length <= nums.length \n \n 0 <= k <= nums.length",
+  "code": "class Solution {public:long long maxSum(vector<int>& a,int length,int k){int n=a.size();long long ans=LLONG_MIN;for(int l=0;l+length<=n;++l){vector<int> in,out;long long sum=0;for(int i=0;i<n;++i)if(i>=l&&i<l+length){in.push_back(a[i]);sum+=a[i];}else out.push_back(a[i]);sort(in.begin(),in.end());sort(out.rbegin(),out.rend());for(int j=0;j<k&&j<(int)in.size()&&j<(int)out.size()&&out[j]>in[j];++j)sum+=(long long)out[j]-in[j];ans=max(ans,sum);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181210746",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

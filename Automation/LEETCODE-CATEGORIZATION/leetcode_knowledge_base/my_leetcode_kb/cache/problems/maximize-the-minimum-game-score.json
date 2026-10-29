@@ -1,0 +1,31 @@
+{
+  "id": "3449",
+  "title": "Maximize the Minimum Game Score",
+  "slug": "maximize-the-minimum-game-score",
+  "url": "https://leetcode.com/problems/maximize-the-minimum-game-score/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array points of size n and an integer m . There is another array gameScore of size n , where gameScore[i] represents the score achieved at the i th game. Initially, gameScore[i] == 0 for all i . \n \n You start at index -1, which is outside the array (before the first position at index 0). You can make at most m moves. In each move, you can either: \n\n Increase the index by 1 and add points[i] to gameScore[i] . \n \n Decrease the index by 1 and add points[i] to gameScore[i] . \n\n Note that the index must always remain within the bounds of the array after the first move. \n \n Return the maximum possible minimum value in gameScore after at most m moves. \n\n Example 1: \n\n Input: points = [2,4], m = 3 \n \n Output: 4 \n \n Explanation: \n \n Initially, index i = -1 and gameScore = [0, 0] . \n\n Move \n Index \n gameScore \n\n Increase i \n 0 \n [2, 0] \n\n Increase i \n 1 \n [2, 4] \n\n Decrease i \n 0 \n [4, 4] \n\n The minimum value in gameScore is 4, and this is the maximum possible minimum among all configurations. Hence, 4 is the output. \n\n Example 2: \n\n Input: points = [1,2,3], m = 5 \n \n Output: 2 \n \n Explanation: \n \n Initially, index i = -1 and gameScore = [0, 0, 0] . \n\n Move \n Index \n gameScore \n\n Increase i \n 0 \n [1, 0, 0] \n\n Increase i \n 1 \n [1, 2, 0] \n\n Decrease i \n 0 \n [2, 2, 0] \n\n Increase i \n 1 \n [2, 4, 0] \n\n Increase i \n 2 \n [2, 4, 3] \n\n The minimum value in gameScore is 2, and this is the maximum possible minimum among all configurations. Hence, 2 is the output. \n\n Constraints: \n\n 2 <= n == points.length <= 5 * 10 4 \n \n 1 <= points[i] <= 10 6 \n \n 1 <= m <= 10 9",
+  "code": "class Solution {public:long long maxScore(vector<int>& points,int m){int n=points.size();long long lo=0,hi=1LL*m*(*max_element(points.begin(),points.end()));\n auto ok=[&](long long x){long long moves=0,carry=0;for(int i=0;i<n;++i){long long need=(x+points[i]-1)/points[i];long long trips=max(0LL,need-carry);if(i==n-1){moves+=trips?2*trips-1:0;}\n else {long long turns=max(1LL,trips);moves+=2*turns-1;carry=turns-1;}if(moves>m)return false;}return moves<=m;};\n while(lo<hi){long long mid=lo+(hi-lo+1)/2;if(ok(mid))lo=mid;else hi=mid-1;}return lo;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177529777",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

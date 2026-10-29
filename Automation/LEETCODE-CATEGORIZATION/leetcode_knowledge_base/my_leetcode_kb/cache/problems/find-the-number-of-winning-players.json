@@ -1,0 +1,31 @@
+{
+  "id": "3238",
+  "title": "Find the Number of Winning Players",
+  "slug": "find-the-number-of-winning-players",
+  "url": "https://leetcode.com/problems/find-the-number-of-winning-players/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an integer n representing the number of players in a game and a 2D array pick where pick[i] = [x i , y i ] represents that the player x i picked a ball of color y i . \n \n Player i wins the game if they pick strictly more than i balls of the same color. In other words, \n\n Player 0 wins if they pick any ball. \n \n Player 1 wins if they pick at least two balls of the same color. \n \n ... \n \n Player i wins if they pick at least i + 1 balls of the same color. \n\n Return the number of players who win the game. \n \n Note that multiple players can win the game. \n\n Example 1: \n\n Input: n = 4, pick = [[0,0],[1,0],[1,0],[2,1],[2,1],[2,0]] \n \n Output: 2 \n \n Explanation: \n \n Player 0 and player 1 win the game, while players 2 and 3 do not win. \n\n Example 2: \n\n Input: n = 5, pick = [[1,1],[1,2],[1,3],[1,4]] \n \n Output: 0 \n \n Explanation: \n \n No player wins the game. \n\n Example 3: \n\n Input: n = 5, pick = [[1,1],[2,4],[2,4],[2,4]] \n \n Output: 1 \n \n Explanation: \n \n Player 2 wins the game by picking 3 balls with color 4. \n\n Constraints: \n\n 2 <= n <= 10 \n \n 1 <= pick.length <= 100 \n \n pick[i].length == 2 \n \n 0 <= x i <= n - 1 \n \n 0 <= y i <= 10",
+  "code": "class Solution { public:\n int winningPlayerCount(int n,vector<vector<int>>& pick) {vector<vector<int>> f(n,vector<int>(11));for(auto &p:pick)++f[p[0]][p[1]];int ans=0;for(int i=0;i<n;++i)for(int c=0;c<11;++c)if(f[i][c]>i){++ans;break;}return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177432998",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

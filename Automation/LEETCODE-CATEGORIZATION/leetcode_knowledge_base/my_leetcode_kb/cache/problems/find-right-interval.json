@@ -1,0 +1,32 @@
+{
+  "id": "436",
+  "title": "Find Right Interval",
+  "slug": "find-right-interval",
+  "url": "https://leetcode.com/problems/find-right-interval/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array of intervals , where intervals[i] = [start i , end i ] and each start i is unique . \n \n The right interval for an interval i is an interval j such that start j >= end i and start j is minimized . Note that i may equal j . \n \n Return an array of right interval indices for each interval i . If no right interval exists for interval i , then put -1 at index i . \n\n Example 1: \n \n```\nInput:\n intervals = [[1,2]]\n\nOutput:\n [-1]\n\nExplanation:\n There is only one interval in the collection, so it outputs -1.\n```\n\n Example 2: \n \n```\nInput:\n intervals = [[3,4],[2,3],[1,2]]\n\nOutput:\n [-1,0,1]\n\nExplanation:\n There is no right interval for [3,4].\nThe right interval for [2,3] is [3,4] since start\n0\n = 3 is the smallest start that is >= end\n1\n = 3.\nThe right interval for [1,2] is [2,3] since start\n1\n = 2 is the smallest start that is >= end\n2\n = 2.\n```\n\n Example 3: \n \n```\nInput:\n intervals = [[1,4],[2,3],[3,4]]\n\nOutput:\n [-1,2,-1]\n\nExplanation:\n There is no right interval for [1,4] and [3,4].\nThe right interval for [2,3] is [3,4] since start\n2\n = 3 is the smallest start that is >= end\n1\n = 3.\n```\n\n Constraints: \n\n 1 <= intervals.length <= 2 * 10 4 \n \n intervals[i].length == 2 \n \n -10 6 <= start i <= end i <= 10 6 \n \n The start point of each interval is unique .",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> findRightInterval(vector<vector<int>>& intervals) {\n        int n = intervals.size();\n        vector<pair<int, int>> starts;\n        for (int i = 0; i < n; ++i) {\n            starts.push_back({intervals[i][0], i});\n        }\n        sort(starts.begin(), starts.end());\n\n        vector<int> res;\n        for (auto& interval : intervals) {\n            int end = interval[1];\n            int l = 0, r = n - 1, ans = -1;\n            while (l <= r) {\n                int mid = (l + r) / 2;\n                if (starts[mid].first >= end) {\n                    ans = starts[mid].second;\n                    r = mid - 1;\n                } else {\n                    l = mid + 1;\n                }\n            }\n            res.push_back(ans);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593693344",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

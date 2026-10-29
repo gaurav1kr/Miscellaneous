@@ -1,0 +1,30 @@
+{
+  "id": "1629",
+  "title": "Slowest Key",
+  "slug": "slowest-key",
+  "url": "https://leetcode.com/problems/slowest-key/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "A newly designed keypad was tested, where a tester pressed a sequence of n keys, one at a time. \n \n You are given a string keysPressed of length n , where keysPressed[i] was the i th key pressed in the testing sequence, and a sorted list releaseTimes , where releaseTimes[i] was the time the i th key was released. Both arrays are 0-indexed . The 0 th key was pressed at the time 0 , and every subsequent key was pressed at the exact time the previous key was released. \n \n The tester wants to know the key of the keypress that had the longest duration . The i th keypress had a duration of releaseTimes[i] - releaseTimes[i - 1] , and the 0 th keypress had a duration of releaseTimes[0] . \n \n Note that the same key could have been pressed multiple times during the test, and these multiple presses of the same key may not have had the same duration . \n \n Return the key of the keypress that had the longest duration . If there are multiple such keypresses, return the lexicographically largest key of the keypresses. \n\n Example 1: \n \n```\nInput:\n releaseTimes = [9,29,49,50], keysPressed = \"cbcd\"\n\nOutput:\n \"c\"\n\nExplanation:\n The keypresses were as follows:\nKeypress for 'c' had a duration of 9 (pressed at time 0 and released at time 9).\nKeypress for 'b' had a duration of 29 - 9 = 20 (pressed at time 9 right after the release of the previous character and released at time 29).\nKeypress for 'c' had a duration of 49 - 29 = 20 (pressed at time 29 right after the release of the previous character and released at time 49).\nKeypress for 'd' had a duration of 50 - 49 = 1 (pressed at time 49 right after the release of the previous character and released at time 50).\nThe longest of these was the keypress for 'b' and the second keypress for 'c', both with duration 20.\n'c' is lexicographically larger than 'b', so the answer is 'c'.\n```\n\n Example 2: \n \n```\nInput:\n releaseTimes = [12,23,36,46,62], keysPressed = \"spuda\"\n\nOutput:\n \"a\"\n\nExplanation:\n The keypresses were as follows:\nKeypress for 's' had a duration of 12.\nKeypress for 'p' had a duration of 23 - 12 = 11.\nKeypress for 'u' had a duration of 36 - 23 = 13.\nKeypress for 'd' had a duration of 46 - 36 = 10.\nKeypress for 'a' had a duration of 62 - 46 = 16.\nThe longest of these was the keypress for 'a' with duration 16.\n```\n\n Constraints: \n\n releaseTimes.length == n \n \n keysPressed.length == n \n \n 2 <= n <= 1000 \n \n 1 <= releaseTimes[i] <= 10 9 \n \n releaseTimes[i] < releaseTimes[i+1] \n \n keysPressed contains only lowercase English letters.",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    char slowestKey(vector<int>& releaseTimes, string keysPressed) {\n        int maxDur = releaseTimes[0];\n        char res = keysPressed[0];\n        for (int i = 1; i < releaseTimes.size(); ++i) {\n            int dur = releaseTimes[i] - releaseTimes[i - 1];\n            if (dur > maxDur || (dur == maxDur && keysPressed[i] > res)) {\n                maxDur = dur;\n                res = keysPressed[i];\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610574729",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

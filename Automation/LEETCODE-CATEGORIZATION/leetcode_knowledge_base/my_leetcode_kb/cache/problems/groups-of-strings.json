@@ -1,0 +1,40 @@
+{
+  "id": "2157",
+  "title": "Groups of Strings",
+  "slug": "groups-of-strings",
+  "url": "https://leetcode.com/problems/groups-of-strings/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Union-Find"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of strings words . Each string consists of lowercase English letters only. No letter occurs more than once in any string of words . \n \n Two strings s1 and s2 are said to be connected if the set of letters of s2 can be obtained from the set of letters of s1 by any one of the following operations: \n\n Adding exactly one letter to the set of the letters of s1 . \n \n Deleting exactly one letter from the set of the letters of s1 . \n \n Replacing exactly one letter from the set of the letters of s1 with any letter, including itself. \n\n The array words can be divided into one or more non-intersecting groups . A string belongs to a group if any one of the following is true: \n\n It is connected to at least one other string of the group. \n \n It is the only string present in the group. \n\n Note that the strings in words should be grouped in such a manner that a string belonging to a group cannot be connected to a string present in any other group. It can be proved that such an arrangement is always unique. \n \n Return an array ans of size 2 where: \n\n ans[0] is the maximum number of groups words can be divided into, and \n \n ans[1] is the size of the largest group . \n\n Example 1: \n \n```\nInput:\n words = [\"a\",\"b\",\"ab\",\"cde\"]\n\nOutput:\n [2,3]\n\nExplanation:\n\n- words[0] can be used to obtain words[1] (by replacing 'a' with 'b'), and words[2] (by adding 'b'). So words[0] is connected to words[1] and words[2].\n- words[1] can be used to obtain words[0] (by replacing 'b' with 'a'), and words[2] (by adding 'a'). So words[1] is connected to words[0] and words[2].\n- words[2] can be used to obtain words[0] (by deleting 'b'), and words[1] (by deleting 'a'). So words[2] is connected to words[0] and words[1].\n- words[3] is not connected to any string in words.\nThus, words can be divided into 2 groups [\"a\",\"b\",\"ab\"] and [\"cde\"]. The size of the largest group is 3.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"a\",\"ab\",\"abc\"]\n\nOutput:\n [1,3]\n\nExplanation:\n\n- words[0] is connected to words[1].\n- words[1] is connected to words[0] and words[2].\n- words[2] is connected to words[1].\nSince all strings are connected to each other, they should be grouped together.\nThus, the size of the largest group is 3.\n```\n\n Constraints: \n\n 1 <= words.length <= 2 * 10 4 \n \n 1 <= words[i].length <= 26 \n \n words[i] consists of lowercase English letters only. \n \n No letter occurs more than once in words[i] .",
+  "code": "class Solution {\n    struct DSU {\n        vector<int> p,sz;\n        DSU(int n):p(n),sz(n,1){iota(p.begin(),p.end(),0);}\n        int find(int x){return p[x]==x?x:p[x]=find(p[x]);}\n        void unite(int a,int b){a=find(a);b=find(b);if(a!=b){if(sz[a]<sz[b])swap(a,b);p[b]=a;sz[a]+=sz[b];}}\n    };\npublic:\n    vector<int> groupStrings(vector<string>& words) {\n        int n=words.size();DSU d(n);\n        unordered_map<int,int> exact,deleted;\n        vector<int> masks(n);\n        for(int i=0;i<n;++i) {\n            int mask=0;for(char c:words[i]) mask|=1<<(c-'a');masks[i]=mask;\n            if(exact.count(mask)) d.unite(i,exact[mask]);else exact[mask]=i;\n        }\n        for(int i=0;i<n;++i) {\n            int mask=masks[i];\n            for(int b=0;b<26;++b) {\n                int other=mask^(1<<b);\n                auto it=exact.find(other);\n                if(it!=exact.end()) d.unite(i,it->second);\n                if(mask&(1<<b)) {\n                    auto jt=deleted.find(other);\n                    if(jt!=deleted.end()) d.unite(i,jt->second);\n                    else deleted[other]=i;\n                }\n            }\n        }\n        int groups=0,biggest=0;\n        for(int i=0;i<n;++i) if(d.find(i)==i) {++groups;biggest=max(biggest,d.sz[i]);}\n        return {groups,biggest};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175875414",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "1717",
+  "title": "Maximum Score From Removing Substrings",
+  "slug": "maximum-score-from-removing-substrings",
+  "url": "https://leetcode.com/problems/maximum-score-from-removing-substrings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a string s and two integers x and y . You can perform two types of operations any number of times. \n\n Remove substring \"ab\" and gain x points.\n\n For example, when removing \"ab\" from \"c ab xbae\" it becomes \"cxbae\" . \n\n Remove substring \"ba\" and gain y points.\n\n For example, when removing \"ba\" from \"cabx ba e\" it becomes \"cabxe\" . \n\n Return the maximum points you can gain after applying the above operations on s . \n\n Example 1: \n \n```\nInput:\n s = \"cdbcbbaaabab\", x = 4, y = 5\n\nOutput:\n 19\n\nExplanation:\n\n- Remove the \"ba\" underlined in \"cdbcbbaaa\nba\nb\". Now, s = \"cdbcbbaaab\" and 5 points are added to the score.\n- Remove the \"ab\" underlined in \"cdbcbbaa\nab\n\". Now, s = \"cdbcbbaa\" and 4 points are added to the score.\n- Remove the \"ba\" underlined in \"cdbcb\nba\na\". Now, s = \"cdbcba\" and 5 points are added to the score.\n- Remove the \"ba\" underlined in \"cdbc\nba\n\". Now, s = \"cdbc\" and 5 points are added to the score.\nTotal score = 5 + 4 + 5 + 5 = 19.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aabbaaxybbaabb\", x = 5, y = 4\n\nOutput:\n 20\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n 1 <= x, y <= 10 4 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\n int removePairs(string& s,char a,char b,int points){\n  string st;int score=0;\n  for(char c:s){if(!st.empty() && st.back()==a && c==b){st.pop_back();score+=points;}else st.push_back(c);}\n  s.swap(st);return score;\n }\npublic:\n int maximumGain(string s,int x,int y){\n  if(x>=y)return removePairs(s,'a','b',x)+removePairs(s,'b','a',y);\n  return removePairs(s,'b','a',y)+removePairs(s,'a','b',x);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175758458",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

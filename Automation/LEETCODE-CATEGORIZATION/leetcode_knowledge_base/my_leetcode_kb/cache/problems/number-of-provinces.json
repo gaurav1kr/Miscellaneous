@@ -1,0 +1,31 @@
+{
+  "id": "547",
+  "title": "Number of Provinces",
+  "slug": "number-of-provinces",
+  "url": "https://leetcode.com/problems/number-of-provinces/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "There are n cities. Some of them are connected, while some are not. If city a is connected directly with city b , and city b is connected directly with city c , then city a is connected indirectly with city c . \n \n A province is a group of directly or indirectly connected cities and no other cities outside of the group. \n \n You are given an n x n matrix isConnected where isConnected[i][j] = 1 if the i th city and the j th city are directly connected, and isConnected[i][j] = 0 otherwise. \n \n Return the total number of provinces . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/12/24/graph1.jpg] \n \n```\nInput:\n isConnected = [[1,1,0],[1,1,0],[0,0,1]]\n\nOutput:\n 2\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/12/24/graph2.jpg] \n \n```\nInput:\n isConnected = [[1,0,0],[0,1,0],[0,0,1]]\n\nOutput:\n 3\n```\n\n Constraints: \n\n 1 <= n <= 200 \n \n n == isConnected.length \n \n n == isConnected[i].length \n \n isConnected[i][j] is 1 or 0 . \n \n isConnected[i][i] == 1 \n \n isConnected[i][j] == isConnected[j][i]",
+  "code": "class Solution {\npublic:\n    void dfs(int node, vector<vector<int>>& isConnected, vector<bool>& visited) {\n        visited[node] = true;\n        for (int neighbor = 0; neighbor < isConnected.size(); ++neighbor) {\n            if (isConnected[node][neighbor] == 1 && !visited[neighbor]) {\n                dfs(neighbor, isConnected, visited);\n            }\n        }\n    }\n\n    int findCircleNum(vector<vector<int>>& isConnected) {\n        int n = isConnected.size();\n        vector<bool> visited(n, false);\n        int provinces = 0;\n\n        for (int i = 0; i < n; ++i) {\n            if (!visited[i]) {\n                ++provinces;\n                dfs(i, isConnected, visited);\n            }\n        }\n\n        return provinces;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1538691520",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

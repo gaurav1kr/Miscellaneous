@@ -1,0 +1,34 @@
+{
+  "id": "1452",
+  "title": "People Whose List of Favorite Companies Is Not a Subset of Another List",
+  "slug": "people-whose-list-of-favorite-companies-is-not-a-subset-of-another-list",
+  "url": "https://leetcode.com/problems/people-whose-list-of-favorite-companies-is-not-a-subset-of-another-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given the array favoriteCompanies where favoriteCompanies[i] is the list of favorites companies for the ith person ( indexed from 0 ). \n \n Return the indices of people whose list of favorite companies is not a subset of any other list of favorites companies . You must return the indices in increasing order. \n\n Example 1: \n \n```\nInput:\n favoriteCompanies = [[\"leetcode\",\"google\",\"facebook\"],[\"google\",\"microsoft\"],[\"google\",\"facebook\"],[\"google\"],[\"amazon\"]]\n\nOutput:\n [0,1,4] \n\nExplanation:\n \nPerson with index=2 has favoriteCompanies[2]=[\"google\",\"facebook\"] which is a subset of favoriteCompanies[0]=[\"leetcode\",\"google\",\"facebook\"] corresponding to the person with index 0. \nPerson with index=3 has favoriteCompanies[3]=[\"google\"] which is a subset of favoriteCompanies[0]=[\"leetcode\",\"google\",\"facebook\"] and favoriteCompanies[1]=[\"google\",\"microsoft\"]. \nOther lists of favorite companies are not a subset of another list, therefore, the answer is [0,1,4].\n```\n\n Example 2: \n \n```\nInput:\n favoriteCompanies = [[\"leetcode\",\"google\",\"facebook\"],[\"leetcode\",\"amazon\"],[\"facebook\",\"google\"]]\n\nOutput:\n [0,1] \n\nExplanation:\n In this case favoriteCompanies[2]=[\"facebook\",\"google\"] is a subset of favoriteCompanies[0]=[\"leetcode\",\"google\",\"facebook\"], therefore, the answer is [0,1].\n```\n\n Example 3: \n \n```\nInput:\n favoriteCompanies = [[\"leetcode\"],[\"google\"],[\"facebook\"],[\"amazon\"]]\n\nOutput:\n [0,1,2,3]\n```\n\n Constraints: \n\n 1 <= favoriteCompanies.length <= 100 \n \n 1 <= favoriteCompanies[i].length <= 500 \n \n 1 <= favoriteCompanies[i][j].length <= 20 \n \n All strings in favoriteCompanies[i] are distinct . \n \n All lists of favorite companies are distinct , that is, If we sort alphabetically each list then favoriteCompanies[i] != favoriteCompanies[j]. \n \n All strings consist of lowercase English letters only.",
+  "code": "class Solution {\npublic:\n    vector<int> peopleIndexes(vector<vector<string>>& favoriteCompanies) {\n        int n = favoriteCompanies.size();\n        vector<set<string>> favSets(n);\n        for (int i = 0; i < n; ++i)\n            favSets[i] = set<string>(favoriteCompanies[i].begin(), favoriteCompanies[i].end());\n\n        vector<int> res;\n        for (int i = 0; i < n; ++i) {\n            bool isSubset = false;\n            for (int j = 0; j < n; ++j) {\n                if (i != j && includes(favSets[j].begin(), favSets[j].end(), favSets[i].begin(), favSets[i].end())) {\n                    isSubset = true;\n                    break;\n                }\n            }\n            if (!isSubset) res.push_back(i);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610695105",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

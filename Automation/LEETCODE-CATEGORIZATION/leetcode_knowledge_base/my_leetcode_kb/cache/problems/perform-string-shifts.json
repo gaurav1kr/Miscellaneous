@@ -1,0 +1,32 @@
+{
+  "id": "1427",
+  "title": "Perform String Shifts",
+  "slug": "perform-string-shifts",
+  "url": "https://leetcode.com/problems/perform-string-shifts/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s containing lowercase English letters, and a matrix shift , where shift[i] = [direction i , amount i ] : \n\n direction i can be 0 (for left shift) or 1 (for right shift). \n \n amount i is the amount by which string s is to be shifted. \n \n A left shift by 1 means remove the first character of s and append it to the end. \n \n Similarly, a right shift by 1 means remove the last character of s and add it to the beginning. \n\n Return the final string after all operations. \n\n Example 1: \n \n```\nInput:\n s = \"abc\", shift = [[0,1],[1,2]]\n\nOutput:\n \"cab\"\n\nExplanation:\n \n[0,1] means shift to left by 1. \"abc\" -> \"bca\"\n[1,2] means shift to right by 2. \"bca\" -> \"cab\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"abcdefg\", shift = [[1,1],[1,1],[0,2],[1,3]]\n\nOutput:\n \"efgabcd\"\n\nExplanation:\n  \n[1,1] means shift to right by 1. \"abcdefg\" -> \"gabcdef\"\n[1,1] means shift to right by 1. \"gabcdef\" -> \"fgabcde\"\n[0,2] means shift to left by 2. \"fgabcde\" -> \"abcdefg\"\n[1,3] means shift to right by 3. \"abcdefg\" -> \"efgabcd\"\n```\n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s only contains lower case English letters. \n \n 1 <= shift.length <= 100 \n \n shift[i].length == 2 \n \n direction i is either 0 or 1 . \n \n 0 <= amount i <= 100",
+  "code": "class Solution {\npublic:\n    string stringShift(string s, vector<vector<int>>& shift) {\n        int n = s.size();\n        if (n == 0) {\n            return s;\n        }\n        int right = 0;\n        for (const auto& operation : shift) {\n            right += operation[0] == 1 ? operation[1] : -operation[1];\n            right %= n;\n        }\n        right = (right + n) % n;\n        return s.substr(n - right) + s.substr(0, n - right);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178574414",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

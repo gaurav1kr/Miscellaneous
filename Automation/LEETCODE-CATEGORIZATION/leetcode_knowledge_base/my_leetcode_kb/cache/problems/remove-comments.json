@@ -1,0 +1,30 @@
+{
+  "id": "722",
+  "title": "Remove Comments",
+  "slug": "remove-comments",
+  "url": "https://leetcode.com/problems/remove-comments/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a C++ program, remove comments from it. The program source is an array of strings source where source[i] is the i th line of the source code. This represents the result of splitting the original source code string by the newline character '\\n' . \n \n In C++, there are two types of comments, line comments, and block comments. \n\n The string \"//\" denotes a line comment, which represents that it and the rest of the characters to the right of it in the same line should be ignored. \n \n The string \"/*\" denotes a block comment, which represents that all characters until the next (non-overlapping) occurrence of \"*/\" should be ignored. (Here, occurrences happen in reading order: line by line from left to right.) To be clear, the string \"/*/\" does not yet end the block comment, as the ending would be overlapping the beginning. \n\n The first effective comment takes precedence over others. \n\n For example, if the string \"//\" occurs in a block comment, it is ignored. \n \n Similarly, if the string \"/*\" occurs in a line or block comment, it is also ignored. \n\n If a certain line of code is empty after removing comments, you must not output that line: each string in the answer list will be non-empty. \n \n There will be no control characters, single quote, or double quote characters. \n\n For example, source = \"string s = \"/* Not a comment. */\";\" will not be a test case. \n\n Also, nothing else such as defines or macros will interfere with the comments. \n \n It is guaranteed that every open block comment will eventually be closed, so \"/*\" outside of a line or block comment always starts a new comment. \n \n Finally, implicit newline characters can be deleted by block comments. Please see the examples below for details. \n \n After removing the comments from the source code, return the source code in the same format . \n\n Example 1: \n \n```\nInput:\n source = [\"/*Test program */\", \"int main()\", \"{ \", \" // variable declaration \", \"int a, b, c;\", \"/* This is a test\", \" multiline \", \" comment for \", \" testing */\", \"a = b + c;\", \"}\"]\n\nOutput:\n [\"int main()\",\"{ \",\" \",\"int a, b, c;\",\"a = b + c;\",\"}\"]\n\nExplanation:\n The line by line code is visualized as below:\n/*Test program */\nint main()\n{ \n // variable declaration \nint a, b, c;\n/* This is a test\n multiline \n comment for \n testing */\na = b + c;\n}\nThe string /* denotes a block comment, including line 1 and lines 6-9. The string // denotes line 4 as comments.\nThe line by line output code is visualized as below:\nint main()\n{ \n \nint a, b, c;\na = b + c;\n}\n```\n\n Example 2: \n \n```\nInput:\n source = [\"a/*comment\", \"line\", \"more_comment*/b\"]\n\nOutput:\n [\"ab\"]\n\nExplanation:\n The original source string is \"a/*comment\\nline\\nmore_comment*/b\", where we have bolded the newline characters. After deletion, the implicit newline characters are deleted, leaving the string \"ab\", which when delimited by newline characters becomes [\"ab\"].\n```\n\n Constraints: \n\n 1 <= source.length <= 100 \n \n 0 <= source[i].length <= 80 \n \n source[i] consists of printable ASCII characters. \n \n Every open block comment is eventually closed. \n \n There are no single-quote or double-quote in the input.",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> removeComments(vector<string>& source) {\n        vector<string> res;\n        string line;\n        bool inBlock = false;\n        for (auto& src : source) {\n            for (int i = 0; i < src.size(); ++i) {\n                if (!inBlock && i + 1 < src.size() && src[i] == '/' && src[i + 1] == '*') {\n                    inBlock = true;\n                    ++i;\n                } else if (inBlock && i + 1 < src.size() && src[i] == '*' && src[i + 1] == '/') {\n                    inBlock = false;\n                    ++i;\n                } else if (!inBlock && i + 1 < src.size() && src[i] == '/' && src[i + 1] == '/') {\n                    break;\n                } else if (!inBlock) {\n                    line += src[i];\n                }\n            }\n            if (!inBlock && !line.empty()) {\n                res.push_back(line);\n                line.clear();\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612879784",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

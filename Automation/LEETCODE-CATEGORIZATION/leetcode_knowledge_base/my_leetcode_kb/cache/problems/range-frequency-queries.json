@@ -1,0 +1,39 @@
+{
+  "id": "2080",
+  "title": "Range Frequency Queries",
+  "slug": "range-frequency-queries",
+  "url": "https://leetcode.com/problems/range-frequency-queries/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Design",
+    "Segment Tree"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "Design a data structure to find the frequency of a given value in a given subarray. \n \n The frequency of a value in a subarray is the number of occurrences of that value in the subarray. \n \n Implement the RangeFreqQuery class: \n\n RangeFreqQuery(int[] arr) Constructs an instance of the class with the given 0-indexed integer array arr . \n \n int query(int left, int right, int value) Returns the frequency of value in the subarray arr[left...right] . \n\n A subarray is a contiguous sequence of elements within an array. arr[left...right] denotes the subarray that contains the elements of nums between indices left and right ( inclusive ). \n\n Example 1: \n \n```\nInput\n\n[\"RangeFreqQuery\", \"query\", \"query\"]\n[[[12, 33, 4, 56, 22, 2, 34, 33, 22, 12, 34, 56]], [1, 2, 4], [0, 11, 33]]\n\nOutput\n\n[null, 1, 2]\n\nExplanation\n\nRangeFreqQuery rangeFreqQuery = new RangeFreqQuery([12, 33, 4, 56, 22, 2, 34, 33, 22, 12, 34, 56]);\nrangeFreqQuery.query(1, 2, 4); // return 1. The value 4 occurs 1 time in the subarray [33, 4]\nrangeFreqQuery.query(0, 11, 33); // return 2. The value 33 occurs 2 times in the whole array.\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 5 \n \n 1 <= arr[i], value <= 10 4 \n \n 0 <= left <= right < arr.length \n \n At most 10 5 calls will be made to query",
+  "code": "#include <unordered_map>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass RangeFreqQuery {\n    unordered_map<int, vector<int>> map;\npublic:\n    RangeFreqQuery(vector<int>& arr) {\n        for (int i = 0; i < arr.size(); ++i)\n            map[arr[i]].push_back(i);\n    }\n\n    int query(int left, int right, int value) {\n        if (!map.count(value)) return 0;\n        auto& v = map[value];\n        return upper_bound(v.begin(), v.end(), right) - lower_bound(v.begin(), v.end(), left);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610638628",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

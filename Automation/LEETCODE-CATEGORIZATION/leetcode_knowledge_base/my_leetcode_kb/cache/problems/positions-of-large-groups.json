@@ -1,0 +1,27 @@
+{
+  "id": "830",
+  "title": "Positions of Large Groups",
+  "slug": "positions-of-large-groups",
+  "url": "https://leetcode.com/problems/positions-of-large-groups/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "In a string s  of lowercase letters, these letters form consecutive groups of the same character. \n \n For example, a string like s = \"abbxxxxzyy\" has the groups \"a\" , \"bb\" , \"xxxx\" , \"z\" , and  \"yy\" . \n \n A group is identified by an interval  [start, end] , where  start  and  end  denote the start and end indices (inclusive) of the group. In the above example,  \"xxxx\"  has the interval  [3,6] . \n \n A group is considered  large  if it has 3 or more characters. \n \n Return  the intervals of every large group sorted in  increasing order by start index . \n\n Example 1: \n \n```\nInput:\n s = \"abbxxxxzzy\"\n\nOutput:\n [[3,6]]\n\nExplanation:\n \n\"xxxx\" is the only \nlarge group with start index 3 and end index 6.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abc\"\n\nOutput:\n []\n\nExplanation:\n We have groups \"a\", \"b\", and \"c\", none of which are large groups.\n```\n\n Example 3: \n \n```\nInput:\n s = \"abcdddeeeeaabbbcd\"\n\nOutput:\n [[3,5],[6,9],[12,14]]\n\nExplanation:\n The large groups are \"ddd\", \"eeee\", and \"bbb\".\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s contains lowercase English letters only.",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> largeGroupPositions(string s) {\n        vector<vector<int>> result;\n        for (int i = 0, j; i < (int)s.size(); i = j) {\n            j = i + 1;\n            while (j < (int)s.size() && s[j] == s[i]) ++j;\n            if (j - i >= 3) result.push_back({i, j - 1});\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175741883",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

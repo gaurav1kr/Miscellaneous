@@ -1,0 +1,36 @@
+{
+  "id": "79",
+  "title": "Word Search",
+  "slug": "word-search",
+  "url": "https://leetcode.com/problems/word-search/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Backtracking",
+    "Depth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an m x n grid of characters board and a string word , return true if word exists in the grid . \n \n The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/04/word2.jpg] \n \n```\nInput:\n board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCCED\"\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/11/04/word-1.jpg] \n \n```\nInput:\n board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"SEE\"\n\nOutput:\n true\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/10/15/word3.jpg] \n \n```\nInput:\n board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCB\"\n\nOutput:\n false\n```\n\n Constraints: \n\n m == board.length \n \n n = board[i].length \n \n 1 <= m, n <= 6 \n \n 1 <= word.length <= 15 \n \n board and word consists of only lowercase and uppercase English letters. \n\n Follow up: Could you use search pruning to make your solution faster with a larger board ?",
+  "code": "class Solution {\npublic:\n    bool dfs(vector<vector<char>>& board, string& word, int i, int j, int k) {\n        if (k == word.size()) return true;\n        if (i < 0 || j < 0 || i >= board.size() || j >= board[0].size() || board[i][j] != word[k]) return false;\n        char temp = board[i][j];\n        board[i][j] = '#';\n        bool res = dfs(board, word, i+1, j, k+1) || dfs(board, word, i-1, j, k+1) ||\n                   dfs(board, word, i, j+1, k+1) || dfs(board, word, i, j-1, k+1);\n        board[i][j] = temp;\n        return res;\n    }\n\n    bool exist(vector<vector<char>>& board, string word) {\n        for (int i = 0; i < board.size(); i++) {\n            for (int j = 0; j < board[0].size(); j++) {\n                if (dfs(board, word, i, j, 0)) return true;\n            }\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1615748885",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "3885",
+  "title": "Design Event Manager",
+  "slug": "design-event-manager",
+  "url": "https://leetcode.com/problems/design-event-manager/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Design",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Ordered set",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "You are given an initial list of events, where each event has a unique eventId and a priority . \n \n Implement the EventManager class: \n\n EventManager(int[][] events) Initializes the manager with the given events, where events[i] = [eventId i , priority ​​​​​​​i ] . \n \n void updatePriority(int eventId, int newPriority) Updates the priority of the active event with id eventId to newPriority . \n \n int pollHighest() Removes and returns the eventId of the active event with the highest priority. If multiple active events have the same priority, return the smallest eventId among them. If there are no active events, return -1. \n\n An event is called active if it has not been removed by pollHighest() . \n\n Example 1: \n\n Input: \n [\"EventManager\", \"pollHighest\", \"updatePriority\", \"pollHighest\", \"pollHighest\"] \n[[[[5, 7], [2, 7], [9, 4]]], [], [9, 7], [], []] \n \n Output: \n [null, 2, null, 5, 9] \n \n Explanation \nEventManager eventManager = new EventManager([[5,7], [2,7], [9,4]]); // Initializes the manager with three events \neventManager.pollHighest(); // both events 5 and 2 have priority 7, so return the smaller id 2 \neventManager.updatePriority(9, 7); // event 9 now has priority 7 \neventManager.pollHighest(); // remaining highest priority events are 5 and 9, return 5 \neventManager.pollHighest(); // return 9 \n \n Example 2: \n\n Input: \n [\"EventManager\", \"pollHighest\", \"pollHighest\", \"pollHighest\"] \n[[[[4, 1], [7, 2]]], [], [], []] \n \n Output: \n [null, 7, 4, -1] \n \n Explanation \nEventManager eventManager = new EventManager([[4,1], [7,2]]); // Initializes the manager with two events \neventManager.pollHighest(); // return 7 \neventManager.pollHighest(); // return 4 \neventManager.pollHighest(); // no events remain, return -1 \n\n Constraints: \n\n 1 <= events.length <= 10 5 \n \n events[i] = [eventId, priority] \n \n 1 <= eventId <= 10 9 \n \n 1 <= priority <= 10 9 \n \n All the values of eventId in events are unique . \n \n 1 <= newPriority <= 10 9 \n \n For every call to updatePriority , eventId refers to an active event. \n \n At most 10 5 calls in total will be made to updatePriority and pollHighest .",
+  "code": "class EventManager {\n    set<pair<int,int>> order;\n    unordered_map<int,int> priority;\npublic:\n    EventManager(vector<vector<int>>& events) {\n        for (const auto& e : events) {\n            priority[e[0]] = e[1];\n            order.insert({-e[1], e[0]});\n        }\n    }\n    void updatePriority(int eventId, int newPriority) {\n        order.erase({-priority[eventId], eventId});\n        priority[eventId] = newPriority;\n        order.insert({-newPriority, eventId});\n    }\n    int pollHighest() {\n        if (order.empty()) return -1;\n        int id = order.begin()->second;\n        order.erase(order.begin());\n        priority.erase(id);\n        return id;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181075485",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

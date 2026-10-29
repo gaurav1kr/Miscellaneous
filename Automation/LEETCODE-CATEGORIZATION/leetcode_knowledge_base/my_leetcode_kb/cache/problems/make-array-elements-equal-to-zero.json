@@ -1,0 +1,31 @@
+{
+  "id": "3354",
+  "title": "Make Array Elements Equal to Zero",
+  "slug": "make-array-elements-equal-to-zero",
+  "url": "https://leetcode.com/problems/make-array-elements-equal-to-zero/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Start by selecting a starting position curr such that nums[curr] == 0 , and choose a movement direction of either left or right. \n \n After that, you repeat the following process: \n\n If curr is out of the range [0, n - 1] , this process ends. \n \n If nums[curr] == 0 , move in the current direction by incrementing curr if you are moving right, or decrementing curr if you are moving left. \n \n Else if nums[curr] > 0 :\n\n Decrement nums[curr] by 1. \n \n Reverse  your movement direction (left becomes right and vice versa). \n \n Take a step in your new direction. \n\n A selection of the initial position curr and movement direction is considered valid if every element in nums becomes 0 by the end of the process. \n \n Return the number of possible valid selections. \n\n Example 1: \n\n Input: nums = [1,0,2,0,3] \n \n Output: 2 \n \n Explanation: \n \n The only possible valid selections are the following: \n\n Choose curr = 3 , and a movement direction to the left.\n\n [1,0,2, 0 ,3] -> [1,0, 2 ,0,3] -> [1,0,1, 0 ,3] -> [1,0,1,0, 3 ] -> [1,0,1, 0 ,2] -> [1,0, 1 ,0,2] -> [1,0,0, 0 ,2] -> [1,0,0,0, 2 ] -> [1,0,0, 0 ,1] -> [1,0, 0 ,0,1] -> [1, 0 ,0,0,1] -> [ 1 ,0,0,0,1] -> [0, 0 ,0,0,1] -> [0,0, 0 ,0,1] -> [0,0,0, 0 ,1] -> [0,0,0,0, 1 ] -> [0,0,0,0,0] . \n\n Choose curr = 3 , and a movement direction to the right.\n\n [1,0,2, 0 ,3] -> [1,0,2,0, 3 ] -> [1,0,2, 0 ,2] -> [1,0, 2 ,0,2] -> [1,0,1, 0 ,2] -> [1,0,1,0, 2 ] -> [1,0,1, 0 ,1] -> [1,0, 1 ,0,1] -> [1,0,0, 0 ,1] -> [1,0,0,0, 1 ] -> [1,0,0, 0 ,0] -> [1,0, 0 ,0,0] -> [1, 0 ,0,0,0] -> [ 1 ,0,0,0,0] -> [0,0,0,0,0]. \n\n Example 2: \n\n Input: nums = [2,3,4,0,4,1,0] \n \n Output: 0 \n \n Explanation: \n \n There are no possible valid selections. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 0 <= nums[i] <= 100 \n \n There is at least one element i where nums[i] == 0 .",
+  "code": "class Solution {public:int countValidSelections(vector<int>& nums){int right=accumulate(nums.begin(),nums.end(),0),left=0,ans=0;for(int x:nums){right-=x;if(x==0){if(left==right)ans+=2;else if(abs(left-right)==1)ans++;}left+=x;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177467713",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

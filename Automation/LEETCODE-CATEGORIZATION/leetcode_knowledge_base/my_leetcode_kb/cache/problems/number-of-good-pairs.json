@@ -1,0 +1,35 @@
+{
+  "id": "1512",
+  "title": "Number of Good Pairs",
+  "slug": "number-of-good-pairs",
+  "url": "https://leetcode.com/problems/number-of-good-pairs/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an array of integers nums , return the number of good pairs . \n \n A pair (i, j) is called good if nums[i] == nums[j] and i < j . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,1,1,3]\n\nOutput:\n 4\n\nExplanation:\n There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,1,1]\n\nOutput:\n 6\n\nExplanation:\n Each pair in the array are \ngood\n.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numIdenticalPairs(vector<int>& nums) {\n        unordered_map<int, int> freq;\n        int ans = 0;\n        for (int x : nums) {\n            ans += freq[x];\n            ++freq[x];\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175753682",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

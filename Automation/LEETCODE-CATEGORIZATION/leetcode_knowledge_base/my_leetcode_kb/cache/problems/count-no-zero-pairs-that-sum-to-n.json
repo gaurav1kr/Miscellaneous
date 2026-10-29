@@ -1,0 +1,28 @@
+{
+  "id": "3704",
+  "title": "Count No-Zero Pairs That Sum to N",
+  "slug": "count-no-zero-pairs-that-sum-to-n",
+  "url": "https://leetcode.com/problems/count-no-zero-pairs-that-sum-to-n/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "A no-zero integer is a positive integer that does not contain the digit 0 in its decimal representation. \n \n Given an integer n , count the number of pairs (a, b) where: \n\n a and b are no-zero integers. \n \n a + b = n \n\n Return an integer denoting the number of such pairs. \n\n Example 1: \n\n Input: n = 2 \n \n Output: 1 \n \n Explanation: \n \n The only pair is (1, 1) . \n\n Example 2: \n\n Input: n = 3 \n \n Output: 2 \n \n Explanation: \n \n The pairs are (1, 2) and (2, 1) . \n\n Example 3: \n\n Input: n = 11 \n \n Output: 8 \n \n Explanation: \n \n The pairs are (2, 9) , (3, 8) , (4, 7) , (5, 6) , (6, 5) , (7, 4) , (8, 3) , and (9, 2) . Note that (1, 10) and (10, 1) do not satisfy the conditions because 10 contains 0 in its decimal representation. \n\n Constraints: \n\n 2 <= n <= 10 15",
+  "code": "class Solution {\npublic:\n    long long countNoZeroPairs(long long n){\n        string s=to_string(n);reverse(s.begin(),s.end());\n        long long dp[2][2][2]={};dp[0][0][0]=1;\n        for(int pos=0;pos<(int)s.size();++pos){\n            long long next[2][2][2]={};int digit=s[pos]-'0';\n            for(int aEnd=0;aEnd<2;++aEnd)for(int bEnd=0;bEnd<2;++bEnd)\n                for(int carry=0;carry<2;++carry)if(dp[aEnd][bEnd][carry]){\n                    for(int a=0;a<=9;++a){if(aEnd&&a)continue;\n                        for(int b=0;b<=9;++b){if(bEnd&&b)continue;\n                            if(pos==0 && (!a||!b))continue;\n                            int x=a+b+carry;\n                            if(x%10!=digit)continue;\n                            next[aEnd||a==0][bEnd||b==0][x/10]+=dp[aEnd][bEnd][carry];\n                        }\n                    }\n                }\n            memcpy(dp,next,sizeof dp);\n        }\n        long long ans=0;for(int i=0;i<2;++i)for(int j=0;j<2;++j)ans+=dp[i][j][0];\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181139852",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

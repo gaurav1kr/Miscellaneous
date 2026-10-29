@@ -1,0 +1,37 @@
+{
+  "id": "1943",
+  "title": "Describe the Painting",
+  "slug": "describe-the-painting",
+  "url": "https://leetcode.com/problems/describe-the-painting/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There is a long and thin painting that can be represented by a number line. The painting was painted with multiple overlapping segments where each segment was painted with a unique color. You are given a 2D integer array segments , where segments[i] = [start i , end i , color i ] represents the half-closed segment [start i , end i ) with color i as the color. \n \n The colors in the overlapping segments of the painting were mixed when it was painted. When two or more colors mix, they form a new color that can be represented as a set of mixed colors. \n\n For example, if colors 2 , 4 , and 6 are mixed, then the resulting mixed color is {2,4,6} . \n\n For the sake of simplicity, you should only output the sum of the elements in the set rather than the full set. \n \n You want to describe the painting with the minimum number of non-overlapping half-closed segments of these mixed colors. These segments can be represented by the 2D array painting where painting[j] = [left j , right j , mix j ] describes a half-closed segment [left j , right j ) with the mixed color sum of mix j . \n\n For example, the painting created with segments = [[1,4,5],[1,7,7]] can be described by painting = [[1,4,12],[4,7,7]] because:\n\n [1,4) is colored {5,7} (with a sum of 12 ) from both the first and second segments. \n \n [4,7) is colored {7} from only the second segment. \n\n Return the 2D array painting describing the finished painting (excluding any parts that are not painted). You may return the segments in any order . \n \n A half-closed segment [a, b) is the section of the number line between points a and b including point a and not including point b . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/18/1.png] \n \n```\nInput:\n segments = [[1,4,5],[4,7,7],[1,7,9]]\n\nOutput:\n [[1,4,14],[4,7,16]]\n\nExplanation: \nThe painting can be described as follows:\n- [1,4) is colored {5,9} (with a sum of 14) from the first and third segments.\n- [4,7) is colored {7,9} (with a sum of 16) from the second and third segments.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/18/2.png] \n \n```\nInput:\n segments = [[1,7,9],[6,8,15],[8,10,7]]\n\nOutput:\n [[1,6,9],[6,7,24],[7,8,15],[8,10,7]]\n\nExplanation: \nThe painting can be described as follows:\n- [1,6) is colored 9 from the first segment.\n- [6,7) is colored {9,15} (with a sum of 24) from the first and second segments.\n- [7,8) is colored 15 from the second segment.\n- [8,10) is colored 7 from the third segment.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/07/04/c1.png] \n \n```\nInput:\n segments = [[1,4,5],[1,4,7],[4,7,1],[4,7,11]]\n\nOutput:\n [[1,4,12],[4,7,12]]\n\nExplanation: \nThe painting can be described as follows:\n- [1,4) is colored {5,7} (with a sum of 12) from the first and second segments.\n- [4,7) is colored {1,11} (with a sum of 12) from the third and fourth segments.\nNote that returning a single segment [1,7) is incorrect because the mixed color sets are different.\n```\n\n Constraints: \n\n 1 <= segments.length <= 2 * 10 4 \n \n segments[i].length == 3 \n \n 1 <= start i < end i <= 10 5 \n \n 1 <= color i <= 10 9 \n \n Each color i is distinct.",
+  "code": "#include <vector>\n#include <map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<long long>> splitPainting(vector<vector<int>>& segments) {\n        map<int, long long> diff;\n        for (auto& seg : segments) {\n            diff[seg[0]] += seg[2];\n            diff[seg[1]] -= seg[2];\n        }\n\n        vector<vector<long long>> res;\n        long long color = 0, prev = -1;\n        for (auto& [pos, val] : diff) {\n            if (prev != -1 && color > 0)\n                res.push_back({prev, pos, color});\n            color += val;\n            prev = pos;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610652135",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

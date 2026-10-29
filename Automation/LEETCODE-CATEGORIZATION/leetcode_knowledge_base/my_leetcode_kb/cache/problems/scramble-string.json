@@ -1,0 +1,32 @@
+{
+  "id": "87",
+  "title": "Scramble String",
+  "slug": "scramble-string",
+  "url": "https://leetcode.com/problems/scramble-string/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "We can scramble a string s to get a string t using the following algorithm: \n\n If the length of the string is 1, stop. \n \n If the length of the string is > 1, do the following:\n\n Split the string into two non-empty substrings at a random index, i.e., if the string is s , divide it to x and y where s = x + y . \n \n Randomly  decide to swap the two substrings or to keep them in the same order. i.e., after this step, s may become s = x + y or s = y + x . \n \n Apply step 1 recursively on each of the two substrings x and y . \n\n Given two strings s1 and s2 of the same length , return true if s2 is a scrambled string of s1 , otherwise, return false . \n\n Example 1: \n \n```\nInput:\n s1 = \"great\", s2 = \"rgeat\"\n\nOutput:\n true\n\nExplanation:\n One possible scenario applied on s1 is:\n\"great\" --> \"gr/eat\" // divide at random index.\n\"gr/eat\" --> \"gr/eat\" // random decision is not to swap the two substrings and keep them in order.\n\"gr/eat\" --> \"g/r / e/at\" // apply the same algorithm recursively on both substrings. divide at random index each of them.\n\"g/r / e/at\" --> \"r/g / e/at\" // random decision was to swap the first substring and to keep the second substring in the same order.\n\"r/g / e/at\" --> \"r/g / e/ a/t\" // again apply the algorithm recursively, divide \"at\" to \"a/t\".\n\"r/g / e/ a/t\" --> \"r/g / e/ a/t\" // random decision is to keep both substrings in the same order.\nThe algorithm stops now, and the result string is \"rgeat\" which is s2.\nAs one possible scenario led s1 to be scrambled to s2, we return true.\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"abcde\", s2 = \"caebd\"\n\nOutput:\n false\n```\n\n Example 3: \n \n```\nInput:\n s1 = \"a\", s2 = \"a\"\n\nOutput:\n true\n```\n\n Constraints: \n\n s1.length == s2.length \n \n 1 <= s1.length <= 30 \n \n s1 and s2 consist of lowercase English letters.",
+  "code": "#include <string>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    unordered_map<string, bool> memo;\n    \n    bool isScramble(string s1, string s2) {\n        if (s1 == s2) return true;\n        if (s1.size() != s2.size()) return false;\n        string key = s1 + \"#\" + s2;\n        if (memo.find(key) != memo.end()) return memo[key];\n\n        int n = s1.size();\n        vector<int> count(26, 0);\n        for (int i = 0; i < n; i++) {\n            count[s1[i] - 'a']++;\n            count[s2[i] - 'a']--;\n        }\n        for (int c : count) {\n            if (c != 0) return memo[key] = false;\n        }\n\n        for (int i = 1; i < n; i++) {\n            if ((isScramble(s1.substr(0, i), s2.substr(0, i)) &&\n                 isScramble(s1.substr(i), s2.substr(i))) ||\n                (isScramble(s1.substr(0, i), s2.substr(n - i)) &&\n                 isScramble(s1.substr(i), s2.substr(0, n - i)))) {\n                return memo[key] = true;\n            }\n        }\n        return memo[key] = false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591360264",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "1753",
+  "title": "Maximum Score From Removing Stones",
+  "slug": "maximum-score-from-removing-stones",
+  "url": "https://leetcode.com/problems/maximum-score-from-removing-stones/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue"
+  ],
+  "description": "You are playing a solitaire game with three piles of stones of sizes a ​​​​​​, b ,​​​​​​ and c ​​​​​​ respectively. Each turn you choose two different non-empty piles, take one stone from each, and add 1 point to your score. The game stops when there are fewer than two non-empty piles (meaning there are no more available moves). \n \n Given three integers a ​​​​​, b ,​​​​​ and c ​​​​​, return the maximum score you can get. \n\n Example 1: \n \n```\nInput:\n a = 2, b = 4, c = 6\n\nOutput:\n 6\n\nExplanation:\n The starting state is (2, 4, 6). One optimal set of moves is:\n- Take from 1st and 3rd piles, state is now (1, 4, 5)\n- Take from 1st and 3rd piles, state is now (0, 4, 4)\n- Take from 2nd and 3rd piles, state is now (0, 3, 3)\n- Take from 2nd and 3rd piles, state is now (0, 2, 2)\n- Take from 2nd and 3rd piles, state is now (0, 1, 1)\n- Take from 2nd and 3rd piles, state is now (0, 0, 0)\nThere are fewer than two non-empty piles, so the game ends. Total: 6 points.\n```\n\n Example 2: \n \n```\nInput:\n a = 4, b = 4, c = 6\n\nOutput:\n 7\n\nExplanation:\n The starting state is (4, 4, 6). One optimal set of moves is:\n- Take from 1st and 2nd piles, state is now (3, 3, 6)\n- Take from 1st and 3rd piles, state is now (2, 3, 5)\n- Take from 1st and 3rd piles, state is now (1, 3, 4)\n- Take from 1st and 3rd piles, state is now (0, 3, 3)\n- Take from 2nd and 3rd piles, state is now (0, 2, 2)\n- Take from 2nd and 3rd piles, state is now (0, 1, 1)\n- Take from 2nd and 3rd piles, state is now (0, 0, 0)\nThere are fewer than two non-empty piles, so the game ends. Total: 7 points.\n```\n\n Example 3: \n \n```\nInput:\n a = 1, b = 8, c = 8\n\nOutput:\n 8\n\nExplanation:\n One optimal set of moves is to take from the 2nd and 3rd piles for 8 turns until they are empty.\nAfter that, there are fewer than two non-empty piles, so the game ends.\n```\n\n Constraints: \n\n 1 <= a, b, c <= 10 5",
+  "code": "#include <queue>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maximumScore(int a, int b, int c) {\n        priority_queue<int> pq;\n        pq.push(a); pq.push(b); pq.push(c);\n        int score = 0;\n        while (true) {\n            int x = pq.top(); pq.pop();\n            int y = pq.top(); pq.pop();\n            if (x == 0 || y == 0) break;\n            x--; y--; score++;\n            pq.push(x); pq.push(y);\n        }\n        return score;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610604443",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

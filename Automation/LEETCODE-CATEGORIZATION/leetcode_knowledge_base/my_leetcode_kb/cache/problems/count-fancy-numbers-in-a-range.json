@@ -1,0 +1,28 @@
+{
+  "id": "3869",
+  "title": "Count Fancy Numbers in a Range",
+  "slug": "count-fancy-numbers-in-a-range",
+  "url": "https://leetcode.com/problems/count-fancy-numbers-in-a-range/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You are given two integers l and r . \n \n An integer is called good if its digits form a strictly monotone sequence, meaning the digits are strictly increasing or strictly decreasing . All single-digit integers are considered good. \n \n An integer is called fancy if it is good, or if the sum of its digits is good. \n \n Return an integer representing the number of fancy integers in the range [l, r] (inclusive). \n \n A sequence is said to be strictly increasing if each element is strictly greater than its previous one (if exists). \n \n A sequence is said to be strictly decreasing if each element is strictly less than its previous one (if exists). \n\n Example 1: \n\n Input: l = 8, r = 10 \n \n Output: 3 \n \n Explanation: \n\n 8 and 9 are single-digit integers, so they are good and therefore fancy. \n \n 10 has digits [1, 0] , which form a strictly decreasing sequence, so 10 is good and thus fancy. \n\n Therefore, the answer is 3. \n\n Example 2: \n\n Input: l = 12340, r = 12341 \n \n Output: 1 \n \n Explanation: \n\n 12340\n\n 12340 is not good because [1, 2, 3, 4, 0] is not strictly monotone. \n \n The digit sum is 1 + 2 + 3 + 4 + 0 = 10 . \n \n 10 is good as it has digits [1, 0] , which is strictly decreasing. Therefore, 12340 is fancy. \n\n 12341\n\n 12341 is not good because [1, 2, 3, 4, 1] is not strictly monotone. \n \n The digit sum is 1 + 2 + 3 + 4 + 1 = 11 . \n \n 11 is not good as it has digits [1, 1] , which is not strictly monotone. Therefore, 12341 is not fancy. \n\n Therefore, the answer is 1. \n\n Example 3: \n\n Input: l = 123456788, r = 123456788 \n \n Output: 0 \n \n Explanation: \n\n 123456788 is not good because its digits are not strictly monotone. \n \n The digit sum is 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 8 = 44 . \n \n 44 is not good as it has digits [4, 4] , which is not strictly monotone. Therefore, 123456788 is not fancy. \n\n Therefore, the answer is 0. \n\n Constraints: \n\n 1 <= l <= r <= 10 15",
+  "code": "class Solution {\n    bool good(int x){\n        if(x<10)return true;\n        string s=to_string(x);bool inc=true,dec=true;\n        for(int i=1;i<(int)s.size();++i){inc &= s[i]>s[i-1];dec &= s[i]<s[i-1];}\n        return inc||dec;\n    }\n    long long solve(long long bound){\n        if(bound<=0)return 0;\n        string s=to_string(bound);bool valid[145]={};\n        for(int i=0;i<=9*(int)s.size();++i)valid[i]=good(i);\n        long long memo[17][145];memset(memo,-1,sizeof memo);\n        function<long long(int,int,bool)> dfs=[&](int pos,int sum,bool tight)->long long{\n            if(pos==(int)s.size())return valid[sum]?1LL:0LL;\n            if(!tight&&memo[pos][sum]!=-1)return memo[pos][sum];\n            long long ret=0;int lim=tight?s[pos]-'0':9;\n            for(int d=0;d<=lim;++d)ret+=dfs(pos+1,sum+d,tight&&d==lim);\n            if(!tight)memo[pos][sum]=ret;\n            return ret;\n        };\n        long long ans=dfs(0,0,true)-1; // exclude zero\n        for(int mask=1;mask<(1<<10);++mask){\n            string t=\"\";for(int d=0;d<=9;++d)if(mask>>d&1)t+=char('0'+d);\n            if(t[0]!='0'){\n                long long v=stoll(t);int sum=0;for(char c:t)sum+=c-'0';\n                if(v<=bound&&!good(sum))++ans;\n            }\n            reverse(t.begin(),t.end());\n            if(t.size()>1){long long v=stoll(t);int sum=0;for(char c:t)sum+=c-'0';\n                if(v<=bound&&!good(sum))++ans;}\n        }\n        return ans;\n    }\npublic:\n    long long countFancy(long long l,long long r){return solve(r)-solve(l-1);}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181159808",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

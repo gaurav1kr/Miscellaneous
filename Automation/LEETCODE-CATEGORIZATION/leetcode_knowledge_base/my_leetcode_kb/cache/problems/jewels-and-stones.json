@@ -1,0 +1,31 @@
+{
+  "id": "771",
+  "title": "Jewels and Stones",
+  "slug": "jewels-and-stones",
+  "url": "https://leetcode.com/problems/jewels-and-stones/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String"
+  ],
+  "description": "You're given strings jewels representing the types of stones that are jewels, and stones representing the stones you have. Each character in stones is a type of stone you have. You want to know how many of the stones you have are also jewels. \n \n Letters are case sensitive, so \"a\" is considered a different type of stone from \"A\" . \n\n Example 1: \n \n```\nInput:\n jewels = \"aA\", stones = \"aAAbbbb\"\n\nOutput:\n 3\n```\n \n Example 2: \n \n```\nInput:\n jewels = \"z\", stones = \"ZZ\"\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= jewels.length, stones.length <= 50 \n \n jewels and stones consist of only English letters. \n \n All the characters of  jewels are unique .",
+  "code": "class Solution {\npublic:\nint numJewelsInStones(string jewels, string stones) {\n    unordered_set<char> jewelSet(jewels.begin(), jewels.end());\n    int count = 0;\n    for (char stone : stones) {\n        if (jewelSet.count(stone)) count++;\n    }\n    return count;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588097276",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

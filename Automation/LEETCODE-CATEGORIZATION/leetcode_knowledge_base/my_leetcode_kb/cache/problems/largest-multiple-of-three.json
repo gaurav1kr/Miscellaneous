@@ -1,0 +1,37 @@
+{
+  "id": "1363",
+  "title": "Largest Multiple of Three",
+  "slug": "largest-multiple-of-three",
+  "url": "https://leetcode.com/problems/largest-multiple-of-three/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an array of digits digits , return the largest multiple of three that can be formed by concatenating some of the given digits in any order . If there is no answer return an empty string. \n \n Since the answer may not fit in an integer data type, return the answer as a string. Note that the returning answer must not contain unnecessary leading zeros. \n\n Example 1: \n \n```\nInput:\n digits = [8,1,9]\n\nOutput:\n \"981\"\n```\n\n Example 2: \n \n```\nInput:\n digits = [8,6,7,1,0]\n\nOutput:\n \"8760\"\n```\n\n Example 3: \n \n```\nInput:\n digits = [1]\n\nOutput:\n \"\"\n```\n\n Constraints: \n\n 1 <= digits.length <= 10 4 \n \n 0 <= digits[i] <= 9",
+  "code": "class Solution {\npublic:\n    string largestMultipleOfThree(vector<int>& digits) {\n        vector<int> cnt(10, 0);\n        int sum = 0;\n        for (int x : digits) ++cnt[x], sum += x;\n        auto remove = [&](int rem, int need) {\n            for (int d = 0; d <= 9 && need; ++d)\n                if (d % 3 == rem) {\n                    int take = min(need, cnt[d]);\n                    cnt[d] -= take;\n                    need -= take;\n                }\n            return need == 0;\n        };\n        if (sum % 3 == 1) {\n            vector<int> backup = cnt;\n            if (!remove(1, 1)) { cnt = backup; remove(2, 2); }\n        } else if (sum % 3 == 2) {\n            vector<int> backup = cnt;\n            if (!remove(2, 1)) { cnt = backup; remove(1, 2); }\n        }\n        string ans;\n        for (int d = 9; d >= 0; --d) ans.append(cnt[d], char('0' + d));\n        if (!ans.empty() && ans[0] == '0') return \"0\";\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175750661",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

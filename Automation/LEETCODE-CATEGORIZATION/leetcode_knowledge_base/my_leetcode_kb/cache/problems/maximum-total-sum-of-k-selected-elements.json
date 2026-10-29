@@ -1,0 +1,32 @@
+{
+  "id": "3974",
+  "title": "Maximum Total Sum of K Selected Elements",
+  "slug": "maximum-total-sum-of-k-selected-elements",
+  "url": "https://leetcode.com/problems/maximum-total-sum-of-k-selected-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers k and mul . \n \n Select exactly k elements from nums . Process these elements one by one in any order you choose. \n \n For each selected element, independently choose one of the following: \n\n Add the element's value to the total sum, or \n \n Multiply the element by the current value of mul and add the result to the total sum. \n\n After processing each selected element, mul decreases by 1, regardless of which option was chosen. The current value of mul may become 0 or negative. \n \n Return an integer denoting the maximum possible total sum. \n\n Example 1: \n\n Input: nums = [6,1,2,9], k = 3, mul = 2 \n \n Output: 26 \n \n Explanation: \n \n One optimal way: \n\n One optimal selection is nums[3] = 9 , nums[0] = 6 , and nums[2] = 2 . \n \n Process nums[3] = 9 first: choose multiplication, so it contributes 9 * 2 = 18 . Now, mul becomes 1. \n \n Process nums[0] = 6 next: choose multiplication, so it contributes 6 * 1 = 6 . Now, mul becomes 0. \n \n Process nums[2] = 2 last: choose addition, so it contributes 2. \n \n The total sum is 18 + 6 + 2 = 26 . \n\n Example 2: \n\n Input: nums = [3,7,5,2], k = 2, mul = 4 \n \n Output: 43 \n \n Explanation: \n \n One optimal way: \n\n One optimal selection is nums[1] = 7 and nums[2] = 5 . \n \n Process nums[1] = 7 first: choose multiplication, so it contributes 7 * 4 = 28 . Now, mul becomes 3. \n \n Process nums[2] = 5 next: choose multiplication, so it contributes 5 * 3 = 15 . \n \n The total sum is 28 + 15 = 43 . \n\n Example 3: \n\n Input: nums = [4,4], k = 1, mul = 1 \n \n Output: 4 \n \n Explanation: \n \n One optimal way: \n\n One optimal selection is nums[0] = 4 . \n \n Process nums[0] = 4 : choose multiplication, so it contributes 4 * 1 = 4 . \n \n The total sum is 4. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= k <= nums.length \n \n 1 <= mul <= 10 5",
+  "code": "class Solution {\npublic:\n    long long maxSum(vector<int>& nums, int k, int mul) {\n        sort(nums.begin(),nums.end(),greater<int>());\n        long long ans=0;\n        for(int i=0;i<k;++i)\n            ans+=1LL*nums[i]*max(1,mul-i);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181100913",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "1114",
+  "title": "Print in Order",
+  "slug": "print-in-order",
+  "url": "https://leetcode.com/problems/print-in-order/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Concurrency"
+  ],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "Suppose we have a class: \n \n```\npublic class Foo {\n public void first() { print(\"first\"); }\n public void second() { print(\"second\"); }\n public void third() { print(\"third\"); }\n}\n```\n\n The same instance of Foo will be passed to three different threads. Thread A will call first() , thread B will call second() , and thread C will call third() . Design a mechanism and modify the program to ensure that second() is executed after first() , and third() is executed after second() . \n \n Note: \n \n We do not know how the threads will be scheduled in the operating system, even though the numbers in the input seem to imply the ordering. The input format you see is mainly to ensure our tests' comprehensiveness. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n \"firstsecondthird\"\n\nExplanation:\n There are three threads being fired asynchronously. The input [1,2,3] means thread A calls first(), thread B calls second(), and thread C calls third(). \"firstsecondthird\" is the correct output.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,3,2]\n\nOutput:\n \"firstsecondthird\"\n\nExplanation:\n The input [1,3,2] means thread A calls first(), thread B calls third(), and thread C calls second(). \"firstsecondthird\" is the correct output.\n```\n\n Constraints: \n\n nums is a permutation of [1, 2, 3] .",
+  "code": "class Foo {\n    mutex mu;\n    condition_variable cv;\n    int stage = 0;\npublic:\n    Foo() = default;\n    void first(function<void()> printFirst) {\n        unique_lock<mutex> lock(mu);\n        printFirst();\n        stage = 1;\n        cv.notify_all();\n    }\n    void second(function<void()> printSecond) {\n        unique_lock<mutex> lock(mu);\n        cv.wait(lock, [&] { return stage >= 1; });\n        printSecond();\n        stage = 2;\n        cv.notify_all();\n    }\n    void third(function<void()> printThird) {\n        unique_lock<mutex> lock(mu);\n        cv.wait(lock, [&] { return stage >= 2; });\n        printThird();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175746768",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

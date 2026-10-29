@@ -1,0 +1,32 @@
+{
+  "id": "318",
+  "title": "Maximum Product of Word Lengths",
+  "slug": "maximum-product-of-word-lengths",
+  "url": "https://leetcode.com/problems/maximum-product-of-word-lengths/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string array words , return the maximum value of length(word[i]) * length(word[j]) where the two words do not share common letters . If no such two words exist, return 0 . \n\n Example 1: \n \n```\nInput:\n words = [\"abcw\",\"baz\",\"foo\",\"bar\",\"xtfn\",\"abcdef\"]\n\nOutput:\n 16\n\nExplanation:\n The two words can be \"abcw\", \"xtfn\".\n```\n\n Example 2: \n \n```\nInput:\n words = [\"a\",\"ab\",\"abc\",\"d\",\"cd\",\"bcd\",\"abcd\"]\n\nOutput:\n 4\n\nExplanation:\n The two words can be \"ab\", \"cd\".\n```\n\n Example 3: \n \n```\nInput:\n words = [\"a\",\"aa\",\"aaa\",\"aaaa\"]\n\nOutput:\n 0\n\nExplanation:\n No such pair of words.\n```\n\n Constraints: \n\n 2 <= words.length <= 1000 \n \n 1 <= words[i].length <= 1000 \n \n words[i] consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int maxProduct(vector<string>& words) {\n        int n = words.size();\n        vector<int> masks(n, 0);\n        for (int i = 0; i < n; ++i)\n            for (char c : words[i]) masks[i] |= 1 << (c - 'a');\n        int answer = 0;\n        for (int i = 0; i < n; ++i) {\n            for (int j = i + 1; j < n; ++j) {\n                if ((masks[i] & masks[j]) == 0)\n                    answer = max(answer,\n                                 (int)(words[i].size() * words[j].size()));\n            }\n        }\n        return answer;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175687288",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

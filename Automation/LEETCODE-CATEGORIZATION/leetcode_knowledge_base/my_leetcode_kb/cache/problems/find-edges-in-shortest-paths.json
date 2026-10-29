@@ -1,0 +1,35 @@
+{
+  "id": "3123",
+  "title": "Find Edges in Shortest Paths",
+  "slug": "find-edges-in-shortest-paths",
+  "url": "https://leetcode.com/problems/find-edges-in-shortest-paths/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an undirected weighted graph of n nodes numbered from 0 to n - 1 . The graph consists of m edges represented by a 2D array edges , where edges[i] = [a i , b i , w i ] indicates that there is an edge between nodes a i and b i with weight w i . \n \n Consider all the shortest paths from node 0 to node n - 1 in the graph. You need to find a boolean array answer where answer[i] is true if the edge edges[i] is part of at least one shortest path. Otherwise, answer[i] is false . \n \n Return the array answer . \n \n Note that the graph may not be connected. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2024/03/05/graph35drawio-1.png] \n\n Input: n = 6, edges = [[0,1,4],[0,2,1],[1,3,2],[1,4,3],[1,5,1],[2,3,1],[3,5,3],[4,5,2]] \n \n Output: [true,true,true,false,true,true,true,false] \n \n Explanation: \n \n The following are all the shortest paths between nodes 0 and 5: \n\n The path 0 -> 1 -> 5 : The sum of weights is 4 + 1 = 5 . \n \n The path 0 -> 2 -> 3 -> 5 : The sum of weights is 1 + 1 + 3 = 5 . \n \n The path 0 -> 2 -> 3 -> 1 -> 5 : The sum of weights is 1 + 1 + 2 + 1 = 5 . \n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2024/03/05/graphhhh.png] \n\n Input: n = 4, edges = [[2,0,1],[0,1,1],[0,3,4],[3,2,2]] \n \n Output: [true,false,false,true] \n \n Explanation: \n \n There is one shortest path between nodes 0 and 3, which is the path 0 -> 2 -> 3 with the sum of weights 1 + 2 = 3 . \n\n Constraints: \n\n 2 <= n <= 5 * 10 4 \n \n m == edges.length \n \n 1 <= m <= min(5 * 10 4 , n * (n - 1) / 2) \n \n 0 <= a i , b i < n \n \n a i != b i \n \n 1 <= w i <= 10 5 \n \n There are no repeated edges.",
+  "code": "class Solution {\n vector<long long> dijkstra(int s,const vector<vector<pair<int,int>>>& g){int n=g.size();const long long INF=LLONG_MAX/4;vector<long long>d(n,INF);priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>>pq;d[s]=0;pq.push({0,s});while(!pq.empty()){auto cur=pq.top();pq.pop();long long dist=cur.first;int u=cur.second;if(dist!=d[u])continue;for(auto e:g[u])if(dist+e.second<d[e.first]){d[e.first]=dist+e.second;pq.push({d[e.first],e.first});}}return d;}\n public: vector<bool> findAnswer(int n,vector<vector<int>>& edges){vector<vector<pair<int,int>>>g(n);for(auto&e:edges){g[e[0]].push_back({e[1],e[2]});g[e[1]].push_back({e[0],e[2]});}auto a=dijkstra(0,g),b=dijkstra(n-1,g);vector<bool>ans(edges.size());for(int i=0;i<(int)edges.size();++i){auto&e=edges[i];int u=e[0],v=e[1],w=e[2];ans[i]=(a[u]<LLONG_MAX/4&&a[u]+w+b[v]==a[n-1])||(a[v]<LLONG_MAX/4&&a[v]+w+b[u]==a[n-1]);}return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177382917",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

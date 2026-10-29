@@ -1,0 +1,38 @@
+{
+  "id": "1647",
+  "title": "Minimum Deletions to Make Character Frequencies Unique",
+  "slug": "minimum-deletions-to-make-character-frequencies-unique",
+  "url": "https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "Sorted array",
+    "String"
+  ],
+  "description": "A string s is called good if there are no two different characters in s that have the same frequency . \n \n Given a string s , return the minimum number of characters you need to delete to make s good . \n \n The frequency of a character in a string is the number of times it appears in the string. For example, in the string \"aab\" , the frequency of 'a' is 2 , while the frequency of 'b' is 1 . \n\n Example 1: \n \n```\nInput:\n s = \"aab\"\n\nOutput:\n 0\n\nExplanation:\n \ns\n is already good.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aaabbbcc\"\n\nOutput:\n 2\n\nExplanation:\n You can delete two 'b's resulting in the good string \"aaabcc\".\nAnother way it to delete one 'b' and one 'c' resulting in the good string \"aaabbc\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"ceabaacb\"\n\nOutput:\n 2\n\nExplanation:\n You can delete both 'c's resulting in the good string \"eabaab\".\nNote that we only care about characters that are still in the string at the end (i.e. frequency of 0 is ignored).\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s  contains only lowercase English letters.",
+  "code": "\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minDeletions(string s) {\n        unordered_map<char, int> freq;\n        for (char c : s) freq[c]++;\n        \n        unordered_set<int> seen;\n        int deletions = 0;\n        \n        for (auto& entry : freq) {\n            while (entry.second > 0 && seen.count(entry.second)) {\n                entry.second--;\n                deletions++;\n            }\n            seen.insert(entry.second);\n        }\n        \n        return deletions;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592331730",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

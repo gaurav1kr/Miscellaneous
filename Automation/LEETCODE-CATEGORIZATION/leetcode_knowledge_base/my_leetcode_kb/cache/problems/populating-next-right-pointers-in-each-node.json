@@ -1,0 +1,34 @@
+{
+  "id": "116",
+  "title": "Populating Next Right Pointers in Each Node",
+  "slug": "populating-next-right-pointers-in-each-node",
+  "url": "https://leetcode.com/problems/populating-next-right-pointers-in-each-node/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Linked list",
+    "Tree adjacency list"
+  ],
+  "description": "You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition: \n \n```\nstruct Node {\n int val;\n Node *left;\n Node *right;\n Node *next;\n}\n```\n\n Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL . \n \n Initially, all next pointers are set to NULL . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/02/14/116_sample.png] \n \n```\nInput:\n root = [1,2,3,4,5,6,7]\n\nOutput:\n [1,#,2,3,#,4,5,6,7,#]\n\nExplanation: \nGiven the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.\n```\n\n Example 2: \n \n```\nInput:\n root = []\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 2 12 - 1] . \n \n -1000 <= Node.val <= 1000 \n\n Follow-up: \n\n You may only use constant extra space. \n \n The recursive approach is fine. You may assume implicit stack space does not count as extra space for this problem.",
+  "code": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* next;\n\n    Node() : val(0), left(nullptr), right(nullptr), next(nullptr) {}\n    Node(int _val) : val(_val), left(nullptr), right(nullptr), next(nullptr) {}\n    Node(int _val, Node* _left, Node* _right, Node* _next)\n        : val(_val), left(_left), right(_right), next(_next) {}\n};\n*/\n\nclass Solution {\npublic:\n    Node* connect(Node* root) {\n        if (!root) return nullptr;\n\n        Node* currentLevel = root;\n\n        // Traverse level by level\n        while (currentLevel->left) {\n            Node* current = currentLevel;\n\n            // Connect nodes in the current level\n            while (current) {\n                current->left->next = current->right;\n                if (current->next) {\n                    current->right->next = current->next->left;\n                }\n                current = current->next;\n            }\n\n            // Move to the next level\n            currentLevel = currentLevel->left;\n        }\n\n        return root;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541036312",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

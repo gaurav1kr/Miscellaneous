@@ -1,0 +1,29 @@
+{
+  "id": "3496",
+  "title": "Maximize Score After Pair Deletions",
+  "slug": "maximize-score-after-pair-deletions",
+  "url": "https://leetcode.com/problems/maximize-score-after-pair-deletions/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums . You must repeatedly perform one of the following operations while the array has more than two elements: \n\n Remove the first two elements. \n \n Remove the last two elements. \n \n Remove the first and last element. \n\n For each operation, add the sum of the removed elements to your total score. \n \n Return the maximum possible score you can achieve. \n\n Example 1: \n\n Input: nums = [2,4,1] \n \n Output: 6 \n \n Explanation: \n \n The possible operations are: \n\n Remove the first two elements (2 + 4) = 6 . The remaining array is [1] . \n \n Remove the last two elements (4 + 1) = 5 . The remaining array is [2] . \n \n Remove the first and last elements (2 + 1) = 3 . The remaining array is [4] . \n\n The maximum score is obtained by removing the first two elements, resulting in a final score of 6. \n\n Example 2: \n\n Input: nums = [5,-1,4,2] \n \n Output: 7 \n \n Explanation: \n \n The possible operations are: \n\n Remove the first and last elements (5 + 2) = 7 . The remaining array is [-1, 4] . \n \n Remove the first two elements (5 + -1) = 4 . The remaining array is [4, 2] . \n \n Remove the last two elements (4 + 2) = 6 . The remaining array is [5, -1] . \n\n The maximum score is obtained by removing the first and last elements, resulting in a total score of 7. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 4 <= nums[i] <= 10 4",
+  "code": "class Solution {\n    public:int maxScore(vector<int>& a) {\n        int n=a.size();\n        long long total=accumulate(a.begin(),a.end(),0LL);\n        if(n<=2)return 0;\n        if(n%2) {\n            return (int)(total-*min_element(a.begin(),a.end()));\n        }\n        int best=INT_MAX;\n        for(int i=1; i<n; i++)best=min(best,a[i-1]+a[i]);\n        return (int)(total-best);\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179346712",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

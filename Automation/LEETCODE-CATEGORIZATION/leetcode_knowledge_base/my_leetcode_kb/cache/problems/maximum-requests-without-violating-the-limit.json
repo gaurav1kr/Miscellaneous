@@ -1,0 +1,38 @@
+{
+  "id": "3851",
+  "title": "Maximum Requests Without Violating the Limit",
+  "slug": "maximum-requests-without-violating-the-limit",
+  "url": "https://leetcode.com/problems/maximum-requests-without-violating-the-limit/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Sliding Window",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Deque",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array requests , where requests[i] = [user i , time i ] indicates that user i made a request at time i . \n \n You are also given two integers k and window . \n \n A user violates the limit if there exists an integer t such that the user makes strictly more than k requests in the inclusive interval [t, t + window] . \n \n You may drop any number of requests. \n \n Return an integer denoting the maximum ​​​​​​​ number of requests that can remain such that no user violates the limit. \n\n Example 1: \n\n Input: requests = [[1,1],[2,1],[1,7],[2,8]], k = 1, window = 4 \n \n Output: 4 \n \n Explanation: ​​​​​​​ \n\n For user 1, the request times are [1, 7] . The difference between them is 6, which is greater than window = 4 . \n \n For user 2, the request times are [1, 8] . The difference is 7, which is also greater than window = 4 . \n \n No user makes more than k = 1 request within any inclusive interval of length window . Therefore, all 4 requests can remain. \n\n Example 2: \n\n Input: requests = [[1,2],[1,5],[1,2],[1,6]], k = 2, window = 5 \n \n Output: 2 \n \n Explanation: ​​​​​​​ \n\n For user 1, the request times are [2, 2, 5, 6] . The inclusive interval [2, 7] of length window = 5 contains all 4 requests. \n \n Since 4 is strictly greater than k = 2 , at least 2 requests must be removed. \n \n After removing any 2 requests, every inclusive interval of length window contains at most k = 2 requests. \n \n Therefore, the maximum number of requests that can remain is 2. \n\n Example 3: \n\n Input: requests = [[1,1],[2,5],[1,2],[3,9]], k = 1, window = 1 \n \n Output: 3 \n \n Explanation: \n\n For user 1, the request times are [1, 2] . The difference is 1, which is equal to window = 1 . \n \n The inclusive interval [1, 2] contains both requests, so the count is 2, which exceeds k = 1 . One request must be removed. \n \n Users 2 and 3 each have only one request and do not violate the limit. Therefore, the maximum number of requests that can remain is 3. \n\n Constraints: \n\n 1 <= requests.length <= 10 5 \n \n requests[i] = [user i , time i ] \n \n 1 <= k <= requests.length \n \n 1 <= user i , time i , window <= 10 5",
+  "code": "class Solution {\npublic:\n    int maxRequests(vector<vector<int>>& requests, int k, int window) {\n        sort(requests.begin(), requests.end(),\n             [](const vector<int>& a, const vector<int>& b) {\n                 if (a[0] != b[0]) return a[0] < b[0];\n                 return a[1] < b[1];\n             });\n        deque<int> recent;\n        int user = -1, ans = 0;\n        for (const auto& req : requests) {\n            if (req[0] != user) { user = req[0]; recent.clear(); }\n            int time = req[1];\n            while (!recent.empty() && time - recent.front() > window)\n                recent.pop_front();\n            if ((int)recent.size() < k) {\n                recent.push_back(time);\n                ++ans;\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181064748",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

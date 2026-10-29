@@ -1,0 +1,31 @@
+{
+  "id": "3746",
+  "title": "Minimum String Length After Balanced Removals",
+  "slug": "minimum-string-length-after-balanced-removals",
+  "url": "https://leetcode.com/problems/minimum-string-length-after-balanced-removals/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a string s consisting only of the characters 'a' and 'b' . \n \n You are allowed to repeatedly remove any substring where the number of 'a' characters is equal to the number of 'b' characters. After each removal, the remaining parts of the string are concatenated together without gaps. \n \n Return an integer denoting the minimum possible length of the string after performing any number of such operations. \n\n Example 1: \n\n Input: s = \"aabbab\" \n \n Output: 0 \n \n Explanation: \n \n The substring \"aabbab\" has three 'a' and three 'b' . Since their counts are equal, we can remove the entire string directly. The minimum length is 0. \n\n Example 2: \n\n Input: s = \"aaaa\" \n \n Output: 4 \n \n Explanation: \n \n Every substring of \"aaaa\" contains only 'a' characters. No substring can be removed as a result, so the minimum length remains 4. \n\n Example 3: \n\n Input: s = \"aaabb\" \n \n Output: 1 \n \n Explanation: \n \n First, remove the substring \"ab\" , leaving \"aab\" . Next, remove the new substring \"ab\" , leaving \"a\" . No further removals are possible, so the minimum length is 1. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is either 'a' or 'b' .",
+  "code": "class Solution {\npublic:\n    int minLengthAfterRemovals(string s) {\n        int balance = 0;\n        for (char c : s) balance += (c == 'a' ? 1 : -1);\n        return abs(balance);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179734277",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

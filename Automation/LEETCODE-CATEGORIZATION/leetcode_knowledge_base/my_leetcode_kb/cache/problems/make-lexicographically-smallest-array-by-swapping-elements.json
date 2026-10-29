@@ -1,0 +1,33 @@
+{
+  "id": "2948",
+  "title": "Make Lexicographically Smallest Array by Swapping Elements",
+  "slug": "make-lexicographically-smallest-array-by-swapping-elements",
+  "url": "https://leetcode.com/problems/make-lexicographically-smallest-array-by-swapping-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Union-Find",
+    "Sorting"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of positive integers nums and a positive integer limit . \n \n In one operation, you can choose any two indices i and j and swap nums[i] and nums[j] if |nums[i] - nums[j]| <= limit . \n \n Return the lexicographically smallest array that can be obtained by performing the operation any number of times . \n \n An array a is lexicographically smaller than an array b if in the first position where a and b differ, array a has an element that is less than the corresponding element in b . For example, the array [2,10,3] is lexicographically smaller than the array [10,2,3] because they differ at index 0 and 2 < 10 . \n\n Example 1: \n \n```\nInput:\n nums = [1,5,3,9,8], limit = 2\n\nOutput:\n [1,3,5,8,9]\n\nExplanation:\n Apply the operation 2 times:\n- Swap nums[1] with nums[2]. The array becomes [1,3,5,9,8]\n- Swap nums[3] with nums[4]. The array becomes [1,3,5,8,9]\nWe cannot obtain a lexicographically smaller array by applying any more operations.\nNote that it may be possible to get the same result by doing different operations.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,7,6,18,2,1], limit = 3\n\nOutput:\n [1,6,7,18,1,2]\n\nExplanation:\n Apply the operation 3 times:\n- Swap nums[1] with nums[2]. The array becomes [1,6,7,18,2,1]\n- Swap nums[0] with nums[4]. The array becomes [2,6,7,18,1,1]\n- Swap nums[0] with nums[5]. The array becomes [1,6,7,18,1,2]\nWe cannot obtain a lexicographically smaller array by applying any more operations.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,7,28,19,10], limit = 3\n\nOutput:\n [1,7,28,19,10]\n\nExplanation:\n [1,7,28,19,10] is the lexicographically smallest array we can obtain because we cannot apply the operation on any two indices.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= limit <= 10 9",
+  "code": "class Solution{public:vector<int> lexicographicallySmallestArray(vector<int>& nums,int limit){int n=nums.size();vector<pair<int,int>> a;for(int i=0;i<n;i++)a.push_back({nums[i],i});sort(a.begin(),a.end());vector<int> ans(n);for(int l=0;l<n;){int r=l+1;while(r<n&&a[r].first-a[r-1].first<=limit)r++;vector<int> idx;for(int i=l;i<r;i++)idx.push_back(a[i].second);sort(idx.begin(),idx.end());for(int i=l;i<r;i++)ans[idx[i-l]]=a[i].first;l=r;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176769509",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

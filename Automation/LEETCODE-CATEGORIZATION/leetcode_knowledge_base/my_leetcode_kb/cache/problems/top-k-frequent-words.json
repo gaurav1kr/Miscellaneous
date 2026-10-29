@@ -1,0 +1,48 @@
+{
+  "id": "692",
+  "title": "Top K Frequent Words",
+  "slug": "top-k-frequent-words",
+  "url": "https://leetcode.com/problems/top-k-frequent-words/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Bucket Sort",
+    "Counting"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an array of strings words and an integer k , return the k most frequent strings . \n \n Return the answer sorted by the frequency from highest to lowest. Sort the words with the same frequency by their lexicographical order . \n\n Example 1: \n \n```\nInput:\n words = [\"i\",\"love\",\"leetcode\",\"i\",\"love\",\"coding\"], k = 2\n\nOutput:\n [\"i\",\"love\"]\n\nExplanation:\n \"i\" and \"love\" are the two most frequent words.\nNote that \"i\" comes before \"love\" due to a lower alphabetical order.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"the\",\"day\",\"is\",\"sunny\",\"the\",\"the\",\"the\",\"sunny\",\"is\",\"is\"], k = 4\n\nOutput:\n [\"the\",\"is\",\"sunny\",\"day\"]\n\nExplanation:\n \"the\", \"is\", \"sunny\" and \"day\" are the four most frequent words, with the number of occurrence being 4, 3, 2 and 1 respectively.\n```\n\n Constraints: \n\n 1 <= words.length <= 500 \n \n 1 <= words[i].length <= 10 \n \n words[i] consists of lowercase English letters. \n \n k is in the range [1, The number of unique words[i]] \n\n Follow-up: Could you solve it in O(n log(k)) time and O(n) extra space?",
+  "code": "class Solution {\npublic:\n    vector<string> topKFrequent(vector<string>& words, int k) {\n        // Step 1: Count the frequency of each word\n        unordered_map<string, int> frequency;\n        for (const string& word : words) {\n            frequency[word]++;\n        }\n\n        // Step 2: Use a min-heap to store the top k frequent words\n        auto cmp = [](const pair<string, int>& a, const pair<string, int>& b) {\n            return a.second > b.second || (a.second == b.second && a.first < b.first);\n        };\n\n        priority_queue<pair<string, int>, vector<pair<string, int>>, decltype(cmp)> minHeap(cmp);\n\n        for (const auto& [word, count] : frequency) {\n            minHeap.push({word, count});\n            if (minHeap.size() > k) {\n                minHeap.pop();\n            }\n        }\n\n        // Step 3: Extract the words from the heap into a vector\n        vector<string> result;\n        while (!minHeap.empty()) {\n            result.push_back(minHeap.top().first);\n            minHeap.pop();\n        }\n\n        // Step 4: Reverse the vector since the heap gives the least frequent words first\n        reverse(result.begin(), result.end());\n\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536113260",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

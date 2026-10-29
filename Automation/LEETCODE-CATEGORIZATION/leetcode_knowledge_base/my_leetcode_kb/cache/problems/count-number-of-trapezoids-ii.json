@@ -1,0 +1,34 @@
+{
+  "id": "3625",
+  "title": "Count Number of Trapezoids II",
+  "slug": "count-number-of-trapezoids-ii",
+  "url": "https://leetcode.com/problems/count-number-of-trapezoids-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Geometry"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array points where points[i] = [x i , y i ] represents the coordinates of the i th point on the Cartesian plane. \n \n Return the number of unique trapezoids that can be formed by choosing any four distinct points from points . \n \n A trapezoid is a convex quadrilateral with at least one pair of parallel sides. Two lines are parallel if and only if they have the same slope. \n\n Example 1: \n\n Input: points = [[-3,2],[3,0],[2,3],[3,2],[2,-3]] \n \n Output: 2 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/29/desmos-graph-4.png] [Figure: https://assets.leetcode.com/uploads/2025/04/29/desmos-graph-3.png] \n \n There are two distinct ways to pick four points that form a trapezoid: \n\n The points [-3,2], [2,3], [3,2], [2,-3] form one trapezoid. \n \n The points [2,3], [3,2], [3,0], [2,-3] form another trapezoid. \n\n Example 2: \n\n Input: points = [[0,0],[1,0],[0,1],[2,1]] \n \n Output: 1 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/29/desmos-graph-5.png] \n \n There is only one trapezoid which can be formed. \n\n Constraints: \n\n 4 <= points.length <= 500 \n \n –1000 <= x i , y i <= 1000 \n \n All points are pairwise distinct.",
+  "code": "class Solution {\npublic:\n int countTrapezoids(vector<vector<int>>& points){\n  using ll=long long;map<tuple<ll,ll,ll>,ll>lines;map<pair<ll,ll>,ll>slopes;map<pair<ll,ll>,map<pair<ll,ll>,ll>>mid;\n  int n=points.size();for(int i=0;i<n;++i)for(int j=i+1;j<n;++j){ll dx=(ll)points[j][0]-points[i][0],dy=(ll)points[j][1]-points[i][1];ll a=llabs(dx),b=llabs(dy);while(b){ll t=a%b;a=b;b=t;}ll g=a;dx/=g;dy/=g;if(dx<0||(dx==0&&dy<0)){dx=-dx;dy=-dy;}\n   ll c=dy*points[i][0]-dx*points[i][1];++lines[{dx,dy,c}];++slopes[{dx,dy}];++mid[{(ll)points[i][0]+points[j][0],(ll)points[i][1]+points[j][1]}][{dx,dy}];}\n  ll ans=0;for(auto &p:slopes)ans+=p.second*(p.second-1)/2;\n  for(auto&p:lines)ans-=p.second*(p.second-1)/2;\n  for(auto&p:mid){ll sum=0,all=0;for(auto&t:p.second){all+=t.second;sum+=t.second*(t.second-1)/2;}ans-=all*(all-1)/2-sum;}\n  return (int)ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177625333",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

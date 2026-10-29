@@ -1,0 +1,36 @@
+{
+  "id": "1146",
+  "title": "Snapshot Array",
+  "slug": "snapshot-array",
+  "url": "https://leetcode.com/problems/snapshot-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Design",
+    "Persistent Data Structure"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Implement a SnapshotArray that supports the following interface: \n\n SnapshotArray(int length) initializes an array-like data structure with the given length. Initially, each element equals 0 . \n \n void set(index, val) sets the element at the given index to be equal to val . \n \n int snap() takes a snapshot of the array and returns the snap_id : the total number of times we called snap() minus 1 . \n \n int get(index, snap_id) returns the value at the given index , at the time we took the snapshot with the given snap_id \n\n Example 1: \n \n```\nInput:\n [\"SnapshotArray\",\"set\",\"snap\",\"set\",\"get\"]\n[[3],[0,5],[],[0,6],[0,0]]\n\nOutput:\n [null,null,0,null,5]\n\nExplanation: \n\nSnapshotArray snapshotArr = new SnapshotArray(3); // set the length to be 3\nsnapshotArr.set(0,5); // Set array[0] = 5\nsnapshotArr.snap(); // Take a snapshot, return snap_id = 0\nsnapshotArr.set(0,6);\nsnapshotArr.get(0,0); // Get the value of array[0] with snap_id = 0, return 5\n```\n\n Constraints: \n\n 1 <= length <= 5 * 10 4 \n \n 0 <= index < length \n \n 0 <= val <= 10 9 \n \n 0 <= snap_id < (the total number of times we call snap() ) \n \n At most 5 * 10 4 calls will be made to set , snap , and get .",
+  "code": "class SnapshotArray {\n    int snap_id = 0;\n    vector<map<int, int>> records;\npublic:\n    SnapshotArray(int length) {\n        records.resize(length);\n    }\n\n    void set(int index, int val) {\n        records[index][snap_id] = val;\n    }\n\n    int snap() {\n        return snap_id++;\n    }\n\n    int get(int index, int snap_id) {\n        auto it = records[index].upper_bound(snap_id);\n        if (it == records[index].begin()) return 0;\n        --it;\n        return it->second;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610700341",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

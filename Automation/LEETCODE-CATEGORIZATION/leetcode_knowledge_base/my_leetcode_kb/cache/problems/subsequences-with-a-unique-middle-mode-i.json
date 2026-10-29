@@ -1,0 +1,35 @@
+{
+  "id": "3395",
+  "title": "Subsequences with a Unique Middle Mode I",
+  "slug": "subsequences-with-a-unique-middle-mode-i",
+  "url": "https://leetcode.com/problems/subsequences-with-a-unique-middle-mode-i/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Combinatorics"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , find the number of subsequences of size 5 of  nums with a unique middle mode . \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n \n A mode of a sequence of numbers is defined as the element that appears the maximum number of times in the sequence. \n \n A sequence of numbers contains a unique mode if it has only one mode. \n \n A sequence of numbers seq of size 5 contains a unique middle mode if the middle element ( seq[2] ) is a unique mode . \n\n Example 1: \n\n Input: nums = [1,1,1,1,1,1] \n \n Output: 6 \n \n Explanation: \n \n [1, 1, 1, 1, 1] is the only subsequence of size 5 that can be formed, and it has a unique middle mode of 1. This subsequence can be formed in 6 different ways, so the output is 6.  \n\n Example 2: \n\n Input: nums = [1,2,2,3,3,4] \n \n Output: 4 \n \n Explanation: \n \n [1, 2, 2, 3, 4] and [1, 2, 3, 3, 4]  each have a unique middle mode because the number at index 2 has the greatest frequency in the subsequence. [1, 2, 2, 3, 3] does not have a unique middle mode because 2 and 3 appear twice. \n\n Example 3: \n\n Input: nums = [0,1,2,3,4,5,6,7,8] \n \n Output: 0 \n \n Explanation: \n \n There is no subsequence of length 5 with a unique middle mode. \n\n Constraints: \n\n 5 <= nums.length <= 1000 \n \n -10 9 <= nums[i] <= 10 9",
+  "code": "class Solution {static const long long MOD=1000000007;long long C2(long long x){return x<2?0:x*(x-1)/2;}public:int subsequencesWithMiddleMode(vector<int>&nums){int n=nums.size();unordered_map<int,long long>L,R;for(int x:nums)R[x]++;long long ans=0;for(int i=0;i<n;i++){int x=nums[i];R[x]--;long long l=i,r=n-i-1,a=L[x],b=R[x],c=l-a,d=r-b;long long ways=0;for(int p=0;p<=2;p++)for(int q=0;q<=2;q++)if(p+q>=2){long long v=(p==0?1:p==1?a:C2(a))*(q==0?1:q==1?b:C2(b));v*= (2-p==0?1:2-p==1?c:C2(c));v*= (2-q==0?1:2-q==1?d:C2(d));ways=(ways+v)%MOD;}\n// Exactly one additional x, with the three remaining positions occupied by three distinct non-x values.\n// x chosen on left: 1 other left + 2 right; x chosen on right: 2 left + 1 other right.\nlong long badA=0,badB=0;for(auto &kv:L)if(kv.first!=x){long long u=kv.second,v=R[kv.first];badA+=u*C2(v)+u*v*(d-v);badB+=C2(u)*v+u*v*(c-u);}long long pairL=0,pairR=0;for(auto &kv:L)if(kv.first!=x)pairL+=C2(kv.second);for(auto &kv:R)if(kv.first!=x)pairR+=C2(kv.second);\n// For left-x: one other left, two right. Bad triples = two right equal OR one left equals one right.\nlong long goodA=c*C2(d)-c*pairR;for(auto &kv:L)if(kv.first!=x){long long u=kv.second,v=R[kv.first];goodA-=u*v*(d-v);}\n// For right-x: two left, one other right.\nlong long goodB=C2(c)*d-pairL*d;for(auto &kv:R)if(kv.first!=x){long long u=L[kv.first],v=kv.second;goodB-=v*u*(c-u);}\nways=(ways+a*goodA+b*goodB)%MOD;ans=(ans+ways)%MOD;L[x]++;}return (ans+MOD)%MOD;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177515471",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

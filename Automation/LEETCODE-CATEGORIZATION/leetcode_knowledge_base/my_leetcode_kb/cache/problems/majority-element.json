@@ -1,0 +1,36 @@
+{
+  "id": "169",
+  "title": "Majority Element",
+  "slug": "majority-element",
+  "url": "https://leetcode.com/problems/majority-element/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Divide and Conquer",
+    "Sorting",
+    "Counting",
+    "Boyer–Moore Majority Vote Algorithm"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an array nums of size n , return the majority element . \n \n The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array. \n\n Example 1: \n \n```\nInput:\n nums = [3,2,3]\n\nOutput:\n 3\n```\n \n Example 2: \n \n```\nInput:\n nums = [2,2,1,1,1,2,2]\n\nOutput:\n 2\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 5 * 10 4 \n \n -10 9 <= nums[i] <= 10 9 \n \n The input is generated such that a majority element will exist in the array. \n\n Follow-up: Could you solve the problem in linear time and in O(1) space?",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int majorityElement(vector<int>& nums) {\n        int candidate = 0, count = 0;\n        for (int num : nums) {\n            if (count == 0) candidate = num;\n            count += (num == candidate) ? 1 : -1;\n        }\n        return candidate;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588076094",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

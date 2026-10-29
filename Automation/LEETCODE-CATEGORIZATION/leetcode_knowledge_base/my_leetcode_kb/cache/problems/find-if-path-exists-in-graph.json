@@ -1,0 +1,32 @@
+{
+  "id": "1971",
+  "title": "Find if Path Exists in Graph",
+  "slug": "find-if-path-exists-in-graph",
+  "url": "https://leetcode.com/problems/find-if-path-exists-in-graph/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is a bi-directional graph with n vertices, where each vertex is labeled from 0 to n - 1 ( inclusive ). The edges in the graph are represented as a 2D integer array edges , where each edges[i] = [u i , v i ] denotes a bi-directional edge between vertex u i and vertex v i . Every vertex pair is connected by at most one edge, and no vertex has an edge to itself. \n \n You want to determine if there is a valid path that exists from vertex source to vertex destination . \n \n Given edges and the integers n , source , and destination , return true if there is a valid path from source to destination , or false otherwise . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/08/14/validpath-ex1.png] \n \n```\nInput:\n n = 3, edges = [[0,1],[1,2],[2,0]], source = 0, destination = 2\n\nOutput:\n true\n\nExplanation:\n There are two paths from vertex 0 to vertex 2:\n- 0 → 1 → 2\n- 0 → 2\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/08/14/validpath-ex2.png] \n \n```\nInput:\n n = 6, edges = [[0,1],[0,2],[3,5],[5,4],[4,3]], source = 0, destination = 5\n\nOutput:\n false\n\nExplanation:\n There is no path from vertex 0 to vertex 5.\n```\n\n Constraints: \n\n 1 <= n <= 2 * 10 5 \n \n 0 <= edges.length <= 2 * 10 5 \n \n edges[i].length == 2 \n \n 0 <= u i , v i <= n - 1 \n \n u i != v i \n \n 0 <= source, destination <= n - 1 \n \n There are no duplicate edges. \n \n There are no self edges.",
+  "code": "#include <vector>\n#include <queue>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {\n        vector<vector<int>> graph(n);\n        for (auto& e : edges) {\n            graph[e[0]].push_back(e[1]);\n            graph[e[1]].push_back(e[0]);\n        }\n\n        vector<bool> visited(n, false);\n        queue<int> q;\n        q.push(source);\n        visited[source] = true;\n\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            if (u == destination) return true;\n            for (int v : graph[u]) {\n                if (!visited[v]) {\n                    visited[v] = true;\n                    q.push(v);\n                }\n            }\n        }\n\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610561005",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "1897",
+  "title": "Redistribute Characters to Make All Strings Equal",
+  "slug": "redistribute-characters-to-make-all-strings-equal",
+  "url": "https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings words ( 0-indexed ). \n \n In one operation, pick two distinct indices i and j , where words[i] is a non-empty string, and move any character from words[i] to any position in words[j] . \n \n Return true if you can make every string in words equal using any number of operations , and false otherwise . \n\n Example 1: \n \n```\nInput:\n words = [\"abc\",\"aabc\",\"bc\"]\n\nOutput:\n true\n\nExplanation:\n Move the first 'a' in \nwords[1] to the front of words[2],\nto make \nwords[1]\n = \"abc\" and words[2] = \"abc\".\nAll the strings are now equal to \"abc\", so return \ntrue\n.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"ab\",\"a\"]\n\nOutput:\n false\n\nExplanation:\n It is impossible to make all the strings equal using the operation.\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length <= 100 \n \n words[i] consists of lowercase English letters.",
+  "code": "#include <vector>\n#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool makeEqual(vector<string>& words) {\n        vector<int> count(26, 0);\n        for (auto& word : words)\n            for (char c : word) count[c - 'a']++;\n\n        for (int c : count)\n            if (c % words.size() != 0) return false;\n\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610664985",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

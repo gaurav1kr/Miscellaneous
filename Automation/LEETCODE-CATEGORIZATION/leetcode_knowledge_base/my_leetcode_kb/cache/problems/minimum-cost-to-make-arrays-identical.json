@@ -1,0 +1,32 @@
+{
+  "id": "3424",
+  "title": "Minimum Cost to Make Arrays Identical",
+  "slug": "minimum-cost-to-make-arrays-identical",
+  "url": "https://leetcode.com/problems/minimum-cost-to-make-arrays-identical/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays arr and brr of length n , and an integer k . You can perform the following operations on arr any number of times: \n\n Split arr into any number of contiguous subarrays and rearrange these subarrays in any order . This operation has a fixed cost of k . \n\n Choose any element in arr and add or subtract a positive integer x to it. The cost of this operation is x . \n\n Return the minimum total cost to make arr equal to brr . \n\n Example 1: \n\n Input: arr = [-7,9,5], brr = [7,-2,-5], k = 2 \n \n Output: 13 \n \n Explanation: \n\n Split arr into two contiguous subarrays: [-7] and [9, 5] and rearrange them as [9, 5, -7] , with a cost of 2. \n \n Subtract 2 from element arr[0] . The array becomes [7, 5, -7] . The cost of this operation is 2. \n \n Subtract 7 from element arr[1] . The array becomes [7, -2, -7] . The cost of this operation is 7. \n \n Add 2 to element arr[2] . The array becomes [7, -2, -5] . The cost of this operation is 2. \n\n The total cost to make the arrays equal is 2 + 2 + 7 + 2 = 13 . \n\n Example 2: \n\n Input: arr = [2,1], brr = [2,1], k = 0 \n \n Output: 0 \n \n Explanation: \n \n Since the arrays are already equal, no operations are needed, and the total cost is 0. \n\n Constraints: \n\n 1 <= arr.length == brr.length <= 10 5 \n \n 0 <= k <= 2 * 10 10 \n \n -10 5 <= arr[i] <= 10 5 \n \n -10 5 <= brr[i] <= 10 5",
+  "code": "class Solution { public: long long minCost(vector<int>& arr, vector<int>& brr, long long k) {\n long long direct=0,sorted=k; for(int i=0;i<(int)arr.size();++i) direct+=abs((long long)arr[i]-brr[i]);\n sort(arr.begin(),arr.end());sort(brr.begin(),brr.end()); for(int i=0;i<(int)arr.size();++i) sorted+=abs((long long)arr[i]-brr[i]);return min(direct,sorted);\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177522680",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "2181",
+  "title": "Merge Nodes in Between Zeros",
+  "slug": "merge-nodes-in-between-zeros",
+  "url": "https://leetcode.com/problems/merge-nodes-in-between-zeros/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Simulation"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "You are given the head of a linked list, which contains a series of integers separated by 0 's. The beginning and end of the linked list will have Node.val == 0 . \n \n For every two consecutive 0 's, merge all the nodes lying in between them into a single node whose value is the sum of all the merged nodes. The modified list should not contain any 0 's. \n \n Return the head of the modified linked list . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/02/02/ex1-1.png] \n \n```\nInput:\n head = [0,3,1,0,4,5,2,0]\n\nOutput:\n [4,11]\n\nExplanation:\n \nThe above figure represents the given linked list. The modified list contains\n- The sum of the nodes marked in green: 3 + 1 = 4.\n- The sum of the nodes marked in red: 4 + 5 + 2 = 11.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/02/02/ex2-1.png] \n \n```\nInput:\n head = [0,1,0,3,0,2,2,0]\n\nOutput:\n [1,3,4]\n\nExplanation:\n \nThe above figure represents the given linked list. The modified list contains\n- The sum of the nodes marked in green: 1 = 1.\n- The sum of the nodes marked in red: 3 = 3.\n- The sum of the nodes marked in yellow: 2 + 2 = 4.\n```\n\n Constraints: \n\n The number of nodes in the list is in the range [3, 2 * 10 5 ] . \n \n 0 <= Node.val <= 1000 \n \n There are no two consecutive nodes with Node.val == 0 . \n \n The beginning and end of the linked list have Node.val == 0 .",
+  "code": "class Solution {\npublic:\n    ListNode* mergeNodes(ListNode* head) {\n        ListNode* write=head;\n        ListNode* cur=head->next;\n        while(cur) {\n            int sum=0;\n            while(cur&&cur->val!=0){sum+=cur->val;cur=cur->next;}\n            if(sum==0) break;\n            write->val=sum;\n            if(!cur||!cur->next){write->next=nullptr;break;}\n            write->next=cur;write=cur;cur=cur->next;\n        }\n        return head;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175880601",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "431",
+  "title": "Encode N-ary Tree to Binary Tree",
+  "slug": "encode-n-ary-tree-to-binary-tree",
+  "url": "https://leetcode.com/problems/encode-n-ary-tree-to-binary-tree/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Design",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Design an algorithm to encode an N-ary tree into a binary tree and decode the binary tree to get the original N-ary tree. An N-ary tree is a rooted tree in which each node has no more than N children. Similarly, a binary tree is a rooted tree in which each node has no more than 2 children. There is no restriction on how your encode/decode algorithm should work. You just need to ensure that an N-ary tree can be encoded to a binary tree and this binary tree can be decoded to the original N-nary tree structure. \n \n Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See following example). \n \n For example, you may encode the following 3-ary tree to a binary tree in this way: \n \n [Figure: https://assets.leetcode.com/uploads/2018/10/12/narytreebinarytreeexample.png] \n \n```\nInput:\n root = [1,null,3,2,4,null,5,6]\n```\n\n Note that the above is just an example which might or might not work. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself. \n\n Example 1: \n \n```\nInput:\n root = [1,null,3,2,4,null,5,6]\n\nOutput:\n [1,null,3,2,4,null,5,6]\n```\n \n Example 2: \n \n```\nInput:\n root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]\n\nOutput:\n [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]\n```\n \n Example 3: \n \n```\nInput:\n root = []\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 4 ] . \n \n 0 <= Node.val <= 10 4 \n \n The height of the n-ary tree is less than or equal to 1000 \n \n Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.",
+  "code": "class Codec {\npublic:\n    TreeNode* encode(Node* root) {\n        if (!root) {\n            return nullptr;\n        }\n        TreeNode* node = new TreeNode(root->val);\n        TreeNode* previous = nullptr;\n        for (Node* child : root->children) {\n            TreeNode* encoded = encode(child);\n            if (!previous) {\n                node->left = encoded;\n            } else {\n                previous->right = encoded;\n            }\n            previous = encoded;\n        }\n        return node;\n    }\n\n    Node* decode(TreeNode* root) {\n        if (!root) {\n            return nullptr;\n        }\n        Node* node = new Node(root->val);\n        for (TreeNode* child = root->left; child; child = child->right) {\n            node->children.push_back(decode(child));\n        }\n        return node;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178468148",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

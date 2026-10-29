@@ -1,0 +1,33 @@
+{
+  "id": "2336",
+  "title": "Smallest Number in Infinite Set",
+  "slug": "smallest-number-in-infinite-set",
+  "url": "https://leetcode.com/problems/smallest-number-in-infinite-set/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Design",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered set",
+    "Priority queue / heap"
+  ],
+  "description": "You have a set which contains all positive integers [1, 2, 3, 4, 5, ...] . \n \n Implement the SmallestInfiniteSet class: \n\n SmallestInfiniteSet() Initializes the SmallestInfiniteSet object to contain all positive integers. \n \n int popSmallest() Removes and returns the smallest integer contained in the infinite set. \n \n void addBack(int num) Adds a positive integer num back into the infinite set, if it is not already in the infinite set. \n\n Example 1: \n \n```\nInput\n\n[\"SmallestInfiniteSet\", \"addBack\", \"popSmallest\", \"popSmallest\", \"popSmallest\", \"addBack\", \"popSmallest\", \"popSmallest\", \"popSmallest\"]\n[[], [2], [], [], [], [1], [], [], []]\n\nOutput\n\n[null, null, 1, 2, 3, null, 1, 4, 5]\n\nExplanation\n\nSmallestInfiniteSet smallestInfiniteSet = new SmallestInfiniteSet();\nsmallestInfiniteSet.addBack(2); // 2 is already in the set, so no change is made.\nsmallestInfiniteSet.popSmallest(); // return 1, since 1 is the smallest number, and remove it from the set.\nsmallestInfiniteSet.popSmallest(); // return 2, and remove it from the set.\nsmallestInfiniteSet.popSmallest(); // return 3, and remove it from the set.\nsmallestInfiniteSet.addBack(1); // 1 is added back to the set.\nsmallestInfiniteSet.popSmallest(); // return 1, since 1 was added back to the set and\n // is the smallest number, and remove it from the set.\nsmallestInfiniteSet.popSmallest(); // return 4, and remove it from the set.\nsmallestInfiniteSet.popSmallest(); // return 5, and remove it from the set.\n```\n\n Constraints: \n\n 1 <= num <= 1000 \n \n At most 1000 calls will be made in total to popSmallest and addBack .",
+  "code": "class SmallestInfiniteSet {\n    int next = 1;\n    set<int> returned;\npublic:\n    SmallestInfiniteSet() {}\n    int popSmallest() {\n        if (!returned.empty()) { int x=*returned.begin(); returned.erase(returned.begin()); return x; }\n        return next++;\n    }\n    void addBack(int num) { if (num < next) returned.insert(num); }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175920131",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

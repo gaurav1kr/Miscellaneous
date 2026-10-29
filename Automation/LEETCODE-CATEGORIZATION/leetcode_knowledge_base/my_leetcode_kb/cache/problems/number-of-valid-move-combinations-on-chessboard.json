@@ -1,0 +1,33 @@
+{
+  "id": "2056",
+  "title": "Number of Valid Move Combinations On Chessboard",
+  "slug": "number-of-valid-move-combinations-on-chessboard",
+  "url": "https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Backtracking",
+    "Simulation"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "There is an 8 x 8 chessboard containing n pieces (rooks, queens, or bishops). You are given a string array pieces of length n , where pieces[i] describes the type (rook, queen, or bishop) of the i th piece. In addition, you are given a 2D integer array positions also of length n , where positions[i] = [r i , c i ] indicates that the i th piece is currently at the 1-based coordinate (r i , c i ) on the chessboard. \n \n When making a move for a piece, you choose a destination square that the piece will travel toward and stop on. \n\n A rook can only travel horizontally or vertically from (r, c) to the direction of (r+1, c) , (r-1, c) , (r, c+1) , or (r, c-1) . \n \n A queen can only travel horizontally, vertically, or diagonally from (r, c) to the direction of (r+1, c) , (r-1, c) , (r, c+1) , (r, c-1) , (r+1, c+1) , (r+1, c-1) , (r-1, c+1) , (r-1, c-1) . \n \n A bishop can only travel diagonally from (r, c) to the direction of (r+1, c+1) , (r+1, c-1) , (r-1, c+1) , (r-1, c-1) . \n\n You must make a move for every piece on the board simultaneously. A move combination consists of all the moves performed on all the given pieces. Every second, each piece will instantaneously travel one square towards their destination if they are not already at it. All pieces start traveling at the 0 th second. A move combination is invalid if, at a given time, two or more pieces occupy the same square. \n \n Return the number of valid move combinations ​​​​​. \n \n Notes: \n\n No two pieces will start in the same square. \n \n You may choose the square a piece is already on as its destination . \n \n If two pieces are directly adjacent to each other, it is valid for them to move past each other and swap positions in one second. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/09/23/a1.png] \n \n```\nInput:\n pieces = [\"rook\"], positions = [[1,1]]\n\nOutput:\n 15\n\nExplanation:\n The image above shows the possible squares the piece can move to.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/09/23/a2.png] \n \n```\nInput:\n pieces = [\"queen\"], positions = [[1,1]]\n\nOutput:\n 22\n\nExplanation:\n The image above shows the possible squares the piece can move to.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/09/23/a3.png] \n \n```\nInput:\n pieces = [\"bishop\"], positions = [[4,3]]\n\nOutput:\n 12\n\nExplanation:\n The image above shows the possible squares the piece can move to.\n```\n\n Constraints: \n\n n == pieces.length \n \n n == positions.length \n \n 1 <= n <= 4 \n \n pieces only contains the strings \"rook\" , \"queen\" , and \"bishop\" . \n \n There will be at most one queen on the chessboard. \n \n 1 <= r i , c i <= 8 \n \n Each positions[i] is distinct.",
+  "code": "class Solution {\n    struct Move{int dx,dy,steps;};\n    vector<vector<Move>>options;\n    vector<Move>chosen;\n    vector<vector<int>>pos;\n    int ans=0;\n    bool compatible(int a,int b){\n        for(int t=0;t<=7;++t){\n            int ax=pos[a][0]+chosen[a].dx*min(t,chosen[a].steps);\n            int ay=pos[a][1]+chosen[a].dy*min(t,chosen[a].steps);\n            int bx=pos[b][0]+chosen[b].dx*min(t,chosen[b].steps);\n            int by=pos[b][1]+chosen[b].dy*min(t,chosen[b].steps);\n            if(ax==bx&&ay==by)return false;\n        }\n        return true;\n    }\n    void dfs(int i){if(i==(int)pos.size()){++ans;return;}\n        for(auto mv:options[i]){chosen[i]=mv;bool ok=true;\n            for(int j=0;j<i;++j)if(!compatible(i,j)){ok=false;break;}\n            if(ok)dfs(i+1);\n        }\n    }\npublic:\n    int countCombinations(vector<string>& pieces,vector<vector<int>>& positions){\n        pos=positions;int n=pieces.size();options.assign(n,{});chosen.resize(n);ans=0;\n        for(int i=0;i<n;++i){options[i].push_back({0,0,0});\n            for(int dx=-1;dx<=1;++dx)for(int dy=-1;dy<=1;++dy){\n                if(dx==0&&dy==0)continue;\n                bool diagonal=dx!=0&&dy!=0;\n                if(pieces[i]==\"rook\"&&diagonal)continue;\n                if(pieces[i]==\"bishop\"&&!diagonal)continue;\n                for(int t=1;t<=7;++t){int x=pos[i][0]+t*dx,y=pos[i][1]+t*dy;\n                    if(x<1||x>8||y<1||y>8)break;\n                    options[i].push_back({dx,dy,t});\n                }\n            }\n        }\n        dfs(0);return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175770786",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

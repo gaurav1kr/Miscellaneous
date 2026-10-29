@@ -1,0 +1,36 @@
+{
+  "id": "3335",
+  "title": "Total Characters in String After Transformations I",
+  "slug": "total-characters-in-string-after-transformations-i",
+  "url": "https://leetcode.com/problems/total-characters-in-string-after-transformations-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "Counting"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s and an integer t , representing the number of transformations to perform. In one transformation , every character in s is replaced according to the following rules: \n\n If the character is 'z' , replace it with the string \"ab\" . \n \n Otherwise, replace it with the next character in the alphabet. For example, 'a' is replaced with 'b' , 'b' is replaced with 'c' , and so on. \n\n Return the length of the resulting string after exactly t transformations. \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: s = \"abcyy\", t = 2 \n \n Output: 7 \n \n Explanation: \n\n First Transformation (t = 1) :\n\n 'a' becomes 'b' \n \n 'b' becomes 'c' \n \n 'c' becomes 'd' \n \n 'y' becomes 'z' \n \n 'y' becomes 'z' \n \n String after the first transformation: \"bcdzz\" \n\n Second Transformation (t = 2) :\n\n 'b' becomes 'c' \n \n 'c' becomes 'd' \n \n 'd' becomes 'e' \n \n 'z' becomes \"ab\" \n \n 'z' becomes \"ab\" \n \n String after the second transformation: \"cdeabab\" \n\n Final Length of the string : The string is \"cdeabab\" , which has 7 characters. \n\n Example 2: \n\n Input: s = \"azbk\", t = 1 \n \n Output: 5 \n \n Explanation: \n\n First Transformation (t = 1) :\n\n 'a' becomes 'b' \n \n 'z' becomes \"ab\" \n \n 'b' becomes 'c' \n \n 'k' becomes 'l' \n \n String after the first transformation: \"babcl\" \n\n Final Length of the string : The string is \"babcl\" , which has 5 characters. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists only of lowercase English letters. \n \n 1 <= t <= 10 5",
+  "code": "class Solution {public:int lengthAfterTransformations(string s,int t){const int M=1000000007;vector<long long> a(26);for(char c:s)a[c-'a']++;while(t--){vector<long long>b(26);for(int i=0;i<25;i++)b[i+1]=(b[i+1]+a[i])%M;b[0]=a[25];b[1]=(b[1]+a[25])%M;a.swap(b);}long long ans=0;for(long long v:a)ans=(ans+v)%M;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177462761",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

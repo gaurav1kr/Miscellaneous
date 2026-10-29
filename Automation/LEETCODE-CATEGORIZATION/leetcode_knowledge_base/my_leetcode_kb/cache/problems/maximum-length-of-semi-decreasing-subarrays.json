@@ -1,0 +1,36 @@
+{
+  "id": "2863",
+  "title": "Maximum Length of Semi-Decreasing Subarrays",
+  "slug": "maximum-length-of-semi-decreasing-subarrays",
+  "url": "https://leetcode.com/problems/maximum-length-of-semi-decreasing-subarrays/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Stack",
+    "Sorting",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Sorted array",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Return the length of the longest semi-decreasing subarray of nums , and 0 if there are no such subarrays. \n\n A subarray is a contiguous non-empty sequence of elements within an array. \n \n A non-empty array is semi-decreasing if its first element is strictly greater than its last element. \n\n Example 1: \n \n```\nInput:\n nums = [7,6,5,4,3,2,1,6,10,11]\n\nOutput:\n 8\n\nExplanation:\n Take the subarray [7,6,5,4,3,2,1,6].\nThe first element is 7 and the last one is 6 so the condition is met.\nHence, the answer would be the length of the subarray or 8.\nIt can be shown that there aren't any subarrays with the given condition with a length greater than 8.\n```\n\n Example 2: \n \n```\nInput:\n nums = [57,55,50,60,61,58,63,59,64,60,63]\n\nOutput:\n 6\n\nExplanation:\n Take the subarray [61,58,63,59,64,60].\nThe first element is 61 and the last one is 60 so the condition is met.\nHence, the answer would be the length of the subarray or 6.\nIt can be shown that there aren't any subarrays with the given condition with a length greater than 6.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3,4]\n\nOutput:\n 0\n\nExplanation:\n Since there are no semi-decreasing subarrays in the given array, the answer is 0.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 9 <= nums[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxSubarrayLength(vector<int>& nums) {\n        vector<int> st;\n        for(int i=0;i<(int)nums.size();++i) {\n            if(st.empty()||nums[i]>nums[st.back()])st.push_back(i);\n        }\n        int ans=0;\n        for(int j=(int)nums.size()-1;j>=0;--j) {\n            while(!st.empty()&&nums[st.back()]>nums[j]) {\n                ans=max(ans,j-st.back()+1);st.pop_back();\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178916287",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

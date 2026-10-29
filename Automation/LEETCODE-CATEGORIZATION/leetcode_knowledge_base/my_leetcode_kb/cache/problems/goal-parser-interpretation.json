@@ -1,0 +1,26 @@
+{
+  "id": "1678",
+  "title": "Goal Parser Interpretation",
+  "slug": "goal-parser-interpretation",
+  "url": "https://leetcode.com/problems/goal-parser-interpretation/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You own a Goal Parser that can interpret a string command . The command consists of an alphabet of \"G\" , \"()\" and/or \"(al)\" in some order. The Goal Parser will interpret \"G\" as the string \"G\" , \"()\" as the string \"o\" , and \"(al)\" as the string \"al\" . The interpreted strings are then concatenated in the original order. \n \n Given the string command , return the Goal Parser 's interpretation of command . \n\n Example 1: \n \n```\nInput:\n command = \"G()(al)\"\n\nOutput:\n \"Goal\"\n\nExplanation:\n The Goal Parser interprets the command as follows:\nG -> G\n() -> o\n(al) -> al\nThe final concatenated result is \"Goal\".\n```\n\n Example 2: \n \n```\nInput:\n command = \"G()()()()(al)\"\n\nOutput:\n \"Gooooal\"\n```\n\n Example 3: \n \n```\nInput:\n command = \"(al)G(al)()()G\"\n\nOutput:\n \"alGalooG\"\n```\n\n Constraints: \n\n 1 <= command.length <= 100 \n \n command consists of \"G\" , \"()\" , and/or \"(al)\" in some order.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string interpret(string command) {\n        string res;\n        for (int i = 0; i < command.size(); ++i) {\n            if (command[i] == 'G') res += 'G';\n            else if (command[i] == '(' && command[i + 1] == ')') {\n                res += 'o';\n                ++i;\n            } else {\n                res += \"al\";\n                i += 3;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610556644",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

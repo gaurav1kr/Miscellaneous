@@ -1,0 +1,35 @@
+{
+  "id": "3664",
+  "title": "Two-Letter Card Game",
+  "slug": "two-letter-card-game",
+  "url": "https://leetcode.com/problems/two-letter-card-game/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting",
+    "Enumeration"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a deck of cards represented by a string array cards , and each card displays two lowercase letters. \n \n You are also given a letter x . You play a game with the following rules: \n\n Start with 0 points. \n \n On each turn, you must find two compatible cards from the deck that both contain the letter x in any position. \n \n Remove the pair of cards and earn 1 point . \n \n The game ends when you can no longer find a pair of compatible cards. \n\n Return the maximum number of points you can gain with optimal play. \n \n Two cards are compatible if the strings differ in exactly 1 position. \n\n Example 1: \n\n Input: cards = [\"aa\",\"ab\",\"ba\",\"ac\"], x = \"a\" \n \n Output: 2 \n \n Explanation: \n\n On the first turn, select and remove cards \"ab\" and \"ac\" , which are compatible because they differ at only index 1. \n \n On the second turn, select and remove cards \"aa\" and \"ba\" , which are compatible because they differ at only index 0. \n\n Because there are no more compatible pairs, the total score is 2. \n\n Example 2: \n\n Input: cards = [\"aa\",\"ab\",\"ba\"], x = \"a\" \n \n Output: 1 \n \n Explanation: \n\n On the first turn, select and remove cards \"aa\" and \"ba\" . \n\n Because there are no more compatible pairs, the total score is 1. \n\n Example 3: \n\n Input: cards = [\"aa\",\"ab\",\"ba\",\"ac\"], x = \"b\" \n \n Output: 0 \n \n Explanation: \n \n The only cards that contain the character 'b' are \"ab\" and \"ba\" . However, they differ in both indices, so they are not compatible. Thus, the output is 0. \n\n Constraints: \n\n 2 <= cards.length <= 10 5 \n \n cards[i].length == 2 \n \n Each cards[i] is composed of only lowercase English letters between 'a' and 'j' . \n \n x is a lowercase English letter between 'a' and 'j' .",
+  "code": "class Solution { public: int score(vector<string>& cards,char x){int f[26]={},g[26]={},both=0;for(auto&s:cards){if(s[0]==x&&s[1]==x)++both;else if(s[0]==x)++f[s[1]-'a'];else if(s[1]==x)++g[s[0]-'a'];}auto calc=[&](int*a,int extra){int sum=extra,mx=extra;for(int i=0;i<26;++i){sum+=a[i];mx=max(mx,a[i]);}return min(sum/2,sum-mx);};int ans=0;for(int a=0;a<=both;++a)ans=max(ans,calc(f,a)+calc(g,both-a));return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177649177",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

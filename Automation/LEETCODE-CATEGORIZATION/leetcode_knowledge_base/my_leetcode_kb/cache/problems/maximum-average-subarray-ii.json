@@ -1,0 +1,32 @@
+{
+  "id": "644",
+  "title": "Maximum Average Subarray II",
+  "slug": "maximum-average-subarray-ii",
+  "url": "https://leetcode.com/problems/maximum-average-subarray-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums consisting of n elements, and an integer k . \n \n Find a contiguous subarray whose length is greater than or equal to k that has the maximum average value and return this value . Any answer with a calculation error less than 10 -5 will be accepted. \n\n Example 1: \n \n```\nInput:\n nums = [1,12,-5,-6,50,3], k = 4\n\nOutput:\n 12.75000\n\nExplanation:\n\n- When the length is 4, averages are [0.5, 12.75, 10.5] and the maximum average is 12.75\n- When the length is 5, averages are [10.4, 10.8] and the maximum average is 10.8\n- When the length is 6, averages are [9.16667] and the maximum average is 9.16667\nThe maximum average is when we choose a subarray of length 4 (i.e., the sub array [12, -5, -6, 50]) which has the max average 12.75, so we return 12.75\nNote that we do not consider the subarrays of length < 4.\n```\n\n Example 2: \n \n```\nInput:\n nums = [5], k = 1\n\nOutput:\n 5.00000\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= k <= n <= 10 4 \n \n -10 4 <= nums[i] <= 10 4",
+  "code": "class Solution {\n    bool feasible(const vector<int>& nums, int k, double average) {\n        int n = nums.size();\n        vector<double> prefix(n + 1, 0.0);\n        for (int i = 0; i < n; ++i) {\n            prefix[i + 1] = prefix[i] + nums[i] - average;\n        }\n        double minimum = 0.0;\n        for (int right = k; right <= n; ++right) {\n            minimum = min(minimum, prefix[right - k]);\n            if (prefix[right] - minimum >= 0.0) {\n                return true;\n            }\n        }\n        return false;\n    }\n\npublic:\n    double findMaxAverage(vector<int>& nums, int k) {\n        double low = *min_element(nums.begin(), nums.end());\n        double high = *max_element(nums.begin(), nums.end());\n        while (high - low > 1e-5) {\n            double middle = low + (high - low) / 2.0;\n            if (feasible(nums, k, middle)) {\n                low = middle;\n            } else {\n                high = middle;\n            }\n        }\n        return low;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178491761",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

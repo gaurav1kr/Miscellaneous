@@ -1,0 +1,41 @@
+{
+  "id": "1755",
+  "title": "Closest Subsequence Sum",
+  "slug": "closest-subsequence-sum",
+  "url": "https://leetcode.com/problems/closest-subsequence-sum/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Meet in the Middle",
+    "Sorting",
+    "Bitmask"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Sorting / Divide and Conquer",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer goal . \n \n You want to choose a subsequence of nums such that the sum of its elements is the closest possible to goal . That is, if the sum of the subsequence's elements is sum , then you want to minimize the absolute difference abs(sum - goal) . \n \n Return the minimum possible value of abs(sum - goal) . \n \n Note that a subsequence of an array is an array formed by removing some elements (possibly all or none) of the original array. \n\n Example 1: \n \n```\nInput:\n nums = [5,-7,3,5], goal = 6\n\nOutput:\n 0\n\nExplanation:\n Choose the whole array as a subsequence, with a sum of 6.\nThis is equal to the goal, so the absolute difference is 0.\n```\n\n Example 2: \n \n```\nInput:\n nums = [7,-9,15,-2], goal = -5\n\nOutput:\n 1\n\nExplanation:\n Choose the subsequence [7,-9,-2], with a sum of -4.\nThe absolute difference is abs(-4 - (-5)) = abs(1) = 1, which is the minimum.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3], goal = -7\n\nOutput:\n 7\n```\n\n Constraints: \n\n 1 <= nums.length <= 40 \n \n -10 7 <= nums[i] <= 10 7 \n \n -10 9 <= goal <= 10 9",
+  "code": "#include <vector>\n#include <algorithm>\n#include <cmath>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    void dfs(vector<int>& nums, int i, int end, int sum, vector<int>& res) {\n        if (i == end) {\n            res.push_back(sum);\n            return;\n        }\n        dfs(nums, i + 1, end, sum, res);\n        dfs(nums, i + 1, end, sum + nums[i], res);\n    }\n\n    int minAbsDifference(vector<int>& nums, int goal) {\n        int n = nums.size();\n        vector<int> left, right;\n        dfs(nums, 0, n / 2, 0, left);\n        dfs(nums, n / 2, n, 0, right);\n        sort(right.begin(), right.end());\n\n        int res = abs(goal);\n        for (int a : left) {\n            int rem = goal - a;\n            auto it = lower_bound(right.begin(), right.end(), rem);\n            if (it != right.end()) res = min(res, abs(rem - *it));\n            if (it != right.begin()) res = min(res, abs(rem - *prev(it)));\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610614904",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

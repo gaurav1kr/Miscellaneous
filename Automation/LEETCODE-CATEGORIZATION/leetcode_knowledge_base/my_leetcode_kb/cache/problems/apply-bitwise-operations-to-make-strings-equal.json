@@ -1,0 +1,28 @@
+{
+  "id": "2546",
+  "title": "Apply Bitwise Operations to Make Strings Equal",
+  "slug": "apply-bitwise-operations-to-make-strings-equal",
+  "url": "https://leetcode.com/problems/apply-bitwise-operations-to-make-strings-equal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given two 0-indexed binary strings s and target of the same length n . You can do the following operation on s any number of times: \n\n Choose two different indices i and j where 0 <= i, j < n . \n \n Simultaneously, replace s[i] with ( s[i] OR s[j] ) and s[j] with ( s[i] XOR s[j] ). \n\n For example, if s = \"0110\" , you can choose i = 0 and j = 2 , then simultaneously replace s[0] with ( s[0] OR s[2] = 0 OR 1 = 1 ), and s[2] with ( s[0] XOR s[2] = 0 XOR 1 = 1 ), so we will have s = \"1110\" . \n \n Return true if you can make the string s equal to target , or false otherwise . \n\n Example 1: \n \n```\nInput:\n s = \"1010\", target = \"0110\"\n\nOutput:\n true\n\nExplanation:\n We can do the following operations:\n- Choose i = 2 and j = 0. We have now s = \"\n0\n0\n1\n0\".\n- Choose i = 2 and j = 1. We have now s = \"0\n11\n0\".\nSince we can make s equal to target, we return true.\n```\n\n Example 2: \n \n```\nInput:\n s = \"11\", target = \"00\"\n\nOutput:\n false\n\nExplanation:\n It is not possible to make s equal to target with any number of operations.\n```\n\n Constraints: \n\n n == s.length == target.length \n \n 2 <= n <= 10 5 \n \n s and target consist of only the digits 0 and 1 .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n bool makeStringsEqual(string s,string target){\n  return (s.find('1')!=string::npos)==(target.find('1')!=string::npos);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176607866",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "470",
+  "title": "Implement Rand10() Using Rand7()",
+  "slug": "implement-rand10-using-rand7",
+  "url": "https://leetcode.com/problems/implement-rand10-using-rand7/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Rejection Sampling",
+    "Randomized",
+    "Probability and Statistics"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given the API rand7() that generates a uniform random integer in the range [1, 7] , write a function rand10() that generates a uniform random integer in the range [1, 10] . You can only call the API rand7() , and you shouldn't call any other API. Please do not use a language's built-in random API. \n \n Each test case will have one internal argument n , the number of times that your implemented function rand10() will be called while testing. Note that this is not an argument passed to rand10() . \n\n Example 1: \n \n```\nInput:\n n = 1\n\nOutput:\n [2]\n```\n \n Example 2: \n \n```\nInput:\n n = 2\n\nOutput:\n [2,8]\n```\n \n Example 3: \n \n```\nInput:\n n = 3\n\nOutput:\n [3,8,10]\n```\n\n Constraints: \n\n 1 <= n <= 10 5 \n\n Follow up: \n\n What is the expected value for the number of calls to rand7() function? \n \n Could you minimize the number of calls to rand7() ?",
+  "code": "// Assume rand7() is provided and returns integer from 1 to 7.\n\nclass Solution {\npublic:\n    int rand10() {\n        int val = 40;\n        while (val >= 40)\n            val = (rand7() - 1) * 7 + rand7() - 1;\n        return val % 10 + 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593837445",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "993",
+  "title": "Cousins in Binary Tree",
+  "slug": "cousins-in-binary-tree",
+  "url": "https://leetcode.com/problems/cousins-in-binary-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree with unique values and the values of two different nodes of the tree x and y , return true if the nodes corresponding to the values x and y in the tree are cousins , or false otherwise. \n \n Two nodes of a binary tree are cousins if they have the same depth with different parents. \n \n Note that in a binary tree, the root node is at the depth 0 , and children of each depth k node are at the depth k + 1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/02/12/q1248-01.png] \n \n```\nInput:\n root = [1,2,3,4], x = 4, y = 3\n\nOutput:\n false\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/02/12/q1248-02.png] \n \n```\nInput:\n root = [1,2,3,null,4,null,5], x = 5, y = 4\n\nOutput:\n true\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2019/02/13/q1248-03.png] \n \n```\nInput:\n root = [1,2,3,null,4], x = 2, y = 3\n\nOutput:\n false\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [2, 100] . \n \n 1 <= Node.val <= 100 \n \n Each node has a unique value. \n \n x != y \n \n x and y are exist in the tree.",
+  "code": "class Solution {\npublic:\n    bool isCousins(TreeNode* root, int x, int y) {\n        queue<pair<TreeNode*, TreeNode*>> q;\n        q.push({root, nullptr});\n        while (!q.empty()) {\n            int size = q.size();\n            TreeNode *parentX = nullptr, *parentY = nullptr;\n            for (int i = 0; i < size; ++i) {\n                auto [node, parent] = q.front(); q.pop();\n                if (node->val == x) parentX = parent;\n                if (node->val == y) parentY = parent;\n                if (node->left) q.push({node->left, node});\n                if (node->right) q.push({node->right, node});\n            }\n            if (parentX && parentY) return parentX != parentY;\n            if (parentX || parentY) return false;\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588123679",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

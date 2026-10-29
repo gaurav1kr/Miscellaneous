@@ -1,0 +1,32 @@
+{
+  "id": "4044",
+  "title": "Count Good Cyclic Rotations",
+  "slug": "count-good-cyclic-rotations",
+  "url": "https://leetcode.com/problems/count-good-cyclic-rotations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of even length n . \n \n A cyclic rotation of nums is obtained by choosing a prefix of nums whose length is between 0 and n - 1 (inclusive), and moving it to the end of the array while preserving the order of all elements. \n \n A cyclic rotation is good if the sum of its first n / 2 elements is strictly greater than the sum of its last n / 2 elements. \n \n Return the number of cyclic rotations of nums that are good. \n\n Example 1: \n\n Input: nums = [1,2,3,4,5,6] \n \n Output: 3 \n \n Explanation: \n \n The cyclic rotations of nums are: \n\n Cyclic rotation \n Sum of first n / 2 elements \n Sum of last n / 2 elements \n\n [1, 2, 3, 4, 5, 6] \n 1 + 2 + 3 = 6 \n 4 + 5 + 6 = 15 \n\n [2, 3, 4, 5, 6, 1] \n 2 + 3 + 4 = 9 \n 5 + 6 + 1 = 12 \n\n [3, 4, 5, 6, 1, 2] \n 3 + 4 + 5 = 12 \n 6 + 1 + 2 = 9 \n\n [4, 5, 6, 1, 2, 3] \n 4 + 5 + 6 = 15 \n 1 + 2 + 3 = 6 \n\n [5, 6, 1, 2, 3, 4] \n 5 + 6 + 1 = 12 \n 2 + 3 + 4 = 9 \n\n [6, 1, 2, 3, 4, 5] \n 6 + 1 + 2 = 9 \n 3 + 4 + 5 = 12 \n\n The first half has a greater sum than the second half for 3 rotations. Thus, the answer is 3. \n\n Example 2: \n\n Input: nums = [1,2,1,2] \n \n Output: 0 \n \n Explanation: \n \n The cyclic rotations of nums are: \n\n Cyclic rotation \n Sum of first n / 2 elements \n Sum of last n / 2 elements \n\n [1, 2, 1, 2] \n 1 + 2 = 3 \n 1 + 2 = 3 \n\n [2, 1, 2, 1] \n 2 + 1 = 3 \n 2 + 1 = 3 \n\n [1, 2, 1, 2] \n 1 + 2 = 3 \n 1 + 2 = 3 \n\n [2, 1, 2, 1] \n 2 + 1 = 3 \n 2 + 1 = 3 \n\n No cyclic rotation is good because the two sums are equal for every rotation. Thus, the answer is 0. \n\n Constraints: \n\n 2 <= n == nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n n is even.",
+  "code": "class Solution {\npublic:\n    int countGoodRotations(vector<int>& nums) {\n        int n = nums.size(), half = n / 2;\n        long long total = 0, window = 0;\n        for (int x : nums) total += x;\n        for (int i = 0; i < half; ++i) window += nums[i];\n        int ans = 0;\n        for (int start = 0; start < n; ++start) {\n            if (2 * window > total) ++ans;\n            window -= nums[start];\n            window += nums[(start + half) % n];\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179626007",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

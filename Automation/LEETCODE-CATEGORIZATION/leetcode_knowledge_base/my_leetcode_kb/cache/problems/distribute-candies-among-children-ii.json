@@ -1,0 +1,26 @@
+{
+  "id": "2929",
+  "title": "Distribute Candies Among Children II",
+  "slug": "distribute-candies-among-children-ii",
+  "url": "https://leetcode.com/problems/distribute-candies-among-children-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Combinatorics",
+    "Enumeration"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given two positive integers n and limit . \n \n Return the total number of ways to distribute n candies among 3 children such that no child gets more than limit candies. \n\n Example 1: \n \n```\nInput:\n n = 5, limit = 2\n\nOutput:\n 3\n\nExplanation:\n There are 3 ways to distribute 5 candies such that no child gets more than 2 candies: (1, 2, 2), (2, 1, 2) and (2, 2, 1).\n```\n\n Example 2: \n \n```\nInput:\n n = 3, limit = 3\n\nOutput:\n 10\n\nExplanation:\n There are 10 ways to distribute 3 candies such that no child gets more than 3 candies: (0, 0, 3), (0, 1, 2), (0, 2, 1), (0, 3, 0), (1, 0, 2), (1, 1, 1), (1, 2, 0), (2, 0, 1), (2, 1, 0) and (3, 0, 0).\n```\n\n Constraints: \n\n 1 <= n <= 10 6 \n \n 1 <= limit <= 10 6",
+  "code": "class Solution{long long ways(long long n){return n<0?0:(n+1)*(n+2)/2;}public:long long distributeCandies(int n,int limit){long long ans=0;for(int mask=0;mask<8;mask++){int bits=__builtin_popcount((unsigned)mask);long long v=ways((long long)n-(long long)bits*(limit+1));ans+=(bits&1)?-v:v;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176756961",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

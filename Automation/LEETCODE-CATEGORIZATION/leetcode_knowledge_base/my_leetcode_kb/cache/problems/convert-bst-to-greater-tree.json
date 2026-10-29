@@ -1,0 +1,31 @@
+{
+  "id": "538",
+  "title": "Convert BST to Greater Tree",
+  "slug": "convert-bst-to-greater-tree",
+  "url": "https://leetcode.com/problems/convert-bst-to-greater-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus the sum of all keys greater than the original key in BST. \n \n As a reminder, a binary search tree is a tree that satisfies these constraints: \n\n The left subtree of a node contains only nodes with keys less than the node's key. \n \n The right subtree of a node contains only nodes with keys greater than the node's key. \n \n Both the left and right subtrees must also be binary search trees. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/05/02/tree.png] \n \n```\nInput:\n root = [4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]\n\nOutput:\n [30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]\n```\n\n Example 2: \n \n```\nInput:\n root = [0,null,1]\n\nOutput:\n [1,null,1]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 4 ] . \n \n -10 4 <= Node.val <= 10 4 \n \n All the values in the tree are unique . \n \n root is guaranteed to be a valid binary search tree. \n\n Note: This question is the same as 1038: https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/",
+  "code": "class Solution \n{\npublic:\n    \n    void solve(TreeNode *root, int &num)\n    {\n\t\t// Base Condition\n        if(root == NULL)\n            return;\n\t\t\n        solve(root->right, num);\n\t\t\n        root->val = num + root->val;\n\t\t\n        num = root->val;\n\t\t\n        solve(root->left, num);\n    }\n    \n    TreeNode* convertBST(TreeNode* root) \n    {\n\t\t// keeps sum of RightSubTree of current Node.\n        int num = 0;\n        solve(root, num);\n        return root;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1502078901",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

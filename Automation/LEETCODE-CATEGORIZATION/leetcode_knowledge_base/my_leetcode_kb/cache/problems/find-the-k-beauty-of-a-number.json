@@ -1,0 +1,30 @@
+{
+  "id": "2269",
+  "title": "Find the K-Beauty of a Number",
+  "slug": "find-the-k-beauty-of-a-number",
+  "url": "https://leetcode.com/problems/find-the-k-beauty-of-a-number/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "The k-beauty of an integer num is defined as the number of substrings of num when it is read as a string that meet the following conditions: \n\n It has a length of k . \n \n It is a divisor of num . \n\n Given integers num and k , return the k-beauty of num . \n \n Note: \n\n Leading zeros are allowed. \n \n 0 is not a divisor of any value. \n\n A substring is a contiguous sequence of characters in a string. \n\n Example 1: \n \n```\nInput:\n num = 240, k = 2\n\nOutput:\n 2\n\nExplanation:\n The following are the substrings of num of length k:\n- \"24\" from \"\n24\n0\": 24 is a divisor of 240.\n- \"40\" from \"2\n40\n\": 40 is a divisor of 240.\nTherefore, the k-beauty is 2.\n```\n\n Example 2: \n \n```\nInput:\n num = 430043, k = 2\n\nOutput:\n 2\n\nExplanation:\n The following are the substrings of num of length k:\n- \"43\" from \"\n43\n0043\": 43 is a divisor of 430043.\n- \"30\" from \"4\n30\n043\": 30 is not a divisor of 430043.\n- \"00\" from \"43\n00\n43\": 0 is not a divisor of 430043.\n- \"04\" from \"430\n04\n3\": 4 is not a divisor of 430043.\n- \"43\" from \"4300\n43\n\": 43 is a divisor of 430043.\nTherefore, the k-beauty is 2.\n```\n\n Constraints: \n\n 1 <= num <= 10 9 \n \n 1 <= k <= num.length (taking num as a string)",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:int divisorSubstrings(int num,int k){string s=to_string(num);int ans=0;for(int i=0;i+k<=(int)s.size();++i){int x=stoi(s.substr(i,k));if(x&&num%x==0)++ans;}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175902122",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

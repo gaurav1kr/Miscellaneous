@@ -1,0 +1,32 @@
+{
+  "id": "879",
+  "title": "Profitable Schemes",
+  "slug": "profitable-schemes",
+  "url": "https://leetcode.com/problems/profitable-schemes/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Knapsack Problem",
+    "0-1 Knapsack"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "There is a group of n members, and a list of various crimes they could commit. The i th crime generates a profit[i] and requires group[i] members to participate in it. If a member participates in one crime, that member can't participate in another crime. \n \n Let's call a profitable scheme any subset of these crimes that generates at least minProfit profit, and the total number of members participating in that subset of crimes is at most n . \n \n Return the number of schemes that can be chosen. Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 5, minProfit = 3, group = [2,2], profit = [2,3]\n\nOutput:\n 2\n\nExplanation:\n To make a profit of at least 3, the group could either commit crimes 0 and 1, or just crime 1.\nIn total, there are 2 schemes.\n```\n\n Example 2: \n \n```\nInput:\n n = 10, minProfit = 5, group = [2,3,5], profit = [6,7,8]\n\nOutput:\n 7\n\nExplanation:\n To make a profit of at least 5, the group could commit any crimes, as long as they commit one.\nThere are 7 possible schemes: (0), (1), (2), (0,1), (0,2), (1,2), and (0,1,2).\n```\n\n Constraints: \n\n 1 <= n <= 100 \n \n 0 <= minProfit <= 100 \n \n 1 <= group.length <= 100 \n \n 1 <= group[i] <= 100 \n \n profit.length == group.length \n \n 0 <= profit[i] <= 100",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int profitableSchemes(int n, int minProfit, vector<int>& group, vector<int>& profit) {\n        const int MOD = 1e9 + 7;\n        int m = group.size();\n        vector<vector<int>> dp(n + 1, vector<int>(minProfit + 1));\n        dp[0][0] = 1;\n        for (int k = 0; k < m; ++k) {\n            int g = group[k], p = profit[k];\n            for (int i = n; i >= g; --i) {\n                for (int j = minProfit; j >= 0; --j) {\n                    dp[i][j] = (dp[i][j] + dp[i - g][max(0, j - p)]) % MOD;\n                }\n            }\n        }\n        int res = 0;\n        for (int i = 0; i <= n; ++i)\n            res = (res + dp[i][minProfit]) % MOD;\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610608047",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

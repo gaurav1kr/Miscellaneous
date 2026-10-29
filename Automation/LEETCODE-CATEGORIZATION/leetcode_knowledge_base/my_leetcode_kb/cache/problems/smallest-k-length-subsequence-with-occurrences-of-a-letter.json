@@ -1,0 +1,34 @@
+{
+  "id": "2030",
+  "title": "Smallest K-Length Subsequence With Occurrences of a Letter",
+  "slug": "smallest-k-length-subsequence-with-occurrences-of-a-letter",
+  "url": "https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Monotonic stack",
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a string s , an integer k , a letter letter , and an integer repetition . \n \n Return the lexicographically smallest subsequence of s of length k that has the letter letter appear at least repetition times . The test cases are generated so that the letter appears in s at least repetition times. \n \n A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters. \n \n A string a is lexicographically smaller than a string b if in the first position where a and b differ, string a has a letter that appears earlier in the alphabet than the corresponding letter in b . \n\n Example 1: \n \n```\nInput:\n s = \"leet\", k = 3, letter = \"e\", repetition = 1\n\nOutput:\n \"eet\"\n\nExplanation:\n There are four subsequences of length 3 that have the letter 'e' appear at least 1 time:\n- \"lee\" (from \"\nlee\nt\")\n- \"let\" (from \"\nle\ne\nt\n\")\n- \"let\" (from \"\nl\ne\net\n\")\n- \"eet\" (from \"l\neet\n\")\nThe lexicographically smallest subsequence among them is \"eet\".\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/09/13/smallest-k-length-subsequence.png] \n \n```\nInput:\n s = \"leetcode\", k = 4, letter = \"e\", repetition = 2\n\nOutput:\n \"ecde\"\n\nExplanation:\n \"ecde\" is the lexicographically smallest subsequence of length 4 that has the letter \"e\" appear at least 2 times.\n```\n\n Example 3: \n \n```\nInput:\n s = \"bb\", k = 2, letter = \"b\", repetition = 2\n\nOutput:\n \"bb\"\n\nExplanation:\n \"bb\" is the only subsequence of length 2 that has the letter \"b\" appear at least 2 times.\n```\n\n Constraints: \n\n 1 <= repetition <= k <= s.length <= 5 * 10 4 \n \n s consists of lowercase English letters. \n \n letter is a lowercase English letter, and appears in s at least repetition times.",
+  "code": "class Solution {\npublic:\n    string smallestSubsequence(string s,int k,char letter,int repetition){\n        int remain=count(s.begin(),s.end(),letter),need=repetition;\n        string st;int n=s.size();\n        for(int i=0;i<n;++i){char c=s[i];\n            while(!st.empty()&&st.back()>c&&\n                  (int)st.size()-1+(n-i)>=k&&\n                  (st.back()!=letter||remain>need)){\n                if(st.back()==letter)++need;\n                st.pop_back();\n            }\n            if((int)st.size()<k){\n                if(c==letter){st+=c;--need;}\n                else if(k-(int)st.size()>need)st+=c;\n            }\n            if(c==letter)--remain;\n        }\n        return st;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175769673",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

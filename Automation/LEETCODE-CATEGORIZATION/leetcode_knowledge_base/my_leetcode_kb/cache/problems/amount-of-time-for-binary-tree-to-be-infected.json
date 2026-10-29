@@ -1,0 +1,40 @@
+{
+  "id": "2385",
+  "title": "Amount of Time for Binary Tree to Be Infected",
+  "slug": "amount-of-time-for-binary-tree-to-be-infected",
+  "url": "https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given the root of a binary tree with unique values, and an integer start . At minute 0 , an infection starts from the node with value start . \n \n Each minute, a node becomes infected if: \n\n The node is currently uninfected. \n \n The node is adjacent to an infected node. \n\n Return the number of minutes needed for the entire tree to be infected. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/06/25/image-20220625231744-1.png] \n \n```\nInput:\n root = [1,5,3,null,4,10,6,9,2], start = 3\n\nOutput:\n 4\n\nExplanation:\n The following nodes are infected during:\n- Minute 0: Node 3\n- Minute 1: Nodes 1, 10 and 6\n- Minute 2: Node 5\n- Minute 3: Node 4\n- Minute 4: Nodes 9 and 2\nIt takes 4 minutes for the whole tree to be infected so we return 4.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/06/25/image-20220625231812-2.png] \n \n```\nInput:\n root = [1], start = 1\n\nOutput:\n 0\n\nExplanation:\n At minute 0, the only node in the tree is infected so we return 0.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 5 ] . \n \n 1 <= Node.val <= 10 5 \n \n Each node has a unique value. \n \n A node with a value of start exists in the tree.",
+  "code": "class Solution { public:\n    int amountOfTime(TreeNode* root,int start) {\n        unordered_map<int,vector<int>> g;\n        queue<TreeNode*> nodes;nodes.push(root);\n        while(!nodes.empty()){\n            TreeNode* u=nodes.front();nodes.pop();\n            if(u->left){g[u->val].push_back(u->left->val);g[u->left->val].push_back(u->val);nodes.push(u->left);}\n            if(u->right){g[u->val].push_back(u->right->val);g[u->right->val].push_back(u->val);nodes.push(u->right);}\n        }\n        queue<int> q;q.push(start);unordered_set<int> seen={start};int minutes=-1;\n        while(!q.empty()){int sz=q.size();++minutes;while(sz--){int u=q.front();q.pop();\n            for(int v:g[u])if(seen.insert(v).second)q.push(v);\n        }}\n        return minutes;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175932784",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

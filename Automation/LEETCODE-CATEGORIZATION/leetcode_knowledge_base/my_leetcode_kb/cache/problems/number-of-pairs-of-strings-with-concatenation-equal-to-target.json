@@ -1,0 +1,36 @@
+{
+  "id": "2023",
+  "title": "Number of Pairs of Strings With Concatenation Equal to Target",
+  "slug": "number-of-pairs-of-strings-with-concatenation-equal-to-target",
+  "url": "https://leetcode.com/problems/number-of-pairs-of-strings-with-concatenation-equal-to-target/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of digit strings nums and a digit string target , return the number of pairs of indices (i, j) (where i != j ) such that the concatenation of nums[i] + nums[j] equals target . \n\n Example 1: \n \n```\nInput:\n nums = [\"777\",\"7\",\"77\",\"77\"], target = \"7777\"\n\nOutput:\n 4\n\nExplanation:\n Valid pairs are:\n- (0, 1): \"777\" + \"7\"\n- (1, 0): \"7\" + \"777\"\n- (2, 3): \"77\" + \"77\"\n- (3, 2): \"77\" + \"77\"\n```\n\n Example 2: \n \n```\nInput:\n nums = [\"123\",\"4\",\"12\",\"34\"], target = \"1234\"\n\nOutput:\n 2\n\nExplanation:\n Valid pairs are:\n- (0, 1): \"123\" + \"4\"\n- (2, 3): \"12\" + \"34\"\n```\n\n Example 3: \n \n```\nInput:\n nums = [\"1\",\"1\",\"1\"], target = \"11\"\n\nOutput:\n 6\n\nExplanation:\n Valid pairs are:\n- (0, 1): \"1\" + \"1\"\n- (1, 0): \"1\" + \"1\"\n- (0, 2): \"1\" + \"1\"\n- (2, 0): \"1\" + \"1\"\n- (1, 2): \"1\" + \"1\"\n- (2, 1): \"1\" + \"1\"\n```\n\n Constraints: \n\n 2 <= nums.length <= 100 \n \n 1 <= nums[i].length <= 100 \n \n 2 <= target.length <= 100 \n \n nums[i] and target consist of digits. \n \n nums[i] and target do not have leading zeros.",
+  "code": "class Solution {\npublic:\n    int numOfPairs(vector<string>& nums,string target){\n        unordered_map<string,int>freq;for(const string& s:nums)++freq[s];\n        int ans=0;for(int i=1;i<(int)target.size();++i){\n            string a=target.substr(0,i),b=target.substr(i);\n            ans+=freq[a]*(freq[b]-(a==b));\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175769144",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

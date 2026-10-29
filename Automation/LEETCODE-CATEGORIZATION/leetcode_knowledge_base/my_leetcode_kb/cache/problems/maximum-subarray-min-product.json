@@ -1,0 +1,37 @@
+{
+  "id": "1856",
+  "title": "Maximum Subarray Min-Product",
+  "slug": "maximum-subarray-min-product",
+  "url": "https://leetcode.com/problems/maximum-subarray-min-product/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack",
+    "Prefix Sum",
+    "Cartesian Tree"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Prefix Sum / Difference Array",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Prefix-sum array",
+    "Stack",
+    "Vector"
+  ],
+  "description": "The min-product of an array is equal to the minimum value in the array multiplied by the array's sum . \n\n For example, the array [3,2,5] (minimum value is 2 ) has a min-product of 2 * (3+2+5) = 2 * 10 = 20 . \n\n Given an array of integers nums , return the maximum min-product of any non-empty subarray of nums . Since the answer may be large, return it modulo 10 9 + 7 . \n \n Note that the min-product should be maximized before performing the modulo operation. Testcases are generated such that the maximum min-product without modulo will fit in a 64-bit signed integer . \n \n A subarray is a contiguous part of an array. \n\n Example 1: \n \n```\nInput:\n nums = [1,\n2,3,2\n]\n\nOutput:\n 14\n\nExplanation:\n The maximum min-product is achieved with the subarray [2,3,2] (minimum value is 2).\n2 * (2+3+2) = 2 * 7 = 14.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,\n3,3\n,1,2]\n\nOutput:\n 18\n\nExplanation:\n The maximum min-product is achieved with the subarray [3,3] (minimum value is 3).\n3 * (3+3) = 3 * 6 = 18.\n```\n\n Example 3: \n \n```\nInput:\n nums = [3,1,\n5,6,4\n,2]\n\nOutput:\n 60\n\nExplanation:\n The maximum min-product is achieved with the subarray [5,6,4] (minimum value is 4).\n4 * (5+6+4) = 4 * 15 = 60.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 7",
+  "code": "#include <vector>\n#include <stack>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxSumMinProduct(vector<int>& nums) {\n        int n = nums.size();\n        vector<long> prefix(n + 1, 0);\n        for (int i = 0; i < n; ++i)\n            prefix[i + 1] = prefix[i] + nums[i];\n\n        stack<int> stk;\n        long res = 0;\n\n        for (int i = 0; i <= n; ++i) {\n            while (!stk.empty() && (i == n || nums[stk.top()] > nums[i])) {\n                int idx = stk.top(); stk.pop();\n                int left = stk.empty() ? 0 : stk.top() + 1;\n                long sum = prefix[i] - prefix[left];\n                res = max(res, sum * nums[idx]);\n            }\n            stk.push(i);\n        }\n\n        return res % 1000000007;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595388029",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "520",
+  "title": "Detect Capital",
+  "slug": "detect-capital",
+  "url": "https://leetcode.com/problems/detect-capital/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "We define the usage of capitals in a word to be right when one of the following cases holds: \n\n All letters in this word are capitals, like \"USA\" . \n \n All letters in this word are not capitals, like \"leetcode\" . \n \n Only the first letter in this word is capital, like \"Google\" . \n\n Given a string word , return true if the usage of capitals in it is right. \n\n Example 1: \n \n```\nInput:\n word = \"USA\"\n\nOutput:\n true\n```\n \n Example 2: \n \n```\nInput:\n word = \"FlaG\"\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= word.length <= 100 \n \n word consists of lowercase and uppercase English letters.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool detectCapitalUse(string word) {\n        int upper = 0;\n        for (char c : word)\n            if (isupper(c)) upper++;\n\n        return upper == word.size() || upper == 0 || (upper == 1 && isupper(word[0]));\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593696550",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "252",
+  "title": "Meeting Rooms",
+  "slug": "meeting-rooms",
+  "url": "https://leetcode.com/problems/meeting-rooms/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Sorting",
+    "Quicksort"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array of meeting times  intervals where intervals[i] = [start i , end i ] . \n \n A person can attend all meetings if no two meeting intervals overlap. Meetings ending at time t and starting at time t do not overlap. \n \n ​​​​​​​Return true if a person can attend all meetings. Otherwise, return false . \n\n Example 1: \n \n```\nInput:\n intervals = [[0,30],[5,10],[15,20]]\n\nOutput:\n false\n```\n \n Example 2: \n \n```\nInput:\n intervals = [[7,10],[2,4]]\n\nOutput:\n true\n```\n\n Constraints: \n\n 0 <= intervals.length <= 10 4 \n \n intervals[i].length == 2 \n \n 0 <= start i < end i <= 10 6",
+  "code": "class Solution\n{\npublic:\n    bool canAttendMeetings(vector< vector< int >>& intervals)\n    {\n        sort(intervals.begin(), intervals.end());\n        for (int i = 1; i < (int) intervals.size();++i) if(intervals[i][0] < intervals[i - 1][1])\n        {\n            return false;\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178437214",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

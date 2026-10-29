@@ -1,0 +1,36 @@
+{
+  "id": "3850",
+  "title": "Count Sequences to K",
+  "slug": "count-sequences-to-k",
+  "url": "https://leetcode.com/problems/count-sequences-to-k/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Memoization",
+    "Number Theory"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums , and an integer k . \n \n Start with an initial value val = 1 and process nums from left to right. At each index i , you must choose exactly one of the following actions: \n\n Multiply val by nums[i] . \n \n Divide val by nums[i] . \n \n Leave val unchanged. \n\n After processing all elements, val is considered equal to k only if its final rational value exactly equals k . \n \n Return the count of distinct sequences of choices that result in val == k . \n \n Note: Division is rational (exact), not integer division. For example, 2 / 4 = 1 / 2 . \n\n Example 1: \n\n Input: nums = [2,3,2], k = 6 \n \n Output: 2 \n \n Explanation: \n \n The following 2 distinct sequences of choices result in val == k : \n\n Sequence \n Operation on nums[0] \n Operation on nums[1] \n Operation on nums[2] \n Final val \n\n 1 \n Multiply: val = 1 * 2 = 2 \n Multiply: val = 2 * 3 = 6 \n Leave val unchanged \n 6 \n\n 2 \n Leave val unchanged \n Multiply: val = 1 * 3 = 3 \n Multiply: val = 3 * 2 = 6 \n 6 \n\n Example 2: \n\n Input: nums = [4,6,3], k = 2 \n \n Output: 2 \n \n Explanation: \n \n The following 2 distinct sequences of choices result in val == k : \n\n Sequence \n Operation on nums[0] \n Operation on nums[1] \n Operation on nums[2] \n Final val \n\n 1 \n Multiply: val = 1 * 4 = 4 \n Divide: val = 4 / 6 = 2 / 3 \n Multiply: val = (2 / 3) * 3 = 2 \n 2 \n\n 2 \n Leave val unchanged \n Multiply: val = 1 * 6 = 6 \n Divide: val = 6 / 3 = 2 \n 2 \n\n Example 3: \n\n Input: nums = [1,5], k = 1 \n \n Output: 3 \n \n Explanation: \n \n The following 3 distinct sequences of choices result in val == k : \n\n Sequence \n Operation on nums[0] \n Operation on nums[1] \n Final val \n\n 1 \n Multiply: val = 1 * 1 = 1 \n Leave val unchanged \n 1 \n\n 2 \n Divide: val = 1 / 1 = 1 \n Leave val unchanged \n 1 \n\n 3 \n Leave val unchanged \n Leave val unchanged \n 1 \n\n Constraints: \n\n 1 <= nums.length <= 19 \n \n 1 <= nums[i] <= 6 \n \n 1 <= k <= 10 15",
+  "code": "class Solution {\n    using Key=long long;\n    Key encode(int a,int b,int c){return (a+20)*1600LL+(b+20)*40LL+c+20;}\n    void enumerate(const vector<array<int,3>>& a,int i,int end,int x,int y,int z,unordered_map<Key,long long>& out){\n        if(i==end){++out[encode(x,y,z)];return;}auto v=a[i];\n        enumerate(a,i+1,end,x,y,z,out);\n        enumerate(a,i+1,end,x+v[0],y+v[1],z+v[2],out);\n        enumerate(a,i+1,end,x-v[0],y-v[1],z-v[2],out);\n    }\npublic:\n    int countSequences(vector<int>& nums,long long k){int p[3]={2,3,5},target[3]={};for(int j=0;j<3;++j)while(k%p[j]==0){k/=p[j];++target[j];}if(k!=1)return 0;\n        vector<array<int,3>> a;for(int x:nums){array<int,3> v={0,0,0};for(int j=0;j<3;++j)while(x%p[j]==0){x/=p[j];++v[j];}a.push_back(v);}\n        int mid=a.size()/2;unordered_map<Key,long long> left,right;enumerate(a,0,mid,0,0,0,left);enumerate(a,mid,a.size(),0,0,0,right);\n        long long ans=0;for(auto &it:left){int x=it.first/1600-20,y=(it.first%1600)/40-20,z=it.first%40-20;auto jt=right.find(encode(target[0]-x,target[1]-y,target[2]-z));if(jt!=right.end())ans+=it.second*jt->second;}\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181157282",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

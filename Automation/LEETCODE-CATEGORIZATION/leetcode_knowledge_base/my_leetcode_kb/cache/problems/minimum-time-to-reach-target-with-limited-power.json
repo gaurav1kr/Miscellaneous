@@ -1,0 +1,39 @@
+{
+  "id": "3977",
+  "title": "Minimum Time to Reach Target With Limited Power",
+  "slug": "minimum-time-to-reach-target-with-limited-power",
+  "url": "https://leetcode.com/problems/minimum-time-to-reach-target-with-limited-power/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a directed weighted graph with n nodes labeled from 0 to n - 1 . \n \n The graph is represented by a 2D integer array edges , where edges[i] = [u i , v i , t i ] indicates a directed edge from node u i to node v i that takes t i seconds to traverse. \n \n You are also given an integer power representing the initial available power, and an integer array cost of length n , where cost[u] represents the power required to forward the signal from node u through any one of its outgoing edges. \n \n You are given two integers source and target . \n \n The signal starts at source at time 0 with power units of power and follows these rules: \n\n The signal may traverse a directed edge from node u only if the remaining power is at least cost[u] . \n \n No power is consumed when the signal arrives at a node, unless it later leaves that node by traversing another edge. \n \n When the signal is forwarded from node u , the remaining power is decreased by cost[u] units. \n \n Traversing an edge edges[i] = [u i , v i , t i ] increases the total time by t i seconds. \n\n Return an integer array answer of size 2, where: \n\n answer[0] is the minimum time required for the signal to reach node target . \n \n answer[1] is the maximum remaining power among all paths that achieve answer[0] . \n\n If the signal cannot reach target , return [-1, -1] . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2026/02/09/g1.png] \n\n Input: n = 5, edges = [[0,1,1],[1,4,1],[0,2,1],[2,3,1],[3,4,1]], power = 4, cost = [2,3,1,1,1], source = 0, target = 4 \n \n Output: [3,0] \n \n Explanation: \n\n The signal starts at node 0 with 4 units of power. \n \n The path 0 -> 1 -> 4 is not valid, because after leaving node 0, the signal has 2 units of power remaining, which is less than cost[1] = 3 . \n \n The valid path 0 -> 2 -> 3 -> 4 takes a total time of 3. \n \n The total power consumed along this path is cost[0] + cost[2] + cost[3] = 4 , leaving 0 remaining power. \n \n Hence, the answer is [3, 0] . \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2026/02/09/g22.png] \n\n Input: n = 3, edges = [[0,1,2],[1,2,2],[2,0,2]], power = 3, cost = [1,1,1], source = 1, target = 1 \n \n Output: [0,3] \n \n Explanation: \n\n Since the source and target are the same node, no traversal is required. \n \n Hence, the minimum total time taken is 0, and no power is consumed. \n \n Therefore, the answer is [0, 3] . \n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2026/02/09/g23.png] ​​​​​​​ \n\n Input: n = 4, edges = [[0,1,3],[2,3,4]], power = 3, cost = [1,1,1,1], source = 0, target = 3 \n \n Output: [-1,-1] \n \n Explanation: \n \n There is no valid path from source to target , therefore return [-1, -1] . \n\n Constraints: \n\n 1 <= n <= 1000 \n \n 0 <= edges.length <= 1000 \n \n edges[i] = [u i , v i , t i ] \n \n 0 <= u i , v i <= n - 1 \n \n 1 <= t i <= 10 9 \n \n 1 <= power <= 1000 \n \n cost.length == n \n \n 1 <= cost[i] <= 2000 \n \n 0 <= source, target <= n - 1",
+  "code": "class Solution {\npublic:\n    vector<long long> minTimeMaxPower(int n,vector<vector<int>>& edges,int power,vector<int>& cost,int source,int target){\n        vector<vector<pair<int,int>>> g(n);for(auto &e:edges)g[e[0]].push_back({e[1],e[2]});\n        const long long INF=LLONG_MAX/4;vector<vector<long long>> dist(n,vector<long long>(power+1,INF));\n        typedef tuple<long long,int,int> State;priority_queue<State,vector<State>,greater<State>> pq;\n        dist[source][power]=0;pq.push(make_tuple(0,source,power));\n        while(!pq.empty()){auto t=pq.top();pq.pop();long long d=get<0>(t);int u=get<1>(t),p=get<2>(t);\n            if(d!=dist[u][p])continue;if(p<cost[u])continue;\n            for(auto e:g[u]){int v=e.first,np=p-cost[u];long long nd=d+e.second;\n                if(nd<dist[v][np]){dist[v][np]=nd;pq.push(make_tuple(nd,v,np));}}\n        }\n        long long best=INF;int remain=-1;for(int p=power;p>=0;p--)if(dist[target][p]<best){best=dist[target][p];remain=p;}\n        else if(dist[target][p]==best)remain=max(remain,p);\n        return best==INF?vector<long long>{-1,-1}:vector<long long>{best,remain};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181179378",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

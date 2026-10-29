@@ -1,0 +1,35 @@
+{
+  "id": "3952",
+  "title": "Maximum Total Value of Covered Indices",
+  "slug": "maximum-total-value-of-covered-indices",
+  "url": "https://leetcode.com/problems/maximum-total-value-of-covered-indices/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and a binary string s of length n , where s[i] == '1' means index i initially contains a token and s[i] == '0' means it does not. \n \n You may perform the following operation any number of times: \n\n Choose a token currently located at index i , where i > 0 , such that this token has not been moved before. \n \n Move this token from index i to index i - 1 . \n\n An index is considered covered if it contains a token after all moves. \n \n Return an integer denoting the maximum total value of nums at the covered indices after optimally performing the operations. \n\n Example 1: \n\n Input: nums = [9,2,6,1], s = \"0101\" \n \n Output: 15 \n \n Explanation: \n\n Initially, indices 1 and 3 contain tokens. \n \n Move the token from index 3 to index 2. \n \n Move the token from index 1 to index 0. \n \n The covered indices are [0, 2] , so the total value is nums[0] + nums[2] = 9 + 6 = 15 . \n\n Example 2: \n\n Input: nums = [5,1,4], s = \"001\" \n \n Output: 4 \n \n Explanation: \n\n Initially, only index 2 contains a token. \n \n It is optimal to leave the token at index 2. \n \n The covered index is [2] , so the total value is nums[2] = 4 . \n\n Example 3: \n\n Input: nums = [9,3,5], s = \"011\" \n \n Output: 14 \n \n Explanation: \n\n Initially, indices 1 and 2 contain tokens. \n \n Move the token from index 1 to index 0. \n \n The covered indices are [0, 2] , so the total value is nums[0] + nums[2] = 9 + 5 = 14 . \n\n Constraints: \n\n 1 <= n == nums.length == s.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n ​​​​​​​ s[i] is either '0' or '1'",
+  "code": "class Solution {\npublic:\n    long long maxTotal(vector<int>& nums,string s){\n        const long long NEG=-(1LL<<60);\n        long long stay=0,move=NEG;\n        int previous=-2;\n        for(int i=0;i<(int)s.size();++i) if(s[i]=='1'){\n            long long nextStay=max(stay,move)+nums[i];\n            long long nextMove=NEG;\n            if(i>0){\n                // Previous token staying at i-1 would collide.\n                if(previous==i-1) nextMove=move+nums[i-1];\n                else nextMove=max(stay,move)+nums[i-1];\n            }\n            stay=nextStay;move=nextMove;previous=i;\n        }\n        return max(stay,move);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181093870",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

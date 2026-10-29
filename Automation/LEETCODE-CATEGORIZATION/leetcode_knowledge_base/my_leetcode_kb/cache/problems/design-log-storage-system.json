@@ -1,0 +1,35 @@
+{
+  "id": "635",
+  "title": "Design Log Storage System",
+  "slug": "design-log-storage-system",
+  "url": "https://leetcode.com/problems/design-log-storage-system/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Design",
+    "Ordered Set"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given several logs, where each log contains a unique ID and timestamp. Timestamp is a string that has the following format: Year:Month:Day:Hour:Minute:Second , for example, 2017:01:01:23:59:59 . All domains are zero-padded decimal numbers. \n \n Implement the LogSystem class: \n\n LogSystem() Initializes the LogSystem object. \n \n void put(int id, string timestamp) Stores the given log (id, timestamp) in your storage system. \n \n int[] retrieve(string start, string end, string granularity) Returns the IDs of the logs whose timestamps are within the range from start to end inclusive. start and end all have the same format as timestamp , and granularity means how precise the range should be (i.e. to the exact Day , Minute , etc.). For example, start = \"2017:01:01:23:59:59\" , end = \"2017:01:02:23:59:59\" , and granularity = \"Day\" means that we need to find the logs within the inclusive range from Jan. 1st 2017 to Jan. 2nd 2017 , and the Hour , Minute , and Second for each log entry can be ignored. \n\n Example 1: \n \n```\nInput\n\n[\"LogSystem\", \"put\", \"put\", \"put\", \"retrieve\", \"retrieve\"]\n[[], [1, \"2017:01:01:23:59:59\"], [2, \"2017:01:01:22:59:59\"], [3, \"2016:01:01:00:00:00\"], [\"2016:01:01:01:01:01\", \"2017:01:01:23:00:00\", \"Year\"], [\"2016:01:01:01:01:01\", \"2017:01:01:23:00:00\", \"Hour\"]]\n\nOutput\n\n[null, null, null, null, [3, 2, 1], [2, 1]]\n\nExplanation\n\nLogSystem logSystem = new LogSystem();\nlogSystem.put(1, \"2017:01:01:23:59:59\");\nlogSystem.put(2, \"2017:01:01:22:59:59\");\nlogSystem.put(3, \"2016:01:01:00:00:00\");\n\n// return [3,2,1], because you need to return all logs between 2016 and 2017.\nlogSystem.retrieve(\"2016:01:01:01:01:01\", \"2017:01:01:23:00:00\", \"Year\");\n\n// return [2,1], because you need to return all logs between Jan. 1, 2016 01:XX:XX and Jan. 1, 2017 23:XX:XX.\n// Log 3 is not returned because Jan. 1, 2016 00:00:00 comes before the start of the range.\nlogSystem.retrieve(\"2016:01:01:01:01:01\", \"2017:01:01:23:00:00\", \"Hour\");\n```\n\n Constraints: \n\n 1 <= id <= 500 \n \n 2000 <= Year <= 2017 \n \n 1 <= Month <= 12 \n \n 1 <= Day <= 31 \n \n 0 <= Hour <= 23 \n \n 0 <= Minute, Second <= 59 \n \n granularity is one of the values [\"Year\", \"Month\", \"Day\", \"Hour\", \"Minute\", \"Second\"] . \n \n At most 500 calls will be made to put and retrieve .",
+  "code": "class LogSystem {\n    vector<pair<string, int>> logs;\n    unordered_map<string, int> width = {\n        {\"Year\", 4}, {\"Month\", 7}, {\"Day\", 10},\n        {\"Hour\", 13}, {\"Minute\", 16}, {\"Second\", 19}\n    };\n\npublic:\n    LogSystem() {}\n\n    void put(int id, string timestamp) {\n        logs.push_back({timestamp, id});\n    }\n\n    vector<int> retrieve(string start, string end, string granularity) {\n        int length = width[granularity];\n        vector<int> result;\n        for (const auto& log : logs) {\n            string prefix = log.first.substr(0, length);\n            if (prefix >= start.substr(0, length) &&\n                prefix <= end.substr(0, length)) {\n                result.push_back(log.second);\n            }\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178490175",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

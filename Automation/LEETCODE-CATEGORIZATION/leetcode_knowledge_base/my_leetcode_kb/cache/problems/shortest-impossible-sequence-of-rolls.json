@@ -1,0 +1,32 @@
+{
+  "id": "2350",
+  "title": "Shortest Impossible Sequence of Rolls",
+  "slug": "shortest-impossible-sequence-of-rolls",
+  "url": "https://leetcode.com/problems/shortest-impossible-sequence-of-rolls/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an integer array rolls of length n and an integer k . You roll a k sided dice numbered from 1 to k , n times, where the result of the i th roll is rolls[i] . \n \n Return the length of the shortest sequence of rolls so that there's no such subsequence in rolls . \n \n A sequence of rolls of length len is the result of rolling a k sided dice len times. \n\n Example 1: \n \n```\nInput:\n rolls = [4,2,1,2,3,3,2,4,1], k = 4\n\nOutput:\n 3\n\nExplanation:\n Every sequence of rolls of length 1, [1], [2], [3], [4], can be taken from rolls.\nEvery sequence of rolls of length 2, [1, 1], [1, 2], ..., [4, 4], can be taken from rolls.\nThe sequence [1, 4, 2] cannot be taken from rolls, so we return 3.\nNote that there are other sequences that cannot be taken from rolls.\n```\n\n Example 2: \n \n```\nInput:\n rolls = [1,1,2,2], k = 2\n\nOutput:\n 2\n\nExplanation:\n Every sequence of rolls of length 1, [1], [2], can be taken from rolls.\nThe sequence [2, 1] cannot be taken from rolls, so we return 2.\nNote that there are other sequences that cannot be taken from rolls but [2, 1] is the shortest.\n```\n\n Example 3: \n \n```\nInput:\n rolls = [1,1,3,2,2,2,3,3], k = 4\n\nOutput:\n 1\n\nExplanation:\n The sequence [4] cannot be taken from rolls, so we return 1.\nNote that there are other sequences that cannot be taken from rolls but [4] is the shortest.\n```\n\n Constraints: \n\n n == rolls.length \n \n 1 <= n <= 10 5 \n \n 1 <= rolls[i] <= k <= 10 5",
+  "code": "class Solution { public:\n    int shortestSequence(vector<int>& rolls,int k) {\n        vector<int> seen(k+1,0);int epoch=1,got=0,ans=1;\n        for(int x:rolls){if(seen[x]!=epoch){seen[x]=epoch;++got;}\n            if(got==k){++ans;++epoch;got=0;}\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175923548",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

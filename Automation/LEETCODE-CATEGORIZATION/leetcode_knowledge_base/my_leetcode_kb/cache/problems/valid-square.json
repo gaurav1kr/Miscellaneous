@@ -1,0 +1,28 @@
+{
+  "id": "593",
+  "title": "Valid Square",
+  "slug": "valid-square",
+  "url": "https://leetcode.com/problems/valid-square/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Geometry"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "Given the coordinates of four points in 2D space p1 , p2 , p3 and p4 , return true if the four points construct a square . \n \n The coordinate of a point p i is represented as [x i , y i ] . The input is not given in any order. \n \n A valid square has four equal sides with positive length and four equal angles (90-degree angles). \n\n Example 1: \n \n```\nInput:\n p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,1]\n\nOutput:\n true\n```\n\n Example 2: \n \n```\nInput:\n p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,12]\n\nOutput:\n false\n```\n\n Example 3: \n \n```\nInput:\n p1 = [1,0], p2 = [-1,0], p3 = [0,1], p4 = [0,-1]\n\nOutput:\n true\n```\n\n Constraints: \n\n p1.length == p2.length == p3.length == p4.length == 2 \n \n -10 4 <= x i , y i <= 10 4",
+  "code": "#include <vector>\n#include <set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int distSq(vector<int>& a, vector<int>& b) {\n        return (a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]);\n    }\n\n    bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {\n        set<int> s = {\n            distSq(p1, p2), distSq(p1, p3), distSq(p1, p4),\n            distSq(p2, p3), distSq(p2, p4), distSq(p3, p4)\n        };\n        return !s.count(0) && s.size() == 2;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595395647",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "1021",
+  "title": "Remove Outermost Parentheses",
+  "slug": "remove-outermost-parentheses",
+  "url": "https://leetcode.com/problems/remove-outermost-parentheses/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Bracket Sequences"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "A valid parentheses string is either empty \"\" , \"(\" + A + \")\" , or A + B , where A and B are valid parentheses strings, and + represents string concatenation. \n\n For example, \"\" , \"()\" , \"(())()\" , and \"(()(()))\" are all valid parentheses strings. \n\n A valid parentheses string s is primitive if it is nonempty, and there does not exist a way to split it into s = A + B , with A and B nonempty valid parentheses strings. \n \n Given a valid parentheses string s , consider its primitive decomposition: s = P 1 + P 2 + ... + P k , where P i are primitive valid parentheses strings. \n \n Return s after removing the outermost parentheses of every primitive string in the primitive decomposition of s . \n\n Example 1: \n \n```\nInput:\n s = \"(()())(())\"\n\nOutput:\n \"()()()\"\n\nExplanation:\n \nThe input string is \"(()())(())\", with primitive decomposition \"(()())\" + \"(())\".\nAfter removing outer parentheses of each part, this is \"()()\" + \"()\" = \"()()()\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"(()())(())(()(()))\"\n\nOutput:\n \"()()()()(())\"\n\nExplanation:\n \nThe input string is \"(()())(())(()(()))\", with primitive decomposition \"(()())\" + \"(())\" + \"(()(()))\".\nAfter removing outer parentheses of each part, this is \"()()\" + \"()\" + \"()(())\" = \"()()()()(())\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"()()\"\n\nOutput:\n \"\"\n\nExplanation:\n \nThe input string is \"()()\", with primitive decomposition \"()\" + \"()\".\nAfter removing outer parentheses of each part, this is \"\" + \"\" = \"\".\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is either '(' or ')' . \n \n s is a valid parentheses string.",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    string removeOuterParentheses(string s) {\n        string result;\n        int count = 0;\n        for (char c : s) {\n            if (c == '(') {\n                if (count > 0) result += c;\n                count++;\n            } else {\n                count--;\n                if (count > 0) result += c;\n            }\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591373079",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

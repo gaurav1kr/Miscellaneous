@@ -1,0 +1,32 @@
+{
+  "id": "3920",
+  "title": "Maximize Fixed Points After Deletions",
+  "slug": "maximize-fixed-points-after-deletions",
+  "url": "https://leetcode.com/problems/maximize-fixed-points-after-deletions/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n A position i is called a fixed point if nums[i] == i . \n \n You are allowed to delete any number of elements (including zero) from the array. After each deletion, the remaining elements shift left , and indices are reassigned starting from 0. \n \n Return an integer denoting the maximum number of fixed points that can be achieved after performing any number of deletions. \n\n Example 1: \n\n Input: nums = [0,2,1] \n \n Output: 2 \n \n Explanation: \n\n Delete nums[1] = 2 . The array becomes [0, 1] . \n \n Now, nums[0] = 0 and nums[1] = 1 , so both indices are fixed points. \n \n Thus, the answer is 2. \n\n Example 2: \n\n Input: nums = [3,1,2] \n \n Output: 2 \n \n Explanation: \n\n Do not delete any elements. The array remains [3, 1, 2] . \n \n Here, nums[1] = 1 and nums[2] = 2 , so these indices are fixed points. \n \n Thus, the answer is 2. \n\n Example 3: \n\n Input: nums = [1,0,1,2] \n \n Output: 3 \n \n Explanation: \n\n Delete nums[0] = 1 . The array becomes [0, 1, 2] . \n \n Now, nums[0] = 0 , nums[1] = 1 , and nums[2] = 2 , so all indices are fixed points. \n \n Thus, the answer is 3. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int maxFixedPoints(vector<int>& nums){\n        int n=nums.size();vector<vector<int>> coords(n+2),bit(n+2);\n        for(int i=0;i<n;++i){int v=nums[i],d=i-v;\n            if(v>i||v>=n)continue;\n            for(int x=v+1;x<=n;x+=x&-x)coords[x].push_back(d);\n        }\n        for(int x=1;x<=n;++x){auto &a=coords[x];sort(a.begin(),a.end());\n            a.erase(unique(a.begin(),a.end()),a.end());bit[x].assign(a.size()+1,0);}\n        int ans=0;\n        for(int i=0;i<n;++i){int v=nums[i],d=i-v;\n            if(v>i||v>=n)continue;\n            int best=0;\n            for(int x=v;x>0;x-=x&-x){int j=upper_bound(coords[x].begin(),coords[x].end(),d)-coords[x].begin();\n                for(;j>0;j-=j&-j)best=max(best,bit[x][j]);}\n            ++best;ans=max(ans,best);\n            for(int x=v+1;x<=n;x+=x&-x){int j=lower_bound(coords[x].begin(),coords[x].end(),d)-coords[x].begin()+1;\n                for(;j<(int)bit[x].size();j+=j&-j)bit[x][j]=max(bit[x][j],best);}\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181171865",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

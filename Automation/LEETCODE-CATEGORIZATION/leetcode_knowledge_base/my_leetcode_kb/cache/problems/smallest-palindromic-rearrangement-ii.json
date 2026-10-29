@@ -1,0 +1,34 @@
+{
+  "id": "3518",
+  "title": "Smallest Palindromic Rearrangement II",
+  "slug": "smallest-palindromic-rearrangement-ii",
+  "url": "https://leetcode.com/problems/smallest-palindromic-rearrangement-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Combinatorics",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a palindromic string s and an integer k . \n \n Return the k-th lexicographically smallest palindromic permutation of s . If there are fewer than k distinct palindromic permutations, return an empty string. \n \n Note: Different rearrangements that yield the same palindromic string are considered identical and are counted once. \n\n Example 1: \n\n Input: s = \"abba\", k = 2 \n \n Output: \"baab\" \n \n Explanation: \n\n The two distinct palindromic rearrangements of \"abba\" are \"abba\" and \"baab\" . \n \n Lexicographically, \"abba\" comes before \"baab\" . Since k = 2 , the output is \"baab\" . \n\n Example 2: \n\n Input: s = \"aa\", k = 2 \n \n Output: \"\" \n \n Explanation: \n\n There is only one palindromic rearrangement: \"aa\" . \n \n The output is an empty string since k = 2 exceeds the number of possible rearrangements. \n\n Example 3: \n\n Input: s = \"bacab\", k = 1 \n \n Output: \"abcba\" \n \n Explanation: \n\n The two distinct palindromic rearrangements of \"bacab\" are \"abcba\" and \"bacab\" . \n \n Lexicographically, \"abcba\" comes before \"bacab\" . Since k = 1 , the output is \"abcba\" . \n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists of lowercase English letters. \n \n s is guaranteed to be palindromic. \n \n 1 <= k <= 10 6",
+  "code": "\nclass Solution {\n    static const long long CAP = 1000001LL;\n\n    // Calculate C(n, r), capped at CAP.\n    long long combination(int n, int r) {\n        r = min(r, n - r);\n\n        long long result = 1;\n\n        for (int i = 1; i <= r; ++i) {\n            result = result * (n - r + i) / i;\n\n            if (result >= CAP)\n                return CAP;\n        }\n\n        return result;\n    }\n\n    // Count distinct permutations of the remaining\n    // characters, capped at CAP.\n    long long countWays(const vector<int>& cnt) {\n        int remaining = 0;\n\n        for (int x : cnt)\n            remaining += x;\n\n        long long ways = 1;\n\n        for (int x : cnt) {\n            if (x == 0)\n                continue;\n\n            long long choices = combination(remaining, x);\n\n            ways = min(CAP, ways * choices);\n\n            if (ways >= CAP)\n                return CAP;\n\n            remaining -= x;\n        }\n\n        return ways;\n    }\n\npublic:\n    string smallestPalindrome(string s, int k) {\n        vector<int> freq(26, 0);\n\n        for (char c : s)\n            ++freq[c - 'a'];\n\n        vector<int> cnt(26, 0);\n        string middle = \"\";\n\n        int halfLength = 0;\n\n        for (int i = 0; i < 26; ++i) {\n            cnt[i] = freq[i] / 2;\n            halfLength += cnt[i];\n\n            if (freq[i] % 2 == 1)\n                middle = string(1, char('a' + i));\n        }\n\n        // Not enough distinct palindromes.\n        if (countWays(cnt) < k)\n            return \"\";\n\n        string left;\n        left.reserve(halfLength);\n\n        for (int pos = 0; pos < halfLength; ++pos) {\n            for (int c = 0; c < 26; ++c) {\n                if (cnt[c] == 0)\n                    continue;\n\n                // Try choosing this character.\n                --cnt[c];\n\n                long long ways = countWays(cnt);\n\n                if (ways >= k) {\n                    left.push_back(char('a' + c));\n                    break;\n                }\n\n                // Skip this block of permutations.\n                k -= static_cast<int>(ways);\n                ++cnt[c];\n            }\n        }\n\n        string right = left;\n        reverse(right.begin(), right.end());\n\n        return left + middle + right;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181653581",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "2410",
+  "title": "Maximum Matching of Players With Trainers",
+  "slug": "maximum-matching-of-players-with-trainers",
+  "url": "https://leetcode.com/problems/maximum-matching-of-players-with-trainers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array players , where players[i] represents the ability of the i th player. You are also given a 0-indexed integer array trainers , where trainers[j] represents the training capacity of the j th trainer. \n \n The i th player can match with the j th trainer if the player's ability is less than or equal to the trainer's training capacity. Additionally, the i th player can be matched with at most one trainer, and the j th trainer can be matched with at most one player. \n \n Return the maximum number of matchings between players and trainers that satisfy these conditions. \n\n Example 1: \n \n```\nInput:\n players = [4,7,9], trainers = [8,2,5,8]\n\nOutput:\n 2\n\nExplanation:\n\nOne of the ways we can form two matchings is as follows:\n- players[0] can be matched with trainers[0] since 4 <= 8.\n- players[1] can be matched with trainers[3] since 7 <= 8.\nIt can be proven that 2 is the maximum number of matchings that can be formed.\n```\n\n Example 2: \n \n```\nInput:\n players = [1,1,1], trainers = [10]\n\nOutput:\n 1\n\nExplanation:\n\nThe trainer can be matched with any of the 3 players.\nEach player can only be matched with one trainer, so the maximum answer is 1.\n```\n\n Constraints: \n\n 1 <= players.length, trainers.length <= 10 5 \n \n 1 <= players[i], trainers[j] <= 10 9 \n\n Note: This question is the same as 445: Assign Cookies.",
+  "code": "class Solution {public:int matchPlayersAndTrainers(vector<int>& players,vector<int>& trainers){sort(players.begin(),players.end());sort(trainers.begin(),trainers.end());int i=0;for(int t:trainers)if(i<(int)players.size()&&t>=players[i])i++;return i;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176545270",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

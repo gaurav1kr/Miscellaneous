@@ -1,0 +1,42 @@
+{
+  "id": "3362",
+  "title": "Zero Array Transformation III",
+  "slug": "zero-array-transformation-iii",
+  "url": "https://leetcode.com/problems/zero-array-transformation-iii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and a 2D array queries where queries[i] = [l i , r i ] . \n \n Each queries[i] represents the following action on nums : \n\n Decrement the value at each index in the range [l i , r i ] in nums by at most 1. \n \n The amount by which the value is decremented can be chosen independently for each index. \n\n A Zero Array is an array with all its elements equal to 0. \n \n Return the maximum number of elements that can be removed from queries , such that nums can still be converted to a zero array using the remaining queries. If it is not possible to convert nums to a zero array , return -1. \n\n Example 1: \n\n Input: nums = [2,0,2], queries = [[0,2],[0,2],[1,1]] \n \n Output: 1 \n \n Explanation: \n \n After removing queries[2] , nums can still be converted to a zero array. \n\n Using queries[0] , decrement nums[0] and nums[2] by 1 and nums[1] by 0. \n \n Using queries[1] , decrement nums[0] and nums[2] by 1 and nums[1] by 0. \n\n Example 2: \n\n Input: nums = [1,1,1,1], queries = [[1,3],[0,2],[1,3],[1,2]] \n \n Output: 2 \n \n Explanation: \n \n We can remove queries[2] and queries[3] . \n\n Example 3: \n\n Input: nums = [1,2,3,4], queries = [[0,3]] \n \n Output: -1 \n \n Explanation: \n \n nums cannot be converted to a zero array even after using all the queries. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5 \n \n 1 <= queries.length <= 10 5 \n \n queries[i].length == 2 \n \n 0 <= l i <= r i < nums.length",
+  "code": "class Solution {public:int maxRemoval(vector<int>& nums,vector<vector<int>>& queries){sort(queries.begin(),queries.end());priority_queue<int> available;priority_queue<int,vector<int>,greater<int>> active;int j=0,used=0;for(int i=0;i<(int)nums.size();i++){while(j<(int)queries.size()&&queries[j][0]<=i)available.push(queries[j++][1]);while(!active.empty()&&active.top()<i)active.pop();while((int)active.size()<nums[i]){while(!available.empty()&&available.top()<i)available.pop();if(available.empty())return -1;active.push(available.top());available.pop();used++;}}return queries.size()-used;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177469448",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

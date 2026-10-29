@@ -1,0 +1,33 @@
+{
+  "id": "2699",
+  "title": "Modify Graph Edge Weights",
+  "slug": "modify-graph-edge-weights",
+  "url": "https://leetcode.com/problems/modify-graph-edge-weights/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an undirected weighted connected graph containing n nodes labeled from 0 to n - 1 , and an integer array edges where edges[i] = [a i , b i , w i ] indicates that there is an edge between nodes a i and b i with weight w i . \n \n Some edges have a weight of -1 ( w i = -1 ), while others have a positive weight ( w i > 0 ). \n \n Your task is to modify all edges with a weight of -1 by assigning them positive integer values in the range [1, 2 * 10 9 ] so that the shortest distance between the nodes source and destination becomes equal to an integer target . If there are multiple modifications that make the shortest distance between source and destination equal to target , any of them will be considered correct. \n \n Return an array containing all edges (even unmodified ones) in any order if it is possible to make the shortest distance from source to destination equal to target , or an empty array if it's impossible. \n \n Note: You are not allowed to modify the weights of edges with initial positive weights. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2023/04/18/graph.png] \n \n```\nInput:\n n = 5, edges = [[4,1,-1],[2,0,-1],[0,3,-1],[4,3,-1]], source = 0, destination = 1, target = 5\n\nOutput:\n [[4,1,1],[2,0,1],[0,3,3],[4,3,1]]\n\nExplanation:\n The graph above shows a possible modification to the edges, making the distance from 0 to 1 equal to 5.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2023/04/18/graph-2.png] \n \n```\nInput:\n n = 3, edges = [[0,1,-1],[0,2,5]], source = 0, destination = 2, target = 6\n\nOutput:\n []\n\nExplanation:\n The graph above contains the initial edges. It is not possible to make the distance from 0 to 2 equal to 6 by modifying the edge with weight -1. So, an empty array is returned.\n```\n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2023/04/19/graph-3.png] \n \n```\nInput:\n n = 4, edges = [[1,0,4],[1,2,3],[2,3,5],[0,3,-1]], source = 0, destination = 2, target = 6\n\nOutput:\n [[1,0,4],[1,2,3],[2,3,5],[0,3,1]]\n\nExplanation:\n The graph above shows a modified graph having the shortest distance from 0 to 2 as 6.\n```\n\n Constraints: \n\n 1 <= n <= 100 \n \n 1 <= edges.length <= n * (n - 1) / 2 \n \n edges[i].length == 3 \n \n 0 <= a i , b i  < n \n \n w i  = -1  or 1 <= w i  <= 10 7 \n \n a i  != b i \n \n 0 <= source, destination < n \n \n source != destination \n \n 1 <= target <= 10 9 \n \n The graph is connected, and there are no self-loops or repeated edges",
+  "code": "class Solution {public:vector<vector<int>> modifiedGraphEdges(int n,vector<vector<int>>&edges,int source,int destination,int target){const long long INF=4000000000000000000LL;vector<vector<pair<int,int>>>g(n);for(int i=0;i<(int)edges.size();i++){auto&e=edges[i];g[e[0]].push_back({e[1],i});g[e[1]].push_back({e[0],i});}auto dijkstra=[&](int start,bool unknownOne){vector<long long>d(n,INF);priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>>pq;d[start]=0;pq.push({0,start});while(!pq.empty()){auto cur=pq.top();pq.pop();long long du=cur.first;int u=cur.second;if(du!=d[u])continue;for(auto e:g[u]){long long w=edges[e.second][2];if(w<0){if(!unknownOne)continue;w=1;}if(du+w<d[e.first]){d[e.first]=du+w;pq.push({d[e.first],e.first});}}}return d;};auto base=dijkstra(destination,true);if(base[source]>target)return {};vector<long long>d(n,INF);priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>>pq;d[source]=0;pq.push({0,source});while(!pq.empty()){auto cur=pq.top();pq.pop();long long du=cur.first;int u=cur.second;if(du!=d[u])continue;for(auto e:g[u]){int v=e.first,id=e.second;long long w=edges[id][2];if(w==-1){w=1;if(base[v]<INF)w=max(w,(long long)target-du-base[v]);w=min(w,2000000000LL);edges[id][2]=(int)w;}if(du+w<d[v]){d[v]=du+w;pq.push({d[v],v});}}}if(d[destination]!=target)return {};for(auto&e:edges)if(e[2]==-1)e[2]=2000000000;return edges;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176678490",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

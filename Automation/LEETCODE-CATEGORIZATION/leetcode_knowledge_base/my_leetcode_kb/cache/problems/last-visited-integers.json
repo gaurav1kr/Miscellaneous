@@ -1,0 +1,28 @@
+{
+  "id": "2899",
+  "title": "Last Visited Integers",
+  "slug": "last-visited-integers",
+  "url": "https://leetcode.com/problems/last-visited-integers/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array nums where nums[i] is either a positive integer or -1 . We need to find for each -1 the respective positive integer, which we call the last visited integer. \n \n To achieve this goal, let's define two empty arrays: seen and ans . \n \n Start iterating from the beginning of the array nums . \n\n If a positive integer is encountered, prepend it to the front of seen . \n \n If -1  is encountered, let k be the number of consecutive -1 s seen so far (including the current -1 ),\n\n If k is less than or equal to the length of seen , append the k -th element of seen to ans . \n \n If k is strictly greater than the length of seen , append -1 to ans . \n\n Return the array ans . \n\n Example 1: \n\n Input: nums = [1,2,-1,-1,-1] \n \n Output: [2,1,-1] \n \n Explanation: \n \n Start with seen = [] and ans = [] . \n\n Process nums[0] : The first element in nums is 1 . We prepend it to the front of seen . Now, seen == [1] . \n \n Process nums[1] : The next element is 2 . We prepend it to the front of seen . Now, seen == [2, 1] . \n \n Process nums[2] : The next element is -1 . This is the first occurrence of -1 , so k == 1 . We look for the first element in seen. We append 2 to ans . Now, ans == [2] . \n \n Process nums[3] : Another -1 . This is the second consecutive -1 , so k == 2 . The second element in seen is 1 , so we append 1 to ans . Now, ans == [2, 1] . \n \n Process nums[4] : Another -1 , the third in a row, making k = 3 . However, seen only has two elements ( [2, 1] ). Since k is greater than the number of elements in seen , we append -1 to ans . Finally, ans == [2, 1, -1] . \n\n Example 2: \n\n Input: nums = [1,-1,2,-1,-1] \n \n Output: [1,2,1] \n \n Explanation: \n \n Start with seen = [] and ans = [] . \n\n Process nums[0] : The first element in nums is 1 . We prepend it to the front of seen . Now, seen == [1] . \n \n Process nums[1] : The next element is -1 . This is the first occurrence of -1 , so k == 1 . We look for the first element in seen , which is 1 . Append 1 to ans . Now, ans == [1] . \n \n Process nums[2] : The next element is 2 . Prepend this to the front of seen . Now, seen == [2, 1] . \n \n Process nums[3] : The next element is -1 . This -1 is not consecutive to the first -1 since 2 was in between. Thus, k resets to 1 . The first element in seen is 2 , so append 2 to ans . Now, ans == [1, 2] . \n \n Process nums[4] : Another -1 . This is consecutive to the previous -1 , so k == 2 . The second element in seen is 1 , append 1 to ans . Finally, ans == [1, 2, 1] . \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n nums[i] == -1 or 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    vector<int> lastVisitedIntegers(vector<int>& nums) {\n        vector<int> seen, answer;\n        int consecutive = 0;\n        for (int x : nums) {\n            if (x != -1) {\n                seen.push_back(x);\n                consecutive = 0;\n            } else {\n                ++consecutive;\n                int size = seen.size();\n                answer.push_back(consecutive <= size ? seen[size - consecutive] : -1);\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179667664",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

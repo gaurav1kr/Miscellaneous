@@ -1,0 +1,33 @@
+{
+  "id": "211",
+  "title": "Design Add and Search Words Data Structure",
+  "slug": "design-add-and-search-words-data-structure",
+  "url": "https://leetcode.com/problems/design-add-and-search-words-data-structure/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Depth-First Search",
+    "Design",
+    "Trie"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "String",
+    "Trie"
+  ],
+  "description": "Design a data structure that supports adding new words and finding if a string matches any previously added string. \n \n Implement the WordDictionary class: \n\n WordDictionary()  Initializes the object. \n \n void addWord(word) Adds word to the data structure, it can be matched later. \n \n bool search(word)  Returns true if there is any string in the data structure that matches word  or false otherwise. word may contain dots '.' where dots can be matched with any letter. \n\n Example: \n \n```\nInput\n\n[\"WordDictionary\",\"addWord\",\"addWord\",\"addWord\",\"search\",\"search\",\"search\",\"search\"]\n[[],[\"bad\"],[\"dad\"],[\"mad\"],[\"pad\"],[\"bad\"],[\".ad\"],[\"b..\"]]\n\nOutput\n\n[null,null,null,null,false,true,true,true]\n\nExplanation\n\nWordDictionary wordDictionary = new WordDictionary();\nwordDictionary.addWord(\"bad\");\nwordDictionary.addWord(\"dad\");\nwordDictionary.addWord(\"mad\");\nwordDictionary.search(\"pad\"); // return False\nwordDictionary.search(\"bad\"); // return True\nwordDictionary.search(\".ad\"); // return True\nwordDictionary.search(\"b..\"); // return True\n```\n\n Constraints: \n\n 1 <= word.length <= 25 \n \n word in addWord consists of lowercase English letters. \n \n word in search consist of '.' or lowercase English letters. \n \n There will be at most 2 dots in word for search queries. \n \n At most 10 4 calls will be made to addWord and search .",
+  "code": "#include <string>\n#include <vector>\nusing namespace std;\n\nclass WordDictionary {\nprivate:\n    struct TrieNode {\n        TrieNode* children[26] = {nullptr}; // Pointers to child nodes\n        bool isEnd = false; // Flag for end of word\n    };\n    \n    TrieNode* root;\n    \n    bool dfsSearch(const string& word, int index, TrieNode* node) {\n        if (!node) return false; // Base case: no matching node\n        if (index == word.size()) return node->isEnd; // Check if it's a valid word\n        \n        char c = word[index];\n        if (c == '.') {\n            // Try all possible children\n            for (int i = 0; i < 26; ++i) {\n                if (dfsSearch(word, index + 1, node->children[i])) {\n                    return true;\n                }\n            }\n            return false; // No match found\n        } else {\n            // Normal character, move to the next node\n            return dfsSearch(word, index + 1, node->children[c - 'a']);\n        }\n    }\n    \npublic:\n    WordDictionary() {\n        root = new TrieNode(); // Initialize root\n    }\n    \n    void addWord(string word) {\n        TrieNode* node = root;\n        for (char c : word) {\n            int idx = c - 'a';\n            if (!node->children[idx]) {\n                node->children[idx] = new TrieNode();\n            }\n            node = node->children[idx];\n        }\n        node->isEnd = true; // Mark the end of the word\n    }\n    \n    bool search(string word) {\n        return dfsSearch(word, 0, root); // Start DFS search from root\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536019458",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

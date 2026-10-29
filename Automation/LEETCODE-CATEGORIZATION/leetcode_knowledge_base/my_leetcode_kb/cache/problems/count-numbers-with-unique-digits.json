@@ -1,0 +1,30 @@
+{
+  "id": "357",
+  "title": "Count Numbers with Unique Digits",
+  "slug": "count-numbers-with-unique-digits",
+  "url": "https://leetcode.com/problems/count-numbers-with-unique-digits/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Backtracking"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "Given an integer n , return the count of all numbers with unique digits, x , where 0 <= x < 10 n . \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n 91\n\nExplanation:\n The answer should be the total numbers in the range of 0 ≤ x < 100, excluding 11,22,33,44,55,66,77,88,99\n```\n\n Example 2: \n \n```\nInput:\n n = 0\n\nOutput:\n 1\n```\n\n Constraints: \n\n 0 <= n <= 8",
+  "code": "class Solution {\npublic:\n    int countNumbersWithUniqueDigits(int n) {\n        if (n == 0) return 1;\n        int res = 10, unique = 9, available = 9;\n        for (int i = 2; i <= n && available; ++i) {\n            unique *= available;\n            res += unique;\n            available--;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593844157",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

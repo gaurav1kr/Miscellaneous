@@ -1,0 +1,32 @@
+{
+  "id": "3776",
+  "title": "Minimum Moves to Balance Circular Array",
+  "slug": "minimum-moves-to-balance-circular-array",
+  "url": "https://leetcode.com/problems/minimum-moves-to-balance-circular-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a circular array balance of length n , where balance[i] is the net balance of person i . \n \n In one move, a person can transfer exactly 1 unit of balance to either their left or right neighbor. \n \n Return the minimum number of moves required so that every person has a non-negative balance. If it is impossible, return -1 . \n \n Note : You are guaranteed that at most 1 index has a negative balance initially. \n\n Example 1: \n\n Input: balance = [5,1,-4] \n \n Output: 4 \n \n Explanation: \n \n One optimal sequence of moves is: \n\n Move 1 unit from i = 1 to i = 2 , resulting in balance = [5, 0, -3] \n \n Move 1 unit from i = 0 to i = 2 , resulting in balance = [4, 0, -2] \n \n Move 1 unit from i = 0 to i = 2 , resulting in balance = [3, 0, -1] \n \n Move 1 unit from i = 0 to i = 2 , resulting in balance = [2, 0, 0] \n\n Thus, the minimum number of moves required is 4. \n\n Example 2: \n\n Input: balance = [1,2,-5,2] \n \n Output: 6 \n \n Explanation: \n \n One optimal sequence of moves is: \n\n Move 1 unit from i = 1 to i = 2 , resulting in balance = [1, 1, -4, 2] \n \n Move 1 unit from i = 1 to i = 2 , resulting in balance = [1, 0, -3, 2] \n \n Move 1 unit from i = 3 to i = 2 , resulting in balance = [1, 0, -2, 1] \n \n Move 1 unit from i = 3 to i = 2 , resulting in balance = [1, 0, -1, 0] \n \n Move 1 unit from i = 0 to i = 1 , resulting in balance = [0, 1, -1, 0] \n \n Move 1 unit from i = 1 to i = 2 , resulting in balance = [0, 0, 0, 0] \n\n Thus, the minimum number of moves required is 6.​​​ \n\n Example 3: \n\n Input: balance = [-3,2] \n \n Output: -1 \n \n Explanation: \n \n ​​​​​​​ It is impossible to make all balances non-negative for balance = [-3, 2] , so the answer is -1. \n\n Constraints: \n\n 1 <= n == balance.length <= 10 5 \n \n -10 9 <= balance[i] <= 10 9 \n \n There is at most one negative value in balance initially.",
+  "code": "class Solution {\npublic:\n    long long minMoves(vector<int>& balance) {\n        int n = balance.size(), bad = -1;\n        long long total = 0;\n        for (int i = 0; i < n; ++i) {\n            total += balance[i];\n            if (balance[i] < 0) bad = i;\n        }\n        if (total < 0) return -1;\n        if (bad == -1) return 0;\n        long long need = -(long long)balance[bad], ans = 0;\n        for (int d = 1; d <= n / 2 && need > 0; ++d) {\n            int l = (bad - d + n) % n, r = (bad + d) % n;\n            long long take = min(need, (long long)balance[l]);\n            ans += take * d; need -= take;\n            if (l != r) {\n                take = min(need, (long long)balance[r]);\n                ans += take * d; need -= take;\n            }\n        }\n        return need == 0 ? ans : -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181026491",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

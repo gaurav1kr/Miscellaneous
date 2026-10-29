@@ -1,0 +1,35 @@
+{
+  "id": "1606",
+  "title": "Find Servers That Handled Most Number of Requests",
+  "slug": "find-servers-that-handled-most-number-of-requests",
+  "url": "https://leetcode.com/problems/find-servers-that-handled-most-number-of-requests/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Heap (Priority Queue)",
+    "Simulation",
+    "Ordered Set"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Ordered set",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You have k servers numbered from 0 to k-1 that are being used to handle multiple requests simultaneously. Each server has infinite computational capacity but cannot handle more than one request at a time . The requests are assigned to servers according to a specific algorithm: \n\n The i th (0-indexed) request arrives. \n \n If all servers are busy, the request is dropped (not handled at all). \n \n If the (i % k) th server is available, assign the request to that server. \n \n Otherwise, assign the request to the next available server (wrapping around the list of servers and starting from 0 if necessary). For example, if the i th server is busy, try to assign the request to the (i+1) th server, then the (i+2) th server, and so on. \n\n You are given a strictly increasing array arrival of positive integers, where arrival[i] represents the arrival time of the i th request, and another array load , where load[i] represents the load of the i th request (the time it takes to complete). Your goal is to find the busiest server(s) . A server is considered busiest if it handled the most number of requests successfully among all the servers. \n \n Return a list containing the IDs (0-indexed) of the busiest server(s) . You may return the IDs in any order. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/08/load-1.png] \n \n```\nInput:\n k = 3, arrival = [1,2,3,4,5], load = [5,2,3,3,3] \n\nOutput:\n [1] \n\nExplanation:\n \nAll of the servers start out available.\nThe first 3 requests are handled by the first 3 servers in order.\nRequest 3 comes in. Server 0 is busy, so it's assigned to the next available server, which is 1.\nRequest 4 comes in. It cannot be handled since all servers are busy, so it is dropped.\nServers 0 and 2 handled one request each, while server 1 handled two requests. Hence server 1 is the busiest server.\n```\n\n Example 2: \n \n```\nInput:\n k = 3, arrival = [1,2,3,4], load = [1,2,1,2]\n\nOutput:\n [0]\n\nExplanation:\n \nThe first 3 requests are handled by first 3 servers.\nRequest 3 comes in. It is handled by server 0 since the server is available.\nServer 0 handled two requests, while servers 1 and 2 handled one request each. Hence server 0 is the busiest server.\n```\n\n Example 3: \n \n```\nInput:\n k = 3, arrival = [1,2,3], load = [10,12,11]\n\nOutput:\n [0,1,2]\n\nExplanation:\n Each server handles a single request, so they are all considered the busiest.\n```\n\n Constraints: \n\n 1 <= k <= 10 5 \n \n 1 <= arrival.length, load.length <= 10 5 \n \n arrival.length == load.length \n \n 1 <= arrival[i], load[i] <= 10 9 \n \n arrival is strictly increasing .",
+  "code": "#include <vector>\n#include <queue>\n#include <set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> busiestServers(int k, vector<int>& arrival, vector<int>& load) {\n        set<int> free;\n        for (int i = 0; i < k; ++i) free.insert(i);\n        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> busy;\n        vector<int> count(k, 0);\n        int n = arrival.size();\n        for (int i = 0; i < n; ++i) {\n            while (!busy.empty() && busy.top().first <= arrival[i]) {\n                free.insert(busy.top().second);\n                busy.pop();\n            }\n            if (free.empty()) continue;\n            auto it = free.lower_bound(i % k);\n            if (it == free.end()) it = free.begin();\n            int server = *it;\n            free.erase(it);\n            count[server]++;\n            busy.emplace(arrival[i] + load[i], server);\n        }\n\n        int maxReq = *max_element(count.begin(), count.end());\n        vector<int> res;\n        for (int i = 0; i < k; ++i)\n            if (count[i] == maxReq) res.push_back(i);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610643020",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

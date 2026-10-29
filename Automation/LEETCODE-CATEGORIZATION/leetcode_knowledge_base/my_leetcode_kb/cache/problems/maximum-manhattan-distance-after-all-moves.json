@@ -1,0 +1,30 @@
+{
+  "id": "3968",
+  "title": "Maximum Manhattan Distance After All Moves",
+  "slug": "maximum-manhattan-distance-after-all-moves",
+  "url": "https://leetcode.com/problems/maximum-manhattan-distance-after-all-moves/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string moves consisting of the characters 'U' , 'D' , 'L' , 'R' , and '_' . \n \n Starting from the origin (0, 0) , each character represents one move on a 2D plane: \n\n 'U' : Move up by 1 unit. \n \n 'D' : Move down by 1 unit. \n \n 'L' : Move left by 1 unit. \n \n 'R' : Move right by 1 unit. \n \n '_' : Can be independently replaced with any one of 'U' , 'D' , 'L' , or 'R' . \n\n Return the maximum Manhattan distance from the origin that can be achieved after all moves have been performed. \n\n Example 1: \n\n Input: moves = \"L_D_\" \n \n Output: 4 \n \n Explanation: \n \n One optimal choice is: \n\n 'L' : (0, 0) -> (-1, 0) \n \n '_' treated as 'D' : (-1, 0) -> (-1, -1) \n \n 'D' : (-1, -1) -> (-1, -2) \n \n '_' treated as 'L' : (-1, -2) -> (-2, -2) \n\n The final Manhattan distance from the origin is |0 - (-2)| + |0 - (-2)| = 4 . \n\n Example 2: \n\n Input: moves = \"U_R\" \n \n Output: 3 \n \n Explanation: \n \n One optimal choice is: \n\n 'U' : (0, 0) -> (0, 1) \n \n '_' treated as 'U' : (0, 1) -> (0, 2) \n \n 'R' : (0, 2) -> (1, 2) \n\n The final Manhattan distance from the origin is |0 - 1| + |0 - 2| = 3 . \n\n Constraints: \n\n 1 <= moves.length <= 10 5 \n \n moves consists of only 'U' , 'D' , 'L' , 'R' , and '_' .",
+  "code": "class Solution {\npublic:\n    int maxDistance(string moves) {\n        int x=0,y=0,wild=0;\n        for(char c:moves){\n            if(c=='U')++y;\n            else if(c=='D')--y;\n            else if(c=='R')++x;\n            else if(c=='L')--x;\n            else ++wild;\n        }\n        return abs(x)+abs(y)+wild;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181098735",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

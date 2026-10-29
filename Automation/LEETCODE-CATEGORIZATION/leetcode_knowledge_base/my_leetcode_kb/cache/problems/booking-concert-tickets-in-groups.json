@@ -1,0 +1,33 @@
+{
+  "id": "2286",
+  "title": "Booking Concert Tickets in Groups",
+  "slug": "booking-concert-tickets-in-groups",
+  "url": "https://leetcode.com/problems/booking-concert-tickets-in-groups/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Binary Search",
+    "Design",
+    "Binary Indexed Tree",
+    "Segment Tree"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Fenwick tree",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "A concert hall has n rows numbered from 0 to n - 1 , each with m seats, numbered from 0 to m - 1 . You need to design a ticketing system that can allocate seats in the following cases: \n\n If a group of k spectators can sit together in a row. \n \n If every member of a group of k spectators can get a seat. They may or may not sit together. \n\n Note that the spectators are very picky. Hence: \n\n They will book seats only if each member of their group can get a seat with row number less than or equal to maxRow . maxRow can vary from group to group. \n \n In case there are multiple rows to choose from, the row with the smallest number is chosen. If there are multiple seats to choose in the same row, the seat with the smallest number is chosen. \n\n Implement the BookMyShow class: \n\n BookMyShow(int n, int m) Initializes the object with n as number of rows and m as number of seats per row. \n \n int[] gather(int k, int maxRow) Returns an array of length 2 denoting the row and seat number (respectively) of the first seat being allocated to the k members of the group, who must sit together . In other words, it returns the smallest possible r and c such that all [c, c + k - 1] seats are valid and empty in row r , and r <= maxRow . Returns [] in case it is not possible to allocate seats to the group. \n \n boolean scatter(int k, int maxRow) Returns true if all k members of the group can be allocated seats in rows 0 to maxRow , who may or may not sit together. If the seats can be allocated, it allocates k seats to the group with the smallest row numbers, and the smallest possible seat numbers in each row. Otherwise, returns false . \n\n Example 1: \n \n```\nInput\n\n[\"BookMyShow\", \"gather\", \"gather\", \"scatter\", \"scatter\"]\n[[2, 5], [4, 0], [2, 0], [5, 1], [5, 1]]\n\nOutput\n\n[null, [0, 0], [], true, false]\n\nExplanation\n\nBookMyShow bms = new BookMyShow(2, 5); // There are 2 rows with 5 seats each \nbms.gather(4, 0); // return [0, 0]\n // The group books seats [0, 3] of row 0. \nbms.gather(2, 0); // return []\n // There is only 1 seat left in row 0,\n // so it is not possible to book 2 consecutive seats. \nbms.scatter(5, 1); // return True\n // The group books seat 4 of row 0 and seats [0, 3] of row 1. \nbms.scatter(5, 1); // return False\n // There is only one seat left in the hall.\n```\n\n Constraints: \n\n 1 <= n <= 5 * 10 4 \n \n 1 <= m, k <= 10 9 \n \n 0 <= maxRow <= n - 1 \n \n At most 5 * 10 4 calls in total will be made to gather and scatter .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass BookMyShow {\n    int n,m; vector<long long> sum; vector<int> mx,used;\n    void update(int p,int l,int r,int i){if(l==r){sum[p]=mx[p]=m-used[i];return;}int mid=(l+r)/2;if(i<=mid)update(p*2,l,mid,i);else update(p*2+1,mid+1,r,i);sum[p]=sum[p*2]+sum[p*2+1];mx[p]=max(mx[p*2],mx[p*2+1]);}\n    long long query(int p,int l,int r,int q){if(l>q)return 0;if(r<=q)return sum[p];int mid=(l+r)/2;return query(p*2,l,mid,q)+query(p*2+1,mid+1,r,q);}\n    int first(int p,int l,int r,int q,int k){if(l>q||mx[p]<k)return -1;if(l==r)return l;int mid=(l+r)/2;int x=first(p*2,l,mid,q,k);return x<0?first(p*2+1,mid+1,r,q,k):x;}\npublic:\n    BookMyShow(int n,int m):n(n),m(m),sum(4*n,m),mx(4*n,m),used(n,0){build(1,0,n-1);}\n    void build(int p,int l,int r){if(l==r){sum[p]=mx[p]=m;return;}int mid=(l+r)/2;build(p*2,l,mid);build(p*2+1,mid+1,r);sum[p]=sum[p*2]+sum[p*2+1];mx[p]=m;}\n    vector<int> gather(int k,int maxRow){int i=first(1,0,n-1,min(maxRow,n-1),k);if(i<0)return {};int start=used[i];used[i]+=k;update(1,0,n-1,i);return {i,start};}\n    bool scatter(int k,int maxRow){maxRow=min(maxRow,n-1);if(query(1,0,n-1,maxRow)<k)return false;while(k){int i=first(1,0,n-1,maxRow,1);int take=min(k,m-used[i]);used[i]+=take;k-=take;update(1,0,n-1,i);}return true;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175907076",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "2801",
+  "title": "Count Stepping Numbers in Range",
+  "slug": "count-stepping-numbers-in-range",
+  "url": "https://leetcode.com/problems/count-stepping-numbers-in-range/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "Given two positive integers low and high represented as strings, find the count of stepping numbers in the inclusive range [low, high] . \n \n A stepping number is an integer such that all of its adjacent digits have an absolute difference of exactly 1 . \n \n Return an integer denoting the count of stepping numbers in the inclusive range [low, high] . \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n \n Note: A stepping number should not have a leading zero. \n\n Example 1: \n \n```\nInput:\n low = \"1\", high = \"11\"\n\nOutput:\n 10\n\nExplanation: \nThe stepping numbers in the range [1,11] are 1, 2, 3, 4, 5, 6, 7, 8, 9 and 10. There are a total of 10 stepping numbers in the range. Hence, the output is 10.\n```\n\n Example 2: \n \n```\nInput:\n low = \"90\", high = \"101\"\n\nOutput:\n 2\n\nExplanation: \nThe stepping numbers in the range [90,101] are 98 and 101. There are a total of 2 stepping numbers in the range. Hence, the output is 2.\n```\n\n Constraints: \n\n 1 <= int(low) <= int(high) < 10 100 \n \n 1 <= low.length, high.length <= 100 \n \n low and high consist of only digits. \n \n low and high don't have any leading zeros.",
+  "code": "class Solution {static const int MOD=1000000007;int countUpTo(const string& s){int dp[2][2][11]={};dp[1][0][10]=1;for(char ch:s){int nxt[2][2][11]={};int lim=ch-'0';for(int tight=0;tight<=1;++tight)for(int started=0;started<=1;++started)for(int last=0;last<=10;++last)if(dp[tight][started][last])for(int d=0;d<=(tight?lim:9);++d){if(started&&abs(d-last)!=1)continue;int nt=tight&&(d==lim),ns=started||(d!=0),nl=ns?d:10;int &v=nxt[nt][ns][nl];v=(v+dp[tight][started][last])%MOD;}memcpy(dp,nxt,sizeof(dp));}int ans=0;for(int t=0;t<=1;++t)for(int d=0;d<10;++d)ans=(ans+dp[t][1][d])%MOD;return (ans+1)%MOD;}public:int countSteppingNumbers(string low,string high){string before=low;int i=before.size()-1;while(i>=0&&before[i]=='0')before[i--]='9';if(i<0)return countUpTo(high);--before[i];int first=before.find_first_not_of('0');before=(first==string::npos?\"0\":before.substr(first));return (countUpTo(high)-countUpTo(before)+MOD)%MOD;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176705338",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

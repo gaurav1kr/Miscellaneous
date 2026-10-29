@@ -1,0 +1,29 @@
+{
+  "id": "233",
+  "title": "Number of Digit One",
+  "slug": "number-of-digit-one",
+  "url": "https://leetcode.com/problems/number-of-digit-one/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Recursion"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "Given an integer n , count the total number of digit 1 appearing in all non-negative integers less than or equal to n . \n\n Example 1: \n \n```\nInput:\n n = 13\n\nOutput:\n 6\n```\n\n Example 2: \n \n```\nInput:\n n = 0\n\nOutput:\n 0\n```\n\n Constraints: \n\n 0 <= n <= 10 9",
+  "code": "class Solution {\npublic:\n    int countDigitOne(int n) {\n        long res = 0;\n        for (long i = 1; i <= n; i *= 10) {\n            long divider = i * 10;\n            res += (n / divider) * i + min(max(n % divider - i + 1, 0L), i);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595401405",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

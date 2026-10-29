@@ -1,0 +1,38 @@
+{
+  "id": "3331",
+  "title": "Find Subtree Sizes After Changes",
+  "slug": "find-subtree-sizes-after-changes",
+  "url": "https://leetcode.com/problems/find-subtree-sizes-after-changes/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "String",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a tree rooted at node 0 that consists of n nodes numbered from 0 to n - 1 . The tree is represented by an array parent of size n , where parent[i] is the parent of node i . Since node 0 is the root, parent[0] == -1 . \n \n You are also given a string s of length n , where s[i] is the character assigned to node i . \n \n We make the following changes on the tree one time simultaneously for all nodes x from 1 to n - 1 : \n\n Find the closest node y to node x such that y is an ancestor of x , and s[x] == s[y] . \n \n If node y does not exist, do nothing. \n \n Otherwise, remove the edge between x and its current parent and make node y the new parent of x by adding an edge between them. \n\n Return an array answer of size n where answer[i] is the size of the subtree rooted at node i in the final tree. \n\n Example 1: \n\n Input: parent = [-1,0,0,1,1,1], s = \"abaabc\" \n \n Output: [6,3,1,1,1,1] \n \n Explanation: \n [Figure: https://assets.leetcode.com/uploads/2024/08/15/graphex1drawio.png] \n \n The parent of node 3 will change from node 1 to node 0. \n\n Example 2: \n\n Input: parent = [-1,0,4,0,1], s = \"abbba\" \n \n Output: [5,2,1,1,1] \n \n Explanation: \n [Figure: https://assets.leetcode.com/uploads/2024/08/20/exgraph2drawio.png] \n \n The following changes will happen at the same time: \n\n The parent of node 4 will change from node 1 to node 0. \n \n The parent of node 2 will change from node 4 to node 1. \n\n Constraints: \n\n n == parent.length == s.length \n \n 1 <= n <= 10 5 \n \n 0 <= parent[i] <= n - 1 for all i >= 1 . \n \n parent[0] == -1 \n \n parent represents a valid tree. \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {public:vector<int> findSubtreeSizes(vector<int>& parent,string s){int n=s.size();vector<vector<int>> ch(n),newch(n);for(int i=1;i<n;i++)ch[parent[i]].push_back(i);vector<int> last(26,-1);function<void(int)> build=[&](int u){int c=s[u]-'a',p=last[c];if(u) newch[p==-1?parent[u]:p].push_back(u);last[c]=u;for(int v:ch[u])build(v);last[c]=p;};build(0);vector<int> ans(n,1);function<void(int)> dfs=[&](int u){for(int v:newch[u]){dfs(v);ans[u]+=ans[v];}};dfs(0);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177461441",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

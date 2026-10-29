@@ -1,0 +1,28 @@
+{
+  "id": "4024",
+  "title": "Nearest Available Drone",
+  "slug": "nearest-available-drone",
+  "url": "https://leetcode.com/problems/nearest-available-drone/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Enumeration"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array drones , where drones[i] = [x i , y i , range i ] represents the x-coordinate, y-coordinate, and travel range of the i th drone. \n \n You are also given an integer array target = [tx, ty] , representing the coordinates of the target. \n \n A drone drones[i] can reach the target if the Manhattan distance between its coordinates and the target coordinates is less than or equal to its range i . \n \n Return the index of the reachable drone with the minimum Manhattan distance to the target. If there is a tie, return the smallest index . If no drone can reach the target, return -1 . \n\n Example 1: \n\n Input: drones = [[0,0,8],[2,2,9]], target = [3,4] \n \n Output: 1 \n \n Explanation: \n\n The distance between drones[0] and target is |0 - 3| + |0 - 4| = 7 , which is within its range of 8. \n \n The distance between drones[1] and target is |2 - 3| + |2 - 4| = 3 , which is within its range of 9. \n \n Since drones[1] is the nearest drone, the answer is 1. \n\n Example 2: \n\n Input: drones = [[2,1,5],[4,4,5],[6,6,8]], target = [5,5] \n \n Output: 1 \n \n Explanation: \n\n The distance between drones[0] and target is |2 - 5| + |1 - 5| = 7 , which is greater than its range of 5. \n \n The distance between drones[1] and target is |4 - 5| + |4 - 5| = 2 , which is within its range of 5. \n \n The distance between drones[2] and target is |6 - 5| + |6 - 5| = 2 , which is within its range of 8. \n \n Both drones[1] and drones[2] are the nearest drones. Since we should return the smallest index, the answer is 1. \n\n Example 3: \n\n Input: drones = [[4,4,5]], target = [8,6] \n \n Output: -1 \n \n Explanation: \n\n The distance between drones[0] and target is |4 - 8| + |4 - 6| = 6 , which is greater than its range of 5. \n \n No drone can reach the target, so the answer is -1. \n\n Constraints: \n\n 1 <= drones.length <= 100 \n \n drones[i] = [x i , y i , range i ] \n \n target = [tx, ty] \n \n -25 <= x i , y i , tx, ty <= 25 \n \n 1 <= range i <= 100",
+  "code": "class Solution {\npublic:\n    int nearestDrone(vector<vector<int>>& drones, vector<int>& target) {\n        int best = INT_MAX, ans = -1;\n        for (int i = 0; i < (int)drones.size(); ++i) {\n            int dist = abs(drones[i][0] - target[0]) + abs(drones[i][1] - target[1]);\n            if (dist <= drones[i][2] && dist < best) { best = dist; ans = i; }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179331501",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

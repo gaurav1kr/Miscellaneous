@@ -1,0 +1,35 @@
+{
+  "id": "548",
+  "title": "Split Array with Equal Sum",
+  "slug": "split-array-with-equal-sum",
+  "url": "https://leetcode.com/problems/split-array-with-equal-sum/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums of length n , return true if there is a triplet (i, j, k) which satisfies the following conditions: \n\n 0 < i, i + 1 < j, j + 1 < k < n - 1 \n \n The sum of subarrays (0, i - 1) , (i + 1, j - 1) , (j + 1, k - 1) and (k + 1, n - 1) is equal. \n \nA subarray (l, r) represents a slice of the original array starting from the element indexed l to the element indexed r .\n\n Example 1: \n \n```\nInput:\n nums = [1,2,1,2,1,2,1]\n\nOutput:\n true\n\nExplanation:\n\ni = 1, j = 3, k = 5. \nsum(0, i - 1) = sum(0, 0) = 1\nsum(i + 1, j - 1) = sum(2, 2) = 1\nsum(j + 1, k - 1) = sum(4, 4) = 1\nsum(k + 1, n - 1) = sum(6, 6) = 1\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,1,2,1,2,1,2]\n\nOutput:\n false\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 2000 \n \n -10 6 <= nums[i] <= 10 6",
+  "code": "class Solution {\npublic:\n    bool splitArray(vector<int>& nums) {\n        int n = nums.size();\n        if (n < 7) {\n            return false;\n        }\n        vector<long long> prefix(n + 1, 0);\n        for (int i = 0; i < n; ++i) {\n            prefix[i + 1] = prefix[i] + nums[i];\n        }\n        for (int middle = 3; middle < n - 3; ++middle) {\n            unordered_set<long long> possible;\n            for (int i = 1; i < middle - 1; ++i) {\n                long long a = prefix[i];\n                long long b = prefix[middle] - prefix[i + 1];\n                if (a == b) {\n                    possible.insert(a);\n                }\n            }\n            for (int j = middle + 2; j < n - 1; ++j) {\n                long long c = prefix[j] - prefix[middle + 1];\n                long long d = prefix[n] - prefix[j + 1];\n                if (c == d && possible.count(c)) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178480606",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

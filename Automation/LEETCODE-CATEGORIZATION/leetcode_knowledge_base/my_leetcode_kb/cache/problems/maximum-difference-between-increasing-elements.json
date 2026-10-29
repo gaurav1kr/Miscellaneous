@@ -1,0 +1,27 @@
+{
+  "id": "2016",
+  "title": "Maximum Difference Between Increasing Elements",
+  "slug": "maximum-difference-between-increasing-elements",
+  "url": "https://leetcode.com/problems/maximum-difference-between-increasing-elements/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a 0-indexed integer array nums of size n , find the maximum difference between nums[i] and nums[j] (i.e., nums[j] - nums[i] ), such that 0 <= i < j < n and nums[i] < nums[j] . \n \n Return the maximum difference . If no such i and j exists, return -1 . \n\n Example 1: \n \n```\nInput:\n nums = [7,\n1\n,\n5\n,4]\n\nOutput:\n 4\n\nExplanation:\n\nThe maximum difference occurs with i = 1 and j = 2, nums[j] - nums[i] = 5 - 1 = 4.\nNote that with i = 1 and j = 0, the difference nums[j] - nums[i] = 7 - 1 = 6, but i > j, so it is not valid.\n```\n\n Example 2: \n \n```\nInput:\n nums = [9,4,3,2]\n\nOutput:\n -1\n\nExplanation:\n\nThere is no i and j such that i < j and nums[i] < nums[j].\n```\n\n Example 3: \n \n```\nInput:\n nums = [\n1\n,5,2,\n10\n]\n\nOutput:\n 9\n\nExplanation:\n\nThe maximum difference occurs with i = 0 and j = 3, nums[j] - nums[i] = 10 - 1 = 9.\n```\n\n Constraints: \n\n n == nums.length \n \n 2 <= n <= 1000 \n \n 1 <= nums[i] <= 10 9",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maximumDifference(vector<int>& nums) {\n        int minVal = nums[0], res = -1;\n        for (int i = 1; i < nums.size(); ++i) {\n            if (nums[i] > minVal)\n                res = max(res, nums[i] - minVal);\n            minVal = min(minVal, nums[i]);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610669322",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

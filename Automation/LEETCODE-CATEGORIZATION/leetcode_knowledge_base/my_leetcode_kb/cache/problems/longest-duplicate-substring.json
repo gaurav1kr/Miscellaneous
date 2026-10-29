@@ -1,0 +1,41 @@
+{
+  "id": "1044",
+  "title": "Longest Duplicate Substring",
+  "slug": "longest-duplicate-substring",
+  "url": "https://leetcode.com/problems/longest-duplicate-substring/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Binary Search",
+    "Sliding Window",
+    "Rolling Hash",
+    "Suffix Array",
+    "Hash Function",
+    "Suffix Automaton",
+    "Suffix Tree",
+    "Z Algorithm",
+    "Boyer–Moore String-Search Algorithm"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , consider all duplicated substrings : (contiguous) substrings of s that occur 2 or more times. The occurrences may overlap. \n \n Return any duplicated substring that has the longest possible length. If s does not have a duplicated substring, the answer is \"\" . \n\n Example 1: \n \n```\nInput:\n s = \"banana\"\n\nOutput:\n \"ana\"\n```\n \n Example 2: \n \n```\nInput:\n s = \"abcd\"\n\nOutput:\n \"\"\n```\n\n Constraints: \n\n 2 <= s.length <= 3 * 10 4 \n \n s consists of lowercase English letters.",
+  "code": "#define ull unsigned long long\n\nclass Solution {\npublic:\n    \n    string ans=\"\";\n    \n    bool solve(int len, string &s, ull power){\n        int start = 0, end = len;\n        unordered_set<ull> st;\n        \n        ull curHash = 0;\n        for(int i=0; i<len; ++i){\n            curHash = (curHash*131 + (s[i]));\n        }\n        \n        st.insert(curHash);\n        for(int j=len; j<s.size(); ++j){\n            curHash = ((curHash - power*(s[start]))) ;\n            curHash = (curHash*131);\n            curHash = (curHash + (s[j]));\n            start++;\n            \n            if(st.find(curHash) != st.end()){\n                string curS = s.substr(start,len);\n                if(curS.size()>ans.size()){\n                    ans = curS;\n                } \n                return true;\n            }\n            st.insert(curHash);\n        } \n        return false;\n    }\n    \n    void binary(int l, int r, string &s, vector<ull>& power){\n        if(l>r) return;\n        int mid = l+(r-l)/2;\n        if(solve(mid+1,s,power[mid])){\n            l=mid+1;\n        }else{\n            r=mid-1;\n        }\n        binary(l,r,s,power);\n    }\n\n    string longestDupSubstring(string s) {\n        int n = s.size();\n        vector<ull> power(n,1);\n        for(int i=1;i<n;++i){ \n            power[i]=(power[i-1]*131);\n        }\n        \n        binary(0,n-1,s,power);\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590131830",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "3714",
+  "title": "Longest Balanced Substring II",
+  "slug": "longest-balanced-substring-ii",
+  "url": "https://leetcode.com/problems/longest-balanced-substring-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "You are given a string s consisting only of the characters 'a' , 'b' , and 'c' . \n \n A substring of s is called balanced if all distinct characters in the substring appear the same number of times. \n \n Return the length of the longest balanced substring of s . \n\n Example 1: \n\n Input: s = \"abbac\" \n \n Output: 4 \n \n Explanation: \n \n The longest balanced substring is \"abba\" because both distinct characters 'a' and 'b' each appear exactly 2 times. \n\n Example 2: \n\n Input: s = \"aabcc\" \n \n Output: 3 \n \n Explanation: \n \n The longest balanced substring is \"abc\" because all distinct characters 'a' , 'b' and 'c' each appear exactly 1 time. \n\n Example 3: \n\n Input: s = \"aba\" \n \n Output: 2 \n \n Explanation: \n \n One of the longest balanced substrings is \"ab\" because both distinct characters 'a' and 'b' each appear exactly 1 time. Another longest balanced substring is \"ba\" . \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s contains only the characters 'a' , 'b' , and 'c' .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int longestBalanced(string s) {\n        int n = s.size(), ans = 0;\n        for (int i = 0, j; i < n; i = j) {\n            j = i + 1;\n            while (j < n && s[j] == s[i]) ++j;\n            ans = max(ans, j - i);\n        }\n        for (int a = 0; a < 3; ++a) {\n            for (int b = a + 1; b < 3; ++b) {\n                unordered_map<int,int> first;\n                first[0] = -1;\n                int diff = 0;\n                for (int i = 0; i < n; ++i) {\n                    int c = s[i] - 'a';\n                    if (c != a && c != b) {\n                        first.clear(); first[0] = i; diff = 0;\n                    } else {\n                        diff += (c == a ? 1 : -1);\n                        if (first.count(diff)) ans = max(ans, i - first[diff]);\n                        else first[diff] = i;\n                    }\n                }\n            }\n        }\n        unordered_map<long long,int> first;\n        first[(long long)n * (2LL*n + 1) + n] = -1;\n        int cnt[3] = {0,0,0};\n        for (int i = 0; i < n; ++i) {\n            ++cnt[s[i] - 'a'];\n            long long x = (long long)cnt[0] - cnt[1];\n            long long y = (long long)cnt[0] - cnt[2];\n            long long key = (x + n) * (2LL*n + 1) + (y + n);\n            if (first.count(key)) ans = max(ans, i - first[key]);\n            else first[key] = i;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180996377",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

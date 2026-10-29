@@ -1,0 +1,31 @@
+{
+  "id": "3357",
+  "title": "Minimize the Maximum Adjacent Element Difference",
+  "slug": "minimize-the-maximum-adjacent-element-difference",
+  "url": "https://leetcode.com/problems/minimize-the-maximum-adjacent-element-difference/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums . Some values in nums are missing and are denoted by -1. \n \n You must choose a pair of positive integers (x, y) exactly once and replace each missing element with either x or y . \n \n You need to minimize the maximum absolute difference between adjacent elements of nums after replacements. \n \n Return the minimum possible difference. \n\n Example 1: \n\n Input: nums = [1,2,-1,10,8] \n \n Output: 4 \n \n Explanation: \n \n By choosing the pair as (6, 7) , nums can be changed to [1, 2, 6, 10, 8] . \n \n The absolute differences between adjacent elements are: \n\n |1 - 2| == 1 \n \n |2 - 6| == 4 \n \n |6 - 10| == 4 \n \n |10 - 8| == 2 \n\n Example 2: \n\n Input: nums = [-1,-1,-1] \n \n Output: 0 \n \n Explanation: \n \n By choosing the pair as (4, 4) , nums can be changed to [4, 4, 4] . \n\n Example 3: \n\n Input: nums = [-1,10,-1,8] \n \n Output: 1 \n \n Explanation: \n \n By choosing the pair as (11, 9) , nums can be changed to [11, 10, 9, 8] . \n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n nums[i] is either -1 or in the range [1, 10 9 ] .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int minDifference(vector<int>& nums){int n=nums.size(),mn=INT_MAX,mx=0,base=0;for(int i=0;i<n;i++){if(i&&nums[i]>=0&&nums[i-1]>=0)base=max(base,abs(nums[i]-nums[i-1]));if(nums[i]>=0&&((i&&nums[i-1]<0)||(i+1<n&&nums[i+1]<0))){mn=min(mn,nums[i]);mx=max(mx,nums[i]);}}if(mn==INT_MAX)return base;auto check=[&](int d){if(d<base)return false;long long x=mn+d,y=mx-d;if(x>=y)return true;for(int i=0;i<n;){if(nums[i]!=-1){i++;continue;}int j=i;while(j<n&&nums[j]==-1)j++;int a=i?nums[i-1]:-1,b=j<n?nums[j]:-1;auto ok=[&](long long v,int q){return q<0||llabs(v-q)<=d;};bool yes=false;if(a<0&&b<0)yes=true;else if(a<0||b<0){int q=max(a,b);yes=ok(x,q)||ok(y,q);}else{yes=(ok(x,a)&&ok(x,b))||(ok(y,a)&&ok(y,b));if(j-i>=2&&llabs(x-y)<=d)yes|=(ok(x,a)&&ok(y,b))||(ok(y,a)&&ok(x,b));}if(!yes)return false;i=j;}return true;};int lo=base,hi=1000000000;while(lo<hi){int mid=lo+(hi-lo)/2;if(check(mid))hi=mid;else lo=mid+1;}return lo;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181230907",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

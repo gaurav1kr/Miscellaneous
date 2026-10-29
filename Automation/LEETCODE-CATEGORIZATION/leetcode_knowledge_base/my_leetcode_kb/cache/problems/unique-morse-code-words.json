@@ -1,0 +1,35 @@
+{
+  "id": "804",
+  "title": "Unique Morse Code Words",
+  "slug": "unique-morse-code-words",
+  "url": "https://leetcode.com/problems/unique-morse-code-words/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows: \n\n 'a' maps to \".-\" , \n \n 'b' maps to \"-...\" , \n \n 'c' maps to \"-.-.\" , and so on. \n\n For convenience, the full table for the 26 letters of the English alphabet is given below: \n \n```\n[\".-\",\"-...\",\"-.-.\",\"-..\",\".\",\"..-.\",\"--.\",\"....\",\"..\",\".---\",\"-.-\",\".-..\",\"--\",\"-.\",\"---\",\".--.\",\"--.-\",\".-.\",\"...\",\"-\",\"..-\",\"...-\",\".--\",\"-..-\",\"-.--\",\"--..\"]\n```\n\n Given an array of strings words where each word can be written as a concatenation of the Morse code of each letter. \n\n For example, \"cab\" can be written as \"-.-..--...\" , which is the concatenation of \"-.-.\" , \".-\" , and \"-...\" . We will call such a concatenation the transformation of a word. \n\n Return the number of different transformations among all words we have . \n\n Example 1: \n \n```\nInput:\n words = [\"gin\",\"zen\",\"gig\",\"msg\"]\n\nOutput:\n 2\n\nExplanation:\n The transformation of each word is:\n\"gin\" -> \"--...-.\"\n\"zen\" -> \"--...-.\"\n\"gig\" -> \"--...--.\"\n\"msg\" -> \"--...--.\"\nThere are 2 different transformations: \"--...-.\" and \"--...--.\".\n```\n\n Example 2: \n \n```\nInput:\n words = [\"a\"]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length <= 12 \n \n words[i] consists of lowercase English letters.",
+  "code": "#include <vector>\n#include <string>\n#include <unordered_set>\nusing namespace std;\n\nclass Solution {\npublic:\n    int uniqueMorseRepresentations(vector<string>& words) {\n        vector<string> morse = {\".-\",\"-...\",\"-.-.\",\"-..\",\".\",\"..-.\",\"--.\",\"....\",\"..\",\n                                  \".---\",\"-.-\",\".-..\",\"--\",\"-.\",\"---\",\".--.\",\"--.-\",\n                                  \".-.\",\"...\",\"-\",\"..-\",\"...-\",\".--\",\"-..-\",\"-.--\",\n                                  \"--..\"};\n        unordered_set<string> transformations;\n        for (const string& word : words) {\n            string code = \"\";\n            for (char c : word) {\n                code += morse[c - 'a'];\n            }\n            transformations.insert(code);\n        }\n        return transformations.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591372344",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

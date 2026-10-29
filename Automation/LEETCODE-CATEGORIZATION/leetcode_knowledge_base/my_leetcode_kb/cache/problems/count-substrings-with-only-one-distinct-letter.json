@@ -1,0 +1,28 @@
+{
+  "id": "1180",
+  "title": "Count Substrings with Only One Distinct Letter",
+  "slug": "count-substrings-with-only-one-distinct-letter",
+  "url": "https://leetcode.com/problems/count-substrings-with-only-one-distinct-letter/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s , return the number of substrings that have only one distinct letter . \n\n Example 1: \n \n```\nInput:\n s = \"aaaba\"\n\nOutput:\n 8\n\nExplanation: \nThe substrings with one distinct letter are \"aaa\", \"aa\", \"a\", \"b\".\n\"aaa\" occurs 1 time.\n\"aa\" occurs 2 times.\n\"a\" occurs 4 times.\n\"b\" occurs 1 time.\nSo the answer is 1 + 2 + 4 + 1 = 8.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aaaaaaaaaa\"\n\nOutput:\n 55\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s[i] consists of only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int countLetters(string s) {\n        int run = 0;\n        int total = 0;\n        for (int i = 0; i < static_cast<int>(s.size()); ++i) {\n            if (i > 0 && s[i] == s[i - 1]) {\n                ++run;\n            } else {\n                run = 1;\n            }\n            total += run;\n        }\n        return total;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178544175",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

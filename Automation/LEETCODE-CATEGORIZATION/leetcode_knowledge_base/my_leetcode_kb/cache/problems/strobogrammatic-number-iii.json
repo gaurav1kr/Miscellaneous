@@ -1,0 +1,31 @@
+{
+  "id": "248",
+  "title": "Strobogrammatic Number III",
+  "slug": "strobogrammatic-number-iii",
+  "url": "https://leetcode.com/problems/strobogrammatic-number-iii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String",
+    "Recursion"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings low and high that represent two integers low and high where low <= high , return the number of strobogrammatic numbers in the range [low, high] . \n \n A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down). \n\n Example 1: \n \n```\nInput:\n low = \"50\", high = \"100\"\n\nOutput:\n 3\n```\n \n Example 2: \n \n```\nInput:\n low = \"0\", high = \"0\"\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= low.length, high.length <= 15 \n \n low and high consist of only digits. \n \n low <= high \n \n low and high do not contain any leading zeros except for zero itself.",
+  "code": "class Solution {\n    int ans = 0;\n    string low, high;\n    void build(string& s, int l, int r) {\n        if (l > r) {\n            if ((s.size() > low.size() || s >= low) &&\n                (s.size() < high.size() || s <= high)) ++ans;\n            return;\n        }\n        const vector<pair<char,char>> pairs = {\n            {'0','0'}, {'1','1'}, {'6','9'}, {'8','8'}, {'9','6'}\n        };\n        for (const auto& p : pairs) {\n            if (l == r && p.first != p.second) continue;\n            if (l == 0 && s.size() > 1 && p.first == '0') continue;\n            s[l] = p.first;\n            s[r] = p.second;\n            build(s, l + 1, r - 1);\n        }\n    }\npublic:\n    int strobogrammaticInRange(string low, string high) {\n        this->low = low;\n        this->high = high;\n        ans = 0;\n        for (int len = low.size(); len <= (int)high.size(); ++len) {\n            string s(len, ' ');\n            build(s, 0, len - 1);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179740749",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

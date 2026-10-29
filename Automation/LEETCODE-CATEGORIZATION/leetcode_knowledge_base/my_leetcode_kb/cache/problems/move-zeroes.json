@@ -1,0 +1,29 @@
+{
+  "id": "283",
+  "title": "Move Zeroes",
+  "slug": "move-zeroes",
+  "url": "https://leetcode.com/problems/move-zeroes/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , move all 0 's to the end of it while maintaining the relative order of the non-zero elements. \n \n Note that you must do this in-place without making a copy of the array. \n\n Example 1: \n \n```\nInput:\n nums = [0,1,0,3,12]\n\nOutput:\n [1,3,12,0,0]\n```\n \n Example 2: \n \n```\nInput:\n nums = [0]\n\nOutput:\n [0]\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 4 \n \n -2 31 <= nums[i] <= 2 31 - 1 \n\n Follow up: Could you minimize the total number of operations done?",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    void moveZeroes(vector<int>& nums) {\n        int lastNonZero = 0;\n        for (int i = 0; i < nums.size(); i++) {\n            if (nums[i] != 0) {\n                swap(nums[i], nums[lastNonZero]);\n                lastNonZero++;\n            }\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588372242",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "560",
+  "title": "Subarray Sum Equals K",
+  "slug": "subarray-sum-equals-k",
+  "url": "https://leetcode.com/problems/subarray-sum-equals-k/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an array of integers nums and an integer k , return the total number of subarrays whose sum equals to k . \n \n A subarray is a contiguous non-empty sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n nums = [1,1,1], k = 2\n\nOutput:\n 2\n```\n \n Example 2: \n \n```\nInput:\n nums = [1,2,3], k = 3\n\nOutput:\n 2\n```\n\n Constraints: \n\n 1 <= nums.length <= 2 * 10 4 \n \n -1000 <= nums[i] <= 1000 \n \n -10 7 <= k <= 10 7",
+  "code": "class Solution \n{\npublic:\n    int subarraySum(vector<int>& nums, int k) \n    {\n       unordered_map<int,int> prefixsum{{0,1}} ;\n       int sum = 0 , count = 0 ;\n       for(int num:nums)\n       {\n            sum += num ;\n            count += prefixsum[sum-k] ;\n            prefixsum[sum]++ ;\n       }\n       return count ;\n    }\n};\n\n//currentsum-previoussum =k ==> previoussum = currentsum-k",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2151918240",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

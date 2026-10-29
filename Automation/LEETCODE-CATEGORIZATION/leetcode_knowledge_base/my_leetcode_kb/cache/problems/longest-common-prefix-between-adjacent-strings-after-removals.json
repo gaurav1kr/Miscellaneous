@@ -1,0 +1,30 @@
+{
+  "id": "3598",
+  "title": "Longest Common Prefix Between Adjacent Strings After Removals",
+  "slug": "longest-common-prefix-between-adjacent-strings-after-removals",
+  "url": "https://leetcode.com/problems/longest-common-prefix-between-adjacent-strings-after-removals/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings words . For each index i in the range [0, words.length - 1] , perform the following steps: \n\n Remove the element at index i from the words array. \n \n Compute the length of the longest common prefix among all adjacent pairs in the modified array. \n\n Return an array answer , where answer[i] is the length of the longest common prefix between the adjacent pairs after removing the element at index i . If no adjacent pairs remain or if none share a common prefix, then answer[i] should be 0. \n\n Example 1: \n\n Input: words = [\"jump\",\"run\",\"run\",\"jump\",\"run\"] \n \n Output: [3,0,0,3,3] \n \n Explanation: \n\n Removing index 0:\n\n words becomes [\"run\", \"run\", \"jump\", \"run\"] \n \n Longest adjacent pair is [\"run\", \"run\"] having a common prefix \"run\" (length 3) \n\n Removing index 1:\n\n words becomes [\"jump\", \"run\", \"jump\", \"run\"] \n \n No adjacent pairs share a common prefix (length 0) \n\n Removing index 2:\n\n words becomes [\"jump\", \"run\", \"jump\", \"run\"] \n \n No adjacent pairs share a common prefix (length 0) \n\n Removing index 3:\n\n words becomes [\"jump\", \"run\", \"run\", \"run\"] \n \n Longest adjacent pair is [\"run\", \"run\"] having a common prefix \"run\" (length 3) \n\n Removing index 4:\n\n words becomes [\"jump\", \"run\", \"run\", \"jump\"] \n \n Longest adjacent pair is [\"run\", \"run\"] having a common prefix \"run\" (length 3) \n\n Example 2: \n\n Input: words = [\"dog\",\"racer\",\"car\"] \n \n Output: [0,0,0] \n \n Explanation: \n\n Removing any index results in an answer of 0. \n\n Constraints: \n\n 1 <= words.length <= 10 5 \n \n 1 <= words[i].length <= 10 4 \n \n words[i] consists of lowercase English letters. \n \n The sum of words[i].length is smaller than or equal 10 5 .",
+  "code": "class Solution {public:\n vector<int> longestCommonPrefix(vector<string>& words){\n  int n=words.size();auto lcp=[&](const string&a,const string&b){int i=0;while(i<(int)min(a.size(),b.size())&&a[i]==b[i])++i;return i;};\n  vector<int> p(n),s(n),v(n);\n  for(int i=1;i<n;++i)v[i]=lcp(words[i-1],words[i]);\n  for(int i=1;i<n;++i)p[i]=max(p[i-1],v[i]);\n  for(int i=n-2;i>=0;--i)s[i]=max(s[i+1],v[i+1]);\n  vector<int> ans(n);for(int i=0;i<n;++i){\n   if(i>=2)ans[i]=max(ans[i],p[i-1]);\n   if(i+2<n)ans[i]=max(ans[i],s[i+1]);\n   if(i>0&&i+1<n)ans[i]=max(ans[i],lcp(words[i-1],words[i+1]));\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177605279",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

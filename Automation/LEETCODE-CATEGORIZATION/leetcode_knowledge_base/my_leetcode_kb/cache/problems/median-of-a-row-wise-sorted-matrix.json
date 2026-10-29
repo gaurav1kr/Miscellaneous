@@ -1,0 +1,31 @@
+{
+  "id": "2387",
+  "title": "Median of a Row Wise Sorted Matrix",
+  "slug": "median-of-a-row-wise-sorted-matrix",
+  "url": "https://leetcode.com/problems/median-of-a-row-wise-sorted-matrix/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Matrix"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an m x n matrix grid containing an odd number of integers where each row is sorted in non-decreasing order, return the median of the matrix . \n \n You must solve the problem in less than O(m * n) time complexity. \n\n Example 1: \n \n```\nInput:\n grid = [[1,1,2],[2,3,3],[1,3,4]]\n\nOutput:\n 2\n\nExplanation:\n The elements of the matrix in sorted order are 1,1,1,2,\n2\n,3,3,3,4. The median is 2.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[1,1,3,3,4]]\n\nOutput:\n 3\n\nExplanation:\n The elements of the matrix in sorted order are 1,1,\n3\n,3,4. The median is 3.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 500 \n \n m and n are both odd. \n \n 1 <= grid[i][j] <= 10 6 \n \n grid[i] is sorted in non-decreasing order.",
+  "code": "class Solution {\npublic:\n    int matrixMedian(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        int low = INT_MAX, high = INT_MIN;\n        for (auto& row : grid) {\n            low = min(low, row.front()); high = max(high, row.back());\n        }\n        int target = (m * n) / 2 + 1;\n        while (low < high) {\n            int mid = low + ((long long)high - low) / 2;\n            int count = 0;\n            for (auto& row : grid)\n                count += upper_bound(row.begin(), row.end(), mid) - row.begin();\n            if (count >= target) high = mid;\n            else low = mid + 1;\n        }\n        return low;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178866226",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

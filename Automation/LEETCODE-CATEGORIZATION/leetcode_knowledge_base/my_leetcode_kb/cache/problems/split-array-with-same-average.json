@@ -1,0 +1,43 @@
+{
+  "id": "805",
+  "title": "Split Array With Same Average",
+  "slug": "split-array-with-same-average",
+  "url": "https://leetcode.com/problems/split-array-with-same-average/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Meet in the Middle",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n You should move each element of nums into one of the two arrays A and B such that A and B are non-empty, and average(A) == average(B) . \n \n Return true if it is possible to achieve that and false otherwise. \n \n Note that for an array arr , average(arr) is the sum of all the elements of arr over the length of arr . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4,5,6,7,8]\n\nOutput:\n true\n\nExplanation:\n We can split the array into [1,4,5,8] and [2,3,6,7], and both of them have an average of 4.5.\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,1]\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= nums.length <= 30 \n \n 0 <= nums[i] <= 10 4",
+  "code": "#include <vector>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool splitArraySameAverage(vector<int>& nums) {\n        int n = nums.size(), total = accumulate(nums.begin(), nums.end(), 0);\n        vector<unordered_set<int>> dp(n + 1);\n        dp[0].insert(0);\n\n        for (int a : nums)\n            for (int i = n - 1; i >= 0; --i)\n                for (int s : dp[i])\n                    dp[i + 1].insert(s + a);\n\n        for (int k = 1; k < n; ++k)\n            if (total * k % n == 0 && dp[k].count(total * k / n))\n                return true;\n\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593853023",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

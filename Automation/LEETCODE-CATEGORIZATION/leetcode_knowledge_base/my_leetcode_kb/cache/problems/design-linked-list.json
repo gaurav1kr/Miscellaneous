@@ -1,0 +1,28 @@
+{
+  "id": "707",
+  "title": "Design Linked List",
+  "slug": "design-linked-list",
+  "url": "https://leetcode.com/problems/design-linked-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Design"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Design your implementation of the linked list. You can choose to use a singly or doubly linked list. \nA node in a singly linked list should have two attributes: val and next . val is the value of the current node, and next is a pointer/reference to the next node. \nIf you want to use the doubly linked list, you will need one more attribute prev to indicate the previous node in the linked list. Assume all nodes in the linked list are 0-indexed . \n \n Implement the MyLinkedList class: \n\n MyLinkedList() Initializes the MyLinkedList object. \n \n int get(int index) Get the value of the index th node in the linked list. If the index is invalid, return -1 . \n \n void addAtHead(int val) Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. \n \n void addAtTail(int val) Append a node of value val as the last element of the linked list. \n \n void addAtIndex(int index, int val) Add a node of value val before the index th node in the linked list. If index equals the length of the linked list, the node will be appended to the end of the linked list. If index is greater than the length, the node will not be inserted . \n \n void deleteAtIndex(int index) Delete the index th node in the linked list, if the index is valid. \n\n Example 1: \n \n```\nInput\n\n[\"MyLinkedList\", \"addAtHead\", \"addAtTail\", \"addAtIndex\", \"get\", \"deleteAtIndex\", \"get\"]\n[[], [1], [3], [1, 2], [1], [1], [1]]\n\nOutput\n\n[null, null, null, null, 2, null, 3]\n\nExplanation\n\nMyLinkedList myLinkedList = new MyLinkedList();\nmyLinkedList.addAtHead(1);\nmyLinkedList.addAtTail(3);\nmyLinkedList.addAtIndex(1, 2); // linked list becomes 1->2->3\nmyLinkedList.get(1); // return 2\nmyLinkedList.deleteAtIndex(1); // now the linked list is 1->3\nmyLinkedList.get(1); // return 3\n```\n\n Constraints: \n\n 0 <= index, val <= 1000 \n \n Please do not use the built-in LinkedList library. \n \n At most 2000 calls will be made to get , addAtHead , addAtTail , addAtIndex and deleteAtIndex .",
+  "code": "class Node {\npublic:\n    int val;\n    Node* prev;\n    Node* next;\n    Node(int x) : val(x), prev(nullptr), next(nullptr) {}\n};\n\nclass MyLinkedList {\npublic:\n    Node* head;\n    Node* tail;\n    int size;\n\n    MyLinkedList() {\n        head = new Node(0);\n        tail = new Node(0);\n        head->next = tail;\n        tail->prev = head;\n        size = 0;\n    }\n\n    int get(int index) {\n        if (index < 0 || index >= size) return -1;\n        Node* curr = head->next;\n        for (int i = 0; i < index; i++) {\n            curr = curr->next;\n        }\n        return curr->val;\n    }\n\n    void addAtHead(int val) {\n        addAtIndex(0, val);\n    }\n\n    void addAtTail(int val) {\n        addAtIndex(size, val);\n    }\n\n    void addAtIndex(int index, int val) {\n        if (index < 0 || index > size) return;\n        Node* prevNode = head;\n        for (int i = 0; i < index; i++) {\n            prevNode = prevNode->next;\n        }\n        Node* newNode = new Node(val);\n        newNode->next = prevNode->next;\n        newNode->prev = prevNode;\n        prevNode->next->prev = newNode;\n        prevNode->next = newNode;\n        size++;\n    }\n\n    void deleteAtIndex(int index) {\n        if (index < 0 || index >= size) return;\n        Node* curr = head;\n        for (int i = 0; i <= index; i++) {\n            curr = curr->next;\n        }\n        curr->prev->next = curr->next;\n        curr->next->prev = curr->prev;\n        delete curr;\n        size--;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591361652",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

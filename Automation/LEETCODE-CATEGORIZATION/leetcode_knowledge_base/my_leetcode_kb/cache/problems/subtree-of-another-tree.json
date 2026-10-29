@@ -1,0 +1,34 @@
+{
+  "id": "572",
+  "title": "Subtree of Another Tree",
+  "slug": "subtree-of-another-tree",
+  "url": "https://leetcode.com/problems/subtree-of-another-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "String Matching",
+    "Binary Tree",
+    "Hash Function"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the roots of two binary trees root and subRoot , return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise. \n \n A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants. The tree tree could also be considered as a subtree of itself. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/28/subtree1-tree.jpg] \n \n```\nInput:\n root = [3,4,5,1,2], subRoot = [4,1,2]\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/28/subtree2-tree.jpg] \n \n```\nInput:\n root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]\n\nOutput:\n false\n```\n\n Constraints: \n\n The number of nodes in the root tree is in the range [1, 2000] . \n \n The number of nodes in the subRoot tree is in the range [1, 1000] . \n \n -10 4 <= root.val <= 10 4 \n \n -10 4 <= subRoot.val <= 10 4",
+  "code": "class Solution {\npublic:\n    bool isSame(TreeNode* s, TreeNode* t) {\n        if (!s || !t) return s == t;\n        return (s->val == t->val) && isSame(s->left, t->left) && isSame(s->right, t->right);\n    }\n    bool isSubtree(TreeNode* root, TreeNode* subRoot) {\n        if (!root) return false;\n        return isSame(root, subRoot) || isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588084982",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

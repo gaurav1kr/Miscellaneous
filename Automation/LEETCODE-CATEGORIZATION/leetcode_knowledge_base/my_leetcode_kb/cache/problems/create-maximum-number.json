@@ -1,0 +1,37 @@
+{
+  "id": "321",
+  "title": "Create Maximum Number",
+  "slug": "create-maximum-number",
+  "url": "https://leetcode.com/problems/create-maximum-number/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays nums1 and nums2 of lengths m and n respectively. nums1 and nums2 represent the digits of two numbers. You are also given an integer k . \n \n Create the maximum number of length k <= m + n from digits of the two numbers. The relative order of the digits from the same array must be preserved. \n \n Return an array of the k digits representing the answer. \n\n Example 1: \n \n```\nInput:\n nums1 = [3,4,6,5], nums2 = [9,1,2,5,8,3], k = 5\n\nOutput:\n [9,8,6,5,3]\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [6,7], nums2 = [6,0,4], k = 5\n\nOutput:\n [6,7,6,0,4]\n```\n\n Example 3: \n \n```\nInput:\n nums1 = [3,9], nums2 = [8,9], k = 3\n\nOutput:\n [9,8,9]\n```\n\n Constraints: \n\n m == nums1.length \n \n n == nums2.length \n \n 1 <= m, n <= 500 \n \n 0 <= nums1[i], nums2[i] <= 9 \n \n 1 <= k <= m + n \n \n nums1 and nums2 do not have leading zeros.",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k) {\n        vector<int> result;\n        int m = nums1.size(), n = nums2.size();\n\n        for (int i = max(0, k - n); i <= min(k, m); i++) {\n            auto candidate = merge(getMax(nums1, i), getMax(nums2, k - i));\n            result = max(result, candidate);\n        }\n        return result;\n    }\n\n    vector<int> getMax(vector<int>& nums, int k) {\n        vector<int> res;\n        int toPop = nums.size() - k;\n        for (int num : nums) {\n            while (!res.empty() && toPop > 0 && res.back() < num) {\n                res.pop_back();\n                toPop--;\n            }\n            res.push_back(num);\n        }\n        res.resize(k);\n        return res;\n    }\n\n    vector<int> merge(vector<int> nums1, vector<int> nums2) {\n        vector<int> res;\n        while (!nums1.empty() || !nums2.empty()) {\n            if (nums1 > nums2) {\n                res.push_back(nums1.front());\n                nums1.erase(nums1.begin());\n            } else {\n                res.push_back(nums2.front());\n                nums2.erase(nums2.begin());\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591363734",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

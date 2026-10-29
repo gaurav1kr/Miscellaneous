@@ -1,0 +1,29 @@
+{
+  "id": "1320",
+  "title": "Minimum Distance to Type a Word Using Two Fingers",
+  "slug": "minimum-distance-to-type-a-word-using-two-fingers",
+  "url": "https://leetcode.com/problems/minimum-distance-to-type-a-word-using-two-fingers/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "[Figure: https://assets.leetcode.com/uploads/2026/06/04/image.png] \n \n You have a keyboard layout as shown above in the X-Y plane, where each English uppercase letter is located at some coordinate. \n\n For example, the letter 'A' is located at coordinate (0, 0) , the letter 'B' is located at coordinate (0, 1) , the letter 'P' is located at coordinate (2, 3) and the letter 'Z' is located at coordinate (4, 1) . \n\n Given the string word , return the minimum total distance to type such string using only two fingers . \n \n The distance between coordinates (x 1 , y 1 ) and (x 2 , y 2 ) is |x 1 - x 2 | + |y 1 - y 2 | . \n \n Note that the initial positions of your two fingers are considered free so do not count towards your total distance, also your two fingers do not have to start at the first letter or the first two letters. \n\n Example 1: \n \n```\nInput:\n word = \"CAKE\"\n\nOutput:\n 3\n\nExplanation:\n Using two fingers, one optimal way to type \"CAKE\" is: \nFinger 1 on letter 'C' -> cost = 0 \nFinger 1 on letter 'A' -> cost = Distance from letter 'C' to letter 'A' = 2 \nFinger 2 on letter 'K' -> cost = 0 \nFinger 2 on letter 'E' -> cost = Distance from letter 'K' to letter 'E' = 1 \nTotal distance = 3\n```\n\n Example 2: \n \n```\nInput:\n word = \"HAPPY\"\n\nOutput:\n 6\n\nExplanation:\n Using two fingers, one optimal way to type \"HAPPY\" is:\nFinger 1 on letter 'H' -> cost = 0\nFinger 1 on letter 'A' -> cost = Distance from letter 'H' to letter 'A' = 2\nFinger 2 on letter 'P' -> cost = 0\nFinger 2 on letter 'P' -> cost = Distance from letter 'P' to letter 'P' = 0\nFinger 1 on letter 'Y' -> cost = Distance from letter 'A' to letter 'Y' = 4\nTotal distance = 6\n```\n\n Constraints: \n\n 2 <= word.length <= 300 \n \n word consists of uppercase English letters.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int dp[301][27][27];\n\n    int dist(int a, int b) {\n        if (a == 26 || b == 26) return 0;\n        return abs(a / 6 - b / 6) + abs(a % 6 - b % 6);\n    }\n\n    int minimumDistance(string word) {\n        int n = word.size();\n        for (int i = n; i >= 0; --i)\n            for (int f1 = 0; f1 < 27; ++f1)\n                for (int f2 = 0; f2 < 27; ++f2)\n                    dp[i][f1][f2] = 0;\n\n        for (int i = n - 1; i >= 0; --i) {\n            int cur = word[i] - 'A';\n            for (int f1 = 0; f1 < 27; ++f1)\n                for (int f2 = 0; f2 < 27; ++f2)\n                    dp[i][f1][f2] = min(\n                        dist(f1, cur) + dp[i + 1][cur][f2],\n                        dist(f2, cur) + dp[i + 1][f1][cur]\n                    );\n        }\n        return dp[0][26][26];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595370030",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

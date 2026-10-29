@@ -1,0 +1,30 @@
+{
+  "id": "2022",
+  "title": "Convert 1D Array Into 2D Array",
+  "slug": "convert-1d-array-into-2d-array",
+  "url": "https://leetcode.com/problems/convert-1d-array-into-2d-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed 1-dimensional (1D) integer array original , and two integers, m and n . You are tasked with creating a 2-dimensional (2D) array with m rows and n columns using all the elements from original . \n \n The elements from indices 0 to n - 1 ( inclusive ) of original should form the first row of the constructed 2D array, the elements from indices n to 2 * n - 1 ( inclusive ) should form the second row of the constructed 2D array, and so on. \n \n Return an m x n 2D array constructed according to the above procedure, or an empty 2D array if it is impossible . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/08/26/image-20210826114243-1.png] \n \n```\nInput:\n original = [1,2,3,4], m = 2, n = 2\n\nOutput:\n [[1,2],[3,4]]\n\nExplanation:\n The constructed 2D array should contain 2 rows and 2 columns.\nThe first group of n=2 elements in original, [1,2], becomes the first row in the constructed 2D array.\nThe second group of n=2 elements in original, [3,4], becomes the second row in the constructed 2D array.\n```\n\n Example 2: \n \n```\nInput:\n original = [1,2,3], m = 1, n = 3\n\nOutput:\n [[1,2,3]]\n\nExplanation:\n The constructed 2D array should contain 1 row and 3 columns.\nPut all three elements in original into the first row of the constructed 2D array.\n```\n\n Example 3: \n \n```\nInput:\n original = [1,2], m = 1, n = 1\n\nOutput:\n []\n\nExplanation:\n There are 2 elements in original.\nIt is impossible to fit 2 elements in a 1x1 2D array, so return an empty 2D array.\n```\n\n Constraints: \n\n 1 <= original.length <= 5 * 10 4 \n \n 1 <= original[i] <= 10 5 \n \n 1 <= m, n <= 4 * 10 4",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> construct2DArray(vector<int>& original,int m,int n){\n        if(1LL*m*n!=(int)original.size())return {};\n        vector<vector<int>>ans(m,vector<int>(n));\n        for(int i=0;i<m*n;++i)ans[i/n][i%n]=original[i];return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175769016",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

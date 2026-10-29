@@ -1,0 +1,28 @@
+{
+  "id": "1802",
+  "title": "Maximum Value at a Given Index in a Bounded Array",
+  "slug": "maximum-value-at-a-given-index-in-a-bounded-array",
+  "url": "https://leetcode.com/problems/maximum-value-at-a-given-index-in-a-bounded-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search",
+    "Greedy"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given three positive integers:  n , index , and maxSum . You want to construct an array nums ( 0-indexed ) that satisfies the following conditions: \n\n nums.length == n \n \n nums[i] is a positive integer where 0 <= i < n . \n \n abs(nums[i] - nums[i+1]) <= 1 where 0 <= i < n-1 . \n \n The sum of all the elements of nums does not exceed maxSum . \n \n nums[index] is maximized . \n\n Return nums[index] of the constructed array . \n \n Note that abs(x) equals x if x >= 0 , and -x otherwise. \n\n Example 1: \n \n```\nInput:\n n = 4, index = 2, maxSum = 6\n\nOutput:\n 2\n\nExplanation:\n nums = [1,2,\n2\n,1] is one array that satisfies all the conditions.\nThere are no arrays that satisfy all the conditions and have nums[2] == 3, so 2 is the maximum nums[2].\n```\n\n Example 2: \n \n```\nInput:\n n = 6, index = 1, maxSum = 10\n\nOutput:\n 3\n```\n\n Constraints: \n\n 1 <= n <= maxSum <= 10 9 \n \n 0 <= index < n",
+  "code": "class Solution {\npublic:\n    long calc(int n, int peak) {\n        if (peak >= n) return (long)n * (2 * peak - n + 1) / 2;\n        return (long)peak * (peak + 1) / 2 + (n - peak);\n    }\n\n    bool can(int n, int index, int maxSum, int x) {\n        long left = calc(index, x - 1);\n        long right = calc(n - index - 1, x - 1);\n        return left + right + x <= maxSum;\n    }\n\n    int maxValue(int n, int index, int maxSum) {\n        int lo = 1, hi = maxSum;\n        while (lo < hi) {\n            int mid = (lo + hi + 1) / 2;\n            if (can(n, index, maxSum, mid)) lo = mid;\n            else hi = mid - 1;\n        }\n        return lo;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610593374",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

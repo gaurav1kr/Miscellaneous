@@ -1,0 +1,30 @@
+{
+  "id": "3018",
+  "title": "Maximum Number of Removal Queries That Can Be Processed I",
+  "slug": "maximum-number-of-removal-queries-that-can-be-processed-i",
+  "url": "https://leetcode.com/problems/maximum-number-of-removal-queries-that-can-be-processed-i/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array nums and a 0-indexed array queries . \n \n You can do the following operation at the beginning at most once : \n\n Replace nums with a subsequence of nums . \n\n We start processing queries in the given order; for each query, we do the following: \n\n If the first and the last element of nums is less than queries[i] , the processing of queries ends . \n \n Otherwise, we choose either the first or the last element of nums if it is greater than or equal to queries[i] , and we remove the chosen element from nums . \n\n Return the maximum number of queries that can be processed by doing the operation optimally. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4,5], queries = [1,2,3,4,6]\n\nOutput:\n 4\n\nExplanation:\n We don't do any operation and process the queries as follows:\n1- We choose and remove nums[0] since 1 <= 1, then nums becomes [2,3,4,5].\n2- We choose and remove nums[0] since 2 <= 2, then nums becomes [3,4,5].\n3- We choose and remove nums[0] since 3 <= 3, then nums becomes [4,5].\n4- We choose and remove nums[0] since 4 <= 4, then nums becomes [5].\n5- We can not choose any elements from nums since they are not greater than or equal to 5.\nHence, the answer is 4.\nIt can be shown that we can't process more than 4 queries.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,3,2], queries = [2,2,3]\n\nOutput:\n 3\n\nExplanation:\n We don't do any operation and process the queries as follows:\n1- We choose and remove nums[0] since 2 <= 2, then nums becomes [3,2].\n2- We choose and remove nums[1] since 2 <= 2, then nums becomes [3].\n3- We choose and remove nums[0] since 3 <= 3, then nums becomes [].\nHence, the answer is 3.\nIt can be shown that we can't process more than 3 queries.\n```\n\n Example 3: \n \n```\nInput:\n nums = [3,4,3], queries = [4,3,2]\n\nOutput:\n 2\n\nExplanation:\n First we replace nums with the subsequence of nums [4,3].\nThen we can process the queries as follows:\n1- We choose and remove nums[0] since 4 <= 4, then nums becomes [3].\n2- We choose and remove nums[0] since 3 <= 3, then nums becomes [].\n3- We can not process any more queries since nums is empty.\nHence, the answer is 2.\nIt can be shown that we can't process more than 2 queries.\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= queries.length <= 1000 \n \n 1 <= nums[i], queries[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n int maximumProcessableQueries(vector<int>& nums,vector<int>& queries){int n=nums.size(),m=queries.size();\n  vector<vector<int>>dp(n+1,vector<int>(n+1,-1));dp[0][n-1]=0;int ans=0;\n  for(int len=n;len>=1;len--)for(int l=0;l+len<=n;l++){\n   int r=l+len-1,t=dp[l][r];if(t<0)continue;ans=max(ans,t);\n   if(len==1){if(t<m&&nums[l]>=queries[t])ans=max(ans,t+1);continue;}\n   dp[l+1][r]=max(dp[l+1][r],t);dp[l][r-1]=max(dp[l][r-1],t);\n   if(t<m){if(nums[l]>=queries[t])dp[l+1][r]=max(dp[l+1][r],t+1);\n    if(nums[r]>=queries[t])dp[l][r-1]=max(dp[l][r-1],t+1);}\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181220841",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

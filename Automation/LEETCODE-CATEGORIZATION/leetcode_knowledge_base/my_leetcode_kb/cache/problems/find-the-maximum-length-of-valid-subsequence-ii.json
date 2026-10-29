@@ -1,0 +1,30 @@
+{
+  "id": "3202",
+  "title": "Find the Maximum Length of Valid Subsequence II",
+  "slug": "find-the-maximum-length-of-valid-subsequence-ii",
+  "url": "https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and a positive integer k .\n \n A subsequence sub of nums with length x is called valid if it satisfies: \n\n (sub[0] + sub[1]) % k == (sub[1] + sub[2]) % k == ... == (sub[x - 2] + sub[x - 1]) % k. \n \nReturn the length of the longest valid subsequence of nums .\n\n Example 1: \n\n Input: nums = [1,2,3,4,5], k = 2 \n \n Output: 5 \n \n Explanation: \n \n The longest valid subsequence is [1, 2, 3, 4, 5] . \n\n Example 2: \n\n Input: nums = [1,4,2,3,1,4], k = 3 \n \n Output: 4 \n \n Explanation: \n \n The longest valid subsequence is [1, 4, 1, 4] . \n\n Constraints: \n\n 2 <= nums.length <= 10 3 \n \n 1 <= nums[i] <= 10 7 \n \n 1 <= k <= 10 3",
+  "code": "class Solution {public:int maximumLength(vector<int>& nums,int k){vector<vector<int>>dp(k,vector<int>(k));int ans=0;for(int x:nums){int r=x%k;for(int p=0;p<k;++p){dp[r][p]=max(dp[r][p],dp[(p-r+k)%k][p]+1);ans=max(ans,dp[r][p]);}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177420513",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

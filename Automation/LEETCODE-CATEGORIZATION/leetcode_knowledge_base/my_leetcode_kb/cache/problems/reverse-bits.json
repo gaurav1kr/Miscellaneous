@@ -1,0 +1,26 @@
+{
+  "id": "190",
+  "title": "Reverse Bits",
+  "slug": "reverse-bits",
+  "url": "https://leetcode.com/problems/reverse-bits/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Divide and Conquer",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "Reverse bits of a given 32 bits signed integer. \n\n Example 1: \n\n Input: n = 43261596 \n \n Output: 964176192 \n \n Explanation: \n\n Integer \n Binary \n\n 43261596 \n 00000010100101000001111010011100 \n\n 964176192 \n 00111001011110000010100101000000 \n\n Example 2: \n\n Input: n = 2147483644 \n \n Output: 1073741822 \n \n Explanation: \n\n Integer \n Binary \n\n 2147483644 \n 01111111111111111111111111111100 \n\n 1073741822 \n 00111111111111111111111111111110 \n\n Constraints: \n\n 0 <= n <= 2 31 - 2 \n \n n is even. \n\n Follow up: If this function is called many times, how would you optimize it?",
+  "code": "class Solution {\npublic:\n    uint32_t reverseBits(uint32_t n) {\n        uint32_t result = 0;\n        for (int i = 0; i < 32; ++i) {\n            result = (result << 1) | (n & 1);\n            n >>= 1;\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588120725",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

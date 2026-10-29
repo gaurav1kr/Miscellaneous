@@ -1,0 +1,29 @@
+{
+  "id": "93",
+  "title": "Restore IP Addresses",
+  "slug": "restore-ip-addresses",
+  "url": "https://leetcode.com/problems/restore-ip-addresses/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "A valid IP address consists of exactly four integers separated by single dots. Each integer is between 0 and 255 ( inclusive ) and cannot have leading zeros. \n\n For example, \"0.1.2.201\" and \"192.168.1.1\" are valid IP addresses, but \"0.011.255.245\" , \"192.168.1.312\" and \"192.168@1.1\" are invalid IP addresses. \n\n Given a string s containing only digits, return all possible valid IP addresses that can be formed by inserting dots into s . You are not allowed to reorder or remove any digits in s . You may return the valid IP addresses in any order. \n\n Example 1: \n \n```\nInput:\n s = \"25525511135\"\n\nOutput:\n [\"255.255.11.135\",\"255.255.111.35\"]\n```\n\n Example 2: \n \n```\nInput:\n s = \"0000\"\n\nOutput:\n [\"0.0.0.0\"]\n```\n\n Example 3: \n \n```\nInput:\n s = \"101023\"\n\nOutput:\n [\"1.0.10.23\",\"1.0.102.3\",\"10.1.0.23\",\"10.10.2.3\",\"101.0.2.3\"]\n```\n\n Constraints: \n\n 1 <= s.length <= 20 \n \n s consists of digits only.",
+  "code": "class Solution \n{\npublic:\n    // Helper function to check if a given string is a valid IP address segment\n    bool valid(string temp)\n    {\n        if(temp.size()>3 || temp.size()==0) return false; // segment length should be between 1 and 3\n        if(temp.size()>1 && temp[0]=='0')   return false; // segment should not start with 0, unless it is a single digit\n        if(temp.size() && stoi(temp)>255) return false; // segment should not be greater than 255\n        return true;\n    }\n\n    // Backtracking function to generate all possible IP addresses\n    void solve(vector<string>& ans, string output, int ind, string s, int dots)\n    {\n        if(dots == 3)\n        { // if we have already added 3 dots, check if the remaining segment is valid\n            if(valid(s.substr(ind)))\n                ans.push_back(output+s.substr(ind));\n            return;\n        }\n        int sz = s.size();\n        for(int i=ind;i<min(ind+3, sz);i++)\n        {\n            if(valid(s.substr(ind, i-ind+1)))\n            {\n                output.push_back(s[i]);\n                output.push_back('.');\n                solve(ans, output, i+1, s, dots+1);\n                output.pop_back(); //backtrack\n            }\n        }\n    }\n\n    vector<string> restoreIpAddresses(string s) \n    {\n        vector<string> ans;\n        string res;\n        solve(ans, res, 0, s, 0);\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1480872893",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "3725",
+  "title": "Count Ways to Choose Coprime Integers from Rows",
+  "slug": "count-ways-to-choose-coprime-integers-from-rows",
+  "url": "https://leetcode.com/problems/count-ways-to-choose-coprime-integers-from-rows/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Matrix",
+    "Combinatorics",
+    "Number Theory"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a m x n matrix mat of positive integers. \n \n Return an integer denoting the number of ways to choose exactly one integer from each row of mat such that the greatest common divisor of all chosen integers is 1. \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: mat = [[1,2],[3,4]] \n \n Output: 3 \n \n Explanation: \n\n Chosen integer in the first row \n Chosen integer in the second row \n Greatest common divisor of chosen integers \n\n 1 \n 3 \n 1 \n\n 1 \n 4 \n 1 \n\n 2 \n 3 \n 1 \n\n 2 \n 4 \n 2 \n\n 3 of these combinations have a greatest common divisor of 1. Therefore, the answer is 3. \n\n Example 2: \n\n Input: mat = [[2,2],[2,2]] \n \n Output: 0 \n \n Explanation: \n \n Every combination has a greatest common divisor of 2. Therefore, the answer is 0. \n\n Constraints: \n\n 1 <= m == mat.length <= 150 \n \n 1 <= n == mat[i].length <= 150 \n \n 1 <= mat[i][j] <= 150",
+  "code": "class Solution {\npublic:\n    int countCoprime(vector<vector<int>>& mat){const long long MOD=1000000007;const int V=150;\n        vector<int> mu(V+1,1),prime,lp(V+1);mu[1]=1;\n        for(int i=2;i<=V;++i){if(!lp[i]){lp[i]=i;prime.push_back(i);mu[i]=-1;}for(int p:prime){if(p>lp[i]||i*p>V)break;lp[i*p]=p;if(i%p==0){mu[i*p]=0;break;}mu[i*p]=-mu[i];}}\n        long long ans=0;\n        for(int d=1;d<=V;++d)if(mu[d]){long long ways=1;\n            for(auto &row:mat){int cnt=0;for(int x:row)if(x%d==0)++cnt;ways=ways*cnt%MOD;if(!ways)break;}\n            ans=(ans+mu[d]*ways)%MOD;\n        }return (ans+MOD)%MOD;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181143269",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

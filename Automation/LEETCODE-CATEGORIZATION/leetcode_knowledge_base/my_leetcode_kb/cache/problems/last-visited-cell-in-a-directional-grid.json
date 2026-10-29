@@ -1,0 +1,22 @@
+{
+  "id": "4084",
+  "title": "Last Visited Cell in a Directional Grid",
+  "slug": "last-visited-cell-in-a-directional-grid",
+  "url": "https://leetcode.com/problems/last-visited-cell-in-a-directional-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an m x n matrix grid where each cell contains one of the following characters: \n\n 'L' : move one cell left. \n \n 'R' : move one cell right. \n \n 'U' : move one cell up. \n \n 'D' : move one cell down. \n\n You start at cell (0, 0) , which is considered visited. At each step, move to the cell indicated by the character in your current cell. \n \n The process ends if the indicated move would either leave the grid or enter a cell that has already been visited. In either case, the move is not made. \n \n Return an integer array [r, c] representing the row and column indices of the last visited cell . The indices are 0-based . \n\n Example 1: \n\n Input: grid = [[\"R\",\"D\"],[\"U\",\"L\"]] \n \n Output: [1,0] \n \n Explanation: \n\n Start at cell (0, 0) , which contains 'R' , so move right to (0, 1) . \n \n At cell (0, 1) , the character is 'D' , so move down to (1, 1) . \n \n At cell (1, 1) , the character is 'L' , so move left to (1, 0) . \n \n At cell (1, 0) , the character is 'U' , which indicates moving to (0, 0) . However, (0, 0) has already been visited, so this move is not made. \n \n Therefore, the process ends at the last visited cell (1, 0) , so the answer is [1, 0] . \n\n Example 2: \n\n Input: grid = [[\"R\",\"R\",\"R\"]] \n \n Output: [0,2] \n \n Explanation: \n\n Start at cell (0, 0) , which contains 'R' , so move right to (0, 1) . \n \n At cell (0, 1) , the character is 'R' , so move right to (0, 2) . \n \n At cell (0, 2) , the character is 'R' , which indicates moving to (0, 3) . However, (0, 3) is outside the grid, so this move is not made. \n \n Therefore, the process ends at the last visited cell (0, 2) , so the answer is [0, 2] . \n\n Constraints: \n\n 1 <= m == grid.length <= 10 5 \n \n 1 <= n == grid[i].length <= 10 5 \n \n m * n <= 10 5 \n \n grid[i][j] is one of 'L' , 'R' , 'U' , or 'D' .",
+  "code": "class Solution {\npublic:\n    vector<int> lastVisitedCell(vector<vector<char>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        vector<vector<bool>> seen(m, vector<bool>(n, false));\n        int r = 0, c = 0;\n        while (true) {\n            seen[r][c] = true;\n            int nr = r, nc = c;\n            if (grid[r][c] == 'L') --nc;\n            else if (grid[r][c] == 'R') ++nc;\n            else if (grid[r][c] == 'U') --nr;\n            else ++nr;\n            if (nr < 0 || nr >= m || nc < 0 || nc >= n || seen[nr][nc]) break;\n            r = nr;\n            c = nc;\n        }\n        return {r, c};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179633168",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

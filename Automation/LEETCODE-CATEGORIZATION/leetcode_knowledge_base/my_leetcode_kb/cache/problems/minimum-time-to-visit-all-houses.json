@@ -1,0 +1,30 @@
+{
+  "id": "3540",
+  "title": "Minimum Time to Visit All Houses",
+  "slug": "minimum-time-to-visit-all-houses",
+  "url": "https://leetcode.com/problems/minimum-time-to-visit-all-houses/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays forward and backward , both of size n . You are also given another integer array queries . \n \n There are n houses arranged in a circle . The houses are connected via roads in a special arrangement: \n\n For all 0 <= i <= n - 2 , house i is connected to house i + 1 via a road with length forward[i] meters. Additionally, house n - 1 is connected back to house 0 via a road with length forward[n - 1] meters, completing the circle. \n \n For all 1 <= i <= n - 1 , house i is connected to house i - 1 via a road with length backward[i] meters. Additionally, house 0 is connected back to house n - 1 via a road with length backward[0] meters, completing the circle. \n\n You can walk at a pace of one meter per second. Starting from house 0, find the minimum time taken to visit each house in the order specified by queries . \n \n Return the minimum total time taken to visit the houses. \n\n Example 1: \n\n Input: forward = [1,4,4], backward = [4,1,2], queries = [1,2,0,2] \n \n Output: 12 \n \n Explanation: \n \n The path followed is 0 (0) → 1 (1) →​​​​​​​ 2 (5) → 1 (7) → ​​​​​​​ 0 (8) → 2 (12) . \n \n Note: The notation used is node (total time) , → represents forward road, and → represents backward road. \n\n Example 2: \n\n Input: forward = [1,1,1,1], backward = [2,2,2,2], queries = [1,2,3,0] \n \n Output: 4 \n \n Explanation: \n \n The path travelled is 0 →​​​​​​​ 1 →​​​​​​​ 2 →​​​​​​​ 3 → 0 . Each step is in the forward direction and requires 1 second. \n\n Constraints: \n\n 2 <= n <= 10 5 \n \n n == forward.length == backward.length \n \n 1 <= forward[i], backward[i] <= 10 5 \n \n 1 <= queries.length <= 10 5 \n \n 0 <= queries[i] < n \n \n queries[i] != queries[i + 1] \n \n queries[0] is not 0.",
+  "code": "class Solution {\npublic:\n    long long minTotalTime(vector<int>& forward, vector<int>& backward, vector<int>& queries) {\n        int n=forward.size();\n        vector<long long> f(n+1,0),b(n+1,0);\n        for(int i=0;i<n;++i) { f[i+1]=f[i]+forward[i]; b[i+1]=b[i]+backward[i]; }\n        long long ans=0; int from=0;\n        for(int to:queries) {\n            long long cw=(to>=from)?f[to]-f[from]:f[n]-f[from]+f[to];\n            long long ccw=(from>=to)?b[from+1]-b[to+1]:b[from+1]+b[n]-b[to+1];\n            ans+=min(cw,ccw); from=to;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180971187",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

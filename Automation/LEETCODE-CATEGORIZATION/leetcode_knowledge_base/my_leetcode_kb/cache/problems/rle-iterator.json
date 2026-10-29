@@ -1,0 +1,32 @@
+{
+  "id": "900",
+  "title": "RLE Iterator",
+  "slug": "rle-iterator",
+  "url": "https://leetcode.com/problems/rle-iterator/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Design",
+    "Counting",
+    "Iterator"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "We can use run-length encoding (i.e., RLE ) to encode a sequence of integers. In a run-length encoded array of even length encoding ( 0-indexed ), for all even i , encoding[i] tells us the number of times that the non-negative integer value encoding[i + 1] is repeated in the sequence. \n\n For example, the sequence arr = [8,8,8,5,5] can be encoded to be encoding = [3,8,2,5] . encoding = [3,8,0,9,2,5] and encoding = [2,8,1,8,2,5] are also valid RLE of arr . \n\n Given a run-length encoded array, design an iterator that iterates through it. \n \n Implement the RLEIterator class: \n\n RLEIterator(int[] encoded) Initializes the object with the encoded array encoded . \n \n int next(int n) Exhausts the next n elements and returns the last element exhausted in this way. If there is no element left to exhaust, return -1 instead. \n\n Example 1: \n \n```\nInput\n\n[\"RLEIterator\", \"next\", \"next\", \"next\", \"next\"]\n[[[3, 8, 0, 9, 2, 5]], [2], [1], [1], [2]]\n\nOutput\n\n[null, 8, 8, 5, -1]\n\nExplanation\n\nRLEIterator rLEIterator = new RLEIterator([3, 8, 0, 9, 2, 5]); // This maps to the sequence [8,8,8,5,5].\nrLEIterator.next(2); // exhausts 2 terms of the sequence, returning 8. The remaining sequence is now [8, 5, 5].\nrLEIterator.next(1); // exhausts 1 term of the sequence, returning 8. The remaining sequence is now [5, 5].\nrLEIterator.next(1); // exhausts 1 term of the sequence, returning 5. The remaining sequence is now [5].\nrLEIterator.next(2); // exhausts 2 terms, returning -1. This is because the first term exhausted was 5,\nbut the second term did not exist. Since the last term exhausted does not exist, we return -1.\n```\n\n Constraints: \n\n 2 <= encoding.length <= 1000 \n \n encoding.length is even. \n \n 0 <= encoding[i] <= 10 9 \n \n 1 <= n <= 10 9 \n \n At most 1000 calls will be made to next .",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass RLEIterator {\n    vector<int> A;\n    int index = 0;\n\npublic:\n    RLEIterator(vector<int>& encoding) : A(encoding) {}\n\n    int next(int n) {\n        while (index < A.size() && n > A[index]) {\n            n -= A[index];\n            index += 2;\n        }\n        if (index >= A.size()) return -1;\n        A[index] -= n;\n        return A[index + 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610574012",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

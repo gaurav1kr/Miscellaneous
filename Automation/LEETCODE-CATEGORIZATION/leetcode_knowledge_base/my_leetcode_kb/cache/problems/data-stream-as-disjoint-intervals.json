@@ -1,0 +1,37 @@
+{
+  "id": "352",
+  "title": "Data Stream as Disjoint Intervals",
+  "slug": "data-stream-as-disjoint-intervals",
+  "url": "https://leetcode.com/problems/data-stream-as-disjoint-intervals/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Binary Search",
+    "Union-Find",
+    "Design",
+    "Data Stream",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given a data stream input of non-negative integers a 1 , a 2 , ..., a n , summarize the numbers seen so far as a list of disjoint intervals. \n \n Implement the SummaryRanges class: \n\n SummaryRanges() Initializes the object with an empty stream. \n \n void addNum(int value) Adds the integer value to the stream. \n \n int[][] getIntervals() Returns a summary of the integers in the stream currently as a list of disjoint intervals [start i , end i ] . The answer should be sorted by start i . \n\n Example 1: \n \n```\nInput\n\n[\"SummaryRanges\", \"addNum\", \"getIntervals\", \"addNum\", \"getIntervals\", \"addNum\", \"getIntervals\", \"addNum\", \"getIntervals\", \"addNum\", \"getIntervals\"]\n[[], [1], [], [3], [], [7], [], [2], [], [6], []]\n\nOutput\n\n[null, null, [[1, 1]], null, [[1, 1], [3, 3]], null, [[1, 1], [3, 3], [7, 7]], null, [[1, 3], [7, 7]], null, [[1, 3], [6, 7]]]\n\nExplanation\n\nSummaryRanges summaryRanges = new SummaryRanges();\nsummaryRanges.addNum(1); // arr = [1]\nsummaryRanges.getIntervals(); // return [[1, 1]]\nsummaryRanges.addNum(3); // arr = [1, 3]\nsummaryRanges.getIntervals(); // return [[1, 1], [3, 3]]\nsummaryRanges.addNum(7); // arr = [1, 3, 7]\nsummaryRanges.getIntervals(); // return [[1, 1], [3, 3], [7, 7]]\nsummaryRanges.addNum(2); // arr = [1, 2, 3, 7]\nsummaryRanges.getIntervals(); // return [[1, 3], [7, 7]]\nsummaryRanges.addNum(6); // arr = [1, 2, 3, 6, 7]\nsummaryRanges.getIntervals(); // return [[1, 3], [6, 7]]\n```\n\n Constraints: \n\n 0 <= value <= 10 4 \n \n At most 3 * 10 4 calls will be made to addNum and getIntervals . \n \n At most 10 2  calls will be made to  getIntervals . \n\n Follow up: What if there are lots of merges and the number of disjoint intervals is small compared to the size of the data stream?",
+  "code": "class SummaryRanges {\n    map<int, int> intervals;\npublic:\n    SummaryRanges() {}\n\n    void addNum(int value) {\n        auto next = intervals.upper_bound(value);\n        int start = value, end = value;\n        if (next != intervals.begin()) {\n            auto previous = prev(next);\n            if (previous->second >= value) return;\n            if ((long long)previous->second + 1 == value) {\n                start = previous->first;\n                intervals.erase(previous);\n            }\n        }\n        while (next != intervals.end() && (long long)next->first <= (long long)end + 1) {\n            end = max(end, next->second);\n            next = intervals.erase(next);\n        }\n        intervals[start] = end;\n    }\n\n    vector<vector<int>> getIntervals() {\n        vector<vector<int>> result;\n        for (const auto& entry : intervals)\n            result.push_back({entry.first, entry.second});\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175687763",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

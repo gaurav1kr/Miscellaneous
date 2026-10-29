@@ -1,0 +1,35 @@
+{
+  "id": "3619",
+  "title": "Count Islands With Total Value Divisible by K",
+  "slug": "count-islands-with-total-value-divisible-by-k",
+  "url": "https://leetcode.com/problems/count-islands-with-total-value-divisible-by-k/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an m x n matrix grid and a positive integer k . An island is a group of positive integers (representing land) that are 4-directionally connected (horizontally or vertically). \n \n The total value of an island is the sum of the values of all cells in the island. \n \n Return the number of islands with a total value divisible by k . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2025/03/06/example1griddrawio-1.png] \n\n Input: grid = [[0,2,1,0,0],[0,5,0,0,5],[0,0,1,0,0],[0,1,4,7,0],[0,2,0,0,8]], k = 5 \n \n Output: 2 \n \n Explanation: \n \n The grid contains four islands. The islands highlighted in blue have a total value that is divisible by 5, while the islands highlighted in red do not. \n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2025/03/06/example2griddrawio.png] \n\n Input: grid = [[3,0,3,0], [0,3,0,3], [3,0,3,0]], k = 3 \n \n Output: 6 \n \n Explanation: \n \n The grid contains six islands, each with a total value that is divisible by 3. \n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 1000 \n \n 1 <= m * n <= 10 5 \n \n 0 <= grid[i][j] <= 10 6 \n \n 1 <= k <= 10 6",
+  "code": "class Solution {\npublic:\n int countIslands(vector<vector<int>>& grid,int k){int m=grid.size(),n=grid[0].size(),ans=0;int dr[4]={1,-1,0,0},dc[4]={0,0,1,-1};\n  for(int i=0;i<m;++i)for(int j=0;j<n;++j)if(grid[i][j]){long long sum=0;queue<pair<int,int>>q;q.push({i,j});sum+=grid[i][j];grid[i][j]=0;\n   while(!q.empty()){auto p=q.front();q.pop();for(int z=0;z<4;++z){int x=p.first+dr[z],y=p.second+dc[z];if(x>=0&&x<m&&y>=0&&y<n&&grid[x][y]){sum+=grid[x][y];grid[x][y]=0;q.push({x,y});}}}if(sum%k==0)++ans;\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177619787",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "679",
+  "title": "24 Game",
+  "slug": "24-game",
+  "url": "https://leetcode.com/problems/24-game/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array cards of length 4 . You have four cards, each containing a number in the range [1, 9] . You should arrange the numbers on these cards in a mathematical expression using the operators ['+', '-', '*', '/'] and the parentheses '(' and ')' to get the value 24. \n \n You are restricted with the following rules: \n\n The division operator '/' represents real division, not integer division.\n\n For example, 4 / (1 - 2 / 3) = 4 / (1 / 3) = 12 . \n\n Every operation done is between two numbers. In particular, we cannot use '-' as a unary operator.\n\n For example, if cards = [1, 1, 1, 1] , the expression \"-1 - 1 - 1 - 1\" is not allowed . \n\n You cannot concatenate numbers together\n\n For example, if cards = [1, 2, 1, 2] , the expression \"12 + 12\" is not valid. \n\n Return true if you can get such expression that evaluates to 24 , and false otherwise. \n\n Example 1: \n \n```\nInput:\n cards = [4,1,8,7]\n\nOutput:\n true\n\nExplanation:\n (8-4) * (7-1) = 24\n```\n\n Example 2: \n \n```\nInput:\n cards = [1,2,1,2]\n\nOutput:\n false\n```\n\n Constraints: \n\n cards.length == 4 \n \n 1 <= cards[i] <= 9",
+  "code": "#include <vector>\n#include <cmath>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool judgePoint24(vector<int>& cards) {\n        vector<double> nums(cards.begin(), cards.end());\n        return solve(nums);\n    }\n\n    bool solve(vector<double>& nums) {\n        if (nums.size() == 1) return abs(nums[0] - 24.0) < 1e-6;\n        for (int i = 0; i < nums.size(); ++i) {\n            for (int j = 0; j < nums.size(); ++j) {\n                if (i == j) continue;\n                vector<double> next;\n                for (int k = 0; k < nums.size(); ++k) {\n                    if (k != i && k != j) next.push_back(nums[k]);\n                }\n                for (double d : {nums[i] + nums[j], nums[i] - nums[j], nums[j] - nums[i],\n                                  nums[i] * nums[j], nums[i] / nums[j], nums[j] / nums[i]}) {\n                    if (isfinite(d)) {\n                        next.push_back(d);\n                        if (solve(next)) return true;\n                        next.pop_back();\n                    }\n                }\n            }\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591373428",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

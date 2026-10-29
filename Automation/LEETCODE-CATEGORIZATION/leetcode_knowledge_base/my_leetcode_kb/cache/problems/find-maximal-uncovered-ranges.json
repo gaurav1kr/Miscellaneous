@@ -1,0 +1,30 @@
+{
+  "id": "2655",
+  "title": "Find Maximal Uncovered Ranges",
+  "slug": "find-maximal-uncovered-ranges",
+  "url": "https://leetcode.com/problems/find-maximal-uncovered-ranges/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer n  which is the length of a 0-indexed array nums , and a 0-indexed 2D-array ranges , which is a list of sub-ranges of nums  (sub-ranges may overlap ). \n \n Each row ranges[i] has exactly 2 cells: \n\n ranges[i][0] , which shows the start of the i th range (inclusive) \n \n ranges[i][1] , which shows the end of the i th range (inclusive) \n\n These ranges cover some cells of nums  and leave some cells uncovered. Your task is to find all of the uncovered ranges with maximal length. \n \n Return a 2D-array answer of the uncovered ranges, sorted by the starting point in ascending order . \n \n By all of the  uncovered ranges with maximal length, we mean satisfying two conditions: \n\n Each uncovered cell should belong to exactly one sub-range \n \n There should not exist  two ranges (l 1 , r 1 ) and (l 2 , r 2 ) such that r 1 + 1 = l 2 \n\n Example 1: \n \n```\nInput:\n n = 10, ranges = [[3,5],[7,8]]\n\nOutput:\n [[0,2],[6,6],[9,9]]\n\nExplanation:\n The ranges (3, 5) and (7, 8) are covered, so if we simplify the array nums to a binary array where 0 shows an uncovered cell and 1 shows a covered cell, the array becomes [0,0,0,1,1,1,0,1,1,0] in which we can observe that the ranges (0, 2), (6, 6) and (9, 9) aren't covered.\n```\n\n Example 2: \n \n```\nInput:\n n = 3, ranges = [[0,2]]\n\nOutput:\n []\n\nExplanation: \nIn this example, the whole of the array nums is covered and there are no uncovered cells so the output is an empty array.\n```\n\n Example 3: \n \n```\nInput:\n n = 7, ranges = [[2,4],[0,3]]\n\nOutput:\n [[5,6]]\n\nExplanation:\n The ranges (0, 3) and (2, 4) are covered, so if we simplify the array nums to a binary array where 0 shows an uncovered cell and 1 shows a covered cell, the array becomes [1,1,1,1,1,0,0] in which we can observe that the range (5, 6) is uncovered.\n```\n\n Constraints: \n\n 1 <= n <= 10 9 \n \n 0 <= ranges.length <= 10 6 \n \n ranges[i].length = 2 \n \n 0 <= ranges[i][j] <= n - 1 \n \n ranges[i][0] <= ranges[i][1]",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> findMaximalUncoveredRanges(int n, vector<vector<int>>& ranges) {\n        sort(ranges.begin(), ranges.end());\n        vector<vector<int>> answer;\n        int start = 0;\n        for (const auto& r : ranges) {\n            if (r[0] > start) answer.push_back({start, r[0] - 1});\n            start = max(start, r[1] + 1);\n        }\n        if (start < n) answer.push_back({start, n - 1});\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178895747",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

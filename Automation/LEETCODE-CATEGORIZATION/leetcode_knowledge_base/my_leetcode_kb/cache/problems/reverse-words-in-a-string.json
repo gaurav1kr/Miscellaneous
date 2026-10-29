@@ -1,0 +1,29 @@
+{
+  "id": "151",
+  "title": "Reverse Words in a String",
+  "slug": "reverse-words-in-a-string",
+  "url": "https://leetcode.com/problems/reverse-words-in-a-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given an input string s , reverse the order of the words . \n \n A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space. \n \n Return a string of the words in reverse order concatenated by a single space. \n \n Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces. \n\n Example 1: \n \n```\nInput:\n s = \"the sky is blue\"\n\nOutput:\n \"blue is sky the\"\n```\n\n Example 2: \n \n```\nInput:\n s = \" hello world \"\n\nOutput:\n \"world hello\"\n\nExplanation:\n Your reversed string should not contain leading or trailing spaces.\n```\n\n Example 3: \n \n```\nInput:\n s = \"a good example\"\n\nOutput:\n \"example good a\"\n\nExplanation:\n You need to reduce multiple spaces between two words to a single space in the reversed string.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s contains English letters (upper-case and lower-case), digits, and spaces ' ' . \n \n There is at least one word in s . \n\n Follow-up:  If the string data type is mutable in your language, can you solve it  in-place  with  O(1)  extra space?",
+  "code": "class Solution\n{\n\tstack<char> stk;\npublic:\n\tstring reverseWords(string s)\n\t{\n\t\tstring result;\n\t\tstring final_result;\n\t\tfor (auto& i : s)\n\t\t{\n\t\t\tstk.push(i);\n\t\t}\n\n\t\twhile (!stk.empty())\n\t\t{\n\t\t\twhile (!stk.empty() && stk.top() == ' ')\n\t\t\t{\n\t\t\t\tstk.pop();\n\t\t\t}\n\t\t\tif (stk.empty())\n\t\t\t\tbreak;\n\t\t\twhile (!stk.empty() && stk.top() != ' ')\n\t\t\t{\n\t\t\t\tresult.push_back(stk.top());\n\t\t\t\tstk.pop();\n\t\t\t}\n\n\t\t\treverse(result.begin(), result.end());\n\t\t\t\n\t\t\tfor (auto & c : result)\n\t\t\tfinal_result.push_back(c);\n\n\t\t\tresult.clear();\n\t\t\tfinal_result.push_back(' ');\n\t\t}\n\t\tfinal_result.pop_back();\n\t\treturn final_result;\n\t}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1487292172",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

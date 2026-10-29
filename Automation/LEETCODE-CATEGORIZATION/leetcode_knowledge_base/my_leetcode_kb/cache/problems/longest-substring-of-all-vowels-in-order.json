@@ -1,0 +1,28 @@
+{
+  "id": "1839",
+  "title": "Longest Substring Of All Vowels in Order",
+  "slug": "longest-substring-of-all-vowels-in-order",
+  "url": "https://leetcode.com/problems/longest-substring-of-all-vowels-in-order/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A string is considered beautiful if it satisfies the following conditions: \n\n Each of the 5 English vowels ( 'a' , 'e' , 'i' , 'o' , 'u' ) must appear at least once in it. \n \n The letters must be sorted in alphabetical order (i.e. all 'a' s before 'e' s, all 'e' s before 'i' s, etc.). \n\n For example, strings \"aeiou\" and \"aaaaaaeiiiioou\" are considered beautiful , but \"uaeio\" , \"aeoiu\" , and \"aaaeeeooo\" are not beautiful . \n \n Given a string word consisting of English vowels, return the length of the longest beautiful substring of word . If no such substring exists, return 0 . \n \n A substring is a contiguous sequence of characters in a string. \n\n Example 1: \n \n```\nInput:\n word = \"aeiaaio\naaaaeiiiiouuu\nooaauuaeiu\"\n\nOutput:\n 13\n\nExplanation:\n The longest beautiful substring in word is \"aaaaeiiiiouuu\" of length 13.\n```\n\n Example 2: \n \n```\nInput:\n word = \"aeeeiiiioooauuu\naeiou\n\"\n\nOutput:\n 5\n\nExplanation:\n The longest beautiful substring in word is \"aeiou\" of length 5.\n```\n\n Example 3: \n \n```\nInput:\n word = \"a\"\n\nOutput:\n 0\n\nExplanation:\n There is no beautiful substring, so return 0.\n```\n\n Constraints: \n\n 1 <= word.length <= 5 * 10 5 \n \n word consists of characters 'a' , 'e' , 'i' , 'o' , and 'u' .",
+  "code": "class Solution {public:int longestBeautifulSubstring(string word){int best=0,len=1,groups=1;for(int i=1;i<(int)word.size();++i){if(word[i]<word[i-1]){len=1;groups=1;}else{++len;if(word[i]>word[i-1])++groups;}if(groups==5)best=max(best,len);}return best;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175762581",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

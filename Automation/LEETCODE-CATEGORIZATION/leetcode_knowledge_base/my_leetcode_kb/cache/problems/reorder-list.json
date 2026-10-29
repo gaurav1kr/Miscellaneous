@@ -1,0 +1,32 @@
+{
+  "id": "143",
+  "title": "Reorder List",
+  "slug": "reorder-list",
+  "url": "https://leetcode.com/problems/reorder-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Two Pointers",
+    "Stack",
+    "Recursion"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Linked list",
+    "Stack"
+  ],
+  "description": "You are given the head of a singly linked-list. The list can be represented as: \n \n```\nL\n0\n → L\n1\n → … → L\nn - 1\n → L\nn\n```\n\n Reorder the list to be on the following form: \n \n```\nL\n0\n → L\nn\n → L\n1\n → L\nn - 1\n → L\n2\n → L\nn - 2\n → …\n```\n\n You may not modify the values in the list's nodes. Only nodes themselves may be changed. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/04/reorder1linked-list.jpg] \n \n```\nInput:\n head = [1,2,3,4]\n\nOutput:\n [1,4,2,3]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/09/reorder2-linked-list.jpg] \n \n```\nInput:\n head = [1,2,3,4,5]\n\nOutput:\n [1,5,2,4,3]\n```\n\n Constraints: \n\n The number of nodes in the list is in the range [1, 5 * 10 4 ] . \n \n 1 <= Node.val <= 1000",
+  "code": "class Solution {\npublic:\n    void reorderList(ListNode* head) {\n        if (!head || !head->next) return;\n        ListNode *slow = head, *fast = head;\n        while (fast->next && fast->next->next) {\n            slow = slow->next;\n            fast = fast->next->next;\n        }\n        ListNode* second = slow->next;\n        slow->next = nullptr;\n        ListNode* previous = nullptr;\n        while (second) {\n            ListNode* next = second->next;\n            second->next = previous;\n            previous = second;\n            second = next;\n        }\n        ListNode* first = head;\n        second = previous;\n        while (second) {\n            ListNode* nextFirst = first->next;\n            ListNode* nextSecond = second->next;\n            first->next = second;\n            second->next = nextFirst;\n            first = nextFirst;\n            second = nextSecond;\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175686135",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "3844",
+  "title": "Longest Almost-Palindromic Substring",
+  "slug": "longest-almost-palindromic-substring",
+  "url": "https://leetcode.com/problems/longest-almost-palindromic-substring/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. \n \n A substring is almost-palindromic if it becomes a palindrome after removing exactly one character from it. \n \n Return an integer denoting the length of the longest almost-palindromic substring in s . \n\n Example 1: \n\n Input: s = \"abca\" \n \n Output: 4 \n \n Explanation: \n \n Choose the substring \" abca \" . \n\n Remove \"ab c a\" . \n \n The string becomes \"aba\" , which is a palindrome. \n \n Therefore, \"abca\" is almost-palindromic. \n\n Example 2: \n\n Input: s = \"abba\" \n \n Output: 4 \n \n Explanation: \n \n Choose the substring \" abba \" . \n\n Remove \"a b ba\" . \n \n The string becomes \"aba\" , which is a palindrome. \n \n Therefore, \"abba\" is almost-palindromic. \n\n Example 3: \n\n Input: s = \"zzabba\" \n \n Output: 5 \n \n Explanation: \n \n Choose the substring \"z zabba \" . \n\n Remove \" z abba\" . \n \n The string becomes \"abba\" , which is a palindrome. \n \n Therefore, \"zabba\" is almost-palindromic. \n\n Constraints: \n\n 2 <= s.length <= 2500 \n \n s consists of only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int almostPalindromic(string s) {\n        int n = s.size(), ans = 1;\n        vector<vector<unsigned char>> pal(n, vector<unsigned char>(n, 0));\n        vector<vector<unsigned char>> almost(n, vector<unsigned char>(n, 0));\n        for (int len = 1; len <= n; ++len) {\n            for (int l = 0; l + len <= n; ++l) {\n                int r = l + len - 1;\n                pal[l][r] = (s[l] == s[r]) &&\n                    (len <= 2 || pal[l + 1][r - 1]);\n                if (len == 1) almost[l][r] = 1;\n                else {\n                    bool deleteLeft = pal[l + 1][r];\n                    bool deleteRight = pal[l][r - 1];\n                    bool deleteInside = len >= 3 && s[l] == s[r] &&\n                                        almost[l + 1][r - 1];\n                    almost[l][r] = deleteLeft || deleteRight || deleteInside;\n                }\n                if (almost[l][r]) ans = max(ans, len);\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181060843",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

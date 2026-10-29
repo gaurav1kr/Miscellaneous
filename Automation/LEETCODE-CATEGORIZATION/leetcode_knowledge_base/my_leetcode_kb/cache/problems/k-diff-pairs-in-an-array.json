@@ -1,0 +1,39 @@
+{
+  "id": "532",
+  "title": "K-diff Pairs in an Array",
+  "slug": "k-diff-pairs-in-an-array",
+  "url": "https://leetcode.com/problems/k-diff-pairs-in-an-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an array of integers nums and an integer k , return the number of unique k-diff pairs in the array . \n \n A k-diff pair is an integer pair (nums[i], nums[j]) , where the following are true: \n\n 0 <= i, j < nums.length \n \n i != j \n \n |nums[i] - nums[j]| == k \n\n Notice that |val| denotes the absolute value of val . \n\n Example 1: \n \n```\nInput:\n nums = [3,1,4,1,5], k = 2\n\nOutput:\n 2\n\nExplanation:\n There are two 2-diff pairs in the array, (1, 3) and (3, 5).\nAlthough we have two 1s in the input, we should only return the number of \nunique\n pairs.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4,5], k = 1\n\nOutput:\n 4\n\nExplanation:\n There are four 1-diff pairs in the array, (1, 2), (2, 3), (3, 4) and (4, 5).\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,3,1,5,4], k = 0\n\nOutput:\n 1\n\nExplanation:\n There is one 0-diff pair in the array, (1, 1).\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 4 \n \n -10 7 <= nums[i] <= 10 7 \n \n 0 <= k <= 10 7",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findPairs(vector<int>& nums, int k) {\n        if (k < 0) return 0;\n        unordered_map<int, int> numCount;\n        int count = 0;\n        \n        for (int num : nums) numCount[num]++;\n        for (auto& [num, freq] : numCount) {\n            if ((k > 0 && numCount.count(num + k)) || (k == 0 && freq > 1)) count++;\n        }\n        \n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590128455",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

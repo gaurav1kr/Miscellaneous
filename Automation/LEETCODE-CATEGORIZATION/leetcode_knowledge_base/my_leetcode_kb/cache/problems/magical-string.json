@@ -1,0 +1,29 @@
+{
+  "id": "481",
+  "title": "Magical String",
+  "slug": "magical-string",
+  "url": "https://leetcode.com/problems/magical-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "A magical string s consists of only '1' and '2' and obeys the following rule: \n\n Concatenating the sequence of lengths of its consecutive groups of identical characters '1' and '2' generates the string s itself. \n\n The first few elements of s is s = \"1221121221221121122……\" . If we group the consecutive 1 's and 2 's in s , it will be \"1 22 11 2 1 22 1 22 11 2 11 22 ......\" and counting the occurrences of 1 's or 2 's in each group yields the sequence  \"1 2 2 1 1 2 1 2 2 1 2 2 ......\" . \n \n You can see that concatenating the occurrence sequence gives us  s itself. \n \n Given an integer n , return the number of 1 's in the first n number in the magical string s . \n\n Example 1: \n \n```\nInput:\n n = 6\n\nOutput:\n 3\n\nExplanation:\n The first 6 elements of magical string s is \"122112\" and it contains three 1's, so return 3.\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= n <= 10 5",
+  "code": "class Solution {\npublic:\n    int magicalString(int n) {\n        if (n <= 0) return 0;\n        std::vector<int> a{1, 2, 2};\n        int ones = 1, read = 2, next = 1;\n        while ((int)a.size() < n) {\n            int count = a[read++];\n            for (int j = 0; j < count && (int)a.size() < n; ++j) {\n                a.push_back(next);\n                if (next == 1) ++ones;\n            }\n            next = 3 - next;\n        }\n        return ones;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175698762",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1163",
+  "title": "Last Substring in Lexicographical Order",
+  "slug": "last-substring-in-lexicographical-order",
+  "url": "https://leetcode.com/problems/last-substring-in-lexicographical-order/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Lyndon Factorization"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s , return the last substring of s in lexicographical order . \n\n Example 1: \n \n```\nInput:\n s = \"abab\"\n\nOutput:\n \"bab\"\n\nExplanation:\n The substrings are [\"a\", \"ab\", \"aba\", \"abab\", \"b\", \"ba\", \"bab\"]. The lexicographically maximum substring is \"bab\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"leetcode\"\n\nOutput:\n \"tcode\"\n```\n\n Constraints: \n\n 1 <= s.length <= 4 * 10 5 \n \n s contains only lowercase English letters.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string lastSubstring(string s) {\n        int n = s.size(), i = 0, j = 1, k = 0;\n        while (j + k < n) {\n            if (s[i + k] == s[j + k]) {\n                k++;\n            } else if (s[i + k] < s[j + k]) {\n                i = max(i + k + 1, j);\n                j = i + 1;\n                k = 0;\n            } else {\n                j += k + 1;\n                k = 0;\n            }\n        }\n        return s.substr(i);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610595406",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

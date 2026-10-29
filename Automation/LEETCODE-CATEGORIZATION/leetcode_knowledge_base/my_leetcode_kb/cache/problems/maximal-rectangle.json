@@ -1,0 +1,38 @@
+{
+  "id": "85",
+  "title": "Maximal Rectangle",
+  "slug": "maximal-rectangle",
+  "url": "https://leetcode.com/problems/maximal-rectangle/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Matrix",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Dynamic Programming",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given a rows x cols  binary matrix filled with 0 's and 1 's, find the largest rectangle containing only 1 's and return its area . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/14/maximal.jpg] \n \n```\nInput:\n matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]\n\nOutput:\n 6\n\nExplanation:\n The maximal rectangle is shown in the above picture.\n```\n\n Example 2: \n \n```\nInput:\n matrix = [[\"0\"]]\n\nOutput:\n 0\n```\n\n Example 3: \n \n```\nInput:\n matrix = [[\"1\"]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n rows == matrix.length \n \n cols == matrix[i].length \n \n 1 <= rows, cols <= 200 \n \n matrix[i][j] is '0' or '1' .",
+  "code": "class Solution {\npublic:\n    int maximalRectangle(vector<vector<char>>& matrix) {\n        if (matrix.empty()) return 0;\n\n        int rows = matrix.size();\n        int cols = matrix[0].size();\n        vector<int> heights(cols, 0); // Histogram heights for each column\n        int maxArea = 0;\n\n        for (int i = 0; i < rows; ++i) {\n            for (int j = 0; j < cols; ++j) {\n                // Update histogram heights: if '1', increment; if '0', reset to 0\n                heights[j] = (matrix[i][j] == '1') ? heights[j] + 1 : 0;\n            }\n            // Calculate max rectangle in this row's histogram\n            maxArea = max(maxArea, largestRectangleArea(heights));\n        }\n\n        return maxArea;\n    }\n\nprivate:\n    int largestRectangleArea(vector<int>& heights) {\n        stack<int> st;\n        heights.push_back(0); // Add a sentinel value for easier calculation\n        int maxArea = 0;\n\n        for (int i = 0; i < heights.size(); ++i) {\n            while (!st.empty() && heights[st.top()] > heights[i]) {\n                int height = heights[st.top()];\n                st.pop();\n                int width = st.empty() ? i : i - st.top() - 1;\n                maxArea = max(maxArea, height * width);\n            }\n            st.push(i);\n        }\n\n        heights.pop_back(); // Restore the heights vector\n        return maxArea;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541831536",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

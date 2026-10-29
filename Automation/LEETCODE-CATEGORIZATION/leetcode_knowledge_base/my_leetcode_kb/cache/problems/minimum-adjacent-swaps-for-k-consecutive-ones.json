@@ -1,0 +1,34 @@
+{
+  "id": "1703",
+  "title": "Minimum Adjacent Swaps for K Consecutive Ones",
+  "slug": "minimum-adjacent-swaps-for-k-consecutive-ones",
+  "url": "https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array, nums , and an integer k . nums comprises of only 0 's and 1 's. In one move, you can choose two adjacent indices and swap their values. \n \n Return the minimum number of moves required so that nums has k consecutive 1 's . \n\n Example 1: \n \n```\nInput:\n nums = [1,0,0,1,0,1], k = 2\n\nOutput:\n 1\n\nExplanation:\n In 1 move, nums could be [1,0,0,0,\n1\n,\n1\n] and have 2 consecutive 1's.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,0,0,0,0,0,1,1], k = 3\n\nOutput:\n 5\n\nExplanation:\n In 5 moves, the leftmost 1 can be shifted right until nums = [0,0,0,0,0,\n1\n,\n1\n,\n1\n].\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,1,0,1], k = 2\n\nOutput:\n 0\n\nExplanation:\n nums already has 2 consecutive 1's.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n nums[i] is 0 or 1 . \n \n 1 <= k <= sum(nums)",
+  "code": "#include <vector>\n#include <numeric>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minMoves(vector<int>& nums, int k) {\n        vector<int> pos;\n        for (int i = 0; i < nums.size(); ++i)\n            if (nums[i]) pos.push_back(i - pos.size());\n        vector<long long> prefix(pos.size() + 1);\n        for (int i = 0; i < pos.size(); ++i)\n            prefix[i + 1] = prefix[i] + pos[i];\n\n        long long res = LLONG_MAX;\n        for (int i = 0; i + k <= pos.size(); ++i) {\n            int mid = i + k / 2;\n            long long left = prefix[mid] - prefix[i];\n            long long right = prefix[i + k] - prefix[mid + 1];\n            res = min(res, right - left + (k % 2 ? 0 : pos[mid]));\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1599285719",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

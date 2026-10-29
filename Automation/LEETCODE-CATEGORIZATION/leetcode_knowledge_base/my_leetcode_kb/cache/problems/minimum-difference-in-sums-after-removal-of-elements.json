@@ -1,0 +1,35 @@
+{
+  "id": "2163",
+  "title": "Minimum Difference in Sums After Removal of Elements",
+  "slug": "minimum-difference-in-sums-after-removal-of-elements",
+  "url": "https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums consisting of 3 * n elements. \n \n You are allowed to remove any subsequence of elements of size exactly n from nums . The remaining 2 * n elements will be divided into two equal parts: \n\n The first n elements belonging to the first part and their sum is sum first . \n \n The next n elements belonging to the second part and their sum is sum second . \n\n The difference in sums of the two parts is denoted as sum first - sum second . \n\n For example, if sum first = 3 and sum second = 2 , their difference is 1 . \n \n Similarly, if sum first = 2 and sum second = 3 , their difference is -1 . \n\n Return the minimum difference possible between the sums of the two parts after the removal of n elements . \n\n Example 1: \n \n```\nInput:\n nums = [3,1,2]\n\nOutput:\n -1\n\nExplanation:\n Here, nums has 3 elements, so n = 1. \nThus we have to remove 1 element from nums and divide the array into two equal parts.\n- If we remove nums[0] = 3, the array will be [1,2]. The difference in sums of the two parts will be 1 - 2 = -1.\n- If we remove nums[1] = 1, the array will be [3,2]. The difference in sums of the two parts will be 3 - 2 = 1.\n- If we remove nums[2] = 2, the array will be [3,1]. The difference in sums of the two parts will be 3 - 1 = 2.\nThe minimum difference between sums of the two parts is min(-1,1,2) = -1.\n```\n\n Example 2: \n \n```\nInput:\n nums = [7,9,5,8,1,3]\n\nOutput:\n 1\n\nExplanation:\n Here n = 2. So we must remove 2 elements and divide the remaining array into two parts containing two elements each.\nIf we remove nums[2] = 5 and nums[3] = 8, the resultant array will be [7,9,1,3]. The difference in sums will be (7+9) - (1+3) = 12.\nTo obtain the minimum difference, we should remove nums[1] = 9 and nums[4] = 1. The resultant array becomes [7,5,8,3]. The difference in sums of the two parts is (7+5) - (8+3) = 1.\nIt can be shown that it is not possible to obtain a difference smaller than 1.\n```\n\n Constraints: \n\n nums.length == 3 * n \n \n 1 <= n <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    long long minimumDifference(vector<int>& nums) {\n        int n=nums.size()/3;\n        vector<long long> left(3*n),right(3*n+1);\n        priority_queue<int> a;long long sum=0;\n        for(int i=0;i<2*n;++i) {\n            a.push(nums[i]);sum+=nums[i];\n            if((int)a.size()>n){sum-=a.top();a.pop();}\n            if(i>=n-1) left[i]=sum;\n        }\n        priority_queue<int,vector<int>,greater<int>> b;sum=0;\n        for(int i=3*n-1;i>=n;--i) {\n            b.push(nums[i]);sum+=nums[i];\n            if((int)b.size()>n){sum-=b.top();b.pop();}\n            if(i<=2*n) right[i]=sum;\n        }\n        long long ans=LLONG_MAX;\n        for(int i=n-1;i<2*n;++i) ans=min(ans,left[i]-right[i+1]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175876557",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

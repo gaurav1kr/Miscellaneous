@@ -1,0 +1,26 @@
+{
+  "id": "38",
+  "title": "Count and Say",
+  "slug": "count-and-say",
+  "url": "https://leetcode.com/problems/count-and-say/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "The count-and-say sequence is a sequence of digit strings defined by the recursive formula: \n\n countAndSay(1) = \"1\" \n \n countAndSay(n) is the run-length encoding of countAndSay(n - 1) . \n\n Run-length encoding (RLE) is a string compression method that works by replacing each maximal group of consecutive identical characters with the concatenation of the length of the group followed by the character itself. For example, to compress the string \"3322251\" we replace \"33\" with \"23\" , replace \"222\" with \"32\" , replace \"5\" with \"15\" , and replace \"1\" with \"11\" . Thus the compressed string becomes \"23321511\" . \n \n Given a positive integer n , return the n th element of the count-and-say sequence . \n\n Example 1: \n\n Input: n = 4 \n \n Output: \"1211\" \n \n Explanation: \n \n```\ncountAndSay(1) = \"1\"\ncountAndSay(2) = RLE of \"1\" = \"11\"\ncountAndSay(3) = RLE of \"11\" = \"21\"\ncountAndSay(4) = RLE of \"21\" = \"1211\"\n```\n\n Example 2: \n\n Input: n = 1 \n \n Output: \"1\" \n \n Explanation: \n \n This is the base case. \n\n Constraints: \n\n 1 <= n <= 30 \n\n Follow up: Could you solve it iteratively?",
+  "code": "\n#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    string countAndSay(int n) {\n        string result = \"1\";\n        for (int i = 1; i < n; ++i) {\n            string temp = \"\";\n            for (int j = 0; j < result.size(); ++j) {\n                int count = 1;\n                while (j + 1 < result.size() && result[j] == result[j + 1]) {\n                    ++j;\n                    ++count;\n                }\n                temp += to_string(count) + result[j];\n            }\n            result = temp;\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592319722",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

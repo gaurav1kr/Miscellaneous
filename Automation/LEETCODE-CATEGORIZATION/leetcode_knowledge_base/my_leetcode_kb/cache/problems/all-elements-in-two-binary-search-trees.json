@@ -1,0 +1,35 @@
+{
+  "id": "1305",
+  "title": "All Elements in Two Binary Search Trees",
+  "slug": "all-elements-in-two-binary-search-trees",
+  "url": "https://leetcode.com/problems/all-elements-in-two-binary-search-trees/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Sorting",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Sorted array",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given two binary search trees root1 and root2 , return a list containing all the integers from both trees sorted in ascending order . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/12/18/q2-e1.png] \n \n```\nInput:\n root1 = [2,1,4], root2 = [1,0,3]\n\nOutput:\n [0,1,1,2,3,4]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/12/18/q2-e5-.png] \n \n```\nInput:\n root1 = [1,null,8], root2 = [8,1]\n\nOutput:\n [1,1,8,8]\n```\n\n Constraints: \n\n The number of nodes in each tree is in the range [0, 5000] . \n \n -10 5 <= Node.val <= 10 5",
+  "code": "#include <vector>\nusing namespace std;\n\n\nclass Solution {\npublic:\n    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {\n        vector<int> result, list1, list2;\n        inorder(root1, list1);\n        inorder(root2, list2);\n        \n        int i = 0, j = 0;\n        while (i < list1.size() && j < list2.size()) {\n            if (list1[i] < list2[j]) result.push_back(list1[i++]);\n            else result.push_back(list2[j++]);\n        }\n        while (i < list1.size()) result.push_back(list1[i++]);\n        while (j < list2.size()) result.push_back(list2[j++]);\n        return result;\n    }\n\n    void inorder(TreeNode* root, vector<int>& result) {\n        if (!root) return;\n        inorder(root->left, result);\n        result.push_back(root->val);\n        inorder(root->right, result);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590165502",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

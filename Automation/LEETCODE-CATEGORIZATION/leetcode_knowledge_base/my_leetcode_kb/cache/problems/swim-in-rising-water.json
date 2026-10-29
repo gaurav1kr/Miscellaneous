@@ -1,0 +1,41 @@
+{
+  "id": "778",
+  "title": "Swim in Rising Water",
+  "slug": "swim-in-rising-water",
+  "url": "https://leetcode.com/problems/swim-in-rising-water/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Minimax",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Dijkstra's Algorithm"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "You are given an n x n integer matrix grid where each value grid[i][j] represents the elevation at that point (i, j) . \n \n It starts raining, and water gradually rises over time. At time t , the water level is t , meaning any cell with elevation less than equal to t is submerged or reachable. \n \n You can swim from a square to another 4-directionally adjacent square if and only if the elevation of both squares individually are at most t . You can swim infinite distances in zero time. Of course, you must stay within the boundaries of the grid during your swim. \n \n Return the minimum time until you can reach the bottom right square (n - 1, n - 1) if you start at the top left square (0, 0) . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/29/swim1-grid.jpg] \n \n```\nInput:\n grid = [[0,2],[1,3]]\n\nOutput:\n 3\nExplanation:\nAt time 0, you are in grid location (0, 0).\nYou cannot go anywhere else because 4-directionally adjacent neighbors have a higher elevation than t = 0.\nYou cannot reach point (1, 1) until time 3.\nWhen the depth of water is 3, we can swim anywhere inside the grid.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/29/swim2-grid-1.jpg] \n \n```\nInput:\n grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]\n\nOutput:\n 16\n\nExplanation:\n The final route is shown.\nWe need to wait until time 16 so that (0, 0) and (4, 4) are connected.\n```\n\n Constraints: \n\n n == grid.length \n \n n == grid[i].length \n \n 1 <= n <= 50 \n \n 0 <= grid[i][j] < n 2 \n \n Each value grid[i][j] is unique .",
+  "code": "#define AXIS 4\nclass Solution \n{\npublic:\n    int dx[AXIS];\n    int dy[AXIS];\n    int n;\n    Solution() : dx{ 0,-1,0,1 }, dy{ 1,0,-1,0 }\n    {\n    }\n    bool dfs(int x,int y, int t,vector<vector<int>> &grid, vector<vector<int>> &visit){\n        visit[x][y]=1;\n\n        if(t< grid[x][y])\n        {\n            return false;\n        }\n        \n        if(x== n-1 && y== n-1){\n            return true;\n        }\n\n        bool an=false;\n\n        for(int i=0;i<4;i+=1)\n        {\n            int nx= x + dx[i];\n            int ny= y + dy[i];\n\n            if(nx>=0 && ny>=0 && nx<n && ny<n && grid[nx][ny]<=t && !visit[nx][ny]){\n                if(nx== n-1 && ny == n-1)\n                {\n                    an=true;\n                }\n                else\n                {\n                    an = an | dfs(nx,ny,t,grid, visit);\n                }\n            }\n        }\n        return an;\n    }\n\n    int swimInWater(vector<vector<int>>& grid) {\n        n= grid.size();\n        int lo=0,hi=1e5;\n        while(lo<hi)\n        {\n            int mid= lo + (hi-lo)/2;\n            vector<vector<int>> visit(n+1, vector<int> (n+1,0));\n            if(dfs(0,0,mid,grid,visit))\n            {\n                hi=mid;\n            }\n            else\n            {\n                lo=mid+1;\n            }\n        }\n        return hi;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "993799271",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

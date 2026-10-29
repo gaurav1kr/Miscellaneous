@@ -1,0 +1,31 @@
+{
+  "id": "672",
+  "title": "Bulb Switcher II",
+  "slug": "bulb-switcher-ii",
+  "url": "https://leetcode.com/problems/bulb-switcher-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Bit Manipulation",
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Ordered set"
+  ],
+  "description": "There is a room with n bulbs labeled from 1 to n that all are turned on initially, and four buttons on the wall. Each of the four buttons has a different functionality where: \n\n Button 1: Flips the status of all the bulbs. \n \n Button 2: Flips the status of all the bulbs with even labels (i.e., 2, 4, ... ). \n \n Button 3: Flips the status of all the bulbs with odd labels (i.e., 1, 3, ... ). \n \n Button 4: Flips the status of all the bulbs with a label j = 3k + 1 where k = 0, 1, 2, ... (i.e., 1, 4, 7, 10, ... ). \n\n You must make exactly presses button presses in total. For each press, you may pick any of the four buttons to press. \n \n Given the two integers n and presses , return the number of different possible statuses after performing all presses button presses . \n\n Example 1: \n \n```\nInput:\n n = 1, presses = 1\n\nOutput:\n 2\n\nExplanation:\n Status can be:\n- [off] by pressing button 1\n- [on] by pressing button 2\n```\n\n Example 2: \n \n```\nInput:\n n = 2, presses = 1\n\nOutput:\n 3\n\nExplanation:\n Status can be:\n- [off, off] by pressing button 1\n- [on, off] by pressing button 2\n- [off, on] by pressing button 3\n```\n\n Example 3: \n \n```\nInput:\n n = 3, presses = 1\n\nOutput:\n 4\n\nExplanation:\n Status can be:\n- [off, off, off] by pressing button 1\n- [on, off, on] by pressing button 2\n- [off, on, off] by pressing button 3\n- [off, on, on] by pressing button 4\n```\n\n Constraints: \n\n 1 <= n <= 1000 \n \n 0 <= presses <= 1000",
+  "code": "class Solution {\npublic:\n    int flipLights(int n, int presses) {\n        n = min(n, 6);\n        set<int> states;\n        for (int mask = 0; mask < 16; ++mask) {\n            int used = __builtin_popcount((unsigned)mask);\n            if (used > presses || (presses - used) % 2 != 0) continue;\n            int state = (1 << n) - 1;\n            for (int i = 0; i < n; ++i) {\n                bool flip = (mask & 1) != 0;\n                if ((mask & 2) && (i + 1) % 2 == 0) flip = !flip;\n                if ((mask & 4) && (i + 1) % 2 == 1) flip = !flip;\n                if ((mask & 8) && i % 3 == 0) flip = !flip;\n                if (flip) state ^= 1 << i;\n            }\n            states.insert(state);\n        }\n        return states.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179685343",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

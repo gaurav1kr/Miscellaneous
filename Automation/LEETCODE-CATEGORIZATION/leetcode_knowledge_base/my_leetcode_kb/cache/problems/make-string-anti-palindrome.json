@@ -1,0 +1,32 @@
+{
+  "id": "3088",
+  "title": "Make String Anti-palindrome",
+  "slug": "make-string-anti-palindrome",
+  "url": "https://leetcode.com/problems/make-string-anti-palindrome/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "String",
+    "Greedy",
+    "Sorting",
+    "Counting Sort"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Sorted array",
+    "String"
+  ],
+  "description": "We call a string s of even length n an anti-palindrome if for each index 0 <= i < n , s[i] != s[n - i - 1] . \n \n Given a string s , your task is to make s an anti-palindrome by doing any number of operations (including zero). \n \n In one operation, you can select two characters from s and swap them. \n \n Return the resulting string. If multiple strings meet the conditions, return the lexicographically smallest one. If it can't be made into an anti-palindrome, return \"-1\" . \n\n Example 1: \n\n Input: s = \"abca\" \n \n Output: \"aabc\" \n \n Explanation: \n \n \"aabc\" is an anti-palindrome string since s[0] != s[3] and s[1] != s[2] . Also, it is a rearrangement of \"abca\" . \n\n Example 2: \n\n Input: s = \"abba\" \n \n Output: \"aabb\" \n \n Explanation: \n \n \"aabb\" is an anti-palindrome string since s[0] != s[3] and s[1] != s[2] . Also, it is a rearrangement of \"abba\" . \n\n Example 3: \n\n Input: s = \"cccd\" \n \n Output: \"-1\" \n \n Explanation: \n \n You can see that no matter how you rearrange the characters of \"cccd\" , either s[0] == s[3] or s[1] == s[2] . So it can not form an anti-palindrome string. \n\n Constraints: \n\n 2 <= s.length <= 10 5 \n \n s.length % 2 == 0 \n \n s consists only of lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n string makeAntiPalindrome(string s){int n=s.size(),h=n/2;int cnt[26]={};for(char c:s)cnt[c-'a']++;\n  for(int c:cnt)if(c>h)return \"-1\";\n  string out(n,'?');int forbid[26]={};\n  for(int i=0;i<h;i++)for(int c=0;c<26;c++)if(cnt[c]){\n   out[i]='a'+c;cnt[c]--;forbid[c]++;break;\n  }\n  for(int i=h;i<n;i++){\n   int f=out[n-1-i]-'a';forbid[f]--;\n   for(int c=0;c<26;c++)if(cnt[c]&&c!=f){cnt[c]--;bool ok=true;\n    for(int z=0;z<26;z++)if(cnt[z]+forbid[z]>n-i-1){ok=false;break;}\n    if(ok){out[i]='a'+c;break;}cnt[c]++;\n   }\n   if(out[i]=='?')return \"-1\";\n  }return out;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181222943",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

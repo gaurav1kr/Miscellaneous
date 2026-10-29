@@ -1,0 +1,42 @@
+{
+  "id": "1425",
+  "title": "Constrained Subsequence Sum",
+  "slug": "constrained-subsequence-sum",
+  "url": "https://leetcode.com/problems/constrained-subsequence-sum/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Queue",
+    "Sliding Window",
+    "Heap (Priority Queue)",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Heap / Priority Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Deque",
+    "Monotonic deque",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and an integer k , return the maximum sum of a non-empty subsequence of that array such that for every two consecutive integers in the subsequence, nums[i] and nums[j] , where i < j , the condition j - i <= k is satisfied. \n \n A subsequence of an array is obtained by deleting some number of elements (can be zero) from the array, leaving the remaining elements in their original order. \n\n Example 1: \n \n```\nInput:\n nums = [10,2,-10,5,20], k = 2\n\nOutput:\n 37\n\nExplanation:\n The subsequence is [10, 2, 5, 20].\n```\n\n Example 2: \n \n```\nInput:\n nums = [-1,-2,-3], k = 1\n\nOutput:\n -1\n\nExplanation:\n The subsequence must be non-empty, so we choose the largest number.\n```\n\n Example 3: \n \n```\nInput:\n nums = [10,-2,-10,-5,20], k = 2\n\nOutput:\n 23\n\nExplanation:\n The subsequence is [10, -2, -5, 20].\n```\n\n Constraints: \n\n 1 <= k <= nums.length <= 10 5 \n \n -10 4 <= nums[i] <= 10 4",
+  "code": "#include <vector>\n#include <deque>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int constrainedSubsetSum(vector<int>& nums, int k) {\n        int n = nums.size();\n        deque<int> dq;\n        vector<int> dp(n);\n        int res = nums[0];\n        dp[0] = nums[0];\n        dq.push_back(0);\n\n        for (int i = 1; i < n; ++i) {\n            if (!dq.empty() && dq.front() < i - k)\n                dq.pop_front();\n            dp[i] = nums[i] + max(0, dp[dq.front()]);\n            while (!dq.empty() && dp[dq.back()] < dp[i])\n                dq.pop_back();\n            dq.push_back(i);\n            res = max(res, dp[i]);\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595373432",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

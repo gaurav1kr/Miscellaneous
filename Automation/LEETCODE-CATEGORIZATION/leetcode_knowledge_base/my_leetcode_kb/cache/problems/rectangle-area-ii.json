@@ -1,0 +1,32 @@
+{
+  "id": "850",
+  "title": "Rectangle Area II",
+  "slug": "rectangle-area-ii",
+  "url": "https://leetcode.com/problems/rectangle-area-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Segment Tree",
+    "Sweep Line",
+    "Ordered Set"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given a 2D array of axis-aligned rectangles . Each rectangle[i] = [x i1 , y i1 , x i2 , y i2 ] denotes the i th rectangle where (x i1 , y i1 ) are the coordinates of the bottom-left corner , and (x i2 , y i2 ) are the coordinates of the top-right corner . \n \n Calculate the total area covered by all rectangles in the plane. Any area covered by two or more rectangles should only be counted once . \n \n Return the total area . Since the answer may be too large, return it modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://s3-lc-upload.s3.amazonaws.com/uploads/2018/06/06/rectangle_area_ii_pic.png] \n \n```\nInput:\n rectangles = [[0,0,2,2],[1,0,2,3],[1,0,3,1]]\n\nOutput:\n 6\n\nExplanation:\n A total area of 6 is covered by all three rectangles, as illustrated in the picture.\nFrom (1,1) to (2,2), the green and red rectangles overlap.\nFrom (1,0) to (2,3), all three rectangles overlap.\n```\n\n Example 2: \n \n```\nInput:\n rectangles = [[0,0,1000000000,1000000000]]\n\nOutput:\n 49\n\nExplanation:\n The answer is 10\n18\n modulo (10\n9\n + 7), which is 49.\n```\n\n Constraints: \n\n 1 <= rectangles.length <= 200 \n \n rectanges[i].length == 4 \n \n 0 <= x i1 , y i1 , x i2 , y i2 <= 10 9 \n \n x i1 <= x i2 \n \n y i1 <= y i2 \n \n All rectangles have non zero area.",
+  "code": "#include <vector>\n#include <set>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int rectangleArea(vector<vector<int>>& rectangles) {\n        const int MOD = 1e9 + 7;\n        vector<int> X;\n        for (auto& r : rectangles) {\n            X.push_back(r[0]);\n            X.push_back(r[2]);\n        }\n\n        sort(X.begin(), X.end());\n        X.erase(unique(X.begin(), X.end()), X.end());\n\n        long res = 0;\n        for (int i = 1; i < X.size(); ++i) {\n            int x1 = X[i - 1], x2 = X[i];\n            if (x1 == x2) continue;\n            vector<pair<int, int>> segs;\n            for (auto& r : rectangles)\n                if (r[0] <= x1 && r[2] >= x2)\n                    segs.emplace_back(r[1], r[3]);\n\n            sort(segs.begin(), segs.end());\n            int total = 0, start = -1, end = -1;\n            for (auto& [y1, y2] : segs) {\n                start = max(start, y1);\n                if (y2 > end) {\n                    total += y2 - max(end, y1);\n                    end = y2;\n                }\n            }\n            res = (res + (long)(x2 - x1) * total) % MOD;\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593852105",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

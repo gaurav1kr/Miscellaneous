@@ -1,0 +1,31 @@
+{
+  "id": "2696",
+  "title": "Minimum String Length After Removing Substrings",
+  "slug": "minimum-string-length-after-removing-substrings",
+  "url": "https://leetcode.com/problems/minimum-string-length-after-removing-substrings/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a string s consisting only of uppercase English letters. \n \n You can apply some operations to this string where, in one operation, you can remove any occurrence of one of the substrings \"AB\" or \"CD\" from s . \n \n Return the minimum possible length of the resulting string that you can obtain . \n \n Note that the string concatenates after removing the substring and could produce new \"AB\" or \"CD\" substrings. \n\n Example 1: \n \n```\nInput:\n s = \"ABFCACDB\"\n\nOutput:\n 2\n\nExplanation:\n We can do the following operations:\n- Remove the substring \"\nAB\nFCACDB\", so s = \"FCACDB\".\n- Remove the substring \"FCA\nCD\nB\", so s = \"FCAB\".\n- Remove the substring \"FC\nAB\n\", so s = \"FC\".\nSo the resulting length of the string is 2.\nIt can be shown that it is the minimum length that we can obtain.\n```\n\n Example 2: \n \n```\nInput:\n s = \"ACBBD\"\n\nOutput:\n 5\n\nExplanation:\n We cannot do any operations on the string so the length remains the same.\n```\n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s  consists only of uppercase English letters.",
+  "code": "class Solution {public:int minLength(string s){string st;for(char c:s){if(!st.empty()&&((st.back()=='A'&&c=='B')||(st.back()=='C'&&c=='D')))st.pop_back();else st.push_back(c);}return st.size();}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176639714",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

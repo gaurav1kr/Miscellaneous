@@ -1,0 +1,33 @@
+{
+  "id": "3883",
+  "title": "Count Non Decreasing Arrays With Given Digit Sums",
+  "slug": "count-non-decreasing-arrays-with-given-digit-sums",
+  "url": "https://leetcode.com/problems/count-non-decreasing-arrays-with-given-digit-sums/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array digitSum of length n . \n \n An array arr of length n is considered valid if: \n\n 0 <= arr[i] <= 5000 \n \n it is non-decreasing . \n \n the sum of the digits of arr[i] equals digitSum[i] . \n\n Return an integer denoting the number of distinct valid arrays . Since the answer may be large, return it modulo 10 9 + 7 . \n \n An array is said to be non-decreasing if each element is greater than or equal to the previous element, if it exists. \n\n Example 1: \n\n Input: digitSum = [25,1] \n \n Output: 6 \n \n Explanation: \n \n Numbers whose sum of digits is 25 are 799, 889, 898, 979, 988, and 997. \n \n The only number whose sum of digits is 1 that can appear after these values while keeping the array non-decreasing is 1000. \n \n Thus, the valid arrays are [799, 1000] , [889, 1000] , [898, 1000] , [979, 1000] , [988, 1000] , and [997, 1000] . \n \n Hence, the answer is 6. \n\n Example 2: \n\n Input: digitSum = [1] \n \n Output: 4 \n \n Explanation: \n \n The valid arrays are [1] , [10] , [100] , and [1000] . \n \n Thus, the answer is 4. \n\n Example 3: \n\n Input: digitSum = [2,49,23] \n \n Output: 0 \n \n Explanation: \n \n There is no integer in the range [0, 5000] whose sum of digits is 49. Thus, the answer is 0. \n\n Constraints: \n\n 1 <= digitSum.length <= 1000 \n \n 0 <= digitSum[i] <= 50",
+  "code": "class Solution {\npublic:\n    int countArrays(vector<int>& digitSum){\n        const int MOD=1000000007,V=5000;\n        vector<int> digit(V+1),dp(V+1),next(V+1);\n        for(int i=1;i<=V;++i)digit[i]=digit[i/10]+i%10;\n        for(int x=0;x<=V;++x)dp[x]=(digit[x]==digitSum[0]);\n        for(int i=1;i<(int)digitSum.size();++i){\n            long long prefix=0;\n            for(int x=0;x<=V;++x){prefix=(prefix+dp[x])%MOD;next[x]=digit[x]==digitSum[i]?prefix:0;}\n            dp.swap(next);\n        }\n        long long ans=0;for(int v:dp)ans=(ans+v)%MOD;return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181162356",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

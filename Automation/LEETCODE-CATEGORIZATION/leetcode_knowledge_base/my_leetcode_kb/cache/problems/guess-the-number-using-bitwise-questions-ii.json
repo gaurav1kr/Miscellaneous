@@ -1,0 +1,25 @@
+{
+  "id": "3094",
+  "title": "Guess the Number Using Bitwise Questions II",
+  "slug": "guess-the-number-using-bitwise-questions-ii",
+  "url": "https://leetcode.com/problems/guess-the-number-using-bitwise-questions-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Bit Manipulation",
+    "Interactive"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "There is a number n between 0 and 2 30 - 1 (both inclusive) that you have to find. \n \n There is a pre-defined API int commonBits(int num) that helps you with your mission. But here is the challenge, every time you call this function, n changes in some way. But keep in mind, that you have to find the initial value of n . \n \n commonBits(int num) acts as follows: \n\n Calculate count which is the number of bits where both n and num have the same value in that position of their binary representation. \n \n n = n XOR num \n \n Return count . \n\n Return the number n . \n \n Note: In this world, all numbers are between 0 and 2 30 - 1 (both inclusive), thus for counting common bits, we see only the first 30 bits of those numbers. \n\n Constraints: \n\n 0 <= n <= 2 30 - 1 \n \n 0 <= num <= 2 30 - 1 \n \n If you ask for some num out of the given range, the output wouldn't be reliable.",
+  "code": "class Solution {public:int findNumber(){int z=commonBits(0),ones=0,ans=0;for(int i=0;i<29;++i){int baseline=z+2*ones-i;int q=commonBits(1<<i);if(q==baseline+1){ans|=1<<i;++ones;}}if(30-z-ones)ans|=1<<29;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181201623",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "3812",
+  "title": "Minimum Edge Toggles on a Tree",
+  "slug": "minimum-edge-toggles-on-a-tree",
+  "url": "https://leetcode.com/problems/minimum-edge-toggles-on-a-tree/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Graph Theory",
+    "Topological Sort",
+    "Sorting"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Sorted array",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an undirected tree with n nodes, numbered from 0 to n - 1 . It is represented by a 2D integer array edges ​​​​​​​ of length n - 1 , where edges[i] = [a i , b i ] indicates that there is an edge between nodes a i and b i in the tree. \n \n You are also given two binary strings start and target of length n . For each node x , start[x] is its initial color and target[x] is its desired color. \n \n In one operation, you may pick an edge with index i and toggle both of its endpoints. That is, if the edge is [u, v] , then the colors of nodes u and v each flip from '0' to '1' or from '1' to '0' . \n \n Return an array of edge indices whose operations transform start into target . Among all valid sequences with minimum possible length , return the edge indices in increasing ​​​​​​​ order. \n \n If it is impossible to transform start into target , return an array containing a single element equal to -1. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2025/12/18/example1.png] ​​​​​​​ \n\n Input: n = 3, edges = [[0,1],[1,2]], start = \"010\", target = \"100\" \n \n Output: [0] \n \n Explanation: \n \n Toggle edge with index 0, which flips nodes 0 and 1. \n​​​​​​​The string changes from \"010\" to \"100\" , matching the target. \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2025/12/18/example2.png] \n\n Input: n = 7, edges = [[0,1],[1,2],[2,3],[3,4],[3,5],[1,6]], start = \"0011000\", target = \"0010001\" \n \n Output: [1,2,5] \n \n Explanation: \n\n Toggle edge with index 1, which flips nodes 1 and 2. \n \n Toggle edge with index 2, which flips nodes 2 and 3. \n \n Toggle edge with index 5, which flips nodes 1 and 6. \n\n After these operations, the resulting string becomes \"0010001\" , which matches the target. \n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2025/12/18/example3.png] ​​​​​​​ \n\n Input: n = 2, edges = [[0,1]], start = \"00\", target = \"01\" \n \n Output: [-1] \n \n Explanation: \n \n There is no sequence of edge toggles that transforms \"00\" into \"01\" . Therefore, we return [-1] . \n\n Constraints: \n\n 2 <= n == start.length == target.length <= 10 5 \n \n edges.length == n - 1 \n \n edges[i] = [a i , b i ] \n \n 0 <= a i , b i < n \n \n start[i] is either '0' or '1' . \n \n target[i] is either '0' or '1' . \n \n The input is generated such that edges represents a valid tree.",
+  "code": "class Solution {\npublic:\n    vector<int> minimumFlips(int n, vector<vector<int>>& edges, string start, string target) {\n        vector<vector<pair<int,int>>> adj(n);\n        for (int i = 0; i < (int)edges.size(); ++i) {\n            int u = edges[i][0], v = edges[i][1];\n            adj[u].push_back(make_pair(v, i));\n            adj[v].push_back(make_pair(u, i));\n        }\n        vector<int> parent(n, -1), edgeId(n, -1), order(1, 0), mismatch(n);\n        for (int i = 0; i < n; ++i) mismatch[i] = (start[i] != target[i]);\n        for (int i = 0; i < (int)order.size(); ++i) {\n            int u = order[i];\n            for (auto e : adj[u]) if (e.first != parent[u]) {\n                parent[e.first] = u;\n                edgeId[e.first] = e.second;\n                order.push_back(e.first);\n            }\n        }\n        vector<int> result;\n        for (int i = n - 1; i > 0; --i) {\n            int u = order[i];\n            if (mismatch[u]) {\n                result.push_back(edgeId[u]);\n                mismatch[parent[u]] ^= 1;\n            }\n        }\n        if (mismatch[0]) return vector<int>(1, -1);\n        sort(result.begin(), result.end());\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179647301",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

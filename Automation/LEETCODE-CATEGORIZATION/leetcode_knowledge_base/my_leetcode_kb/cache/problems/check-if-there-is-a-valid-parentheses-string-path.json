@@ -1,0 +1,33 @@
+{
+  "id": "2267",
+  "title": " Check if There Is a Valid Parentheses String Path",
+  "slug": "check-if-there-is-a-valid-parentheses-string-path",
+  "url": "https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix",
+    "Bracket Sequences"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "A parentheses string is a non-empty string consisting only of '(' and ')' . It is valid if any of the following conditions is true : \n\n It is () . \n \n It can be written as AB ( A concatenated with B ), where A and B are valid parentheses strings. \n \n It can be written as (A) , where A is a valid parentheses string. \n\n You are given an m x n matrix of parentheses grid . A valid parentheses string path in the grid is a path satisfying all of the following conditions: \n\n The path starts from the upper left cell (0, 0) . \n \n The path ends at the bottom-right cell (m - 1, n - 1) . \n \n The path only ever moves down or right . \n \n The resulting parentheses string formed by the path is valid . \n\n Return true if there exists a valid parentheses string path in the grid. Otherwise, return false . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/03/15/example1drawio.png] \n \n```\nInput:\n grid = [[\"(\",\"(\",\"(\"],[\")\",\"(\",\")\"],[\"(\",\"(\",\")\"],[\"(\",\"(\",\")\"]]\n\nOutput:\n true\n\nExplanation:\n The above diagram shows two possible paths that form valid parentheses strings.\nThe first path shown results in the valid parentheses string \"()(())\".\nThe second path shown results in the valid parentheses string \"((()))\".\nNote that there may be other valid parentheses string paths.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/03/15/example2drawio.png] \n \n```\nInput:\n grid = [[\")\",\")\"],[\"(\",\"(\"]]\n\nOutput:\n false\n\nExplanation:\n The two possible paths form the parentheses strings \"))(\" and \")((\". Since neither of them are valid parentheses strings, we return false.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 100 \n \n grid[i][j] is either '(' or ')' .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {int m,n;vector<vector<vector<int>>> memo;vector<vector<char>> *g;bool dfs(int i,int j,int bal){if(i>=m||j>=n)return false;bal+=(*g)[i][j]=='('?1:-1;if(bal<0||bal>m+n)return false;if(i==m-1&&j==n-1)return bal==0;int &v=memo[i][j][bal];if(v!=-1)return v;return v=(dfs(i+1,j,bal)||dfs(i,j+1,bal));}public:bool hasValidPath(vector<vector<char>>& grid){m=grid.size();n=grid[0].size();if((m+n-1)%2||grid[0][0]==')'||grid[m-1][n-1]=='(')return false;g=&grid;memo.assign(m,vector<vector<int>>(n,vector<int>(m+n+1,-1)));return dfs(0,0,0);} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175901804",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

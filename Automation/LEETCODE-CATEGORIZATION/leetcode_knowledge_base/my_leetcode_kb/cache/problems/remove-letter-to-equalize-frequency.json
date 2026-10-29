@@ -1,0 +1,31 @@
+{
+  "id": "2423",
+  "title": "Remove Letter To Equalize Frequency",
+  "slug": "remove-letter-to-equalize-frequency",
+  "url": "https://leetcode.com/problems/remove-letter-to-equalize-frequency/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed string word , consisting of lowercase English letters. You need to select one index and remove the letter at that index from word so that the frequency of every letter present in word is equal. \n \n Return true if it is possible to remove one letter so that the frequency of all letters in word are equal, and false otherwise . \n \n Note: \n\n The frequency of a letter x is the number of times it occurs in the string. \n \n You must remove exactly one letter and cannot choose to do nothing. \n\n Example 1: \n \n```\nInput:\n word = \"abcc\"\n\nOutput:\n true\n\nExplanation:\n Select index 3 and delete it: word becomes \"abc\" and each character has a frequency of 1.\n```\n\n Example 2: \n \n```\nInput:\n word = \"aazz\"\n\nOutput:\n false\n\nExplanation:\n We must delete a character, so either the frequency of \"a\" is 1 and the frequency of \"z\" is 2, or vice versa. It is impossible to make all present letters have equal frequency.\n```\n\n Constraints: \n\n 2 <= word.length <= 100 \n \n word consists of lowercase English letters only.",
+  "code": "class Solution {public:bool equalFrequency(string word){vector<int>cnt(26);for(char c:word)cnt[c-'a']++;for(int i=0;i<26;i++)if(cnt[i]){cnt[i]--;int target=0;bool ok=true;for(int x:cnt)if(x){if(!target)target=x;else if(x!=target){ok=false;break;}}if(ok)return true;cnt[i]++;}return false;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176553111",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

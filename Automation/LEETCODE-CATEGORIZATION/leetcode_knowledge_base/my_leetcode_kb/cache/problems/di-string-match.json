@@ -1,0 +1,34 @@
+{
+  "id": "942",
+  "title": "DI String Match",
+  "slug": "di-string-match",
+  "url": "https://leetcode.com/problems/di-string-match/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "A permutation perm of n + 1 integers of all the integers in the range [0, n] can be represented as a string s of length n where: \n\n s[i] == 'I' if perm[i] < perm[i + 1] , and \n \n s[i] == 'D' if perm[i] > perm[i + 1] . \n\n Given a string s , reconstruct the permutation perm and return it. If there are multiple valid permutations perm, return any of them . \n\n Example 1: \n \n```\nInput:\n s = \"IDID\"\n\nOutput:\n [0,4,1,3,2]\n```\n \n Example 2: \n \n```\nInput:\n s = \"III\"\n\nOutput:\n [0,1,2,3]\n```\n \n Example 3: \n \n```\nInput:\n s = \"DDI\"\n\nOutput:\n [3,2,0,1]\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is either 'I' or 'D' .",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> diStringMatch(string s) {\n        int low = 0, high = s.size();\n        vector<int> result;\n        for (char c : s) {\n            if (c == 'I') result.push_back(low++);\n            else result.push_back(high--);\n        }\n        result.push_back(low);\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590134001",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

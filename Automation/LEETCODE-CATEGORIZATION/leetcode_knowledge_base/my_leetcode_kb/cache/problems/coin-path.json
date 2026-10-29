@@ -1,0 +1,30 @@
+{
+  "id": "656",
+  "title": "Coin Path",
+  "slug": "coin-path",
+  "url": "https://leetcode.com/problems/coin-path/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array coins ( 1-indexed ) of length n and an integer maxJump . You can jump to any index i of the array coins if coins[i] != -1 and you have to pay coins[i] when you visit index i . In addition to that, if you are currently at index i , you can only jump to any index i + k where i + k <= n and k is a value in the range [1, maxJump] . \n \n You are initially positioned at index 1 ( coins[1] is not -1 ). You want to find the path that reaches index n with the minimum cost. \n \n Return an integer array of the indices that you will visit in order so that you can reach index n with the minimum cost. If there are multiple paths with the same cost, return the lexicographically smallest such path. If it is not possible to reach index n, return an empty array. \n \n A path p1 = [Pa 1 , Pa 2 , ..., Pa x ] of length x is lexicographically smaller than p2 = [Pb 1 , Pb 2 , ..., Pb x ] of length y , if and only if at the first j where Pa j and Pb j differ, Pa j < Pb j ; when no such j exists, then x < y . \n\n Example 1: \n \n```\nInput:\n coins = [1,2,4,-1,2], maxJump = 2\n\nOutput:\n [1,3,5]\n```\n \n Example 2: \n \n```\nInput:\n coins = [1,2,4,-1,2], maxJump = 1\n\nOutput:\n []\n```\n\n Constraints: \n\n 1 <= coins.length <= 1000 \n \n -1 <= coins[i] <= 100 \n \n coins[1] != -1 \n \n 1 <= maxJump <= 100",
+  "code": "class Solution {\npublic:\n    vector<int> cheapestJump(vector<int>& coins, int maxJump) {\n        int n = coins.size();\n        if (n == 0 || coins[0] == -1 || coins[n - 1] == -1) {\n            return {};\n        }\n        const long long INF = LLONG_MAX / 4;\n        vector<long long> cost(n, INF);\n        vector<int> next(n, -1);\n        cost[n - 1] = coins[n - 1];\n        for (int i = n - 2; i >= 0; --i) {\n            if (coins[i] == -1) {\n                continue;\n            }\n            for (int j = i + 1; j < n && j <= i + maxJump; ++j) {\n                if (cost[j] == INF) {\n                    continue;\n                }\n                long long candidate = coins[i] + cost[j];\n                if (candidate < cost[i]) {\n                    cost[i] = candidate;\n                    next[i] = j;\n                }\n            }\n        }\n        if (cost[0] == INF) {\n            return {};\n        }\n        vector<int> path;\n        for (int i = 0; i != -1; i = next[i]) {\n            path.push_back(i + 1);\n        }\n        return path;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178493260",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

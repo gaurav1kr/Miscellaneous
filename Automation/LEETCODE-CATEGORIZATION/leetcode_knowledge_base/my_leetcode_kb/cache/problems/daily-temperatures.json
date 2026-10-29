@@ -1,0 +1,33 @@
+{
+  "id": "739",
+  "title": "Daily Temperatures",
+  "slug": "daily-temperatures",
+  "url": "https://leetcode.com/problems/daily-temperatures/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the i th day to get a warmer temperature . If there is no future day for which this is possible, keep answer[i] == 0 instead. \n\n Example 1: \n \n```\nInput:\n temperatures = [73,74,75,71,69,72,76,73]\n\nOutput:\n [1,1,4,2,1,1,0,0]\n```\n \n Example 2: \n \n```\nInput:\n temperatures = [30,40,50,60]\n\nOutput:\n [1,1,1,0]\n```\n \n Example 3: \n \n```\nInput:\n temperatures = [30,60,90]\n\nOutput:\n [1,1,0]\n```\n\n Constraints: \n\n 1 <= temperatures.length <= 10 5 \n \n 30 <= temperatures[i] <= 100",
+  "code": "class Solution {\npublic:\n  vector<int> dailyTemperatures(vector<int>& temperatures) {\n    int n = temperatures.size();\n    vector<int> result(n, 0);\n    stack<int> st; // Stack to keep track of indices\n\n    for (int i = 0; i < n; ++i) {\n        while (!st.empty() && temperatures[i] > temperatures[st.top()]) {\n            int idx = st.top();\n            st.pop();\n            result[idx] = i - idx;\n        }\n        st.push(i);\n    }\n\n    return result;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541860513",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

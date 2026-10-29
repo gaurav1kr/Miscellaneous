@@ -1,0 +1,35 @@
+{
+  "id": "2001",
+  "title": "Number of Pairs of Interchangeable Rectangles",
+  "slug": "number-of-pairs-of-interchangeable-rectangles",
+  "url": "https://leetcode.com/problems/number-of-pairs-of-interchangeable-rectangles/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Counting",
+    "Number Theory"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given n rectangles represented by a 0-indexed 2D integer array rectangles , where rectangles[i] = [width i , height i ] denotes the width and height of the i th rectangle. \n \n Two rectangles i and j ( i < j ) are considered interchangeable if they have the same width-to-height ratio. More formally, two rectangles are interchangeable if width i /height i == width j /height j (using decimal division, not integer division). \n \n Return the number of pairs of interchangeable rectangles in rectangles . \n\n Example 1: \n \n```\nInput:\n rectangles = [[4,8],[3,6],[10,20],[15,30]]\n\nOutput:\n 6\n\nExplanation:\n The following are the interchangeable pairs of rectangles by index (0-indexed):\n- Rectangle 0 with rectangle 1: 4/8 == 3/6.\n- Rectangle 0 with rectangle 2: 4/8 == 10/20.\n- Rectangle 0 with rectangle 3: 4/8 == 15/30.\n- Rectangle 1 with rectangle 2: 3/6 == 10/20.\n- Rectangle 1 with rectangle 3: 3/6 == 15/30.\n- Rectangle 2 with rectangle 3: 10/20 == 15/30.\n```\n\n Example 2: \n \n```\nInput:\n rectangles = [[4,5],[7,8]]\n\nOutput:\n 0\n\nExplanation:\n There are no interchangeable pairs of rectangles.\n```\n\n Constraints: \n\n n == rectangles.length \n \n 1 <= n <= 10 5 \n \n rectangles[i].length == 2 \n \n 1 <= width i , height i <= 10 5",
+  "code": "class Solution {\n    int gcd(int a,int b){while(b){int t=a%b;a=b;b=t;}return a;}\npublic:\n    long long interchangeableRectangles(vector<vector<int>>& rectangles){\n        map<pair<int,int>,long long>freq;long long ans=0;\n        for(auto &r:rectangles){int g=gcd(r[0],r[1]);pair<int,int> key={r[0]/g,r[1]/g};\n            ans+=freq[key]++;}return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175767926",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

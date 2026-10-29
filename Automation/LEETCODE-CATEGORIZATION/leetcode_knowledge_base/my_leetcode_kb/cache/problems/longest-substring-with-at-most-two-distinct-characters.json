@@ -1,0 +1,31 @@
+{
+  "id": "159",
+  "title": "Longest Substring with At Most Two Distinct Characters",
+  "slug": "longest-substring-with-at-most-two-distinct-characters",
+  "url": "https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Given a string s , return the length of the longest substring that contains at most two distinct characters . \n\n Example 1: \n \n```\nInput:\n s = \"eceba\"\n\nOutput:\n 3\n\nExplanation:\n The substring is \"ece\" which its length is 3.\n```\n\n Example 2: \n \n```\nInput:\n s = \"ccaabbb\"\n\nOutput:\n 5\n\nExplanation:\n The substring is \"aabbb\" which its length is 5.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of English letters.",
+  "code": "class Solution {\npublic:\n    int lengthOfLongestSubstringTwoDistinct(string s) {\n        int count[256] = {}, left = 0, distinct = 0, answer = 0;\n        for (int right = 0; right < (int)s.size(); ++right) {\n            unsigned char c = s[right];\n            if (count[c]++ == 0) ++distinct;\n            while (distinct > 2) {\n                unsigned char d = s[left++];\n                if (--count[d] == 0) --distinct;\n            }\n            answer = max(answer, right - left + 1);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179679672",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

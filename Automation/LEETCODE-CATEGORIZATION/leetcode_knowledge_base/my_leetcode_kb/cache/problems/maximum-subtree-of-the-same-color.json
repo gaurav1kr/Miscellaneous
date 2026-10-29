@@ -1,0 +1,35 @@
+{
+  "id": "3004",
+  "title": "Maximum Subtree of the Same Color",
+  "slug": "maximum-subtree-of-the-same-color",
+  "url": "https://leetcode.com/problems/maximum-subtree-of-the-same-color/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array edges representing a tree with n nodes, numbered from 0 to n - 1 , rooted at node 0 , where edges[i] = [u i , v i ] means there is an edge between the nodes v i and u i . \n \n You are also given a 0-indexed integer array colors of size n , where colors[i] is the color assigned to node i . \n \n We want to find a node v such that every node in the subtree of v has the same color. \n \n Return the size of such subtree with the maximum number of nodes possible. \n\n [Figure: https://assets.leetcode.com/static_assets/others/20231216-134026.png] \n \n Example 1: \n \n```\nInput:\n edges = [[0,1],[0,2],[0,3]], colors = [1,1,2,3]\n\nOutput:\n 1\n\nExplanation:\n Each color is represented as: 1 -> Red, 2 -> Green, 3 -> Blue. We can see that the subtree rooted at node 0 has children with different colors. Any other subtree is of the same color and has a size of 1. Hence, we return 1.\n```\n\n Example 2: \n \n```\nInput:\n edges = [[0,1],[0,2],[0,3]], colors = [1,1,1,1]\n\nOutput:\n 4\n\nExplanation:\n The whole tree has the same color, and the subtree rooted at node 0 has the most number of nodes which is 4. Hence, we return 4.\n```\n\n [Figure: https://assets.leetcode.com/static_assets/others/20231216-134017.png] \n \n Example 3: \n \n```\nInput:\n edges = [[0,1],[0,2],[2,3],[2,4]], colors = [1,2,3,3,3]\n\nOutput:\n 3\n\nExplanation:\n Each color is represented as: 1 -> Red, 2 -> Green, 3 -> Blue. We can see that the subtree rooted at node 0 has children with different colors. Any other subtree is of the same color, but the subtree rooted at node 2 has a size of 3 which is the maximum. Hence, we return 3.\n```\n\n Constraints: \n\n n == edges.length + 1 \n \n 1 <= n <= 5 * 10 4 \n \n edges[i] == [u i , v i ] \n \n 0 <= u i , v i < n \n \n colors.length == n \n \n 1 <= colors[i] <= 10 5 \n \n The input is generated such that the graph represented by edges is a tree.",
+  "code": "class Solution {\npublic:\n    int maximumSubtreeSize(vector<vector<int>>& edges, vector<int>& colors) {\n        int n = colors.size(), ans = 0;\n        vector<vector<int>> adj(n);\n        for (auto& e : edges) { adj[e[0]].push_back(e[1]); adj[e[1]].push_back(e[0]); }\n        function<pair<bool, int>(int, int)> dfs = [&](int u, int p) -> pair<bool, int> {\n            bool good = true;\n            int size = 1;\n            for (int v : adj[u]) if (v != p) {\n                auto child = dfs(v, u);\n                good = good && child.first && colors[v] == colors[u];\n                size += child.second;\n            }\n            if (good) ans = max(ans, size);\n            return {good, size};\n        };\n        dfs(0, -1);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178932314",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

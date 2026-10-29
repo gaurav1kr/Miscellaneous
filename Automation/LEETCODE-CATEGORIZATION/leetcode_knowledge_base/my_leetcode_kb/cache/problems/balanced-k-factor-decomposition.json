@@ -1,0 +1,29 @@
+{
+  "id": "3669",
+  "title": "Balanced K-Factor Decomposition",
+  "slug": "balanced-k-factor-decomposition",
+  "url": "https://leetcode.com/problems/balanced-k-factor-decomposition/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Backtracking",
+    "Number Theory"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given two integers n and k . \n \n Split the number n into exactly k positive integers such that the product of these integers is equal to n . \n \n Return any one split in which the maximum difference between any two numbers is minimized . You may return the result in any order. \n\n Example 1: \n\n Input: n = 100, k = 2 \n \n Output: [10,10] \n \n Explanation: \n \n The split [10, 10] yields 10 * 10 = 100 and a max-min difference of 0, which is minimal. \n\n Example 2: \n\n Input: n = 44, k = 3 \n \n Output: [2,2,11] \n \n Explanation: \n\n Split [1, 1, 44] yields a difference of 43 \n \n Split [1, 2, 22] yields a difference of 21 \n \n Split [1, 4, 11] yields a difference of 10 \n \n Split [2, 2, 11] yields a difference of 9 \n\n Therefore, [2, 2, 11] is the optimal split with the smallest difference 9. \n\n Constraints: \n\n 4 <= n <= 10 5 \n \n 2 <= k <= 5 \n \n k is strictly less than the total number of positive divisors of n .",
+  "code": "class Solution { vector<int> best,cur;int spread=INT_MAX;void dfs(int n,int k,int lo){if(k==1){if(n<lo)return;cur.push_back(n);if(cur.back()-cur.front()<spread){spread=cur.back()-cur.front();best=cur;}cur.pop_back();return;}for(int d=lo;1LL*d*d<=n;++d)if(n%d==0){cur.push_back(d);dfs(n/d,k-1,d);cur.pop_back();}}public:vector<int> minDifference(int n,int k){best.clear();cur.clear();spread=INT_MAX;dfs(n,k,1);return best;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177651980",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

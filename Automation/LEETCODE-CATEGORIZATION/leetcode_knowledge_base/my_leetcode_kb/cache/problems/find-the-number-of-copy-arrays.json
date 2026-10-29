@@ -1,0 +1,29 @@
+{
+  "id": "3468",
+  "title": "Find the Number of Copy Arrays",
+  "slug": "find-the-number-of-copy-arrays",
+  "url": "https://leetcode.com/problems/find-the-number-of-copy-arrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array original of length n and a 2D array bounds of length n x 2 , where bounds[i] = [u i , v i ] . \n \n You need to find the number of possible arrays copy of length n such that: \n\n (copy[i] - copy[i - 1]) == (original[i] - original[i - 1]) for 1 <= i <= n - 1 . \n \n u i <= copy[i] <= v i for 0 <= i <= n - 1 . \n\n Return the number of such arrays. \n\n Example 1: \n\n Input: original = [1,2,3,4], bounds = [[1,2],[2,3],[3,4],[4,5]] \n \n Output: 2 \n \n Explanation: \n \n The possible arrays are: \n\n [1, 2, 3, 4] \n \n [2, 3, 4, 5] \n\n Example 2: \n\n Input: original = [1,2,3,4], bounds = [[1,10],[2,9],[3,8],[4,7]] \n \n Output: 4 \n \n Explanation: \n \n The possible arrays are: \n\n [1, 2, 3, 4] \n \n [2, 3, 4, 5] \n \n [3, 4, 5, 6] \n \n [4, 5, 6, 7] \n\n Example 3: \n\n Input: original = [1,2,1,2], bounds = [[1,1],[2,3],[3,3],[2,3]] \n \n Output: 0 \n \n Explanation: \n \n No array is possible. \n\n Constraints: \n\n 2 <= n == original.length <= 10 5 \n \n 1 <= original[i] <= 10 9 \n \n bounds.length == n \n \n bounds[i].length == 2 \n \n 1 <= bounds[i][0] <= bounds[i][1] <= 10 9",
+  "code": "class Solution {public:int countArrays(vector<int>& original,vector<vector<int>>& bounds){long long lo=LLONG_MIN/4,hi=LLONG_MAX/4;for(int i=0;i<(int)original.size();++i){lo=max(lo,1LL*bounds[i][0]-original[i]);hi=min(hi,1LL*bounds[i][1]-original[i]);}return max(0LL,hi-lo+1);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177535565",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

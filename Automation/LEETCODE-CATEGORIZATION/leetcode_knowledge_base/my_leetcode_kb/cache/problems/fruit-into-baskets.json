@@ -1,0 +1,34 @@
+{
+  "id": "904",
+  "title": "Fruit Into Baskets",
+  "slug": "fruit-into-baskets",
+  "url": "https://leetcode.com/problems/fruit-into-baskets/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer array fruits where fruits[i] is the type of fruit the i th tree produces. \n \n You want to collect as much fruit as possible. However, the owner has some strict rules that you must follow: \n\n You only have two baskets, and each basket can only hold a single type of fruit. There is no limit on the amount of fruit each basket can hold. \n \n Starting from any tree of your choice, you must pick exactly one fruit from every tree (including the start tree) while moving to the right. The picked fruits must fit in one of your baskets. \n \n Once you reach a tree with fruit that cannot fit in your baskets, you must stop. \n\n Given the integer array fruits , return the maximum number of fruits you can pick . \n\n Example 1: \n \n```\nInput:\n fruits = [\n1,2,1\n]\n\nOutput:\n 3\n\nExplanation:\n We can pick from all 3 trees.\n```\n\n Example 2: \n \n```\nInput:\n fruits = [0,\n1,2,2\n]\n\nOutput:\n 3\n\nExplanation:\n We can pick from trees [1,2,2].\nIf we had started at the first tree, we would only pick from trees [0,1].\n```\n\n Example 3: \n \n```\nInput:\n fruits = [1,\n2,3,2,2\n]\n\nOutput:\n 4\n\nExplanation:\n We can pick from trees [2,3,2,2].\nIf we had started at the first tree, we would only pick from trees [1,2].\n```\n\n Constraints: \n\n 1 <= fruits.length <= 10 5 \n \n 0 <= fruits[i] < fruits.length",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int totalFruit(vector<int>& fruits) {\n        unordered_map<int, int> basket;\n        int left = 0, res = 0;\n        for (int right = 0; right < fruits.size(); ++right) {\n            basket[fruits[right]]++;\n            while (basket.size() > 2) {\n                if (--basket[fruits[left]] == 0)\n                    basket.erase(fruits[left]);\n                left++;\n            }\n            res = max(res, right - left + 1);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595402656",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

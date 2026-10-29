@@ -1,0 +1,27 @@
+{
+  "id": "3386",
+  "title": "Button with Longest Push Time",
+  "slug": "button-with-longest-push-time",
+  "url": "https://leetcode.com/problems/button-with-longest-push-time/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 2D array events which represents a sequence of events where a child pushes a series of buttons on a keyboard. \n \n Each events[i] = [index i , time i ] indicates that the button at index index i was pressed at time time i . \n\n The array is sorted in increasing order of time . \n \n The time taken to press a button is the difference in time between consecutive button presses. The time for the first button is simply the time at which it was pressed. \n\n Return the index of the button that took the longest time to push. If multiple buttons have the same longest time, return the button with the smallest index . \n\n Example 1: \n\n Input: events = [[1,2],[2,5],[3,9],[1,15]] \n \n Output: 1 \n \n Explanation: \n\n Button with index 1 is pressed at time 2. \n \n Button with index 2 is pressed at time 5, so it took 5 - 2 = 3 units of time. \n \n Button with index 3 is pressed at time 9, so it took 9 - 5 = 4 units of time. \n \n Button with index 1 is pressed again at time 15, so it took 15 - 9 = 6 units of time. \n\n Example 2: \n\n Input: events = [[10,5],[1,7]] \n \n Output: 10 \n \n Explanation: \n\n Button with index 10 is pressed at time 5. \n \n Button with index 1 is pressed at time 7, so it took 7 - 5 = 2 units of time. \n\n Constraints: \n\n 1 <= events.length <= 1000 \n \n events[i] == [index i , time i ] \n \n 1 <= index i , time i <= 10 5 \n \n The input is generated such that events is sorted in increasing order of time i .",
+  "code": "class Solution {public:int buttonWithLongestTime(vector<vector<int>>&events){int prev=0,best=-1,ans=INT_MAX;for(auto&e:events){int d=e[1]-prev;prev=e[1];if(d>best||(d==best&&e[0]<ans)){best=d;ans=e[0];}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177474404",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

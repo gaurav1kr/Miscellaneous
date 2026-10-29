@@ -1,0 +1,26 @@
+{
+  "id": "83",
+  "title": "Remove Duplicates from Sorted List",
+  "slug": "remove-duplicates-from-sorted-list",
+  "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-list/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Linked List"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Given the head of a sorted linked list, delete all duplicates such that each element appears only once . Return the linked list sorted as well . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/04/list1.jpg] \n \n```\nInput:\n head = [1,1,2]\n\nOutput:\n [1,2]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/01/04/list2.jpg] \n \n```\nInput:\n head = [1,1,2,3,3]\n\nOutput:\n [1,2,3]\n```\n\n Constraints: \n\n The number of nodes in the list is in the range [0, 300] . \n \n -100 <= Node.val <= 100 \n \n The list is guaranteed to be sorted in ascending order.",
+  "code": "class Solution {\npublic:\n    ListNode* deleteDuplicates(ListNode* head) {\n        ListNode* current = head;\n        while (current && current->next) {\n            if (current->val == current->next->val) {\n                current->next = current->next->next;\n            } else {\n                current = current->next;\n            }\n        }\n        return head;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588089526",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

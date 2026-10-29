@@ -1,0 +1,34 @@
+{
+  "id": "3998",
+  "title": "Transform Binary String Using Subsequence Sort",
+  "slug": "transform-binary-string-using-subsequence-sort",
+  "url": "https://leetcode.com/problems/transform-binary-string-using-subsequence-sort/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a binary string s . \n \n You are also given an array of strings strs , where each strs[i] has the same length as s and consists of characters '0' , '1' , and '?' . Each '?' can be replaced by either '0' or '1' . \n \n You may perform the following operation any number of times (including zero): \n\n Choose any subsequence sub of s . \n \n Sort sub in non-decreasing order. \n \n Replace the chosen subsequence in s with the sorted sub , keeping all other characters unchanged. \n\n Return a boolean array ans , where ans[i] is true if it's possible to replace all '?' in strs[i] with '0' or '1' and transform s into the resulting string using the allowed operation above, otherwise return false . \n\n Example 1: \n\n Input: s = \"101\", strs = [\"1?1\",\"0?1\",\"0?0\"] \n \n Output: [true,true,false] \n \n Explanation: \n\n i \n strs[i] \n Replacement \n Result strs[i] \n Operation(s) \n Result \n\n 0 \n \"1?1\" \n ? → 0 \n \"101\" \n Matches s . \n true \n\n 1 \n \"0?1\" \n ? → 1 \n \"011\" \n Select the subsequence at indices [0..2] of s → \"101\" . \n Sort \"101\" to get \"011\" = strs[i] . \n true \n\n 2 \n \"0?0\" \n ? → 0 or 1 \n \"000\" or \"010\" \n Not feasible. \n false \n\n Thus, ans = [true, true, false] . \n\n Example 2: \n\n Input: s = \"1100\", strs = [\"0011\",\"11?1\",\"1?1?\"] \n \n Output: [true,false,true] \n \n Explanation: \n\n i \n strs[i] \n Replacement \n Result strs[i] \n Operation(s) \n Result \n\n 0 \n \"0011\" \n - \n \"0011\" \n Select the subsequence at indices [0..3] of s → \"1100\" . \n Sort \"1100\" to get \"0011\" = strs[i] . \n true \n\n 1 \n \"11?1\" \n ? → 0 \n \"1101\" \n Not feasible. \n false \n\n 2 \n \"1?1?\" \n First ? → 0 \n Second ? → 0 \n \"1010\" \n Select the subsequence at indices [1, 2] of s → \"10\" . \n Sort \"10\" to get \"01\" , so s = \"1 01 0\" . \n true \n\n Thus, ans = [true, false, true] . \n\n Example 3: \n\n Input: s = \"1010\", strs = [\"0011\"] \n \n Output: [true] \n \n Explanation: \n\n i \n strs[i] \n Replacement \n Result strs[i] \n Operation(s) \n Result \n\n 0 \n \"0011\" \n - \n \"0011\" \n Select the subsequence at indices [0, 2, 3] of s → \"110\" . \n Sort \"110\" to get \"011\" , so s = \"0 0 11\" = strs[i] . \n true \n\n Thus, ans = [true] . \n\n Constraints: \n\n 1 <= n == s.length <= 2000 \n \n s[i] is either '0' or '1' . \n \n 1 <= strs.length <= 2000 \n \n strs[i].length == n \n \n strs[i] is either '0' , '1' , or '?' ​​​​​​​.",
+  "code": "class Solution {\npublic:\n    vector<bool> transformStr(string s,vector<string>& strs) {\n        int n=s.size(),ones=count(s.begin(),s.end(),'1');\n        vector<int> pref(n+1);\n        for(int i=0;i<n;i++)pref[i+1]=pref[i]+(s[i]=='1');\n        vector<bool> ans;\n        for(const string &t:strs){\n            int fixed=0,wild=0;\n            for(char c:t){fixed+=c=='1';wild+=c=='?';}\n            int need=ones-fixed;\n            if(need<0||need>wild){ans.push_back(false);continue;}\n            int remaining=wild,cur=0;bool good=true;\n            for(int i=0;i<n;i++){\n                if(t[i]=='1')cur++;\n                if(t[i]=='?'){\n                    if(remaining<=need){cur++;need--;}\n                    remaining--;\n                }\n                if(cur>pref[i+1]){good=false;break;}\n            }\n            ans.push_back(good);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181522965",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

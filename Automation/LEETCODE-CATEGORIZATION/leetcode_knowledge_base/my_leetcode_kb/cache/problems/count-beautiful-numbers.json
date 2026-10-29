@@ -1,0 +1,27 @@
+{
+  "id": "3490",
+  "title": "Count Beautiful Numbers",
+  "slug": "count-beautiful-numbers",
+  "url": "https://leetcode.com/problems/count-beautiful-numbers/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two positive integers, l and r . A positive integer is called beautiful if the product of its digits is divisible by the sum of its digits. \n \n Return the count of beautiful numbers between l and r , inclusive. \n\n Example 1: \n\n Input: l = 10, r = 20 \n \n Output: 2 \n \n Explanation: \n \n The beautiful numbers in the range are 10 and 20. \n\n Example 2: \n\n Input: l = 1, r = 15 \n \n Output: 10 \n \n Explanation: \n \n The beautiful numbers in the range are 1, 2, 3, 4, 5, 6, 7, 8, 9, and 10. \n\n Constraints: \n\n 1 <= l <= r < 10 9",
+  "code": "class Solution {long long count(long long bound){if(bound<=0)return 0;string s=to_string(bound);int n=s.size(),maxS=9*n;long long ans=0;for(int target=1;target<=maxS;target++){vector<vector<vector<long long>>> memo(n+1,vector<vector<long long>>(target+1,vector<long long>(target,-1)));function<long long(int,int,int,bool,bool)>dfs=[&](int i,int sum,int prod,bool tight,bool started)->long long{if(sum>target)return 0;if(i==n)return started&&sum==target&&prod%target==0;if(!tight&&started&&memo[i][sum][prod]!=-1)return memo[i][sum][prod];int limit=tight?s[i]-'0':9;long long res=0;for(int d=0;d<=limit;d++){bool st=started||d;int np=st?(int)((1LL*prod*d)%target):1%target;res+=dfs(i+1,sum+d,np,tight&&d==limit,st);}if(!tight&&started)memo[i][sum][prod]=res;return res;};ans+=dfs(0,0,1%target,true,false);}return ans;}public:int beautifulNumbers(int l,int r){return (int)(count(r)-count((long long)l-1));}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177545176",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "4050",
+  "title": "Minimum Days to Score Exactly N Points",
+  "slug": "minimum-days-to-score-exactly-n-points",
+  "url": "https://leetcode.com/problems/minimum-days-to-score-exactly-n-points/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer n representing a target score. \n \n Your score starts at 0, and each day you either earn points or skip . \n \n Points are earned during a streak. On the first day of a streak you earn 1 point, on the second day 2 points, on the third day 3 points, and so on. Skipping a day earns nothing and resets the streak, so the next time you earn points, you start from 1 again. \n \n Return the minimum number of days, including any skipped days, needed to reach a score of exactly n . \n\n Example 1: \n\n Input: n = 2 \n \n Output: 3 \n \n Explanation: ​​​​​​​ \n\n Day 1: earn 1 point. Score is 1. \n \n Day 2: skip, which resets the streak. Earning here would add 2 points and take the score past n = 2 . \n \n Day 3: the streak has reset, so earning gives 1 point. Score is exactly n = 2 in 3 days. \n\n Example 2: \n\n Input: n = 9 \n \n Output: 6 \n \n Explanation: ​​​​​​​ \n\n Days 1 to 3: earn 1, 2, and 3 points. Score is 1 + 2 + 3 = 6 . \n \n Day 4: skip, which resets the streak. \n \n Days 5 and 6: earn 1 and 2 points. Score is exactly 6 + 1 + 2 = 9 in 6 days. \n\n Example 3: \n\n Input: n = 12 \n \n Output: 7 \n \n Explanation: ​​​​​​​ \n\n Days 1 to 3: earn 1, 2, and 3 points. Score is 1 + 2 + 3 = 6 . \n \n Day 4: skip, which resets the streak. \n \n Days 5 to 7: earn 1, 2, and 3 points. Score is exactly 6 + 1 + 2 + 3 = 12 in 7 days. \n\n Constraints: \n\n 1 <= n <= 10 5",
+  "code": "class Solution {\npublic:\n    int minDays(int n) {\n        const int INF = 1e9;\n\n        vector<int> dp(n + 1, INF);\n        dp[0] = 0;\n\n        // Generate all possible streak lengths.\n        for (int k = 1; ; ++k) {\n            int points = k * (k + 1) / 2;\n\n            if (points > n)\n                break;\n\n            int cost = k + 1;\n\n            // Unbounded knapsack:\n            // same streak length can be used multiple times.\n            for (int score = points; score <= n; ++score) {\n                dp[score] = min(\n                    dp[score],\n                    dp[score - points] + cost\n                );\n            }\n        }\n\n        // Last streak doesn't need a skip after it.\n        return dp[n] - 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163644881",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "3397",
+  "title": "Maximum Number of Distinct Elements After Operations",
+  "slug": "maximum-number-of-distinct-elements-after-operations",
+  "url": "https://leetcode.com/problems/maximum-number-of-distinct-elements-after-operations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n You are allowed to perform the following operation on each element of the array at most once : \n\n Add an integer in the range [-k, k] to the element. \n\n Return the maximum possible number of distinct elements in nums after performing the operations . \n\n Example 1: \n\n Input: nums = [1,2,2,3,3,4], k = 2 \n \n Output: 6 \n \n Explanation: \n \n nums changes to [-1, 0, 1, 2, 3, 4] after performing operations on the first four elements. \n\n Example 2: \n\n Input: nums = [4,4,4,4], k = 1 \n \n Output: 3 \n \n Explanation: \n \n By adding -1 to nums[0] and 1 to nums[1] , nums changes to [3, 5, 4, 4] . \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 0 <= k <= 10 9",
+  "code": "class Solution {public:int maxDistinctElements(vector<int>&nums,int k){sort(nums.begin(),nums.end());long long last=LLONG_MIN/4;int ans=0;for(int x:nums){long long v=max(last+1,1LL*x-k);if(v<=1LL*x+k){ans++;last=v;}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177516272",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

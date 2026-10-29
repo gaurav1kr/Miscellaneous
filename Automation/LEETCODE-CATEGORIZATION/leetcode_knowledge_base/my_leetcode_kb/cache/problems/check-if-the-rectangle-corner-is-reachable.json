@@ -1,0 +1,35 @@
+{
+  "id": "3235",
+  "title": "Check if the Rectangle Corner Is Reachable",
+  "slug": "check-if-the-rectangle-corner-is-reachable",
+  "url": "https://leetcode.com/problems/check-if-the-rectangle-corner-is-reachable/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Geometry"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Vector"
+  ],
+  "description": "You are given two positive integers xCorner and yCorner , and a 2D array circles , where circles[i] = [x i , y i , r i ] denotes a circle with center at (x i , y i ) and radius r i . \n \n There is a rectangle in the coordinate plane with its bottom left corner at the origin and top right corner at the coordinate (xCorner, yCorner) . You need to check whether there is a path from the bottom left corner to the top right corner such that the entire path lies inside the rectangle, does not touch or lie inside any circle, and touches the rectangle only at the two corners. \n \n Return true if such a path exists, and false otherwise. \n\n Example 1: \n\n Input: xCorner = 3, yCorner = 4, circles = [[2,1,1]] \n \n Output: true \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/18/example2circle1.png] \n \n The black curve shows a possible path between (0, 0) and (3, 4) . \n\n Example 2: \n\n Input: xCorner = 3, yCorner = 3, circles = [[1,1,2]] \n \n Output: false \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/18/example1circle.png] \n \n No path exists from (0, 0) to (3, 3) . \n\n Example 3: \n\n Input: xCorner = 3, yCorner = 3, circles = [[2,1,1],[1,2,1]] \n \n Output: false \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/18/example0circle.png] \n \n No path exists from (0, 0) to (3, 3) . \n\n Example 4: \n\n Input: xCorner = 4, yCorner = 4, circles = [[5,5,1]] \n \n Output: true \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/04/rectangles.png] \n\n Constraints: \n\n 3 <= xCorner, yCorner <= 10 9 \n \n 1 <= circles.length <= 1000 \n \n circles[i].length == 3 \n \n 1 <= x i , y i , r i <= 10 9",
+  "code": "\nclass Solution {\n    vector<int> parent, sz;\n\n    int find(int x) {\n        if (parent[x] != x)\n            parent[x] = find(parent[x]);\n        return parent[x];\n    }\n\n    void unite(int a, int b) {\n        a = find(a);\n        b = find(b);\n\n        if (a == b)\n            return;\n\n        if (sz[a] < sz[b])\n            swap(a, b);\n\n        parent[b] = a;\n        sz[a] += sz[b];\n    }\n\n    bool inside(long long px, long long py,\n                long long x, long long y,\n                long long r) {\n        long long dx = px - x;\n        long long dy = py - y;\n\n        return dx * dx + dy * dy <= r * r;\n    }\n\n    bool connected(vector<int>& a,\n                   vector<int>& b,\n                   long long X, long long Y) {\n        long long x1 = a[0], y1 = a[1], r1 = a[2];\n        long long x2 = b[0], y2 = b[1], r2 = b[2];\n\n        long long dx = x1 - x2;\n        long long dy = y1 - y2;\n        long long r = r1 + r2;\n\n        // Circles must intersect or touch.\n        if (dx * dx + dy * dy > r * r)\n            return false;\n\n        // Their intersection must reach\n        // the rectangle's interior.\n        // Use 64-bit arithmetic to avoid overflow.\n        return x1 * r2 + x2 * r1 < r * X &&\n               y1 * r2 + y2 * r1 < r * Y;\n    }\n\npublic:\n    bool canReachCorner(int xCorner, int yCorner,\n                        vector<vector<int>>& circles) {\n        int n = circles.size();\n\n        long long X = xCorner;\n        long long Y = yCorner;\n\n        // Two virtual nodes:\n        // n     = left or top boundary\n        // n + 1 = right or bottom boundary\n        parent.resize(n + 2);\n        sz.assign(n + 2, 1);\n\n        for (int i = 0; i < n + 2; ++i)\n            parent[i] = i;\n\n        for (int i = 0; i < n; ++i) {\n            long long x = circles[i][0];\n            long long y = circles[i][1];\n            long long r = circles[i][2];\n\n            // Start or destination lies in a circle.\n            if (inside(0, 0, x, y, r) ||\n                inside(X, Y, x, y, r))\n                return false;\n\n            // Circle touches left boundary.\n            bool left = (x - r <= 0 && y <= Y);\n\n            // Circle touches top boundary.\n            bool top = (y + r >= Y && x <= X);\n\n            // Circle touches right boundary.\n            bool right = (x + r >= X && y <= Y);\n\n            // Circle touches bottom boundary.\n            bool bottom = (y - r <= 0 && x <= X);\n\n            if (left || top)\n                unite(i, n);\n\n            if (right || bottom)\n                unite(i, n + 1);\n\n            // Connect intersecting circles.\n            for (int j = 0; j < i; ++j) {\n                if (connected(circles[i], circles[j],\n                              X, Y)) {\n                    unite(i, j);\n                }\n            }\n\n            // Barrier detected.\n            if (find(n) == find(n + 1))\n                return false;\n        }\n\n        return find(n) != find(n + 1);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181651502",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

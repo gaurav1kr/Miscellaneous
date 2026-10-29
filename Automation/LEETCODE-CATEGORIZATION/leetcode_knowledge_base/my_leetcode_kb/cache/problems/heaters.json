@@ -1,0 +1,34 @@
+{
+  "id": "475",
+  "title": "Heaters",
+  "slug": "heaters",
+  "url": "https://leetcode.com/problems/heaters/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Winter is coming! During the contest, your first job is to design a standard heater with a fixed warm radius to warm all the houses. \n \n Every house can be warmed, as long as the house is within the heater's warm radius range.  \n \n Given the positions of houses and heaters on a horizontal line, return the minimum radius standard of heaters so that those heaters could cover all houses. \n \n Notice that all the heaters follow your radius standard, and the warm radius will be the same. \n\n Example 1: \n \n```\nInput:\n houses = [1,2,3], heaters = [2]\n\nOutput:\n 1\n\nExplanation:\n The only heater was placed in the position 2, and if we use the radius 1 standard, then all the houses can be warmed.\n```\n\n Example 2: \n \n```\nInput:\n houses = [1,2,3,4], heaters = [1,4]\n\nOutput:\n 1\n\nExplanation:\n The two heaters were placed at positions 1 and 4. We need to use a radius 1 standard, then all the houses can be warmed.\n```\n\n Example 3: \n \n```\nInput:\n houses = [1,5], heaters = [2]\n\nOutput:\n 3\n```\n\n Constraints: \n\n 1 <= houses.length, heaters.length <= 3 * 10 4 \n \n 1 <= houses[i], heaters[i] <= 10 9",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int findRadius(vector<int>& houses, vector<int>& heaters) {\n        sort(houses.begin(), houses.end());\n        sort(heaters.begin(), heaters.end());\n        int radius = 0;\n\n        for (int house : houses) {\n            auto it = lower_bound(heaters.begin(), heaters.end(), house);\n            int rightDist = (it == heaters.end()) ? INT_MAX : *it - house;\n            int leftDist = (it == heaters.begin()) ? INT_MAX : house - *(it - 1);\n            radius = max(radius, min(leftDist, rightDist));\n        }\n        return radius;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591365076",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

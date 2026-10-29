@@ -1,0 +1,34 @@
+{
+  "id": "3281",
+  "title": "Maximize Score of Numbers in Ranges",
+  "slug": "maximize-score-of-numbers-in-ranges",
+  "url": "https://leetcode.com/problems/maximize-score-of-numbers-in-ranges/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array of integers start and an integer d , representing n intervals [start[i], start[i] + d] . \n \n You are asked to choose n integers where the i th integer must belong to the i th interval. The score of the chosen integers is defined as the minimum absolute difference between any two integers that have been chosen. \n \n Return the maximum possible score of the chosen integers. \n\n Example 1: \n\n Input: start = [6,0,3], d = 2 \n \n Output: 4 \n \n Explanation: \n \n The maximum possible score can be obtained by choosing integers: 8, 0, and 4. The score of these chosen integers is min(|8 - 0|, |8 - 4|, |0 - 4|) which equals 4. \n\n Example 2: \n\n Input: start = [2,6,13,13], d = 5 \n \n Output: 5 \n \n Explanation: \n \n The maximum possible score can be obtained by choosing integers: 2, 7, 13, and 18. The score of these chosen integers is min(|2 - 7|, |2 - 13|, |2 - 18|, |7 - 13|, |7 - 18|, |13 - 18|) which equals 5. \n\n Constraints: \n\n 2 <= start.length <= 10 5 \n \n 0 <= start[i] <= 10 9 \n \n 0 <= d <= 10 9",
+  "code": "class Solution { public: int maxPossibleScore(vector<int>&start,int d){sort(start.begin(),start.end());auto ok=[&](long long gap){long long last=start[0];for(int i=1;i<(int)start.size();++i){last=max(last+gap,(long long)start[i]);if(last>(long long)start[i]+d)return false;}return true;};long long l=0,r=(long long)start.back()+d-start.front();while(l<r){long long mid=(l+r+1)/2;if(ok(mid))l=mid;else r=mid-1;}return (int)l;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177446912",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1053",
+  "title": "Previous Permutation With One Swap",
+  "slug": "previous-permutation-with-one-swap",
+  "url": "https://leetcode.com/problems/previous-permutation-with-one-swap/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of positive integers arr (not necessarily distinct), return the lexicographically largest permutation that is smaller than arr , that can be made with exactly one swap . If it cannot be done, then return the same array. \n \n Note that a swap exchanges the positions of two numbers arr[i] and arr[j] \n\n Example 1: \n \n```\nInput:\n arr = [3,2,1]\n\nOutput:\n [3,1,2]\n\nExplanation:\n Swapping 2 and 1.\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,1,5]\n\nOutput:\n [1,1,5]\n\nExplanation:\n This is already the smallest permutation.\n```\n\n Example 3: \n \n```\nInput:\n arr = [1,9,4,6,7]\n\nOutput:\n [1,7,4,6,9]\n\nExplanation:\n Swapping 9 and 7.\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 4 \n \n 1 <= arr[i] <= 10 4",
+  "code": "class Solution {\npublic:\n    vector<int> prevPermOpt1(vector<int>& arr) {\n        int i = static_cast<int>(arr.size()) - 2;\n        while (i >= 0 && arr[i] <= arr[i + 1]) --i;\n        if (i < 0) return arr;\n        int j = static_cast<int>(arr.size()) - 1;\n        while (arr[j] >= arr[i]) --j;\n        while (j > i + 1 && arr[j - 1] == arr[j]) --j;\n        swap(arr[i], arr[j]);\n        return arr;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175746020",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

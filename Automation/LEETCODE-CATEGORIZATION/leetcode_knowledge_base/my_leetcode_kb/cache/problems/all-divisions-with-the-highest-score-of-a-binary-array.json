@@ -1,0 +1,27 @@
+{
+  "id": "2155",
+  "title": "All Divisions With the Highest Score of a Binary Array",
+  "slug": "all-divisions-with-the-highest-score-of-a-binary-array",
+  "url": "https://leetcode.com/problems/all-divisions-with-the-highest-score-of-a-binary-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed binary array nums of length n . nums can be divided at index i (where 0 <= i <= n) into two arrays (possibly empty) nums left and nums right : \n\n nums left has all the elements of nums between index 0 and i - 1 (inclusive) , while nums right has all the elements of nums between index i and n - 1 (inclusive) . \n \n If i == 0 , nums left is empty , while nums right has all the elements of nums . \n \n If i == n , nums left has all the elements of nums, while nums right is empty . \n\n The division score of an index i is the sum of the number of 0 's in nums left and the number of 1 's in nums right . \n \n Return all distinct indices that have the highest possible division score . You may return the answer in any order . \n\n Example 1: \n \n```\nInput:\n nums = [0,0,1,0]\n\nOutput:\n [2,4]\n\nExplanation:\n Division at index\n- 0: nums\nleft\n is []. nums\nright\n is [0,0,\n1\n,0]. The score is 0 + 1 = 1.\n- 1: nums\nleft\n is [\n0\n]. nums\nright\n is [0,\n1\n,0]. The score is 1 + 1 = 2.\n- 2: nums\nleft\n is [\n0\n,\n0\n]. nums\nright\n is [\n1\n,0]. The score is 2 + 1 = 3.\n- 3: nums\nleft\n is [\n0\n,\n0\n,1]. nums\nright\n is [0]. The score is 2 + 0 = 2.\n- 4: nums\nleft\n is [\n0\n,\n0\n,1,\n0\n]. nums\nright\n is []. The score is 3 + 0 = 3.\nIndices 2 and 4 both have the highest possible division score 3.\nNote the answer [4,2] would also be accepted.\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,0,0]\n\nOutput:\n [3]\n\nExplanation:\n Division at index\n- 0: nums\nleft\n is []. nums\nright\n is [0,0,0]. The score is 0 + 0 = 0.\n- 1: nums\nleft\n is [\n0\n]. nums\nright\n is [0,0]. The score is 1 + 0 = 1.\n- 2: nums\nleft\n is [\n0\n,\n0\n]. nums\nright\n is [0]. The score is 2 + 0 = 2.\n- 3: nums\nleft\n is [\n0\n,\n0\n,\n0\n]. nums\nright\n is []. The score is 3 + 0 = 3.\nOnly index 3 has the highest possible division score 3.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,1]\n\nOutput:\n [0]\n\nExplanation:\n Division at index\n- 0: nums\nleft\n is []. nums\nright\n is [\n1\n,\n1\n]. The score is 0 + 2 = 2.\n- 1: nums\nleft\n is [1]. nums\nright\n is [\n1\n]. The score is 0 + 1 = 1.\n- 2: nums\nleft\n is [1,1]. nums\nright\n is []. The score is 0 + 0 = 0.\nOnly index 0 has the highest possible division score 2.\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 10 5 \n \n nums[i] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n    vector<int> maxScoreIndices(vector<int>& nums) {\n        int score=accumulate(nums.begin(),nums.end(),0),best=-1;\n        vector<int> ans;\n        for(int i=0;i<=(int)nums.size();++i) {\n            if(score>best) {best=score;ans.clear();}\n            if(score==best) ans.push_back(i);\n            if(i<(int)nums.size()) score+=(nums[i]==0?1:-1);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175874860",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

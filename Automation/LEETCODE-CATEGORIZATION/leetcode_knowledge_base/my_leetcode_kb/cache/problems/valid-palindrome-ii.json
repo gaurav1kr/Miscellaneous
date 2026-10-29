@@ -1,0 +1,30 @@
+{
+  "id": "680",
+  "title": "Valid Palindrome II",
+  "slug": "valid-palindrome-ii",
+  "url": "https://leetcode.com/problems/valid-palindrome-ii/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s , return true if the s can be palindrome after deleting at most one character from it . \n\n Example 1: \n \n```\nInput:\n s = \"aba\"\n\nOutput:\n true\n```\n\n Example 2: \n \n```\nInput:\n s = \"abca\"\n\nOutput:\n true\n\nExplanation:\n You could delete the character 'c'.\n```\n\n Example 3: \n \n```\nInput:\n s = \"abc\"\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    bool isPalindrome(string s, int left, int right) {\n        while (left < right) {\n            if (s[left++] != s[right--]) return false;\n        }\n        return true;\n    }\n    \n    bool validPalindrome(string s) {\n        int left = 0, right = s.size() - 1;\n        while (left < right) {\n            if (s[left] != s[right]) {\n                return isPalindrome(s, left + 1, right) || isPalindrome(s, left, right - 1);\n            }\n            left++; right--;\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588091037",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

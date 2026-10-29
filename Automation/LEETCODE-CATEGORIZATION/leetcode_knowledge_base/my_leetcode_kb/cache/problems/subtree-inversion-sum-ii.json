@@ -1,0 +1,35 @@
+{
+  "id": "3949",
+  "title": "Subtree Inversion Sum II",
+  "slug": "subtree-inversion-sum-ii",
+  "url": "https://leetcode.com/problems/subtree-inversion-sum-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an undirected tree rooted at node 0, with n nodes numbered from 0 to n - 1 . The tree is represented by a 2D integer array edges of length n - 1 , where edges[i] = [u i , v i ] indicates an edge between nodes u i and v i . \n \n You are also given an integer array nums of length n , where nums[i] represents the value at node i , and an integer k . \n \n You may perform inversion operations on a subset of nodes subject to the following rules: \n\n Subtree Inversion Operation: \n\n When you invert a node, every value in the subtree rooted at that node is multiplied by -1. \n\n Distance Constraint on Inversions: \n\n You may only invert a node if it is “sufficiently far” from any other inverted node. \n\n If you invert two nodes a and b , the distance (the number of edges on the unique path between them) must be at least k . \n\n Return the maximum possible sum of the tree’s node values after applying inversion operations . \n\n Example 1: \n\n Input: edges = [[0,1],[0,2],[0,3],[1,4],[1,5]], nums = [1,0,-10,3,4,5], k = 2 \n \n Output: 23 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/21/4183example1drawio.png] \n \n After inverting the subtree rooted at node 2, the maximum sum becomes 1 + 0 + 10 + 3 + 4 + 5 = 23 . \n\n Example 2: \n\n Input: edges = [[0,1],[1,2]], nums = [5,-10,-10], k = 1 \n \n Output: 25 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/21/4183example2drawio.png] \n \n After inverting the subtree rooted at node 1, the maximum sum becomes 5 + 10 + 10 = 25 . \n\n Example 3: \n\n Input: edges = [[0,1],[0,2]], nums = [1,-5,-6], k = 2 \n \n Output: 12 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/21/4183example3drawio.png] \n\n After inverting the subtrees rooted at nodes 1 and 2, nums = [1, 5, 6] . \n \n This is valid because nodes 1 and 2 are two edges apart ( 1 → 0 and 0 → 2 ), which is at least k . \n \n The maximum sum is 1 + 5 + 6 = 12 . \n\n Example 4: \n\n Input: edges = [[0,1],[0,2]], nums = [1,-5,-6], k = 3 \n \n Output: 10 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/21/4183example4drawio.png] \n\n After inverting the subtree rooted at nodes 0, nums = [-1, 5, 6] . \n \n The maximum sum is (-1) + 5 + 6 = 10 . \n \n Note that we cannot invert nodes 1 and 2 because their distance is 2 < k = 3 . \n\n Constraints: \n\n nums.length == n \n \n edges.length == n - 1 \n \n 2 <= n <= 5 * 10 4 \n \n edges[i].length == 2 \n \n 0 <= edges[i][0], edges[i][1] < n \n \n -4 * 10 4 <= nums[i] <= 4 * 10 4 \n \n 1 <= k <= 50 \n \n It is guaranteed that edges forms a tree.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\n    using ll=long long;\n    static const ll INF=(1LL<<60);\n    struct State{ll hi,lo;State(ll h=-INF,ll l=INF):hi(h),lo(l){}};\npublic:\n    int subtreeInversionSum(vector<vector<int>>& edges,vector<int>& a,int k){\n        int n=a.size();vector<vector<int>>g(n);\n        for(auto&e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}\n        vector<int>par(n,-1),order(1,0);\n        for(int i=0;i<(int)order.size();i++){\n            int u=order[i];for(int v:g[u])if(v!=par[u])par[v]=u,order.push_back(v);\n        }\n        vector<vector<State>>dp(n);\n        for(int z=n-1;z>=0;z--){\n            int u=order[z];vector<State>cur(k+1);cur[k]=State(a[u],a[u]);\n            ll invHi=-a[u],invLo=-a[u];\n            for(int v:g[u])if(v!=par[u]){\n                vector<State>next(k+1);\n                ll childHi=-INF,childLo=INF;\n                for(int d=max(0,k-1);d<=k;d++){\n                    childHi=max(childHi,dp[v][d].hi);\n                    childLo=min(childLo,dp[v][d].lo);\n                }\n                invHi-=childLo;invLo-=childHi;\n                for(int d=0;d<=k;d++)if(cur[d].hi!=-INF){\n                    for(int e=0;e<=k;e++)if(dp[v][e].hi!=-INF){\n                        int ce=min(k,e+1);\n                        if(d+ce<k)continue;\n                        int nd=min(d,ce);\n                        next[nd].hi=max(next[nd].hi,cur[d].hi+dp[v][e].hi);\n                        next[nd].lo=min(next[nd].lo,cur[d].lo+dp[v][e].lo);\n                    }\n                }\n                cur.swap(next);\n                vector<State>().swap(dp[v]);\n            }\n            cur[0].hi=max(cur[0].hi,invHi);\n            cur[0].lo=min(cur[0].lo,invLo);\n            dp[u].swap(cur);\n        }\n        ll ans=-INF;for(auto &st:dp[0])ans=max(ans,st.hi);\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181549044",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

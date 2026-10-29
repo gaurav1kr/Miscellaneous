@@ -1,0 +1,30 @@
+{
+  "id": "1278",
+  "title": "Palindrome Partitioning III",
+  "slug": "palindrome-partitioning-iii",
+  "url": "https://leetcode.com/problems/palindrome-partitioning-iii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s containing lowercase letters and an integer k . You need to : \n\n First, change some characters of s to other lowercase English letters. \n \n Then divide s into k non-empty disjoint substrings such that each substring is a palindrome. \n\n Return the minimal number of characters that you need to change to divide the string . \n\n Example 1: \n \n```\nInput:\n s = \"abc\", k = 2\n\nOutput:\n 1\n\nExplanation:\n You can split the string into \"ab\" and \"c\", and change 1 character in \"ab\" to make it palindrome.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aabbc\", k = 3\n\nOutput:\n 0\n\nExplanation:\n You can split the string into \"aa\", \"bb\" and \"c\", all of them are palindrome.\n```\n\n Example 3: \n \n```\nInput:\n s = \"leetcode\", k = 8\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= k <= s.length <= 100 . \n \n s only contains lowercase English letters.",
+  "code": "#include <vector>\n#include <string>\n#include <climits>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int palindromePartition(string s, int k) {\n        int n = s.size();\n        vector<vector<int>> cost(n, vector<int>(n, 0));\n\n        for (int l = 1; l < n; ++l)\n            for (int i = 0; i + l < n; ++i)\n                cost[i][i + l] = cost[i + 1][i + l - 1] + (s[i] != s[i + l]);\n\n        vector<vector<int>> dp(k + 1, vector<int>(n + 1, INT_MAX));\n        dp[0][0] = 0;\n\n        for (int i = 1; i <= k; ++i)\n            for (int j = 1; j <= n; ++j)\n                for (int m = 0; m < j; ++m)\n                    if (dp[i - 1][m] != INT_MAX)\n                        dp[i][j] = min(dp[i][j], dp[i - 1][m] + cost[m][j - 1]);\n\n        return dp[k][n];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595393865",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

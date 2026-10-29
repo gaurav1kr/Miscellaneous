@@ -1,0 +1,40 @@
+{
+  "id": "239",
+  "title": "Sliding Window Maximum",
+  "slug": "sliding-window-maximum",
+  "url": "https://leetcode.com/problems/sliding-window-maximum/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Queue",
+    "Sliding Window",
+    "Heap (Priority Queue)",
+    "Monotonic Queue",
+    "Range Minimum/Maximum Query"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Heap / Priority Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Deque",
+    "Monotonic deque",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an array of integers  nums , there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. \n \n Return the max sliding window . \n\n Example 1: \n \n```\nInput:\n nums = [1,3,-1,-3,5,3,6,7], k = 3\n\nOutput:\n [3,3,5,5,6,7]\n\nExplanation:\n \nWindow position Max\n--------------- -----\n[1 3 -1] -3 5 3 6 7 \n3\n\n 1 [3 -1 -3] 5 3 6 7 \n3\n\n 1 3 [-1 -3 5] 3 6 7 \n 5\n\n 1 3 -1 [-3 5 3] 6 7 \n5\n\n 1 3 -1 -3 [5 3 6] 7 \n6\n\n 1 3 -1 -3 5 [3 6 7] \n7\n```\n\n Example 2: \n \n```\nInput:\n nums = [1], k = 1\n\nOutput:\n [1]\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 4 <= nums[i] <= 10 4 \n \n 1 <= k <= nums.length",
+  "code": "class Solution {\npublic:\n    vector<int> maxSlidingWindow(vector<int>& nums, int k) {\n        vector<int> result;\n        deque<int> dq; // Store indices of useful elements\n        \n        for (int i = 0; i < nums.size(); i++) {\n            // Remove elements that are out of this window\n            if (!dq.empty() && dq.front() == i - k)\n                dq.pop_front();\n\n            // Remove elements smaller than the current element (from back)\n            while (!dq.empty() && nums[dq.back()] <= nums[i])\n                dq.pop_back();\n\n            // Insert current element's index\n            dq.push_back(i);\n\n            // Add the max to result (starting from the first full window)\n            if (i >= k - 1)\n                result.push_back(nums[dq.front()]);\n        }\n\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542420707",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "225",
+  "title": "Implement Stack using Queues",
+  "slug": "implement-stack-using-queues",
+  "url": "https://leetcode.com/problems/implement-stack-using-queues/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Stack",
+    "Design",
+    "Queue"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Queue",
+    "Stack"
+  ],
+  "description": "Implement a last-in-first-out (LIFO) stack using only two queues. The implemented stack should support all the functions of a normal stack ( push , top , pop , and empty ). \n \n Implement the MyStack class: \n\n void push(int x) Pushes element x to the top of the stack. \n \n int pop() Removes the element on the top of the stack and returns it. \n \n int top() Returns the element on the top of the stack. \n \n boolean empty() Returns true if the stack is empty, false otherwise. \n\n Notes: \n\n You must use only standard operations of a queue, which means that only push to back , peek/pop from front , size and is empty operations are valid. \n \n Depending on your language, the queue may not be supported natively. You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations. \n\n Example 1: \n \n```\nInput\n\n[\"MyStack\", \"push\", \"push\", \"top\", \"pop\", \"empty\"]\n[[], [1], [2], [], [], []]\n\nOutput\n\n[null, null, null, 2, 2, false]\n\nExplanation\n\nMyStack myStack = new MyStack();\nmyStack.push(1);\nmyStack.push(2);\nmyStack.top(); // return 2\nmyStack.pop(); // return 2\nmyStack.empty(); // return False\n```\n\n Constraints: \n\n 1 <= x <= 9 \n \n At most 100 calls will be made to push , pop , top , and empty . \n \n All the calls to pop and top are valid. \n\n Follow-up: Can you implement the stack using only one queue?",
+  "code": "class MyStack \n{\n    queue<int> q1;\n    queue<int> q2 ;\npublic:\n    MyStack()\n    {\n        \n    }\n    \n    void push(int x) \n    {\n        q2.push(x);\n        while (!q1.empty()) \n        {\n            q2.push(q1.front());\n            q1.pop();\n        }\n        queue<int> q = q1;\n        q1 = q2;\n        q2 = q;\n    }\n    \n    int pop() \n    {\n        if (q1.empty())\n            return -1;\n        int x = q1.front() ;\n        q1.pop();\n        return x ;\n    }\n    \n    int top() \n    {\n          if (q1.empty())\n            return -1;\n        return q1.front();  \n    }\n    \n    bool empty() \n    {\n        return q1.empty() ;\n    }\n};\n\n/**\n * Your MyStack object will be instantiated and called as such:\n * MyStack* obj = new MyStack();\n * obj->push(x);\n * int param_2 = obj->pop();\n * int param_3 = obj->top();\n * bool param_4 = obj->empty();\n */",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1152938623",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

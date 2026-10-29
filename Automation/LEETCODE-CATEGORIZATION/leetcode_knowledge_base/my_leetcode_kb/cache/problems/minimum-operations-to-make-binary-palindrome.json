@@ -1,0 +1,33 @@
+{
+  "id": "3766",
+  "title": "Minimum Operations to Make Binary Palindrome",
+  "slug": "minimum-operations-to-make-binary-palindrome",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-binary-palindrome/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n For each element nums[i] , you may perform the following operations any number of times (including zero): \n\n Increase nums[i] by 1, or \n \n Decrease nums[i] by 1. \n\n A number is called a binary palindrome if its binary representation without leading zeros reads the same forward and backward. \n \n Your task is to return an integer array ans , where ans[i] represents the minimum number of operations required to convert nums[i] into a binary palindrome . \n\n Example 1: \n\n Input: nums = [1,2,4] \n \n Output: [0,1,1] \n \n Explanation: \n \n One optimal set of operations: \n\n nums[i] \n Binary( nums[i] ) \n Nearest \n Palindrome \n Binary \n (Palindrome) \n Operations Required \n ans[i] \n\n 1 \n 1 \n 1 \n 1 \n Already palindrome \n 0 \n\n 2 \n 10 \n 3 \n 11 \n Increase by 1 \n 1 \n\n 4 \n 100 \n 3 \n 11 \n Decrease by 1 \n 1 \n\n Thus, ans = [0, 1, 1] . \n\n Example 2: \n\n Input: nums = [6,7,12] \n \n Output: [1,0,3] \n \n Explanation: \n \n One optimal set of operations: \n\n nums[i] \n Binary( nums[i] ) \n Nearest \n Palindrome \n Binary \n (Palindrome) \n Operations Required \n ans[i] \n\n 6 \n 110 \n 5 \n 101 \n Decrease by 1 \n 1 \n\n 7 \n 111 \n 7 \n 111 \n Already palindrome \n 0 \n\n 12 \n 1100 \n 15 \n 1111 \n Increase by 3 \n 3 \n\n Thus, ans = [1, 0, 3] . \n\n Constraints: \n\n 1 <= nums.length <= 5000 \n \n ​​​​​​​ 1 <= nums[i] <= 5000",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\n    bool palindrome(int x) {\n        int bits[32], n = 0;\n        while (x) { bits[n++] = x & 1; x >>= 1; }\n        for (int i = 0; i < n/2; ++i)\n            if (bits[i] != bits[n-1-i]) return false;\n        return true;\n    }\npublic:\n    vector<int> minOperations(vector<int>& nums) {\n        vector<int> pal;\n        for (int x = 1; x <= 10000; ++x)\n            if (palindrome(x)) pal.push_back(x);\n        vector<int> ans;\n        for (int x : nums) {\n            auto it = lower_bound(pal.begin(), pal.end(), x);\n            int best = INT_MAX;\n            if (it != pal.end()) best = min(best, abs(*it - x));\n            if (it != pal.begin()) best = min(best, abs(*prev(it) - x));\n            ans.push_back(best);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181020836",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

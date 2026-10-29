@@ -1,0 +1,30 @@
+{
+  "id": "999",
+  "title": "Available Captures for Rook",
+  "slug": "available-captures-for-rook",
+  "url": "https://leetcode.com/problems/available-captures-for-rook/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an 8 x 8 matrix representing a chessboard. There is exactly one white rook represented by 'R' , some number of white bishops 'B' , and some number of black pawns 'p' . Empty squares are represented by '.' . \n \n A rook can move any number of squares horizontally or vertically (up, down, left, right) until it reaches another piece or the edge of the board. A rook is attacking a pawn if it can move to the pawn's square in one move. \n \n Note: A rook cannot move through other pieces, such as bishops or pawns. This means a rook cannot attack a pawn if there is another piece blocking the path. \n \n Return the number of pawns the white rook is attacking . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/02/20/1253_example_1_improved.PNG] \n\n Input: board = [[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\"p\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\"R\",\".\",\".\",\".\",\"p\"],[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\"p\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"]] \n \n Output: 3 \n \n Explanation: \n \n In this example, the rook is attacking all the pawns. \n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/02/19/1253_example_2_improved.PNG] \n\n Input: board = [[\".\",\".\",\".\",\".\",\".\",\".\",\".\"],[\".\",\"p\",\"p\",\"p\",\"p\",\"p\",\".\",\".\"],[\".\",\"p\",\"p\",\"B\",\"p\",\"p\",\".\",\".\"],[\".\",\"p\",\"B\",\"R\",\"B\",\"p\",\".\",\".\"],[\".\",\"p\",\"p\",\"B\",\"p\",\"p\",\".\",\".\"],[\".\",\"p\",\"p\",\"p\",\"p\",\"p\",\".\",\".\"],[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"]] \n \n Output: 0 \n \n Explanation: \n \n The bishops are blocking the rook from attacking any of the pawns. \n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2019/02/20/1253_example_3_improved.PNG] \n\n Input: board = [[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\"p\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\"p\",\".\",\".\",\".\",\".\"],[\"p\",\"p\",\".\",\"R\",\".\",\"p\",\"B\",\".\"],[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\"B\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\"p\",\".\",\".\",\".\",\".\"],[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"]] \n \n Output: 3 \n \n Explanation: \n \n The rook is attacking the pawns at positions b5, d6, and f5. \n\n Constraints: \n\n board.length == 8 \n \n board[i].length == 8 \n \n board[i][j] is either 'R' , '.' , 'B' , or 'p' \n \n There is exactly one cell with board[i][j] == 'R'",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numRookCaptures(vector<vector<char>>& board) {\n        int x, y;\n        for (int i = 0; i < 8; ++i)\n            for (int j = 0; j < 8; ++j)\n                if (board[i][j] == 'R') {\n                    x = i; y = j;\n                }\n        int res = 0, dirs[5] = {0, 1, 0, -1, 0};\n        for (int d = 0; d < 4; ++d) {\n            int nx = x, ny = y;\n            while (true) {\n                nx += dirs[d]; ny += dirs[d + 1];\n                if (nx < 0 || ny < 0 || nx >= 8 || ny >= 8 || board[nx][ny] == 'B') break;\n                if (board[nx][ny] == 'p') {\n                    res++;\n                    break;\n                }\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610601176",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

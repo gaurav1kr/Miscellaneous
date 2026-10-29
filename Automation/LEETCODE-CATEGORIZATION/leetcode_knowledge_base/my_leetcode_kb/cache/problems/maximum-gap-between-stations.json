@@ -1,0 +1,31 @@
+{
+  "id": "4026",
+  "title": "Maximum Gap Between Stations",
+  "slug": "maximum-gap-between-stations",
+  "url": "https://leetcode.com/problems/maximum-gap-between-stations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings skill and station of lengths n and m , respectively. \n \n skill[i] represents the skill of worker i , and station[j] represents the skill supported by station j . \n \n You must assign every worker to a distinct station. Let j i be the index of the station assigned to worker i . A valid assignment must satisfy: \n\n station[j i ] == skill[i] for every 0 <= i < n . \n \n The assigned station indices must be strictly increasing in worker order, meaning j 0 < j 1 < ... < j n - 1 . \n\n The gap of an assignment is the maximum difference between the station indices assigned to two consecutive workers. In other words, it is max(j i - j i - 1 ) over all 1 <= i < n . \n \n If there is only one worker, the gap is 0. \n \n Return the maximum possible gap among all valid assignments. It is guaranteed that at least one valid assignment exists. \n\n Example 1: \n\n Input: skill = \"aa\", station = \"aaaa\" \n \n Output: 3 \n \n Explanation: \n\n The two workers must be assigned to two different 'a' stations. \n \n Assigning them to stations [0, 3] gives a gap of 3. \n\n Example 2: \n\n Input: skill = \"xyz\", station = \"xyzz\" \n \n Output: 2 \n \n Explanation: \n\n Assign worker 0 to station j = 0 , and worker 1 to station j = 1 . \n \n To maximize the gap, assign worker 2 to station j = 3 . \n \n This gives the assignment [0, 1, 3] with gaps [1, 2] , so the gap is 2. \n\n Example 3: \n\n Input: skill = \"cbc\", station = \"cbcdbc\" \n \n Output: 4 \n \n Explanation: \n\n Assign worker 0 to station j = 0 , and worker 1 to station j = 1 . \n \n To maximize the gap, assign worker 2 to station j = 5 . \n \n This gives the assignment [0, 1, 5] with gaps [1, 4] , so the gap is 4. \n\n Constraints: \n\n skill.length == n \n \n station.length == m \n \n 1 <= n <= m <= 10 5 \n \n skill and station consist of lowercase English letters. \n \n It is guaranteed that a valid assignment exists for every worker.",
+  "code": "class Solution {\npublic:\n    int maximumGap(string skill, string station) {\n        int n = skill.size(), m = station.size();\n        if (n == 1) return 0;\n        vector<int> left(n), right(n);\n        int p = 0;\n        for (int i = 0; i < m && p < n; ++i)\n            if (station[i] == skill[p]) left[p++] = i;\n        p = n - 1;\n        for (int i = m - 1; i >= 0 && p >= 0; --i)\n            if (station[i] == skill[p]) right[p--] = i;\n        int ans = 0;\n        for (int i = 0; i + 1 < n; ++i)\n            ans = max(ans, right[i + 1] - left[i]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181116410",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

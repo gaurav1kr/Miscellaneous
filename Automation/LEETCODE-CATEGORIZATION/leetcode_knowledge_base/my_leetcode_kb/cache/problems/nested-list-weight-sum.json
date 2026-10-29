@@ -1,0 +1,27 @@
+{
+  "id": "339",
+  "title": "Nested List Weight Sum",
+  "slug": "nested-list-weight-sum",
+  "url": "https://leetcode.com/problems/nested-list-weight-sum/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given a nested list of integers nestedList . Each element is either an integer or a list whose elements may also be integers or other lists. \n \n The depth of an integer is the number of lists that it is inside of. For example, the nested list [1,[2,2],[[3],2],1] has each integer's value set to its depth . \n \n Return the sum of each integer in nestedList multiplied by its depth . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/01/14/nestedlistweightsumex1.png] \n \n```\nInput:\n nestedList = [[1,1],2,[1,1]]\n\nOutput:\n 10\n\nExplanation:\n Four 1's at depth 2, one 2 at depth 1. 1*2 + 1*2 + 2*1 + 1*2 + 1*2 = 10.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/01/14/nestedlistweightsumex2.png] \n \n```\nInput:\n nestedList = [1,[4,[6]]]\n\nOutput:\n 27\n\nExplanation:\n One 1 at depth 1, one 4 at depth 2, and one 6 at depth 3. 1*1 + 4*2 + 6*3 = 27.\n```\n\n Example 3: \n \n```\nInput:\n nestedList = [0]\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= nestedList.length <= 50 \n \n The values of the integers in the nested list is in the range [-100, 100] . \n \n The maximum depth of any integer is less than or equal to 50 .",
+  "code": "class Solution\n{\n    int dfs(const vector<NestedInteger>& list, int depth)\n    {\n        int total = 0;\n        for (const NestedInteger& item : list) {\n            if (item.isInteger())\n            {\n                total += item.getInteger() * depth;\n            } else\n            {\n                total += dfs(item.getList(), depth + 1);\n            }\n        }\n        return total;\n    }\npublic:\n    int depthSum(vector<NestedInteger>& nestedList)\n    {\n        return dfs(nestedList, 1);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178454668",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

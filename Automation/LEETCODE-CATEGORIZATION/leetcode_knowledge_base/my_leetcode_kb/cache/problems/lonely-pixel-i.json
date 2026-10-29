@@ -1,0 +1,32 @@
+{
+  "id": "531",
+  "title": "Lonely Pixel I",
+  "slug": "lonely-pixel-i",
+  "url": "https://leetcode.com/problems/lonely-pixel-i/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Given an m x n picture consisting of black 'B' and white 'W' pixels, return the number of black lonely pixels . \n \n A black lonely pixel is a character 'B' that located at a specific position where the same row and same column don't have any other black pixels. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/11/pixel1.jpg] \n \n```\nInput:\n picture = [[\"W\",\"W\",\"B\"],[\"W\",\"B\",\"W\"],[\"B\",\"W\",\"W\"]]\n\nOutput:\n 3\n\nExplanation:\n All the three 'B's are black lonely pixels.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/11/11/pixel2.jpg] \n \n```\nInput:\n picture = [[\"B\",\"B\",\"B\"],[\"B\",\"B\",\"W\"],[\"B\",\"B\",\"B\"]]\n\nOutput:\n 0\n```\n\n Constraints: \n\n m == picture.length \n \n n == picture[i].length \n \n 1 <= m, n <= 500 \n \n picture[i][j] is 'W' or 'B' .",
+  "code": "class Solution {\npublic:\n    int findLonelyPixel(vector<vector<char>>& picture) {\n        int m = picture.size(), n = picture[0].size();\n        vector<int> rows(m, 0), cols(n, 0);\n        for (int r = 0; r < m; ++r) {\n            for (int c = 0; c < n; ++c) {\n                if (picture[r][c] == 'B') {\n                    ++rows[r];\n                    ++cols[c];\n                }\n            }\n        }\n        int answer = 0;\n        for (int r = 0; r < m; ++r) {\n            for (int c = 0; c < n; ++c) {\n                if (picture[r][c] == 'B' && rows[r] == 1 && cols[c] == 1) {\n                    ++answer;\n                }\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178477158",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

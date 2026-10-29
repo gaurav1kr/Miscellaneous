@@ -1,0 +1,30 @@
+{
+  "id": "1335",
+  "title": "Minimum Difficulty of a Job Schedule",
+  "slug": "minimum-difficulty-of-a-job-schedule",
+  "url": "https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You want to schedule a list of jobs in d days. Jobs are dependent (i.e To work on the i th job, you have to finish all the jobs j where 0 <= j < i ). \n \n You have to finish at least one task every day. The difficulty of a job schedule is the sum of difficulties of each day of the d days. The difficulty of a day is the maximum difficulty of a job done on that day. \n \n You are given an integer array jobDifficulty and an integer d . The difficulty of the i th job is jobDifficulty[i] . \n \n Return the minimum difficulty of a job schedule . If you cannot find a schedule for the jobs return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/01/16/untitled.png] \n \n```\nInput:\n jobDifficulty = [6,5,4,3,2,1], d = 2\n\nOutput:\n 7\n\nExplanation:\n First day you can finish the first 5 jobs, total difficulty = 6.\nSecond day you can finish the last job, total difficulty = 1.\nThe difficulty of the schedule = 6 + 1 = 7\n```\n\n Example 2: \n \n```\nInput:\n jobDifficulty = [9,9,9], d = 4\n\nOutput:\n -1\n\nExplanation:\n If you finish a job per day you will still have a free day. you cannot find a schedule for the given jobs.\n```\n\n Example 3: \n \n```\nInput:\n jobDifficulty = [1,1,1], d = 3\n\nOutput:\n 3\n\nExplanation:\n The schedule is one job per day. total difficulty will be 3.\n```\n\n Constraints: \n\n 1 <= jobDifficulty.length <= 300 \n \n 0 <= jobDifficulty[i] <= 1000 \n \n 1 <= d <= 10",
+  "code": "#include <vector>\n#include <climits>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minDifficulty(vector<int>& jobDifficulty, int d) {\n        int n = jobDifficulty.size();\n        if (n < d) return -1;\n        vector<vector<int>> dp(d + 1, vector<int>(n + 1, INT_MAX));\n        dp[0][0] = 0;\n        for (int day = 1; day <= d; ++day) {\n            for (int i = day; i <= n; ++i) {\n                int maxDiff = 0;\n                for (int j = i - 1; j >= day - 1; --j) {\n                    maxDiff = max(maxDiff, jobDifficulty[j]);\n                    if (dp[day - 1][j] != INT_MAX)\n                        dp[day][i] = min(dp[day][i], dp[day - 1][j] + maxDiff);\n                }\n            }\n        }\n        return dp[d][n];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593693569",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "490",
+  "title": "The Maze",
+  "slug": "the-maze",
+  "url": "https://leetcode.com/problems/the-maze/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is a ball in a maze with empty spaces (represented as 0 ) and walls (represented as 1 ). The ball can go through the empty spaces by rolling up, down, left or right , but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction. \n \n Given the m x n maze , the ball's start position and the destination , where start = [start row , start col ] and destination = [destination row , destination col ] , return true if the ball can stop at the destination, otherwise return false . \n \n You may assume that the borders of the maze are all walls (see examples). \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/31/maze1-1-grid.jpg] \n \n```\nInput:\n maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [4,4]\n\nOutput:\n true\n\nExplanation:\n One possible way is : left -> down -> left -> down -> right -> down -> right.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/31/maze1-2-grid.jpg] \n \n```\nInput:\n maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [3,2]\n\nOutput:\n false\n\nExplanation:\n There is no way for the ball to stop at the destination. Notice that you can pass through the destination but you cannot stop there.\n```\n\n Example 3: \n \n```\nInput:\n maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], start = [4,3], destination = [0,1]\n\nOutput:\n false\n```\n\n Constraints: \n\n m == maze.length \n \n n == maze[i].length \n \n 1 <= m, n <= 100 \n \n maze[i][j] is 0 or 1 . \n \n start.length == 2 \n \n destination.length == 2 \n \n 0 <= start row , destination row < m \n \n 0 <= start col , destination col < n \n \n Both the ball and the destination exist in an empty space, and they will not be in the same position initially. \n \n The maze contains at least 2 empty spaces .",
+  "code": "class Solution {\npublic:\n    bool hasPath(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {\n        int m = maze.size(), n = maze[0].size();\n        const int dr[4] = {1, -1, 0, 0};\n        const int dc[4] = {0, 0, 1, -1};\n        queue<pair<int, int>> q;\n        vector<vector<bool>> seen(m, vector<bool>(n, false));\n        q.push({start[0], start[1]});\n        seen[start[0]][start[1]] = true;\n        while (!q.empty()) {\n            auto cell = q.front();\n            q.pop();\n            if (cell.first == destination[0] && cell.second == destination[1]) {\n                return true;\n            }\n            for (int d = 0; d < 4; ++d) {\n                int r = cell.first, c = cell.second;\n                while (r + dr[d] >= 0 && r + dr[d] < m &&\n                       c + dc[d] >= 0 && c + dc[d] < n &&\n                       maze[r + dr[d]][c + dc[d]] == 0) {\n                    r += dr[d];\n                    c += dc[d];\n                }\n                if (!seen[r][c]) {\n                    seen[r][c] = true;\n                    q.push({r, c});\n                }\n            }\n        }\n        return false;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178473807",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

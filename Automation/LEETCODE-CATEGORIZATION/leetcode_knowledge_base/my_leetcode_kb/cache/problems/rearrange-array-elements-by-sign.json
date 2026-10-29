@@ -1,0 +1,30 @@
+{
+  "id": "2149",
+  "title": "Rearrange Array Elements by Sign",
+  "slug": "rearrange-array-elements-by-sign",
+  "url": "https://leetcode.com/problems/rearrange-array-elements-by-sign/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Simulation"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums of even length consisting of an equal number of positive and negative integers. \n \n You should return the array of nums such that the array follows the given conditions: \n\n Every consecutive pair of integers have opposite signs . \n \n For all integers with the same sign, the order in which they were present in nums is preserved . \n \n The rearranged array begins with a positive integer. \n\n Return the modified array after rearranging the elements to satisfy the aforementioned conditions . \n\n Example 1: \n \n```\nInput:\n nums = [3,1,-2,-5,2,-4]\n\nOutput:\n [3,-2,1,-5,2,-4]\n\nExplanation:\n\nThe positive integers in nums are [3,1,2]. The negative integers are [-2,-5,-4].\nThe only possible way to rearrange them such that they satisfy all conditions is [3,-2,1,-5,2,-4].\nOther ways such as [1,-2,2,-5,3,-4], [3,1,2,-2,-5,-4], [-2,3,-5,1,-4,2] are incorrect because they do not satisfy one or more conditions.\n```\n\n Example 2: \n \n```\nInput:\n nums = [-1,1]\n\nOutput:\n [1,-1]\n\nExplanation:\n\n1 is the only positive integer and -1 the only negative integer in nums.\nSo nums is rearranged to [1,-1].\n```\n\n Constraints: \n\n 2 <= nums.length <= 2 * 10 5 \n \n nums.length is even \n \n 1 <= |nums[i]| <= 10 5 \n \n nums consists of equal number of positive and negative integers. \n\nIt is not required to do the modifications in-place.",
+  "code": "class Solution {\npublic:\n    vector<int> rearrangeArray(vector<int>& nums) {\n        vector<int> ans(nums.size());int p=0,q=1;\n        for(int x:nums) if(x>0) {ans[p]=x;p+=2;} else {ans[q]=x;q+=2;}\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175873770",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

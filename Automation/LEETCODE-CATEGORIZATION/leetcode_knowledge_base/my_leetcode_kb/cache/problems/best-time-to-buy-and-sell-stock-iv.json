@@ -1,0 +1,30 @@
+{
+  "id": "188",
+  "title": "Best Time to Buy and Sell Stock IV",
+  "slug": "best-time-to-buy-and-sell-stock-iv",
+  "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array prices where prices[i] is the price of a given stock on the i th day, and an integer k . \n \n Find the maximum profit you can achieve. You may complete at most k transactions: i.e. you may buy at most k times and sell at most k times. \n \n Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again). \n\n Example 1: \n \n```\nInput:\n k = 2, prices = [2,4,1]\n\nOutput:\n 2\n\nExplanation:\n Buy on day 1 (price = 2) and sell on day 2 (price = 4), profit = 4-2 = 2.\n```\n\n Example 2: \n \n```\nInput:\n k = 2, prices = [3,2,6,5,0,3]\n\nOutput:\n 7\n\nExplanation:\n Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-2 = 4. Then buy on day 5 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.\n```\n\n Constraints: \n\n 1 <= k <= 100 \n \n 1 <= prices.length <= 1000 \n \n 0 <= prices[i] <= 1000",
+  "code": "class Solution {\npublic:\n    int maxProfit(int k, vector<int>& prices) {\n\n        vector<int> states(k*2, INT_MIN);\n        states[0] = -prices[0];\n\n        for (auto price : prices) {\n            states[0] = max(states[0], -price);\n            int sign = 1;\n            // for each k, we have 2 new states\n            for (int i=1; i<k*2; ++i) {\n                states[i] = max(states[i], states[i-1] + sign * price);\n                sign *= -1;\n            } \n        }\n\n        return states[k*2-1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1527769623",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

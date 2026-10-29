@@ -1,0 +1,33 @@
+{
+  "id": "1940",
+  "title": "Longest Common Subsequence Between Sorted Arrays",
+  "slug": "longest-common-subsequence-between-sorted-arrays",
+  "url": "https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an array of integer arrays arrays where each arrays[i] is sorted in strictly increasing order, return an integer array representing the longest common subsequence among  all the arrays . \n \n A subsequence is a sequence that can be derived from another sequence by deleting some elements (possibly none) without changing the order of the remaining elements. \n\n Example 1: \n \n```\nInput:\n arrays = [[\n1\n,3,\n4\n],\n [\n1\n,\n4\n,7,9]]\n\nOutput:\n [1,4]\n\nExplanation:\n The longest common subsequence in the two arrays is [1,4].\n```\n\n Example 2: \n \n```\nInput:\n arrays = [[\n2\n,\n3\n,\n6\n,8],\n [1,\n2\n,\n3\n,5,\n6\n,7,10],\n [\n2\n,\n3\n,4,\n6\n,9]]\n\nOutput:\n [2,3,6]\n\nExplanation:\n The longest common subsequence in all three arrays is [2,3,6].\n```\n\n Example 3: \n \n```\nInput:\n arrays = [[1,2,3,4,5],\n [6,7,8]]\n\nOutput:\n []\n\nExplanation:\n There is no common subsequence between the two arrays.\n```\n\n Constraints: \n\n 2 <= arrays.length <= 100 \n \n 1 <= arrays[i].length <= 100 \n \n 1 <= arrays[i][j] <= 100 \n \n arrays[i] is sorted in strictly increasing order.",
+  "code": "class Solution {\npublic:\n    vector<int> longestCommonSubsequence(vector<vector<int>>& arrays) {\n        unordered_map<int, int> frequency;\n        for (const auto& row : arrays) {\n            for (int value : row) {\n                ++frequency[value];\n            }\n        }\n        vector<int> answer;\n        for (auto item : frequency) {\n            if (item.second == (int)arrays.size()) {\n                answer.push_back(item.first);\n            }\n        }\n        sort(answer.begin(), answer.end());\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178625963",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

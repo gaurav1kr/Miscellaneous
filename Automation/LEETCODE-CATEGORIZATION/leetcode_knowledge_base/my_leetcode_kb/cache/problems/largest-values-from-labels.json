@@ -1,0 +1,38 @@
+{
+  "id": "1090",
+  "title": "Largest Values From Labels",
+  "slug": "largest-values-from-labels",
+  "url": "https://leetcode.com/problems/largest-values-from-labels/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given n item's value and label as two integer arrays values and labels . You are also given two integers numWanted and useLimit . \n \n Your task is to find a subset of items with the maximum sum of their values such that: \n\n The number of items is at most numWanted . \n \n The number of items with the same label is at most useLimit . \n\n Return the maximum sum. \n\n Example 1: \n\n Input: values = [5,4,3,2,1], labels = [1,1,2,2,3], numWanted = 3, useLimit = 1 \n \n Output: 9 \n \n Explanation: \n \n The subset chosen is the first, third, and fifth items with the sum of values 5 + 3 + 1. \n\n Example 2: \n\n Input: values = [5,4,3,2,1], labels = [1,3,3,3,2], numWanted = 3, useLimit = 2 \n \n Output: 12 \n \n Explanation: \n \n The subset chosen is the first, second, and third items with the sum of values 5 + 4 + 3. \n\n Example 3: \n\n Input: values = [9,8,8,7,6], labels = [0,0,0,1,1], numWanted = 3, useLimit = 1 \n \n Output: 16 \n \n Explanation: \n \n The subset chosen is the first and fourth items with the sum of values 9 + 7. \n\n Constraints: \n\n n == values.length == labels.length \n \n 1 <= n <= 2 * 10 4 \n \n 0 <= values[i], labels[i] <= 2 * 10 4 \n \n 1 <= numWanted, useLimit <= n",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int largestValsFromLabels(vector<int>& values, vector<int>& labels, int numWanted, int useLimit) {\n        vector<pair<int, int>> items;\n        for (int i = 0; i < values.size(); ++i)\n            items.push_back({values[i], labels[i]});\n        sort(items.begin(), items.end(), greater<>());\n\n        unordered_map<int, int> used;\n        int res = 0;\n        for (auto& [val, lab] : items) {\n            if (used[lab] < useLimit && numWanted > 0) {\n                res += val;\n                used[lab]++;\n                numWanted--;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610640070",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

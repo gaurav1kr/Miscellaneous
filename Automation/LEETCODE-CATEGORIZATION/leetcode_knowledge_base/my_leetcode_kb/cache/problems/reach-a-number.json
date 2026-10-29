@@ -1,0 +1,26 @@
+{
+  "id": "754",
+  "title": "Reach a Number",
+  "slug": "reach-a-number",
+  "url": "https://leetcode.com/problems/reach-a-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are standing at position 0 on an infinite number line. There is a destination at position target . \n \n You can make some number of moves numMoves so that: \n\n On each move, you can either go left or right. \n \n During the i th move (starting from i == 1 to i == numMoves ), you take i steps in the chosen direction. \n\n Given the integer target , return the minimum number of moves required (i.e., the minimum numMoves ) to reach the destination . \n\n Example 1: \n \n```\nInput:\n target = 2\n\nOutput:\n 3\n\nExplanation:\n\nOn the 1\nst\n move, we step from 0 to 1 (1 step).\nOn the 2\nnd\n move, we step from 1 to -1 (2 steps).\nOn the 3\nrd\n move, we step from -1 to 2 (3 steps).\n```\n\n Example 2: \n \n```\nInput:\n target = 3\n\nOutput:\n 2\n\nExplanation:\n\nOn the 1\nst\n move, we step from 0 to 1 (1 step).\nOn the 2\nnd\n move, we step from 1 to 3 (2 steps).\n```\n\n Constraints: \n\n -10 9 <= target <= 10 9 \n \n target != 0",
+  "code": "\n#include <cmath>\nusing namespace std;\n\nclass Solution {\npublic:\n    int reachNumber(int target) {\n        target = abs(target);\n        int steps = 0, sum = 0;\n        \n        while (sum < target || (sum - target) % 2 != 0) {\n            steps++;\n            sum += steps;\n        }\n        \n        return steps;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592335523",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "1995",
+  "title": "Count Special Quadruplets",
+  "slug": "count-special-quadruplets",
+  "url": "https://leetcode.com/problems/count-special-quadruplets/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Enumeration"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Given a 0-indexed integer array nums , return the number of distinct quadruplets (a, b, c, d) such that: \n\n nums[a] + nums[b] + nums[c] == nums[d] , and \n \n a < b < c < d \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,6]\n\nOutput:\n 1\n\nExplanation:\n The only quadruplet that satisfies the requirement is (0, 1, 2, 3) because 1 + 2 + 3 == 6.\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,3,6,4,5]\n\nOutput:\n 0\n\nExplanation:\n There are no such quadruplets in [3,3,6,4,5].\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,1,1,3,5]\n\nOutput:\n 4\n\nExplanation:\n The 4 quadruplets that satisfy the requirement are:\n- (0, 1, 2, 3): 1 + 1 + 1 == 3\n- (0, 1, 3, 4): 1 + 1 + 3 == 5\n- (0, 2, 3, 4): 1 + 1 + 3 == 5\n- (1, 2, 3, 4): 1 + 1 + 3 == 5\n```\n\n Constraints: \n\n 4 <= nums.length <= 50 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    int countQuadruplets(vector<int>& nums){int n=nums.size(),ans=0;\n        for(int a=0;a<n;++a)for(int b=a+1;b<n;++b)\n            for(int c=b+1;c<n;++c)for(int d=c+1;d<n;++d)\n                if(nums[a]+nums[b]+nums[c]==nums[d])++ans;\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175767795",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

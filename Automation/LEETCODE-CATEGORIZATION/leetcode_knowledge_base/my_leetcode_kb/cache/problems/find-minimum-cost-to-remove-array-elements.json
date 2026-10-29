@@ -1,0 +1,30 @@
+{
+  "id": "3469",
+  "title": "Find Minimum Cost to Remove Array Elements",
+  "slug": "find-minimum-cost-to-remove-array-elements",
+  "url": "https://leetcode.com/problems/find-minimum-cost-to-remove-array-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . Your task is to remove all elements from the array by performing one of the following operations at each step until nums is empty: \n\n Choose any two elements from the first three elements of nums and remove them. The cost of this operation is the maximum of the two elements removed. \n \n If fewer than three elements remain in nums , remove all the remaining elements in a single operation. The cost of this operation is the maximum of the remaining elements. \n\n Return the minimum cost required to remove all the elements. \n\n Example 1: \n\n Input: nums = [6,2,8,4] \n \n Output: 12 \n \n Explanation: \n \n Initially, nums = [6, 2, 8, 4] . \n\n In the first operation, remove nums[0] = 6 and nums[2] = 8 with a cost of max(6, 8) = 8 . Now, nums = [2, 4] . \n \n In the second operation, remove the remaining elements with a cost of max(2, 4) = 4 . \n\n The cost to remove all elements is 8 + 4 = 12 . This is the minimum cost to remove all elements in nums . Hence, the output is 12. \n\n Example 2: \n\n Input: nums = [2,1,3,3] \n \n Output: 5 \n \n Explanation: \n \n Initially, nums = [2, 1, 3, 3] . \n\n In the first operation, remove nums[0] = 2 and nums[1] = 1 with a cost of max(2, 1) = 2 . Now, nums = [3, 3] . \n \n In the second operation remove the remaining elements with a cost of max(3, 3) = 3 . \n\n The cost to remove all elements is 2 + 3 = 5 . This is the minimum cost to remove all elements in nums . Hence, the output is 5. \n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 10 6",
+  "code": "class Solution {public:int minCost(vector<int>& nums){int n=nums.size();if(n<3)return *max_element(nums.begin(),nums.end());vector<vector<int>>memo(n+1,vector<int>(n,-1));function<int(int,int)>dfs=[&](int i,int keep){if(i==n)return nums[keep];if(i==n-1)return max(nums[keep],nums[i]);int &res=memo[i][keep];if(res!=-1)return res;res=INT_MAX;res=min(res,max(nums[keep],nums[i])+dfs(i+2,i+1));res=min(res,max(nums[keep],nums[i+1])+dfs(i+2,i));res=min(res,max(nums[i],nums[i+1])+dfs(i+2,keep));return res;};return dfs(1,0);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177536065",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "2526",
+  "title": "Find Consecutive Integers from a Data Stream",
+  "slug": "find-consecutive-integers-from-a-data-stream",
+  "url": "https://leetcode.com/problems/find-consecutive-integers-from-a-data-stream/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Design",
+    "Queue",
+    "Counting",
+    "Data Stream"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Queue"
+  ],
+  "description": "For a stream of integers, implement a data structure that checks if the last k integers parsed in the stream are equal to value . \n \n Implement the DataStream class: \n\n DataStream(int value, int k) Initializes the object with an empty integer stream and the two integers value and k . \n \n boolean consec(int num) Adds num to the stream of integers. Returns true if the last k integers are equal to value , and false otherwise. If there are less than k integers, the condition does not hold true, so returns false . \n\n Example 1: \n \n```\nInput\n\n[\"DataStream\", \"consec\", \"consec\", \"consec\", \"consec\"]\n[[4, 3], [4], [4], [4], [3]]\n\nOutput\n\n[null, false, false, true, false]\n\nExplanation\n\nDataStream dataStream = new DataStream(4, 3); //value = 4, k = 3 \ndataStream.consec(4); // Only 1 integer is parsed, so returns False. \ndataStream.consec(4); // Only 2 integers are parsed.\n // Since 2 is less than k, returns False. \ndataStream.consec(4); // The 3 integers parsed are all equal to value, so returns True. \ndataStream.consec(3); // The last k integers parsed in the stream are [4,4,3].\n // Since 3 is not equal to value, it returns False.\n```\n\n Constraints: \n\n 1 <= value, num <= 10 9 \n \n 1 <= k <= 10 5 \n \n At most 10 5 calls will be made to consec .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass DataStream {\n int value,k,run=0;\npublic:\n DataStream(int value,int k):value(value),k(k){}\n bool consec(int num){run=num==value?min(k,run+1):0;return run==k;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176600588",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

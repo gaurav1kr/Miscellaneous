@@ -1,0 +1,35 @@
+{
+  "id": "3116",
+  "title": "Kth Smallest Amount With Single Denomination Combination",
+  "slug": "kth-smallest-amount-with-single-denomination-combination",
+  "url": "https://leetcode.com/problems/kth-smallest-amount-with-single-denomination-combination/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Bit Manipulation",
+    "Combinatorics",
+    "Number Theory"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array coins representing coins of different denominations and an integer k . \n \n You have an infinite number of coins of each denomination. However, you are not allowed to combine coins of different denominations. \n \n Return the k th smallest amount that can be made using these coins. \n\n Example 1: \n\n Input: coins = [3,6,9], k = 3 \n \n Output: 9 \n \n Explanation: The given coins can make the following amounts: \nCoin 3 produces multiples of 3: 3, 6, 9, 12, 15, etc. \nCoin 6 produces multiples of 6: 6, 12, 18, 24, etc. \nCoin 9 produces multiples of 9: 9, 18, 27, 36, etc. \nAll of the coins combined produce: 3, 6, 9 , 12, 15, etc. \n\n Example 2: \n\n Input: coins = [5,2], k = 7 \n \n Output: 12 \n \n Explanation: The given coins can make the following amounts: \nCoin 5 produces multiples of 5: 5, 10, 15, 20, etc. \nCoin 2 produces multiples of 2: 2, 4, 6, 8, 10, 12, etc. \nAll of the coins combined produce: 2, 4, 5, 6, 8, 10, 12 , 14, 15, etc. \n\n Constraints: \n\n 1 <= coins.length <= 15 \n \n 1 <= coins[i] <= 25 \n \n 1 <= k <= 2 * 10 9 \n \n coins contains pairwise distinct integers.",
+  "code": "class Solution {static long long gcd14(long long a,long long b){while(b){long long t=a%b;a=b;b=t;}return a;}public:long long findKthSmallest(vector<int>& coins,int k){\n sort(coins.begin(),coins.end());vector<long long> c;for(int x:coins){bool redundant=false;for(long long y:c)if(x%y==0){redundant=true;break;}if(!redundant)c.push_back(x);}\n auto count=[&](long long bound){long long total=0;int m=c.size();for(int mask=1;mask<(1<<m);mask++){\n long long lcm=1;bool valid=true;for(int i=0;i<m;i++)if(mask>>i&1){long long g=gcd14(lcm,c[i]);\n if(lcm/g>bound/c[i]){valid=false;break;}lcm=lcm/g*c[i];}\n if(valid){int bits=__builtin_popcount((unsigned)mask);total+=(bits&1?1:-1)*(bound/lcm);}\n }return total;};\n long long lo=1,hi=1LL*(*min_element(coins.begin(),coins.end()))*k;\n while(lo<hi){long long mid=lo+(hi-lo)/2;if(count(mid)>=k)hi=mid;else lo=mid+1;}return lo;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177379225",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

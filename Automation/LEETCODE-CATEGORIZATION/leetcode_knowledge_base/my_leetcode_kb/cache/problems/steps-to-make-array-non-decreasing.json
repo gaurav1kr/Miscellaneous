@@ -1,0 +1,40 @@
+{
+  "id": "2289",
+  "title": "Steps to Make Array Non-decreasing",
+  "slug": "steps-to-make-array-non-decreasing",
+  "url": "https://leetcode.com/problems/steps-to-make-array-non-decreasing/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Linked List",
+    "Dynamic Programming",
+    "Stack",
+    "Monotonic Stack",
+    "Simulation"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Dynamic Programming",
+    "Linked List / Pointers",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Linked list",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . In one step, remove all elements nums[i] where nums[i - 1] > nums[i] for all 0 < i < nums.length . \n \n Return the number of steps performed until nums becomes a non-decreasing array . \n\n Example 1: \n \n```\nInput:\n nums = [5,3,4,4,7,3,6,11,8,5,11]\n\nOutput:\n 3\n\nExplanation:\n The following are the steps performed:\n- Step 1: [5,\n3\n,4,4,7,\n3\n,6,11,\n8\n,\n5\n,11] becomes [5,4,4,7,6,11,11]\n- Step 2: [5,\n4\n,4,7,\n6\n,11,11] becomes [5,4,7,11,11]\n- Step 3: [5,\n4\n,7,11,11] becomes [5,7,11,11]\n[5,7,11,11] is a non-decreasing array. Therefore, we return 3.\n```\n\n Example 2: \n \n```\nInput:\n nums = [4,5,7,7,13]\n\nOutput:\n 0\n\nExplanation:\n nums is already a non-decreasing array. Therefore, we return 0.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int totalSteps(vector<int>& nums){vector<pair<int,int>> st;int ans=0;for(int x:nums){int rounds=0;while(!st.empty()&&st.back().first<=x){rounds=max(rounds,st.back().second);st.pop_back();}rounds=st.empty()?0:rounds+1;ans=max(ans,rounds);st.push_back({x,rounds});}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175908145",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

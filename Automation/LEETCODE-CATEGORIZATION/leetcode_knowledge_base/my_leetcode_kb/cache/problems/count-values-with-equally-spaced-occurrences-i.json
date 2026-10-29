@@ -1,0 +1,30 @@
+{
+  "id": "4048",
+  "title": "Count Values With Equally Spaced Occurrences I",
+  "slug": "count-values-with-equally-spaced-occurrences-i",
+  "url": "https://leetcode.com/problems/count-values-with-equally-spaced-occurrences-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n An integer x is called special if: \n\n x appears exactly three times in nums . \n \n All three occurrences of x are equally spaced in nums . In other words, if all occurrences of x are at indices i 1 < i 2 < i 3 , then i 2 - i 1 = i 3 - i 2 . \n\n Return the number of distinct special integers in nums . \n\n Example 1: \n\n Input: nums = [1,8,1,5,1,5,8,5] \n \n Output: 2 \n \n Explanation: \n\n 1 is special because it occurs exactly three times at equally spaced indices 0, 2, and 4. \n \n 5 is special because it occurs exactly three times at equally spaced indices 3, 5, and 7. \n \n 8 is not special because it occurs only twice. \n\n Therefore, the answer is 2. \n\n Example 2: \n\n Input: nums = [8,8,8,8] \n \n Output: 0 \n \n Explanation: \n \n 8 is not special because it does not occur exactly three times. Therefore, the answer is 0. \n\n Example 3: \n\n Input: nums = [8,6,6,8,8] \n \n Output: 0 \n \n Explanation: \n \n 8 occurs at indices 0, 3, and 4, which are not equally spaced. 6 occurs only twice. Therefore, no integer is special. \n\n Constraints: \n\n 3 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\n    public: int countSpecialIntegers(vector<int>& nums) {\n        vector<vector<int>> pos(101);\n        for(int i=0; i<(int)nums.size(); i++)pos[nums[i]].push_back(i);\n        int ans=0;\n        for(auto &p:pos)if(p.size()==3 && p[1]-p[0]==p[2]-p[1])ans++;\n        return ans;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179334409",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

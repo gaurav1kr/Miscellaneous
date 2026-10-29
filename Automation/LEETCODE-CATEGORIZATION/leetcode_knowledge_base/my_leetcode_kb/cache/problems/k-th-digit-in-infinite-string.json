@@ -1,0 +1,26 @@
+{
+  "id": "4022",
+  "title": "K-th Digit in Infinite String",
+  "slug": "k-th-digit-in-infinite-string",
+  "url": "https://leetcode.com/problems/k-th-digit-in-infinite-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given an integer k . \n \n An infinite string is formed by concatenating the decimal representations of the positive integers, without separators. \n \n For every nonnegative integer b , block b contains the positive integers from 10 * b through 10 * b + 9 . The integers in each block are appended as follows: \n\n If b is even, append the integers in increasing order. \n \n If b is odd, append the integers in decreasing order. \n\n Therefore, the string starts with the integers 1 through 9, followed by 19 through 10, then 20 through 29, then 39 through 30, and so on. \n \n Return the k th digit (1-indexed) of this string. \n\n Example 1: \n\n Input: k = 4 \n \n Output: 4 \n \n Explanation: \n \n The string begins as \"123 4 56789..\" . The 4 th digit is '4' . \n\n Example 2: \n\n Input: k = 15 \n \n Output: 7 \n \n Explanation: \n \n The string begins as \"12345678919181 7 ..\" . The 15 th digit is '7' . \n\n Example 3: \n\n Input: k = 11 \n \n Output: 9 \n \n Explanation: \n \n The string begins as \"1234567891 9 ..\" . The 11 th digit is '9' . \n\n Constraints: \n\n 1 <= k <= 10 15",
+  "code": "class Solution {\npublic:\n    int kthDigit(long long k) {\n        if (k <= 9) return (int)k;\n        k -= 9;\n        long long first = 1, count = 9;\n        int digits = 2;\n        while (true) {\n            long long length = count * 10LL * digits;\n            if (k <= length) break;\n            k -= length;\n            first *= 10;\n            count *= 10;\n            ++digits;\n        }\n        long long blockOffset = (k - 1) / (10LL * digits);\n        long long b = first + blockOffset;\n        long long inside = (k - 1) % (10LL * digits);\n        int ordinal = (int)(inside / digits);\n        int digitIndex = (int)(inside % digits);\n        long long number = 10LL * b + (b % 2 == 0 ? ordinal : 9 - ordinal);\n        string t = to_string(number);\n        return t[digitIndex] - '0';\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181114899",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

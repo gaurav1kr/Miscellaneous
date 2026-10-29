@@ -1,0 +1,32 @@
+{
+  "id": "2921",
+  "title": "Maximum Profitable Triplets With Increasing Prices II",
+  "slug": "maximum-profitable-triplets-with-increasing-prices-ii",
+  "url": "https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Indexed Tree",
+    "Segment Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "Given the 0-indexed arrays prices and profits of length n . There are n items in an store where the i th item has a price of prices[i] and a profit of profits[i] . \n \n We have to pick three items with the following condition: \n\n prices[i] < prices[j] < prices[k] where i < j < k . \n\n If we pick items with indices i , j and k satisfying the above condition, the profit would be profits[i] + profits[j] + profits[k] . \n \n Return the maximum profit we can get, and -1 if it's not possible to pick three items with the given condition. \n\n Example 1: \n \n```\nInput:\n prices = [10,2,3,4], profits = [100,2,7,10]\n\nOutput:\n 19\n\nExplanation:\n We can't pick the item with index i=0 since there are no indices j and k such that the condition holds.\nSo the only triplet we can pick, are the items with indices 1, 2 and 3 and it's a valid pick since prices[1] < prices[2] < prices[3].\nThe answer would be sum of their profits which is 2 + 7 + 10 = 19.\n```\n\n Example 2: \n \n```\nInput:\n prices = [1,2,3,4,5], profits = [1,5,3,4,6]\n\nOutput:\n 15\n\nExplanation:\n We can select any triplet of items since for each triplet of indices i, j and k such that i < j < k, the condition holds.\nTherefore the maximum profit we can get would be the 3 most profitable items which are indices 1, 3 and 4.\nThe answer would be sum of their profits which is 5 + 4 + 6 = 15.\n```\n\n Example 3: \n \n```\nInput:\n prices = [4,3,2,1], profits = [33,20,19,87]\n\nOutput:\n -1\n\nExplanation:\n We can't select any triplet of indices such that the condition holds, so we return -1.\n```\n\n Constraints: \n\n 3 <= prices.length == profits.length <= 50000 \n \n 1 <= prices[i] <= 5000 \n \n 1 <= profits[i] <= 10 6",
+  "code": "class Solution {\n    struct BIT {\n        vector<int> t;\n        BIT(int n) : t(n + 1, -1000000000) {}\n        void update(int i, int v) { for (; i < (int)t.size(); i += i & -i) t[i] = max(t[i], v); }\n        int query(int i) { int v = -1000000000; for (; i; i -= i & -i) v = max(v, t[i]); return v; }\n    };\npublic:\n    int maxProfit(vector<int>& prices, vector<int>& profits) {\n        vector<int> vals = prices;\n        sort(vals.begin(), vals.end());\n        vals.erase(unique(vals.begin(), vals.end()), vals.end());\n        int n = prices.size(), m = vals.size();\n        vector<int> left(n), right(n);\n        BIT bit(m);\n        for (int i = 0; i < n; ++i) {\n            int r = lower_bound(vals.begin(), vals.end(), prices[i]) - vals.begin() + 1;\n            left[i] = bit.query(r - 1);\n            bit.update(r, profits[i]);\n        }\n        BIT rev(m);\n        for (int i = n - 1; i >= 0; --i) {\n            int r = lower_bound(vals.begin(), vals.end(), prices[i]) - vals.begin() + 1;\n            right[i] = rev.query(m - r);\n            rev.update(m - r + 1, profits[i]);\n        }\n        int ans = -1;\n        for (int i = 0; i < n; ++i) if (left[i] >= 0 && right[i] >= 0) ans = max(ans, left[i] + profits[i] + right[i]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178922016",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

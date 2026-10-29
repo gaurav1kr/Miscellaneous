@@ -1,0 +1,42 @@
+{
+  "id": "1728",
+  "title": "Cat and Mouse II",
+  "slug": "cat-and-mouse-ii",
+  "url": "https://leetcode.com/problems/cat-and-mouse-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Graph Theory",
+    "Topological Sort",
+    "Memoization",
+    "Minimax",
+    "Matrix",
+    "Game Theory",
+    "Zero-Sum Game"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "A game is played by a cat and a mouse named Cat and Mouse. \n \n The environment is represented by a grid of size rows x cols , where each element is a wall, floor, player (Cat, Mouse), or food. \n\n Players are represented by the characters 'C' (Cat) ,'M' (Mouse). \n \n Floors are represented by the character '.' and can be walked on. \n \n Walls are represented by the character '#' and cannot be walked on. \n \n Food is represented by the character 'F' and can be walked on. \n \n There is only one of each character 'C' , 'M' , and 'F' in grid . \n\n Mouse and Cat play according to the following rules: \n\n Mouse moves first , then they take turns to move. \n \n During each turn, Cat and Mouse can jump in one of the four directions (left, right, up, down). They cannot jump over the wall nor outside of the grid . \n \n catJump, mouseJump are the maximum lengths Cat and Mouse can jump at a time, respectively. Cat and Mouse can jump less than the maximum length. \n \n Staying in the same position is allowed. \n \n Mouse can jump over Cat. \n\n The game can end in 4 ways: \n\n If Cat occupies the same position as Mouse, Cat wins. \n \n If Cat reaches the food first, Cat wins. \n \n If Mouse reaches the food first, Mouse wins. \n \n If Mouse cannot get to the food within 1000 turns, Cat wins. \n\n Given a rows x cols matrix grid and two integers catJump and mouseJump , return true if Mouse can win the game if both Cat and Mouse play optimally, otherwise return false . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/12/sample_111_1955.png] \n \n```\nInput:\n grid = [\"####F\",\"#C...\",\"M....\"], catJump = 1, mouseJump = 2\n\nOutput:\n true\n\nExplanation:\n Cat cannot catch Mouse on its turn nor can it get the food before Mouse.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/09/12/sample_2_1955.png] \n \n```\nInput:\n grid = [\"M.C...F\"], catJump = 1, mouseJump = 4\n\nOutput:\n true\n```\n\n Example 3: \n \n```\nInput:\n grid = [\"M.C...F\"], catJump = 1, mouseJump = 3\n\nOutput:\n false\n```\n\n Constraints: \n\n rows == grid.length \n \n cols = grid[i].length \n \n 1 <= rows, cols <= 8 \n \n grid[i][j] consist only of characters 'C' , 'M' , 'F' , '.' , and '#' . \n \n There is only one of each character 'C' , 'M' , and 'F' in grid . \n \n 1 <= catJump, mouseJump <= 8",
+  "code": "class Solution {\n int R,C,food,cj,mj;vector<string> board;vector<vector<int>> movesM,movesC;\n vector<signed char> memo;int P;\n vector<vector<int>> build(int jump){\n  vector<vector<int>> moves(P);const int dr[4]={1,-1,0,0},dc[4]={0,0,1,-1};\n  for(int p=0;p<P;++p){int r=p/C,c=p%C;if(board[r][c]=='#')continue;\n   moves[p].push_back(p);\n   for(int d=0;d<4;++d)for(int k=1;k<=jump;++k){int nr=r+dr[d]*k,nc=c+dc[d]*k;\n    if(nr<0||nr>=R||nc<0||nc>=C||board[nr][nc]=='#')break;\n    moves[p].push_back(nr*C+nc);\n   }\n  }return moves;\n }\n bool win(int m,int c,int t){\n  if(m==c||c==food)return false;\n  if(m==food)return true;\n  if(t==1000)return false;\n  int idx=(t*P+m)*P+c;\n  if(memo[idx]!=-1)return memo[idx];\n  if(t%2==0){for(int nm:movesM[m])if(win(nm,c,t+1))return memo[idx]=1;return memo[idx]=0;}\n  for(int nc:movesC[c])if(!win(m,nc,t+1))return memo[idx]=0;\n  return memo[idx]=1;\n }\npublic:\n bool canMouseWin(vector<string>& grid,int catJump,int mouseJump){\n  board=grid;R=grid.size();C=grid[0].size();P=R*C;cj=catJump;mj=mouseJump;\n  int m=0,c=0;for(int i=0;i<R;++i)for(int j=0;j<C;++j){\n   if(grid[i][j]=='M')m=i*C+j;\n   if(grid[i][j]=='C')c=i*C+j;\n   if(grid[i][j]=='F')food=i*C+j;\n  }\n  movesM=build(mj);movesC=build(cj);\n  memo.assign(1000*P*P,-1);return win(m,c,0);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175759250",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

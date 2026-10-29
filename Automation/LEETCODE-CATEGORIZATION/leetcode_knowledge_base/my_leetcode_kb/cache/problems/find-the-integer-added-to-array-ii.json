@@ -1,0 +1,33 @@
+{
+  "id": "3132",
+  "title": "Find the Integer Added to Array II",
+  "slug": "find-the-integer-added-to-array-ii",
+  "url": "https://leetcode.com/problems/find-the-integer-added-to-array-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Sorting",
+    "Enumeration"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays nums1 and nums2 . \n \n We say that nums2 is reachable from nums1 with an integer x if there exist two elements in nums1 that, when removed, and x is added to all the remaining elements of nums1 (or subtracted in the case of a negative x ), the resulting array becomes equal to nums2 . Two arrays are considered equal when they contain the same integers with the same frequencies. \n \n Return the minimum possible integer x that makes nums2 reachable from nums1 . \n \n It is guaranteed that nums2 is reachable from nums1 with at least one x . \n\n Example 1: \n\n Input: nums1 = [4,20,16,12,8], nums2 = [14,18,10] \n \n Output: -2 \n \n Explanation: \n \n After removing elements at indices [0,4] and adding -2, nums1 becomes [18,14,10] . \n\n Example 2: \n\n Input: nums1 = [3,5,5,3], nums2 = [7,7] \n \n Output: 2 \n \n Explanation: \n \n After removing elements at indices [0,3] and adding 2, nums1 becomes [7,7] . \n\n Constraints: \n\n 3 <= nums1.length <= 200 \n \n nums2.length == nums1.length - 2 \n \n 0 <= nums1[i], nums2[i] <= 1000 \n\n It is guaranteed that nums2 is reachable from nums1 with at least one x .",
+  "code": "class Solution {public:int minimumAddedInteger(vector<int>& a,vector<int>& b){sort(a.begin(),a.end());sort(b.begin(),b.end());int ans=INT_MAX,n=a.size();for(int t=0;t<3;++t){int d=b[0]-a[t],j=0;for(int i=0;i<n&&j<(int)b.size();++i)if(a[i]+d==b[j])++j;if(j==(int)b.size())ans=min(ans,d);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177387477",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "1157",
+  "title": "Online Majority Element In Subarray",
+  "slug": "online-majority-element-in-subarray",
+  "url": "https://leetcode.com/problems/online-majority-element-in-subarray/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Design",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Sqrt Decomposition",
+    "Boyer–Moore Majority Vote Algorithm"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Hash map",
+    "Hash set",
+    "Ordered map",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "Design a data structure that efficiently finds the majority element of a given subarray. \n \n The majority element of a subarray is an element that occurs threshold times or more in the subarray. \n \n Implementing the MajorityChecker class: \n\n MajorityChecker(int[] arr) Initializes the instance of the class with the given array arr . \n \n int query(int left, int right, int threshold) returns the element in the subarray arr[left...right] that occurs at least threshold times, or -1 if no such element exists. \n\n Example 1: \n \n```\nInput\n\n[\"MajorityChecker\", \"query\", \"query\", \"query\"]\n[[[1, 1, 2, 2, 1, 1]], [0, 5, 4], [0, 3, 3], [2, 3, 2]]\n\nOutput\n\n[null, 1, -1, 2]\n\nExplanation\n\nMajorityChecker majorityChecker = new MajorityChecker([1, 1, 2, 2, 1, 1]);\nmajorityChecker.query(0, 5, 4); // return 1\nmajorityChecker.query(0, 3, 3); // return -1\nmajorityChecker.query(2, 3, 2); // return 2\n```\n\n Constraints: \n\n 1 <= arr.length <= 2 * 10 4 \n \n 1 <= arr[i] <= 2 * 10 4 \n \n 0 <= left <= right < arr.length \n \n threshold <= right - left + 1 \n \n 2 * threshold > right - left + 1 \n \n At most 10 4 calls will be made to query .",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <unordered_set>\n#include <random>\n\nusing namespace std;\n\nclass MajorityChecker {\n    unordered_map<int, vector<int>> pos;\n    vector<int> arr;\n\npublic:\n    MajorityChecker(vector<int>& arr) : arr(arr) {\n        for (int i = 0; i < arr.size(); ++i)\n            pos[arr[i]].push_back(i);\n    }\n\n    int query(int left, int right, int threshold) {\n        static default_random_engine gen((random_device())());\n        uniform_int_distribution<int> dis(left, right);\n        for (int t = 0; t < 20; ++t) {\n            int x = arr[dis(gen)];\n            auto& p = pos[x];\n            int l = lower_bound(p.begin(), p.end(), left) - p.begin();\n            int r = upper_bound(p.begin(), p.end(), right) - p.begin();\n            if (r - l >= threshold) return x;\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610594019",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

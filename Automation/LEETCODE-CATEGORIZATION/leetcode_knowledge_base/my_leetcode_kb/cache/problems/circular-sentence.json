@@ -1,0 +1,26 @@
+{
+  "id": "2490",
+  "title": "Circular Sentence",
+  "slug": "circular-sentence",
+  "url": "https://leetcode.com/problems/circular-sentence/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A sentence is a list of words that are separated by a single space with no leading or trailing spaces. \n\n For example, \"Hello World\" , \"HELLO\" , \"hello world hello world\" are all sentences. \n\n Words consist of only uppercase and lowercase English letters. Uppercase and lowercase English letters are considered different. \n \n A sentence is circular if: \n\n The last character of each word in the sentence is equal to the first character of its next word. \n \n The last character of the last word is equal to the first character of the first word. \n\n For example, \"leetcode exercises sound delightful\" , \"eetcode\" , \"leetcode eats soul\" are all circular sentences. However, \"Leetcode is cool\" , \"happy Leetcode\" , \"Leetcode\" and \"I like Leetcode\" are not circular sentences. \n \n Given a string sentence , return true if it is circular . Otherwise, return false . \n\n Example 1: \n \n```\nInput:\n sentence = \"leetcode exercises sound delightful\"\n\nOutput:\n true\n\nExplanation:\n The words in sentence are [\"leetcode\", \"exercises\", \"sound\", \"delightful\"].\n- leetcod\ne\n's last character is equal to \ne\nxercises's first character.\n- exercise\ns\n's last character is equal to \ns\nound's first character.\n- soun\nd\n's last character is equal to \nd\nelightful's first character.\n- delightfu\nl\n's last character is equal to \nl\neetcode's first character.\nThe sentence is circular.\n```\n\n Example 2: \n \n```\nInput:\n sentence = \"eetcode\"\n\nOutput:\n true\n\nExplanation:\n The words in sentence are [\"eetcode\"].\n- eetcod\ne\n's last character is equal to \ne\netcode's first character.\nThe sentence is circular.\n```\n\n Example 3: \n \n```\nInput:\n sentence = \"Leetcode is cool\"\n\nOutput:\n false\n\nExplanation:\n The words in sentence are [\"Leetcode\", \"is\", \"cool\"].\n- Leetcod\ne\n's last character is \nnot\n equal to \ni\ns's first character.\nThe sentence is \nnot\n circular.\n```\n\n Constraints: \n\n 1 <= sentence.length <= 500 \n \n sentence consist of only lowercase and uppercase English letters and spaces. \n \n The words in sentence are separated by a single space. \n \n There are no leading or trailing spaces.",
+  "code": "class Solution {public:bool isCircularSentence(string sentence){if(sentence.front()!=sentence.back())return false;for(int i=0;i<(int)sentence.size();i++)if(sentence[i]==' '&&sentence[i-1]!=sentence[i+1])return false;return true;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176586480",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

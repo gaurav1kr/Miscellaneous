@@ -1,0 +1,38 @@
+{
+  "id": "3109",
+  "title": "Find the Index of Permutation",
+  "slug": "find-the-index-of-permutation",
+  "url": "https://leetcode.com/problems/find-the-index-of-permutation/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Merge Sort",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "Given an array perm of length n which is a permutation of [1, 2, ..., n] , return the index of perm in the lexicographically sorted array of all of the permutations of [1, 2, ..., n] . \n \n Since the answer may be very large, return it modulo 10 9  + 7 . \n\n Example 1: \n\n Input: perm = [1,2] \n \n Output: 0 \n \n Explanation: \n \n There are only two permutations in the following order: \n \n [1,2] , [2,1] \n \nAnd [1,2] is at index 0. \n\n Example 2: \n\n Input: perm = [3,1,2] \n \n Output: 4 \n \n Explanation: \n \n There are only six permutations in the following order: \n \n [1,2,3] , [1,3,2] , [2,1,3] , [2,3,1] , [3,1,2] , [3,2,1] \n \nAnd [3,1,2] is at index 4. \n\n Constraints: \n\n 1 <= n == perm.length <= 10 5 \n \n perm is a permutation of [1, 2, ..., n] .",
+  "code": "class Solution {\npublic:\n    int getPermutationIndex(vector<int>& perm) {\n        const int MOD = 1000000007;\n        int n = perm.size();\n        vector<long long> fact(n + 1, 1);\n        for (int i = 1; i <= n; ++i) fact[i] = fact[i - 1] * i % MOD;\n        vector<int> bit(n + 1);\n        auto add = [&](int x, int v) { for (; x <= n; x += x & -x) bit[x] += v; };\n        auto sum = [&](int x) { int r = 0; for (; x; x -= x & -x) r += bit[x]; return r; };\n        for (int i = 1; i <= n; ++i) add(i, 1);\n        long long ans = 0;\n        for (int i = 0; i < n; ++i) {\n            ans = (ans + fact[n - i - 1] * sum(perm[i] - 1)) % MOD;\n            add(perm[i], -1);\n        }\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178946888",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

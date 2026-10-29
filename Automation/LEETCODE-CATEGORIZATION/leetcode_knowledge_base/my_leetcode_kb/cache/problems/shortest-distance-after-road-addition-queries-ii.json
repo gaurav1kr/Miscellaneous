@@ -1,0 +1,34 @@
+{
+  "id": "3244",
+  "title": "Shortest Distance After Road Addition Queries II",
+  "slug": "shortest-distance-after-road-addition-queries-ii",
+  "url": "https://leetcode.com/problems/shortest-distance-after-road-addition-queries-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Graph Theory",
+    "Ordered Set"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer n and a 2D integer array queries . \n \n There are n cities numbered from 0 to n - 1 . Initially, there is a unidirectional road from city i to city i + 1 for all 0 <= i < n - 1 . \n \n queries[i] = [u i , v i ] represents the addition of a new unidirectional road from city u i to city v i . After each query, you need to find the length of the shortest path from city 0 to city n - 1 . \n \n There are no two queries such that queries[i][0] < queries[j][0] < queries[i][1] < queries[j][1] . \n \n Return an array answer where for each i in the range [0, queries.length - 1] , answer[i] is the length of the shortest path from city 0 to city n - 1 after processing the first i + 1 queries. \n\n Example 1: \n\n Input: n = 5, queries = [[2,4],[0,2],[0,4]] \n \n Output: [3,2,1] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/28/image8.jpg] \n \n After the addition of the road from 2 to 4, the length of the shortest path from 0 to 4 is 3. \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/28/image9.jpg] \n \n After the addition of the road from 0 to 2, the length of the shortest path from 0 to 4 is 2. \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/28/image10.jpg] \n \n After the addition of the road from 0 to 4, the length of the shortest path from 0 to 4 is 1. \n\n Example 2: \n\n Input: n = 4, queries = [[0,3],[0,2]] \n \n Output: [1,1] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/28/image11.jpg] \n \n After the addition of the road from 0 to 3, the length of the shortest path from 0 to 3 is 1. \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/28/image12.jpg] \n \n After the addition of the road from 0 to 2, the length of the shortest path remains 1. \n\n Constraints: \n\n 3 <= n <= 10 5 \n \n 1 <= queries.length <= 10 5 \n \n queries[i].length == 2 \n \n 0 <= queries[i][0] < queries[i][1] < n \n \n 1 < queries[i][1] - queries[i][0] \n \n There are no repeated roads among the queries. \n \n There are no two queries such that i != j and queries[i][0] < queries[j][0] < queries[i][1] < queries[j][1] .",
+  "code": "class Solution { public:\n vector<int> shortestDistanceAfterQueries(int n,vector<vector<int>>& queries){set<int> alive;for(int i=0;i<n;++i)alive.insert(i);vector<int> ans;int dist=n-1;\n for(auto &q:queries){auto it=alive.upper_bound(q[0]);while(it!=alive.end() && *it<q[1]){it=alive.erase(it);--dist;}ans.push_back(dist);}return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177435632",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

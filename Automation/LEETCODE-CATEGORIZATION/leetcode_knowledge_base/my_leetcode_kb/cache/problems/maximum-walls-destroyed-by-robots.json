@@ -1,0 +1,35 @@
+{
+  "id": "3661",
+  "title": "Maximum Walls Destroyed by Robots",
+  "slug": "maximum-walls-destroyed-by-robots",
+  "url": "https://leetcode.com/problems/maximum-walls-destroyed-by-robots/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There is an endless straight line populated with some robots and walls. You are given integer arrays robots , distance , and walls : \n\n robots[i] is the position of the i th robot. \n \n distance[i] is the maximum distance the i th robot's bullet can travel. \n \n walls[j] is the position of the j th wall. \n\n Every robot has one bullet that can either fire to the left or the right at most distance[i] meters. \n \n A bullet destroys every wall in its path that lies within its range. Robots are fixed obstacles: if a bullet hits another robot before reaching a wall, it immediately stops at that robot and cannot continue. \n \n Return the maximum number of unique walls that can be destroyed by the robots. \n \n Notes: \n\n A wall and a robot may share the same position; the wall can be destroyed by the robot at that position. \n \n Robots are not destroyed by bullets. \n\n Example 1: \n\n Input: robots = [4], distance = [3], walls = [1,10] \n \n Output: 1 \n \n Explanation: \n\n robots[0] = 4 fires left with distance[0] = 3 , covering [1, 4] and destroys walls[0] = 1 . \n \n Thus, the answer is 1. \n\n Example 2: \n\n Input: robots = [10,2], distance = [5,1], walls = [5,2,7] \n \n Output: 3 \n \n Explanation: \n\n robots[0] = 10 fires left with distance[0] = 5 , covering [5, 10] and destroys walls[0] = 5 and walls[2] = 7 . \n \n robots[1] = 2 fires left with distance[1] = 1 , covering [1, 2] and destroys walls[1] = 2 . \n \n Thus, the answer is 3. \n\n Example 3: \n\n Input: robots = [1,2], distance = [100,1], walls = [10] \n \n Output: 0 \n \n Explanation: \n \n In this example, only robots[0] can reach the wall, but its shot to the right is blocked by robots[1] ; thus the answer is 0. \n\n Constraints: \n\n 1 <= robots.length == distance.length <= 10 5 \n \n 1 <= walls.length <= 10 5 \n \n 1 <= robots[i], walls[j] <= 10 9 \n \n 1 <= distance[i] <= 10 5 \n \n All values in robots are unique \n \n All values in walls are unique",
+  "code": "class Solution {\npublic:\n    int maxWalls(vector<int>& robots,vector<int>& distance,vector<int>& walls){\n        int n=robots.size();vector<pair<int,int>> a(n);\n        for(int i=0;i<n;++i)a[i]={robots[i],distance[i]};\n        sort(a.begin(),a.end());sort(walls.begin(),walls.end());\n        auto cnt=[&](long long l,long long r)->int{\n            if(l>r)return 0;\n            return upper_bound(walls.begin(),walls.end(),r)-lower_bound(walls.begin(),walls.end(),l);\n        };\n        int at=0;for(auto &p:a)at+=cnt(p.first,p.first);\n        vector<int> dp(2,0);\n        dp[0]=cnt((long long)a[0].first-a[0].second,(long long)a[0].first-1);\n        dp[1]=0;\n        for(int i=1;i<n;++i){\n            vector<int> nd(2,0);\n            long long lo=a[i-1].first+1,hi=a[i].first-1;\n            for(int prev=0;prev<2;++prev)for(int cur=0;cur<2;++cur){\n                long long leftEnd=prev?min(hi,(long long)a[i-1].first+a[i-1].second):lo-1;\n                long long rightStart=cur?hi+1:max(lo,(long long)a[i].first-a[i].second);\n                int gain=cnt(lo,leftEnd)+cnt(rightStart,hi)-cnt(rightStart,leftEnd);\n                nd[cur]=max(nd[cur],dp[prev]+gain);\n            }\n            dp.swap(nd);\n        }\n        return at+max(dp[0],dp[1]+cnt((long long)a.back().first+1,(long long)a.back().first+a.back().second));\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181133804",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

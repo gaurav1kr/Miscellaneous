@@ -1,0 +1,38 @@
+{
+  "id": "3569",
+  "title": "Maximize Count of Distinct Primes After Split",
+  "slug": "maximize-count-of-distinct-primes-after-split",
+  "url": "https://leetcode.com/problems/maximize-count-of-distinct-primes-after-split/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Segment Tree",
+    "Number Theory",
+    "Ordered Set"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered set",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums having length n and a 2D integer array queries where queries[i] = [idx, val] . \n \n For each query: \n\n Update nums[idx] = val . \n \n Choose an integer k with 1 <= k < n to split the array into the non-empty prefix nums[0..k-1] and suffix nums[k..n-1] such that the sum of the counts of distinct prime values in each part is maximum . \n\n Note: The changes made to the array in one query persist into the next query. \n \n Return an array containing the result for each query, in the order they are given. \n\n Example 1: \n\n Input: nums = [2,1,3,1,2], queries = [[1,2],[3,3]] \n \n Output: [3,4] \n \n Explanation: \n\n Initially nums = [2, 1, 3, 1, 2] . \n \n After 1 st query, nums = [2, 2, 3, 1, 2] . Split nums into [2] and [2, 3, 1, 2] . [2] consists of 1 distinct prime and [2, 3, 1, 2] consists of 2 distinct primes. Hence, the answer for this query is 1 + 2 = 3 . \n \n After 2 nd query, nums = [2, 2, 3, 3, 2] . Split nums into [2, 2, 3] and [3, 2] with an answer of 2 + 2 = 4 . \n \n The output is [3, 4] . \n\n Example 2: \n\n Input: nums = [2,1,4], queries = [[0,1]] \n \n Output: [0] \n \n Explanation: \n\n Initially nums = [2, 1, 4] . \n \n After 1 st query, nums = [1, 1, 4] . There are no prime numbers in nums , hence the answer for this query is 0. \n \n The output is [0] . \n\n Constraints: \n\n 2 <= n == nums.length <= 5 * 10 4 \n \n 1 <= queries.length <= 5 * 10 4 \n \n 1 <= nums[i] <= 10 5 \n \n 0 <= queries[i][0] < nums.length \n \n 1 <= queries[i][1] <= 10 5",
+  "code": "\nclass Solution {\n    static const int MAXV = 100000;\n\n    struct SegTree {\n        int n;\n        vector<int> mx, lazy;\n\n        SegTree(const vector<int>& a)\n            : n((int)a.size()),\n              mx(4 * n + 4, 0),\n              lazy(4 * n + 4, 0) {\n            if (n) build(1, 0, n - 1, a);\n        }\n\n        void build(int p, int l, int r,\n                   const vector<int>& a) {\n            if (l == r) {\n                mx[p] = a[l];\n                return;\n            }\n\n            int m = (l + r) / 2;\n            build(p * 2, l, m, a);\n            build(p * 2 + 1, m + 1, r, a);\n\n            mx[p] = max(mx[p * 2], mx[p * 2 + 1]);\n        }\n\n        void update(int p, int l, int r,\n                    int ql, int qr, int v) {\n            if (ql <= l && r <= qr) {\n                mx[p] += v;\n                lazy[p] += v;\n                return;\n            }\n\n            int m = (l + r) / 2;\n\n            if (ql <= m)\n                update(p * 2, l, m, ql, qr, v);\n\n            if (qr > m)\n                update(p * 2 + 1, m + 1, r,\n                       ql, qr, v);\n\n            mx[p] = lazy[p] +\n                    max(mx[p * 2], mx[p * 2 + 1]);\n        }\n\n        void add(int l, int r, int v) {\n            if (n && l < r)\n                update(1, 0, n - 1, l, r - 1, v);\n        }\n\n        int maximum() const {\n            return n ? mx[1] : 0;\n        }\n    };\n\npublic:\n    vector<int> maximumCount(\n        vector<int>& nums,\n        vector<vector<int>>& queries) {\n\n        int n = nums.size();\n\n        vector<char> prime(MAXV + 1, true);\n        prime[0] = prime[1] = false;\n\n        for (int i = 2; i * i <= MAXV; ++i) {\n            if (!prime[i]) continue;\n\n            for (int j = i * i; j <= MAXV; j += i)\n                prime[j] = false;\n        }\n\n        vector<set<int>> positions(MAXV + 1);\n\n        for (int i = 0; i < n; ++i) {\n            if (prime[nums[i]])\n                positions[nums[i]].insert(i);\n        }\n\n        int distinct = 0;\n        vector<int> diff(n + 1, 0);\n\n        for (int p = 2; p <= MAXV; ++p) {\n            const set<int>& s = positions[p];\n\n            if (s.empty()) continue;\n\n            ++distinct;\n\n            if (s.size() >= 2) {\n                int l = *s.begin();\n                int r = *s.rbegin();\n\n                ++diff[l];\n                --diff[r];\n            }\n        }\n\n        vector<int> cover(max(0, n - 1), 0);\n\n        int running = 0;\n\n        for (int i = 0; i < n - 1; ++i) {\n            running += diff[i];\n            cover[i] = running;\n        }\n\n        // Direct updates for workloads where\n        // scanning is cheaper than tree overhead.\n        bool small =\n            1LL * n * queries.size() <= 30000000LL;\n\n        SegTree seg(small ? vector<int>() : cover);\n\n        auto addRange = [&](int l, int r, int delta) {\n            if (l >= r) return;\n\n            if (small) {\n                for (int i = l; i < r; ++i)\n                    cover[i] += delta;\n            } else {\n                seg.add(l, r, delta);\n            }\n        };\n\n        vector<int> answer;\n        answer.reserve(queries.size());\n\n        for (const auto& q : queries) {\n            int idx = q[0];\n            int val = q[1];\n            int old = nums[idx];\n\n            if (old != val) {\n\n                if (prime[old]) {\n                    set<int>& s = positions[old];\n\n                    int oldL = *s.begin();\n                    int oldR = *s.rbegin();\n\n                    s.erase(idx);\n\n                    if (s.empty()) {\n                        --distinct;\n                        addRange(oldL, oldR, -1);\n                    } else {\n                        int newL = *s.begin();\n                        int newR = *s.rbegin();\n\n                        addRange(oldL, newL, -1);\n                        addRange(newR, oldR, -1);\n                    }\n                }\n\n                if (prime[val]) {\n                    set<int>& s = positions[val];\n\n                    if (s.empty()) {\n                        ++distinct;\n                        s.insert(idx);\n                    } else {\n                        int oldL = *s.begin();\n                        int oldR = *s.rbegin();\n\n                        s.insert(idx);\n\n                        int newL = *s.begin();\n                        int newR = *s.rbegin();\n\n                        addRange(newL, oldL, 1);\n                        addRange(oldR, newR, 1);\n                    }\n                }\n\n                nums[idx] = val;\n            }\n\n            int best = 0;\n\n            if (small) {\n                for (int x : cover)\n                    best = max(best, x);\n            } else {\n                best = seg.maximum();\n            }\n\n            answer.push_back(distinct + best);\n        }\n\n        return answer;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181666202",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

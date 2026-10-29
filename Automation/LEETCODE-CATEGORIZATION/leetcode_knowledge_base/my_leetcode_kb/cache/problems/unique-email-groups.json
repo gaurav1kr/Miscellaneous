@@ -1,0 +1,35 @@
+{
+  "id": "3860",
+  "title": "Unique Email Groups",
+  "slug": "unique-email-groups",
+  "url": "https://leetcode.com/problems/unique-email-groups/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings emails , where each string is a valid email address. \n \n Two email addresses belong to the same group if both their normalized local names and normalized domain names are identical . \n \n The normalization rules are as follows: \n\n The local name is the part before the '@' symbol.\n\n Ignore all dots '.' . \n \n Ignore everything after the first '+' , if present. \n \n Convert to lowercase. \n\n The domain name is the part after the '@' symbol.\n\n Convert to lowercase. \n\n Return an integer denoting the number of unique email groups after normalization. \n\n Example 1: \n\n Input: emails = [\"test.email+alex@leetcode.com\", \"test.e.mail+bob.cathy@leetcode.com\", \"testemail+david@lee.tcode.com\"] \n \n Output: 2 \n \n Explanation: \n\n Email \n Local \n Normalized Local \n Domain \n Normalized Domain \n Final Email \n\n test.email+alex@leetcode.com \n test.email+alex \n testemail \n leetcode.com \n leetcode.com \n testemail@leetcode.com \n\n test.e.mail+bob.cathy@leetcode.com \n test.e.mail+bob.cathy \n testemail \n leetcode.com \n leetcode.com \n testemail@leetcode.com \n\n testemail+david@lee.tcode.com \n testemail+david \n testemail \n lee.tcode.com \n lee.tcode.com \n testemail@lee.tcode.com \n\n Unique emails are [ \"testemail@leetcode.com\" , \"testemail@lee.tcode.com\" ]. Thus, the answer is 2. \n \n Example 2: \n\n Input: emails = [\"A@B.com\", \"a@b.com\", \"ab+xy@b.com\", \"a.b@b.com\"] \n \n Output: 2 \n \n Explanation: \n\n Email \n Local \n Normalized Local \n Domain \n Normalized Domain \n Final Email \n\n A@B.com \n A \n a \n B.com \n b.com \n a@b.com \n\n a@b.com \n a \n a \n b.com \n b.com \n a@b.com \n\n ab+xy@b.com \n ab+xy \n ab \n b.com \n b.com \n ab@b.com \n\n a.b@b.com \n a.b \n ab \n b.com \n b.com \n ab@b.com \n\n Unique emails are [ \"a@b.com\" , \"ab@b.com\" ]. Thus, the answer is 2. \n\n Example 3: \n\n Input: emails = [\"a.b+c.d+e@DoMain.com\", \"ab+xyz@domain.com\", \"ab@domain.com\"] \n \n Output: 1 \n \n Explanation: \n\n Email \n Local \n Normalized Local \n Domain \n Normalized Domain \n Final Email \n\n a.b+c.d+e@DoMain.com \n a.b+c.d+e \n ab \n DoMain.com \n domain.com \n ab@domain.com \n\n ab+xyz@domain.com \n ab+xyz \n ab \n domain.com \n domain.com \n ab@domain.com \n\n ab@domain.com \n ab \n ab \n domain.com \n domain.com \n ab@domain.com \n\n All emails normalize to \"ab@domain.com\" . Thus, the answer is 1. \n\n Constraints: \n\n 1 <= emails.length <= 1000 \n \n 1 <= emails[i].length <= 100 \n \n emails[i] consists of lowercase and uppercase English letters, digits, and the characters '.' , '+' , and '@' . \n \n Each emails[i] contains exactly one '@' character. \n \n All local and domain names are non-empty; local names do not start with '+' . \n \n Domain names end with the \".com\" suffix and contain at least one character before \".com\" .",
+  "code": "class Solution {public:int uniqueEmailGroups(vector<string>& a){unordered_set<string> seen;for(string s:a){string t;bool domain=false,skip=false;for(char c:s){if(c=='@'){domain=true;t+='@';}else if(domain)t+=(char)tolower((unsigned char)c);else if(c=='+')skip=true;else if(!skip&&c!='.')t+=(char)tolower((unsigned char)c);}seen.insert(t);}return seen.size();}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181207974",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "3679",
+  "title": " Minimum Discards to Balance Inventory",
+  "slug": "minimum-discards-to-balance-inventory",
+  "url": "https://leetcode.com/problems/minimum-discards-to-balance-inventory/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Simulation",
+    "Counting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given two integers w and m , and an integer array arrivals , where arrivals[i] is the type of item arriving on day i (days are 1-indexed ). \n \n Items are managed according to the following rules: \n\n Each arrival may be kept or discarded ; an item may only be discarded on its arrival day. \n \n For each day i , consider the window of days [max(1, i - w + 1), i] (the w most recent days up to day i ):\n\n For any such window, each item type may appear at most m times among kept arrivals whose arrival day lies in that window. \n \n If keeping the arrival on day i would cause its type to appear more than m times in the window, that arrival must be discarded. \n\n Return the minimum number of arrivals to be discarded so that every w -day window contains at most m occurrences of each type. \n\n Example 1: \n\n Input: arrivals = [1,2,1,3,1], w = 4, m = 2 \n \n Output: 0 \n \n Explanation: \n\n On day 1, Item 1 arrives; the window contains no more than m occurrences of this type, so we keep it. \n \n On day 2, Item 2 arrives; the window of days 1 - 2 is fine. \n \n On day 3, Item 1 arrives, window [1, 2, 1] has item 1 twice, within limit. \n \n On day 4, Item 3 arrives, window [1, 2, 1, 3] has item 1 twice, allowed. \n \n On day 5, Item 1 arrives, window [2, 1, 3, 1] has item 1 twice, still valid. \n\n There are no discarded items, so return 0. \n\n Example 2: \n\n Input: arrivals = [1,2,3,3,3,4], w = 3, m = 2 \n \n Output: 1 \n \n Explanation: \n\n On day 1, Item 1 arrives. We keep it. \n \n On day 2, Item 2 arrives, window [1, 2] is fine. \n \n On day 3, Item 3 arrives, window [1, 2, 3] has item 3 once. \n \n On day 4, Item 3 arrives, window [2, 3, 3] has item 3 twice, allowed. \n \n On day 5, Item 3 arrives, window [3, 3, 3] has item 3 three times, exceeds limit, so the arrival must be discarded. \n \n On day 6, Item 4 arrives, window [3, 4] is fine. \n\n Item 3 on day 5 is discarded, and this is the minimum number of arrivals to discard, so return 1. \n\n Constraints: \n\n 1 <= arrivals.length <= 10 5 \n \n 1 <= arrivals[i] <= 10 5 \n \n 1 <= w <= arrivals.length \n \n 1 <= m <= w",
+  "code": "class Solution { public: int minArrivalsToDiscard(vector<int>& arrivals,int w,int m){unordered_map<int,int>cnt;vector<int>keep(arrivals.size());int removed=0;for(int i=0;i<(int)arrivals.size();++i){if(i>=w&&keep[i-w])--cnt[arrivals[i-w]];if(cnt[arrivals[i]]>=m)++removed;else{keep[i]=1;++cnt[arrivals[i]];}}return removed;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177657805",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

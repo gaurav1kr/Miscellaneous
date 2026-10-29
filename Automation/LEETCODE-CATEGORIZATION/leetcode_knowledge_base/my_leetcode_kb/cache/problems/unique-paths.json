@@ -1,0 +1,29 @@
+{
+  "id": "62",
+  "title": "Unique Paths",
+  "slug": "unique-paths",
+  "url": "https://leetcode.com/problems/unique-paths/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "There is a robot on an m x n grid. The robot is initially located at the top-left corner (i.e., grid[0][0] ). The robot tries to move to the bottom-right corner (i.e., grid[m - 1][n - 1] ). The robot can only move either down or right at any point in time. \n \n Given the two integers m and n , return the number of possible unique paths that the robot can take to reach the bottom-right corner . \n \n The test cases are generated so that the answer will be less than or equal to 2 * 10 9 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2018/10/22/robot_maze.png] \n \n```\nInput:\n m = 3, n = 7\n\nOutput:\n 28\n```\n\n Example 2: \n \n```\nInput:\n m = 3, n = 2\n\nOutput:\n 3\n\nExplanation:\n From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:\n1. Right -> Down -> Down\n2. Down -> Down -> Right\n3. Down -> Right -> Down\n```\n\n Constraints: \n\n 1 <= m, n <= 100",
+  "code": "class Solution {\npublic:\n   int uniquePaths(int m, int n) {\n        long long res = 1;\n        int N = m + n - 2; // Total steps (right + down)\n        int k = std::min(m - 1, n - 1); // Choose the smaller set (right or down)\n        \n        for (int i = 1; i <= k; i++) {\n            res = res * (N - i + 1) / i; // Compute binomial coefficient (N choose k)\n        }\n        \n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542169742",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

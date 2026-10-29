@@ -1,0 +1,38 @@
+{
+  "id": "3008",
+  "title": "Find Beautiful Indices in the Given Array II",
+  "slug": "find-beautiful-indices-in-the-given-array-ii",
+  "url": "https://leetcode.com/problems/find-beautiful-indices-in-the-given-array-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Binary Search",
+    "Rolling Hash",
+    "String Matching",
+    "Hash Function",
+    "Z Algorithm",
+    "Knuth–Morris–Pratt Algorithm",
+    "Boyer–Moore String-Search Algorithm"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed string s , a string a , a string b , and an integer k . \n \n An index i is beautiful if: \n\n 0 <= i <= s.length - a.length \n \n s[i..(i + a.length - 1)] == a \n \n There exists an index j such that:\n\n 0 <= j <= s.length - b.length \n \n s[j..(j + b.length - 1)] == b \n \n |j - i| <= k \n\n Return the array that contains beautiful indices in sorted order from smallest to largest . \n\n Example 1: \n \n```\nInput:\n s = \"isawsquirrelnearmysquirrelhouseohmy\", a = \"my\", b = \"squirrel\", k = 15\n\nOutput:\n [16,33]\n\nExplanation:\n There are 2 beautiful indices: [16,33].\n- The index 16 is beautiful as s[16..17] == \"my\" and there exists an index 4 with s[4..11] == \"squirrel\" and |16 - 4| <= 15.\n- The index 33 is beautiful as s[33..34] == \"my\" and there exists an index 18 with s[18..25] == \"squirrel\" and |33 - 18| <= 15.\nThus we return [16,33] as the result.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abcd\", a = \"a\", b = \"a\", k = 4\n\nOutput:\n [0]\n\nExplanation:\n There is 1 beautiful index: [0].\n- The index 0 is beautiful as s[0..0] == \"a\" and there exists an index 0 with s[0..0] == \"a\" and |0 - 0| <= 4.\nThus we return [0] as the result.\n```\n\n Constraints: \n\n 1 <= k <= s.length <= 5 * 10 5 \n \n 1 <= a.length, b.length <= 5 * 10 5 \n \n s , a , and b contain only lowercase English letters.",
+  "code": "class Solution {vector<int> occurrences(const string&s,const string&p){int n=s.size(),m=p.size();vector<int>pi(m);for(int i=1,j=0;i<m;++i){while(j&&p[i]!=p[j])j=pi[j-1];if(p[i]==p[j])++j;pi[i]=j;}vector<int>out;for(int i=0,j=0;i<n;++i){while(j&&s[i]!=p[j])j=pi[j-1];if(s[i]==p[j])++j;if(j==m)out.push_back(i-m+1),j=pi[j-1];}return out;}public:vector<int> beautifulIndices(string s,string a,string b,int k){auto A=occurrences(s,a),B=occurrences(s,b);vector<int>ans;for(int i:A){auto it=lower_bound(B.begin(),B.end(),i-k);if(it!=B.end()&&*it<=i+k)ans.push_back(i);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176809933",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

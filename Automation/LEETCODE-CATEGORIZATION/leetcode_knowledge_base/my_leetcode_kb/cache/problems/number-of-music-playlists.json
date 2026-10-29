@@ -1,0 +1,30 @@
+{
+  "id": "920",
+  "title": "Number of Music Playlists",
+  "slug": "number-of-music-playlists",
+  "url": "https://leetcode.com/problems/number-of-music-playlists/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Your music player contains n different songs. You want to listen to goal songs (not necessarily different) during your trip. To avoid boredom, you will create a playlist so that: \n\n Every song is played at least once . \n \n A song can only be played again only if k other songs have been played. \n\n Given n , goal , and k , return the number of possible playlists that you can create . Since the answer can be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 3, goal = 3, k = 1\n\nOutput:\n 6\n\nExplanation:\n There are 6 possible playlists: [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], and [3, 2, 1].\n```\n\n Example 2: \n \n```\nInput:\n n = 2, goal = 3, k = 0\n\nOutput:\n 6\n\nExplanation:\n There are 6 possible playlists: [1, 1, 2], [1, 2, 1], [2, 1, 1], [2, 2, 1], [2, 1, 2], and [1, 2, 2].\n```\n\n Example 3: \n \n```\nInput:\n n = 2, goal = 3, k = 1\n\nOutput:\n 2\n\nExplanation:\n There are 2 possible playlists: [1, 2, 1] and [2, 1, 2].\n```\n\n Constraints: \n\n 0 <= k < n <= goal <= 100",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numMusicPlaylists(int n, int goal, int k) {\n        const int MOD = 1e9 + 7;\n        vector<vector<long>> dp(goal + 1, vector<long>(n + 1, 0));\n        dp[0][0] = 1;\n\n        for (int i = 1; i <= goal; ++i) {\n            for (int j = 1; j <= min(i, n); ++j) {\n                dp[i][j] = dp[i - 1][j - 1] * (n - (j - 1)) % MOD;\n                if (j > k)\n                    dp[i][j] = (dp[i][j] + dp[i - 1][j] * (j - k) % MOD) % MOD;\n            }\n        }\n\n        return dp[goal][n];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595382766",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

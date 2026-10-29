@@ -1,0 +1,31 @@
+{
+  "id": "1602",
+  "title": "Find Nearest Right Node in Binary Tree",
+  "slug": "find-nearest-right-node-in-binary-tree",
+  "url": "https://leetcode.com/problems/find-nearest-right-node-in-binary-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree and a node u in the tree, return the nearest node on the same level that is to the right of u , or return null if u is the rightmost node in its level . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/24/p3.png] \n \n```\nInput:\n root = [1,2,3,null,4,5,6], u = 4\n\nOutput:\n 5\n\nExplanation:\n The nearest node on the same level to the right of node 4 is node 5.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/09/23/p2.png] \n \n```\nInput:\n root = [3,null,4,2], u = 2\n\nOutput:\n null\n\nExplanation:\n There are no nodes to the right of 2.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 5 ] . \n \n 1 <= Node.val <= 10 5 \n \n All values in the tree are distinct . \n \n u is a node in the binary tree rooted at root .",
+  "code": "class Solution {\npublic:\n    TreeNode* findNearestRightNode(TreeNode* root, TreeNode* u) {\n        queue<TreeNode*> q;\n        q.push(root);\n        while (!q.empty()) {\n            int count = q.size();\n            for (int i = 0; i < count; ++i) {\n                TreeNode* node = q.front(); q.pop();\n                if (node == u) return i + 1 < count ? q.front() : nullptr;\n                if (node->left) q.push(node->left);\n                if (node->right) q.push(node->right);\n            }\n        }\n        return nullptr;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178593596",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

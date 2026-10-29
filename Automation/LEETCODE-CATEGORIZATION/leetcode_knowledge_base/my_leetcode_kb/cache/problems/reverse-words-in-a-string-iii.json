@@ -1,0 +1,28 @@
+{
+  "id": "557",
+  "title": "Reverse Words in a String III",
+  "slug": "reverse-words-in-a-string-iii",
+  "url": "https://leetcode.com/problems/reverse-words-in-a-string-iii/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s , reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order. \n\n Example 1: \n \n```\nInput:\n s = \"Let's take LeetCode contest\"\n\nOutput:\n \"s'teL ekat edoCteeL tsetnoc\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"Mr Ding\"\n\nOutput:\n \"rM gniD\"\n```\n\n Constraints: \n\n 1 <= s.length <= 5 * 10 4 \n \n s contains printable ASCII characters. \n \n s does not contain any leading or trailing spaces. \n \n There is at least one word in s . \n \n All the words in s are separated by a single space.",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    string reverseWords(string s) {\n        int i = 0, n = s.size();\n        for (int j = 0; j <= n; j++) {\n            if (j == n || s[j] == ' ') {\n                reverse(s.begin() + i, s.begin() + j);\n                i = j + 1;\n            }\n        }\n        return s;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588374249",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1144",
+  "title": "Decrease Elements To Make Array Zigzag",
+  "slug": "decrease-elements-to-make-array-zigzag",
+  "url": "https://leetcode.com/problems/decrease-elements-to-make-array-zigzag/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array nums of integers, a move  consists of choosing any element and decreasing it by 1 . \n \n An array A is a  zigzag array  if either: \n\n Every even-indexed element is greater than adjacent elements, ie.  A[0] > A[1] < A[2] > A[3] < A[4] > ... \n \n OR, every odd-indexed element is greater than adjacent elements, ie.  A[0] < A[1] > A[2] < A[3] > A[4] < ... \n\n Return the minimum number of moves to transform the given array nums into a zigzag array. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n 2\n\nExplanation:\n We can decrease 2 to 0 or 3 to 1.\n```\n\n Example 2: \n \n```\nInput:\n nums = [9,6,1,6,2]\n\nOutput:\n 4\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 1000",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int movesToMakeZigzag(vector<int>& nums) {\n        return min(helper(nums, 0), helper(nums, 1));\n    }\n\n    int helper(vector<int> nums, int start) {\n        int moves = 0;\n        for (int i = start; i < nums.size(); i += 2) {\n            int left = i > 0 ? nums[i - 1] : INT_MAX;\n            int right = i + 1 < nums.size() ? nums[i + 1] : INT_MAX;\n            int minNeighbor = min(left, right);\n            if (nums[i] >= minNeighbor)\n                moves += nums[i] - minNeighbor + 1;\n        }\n        return moves;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610649271",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

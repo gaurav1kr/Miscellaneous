@@ -1,0 +1,36 @@
+{
+  "id": "2332",
+  "title": "The Latest Time to Catch a Bus",
+  "slug": "the-latest-time-to-catch-a-bus",
+  "url": "https://leetcode.com/problems/the-latest-time-to-catch-a-bus/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash set",
+    "Ordered set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array buses of length n , where buses[i] represents the departure time of the i th bus. You are also given a 0-indexed integer array passengers of length m , where passengers[j] represents the arrival time of the j th passenger. All bus departure times are unique. All passenger arrival times are unique. \n \n You are given an integer capacity , which represents the maximum number of passengers that can get on each bus. \n \n When a passenger arrives, they will wait in line for the next available bus. You can get on a bus that departs at x minutes if you arrive at y minutes where y <= x , and the bus is not full. Passengers with the earliest arrival times get on the bus first. \n \n More formally when a bus arrives, either: \n\n If capacity or fewer passengers are waiting for a bus, they will all get on the bus, or \n \n The capacity passengers with the earliest arrival times will get on the bus. \n\n Return the latest time you may arrive at the bus station to catch a bus . You cannot arrive at the same time as another passenger. \n \n Note: The arrays buses and passengers are not necessarily sorted. \n\n Example 1: \n \n```\nInput:\n buses = [10,20], passengers = [2,17,18,19], capacity = 2\n\nOutput:\n 16\n\nExplanation:\n Suppose you arrive at time 16.\nAt time 10, the first bus departs with the 0\nth\n passenger. \nAt time 20, the second bus departs with you and the 1\nst\n passenger.\nNote that you may not arrive at the same time as another passenger, which is why you must arrive before the 1\nst\n passenger to catch the bus.\n```\n\n Example 2: \n \n```\nInput:\n buses = [20,30,10], passengers = [19,13,26,4,25,11,21], capacity = 2\n\nOutput:\n 20\n\nExplanation:\n Suppose you arrive at time 20.\nAt time 10, the first bus departs with the 3\nrd\n passenger. \nAt time 20, the second bus departs with the 5\nth\n and 1\nst\n passengers.\nAt time 30, the third bus departs with the 0\nth\n passenger and you.\nNotice if you had arrived any later, then the 6\nth\n passenger would have taken your seat on the third bus.\n```\n\n Constraints: \n\n n == buses.length \n \n m == passengers.length \n \n 1 <= n, m, capacity <= 10 5 \n \n 2 <= buses[i], passengers[i] <= 10 9 \n \n Each element in buses is unique . \n \n Each element in passengers is unique .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int latestTimeCatchTheBus(vector<int>& buses,vector<int>& passengers,int capacity){sort(buses.begin(),buses.end());sort(passengers.begin(),passengers.end());int j=0,ans=0;for(int bus:buses){int seats=capacity;while(j<(int)passengers.size()&&passengers[j]<=bus&&seats){++j;--seats;}ans=seats?bus:passengers[j-1]-1;}unordered_set<int> taken(passengers.begin(),passengers.end());while(taken.count(ans))--ans;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175918766",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "809",
+  "title": "Expressive Words",
+  "slug": "expressive-words",
+  "url": "https://leetcode.com/problems/expressive-words/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Sometimes people repeat letters to represent extra feeling. For example: \n\n \"hello\" -> \"heeellooo\" \n \n \"hi\" -> \"hiiii\" \n\n In these strings like \"heeellooo\" , we have groups of adjacent letters that are all the same: \"h\" , \"eee\" , \"ll\" , \"ooo\" . \n \n You are given a string s and an array of query strings words . A query word is stretchy if it can be made to be equal to s by any number of applications of the following extension operation: choose a group consisting of characters c , and add some number of characters c to the group so that the size of the group is three or more . \n\n For example, starting with \"hello\" , we could do an extension on the group \"o\" to get \"hellooo\" , but we cannot get \"helloo\" since the group \"oo\" has a size less than three. Also, we could do another extension like \"ll\" -> \"lllll\" to get \"helllllooo\" . If s = \"helllllooo\" , then the query word \"hello\" would be stretchy because of these two extension operations: query = \"hello\" -> \"hellooo\" -> \"helllllooo\" = s . \n\n Return the number of query strings that are stretchy . \n\n Example 1: \n \n```\nInput:\n s = \"heeellooo\", words = [\"hello\", \"hi\", \"helo\"]\n\nOutput:\n 1\n\nExplanation:\n \nWe can extend \"e\" and \"o\" in the word \"hello\" to get \"heeellooo\".\nWe can't extend \"helo\" to get \"heeellooo\" because the group \"ll\" is not size 3 or more.\n```\n\n Example 2: \n \n```\nInput:\n s = \"zzzzzyyyyy\", words = [\"zzyy\",\"zy\",\"zyy\"]\n\nOutput:\n 3\n```\n\n Constraints: \n\n 1 <= s.length, words.length <= 100 \n \n 1 <= words[i].length <= 100 \n \n s and words[i] consist of lowercase letters.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int expressiveWords(string s, vector<string>& words) {\n        int res = 0;\n        for (string& w : words)\n            if (isStretchy(s, w)) res++;\n        return res;\n    }\n\n    bool isStretchy(string& s, string& w) {\n        int i = 0, j = 0;\n        while (i < s.size() && j < w.size()) {\n            if (s[i] != w[j]) return false;\n            int len1 = 1, len2 = 1;\n            while (i + len1 < s.size() && s[i + len1] == s[i]) len1++;\n            while (j + len2 < w.size() && w[j + len2] == w[j]) len2++;\n            if (len1 < len2 || (len1 < 3 && len1 != len2)) return false;\n            i += len1;\n            j += len2;\n        }\n        return i == s.size() && j == w.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595392464",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

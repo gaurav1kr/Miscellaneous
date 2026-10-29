@@ -1,0 +1,38 @@
+{
+  "id": "2371",
+  "title": "Minimize Maximum Value in a Grid",
+  "slug": "minimize-maximum-value-in-a-grid",
+  "url": "https://leetcode.com/problems/minimize-maximum-value-in-a-grid/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Union-Find",
+    "Graph Theory",
+    "Topological Sort",
+    "Sorting",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an m x n integer matrix grid containing distinct positive integers. \n \n You have to replace each integer in the matrix with a positive integer satisfying the following conditions: \n\n The relative order of every two elements that are in the same row or column should stay the same after the replacements. \n \n The maximum number in the matrix after the replacements should be as small as possible. \n\n The relative order stays the same if for all pairs of elements in the original matrix such that grid[r 1 ][c 1 ] > grid[r 2 ][c 2 ] where either r 1 == r 2 or c 1 == c 2 , then it must be true that grid[r 1 ][c 1 ] > grid[r 2 ][c 2 ] after the replacements. \n \n For example, if grid = [[2, 4, 5], [7, 3, 9]] then a good replacement could be either grid = [[1, 2, 3], [2, 1, 4]] or grid = [[1, 2, 3], [3, 1, 4]] . \n \n Return the resulting matrix. If there are multiple answers, return any of them. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/08/09/grid2drawio.png] \n \n```\nInput:\n grid = [[3,1],[2,5]]\n\nOutput:\n [[2,1],[1,2]]\n\nExplanation:\n The above diagram shows a valid replacement.\nThe maximum number in the matrix is 2. It can be shown that no smaller value can be obtained.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[10]]\n\nOutput:\n [[1]]\n\nExplanation:\n We replace the only number in the matrix with 1.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 1000 \n \n 1 <= m * n <= 10 5 \n \n 1 <= grid[i][j] <= 10 9 \n \n grid consists of distinct integers.",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> minScore(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        vector<tuple<int,int,int>> cells;\n        for (int r = 0; r < m; ++r)\n            for (int c = 0; c < n; ++c) cells.emplace_back(grid[r][c], r, c);\n        sort(cells.begin(), cells.end());\n        vector<int> row(m), col(n);\n        vector<vector<int>> result(m, vector<int>(n));\n        for (auto item : cells) {\n            int r = get<1>(item), c = get<2>(item);\n            result[r][c] = max(row[r], col[c]) + 1;\n            row[r] = col[c] = result[r][c];\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178864207",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "3445",
+  "title": "Maximum Difference Between Even and Odd Frequency II",
+  "slug": "maximum-difference-between-even-and-odd-frequency-ii",
+  "url": "https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Sliding Window",
+    "Enumeration",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Prefix Sum / Difference Array",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "You are given a string s and an integer k . Your task is to find the maximum difference between the frequency of two characters, freq[a] - freq[b] , in a substring subs of s , such that: \n\n subs has a size of at least k . \n \n Character a has an odd frequency in subs . \n \n Character b has a non-zero even frequency in subs . \n\n Return the maximum difference. \n \n Note that subs can contain more than 2 distinct characters. \n\n Example 1: \n\n Input: s = \"12233\", k = 4 \n \n Output: -1 \n \n Explanation: \n \n For the substring \"12233\" , the frequency of '1' is 1 and the frequency of '3' is 2. The difference is 1 - 2 = -1 . \n\n Example 2: \n\n Input: s = \"1122211\", k = 3 \n \n Output: 1 \n \n Explanation: \n \n For the substring \"11222\" , the frequency of '2' is 3 and the frequency of '1' is 2. The difference is 3 - 2 = 1 . \n\n Example 3: \n\n Input: s = \"110\", k = 3 \n \n Output: -1 \n\n Constraints: \n\n 3 <= s.length <= 3 * 10 4 \n \n s consists only of digits '0' to '4' . \n \n The input is generated that at least one substring has a character with an even frequency and a character with an odd frequency. \n \n 1 <= k <= s.length",
+  "code": "class Solution {public:int maxDifference(string s,int k){int n=s.size(),ans=INT_MIN;for(char a='0';a<='4';++a)for(char b='0';b<='4';++b)if(a!=b){\n int pa=0,pb=0,la=0,lb=0,left=0;int best[2][2]={{INT_MAX/4,INT_MAX/4},{INT_MAX/4,INT_MAX/4}};\n for(int r=0;r<n;++r){pa+=s[r]==a;pb+=s[r]==b;\n while(r-left+1>=k&&pb-lb>=2){best[la&1][lb&1]=min(best[la&1][lb&1],la-lb);la+=s[left]==a;lb+=s[left]==b;++left;}\n int v=best[1-(pa&1)][pb&1];if(v<INT_MAX/4)ans=max(ans,pa-pb-v);\n }}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177528397",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

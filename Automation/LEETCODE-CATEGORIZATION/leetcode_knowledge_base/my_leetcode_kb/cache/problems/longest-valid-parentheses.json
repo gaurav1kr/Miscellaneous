@@ -1,0 +1,33 @@
+{
+  "id": "32",
+  "title": "Longest Valid Parentheses",
+  "slug": "longest-valid-parentheses",
+  "url": "https://leetcode.com/problems/longest-valid-parentheses/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Stack",
+    "Bracket Sequences"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Stack",
+    "String"
+  ],
+  "description": "Given a string containing just the characters '(' and ')' , return the length of the longest valid (well-formed) parentheses substring . \n\n Example 1: \n \n```\nInput:\n s = \"(()\"\n\nOutput:\n 2\n\nExplanation:\n The longest valid parentheses substring is \"()\".\n```\n\n Example 2: \n \n```\nInput:\n s = \")()())\"\n\nOutput:\n 4\n\nExplanation:\n The longest valid parentheses substring is \"()()\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"\"\n\nOutput:\n 0\n```\n\n Constraints: \n\n 0 <= s.length <= 3 * 10 4 \n \n s[i] is '(' , or ')' .",
+  "code": "class Solution {\npublic:\n   int longestValidParentheses(string s) {\n    stack<int> st;\n    int maxLength = 0;\n    st.push(-1); // Initialize the stack with -1 as a base for the first valid substring\n\n    for (int i = 0; i < s.length(); ++i) {\n        if (s[i] == '(') {\n            st.push(i); // Push the index of '('\n        } else {\n            st.pop(); // Pop the last '(' or unmatched index\n            if (st.empty()) {\n                st.push(i); // Push the current index as the base for the next substring\n            } else {\n                maxLength = max(maxLength, i - st.top());\n            }\n        }\n    }\n\n    return maxLength;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542060934",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

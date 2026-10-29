@@ -1,0 +1,28 @@
+{
+  "id": "1583",
+  "title": "Count Unhappy Friends",
+  "slug": "count-unhappy-friends",
+  "url": "https://leetcode.com/problems/count-unhappy-friends/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a list of  preferences  for  n  friends, where n is always even . \n \n For each person i ,  preferences[i]  contains a list of friends  sorted in the order of preference . In other words, a friend earlier in the list is more preferred than a friend later in the list. Friends in each list are denoted by integers from 0 to n-1 . \n \n All the friends are divided into pairs. The pairings are given in a list  pairs , where pairs[i] = [x i , y i ] denotes x i  is paired with y i and y i is paired with x i . \n \n However, this pairing may cause some of the friends to be unhappy. A friend x  is unhappy if x  is paired with y  and there exists a friend u  who is paired with v  but: \n\n x  prefers u  over y , and \n \n u  prefers x  over v . \n\n Return the number of unhappy friends . \n\n Example 1: \n \n```\nInput:\n n = 4, preferences = [[1, 2, 3], [3, 2, 0], [3, 1, 0], [1, 2, 0]], pairs = [[0, 1], [2, 3]]\n\nOutput:\n 2\n\nExplanation:\n\nFriend 1 is unhappy because:\n- 1 is paired with 0 but prefers 3 over 0, and\n- 3 prefers 1 over 2.\nFriend 3 is unhappy because:\n- 3 is paired with 2 but prefers 1 over 2, and\n- 1 prefers 3 over 0.\nFriends 0 and 2 are happy.\n```\n\n Example 2: \n \n```\nInput:\n n = 2, preferences = [[1], [0]], pairs = [[1, 0]]\n\nOutput:\n 0\n\nExplanation:\n Both friends 0 and 1 are happy.\n```\n\n Example 3: \n \n```\nInput:\n n = 4, preferences = [[1, 3, 2], [2, 3, 0], [1, 3, 0], [0, 2, 1]], pairs = [[1, 3], [0, 2]]\n\nOutput:\n 4\n```\n\n Constraints: \n\n 2 <= n <= 500 \n \n n  is even. \n \n preferences.length == n \n \n preferences[i].length == n - 1 \n \n 0 <= preferences[i][j] <= n - 1 \n \n preferences[i]  does not contain i . \n \n All values in  preferences[i]  are unique. \n \n pairs.length == n/2 \n \n pairs[i].length == 2 \n \n x i != y i \n \n 0 <= x i , y i  <= n - 1 \n \n Each person is contained in exactly one pair.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int unhappyFriends(int n, vector<vector<int>>& preferences,\n                       vector<vector<int>>& pairs) {\n        vector<vector<int>> rank(n, vector<int>(n));\n        for (int i = 0; i < n; ++i)\n            for (int j = 0; j < n - 1; ++j)\n                rank[i][preferences[i][j]] = j;\n        vector<int> partner(n);\n        for (auto& p : pairs) { partner[p[0]] = p[1]; partner[p[1]] = p[0]; }\n        int ans = 0;\n        for (int x = 0; x < n; ++x) {\n            for (int u : preferences[x]) {\n                if (u == partner[x]) break;\n                if (rank[u][x] < rank[u][partner[u]]) {\n                    ++ans; break;\n                }\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175755462",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

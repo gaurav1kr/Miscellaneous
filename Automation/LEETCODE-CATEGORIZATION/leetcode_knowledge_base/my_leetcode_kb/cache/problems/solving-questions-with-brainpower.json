@@ -1,0 +1,30 @@
+{
+  "id": "2140",
+  "title": "Solving Questions With Brainpower",
+  "slug": "solving-questions-with-brainpower",
+  "url": "https://leetcode.com/problems/solving-questions-with-brainpower/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed 2D integer array questions where questions[i] = [points i , brainpower i ] . \n \n The array describes the questions of an exam, where you have to process the questions in order (i.e., starting from question 0 ) and make a decision whether to solve or skip each question. Solving question i will earn you points i points but you will be unable to solve each of the next brainpower i questions. If you skip question i , you get to make the decision on the next question. \n\n For example, given questions = [[3, 2], [4, 3], [4, 4], [2, 5]] :\n\n If question 0 is solved, you will earn 3 points but you will be unable to solve questions 1 and 2 . \n \n If instead, question 0 is skipped and question 1 is solved, you will earn 4 points but you will be unable to solve questions 2 and 3 . \n\n Return the maximum points you can earn for the exam . \n\n Example 1: \n \n```\nInput:\n questions = [[3,2],[4,3],[4,4],[2,5]]\n\nOutput:\n 5\n\nExplanation:\n The maximum points can be earned by solving questions 0 and 3.\n- Solve question 0: Earn 3 points, will be unable to solve the next 2 questions\n- Unable to solve questions 1 and 2\n- Solve question 3: Earn 2 points\nTotal points earned: 3 + 2 = 5. There is no other way to earn 5 or more points.\n```\n\n Example 2: \n \n```\nInput:\n questions = [[1,1],[2,2],[3,3],[4,4],[5,5]]\n\nOutput:\n 7\n\nExplanation:\n The maximum points can be earned by solving questions 1 and 4.\n- Skip question 0\n- Solve question 1: Earn 2 points, will be unable to solve the next 2 questions\n- Unable to solve questions 2 and 3\n- Solve question 4: Earn 5 points\nTotal points earned: 2 + 5 = 7. There is no other way to earn 7 or more points.\n```\n\n Constraints: \n\n 1 <= questions.length <= 10 5 \n \n questions[i].length == 2 \n \n 1 <= points i , brainpower i <= 10 5",
+  "code": "class Solution {\npublic:\n    long long mostPoints(vector<vector<int>>& questions) {\n        int n=questions.size(); vector<long long> dp(n+1,0);\n        for(int i=n-1;i>=0;--i) {\n            int next=min(n,i+questions[i][1]+1);\n            dp[i]=max(dp[i+1],questions[i][0]+dp[next]);\n        }\n        return dp[0];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175871808",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

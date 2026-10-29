@@ -1,0 +1,28 @@
+{
+  "id": "2224",
+  "title": "Minimum Number of Operations to Convert Time",
+  "slug": "minimum-number-of-operations-to-convert-time",
+  "url": "https://leetcode.com/problems/minimum-number-of-operations-to-convert-time/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given two strings current and correct representing two 24-hour times . \n \n 24-hour times are formatted as \"HH:MM\" , where HH is between 00 and 23 , and MM is between 00 and 59 . The earliest 24-hour time is 00:00 , and the latest is 23:59 . \n \n In one operation you can increase the time current by 1 , 5 , 15 , or 60 minutes. You can perform this operation any number of times. \n \n Return the minimum number of operations needed to convert current to correct . \n\n Example 1: \n \n```\nInput:\n current = \"02:30\", correct = \"04:35\"\n\nOutput:\n 3\n\nExplanation:\n\nWe can convert current to correct in 3 operations as follows:\n- Add 60 minutes to current. current becomes \"03:30\".\n- Add 60 minutes to current. current becomes \"04:30\".\n- Add 5 minutes to current. current becomes \"04:35\".\nIt can be proven that it is not possible to convert current to correct in fewer than 3 operations.\n```\n\n Example 2: \n \n```\nInput:\n current = \"11:00\", correct = \"11:01\"\n\nOutput:\n 1\n\nExplanation:\n We only have to add one minute to current, so the minimum number of operations needed is 1.\n```\n\n Constraints: \n\n current and correct are in the format \"HH:MM\" \n \n current <= correct",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int convertTime(string current,string correct){auto parse=[](string s){return stoi(s.substr(0,2))*60+stoi(s.substr(3,2));};int d=parse(correct)-parse(current),ans=0;\n  for(int step:{60,15,5,1}){ans+=d/step;d%=step;}return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175891205",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

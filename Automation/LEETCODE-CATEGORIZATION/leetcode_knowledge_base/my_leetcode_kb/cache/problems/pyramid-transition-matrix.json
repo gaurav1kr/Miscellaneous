@@ -1,0 +1,37 @@
+{
+  "id": "756",
+  "title": "Pyramid Transition Matrix",
+  "slug": "pyramid-transition-matrix",
+  "url": "https://leetcode.com/problems/pyramid-transition-matrix/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "You are stacking blocks to form a pyramid. Each block has a color, which is represented by a single letter. Each row of blocks contains one less block than the row beneath it and is centered on top. \n \n To make the pyramid aesthetically pleasing, there are only specific triangular patterns that are allowed. A triangular pattern consists of a single block stacked on top of two blocks . The patterns are given as a list of three-letter strings allowed , where the first two characters of a pattern represent the left and right bottom blocks respectively, and the third character is the top block. \n\n For example, \"ABC\" represents a triangular pattern with a 'C' block stacked on top of an 'A' (left) and 'B' (right) block. Note that this is different from \"BAC\" where 'B' is on the left bottom and 'A' is on the right bottom. \n\n You start with a bottom row of blocks bottom , given as a single string, that you must use as the base of the pyramid. \n \n Given bottom and allowed , return true if you can build the pyramid all the way to the top such that every triangular pattern in the pyramid is in allowed , or false otherwise . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/08/26/pyramid1-grid.jpg] \n \n```\nInput:\n bottom = \"BCD\", allowed = [\"BCC\",\"CDE\",\"CEA\",\"FFF\"]\n\nOutput:\n true\n\nExplanation:\n The allowed triangular patterns are shown on the right.\nStarting from the bottom (level 3), we can build \"CE\" on level 2 and then build \"A\" on level 1.\nThere are three triangular patterns in the pyramid, which are \"BCC\", \"CDE\", and \"CEA\". All are allowed.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/08/26/pyramid2-grid.jpg] \n \n```\nInput:\n bottom = \"AAAA\", allowed = [\"AAB\",\"AAC\",\"BCD\",\"BBE\",\"DEF\"]\n\nOutput:\n false\n\nExplanation:\n The allowed triangular patterns are shown on the right.\nStarting from the bottom (level 4), there are multiple ways to build level 3, but trying all the possibilites, you will get always stuck before building level 1.\n```\n\n Constraints: \n\n 2 <= bottom.length <= 6 \n \n 0 <= allowed.length <= 216 \n \n allowed[i].length == 3 \n \n The letters in all input strings are from the set {'A', 'B', 'C', 'D', 'E', 'F'} . \n \n All the values of allowed are unique .",
+  "code": "class Solution {\npublic:\n    map<string, vector<string>> vec;\n    unordered_map<string, bool> memo;\n\n    bool un_fun(string s) {\n        if (s.length() == 1) return true;\n\n        if (memo.find(s) != memo.end()) {\n            return memo[s];\n        }\n\n        bool ans = false;\n\n        queue<pair<string, int>> q;\n        vector<string> p;\n\n        string pfx = s.substr(0, 2);\n\n        for (int i = 0; i < vec[pfx].size(); i++) {\n            q.push({ vec[pfx][i], 0 });\n        }\n\n        while (!q.empty()) {\n            pair<string, int> top = q.front();\n            q.pop();\n\n            if (top.second == s.length() - 2) {\n                p.push_back(top.first);\n            }\n\n            int st_idx = top.second + 1;\n            string prev = top.first;\n\n            pfx = s.substr(st_idx, 2);\n\n            for (int i = 0; i < vec[pfx].size(); i++) {\n                q.push({ prev + vec[pfx][i], st_idx });\n            }\n        }\n\n        for (int i = 0; i < p.size(); i++) {\n            ans = ans || un_fun(p[i]);\n        }\n\n        memo[s] = ans;\n        return ans;\n    }\n\n    bool pyramidTransition(string bottom, vector<string> &allowed) {\n        for (int i = 0; i < allowed.size(); i++) {\n            string p = \"\";\n            p += allowed[i][2];\n            vec[allowed[i].substr(0, 2)].push_back(p);\n        }\n\n        return un_fun(bottom);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617066344",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

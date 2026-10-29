@@ -1,0 +1,33 @@
+{
+  "id": "1057",
+  "title": "Campus Bikes",
+  "slug": "campus-bikes",
+  "url": "https://leetcode.com/problems/campus-bikes/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "On a campus represented on the X-Y plane, there are n workers and m bikes, with n <= m . \n \n You are given an array workers of length n where workers[i] = [x i , y i ] is the position of the i th worker. You are also given an array bikes of length m where bikes[j] = [x j , y j ] is the position of the j th bike. All the given positions are unique . \n \n Assign a bike to each worker. Among the available bikes and workers, we choose the (worker i , bike j ) pair with the shortest Manhattan distance between each other and assign the bike to that worker. \n \n If there are multiple (worker i , bike j ) pairs with the same shortest Manhattan distance , we choose the pair with the smallest worker index . If there are multiple ways to do that, we choose the pair with the smallest bike index . Repeat this process until there are no available workers. \n \n Return an array answer of length n , where answer[i] is the index ( 0-indexed ) of the bike that the i th worker is assigned to . \n \n The Manhattan distance between two points p1 and p2 is Manhattan(p1, p2) = |p1.x - p2.x| + |p1.y - p2.y| . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/03/06/1261_example_1_v2.png] \n \n```\nInput:\n workers = [[0,0],[2,1]], bikes = [[1,2],[3,3]]\n\nOutput:\n [1,0]\n\nExplanation:\n Worker 1 grabs Bike 0 as they are closest (without ties), and Worker 0 is assigned Bike 1. So the output is [1, 0].\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/03/06/1261_example_2_v2.png] \n \n```\nInput:\n workers = [[0,0],[1,1],[2,0]], bikes = [[1,0],[2,2],[2,1]]\n\nOutput:\n [0,2,1]\n\nExplanation:\n Worker 0 grabs Bike 0 at first. Worker 1 and Worker 2 share the same distance to Bike 2, thus Worker 1 is assigned to Bike 2, and Worker 2 will take Bike 1. So the output is [0,2,1].\n```\n\n Constraints: \n\n n == workers.length \n \n m == bikes.length \n \n 1 <= n <= m <= 1000 \n \n workers[i].length == bikes[j].length == 2 \n \n 0 <= x i , y i < 1000 \n \n 0 <= x j , y j < 1000 \n \n All worker and bike locations are unique .",
+  "code": "class Solution {\npublic:\n    vector<int> assignBikes(vector<vector<int>>& workers,\n                            vector<vector<int>>& bikes) {\n        vector<tuple<int, int, int>> pairs;\n        for (int w = 0; w < static_cast<int>(workers.size()); ++w) {\n            for (int b = 0; b < static_cast<int>(bikes.size()); ++b) {\n                int distance = abs(workers[w][0] - bikes[b][0])\n                             + abs(workers[w][1] - bikes[b][1]);\n                pairs.emplace_back(distance, w, b);\n            }\n        }\n        sort(pairs.begin(), pairs.end());\n        vector<int> answer(workers.size(), -1);\n        vector<bool> used(bikes.size(), false);\n        int assigned = 0;\n        for (const auto& item : pairs) {\n            int w = get<1>(item);\n            int b = get<2>(item);\n            if (answer[w] == -1 && !used[b]) {\n                answer[w] = b;\n                used[b] = true;\n                if (++assigned == static_cast<int>(workers.size())) {\n                    break;\n                }\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178515719",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

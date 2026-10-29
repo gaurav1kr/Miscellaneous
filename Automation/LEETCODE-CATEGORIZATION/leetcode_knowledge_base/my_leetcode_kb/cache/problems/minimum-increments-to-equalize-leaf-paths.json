@@ -1,0 +1,35 @@
+{
+  "id": "3593",
+  "title": "Minimum Increments to Equalize Leaf Paths",
+  "slug": "minimum-increments-to-equalize-leaf-paths",
+  "url": "https://leetcode.com/problems/minimum-increments-to-equalize-leaf-paths/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer n and an undirected tree rooted at node 0 with n nodes numbered from 0 to n - 1 . This is represented by a 2D array edges of length n - 1 , where edges[i] = [u i , v i ] indicates an edge from node u i to v i . \n \n Each node i has an associated cost given by cost[i] , representing the cost to traverse that node. \n \n The score of a path is defined as the sum of the costs of all nodes along the path. \n \n Your goal is to make the scores of all root-to-leaf paths equal by increasing the cost of any number of nodes by any non-negative amount. \n \n Return the minimum number of nodes whose cost must be increased to make all root-to-leaf path scores equal. \n\n Example 1: \n\n Input: n = 3, edges = [[0,1],[0,2]], cost = [2,1,3] \n \n Output: 1 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/05/28/screenshot-2025-05-28-at-134018.png] \n \n There are two root-to-leaf paths: \n\n Path 0 → 1 has a score of 2 + 1 = 3 . \n \n Path 0 → 2 has a score of 2 + 3 = 5 . \n\n To make all root-to-leaf path scores equal to 5, increase the cost of node 1 by 2. \nOnly one node is increased, so the output is 1. \n\n Example 2: \n\n Input: n = 3, edges = [[0,1],[1,2]], cost = [5,1,4] \n \n Output: 0 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/05/28/screenshot-2025-05-28-at-134249.png] \n \n There is only one root-to-leaf path: \n\n Path 0 → 1 → 2 has a score of 5 + 1 + 4 = 10 . \n\n Since only one root-to-leaf path exists, all path costs are trivially equal, and the output is 0. \n\n Example 3: \n\n Input: n = 5, edges = [[0,4],[0,1],[1,2],[1,3]], cost = [3,4,1,1,7] \n \n Output: 1 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/05/28/screenshot-2025-05-28-at-135704.png] \n \n There are three root-to-leaf paths: \n\n Path 0 → 4 has a score of 3 + 7 = 10 . \n \n Path 0 → 1 → 2 has a score of 3 + 4 + 1 = 8 . \n \n Path 0 → 1 → 3 has a score of 3 + 4 + 1 = 8 . \n\n To make all root-to-leaf path scores equal to 10, increase the cost of node 1 by 2. Thus, the output is 1. \n\n Constraints: \n\n 2 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i] == [u i , v i ] \n \n 0 <= u i , v i < n \n \n cost.length == n \n \n 1 <= cost[i] <= 10 9 \n \n The input is generated such that edges represents a valid tree.",
+  "code": "class Solution {public:\n int minIncrease(int n,vector<vector<int>>& edges,vector<int>& cost){\n  vector<vector<int>> g(n);for(auto&e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}\n  int answer=0;function<pair<long long,int>(int,int)> dfs=[&](int u,int p){\n   long long best=0;vector<pair<long long,int>> kids;\n   for(int v:g[u])if(v!=p){auto t=dfs(v,u);kids.push_back(t);best=max(best,t.first);}\n   int changes=0;for(auto t:kids){changes+=t.second;if(t.first<best)++changes;}\n   return make_pair(best+cost[u],changes);\n  };return dfs(0,-1).second;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177602680",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

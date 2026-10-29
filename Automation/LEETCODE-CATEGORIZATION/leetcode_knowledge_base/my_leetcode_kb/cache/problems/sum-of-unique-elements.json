@@ -1,0 +1,33 @@
+{
+  "id": "1748",
+  "title": "Sum of Unique Elements",
+  "slug": "sum-of-unique-elements",
+  "url": "https://leetcode.com/problems/sum-of-unique-elements/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . The unique elements of an array are the elements that appear exactly once in the array. \n \n Return the sum of all the unique elements of nums . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,2]\n\nOutput:\n 4\n\nExplanation:\n The unique elements are [1,3], and the sum is 4.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,1,1,1]\n\nOutput:\n 0\n\nExplanation:\n There are no unique elements, and the sum is 0.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3,4,5]\n\nOutput:\n 15\n\nExplanation:\n The unique elements are [1,2,3,4,5], and the sum is 15.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n int sumOfUnique(vector<int>& nums){\n  unordered_map<int,int> cnt;for(int x:nums)++cnt[x];int ans=0;\n  for(auto& p:cnt)if(p.second==1)ans+=p.first;return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175759905",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

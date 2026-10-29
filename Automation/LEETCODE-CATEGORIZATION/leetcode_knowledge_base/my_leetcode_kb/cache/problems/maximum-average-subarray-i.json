@@ -1,0 +1,29 @@
+{
+  "id": "643",
+  "title": "Maximum Average Subarray I",
+  "slug": "maximum-average-subarray-i",
+  "url": "https://leetcode.com/problems/maximum-average-subarray-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums consisting of n elements, and an integer k . \n \n Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value . Any answer with a calculation error less than 10 -5 will be accepted. \n\n Example 1: \n \n```\nInput:\n nums = [1,12,-5,-6,50,3], k = 4\n\nOutput:\n 12.75000\n\nExplanation:\n Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75\n```\n\n Example 2: \n \n```\nInput:\n nums = [5], k = 1\n\nOutput:\n 5.00000\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= k <= n <= 10 5 \n \n -10 4 <= nums[i] <= 10 4",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    double findMaxAverage(vector<int>& nums, int k) {\n        double sum = 0;\n        for (int i = 0; i < k; i++) {\n            sum += nums[i];\n        }\n        double maxSum = sum;\n\n        for (int i = k; i < nums.size(); i++) {\n            sum += nums[i] - nums[i - k];\n            maxSum = max(maxSum, sum);\n        }\n        return maxSum / k;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590166566",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

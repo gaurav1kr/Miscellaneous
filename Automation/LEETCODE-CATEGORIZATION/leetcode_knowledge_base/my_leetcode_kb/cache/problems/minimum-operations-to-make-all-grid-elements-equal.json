@@ -1,0 +1,34 @@
+{
+  "id": "3888",
+  "title": "Minimum Operations to Make All Grid Elements Equal",
+  "slug": "minimum-operations-to-make-all-grid-elements-equal",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-all-grid-elements-equal/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Matrix",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array grid of size m × n , and an integer k . \n \n In one operation, you can: \n\n Select any k x k submatrix of grid , and \n \n Increment all elements inside that submatrix by 1. \n\n Return the minimum number of operations required to make all elements in the grid equal . If it is not possible, return -1. \nA submatrix (x1, y1, x2, y2) is a matrix that forms by choosing all cells matrix[x][y] where x1 <= x <= x2 and y1 <= y <= y2 .\n\n Example 1: \n\n Input: grid = [[3,3,5],[3,3,5]], k = 2 \n \n Output: 2 \n \n Explanation: \n \n Choose the left 2 x 2 submatrix (covering the first two columns) and apply the operation twice. \n\n After 1 operation: [[4, 4, 5], [4, 4, 5]] \n \n After 2 operations: [[5, 5, 5], [5, 5, 5]] \n\n All elements become equal to 5. Thus, the minimum number of operations is 2. \n\n Example 2: \n\n Input: grid = [[1,2],[2,3]], k = 1 \n \n Output: 4 \n \n Explanation: \n \n Since k = 1 , each operation increments a single cell grid[i][j] by 1. To make all elements equal, the final value must be 3. \n\n Increase grid[0][0] = 1 to 3, requiring 2 operations. \n \n Increase grid[0][1] = 2 to 3, requiring 1 operation. \n \n Increase grid[1][0] = 2 to 3, requiring 1 operation. \n\n Thus, the minimum number of operations is 2 + 1 + 1 + 0 = 4 . \n\n Constraints: \n\n 1 <= m == grid.length <= 1000 \n \n 1 <= n == grid[i].length <= 1000 \n \n -10 5 <= grid[i][j] <= 10 5 \n \n 1 <= k <= min(m, n)",
+  "code": "class Solution {\n    long long floorDiv(long long a,long long b){\n        long long q=a/b,r=a%b;if(r&&((r>0)!=(b>0)))--q;return q;\n    }\n    long long ceilDiv(long long a,long long b){return -floorDiv(-a,b);}\npublic:\n    long long minOperations(vector<vector<int>>& grid,int k){\n        int m=grid.size(),n=grid[0].size();\n        vector<vector<long long>> da(m+1,vector<long long>(n+1)),db=da;\n        long long lo=LLONG_MIN/4,hi=LLONG_MAX/4,total=0;\n        auto bound=[&](long long a,long long b,bool equality){\n            // a*T+b >= 0, or == 0.\n            if(a==0){if(b<0||(equality&&b!=0))lo=1,hi=0;return;}\n            if(a>0)lo=max(lo,ceilDiv(-b,a));\n            else hi=min(hi,floorDiv(-b,a));\n            if(equality){if(a>0)hi=min(hi,floorDiv(-b,a));\n                else lo=max(lo,ceilDiv(-b,a));}\n        };\n        for(int i=0;i<m;++i)for(int j=0;j<n;++j){\n            total+=grid[i][j];\n            long long a=da[i][j],b=db[i][j];\n            if(i)a+=da[i-1][j],b+=db[i-1][j];\n            if(j)a+=da[i][j-1],b+=db[i][j-1];\n            if(i&&j)a-=da[i-1][j-1],b-=db[i-1][j-1];\n            da[i][j]=a;db[i][j]=b;\n            long long x=1-a,y=-grid[i][j]-b;\n            if(i+k<=m&&j+k<=n){\n                bound(x,y,false);\n                da[i][j]+=x;db[i][j]+=y;\n                da[i+k][j]-=x;db[i+k][j]-=y;\n                da[i][j+k]-=x;db[i][j+k]-=y;\n                da[i+k][j+k]+=x;db[i+k][j+k]+=y;\n            }else bound(x,y,true);\n        }\n        if(lo>hi)return -1;\n        long long T=lo;\n        return (T*m*n-total)/(1LL*k*k);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181164098",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "1496",
+  "title": "Path Crossing",
+  "slug": "path-crossing",
+  "url": "https://leetcode.com/problems/path-crossing/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered set",
+    "String"
+  ],
+  "description": "Given a string path , where path[i] = 'N' , 'S' , 'E' or 'W' , each representing moving one unit north, south, east, or west, respectively. You start at the origin (0, 0) on a 2D plane and walk on the path specified by path . \n \n Return true if the path crosses itself at any point, that is, if at any time you are on a location you have previously visited . Return false otherwise. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/06/10/screen-shot-2020-06-10-at-123929-pm.png] \n \n```\nInput:\n path = \"NES\"\n\nOutput:\n false \n\nExplanation:\n Notice that the path doesn't cross any point more than once.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/06/10/screen-shot-2020-06-10-at-123843-pm.png] \n \n```\nInput:\n path = \"NESWW\"\n\nOutput:\n true\n\nExplanation:\n Notice that the path visits the origin twice.\n```\n\n Constraints: \n\n 1 <= path.length <= 10 4 \n \n path[i] is either 'N' , 'S' , 'E' , or 'W' .",
+  "code": "#include <string>\n#include <set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isPathCrossing(string path) {\n        set<pair<int, int>> visited;\n        int x = 0, y = 0;\n        visited.insert({x, y});\n        for (char c : path) {\n            if (c == 'N') y++;\n            else if (c == 'S') y--;\n            else if (c == 'E') x++;\n            else x--;\n            if (!visited.insert({x, y}).second) return true;\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610585639",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

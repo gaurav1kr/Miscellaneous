@@ -1,0 +1,28 @@
+{
+  "id": "2660",
+  "title": "Determine the Winner of a Bowling Game",
+  "slug": "determine-the-winner-of-a-bowling-game",
+  "url": "https://leetcode.com/problems/determine-the-winner-of-a-bowling-game/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given two 0-indexed integer arrays player1 and player2 , representing the number of pins that player 1 and player 2 hit in a bowling game, respectively. \n \n The bowling game consists of n turns, and the number of pins in each turn is exactly 10. \n \n Assume a player hits x i pins in the i th turn. The value of the i th turn for the player is: \n\n 2x i if the player hits 10 pins in either (i - 1) th or (i - 2) th turn . \n \n Otherwise, it is x i . \n\n The score of the player is the sum of the values of their n turns. \n \n Return \n\n 1 if the score of player 1 is more than the score of player 2, \n \n 2 if the score of player 2 is more than the score of player 1, and \n \n 0 in case of a draw. \n\n Example 1: \n\n Input: player1 = [5,10,3,2], player2 = [6,5,7,3] \n \n Output: 1 \n \n Explanation: \n \n The score of player 1 is 5 + 10 + 2*3 + 2*2 = 25. \n \n The score of player 2 is 6 + 5 + 7 + 3 = 21. \n\n Example 2: \n\n Input: player1 = [3,5,7,6], player2 = [8,10,10,2] \n \n Output: 2 \n \n Explanation: \n \n The score of player 1 is 3 + 5 + 7 + 6 = 21. \n \n The score of player 2 is 8 + 10 + 2*10 + 2*2 = 42. \n\n Example 3: \n\n Input: player1 = [2,3], player2 = [4,1] \n \n Output: 0 \n \n Explanation: \n \n The score of player1 is 2 + 3 = 5. \n \n The score of player2 is 4 + 1 = 5. \n\n Example 4: \n\n Input: player1 = [1,1,1,10,10,10,10], player2 = [10,10,10,10,1,1,1] \n \n Output: 2 \n \n Explanation: \n \n The score of player1 is 1 + 1 + 1 + 10 + 2*10 + 2*10 + 2*10 = 73. \n \n The score of player2 is 10 + 2*10 + 2*10 + 2*10 + 2*1 + 2*1 + 1 = 75. \n\n Constraints: \n\n n == player1.length == player2.length \n \n 1 <= n <= 1000 \n \n 0 <= player1[i], player2[i] <= 10",
+  "code": "class Solution {int score(vector<int>&v){int s=0;for(int i=0;i<(int)v.size();i++)s+=v[i]*((i>0&&v[i-1]==10)||(i>1&&v[i-2]==10)?2:1);return s;}public:int isWinner(vector<int>&player1,vector<int>&player2){int a=score(player1),b=score(player2);return a==b?0:(a>b?1:2);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176634925",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

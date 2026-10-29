@@ -1,0 +1,28 @@
+{
+  "id": "972",
+  "title": "Equal Rational Numbers",
+  "slug": "equal-rational-numbers",
+  "url": "https://leetcode.com/problems/equal-rational-numbers/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given two strings s and t , each of which represents a non-negative rational number, return true if and only if they represent the same number. The strings may use parentheses to denote the repeating part of the rational number. \n \n A rational number can be represented using up to three parts: <IntegerPart> , <NonRepeatingPart> , and a <RepeatingPart> . The number will be represented in one of the following three ways: \n\n <IntegerPart> \n\n For example, 12 , 0 , and 123 . \n\n <IntegerPart> <.> <NonRepeatingPart> \n\n For example, 0.5 , 1. , 2.12 , and 123.0001 . \n\n <IntegerPart> <.> <NonRepeatingPart> <(> <RepeatingPart> <)> \n\n For example, 0.1(6) , 1.(9) , 123.00(1212) . \n\n The repeating portion of a decimal expansion is conventionally denoted within a pair of round brackets. For example: \n\n 1/6 = 0.16666666... = 0.1(6) = 0.1666(6) = 0.166(66) . \n\n Example 1: \n \n```\nInput:\n s = \"0.(52)\", t = \"0.5(25)\"\n\nOutput:\n true\n\nExplanation:\n Because \"0.(52)\" represents 0.52525252..., and \"0.5(25)\" represents 0.52525252525..... , the strings represent the same number.\n```\n\n Example 2: \n \n```\nInput:\n s = \"0.1666(6)\", t = \"0.166(66)\"\n\nOutput:\n true\n```\n\n Example 3: \n \n```\nInput:\n s = \"0.9(9)\", t = \"1.\"\n\nOutput:\n true\n\nExplanation:\n \"0.9(9)\" represents 0.999999999... repeated forever, which equals 1. [\nSee this link for an explanation.\n]\n\"1.\" represents the number 1, which is formed correctly: (IntegerPart) = \"1\" and (NonRepeatingPart) = \"\".\n```\n\n Constraints: \n\n Each part consists only of digits. \n \n The <IntegerPart> does not have leading zeros (except for the zero itself). \n \n 1 <= <IntegerPart>.length <= 4 \n \n 0 <= <NonRepeatingPart>.length <= 4 \n \n 1 <= <RepeatingPart>.length <= 4",
+  "code": "class Solution {\n    using ll = long long;\n    ll gcd(ll a, ll b) {\n        while (b) { ll r = a % b; a = b; b = r; }\n        return a;\n    }\n    pair<ll,ll> parse(const string& s) {\n        int dot = s.find('.'), open = s.find('(');\n        if (dot == (int)string::npos) return {stoll(s), 1};\n        ll whole = stoll(s.substr(0, dot));\n        string finite = s.substr(dot + 1, (open == (int)string::npos ? s.size() : open) - dot - 1);\n        string repeat = open == (int)string::npos ? \"\" : s.substr(open + 1, s.size() - open - 2);\n        ll p10 = 1;\n        for (char c : finite) p10 *= 10;\n        ll finiteVal = finite.empty() ? 0 : stoll(finite);\n        ll numerator = whole * p10 + finiteVal, denominator = p10;\n        if (!repeat.empty()) {\n            ll power = 1;\n            for (char c : repeat) power *= 10;\n            ll factor = power - 1;\n            numerator = numerator * factor + stoll(repeat);\n            denominator *= factor;\n        }\n        ll g = gcd(numerator, denominator);\n        return {numerator / g, denominator / g};\n    }\npublic:\n    bool isRationalEqual(string s, string t) {\n        auto a = parse(s), b = parse(t);\n        return (__int128)a.first * b.second == (__int128)b.first * a.second;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175744570",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

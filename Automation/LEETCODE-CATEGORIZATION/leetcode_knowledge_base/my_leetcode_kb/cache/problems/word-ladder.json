@@ -1,0 +1,36 @@
+{
+  "id": "127",
+  "title": "Word Ladder",
+  "slug": "word-ladder",
+  "url": "https://leetcode.com/problems/word-ladder/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Breadth-First Search",
+    "Bidirectional Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "A transformation sequence from word beginWord to word endWord using a dictionary wordList is a sequence of words beginWord -> s 1 -> s 2 -> ... -> s k such that: \n\n Every adjacent pair of words differs by a single letter. \n \n Every s i for 1 <= i <= k is in wordList . Note that beginWord does not need to be in wordList . \n \n s k == endWord \n\n Given two words, beginWord and endWord , and a dictionary wordList , return the number of words in the shortest transformation sequence from beginWord to endWord , or 0 if no such sequence exists. \n\n Example 1: \n \n```\nInput:\n beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]\n\nOutput:\n 5\n\nExplanation:\n One shortest transformation sequence is \"hit\" -> \"hot\" -> \"dot\" -> \"dog\" -> cog\", which is 5 words long.\n```\n\n Example 2: \n \n```\nInput:\n beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]\n\nOutput:\n 0\n\nExplanation:\n The endWord \"cog\" is not in wordList, therefore there is no valid transformation sequence.\n```\n\n Constraints: \n\n 1 <= beginWord.length <= 10 \n \n endWord.length == beginWord.length \n \n 1 <= wordList.length <= 5000 \n \n wordList[i].length == beginWord.length \n \n beginWord , endWord , and wordList[i] consist of lowercase English letters. \n \n beginWord != endWord \n \n All the words in wordList are unique .",
+  "code": "class Solution {\npublic:\n    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {\n    unordered_set<string> wordSet(wordList.begin(), wordList.end());\n    if (wordSet.find(endWord) == wordSet.end()) {\n        return 0; // endWord is not in the word list\n    }\n\n    queue<pair<string, int>> q; // Pair of current word and transformation steps\n    q.push({beginWord, 1}); // Start from the beginWord with step 1\n\n    while (!q.empty()) {\n        auto [currentWord, steps] = q.front();\n        q.pop();\n\n        // Check all possible single-letter transformations\n        for (int i = 0; i < currentWord.length(); ++i) {\n            string temp = currentWord;\n            for (char c = 'a'; c <= 'z'; ++c) {\n                temp[i] = c;\n\n                if (temp == endWord) {\n                    return steps + 1; // Found the endWord\n                }\n\n                // If the transformed word is in the word list, add it to the queue\n                if (wordSet.find(temp) != wordSet.end()) {\n                    q.push({temp, steps + 1});\n                    wordSet.erase(temp); // Remove to avoid revisiting\n                }\n            }\n        }\n    }\n\n    return 0; // No transformation sequence exists\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542027097",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

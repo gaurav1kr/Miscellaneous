@@ -1,0 +1,31 @@
+{
+  "id": "1910",
+  "title": "Remove All Occurrences of a Substring",
+  "slug": "remove-all-occurrences-of-a-substring",
+  "url": "https://leetcode.com/problems/remove-all-occurrences-of-a-substring/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given two strings s and part , perform the following operation on s until all occurrences of the substring part are removed: \n\n Find the leftmost occurrence of the substring part and remove it from s . \n\n Return s after removing all occurrences of part . \n \n A substring is a contiguous sequence of characters in a string. \n\n Example 1: \n \n```\nInput:\n s = \"daabcbaabcbc\", part = \"abc\"\n\nOutput:\n \"dab\"\n\nExplanation\n: The following operations are done:\n- s = \"da\nabc\nbaabcbc\", remove \"abc\" starting at index 2, so s = \"dabaabcbc\".\n- s = \"daba\nabc\nbc\", remove \"abc\" starting at index 4, so s = \"dababc\".\n- s = \"dab\nabc\n\", remove \"abc\" starting at index 3, so s = \"dab\".\nNow s has no occurrences of \"abc\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"axxxxyyyyb\", part = \"xy\"\n\nOutput:\n \"ab\"\n\nExplanation\n: The following operations are done:\n- s = \"axxx\nxy\nyyyb\", remove \"xy\" starting at index 4 so s = \"axxxyyyb\".\n- s = \"axx\nxy\nyyb\", remove \"xy\" starting at index 3 so s = \"axxyyb\".\n- s = \"ax\nxy\nyb\", remove \"xy\" starting at index 2 so s = \"axyb\".\n- s = \"a\nxy\nb\", remove \"xy\" starting at index 1 so s = \"ab\".\nNow s has no occurrences of \"xy\".\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n 1 <= part.length <= 1000 \n \n s ​​​​​​ and part consists of lowercase English letters.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string removeOccurrences(string s, string part) {\n        size_t pos;\n        while ((pos = s.find(part)) != string::npos)\n            s.erase(pos, part.size());\n        return s;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610599086",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

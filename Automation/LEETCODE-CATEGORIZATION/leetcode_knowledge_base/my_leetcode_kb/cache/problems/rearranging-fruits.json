@@ -1,0 +1,34 @@
+{
+  "id": "2561",
+  "title": "Rearranging Fruits",
+  "slug": "rearranging-fruits",
+  "url": "https://leetcode.com/problems/rearranging-fruits/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Sort"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You have two fruit baskets containing n fruits each. You are given two 0-indexed integer arrays basket1 and basket2 representing the cost of fruit in each basket. You want to make both baskets equal . To do so, you can use the following operation as many times as you want: \n\n Choose two indices i and j , and swap the i th fruit of basket1 with the j th fruit of basket2 . \n \n The cost of the swap is min(basket1[i], basket2[j]) . \n\n Two baskets are considered equal if sorting them according to the fruit cost makes them exactly the same baskets. \n \n Return the minimum cost to make both the baskets equal or -1 if impossible. \n\n Example 1: \n \n```\nInput:\n basket1 = [4,2,2,2], basket2 = [1,4,1,2]\n\nOutput:\n 1\n\nExplanation:\n Swap index 1 of basket1 with index 0 of basket2, which has cost 1. Now basket1 = [4,1,2,2] and basket2 = [2,4,1,2]. Rearranging both the arrays makes them equal.\n```\n\n Example 2: \n \n```\nInput:\n basket1 = [2,3,4,1], basket2 = [3,2,5,1]\n\nOutput:\n -1\n\nExplanation:\n It can be shown that it is impossible to make both the baskets equal.\n```\n\n Constraints: \n\n basket1.length == basket2.length \n \n 1 <= basket1.length <= 10 5 \n \n 1 <= basket1[i], basket2[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n long long minCost(vector<int>& basket1,vector<int>& basket2){\n  map<int,int> diff;int globalMin=INT_MAX;\n  for(int x:basket1){++diff[x];globalMin=min(globalMin,x);}\n  for(int x:basket2){--diff[x];globalMin=min(globalMin,x);}\n  vector<int> extra;\n  for(auto p:diff){if(abs(p.second)%2)return -1;\n   for(int j=0;j<abs(p.second)/2;++j)extra.push_back(p.first);\n  }\n  sort(extra.begin(),extra.end());long long ans=0;\n  for(int i=0;i<(int)extra.size()/2;++i)ans+=min((long long)extra[i],2LL*globalMin);\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176612819",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

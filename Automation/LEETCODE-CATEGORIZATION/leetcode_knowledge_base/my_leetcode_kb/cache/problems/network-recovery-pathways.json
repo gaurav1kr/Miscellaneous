@@ -1,0 +1,41 @@
+{
+  "id": "3620",
+  "title": "Network Recovery Pathways",
+  "slug": "network-recovery-pathways",
+  "url": "https://leetcode.com/problems/network-recovery-pathways/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Graph Theory",
+    "Topological Sort",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a directed acyclic graph of n  nodes numbered from 0 to  n − 1 . This is represented by a 2D array edges of length m , where edges[i] = [u i , v i , cost i ] indicates a one‑way communication from node  u i to node  v i with a recovery cost of  cost i . \n \n Some nodes may be offline. You are given a boolean array online where online[i] = true means node  i is online. Nodes 0 and n − 1 are always online. \n \n A path from 0 to n − 1 is valid if: \n\n All intermediate nodes on the path are online. \n \n The total recovery cost of all edges on the path does not exceed k . \n\n For each valid path, define its score as the minimum edge‑cost along that path. \n \n Return the maximum path score (i.e., the largest minimum -edge cost) among all valid paths. If no valid path exists, return -1. \n\n Example 1: \n\n Input: edges = [[0,1,5],[1,3,10],[0,2,3],[2,3,4]], online = [true,true,true,true], k = 10 \n \n Output: 3 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/06/06/graph-10.png] \n\n The graph has two possible routes from node 0 to node 3: \n\n Path 0 → 1 → 3 \n\n Total cost = 5 + 10 = 15 , which exceeds k ( 15 > 10 ), so this path is invalid. \n\n Path 0 → 2 → 3 \n\n Total cost = 3 + 4 = 7 <= k , so this path is valid. \n\n The minimum edge‐cost along this path is min(3, 4) = 3 . \n\n There are no other valid paths. Hence, the maximum among all valid path‐scores is 3. \n\n Example 2: \n\n Input: edges = [[0,1,7],[1,4,5],[0,2,6],[2,3,6],[3,4,2],[2,4,6]], online = [true,true,true,false,true], k = 12 \n \n Output: 6 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/06/06/graph-11.png] \n\n Node 3 is offline, so any path passing through 3 is invalid. \n\n Consider the remaining routes from 0 to 4: \n\n Path 0 → 1 → 4 \n\n Total cost = 7 + 5 = 12 <= k , so this path is valid. \n\n The minimum edge‐cost along this path is min(7, 5) = 5 . \n\n Path 0 → 2 → 3 → 4 \n\n Node 3 is offline, so this path is invalid regardless of cost. \n\n Path 0 → 2 → 4 \n\n Total cost = 6 + 6 = 12 <= k , so this path is valid. \n\n The minimum edge‐cost along this path is min(6, 6) = 6 . \n\n Among the two valid paths, their scores are 5 and 6. Therefore, the answer is 6. \n\n Constraints: \n\n n == online.length \n \n 2 <= n <= 5 * 10 4 \n \n 0 <= m == edges.length <= min(10 5 , n * (n - 1) / 2) \n \n edges[i] = [u i , v i , cost i ] \n \n 0 <= u i , v i < n \n \n u i != v i \n \n 0 <= cost i <= 10 9 \n \n 0 <= k <= 5 * 10 13 \n \n online[i] is either true or false , and both online[0] and online[n − 1] are true . \n \n The given graph is a directed acyclic graph.",
+  "code": "class Solution {\npublic:\n int findMaxPathScore(vector<vector<int>>& edges,vector<bool>& online,long long k){\n  int n=online.size(),hi=0;vector<vector<pair<int,int>>>g(n);vector<int>ind(n);\n  for(auto&e:edges){g[e[0]].push_back({e[1],e[2]});++ind[e[1]];hi=max(hi,e[2]);}\n  queue<int>q;for(int i=0;i<n;++i)if(!ind[i])q.push(i);vector<int>order;\n  while(!q.empty()){int u=q.front();q.pop();order.push_back(u);for(auto e:g[u])if(!--ind[e.first])q.push(e.first);}\n  auto ok=[&](int x){const long long INF=4e18;vector<long long>d(n,INF);d[0]=0;\n   for(int u:order)if(d[u]<INF)for(auto e:g[u])if(e.second>=x&&(e.first==n-1||online[e.first]))d[e.first]=min(d[e.first],d[u]+e.second);\n   return d[n-1]<=k;};\n  if(!ok(0))return -1;int lo=0;while(lo<hi){int mid=lo+(hi-lo+1)/2;if(ok(mid))lo=mid;else hi=mid-1;}return lo;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177620693",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

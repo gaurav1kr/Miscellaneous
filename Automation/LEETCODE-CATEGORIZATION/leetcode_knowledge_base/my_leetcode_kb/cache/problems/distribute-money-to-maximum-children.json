@@ -1,0 +1,26 @@
+{
+  "id": "2591",
+  "title": "Distribute Money to Maximum Children",
+  "slug": "distribute-money-to-maximum-children",
+  "url": "https://leetcode.com/problems/distribute-money-to-maximum-children/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given an integer money denoting the amount of money (in dollars) that you have and another integer children denoting the number of children that you must distribute the money to. \n \n You have to distribute the money according to the following rules: \n\n All money must be distributed. \n \n Everyone must receive at least 1 dollar. \n \n Nobody receives 4 dollars. \n\n Return the maximum number of children who may receive exactly 8 dollars if you distribute the money according to the aforementioned rules . If there is no way to distribute the money, return -1 . \n\n Example 1: \n \n```\nInput:\n money = 20, children = 3\n\nOutput:\n 1\n\nExplanation:\n \nThe maximum number of children with 8 dollars will be 1. One of the ways to distribute the money is:\n- 8 dollars to the first child.\n- 9 dollars to the second child. \n- 3 dollars to the third child.\nIt can be proven that no distribution exists such that number of children getting 8 dollars is greater than 1.\n```\n\n Example 2: \n \n```\nInput:\n money = 16, children = 2\n\nOutput:\n 2\n\nExplanation:\n Each child can be given 8 dollars.\n```\n\n Constraints: \n\n 1 <= money <= 200 \n \n 2 <= children <= 30",
+  "code": "\nclass Solution {\npublic:\n    int distMoney(int money, int children) {\n        // Each child must receive at least $1.\n        if (money < children)\n            return -1;\n\n        // Give $1 to every child first.\n        money -= children;\n\n        // Each $8 child needs $7 more.\n        int count = min(money / 7, children);\n\n        money -= count * 7;\n\n        // If everyone has $8 but money remains,\n        // one child must receive more than $8.\n        if (count == children && money > 0)\n            return children - 1;\n\n        // If exactly one child remains and has $4,\n        // reduce the number of $8 children.\n        if (count == children - 1 && money == 3)\n            return count - 1;\n\n        return count;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181647127",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "453",
+  "title": "Minimum Moves to Equal Array Elements",
+  "slug": "minimum-moves-to-equal-array-elements",
+  "url": "https://leetcode.com/problems/minimum-moves-to-equal-array-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array nums of size n , return the minimum number of moves required to make all array elements equal . \n \n In one move, you can increment n - 1 elements of the array by 1 . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n 3\n\nExplanation:\n Only three moves are needed (remember each move increments two elements):\n[1,2,3] => [2,3,3] => [3,4,3] => [4,4,4]\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,1]\n\nOutput:\n 0\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= nums.length <= 10 5 \n \n -10 9 <= nums[i] <= 10 9 \n \n The answer is guaranteed to fit in a 32-bit integer.",
+  "code": "#include <vector>\n#include <numeric>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minMoves(vector<int>& nums) {\n        int minNum = *min_element(nums.begin(), nums.end());\n        int sum = accumulate(nums.begin(), nums.end(), 0);\n        return sum - minNum * nums.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591357142",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

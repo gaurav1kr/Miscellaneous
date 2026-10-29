@@ -1,0 +1,29 @@
+{
+  "id": "3033",
+  "title": "Modify the Matrix",
+  "slug": "modify-the-matrix",
+  "url": "https://leetcode.com/problems/modify-the-matrix/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a 0-indexed m x n integer matrix matrix , create a new 0-indexed matrix called answer . Make answer equal to matrix , then replace each element with the value -1 with the maximum element in its respective column. \n \n Return the matrix answer . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/12/24/matrix1.png] \n \n```\nInput:\n matrix = [[1,2,-1],[4,-1,6],[7,8,9]]\n\nOutput:\n [[1,2,9],[4,8,6],[7,8,9]]\n\nExplanation:\n The diagram above shows the elements that are changed (in blue).\n- We replace the value in the cell [1][1] with the maximum value in the column 1, that is 8.\n- We replace the value in the cell [0][2] with the maximum value in the column 2, that is 9.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/12/24/matrix2.png] \n \n```\nInput:\n matrix = [[3,-1],[5,2]]\n\nOutput:\n [[3,2],[5,2]]\n\nExplanation:\n The diagram above shows the elements that are changed (in blue).\n```\n\n Constraints: \n\n m == matrix.length \n \n n == matrix[i].length \n \n 2 <= m, n <= 50 \n \n -1 <= matrix[i][j] <= 100 \n \n The input is generated such that each column contains at least one non-negative integer.",
+  "code": "class Solution {public:vector<vector<int>> modifiedMatrix(vector<vector<int>>&a){int m=a.size(),n=a[0].size();for(int j=0;j<n;j++){int mx=0;for(int i=0;i<m;i++)mx=max(mx,a[i][j]);for(int i=0;i<m;i++)if(a[i][j]==-1)a[i][j]=mx;}return a;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176828697",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

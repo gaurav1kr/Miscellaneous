@@ -1,0 +1,31 @@
+{
+  "id": "735",
+  "title": "Asteroid Collision",
+  "slug": "asteroid-collision",
+  "url": "https://leetcode.com/problems/asteroid-collision/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Stack",
+    "Vector"
+  ],
+  "description": "We are given an array asteroids of integers representing asteroids in a row. The indices of the asteroid in the array represent their relative position in space. \n \n For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed. \n \n Find out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are the same size, both will explode. Two asteroids moving in the same direction will never meet. \n\n Example 1: \n \n```\nInput:\n asteroids = [5,10,-5]\n\nOutput:\n [5,10]\n\nExplanation:\n The 10 and -5 collide resulting in 10. The 5 and 10 never collide.\n```\n\n Example 2: \n \n```\nInput:\n asteroids = [8,-8]\n\nOutput:\n []\n\nExplanation:\n The 8 and -8 collide exploding each other.\n```\n\n Example 3: \n \n```\nInput:\n asteroids = [10,2,-5]\n\nOutput:\n [10]\n\nExplanation:\n The 2 and -5 collide resulting in -5. The 10 and -5 collide resulting in 10.\n```\n\n Example 4: \n \n```\nInput:\n asteroids = [3,5,-6,2,-1,4]​​​​​​​\n\nOutput:\n [-6,2,4]\n\nExplanation:\n The asteroid -6 makes the asteroid 3 and 5 explode, and then continues going left. On the other side, the asteroid 2 destroys -1. Since 2 and 4 are both moving right, they never collide.\n```\n\n Constraints: \n\n 2 <= asteroids.length <= 10 4 \n \n -1000 <= asteroids[i] <= 1000 \n \n asteroids[i] != 0",
+  "code": "class Solution {\npublic:\n    vector<int> asteroidCollision(vector<int>& astr) {\n        int prev = -1;\n        for (int i = 0; i < astr.size(); i++) {\n            bool notSame = true;\n            if (astr[i] > 0) {\n                astr[++prev] = astr[i];\n            } else {\n                while (prev >= 0 && astr[prev] > 0) {\n                    if (astr[prev] < -astr[i]) {\n                        prev--;\n                    } else if (astr[prev] == -astr[i]) {\n                        prev--;\n                        notSame = false;\n                        break;\n                    } else {\n\n                        break;\n                    }\n                }\n\n                if (notSame && (prev < 0 || astr[prev] < 0)) {\n                    astr[++prev] = astr[i];\n                }\n            }\n        }\n\n        astr.resize(prev + 1);\n        return astr;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1499206108",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "408",
+  "title": "Valid Word Abbreviation",
+  "slug": "valid-word-abbreviation",
+  "url": "https://leetcode.com/problems/valid-word-abbreviation/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A string can be abbreviated by replacing any number of non-adjacent , non-empty substrings with their lengths. The lengths should not have leading zeros. \n \n For example, a string such as \"substitution\" could be abbreviated as (but not limited to): \n\n \"s10n\" ( \"s ubstitutio n\" ) \n \n \"sub4u4\" ( \"sub stit u tion \" ) \n \n \"12\" ( \" substitution \" ) \n \n \"su3i1u2on\" ( \"su bst i t u ti on\" ) \n \n \"substitution\" (no substrings replaced) \n\n The following are not valid abbreviations: \n\n \"s55n\" ( \"s ubsti tutio n\" , the replaced substrings are adjacent) \n \n \"s010n\" (has leading zeros) \n \n \"s0ubstitution\" (replaces an empty substring) \n\n Given a string word and an abbreviation abbr , return whether the string matches the given abbreviation . \n \n A substring is a contiguous non-empty sequence of characters within a string. \n\n Example 1: \n \n```\nInput:\n word = \"internationalization\", abbr = \"i12iz4n\"\n\nOutput:\n true\n\nExplanation:\n The word \"internationalization\" can be abbreviated as \"i12iz4n\" (\"i \nnternational\n iz \natio\n n\").\n```\n\n Example 2: \n \n```\nInput:\n word = \"apple\", abbr = \"a2e\"\n\nOutput:\n false\n\nExplanation:\n The word \"apple\" cannot be abbreviated as \"a2e\".\n```\n\n Constraints: \n\n 1 <= word.length <= 20 \n \n word consists of only lowercase English letters. \n \n 1 <= abbr.length <= 10 \n \n abbr consists of lowercase English letters and digits. \n \n All the integers in abbr will fit in a 32-bit integer.",
+  "code": "class Solution\n{\npublic:\n    bool validWordAbbreviation(string word, string abbr)\n    {\n        int i = 0, j = 0;\n        while (j < (int)abbr.size())\n        {\n            if (isdigit(abbr[j]))\n            {\n                if (abbr[j] == '0') return false;\n                long long skip = 0;\n                while (j < (int)abbr.size() && isdigit(abbr[j]))\n                {\n                    skip = skip * 10 + (abbr[j++] - '0');\n                    if (skip > (int)word.size()) return false;\n                }\n                i += skip;\n                if (i > (int)word.size()) return false;\n            } else\n            {\n                if (i >= (int)word.size() || word[i] != abbr[j])\n                {\n                    return false;\n                }\n                ++i;\n                ++j;\n            }\n        }\n        return i == (int)word.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178464107",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

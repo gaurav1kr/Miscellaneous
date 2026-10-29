@@ -1,0 +1,36 @@
+{
+  "id": "1915",
+  "title": "Number of Wonderful Substrings",
+  "slug": "number-of-wonderful-substrings",
+  "url": "https://leetcode.com/problems/number-of-wonderful-substrings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "A wonderful string is a string where at most one letter appears an odd number of times. \n\n For example, \"ccjjc\" and \"abab\" are wonderful, but \"ab\" is not. \n\n Given a string word that consists of the first ten lowercase English letters ( 'a' through 'j' ), return the number of wonderful non-empty substrings in word . If the same substring appears multiple times in word , then count each occurrence separately. \n \n A substring is a contiguous sequence of characters in a string. \n\n Example 1: \n \n```\nInput:\n word = \"aba\"\r\n\nOutput:\n 4\r\n\nExplanation:\n The four wonderful substrings are underlined below:\r\n- \"\na\nba\" -> \"a\"\r\n- \"a\nb\na\" -> \"b\"\r\n- \"ab\na\n\" -> \"a\"\r\n- \"\naba\n\" -> \"aba\"\n```\n\n Example 2: \n \n```\nInput:\n word = \"aabb\"\r\n\nOutput:\n 9\r\n\nExplanation:\n The nine wonderful substrings are underlined below:\r\n- \"\na\nabb\" -> \"a\"\r\n- \"\naa\nbb\" -> \"aa\"\r\n- \"\naab\nb\" -> \"aab\"\r\n- \"\naabb\n\" -> \"aabb\"\r\n- \"a\na\nbb\" -> \"a\"\r\n- \"a\nabb\n\" -> \"abb\"\r\n- \"aa\nb\nb\" -> \"b\"\r\n- \"aa\nbb\n\" -> \"bb\"\r\n- \"aab\nb\n\" -> \"b\"\n```\n\n Example 3: \n \n```\nInput:\n word = \"he\"\r\n\nOutput:\n 2\r\n\nExplanation:\n The two wonderful substrings are underlined below:\r\n- \"\nh\ne\" -> \"h\"\r\n- \"h\ne\n\" -> \"e\"\n```\n\n Constraints: \n\n 1 <= word.length <= 10 5 \n \n word consists of lowercase English letters from 'a'  to 'j' .",
+  "code": "#include <string>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    long long wonderfulSubstrings(string word) {\n        unordered_map<int, int> count = {{0, 1}};\n        int mask = 0;\n        long long res = 0;\n        for (char c : word) {\n            mask ^= 1 << (c - 'a');\n            res += count[mask];\n            for (int i = 0; i < 10; ++i)\n                res += count[mask ^ (1 << i)];\n            count[mask]++;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612878902",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

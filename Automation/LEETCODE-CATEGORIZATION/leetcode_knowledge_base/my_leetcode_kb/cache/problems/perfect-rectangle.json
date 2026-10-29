@@ -1,0 +1,36 @@
+{
+  "id": "391",
+  "title": "Perfect Rectangle",
+  "slug": "perfect-rectangle",
+  "url": "https://leetcode.com/problems/perfect-rectangle/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Geometry",
+    "Sweep Line"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "Given an array rectangles where rectangles[i] = [x i , y i , a i , b i ] represents an axis-aligned rectangle. The bottom-left point of the rectangle is (x i , y i ) and the top-right point of it is (a i , b i ) . \n \n Return true if all the rectangles together form an exact cover of a rectangular region . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/27/perectrec1-plane.jpg] \n \n```\nInput:\n rectangles = [[1,1,3,3],[3,1,4,2],[3,2,4,4],[1,3,2,4],[2,3,3,4]]\n\nOutput:\n true\n\nExplanation:\n All 5 rectangles together form an exact cover of a rectangular region.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/27/perfectrec2-plane.jpg] \n \n```\nInput:\n rectangles = [[1,1,2,3],[1,3,2,4],[3,1,4,2],[3,2,4,4]]\n\nOutput:\n false\n\nExplanation:\n Because there is a gap between the two rectangular regions.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/03/27/perfecrrec4-plane.jpg] \n \n```\nInput:\n rectangles = [[1,1,3,3],[3,1,4,2],[1,3,2,4],[2,2,4,4]]\n\nOutput:\n false\n\nExplanation:\n Because two of the rectangles overlap with each other.\n```\n\n Constraints: \n\n 1 <= rectangles.length <= 2 * 10 4 \n \n rectangles[i].length == 4 \n \n -10 5 <= x i < a i <= 10 5 \n \n -10 5 <= y i < b i <= 10 5",
+  "code": "class Solution {\n    static long long key(int x, int y) {\n        return ((long long)x << 32) ^ (unsigned int)y;\n    }\npublic:\n    bool isRectangleCover(vector<vector<int>>& rectangles) {\n        if (rectangles.empty()) return false;\n        int minX = INT_MAX, minY = INT_MAX;\n        int maxX = INT_MIN, maxY = INT_MIN;\n        long long area = 0;\n        unordered_set<long long> corners;\n        auto toggle = [&](int x, int y) {\n            long long point = key(x, y);\n            if (!corners.insert(point).second) corners.erase(point);\n        };\n        for (const auto& r : rectangles) {\n            if (r[0] >= r[2] || r[1] >= r[3]) return false;\n            minX = min(minX, r[0]); minY = min(minY, r[1]);\n            maxX = max(maxX, r[2]); maxY = max(maxY, r[3]);\n            area += (long long)(r[2] - r[0]) * (r[3] - r[1]);\n            toggle(r[0], r[1]); toggle(r[0], r[3]);\n            toggle(r[2], r[1]); toggle(r[2], r[3]);\n        }\n        if (area != (long long)(maxX - minX) * (maxY - minY))\n            return false;\n        return corners.size() == 4 &&\n               corners.count(key(minX, minY)) &&\n               corners.count(key(minX, maxY)) &&\n               corners.count(key(maxX, minY)) &&\n               corners.count(key(maxX, maxY));\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175688640",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

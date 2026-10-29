@@ -1,0 +1,26 @@
+{
+  "id": "3677",
+  "title": "Count Binary Palindromic Numbers",
+  "slug": "count-binary-palindromic-numbers",
+  "url": "https://leetcode.com/problems/count-binary-palindromic-numbers/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "You are given a non-negative integer n . \n \n A non-negative integer is called binary-palindromic if its binary representation (written without leading zeros) reads the same forward and backward. \n \n Return the number of integers k such that 0 <= k <= n and the binary representation of k is a palindrome. \n \n Note: The number 0 is considered binary-palindromic, and its representation is \"0\" . \n\n Example 1: \n\n Input: n = 9 \n \n Output: 6 \n \n Explanation: \n \n The integers k in the range [0, 9] whose binary representations are palindromes are: \n\n 0 → \"0\" \n \n 1 → \"1\" \n \n 3 → \"11\" \n \n 5 → \"101\" \n \n 7 → \"111\" \n \n 9 → \"1001\" \n\n All other values in [0, 9] have non-palindromic binary forms. Therefore, the count is 6. \n\n Example 2: \n\n Input: n = 0 \n \n Output: 1 \n \n Explanation: \n \n Since \"0\" is a palindrome, the count is 1. \n\n Constraints: \n\n 0 <= n <= 10 15",
+  "code": "class Solution { public: long long countBinaryPalindromes(long long n){if(n<1)return 1;int len=64-__builtin_clzll(n);long long ans=1;for(int bits=1;bits<len;++bits)ans+=1LL<<((bits-1)/2);int half=(len+1)/2;long long prefix=n>>(len-half);ans+=prefix-(1LL<<(half-1));long long v=prefix;for(int i=(len%2?1:0);i<half;++i)v=(v<<1)|((prefix>>i)&1LL);if(v<=n)++ans;return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177655926",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

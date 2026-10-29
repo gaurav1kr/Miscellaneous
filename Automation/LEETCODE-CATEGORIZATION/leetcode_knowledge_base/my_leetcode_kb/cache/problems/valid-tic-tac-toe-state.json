@@ -1,0 +1,29 @@
+{
+  "id": "794",
+  "title": "Valid Tic-Tac-Toe State",
+  "slug": "valid-tic-tac-toe-state",
+  "url": "https://leetcode.com/problems/valid-tic-tac-toe-state/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a Tic-Tac-Toe board as a string array board , return true if and only if it is possible to reach this board position during the course of a valid tic-tac-toe game. \n \n The board is a 3 x 3 array that consists of characters ' ' , 'X' , and 'O' . The ' ' character represents an empty square. \n \n Here are the rules of Tic-Tac-Toe: \n\n Players take turns placing characters into empty squares ' ' . \n \n The first player always places 'X' characters, while the second player always places 'O' characters. \n \n 'X' and 'O' characters are always placed into empty squares, never filled ones. \n \n The game ends when there are three of the same (non-empty) character filling any row, column, or diagonal. \n \n The game also ends if all squares are non-empty. \n \n No more moves can be played if the game is over. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/05/15/tictactoe1-grid.jpg] \n \n```\nInput:\n board = [\"O \",\" \",\" \"]\n\nOutput:\n false\n\nExplanation:\n The first player always plays \"X\".\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/05/15/tictactoe2-grid.jpg] \n \n```\nInput:\n board = [\"XOX\",\" X \",\" \"]\n\nOutput:\n false\n\nExplanation:\n Players take turns making moves.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/05/15/tictactoe4-grid.jpg] \n \n```\nInput:\n board = [\"XOX\",\"O O\",\"XOX\"]\n\nOutput:\n true\n```\n\n Constraints: \n\n board.length == 3 \n \n board[i].length == 3 \n \n board[i][j] is either 'X' , 'O' , or ' ' .",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool validTicTacToe(vector<string>& board) {\n        int xCount = 0, oCount = 0;\n        for (auto& row : board)\n            for (char c : row) {\n                if (c == 'X') xCount++;\n                else if (c == 'O') oCount++;\n            }\n\n        if (oCount > xCount || xCount - oCount > 1)\n            return false;\n        bool xWin = win(board, 'X'), oWin = win(board, 'O');\n        if (xWin && xCount != oCount + 1) return false;\n        if (oWin && xCount != oCount) return false;\n        if (xWin && oWin) return false;\n        return true;\n    }\n\n    bool win(vector<string>& board, char p) {\n        for (int i = 0; i < 3; ++i)\n            if ((board[i][0] == p && board[i][1] == p && board[i][2] == p) ||\n                (board[0][i] == p && board[1][i] == p && board[2][i] == p))\n                return true;\n        return (board[0][0] == p && board[1][1] == p && board[2][2] == p) ||\n               (board[0][2] == p && board[1][1] == p && board[2][0] == p);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1599286348",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

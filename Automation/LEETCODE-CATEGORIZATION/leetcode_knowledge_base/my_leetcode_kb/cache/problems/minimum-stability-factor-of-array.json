@@ -1,0 +1,37 @@
+{
+  "id": "3605",
+  "title": "Minimum Stability Factor of Array",
+  "slug": "minimum-stability-factor-of-array",
+  "url": "https://leetcode.com/problems/minimum-stability-factor-of-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy",
+    "Segment Tree",
+    "Number Theory"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer maxC . \n \n A subarray is called stable if the highest common factor (HCF) of all its elements is greater than or equal to 2. \n \n The stability factor of an array is defined as the length of its longest stable subarray. \n \n You may modify at most maxC elements of the array to any integer. \n \n Return the minimum possible stability factor of the array after at most maxC modifications. If no stable subarray remains, return 0. \n \n Note: \n\n The highest common factor (HCF) of an array is the largest integer that evenly divides all the array elements. \n \n A subarray of length 1 is stable if its only element is greater than or equal to 2, since HCF([x]) = x . \n\n Example 1: \n\n Input: nums = [3,5,10], maxC = 1 \n \n Output: 1 \n \n Explanation: \n\n The stable subarray [5, 10] has HCF = 5 , which has a stability factor of 2. \n \n Since maxC = 1 , one optimal strategy is to change nums[1] to 7 , resulting in nums = [3, 7, 10] . \n \n Now, no subarray of length greater than 1 has HCF >= 2 . Thus, the minimum possible stability factor is 1. \n\n Example 2: \n\n Input: nums = [2,6,8], maxC = 2 \n \n Output: 1 \n \n Explanation: \n\n The subarray [2, 6, 8] has HCF = 2 , which has a stability factor of 3. \n \n Since maxC = 2 , one optimal strategy is to change nums[1] to 3 and nums[2] to 5, resulting in nums = [2, 3, 5] . \n \n Now, no subarray of length greater than 1 has HCF >= 2 . Thus, the minimum possible stability factor is 1. \n\n Example 3: \n\n Input: nums = [2,4,9,6], maxC = 1 \n \n Output: 2 \n \n Explanation: \n\n The stable subarrays are:\n\n [2, 4] with HCF = 2 and stability factor of 2. \n \n [9, 6] with HCF = 3 and stability factor of 2. \n\n Since maxC = 1 , the stability factor of 2 cannot be reduced due to two separate stable subarrays. Thus, the minimum possible stability factor is 2. \n\n Constraints: \n\n 1 <= n == nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 0 <= maxC <= n",
+  "code": "class Solution {\n int gcd(int a,int b){return b?gcd(b,a%b):a;}\npublic:\n int minStable(vector<int>& nums,int maxC){\n  int n=nums.size(),L=1;while((1<<L)<=n)++L;\n  vector<vector<int>>st(L,vector<int>(n));st[0]=nums;\n  for(int j=1;j<L;++j)for(int i=0;i+(1<<j)<=n;++i)st[j][i]=gcd(st[j-1][i],st[j-1][i+(1<<(j-1))]);\n  auto range=[&](int l,int r){int p=31-__builtin_clz(r-l+1);return gcd(st[p][l],st[p][r-(1<<p)+1]);};\n  auto ok=[&](int len){int changes=0,last=-1;for(int r=len;r<n;++r){int l=r-len;if(last>=l)continue;if(range(l,r)>1){++changes;last=r;if(changes>maxC)return false;}}return true;};\n  int lo=0,hi=n;while(lo<hi){int m=(lo+hi)/2;if(ok(m))hi=m;else lo=m+1;}return lo;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177610643",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

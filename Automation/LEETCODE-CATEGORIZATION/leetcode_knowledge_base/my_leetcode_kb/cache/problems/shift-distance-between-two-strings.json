@@ -1,0 +1,33 @@
+{
+  "id": "3361",
+  "title": "Shift Distance Between Two Strings",
+  "slug": "shift-distance-between-two-strings",
+  "url": "https://leetcode.com/problems/shift-distance-between-two-strings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings s and t of the same length, and two integer arrays nextCost and previousCost . \n \n In one operation, you can pick any index i of s , and perform either one of the following actions: \n\n Shift s[i] to the next letter in the alphabet. If s[i] == 'z' , you should replace it with 'a' . This operation costs nextCost[j] where j is the index of s[i] in the alphabet. \n \n Shift s[i] to the previous letter in the alphabet. If s[i] == 'a' , you should replace it with 'z' . This operation costs previousCost[j] where j is the index of s[i] in the alphabet. \n\n The shift distance is the minimum total cost of operations required to transform s into t . \n \n Return the shift distance from s to t . \n\n Example 1: \n\n Input: s = \"abab\", t = \"baba\", nextCost = [100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], previousCost = [1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] \n \n Output: 2 \n \n Explanation: \n\n We choose index i = 0 and shift s[0] 25 times to the previous character for a total cost of 1. \n \n We choose index i = 1 and shift s[1] 25 times to the next character for a total cost of 0. \n \n We choose index i = 2 and shift s[2] 25 times to the previous character for a total cost of 1. \n \n We choose index i = 3 and shift s[3] 25 times to the next character for a total cost of 0. \n\n Example 2: \n\n Input: s = \"leet\", t = \"code\", nextCost = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], previousCost = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] \n \n Output: 31 \n \n Explanation: \n\n We choose index i = 0 and shift s[0] 9 times to the previous character for a total cost of 9. \n \n We choose index i = 1 and shift s[1] 10 times to the next character for a total cost of 10. \n \n We choose index i = 2 and shift s[2] 1 time to the previous character for a total cost of 1. \n \n We choose index i = 3 and shift s[3] 11 times to the next character for a total cost of 11. \n\n Constraints: \n\n 1 <= s.length == t.length <= 10 5 \n \n s and t consist only of lowercase English letters. \n \n nextCost.length == previousCost.length == 26 \n \n 0 <= nextCost[i], previousCost[i] <= 10 9",
+  "code": "class Solution {public:long long shiftDistance(string s,string t,vector<int>& nextCost,vector<int>& previousCost){long long ans=0;for(int i=0;i<(int)s.size();i++){int a=s[i]-'a',b=t[i]-'a';long long forward=0,back=0;for(int c=a;c!=b;c=(c+1)%26)forward+=nextCost[c];for(int c=a;c!=b;c=(c+25)%26)back+=previousCost[c];ans+=min(forward,back);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177469157",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

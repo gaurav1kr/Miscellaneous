@@ -1,0 +1,34 @@
+{
+  "id": "411",
+  "title": "Minimum Unique Word Abbreviation",
+  "slug": "minimum-unique-word-abbreviation",
+  "url": "https://leetcode.com/problems/minimum-unique-word-abbreviation/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "A string can be abbreviated by replacing any number of non-adjacent substrings with their lengths. For example, a string such as \"substitution\" could be abbreviated as (but not limited to): \n\n \"s10n\" ( \"s ubstitutio n\" ) \n \n \"sub4u4\" ( \"sub stit u tion \" ) \n \n \"12\" ( \" substitution \" ) \n \n \"su3i1u2on\" ( \"su bst i t u ti on\" ) \n \n \"substitution\" (no substrings replaced) \n\n Note that \"s55n\" ( \"s ubsti tutio n\" ) is not a valid abbreviation of \"substitution\" because the replaced substrings are adjacent. \n \n The length of an abbreviation is the number of letters that were not replaced plus the number of substrings that were replaced. For example, the abbreviation \"s10n\" has a length of 3 ( 2 letters + 1 substring) and \"su3i1u2on\" has a length of 9 ( 6 letters + 3 substrings). \n \n Given a target string target and an array of strings dictionary , return an abbreviation of target with the shortest possible length such that it is not an abbreviation of any string in dictionary . If there are multiple shortest abbreviations, return any of them . \n\n Example 1: \n \n```\nInput:\n target = \"apple\", dictionary = [\"blade\"]\n\nOutput:\n \"a4\"\n\nExplanation:\n The shortest abbreviation of \"apple\" is \"5\", but this is also an abbreviation of \"blade\".\nThe next shortest abbreviations are \"a4\" and \"4e\". \"4e\" is an abbreviation of blade while \"a4\" is not.\nHence, return \"a4\".\n```\n\n Example 2: \n \n```\nInput:\n target = \"apple\", dictionary = [\"blade\",\"plain\",\"amber\"]\n\nOutput:\n \"1p3\"\n\nExplanation:\n \"5\" is an abbreviation of both \"apple\" but also every word in the dictionary.\n\"a4\" is an abbreviation of \"apple\" but also \"amber\".\n\"4e\" is an abbreviation of \"apple\" but also \"blade\".\n\"1p3\", \"2p2\", and \"3l1\" are the next shortest abbreviations of \"apple\".\nSince none of them are abbreviations of words in the dictionary, returning any of them is correct.\n```\n\n Constraints: \n\n m == target.length \n \n n == dictionary.length \n \n 1 <= m <= 21 \n \n 0 <= n <= 1000 \n \n 1 <= dictionary[i].length <= 100 \n \n log 2 (n) + m <= 21 if n > 0 \n \n target and dictionary[i] consist of lowercase English letters. \n \n dictionary does not contain target .",
+  "code": "class Solution\n{\n    int n;\n    vector<int> differences;\n    string target;\n    int length(int mask)\n    {\n        int result = 0, skipped = 0;\n        for (int i = 0; i < n; ++i)\n        {\n            if (mask & (1 << i))\n            {\n                if (skipped) ++result;\n                skipped = 0;\n                ++result;\n            } else\n            {\n                ++skipped;\n            }\n        }\n        if (skipped) ++result;\n        return result;\n    }\n    string encode(int mask)\n    {\n        string result;\n        int skipped = 0;\n        for (int i = 0; i < n; ++i)\n        {\n            if (mask & (1 << i))\n            {\n                if (skipped) result += to_string(skipped);\n                skipped = 0;\n                result += target[i];\n            } else\n            {\n                ++skipped;\n            }\n        }\n        if (skipped) result += to_string(skipped);\n        return result;\n    }\npublic:\n    string minAbbreviation(string target, vector<string>& dictionary)\n    {\n        this->target = target;\n        n = target.size();\n        differences.clear();\n        for (const string& word : dictionary) {\n            if ((int)word.size() != n) continue;\n            int diff = 0;\n            for (int i = 0; i < n; ++i)\n            {\n                if (word[i] != target[i]) diff |= 1 << i;\n            }\n            differences.push_back(diff);\n        }\n        if (differences.empty()) return to_string(n);\n        int bestMask = (1 << n) - 1, bestLength = INT_MAX;\n        for (int mask = 0; mask < (1 << n); ++mask)\n        {\n            int len = length(mask);\n            if (len >= bestLength) continue;\n            bool unique = true;\n            for (int diff : differences) {\n                if ((mask & diff) == 0)\n                {\n                    unique = false;\n                    break;\n                }\n            }\n            if (unique)\n            {\n                bestLength = len;\n                bestMask = mask;\n            }\n        }\n        return encode(bestMask);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178464694",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

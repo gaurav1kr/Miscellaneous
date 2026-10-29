@@ -1,0 +1,44 @@
+{
+  "id": "631",
+  "title": "Design Excel Sum Formula",
+  "slug": "design-excel-sum-formula",
+  "url": "https://leetcode.com/problems/design-excel-sum-formula/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Graph Theory",
+    "Design",
+    "Topological Sort",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "Design the basic function of Excel and implement the function of the sum formula. \n \n Implement the Excel class: \n\n Excel(int height, char width) Initializes the object with the height and the width of the sheet. The sheet is an integer matrix mat of size height x width with the row index in the range [1, height] and the column index in the range ['A', width] . All the values should be zero initially. \n \n void set(int row, char column, int val) Changes the value at mat[row][column] to be val . \n \n int get(int row, char column) Returns the value at mat[row][column] . \n \n int sum(int row, char column, List<String> numbers) Sets the value at mat[row][column] to be the sum of cells represented by numbers and returns the value at mat[row][column] . This sum formula should exist until this cell is overlapped by another value or another sum formula. numbers[i] could be on the format:\n\n \"ColRow\" that represents a single cell.\n\n For example, \"F7\" represents the cell mat[7]['F'] . \n\n \"ColRow1:ColRow2\" that represents a range of cells. The range will always be a rectangle where \"ColRow1\" represent the position of the top-left cell, and \"ColRow2\" represents the position of the bottom-right cell.\n\n For example, \"B3:F7\" represents the cells mat[i][j] for 3 <= i <= 7 and 'B' <= j <= 'F' . \n\n Note: You could assume that there will not be any circular sum reference. \n\n For example, mat[1]['A'] == sum(1, \"B\") and mat[1]['B'] == sum(1, \"A\") . \n\n Example 1: \n \n```\nInput\n\n[\"Excel\", \"set\", \"sum\", \"set\", \"get\"]\n[[3, \"C\"], [1, \"A\", 2], [3, \"C\", [\"A1\", \"A1:B2\"]], [2, \"B\", 2], [3, \"C\"]]\n\nOutput\n\n[null, null, 4, null, 6]\n\nExplanation\n\nExcel excel = new Excel(3, \"C\");\n // construct a 3*3 2D array with all zero.\n // A B C\n // 1 0 0 0\n // 2 0 0 0\n // 3 0 0 0\nexcel.set(1, \"A\", 2);\n // set mat[1][\"A\"] to be 2.\n // A B C\n // 1 2 0 0\n // 2 0 0 0\n // 3 0 0 0\nexcel.sum(3, \"C\", [\"A1\", \"A1:B2\"]); // return 4\n // set mat[3][\"C\"] to be the sum of value at mat[1][\"A\"] and the values sum of the rectangle range whose top-left cell is mat[1][\"A\"] and bottom-right cell is mat[2][\"B\"].\n // A B C\n // 1 2 0 0\n // 2 0 0 0\n // 3 0 0 4\nexcel.set(2, \"B\", 2);\n // set mat[2][\"B\"] to be 2. Note mat[3][\"C\"] should also be changed.\n // A B C\n // 1 2 0 0\n // 2 0 2 0\n // 3 0 0 6\nexcel.get(3, \"C\"); // return 6\n```\n\n Constraints: \n\n 1 <= height <= 26 \n \n 'A' <= width <= 'Z' \n \n 1 <= row <= height \n \n 'A' <= column <= width \n \n -100 <= val <= 100 \n \n 1 <= numbers.length <= 5 \n \n numbers[i] has the format \"ColRow\" or \"ColRow1:ColRow2\" . \n \n At most 100 calls will be made to set , get , and sum .",
+  "code": "\nclass Excel {\nprivate:\n    struct Cell {\n        int value = 0;\n        unordered_map<int, int> formula;\n    };\n\n    int rows, cols;\n    vector<Cell> cells;\n\n    int getId(int row, char col) {\n        return (row - 1) * cols + (col - 'A');\n    }\n\n    int parseCell(const string& s) {\n        int col = s[0] - 'A';\n        int row = stoi(s.substr(1));\n\n        return (row - 1) * cols + col;\n    }\n\n    void recalculate() {\n        int n = rows * cols;\n\n        vector<int> indegree(n, 0);\n        vector<vector<pair<int, int>>> dependents(n);\n\n        for (int i = 0; i < n; ++i) {\n            for (const auto& entry : cells[i].formula) {\n                int source = entry.first;\n                int count = entry.second;\n\n                dependents[source].push_back({i, count});\n                indegree[i]++;\n            }\n        }\n\n        queue<int> q;\n\n        for (int i = 0; i < n; ++i) {\n            if (indegree[i] == 0)\n                q.push(i);\n            else\n                cells[i].value = 0;\n        }\n\n        while (!q.empty()) {\n            int u = q.front();\n            q.pop();\n\n            for (const auto& edge : dependents[u]) {\n                int v = edge.first;\n                int count = edge.second;\n\n                cells[v].value += cells[u].value * count;\n\n                if (--indegree[v] == 0)\n                    q.push(v);\n            }\n        }\n    }\n\npublic:\n    Excel(int height, char width) {\n        rows = height;\n        cols = width - 'A' + 1;\n        cells.resize(rows * cols);\n    }\n\n    void set(int row, char column, int val) {\n        int id = getId(row, column);\n\n        cells[id].formula.clear();\n        cells[id].value = val;\n\n        recalculate();\n    }\n\n    int get(int row, char column) {\n        return cells[getId(row, column)].value;\n    }\n\n    int sum(int row, char column, vector<string> numbers) {\n        int id = getId(row, column);\n\n        cells[id].formula.clear();\n\n        for (const string& s : numbers) {\n            size_t pos = s.find(':');\n\n            if (pos == string::npos) {\n                int source = parseCell(s);\n                cells[id].formula[source]++;\n            } else {\n                int start = parseCell(s.substr(0, pos));\n                int end = parseCell(s.substr(pos + 1));\n\n                int r1 = start / cols;\n                int c1 = start % cols;\n                int r2 = end / cols;\n                int c2 = end % cols;\n\n                for (int r = r1; r <= r2; ++r) {\n                    for (int c = c1; c <= c2; ++c) {\n                        int source = r * cols + c;\n                        cells[id].formula[source]++;\n                    }\n                }\n            }\n        }\n\n        recalculate();\n\n        return cells[id].value;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181640778",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

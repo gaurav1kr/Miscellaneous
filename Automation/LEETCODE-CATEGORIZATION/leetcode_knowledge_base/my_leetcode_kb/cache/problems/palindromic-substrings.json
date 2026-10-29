@@ -1,0 +1,31 @@
+{
+  "id": "647",
+  "title": "Palindromic Substrings",
+  "slug": "palindromic-substrings",
+  "url": "https://leetcode.com/problems/palindromic-substrings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "Given a string s , return the number of palindromic substrings in it . \n \n A string is a palindrome when it reads the same backward as forward. \n \n A substring is a contiguous sequence of characters within the string. \n\n Example 1: \n \n```\nInput:\n s = \"abc\"\n\nOutput:\n 3\n\nExplanation:\n Three palindromic strings: \"a\", \"b\", \"c\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"aaa\"\n\nOutput:\n 6\n\nExplanation:\n Six palindromic strings: \"a\", \"a\", \"a\", \"aa\", \"aa\", \"aaa\".\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int countSubstrings(string s) {\n        int n = s.size();\n        int count = 0;\n\n        // Helper lambda function to expand around center\n        auto expandAroundCenter = [&](int left, int right) {\n            while (left >= 0 && right < n && s[left] == s[right]) {\n                count++; // Count the palindrome\n                left--;\n                right++;\n            }\n        };\n\n        // Iterate through each possible center\n        for (int i = 0; i < n; i++) {\n            // Odd-length palindromes (single center)\n            expandAroundCenter(i, i);\n\n            // Even-length palindromes (two-center)\n            expandAroundCenter(i, i + 1);\n        }\n\n        return count;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541360778",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

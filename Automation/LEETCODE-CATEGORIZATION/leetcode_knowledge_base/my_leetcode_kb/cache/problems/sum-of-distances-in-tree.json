@@ -1,0 +1,35 @@
+{
+  "id": "834",
+  "title": "Sum of Distances in Tree",
+  "slug": "sum-of-distances-in-tree",
+  "url": "https://leetcode.com/problems/sum-of-distances-in-tree/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Graph Theory",
+    "DP on Trees"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There is an undirected connected tree with n nodes labeled from 0 to n - 1 and n - 1 edges. \n \n You are given the integer n and the array edges where edges[i] = [a i , b i ] indicates that there is an edge between nodes a i and b i in the tree. \n \n Return an array answer of length n where answer[i] is the sum of the distances between the i th node in the tree and all other nodes. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/07/23/lc-sumdist1.jpg] \n \n```\nInput:\n n = 6, edges = [[0,1],[0,2],[2,3],[2,4],[2,5]]\n\nOutput:\n [8,12,6,10,10,10]\n\nExplanation:\n The tree is shown above.\nWe can see that dist(0,1) + dist(0,2) + dist(0,3) + dist(0,4) + dist(0,5)\nequals 1 + 1 + 2 + 2 + 2 = 8.\nHence, answer[0] = 8, and so on.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/07/23/lc-sumdist2.jpg] \n \n```\nInput:\n n = 1, edges = []\n\nOutput:\n [0]\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/07/23/lc-sumdist3.jpg] \n \n```\nInput:\n n = 2, edges = [[1,0]]\n\nOutput:\n [1,1]\n```\n\n Constraints: \n\n 1 <= n <= 3 * 10 4 \n \n edges.length == n - 1 \n \n edges[i].length == 2 \n \n 0 <= a i , b i < n \n \n a i != b i \n \n The given input represents a valid tree.",
+  "code": "class Solution \n{\npublic:\n    vector<int> res; // to keep track distance of each node\n    vector<int> count;\n    void fun(int node, int parent, vector<int> adj[]) \n    {\n        for (int it : adj[node]) \n        {\n            if (it != parent) \n            {\n                fun(it, node, adj);\n                count[node] += count[it];\n                res[node] += res[it] + count[it];\n            }\n        }\n    }\n        //pos-Order to calculate root dis from left and right\n    void fun2(int node, int parent, vector<int> adj[],int n) \n    {\n        for (int it : adj[node]) \n        {\n            if (parent != it) \n            {\n                res[it] = res[node] - count[it] + (n - count[it]);\n                fun2(it, node, adj,n);\n            }\n        }\n    }\n\n    vector<int> sumOfDistancesInTree(int n, vector<vector<int>>& edges)\n    {\n        int sum = 0;\n        int m = edges.size();\n        vector<int> adj[n];\n        count = vector<int>(n, 1);\n        res = vector<int>(n, 0);\n        for (auto& it : edges) \n        {\n            int u = it[0];\n            int v = it[1];\n            adj[u].push_back(v);\n            adj[v].push_back(u);\n        }\n        fun(0, -1, adj);\n        fun2(0, -1, adj,n);\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1473586256",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

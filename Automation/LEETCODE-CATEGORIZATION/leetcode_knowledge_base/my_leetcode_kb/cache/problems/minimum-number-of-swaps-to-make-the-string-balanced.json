@@ -1,0 +1,34 @@
+{
+  "id": "1963",
+  "title": "Minimum Number of Swaps to Make the String Balanced",
+  "slug": "minimum-number-of-swaps-to-make-the-string-balanced",
+  "url": "https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Stack",
+    "Greedy",
+    "Bracket Sequences"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a 0-indexed string s of even length n . The string consists of exactly n / 2 opening brackets '[' and n / 2 closing brackets ']' . \n \n A string is called balanced if and only if: \n\n It is the empty string, or \n \n It can be written as AB , where both A and B are balanced strings, or \n \n It can be written as [C] , where C is a balanced string. \n\n You may swap the brackets at any two indices any number of times. \n \n Return the minimum number of swaps to make s balanced . \n\n Example 1: \n \n```\nInput:\n s = \"][][\"\n\nOutput:\n 1\n\nExplanation:\n You can make the string balanced by swapping index 0 with index 3.\nThe resulting string is \"[[]]\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"]]][[[\"\n\nOutput:\n 2\n\nExplanation:\n You can do the following to make the string balanced:\n- Swap index 0 with index 4. s = \"[]][][\".\n- Swap index 1 with index 5. s = \"[[][]]\".\nThe resulting string is \"[[][]]\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"[]\"\n\nOutput:\n 0\n\nExplanation:\n The string is already balanced.\n```\n\n Constraints: \n\n n == s.length \n \n 2 <= n <= 10 6 \n \n n is even. \n \n s[i] is either '[' or ']' . \n \n The number of opening brackets '[' equals n / 2 , and the number of closing brackets ']' equals n / 2 .",
+  "code": "#include <string>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minSwaps(string s) {\n        int balance = 0, maxImbalance = 0;\n        for (char c : s) {\n            balance += c == '[' ? 1 : -1;\n            if (balance < 0) {\n                maxImbalance = max(maxImbalance, -balance);\n            }\n        }\n        return (maxImbalance + 1) / 2;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610570752",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

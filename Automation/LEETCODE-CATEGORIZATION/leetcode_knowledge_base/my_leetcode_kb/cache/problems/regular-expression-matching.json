@@ -1,0 +1,31 @@
+{
+  "id": "10",
+  "title": "Regular Expression Matching",
+  "slug": "regular-expression-matching",
+  "url": "https://leetcode.com/problems/regular-expression-matching/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Recursion"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an input string s  and a pattern p , implement regular expression matching with support for '.' and '*' where: \n\n '.' Matches any single character.​​​​ \n \n '*' Matches zero or more of the preceding element. \n\n Return a boolean indicating whether the matching covers the entire input string (not partial). \n\n Example 1: \n \n```\nInput:\n s = \"aa\", p = \"a\"\n\nOutput:\n false\n\nExplanation:\n \"a\" does not match the entire string \"aa\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"aa\", p = \"a*\"\n\nOutput:\n true\n\nExplanation:\n '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes \"aa\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"ab\", p = \".*\"\n\nOutput:\n true\n\nExplanation:\n \".*\" means \"zero or more (*) of any character (.)\".\n```\n\n Constraints: \n\n 1 <= s.length <= 20 \n \n 1 <= p.length <= 20 \n \n s contains only lowercase English letters. \n \n p contains only lowercase English letters, '.' , and  '*' . \n \n It is guaranteed for each appearance of the character '*' , there will be a previous valid character to match.",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> memo;\n\n    bool isMatch(string s, string p) {\n        int m = s.size(), n = p.size();\n        memo.assign(m + 1, vector<int>(n + 1, -1));\n        return dp(0, 0, s, p);\n    }\n\n    bool dp(int i, int j, const string &s, const string &p) {\n        if (memo[i][j] != -1) return memo[i][j];\n\n        if (j == p.size()) return memo[i][j] = (i == s.size());\n\n        bool first_match = (i < s.size() && (s[i] == p[j] || p[j] == '.'));\n\n        if (j + 1 < p.size() && p[j + 1] == '*') {\n            memo[i][j] = (dp(i, j + 2, s, p) || // Zero occurrence\n                          (first_match && dp(i + 1, j, s, p))); // One or more occurrence\n        } else {\n            memo[i][j] = first_match && dp(i + 1, j + 1, s, p);\n        }\n\n        return memo[i][j];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542150785",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

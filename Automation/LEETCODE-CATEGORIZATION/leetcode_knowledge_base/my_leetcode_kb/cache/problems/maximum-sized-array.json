@@ -1,0 +1,26 @@
+{
+  "id": "3344",
+  "title": "Maximum Sized Array",
+  "slug": "maximum-sized-array",
+  "url": "https://leetcode.com/problems/maximum-sized-array/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Binary Search",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "Given a positive integer s , let A be a 3D array of dimensions n × n × n , where each element A[i][j][k] is defined as: \n\n A[i][j][k] = i * (j OR k) , where 0 <= i, j, k < n . \n\n Return the maximum possible value of n such that the sum of all elements in array A does not exceed s . \n\n Example 1: \n\n Input: s = 10 \n \n Output: 2 \n \n Explanation: \n\n Elements of the array A for n = 2 : \n\n A[0][0][0] = 0 * (0 OR 0) = 0 \n \n A[0][0][1] = 0 * (0 OR 1) = 0 \n \n A[0][1][0] = 0 * (1 OR 0) = 0 \n \n A[0][1][1] = 0 * (1 OR 1) = 0 \n \n A[1][0][0] = 1 * (0 OR 0) = 0 \n \n A[1][0][1] = 1 * (0 OR 1) = 1 \n \n A[1][1][0] = 1 * (1 OR 0) = 1 \n \n A[1][1][1] = 1 * (1 OR 1) = 1 \n\n The total sum of the elements in array A is 3, which does not exceed 10, so the maximum possible value of n is 2. \n\n Example 2: \n\n Input: s = 0 \n \n Output: 1 \n \n Explanation: \n\n Elements of the array A for n = 1 :\n\n A[0][0][0] = 0 * (0 OR 0) = 0 \n\n The total sum of the elements in array A is 0, which does not exceed 0, so the maximum possible value of n is 1. \n\n Constraints: \n\n 0 <= s <= 10 15",
+  "code": "class Solution {\n    long long limit;\n    bool ok(long long n) {\n        __int128 sumOR=0;\n        for(int b=0; b<32; b++) {\n            long long p=1LL<<b,cycles=n/(2*p),rem=n%(2*p);\n            long long ones=cycles*p+max(0LL,rem-p),zeros=n-ones;\n            sumOR+=(__int128)p*(n*n-zeros*zeros);\n            if(sumOR>limit)return false;\n        }\n        return sumOR*(__int128)n*(n-1)/2<=limit;\n    }\n    public:int maxSizedArray(long long s) {\n        limit=s;\n        long long lo=1,hi=1;\n        while(ok(hi))hi*=2;\n        while(lo+1<hi) {\n            long long mid=(lo+hi)/2;\n            if(ok(mid))lo=mid;\n            else hi=mid;\n        }\n        return (int)lo;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179341165",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

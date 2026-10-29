@@ -1,0 +1,28 @@
+{
+  "id": "3399",
+  "title": "Smallest Substring With Identical Characters II",
+  "slug": "smallest-substring-with-identical-characters-ii",
+  "url": "https://leetcode.com/problems/smallest-substring-with-identical-characters-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a binary string s of length n and an integer numOps . \n \n You are allowed to perform the following operation on s at most numOps times: \n\n Select any index i (where 0 <= i < n ) and flip s[i] . If s[i] == '1' , change s[i] to '0' and vice versa. \n\n You need to minimize the length of the longest substring of s such that all the characters in the substring are identical . \n \n Return the minimum length after the operations. \n\n Example 1: \n\n Input: s = \"000001\", numOps = 1 \n \n Output: 2 \n \n Explanation:   \n \n By changing s[2] to '1' , s becomes \"001001\" . The longest substrings with identical characters are s[0..1] and s[3..4] . \n\n Example 2: \n\n Input: s = \"0000\", numOps = 2 \n \n Output: 1 \n \n Explanation:   \n \n By changing s[0] and s[2] to '1' , s becomes \"1010\" . \n\n Example 3: \n\n Input: s = \"0101\", numOps = 0 \n \n Output: 1 \n\n Constraints: \n\n 1 <= n == s.length <= 10 5 \n \n s consists only of '0' and '1' . \n \n 0 <= numOps <= n",
+  "code": "class Solution {public:int minLength(string s,int numOps){int n=s.size();auto can=[&](int len){if(len==1){int a=0,b=0;for(int i=0;i<n;i++){a+=s[i]!=char('0'+i%2);b+=s[i]!=char('0'+(i+1)%2);}return min(a,b)<=numOps;}int need=0;for(int i=0;i<n;){int j=i;while(j<n&&s[j]==s[i])j++;need+=(j-i)/(len+1);i=j;}return need<=numOps;};int l=1,r=n;while(l<r){int mid=(l+r)/2;if(can(mid))r=mid;else l=mid+1;}return l;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177517029",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

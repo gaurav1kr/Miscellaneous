@@ -1,0 +1,36 @@
+{
+  "id": "3003",
+  "title": "Maximize the Number of Partitions After Operations",
+  "slug": "maximize-the-number-of-partitions-after-operations",
+  "url": "https://leetcode.com/problems/maximize-the-number-of-partitions-after-operations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "String"
+  ],
+  "description": "You are given a string s and an integer k . \n \n First, you are allowed to change at most one index in s to another lowercase English letter. \n \n After that, do the following partitioning operation until s is empty : \n\n Choose the longest prefix of s containing at most k distinct characters. \n \n Delete the prefix from s and increase the number of partitions by one. The remaining characters (if any) in s maintain their initial order. \n\n Return an integer denoting the maximum number of resulting partitions after the operations by optimally choosing at most one index to change. \n\n Example 1: \n\n Input: s = \"accca\", k = 2 \n \n Output: 3 \n \n Explanation: \n \n The optimal way is to change s[2] to something other than a and c, for example, b. then it becomes \"acbca\" . \n \n Then we perform the operations: \n\n The longest prefix containing at most 2 distinct characters is \"ac\" , we remove it and s becomes \"bca\" . \n \n Now The longest prefix containing at most 2 distinct characters is \"bc\" , so we remove it and s becomes \"a\" . \n \n Finally, we remove \"a\" and s becomes empty, so the procedure ends. \n\n Doing the operations, the string is divided into 3 partitions, so the answer is 3. \n\n Example 2: \n\n Input: s = \"aabaab\", k = 3 \n \n Output: 1 \n \n Explanation: \n \n Initially  s  contains 2 distinct characters, so whichever character we change, it will contain at most 3 distinct characters, so the longest prefix with at most 3 distinct characters would always be all of it, therefore the answer is 1. \n\n Example 3: \n\n Input: s = \"xxyz\", k = 1 \n \n Output: 4 \n \n Explanation: \n \n The optimal way is to change  s[0]  or  s[1]  to something other than characters in  s , for example, to change  s[0]  to  w . \n \n Then  s  becomes \"wxyz\" , which consists of 4 distinct characters, so as k is 1, it will divide into 4 partitions. \n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists only of lowercase English letters. \n \n 1 <= k <= 26",
+  "code": "class Solution {string s;int k;unordered_map<long long,int>memo;int dfs(int i,int mask,int used){if(i==(int)s.size())return mask?1:0;long long key=((long long)i<<28)|((long long)mask<<1)|used;auto it=memo.find(key);if(it!=memo.end())return it->second;auto step=[&](int bit,int changed){int nm=mask|bit;if(__builtin_popcount((unsigned)nm)>k)return 1+dfs(i+1,bit,changed);return dfs(i+1,nm,changed);};int ans=step(1<<(s[i]-'a'),used);if(!used)for(int c=0;c<26;++c)ans=max(ans,step(1<<c,1));return memo[key]=ans;}public:int maxPartitionsAfterOperations(string ss,int kk){s=ss;k=kk;memo.clear();return dfs(0,0,0);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176806188",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

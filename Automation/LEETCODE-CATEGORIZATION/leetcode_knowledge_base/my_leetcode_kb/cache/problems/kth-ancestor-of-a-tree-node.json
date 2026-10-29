@@ -1,0 +1,40 @@
+{
+  "id": "1483",
+  "title": "Kth Ancestor of a Tree Node",
+  "slug": "kth-ancestor-of-a-tree-node",
+  "url": "https://leetcode.com/problems/kth-ancestor-of-a-tree-node/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Binary Search",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Design",
+    "Binary Lifting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Bit Manipulation",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a tree with n nodes numbered from 0 to n - 1 in the form of a parent array parent where parent[i] is the parent of i th node. The root of the tree is node 0 . Find the k th ancestor of a given node. \n \n The k th ancestor of a tree node is the k th node in the path from that node to the root node. \n \n Implement the TreeAncestor class: \n\n TreeAncestor(int n, int[] parent) Initializes the object with the number of nodes in the tree and the parent array. \n \n int getKthAncestor(int node, int k) return the k th ancestor of the given node node . If there is no such ancestor, return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/08/28/1528_ex1.png] \n \n```\nInput\n\n[\"TreeAncestor\", \"getKthAncestor\", \"getKthAncestor\", \"getKthAncestor\"]\n[[7, [-1, 0, 0, 1, 1, 2, 2]], [3, 1], [5, 2], [6, 3]]\n\nOutput\n\n[null, 1, 0, -1]\n\nExplanation\n\nTreeAncestor treeAncestor = new TreeAncestor(7, [-1, 0, 0, 1, 1, 2, 2]);\ntreeAncestor.getKthAncestor(3, 1); // returns 1 which is the parent of 3\ntreeAncestor.getKthAncestor(5, 2); // returns 0 which is the grandparent of 5\ntreeAncestor.getKthAncestor(6, 3); // returns -1 because there is no such ancestor\n```\n\n Constraints: \n\n 1 <= k <= n <= 5 * 10 4 \n \n parent.length == n \n \n parent[0] == -1 \n \n 0 <= parent[i] < n for all 0 < i < n \n \n 0 <= node < n \n \n There will be at most 5 * 10 4 queries.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass TreeAncestor {\n    vector<vector<int>> up;\n    int LOG;\n\npublic:\n    TreeAncestor(int n, vector<int>& parent) {\n        LOG = 32 - __builtin_clz(n);\n        up = vector<vector<int>>(n, vector<int>(LOG, -1));\n\n        for (int i = 0; i < n; ++i)\n            up[i][0] = parent[i];\n\n        for (int j = 1; j < LOG; ++j)\n            for (int i = 0; i < n; ++i)\n                if (up[i][j - 1] != -1)\n                    up[i][j] = up[up[i][j - 1]][j - 1];\n    }\n\n    int getKthAncestor(int node, int k) {\n        for (int j = 0; j < LOG && node != -1; ++j)\n            if (k & (1 << j))\n                node = up[node][j];\n        return node;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593838033",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

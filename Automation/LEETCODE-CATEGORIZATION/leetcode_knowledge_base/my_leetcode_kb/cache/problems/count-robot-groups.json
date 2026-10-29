@@ -1,0 +1,33 @@
+{
+  "id": "4045",
+  "title": "Count Robot Groups",
+  "slug": "count-robot-groups",
+  "url": "https://leetcode.com/problems/count-robot-groups/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given a strictly increasing integer array position , where position[i] is the initial position of the i th robot at time t = 0 . \n \n You are also given an integer array speed , where speed[i] is the constant speed of the i th robot in units per second, and an integer distance . \n \n Time is continuous and measured in seconds. A robot or group with speed v moves v * t units to the right over any interval of t seconds. \n \n Whenever the distance between two robots or groups becomes at most distance , they merge into a single group. \n \n If multiple robots or groups satisfy the merging condition at the same time, all merges happen simultaneously . In particular, every connected collection of robots or groups whose consecutive positions differ by at most distance merges into one group. \n \n After a merge, the resulting group takes the current position and speed of the rightmost robot in that group. Once merged, robots never separate. \n \n Return the number of groups remaining after all possible merges have occurred. \n\n Example 1: \n\n Input: position = [1,5,6,20], speed = [4,3,2,3], distance = 1 \n \n Output: 2 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2026/08/09/c4drawio.png] \n\n Initially, the groups are {R 1 }, {R 2 }, {R 3 }, and {R ​​​​​​​4 }. \n \n At t = 0 , the robots R 2 and R 3 at positions 5 and 6, respectively, merge because they are 1 unit apart. The resulting group moves with the position and speed of the rightmost robot R 3 . The groups are now {R 1 }, {R 2 , R 3 }, and {R ​4 }. \n \n Later at t = 2 , the robot R 1 catches up to the group {R 2 , R 3 } and merges with it. The groups are now {R 1 , R 2 , R 3 } and {R ​4 }. \n\n Thus, the answer is 2. \n\n Example 2: \n\n Input: position = [1,5,9], speed = [3,2,2], distance = 2 \n \n Output: 2 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2026/08/09/c5.png] \n\n Initially, the groups are {R 1 }, {R 2 }, and {R 3 }. \n \n At t = 2 , the robot R 1 catches up to the robot R 2 and merges with it. The resulting group moves with the position and speed of the rightmost robot R 2 . The groups are now {R 1 , R 2 } and {R 3 }. \n\n Thus, the answer is 2. \n\n Example 3: \n\n Input: position = [9], speed = [8], distance = 5 \n \n Output: 1 \n \n Explanation: \n \n Initially, there is only one group. Therefore, the answer is 1. \n\n Constraints: \n\n 1 <= position.length == speed.length <= 10 5 \n \n 1 <= position[i], speed[i], distance <= 10 9 \n \n position is strictly increasing.",
+  "code": "class Solution {\npublic:\n    int countGroups(vector<int>& position, vector<int>& speed, int distance) {\n        int n = position.size(), groups = 1;\n        int fleetSpeed = speed[n - 1];\n        for (int i = n - 2; i >= 0; --i) {\n            if ((long long)position[i + 1] - position[i] <= distance ||\n                speed[i] > fleetSpeed) {\n                // This robot eventually joins the fleet on its right.\n            } else {\n                ++groups;\n                fleetSpeed = speed[i];\n            }\n        }\n        return groups;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181120911",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

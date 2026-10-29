@@ -1,0 +1,26 @@
+{
+  "id": "1869",
+  "title": "Longer Contiguous Segments of Ones than Zeros",
+  "slug": "longer-contiguous-segments-of-ones-than-zeros",
+  "url": "https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a binary string s , return true if the longest contiguous segment of 1 ' s is strictly longer than the longest contiguous segment of 0 ' s in s , or return false otherwise . \n\n For example, in s = \" 11 01 000 10\" the longest continuous segment of 1 s has length 2 , and the longest continuous segment of 0 s has length 3 . \n\n Note that if there are no 0 's, then the longest continuous segment of 0 's is considered to have a length 0 . The same applies if there is no 1 's. \n\n Example 1: \n \n```\nInput:\n s = \"1101\"\n\nOutput:\n true\n\nExplanation:\n\nThe longest contiguous segment of 1s has length 2: \"\n11\n01\"\nThe longest contiguous segment of 0s has length 1: \"11\n0\n1\"\nThe segment of 1s is longer, so return true.\n```\n\n Example 2: \n \n```\nInput:\n s = \"111000\"\n\nOutput:\n false\n\nExplanation:\n\nThe longest contiguous segment of 1s has length 3: \"\n111\n000\"\nThe longest contiguous segment of 0s has length 3: \"111\n000\n\"\nThe segment of 1s is not longer, so return false.\n```\n\n Example 3: \n \n```\nInput:\n s = \"110100010\"\n\nOutput:\n false\n\nExplanation:\n\nThe longest contiguous segment of 1s has length 2: \"\n11\n0100010\"\nThe longest contiguous segment of 0s has length 3: \"1101\n000\n10\"\nThe segment of 1s is not longer, so return false.\n```\n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s[i] is either '0' or '1' .",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool checkZeroOnes(string s) {\n        int max1 = 0, max0 = 0, cur = 1;\n        for (int i = 1; i < s.size(); ++i) {\n            if (s[i] == s[i-1]) cur++;\n            else cur = 1;\n            if (s[i] == '1') max1 = max(max1, cur);\n            else max0 = max(max0, cur);\n        }\n        if (s[0] == '1') max1 = max(max1, 1);\n        else max0 = max(max0, 1);\n        return max1 > max0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610654930",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "959",
+  "title": "Regions Cut By Slashes",
+  "slug": "regions-cut-by-slashes",
+  "url": "https://leetcode.com/problems/regions-cut-by-slashes/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix",
+    "Planar Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "An n x n grid is composed of 1 x 1 squares where each 1 x 1 square consists of a '/' , '\\' , or blank space ' ' . These characters divide the square into contiguous regions. \n \n Given the grid grid represented as a string array, return the number of regions . \n \n Note that backslash characters are escaped, so a '\\' is represented as '\\\\' . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2018/12/15/1.png] \n \n```\nInput:\n grid = [\" /\",\"/ \"]\n\nOutput:\n 2\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2018/12/15/2.png] \n \n```\nInput:\n grid = [\" /\",\" \"]\n\nOutput:\n 1\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2018/12/15/4.png] \n \n```\nInput:\n grid = [\"/\\\\\",\"\\\\/\"]\n\nOutput:\n 5\n\nExplanation: \nRecall that because \\ characters are escaped, \"\\\\/\" refers to \\/, and \"/\\\\\" refers to /\\.\n```\n\n Constraints: \n\n n == grid.length == grid[i].length \n \n 1 <= n <= 30 \n \n grid[i][j] is either '/' , '\\' , or ' ' .",
+  "code": "class Solution {\npublic:\n    const vector<vector<vector<int>>> aux = {\n        {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}, // \" \"\n        {{0, 0, 1}, {0, 1, 0}, {1, 0, 0}}, // \"/\"\n        {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}  // \"\\\\\"\n    };\n\n    const vector<int> dx = {-1, 1, 0, 0};\n    const vector<int> dy = {0, 0, -1, 1};\n\n    void dfs(vector<vector<int>>& graph, int i, int j, int rows, int cols) {\n        if (i<0 || i>=rows || j<0 || j>=cols || graph[i][j]==1) {\n            return;\n        }\n        graph[i][j] = 1;\n        for (int k=0; k<4; k++) {\n            dfs(graph, i+dx[k], j+dy[k], rows, cols);\n        }\n    }\n\n    vector<vector<int>> generateGraph(const vector<string>& grid) {\n        int n = grid.size(), m = grid[0].size();\n        vector<vector<int>> graph(3*n, vector<int>(3*m, 0));\n\n        for (int i = 0; i < n; ++i) {\n            for (int j = 0; j < m; ++j) {\n                int index = grid[i][j] == '/' ? 1 : (grid[i][j] == '\\\\' ? 2 : 0);\n                const vector<vector<int>>& replacement = aux[index];\n                for (int x=0; x<3; x++) {\n                    for (int y=0; y<3; y++) {\n                        graph[3*i + x][3*j + y] = replacement[x][y];\n                    }\n                }\n            }\n        }\n\n        return graph;\n    }\n\n    int regionsBySlashes(vector<string>& grid) {\n        int n = grid.size(), m = grid[0].size();\n        vector<vector<int>> graph = generateGraph(grid);\n\n        int noOfRegions = 0;\n\n        for (int i = 0; i < 3 * n; ++i) {\n            for (int j = 0; j < 3 * m; ++j) {\n                if (graph[i][j] == 0) {\n                    dfs(graph, i, j, 3 * n, 3 * m);\n                    noOfRegions++;\n                }\n            }\n        }\n\n        return noOfRegions;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1365851214",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "1909",
+  "title": "Remove One Element to Make the Array Strictly Increasing",
+  "slug": "remove-one-element-to-make-the-array-strictly-increasing",
+  "url": "https://leetcode.com/problems/remove-one-element-to-make-the-array-strictly-increasing/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a 0-indexed integer array nums , return true if it can be made strictly increasing after removing exactly one element, or false otherwise. If the array is already strictly increasing, return true . \n \n The array nums is strictly increasing if nums[i - 1] < nums[i] for each index (1 <= i < nums.length). \n\n Example 1: \n \n```\nInput:\n nums = [1,2,\n10\n,5,7]\n\nOutput:\n true\n\nExplanation:\n By removing 10 at index 2 from nums, it becomes [1,2,5,7].\n[1,2,5,7] is strictly increasing, so return true.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,3,1,2]\n\nOutput:\n false\n\nExplanation:\n\n[3,1,2] is the result of removing the element at index 0.\n[2,1,2] is the result of removing the element at index 1.\n[2,3,2] is the result of removing the element at index 2.\n[2,3,1] is the result of removing the element at index 3.\nNo resulting array is strictly increasing, so return false.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,1,1]\n\nOutput:\n false\n\nExplanation:\n The result of removing any element is [1,1].\n[1,1] is not strictly increasing, so return false.\n```\n\n Constraints: \n\n 2 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 1000",
+  "code": "class Solution {public:bool canBeIncreasing(vector<int>& nums){int n=nums.size(),bad=-1;for(int i=1;i<n;++i)if(nums[i]<=nums[i-1]){bad=i;break;}if(bad==-1)return true;for(int skip:{bad-1,bad}){int prev=INT_MIN;bool ok=true;for(int i=0;i<n;++i)if(i!=skip){if(nums[i]<=prev){ok=false;break;}prev=nums[i];}if(ok)return true;}return false;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175764881",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

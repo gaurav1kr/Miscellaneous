@@ -1,0 +1,43 @@
+{
+  "id": "4033",
+  "title": "Valid K-Unique Subarrays I",
+  "slug": "valid-k-unique-subarrays-i",
+  "url": "https://leetcode.com/problems/valid-k-unique-subarrays-i/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Sliding Window",
+    "Hash Function",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Tree / Trie",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n You are also given a 2D integer array queries , where queries[i] = [l i , r i ] represents the subarray nums[l i ..r i ] . \n \n For each query, the subarray nums[l i ..r i ] is considered valid if: \n\n It contains exactly k distinct numbers, and \n \n The frequency of every number in the subarray is even . \n\n Return a boolean array ans , where ans[i] is true if nums[l i ..r i ] is valid , and false otherwise. \n\n Example 1: \n\n Input: nums = [1,2,2,1], k = 2, queries = [[0,1],[0,3],[1,2]] \n \n Output: [false,true,false] \n \n Explanation: \n\n i \n [l i , r i ] \n Subarray \n Unique numbers \n Frequency \n Validity check \n\n 0 \n [0, 1] \n [1, 2] \n {1, 2} → 2 \n {1: 1, 2: 1} \n false : Element counts are not even. \n\n 1 \n [0, 3] \n [1, 2, 2, 1] \n {1, 2} → 2 \n {1: 2, 2: 2} \n true : Exactly k = 2 distinct elements, all appear an even number of times. \n\n 2 \n [1, 2] \n [2, 2] \n {2} → 1 \n {2: 2} \n false : Number of distinct elements is less than k = 2 . \n\n Thus, ans = [false, true, false] . \n\n Example 2: \n\n Input: nums = [3,3,3], k = 1, queries = [[1,2],[0,2]] \n \n Output: [true,false] \n \n Explanation: \n\n i \n [l i , r i ] \n Subarray \n Unique numbers \n Frequency \n Validity check \n\n 0 \n [1, 2] \n [3, 3] \n {3} → 1 \n {3: 2} \n true : Exactly k = 1 distinct element, appears an even number of times. \n\n 1 \n [0, 2] \n [3, 3, 3] \n {3} → 1 \n {3: 3} \n false : 3 does not appear an even number of times. \n\n Thus, ans = [true, false] . \n\n Constraints: \n\n 2 <= n == nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= k <= n \n \n 1 <= queries.length <= 10 5 \n \n queries[i] == [l i , r i ] \n \n 0 <= l i < r i <= n - 1",
+  "code": "class Solution {\npublic:\n    vector<bool> validSubarrays(vector<int>& nums,int k,vector<vector<int>>& queries){\n        int n=nums.size(),q=queries.size(),block=max(1,(int)sqrt(n));vector<int> ids(q);iota(ids.begin(),ids.end(),0);\n        sort(ids.begin(),ids.end(),[&](int x,int y){int bx=queries[x][0]/block,by=queries[y][0]/block;if(bx!=by)return bx<by;return (bx&1)?queries[x][1]>queries[y][1]:queries[x][1]<queries[y][1];});\n        vector<int> freq(100001);vector<bool> ans(q);int L=0,R=-1,distinct=0,odd=0;\n        auto add=[&](int i){int &f=freq[nums[i]];if(f==0)distinct++;odd+=(f%2==0)?1:-1;f++;};\n        auto remove=[&](int i){int &f=freq[nums[i]];odd+=(f%2==1)?-1:1;f--;if(f==0)distinct--;};\n        for(int id:ids){int l=queries[id][0],r=queries[id][1];while(L>l)add(--L);while(R<r)add(++R);while(L<l)remove(L++);while(R>r)remove(R--);ans[id]=(distinct==k&&odd==0);}\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181186012",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

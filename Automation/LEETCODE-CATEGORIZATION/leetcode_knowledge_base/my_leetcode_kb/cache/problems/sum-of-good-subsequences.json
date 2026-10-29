@@ -1,0 +1,35 @@
+{
+  "id": "3351",
+  "title": "Sum of Good Subsequences",
+  "slug": "sum-of-good-subsequences",
+  "url": "https://leetcode.com/problems/sum-of-good-subsequences/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . A good subsequence is defined as a subsequence of nums where the absolute difference between any two consecutive elements in the subsequence is exactly 1. \n \n Return the sum of all possible good subsequences of nums . \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n \n Note that a subsequence of size 1 is considered good by definition. \n\n Example 1: \n\n Input: nums = [1,2,1] \n \n Output: 14 \n \n Explanation: \n\n Good subsequences are: [1] , [2] , [1] , [1,2] , [2,1] , [1,2,1] . \n \n The sum of elements in these subsequences is 14. \n\n Example 2: \n\n Input: nums = [3,4,5] \n \n Output: 40 \n \n Explanation: \n\n Good subsequences are: [3] , [4] , [5] , [3,4] , [4,5] , [3,4,5] . \n \n The sum of elements in these subsequences is 40. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5",
+  "code": "class Solution {public:int sumOfGoodSubsequences(vector<int>& nums){const long long M=1000000007;unordered_map<int,long long> cnt,sum;for(int x:nums){long long c=(1+cnt[x-1]+cnt[x+1])%M;long long s=(x*c+sum[x-1]+sum[x+1])%M;cnt[x]=(cnt[x]+c)%M;sum[x]=(sum[x]+s)%M;}long long ans=0;for(auto p:sum)ans=(ans+p.second)%M;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177467111",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

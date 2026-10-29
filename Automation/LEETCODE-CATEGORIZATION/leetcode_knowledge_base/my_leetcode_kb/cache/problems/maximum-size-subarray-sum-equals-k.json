@@ -1,0 +1,35 @@
+{
+  "id": "325",
+  "title": "Maximum Size Subarray Sum Equals k",
+  "slug": "maximum-size-subarray-sum-equals-k",
+  "url": "https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and an integer k , return the maximum length of a subarray that sums to k . If there is not one, return 0 instead. \n\n Example 1: \n \n```\nInput:\n nums = [1,-1,5,-2,3], k = 3\n\nOutput:\n 4\n\nExplanation:\n The subarray [1, -1, 5, -2] sums to 3 and is the longest.\n```\n\n Example 2: \n \n```\nInput:\n nums = [-2,-1,2,1], k = 1\n\nOutput:\n 2\n\nExplanation:\n The subarray [-1, 2] sums to 1 and is the longest.\n```\n\n Constraints: \n\n 1 <= nums.length <= 2 * 10 5 \n \n -10 4 <= nums[i] <= 10 4 \n \n -10 9  <= k <= 10 9",
+  "code": "class Solution\n{\npublic:\n    int maxSubArrayLen(vector<int>& nums, int k)\n    {\n        unordered_map<long long, int> first;\n        first[0] = -1;\n        long long prefix = 0;\n        int best = 0;\n        for (int i = 0; i < (int)nums.size(); ++i)\n        {\n            prefix += nums[i];\n            if (first.count(prefix - k))\n            {\n                best = max(best, i - first[prefix - k]);\n            }\n            if (!first.count(prefix)) first[prefix] = i;\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178453575",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

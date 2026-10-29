@@ -1,0 +1,36 @@
+{
+  "id": "2662",
+  "title": "Minimum Cost of a Path With Special Roads",
+  "slug": "minimum-cost-of-a-path-with-special-roads",
+  "url": "https://leetcode.com/problems/minimum-cost-of-a-path-with-special-roads/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an array start where start = [startX, startY] represents your initial position (startX, startY) in a 2D space. You are also given the array target where target = [targetX, targetY] represents your target position (targetX, targetY) . \n \n The cost of going from a position (x1, y1) to any other position in the space (x2, y2) is |x2 - x1| + |y2 - y1| . \n \n There are also some special roads . You are given a 2D array specialRoads where specialRoads[i] = [x1 i , y1 i , x2 i , y2 i , cost i ] indicates that the i th special road goes in one direction from (x1 i , y1 i ) to (x2 i , y2 i ) with a cost equal to cost i . You can use each special road any number of times. \n \n Return the minimum cost required to go from (startX, startY) to (targetX, targetY) . \n\n Example 1: \n\n Input: start = [1,1], target = [4,5], specialRoads = [[1,2,3,3,2],[3,4,4,5,1]] \n \n Output: 5 \n \n Explanation: \n\n (1,1) to (1,2) with a cost of |1 - 1| + |2 - 1| = 1. \n \n (1,2) to (3,3). Use specialRoads[0] with the cost 2. \n \n (3,3) to (3,4) with a cost of |3 - 3| + |4 - 3| = 1. \n \n (3,4) to (4,5). Use specialRoads[1] with the cost 1. \n\n So the total cost is 1 + 2 + 1 + 1 = 5. \n\n Example 2: \n\n Input: start = [3,2], target = [5,7], specialRoads = [[5,7,3,2,1],[3,2,3,4,4],[3,3,5,5,5],[3,4,5,6,6]] \n \n Output: 7 \n \n Explanation: \n \n It is optimal not to use any special edges and go directly from the starting to the ending position with a cost |5 - 3| + |7 - 2| = 7. \n \n Note that the specialRoads[0] is directed from (5,7) to (3,2). \n\n Example 3: \n\n Input: start = [1,1], target = [10,4], specialRoads = [[4,2,1,1,3],[1,2,7,4,4],[10,3,6,1,2],[6,1,1,2,3]] \n \n Output: 8 \n \n Explanation: \n\n (1,1) to (1,2) with a cost of |1 - 1| + |2 - 1| = 1. \n \n (1,2) to (7,4). Use specialRoads[1] with the cost 4. \n \n (7,4) to (10,4) with a cost of |10 - 7| + |4 - 4| = 3. \n\n Constraints: \n\n start.length == target.length == 2 \n \n 1 <= startX <= targetX <= 10 5 \n \n 1 <= startY <= targetY <= 10 5 \n \n 1 <= specialRoads.length <= 200 \n \n specialRoads[i].length == 5 \n \n startX <= x1 i , x2 i <= targetX \n \n startY <= y1 i , y2 i <= targetY \n \n 1 <= cost i <= 10 5",
+  "code": "class Solution {public:int minimumCost(vector<int>&start,vector<int>&target,vector<vector<int>>&specialRoads){int n=specialRoads.size();vector<pair<int,int>>pts={{start[0],start[1]}};for(auto&r:specialRoads)pts.push_back({r[2],r[3]});auto dist=[](pair<int,int>a,pair<int,int>b){return abs(a.first-b.first)+abs(a.second-b.second);};vector<int>d(n+1,INT_MAX);priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;d[0]=0;pq.push({0,0});int ans=dist(pts[0],{target[0],target[1]});while(!pq.empty()){auto cur=pq.top();pq.pop();int v=cur.second;if(cur.first!=d[v])continue;ans=min(ans,d[v]+dist(pts[v],{target[0],target[1]}));for(int i=0;i<n;i++){auto&r=specialRoads[i];int nd=d[v]+dist(pts[v],{r[0],r[1]})+min(r[4],abs(r[0]-r[2])+abs(r[1]-r[3]));if(nd<d[i+1]){d[i+1]=nd;pq.push({nd,i+1});}}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176635549",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

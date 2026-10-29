@@ -1,0 +1,32 @@
+{
+  "id": "452",
+  "title": "Minimum Number of Arrows to Burst Balloons",
+  "slug": "minimum-number-of-arrows-to-burst-balloons",
+  "url": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There are some spherical balloons taped onto a flat wall that represents the XY-plane. The balloons are represented as a 2D integer array points where points[i] = [x start , x end ] denotes a balloon whose horizontal diameter stretches between x start and x end . You do not know the exact y-coordinates of the balloons. \n \n Arrows can be shot up directly vertically (in the positive y-direction) from different points along the x-axis. A balloon with x start and x end is burst by an arrow shot at x if x start <= x <= x end . There is no limit to the number of arrows that can be shot. A shot arrow keeps traveling up infinitely, bursting any balloons in its path. \n \n Given the array points , return the minimum number of arrows that must be shot to burst all balloons . \n\n Example 1: \n \n```\nInput:\n points = [[10,16],[2,8],[1,6],[7,12]]\n\nOutput:\n 2\n\nExplanation:\n The balloons can be burst by 2 arrows:\n- Shoot an arrow at x = 6, bursting the balloons [2,8] and [1,6].\n- Shoot an arrow at x = 11, bursting the balloons [10,16] and [7,12].\n```\n\n Example 2: \n \n```\nInput:\n points = [[1,2],[3,4],[5,6],[7,8]]\n\nOutput:\n 4\n\nExplanation:\n One arrow needs to be shot for each balloon for a total of 4 arrows.\n```\n\n Example 3: \n \n```\nInput:\n points = [[1,2],[2,3],[3,4],[4,5]]\n\nOutput:\n 2\n\nExplanation:\n The balloons can be burst by 2 arrows:\n- Shoot an arrow at x = 2, bursting the balloons [1,2] and [2,3].\n- Shoot an arrow at x = 4, bursting the balloons [3,4] and [4,5].\n```\n\n Constraints: \n\n 1 <= points.length <= 10 5 \n \n points[i].length == 2 \n \n -2 31 <= x start < x end <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    int findMinArrowShots(vector<vector<int>>& points) {\n        if (points.empty()) return 0;\n        sort(points.begin(), points.end(),\n             [](const vector<int>& a, const vector<int>& b) {\n                 return a[1] < b[1];\n             });\n        int arrows = 1;\n        long long position = points[0][1];\n        for (int i = 1; i < (int)points.size(); ++i) {\n            if (points[i][0] > position) {\n                ++arrows;\n                position = points[i][1];\n            }\n        }\n        return arrows;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175689771",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

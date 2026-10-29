@@ -1,0 +1,35 @@
+{
+  "id": "740",
+  "title": "Delete and Earn",
+  "slug": "delete-and-earn",
+  "url": "https://leetcode.com/problems/delete-and-earn/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . You want to maximize the number of points you get by performing the following operation any number of times: \n\n Pick any nums[i] and delete it to earn nums[i] points. Afterwards, you must delete every element equal to nums[i] - 1 and every element equal to nums[i] + 1 . \n\n Return the maximum number of points you can earn by applying the above operation some number of times . \n\n Example 1: \n \n```\nInput:\n nums = [3,4,2]\n\nOutput:\n 6\n\nExplanation:\n You can perform the following operations:\n- Delete 4 to earn 4 points. Consequently, 3 is also deleted. nums = [2].\n- Delete 2 to earn 2 points. nums = [].\nYou earn a total of 6 points.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,2,3,3,3,4]\n\nOutput:\n 9\n\nExplanation:\n You can perform the following operations:\n- Delete a 3 to earn 3 points. All 2's and 4's are also deleted. nums = [3,3].\n- Delete a 3 again to earn 3 points. nums = [3].\n- Delete a 3 once more to earn 3 points. nums = [].\nYou earn a total of 9 points.\n```\n\n Constraints: \n\n 1 <= nums.length <= 2 * 10 4 \n \n 1 <= nums[i] <= 10 4",
+  "code": "class Solution \n{\npublic:\n\tunordered_map<int,int>mp;\n\n\tint deleteAndEarn(vector<int>& nums)\n     {\n\t\tint n=nums.size();\n\t\tsort(nums.begin(),nums.end());\n\t\tfor(auto i:nums) mp[i]++;\n\t\tvector<int> dp(n+1,0);\n\t\tfor(int i=n-1;i>=0;i--)\n        {\n\t\t\tint del=mp[nums[i]]*nums[i]+dp[upper_bound(nums.begin(),nums.end(),nums[i]+1)-nums.begin()];\n\t\t\tint notdel=dp[i+1];\n\t\t\tdp[i]=max(del,notdel);\n\t\t}\n\t\treturn dp[0];\n\t}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1499152038",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "3742",
+  "title": "Maximum Path Score in a Grid",
+  "slug": "maximum-path-score-in-a-grid",
+  "url": "https://leetcode.com/problems/maximum-path-score-in-a-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an m x n grid where each cell contains one of the values 0, 1, or 2. You are also given an integer k . \n \n You start from the top-left corner (0, 0) and want to reach the bottom-right corner (m - 1, n - 1) by moving only right or down . \n \n Each cell contributes a specific score and incurs an associated cost, according to their cell values: \n\n 0: adds 0 to your score and costs 0. \n \n 1: adds 1 to your score and costs 1. \n \n 2: adds 2 to your score and costs 1. ​​​​​​​ \n\n Return the maximum score achievable without exceeding a total cost of k , or -1 if no valid path exists. \n \n Note: If you reach the last cell but the total cost exceeds k , the path is invalid. \n\n Example 1: \n\n Input: grid = [[0, 1],[2, 0]], k = 1 \n \n Output: 2 \n \n Explanation: ​​​​​​​ \n \n The optimal path is: \n\n Cell \n grid[i][j] \n Score \n Total \n Score \n Cost \n Total \n Cost \n\n (0, 0) \n 0 \n 0 \n 0 \n 0 \n 0 \n\n (1, 0) \n 2 \n 2 \n 2 \n 1 \n 1 \n\n (1, 1) \n 0 \n 0 \n 2 \n 0 \n 1 \n\n Thus, the maximum possible score is 2. \n\n Example 2: \n\n Input: grid = [[0, 1],[1, 2]], k = 1 \n \n Output: -1 \n \n Explanation: \n \n There is no path that reaches cell (1, 1) ​​​​​​​ without exceeding cost k. Thus, the answer is -1. \n\n Constraints: \n\n 1 <= m, n <= 200 \n \n 0 <= k <= 10 3 ​​​​​​​ \n \n ​​​​​​​ grid[0][0] == 0 \n \n 0 <= grid[i][j] <= 2",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxPathScore(vector<vector<int>>& grid, int k) {\n        int m = grid.size(), n = grid[0].size();\n        k = min(k, m + n - 1);\n        vector<vector<int>> dp(n, vector<int>(k+1, -1));\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                int v = grid[i][j], cost = v != 0;\n                vector<int> cur(k+1, -1);\n                if (i == 0 && j == 0) cur[0] = 0;\n                else for (int c = cost; c <= k; ++c) {\n                    int best = dp[j][c-cost]; // from above\n                    if (j) best = max(best, dp[j-1][c-cost]); // from left\n                    if (best != -1) cur[c] = best + v;\n                }\n                dp[j].swap(cur);\n            }\n        }\n        return *max_element(dp[n-1].begin(), dp[n-1].end());\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181009065",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

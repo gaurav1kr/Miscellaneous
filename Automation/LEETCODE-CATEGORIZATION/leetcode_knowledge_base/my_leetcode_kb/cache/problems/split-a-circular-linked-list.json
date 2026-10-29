@@ -1,0 +1,29 @@
+{
+  "id": "2674",
+  "title": "Split a Circular Linked List",
+  "slug": "split-a-circular-linked-list",
+  "url": "https://leetcode.com/problems/split-a-circular-linked-list/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Linked List",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list",
+    "Vector"
+  ],
+  "description": "Given a circular linked list list of positive integers, your task is to split it into 2 circular linked lists so that the first one contains the first half of the nodes in list (exactly ceil(list.length / 2) nodes) in the same order they appeared in list , and the second one contains the rest of the nodes in list in the same order they appeared in list . \n \n Return an array answer of length 2 in which the first element is a circular linked list representing the first half and the second element is a circular linked list representing the second half . \n A circular linked list is a normal linked list with the only difference being that the last node's next node, is the first node. \n\n Example 1: \n \n```\nInput:\n nums = [1,5,7]\n\nOutput:\n [[1,5],[7]]\n\nExplanation:\n The initial list has 3 nodes so the first half would be the first 2 elements since ceil(3 / 2) = 2 and the rest which is 1 node is in the second half.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,6,1,5]\n\nOutput:\n [[2,6],[1,5]]\n\nExplanation:\n The initial list has 4 nodes so the first half would be the first 2 elements since ceil(4 / 2) = 2 and the rest which is 2 nodes are in the second half.\n```\n\n Constraints: \n\n The number of nodes in list  is in the range [2, 10 5 ] \n \n 0 <= Node.val <= 10 9 \n \n LastNode.next = FirstNode where LastNode is the last node of the list and FirstNode is the first one",
+  "code": "class Solution {\npublic:\n    vector<ListNode*> splitCircularLinkedList(ListNode* list) {\n        ListNode* slow = list;\n        ListNode* fast = list;\n        while (fast->next != list && fast->next->next != list) {\n            slow = slow->next;\n            fast = fast->next->next;\n        }\n        if (fast->next->next == list) fast = fast->next;\n        ListNode* second = slow->next;\n        slow->next = list;\n        fast->next = second;\n        return {list, second};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178897643",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "2248",
+  "title": "Intersection of Multiple Arrays",
+  "slug": "intersection-of-multiple-arrays",
+  "url": "https://leetcode.com/problems/intersection-of-multiple-arrays/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given a 2D integer array nums where nums[i] is a non-empty array of distinct positive integers, return the list of integers that are present in each array of nums sorted in ascending order .\n\n Example 1: \n \n```\nInput:\n nums = [[\n3\n,1,2,\n4\n,5],[1,2,\n3\n,\n4\n],[\n3\n,\n4\n,5,6]]\n\nOutput:\n [3,4]\n\nExplanation:\n \nThe only integers present in each of nums[0] = [\n3\n,1,2,\n4\n,5], nums[1] = [1,2,\n3\n,\n4\n], and nums[2] = [\n3\n,\n4\n,5,6] are 3 and 4, so we return [3,4].\n```\n\n Example 2: \n \n```\nInput:\n nums = [[1,2,3],[4,5,6]]\n\nOutput:\n []\n\nExplanation:\n \nThere does not exist any integer present both in nums[0] and nums[1], so we return an empty list [].\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= sum(nums[i].length) <= 1000 \n \n 1 <= nums[i][j] <= 1000 \n \n All the values of nums[i] are unique .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:vector<int> intersection(vector<vector<int>>& nums){vector<int> f(1001);for(auto &a:nums)for(int x:a)++f[x];vector<int> ans;for(int x=1;x<=1000;++x)if(f[x]==(int)nums.size())ans.push_back(x);return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175896659",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

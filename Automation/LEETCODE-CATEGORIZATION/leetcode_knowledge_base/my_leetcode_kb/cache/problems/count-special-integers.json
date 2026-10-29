@@ -1,0 +1,28 @@
+{
+  "id": "2376",
+  "title": "Count Special Integers",
+  "slug": "count-special-integers",
+  "url": "https://leetcode.com/problems/count-special-integers/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "We call a positive integer special if all of its digits are distinct . \n \n Given a positive integer n , return the number of special integers that belong to the interval [1, n] . \n\n Example 1: \n \n```\nInput:\n n = 20\n\nOutput:\n 19\n\nExplanation:\n All the integers from 1 to 20, except 11, are special. Thus, there are 19 special integers.\n```\n\n Example 2: \n \n```\nInput:\n n = 5\n\nOutput:\n 5\n\nExplanation:\n All the integers from 1 to 5 are special.\n```\n\n Example 3: \n \n```\nInput:\n n = 135\n\nOutput:\n 110\n\nExplanation:\n There are 110 integers from 1 to 135 that are special.\nSome of the integers that are not special are: 22, 114, and 131.\n```\n\n Constraints: \n\n 1 <= n <= 2 * 10 9",
+  "code": "class Solution {\n    string s;int memo[11][1024][2];\n    int dfs(int pos,int mask,int started,bool tight){\n        if(pos==(int)s.size())return started;\n        int &cached=memo[pos][mask][started];\n        if(!tight && cached!=-1)return cached;\n        int limit=tight?s[pos]-'0':9,ans=0;\n        for(int d=0;d<=limit;++d){\n            bool ns=started||d!=0;\n            if(ns&&(mask&(1<<d)))continue;\n            ans+=dfs(pos+1,mask|(ns?(1<<d):0),ns,tight&&d==limit);\n        }\n        if(!tight)cached=ans;\n        return ans;\n    }\npublic:\n    int countSpecialNumbers(int n){s=to_string(n);memset(memo,-1,sizeof(memo));return dfs(0,0,0,true);}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175930331",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

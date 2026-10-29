@@ -1,0 +1,26 @@
+{
+  "id": "670",
+  "title": "Maximum Swap",
+  "slug": "maximum-swap",
+  "url": "https://leetcode.com/problems/maximum-swap/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given an integer num . You can swap two digits at most once to get the maximum valued number. \n \n Return the maximum valued number you can get . \n\n Example 1: \n \n```\nInput:\n num = 2736\n\nOutput:\n 7236\n\nExplanation:\n Swap the number 2 and the number 7.\n```\n\n Example 2: \n \n```\nInput:\n num = 9973\n\nOutput:\n 9973\n\nExplanation:\n No swap.\n```\n\n Constraints: \n\n 0 <= num <= 10 8",
+  "code": "class Solution {\npublic:\n    int maximumSwap(int num) {\n        auto s = std::to_string(num);\n        int maxPos = s.size() - 1, bestSrc = -1, bestDest = -1;\n        for (int i = s.size() - 1; i >= 0; --i) {\n            if (s[i] > s[maxPos]) \n                maxPos = i;\n            else if (s[i] < s[maxPos]) {\n                bestSrc = maxPos;\n                bestDest = i;\n            }\n        }\n        if (bestSrc != -1) \n            std::swap(s[bestSrc], s[bestDest]);\n            \n        return std::stoi(s);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1411856019",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

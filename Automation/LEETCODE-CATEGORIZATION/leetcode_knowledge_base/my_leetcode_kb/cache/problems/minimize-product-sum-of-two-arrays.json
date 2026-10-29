@@ -1,0 +1,32 @@
+{
+  "id": "1874",
+  "title": "Minimize Product Sum of Two Arrays",
+  "slug": "minimize-product-sum-of-two-arrays",
+  "url": "https://leetcode.com/problems/minimize-product-sum-of-two-arrays/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "The product sum of two equal-length arrays a and b is equal to the sum of a[i] * b[i] for all 0 <= i < a.length ( 0-indexed ). \n\n For example, if a = [1,2,3,4] and b = [5,2,3,1] , the product sum would be 1*5 + 2*2 + 3*3 + 4*1 = 22 . \n\n Given two arrays nums1 and nums2 of length n , return the minimum product sum if you are allowed to rearrange the order of the elements in nums1 .  \n\n Example 1: \n \n```\nInput:\n nums1 = [5,3,4,2], nums2 = [4,2,2,5]\r\n\nOutput:\n 40\r\n\nExplanation:\n We can rearrange nums1 to become [3,5,4,2]. The product sum of [3,5,4,2] and [4,2,2,5] is 3*4 + 5*2 + 4*2 + 2*5 = 40.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [2,1,4,5,7], nums2 = [3,2,4,8,6]\r\n\nOutput:\n 65\r\n\nExplanation: \nWe can rearrange nums1 to become [5,7,4,1,2]. The product sum of [5,7,4,1,2] and [3,2,4,8,6] is 5*3 + 7*2 + 4*4 + 1*8 + 2*6 = 65.\n```\n\n Constraints: \n\n n == nums1.length == nums2.length \n \n 1 <= n <= 10 5 \n \n 1 <= nums1[i], nums2[i] <= 100",
+  "code": "class Solution {\npublic:\n    int minProductSum(vector<int>& nums1, vector<int>& nums2) {\n        sort(nums1.begin(), nums1.end());\n        sort(nums2.rbegin(), nums2.rend());\n        int sum = 0;\n        for (int i = 0; i < static_cast<int>(nums1.size()); ++i) sum += nums1[i] * nums2[i];\n        return sum;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178620279",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

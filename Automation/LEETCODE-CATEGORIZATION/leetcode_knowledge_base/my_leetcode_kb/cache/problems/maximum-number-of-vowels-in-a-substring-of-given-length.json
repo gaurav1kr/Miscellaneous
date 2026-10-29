@@ -1,0 +1,28 @@
+{
+  "id": "1456",
+  "title": "Maximum Number of Vowels in a Substring of Given Length",
+  "slug": "maximum-number-of-vowels-in-a-substring-of-given-length",
+  "url": "https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s and an integer k , return the maximum number of vowel letters in any substring of s with length k . \n \n Vowel letters in English are 'a' , 'e' , 'i' , 'o' , and 'u' . \n\n Example 1: \n \n```\nInput:\n s = \"abciiidef\", k = 3\n\nOutput:\n 3\n\nExplanation:\n The substring \"iii\" contains 3 vowel letters.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aeiou\", k = 2\n\nOutput:\n 2\n\nExplanation:\n Any substring of length 2 contains 2 vowels.\n```\n\n Example 3: \n \n```\nInput:\n s = \"leetcode\", k = 3\n\nOutput:\n 2\n\nExplanation:\n \"lee\", \"eet\" and \"ode\" contain 2 vowels.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters. \n \n 1 <= k <= s.length",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxVowels(string s, int k) {\n        int res = 0, cnt = 0;\n        for (int i = 0; i < s.size(); ++i) {\n            cnt += isVowel(s[i]);\n            if (i >= k) cnt -= isVowel(s[i - k]);\n            res = max(res, cnt);\n        }\n        return res;\n    }\n\n    bool isVowel(char c) {\n        return string(\"aeiou\").find(c) != string::npos;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595397322",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

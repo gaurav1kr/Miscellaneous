@@ -1,0 +1,34 @@
+{
+  "id": "3487",
+  "title": "Maximum Unique Subarray Sum After Deletion",
+  "slug": "maximum-unique-subarray-sum-after-deletion",
+  "url": "https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n You are allowed to delete any number of elements from nums without making it empty . After performing the deletions, select a subarray of nums such that: \n\n All elements in the subarray are unique . \n \n The sum of the elements in the subarray is maximized . \n\n Return the maximum sum of such a subarray. \n\n Example 1: \n\n Input: nums = [1,2,3,4,5] \n \n Output: 15 \n \n Explanation: \n \n Select the entire array without deleting any element to obtain the maximum sum. \n\n Example 2: \n\n Input: nums = [1,1,0,1,1] \n \n Output: 1 \n \n Explanation: \n \n Delete the element nums[0] == 1 , nums[1] == 1 , nums[2] == 0 , and nums[3] == 1 . Select the entire array [1] to obtain the maximum sum. \n\n Example 3: \n\n Input: nums = [1,2,-1,-2,1,0,-1] \n \n Output: 3 \n \n Explanation: \n \n Delete the elements nums[2] == -1 and nums[3] == -2 , and select the subarray [2, 1] from [1, 2, 1, 0, -1] to obtain the maximum sum. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n -100 <= nums[i] <= 100",
+  "code": "class Solution {public:int maxSum(vector<int>&nums){unordered_set<int>s;int sum=0;for(int x:nums)if(x>0&&s.insert(x).second)sum+=x;return sum?sum:*max_element(nums.begin(),nums.end());}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177543530",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

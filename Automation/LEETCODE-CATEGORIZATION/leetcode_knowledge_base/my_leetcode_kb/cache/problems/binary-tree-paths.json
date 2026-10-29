@@ -1,0 +1,36 @@
+{
+  "id": "257",
+  "title": "Binary Tree Paths",
+  "slug": "binary-tree-paths",
+  "url": "https://leetcode.com/problems/binary-tree-paths/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Backtracking / Bitmask",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "String",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given the root of a binary tree. \n \n Return all root-to-leaf paths in any order . \n \n A leaf is a node with no children. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/12/paths-tree.jpg] \n \n```\nInput:\n root = [1,2,3,null,5]\n\nOutput:\n [\"1->2->5\",\"1->3\"]\n```\n\n Example 2: \n \n```\nInput:\n root = [1]\n\nOutput:\n [\"1\"]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 100] . \n \n -100 <= Node.val <= 100",
+  "code": "class Solution {\npublic:\nvoid dfs(TreeNode* root, string path, vector<string>& paths) {\n    if (!root) return;\n    path += to_string(root->val);\n    if (!root->left && !root->right) {\n        paths.push_back(path);\n        return;\n    }\n    path += \"->\";\n    dfs(root->left, path, paths);\n    dfs(root->right, path, paths);\n}\n\nvector<string> binaryTreePaths(TreeNode* root) {\n    vector<string> paths;\n    dfs(root, \"\", paths);\n    return paths;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588094134",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

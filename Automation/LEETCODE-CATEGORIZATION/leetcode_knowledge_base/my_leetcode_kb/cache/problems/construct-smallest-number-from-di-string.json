@@ -1,0 +1,33 @@
+{
+  "id": "2375",
+  "title": "Construct Smallest Number From DI String",
+  "slug": "construct-smallest-number-from-di-string",
+  "url": "https://leetcode.com/problems/construct-smallest-number-from-di-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Stack",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a 0-indexed string pattern of length n consisting of the characters 'I' meaning increasing and 'D' meaning decreasing . \n \n A 0-indexed string num of length n + 1 is created using the following conditions: \n\n num consists of the digits '1' to '9' , where each digit is used at most once. \n \n If pattern[i] == 'I' , then num[i] < num[i + 1] . \n \n If pattern[i] == 'D' , then num[i] > num[i + 1] . \n\n Return the lexicographically smallest possible string num that meets the conditions. \n\n Example 1: \n \n```\nInput:\n pattern = \"IIIDIDDD\"\n\nOutput:\n \"123549876\"\n\nExplanation:\n\nAt indices 0, 1, 2, and 4 we must have that num[i] < num[i+1].\nAt indices 3, 5, 6, and 7 we must have that num[i] > num[i+1].\nSome possible values of num are \"245639871\", \"135749862\", and \"123849765\".\nIt can be proven that \"123549876\" is the smallest possible num that meets the conditions.\nNote that \"123414321\" is not possible because the digit '1' is used more than once.\n```\n\n Example 2: \n \n```\nInput:\n pattern = \"DDD\"\n\nOutput:\n \"4321\"\n\nExplanation:\n\nSome possible values of num are \"9876\", \"7321\", and \"8742\".\nIt can be proven that \"4321\" is the smallest possible num that meets the conditions.\n```\n\n Constraints: \n\n 1 <= pattern.length <= 8 \n \n pattern consists of only the letters 'I' and 'D' .",
+  "code": "class Solution { public:\n    string smallestNumber(string pattern) {\n        string ans;stack<char> st;\n        for(int i=0;i<=(int)pattern.size();++i){\n            st.push(char('1'+i));\n            if(i==(int)pattern.size()||pattern[i]=='I')while(!st.empty()){ans+=st.top();st.pop();}\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175929984",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

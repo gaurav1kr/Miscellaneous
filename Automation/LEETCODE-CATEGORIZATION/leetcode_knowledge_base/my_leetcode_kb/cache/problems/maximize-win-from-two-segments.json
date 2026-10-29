@@ -1,0 +1,31 @@
+{
+  "id": "2555",
+  "title": "Maximize Win From Two Segments",
+  "slug": "maximize-win-from-two-segments",
+  "url": "https://leetcode.com/problems/maximize-win-from-two-segments/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "There are some prizes on the X-axis . You are given an integer array prizePositions that is sorted in non-decreasing order , where prizePositions[i] is the position of the i th prize. There could be different prizes at the same position on the line. You are also given an integer k . \n \n You are allowed to select two segments with integer endpoints. The length of each segment must be k . You will collect all prizes whose position falls within at least one of the two selected segments (including the endpoints of the segments). The two selected segments may intersect. \n\n For example if k = 2 , you can choose segments [1, 3] and [2, 4] , and you will win any prize i that satisfies 1 <= prizePositions[i] <= 3 or 2 <= prizePositions[i] <= 4 . \n\n Return the maximum number of prizes you can win if you choose the two segments optimally . \n\n Example 1: \n \n```\nInput:\n prizePositions = [1,1,2,2,3,3,5], k = 2\n\nOutput:\n 7\n\nExplanation:\n In this example, you can win all 7 prizes by selecting two segments [1, 3] and [3, 5].\n```\n\n Example 2: \n \n```\nInput:\n prizePositions = [1,2,3,4], k = 0\n\nOutput:\n 2\n\nExplanation:\n For this example, \none choice\n for the segments is \n[3, 3]\n and \n[4, 4],\n and you will be able to get \n2\n prizes.\n```\n\n Constraints: \n\n 1 <= prizePositions.length <= 10 5 \n \n 1 <= prizePositions[i] <= 10 9 \n \n 0 <= k <= 10 9 \n \n prizePositions is sorted in non-decreasing order.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int maximizeWin(vector<int>& prizePositions,int k){\n  int n=prizePositions.size(),l=0,ans=0;vector<int> best(n+1);\n  for(int r=0;r<n;++r){while(prizePositions[r]-prizePositions[l]>k)++l;\n   int cur=r-l+1;ans=max(ans,cur+best[l]);best[r+1]=max(best[r],cur);\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176610892",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

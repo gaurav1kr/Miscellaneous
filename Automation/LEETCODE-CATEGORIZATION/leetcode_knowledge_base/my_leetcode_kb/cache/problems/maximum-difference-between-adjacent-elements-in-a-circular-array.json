@@ -1,0 +1,27 @@
+{
+  "id": "3423",
+  "title": "Maximum Difference Between Adjacent Elements in a Circular Array",
+  "slug": "maximum-difference-between-adjacent-elements-in-a-circular-array",
+  "url": "https://leetcode.com/problems/maximum-difference-between-adjacent-elements-in-a-circular-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a circular array nums , find the maximum absolute difference between adjacent elements. \n \n Note : In a circular array, the first and last elements are adjacent. \n\n Example 1: \n\n Input: nums = [1,2,4] \n \n Output: 3 \n \n Explanation: \n \n Because nums is circular, nums[0] and nums[2] are adjacent. They have the maximum absolute difference of |4 - 1| = 3 . \n\n Example 2: \n\n Input: nums = [-5,-10,-5] \n \n Output: 5 \n \n Explanation: \n \n The adjacent elements nums[0] and nums[1] have the maximum absolute difference of |-5 - (-10)| = 5 . \n\n Constraints: \n\n 2 <= nums.length <= 100 \n \n -100 <= nums[i] <= 100",
+  "code": "class Solution { public: int maxAdjacentDistance(vector<int>& nums) {\n int ans=0,n=nums.size(); for(int i=0;i<n;++i) ans=max(ans,abs(nums[i]-nums[(i+1)%n])); return ans;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177522260",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

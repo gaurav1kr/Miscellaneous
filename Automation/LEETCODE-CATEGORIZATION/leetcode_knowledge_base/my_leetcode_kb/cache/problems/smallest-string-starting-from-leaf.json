@@ -1,0 +1,35 @@
+{
+  "id": "988",
+  "title": "Smallest String Starting From Leaf",
+  "slug": "smallest-string-starting-from-leaf",
+  "url": "https://leetcode.com/problems/smallest-string-starting-from-leaf/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Backtracking / Bitmask",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "String",
+    "Tree adjacency list"
+  ],
+  "description": "You are given the root of a binary tree where each node has a value in the range [0, 25] representing the letters 'a' to 'z' . \n \n Return the lexicographically smallest string that starts at a leaf of this tree and ends at the root . \n \n As a reminder, any shorter prefix of a string is lexicographically smaller . \n\n For example, \"ab\" is lexicographically smaller than \"aba\" . \n\n A leaf of a node is a node that has no children. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/01/30/tree1.png] \n \n```\nInput:\n root = [0,1,2,3,4,3,4]\n\nOutput:\n \"dba\"\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/01/30/tree2.png] \n \n```\nInput:\n root = [25,1,3,1,3,0,2]\n\nOutput:\n \"adz\"\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2019/02/01/tree3.png] \n \n```\nInput:\n root = [2,2,1,null,1,0,null,0]\n\nOutput:\n \"abc\"\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 8500] . \n \n 0 <= Node.val <= 25",
+  "code": "\n#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    string smallestFromLeaf(TreeNode* root) {\n        string result = \"\";\n        dfs(root, \"\", result);\n        return result;\n    }\n    \n    void dfs(TreeNode* node, string current, string& result) {\n        if (!node) return;\n        \n        current = char(node->val + 'a') + current;\n        \n        if (!node->left && !node->right) {\n            if (result.empty() || current < result) result = current;\n        }\n        \n        dfs(node->left, current, result);\n        dfs(node->right, current, result);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592343712",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

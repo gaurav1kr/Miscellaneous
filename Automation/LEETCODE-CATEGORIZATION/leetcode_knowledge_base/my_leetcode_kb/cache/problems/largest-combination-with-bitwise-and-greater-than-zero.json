@@ -1,0 +1,33 @@
+{
+  "id": "2275",
+  "title": "Largest Combination With Bitwise AND Greater Than Zero",
+  "slug": "largest-combination-with-bitwise-and-greater-than-zero",
+  "url": "https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "The bitwise AND of an array nums is the bitwise AND of all integers in nums . \n\n For example, for nums = [1, 5, 3] , the bitwise AND is equal to 1 & 5 & 3 = 1 . \n \n Also, for nums = [7] , the bitwise AND is 7 . \n\n You are given an array of positive integers candidates . Compute the bitwise AND for all possible combinations of elements in the candidates array. \n \n Return the size of the largest combination of candidates with a bitwise AND greater than 0 . \n\n Example 1: \n \n```\nInput:\n candidates = [16,17,71,62,12,24,14]\n\nOutput:\n 4\n\nExplanation:\n The combination [16,17,62,24] has a bitwise AND of 16 & 17 & 62 & 24 = 16 > 0.\nThe size of the combination is 4.\nIt can be shown that no combination with a size greater than 4 has a bitwise AND greater than 0.\nNote that more than one combination may have the largest size.\nFor example, the combination [62,12,24,14] has a bitwise AND of 62 & 12 & 24 & 14 = 8 > 0.\n```\n\n Example 2: \n \n```\nInput:\n candidates = [8,8]\n\nOutput:\n 2\n\nExplanation:\n The largest combination [8,8] has a bitwise AND of 8 & 8 = 8 > 0.\nThe size of the combination is 2, so we return 2.\n```\n\n Constraints: \n\n 1 <= candidates.length <= 10 5 \n \n 1 <= candidates[i] <= 10 7",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:int largestCombination(vector<int>& candidates){int ans=0;for(int b=0;b<31;++b){int count=0;for(int x:candidates)count+=(x>>b)&1;ans=max(ans,count);}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175904061",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

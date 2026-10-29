@@ -1,0 +1,32 @@
+{
+  "id": "1201",
+  "title": "Ugly Number III",
+  "slug": "ugly-number-iii",
+  "url": "https://leetcode.com/problems/ugly-number-iii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search",
+    "Combinatorics",
+    "Number Theory",
+    "Least Common Multiple",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor",
+    "Inclusion-Exclusion Principle"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "An ugly number is a positive integer that is divisible by a , b , or c . \n \n Given four integers n , a , b , and c , return the n th ugly number . \n\n Example 1: \n \n```\nInput:\n n = 3, a = 2, b = 3, c = 5\n\nOutput:\n 4\n\nExplanation:\n The ugly numbers are 2, 3, 4, 5, 6, 8, 9, 10... The 3\nrd\n is 4.\n```\n\n Example 2: \n \n```\nInput:\n n = 4, a = 2, b = 3, c = 4\n\nOutput:\n 6\n\nExplanation:\n The ugly numbers are 2, 3, 4, 6, 8, 9, 10, 12... The 4\nth\n is 6.\n```\n\n Example 3: \n \n```\nInput:\n n = 5, a = 2, b = 11, c = 13\n\nOutput:\n 10\n\nExplanation:\n The ugly numbers are 2, 4, 6, 8, 10, 11, 12, 13... The 5\nth\n is 10.\n```\n\n Constraints: \n\n 1 <= n, a, b, c <= 10 9 \n \n 1 <= a * b * c <= 10 18 \n \n It is guaranteed that the result will be in range [1, 2 * 10 9 ] .",
+  "code": "class Solution {\npublic:\n    int nthUglyNumber(int n, int A, int B, int C) {\n        // Logic (Binary Search)\n        // We can find the kth ugly element by binary searching it's position\n        // No upto N divisible by a = N / a\n        // No upto N divisible by b = N / b\n        // No upto N divisible by c = N / c\n        // No upto N divisible by both (a,b) = N / Lcm(a,b)\n        // No upto N divisible by both (b,c) = N / Lcm(b,c)\n        // No upto N divisible by both (c,a) = N / Lcm(c,a)\n        // No upto N divisible by (a,b,c) = N / Lcm(a,b,c)\n\n        // We can find the position of any ugly number by this\n        // We already have range of ugly number from constraint\n        \n        long long s = 1;\n        long long e = 2 * 1e9;\n        long long ans;\n        // Type converting\n        long a = long(A);\n        long b = long(B);\n        long c = long(C);\n\n        while(s <= e){\n            long long mid = s + (e - s) / 2;\n            long long count = 0;\n            // Finding the position of ugly number\n            // (A U B U C) = A + B + C - (A ∩ B) - (B ∩ C) - (C ∩ A) + (A ∩ B ∩ C)\n            count += mid / a;\n            count += mid / b;\n            count += mid / c;\n            count -= mid / lcm(a,b);\n            count -= mid / lcm(b,c);\n            count -= mid / lcm(c,a);\n            count += mid / lcm(a,lcm(b,c));\n\n            if(count >= n){\n                ans = mid;\n                e = mid - 1;\n            }\n            else{\n                s = mid + 1;\n            }\n        }\n\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617067613",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

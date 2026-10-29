@@ -1,0 +1,30 @@
+{
+  "id": "1186",
+  "title": "Maximum Subarray Sum with One Deletion",
+  "slug": "maximum-subarray-sum-with-one-deletion",
+  "url": "https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an array of integers, return the maximum sum for a non-empty  subarray (contiguous elements) with at most one element deletion. In other words, you want to choose a subarray and optionally delete one element from it so that there is still at least one element left and the sum of the remaining elements is maximum possible. \n \n Note that the subarray needs to be non-empty after deleting one element. \n\n Example 1: \n \n```\nInput:\n arr = [1,-2,0,3]\n\nOutput:\n 4\n\nExplanation: \nBecause we can choose [1, -2, 0, 3] and drop -2, thus the subarray [1, 0, 3] becomes the maximum value.\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,-2,-2,3]\n\nOutput:\n 3\n\nExplanation: \nWe just choose [3] and it's the maximum sum.\n```\n\n Example 3: \n \n```\nInput:\n arr = [-1,-1,-1,-1]\n\nOutput:\n -1\n\nExplanation:\n The final subarray needs to be non-empty. You can't choose [-1] and delete -1 from it, then get an empty subarray to make the sum equals to 0.\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 5 \n \n -10 4 <= arr[i] <= 10 4",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maximumSum(vector<int>& arr) {\n        int n = arr.size();\n        int noDelete = arr[0], oneDelete = 0, maxSum = arr[0];\n        for (int i = 1; i < n; i++) {\n            oneDelete = max(noDelete, oneDelete + arr[i]);\n            noDelete = max(arr[i], noDelete + arr[i]);\n            maxSum = max({maxSum, noDelete, oneDelete});\n        }\n        return maxSum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591374752",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

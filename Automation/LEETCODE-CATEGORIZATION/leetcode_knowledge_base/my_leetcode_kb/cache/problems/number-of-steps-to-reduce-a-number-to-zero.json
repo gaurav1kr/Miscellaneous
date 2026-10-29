@@ -1,0 +1,26 @@
+{
+  "id": "1342",
+  "title": "Number of Steps to Reduce a Number to Zero",
+  "slug": "number-of-steps-to-reduce-a-number-to-zero",
+  "url": "https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "Given an integer num , return the number of steps to reduce it to zero . \n \n In one step, if the current number is even, you have to divide it by 2 , otherwise, you have to subtract 1 from it. \n\n Example 1: \n \n```\nInput:\n num = 14\n\nOutput:\n 6\n\nExplanation:\n \nStep 1) 14 is even; divide by 2 and obtain 7. \nStep 2) 7 is odd; subtract 1 and obtain 6.\nStep 3) 6 is even; divide by 2 and obtain 3. \nStep 4) 3 is odd; subtract 1 and obtain 2. \nStep 5) 2 is even; divide by 2 and obtain 1. \nStep 6) 1 is odd; subtract 1 and obtain 0.\n```\n\n Example 2: \n \n```\nInput:\n num = 8\n\nOutput:\n 4\n\nExplanation:\n \nStep 1) 8 is even; divide by 2 and obtain 4. \nStep 2) 4 is even; divide by 2 and obtain 2. \nStep 3) 2 is even; divide by 2 and obtain 1. \nStep 4) 1 is odd; subtract 1 and obtain 0.\n```\n\n Example 3: \n \n```\nInput:\n num = 123\n\nOutput:\n 12\n```\n\n Constraints: \n\n 0 <= num <= 10 6",
+  "code": "class Solution {\npublic:\n    int numberOfSteps(int num) {\n        int steps = 0;\n        while (num > 0) {\n            num = (num % 2 == 0) ? num / 2 : num - 1;\n            steps++;\n        }\n        return steps;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590167104",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

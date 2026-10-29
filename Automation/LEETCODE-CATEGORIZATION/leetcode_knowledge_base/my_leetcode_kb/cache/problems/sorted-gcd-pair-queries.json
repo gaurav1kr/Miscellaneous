@@ -1,0 +1,42 @@
+{
+  "id": "3312",
+  "title": "Sorted GCD Pair Queries",
+  "slug": "sorted-gcd-pair-queries",
+  "url": "https://leetcode.com/problems/sorted-gcd-pair-queries/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Binary Search",
+    "Combinatorics",
+    "Counting",
+    "Number Theory",
+    "Prefix Sum",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and an integer array queries . \n \n Let gcdPairs denote an array obtained by calculating the GCD of all possible pairs (nums[i], nums[j]) , where 0 <= i < j < n , and then sorting these values in ascending order. \n \n For each query queries[i] , you need to find the element at index queries[i] in gcdPairs . \n \n Return an integer array answer , where answer[i] is the value at gcdPairs[queries[i]] for each query. \n \n The term gcd(a, b) denotes the greatest common divisor of a and b . \n\n Example 1: \n\n Input: nums = [2,3,4], queries = [0,2,2] \n \n Output: [1,2,2] \n \n Explanation: \n \n gcdPairs = [gcd(nums[0], nums[1]), gcd(nums[0], nums[2]), gcd(nums[1], nums[2])] = [1, 2, 1] . \n \n After sorting in ascending order, gcdPairs = [1, 1, 2] . \n \n So, the answer is [gcdPairs[queries[0]], gcdPairs[queries[1]], gcdPairs[queries[2]]] = [1, 2, 2] . \n\n Example 2: \n\n Input: nums = [4,4,2,1], queries = [5,3,1,0] \n \n Output: [4,2,1,1] \n \n Explanation: \n \n gcdPairs sorted in ascending order is [1, 1, 1, 2, 2, 4] . \n\n Example 3: \n\n Input: nums = [2,2], queries = [0,0] \n \n Output: [2,2] \n \n Explanation: \n \n gcdPairs = [2] . \n\n Constraints: \n\n 2 <= n == nums.length <= 10 5 \n \n 1 <= nums[i] <= 5 * 10 4 \n \n 1 <= queries.length <= 10 5 \n \n 0 <= queries[i] < n * (n - 1) / 2",
+  "code": "class Solution { public: vector<int> gcdValues(vector<int>&nums,vector<long long>&queries){int M=*max_element(nums.begin(),nums.end());vector<long long>freq(M+1),exact(M+1),pref(M+1);for(int v:nums)++freq[v];for(int d=M;d>=1;--d){long long cnt=0;for(int j=d;j<=M;j+=d)cnt+=freq[j];exact[d]=cnt*(cnt-1)/2;for(int j=2*d;j<=M;j+=d)exact[d]-=exact[j];}for(int d=1;d<=M;++d)pref[d]=pref[d-1]+exact[d];vector<int>ans;for(long long q:queries)ans.push_back(lower_bound(pref.begin()+1,pref.end(),q+1)-pref.begin());return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177456762",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

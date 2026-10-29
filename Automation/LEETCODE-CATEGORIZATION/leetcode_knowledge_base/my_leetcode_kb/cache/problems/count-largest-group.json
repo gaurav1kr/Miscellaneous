@@ -1,0 +1,31 @@
+{
+  "id": "1399",
+  "title": "Count Largest Group",
+  "slug": "count-largest-group",
+  "url": "https://leetcode.com/problems/count-largest-group/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map"
+  ],
+  "description": "You are given an integer n . \n \n We need to group the numbers from 1 to n according to the sum of its digits. For example, the numbers 14 and 5 belong to the same group, whereas 13 and 3 belong to different groups. \n \n Return the number of groups that have the largest size, i.e. the maximum number of elements. \n\n Example 1: \n \n```\nInput:\n n = 13\n\nOutput:\n 4\n\nExplanation:\n There are 9 groups in total, they are grouped according sum of its digits of numbers from 1 to 13:\n[1,10], [2,11], [3,12], [4,13], [5], [6], [7], [8], [9].\nThere are 4 groups with largest size.\n```\n\n Example 2: \n \n```\nInput:\n n = 2\n\nOutput:\n 2\n\nExplanation:\n There are 2 groups [1], [2] of size 1.\n```\n\n Constraints: \n\n 1 <= n <= 10 4",
+  "code": "#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    int countLargestGroup(int n) {\n        unordered_map<int, int> count;\n        int maxSize = 0;\n        for (int i = 1; i <= n; ++i) {\n            int sum = 0, x = i;\n            while (x) {\n                sum += x % 10;\n                x /= 10;\n            }\n            maxSize = max(maxSize, ++count[sum]);\n        }\n        int res = 0;\n        for (auto& [k, v] : count)\n            if (v == maxSize) res++;\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610654582",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

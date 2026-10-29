@@ -1,0 +1,28 @@
+{
+  "id": "3175",
+  "title": "Find The First Player to win K Games in a Row",
+  "slug": "find-the-first-player-to-win-k-games-in-a-row",
+  "url": "https://leetcode.com/problems/find-the-first-player-to-win-k-games-in-a-row/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "A competition consists of n players numbered from 0 to n - 1 . \n \n You are given an integer array skills of size n and a positive integer k , where skills[i] is the skill level of player i . All integers in skills are unique . \n \n All players are standing in a queue in order from player 0 to player n - 1 . \n \n The competition process is as follows: \n\n The first two players in the queue play a game, and the player with the higher skill level wins. \n \n After the game, the winner stays at the beginning of the queue, and the loser goes to the end of it. \n\n The winner of the competition is the first player who wins k games in a row . \n \n Return the initial index of the winning player. \n\n Example 1: \n\n Input: skills = [4,2,6,3,9], k = 2 \n \n Output: 2 \n \n Explanation: \n \n Initially, the queue of players is [0,1,2,3,4] . The following process happens: \n\n Players 0 and 1 play a game, since the skill of player 0 is higher than that of player 1, player 0 wins. The resulting queue is [0,2,3,4,1] . \n \n Players 0 and 2 play a game, since the skill of player 2 is higher than that of player 0, player 2 wins. The resulting queue is [2,3,4,1,0] . \n \n Players 2 and 3 play a game, since the skill of player 2 is higher than that of player 3, player 2 wins. The resulting queue is [2,4,1,0,3] . \n\n Player 2 won k = 2 games in a row, so the winner is player 2. \n\n Example 2: \n\n Input: skills = [2,5,4], k = 3 \n \n Output: 1 \n \n Explanation: \n \n Initially, the queue of players is [0,1,2] . The following process happens: \n\n Players 0 and 1 play a game, since the skill of player 1 is higher than that of player 0, player 1 wins. The resulting queue is [1,2,0] . \n \n Players 1 and 2 play a game, since the skill of player 1 is higher than that of player 2, player 1 wins. The resulting queue is [1,0,2] . \n \n Players 1 and 0 play a game, since the skill of player 1 is higher than that of player 0, player 1 wins. The resulting queue is [1,2,0] . \n\n Player 1 won k = 3 games in a row, so the winner is player 1. \n\n Constraints: \n\n n == skills.length \n \n 2 <= n <= 10 5 \n \n 1 <= k <= 10 9 \n \n 1 <= skills[i] <= 10 6 \n \n All integers in skills are unique.",
+  "code": "class Solution {public:int findWinningPlayer(vector<int>& skills,int k){int win=0,champ=0;for(int i=1;i<(int)skills.size();++i){if(skills[champ]>skills[i])++win;else{champ=i;win=1;}if(win>=k)break;}return champ;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177408687",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "1277",
+  "title": "Count Square Submatrices with All Ones",
+  "slug": "count-square-submatrices-with-all-ones",
+  "url": "https://leetcode.com/problems/count-square-submatrices-with-all-ones/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given a m * n matrix of ones and zeros, return how many square submatrices have all ones. \n\n Example 1: \n \n```\nInput:\n matrix =\n[\n  [0,1,1,1],\n  [1,1,1,1],\n  [0,1,1,1]\n]\n\nOutput:\n 15\n\nExplanation:\n \nThere are \n10\n squares of side 1.\nThere are \n4\n squares of side 2.\nThere is \n1\n square of side 3.\nTotal number of squares = 10 + 4 + 1 = \n15\n.\n```\n\n Example 2: \n \n```\nInput:\n matrix = \n[\n [1,0,1],\n [1,1,0],\n [1,1,0]\n]\n\nOutput:\n 7\n\nExplanation:\n \nThere are \n6\n squares of side 1. \nThere is \n1\n square of side 2. \nTotal number of squares = 6 + 1 = \n7\n.\n```\n\n Constraints: \n\n 1 <= arr.length <= 300 \n \n 1 <= arr[0].length <= 300 \n \n 0 <= arr[i][j] <= 1",
+  "code": "class Solution \n{\npublic:\n    int min_three(int a , int b , int c)\n    {\n        if(a<b)\n        {\n            if(a<c)\n            {\n                return a ;\n            }\n            else\n            {\n                return c ;\n            }\n        }\n        else if(b<c)\n        {\n            return b ;\n        }\n        else\n        {\n            return c ;\n        }\n    }\n    int countSquares(vector<vector<int>>& matrix) \n    {\n        int row = matrix.size() ;\n        int col = matrix[0].size() ;\n        int sum = 0;\n        int i = 0 , j = 0 ;\n        vector<vector<int>> dp_matrix(row, vector<int>(col,0)) ;\n        for(i=0;i<row;i++)\n        {\n            dp_matrix[i][0] = matrix[i][0] ;\n        }\n        \n        for(i=0;i<col;i++)\n        {\n            dp_matrix[0][i] = matrix[0][i] ;\n        }\n        for(i=1;i<row;i++)\n        {\n            for(j=1;j<col;j++)\n            {\n                if(matrix[i][j])\n                dp_matrix[i][j] = min_three(dp_matrix[i-1][j-1] , dp_matrix[i][j-1] , dp_matrix[i-1][j]) + matrix[i][j] ;\n            }\n        }\n        for(i=0;i<row;i++)\n        {\n            for(j=0;j<col;j++)\n            {\n                sum += dp_matrix[i][j] ;   \n            }\n        }\n        return sum ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "582534743",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

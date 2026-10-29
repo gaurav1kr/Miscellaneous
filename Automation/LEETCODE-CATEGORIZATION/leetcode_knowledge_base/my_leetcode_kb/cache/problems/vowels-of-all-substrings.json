@@ -1,0 +1,32 @@
+{
+  "id": "2063",
+  "title": "Vowels of All Substrings",
+  "slug": "vowels-of-all-substrings",
+  "url": "https://leetcode.com/problems/vowels-of-all-substrings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "Given a string word , return the sum of the number of vowels ( 'a' , 'e' , 'i' , 'o' , and 'u' ) in every substring of word . \n \n A substring is a contiguous (non-empty) sequence of characters within a string. \n \n Note: Due to the large constraints, the answer may not fit in a signed 32-bit integer. Please be careful during the calculations. \n\n Example 1: \n \n```\nInput:\n word = \"aba\"\n\nOutput:\n 6\n\nExplanation:\n \nAll possible substrings are: \"a\", \"ab\", \"aba\", \"b\", \"ba\", and \"a\".\n- \"b\" has 0 vowels in it\n- \"a\", \"ab\", \"ba\", and \"a\" have 1 vowel each\n- \"aba\" has 2 vowels in it\nHence, the total sum of vowels = 0 + 1 + 1 + 1 + 1 + 2 = 6.\n```\n\n Example 2: \n \n```\nInput:\n word = \"abc\"\n\nOutput:\n 3\n\nExplanation:\n \nAll possible substrings are: \"a\", \"ab\", \"abc\", \"b\", \"bc\", and \"c\".\n- \"a\", \"ab\", and \"abc\" have 1 vowel each\n- \"b\", \"bc\", and \"c\" have 0 vowels each\nHence, the total sum of vowels = 1 + 1 + 1 + 0 + 0 + 0 = 3.\n```\n\n Example 3: \n \n```\nInput:\n word = \"ltcd\"\n\nOutput:\n 0\n\nExplanation:\n There are no vowels in any substring of \"ltcd\".\n```\n\n Constraints: \n\n 1 <= word.length <= 10 5 \n \n word consists of lowercase English letters.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    long long countVowels(string word) {\n        long long res = 0, n = word.size();\n        for (int i = 0; i < n; ++i) {\n            if (isVowel(word[i]))\n                res += (long long)(i + 1) * (n - i);\n        }\n        return res;\n    }\n\n    bool isVowel(char c) {\n        return string(\"aeiou\").find(c) != string::npos;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610651411",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

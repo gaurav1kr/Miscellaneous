@@ -1,0 +1,31 @@
+{
+  "id": "1171",
+  "title": "Remove Zero Sum Consecutive Nodes from Linked List",
+  "slug": "remove-zero-sum-consecutive-nodes-from-linked-list",
+  "url": "https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Linked List"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Linked list",
+    "Ordered map"
+  ],
+  "description": "Given the head of a linked list, we repeatedly delete consecutive sequences of nodes that sum to 0 until there are no such sequences. \n \n After doing so, return the head of the final linked list.  You may return any such answer. \n\n (Note that in the examples below, all sequences are serializations of ListNode objects.) \n \n Example 1: \n \n```\nInput:\n head = [1,2,-3,3,1]\n\nOutput:\n [3,1]\n\nNote:\n The answer [1,2,1] would also be accepted.\n```\n\n Example 2: \n \n```\nInput:\n head = [1,2,3,-3,4]\n\nOutput:\n [1,2,4]\n```\n\n Example 3: \n \n```\nInput:\n head = [1,2,3,-3,-2]\n\nOutput:\n [1]\n```\n\n Constraints: \n\n The given linked list will contain between 1 and 1000 nodes. \n \n Each node in the linked list has -1000 <= node.val <= 1000 .",
+  "code": "#include <unordered_map>\nusing namespace std;\n\n\nclass Solution {\npublic:\n    ListNode* removeZeroSumSublists(ListNode* head) {\n        ListNode* dummy = new ListNode(0);\n        dummy->next = head;\n        unordered_map<int, ListNode*> sumMap;\n        int sum = 0;\n        for (ListNode* node = dummy; node; node = node->next) {\n            sum += node->val;\n            sumMap[sum] = node;\n        }\n        sum = 0;\n        for (ListNode* node = dummy; node; node = node->next) {\n            sum += node->val;\n            node->next = sumMap[sum]->next;\n        }\n        return dummy->next;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591357861",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

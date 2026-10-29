@@ -1,0 +1,26 @@
+{
+  "id": "3456",
+  "title": "Find Special Substring of Length K",
+  "slug": "find-special-substring-of-length-k",
+  "url": "https://leetcode.com/problems/find-special-substring-of-length-k/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s and an integer k . \n \n Determine if there exists a substring of length exactly k in s that satisfies the following conditions: \n\n The substring consists of only one distinct character (e.g., \"aaa\" or \"bbb\" ). \n \n If there is a character immediately before the substring, it must be different from the character in the substring. \n \n If there is a character immediately after the substring, it must also be different from the character in the substring. \n\n Return true if such a substring exists. Otherwise, return false . \n\n Example 1: \n\n Input: s = \"aaabaaa\", k = 3 \n \n Output: true \n \n Explanation: \n \n The substring s[4..6] == \"aaa\" satisfies the conditions. \n\n It has a length of 3. \n \n All characters are the same. \n \n The character before \"aaa\" is 'b' , which is different from 'a' . \n \n There is no character after \"aaa\" . \n\n Example 2: \n\n Input: s = \"abc\", k = 2 \n \n Output: false \n \n Explanation: \n \n There is no substring of length 2 that consists of one distinct character and satisfies the conditions. \n\n Constraints: \n\n 1 <= k <= s.length <= 100 \n \n s consists of lowercase English letters only.",
+  "code": "class Solution {public:bool hasSpecialSubstring(string s,int k){int n=s.size();for(int i=0,j;i<n;i=j){j=i+1;while(j<n&&s[j]==s[i])++j;if(j-i==k)return true;}return false;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177532169",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

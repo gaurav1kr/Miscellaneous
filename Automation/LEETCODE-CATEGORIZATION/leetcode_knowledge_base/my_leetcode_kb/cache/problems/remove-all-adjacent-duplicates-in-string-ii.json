@@ -1,0 +1,29 @@
+{
+  "id": "1209",
+  "title": "Remove All Adjacent Duplicates in String II",
+  "slug": "remove-all-adjacent-duplicates-in-string-ii",
+  "url": "https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a string s and an integer k , a k duplicate removal consists of choosing k adjacent and equal letters from s and removing them, causing the left and the right side of the deleted substring to concatenate together. \n \n We repeatedly make k duplicate removals on s until we no longer can. \n \n Return the final string after all such duplicate removals have been made . It is guaranteed that the answer is unique . \n\n Example 1: \n \n```\nInput:\n s = \"abcd\", k = 2\n\nOutput:\n \"abcd\"\n\nExplanation: \nThere's nothing to delete.\n```\n\n Example 2: \n \n```\nInput:\n s = \"deeedbbcccbdaa\", k = 3\n\nOutput:\n \"aa\"\n\nExplanation: \n\nFirst delete \"eee\" and \"ccc\", get \"ddbbbdaa\"\nThen delete \"bbb\", get \"dddaa\"\nFinally delete \"ddd\", get \"aa\"\n```\n\n Example 3: \n \n```\nInput:\n s = \"pbbcggttciiippooaais\", k = 2\n\nOutput:\n \"ps\"\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n 2 <= k <= 10 4 \n \n s only contains lowercase English letters.",
+  "code": "class Solution \n{\npublic:\n    string removeDuplicates(string s, int k) \n\t{\n        stack<pair<char, int>> st;\n        string ans;\n        for (int i = s.size() - 1; i >= 0; i--) \n\t\t{\n            char curr = s[i];\n            if (!st.empty() && st.top().first == curr) \n\t\t\t{\n                st.top().second++;\n                if (st.top().second == k) \n\t\t\t\t{\n                    st.pop();\n                }\n            } \n\t\t\telse \n\t\t\t{\n                st.push({curr, 1});\n            }\n        }\n        while (!st.empty()) \n\t\t{\n            char curr = st.top().first;\n            while(st.top().second--)  \n\t\t\t{\n\t\t\t\tans.push_back(curr);\n\t\t\t}\n            st.pop();\n        }\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1471960764",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

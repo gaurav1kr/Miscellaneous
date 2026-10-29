@@ -1,0 +1,39 @@
+{
+  "id": "244",
+  "title": "Shortest Word Distance II",
+  "slug": "shortest-word-distance-ii",
+  "url": "https://leetcode.com/problems/shortest-word-distance-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "String",
+    "Design"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Design a data structure that will be initialized with a string array, and then it should answer queries of the shortest distance between two different strings from the array. \n \n Implement the WordDistance class: \n\n WordDistance(String[] wordsDict) initializes the object with the strings array wordsDict . \n \n int shortest(String word1, String word2) returns the shortest distance between word1 and word2 in the array wordsDict . \n\n Example 1: \n \n```\nInput\n\n[\"WordDistance\", \"shortest\", \"shortest\"]\n[[[\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"]], [\"coding\", \"practice\"], [\"makes\", \"coding\"]]\n\nOutput\n\n[null, 3, 1]\n\nExplanation\n\nWordDistance wordDistance = new WordDistance([\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"]);\nwordDistance.shortest(\"coding\", \"practice\"); // return 3\nwordDistance.shortest(\"makes\", \"coding\"); // return 1\n```\n\n Constraints: \n\n 1 <= wordsDict.length <= 3 * 10 4 \n \n 1 <= wordsDict[i].length <= 10 \n \n wordsDict[i] consists of lowercase English letters. \n \n word1 and word2 are in wordsDict . \n \n word1 != word2 \n \n At most 5000 calls will be made to shortest .",
+  "code": "class WordDistance\n{\n    unordered_map< string, vector< int >>at;\npublic:\n    WordDistance(vector< string>& wordsDict)\n    {\n        for (int i = 0; i < (int) wordsDict.size();++i)\n        {\n            at[wordsDict[i]].push_back(i);\n        }\n    }\n    int shortest(string word1, string word2)\n    {\n        const auto&a = at.at(word1),&b = at.at(word2);\n        int i = 0, j = 0, best = INT_MAX;\n        while (i < (int) a.size() && j < (int) b.size())\n        {\n            best = min(best, abs(a[i] - b[j]));\n            if (a[i] < b[j])++i;\n            else++j;\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178433910",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

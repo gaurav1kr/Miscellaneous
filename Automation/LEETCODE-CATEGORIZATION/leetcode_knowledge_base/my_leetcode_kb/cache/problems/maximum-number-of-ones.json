@@ -1,0 +1,34 @@
+{
+  "id": "1183",
+  "title": "Maximum Number of Ones",
+  "slug": "maximum-number-of-ones",
+  "url": "https://leetcode.com/problems/maximum-number-of-ones/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Consider a matrix M with dimensions width * height , such that every cell has value 0  or 1 , and any square  sub-matrix of M of size sideLength * sideLength  has at most maxOnes  ones. \n \n Return the maximum possible number of ones that the matrix M can have. \n\n Example 1: \n \n```\nInput:\n width = 3, height = 3, sideLength = 2, maxOnes = 1\n\nOutput:\n 4\n\nExplanation:\n\nIn a 3*3 matrix, no 2*2 sub-matrix can have more than 1 one.\nThe best solution that has 4 ones is:\n[1,0,1]\n[0,0,0]\n[1,0,1]\n```\n\n Example 2: \n \n```\nInput:\n width = 3, height = 3, sideLength = 2, maxOnes = 2\n\nOutput:\n 6\n\nExplanation:\n\n[1,0,1]\n[1,0,1]\n[1,0,1]\n```\n\n Constraints: \n\n 1 <= width, height <= 100 \n \n 1 <= sideLength <= width, height \n \n 0 <= maxOnes <= sideLength * sideLength",
+  "code": "class Solution {\npublic:\n    int maximumNumberOfOnes(int width, int height,\n                            int sideLength, int maxOnes) {\n        vector<int> counts;\n        for (int r = 0; r < sideLength; ++r) {\n            for (int c = 0; c < sideLength; ++c) {\n                int rows = (height - 1 - r) / sideLength + 1;\n                int cols = (width - 1 - c) / sideLength + 1;\n                counts.push_back(rows * cols);\n            }\n        }\n        sort(counts.rbegin(), counts.rend());\n        return accumulate(counts.begin(), counts.begin() + maxOnes, 0);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178546660",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

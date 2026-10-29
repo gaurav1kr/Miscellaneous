@@ -1,0 +1,34 @@
+{
+  "id": "2604",
+  "title": "Minimum Time to Eat All Grains",
+  "slug": "minimum-time-to-eat-all-grains",
+  "url": "https://leetcode.com/problems/minimum-time-to-eat-all-grains/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There are n hens and m grains on a line. You are given the initial positions of the hens and the grains in two integer arrays hens and grains of size n and m respectively. \n \n Any hen can eat a grain if they are on the same position. The time taken for this is negligible. One hen can also eat multiple grains. \n \n In 1 second, a hen can move right or left by 1 unit. The hens can move simultaneously and independently of each other. \n \n Return the minimum time to eat all grains if the hens act optimally. \n\n Example 1: \n \n```\nInput:\n hens = [3,6,7], grains = [2,4,7,9]\n\nOutput:\n 2\n\nExplanation:\n \nOne of the ways hens eat all grains in 2 seconds is described below:\n- The first hen eats the grain at position 2 in 1 second. \n- The second hen eats the grain at position 4 in 2 seconds. \n- The third hen eats the grains at positions 7 and 9 in 2 seconds. \nSo, the maximum time needed is 2.\nIt can be proven that the hens cannot eat all grains before 2 seconds.\n```\n\n Example 2: \n \n```\nInput:\n hens = [4,6,109,111,213,215], grains = [5,110,214]\n\nOutput:\n 1\n\nExplanation:\n \nOne of the ways hens eat all grains in 1 second is described below:\n- The first hen eats the grain at position 5 in 1 second. \n- The fourth hen eats the grain at position 110 in 1 second.\n- The sixth hen eats the grain at position 214 in 1 second. \n- The other hens do not move. \nSo, the maximum time needed is 1.\n```\n\n Constraints: \n\n 1 <= hens.length, grains.length <= 2*10 4 \n \n 0 <= hens[i], grains[j] <= 10 9",
+  "code": "class Solution {\npublic:\n    int minimumTime(vector<int>& hens, vector<int>& grains) {\n        sort(hens.begin(), hens.end());\n        sort(grains.begin(), grains.end());\n        auto possible = [&](long long t) {\n            int j = 0;\n            for (int h : hens) {\n                if (j == (int)grains.size()) return true;\n                long long left = max(0LL, (long long)h - grains[j]);\n                if (left > t) continue;\n                long long reach = max((long long)h + (t - 2 * left),\n                                      (long long)h + (t - left) / 2);\n                while (j < (int)grains.size() && grains[j] <= reach) ++j;\n            }\n            return j == (int)grains.size();\n        };\n        long long lo = 0, hi = 2000000000LL;\n        while (lo < hi) {\n            long long mid = (lo + hi) / 2;\n            if (possible(mid)) hi = mid;\n            else lo = mid + 1;\n        }\n        return (int)lo;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178891832",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

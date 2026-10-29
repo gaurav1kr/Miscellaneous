@@ -1,0 +1,31 @@
+{
+  "id": "1215",
+  "title": "Stepping Numbers",
+  "slug": "stepping-numbers",
+  "url": "https://leetcode.com/problems/stepping-numbers/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Backtracking",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Queue",
+    "Vector"
+  ],
+  "description": "A stepping number is an integer such that all of its adjacent digits have an absolute difference of exactly 1 . \n\n For example, 321 is a stepping number while 421 is not. \n\n Given two integers low and high , return a sorted list of all the stepping numbers in the inclusive range [low, high] . \n\n Example 1: \n \n```\nInput:\n low = 0, high = 21\n\nOutput:\n [0,1,2,3,4,5,6,7,8,9,10,12,21]\n```\n\n Example 2: \n \n```\nInput:\n low = 10, high = 15\n\nOutput:\n [10,12]\n```\n\n Constraints: \n\n 0 <= low <= high <= 2 * 10 9",
+  "code": "class Solution {\npublic:\n    vector<int> countSteppingNumbers(int low, int high) {\n        vector<int> answer;\n        if (low == 0) {\n            answer.push_back(0);\n        }\n        queue<long long> q;\n        for (int digit = 1; digit <= 9; ++digit) {\n            q.push(digit);\n        }\n        while (!q.empty()) {\n            long long value = q.front();\n            q.pop();\n            if (value > high) {\n                continue;\n            }\n            if (value >= low) {\n                answer.push_back(static_cast<int>(value));\n            }\n            int digit = value % 10;\n            if (digit > 0) {\n                q.push(value * 10 + digit - 1);\n            }\n            if (digit < 9) {\n                q.push(value * 10 + digit + 1);\n            }\n        }\n        sort(answer.begin(), answer.end());\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178553440",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

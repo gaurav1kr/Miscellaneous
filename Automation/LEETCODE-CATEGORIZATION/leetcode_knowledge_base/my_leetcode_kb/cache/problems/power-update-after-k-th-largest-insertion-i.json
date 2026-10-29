@@ -1,0 +1,41 @@
+{
+  "id": "3935",
+  "title": "Power Update After K-th Largest Insertion I",
+  "slug": "power-update-after-k-th-largest-insertion-i",
+  "url": "https://leetcode.com/problems/power-update-after-k-th-largest-insertion-i/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Segment Tree",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Priority queue / heap",
+    "Segment tree",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer p . \n \n You are also given a 2D integer array queries , where each queries[i] = [val i , k i ] and the difference between consecutive k i values is always less than 10. \n \n For each query: \n\n Insert val i into nums . \n \n Let x be the k i th largest element in the current nums . \n \n Update p to p x % (10 9 + 7) . \n\n Return an array ans where the ans[i] represents the value of p after processing the i th query. \n\n Example 1: \n\n Input: nums = [2], p = 4, queries = [[3,1],[1,2]] \n \n Output: [64,4096] \n \n Explanation: \n\n i \n val i \n Current \n nums \n k i \n k i th \n largest \n p \n New p = p k % (10 9 + 7) \n\n 0 \n 3 \n [2, 3] \n 1 \n 3 \n 4 \n 4 3 % (10 9 + 7) = 64 \n\n 1 \n 1 \n [2, 3, 1] \n 2 \n 2 \n 64 \n 64 2 % (10 9 + 7) = 4096 \n\n Thus, ans = [64, 4096] . \n\n Example 2: \n\n Input: nums = [7,5], p = 6, queries = [[4,3],[7,2]] \n \n Output: [1296,220296870] \n \n Explanation: \n\n i \n val i \n Current​​​​​​​ \n nums \n k i \n k i th \n largest \n p \n New p = p k % (10 9 + 7) \n\n 0 \n 4 \n [7, 5, 4] \n 3 \n 4 \n 6 \n 6 4 % (10 9 + 7) = 1296 \n\n 1 \n 7 \n [7, 5, 4, 7] \n 2 \n 7 \n 1296 \n 1296 7 % (10 9 + 7) = 220296870 \n\n Thus, ans = [1296, 220296870] \n\n Constraints: \n\n 1 <= nums.length <= 2 × 10 4 \n \n 1 <= nums[i] <= 10 6 \n \n ​​​​​​​1 <= p <= 10 6 \n \n 1 <= queries.length <= 2 × 10 4 \n \n ​​​​​​​ 1 <= val i <= 10 6 \n \n 1 <= k i <= n + i + 1 \n \n |k i - k i - 1 | < 10 for i > 0",
+  "code": "class Solution {\n    static const long long MOD=1000000007LL;\n    long long power(long long a,int e){\n        long long res=1;\n        while(e){if(e&1) res=res*a%MOD;a=a*a%MOD;e>>=1;}\n        return res;\n    }\npublic:\n    vector<int> powerUpdate(vector<int>& nums,int p,vector<vector<int>>& queries){\n        vector<int> vals=nums;\n        for(const auto& q:queries) vals.push_back(q[0]);\n        sort(vals.begin(),vals.end());\n        vals.erase(unique(vals.begin(),vals.end()),vals.end());\n        int n=vals.size();\n        vector<int> bit(n+1,0);\n        auto insert=[&](int value){\n            int i=lower_bound(vals.begin(),vals.end(),value)-vals.begin()+1;\n            for(;i<=n;i+=i&-i) ++bit[i];\n        };\n        for(int x:nums) insert(x);\n        vector<int> ans;\n        int size=nums.size();\n        for(const auto& q:queries){\n            insert(q[0]);++size;\n            int order=size-q[1]+1;\n            int idx=0,sum=0;\n            int step=1;\n            while(step*2<=n) step*=2;\n            for(;step;step>>=1){\n                int nxt=idx+step;\n                if(nxt<=n&&sum+bit[nxt]<order){idx=nxt;sum+=bit[nxt];}\n            }\n            int exponent=vals[idx];\n            p=(int)power(p,exponent);\n            ans.push_back(p);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181089683",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

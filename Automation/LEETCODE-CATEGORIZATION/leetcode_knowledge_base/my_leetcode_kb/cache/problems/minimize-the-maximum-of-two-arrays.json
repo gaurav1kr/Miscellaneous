@@ -1,0 +1,29 @@
+{
+  "id": "2513",
+  "title": "Minimize the Maximum of Two Arrays",
+  "slug": "minimize-the-maximum-of-two-arrays",
+  "url": "https://leetcode.com/problems/minimize-the-maximum-of-two-arrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search",
+    "Number Theory",
+    "Least Common Multiple",
+    "Inclusion-Exclusion Principle"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "We have two arrays arr1 and arr2 which are initially empty. You need to add positive integers to them such that they satisfy all the following conditions: \n\n arr1 contains uniqueCnt1 distinct positive integers, each of which is not divisible by divisor1 . \n \n arr2 contains uniqueCnt2 distinct positive integers, each of which is not divisible by divisor2 . \n \n No integer is present in both arr1 and arr2 . \n\n Given divisor1 , divisor2 , uniqueCnt1 , and uniqueCnt2 , return the minimum possible maximum integer that can be present in either array . \n\n Example 1: \n \n```\nInput:\n divisor1 = 2, divisor2 = 7, uniqueCnt1 = 1, uniqueCnt2 = 3\n\nOutput:\n 4\n\nExplanation:\n \nWe can distribute the first 4 natural numbers into arr1 and arr2.\narr1 = [1] and arr2 = [2,3,4].\nWe can see that both arrays satisfy all the conditions.\nSince the maximum value is 4, we return it.\n```\n\n Example 2: \n \n```\nInput:\n divisor1 = 3, divisor2 = 5, uniqueCnt1 = 2, uniqueCnt2 = 1\n\nOutput:\n 3\n\nExplanation:\n \nHere arr1 = [1,2], and arr2 = [3] satisfy all conditions.\nSince the maximum value is 3, we return it.\n```\n\n Example 3: \n \n```\nInput:\n divisor1 = 2, divisor2 = 4, uniqueCnt1 = 8, uniqueCnt2 = 2\n\nOutput:\n 15\n\nExplanation:\n \nHere, the final possible arrays can be arr1 = [1,3,5,7,9,11,13,15], and arr2 = [2,6].\nIt can be shown that it is not possible to obtain a lower maximum satisfying all conditions.\n```\n\n Constraints: \n\n 2 <= divisor1, divisor2 <= 10 5 \n \n 1 <= uniqueCnt1, uniqueCnt2 < 10 9 \n \n 2 <= uniqueCnt1 + uniqueCnt2 <= 10 9",
+  "code": "class Solution {static long long gcd14(long long a,long long b){while(b){long long r=a%b;a=b;b=r;}return a;}public:int minimizeSet(int d1,int d2,int c1,int c2){long long l=1,r=10000000000LL,g=gcd14(d1,d2);long long lcm=1LL*d1/g*d2;while(l<r){long long m=(l+r)/2;long long a=m-m/d1,b=m-m/d2,both=m-m/lcm;if(a>=c1&&b>=c2&&both>=1LL*c1+c2)r=m;else l=m+1;}return (int)l;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176595557",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

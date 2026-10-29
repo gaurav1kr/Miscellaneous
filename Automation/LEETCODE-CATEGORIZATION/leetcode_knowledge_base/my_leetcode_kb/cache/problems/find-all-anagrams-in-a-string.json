@@ -1,0 +1,32 @@
+{
+  "id": "438",
+  "title": "Find All Anagrams in a String",
+  "slug": "find-all-anagrams-in-a-string",
+  "url": "https://leetcode.com/problems/find-all-anagrams-in-a-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings s and p , return an array of all the start indices of p 's anagrams in s . You may return the answer in any order . \n\n Example 1: \n \n```\nInput:\n s = \"cbaebabacd\", p = \"abc\"\n\nOutput:\n [0,6]\n\nExplanation:\n\nThe substring with start index = 0 is \"cba\", which is an anagram of \"abc\".\nThe substring with start index = 6 is \"bac\", which is an anagram of \"abc\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"abab\", p = \"ab\"\n\nOutput:\n [0,1,2]\n\nExplanation:\n\nThe substring with start index = 0 is \"ab\", which is an anagram of \"ab\".\nThe substring with start index = 1 is \"ba\", which is an anagram of \"ab\".\nThe substring with start index = 2 is \"ab\", which is an anagram of \"ab\".\n```\n\n Constraints: \n\n 1 <= s.length, p.length <= 3 * 10 4 \n \n s and p consist of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    vector<int> findAnagrams(string s, string p) {\n    vector<int> result, pCount(26, 0), sCount(26, 0);\n    int pLen = p.size(), sLen = s.size();\n\n    if (sLen < pLen) return result;\n\n    for (int i = 0; i < pLen; ++i) {\n        ++pCount[p[i] - 'a'];\n        ++sCount[s[i] - 'a'];\n    }\n\n    if (pCount == sCount) result.push_back(0);\n\n    for (int i = pLen; i < sLen; ++i) {\n        ++sCount[s[i] - 'a'];\n        --sCount[s[i - pLen] - 'a'];\n        if (pCount == sCount) result.push_back(i - pLen + 1);\n    }\n\n    return result;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541387873",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

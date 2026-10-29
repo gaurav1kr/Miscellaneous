@@ -1,0 +1,43 @@
+{
+  "id": "2597",
+  "title": "The Number of Beautiful Subsets",
+  "slug": "the-number-of-beautiful-subsets",
+  "url": "https://leetcode.com/problems/the-number-of-beautiful-subsets/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Dynamic Programming",
+    "Backtracking",
+    "Sorting",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array nums of positive integers and a positive integer k . \n \n A subset of nums is beautiful if it does not contain two integers with an absolute difference equal to k . \n \n Return the number of non-empty beautiful subsets of the array nums . \n \n A subset of nums is an array that can be obtained by deleting some (possibly none) elements from nums . Two subsets are different if and only if the chosen indices to delete are different. \n\n Example 1: \n \n```\nInput:\n nums = [2,4,6], k = 2\n\nOutput:\n 4\n\nExplanation:\n The beautiful subsets of the array nums are: [2], [4], [6], [2, 6].\nIt can be proved that there are only 4 beautiful subsets in the array [2,4,6].\n```\n\n Example 2: \n \n```\nInput:\n nums = [1], k = 1\n\nOutput:\n 1\n\nExplanation:\n The beautiful subset of the array nums is [1].\nIt can be proved that there is only 1 beautiful subset in the array [1].\n```\n\n Constraints: \n\n 1 <= nums.length <= 18 \n \n 1 <= nums[i], k <= 1000",
+  "code": "class Solution {int ans=0,k;unordered_map<int,int> used;void dfs(vector<int>& a,int i){if(i==(int)a.size()){ans++;return;}dfs(a,i+1);int x=a[i];if(!used[x-k]&&!used[x+k]){used[x]++;dfs(a,i+1);used[x]--;}}public:int beautifulSubsets(vector<int>& nums,int diff){k=diff;sort(nums.begin(),nums.end());ans=0;used.clear();dfs(nums,0);return ans-1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176624719",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

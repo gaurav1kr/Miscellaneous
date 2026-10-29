@@ -1,0 +1,37 @@
+{
+  "id": "2646",
+  "title": "Minimize the Total Price of the Trips",
+  "slug": "minimize-the-total-price-of-the-trips",
+  "url": "https://leetcode.com/problems/minimize-the-total-price-of-the-trips/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There exists an undirected and unrooted tree with n nodes indexed from 0 to n - 1 . You are given the integer n and a 2D integer array edges of length n - 1 , where edges[i] = [a i , b i ] indicates that there is an edge between nodes a i and b i in the tree. \n \n Each node has an associated price. You are given an integer array price , where price[i] is the price of the i th node. \n \n The price sum of a given path is the sum of the prices of all nodes lying on that path. \n \n Additionally, you are given a 2D integer array trips , where trips[i] = [start i , end i ] indicates that you start the i th trip from the node start i and travel to the node end i by any path you like. \n \n Before performing your first trip, you can choose some non-adjacent nodes and halve the prices. \n \n Return the minimum total price sum to perform all the given trips . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/03/16/diagram2.png] \n \n```\nInput:\n n = 4, edges = [[0,1],[1,2],[1,3]], price = [2,2,10,6], trips = [[0,3],[2,1],[2,3]]\n\nOutput:\n 23\n\nExplanation:\n The diagram above denotes the tree after rooting it at node 2. The first part shows the initial tree and the second part shows the tree after choosing nodes 0, 2, and 3, and making their price half.\nFor the 1\nst\n trip, we choose path [0,1,3]. The price sum of that path is 1 + 2 + 3 = 6.\nFor the 2\nnd\n trip, we choose path [2,1]. The price sum of that path is 2 + 5 = 7.\nFor the 3\nrd\n trip, we choose path [2,1,3]. The price sum of that path is 5 + 2 + 3 = 10.\nThe total price sum of all trips is 6 + 7 + 10 = 23.\nIt can be proven, that 23 is the minimum answer that we can achieve.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/03/16/diagram3.png] \n \n```\nInput:\n n = 2, edges = [[0,1]], price = [2,2], trips = [[0,0]]\n\nOutput:\n 1\n\nExplanation:\n The diagram above denotes the tree after rooting it at node 0. The first part shows the initial tree and the second part shows the tree after choosing node 0, and making its price half.\nFor the 1\nst\n trip, we choose path [0]. The price sum of that path is 1.\nThe total price sum of all trips is 1. It can be proven, that 1 is the minimum answer that we can achieve.\n```\n\n Constraints: \n\n 1 <= n <= 50 \n \n edges.length == n - 1 \n \n 0 <= a i , b i <= n - 1 \n \n edges represents a valid tree. \n \n price.length == n \n \n price[i] is an even integer. \n \n 1 <= price[i] <= 1000 \n \n 1 <= trips.length <= 100 \n \n 0 <= start i , end i  <= n - 1",
+  "code": "class Solution {\n vector<vector<int>> g;vector<int> cnt,price;\n bool path(int u,int parent,int target){\n  if(u==target){++cnt[u];return true;}\n  for(int v:g[u])if(v!=parent&&path(v,u,target)){++cnt[u];return true;}\n  return false;\n }\n pair<long long,long long> dfs(int u,int p){\n  long long full=1LL*cnt[u]*price[u],half=1LL*cnt[u]*(price[u]/2);\n  for(int v:g[u])if(v!=p){auto c=dfs(v,u);full+=min(c.first,c.second);half+=c.first;}\n  return {full,half};\n }\npublic:\n int minimumTotalPrice(int n,vector<vector<int>>& edges,vector<int>& price,vector<vector<int>>& trips){\n  g.assign(n,{});cnt.assign(n,0);this->price=price;\n  for(auto &e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}\n  for(auto &t:trips)path(t[0],-1,t[1]);\n  auto p=dfs(0,-1);return (int)min(p.first,p.second);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176632293",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

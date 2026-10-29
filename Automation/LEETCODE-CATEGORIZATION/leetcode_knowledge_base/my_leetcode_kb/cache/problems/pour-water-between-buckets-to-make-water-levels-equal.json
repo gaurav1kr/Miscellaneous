@@ -1,0 +1,29 @@
+{
+  "id": "2137",
+  "title": "Pour Water Between Buckets to Make Water Levels Equal",
+  "slug": "pour-water-between-buckets-to-make-water-levels-equal",
+  "url": "https://leetcode.com/problems/pour-water-between-buckets-to-make-water-levels-equal/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You have n buckets each containing some gallons of water in it, represented by a 0-indexed integer array buckets , where the i th bucket contains buckets[i] gallons of water. You are also given an integer loss . \n \n You want to make the amount of water in each bucket equal. You can pour any amount of water from one bucket to another bucket (not necessarily an integer). However, every time you pour k gallons of water, you spill loss percent of k . \n \n Return the maximum amount of water in each bucket after making the amount of water equal. Answers within 10 -5 of the actual answer will be accepted. \n\n Example 1: \n \n```\nInput:\n buckets = [1,2,7], loss = 80\n\nOutput:\n 2.00000\n\nExplanation:\n Pour 5 gallons of water from buckets[2] to buckets[0].\n5 * 80% = 4 gallons are spilled and buckets[0] only receives 5 - 4 = 1 gallon of water.\nAll buckets have 2 gallons of water in them so return 2.\n```\n\n Example 2: \n \n```\nInput:\n buckets = [2,4,6], loss = 50\n\nOutput:\n 3.50000\n\nExplanation:\n Pour 0.5 gallons of water from buckets[1] to buckets[0].\n0.5 * 50% = 0.25 gallons are spilled and buckets[0] only receives 0.5 - 0.25 = 0.25 gallons of water.\nNow, buckets = [2.25, 3.5, 6].\nPour 2.5 gallons of water from buckets[2] to buckets[0].\n2.5 * 50% = 1.25 gallons are spilled and buckets[0] only receives 2.5 - 1.25 = 1.25 gallons of water.\nAll buckets have 3.5 gallons of water in them so return 3.5.\n```\n\n Example 3: \n \n```\nInput:\n buckets = [3,3,3,3], loss = 40\n\nOutput:\n 3.00000\n\nExplanation:\n All buckets already have the same amount of water in them.\n```\n\n Constraints: \n\n 1 <= buckets.length <= 10 5 \n \n 0 <= buckets[i] <= 10 5 \n \n 0 <= loss <= 99",
+  "code": "class Solution {\npublic:\n    double equalizeWater(vector<int>& buckets, int loss) {\n        double lo = 0, hi = *max_element(buckets.begin(), buckets.end());\n        double efficiency = (100.0 - loss) / 100.0;\n        for (int iter = 0; iter < 80; ++iter) {\n            double mid = (lo + hi) / 2;\n            double supply = 0, demand = 0;\n            for (int amount : buckets) {\n                if (amount > mid) supply += (amount - mid) * efficiency;\n                else demand += mid - amount;\n            }\n            if (supply >= demand) lo = mid;\n            else hi = mid;\n        }\n        return lo;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178642522",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

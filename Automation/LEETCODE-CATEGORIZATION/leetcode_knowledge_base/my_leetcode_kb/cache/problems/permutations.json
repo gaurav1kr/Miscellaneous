@@ -1,0 +1,29 @@
+{
+  "id": "46",
+  "title": "Permutations",
+  "slug": "permutations",
+  "url": "https://leetcode.com/problems/permutations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array nums of distinct integers, return all the possible permutations . You can return the answer in any order . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]\n```\n \n Example 2: \n \n```\nInput:\n nums = [0,1]\n\nOutput:\n [[0,1],[1,0]]\n```\n \n Example 3: \n \n```\nInput:\n nums = [1]\n\nOutput:\n [[1]]\n```\n\n Constraints: \n\n 1 <= nums.length <= 6 \n \n -10 <= nums[i] <= 10 \n \n All the integers of nums are unique .",
+  "code": "class Solution {\n    vector<vector<int>> final_vec ;\npublic:\n    void Get_permute(vector<int> a , int l , int r)\n    {\n        if(l==r)\n        {\n            final_vec.push_back(a) ;\n        }\n        else\n        {\n            // Permutations made  \n            for (int i = l; i <= r; i++)  \n            {  \n\n                // Swapping done  \n                swap(a[l], a[i]);    \n                Get_permute(a, l+1, r);  \n                swap(a[l], a[i]);  \n            }  \n        }  \n    }\n    vector<vector<int>> permute(vector<int>& nums) \n    {\n        int lower = 0 ;\n        int upper = nums.size() ;\n        Get_permute(nums, lower, upper-1);\n        return final_vec ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "341741641",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

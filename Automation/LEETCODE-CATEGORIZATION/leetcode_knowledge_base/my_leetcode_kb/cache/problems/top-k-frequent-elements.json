@@ -1,0 +1,44 @@
+{
+  "id": "347",
+  "title": "Top K Frequent Elements",
+  "slug": "top-k-frequent-elements",
+  "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Divide and Conquer",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Bucket Sort",
+    "Counting",
+    "Quickselect"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and an integer k , return the k most frequent elements . You may return the answer in any order . \n\n Example 1: \n\n Input: nums = [1,1,1,2,2,3], k = 2 \n \n Output: [1,2] \n\n Example 2: \n\n Input: nums = [1], k = 1 \n \n Output: [1] \n\n Example 3: \n\n Input: nums = [1,2,1,2,1,2,3,1,3,2], k = 2 \n \n Output: [1,2] \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 4 <= nums[i] <= 10 4 \n \n k is in the range [1, the number of unique elements in the array] . \n \n It is guaranteed that the answer is unique . \n\n Follow up: Your algorithm's time complexity must be better than O(n log n) , where n is the array's size.",
+  "code": "class Solution {\npublic:\n    vector<int> topKFrequent(vector<int>& nums, int k) {\n        // Step 1: Count the frequency of each element using a hash map\n        unordered_map<int, int> freqMap;\n        for (int num : nums) {\n            freqMap[num]++;\n        }\n        \n        // Step 2: Use a min-heap to store the top K elements\n        auto compare = [](pair<int, int>& a, pair<int, int>& b) {\n            return a.second > b.second; // Min-heap based on frequency\n        };\n        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(compare)> minHeap(compare);\n        \n        for (auto& [num, freq] : freqMap) {\n            minHeap.push({num, freq});\n            if (minHeap.size() > k) {\n                minHeap.pop(); // Keep only the top K elements\n            }\n        }\n        \n        // Step 3: Extract the elements from the heap\n        vector<int> result;\n        while (!minHeap.empty()) {\n            result.push_back(minHeap.top().first);\n            minHeap.pop();\n        }\n        \n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542087534",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

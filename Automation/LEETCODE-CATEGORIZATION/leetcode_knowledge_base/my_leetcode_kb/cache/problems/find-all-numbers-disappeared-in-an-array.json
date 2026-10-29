@@ -1,0 +1,30 @@
+{
+  "id": "448",
+  "title": "Find All Numbers Disappeared in an Array",
+  "slug": "find-all-numbers-disappeared-in-an-array",
+  "url": "https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Given an array nums of n integers where nums[i] is in the range [1, n] , return an array of all the integers in the range [1, n] that do not appear in nums . \n\n Example 1: \n \n```\nInput:\n nums = [4,3,2,7,8,2,3,1]\n\nOutput:\n [5,6]\n```\n \n Example 2: \n \n```\nInput:\n nums = [1,1]\n\nOutput:\n [2]\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 10 5 \n \n 1 <= nums[i] <= n \n\n Follow up: Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> findDisappearedNumbers(vector<int>& nums) {\n        for (int num : nums) nums[abs(num) - 1] = -abs(nums[abs(num) - 1]);\n        vector<int> result;\n        for (int i = 0; i < nums.size(); i++)\n            if (nums[i] > 0) result.push_back(i + 1);\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588078108",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

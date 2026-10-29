@@ -1,0 +1,40 @@
+{
+  "id": "1214",
+  "title": "Two Sum BSTs",
+  "slug": "two-sum-bsts",
+  "url": "https://leetcode.com/problems/two-sum-bsts/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Two Pointers",
+    "Binary Search",
+    "Stack",
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash set",
+    "Ordered set",
+    "Stack",
+    "Tree adjacency list"
+  ],
+  "description": "Given the roots of two binary search trees, root1 and root2 , return true if and only if there is a node in the first tree and a node in the second tree whose values sum up to a given integer target . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/10/ex1.png] \n \n```\nInput:\n root1 = [2,1,4], root2 = [1,0,3], target = 5\n\nOutput:\n true\n\nExplanation: \n2 and 3 sum up to 5.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/02/10/ex2.png] \n \n```\nInput:\n root1 = [0,-10,10], root2 = [5,1,7,0,2], target = 18\n\nOutput:\n false\n```\n\n Constraints: \n\n The number of nodes in each tree is in the range [1, 5000] . \n \n -10 9 <= Node.val, target <= 10 9",
+  "code": "class Solution {\n    void collect(TreeNode* node, unordered_set<int>& values) {\n        if (!node) {\n            return;\n        }\n        values.insert(node->val);\n        collect(node->left, values);\n        collect(node->right, values);\n    }\n\n    bool search(TreeNode* node, int target,\n                const unordered_set<int>& values) {\n        if (!node) {\n            return false;\n        }\n        if (values.count(target - node->val)) {\n            return true;\n        }\n        return search(node->left, target, values)\n            || search(node->right, target, values);\n    }\n\npublic:\n    bool twoSumBSTs(TreeNode* root1, TreeNode* root2, int target) {\n        unordered_set<int> values;\n        collect(root1, values);\n        return search(root2, target, values);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178552628",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

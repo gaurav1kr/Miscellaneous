@@ -1,0 +1,31 @@
+{
+  "id": "2773",
+  "title": "Height of Special Binary Tree",
+  "slug": "height-of-special-binary-tree",
+  "url": "https://leetcode.com/problems/height-of-special-binary-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "You are given a root , which is the root of a special binary tree with n nodes. The nodes of the special binary tree are numbered from 1 to n . Suppose the tree has k leaves in the following order: b 1 < b 2 < ... < b k . \n \n The leaves of this tree have a special property! That is, for every leaf b i , the following conditions hold: \n\n The right child of b i is b i + 1 if i < k , and b 1 otherwise. \n \n The left child of b i is b i - 1 if i > 1 , and b k otherwise. \n\n Return the height of the given tree. \n \n Note: The height of a binary tree is the length of the longest path from the root to any other node. \n\n Example 1: \n \n```\nInput:\n root = [1,2,3,null,null,4,5]\n\nOutput:\n 2\n\nExplanation: \nThe given tree is shown in the following picture. Each leaf's left child is the leaf to its left (shown with the blue edges). Each leaf's right child is the leaf to its right (shown with the red edges). We can see that the graph has a height of 2.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/07/12/1.png] \n \n Example 2: \n \n```\nInput:\n root = [1,2]\n\nOutput:\n 1\n\nExplanation: \nThe given tree is shown in the following picture. There is only one leaf, so it doesn't have any left or right child. We can see that the graph has a height of 1.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/07/12/2.png] \n \n Example 3: \n \n```\nInput:\n root = [1,2,3,null,null,4,null,5,6]\n\nOutput:\n 3\n\nExplanation: \nThe given tree is shown in the following picture. Each leaf's left child is the leaf to its left (shown with the blue edges). Each leaf's right child is the leaf to its right (shown with the red edges). We can see that the graph has a height of 3.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/07/12/3.png] \n\n Constraints: \n\n n == number of nodes in the tree \n \n 2 <= n <= 10 4 \n \n 1 <= node.val <= n \n \n The input is generated such that each node.val is unique.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\n    int depth(TreeNode* node) {\n        if (!node) return 0;\n        if (node->left && node->left->right == node) return 0;\n        return 1 + max(depth(node->left), depth(node->right));\n    }\npublic:\n    int heightOfTree(TreeNode* root) {\n        return depth(root);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178906338",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

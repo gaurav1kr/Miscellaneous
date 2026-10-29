@@ -1,0 +1,33 @@
+{
+  "id": "919",
+  "title": "Complete Binary Tree Inserter",
+  "slug": "complete-binary-tree-inserter",
+  "url": "https://leetcode.com/problems/complete-binary-tree-inserter/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Breadth-First Search",
+    "Design",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list"
+  ],
+  "description": "A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible. \n \n Design an algorithm to insert a new node to a complete binary tree keeping it complete after the insertion. \n \n Implement the CBTInserter class: \n\n CBTInserter(TreeNode root) Initializes the data structure with the root of the complete binary tree. \n \n int insert(int v) Inserts a TreeNode into the tree with value Node.val == val so that the tree remains complete, and returns the value of the parent of the inserted TreeNode . \n \n TreeNode get_root() Returns the root node of the tree. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/08/03/lc-treeinsert.jpg] \n \n```\nInput\n\n[\"CBTInserter\", \"insert\", \"insert\", \"get_root\"]\n[[[1, 2]], [3], [4], []]\n\nOutput\n\n[null, 1, 2, [1, 2, 3, 4]]\n\nExplanation\n\nCBTInserter cBTInserter = new CBTInserter([1, 2]);\ncBTInserter.insert(3); // return 1\ncBTInserter.insert(4); // return 2\ncBTInserter.get_root(); // return [1, 2, 3, 4]\n```\n\n Constraints: \n\n The number of nodes in the tree will be in the range [1, 1000] . \n \n 0 <= Node.val <= 5000 \n \n root is a complete binary tree. \n \n 0 <= val <= 5000 \n \n At most 10 4 calls will be made to insert and get_root .",
+  "code": "#include <queue>\n\n\nclass CBTInserter {\n    TreeNode* root;\n    queue<TreeNode*> q;\n\npublic:\n    CBTInserter(TreeNode* root) : root(root) {\n        q.push(root);\n        while (!q.empty()) {\n            TreeNode* node = q.front();\n            if (!node->left || !node->right) break;\n            q.pop();\n            q.push(node->left);\n            q.push(node->right);\n        }\n    }\n\n    int insert(int v) {\n        TreeNode* node = q.front();\n        TreeNode* newNode = new TreeNode(v);\n        if (!node->left)\n            node->left = newNode;\n        else {\n            node->right = newNode;\n            q.pop();\n            q.push(node->left);\n            q.push(node->right);\n        }\n        return node->val;\n    }\n\n    TreeNode* get_root() {\n        return root;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595377193",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

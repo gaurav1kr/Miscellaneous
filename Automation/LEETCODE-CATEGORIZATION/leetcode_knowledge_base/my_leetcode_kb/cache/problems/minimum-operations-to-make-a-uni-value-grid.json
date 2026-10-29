@@ -1,0 +1,34 @@
+{
+  "id": "2033",
+  "title": "Minimum Operations to Make a Uni-Value Grid",
+  "slug": "minimum-operations-to-make-a-uni-value-grid",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-a-uni-value-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Sorting",
+    "Matrix"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer grid of size m x n and an integer x . \n \n In one operation, you can add x to or subtract x from any element in the grid . \n \n A uni-value grid is a grid where all the elements of it are equal. \n \n Return the minimum number of operations to make the grid uni-value . If it is not possible, return -1. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/09/21/gridtxt.png] \n \n```\nInput:\n grid = [[2,4],[6,8]], x = 2\n\nOutput:\n 4\n\nExplanation:\n We can make every element equal to 4 by doing the following: \n- Add x to 2 once.\n- Subtract x from 6 once.\n- Subtract x from 8 twice.\nA total of 4 operations were used.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/09/21/gridtxt-1.png] \n \n```\nInput:\n grid = [[1,5],[2,3]], x = 1\n\nOutput:\n 5\n\nExplanation:\n We can make every element equal to 3.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/09/21/gridtxt-2.png] \n \n```\nInput:\n grid = [[1,2],[3,4]], x = 2\n\nOutput:\n -1\n\nExplanation:\n It is impossible to make every element equal.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 10 5 \n \n 1 <= m * n <= 10 5 \n \n 1 <= x, grid[i][j] <= 10 4",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minOperations(vector<vector<int>>& grid, int x) {\n        vector<int> nums;\n        for (auto& row : grid)\n            for (int val : row) nums.push_back(val);\n\n        for (int val : nums)\n            if ((val - nums[0]) % x != 0) return -1;\n\n        sort(nums.begin(), nums.end());\n        int median = nums[nums.size() / 2];\n        int ops = 0;\n        for (int val : nums) ops += abs(val - median) / x;\n        return ops;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610658953",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

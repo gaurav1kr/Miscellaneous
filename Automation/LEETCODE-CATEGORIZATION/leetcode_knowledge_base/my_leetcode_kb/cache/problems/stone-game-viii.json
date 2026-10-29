@@ -1,0 +1,38 @@
+{
+  "id": "1872",
+  "title": "Stone Game VIII",
+  "slug": "stone-game-viii",
+  "url": "https://leetcode.com/problems/stone-game-viii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Minimax",
+    "Prefix Sum",
+    "Game Theory",
+    "Zero-Sum Game"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Alice and Bob take turns playing a game, with Alice starting first . \n \n There are n stones arranged in a row. On each player's turn, while the number of stones is more than one , they will do the following: \n\n Choose an integer x > 1 , and remove the leftmost x stones from the row. \n \n Add the sum of the removed stones' values to the player's score. \n \n Place a new stone , whose value is equal to that sum, on the left side of the row. \n\n The game stops when only one stone is left in the row. \n \n The score difference between Alice and Bob is (Alice's score - Bob's score) . Alice's goal is to maximize the score difference, and Bob's goal is the minimize the score difference. \n \n Given an integer array stones of length n where stones[i] represents the value of the i th stone from the left , return the score difference between Alice and Bob if they both play optimally . \n\n Example 1: \n \n```\nInput:\n stones = [-1,2,-3,4,-5]\n\nOutput:\n 5\n\nExplanation:\n\n- Alice removes the first 4 stones, adds (-1) + 2 + (-3) + 4 = 2 to her score, and places a stone of\n value 2 on the left. stones = [2,-5].\n- Bob removes the first 2 stones, adds 2 + (-5) = -3 to his score, and places a stone of value -3 on\n the left. stones = [-3].\nThe difference between their scores is 2 - (-3) = 5.\n```\n\n Example 2: \n \n```\nInput:\n stones = [7,-6,5,10,5,-2,-6]\n\nOutput:\n 13\n\nExplanation:\n\n- Alice removes all stones, adds 7 + (-6) + 5 + 10 + 5 + (-2) + (-6) = 13 to her score, and places a\n stone of value 13 on the left. stones = [13].\nThe difference between their scores is 13 - 0 = 13.\n```\n\n Example 3: \n \n```\nInput:\n stones = [-10,-12]\n\nOutput:\n -22\n\nExplanation:\n\n- Alice can only make one move, which is to remove both stones. She adds (-10) + (-12) = -22 to her\n score and places a stone of value -22 on the left. stones = [-22].\nThe difference between their scores is (-22) - 0 = -22.\n```\n\n Constraints: \n\n n == stones.length \n \n 2 <= n <= 10 5 \n \n -10 4 <= stones[i] <= 10 4",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int stoneGameVIII(vector<int>& stones) {\n        int n = stones.size();\n        for (int i = 1; i < n; ++i)\n            stones[i] += stones[i - 1];\n        int res = stones[n - 1];\n        for (int i = n - 2; i >= 1; --i)\n            res = max(res, stones[i] - res);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610656778",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

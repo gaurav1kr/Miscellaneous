@@ -1,0 +1,28 @@
+{
+  "id": "2427",
+  "title": "Number of Common Factors",
+  "slug": "number-of-common-factors",
+  "url": "https://leetcode.com/problems/number-of-common-factors/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Enumeration",
+    "Number Theory",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given two positive integers a and b , return the number of common factors of a and b . \n \n An integer x is a common factor of a and b if x divides both a and b . \n\n Example 1: \n \n```\nInput:\n a = 12, b = 6\n\nOutput:\n 4\n\nExplanation:\n The common factors of 12 and 6 are 1, 2, 3, 6.\n```\n\n Example 2: \n \n```\nInput:\n a = 25, b = 30\n\nOutput:\n 2\n\nExplanation:\n The common factors of 25 and 30 are 1, 5.\n```\n\n Constraints: \n\n 1 <= a, b <= 1000",
+  "code": "class Solution {int gcd(int a,int b){while(b){int r=a%b;a=b;b=r;}return a;}public:int commonFactors(int a,int b){int g=gcd(a,b),ans=0;for(int d=1;d*d<=g;d++)if(g%d==0)ans+=1+(d*d!=g);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176555850",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

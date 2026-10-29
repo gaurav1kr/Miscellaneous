@@ -1,0 +1,34 @@
+{
+  "id": "2107",
+  "title": "Number of Unique Flavors After Sharing K Candies",
+  "slug": "number-of-unique-flavors-after-sharing-k-candies",
+  "url": "https://leetcode.com/problems/number-of-unique-flavors-after-sharing-k-candies/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array candies , where candies[i] represents the flavor of the i th candy. Your mom wants you to share these candies with your little sister by giving her k consecutive candies, but you want to keep as many flavors of candies as possible. \n \n Return the maximum number of unique flavors of candy you can keep after sharing with your sister. \n\n Example 1: \n \n```\nInput:\n candies = [1,\n2,2,3\n,4,3], k = 3\n\nOutput:\n 3\n\nExplanation:\n \nGive the candies in the range [1, 3] (inclusive) with flavors [2,2,3].\nYou can eat candies with flavors [1,4,3].\nThere are 3 unique flavors, so return 3.\n```\n\n Example 2: \n \n```\nInput:\n candies = [2,2,2,\n2,3\n,3], k = 2\n\nOutput:\n 2\n\nExplanation:\n \nGive the candies in the range [3, 4] (inclusive) with flavors [2,3].\nYou can eat candies with flavors [2,2,2,3].\nThere are 2 unique flavors, so return 2.\nNote that you can also share the candies with flavors [2,2] and eat the candies with flavors [2,2,3,3].\n```\n\n Example 3: \n \n```\nInput:\n candies = [2,4,5], k = 0\n\nOutput:\n 3\n\nExplanation:\n \nYou do not have to give any candies.\nYou can eat the candies with flavors [2,4,5].\nThere are 3 unique flavors, so return 3.\n```\n\n Constraints: \n\n 0 <= candies.length <= 10 5 \n \n 1 <= candies[i] <= 10 5 \n \n 0 <= k <= candies.length",
+  "code": "class Solution {\npublic:\n    int shareCandies(vector<int>& candies, int k) {\n        unordered_map<int, int> remaining;\n        for (int x : candies) ++remaining[x];\n        int answer = 0;\n        for (int i = 0; i < (int)candies.size(); ++i) {\n            if (--remaining[candies[i]] == 0) remaining.erase(candies[i]);\n            if (i >= k) ++remaining[candies[i - k]];\n            if (i >= k - 1) answer = max(answer, (int)remaining.size());\n        }\n        return k == 0 ? (int)remaining.size() : answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178639894",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

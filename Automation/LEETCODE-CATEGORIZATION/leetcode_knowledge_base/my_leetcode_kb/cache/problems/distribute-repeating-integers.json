@@ -1,0 +1,42 @@
+{
+  "id": "1655",
+  "title": "Distribute Repeating Integers",
+  "slug": "distribute-repeating-integers",
+  "url": "https://leetcode.com/problems/distribute-repeating-integers/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Counting",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an array of n integers, nums , where there are at most 50 unique values in the array. You are also given an array of m customer order quantities, quantity , where quantity[i] is the amount of integers the i th customer ordered. Determine if it is possible to distribute nums such that: \n\n The i th customer gets exactly quantity[i] integers, \n \n The integers the i th customer gets are all equal , and \n \n Every customer is satisfied. \n\n Return true if it is possible to distribute nums according to the above conditions . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4], quantity = [2]\n\nOutput:\n false\n\nExplanation:\n The 0\nth\n customer cannot be given two different integers.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,3], quantity = [2]\n\nOutput:\n true\n\nExplanation:\n The 0\nth\n customer is given [3,3]. The integers [1,2] are not used.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,1,2,2], quantity = [2,2]\n\nOutput:\n true\n\nExplanation:\n The 0\nth\n customer is given [1,1], and the 1st customer is given [2,2].\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 10 5 \n \n 1 <= nums[i] <= 1000 \n \n m == quantity.length \n \n 1 <= m <= 10 \n \n 1 <= quantity[i] <= 10 5 \n \n There are at most 50 unique values in nums .",
+  "code": "#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool canDistribute(vector<int>& nums, vector<int>& quantity) {\n        unordered_map<int, int> freq;\n        for (int x : nums) freq[x]++;\n        vector<int> counts;\n        for (auto& [k, v] : freq) counts.push_back(v);\n\n        int m = quantity.size(), n = counts.size();\n        vector<bool> dp(1 << m, false);\n        dp[0] = true;\n        vector<int> sum(1 << m, 0);\n        for (int mask = 1; mask < (1 << m); ++mask) {\n            for (int i = 0; i < m; ++i)\n                if (mask & (1 << i))\n                    sum[mask] += quantity[i];\n        }\n\n        for (int c : counts) {\n            vector<bool> ndp = dp;\n            for (int mask = 0; mask < (1 << m); ++mask) {\n                if (!dp[mask]) continue;\n                int subset = ((1 << m) - 1) ^ mask;\n                for (int sub = subset; sub; sub = (sub - 1) & subset) {\n                    if (sum[sub] <= c)\n                        ndp[mask | sub] = true;\n                }\n            }\n            dp = move(ndp);\n        }\n        return dp[(1 << m) - 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610688882",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

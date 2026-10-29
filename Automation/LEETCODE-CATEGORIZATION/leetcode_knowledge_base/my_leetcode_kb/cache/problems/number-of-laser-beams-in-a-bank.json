@@ -1,0 +1,34 @@
+{
+  "id": "2125",
+  "title": "Number of Laser Beams in a Bank",
+  "slug": "number-of-laser-beams-in-a-bank",
+  "url": "https://leetcode.com/problems/number-of-laser-beams-in-a-bank/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "String",
+    "Matrix"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Anti-theft security devices are activated inside a bank. You are given a 0-indexed binary string array bank representing the floor plan of the bank, which is an m x n 2D matrix. bank[i] represents the i th row, consisting of '0' s and '1' s. '0' means the cell is empty, while '1' means the cell has a security device. \n \n There is one laser beam between any two security devices if both conditions are met: \n\n The two devices are located on two different rows : r 1 and r 2 , where r 1 < r 2 . \n \n For each row i where r 1 < i < r 2 , there are no security devices in the i th row. \n\n Laser beams are independent, i.e., one beam does not interfere nor join with another. \n \n Return the total number of laser beams in the bank . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/12/24/laser1.jpg] \n \n```\nInput:\n bank = [\"011001\",\"000000\",\"010100\",\"001000\"]\n\nOutput:\n 8\n\nExplanation:\n Between each of the following device pairs, there is one beam. In total, there are 8 beams:\n * bank[0][1] -- bank[2][1]\n * bank[0][1] -- bank[2][3]\n * bank[0][2] -- bank[2][1]\n * bank[0][2] -- bank[2][3]\n * bank[0][5] -- bank[2][1]\n * bank[0][5] -- bank[2][3]\n * bank[2][1] -- bank[3][2]\n * bank[2][3] -- bank[3][2]\nNote that there is no beam between any device on the 0\nth\n row with any on the 3\nrd\n row.\nThis is because the 2\nnd\n row contains security devices, which breaks the second condition.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/12/24/laser2.jpg] \n \n```\nInput:\n bank = [\"000\",\"111\",\"000\"]\n\nOutput:\n 0\n\nExplanation:\n There does not exist two devices located on two different rows.\n```\n\n Constraints: \n\n m == bank.length \n \n n == bank[i].length \n \n 1 <= m, n <= 500 \n \n bank[i][j] is either '0' or '1' .",
+  "code": "class Solution {\npublic:\n int numberOfBeams(vector<string>& bank){\n  int prev=0,ans=0;for(const string& row:bank){int cur=count(row.begin(),row.end(),'1');\n   if(cur){ans+=prev*cur;prev=cur;}\n  }\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175737364",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

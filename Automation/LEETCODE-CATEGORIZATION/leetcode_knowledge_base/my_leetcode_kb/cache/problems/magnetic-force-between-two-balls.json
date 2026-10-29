@@ -1,0 +1,32 @@
+{
+  "id": "1552",
+  "title": "Magnetic Force Between Two Balls",
+  "slug": "magnetic-force-between-two-balls",
+  "url": "https://leetcode.com/problems/magnetic-force-between-two-balls/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "In the universe Earth C-137, Rick discovered a special form of magnetic force between two balls if they are put in his new invented basket. Rick has n empty baskets, the i th basket is at position[i] , Morty has m balls and needs to distribute the balls into the baskets such that the minimum magnetic force between any two balls is maximum . \n \n Rick stated that magnetic force between two different balls at positions x and y is |x - y| . \n \n Given the integer array position and the integer m . Return the required force . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/08/11/q3v1.jpg] \n \n```\nInput:\n position = [1,2,3,4,7], m = 3\n\nOutput:\n 3\n\nExplanation:\n Distributing the 3 balls into baskets 1, 4 and 7 will make the magnetic force between ball pairs [3, 3, 6]. The minimum magnetic force is 3. We cannot achieve a larger minimum magnetic force than 3.\n```\n\n Example 2: \n \n```\nInput:\n position = [5,4,3,2,1,1000000000], m = 2\n\nOutput:\n 999999999\n\nExplanation:\n We can use baskets 1 and 1000000000.\n```\n\n Constraints: \n\n n == position.length \n \n 2 <= n <= 10 5 \n \n 1 <= position[i] <= 10 9 \n \n All integers in position are distinct . \n \n 2 <= m <= position.length",
+  "code": "\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxDistance(vector<int>& position, int m) {\n        sort(position.begin(), position.end());\n        \n        int left = 1, right = position.back() - position.front(), result = 0;\n        \n        while (left <= right) {\n            int mid = left + (right - left) / 2;\n            if (canPlace(position, m, mid)) {\n                result = mid;\n                left = mid + 1;\n            } else {\n                right = mid - 1;\n            }\n        }\n        \n        return result;\n    }\n    \n    bool canPlace(vector<int>& position, int m, int minDist) {\n        int count = 1, lastPos = position[0];\n        \n        for (int i = 1; i < position.size(); ++i) {\n            if (position[i] - lastPos >= minDist) {\n                count++;\n                lastPos = position[i];\n            }\n        }\n        \n        return count >= m;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592350229",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

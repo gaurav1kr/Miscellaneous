@@ -1,0 +1,30 @@
+{
+  "id": "372",
+  "title": "Super Pow",
+  "slug": "super-pow",
+  "url": "https://leetcode.com/problems/super-pow/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Divide and Conquer",
+    "Euler's Totient Function",
+    "Euler's Theorem"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "Your task is to calculate a b mod 1337 where a is a positive integer and b is an extremely large positive integer given in the form of an array. \n\n Example 1: \n\n Input: a = 2, b = [3] \n \n Output: 8 \n \n Explanation: \n \n The array b = [3] represents the exponent 3. Therefore, a 3 = 2 3 = 8 , so the result is 8. \n\n Example 2: \n\n Input: a = 2, b = [1,0] \n \n Output: 1024 \n \n Explanation: \n \n The array b = [1, 0] represents the exponent 10. Therefore, a 10 = 2 10 = 1024 , so the result is 1024. \n\n Example 3: \n\n Input: a = 1, b = [4,3,3,8,5,2] \n \n Output: 1 \n \n Explanation: \n \n The array b = [4, 3, 3, 8, 5, 2] represents a positive exponent. Since a = 1 , any positive power of 1 is 1. Therefore, the result is 1. \n\n Constraints: \n\n 1 <= a <= 2 31 - 1 \n \n 1 <= b.length <= 2000 \n \n 0 <= b[i] <= 9 \n \n b does not contain leading zeros.",
+  "code": "class Solution {\npublic:\n    const int MOD = 1337;\n\n    int modPow(int a, int k) {\n        int res = 1;\n        a %= MOD;\n        for (int i = 0; i < k; ++i)\n            res = (res * a) % MOD;\n        return res;\n    }\n\n    int superPow(int a, vector<int>& b) {\n        if (b.empty()) return 1;\n        int last = b.back(); b.pop_back();\n        return modPow(superPow(a, b), 10) * modPow(a, last) % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610597949",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

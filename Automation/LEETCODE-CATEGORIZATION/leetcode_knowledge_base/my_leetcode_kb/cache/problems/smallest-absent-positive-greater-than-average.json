@@ -1,0 +1,32 @@
+{
+  "id": "3678",
+  "title": "Smallest Absent Positive Greater Than Average",
+  "slug": "smallest-absent-positive-greater-than-average",
+  "url": "https://leetcode.com/problems/smallest-absent-positive-greater-than-average/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Return the smallest absent positive integer in nums such that it is strictly greater than the average of all elements in nums . \nThe average of an array is defined as the sum of all its elements divided by the number of elements.\n\n Example 1: \n\n Input: nums = [3,5] \n \n Output: 6 \n \n Explanation: \n\n The average of nums is (3 + 5) / 2 = 8 / 2 = 4 . \n \n The smallest absent positive integer greater than 4 is 6. \n\n Example 2: \n\n Input: nums = [-1,1,2] \n \n Output: 3 \n \n Explanation: \n\n ​​​​​​​The average of nums is (-1 + 1 + 2) / 3 = 2 / 3 = 0.667 . \n \n The smallest absent positive integer greater than 0.667 is 3. \n\n Example 3: \n\n Input: nums = [4,-1] \n \n Output: 2 \n \n Explanation: \n\n The average of nums is (4 + (-1)) / 2 = 3 / 2 = 1.50 . \n \n The smallest absent positive integer greater than 1.50 is 2. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n -100 <= nums[i] <= 100 ​​​​​​​",
+  "code": "class Solution { public: int smallestAbsent(vector<int>& nums){long long sum=accumulate(nums.begin(),nums.end(),0LL);int x=max(1,(int)floor((double)sum/nums.size())+1);unordered_set<int>s(nums.begin(),nums.end());while(s.count(x))++x;return x;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177656845",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

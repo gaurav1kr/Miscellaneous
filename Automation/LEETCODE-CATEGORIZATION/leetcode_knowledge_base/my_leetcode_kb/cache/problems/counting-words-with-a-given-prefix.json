@@ -1,0 +1,31 @@
+{
+  "id": "2185",
+  "title": "Counting Words With a Given Prefix",
+  "slug": "counting-words-with-a-given-prefix",
+  "url": "https://leetcode.com/problems/counting-words-with-a-given-prefix/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "String Matching"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings words and a string pref . \n \n Return the number of strings in words that contain pref as a prefix . \n \n A prefix of a string s is any leading contiguous substring of s . \n\n Example 1: \n \n```\nInput:\n words = [\"pay\",\"\nat\ntention\",\"practice\",\"\nat\ntend\"], \npref \n= \"at\"\n\nOutput:\n 2\n\nExplanation:\n The 2 strings that contain \"at\" as a prefix are: \"\nat\ntention\" and \"\nat\ntend\".\n```\n\n Example 2: \n \n```\nInput:\n words = [\"leetcode\",\"win\",\"loops\",\"success\"], \npref \n= \"code\"\n\nOutput:\n 0\n\nExplanation:\n There are no strings that contain \"code\" as a prefix.\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length, pref.length <= 100 \n \n words[i] and pref consist of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int prefixCount(vector<string>& words, string pref) {\n        int ans=0;\n        for(const string& w:words) if(w.size()>=pref.size()&&w.compare(0,pref.size(),pref)==0) ++ans;\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175881521",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

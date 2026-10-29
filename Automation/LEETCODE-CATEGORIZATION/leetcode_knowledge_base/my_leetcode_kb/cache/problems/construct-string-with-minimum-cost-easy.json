@@ -1,0 +1,24 @@
+{
+  "id": "3253",
+  "title": "Construct String with Minimum Cost (Easy)",
+  "slug": "construct-string-with-minimum-cost-easy",
+  "url": "https://leetcode.com/problems/construct-string-with-minimum-cost-easy/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a string target , an array of strings words , and an integer array costs , both arrays of the same length. \n \n Imagine an empty string s . \n \n You can perform the following operation any number of times (including zero ): \n\n Choose an index i in the range [0, words.length - 1] . \n \n Append words[i] to s . \n \n The cost of operation is costs[i] . \n\n Return the minimum cost to make s equal to target . If it's not possible, return -1. \n\n Example 1: \n\n Input: target = \"abcdef\", words = [\"abdef\",\"abc\",\"d\",\"def\",\"ef\"], costs = [100,1,1,10,5] \n \n Output: 7 \n \n Explanation: \n \n The minimum cost can be achieved by performing the following operations: \n\n Select index 1 and append \"abc\" to s at a cost of 1, resulting in s = \"abc\" . \n \n Select index 2 and append \"d\" to s at a cost of 1, resulting in s = \"abcd\" . \n \n Select index 4 and append \"ef\" to s at a cost of 5, resulting in s = \"abcdef\" . \n\n Example 2: \n\n Input: target = \"aaaa\", words = [\"z\",\"zz\",\"zzz\"], costs = [1,10,100] \n \n Output: -1 \n \n Explanation: \n \n It is impossible to make s equal to target , so we return -1. \n\n Constraints: \n\n 1 <= target.length <= 2000 \n \n 1 <= words.length == costs.length <= 50 \n \n 1 <= words[i].length <= target.length \n \n target and words[i] consist only of lowercase English letters. \n \n 1 <= costs[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int minimumCost(string target, vector<string>& words, vector<int>& costs) {\n        unordered_map<string, int> cheapest;\n        for (int i = 0; i < static_cast<int>(words.size()); ++i) {\n            if (!cheapest.count(words[i])) cheapest[words[i]] = costs[i];\n            else cheapest[words[i]] = min(cheapest[words[i]], costs[i]);\n        }\n        const long long INF = (1LL << 60);\n        int n = target.size();\n        vector<long long> dp(n + 1, INF);\n        dp[0] = 0;\n        for (int i = 0; i < n; ++i) {\n            if (dp[i] == INF) continue;\n            for (const auto& item : cheapest) {\n                int len = item.first.size();\n                if (i + len <= n && target.compare(i, len, item.first) == 0) {\n                    dp[i + len] = min(dp[i + len], dp[i] + item.second);\n                }\n            }\n        }\n        return dp[n] == INF ? -1 : static_cast<int>(dp[n]);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178966021",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

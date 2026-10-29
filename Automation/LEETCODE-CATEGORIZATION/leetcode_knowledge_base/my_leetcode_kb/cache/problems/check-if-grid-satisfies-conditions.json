@@ -1,0 +1,29 @@
+{
+  "id": "3142",
+  "title": "Check if Grid Satisfies Conditions",
+  "slug": "check-if-grid-satisfies-conditions",
+  "url": "https://leetcode.com/problems/check-if-grid-satisfies-conditions/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 2D matrix grid of size m x n . You need to check if each cell grid[i][j] is: \n\n Equal to the cell below it, i.e. grid[i][j] == grid[i + 1][j] (if it exists). \n \n Different from the cell to its right, i.e. grid[i][j] != grid[i][j + 1] (if it exists). \n\n Return true if all the cells satisfy these conditions, otherwise, return false . \n\n Example 1: \n\n Input: grid = [[1,0,2],[1,0,2]] \n \n Output: true \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/04/15/examplechanged.png] \n \n All the cells in the grid satisfy the conditions. \n\n Example 2: \n\n Input: grid = [[1,1,1],[0,0,0]] \n \n Output: false \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/03/27/example21.png] \n \n All cells in the first row are equal. \n\n Example 3: \n\n Input: grid = [[1],[2],[3]] \n \n Output: false \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/03/31/changed.png] \n \n Cells in the first column have different values. \n\n Constraints: \n\n 1 <= n, m <= 10 \n \n 0 <= grid[i][j] <= 9",
+  "code": "class Solution {public:bool satisfiesConditions(vector<vector<int>>& grid){int m=grid.size(),n=grid[0].size();for(int i=0;i<m;++i)for(int j=0;j<n;++j){if(i&&grid[i][j]!=grid[i-1][j])return false;if(j&&grid[i][j]==grid[i][j-1])return false;}return true;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177392532",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "811",
+  "title": "Subdomain Visit Count",
+  "slug": "subdomain-visit-count",
+  "url": "https://leetcode.com/problems/subdomain-visit-count/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "A website domain \"discuss.leetcode.com\" consists of various subdomains. At the top level, we have \"com\" , at the next level, we have \"leetcode.com\"  and at the lowest level, \"discuss.leetcode.com\" . When we visit a domain like \"discuss.leetcode.com\" , we will also visit the parent domains \"leetcode.com\" and \"com\" implicitly. \n \n A count-paired domain is a domain that has one of the two formats \"rep d1.d2.d3\" or \"rep d1.d2\" where rep is the number of visits to the domain and d1.d2.d3 is the domain itself. \n\n For example, \"9001 discuss.leetcode.com\" is a count-paired domain that indicates that discuss.leetcode.com was visited 9001 times. \n\n Given an array of count-paired domains cpdomains , return an array of the count-paired domains of each subdomain in the input . You may return the answer in any order . \n\n Example 1: \n \n```\nInput:\n cpdomains = [\"9001 discuss.leetcode.com\"]\n\nOutput:\n [\"9001 leetcode.com\",\"9001 discuss.leetcode.com\",\"9001 com\"]\n\nExplanation:\n We only have one website domain: \"discuss.leetcode.com\".\nAs discussed above, the subdomain \"leetcode.com\" and \"com\" will also be visited. So they will all be visited 9001 times.\n```\n\n Example 2: \n \n```\nInput:\n cpdomains = [\"900 google.mail.com\", \"50 yahoo.com\", \"1 intel.mail.com\", \"5 wiki.org\"]\n\nOutput:\n [\"901 mail.com\",\"50 yahoo.com\",\"900 google.mail.com\",\"5 wiki.org\",\"5 org\",\"1 intel.mail.com\",\"951 com\"]\n\nExplanation:\n We will visit \"google.mail.com\" 900 times, \"yahoo.com\" 50 times, \"intel.mail.com\" once and \"wiki.org\" 5 times.\nFor the subdomains, we will visit \"mail.com\" 900 + 1 = 901 times, \"com\" 900 + 50 + 1 = 951 times, and \"org\" 5 times.\n```\n\n Constraints: \n\n 1 <= cpdomain.length <= 100 \n \n 1 <= cpdomain[i].length <= 100 \n \n cpdomain[i] follows either the \"rep i d1 i .d2 i .d3 i \" format or the \"rep i d1 i .d2 i \" format. \n \n rep i is an integer in the range [1, 10 4 ] . \n \n d1 i , d2 i , and d3 i consist of lowercase English letters.",
+  "code": "\n#include <vector>\n#include <string>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> subdomainVisits(vector<string>& cpdomains) {\n        unordered_map<string, int> count;\n        for (string& domain : cpdomains) {\n            int spaceIndex = domain.find(' ');\n            int freq = stoi(domain.substr(0, spaceIndex));\n            string str = domain.substr(spaceIndex + 1);\n            \n            while (!str.empty()) {\n                count[str] += freq;\n                int dotIndex = str.find('.');\n                if (dotIndex == string::npos) break;\n                str = str.substr(dotIndex + 1);\n            }\n        }\n        \n        vector<string> result;\n        for (auto& entry : count) {\n            result.push_back(to_string(entry.second) + \" \" + entry.first);\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592340740",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

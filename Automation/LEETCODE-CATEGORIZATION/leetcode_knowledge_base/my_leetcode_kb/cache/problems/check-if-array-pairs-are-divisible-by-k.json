@@ -1,0 +1,33 @@
+{
+  "id": "1497",
+  "title": "Check If Array Pairs Are Divisible by k",
+  "slug": "check-if-array-pairs-are-divisible-by-k",
+  "url": "https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an array of integers arr of even length n and an integer k . \n \n We want to divide the array into exactly n / 2 pairs such that the sum of each pair is divisible by k . \n \n Return true If you can find a way to do that or false otherwise . \n\n Example 1: \n \n```\nInput:\n arr = [1,2,3,4,5,10,6,7,8,9], k = 5\n\nOutput:\n true\n\nExplanation:\n Pairs are (1,9),(2,8),(3,7),(4,6) and (5,10).\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,2,3,4,5,6], k = 7\n\nOutput:\n true\n\nExplanation:\n Pairs are (1,6),(2,5) and(3,4).\n```\n\n Example 3: \n \n```\nInput:\n arr = [1,2,3,4,5,6], k = 10\n\nOutput:\n false\n\nExplanation:\n You can try all possible pairs to see that there is no way to divide arr into 3 pairs each with sum divisible by 10.\n```\n\n Constraints: \n\n arr.length == n \n \n 1 <= n <= 10 5 \n \n n is even. \n \n -10 9 <= arr[i] <= 10 9 \n \n 1 <= k <= 10 5",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool canArrange(vector<int>& arr, int k) {\n        unordered_map<int, int> count;\n        for (int num : arr) {\n            int r = ((num % k) + k) % k;\n            count[r]++;\n        }\n\n        if (count[0] % 2 != 0) return false;\n        for (int i = 1; i < k; ++i)\n            if (count[i] != count[k - i]) return false;\n\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593854968",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

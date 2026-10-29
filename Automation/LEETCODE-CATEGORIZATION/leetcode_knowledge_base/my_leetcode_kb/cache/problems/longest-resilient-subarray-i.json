@@ -1,0 +1,22 @@
+{
+  "id": "4075",
+  "title": "Longest Resilient Subarray I",
+  "slug": "longest-resilient-subarray-i",
+  "url": "https://leetcode.com/problems/longest-resilient-subarray-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n A subarray is resilient if, for every position in it, deleting the element at that position leaves the remaining elements with a sum divisible by k . \n \n For a subarray of length 1, the remaining sum is 0, which is divisible by k . \n \n Return the length of the longest resilient subarray . \n\n Example 1: \n\n Input: nums = [2,4,6,3], k = 2 \n \n Output: 3 \n \n Explanation: \n \n The subarray [2, 4, 6] sums to 12. Deleting 2, 4, or 6 leaves a sum of 10, 8, or 6, respectively, each of which is divisible by 2. Therefore, the answer is 3. \n\n Example 2: \n\n Input: nums = [1,4,7,1], k = 3 \n \n Output: 4 \n \n Explanation: \n \n The subarray [1, 4, 7, 1] sums to 13. Deleting the first 1, the 4, the 7, or the last 1 leaves a sum of 12, 9, 6, or 12, respectively, each of which is divisible by 3. Therefore, the answer is 4. \n\n Example 3: \n\n Input: nums = [5,5,4,8], k = 4 \n \n Output: 2 \n \n Explanation: \n \n The subarray [5, 5] is not resilient, since deleting either 5 leaves a sum of 5, which is not divisible by 4. \n \n The subarray [4, 8] sums to 12. Deleting 4 or 8 leaves a sum of 8 or 4, respectively, each of which is divisible by 4. Therefore, the answer is 2. \n\n Constraints: \n\n 1 <= nums.length <= 2500 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= k <= 10 5",
+  "code": "class Solution {\npublic:\n    int resilientSubarray(vector<int>& nums, int k) {\n        int n = nums.size(), ans = 1;\n        for (int l = 0; l < n; ++l) {\n            int residue = nums[l] % k;\n            for (int r = l + 1; r < n; ++r) {\n                if (nums[r] % k != residue) break;\n                int len = r - l + 1;\n                if (1LL * (len - 1) * residue % k == 0) ans = max(ans, len);\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179631047",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

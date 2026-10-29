@@ -1,0 +1,24 @@
+{
+  "id": "693",
+  "title": "Binary Number with Alternating Bits",
+  "slug": "binary-number-with-alternating-bits",
+  "url": "https://leetcode.com/problems/binary-number-with-alternating-bits/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "Given a positive integer, check whether it has alternating bits: namely, if two adjacent bits will always have different values. \n\n Example 1: \n \n```\nInput:\n n = 5\n\nOutput:\n true\n\nExplanation:\n The binary representation of 5 is: 101\n```\n\n Example 2: \n \n```\nInput:\n n = 7\n\nOutput:\n false\n\nExplanation:\n The binary representation of 7 is: 111.\n```\n\n Example 3: \n \n```\nInput:\n n = 11\n\nOutput:\n false\n\nExplanation:\n The binary representation of 11 is: 1011.\n```\n\n Constraints: \n\n 1 <= n <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    bool hasAlternatingBits(int n) {\n        int cnt = 0;\n        int c = n;\n        while(n > 0){\n            int rem = n % 2;\n            if(c % 2 == 0){\n                if(rem == 0 && cnt % 2 == 0){\n                    cnt++;\n                }\n                else if(rem == 1 && cnt % 2 == 1){\n                    cnt++;\n                }\n                else{\n                    return false;\n                }\n            }\n            else{\n                if(rem == 1 && cnt % 2 == 0){\n                    cnt++;\n                }\n                else if(rem == 0 && cnt % 2 == 1){\n                    cnt++;\n                }\n                else{\n                    return false;\n                }\n            }\n            n /= 2;\n        }\n            return true;\n        }\n        \n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617068645",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

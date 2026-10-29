@@ -1,0 +1,24 @@
+{
+  "id": "868",
+  "title": "Binary Gap",
+  "slug": "binary-gap",
+  "url": "https://leetcode.com/problems/binary-gap/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "Given a positive integer n , find and return the longest distance between any two adjacent 1 's in the binary representation of n . If there are no two adjacent 1 's, return 0 . \n \n Two 1 's are adjacent if there are only 0 's separating them (possibly no 0 's). The distance between two 1 's is the absolute difference between their bit positions. For example, the two 1 's in \"1001\" have a distance of 3. \n\n Example 1: \n \n```\nInput:\n n = 22\n\nOutput:\n 2\n\nExplanation:\n 22 in binary is \"10110\".\nThe first adjacent pair of 1's is \"\n1\n0\n1\n10\" with a distance of 2.\nThe second adjacent pair of 1's is \"10\n11\n0\" with a distance of 1.\nThe answer is the largest of these two distances, which is 2.\nNote that \"\n1\n01\n1\n0\" is not a valid pair since there is a 1 separating the two 1's underlined.\n```\n\n Example 2: \n \n```\nInput:\n n = 8\n\nOutput:\n 0\n\nExplanation:\n 8 in binary is \"1000\".\nThere are not any adjacent pairs of 1's in the binary representation of 8, so we return 0.\n```\n\n Example 3: \n \n```\nInput:\n n = 5\n\nOutput:\n 2\n\nExplanation:\n 5 in binary is \"101\".\n```\n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "class Solution {\npublic:\n    int binaryGap(int n) {\n        int last = -1, res = 0;\n        for (int i = 0; n; ++i, n >>= 1) {\n            if (n & 1) {\n                if (last != -1)\n                    res = max(res, i - last);\n                last = i;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610608736",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

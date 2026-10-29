@@ -1,0 +1,37 @@
+{
+  "id": "843",
+  "title": "Guess the Word",
+  "slug": "guess-the-word",
+  "url": "https://leetcode.com/problems/guess-the-word/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "String",
+    "Minimax",
+    "Interactive",
+    "Game Theory"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of unique strings words where words[i] is six letters long. One word of words was chosen as a secret word. \n \n You are also given the helper object Master . You may call Master.guess(word) where word is a six-letter-long string, and it must be from words . Master.guess(word) returns: \n\n -1 if word is not from words , or \n \n an integer representing the number of exact matches (value and position) of your guess to the secret word. \n\n There is a parameter allowedGuesses for each test case where allowedGuesses is the maximum number of times you can call Master.guess(word) . \n \n For each test case, you should call Master.guess with the secret word without exceeding the maximum number of allowed guesses. You will get: \n\n \"Either you took too many guesses, or you did not find the secret word.\" if you called Master.guess more than allowedGuesses times or if you did not call Master.guess with the secret word, or \n \n \"You guessed the secret word correctly.\" if you called Master.guess with the secret word with the number of calls to Master.guess less than or equal to allowedGuesses . \n\n The test cases are generated such that you can guess the secret word with a reasonable strategy (other than using the bruteforce method). \n\n Example 1: \n \n```\nInput:\n secret = \"acckzz\", words = [\"acckzz\",\"ccbazz\",\"eiowzz\",\"abcczz\"], allowedGuesses = 10\n\nOutput:\n You guessed the secret word correctly.\n\nExplanation:\n\nmaster.guess(\"aaaaaa\") returns -1, because \"aaaaaa\" is not in words.\nmaster.guess(\"acckzz\") returns 6, because \"acckzz\" is secret and has all 6 matches.\nmaster.guess(\"ccbazz\") returns 3, because \"ccbazz\" has 3 matches.\nmaster.guess(\"eiowzz\") returns 2, because \"eiowzz\" has 2 matches.\nmaster.guess(\"abcczz\") returns 4, because \"abcczz\" has 4 matches.\nWe made 5 calls to master.guess, and one of them was the secret, so we pass the test case.\n```\n\n Example 2: \n \n```\nInput:\n secret = \"hamada\", words = [\"hamada\",\"khaled\"], allowedGuesses = 10\n\nOutput:\n You guessed the secret word correctly.\n\nExplanation:\n Since there are two words, you can guess both.\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n words[i].length == 6 \n \n words[i] consist of lowercase English letters. \n \n All the strings of words are unique . \n \n secret exists in words . \n \n 10 <= allowedGuesses <= 30",
+  "code": "class Solution {\npublic:\n    int solve(string s1, string s2) {\n        int ans = 0;\n        for (int i = 0; i < s1.size(); i++) {\n            if (s1[i] == s2[i])\n                ans++;\n        }\n        return ans;\n    }\n\n    void findSecretWord(vector<string>& words, Master& master) {\n        unordered_set<string> st(words.begin(), words.end());\n\n        while (!st.empty()) {\n            string first = *st.begin();\n            int guessed = master.guess(first);\n\n            for (auto it = st.begin(); it!= st.end();) {\n                if(solve(*it,first) != guessed) it = st.erase(it);\n                else it++;\n            }\n            st.erase(first);\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591372017",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

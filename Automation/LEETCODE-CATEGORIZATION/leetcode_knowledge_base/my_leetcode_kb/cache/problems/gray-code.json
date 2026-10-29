@@ -1,0 +1,30 @@
+{
+  "id": "89",
+  "title": "Gray Code",
+  "slug": "gray-code",
+  "url": "https://leetcode.com/problems/gray-code/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "An n-bit gray code sequence is a sequence of 2 n integers where: \n\n Every integer is in the inclusive range [0, 2 n - 1] , \n \n The first integer is 0 , \n \n An integer appears no more than once in the sequence, \n \n The binary representation of every pair of adjacent integers differs by exactly one bit , and \n \n The binary representation of the first and last integers differs by exactly one bit . \n\n Given an integer n , return any valid n-bit gray code sequence . \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n [0,1,3,2]\n\nExplanation:\n\nThe binary representation of [0,1,3,2] is [00,01,11,10].\n- 0\n0\n and 0\n1\n differ by one bit\n- \n0\n1 and \n1\n1 differ by one bit\n- 1\n1\n and 1\n0\n differ by one bit\n- \n1\n0 and \n0\n0 differ by one bit\n[0,2,3,1] is also a valid gray code sequence, whose binary representation is [00,10,11,01].\n- \n0\n0 and \n1\n0 differ by one bit\n- 1\n0\n and 1\n1\n differ by one bit\n- \n1\n1 and \n0\n1 differ by one bit\n- 0\n1\n and 0\n0\n differ by one bit\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n [0,1]\n```\n\n Constraints: \n\n 1 <= n <= 16",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> grayCode(int n) {\n        vector<int> result(1 << n);\n        for (int i = 0; i < (1 << n); i++) {\n            result[i] = i ^ (i >> 1);\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590179336",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "2040",
+  "title": "Kth Smallest Product of Two Sorted Arrays",
+  "slug": "kth-smallest-product-of-two-sorted-arrays",
+  "url": "https://leetcode.com/problems/kth-smallest-product-of-two-sorted-arrays/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given two sorted 0-indexed integer arrays nums1 and nums2 as well as an integer k , return the k th ( 1-based ) smallest product of nums1[i] * nums2[j] where 0 <= i < nums1.length and 0 <= j < nums2.length .\n\n Example 1: \n \n```\nInput:\n nums1 = [2,5], nums2 = [3,4], k = 2\n\nOutput:\n 8\n\nExplanation:\n The 2 smallest products are:\n- nums1[0] * nums2[0] = 2 * 3 = 6\n- nums1[0] * nums2[1] = 2 * 4 = 8\nThe 2\nnd\n smallest product is 8.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [-4,-2,0,3], nums2 = [2,4], k = 6\n\nOutput:\n 0\n\nExplanation:\n The 6 smallest products are:\n- nums1[0] * nums2[1] = (-4) * 4 = -16\n- nums1[0] * nums2[0] = (-4) * 2 = -8\n- nums1[1] * nums2[1] = (-2) * 4 = -8\n- nums1[1] * nums2[0] = (-2) * 2 = -4\n- nums1[2] * nums2[0] = 0 * 2 = 0\n- nums1[2] * nums2[1] = 0 * 4 = 0\nThe 6\nth\n smallest product is 0.\n```\n\n Example 3: \n \n```\nInput:\n nums1 = [-2,-1,0,1,2], nums2 = [-3,-1,2,4,5], k = 3\n\nOutput:\n -6\n\nExplanation:\n The 3 smallest products are:\n- nums1[0] * nums2[4] = (-2) * 5 = -10\n- nums1[0] * nums2[3] = (-2) * 4 = -8\n- nums1[4] * nums2[0] = 2 * (-3) = -6\nThe 3\nrd\n smallest product is -6.\n```\n\n Constraints: \n\n 1 <= nums1.length, nums2.length <= 5 * 10 4 \n \n -10 5 <= nums1[i], nums2[j] <= 10 5 \n \n 1 <= k <= nums1.length * nums2.length \n \n nums1 and nums2 are sorted.",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    long long countSmallerOrEqual(const vector<int>& nums1, const vector<int>& nums2, long long x) {\n        long long count = 0;\n        for (int a : nums1) {\n            if (a == 0) {\n                if (x >= 0) count += nums2.size();\n            } else if (a > 0) {\n                int l = 0, r = nums2.size();\n                while (l < r) {\n                    int m = l + (r - l) / 2;\n                    if ((long long)a * nums2[m] <= x) l = m + 1;\n                    else r = m;\n                }\n                count += l;\n            } else {\n                int l = 0, r = nums2.size();\n                while (l < r) {\n                    int m = l + (r - l) / 2;\n                    if ((long long)a * nums2[m] <= x) r = m;\n                    else l = m + 1;\n                }\n                count += nums2.size() - l;\n            }\n        }\n        return count;\n    }\n\n    long long kthSmallestProduct(vector<int>& nums1, vector<int>& nums2, long long k) {\n        long long lo = -1e10, hi = 1e10;\n        while (lo < hi) {\n            long long mid = lo + (hi - lo) / 2;\n            if (countSmallerOrEqual(nums1, nums2, mid) < k) lo = mid + 1;\n            else hi = mid;\n        }\n        return lo;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610686530",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

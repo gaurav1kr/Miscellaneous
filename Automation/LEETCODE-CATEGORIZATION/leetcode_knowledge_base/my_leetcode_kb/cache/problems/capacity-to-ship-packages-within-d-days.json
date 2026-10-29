@@ -1,0 +1,29 @@
+{
+  "id": "1011",
+  "title": "Capacity To Ship Packages Within D Days",
+  "slug": "capacity-to-ship-packages-within-d-days",
+  "url": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "A conveyor belt has packages that must be shipped from one port to another within days days. \n \n The i th package on the conveyor belt has a weight of weights[i] . Each day, we load the ship with packages on the conveyor belt (in the order given by weights ). We may not load more weight than the maximum weight capacity of the ship. \n \n Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within days days. \n\n Example 1: \n \n```\nInput:\n weights = [1,2,3,4,5,6,7,8,9,10], days = 5\n\nOutput:\n 15\n\nExplanation:\n A ship capacity of 15 is the minimum to ship all the packages in 5 days like this:\n1st day: 1, 2, 3, 4, 5\n2nd day: 6, 7\n3rd day: 8\n4th day: 9\n5th day: 10\n\nNote that the cargo must be shipped in the order given, so using a ship of capacity 14 and splitting the packages into parts like (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) is not allowed.\n```\n\n Example 2: \n \n```\nInput:\n weights = [3,2,2,4,1,4], days = 3\n\nOutput:\n 6\n\nExplanation:\n A ship capacity of 6 is the minimum to ship all the packages in 3 days like this:\n1st day: 3, 2\n2nd day: 2, 4\n3rd day: 1, 4\n```\n\n Example 3: \n \n```\nInput:\n weights = [1,2,3,1,1], days = 4\n\nOutput:\n 3\n\nExplanation:\n\n1st day: 1\n2nd day: 2\n3rd day: 3\n4th day: 1, 1\n```\n\n Constraints: \n\n 1 <= days <= weights.length <= 5 * 10 4 \n \n 1 <= weights[i] <= 500",
+  "code": "class Solution {\npublic:\n    int shipWithinDays(vector<int>& weights, int days) {\n        int maxWeight = -1, totalWeight = 0;\n        for (int weight : weights) {\n            maxWeight = max(maxWeight, weight);\n            totalWeight = totalWeight + weight;\n        }\n        //here weight and total weight work as left and right pointer of bunary search\n        while (maxWeight < totalWeight) {\n            int midWeight = maxWeight + (totalWeight - maxWeight) / 2;\n            int daysNeeded = 1, currWeight = 0;\n            for (int weight : weights) {\n                if (currWeight + weight > midWeight) {\n                    daysNeeded++;\n                    currWeight = 0;\n                }\n                currWeight = currWeight + weight;\n            }\n            if (daysNeeded > days) {\n                maxWeight = midWeight + 1;\n            } else {\n                totalWeight = midWeight;\n            }\n        }\n        return maxWeight;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1514636686",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

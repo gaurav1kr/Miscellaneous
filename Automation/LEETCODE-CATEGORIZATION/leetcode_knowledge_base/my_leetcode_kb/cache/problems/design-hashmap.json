@@ -1,0 +1,36 @@
+{
+  "id": "706",
+  "title": "Design HashMap",
+  "slug": "design-hashmap",
+  "url": "https://leetcode.com/problems/design-hashmap/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Linked List",
+    "Design",
+    "Hash Function"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Linked List / Pointers",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Linked list",
+    "Vector"
+  ],
+  "description": "Design a HashMap without using any built-in hash table libraries. \n \n Implement the MyHashMap class: \n\n MyHashMap() initializes the object with an empty map. \n \n void put(int key, int value) inserts a (key, value) pair into the HashMap. If the key already exists in the map, update the corresponding value . \n \n int get(int key) returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key . \n \n void remove(key) removes the key and its corresponding value if the map contains the mapping for the key . \n\n Example 1: \n \n```\nInput\n\n[\"MyHashMap\", \"put\", \"put\", \"get\", \"get\", \"put\", \"get\", \"remove\", \"get\"]\n[[], [1, 1], [2, 2], [1], [3], [2, 1], [2], [2], [2]]\n\nOutput\n\n[null, null, null, 1, -1, null, 1, null, -1]\n\nExplanation\n\nMyHashMap myHashMap = new MyHashMap();\nmyHashMap.put(1, 1); // The map is now [[1,1]]\nmyHashMap.put(2, 2); // The map is now [[1,1], [2,2]]\nmyHashMap.get(1); // return 1, The map is now [[1,1], [2,2]]\nmyHashMap.get(3); // return -1 (i.e., not found), The map is now [[1,1], [2,2]]\nmyHashMap.put(2, 1); // The map is now [[1,1], [2,1]] (i.e., update the existing value)\nmyHashMap.get(2); // return 1, The map is now [[1,1], [2,1]]\nmyHashMap.remove(2); // remove the mapping for 2, The map is now [[1,1]]\nmyHashMap.get(2); // return -1 (i.e., not found), The map is now [[1,1]]\n```\n\n Constraints: \n\n 0 <= key, value <= 10 6 \n \n At most 10 4 calls will be made to put , get , and remove .",
+  "code": "#include <vector>\nusing namespace std;\n\nclass MyHashMap {\nprivate:\n    vector<int> map;\npublic:\n    MyHashMap() : map(1e6 + 1, -1) {}\n    void put(int key, int value) { map[key] = value; }\n    int get(int key) { return map[key]; }\n    void remove(int key) { map[key] = -1; }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588375226",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

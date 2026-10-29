@@ -1,0 +1,30 @@
+{
+  "id": "3579",
+  "title": "Minimum Steps to Convert String with Operations",
+  "slug": "minimum-steps-to-convert-string-with-operations",
+  "url": "https://leetcode.com/problems/minimum-steps-to-convert-string-with-operations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings, word1 and word2 , of equal length. You need to transform word1 into word2 . \n \n For this, divide word1 into one or more contiguous substrings . For each substring substr you can perform the following operations: \n\n Replace: Replace the character at any one index of substr with another lowercase English letter. \n\n Swap: Swap any two characters in substr . \n\n Reverse Substring: Reverse substr . \n\n Each of these counts as one operation and each character of each substring can be used in each type of operation at most once (i.e. no single index may be involved in more than one replace, one swap, or one reverse). \n \n Return the minimum number of operations required to transform word1 into word2 . \n\n Example 1: \n\n Input: word1 = \"abcdf\", word2 = \"dacbe\" \n \n Output: 4 \n \n Explanation: \n \n Divide word1 into \"ab\" , \"c\" , and \"df\" . The operations are: \n\n For the substring \"ab\" ,\n\n Perform operation of type 3 on \"ab\" -> \"ba\" . \n \n Perform operation of type 1 on \"ba\" -> \"da\" . \n\n For the substring \"c\" do no operations. \n \n For the substring \"df\" ,\n\n Perform operation of type 1 on \"df\" -> \"bf\" . \n \n Perform operation of type 1 on \"bf\" -> \"be\" . \n\n Example 2: \n\n Input: word1 = \"abceded\", word2 = \"baecfef\" \n \n Output: 4 \n \n Explanation: \n \n Divide word1 into \"ab\" , \"ce\" , and \"ded\" . The operations are: \n\n For the substring \"ab\" ,\n\n Perform operation of type 2 on \"ab\" -> \"ba\" . \n\n For the substring \"ce\" ,\n\n Perform operation of type 2 on \"ce\" -> \"ec\" . \n\n For the substring \"ded\" ,\n\n Perform operation of type 1 on \"ded\" -> \"fed\" . \n \n Perform operation of type 1 on \"fed\" -> \"fef\" . \n\n Example 3: \n\n Input: word1 = \"abcdef\", word2 = \"fedabc\" \n \n Output: 2 \n \n Explanation: \n \n Divide word1 into \"abcdef\" . The operations are: \n\n For the substring \"abcdef\" ,\n\n Perform operation of type 3 on \"abcdef\" -> \"fedcba\" . \n \n Perform operation of type 2 on \"fedcba\" -> \"fedabc\" . \n\n Constraints: \n\n 1 <= word1.length == word2.length <= 100 \n \n word1 and word2 consist only of lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\n    int cost(const string& a,const string& b,int l,int r,bool rev){\n        int f[26][26]={}; int mismatch=0;\n        for(int i=l;i<=r;++i){\n            int x=(rev?a[r-(i-l)]:a[i])-'a', y=b[i]-'a';\n            if(x!=y){++f[x][y];++mismatch;}\n        }\n        int swaps=0;\n        for(int x=0;x<26;++x)for(int y=x+1;y<26;++y)\n            swaps+=min(f[x][y],f[y][x]);\n        return mismatch-swaps+(rev?1:0);\n    }\npublic:\n    int minOperations(string word1,string word2){\n        int n=word1.size(); vector<int> dp(n+1,1000000);dp[0]=0;\n        for(int r=0;r<n;++r)for(int l=0;l<=r;++l)\n            dp[r+1]=min(dp[r+1],dp[l]+min(cost(word1,word2,l,r,false),cost(word1,word2,l,r,true)));\n        return dp[n];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181241196",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

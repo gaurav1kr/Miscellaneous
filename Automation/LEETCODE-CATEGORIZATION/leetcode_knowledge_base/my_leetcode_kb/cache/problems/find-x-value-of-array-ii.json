@@ -1,0 +1,32 @@
+{
+  "id": "3525",
+  "title": "Find X Value of Array II",
+  "slug": "find-x-value-of-array-ii",
+  "url": "https://leetcode.com/problems/find-x-value-of-array-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Segment Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an array of positive integers nums and a positive integer k . You are also given a 2D array queries , where queries[i] = [index i , value i , start i , x i ] . \n \n You are allowed to perform an operation once on nums , where you can remove any suffix from nums such that nums remains non-empty . \n \n The x-value of nums for a given x is defined as the number of ways to perform this operation so that the product of the remaining elements leaves a remainder of x modulo k . \n \n For each query in queries you need to determine the x-value of nums for x i after performing the following actions: \n\n Update nums[index i ] to value i . Only this step persists for the rest of the queries. \n \n Remove the prefix nums[0..(start i - 1)] (where nums[0..(-1)] will be used to represent the empty prefix). \n\n Return an array result of size queries.length where result[i] is the answer for the i th query. \n \n A prefix of an array is a subarray that starts from the beginning of the array and extends to any point within it. \n \n A suffix of an array is a subarray that starts at any point within the array and extends to the end of the array. \n \n Note that the prefix and suffix to be chosen for the operation can be empty . \n \n Note that x-value has a different definition in this version. \n\n Example 1: \n\n Input: nums = [1,2,3,4,5], k = 3, queries = [[2,2,0,2],[3,3,3,0],[0,1,0,1]] \n \n Output: [2,2,2] \n \n Explanation: \n\n For query 0, nums becomes [1, 2, 2, 4, 5] , and the empty prefix must be removed. The possible operations are:\n\n Remove the suffix [2, 4, 5] . nums becomes [1, 2] . \n \n Remove the empty suffix. nums becomes [1, 2, 2, 4, 5] with a product 80, which gives remainder 2 when divided by 3. \n\n For query 1, nums becomes [1, 2, 2, 3, 5] , and the prefix [1, 2, 2] must be removed. The possible operations are:\n\n Remove the empty suffix. nums becomes [3, 5] . \n \n Remove the suffix [5] . nums becomes [3] . \n\n For query 2, nums becomes [1, 2, 2, 3, 5] , and the empty prefix must be removed. The possible operations are:\n\n Remove the suffix [2, 2, 3, 5] . nums becomes [1] . \n \n Remove the suffix [3, 5] . nums becomes [1, 2, 2] . \n\n Example 2: \n\n Input: nums = [1,2,4,8,16,32], k = 4, queries = [[0,2,0,2],[0,2,0,1]] \n \n Output: [1,0] \n \n Explanation: \n\n For query 0, nums becomes [2, 2, 4, 8, 16, 32] . The only possible operation is:\n\n Remove the suffix [2, 4, 8, 16, 32] . \n\n For query 1, nums becomes [2, 2, 4, 8, 16, 32] . There is no possible way to perform the operation. \n\n Example 3: \n\n Input: nums = [1,1,2,1,1], k = 2, queries = [[2,1,0,1]] \n \n Output: [5] \n\n Constraints: \n\n 1 <= nums[i] <= 10 9 \n \n 1 <= nums.length <= 10 5 \n \n 1 <= k <= 5 \n \n 1 <= queries.length <= 2 * 10 4 \n \n queries[i] == [index i , value i , start i , x i ] \n \n 0 <= index i <= nums.length - 1 \n \n 1 <= value i <= 10 9 \n \n 0 <= start i <= nums.length - 1 \n \n 0 <= x i <= k - 1",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {struct Node{int prod;array<int,5> cnt;Node(){prod=1;cnt.fill(0);}};int K;Node merge(Node a,Node b){Node c;c.prod=a.prod*b.prod%K;c.cnt=a.cnt;for(int i=0;i<K;i++)c.cnt[a.prod*i%K]+=b.cnt[i];return c;}public:vector<int> resultArray(vector<int>& nums,int k,vector<vector<int>>& queries){K=k;int n=nums.size(),B=1;while(B<n)B*=2;vector<Node>tr(2*B);auto leaf=[&](int v){Node a;a.prod=v%K;a.cnt[a.prod]=1;return a;};for(int i=0;i<n;i++)tr[B+i]=leaf(nums[i]);for(int i=B-1;i;i--)tr[i]=merge(tr[i*2],tr[i*2+1]);vector<int>ans;for(auto&q:queries){int p=B+q[0];tr[p]=leaf(q[1]);for(p/=2;p;p/=2)tr[p]=merge(tr[p*2],tr[p*2+1]);int l=B+q[2],r=B+n;Node left,right;while(l<r){if(l&1)left=merge(left,tr[l++]);if(r&1)right=merge(tr[--r],right);l/=2;r/=2;}ans.push_back(merge(left,right).cnt[q[3]]);}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181237994",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

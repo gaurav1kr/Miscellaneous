@@ -1,0 +1,31 @@
+{
+  "id": "761",
+  "title": "Special Binary String",
+  "slug": "special-binary-string",
+  "url": "https://leetcode.com/problems/special-binary-string/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Divide and Conquer",
+    "Sorting"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Special binary strings are binary strings with the following two properties: \n\n The number of 0 's is equal to the number of 1 's. \n \n Every prefix of the binary string has at least as many 1 's as 0 's. \n\n You are given a special binary string s . \n \n A move consists of choosing two consecutive, non-empty, special substrings of s , and swapping them. Two strings are consecutive if the last character of the first string is exactly one index before the first character of the second string. \n \n Return the lexicographically largest resulting string possible after applying the mentioned operations on the string . \n\n Example 1: \n \n```\nInput:\n s = \"11011000\"\n\nOutput:\n \"11100100\"\n\nExplanation:\n The strings \"10\" [occuring at s[1]] and \"1100\" [at s[3]] are swapped.\nThis is the lexicographically largest string possible after some number of swaps.\n```\n\n Example 2: \n \n```\nInput:\n s = \"10\"\n\nOutput:\n \"10\"\n```\n\n Constraints: \n\n 1 <= s.length <= 50 \n \n s[i] is either '0' or '1' . \n \n s is a special binary string.",
+  "code": "#include <string>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string makeLargestSpecial(string s) {\n        vector<string> subs;\n        int count = 0, start = 0;\n        for (int i = 0; i < s.size(); ++i) {\n            count += s[i] == '1' ? 1 : -1;\n            if (count == 0) {\n                subs.push_back(\"1\" + makeLargestSpecial(s.substr(start + 1, i - start - 1)) + \"0\");\n                start = i + 1;\n            }\n        }\n        sort(subs.rbegin(), subs.rend());\n        string res;\n        for (auto& sub : subs) res += sub;\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610564333",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

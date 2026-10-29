@@ -1,0 +1,33 @@
+{
+  "id": "3997",
+  "title": "Count Dominant Nodes in a Binary Tree",
+  "slug": "count-dominant-nodes-in-a-binary-tree",
+  "url": "https://leetcode.com/problems/count-dominant-nodes-in-a-binary-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map",
+    "Ordered map",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given the root of a complete binary tree . \n \n A node x is called dominant if its value is equal to the maximum value among all nodes in the subtree rooted at x . \n \n Return the number of dominant nodes in the tree. \n\n Example 1: \n\n [Figure: https://assets.leetcode.com/uploads/2026/06/13/tnew.png] \n \n Input: root = [5,3,8,2,4,7,1] \n \n Output: 5 \n \n Explanation: \n\n The leaf nodes with values 2, 4, 7, and 1 are dominant. \n \n The node with value 8 is dominant because its value is the maximum value in its subtree [8, 7, 1] . \n \n Thus, the answer is 5. \n\n Example 2: \n\n [Figure: https://assets.leetcode.com/uploads/2026/06/15/t9.png] \n \n Input: root = [1,2,3,1,2] \n \n Output: 4 \n \n Explanation: \n\n The leaf nodes with values 1, 2, and 3 are dominant. \n \n The node with value 2 whose subtree is [2, 1, 2] is dominant because its value is the maximum value in its subtree. \n \n Thus, the answer is 4. \n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 5 ] . \n \n 1 <= Node.val <= 10 9 \n \n The tree is guaranteed to be a complete binary tree.",
+  "code": "class Solution {\npublic:\n    int countDominantNodes(TreeNode* root){\n        if(!root)return 0;\n        vector<TreeNode*> order(1,root);\n        for(size_t i=0;i<order.size();++i){\n            TreeNode* u=order[i];\n            if(u->left)order.push_back(u->left);\n            if(u->right)order.push_back(u->right);\n        }\n        unordered_map<TreeNode*,int> mx;\n        int ans=0;\n        for(int i=(int)order.size()-1;i>=0;--i){\n            TreeNode* u=order[i];\n            int left=u->left?mx[u->left]:INT_MIN;\n            int right=u->right?mx[u->right]:INT_MIN;\n            if(u->val>=left && u->val>=right)++ans;\n            mx[u]=max(u->val,max(left,right));\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181106553",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

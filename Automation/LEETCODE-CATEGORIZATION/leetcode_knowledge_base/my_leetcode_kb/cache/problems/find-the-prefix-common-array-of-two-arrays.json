@@ -1,0 +1,32 @@
+{
+  "id": "2657",
+  "title": "Find the Prefix Common Array of Two Arrays",
+  "slug": "find-the-prefix-common-array-of-two-arrays",
+  "url": "https://leetcode.com/problems/find-the-prefix-common-array-of-two-arrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given two 0-indexed integer permutations A and B of length n . \n \n A prefix common array of A and B is an array C such that C[i] is equal to the count of numbers that are present at or before the index i in both A and B . \n \n Return the prefix common array of A and B . \n \n A sequence of n integers is called a  permutation if it contains all integers from 1 to n exactly once. \n\n Example 1: \n \n```\nInput:\n A = [1,3,2,4], B = [3,1,2,4]\n\nOutput:\n [0,2,3,4]\n\nExplanation:\n At i = 0: no number is common, so C[0] = 0.\nAt i = 1: 1 and 3 are common in A and B, so C[1] = 2.\nAt i = 2: 1, 2, and 3 are common in A and B, so C[2] = 3.\nAt i = 3: 1, 2, 3, and 4 are common in A and B, so C[3] = 4.\n```\n\n Example 2: \n \n```\nInput:\n A = [2,3,1], B = [3,1,2]\n\nOutput:\n [0,1,3]\n\nExplanation:\n At i = 0: no number is common, so C[0] = 0.\nAt i = 1: only 3 is common in A and B, so C[1] = 1.\nAt i = 2: 1, 2, and 3 are common in A and B, so C[2] = 3.\n```\n\n Constraints: \n\n 1 <= A.length == B.length == n <= 50 \n \n 1 <= A[i], B[i] <= n \n \n It is guaranteed that A and B are both a permutation of n integers.",
+  "code": "class Solution {public:vector<int> findThePrefixCommonArray(vector<int>& A,vector<int>& B){int n=A.size(),common=0;vector<int>seen(n+1),ans;for(int i=0;i<n;i++){if(++seen[A[i]]==2)common++;if(++seen[B[i]]==2)common++;ans.push_back(common);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176634073",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

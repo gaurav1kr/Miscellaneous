@@ -1,0 +1,30 @@
+{
+  "id": "4040",
+  "title": "Minimum Operations to Form Subset Sum I",
+  "slug": "minimum-operations-to-form-subset-sum-i",
+  "url": "https://leetcode.com/problems/minimum-operations-to-form-subset-sum-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer sum . \n \n In one operation , choose an element with current value x and replace it with either 2 * x or floor(x / 2) . \n \n For each element, all multiplication operations performed on it must occur before any division operations performed on it. \n \n Return the minimum number of operations needed so that some subset of the resulting array has a sum exactly equal to sum . If it is impossible, return -1. \n \n The floor() function returns the integer part of the division. \n\n Example 1: \n\n Input: nums = [5,6,10], sum = 4 \n \n Output: 3 \n \n Explanation: \n\n Divide nums[0] = 5 twice: 5 → 2 → 1 , costing 2 operations. \n \n Divide nums[1] = 6 once: 6 → 3 , costing 1 operation. \n \n After these operations, nums = [1, 3, 10] . The subset {1, 3} sums to 4 using 3 operations in total. \n\n Example 2: \n\n Input: nums = [10,2], sum = 13 \n \n Output: 3 \n \n Explanation: \n\n Divide nums[0] = 10 once: 10 → 5 , costing 1 operation. \n \n Multiply nums[1] = 2 twice: 2 → 4 → 8 , costing 2 operations. \n \n After these operations, nums = [5, 8] . The subset {5, 8} sums to 13 using 3 operations in total. \n\n Example 3: \n\n Input: nums = [6,3], sum = 8 \n \n Output: -1 \n \n Explanation: ​​​​​​​ \n\n No sequence of operations lets a subset of nums sum to 8, so the answer is -1. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 500 \n \n 1 <= sum <= 5000",
+  "code": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, int sum) {\n        const int INF = 1e9;\n\n        // dp[s] = min operations to form sum s\n        vector<int> dp(sum + 1, INF);\n        dp[0] = 0;\n\n        for (int x : nums) {\n\n            // (reachable value, operation cost)\n            vector<pair<int, int> > options;\n\n            // -----------------------------\n            // Option 1: Original value\n            // -----------------------------\n            if (x <= sum) {\n                options.push_back({x, 0});\n            }\n\n            // -----------------------------\n            // Option 2: Repeated division\n            // x -> x/2 -> x/4 -> ...\n            // -----------------------------\n            int value = x;\n            int cost = 0;\n\n            while (value > 1) {\n                value /= 2;\n                ++cost;\n\n                options.push_back({value, cost});\n            }\n\n            // -----------------------------\n            // Option 3: Repeated multiplication\n            // x -> 2x -> 4x -> ...\n            // -----------------------------\n            long long v = 2LL * x;\n            cost = 1;\n\n            while (v <= sum) {\n                options.push_back({(int)v, cost});\n\n                v *= 2;\n                ++cost;\n            }\n\n            // -----------------------------\n            // 0/1 Knapsack\n            // -----------------------------\n            vector<int> next = dp;\n\n            for (int s = 0; s <= sum; ++s) {\n\n                if (dp[s] == INF)\n                    continue;\n\n                for (int j = 0; j < (int)options.size(); ++j) {\n\n                    int val = options[j].first;\n                    int op  = options[j].second;\n\n                    if (s + val <= sum) {\n                        next[s + val] =\n                            min(next[s + val],\n                                dp[s] + op);\n                    }\n                }\n            }\n\n            dp.swap(next);\n\n            // Can't improve beyond zero operations\n            if (dp[sum] == 0)\n                return 0;\n        }\n\n        return dp[sum] == INF ? -1 : dp[sum];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163647519",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

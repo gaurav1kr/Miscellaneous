@@ -1,0 +1,32 @@
+{
+  "id": "1430",
+  "title": "Check If a String Is a Valid Sequence from Root to Leaves Path in a Binary Tree",
+  "slug": "check-if-a-string-is-a-valid-sequence-from-root-to-leaves-path-in-a-binary-tree",
+  "url": "https://leetcode.com/problems/check-if-a-string-is-a-valid-sequence-from-root-to-leaves-path-in-a-binary-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given a binary tree where each path going from the root to any leaf form a valid sequence , check if a given string is a valid sequence in such binary tree.  \n \n We get the given string from the concatenation of an array of integers arr and the concatenation of all values of the nodes along a path results in a sequence in the given binary tree. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2019/12/18/leetcode_testcase_1.png] \n \n```\nInput:\n root = [0,1,0,0,1,0,null,null,1,0,0], arr = [0,1,0,1]\n\nOutput:\n true\n\nExplanation: \n\nThe path 0 -> 1 -> 0 -> 1 is a valid sequence (green color in the figure). \nOther valid sequences are: \n0 -> 1 -> 1 -> 0 \n0 -> 0 -> 0\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2019/12/18/leetcode_testcase_2.png] \n \n```\nInput:\n root = [0,1,0,0,1,0,null,null,1,0,0], arr = [0,0,1]\n\nOutput:\n false \n\nExplanation:\n The path 0 -> 0 -> 1 does not exist, therefore it is not even a sequence.\n```\n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2019/12/18/leetcode_testcase_3.png] \n \n```\nInput:\n root = [0,1,0,0,1,0,null,null,1,0,0], arr = [0,1,1]\n\nOutput:\n false\n\nExplanation: \nThe path 0 -> 1 -> 1 is a sequence, but it is not a valid sequence.\n```\n\n Constraints: \n\n 1 <= arr.length <= 5000 \n \n 0 <= arr[i] <= 9 \n \n Each node's value is between [0 - 9].",
+  "code": "class Solution {\n    bool dfs(TreeNode* node, vector<int>& arr, int index) {\n        if (!node || index >= static_cast<int>(arr.size()) ||\n            node->val != arr[index]) {\n            return false;\n        }\n        if (!node->left && !node->right) {\n            return index == static_cast<int>(arr.size()) - 1;\n        }\n        return dfs(node->left, arr, index + 1)\n            || dfs(node->right, arr, index + 1);\n    }\n\npublic:\n    bool isValidSequence(TreeNode* root, vector<int>& arr) {\n        return dfs(root, arr, 0);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178577314",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

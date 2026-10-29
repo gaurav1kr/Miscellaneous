@@ -1,0 +1,35 @@
+{
+  "id": "4032",
+  "title": "Longest Subarray With at Most K Distinct Prime Factors",
+  "slug": "longest-subarray-with-at-most-k-distinct-prime-factors",
+  "url": "https://leetcode.com/problems/longest-subarray-with-at-most-k-distinct-prime-factors/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Sliding Window",
+    "Number Theory"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums consisting of positive integers and an integer k . \n \n The prime factor set of a subarray is the union of the distinct prime factors of all its elements. \n \n Return the length of the longest subarray whose prime factor set contains at most k distinct prime factors. If no such subarray exists, return 0. \n\n Example 1: \n\n Input: nums = [7,6,10,12,11], k = 3 \n \n Output: 3 \n \n Explanation: \n \n Consider the subarray [6, 10, 12] : \n\n The distinct prime factors of 6 are {2, 3} . \n \n The distinct prime factors of 10 are {2, 5} . \n \n The distinct prime factors of 12 are {2, 3} . \n \n The union of these sets is {2, 3, 5} , which contains 3 distinct prime factors. \n\n No longer subarray satisfies the condition. Therefore, the answer is 3. \n\n Example 2: \n\n Input: nums = [4,6,9,18], k = 4 \n \n Output: 4 \n \n Explanation: \n \n Consider the entire array [4, 6, 9, 18] : \n\n The distinct prime factors of 4 are {2} . \n \n The distinct prime factors of 6 are {2, 3} . \n \n The distinct prime factors of 9 are {3} . \n \n The distinct prime factors of 18 are {2, 3} . \n \n The union of these sets is {2, 3} , which contains 2 distinct prime factors. \n\n Since 2 <= 4 , the entire array is valid. Therefore, the answer is 4. \n\n Example 3: \n\n Input: nums = [6,10,15], k = 2 \n \n Output: 1 \n \n Explanation: \n \n Every subarray of length at least 2 has prime factor set {2, 3, 5} , which contains 3 distinct prime factors. \n \n Since 3 > 2 , only subarrays of length 1 are valid. Therefore, the answer is 1. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 2 <= nums[i] <= 10 5 \n \n 1 <= k <= 10 4",
+  "code": "class Solution {\npublic:\n    int longestSubarray(vector<int>& nums, int k) {\n        int mx = *max_element(nums.begin(), nums.end());\n        vector<int> spf(mx + 1, 0);\n        for (int i = 2; i <= mx; ++i) {\n            if (spf[i] != 0) continue;\n            for (int j = i; j <= mx; j += i)\n                if (spf[j] == 0) spf[j] = i;\n        }\n        int n = nums.size();\n        vector<vector<int>> factors(n);\n        for (int i = 0; i < n; ++i) {\n            int x = nums[i];\n            while (x > 1) {\n                int p = spf[x];\n                factors[i].push_back(p);\n                while (x % p == 0) x /= p;\n            }\n        }\n        vector<int> cnt(mx + 1, 0);\n        int left = 0, distinct = 0, ans = 0;\n        for (int right = 0; right < n; ++right) {\n            for (int p : factors[right]) if (++cnt[p] == 1) ++distinct;\n            while (distinct > k) {\n                for (int p : factors[left]) if (--cnt[p] == 0) --distinct;\n                ++left;\n            }\n            ans = max(ans, right - left + 1);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181117898",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "3543",
+  "title": "Maximum Weighted K-Edge Path",
+  "slug": "maximum-weighted-k-edge-path",
+  "url": "https://leetcode.com/problems/maximum-weighted-k-edge-path/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Dynamic Programming",
+    "Graph Theory"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Bitset",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Hash map / hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer n and a Directed Acyclic Graph (DAG) with n nodes labeled from 0 to n - 1 . This is represented by a 2D array edges , where edges[i] = [u i , v i , w i ] indicates a directed edge from node u i to v i with weight w i . \n \n You are also given two integers, k and t . \n \n Your task is to determine the maximum possible sum of edge weights for any path in the graph such that: \n\n The path contains exactly k edges. \n \n The total sum of edge weights in the path is strictly less than t . \n\n Return the maximum possible sum of weights for such a path. If no such path exists, return -1 . \n\n Example 1: \n\n Input: n = 3, edges = [[0,1,1],[1,2,2]], k = 2, t = 4 \n \n Output: 3 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/09/screenshot-2025-04-10-at-061326.png] \n\n The only path with k = 2 edges is 0 -> 1 -> 2 with weight 1 + 2 = 3 < t . \n \n Thus, the maximum possible sum of weights less than t is 3. \n\n Example 2: \n\n Input: n = 3, edges = [[0,1,2],[0,2,3]], k = 1, t = 3 \n \n Output: 2 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/09/screenshot-2025-04-10-at-061406.png] \n\n There are two paths with k = 1 edge:\n\n 0 -> 1 with weight 2 < t . \n \n 0 -> 2 with weight 3 = t , which is not strictly less than t . \n\n Thus, the maximum possible sum of weights less than t is 2. \n\n Example 3: \n\n Input: n = 3, edges = [[0,1,6],[1,2,8]], k = 1, t = 6 \n \n Output: -1 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/09/screenshot-2025-04-10-at-061442.png] \n\n There are two paths with k = 1 edge:\n\n 0 -> 1 with weight 6 = t , which is not strictly less than t . \n \n 1 -> 2 with weight 8 > t , which is not strictly less than t . \n\n Since there is no path with sum of weights strictly less than t , the answer is -1. \n\n Constraints: \n\n 1 <= n <= 300 \n \n 0 <= edges.length <= 300 \n \n edges[i] = [u i , v i , w i ] \n \n 0 <= u i , v i < n \n \n u i != v i \n \n 1 <= w i <= 10 \n \n 0 <= k <= 300 \n \n 1 <= t <= 600 \n \n The input graph is guaranteed to be a DAG . \n \n There are no duplicate edges.",
+  "code": "\nclass Solution {\npublic:\n    int maxWeight(int n, vector<vector<int>>& edges,\n                  int k, int t) {\n\n        // DAG with n nodes cannot have a path\n        // containing n or more edges.\n        if (k >= n)\n            return -1;\n\n        if (k == 0)\n            return 0;\n\n        // dp[v][s] = true if a path ending at v\n        // has total weight s using current edge count.\n        vector<bitset<601>> dp(n), next(n);\n\n        // A path can start at any node.\n        for (int i = 0; i < n; ++i)\n            dp[i].set(0);\n\n        // Add one edge in each iteration.\n        for (int step = 1; step <= k; ++step) {\n\n            for (int i = 0; i < n; ++i)\n                next[i].reset();\n\n            for (const auto& e : edges) {\n                int u = e[0];\n                int v = e[1];\n                int w = e[2];\n\n                // Extend all reachable sums at u.\n                next[v] |= (dp[u] << w);\n            }\n\n            dp.swap(next);\n        }\n\n        // Find maximum reachable weight < t.\n        for (int sum = t - 1; sum >= 0; --sum) {\n            for (int v = 0; v < n; ++v) {\n                if (dp[v].test(sum))\n                    return sum;\n            }\n        }\n\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181654141",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "673",
+  "title": "Number of Longest Increasing Subsequence",
+  "slug": "number-of-longest-increasing-subsequence",
+  "url": "https://leetcode.com/problems/number-of-longest-increasing-subsequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Longest Increasing Subsequence"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Fenwick tree",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "Given an integer array  nums , return the number of longest increasing subsequences. \n \n Notice that the sequence has to be strictly increasing. \n\n Example 1: \n \n```\nInput:\n nums = [1,3,5,4,7]\n\nOutput:\n 2\n\nExplanation:\n The two longest increasing subsequences are [1, 3, 4, 7] and [1, 3, 5, 7].\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,2,2,2,2]\n\nOutput:\n 5\n\nExplanation:\n The length of the longest increasing subsequence is 1, and there are 5 increasing subsequences of length 1, so output 5.\n```\n\n Constraints: \n\n 1 <= nums.length <= 2000 \n \n -10 6 <= nums[i] <= 10 6 \n \n The answer is guaranteed to fit inside a 32-bit integer.",
+  "code": "class Solution {\npublic:\n    int findNumberOfLIS(vector<int>& nums) {\n        if (nums.empty()) return 0;\n        \n        int n = nums.size();\n        vector<int> dp(n, 1);  // dp[i] will store the length of LIS ending at i\n        vector<int> count(n, 1);  // count[i] will store the number of LIS ending at i\n        \n        int maxLength = 1;\n        int totalCount = 0;\n        \n        for (int i = 1; i < n; ++i) {\n            for (int j = 0; j < i; ++j) {\n                if (nums[i] > nums[j]) {\n                    if (dp[j] + 1 > dp[i]) {\n                        dp[i] = dp[j] + 1;\n                        count[i] = count[j];  // reset the count to count[j]\n                    } else if (dp[j] + 1 == dp[i]) {\n                        count[i] += count[j];  // add count[j] to count[i]\n                    }\n                }\n            }\n            maxLength = max(maxLength, dp[i]);  // update maxLength\n        }\n        \n        for (int i = 0; i < n; ++i) {\n            if (dp[i] == maxLength) {\n                totalCount += count[i];\n            }\n        }\n        \n        return totalCount;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1501843838",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

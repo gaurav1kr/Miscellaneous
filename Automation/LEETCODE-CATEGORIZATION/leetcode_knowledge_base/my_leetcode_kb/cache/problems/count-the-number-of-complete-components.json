@@ -1,0 +1,32 @@
+{
+  "id": "2685",
+  "title": "Count the Number of Complete Components",
+  "slug": "count-the-number-of-complete-components",
+  "url": "https://leetcode.com/problems/count-the-number-of-complete-components/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer n . There is an undirected graph with n vertices, numbered from 0 to n - 1 . You are given a 2D integer array edges where edges[i] = [a i , b i ] denotes that there exists an undirected edge connecting vertices a i and b i . \n \n Return the number of complete connected components of the graph . \n \n A connected component is a subgraph of a graph in which there exists a path between any two vertices, and no vertex of the subgraph shares an edge with a vertex outside of the subgraph. \n \n A connected component is said to be complete if there exists an edge between every pair of its vertices. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2023/04/11/screenshot-from-2023-04-11-23-31-23.png] \n \n```\nInput:\n n = 6, edges = [[0,1],[0,2],[1,2],[3,4]]\n\nOutput:\n 3\n\nExplanation:\n From the picture above, one can see that all of the components of this graph are complete.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2023/04/11/screenshot-from-2023-04-11-23-32-00.png] \n \n```\nInput:\n n = 6, edges = [[0,1],[0,2],[1,2],[3,4],[3,5]]\n\nOutput:\n 1\n\nExplanation:\n The component containing vertices 0, 1, and 2 is complete since there is an edge between every pair of two vertices. On the other hand, the component containing vertices 3, 4, and 5 is not complete since there is no edge between vertices 4 and 5. Thus, the number of complete components in this graph is 1.\n```\n\n Constraints: \n\n 1 <= n <= 50 \n \n 0 <= edges.length <= n * (n - 1) / 2 \n \n edges[i].length == 2 \n \n 0 <= a i , b i <= n - 1 \n \n a i != b i \n \n There are no repeated edges.",
+  "code": "class Solution {public:int countCompleteComponents(int n,vector<vector<int>>&edges){vector<vector<int>>g(n);for(auto&e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}vector<int>seen(n);int ans=0;for(int i=0;i<n;i++)if(!seen[i]){queue<int>q;q.push(i);seen[i]=1;long long v=0,d=0;while(!q.empty()){int u=q.front();q.pop();v++;d+=g[u].size();for(int w:g[u])if(!seen[w]){seen[w]=1;q.push(w);}}ans+=d==v*(v-1);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176639408",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

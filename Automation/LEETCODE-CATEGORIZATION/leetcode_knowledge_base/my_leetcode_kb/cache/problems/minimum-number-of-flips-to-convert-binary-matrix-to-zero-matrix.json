@@ -1,0 +1,39 @@
+{
+  "id": "1284",
+  "title": "Minimum Number of Flips to Convert Binary Matrix to Zero Matrix",
+  "slug": "minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix",
+  "url": "https://leetcode.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given a m x n binary matrix mat . In one step, you can choose one cell and flip it and all the four neighbors of it if they exist (Flip is changing 1 to 0 and 0 to 1 ). A pair of cells are called neighbors if they share one edge. \n \n Return the minimum number of steps required to convert mat to a zero matrix or -1 if you cannot. \n \n A binary matrix is a matrix with all cells equal to 0 or 1 only. \n \n A zero matrix is a matrix with all cells equal to 0 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/11/28/matrix.png] \n \n```\nInput:\n mat = [[0,0],[0,1]]\n\nOutput:\n 3\n\nExplanation:\n One possible solution is to flip (1, 0) then (0, 1) and finally (1, 1) as shown.\n```\n\n Example 2: \n \n```\nInput:\n mat = [[0]]\n\nOutput:\n 0\n\nExplanation:\n Given matrix is a zero matrix. We do not need to change it.\n```\n\n Example 3: \n \n```\nInput:\n mat = [[1,0,0],[1,0,0]]\n\nOutput:\n -1\n\nExplanation:\n Given matrix cannot be a zero matrix.\n```\n\n Constraints: \n\n m == mat.length \n \n n == mat[i].length \n \n 1 <= m, n <= 3 \n \n mat[i][j] is either 0 or 1 .",
+  "code": "#include <vector>\n#include <queue>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minFlips(vector<vector<int>>& mat) {\n        int m = mat.size(), n = mat[0].size(), start = 0;\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                if (mat[i][j])\n                    start |= 1 << (i * n + j);\n\n        queue<pair<int, int>> q;\n        unordered_set<int> visited;\n        q.push({start, 0});\n        visited.insert(start);\n\n        vector<pair<int, int>> dirs = {{0,0},{0,1},{1,0},{0,-1},{-1,0}};\n\n        while (!q.empty()) {\n            auto [state, step] = q.front(); q.pop();\n            if (state == 0) return step;\n\n            for (int i = 0; i < m; ++i) {\n                for (int j = 0; j < n; ++j) {\n                    int next = state;\n                    for (auto [dx, dy] : dirs) {\n                        int x = i + dx, y = j + dy;\n                        if (x >= 0 && y >= 0 && x < m && y < n) {\n                            next ^= 1 << (x * n + y);\n                        }\n                    }\n                    if (!visited.count(next)) {\n                        visited.insert(next);\n                        q.push({next, step + 1});\n                    }\n                }\n            }\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610578048",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

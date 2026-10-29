@@ -1,0 +1,30 @@
+{
+  "id": "3317",
+  "title": "Find the Number of Possible Ways for an Event",
+  "slug": "find-the-number-of-possible-ways-for-an-event",
+  "url": "https://leetcode.com/problems/find-the-number-of-possible-ways-for-an-event/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given three integers n , x , and y . \n \n An event is being held for n performers. When a performer arrives, they are assigned to one of the x stages. All performers assigned to the same stage will perform together as a band, though some stages might remain empty . \n \n After all performances are completed, the jury will award each band a score in the range [1, y] . \n \n Return the total number of possible ways the event can take place. \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n \n Note that two events are considered to have been held differently if either of the following conditions is satisfied: \n\n Any performer is assigned a different stage. \n \n Any band is awarded a different score. \n\n Example 1: \n\n Input: n = 1, x = 2, y = 3 \n \n Output: 6 \n \n Explanation: \n\n There are 2 ways to assign a stage to the performer. \n \n The jury can award a score of either 1, 2, or 3 to the only band. \n\n Example 2: \n\n Input: n = 5, x = 2, y = 1 \n \n Output: 32 \n \n Explanation: \n\n Each performer will be assigned either stage 1 or stage 2. \n \n All bands will be awarded a score of 1. \n\n Example 3: \n\n Input: n = 3, x = 3, y = 4 \n \n Output: 684 \n\n Constraints: \n\n 1 <= n, x, y <= 1000",
+  "code": "class Solution { public:\n int numberOfWays(int n,int x,int y){const long long M=1000000007;vector<long long> dp(n+1);dp[0]=1;for(int i=1;i<=n;i++){for(int j=i;j>=1;j--)dp[j]=(dp[j]*j+dp[j-1])%M;dp[0]=0;}long long ans=0,ways=1;for(int j=1;j<=min(n,x);j++){ways=ways*(x-j+1)%M*y%M;ans=(ans+dp[j]*ways)%M;}return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177458123",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

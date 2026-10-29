@@ -1,0 +1,32 @@
+{
+  "id": "838",
+  "title": "Push Dominoes",
+  "slug": "push-dominoes",
+  "url": "https://leetcode.com/problems/push-dominoes/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "There are n dominoes in a line, and we place each domino vertically upright. In the beginning, we simultaneously push some of the dominoes either to the left or to the right. \n \n After each second, each domino that is falling to the left pushes the adjacent domino on the left. Similarly, the dominoes falling to the right push their adjacent dominoes standing on the right. \n \n When a vertical domino has dominoes falling on it from both sides, it stays still due to the balance of the forces. \n \n For the purposes of this question, we will consider that a falling domino expends no additional force to a falling or already fallen domino. \n \n You are given a string dominoes representing the initial state where: \n\n dominoes[i] = 'L' , if the i th domino has been pushed to the left, \n \n dominoes[i] = 'R' , if the i th domino has been pushed to the right, and \n \n dominoes[i] = '.' , if the i th domino has not been pushed. \n\n Return a string representing the final state . \n\n Example 1: \n \n```\nInput:\n dominoes = \"RR.L\"\n\nOutput:\n \"RR.L\"\n\nExplanation:\n The first domino expends no additional force on the second domino.\n```\n\n Example 2: \n [Figure: https://s3-lc-upload.s3.amazonaws.com/uploads/2018/05/18/domino.png] \n \n```\nInput:\n dominoes = \".L.R...LR..L..\"\n\nOutput:\n \"LL.RR.LLRRLL..\"\n```\n\n Constraints: \n\n n == dominoes.length \n \n 1 <= n <= 10 5 \n \n dominoes[i] is either 'L' , 'R' , or '.' .",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string pushDominoes(string dominoes) {\n        int n = dominoes.size();\n        vector<int> forces(n, 0);\n\n        int force = 0;\n        for (int i = 0; i < n; i++) {\n            if (dominoes[i] == 'R') force = n;\n            else if (dominoes[i] == 'L') force = 0;\n            else force = max(force - 1, 0);\n            forces[i] += force;\n        }\n\n        force = 0;\n        for (int i = n - 1; i >= 0; i--) {\n            if (dominoes[i] == 'L') force = n;\n            else if (dominoes[i] == 'R') force = 0;\n            else force = max(force - 1, 0);\n            forces[i] -= force;\n        }\n\n        string result;\n        for (int f : forces) {\n            if (f > 0) result += 'R';\n            else if (f < 0) result += 'L';\n            else result += '.';\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590134579",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

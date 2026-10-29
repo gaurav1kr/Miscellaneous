@@ -1,0 +1,28 @@
+{
+  "id": "157",
+  "title": "Read N Characters Given Read4",
+  "slug": "read-n-characters-given-read4",
+  "url": "https://leetcode.com/problems/read-n-characters-given-read4/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Simulation",
+    "Interactive"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector"
+  ],
+  "description": "Given a file and assume that you can only read the file using a given method read4 , implement a method to read n characters. \n \n Method read4: \n \n The API read4 reads four consecutive characters from file , then writes those characters into the buffer array buf4 . \n \n The return value is the number of actual characters read. \n \n Note that read4() has its own file pointer, much like FILE *fp in C. \n \n Definition of read4: \n \n```\nParameter: char[] buf4\n Returns: int\n\nbuf4[] is a destination, not a source. The results from read4 will be copied to buf4[].\n```\n\n Below is a high-level example of how read4 works: \n [Figure: https://assets.leetcode.com/uploads/2020/07/01/157_example.png] \n \n```\nFile file(\"abcde\n\"); // File is \"\nabcde\n\", initially file pointer (fp) points to 'a'\nchar[] buf4 = new char[4]; // Create buffer with enough space to store characters\nread4(buf4); // read4 returns 4. Now buf4 = \"abcd\", fp points to 'e'\nread4(buf4); // read4 returns 1. Now buf4 = \"e\", fp points to end of file\nread4(buf4); // read4 returns 0. Now buf4 = \"\", fp points to end of file\n```\n\n Method read: \n \n By using the read4 method, implement the method read that reads n characters from file and store it in the buffer array buf . Consider that you cannot manipulate file directly. \n \n The return value is the number of actual characters read. \n \n Definition of read: \n \n```\nParameters: char[] buf, int n\n Returns: int\n\nbuf[] is a destination, not a source. You will need to write the results to buf[].\n```\n\n Note: \n\n Consider that you cannot manipulate the file directly. The file is only accessible for read4 but not for read . \n \n The read function will only be called once for each test case. \n \n You may assume the destination buffer array, buf , is guaranteed to have enough space for storing n characters. \n\n Example 1: \n \n```\nInput:\n file = \"abc\", n = 4\n\nOutput:\n 3\n\nExplanation:\n After calling your read method, buf should contain \"abc\". We read a total of 3 characters from the file, so return 3.\nNote that \"abc\" is the file's content, not buf. buf is the destination buffer that you will have to write the results to.\n```\n\n Example 2: \n \n```\nInput:\n file = \"abcde\", n = 5\n\nOutput:\n 5\n\nExplanation:\n After calling your read method, buf should contain \"abcde\". We read a total of 5 characters from the file, so return 5.\n```\n\n Example 3: \n \n```\nInput:\n file = \"abcdABCD1234\", n = 12\n\nOutput:\n 12\n\nExplanation:\n After calling your read method, buf should contain \"abcdABCD1234\". We read a total of 12 characters from the file, so return 12.\n```\n\n Constraints: \n\n 1 <= file.length <= 500 \n \n file consist of English letters and digits. \n \n 1 <= n <= 1000",
+  "code": "// The judge provides: int read4(char *buf4);\nclass Solution\n{\npublic:\n    int read(char*buf, int n)\n    {\n        int got = 0;\n        char tmp[4];\n        while (got < n)\n        {\n            int cnt = read4(tmp);\n            if (!cnt)\n            {\n                break;\n            }\n            for (int i = 0; i < cnt && got < n;++i)\n            {\n                buf[got++] = tmp[i];\n            }\n        }\n        return got;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178287200",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

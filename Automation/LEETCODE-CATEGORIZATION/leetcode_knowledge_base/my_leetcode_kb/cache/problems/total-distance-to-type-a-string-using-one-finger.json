@@ -1,0 +1,29 @@
+{
+  "id": "3846",
+  "title": "Total Distance to Type a String Using One Finger",
+  "slug": "total-distance-to-type-a-string-using-one-finger",
+  "url": "https://leetcode.com/problems/total-distance-to-type-a-string-using-one-finger/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "There is a special keyboard where keys are arranged in a rectangular grid as follows.\n\n q \n w \n e \n r \n t \n y \n u \n i \n o \n p \n\n a \n s \n d \n f \n g \n h \n j \n k \n l \n\n z \n x \n c \n v \n b \n n \n m \n\n You are given a string s that consists of lowercase English letters only. Return an integer denoting the total distance to type s using only one finger. Your finger starts on the key 'a' . \n \n The distance between two keys at (r1, c1) and (r2, c2) is |r1 - r2| + |c1 - c2| . \n\n Example 1: \n\n Input: s = \"hello\" \n \n Output: 17 \n \n Explanation: \n\n Your finger starts at 'a' , which is at (1, 0) . \n \n Move to 'h' , which is at (1, 5) . The distance is |1 - 1| + |0 - 5| = 5 . \n \n Move to 'e' , which is at (0, 2) . The distance is |1 - 0| + |5 - 2| = 4 . \n \n Move to 'l' , which is at (1, 8) . The distance is |0 - 1| + |2 - 8| = 7 . \n \n Move to 'l' , which is at (1, 8) . The distance is |1 - 1| + |8 - 8| = 0 . \n \n Move to 'o' , which is at (0, 8) . The distance is |1 - 0| + |8 - 8| = 1 . \n \n Total distance is 5 + 4 + 7 + 0 + 1 = 17 . \n\n Example 2: \n\n Input: s = \"a\" \n \n Output: 0 \n \n Explanation: \n\n Your finger starts at 'a' , which is at (1, 0) . \n \n Move to 'a' , which is at (1, 0) . The distance is |1 - 1| + |0 - 0| = 0 . \n \n Total distance is 0. \n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists of lowercase English letters only.",
+  "code": "class Solution {\npublic:\n    int totalDistance(string s) {\n        string rows[] = {\"qwertyuiop\", \"asdfghjkl\", \"zxcvbnm\"};\n        int row[26] = {}, col[26] = {};\n        for (int r = 0; r < 3; ++r)\n            for (int c = 0; c < (int)rows[r].size(); ++c) {\n                int id = rows[r][c] - 'a';\n                row[id] = r; col[id] = c;\n            }\n        int prev = 0, ans = 0; // 'a'\n        for (char ch : s) {\n            int cur = ch - 'a';\n            ans += abs(row[cur] - row[prev]) + abs(col[cur] - col[prev]);\n            prev = cur;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181062420",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

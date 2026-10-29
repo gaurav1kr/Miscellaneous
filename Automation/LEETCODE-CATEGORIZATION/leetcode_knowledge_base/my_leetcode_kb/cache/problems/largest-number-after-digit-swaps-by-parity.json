@@ -1,0 +1,29 @@
+{
+  "id": "2231",
+  "title": "Largest Number After Digit Swaps by Parity",
+  "slug": "largest-number-after-digit-swaps-by-parity",
+  "url": "https://leetcode.com/problems/largest-number-after-digit-swaps-by-parity/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Priority queue / heap",
+    "Sorted array"
+  ],
+  "description": "You are given a positive integer num . You may swap any two digits of num that have the same parity (i.e. both odd digits or both even digits). \n \n Return the largest possible value of num after any number of swaps. \n\n Example 1: \n \n```\nInput:\n num = 1234\n\nOutput:\n 3412\n\nExplanation:\n Swap the digit 3 with the digit 1, this results in the number 3214.\nSwap the digit 2 with the digit 4, this results in the number 3412.\nNote that there may be other sequences of swaps but it can be shown that 3412 is the largest possible number.\nAlso note that we may not swap the digit 4 with the digit 1 since they are of different parities.\n```\n\n Example 2: \n \n```\nInput:\n num = 65875\n\nOutput:\n 87655\n\nExplanation:\n Swap the digit 8 with the digit 6, this results in the number 85675.\nSwap the first digit 5 with the digit 7, this results in the number 87655.\nNote that there may be other sequences of swaps but it can be shown that 87655 is the largest possible number.\n```\n\n Constraints: \n\n 1 <= num <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int largestInteger(int num){string s=to_string(num),even,odd;for(char c:s)( (c-'0')%2?odd:even).push_back(c);\n  sort(even.rbegin(),even.rend());sort(odd.rbegin(),odd.rend());int i=0,j=0;for(char&c:s)c=((c-'0')%2?odd[j++]:even[i++]);return stoi(s);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175892451",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

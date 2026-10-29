@@ -1,0 +1,33 @@
+{
+  "id": "1275",
+  "title": "Find Winner on a Tic Tac Toe Game",
+  "slug": "find-winner-on-a-tic-tac-toe-game",
+  "url": "https://leetcode.com/problems/find-winner-on-a-tic-tac-toe-game/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Tic-tac-toe is played by two players A and B on a 3 x 3 grid. The rules of Tic-Tac-Toe are: \n\n Players take turns placing characters into empty squares ' ' . \n \n The first player A always places 'X' characters, while the second player B always places 'O' characters. \n \n 'X' and 'O' characters are always placed into empty squares, never on filled ones. \n \n The game ends when there are three of the same (non-empty) character filling any row, column, or diagonal. \n \n The game also ends if all squares are non-empty. \n \n No more moves can be played if the game is over. \n\n Given a 2D integer array moves where moves[i] = [row i , col i ] indicates that the i th move will be played on grid[row i ][col i ] . return the winner of the game if it exists ( A or B ). In case the game ends in a draw return \"Draw\" . If there are still movements to play return \"Pending\" . \n \n You can assume that moves is valid (i.e., it follows the rules of Tic-Tac-Toe ), the grid is initially empty, and A will play first. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/09/22/xo1-grid.jpg] \n \n```\nInput:\n moves = [[0,0],[2,0],[1,1],[2,1],[2,2]]\n\nOutput:\n \"A\"\n\nExplanation:\n A wins, they always play first.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/09/22/xo2-grid.jpg] \n \n```\nInput:\n moves = [[0,0],[1,1],[0,1],[0,2],[1,0],[2,0]]\n\nOutput:\n \"B\"\n\nExplanation:\n B wins.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/09/22/xo3-grid.jpg] \n \n```\nInput:\n moves = [[0,0],[1,1],[2,0],[1,0],[1,2],[2,1],[0,1],[0,2],[2,2]]\n\nOutput:\n \"Draw\"\n\nExplanation:\n The game ends in a draw since there are no moves to make.\n```\n\n Constraints: \n\n 1 <= moves.length <= 9 \n \n moves[i].length == 2 \n \n 0 <= row i , col i <= 2 \n \n There are no repeated elements on moves . \n \n moves follow the rules of tic tac toe.",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string tictactoe(vector<vector<int>>& moves) {\n        vector<int> rows(3, 0), cols(3, 0);\n        int diag = 0, antiDiag = 0;\n\n        for (int i = 0; i < moves.size(); ++i) {\n            int r = moves[i][0], c = moves[i][1];\n            int player = (i % 2 == 0) ? 1 : -1;\n            rows[r] += player;\n            cols[c] += player;\n            if (r == c) diag += player;\n            if (r + c == 2) antiDiag += player;\n\n            if (abs(rows[r]) == 3 || abs(cols[c]) == 3 || abs(diag) == 3 || abs(antiDiag) == 3)\n                return player == 1 ? \"A\" : \"B\";\n        }\n\n        return moves.size() == 9 ? \"Draw\" : \"Pending\";\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595373132",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

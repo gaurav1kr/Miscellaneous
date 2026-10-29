@@ -1,0 +1,31 @@
+{
+  "id": "3561",
+  "title": "Resulting String After Adjacent Removals",
+  "slug": "resulting-string-after-adjacent-removals",
+  "url": "https://leetcode.com/problems/resulting-string-after-adjacent-removals/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. \n \n You must repeatedly perform the following operation while the string s has at least two consecutive characters: \n\n Remove the leftmost pair of adjacent characters in the string that are consecutive in the alphabet, in either order (e.g., 'a' and 'b' , or 'b' and 'a' ). \n \n Shift the remaining characters to the left to fill the gap. \n\n Return the resulting string after no more operations can be performed. \n \n Note: Consider the alphabet as circular, thus 'a' and 'z' are consecutive. \n\n Example 1: \n\n Input: s = \"abc\" \n \n Output: \"c\" \n \n Explanation: \n\n Remove \"ab\" from the string, leaving \"c\" as the remaining string. \n \n No further operations are possible. Thus, the resulting string after all possible removals is \"c\" . \n\n Example 2: \n\n Input: s = \"adcb\" \n \n Output: \"\" \n \n Explanation: \n\n Remove \"dc\" from the string, leaving \"ab\" as the remaining string. \n \n Remove \"ab\" from the string, leaving \"\" as the remaining string. \n \n No further operations are possible. Thus, the resulting string after all possible removals is \"\" . \n\n Example 3: \n\n Input: s = \"zadb\" \n \n Output: \"db\" \n \n Explanation: \n\n Remove \"za\" from the string, leaving \"db\" as the remaining string. \n \n No further operations are possible. Thus, the resulting string after all possible removals is \"db\" . \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution { public:\n string resultingString(string s) {\n  string st;\n  for(char c:s){ if(!st.empty() && (abs(st.back()-c)==1 || abs(st.back()-c)==25)) st.pop_back(); else st+=c; }\n  return st;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177582629",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

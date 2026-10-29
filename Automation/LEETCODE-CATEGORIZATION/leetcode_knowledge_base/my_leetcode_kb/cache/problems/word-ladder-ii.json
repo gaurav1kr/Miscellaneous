@@ -1,0 +1,40 @@
+{
+  "id": "126",
+  "title": "Word Ladder II",
+  "slug": "word-ladder-ii",
+  "url": "https://leetcode.com/problems/word-ladder-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking",
+    "Breadth-First Search",
+    "Bidirectional Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "A transformation sequence from word beginWord to word endWord using a dictionary wordList is a sequence of words beginWord -> s 1 -> s 2 -> ... -> s k such that: \n\n Every adjacent pair of words differs by a single letter. \n \n Every s i for 1 <= i <= k is in wordList . Note that beginWord does not need to be in wordList . \n \n s k == endWord \n\n Given two words, beginWord and endWord , and a dictionary wordList , return all the shortest transformation sequences from beginWord to endWord , or an empty list if no such sequence exists. Each sequence should be returned as a list of the words [beginWord, s 1 , s 2 , ..., s k ] . \n\n Example 1: \n \n```\nInput:\n beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]\n\nOutput:\n [[\"hit\",\"hot\",\"dot\",\"dog\",\"cog\"],[\"hit\",\"hot\",\"lot\",\"log\",\"cog\"]]\n\nExplanation:\n There are 2 shortest transformation sequences:\n\"hit\" -> \"hot\" -> \"dot\" -> \"dog\" -> \"cog\"\n\"hit\" -> \"hot\" -> \"lot\" -> \"log\" -> \"cog\"\n```\n\n Example 2: \n \n```\nInput:\n beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]\n\nOutput:\n []\n\nExplanation:\n The endWord \"cog\" is not in wordList, therefore there is no valid transformation sequence.\n```\n\n Constraints: \n\n 1 <= beginWord.length <= 5 \n \n endWord.length == beginWord.length \n \n 1 <= wordList.length <= 500 \n \n wordList[i].length == beginWord.length \n \n beginWord , endWord , and wordList[i] consist of lowercase English letters. \n \n beginWord != endWord \n \n All the words in wordList are unique . \n \n The sum of all shortest transformation sequences does not exceed 10 5 .",
+  "code": "class Solution {\npublic:\n  unordered_set<string> dic;\n  unordered_map<string,int> mp;\n  vector<vector<string>> ans;\n    void dfs(string ew,vector<string> &temp,string bw)\n    {\n        \n        int curr=mp[ew];\n         temp.push_back(ew);\n        if(ew==bw)\n        {\n            reverse(temp.begin(),temp.end());\n           ans.push_back(temp);\n            reverse(temp.begin(),temp.end());\n            temp.pop_back();\n            return ;\n        }\n        for(int i=0;i<ew.size();i++)\n        {\n            string st=ew;\n          for(char ch='a';ch<='z';ch++)\n          {\n           st[i]=ch;\n              if(mp[st] and mp[st]==curr-1)\n              { \n                  dfs(st,temp,bw);\n              }\n         }\n        }\n        temp.pop_back();\n        \n    }\n    \n   \n \n    vector<vector<string>> findLadders(string bw, string ew, vector<string>& wl) {\n     \n      \n        for(auto it:wl)dic.insert(it);\n        queue<string> q;\n        q.push(bw);\n        mp[bw]++;\n            while(!q.empty())\n            {\n                auto k=q.front();\n                q.pop();\n                int steps=mp[k]+1;\n                for(int i=0;i<k.size();i++)\n                {\n                    string temp=k;\n                    for(char ch='a';ch<='z';ch++)\n                    {\n                        temp[i]=ch;\n                        if(dic.count(temp) and !mp[temp])\n                        {\n                            mp[temp]=steps;\n                            q.push(temp);\n                        }\n                    }\n                }   \n            }\n        if(mp[ew])\n        {\n            vector<string> temp;\n            dfs(ew,temp,bw);        }\n        return ans;\n        \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1514604541",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

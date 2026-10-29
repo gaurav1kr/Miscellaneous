@@ -1,0 +1,33 @@
+{
+  "id": "1392",
+  "title": "Longest Happy Prefix",
+  "slug": "longest-happy-prefix",
+  "url": "https://leetcode.com/problems/longest-happy-prefix/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Rolling Hash",
+    "String Matching",
+    "Hash Function",
+    "Z Algorithm",
+    "Knuth–Morris–Pratt Algorithm"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "A string is called a happy prefix if it is a non-empty prefix which is also a suffix (excluding itself). \n \n Given a string s , return the longest happy prefix of s . Return an empty string \"\" if no such prefix exists. \n\n Example 1: \n \n```\nInput:\n s = \"level\"\n\nOutput:\n \"l\"\n\nExplanation:\n s contains 4 prefix excluding itself (\"l\", \"le\", \"lev\", \"leve\"), and suffix (\"l\", \"el\", \"vel\", \"evel\"). The largest prefix which is also suffix is given by \"l\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"ababab\"\n\nOutput:\n \"abab\"\n\nExplanation:\n \"abab\" is the largest prefix which is also suffix. They can overlap in the original string.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s contains only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string longestPrefix(string s) {\n        int n = s.size();\n        vector<int> pi(n, 0);\n        for (int i = 1; i < n; ++i) {\n            int j = pi[i - 1];\n            while (j > 0 && s[i] != s[j]) j = pi[j - 1];\n            if (s[i] == s[j]) ++j;\n            pi[i] = j;\n        }\n        return s.substr(0, pi[n - 1]);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175751280",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

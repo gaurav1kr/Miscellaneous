@@ -1,0 +1,25 @@
+{
+  "id": "2162",
+  "title": "Minimum Cost to Set Cooking Time",
+  "slug": "minimum-cost-to-set-cooking-time",
+  "url": "https://leetcode.com/problems/minimum-cost-to-set-cooking-time/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Enumeration"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "A generic microwave supports cooking times for: \n\n at least 1 second. \n \n at most 99 minutes and 99 seconds. \n\n To set the cooking time, you push at most four digits . The microwave normalizes what you push as four digits by prepending zeroes . It interprets the first two digits as the minutes and the last two digits as the seconds. It then adds them up as the cooking time. For example, \n\n You push 9 5 4 (three digits). It is normalized as 0954 and interpreted as 9 minutes and 54 seconds. \n \n You push 0 0 0 8 (four digits). It is interpreted as 0 minutes and 8 seconds. \n \n You push 8 0 9 0 . It is interpreted as 80 minutes and 90 seconds. \n \n You push 8 1 3 0 . It is interpreted as 81 minutes and 30 seconds. \n\n You are given integers startAt , moveCost , pushCost , and targetSeconds . Initially , your finger is on the digit startAt . Moving the finger above any specific digit costs moveCost units of fatigue. Pushing the digit below the finger once costs pushCost units of fatigue. \n \n There can be multiple ways to set the microwave to cook for targetSeconds seconds but you are interested in the way with the minimum cost. \n \n Return the minimum cost to set targetSeconds seconds of cooking time . \n \n Remember that one minute consists of 60 seconds. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/12/30/1.png] \n \n```\nInput:\n startAt = 1, moveCost = 2, pushCost = 1, targetSeconds = 600\n\nOutput:\n 6\n\nExplanation:\n The following are the possible ways to set the cooking time.\n- 1 0 0 0, interpreted as 10 minutes and 0 seconds.\n  The finger is already on digit 1, pushes 1 (with cost 1), moves to 0 (with cost 2), pushes 0 (with cost 1), pushes 0 (with cost 1), and pushes 0 (with cost 1).\n  The cost is: 1 + 2 + 1 + 1 + 1 = 6. This is the minimum cost.\n- 0 9 6 0, interpreted as 9 minutes and 60 seconds. That is also 600 seconds.\n  The finger moves to 0 (with cost 2), pushes 0 (with cost 1), moves to 9 (with cost 2), pushes 9 (with cost 1), moves to 6 (with cost 2), pushes 6 (with cost 1), moves to 0 (with cost 2), and pushes 0 (with cost 1).\n  The cost is: 2 + 1 + 2 + 1 + 2 + 1 + 2 + 1 = 12.\n- 9 6 0, normalized as 0960 and interpreted as 9 minutes and 60 seconds.\n  The finger moves to 9 (with cost 2), pushes 9 (with cost 1), moves to 6 (with cost 2), pushes 6 (with cost 1), moves to 0 (with cost 2), and pushes 0 (with cost 1).\n  The cost is: 2 + 1 + 2 + 1 + 2 + 1 = 9.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/12/30/2.png] \n \n```\nInput:\n startAt = 0, moveCost = 1, pushCost = 2, targetSeconds = 76\n\nOutput:\n 6\n\nExplanation:\n The optimal way is to push two digits: 7 6, interpreted as 76 seconds.\nThe finger moves to 7 (with cost 1), pushes 7 (with cost 2), moves to 6 (with cost 1), and pushes 6 (with cost 2). The total cost is: 1 + 2 + 1 + 2 = 6\nNote other possible ways are 0076, 076, 0116, and 116, but none of them produces the minimum cost.\n```\n\n Constraints: \n\n 0 <= startAt <= 9 \n \n 1 <= moveCost, pushCost <= 10 5 \n \n 1 <= targetSeconds <= 6039",
+  "code": "class Solution {\n    int cost(int minutes,int seconds,int start,int move,int push) {\n        if(minutes<0||minutes>99||seconds<0||seconds>99) return INT_MAX;\n        string s=to_string(minutes*100+seconds);\n        int ans=0,pos=start;\n        for(char c:s) {\n            int d=c-'0';if(pos!=d) ans+=move;\n            ans+=push;pos=d;\n        }\n        return ans;\n    }\npublic:\n    int minCostSetTime(int startAt, int moveCost, int pushCost, int targetSeconds) {\n        int ans=INT_MAX;\n        for(int sec=0;sec<=99;++sec) if((targetSeconds-sec)%60==0) {\n            int minutes=(targetSeconds-sec)/60;\n            ans=min(ans,cost(minutes,sec,startAt,moveCost,pushCost));\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175876262",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

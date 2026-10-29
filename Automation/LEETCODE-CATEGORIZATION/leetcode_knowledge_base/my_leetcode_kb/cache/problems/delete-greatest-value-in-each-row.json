@@ -1,0 +1,36 @@
+{
+  "id": "2500",
+  "title": "Delete Greatest Value in Each Row",
+  "slug": "delete-greatest-value-in-each-row",
+  "url": "https://leetcode.com/problems/delete-greatest-value-in-each-row/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an m x n matrix grid consisting of positive integers. \n \n Perform the following operation until grid becomes empty: \n\n Delete the element with the greatest value from each row. If multiple such elements exist, delete any of them. \n \n Add the maximum of deleted elements to the answer. \n\n Note that the number of columns decreases by one after each operation. \n \n Return the answer after performing the operations described above . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/10/19/q1ex1.jpg] \n \n```\nInput:\n grid = [[1,2,4],[3,3,1]]\n\nOutput:\n 8\n\nExplanation:\n The diagram above shows the removed values in each step.\n- In the first operation, we remove 4 from the first row and 3 from the second row (notice that, there are two cells with value 3 and we can remove any of them). We add 4 to the answer.\n- In the second operation, we remove 2 from the first row and 3 from the second row. We add 3 to the answer.\n- In the third operation, we remove 1 from the first row and 1 from the second row. We add 1 to the answer.\nThe final answer = 4 + 3 + 1 = 8.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/10/19/q1ex2.jpg] \n \n```\nInput:\n grid = [[10]]\n\nOutput:\n 10\n\nExplanation:\n The diagram above shows the removed values in each step.\n- In the first operation, we remove 10 from the first row. We add 10 to the answer.\nThe final answer = 10.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 50 \n \n 1 <= grid[i][j] <= 100",
+  "code": "class Solution {public:int deleteGreatestValue(vector<vector<int>>& grid){for(auto&r:grid)sort(r.begin(),r.end());int ans=0;for(int j=0;j<(int)grid[0].size();j++){int mx=0;for(auto&r:grid)mx=max(mx,r[j]);ans+=mx;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176590685",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

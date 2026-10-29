@@ -1,0 +1,32 @@
+{
+  "id": "3326",
+  "title": "Minimum Division Operations to Make Array Non Decreasing",
+  "slug": "minimum-division-operations-to-make-array-non-decreasing",
+  "url": "https://leetcode.com/problems/minimum-division-operations-to-make-array-non-decreasing/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Greedy",
+    "Number Theory"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Any positive divisor of a natural number x that is strictly less than x is called a proper divisor of x . For example, 2 is a proper divisor of 4, while 6 is not a proper divisor of 6. \n \n You are allowed to perform an operation any number of times on nums , where in each operation you select any one element from nums and divide it by its greatest proper divisor . \n \n Return the minimum number of operations required to make the array non-decreasing . \n \n If it is not possible to make the array non-decreasing using any number of operations, return -1 . \n\n Example 1: \n\n Input: nums = [25,7] \n \n Output: 1 \n \n Explanation: \n \n Using a single operation, 25 gets divided by 5 and nums becomes [5, 7] . \n\n Example 2: \n\n Input: nums = [7,7,6] \n \n Output: -1 \n\n Example 3: \n\n Input: nums = [1,1,1,1] \n \n Output: 0 \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 6",
+  "code": "class Solution {int spf(int x){for(int d=2;1LL*d*d<=x;d++)if(x%d==0)return d;return x;}public:int minOperations(vector<int>& nums){int ans=0;for(int i=(int)nums.size()-2;i>=0;i--)if(nums[i]>nums[i+1]){nums[i]=spf(nums[i]);ans++;if(nums[i]>nums[i+1])return -1;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177460456",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

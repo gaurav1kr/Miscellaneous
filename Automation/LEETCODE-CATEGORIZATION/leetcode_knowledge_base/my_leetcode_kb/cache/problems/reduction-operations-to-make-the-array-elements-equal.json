@@ -1,0 +1,30 @@
+{
+  "id": "1887",
+  "title": "Reduction Operations to Make the Array Elements Equal",
+  "slug": "reduction-operations-to-make-the-array-elements-equal",
+  "url": "https://leetcode.com/problems/reduction-operations-to-make-the-array-elements-equal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , your goal is to make all elements in nums equal. To complete one operation, follow these steps: \n\n Find the largest value in nums . Let its index be i ( 0-indexed ) and its value be largest . If there are multiple elements with the largest value, pick the smallest i . \n \n Find the next largest value in nums strictly smaller than largest . Let its value be nextLargest . \n \n Reduce nums[i] to nextLargest . \n\n Return the number of operations to make all elements in nums equal . \n\n Example 1: \n \n```\nInput:\n nums = [5,1,3]\n\nOutput:\n 3\n\nExplanation:\n It takes 3 operations to make all elements in nums equal:\n1. largest = 5 at index 0. nextLargest = 3. Reduce nums[0] to 3. nums = [\n3\n,1,3].\n2. largest = 3 at index 0. nextLargest = 1. Reduce nums[0] to 1. nums = [\n1\n,1,3].\n3. largest = 3 at index 2. nextLargest = 1. Reduce nums[2] to 1. nums = [1,1,\n1\n].\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,1]\n\nOutput:\n 0\n\nExplanation:\n All elements in nums are already equal.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,1,2,2,3]\n\nOutput:\n 4\n\nExplanation:\n It takes 4 operations to make all elements in nums equal:\n1. largest = 3 at index 4. nextLargest = 2. Reduce nums[4] to 2. nums = [1,1,2,2,\n2\n].\n2. largest = 2 at index 2. nextLargest = 1. Reduce nums[2] to 1. nums = [1,1,\n1\n,2,2].\n3. largest = 2 at index 3. nextLargest = 1. Reduce nums[3] to 1. nums = [1,1,1,\n1\n,2].\n4. largest = 2 at index 4. nextLargest = 1. Reduce nums[4] to 1. nums = [1,1,1,1,\n1\n].\n```\n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n 1 <= nums[i] <= 5 * 10 4",
+  "code": "class Solution {\npublic:\n    int reductionOperations(vector<int>& nums) {\n        sort(nums.begin(), nums.end());\n        int size = nums.size();\n        int ans = 0;\n        for (int i = size - 1; i > 0; --i) {\n            if (nums[i - 1] != nums[i]) {\n                ans += size - i;\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1615794986",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

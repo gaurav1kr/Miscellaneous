@@ -1,0 +1,29 @@
+{
+  "id": "1131",
+  "title": "Maximum of Absolute Value Expression",
+  "slug": "maximum-of-absolute-value-expression",
+  "url": "https://leetcode.com/problems/maximum-of-absolute-value-expression/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given two arrays of integers with equal lengths, return the maximum value of: \n \n |arr1[i] - arr1[j]| + |arr2[i] - arr2[j]| + |i - j| \n \n where the maximum is taken over all 0 <= i, j < arr1.length . \n\n Example 1: \n \n```\nInput:\n arr1 = [1,2,3,4], arr2 = [-1,4,5,6]\n\nOutput:\n 13\n```\n\n Example 2: \n \n```\nInput:\n arr1 = [1,-2,-5,0,10], arr2 = [0,-2,-1,-7,-4]\n\nOutput:\n 20\n```\n\n Constraints: \n\n 2 <= arr1.length == arr2.length <= 40000 \n \n -10^6 <= arr1[i], arr2[i] <= 10^6",
+  "code": "#include <vector>\n#include <algorithm>\n#include <cmath>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxAbsValExpr(vector<int>& arr1, vector<int>& arr2) {\n        int res = 0, n = arr1.size();\n        for (int p : {-1, 1}) {\n            for (int q : {-1, 1}) {\n                int minVal = INT_MAX, maxVal = INT_MIN;\n                for (int i = 0; i < n; ++i) {\n                    int val = p * arr1[i] + q * arr2[i] + i;\n                    minVal = min(minVal, val);\n                    maxVal = max(maxVal, val);\n                }\n                res = max(res, maxVal - minVal);\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610595766",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

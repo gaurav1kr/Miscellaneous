@@ -1,0 +1,29 @@
+{
+  "id": "2134",
+  "title": "Minimum Swaps to Group All 1's Together II",
+  "slug": "minimum-swaps-to-group-all-1s-together-ii",
+  "url": "https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "A swap is defined as taking two distinct positions in an array and swapping the values in them. \n \n A circular array is defined as an array where we consider the first element and the last element to be adjacent . \n \n Given a binary circular array nums , return the minimum number of swaps required to group all 1 's present in the array together at any location . \n\n Example 1: \n \n```\nInput:\n nums = [0,1,0,1,1,0,0]\n\nOutput:\n 1\n\nExplanation:\n Here are a few of the ways to group all the 1's together:\n[0,\n0\n,\n1\n,1,1,0,0] using 1 swap.\n[0,1,\n1\n,1,\n0\n,0,0] using 1 swap.\n[1,1,0,0,0,0,1] using 2 swaps (using the circular property of the array).\nThere is no way to group all 1's together with 0 swaps.\nThus, the minimum number of swaps required is 1.\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,1,1,1,0,0,1,1,0]\n\nOutput:\n 2\n\nExplanation:\n Here are a few of the ways to group all the 1's together:\n[1,1,1,0,0,0,0,1,1] using 2 swaps (using the circular property of the array).\n[1,1,1,1,1,0,0,0,0] using 2 swaps.\nThere is no way to group all 1's together with 0 or 1 swaps.\nThus, the minimum number of swaps required is 2.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,1,0,0,1]\n\nOutput:\n 0\n\nExplanation:\n All the 1's are already grouped together due to the circular property of the array.\nThus, the minimum number of swaps required is 0.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n nums[i] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n int minSwaps(vector<int>& nums){\n  int n=nums.size(),ones=accumulate(nums.begin(),nums.end(),0);if(!ones)return 0;\n  int cur=0;for(int i=0;i<ones;++i)cur+=nums[i];int best=cur;\n  for(int i=ones;i<ones+n;++i){cur+=nums[i%n]-nums[(i-ones)%n];best=max(best,cur);}\n  return ones-best;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175738537",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

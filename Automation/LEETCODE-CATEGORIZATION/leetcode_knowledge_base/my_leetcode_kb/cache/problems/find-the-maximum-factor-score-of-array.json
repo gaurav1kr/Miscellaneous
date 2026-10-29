@@ -1,0 +1,31 @@
+{
+  "id": "3334",
+  "title": "Find the Maximum Factor Score of Array",
+  "slug": "find-the-maximum-factor-score-of-array",
+  "url": "https://leetcode.com/problems/find-the-maximum-factor-score-of-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Number Theory",
+    "Least Common Multiple"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n The factor score of an array is defined as the product of the LCM and GCD of all elements of that array. \n \n Return the maximum factor score of nums after removing at most one element from it. \n \n Note that both the LCM and GCD of a single number are the number itself, and the factor score of an empty array is 0. \n\n Example 1: \n\n Input: nums = [2,4,8,16] \n \n Output: 64 \n \n Explanation: \n \n On removing 2, the GCD of the rest of the elements is 4 while the LCM is 16, which gives a maximum factor score of 4 * 16 = 64 . \n\n Example 2: \n\n Input: nums = [1,2,3,4,5] \n \n Output: 60 \n \n Explanation: \n \n The maximum factor score of 60 can be obtained without removing any elements. \n\n Example 3: \n\n Input: nums = [3] \n \n Output: 9 \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 30",
+  "code": "class Solution {long long gcd(long long a,long long b){while(b){long long r=a%b;a=b;b=r;}return a;}public:long long maxScore(vector<int>& nums){int n=nums.size();long long best=0;for(int skip=-1;skip<n;skip++){long long g=0,l=1;for(int i=0;i<n;i++)if(i!=skip){g=gcd(g,(long long)nums[i]);l=l/gcd(l,(long long)nums[i])*nums[i];}best=max(best,g*l);}return best;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177462390",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

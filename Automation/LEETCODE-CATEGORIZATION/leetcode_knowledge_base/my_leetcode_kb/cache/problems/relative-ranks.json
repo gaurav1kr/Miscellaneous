@@ -1,0 +1,33 @@
+{
+  "id": "506",
+  "title": "Relative Ranks",
+  "slug": "relative-ranks",
+  "url": "https://leetcode.com/problems/relative-ranks/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array score of size n , where score[i] is the score of the i th athlete in a competition. All the scores are guaranteed to be unique . \n \n The athletes are placed based on their scores, where the 1 st place athlete has the highest score, the 2 nd place athlete has the 2 nd highest score, and so on. The placement of each athlete determines their rank: \n\n The 1 st place athlete's rank is \"Gold Medal\" . \n \n The 2 nd place athlete's rank is \"Silver Medal\" . \n \n The 3 rd place athlete's rank is \"Bronze Medal\" . \n \n For the 4 th place to the n th place athlete, their rank is their placement number (i.e., the x th place athlete's rank is \"x\" ). \n\n Return an array answer of size n where answer[i] is the rank of the i th athlete. \n\n Example 1: \n \n```\nInput:\n score = [5,4,3,2,1]\n\nOutput:\n [\"Gold Medal\",\"Silver Medal\",\"Bronze Medal\",\"4\",\"5\"]\n\nExplanation:\n The placements are [1\nst\n, 2\nnd\n, 3\nrd\n, 4\nth\n, 5\nth\n].\n```\n\n Example 2: \n \n```\nInput:\n score = [10,3,8,9,4]\n\nOutput:\n [\"Gold Medal\",\"5\",\"Bronze Medal\",\"Silver Medal\",\"4\"]\n\nExplanation:\n The placements are [1\nst\n, 5\nth\n, 3\nrd\n, 2\nnd\n, 4\nth\n].\n```\n\n Constraints: \n\n n == score.length \n \n 1 <= n <= 10 4 \n \n 0 <= score[i] <= 10 6 \n \n All the values in score are unique .",
+  "code": "#include <vector>\n#include <string>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> findRelativeRanks(vector<int>& score) {\n        vector<pair<int, int>> scores;\n        for (int i = 0; i < score.size(); ++i)\n            scores.emplace_back(score[i], i);\n        sort(scores.rbegin(), scores.rend());\n\n        vector<string> res(score.size());\n        for (int i = 0; i < scores.size(); ++i) {\n            if (i == 0) res[scores[i].second] = \"Gold Medal\";\n            else if (i == 1) res[scores[i].second] = \"Silver Medal\";\n            else if (i == 2) res[scores[i].second] = \"Bronze Medal\";\n            else res[scores[i].second] = to_string(i + 1);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610622234",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

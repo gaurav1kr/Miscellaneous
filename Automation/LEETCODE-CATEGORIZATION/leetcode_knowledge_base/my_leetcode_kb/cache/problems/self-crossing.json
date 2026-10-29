@@ -1,0 +1,30 @@
+{
+  "id": "335",
+  "title": "Self Crossing",
+  "slug": "self-crossing",
+  "url": "https://leetcode.com/problems/self-crossing/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array of integers distance . \n \n You start at the point (0, 0) on an X-Y plane, and you move distance[0] meters to the north, then distance[1] meters to the west, distance[2] meters to the south, distance[3] meters to the east, and so on. In other words, after each move, your direction changes counter-clockwise. \n \n Return true if your path crosses itself or false if it does not . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/12/21/11.jpg] \n \n```\nInput:\n distance = [2,1,1,2]\n\nOutput:\n true\n\nExplanation:\n The path crosses itself at the point (0, 1).\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/12/21/22.jpg] \n \n```\nInput:\n distance = [1,2,3,4]\n\nOutput:\n false\n\nExplanation:\n The path does not cross itself at any point.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2022/12/21/33.jpg] \n \n```\nInput:\n distance = [1,1,1,2,1]\n\nOutput:\n true\n\nExplanation:\n The path crosses itself at the point (0, 0).\n```\n\n Constraints: \n\n 1 <= distance.length <= 10 5 \n \n 1 <= distance[i] <= 10 5",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isSelfCrossing(vector<int>& d) {\n        int n = d.size();\n        for (int i = 3; i < n; ++i) {\n            if (d[i] >= d[i-2] && d[i-1] <= d[i-3]) return true;\n            if (i >= 4 && d[i-1] == d[i-3] && d[i] + d[i-4] >= d[i-2]) return true;\n            if (i >= 5 && d[i-2] >= d[i-4] && d[i] + d[i-4] >= d[i-2] &&\n                d[i-1] <= d[i-3] && d[i-1] + d[i-5] >= d[i-3]) return true;\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610657481",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

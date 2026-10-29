@@ -1,0 +1,30 @@
+{
+  "id": "2912",
+  "title": "Number of Ways to Reach Destination in the Grid",
+  "slug": "number-of-ways-to-reach-destination-in-the-grid",
+  "url": "https://leetcode.com/problems/number-of-ways-to-reach-destination-in-the-grid/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two integers n and m which represent the size of a 1-indexed grid. You are also given an integer k , a 1-indexed integer array source and a 1-indexed integer array dest , where source and dest are in the form [x, y] representing a cell on the given grid. \n \n You can move through the grid in the following way: \n\n You can go from cell [x 1 , y 1 ] to cell [x 2 , y 2 ] if either x 1 == x 2 or y 1 == y 2 . \n \n Note that you can't move to the cell you are already in e.g. x 1 == x 2 and y 1 == y 2 . \n\n Return the number of ways you can reach dest from source by moving through the grid exactly k times. \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 3, m = 2, k = 2, source = [1,1], dest = [2,2]\n\nOutput:\n 2\n\nExplanation:\n There are 2 possible sequences of reaching [2,2] from [1,1]:\n- [1,1] -> [1,2] -> [2,2]\n- [1,1] -> [2,1] -> [2,2]\n```\n\n Example 2: \n \n```\nInput:\n n = 3, m = 4, k = 3, source = [1,2], dest = [2,3]\n\nOutput:\n 9\n\nExplanation:\n There are 9 possible sequences of reaching [2,3] from [1,2]:\n- [1,2] -> [1,1] -> [1,3] -> [2,3]\n- [1,2] -> [1,1] -> [2,1] -> [2,3]\n- [1,2] -> [1,3] -> [3,3] -> [2,3]\n- [1,2] -> [1,4] -> [1,3] -> [2,3]\n- [1,2] -> [1,4] -> [2,4] -> [2,3]\n- [1,2] -> [2,2] -> [2,1] -> [2,3]\n- [1,2] -> [2,2] -> [2,4] -> [2,3]\n- [1,2] -> [3,2] -> [2,2] -> [2,3]\n- [1,2] -> [3,2] -> [3,3] -> [2,3]\n```\n\n Constraints: \n\n 2 <= n, m <= 10 9 \n \n 1 <= k <= 10 5 \n \n source.length == dest.length == 2 \n \n 1 <= source[1], dest[1] <= n \n \n 1 <= source[2], dest[2] <= m",
+  "code": "class Solution {\npublic:\n    int numberOfWays(int n, int m, int k, vector<int>& source, vector<int>& dest) {\n        const long long MOD = 1000000007;\n        long long dp[2][2] = {};\n        dp[source[0] == dest[0]][source[1] == dest[1]] = 1;\n        while (k--) {\n            long long nd[2][2] = {};\n            for (int r = 0; r < 2; ++r) {\n                for (int c = 0; c < 2; ++c) {\n                    long long v = dp[r][c];\n                    nd[r][c] = (nd[r][c] + v * ((r ? 0 : n - 2) + (c ? 0 : m - 2))) % MOD;\n                    nd[1 - r][c] = (nd[1 - r][c] + v * (r ? n - 1 : 1)) % MOD;\n                    nd[r][1 - c] = (nd[r][1 - c] + v * (c ? m - 1 : 1)) % MOD;\n                }\n            }\n            memcpy(dp, nd, sizeof dp);\n        }\n        return dp[1][1];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178921020",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

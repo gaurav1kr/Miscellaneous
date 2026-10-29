@@ -1,0 +1,38 @@
+{
+  "id": "523",
+  "title": "Continuous Subarray Sum",
+  "slug": "continuous-subarray-sum",
+  "url": "https://leetcode.com/problems/continuous-subarray-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Prefix Sum",
+    "Pigeonhole Principle"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and an integer k, return true if nums has a good subarray or false otherwise . \n \n A good subarray is a subarray where: \n\n its length is at least two , and \n \n the sum of the elements of the subarray is a multiple of k . \n\n Note that: \n\n A subarray is a contiguous part of the array. \n \n An integer x is a multiple of k if there exists an integer n such that x = n * k . 0 is always a multiple of k . \n\n Example 1: \n \n```\nInput:\n nums = [23,\n2,4\n,6,7], k = 6\n\nOutput:\n true\n\nExplanation:\n [2, 4] is a continuous subarray of size 2 whose elements sum up to 6.\n```\n\n Example 2: \n \n```\nInput:\n nums = [\n23,2,6,4,7\n], k = 6\n\nOutput:\n true\n\nExplanation:\n [23, 2, 6, 4, 7] is an continuous subarray of size 5 whose elements sum up to 42.\n42 is a multiple of 6 because 42 = 7 * 6 and 7 is an integer.\n```\n\n Example 3: \n \n```\nInput:\n nums = [23,2,6,4,7], k = 13\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 9 \n \n 0 <= sum(nums[i]) <= 2 31 - 1 \n \n 1 <= k <= 2 31 - 1",
+  "code": "#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool checkSubarraySum(vector<int>& nums, int k) {\n        unordered_map<int, int> remainderMap;\n        remainderMap[0] = -1;\n        int sum = 0;\n        for (int i = 0; i < nums.size(); i++) {\n            sum += nums[i];\n            int remainder = (k == 0) ? sum : sum % k;\n            if (remainderMap.count(remainder)) {\n                if (i - remainderMap[remainder] > 1) return true;\n            } else {\n                remainderMap[remainder] = i;\n            }\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591360614",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

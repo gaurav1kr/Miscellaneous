@@ -1,0 +1,30 @@
+{
+  "id": "2276",
+  "title": "Count Integers in Intervals",
+  "slug": "count-integers-in-intervals",
+  "url": "https://leetcode.com/problems/count-integers-in-intervals/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Design",
+    "Segment Tree",
+    "Ordered Set"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Ordered map",
+    "Segment tree"
+  ],
+  "description": "Given an empty set of intervals, implement a data structure that can: \n\n Add an interval to the set of intervals. \n \n Count the number of integers that are present in at least one interval. \n\n Implement the CountIntervals class: \n\n CountIntervals() Initializes the object with an empty set of intervals. \n \n void add(int left, int right) Adds the interval [left, right] to the set of intervals. \n \n int count() Returns the number of integers that are present in at least one interval. \n\n Note that an interval [left, right] denotes all the integers x where left <= x <= right . \n\n Example 1: \n \n```\nInput\n\n[\"CountIntervals\", \"add\", \"add\", \"count\", \"add\", \"count\"]\n[[], [2, 3], [7, 10], [], [5, 8], []]\n\nOutput\n\n[null, null, null, 6, null, 8]\n\nExplanation\n\nCountIntervals countIntervals = new CountIntervals(); // initialize the object with an empty set of intervals. \ncountIntervals.add(2, 3); // add [2, 3] to the set of intervals.\ncountIntervals.add(7, 10); // add [7, 10] to the set of intervals.\ncountIntervals.count(); // return 6\n // the integers 2 and 3 are present in the interval [2, 3].\n // the integers 7, 8, 9, and 10 are present in the interval [7, 10].\ncountIntervals.add(5, 8); // add [5, 8] to the set of intervals.\ncountIntervals.count(); // return 8\n // the integers 2 and 3 are present in the interval [2, 3].\n // the integers 5 and 6 are present in the interval [5, 8].\n // the integers 7 and 8 are present in the intervals [5, 8] and [7, 10].\n // the integers 9 and 10 are present in the interval [7, 10].\n```\n\n Constraints: \n\n 1 <= left <= right <= 10 9 \n \n At most 10 5 calls in total will be made to add and count . \n \n At least one call will be made to count .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass CountIntervals {map<int,int> ranges;long long total=0;public:CountIntervals(){}void add(int left,int right){auto it=ranges.lower_bound(left);if(it!=ranges.begin()){auto prev=it;--prev;if(prev->second>=left)it=prev;}while(it!=ranges.end()&&it->first<=right){if(it->second<left){++it;continue;}left=min(left,it->first);right=max(right,it->second);total-=1LL*it->second-it->first+1;it=ranges.erase(it);}ranges[left]=right;total+=1LL*right-left+1;}int count(){return (int)total;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175904372",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

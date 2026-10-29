@@ -1,0 +1,29 @@
+{
+  "id": "1891",
+  "title": "Cutting Ribbons",
+  "slug": "cutting-ribbons",
+  "url": "https://leetcode.com/problems/cutting-ribbons/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array ribbons , where ribbons[i] represents the length of the i th ribbon, and an integer k . You may cut any of the ribbons into any number of segments of positive integer lengths, or perform no cuts at all. \n\n For example, if you have a ribbon of length 4 , you can:\n\n Keep the ribbon of length 4 , \n \n Cut it into one ribbon of length 3 and one ribbon of length 1 , \n \n Cut it into two ribbons of length 2 , \n \n Cut it into one ribbon of length 2 and two ribbons of length 1 , or \n \n Cut it into four ribbons of length 1 . \n\n Your task is to determine the maximum length of ribbon, x , that allows you to cut at least k ribbons, each of length x . You can discard any leftover ribbon from the cuts. If it is impossible to cut k ribbons of the same length, return 0. \n\n Example 1: \n \n```\nInput:\n ribbons = [9,7,5], k = 3\n\nOutput:\n 5\n\nExplanation:\n\n- Cut the first ribbon to two ribbons, one of length 5 and one of length 4.\n- Cut the second ribbon to two ribbons, one of length 5 and one of length 2.\n- Keep the third ribbon as it is.\nNow you have 3 ribbons of length 5.\n```\n\n Example 2: \n \n```\nInput:\n ribbons = [7,5,9], k = 4\n\nOutput:\n 4\n\nExplanation:\n\n- Cut the first ribbon to two ribbons, one of length 4 and one of length 3.\n- Cut the second ribbon to two ribbons, one of length 4 and one of length 1.\n- Cut the third ribbon to three ribbons, two of length 4 and one of length 1.\nNow you have 4 ribbons of length 4.\n```\n\n Example 3: \n \n```\nInput:\n ribbons = [5,7,9], k = 22\n\nOutput:\n 0\n\nExplanation:\n You cannot obtain k ribbons of the same positive integer length.\n```\n\n Constraints: \n\n 1 <= ribbons.length <= 10 5 \n \n 1 <= ribbons[i] <= 10 5 \n \n 1 <= k <= 10 9",
+  "code": "class Solution {\npublic:\n    int maxLength(vector<int>& ribbons, int k) {\n        int lo = 1, hi = *max_element(ribbons.begin(), ribbons.end());\n        int answer = 0;\n        while (lo <= hi) {\n            int mid = lo + (hi - lo) / 2;\n            long long pieces = 0;\n            for (int length : ribbons) {\n                pieces += length / mid;\n            }\n            if (pieces >= k) {\n                answer = mid;\n                lo = mid + 1;\n            } else {\n                hi = mid - 1;\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178621702",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "7",
+  "title": "Reverse Integer",
+  "slug": "reverse-integer",
+  "url": "https://leetcode.com/problems/reverse-integer/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given a signed 32-bit integer x , return x with its digits reversed . If reversing x causes the value to go outside the signed 32-bit integer range [-2 31 , 2 31 - 1] , then return 0 . \n \n Assume the environment does not allow you to store 64-bit integers (signed or unsigned). \n\n Example 1: \n \n```\nInput:\n x = 123\n\nOutput:\n 321\n```\n\n Example 2: \n \n```\nInput:\n x = -123\n\nOutput:\n -321\n```\n\n Example 3: \n \n```\nInput:\n x = 120\n\nOutput:\n 21\n```\n\n Constraints: \n\n -2 31 <= x <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    int reverse(int x) {\n        int result = 0;\n        \n        while (x != 0) {\n            int digit = x % 10;\n            \n            // Check for overflow/underflow before multiplying\n            if (result > INT_MAX / 10 || (result == INT_MAX / 10 && digit > 7)) {\n                return 0; // Overflow\n            }\n            if (result < INT_MIN / 10 || (result == INT_MIN / 10 && digit < -8)) {\n                return 0; // Underflow\n            }\n            \n            result = result * 10 + digit;\n            x /= 10;\n        }\n        \n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541875138",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

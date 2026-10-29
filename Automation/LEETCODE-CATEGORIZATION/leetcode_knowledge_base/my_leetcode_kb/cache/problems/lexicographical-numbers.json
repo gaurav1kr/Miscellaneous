@@ -1,0 +1,29 @@
+{
+  "id": "386",
+  "title": "Lexicographical Numbers",
+  "slug": "lexicographical-numbers",
+  "url": "https://leetcode.com/problems/lexicographical-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Trie"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an integer n , return all the numbers in the range [1, n] sorted in lexicographical order. \n \n You must write an algorithm that runs in  O(n)  time and uses O(1) extra space.  \n\n Example 1: \n \n```\nInput:\n n = 13\n\nOutput:\n [1,10,11,12,13,2,3,4,5,6,7,8,9]\n```\n \n Example 2: \n \n```\nInput:\n n = 2\n\nOutput:\n [1,2]\n```\n\n Constraints: \n\n 1 <= n <= 5 * 10 4",
+  "code": "\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    void dfs(int curr, int n, vector<int>& result) {\n        if (curr > n) return;\n        result.push_back(curr);\n        for (int i = 0; i < 10; ++i) {\n            if (curr * 10 + i <= n) dfs(curr * 10 + i, n, result);\n        }\n    }\n    \n    vector<int> lexicalOrder(int n) {\n        vector<int> result;\n        for (int i = 1; i < 10; ++i) dfs(i, n, result);\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592320516",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

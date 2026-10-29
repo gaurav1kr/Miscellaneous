@@ -1,0 +1,29 @@
+{
+  "id": "661",
+  "title": "Image Smoother",
+  "slug": "image-smoother",
+  "url": "https://leetcode.com/problems/image-smoother/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "An image smoother is a filter of the size 3 x 3 that can be applied to each cell of an image by rounding down the average of the cell and the eight surrounding cells (i.e., the average of the nine cells in the blue smoother). If one or more of the surrounding cells of a cell is not present, we do not consider it in the average (i.e., the average of the four cells in the red smoother). \n [Figure: https://assets.leetcode.com/uploads/2021/05/03/smoother-grid.jpg] \n \n Given an m x n integer matrix img representing the grayscale of an image, return the image after applying the smoother on each cell of it . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/05/03/smooth-grid.jpg] \n \n```\nInput:\n img = [[1,1,1],[1,0,1],[1,1,1]]\n\nOutput:\n [[0,0,0],[0,0,0],[0,0,0]]\n\nExplanation:\n\nFor the points (0,0), (0,2), (2,0), (2,2): floor(3/4) = floor(0.75) = 0\nFor the points (0,1), (1,0), (1,2), (2,1): floor(5/6) = floor(0.83333333) = 0\nFor the point (1,1): floor(8/9) = floor(0.88888889) = 0\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/05/03/smooth2-grid.jpg] \n \n```\nInput:\n img = [[100,200,100],[200,50,200],[100,200,100]]\n\nOutput:\n [[137,141,137],[141,138,141],[137,141,137]]\n\nExplanation:\n\nFor the points (0,0), (0,2), (2,0), (2,2): floor((100+200+200+50)/4) = floor(137.5) = 137\nFor the points (0,1), (1,0), (1,2), (2,1): floor((200+200+50+200+100+100)/6) = floor(141.666667) = 141\nFor the point (1,1): floor((50+200+200+200+200+100+100+100+100)/9) = floor(138.888889) = 138\n```\n\n Constraints: \n\n m == img.length \n \n n == img[i].length \n \n 1 <= m, n <= 200 \n \n 0 <= img[i][j] <= 255",
+  "code": "class Solution {\npublic:\n    std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& img) {\n        int m = img.size(), n = img[0].size();\n        std::vector<std::vector<int>> ans(m, std::vector<int>(n));\n        for (int r = 0; r < m; ++r) {\n            for (int c = 0; c < n; ++c) {\n                int sum = 0, count = 0;\n                for (int dr = -1; dr <= 1; ++dr)\n                    for (int dc = -1; dc <= 1; ++dc) {\n                        int nr = r + dr, nc = c + dc;\n                        if (nr >= 0 && nr < m && nc >= 0 && nc < n) {\n                            sum += img[nr][nc];\n                            ++count;\n                        }\n                    }\n                ans[r][c] = sum / count;\n            }\n        }\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175702129",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

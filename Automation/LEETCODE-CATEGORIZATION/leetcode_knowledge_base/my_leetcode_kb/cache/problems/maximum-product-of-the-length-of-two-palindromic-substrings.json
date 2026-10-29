@@ -1,0 +1,34 @@
+{
+  "id": "1960",
+  "title": "Maximum Product of the Length of Two Palindromic Substrings",
+  "slug": "maximum-product-of-the-length-of-two-palindromic-substrings",
+  "url": "https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Rolling Hash",
+    "Hash Function",
+    "Manacher",
+    "Palindromic Tree"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed string s and are tasked with finding two non-intersecting palindromic substrings of odd length such that the product of their lengths is maximized. \n \n More formally, you want to choose four integers i , j , k , l such that 0 <= i <= j < k <= l < s.length and both the substrings s[i...j] and s[k...l] are palindromes and have odd lengths. s[i...j] denotes a substring from index i to index j inclusive . \n \n Return the maximum possible product of the lengths of the two non-intersecting palindromic substrings. \n \n A palindrome is a string that is the same forward and backward. A substring is a contiguous sequence of characters in a string. \n\n Example 1: \n \n```\nInput:\n s = \"ababbb\"\n\nOutput:\n 9\n\nExplanation:\n Substrings \"aba\" and \"bbb\" are palindromes with odd length. product = 3 * 3 = 9.\n```\n\n Example 2: \n \n```\nInput:\n s = \"zaaaxbbby\"\n\nOutput:\n 9\n\nExplanation:\n Substrings \"aaa\" and \"bbb\" are palindromes with odd length. product = 3 * 3 = 9.\n```\n\n Constraints: \n\n 2 <= s.length <= 10 5 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    long long maxProduct(string s) {\n        int n = s.size();\n        vector<int> rad(n), left(n, 0), right(n, 0);\n        for (int i = 0, l = 0, r = -1; i < n; ++i) {\n            int k = i > r ? 1 : min(rad[l + r - i], r - i + 1);\n            while (i - k >= 0 && i + k < n && s[i - k] == s[i + k]) ++k;\n            rad[i] = k;\n            if (i + k - 1 > r) { l = i - k + 1; r = i + k - 1; }\n            int len = 2 * k - 1;\n            left[i + k - 1] = max(left[i + k - 1], len);\n            right[i - k + 1] = max(right[i - k + 1], len);\n        }\n        for (int i = n - 2; i >= 0; --i)\n            left[i] = max(left[i], left[i + 1] - 2);\n        for (int i = 1; i < n; ++i)\n            left[i] = max(left[i], left[i - 1]);\n        for (int i = 1; i < n; ++i)\n            right[i] = max(right[i], right[i - 1] - 2);\n        for (int i = n - 2; i >= 0; --i)\n            right[i] = max(right[i], right[i + 1]);\n        long long ans = 0;\n        for (int i = 0; i + 1 < n; ++i)\n            ans = max(ans, 1LL * left[i] * right[i + 1]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179745277",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

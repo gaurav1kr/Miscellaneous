@@ -1,0 +1,29 @@
+{
+  "id": "1013",
+  "title": "Partition Array Into Three Parts With Equal Sum",
+  "slug": "partition-array-into-three-parts-with-equal-sum",
+  "url": "https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of integers arr , return true if we can partition the array into three non-empty parts with equal sums. \n \n Formally, we can partition the array if we can find indexes i + 1 < j with (arr[0] + arr[1] + ... + arr[i] == arr[i + 1] + arr[i + 2] + ... + arr[j - 1] == arr[j] + arr[j + 1] + ... + arr[arr.length - 1]) \n\n Example 1: \n \n```\nInput:\n arr = [0,2,1,-6,6,-7,9,1,2,0,1]\n\nOutput:\n true\n\nExplanation: \n0 + 2 + 1 = -6 + 6 - 7 + 9 + 1 = 2 + 0 + 1\n```\n\n Example 2: \n \n```\nInput:\n arr = [0,2,1,-6,6,7,9,-1,2,0,1]\n\nOutput:\n false\n```\n\n Example 3: \n \n```\nInput:\n arr = [3,3,6,5,-2,2,5,1,-9,4]\n\nOutput:\n true\n\nExplanation: \n3 + 3 = 6 = 5 - 2 + 2 + 5 + 1 - 9 + 4\n```\n\n Constraints: \n\n 3 <= arr.length <= 5 * 10 4 \n \n -10 4 <= arr[i] <= 10 4",
+  "code": "\n#include <vector>\n#include <numeric>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool canThreePartsEqualSum(vector<int>& A) {\n        int total = accumulate(A.begin(), A.end(), 0);\n        if (total % 3 != 0) return false;\n        \n        int target = total / 3;\n        int sum = 0, count = 0;\n        \n        for (int num : A) {\n            sum += num;\n            if (sum == target) {\n                sum = 0;\n                count++;\n            }\n        }\n        \n        return count >= 3;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592334292",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

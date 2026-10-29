@@ -1,0 +1,36 @@
+{
+  "id": "2131",
+  "title": "Longest Palindrome by Concatenating Two Letter Words",
+  "slug": "longest-palindrome-by-concatenating-two-letter-words",
+  "url": "https://leetcode.com/problems/longest-palindrome-by-concatenating-two-letter-words/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings words . Each element of words consists of two lowercase English letters. \n \n Create the longest possible palindrome by selecting some elements from words and concatenating them in any order . Each element can be selected at most once . \n \n Return the length of the longest palindrome that you can create . If it is impossible to create any palindrome, return 0 . \n \n A palindrome is a string that reads the same forward and backward. \n\n Example 1: \n \n```\nInput:\n words = [\"lc\",\"cl\",\"gg\"]\n\nOutput:\n 6\n\nExplanation:\n One longest palindrome is \"lc\" + \"gg\" + \"cl\" = \"lcggcl\", of length 6.\nNote that \"clgglc\" is another longest palindrome that can be created.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"ab\",\"ty\",\"yt\",\"lc\",\"cl\",\"ab\"]\n\nOutput:\n 8\n\nExplanation:\n One longest palindrome is \"ty\" + \"lc\" + \"cl\" + \"yt\" = \"tylcclyt\", of length 8.\nNote that \"lcyttycl\" is another longest palindrome that can be created.\n```\n\n Example 3: \n \n```\nInput:\n words = [\"cc\",\"ll\",\"xx\"]\n\nOutput:\n 2\n\nExplanation:\n One longest palindrome is \"cc\", of length 2.\nNote that \"ll\" is another longest palindrome that can be created, and so is \"xx\".\n```\n\n Constraints: \n\n 1 <= words.length <= 10 5 \n \n words[i].length == 2 \n \n words[i] consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n int longestPalindrome(vector<string>& words){\n  int cnt[26][26]={},ans=0;\n  for(const string& w:words){int a=w[0]-'a',b=w[1]-'a';\n   if(cnt[b][a]){--cnt[b][a];ans+=4;}else ++cnt[a][b];\n  }\n  for(int i=0;i<26;++i)if(cnt[i][i])return ans+2;\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175738069",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

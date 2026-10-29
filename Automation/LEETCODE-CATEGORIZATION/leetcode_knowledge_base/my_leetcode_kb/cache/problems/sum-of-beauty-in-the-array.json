@@ -1,0 +1,27 @@
+{
+  "id": "2012",
+  "title": "Sum of Beauty in the Array",
+  "slug": "sum-of-beauty-in-the-array",
+  "url": "https://leetcode.com/problems/sum-of-beauty-in-the-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . For each index i ( 1 <= i <= nums.length - 2 ) the beauty of nums[i] equals: \n\n 2 , if nums[j] < nums[i] < nums[k] , for all 0 <= j < i and for all i < k <= nums.length - 1 . \n \n 1 , if nums[i - 1] < nums[i] < nums[i + 1] , and the previous condition is not satisfied. \n \n 0 , if none of the previous conditions holds. \n\n Return the sum of beauty of all nums[i] where 1 <= i <= nums.length - 2 . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n 2\n\nExplanation:\n For each index i in the range 1 <= i <= 1:\n- The beauty of nums[1] equals 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,4,6,4]\n\nOutput:\n 1\n\nExplanation:\n For each index i in the range 1 <= i <= 2:\n- The beauty of nums[1] equals 1.\n- The beauty of nums[2] equals 0.\n```\n\n Example 3: \n \n```\nInput:\n nums = [3,2,1]\n\nOutput:\n 0\n\nExplanation:\n For each index i in the range 1 <= i <= 1:\n- The beauty of nums[1] equals 0.\n```\n\n Constraints: \n\n 3 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int sumOfBeauties(vector<int>& nums) {\n        int n = nums.size();\n        vector<int> rightMin(n);\n        rightMin[n - 1] = nums[n - 1];\n        for (int i = n - 2; i >= 0; --i)\n            rightMin[i] = min(nums[i], rightMin[i + 1]);\n\n        int leftMax = nums[0], res = 0;\n        for (int i = 1; i < n - 1; ++i) {\n            if (leftMax < nums[i] && nums[i] < rightMin[i + 1])\n                res += 2;\n            else if (nums[i - 1] < nums[i] && nums[i] < nums[i + 1])\n                res += 1;\n            leftMax = max(leftMax, nums[i]);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610660480",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

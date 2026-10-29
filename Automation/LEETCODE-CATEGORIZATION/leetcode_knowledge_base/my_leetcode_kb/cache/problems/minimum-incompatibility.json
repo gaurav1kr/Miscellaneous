@@ -1,0 +1,40 @@
+{
+  "id": "1681",
+  "title": "Minimum Incompatibility",
+  "slug": "minimum-incompatibility",
+  "url": "https://leetcode.com/problems/minimum-incompatibility/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums ​​​ and an integer k . You are asked to distribute this array into k subsets of equal size such that there are no two equal elements in the same subset. \n \n A subset's incompatibility is the difference between the maximum and minimum elements in that array. \n \n Return the minimum possible sum of incompatibilities of the k subsets after distributing the array optimally, or return -1 if it is not possible. \n \n A subset is a group integers that appear in the array with no particular order. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,1,4], k = 2\n\nOutput:\n 4\n\nExplanation:\n The optimal distribution of subsets is [1,2] and [1,4].\nThe incompatibility is (2-1) + (4-1) = 4.\nNote that [1,1] and [2,4] would result in a smaller sum, but the first subset contains 2 equal elements.\n```\n\n Example 2: \n \n```\nInput:\n nums = [6,3,8,1,3,1,2,2], k = 4\n\nOutput:\n 6\n\nExplanation:\n The optimal distribution of subsets is [1,2], [2,3], [6,8], and [1,3].\nThe incompatibility is (2-1) + (3-2) + (8-6) + (3-1) = 6.\n```\n\n Example 3: \n \n```\nInput:\n nums = [5,3,3,6,3,3], k = 3\n\nOutput:\n -1\n\nExplanation:\n It is impossible to distribute nums into 3 subsets where no two elements are equal in the same subset.\n```\n\n Constraints: \n\n 1 <= k <= nums.length <= 16 \n \n nums.length is divisible by k \n \n 1 <= nums[i] <= nums.length",
+  "code": "class Solution {\npublic:\n int minimumIncompatibility(vector<int>& nums, int k) {\n  int n=nums.size(), g=n/k, full=(1<<n)-1, INF=1e9;\n  vector<int> cost(1<<n,INF);\n  for(int mask=0;mask<=full;++mask) if(__builtin_popcount((unsigned)mask)==g){\n   unordered_set<int> seen; int lo=INT_MAX,hi=INT_MIN; bool ok=true;\n   for(int i=0;i<n;++i) if(mask>>i&1){if(!seen.insert(nums[i]).second){ok=false;break;} lo=min(lo,nums[i]);hi=max(hi,nums[i]);}\n   if(ok) cost[mask]=hi-lo;\n  }\n  vector<int> dp(1<<n,INF);dp[0]=0;\n  for(int mask=0;mask<=full;++mask) if(dp[mask]!=INF && __builtin_popcount((unsigned)mask)%g==0 && mask!=full){\n   int free=full^mask, first=__builtin_ctz((unsigned)free);\n   for(int sub=free;sub;sub=(sub-1)&free) if((sub>>first&1) && cost[sub]!=INF)\n    dp[mask|sub]=min(dp[mask|sub],dp[mask]+cost[sub]);\n  }\n  return dp[full]==INF?-1:dp[full];\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175758184",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

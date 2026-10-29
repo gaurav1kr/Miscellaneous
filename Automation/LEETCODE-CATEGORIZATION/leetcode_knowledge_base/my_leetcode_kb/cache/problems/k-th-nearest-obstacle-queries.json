@@ -1,0 +1,32 @@
+{
+  "id": "3275",
+  "title": "K-th Nearest Obstacle Queries",
+  "slug": "k-th-nearest-obstacle-queries",
+  "url": "https://leetcode.com/problems/k-th-nearest-obstacle-queries/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is an infinite 2D plane. \n \n You are given a positive integer k . You are also given a 2D array queries , which contains the following queries: \n\n queries[i] = [x, y] : Build an obstacle at coordinate (x, y) in the plane. It is guaranteed that there is no obstacle at this coordinate when this query is made. \n\n After each query, you need to find the distance of the k th nearest obstacle from the origin. \n \n Return an integer array results where results[i] denotes the k th nearest obstacle after query i , or results[i] == -1 if there are less than k obstacles. \n \n Note that initially there are no obstacles anywhere. \n \n The distance of an obstacle at coordinate (x, y) from the origin is given by |x| + |y| . \n\n Example 1: \n\n Input: queries = [[1,2],[3,4],[2,3],[-3,0]], k = 2 \n \n Output: [-1,7,5,3] \n \n Explanation: \n\n Initially, there are 0 obstacles. \n \n After queries[0] , there are less than 2 obstacles. \n \n After queries[1] , there are obstacles at distances 3 and 7. \n \n After queries[2] , there are obstacles at distances 3, 5, and 7. \n \n After queries[3] , there are obstacles at distances 3, 3, 5, and 7. \n\n Example 2: \n\n Input: queries = [[5,5],[4,4],[3,3]], k = 1 \n \n Output: [10,8,6] \n \n Explanation: \n\n After queries[0] , there is an obstacle at distance 10. \n \n After queries[1] , there are obstacles at distances 8 and 10. \n \n After queries[2] , there are obstacles at distances 6, 8, and 10. \n\n Constraints: \n\n 1 <= queries.length <= 2 * 10 5 \n \n All queries[i] are unique. \n \n -10 9 <= queries[i][0], queries[i][1] <= 10 9 \n \n 1 <= k <= 10 5",
+  "code": "class Solution { public: vector<int> resultsArray(vector<vector<int>>&queries,int k){priority_queue<int>pq;vector<int>ans;for(auto&q:queries){pq.push(abs(q[0])+abs(q[1]));if((int)pq.size()>k)pq.pop();ans.push_back((int)pq.size()==k?pq.top():-1);}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177445298",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "356",
+  "title": "Line Reflection",
+  "slug": "line-reflection",
+  "url": "https://leetcode.com/problems/line-reflection/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "Given n points on a 2D plane, find if there is such a line parallel to the y-axis that reflects the given points symmetrically. \n \n In other words, answer whether or not if there exists a line that after reflecting all points over the given line, the original points' set is the same as the reflected ones. \n \n Note that there can be repeated points. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/04/23/356_example_1.PNG] \n \n```\nInput:\n points = [[1,1],[-1,1]]\n\nOutput:\n true\n\nExplanation:\n We can choose the line x = 0.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/04/23/356_example_2.PNG] \n \n```\nInput:\n points = [[1,1],[-1,-1]]\n\nOutput:\n false\n\nExplanation:\n We can't choose a line.\n```\n\n Constraints: \n\n n == points.length \n \n 1 <= n <= 10 4 \n \n -10 8 <= points[i][j] <= 10 8 \n\n Follow up: Could you do better than O(n 2 ) ?",
+  "code": "class Solution\n{\npublic:\n    bool isReflected(vector<vector<int>>& points)\n    {\n        if (points.empty()) return true;\n        long long minX = LLONG_MAX, maxX = LLONG_MIN;\n        set<pair<long long, long long>> seen;\n        for (const auto& p : points) {\n            minX = min(minX, (long long)p[0]);\n            maxX = max(maxX, (long long)p[0]);\n            seen.insert({p[0], p[1]});\n        }\n        for (const auto& p : points) {\n            if (!seen.count({minX + maxX - p[0], p[1]}))\n            {\n                return false;\n            }\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178457902",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "2378",
+  "title": "Choose Edges to Maximize Score in a Tree",
+  "slug": "choose-edges-to-maximize-score-in-a-tree",
+  "url": "https://leetcode.com/problems/choose-edges-to-maximize-score-in-a-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a weighted tree consisting of n nodes numbered from 0 to n - 1 . \n \n The tree is rooted at node 0 and represented with a 2D array edges of size n where edges[i] = [par i , weight i ] indicates that node par i is the parent of node i , and the edge between them has a weight equal to weight i . Since the root does not have a parent, you have edges[0] = [-1, -1] . \n \n Choose some edges from the tree such that no two chosen edges are adjacent and the sum of the weights of the chosen edges is maximized. \n \n Return the maximum sum of the chosen edges . \n \n Note : \n\n You are allowed to not choose any edges in the tree, the sum of weights in this case will be 0 . \n \n Two edges Edge 1 and Edge 2 in the tree are adjacent if they have a common node.\n\n In other words, they are adjacent if Edge 1 connects nodes a and b and Edge 2 connects nodes b and c . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/08/16/treedrawio.png] \n \n```\nInput:\n edges = [[-1,-1],[0,5],[0,10],[2,6],[2,4]]\n\nOutput:\n 11\n\nExplanation:\n The above diagram shows the edges that we have to choose colored in red.\nThe total score is 5 + 6 = 11.\nIt can be shown that no better score can be obtained.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/08/17/treee1293712983719827.png] \n \n```\nInput:\n edges = [[-1,-1],[0,5],[0,-6],[0,7]]\n\nOutput:\n 7\n\nExplanation:\n We choose the edge with weight 7.\nNote that we cannot choose more than one edge because all edges are adjacent to each other.\n```\n\n Constraints: \n\n n == edges.length \n \n 1 <= n <= 10 5 \n \n edges[i].length == 2 \n \n par 0 == weight 0 == -1 \n \n 0 <= par i <= n - 1 for all i >= 1 . \n \n par i != i \n \n -10 6 <= weight i <= 10 6 for all i >= 1 . \n \n edges represents a valid tree.",
+  "code": "class Solution {\n    vector<vector<pair<int,int>>> children;\n    pair<long long,long long> dfs(int u) {\n        long long base = 0, gain = 0;\n        for (auto e : children[u]) {\n            auto child = dfs(e.first);\n            base += child.first;\n            gain = max(gain, (long long)e.second + child.second - child.first);\n        }\n        return {base + gain, base};\n    }\npublic:\n    long long maxScore(vector<vector<int>>& edges) {\n        int n = edges.size();\n        children.assign(n, {});\n        for (int i = 1; i < n; ++i)\n            children[edges[i][0]].push_back({i, edges[i][1]});\n        return dfs(0).first;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178865251",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

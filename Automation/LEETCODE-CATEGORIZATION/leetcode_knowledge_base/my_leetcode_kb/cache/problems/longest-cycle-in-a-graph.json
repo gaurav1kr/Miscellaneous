@@ -1,0 +1,32 @@
+{
+  "id": "2360",
+  "title": "Longest Cycle in a Graph",
+  "slug": "longest-cycle-in-a-graph",
+  "url": "https://leetcode.com/problems/longest-cycle-in-a-graph/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort",
+    "Kosaraju's Algorithm",
+    "Tarjan's SCC Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a directed graph of n nodes numbered from 0 to n - 1 , where each node has at most one outgoing edge. \n \n The graph is represented with a given 0-indexed array edges of size n , indicating that there is a directed edge from node i to node edges[i] . If there is no outgoing edge from node i , then edges[i] == -1 . \n \n Return the length of the longest cycle in the graph . If no cycle exists, return -1 . \n \n A cycle is a path that starts and ends at the same node. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/06/08/graph4drawio-5.png] \n \n```\nInput:\n edges = [3,3,4,2,3]\n\nOutput:\n 3\n\nExplanation:\n The longest cycle in the graph is the cycle: 2 -> 4 -> 3 -> 2.\nThe length of this cycle is 3, so 3 is returned.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/06/07/graph4drawio-1.png] \n \n```\nInput:\n edges = [2,-1,3,1]\n\nOutput:\n -1\n\nExplanation:\n There are no cycles in this graph.\n```\n\n Constraints: \n\n n == edges.length \n \n 2 <= n <= 10 5 \n \n -1 <= edges[i] < n \n \n edges[i] != i",
+  "code": "class Solution { public:\n    int longestCycle(vector<int>& edges) {\n        int n=edges.size(),ans=-1,stamp=0;\n        vector<int> seen(n,0),depth(n,0);\n        for(int i=0;i<n;++i)if(!seen[i]){\n            ++stamp;int u=i,d=0;\n            while(u!=-1 && !seen[u]){seen[u]=stamp;depth[u]=d++;u=edges[u];}\n            if(u!=-1 && seen[u]==stamp)ans=max(ans,d-depth[u]);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175926071",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

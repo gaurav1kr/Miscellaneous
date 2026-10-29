@@ -1,0 +1,34 @@
+{
+  "id": "1950",
+  "title": "Maximum of Minimum Values in All Subarrays",
+  "slug": "maximum-of-minimum-values-in-all-subarrays",
+  "url": "https://leetcode.com/problems/maximum-of-minimum-values-in-all-subarrays/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack",
+    "Cartesian Tree"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of size n . You are asked to solve n queries for each integer i in the range 0 <= i < n . \n \n To solve the i th query: \n\n Find the minimum value in each possible subarray of size i + 1 of the array nums . \n \n Find the maximum of those minimum values. This maximum is the answer to the query. \n\n Return a 0-indexed integer array ans of size n such that ans[i] is the answer to the i th query . \n \n A subarray is a contiguous sequence of elements in an array. \n\n Example 1: \n \n```\nInput:\n nums = [0,1,2,4]\n\nOutput:\n [4,2,1,0]\n\nExplanation:\n\ni=0:\n- The subarrays of size 1 are [0], [1], [2], [4]. The minimum values are 0, 1, 2, 4.\n- The maximum of the minimum values is 4.\ni=1:\n- The subarrays of size 2 are [0,1], [1,2], [2,4]. The minimum values are 0, 1, 2.\n- The maximum of the minimum values is 2.\ni=2:\n- The subarrays of size 3 are [0,1,2], [1,2,4]. The minimum values are 0, 1.\n- The maximum of the minimum values is 1.\ni=3:\n- There is one subarray of size 4, which is [0,1,2,4]. The minimum value is 0.\n- There is only one value, so the maximum is 0.\n```\n\n Example 2: \n \n```\nInput:\n nums = [10,20,50,10]\n\nOutput:\n [50,20,10,10]\n\nExplanation:\n\ni=0:\n- The subarrays of size 1 are [10], [20], [50], [10]. The minimum values are 10, 20, 50, 10.\n- The maximum of the minimum values is 50.\ni=1:\n- The subarrays of size 2 are [10,20], [20,50], [50,10]. The minimum values are 10, 20, 10.\n- The maximum of the minimum values is 20.\ni=2:\n- The subarrays of size 3 are [10,20,50], [20,50,10]. The minimum values are 10, 10.\n- The maximum of the minimum values is 10.\ni=3:\n- There is one subarray of size 4, which is [10,20,50,10]. The minimum value is 10.\n- There is only one value, so the maximum is 10.\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 10 5 \n \n 0 <= nums[i] <= 10 9",
+  "code": "class Solution {\npublic:\n    vector<int> findMaximums(vector<int>& nums) {\n        int n = nums.size();\n        vector<int> left(n), right(n), stack;\n        for (int i = 0; i < n; ++i) {\n            while (!stack.empty() && nums[stack.back()] >= nums[i]) {\n                stack.pop_back();\n            }\n            left[i] = stack.empty() ? -1 : stack.back();\n            stack.push_back(i);\n        }\n        stack.clear();\n        for (int i = n - 1; i >= 0; --i) {\n            while (!stack.empty() && nums[stack.back()] >= nums[i]) {\n                stack.pop_back();\n            }\n            right[i] = stack.empty() ? n : stack.back();\n            stack.push_back(i);\n        }\n        vector<int> answer(n, INT_MIN);\n        for (int i = 0; i < n; ++i) {\n            int length = right[i] - left[i] - 1;\n            answer[length - 1] = max(answer[length - 1], nums[i]);\n        }\n        for (int i = n - 2; i >= 0; --i) {\n            answer[i] = max(answer[i], answer[i + 1]);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178626663",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "2309",
+  "title": "Greatest English Letter in Upper and Lower Case",
+  "slug": "greatest-english-letter-in-upper-and-lower-case",
+  "url": "https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Enumeration"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Given a string of English letters s , return the greatest English letter which occurs as both a lowercase and uppercase letter in s . The returned letter should be in uppercase . If no such letter exists, return an empty string . \n \n An English letter b is greater than another letter a if b appears after a in the English alphabet. \n\n Example 1: \n \n```\nInput:\n s = \"l\nEe\nTcOd\nE\n\"\n\nOutput:\n \"E\"\n\nExplanation:\n\nThe letter 'E' is the only letter to appear in both lower and upper case.\n```\n\n Example 2: \n \n```\nInput:\n s = \"a\nrR\nAzFif\"\n\nOutput:\n \"R\"\n\nExplanation:\n\nThe letter 'R' is the greatest letter to appear in both lower and upper case.\nNote that 'A' and 'F' also appear in both lower and upper case, but 'R' is greater than 'F' or 'A'.\n```\n\n Example 3: \n \n```\nInput:\n s = \"AbCdEfGhIjK\"\n\nOutput:\n \"\"\n\nExplanation:\n\nThere is no letter that appears in both lower and upper case.\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of lowercase and uppercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:string greatestLetter(string s){bool lo[26]={},up[26]={};for(char c:s){if(islower((unsigned char)c))lo[c-'a']=true;else up[c-'A']=true;}for(int i=25;i>=0;--i)if(lo[i]&&up[i])return string(1,char('A'+i));return \"\";}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175912939",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

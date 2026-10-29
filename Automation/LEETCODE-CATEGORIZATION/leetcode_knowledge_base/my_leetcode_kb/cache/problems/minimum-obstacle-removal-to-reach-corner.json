@@ -1,0 +1,40 @@
+{
+  "id": "2290",
+  "title": "Minimum Obstacle Removal to Reach Corner",
+  "slug": "minimum-obstacle-removal-to-reach-corner",
+  "url": "https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Shortest Path",
+    "0-1 BFS",
+    "Dijkstra's Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Deque",
+    "Graph adjacency list",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed 2D integer array grid of size m x n . Each cell has one of two values: \n\n 0 represents an empty cell, \n \n 1 represents an obstacle that may be removed. \n\n You can move up, down, left, or right from and to an empty cell. \n \n Return the minimum number of obstacles to remove so you can move from the upper left corner (0, 0) to the lower right corner (m - 1, n - 1) . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/04/06/example1drawio-1.png] \n \n```\nInput:\n grid = [[0,1,1],[1,1,0],[1,1,0]]\n\nOutput:\n 2\n\nExplanation:\n We can remove the obstacles at (0, 1) and (0, 2) to create a path from (0, 0) to (2, 2).\nIt can be shown that we need to remove at least 2 obstacles, so we return 2.\nNote that there may be other ways to remove 2 obstacles to create a path.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/04/06/example1drawio.png] \n \n```\nInput:\n grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]\n\nOutput:\n 0\n\nExplanation:\n We can move from (0, 0) to (2, 4) without removing any obstacles, so we return 0.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 10 5 \n \n 2 <= m * n <= 10 5 \n \n grid[i][j] is either 0 or 1 . \n \n grid[0][0] == grid[m - 1][n - 1] == 0",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int minimumObstacles(vector<vector<int>>& grid){int m=grid.size(),n=grid[0].size();vector<vector<int>> d(m,vector<int>(n,INT_MAX));deque<pair<int,int>> q;q.push_front({0,0});d[0][0]=0;int dr[]={1,-1,0,0},dc[]={0,0,1,-1};while(!q.empty()){auto p=q.front();q.pop_front();int r=p.first,c=p.second;for(int z=0;z<4;++z){int x=r+dr[z],y=c+dc[z];if(x<0||x>=m||y<0||y>=n)continue;int w=grid[x][y];if(d[r][c]+w<d[x][y]){d[x][y]=d[r][c]+w;if(w)q.push_back({x,y});else q.push_front({x,y});}}}return d[m-1][n-1];}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175908508",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

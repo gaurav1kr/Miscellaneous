@@ -1,0 +1,33 @@
+{
+  "id": "3299",
+  "title": "Sum of Consecutive Subsequences",
+  "slug": "sum-of-consecutive-subsequences",
+  "url": "https://leetcode.com/problems/sum-of-consecutive-subsequences/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "We call an array arr of length n consecutive if one of the following holds: \n\n arr[i] - arr[i - 1] == 1 for all 1 <= i < n . \n \n arr[i] - arr[i - 1] == -1 for all 1 <= i < n . \n\n The value of an array is the sum of its elements. \n \n For example, [3, 4, 5] is a consecutive array of value 12 and [9, 8] is another of value 17. While [3, 4, 3] and [8, 6] are not consecutive. \n \n Given an array of integers nums , return the sum of the values of all consecutive non-empty subsequences . \n \n Since the answer may be very large, return it modulo 10 9 + 7. \n \n Note that an array of length 1 is also considered consecutive. \n\n Example 1: \n\n Input: nums = [1,2] \n \n Output: 6 \n \n Explanation: \n \n The consecutive subsequences are: [1] , [2] , [1, 2] . \n\n Example 2: \n\n Input: nums = [1,4,2,3] \n \n Output: 31 \n \n Explanation: \n \n The consecutive subsequences are: [1] , [4] , [2] , [3] , [1, 2] , [2, 3] , [4, 3] , [1, 2, 3] . \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int getSum(vector<int>& nums) {\n        const long long MOD = 1000000007LL;\n        int v = *max_element(nums.begin(), nums.end()) + 2;\n        vector<long long> upC(v + 1), downC(v + 1), upS(v + 1), downS(v + 1);\n        long long ans = 0;\n        for (int x : nums) {\n            long long c1 = upC[x - 1], c2 = downC[x + 1];\n            long long s1 = (upS[x - 1] + c1 * x) % MOD;\n            long long s2 = (downS[x + 1] + c2 * x) % MOD;\n            ans = (ans + x + s1 + s2) % MOD;\n            upC[x] = (upC[x] + c1 + 1) % MOD;\n            downC[x] = (downC[x] + c2 + 1) % MOD;\n            upS[x] = (upS[x] + s1 + x) % MOD;\n            downS[x] = (downS[x] + s2 + x) % MOD;\n        }\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179636059",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

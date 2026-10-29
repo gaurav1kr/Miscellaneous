@@ -1,0 +1,25 @@
+{
+  "id": "50",
+  "title": "Pow(x, n)",
+  "slug": "powx-n",
+  "url": "https://leetcode.com/problems/powx-n/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Recursion"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Implement pow(x, n) , which calculates x raised to the power n (i.e., x n ). \n\n Example 1: \n \n```\nInput:\n x = 2.00000, n = 10\n\nOutput:\n 1024.00000\n```\n\n Example 2: \n \n```\nInput:\n x = 2.10000, n = 3\n\nOutput:\n 9.26100\n```\n\n Example 3: \n \n```\nInput:\n x = 2.00000, n = -2\n\nOutput:\n 0.25000\n\nExplanation:\n 2\n-2\n = 1/2\n2\n = 1/4 = 0.25\n```\n\n Constraints: \n\n -100.0 < x < 100.0 \n \n -2 31 <= n <= 2 31 -1 \n \n n is an integer. \n \n Either x is not zero or n > 0 . \n \n -10 4 <= x n <= 10 4",
+  "code": "\nclass Solution {\npublic:\n    double myPow(double x, int n) {\n        long long power = n;\n        bool negative = (power < 0);\n\n        if (negative) {\n            power = -power;\n        }\n\n        double result = 1.0;\n\n        while (power > 0) {\n            if (power & 1LL) {\n                result *= x;\n            }\n\n            x *= x;\n            power >>= 1;\n        }\n\n        return negative ? 1.0 / result : result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181634537",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

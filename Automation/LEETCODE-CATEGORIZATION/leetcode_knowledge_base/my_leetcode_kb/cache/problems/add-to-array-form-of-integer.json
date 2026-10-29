@@ -1,0 +1,29 @@
+{
+  "id": "989",
+  "title": "Add to Array-Form of Integer",
+  "slug": "add-to-array-form-of-integer",
+  "url": "https://leetcode.com/problems/add-to-array-form-of-integer/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "The array-form of an integer num is an array representing its digits in left to right order. \n\n For example, for num = 1321 , the array form is [1,3,2,1] . \n\n Given num , the array-form of an integer, and an integer k , return the array-form of the integer num + k . \n\n Example 1: \n \n```\nInput:\n num = [1,2,0,0], k = 34\n\nOutput:\n [1,2,3,4]\n\nExplanation:\n 1200 + 34 = 1234\n```\n\n Example 2: \n \n```\nInput:\n num = [2,7,4], k = 181\n\nOutput:\n [4,5,5]\n\nExplanation:\n 274 + 181 = 455\n```\n\n Example 3: \n \n```\nInput:\n num = [2,1,5], k = 806\n\nOutput:\n [1,0,2,1]\n\nExplanation:\n 215 + 806 = 1021\n```\n\n Constraints: \n\n 1 <= num.length <= 10 4 \n \n 0 <= num[i] <= 9 \n \n num does not contain any leading zeros except for the zero itself. \n \n 1 <= k <= 10 4",
+  "code": "\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> addToArrayForm(vector<int>& A, int K) {\n        int n = A.size();\n        vector<int> result;\n        \n        while (K > 0 || n > 0) {\n            if (n > 0) K += A[--n];\n            result.push_back(K % 10);\n            K /= 10;\n        }\n        \n        reverse(result.begin(), result.end());\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592338122",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1064",
+  "title": "Fixed Point",
+  "slug": "fixed-point",
+  "url": "https://leetcode.com/problems/fixed-point/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of distinct integers arr , where arr is sorted in ascending order , return the smallest index i that satisfies arr[i] == i . If there is no such index, return -1 . \n\n Example 1: \n \n```\nInput:\n arr = [-10,-5,0,3,7]\n\nOutput:\n 3\n\nExplanation:\n For the given array, \narr[0] = -10, arr[1] = -5, arr[2] = 0, arr[3] = 3\n, thus the output is 3.\n```\n\n Example 2: \n \n```\nInput:\n arr = [0,2,5,8,17]\n\nOutput:\n 0\n\nExplanation:\n \narr[0] = 0\n, thus the output is 0.\n```\n\n Example 3: \n \n```\nInput:\n arr = [-10,-5,3,4,7,9]\n\nOutput:\n -1\n\nExplanation:\n There is no such \ni\n that \narr[i] == i\n, thus the output is -1.\n```\n\n Constraints: \n\n 1 <= arr.length < 10 4 \n \n -10 9 <= arr[i] <= 10 9 \n\n Follow up: The O(n) solution is very straightforward. Can we do better?",
+  "code": "class Solution {\npublic:\n    int fixedPoint(vector<int>& arr) {\n        int left = 0;\n        int right = arr.size();\n        while (left < right) {\n            int mid = left + (right - left) / 2;\n            if (arr[mid] < mid) {\n                left = mid + 1;\n            } else {\n                right = mid;\n            }\n        }\n        return left < static_cast<int>(arr.size()) && arr[left] == left\n             ? left : -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178520758",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

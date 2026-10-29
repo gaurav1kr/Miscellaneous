@@ -1,0 +1,35 @@
+{
+  "id": "3102",
+  "title": "Minimize Manhattan Distances",
+  "slug": "minimize-manhattan-distances",
+  "url": "https://leetcode.com/problems/minimize-manhattan-distances/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry",
+    "Sorting",
+    "Ordered Set"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Ordered set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array points representing integer coordinates of some points on a 2D plane, where points[i] = [x i , y i ] . \n \n The distance between two points is defined as their Manhattan distance . \n \n Return the minimum possible value for maximum distance between any two points by removing exactly one point . \n\n Example 1: \n\n Input: points = [[3,10],[5,15],[10,2],[4,4]] \n \n Output: 12 \n \n Explanation: \n \n The maximum distance after removing each point is the following: \n\n After removing the 0 th point the maximum distance is between points (5, 15) and (10, 2), which is |5 - 10| + |15 - 2| = 18 . \n \n After removing the 1 st point the maximum distance is between points (3, 10) and (10, 2), which is |3 - 10| + |10 - 2| = 15 . \n \n After removing the 2 nd point the maximum distance is between points (5, 15) and (4, 4), which is |5 - 4| + |15 - 4| = 12 . \n \n After removing the 3 rd point the maximum distance is between points (5, 15) and (10, 2), which is |5 - 10| + |15 - 2| = 18 . \n\n 12 is the minimum possible maximum distance between any two points after removing exactly one point. \n\n Example 2: \n\n Input: points = [[1,1],[1,1],[1,1]] \n \n Output: 0 \n \n Explanation: \n \n Removing any of the points results in the maximum distance between any two points of 0. \n\n Constraints: \n\n 3 <= points.length <= 10 5 \n \n points[i].length == 2 \n \n 1 <= points[i][0], points[i][1] <= 10 8",
+  "code": "class Solution {public:int minimumDistance(vector<vector<int>>& points){\n multiset<int> a,b;for(auto &p:points){a.insert(p[0]+p[1]);b.insert(p[0]-p[1]);}\n int ans=INT_MAX;for(auto &p:points){int x=p[0]+p[1],y=p[0]-p[1];a.erase(a.find(x));b.erase(b.find(y));\n int d=0;if(!a.empty())d=max(*a.rbegin()-*a.begin(),*b.rbegin()-*b.begin());ans=min(ans,d);a.insert(x);b.insert(y);}return ans;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177370384",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

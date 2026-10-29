@@ -1,0 +1,29 @@
+{
+  "id": "800",
+  "title": "Similar RGB Color",
+  "slug": "similar-rgb-color",
+  "url": "https://leetcode.com/problems/similar-rgb-color/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Math",
+    "String",
+    "Enumeration"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "The red-green-blue color \"#AABBCC\" can be written as \"#ABC\" in shorthand. \n\n For example, \"#15c\" is shorthand for the color \"#1155cc\" . \n\n The similarity between the two colors \"#ABCDEF\" and \"#UVWXYZ\" is -(AB - UV) 2 - (CD - WX) 2 - (EF - YZ) 2 . \n \n Given a string color that follows the format \"#ABCDEF\" , return a string represents the color that is most similar to the given color and has a shorthand (i.e., it can be represented as some \"#XYZ\" ). \n \n Any answer which has the same highest similarity as the best answer will be accepted. \n\n Example 1: \n \n```\nInput:\n color = \"#09f166\"\n\nOutput:\n \"#11ee66\"\n\nExplanation:\n \nThe similarity is -(0x09 - 0x11)\n2\n -(0xf1 - 0xee)\n2\n - (0x66 - 0x66)\n2\n = -64 -9 -0 = -73.\nThis is the highest among any shorthand color.\n```\n\n Example 2: \n \n```\nInput:\n color = \"#4e3fe1\"\n\nOutput:\n \"#5544dd\"\n```\n\n Constraints: \n\n color.length == 7 \n \n color[0] == '#' \n \n color[i] is either digit or character in the range ['a', 'f'] for i > 0 .",
+  "code": "class Solution {\npublic:\n    string similarRGB(string color) {\n        const string hex = \"0123456789abcdef\";\n        string answer = \"#\";\n        for (int i = 1; i < 7; i += 2) {\n            int value = stoi(color.substr(i, 2), nullptr, 16);\n            int digit = (value + 8) / 17;\n            digit = min(digit, 15);\n            answer += hex[digit];\n            answer += hex[digit];\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178513348",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

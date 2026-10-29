@@ -1,0 +1,30 @@
+{
+  "id": "1059",
+  "title": "All Paths from Source Lead to Destination",
+  "slug": "all-paths-from-source-lead-to-destination",
+  "url": "https://leetcode.com/problems/all-paths-from-source-lead-to-destination/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Graph Theory",
+    "Topological Sort",
+    "Kosaraju's Algorithm",
+    "Tarjan's SCC Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "Given the edges of a directed graph where edges[i] = [a i , b i ] indicates there is an edge between nodes a i and b i , and two nodes source and destination of this graph, determine whether or not all paths starting from source eventually, end at destination , that is: \n\n At least one path exists from the source node to the destination node \n \n If a path exists from the source node to a node with no outgoing edges, then that node is equal to destination . \n \n The number of possible paths from source to destination is a finite number. \n\n Return true if and only if all roads from source lead to destination . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/03/16/485_example_1.png] \n \n```\nInput:\n n = 3, edges = [[0,1],[0,2]], source = 0, destination = 2\n\nOutput:\n false\n\nExplanation:\n It is possible to reach and get stuck on both node 1 and node 2.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/03/16/485_example_2.png] \n \n```\nInput:\n n = 4, edges = [[0,1],[0,3],[1,2],[2,1]], source = 0, destination = 3\n\nOutput:\n false\n\nExplanation:\n We have two possibilities: to end at node 3, or to loop over node 1 and node 2 indefinitely.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2019/03/16/485_example_3.png] \n \n```\nInput:\n n = 4, edges = [[0,1],[0,2],[1,3],[2,3]], source = 0, destination = 3\n\nOutput:\n true\n```\n\n Constraints: \n\n 1 <= n <= 10 4 \n \n 0 <= edges.length <= 10 4 \n \n edges.length == 2 \n \n 0 <= a i , b i <= n - 1 \n \n 0 <= source <= n - 1 \n \n 0 <= destination <= n - 1 \n \n The given graph may have self-loops and parallel edges.",
+  "code": "class Solution {\n    vector<vector<int>> graph;\n    vector<int> state;\n    int destination;\n\n    bool dfs(int node) {\n        if (graph[node].empty()) {\n            return node == destination;\n        }\n        if (state[node] == 1) {\n            return false;\n        }\n        if (state[node] == 2) {\n            return true;\n        }\n        state[node] = 1;\n        for (int next : graph[node]) {\n            if (!dfs(next)) {\n                return false;\n            }\n        }\n        state[node] = 2;\n        return true;\n    }\n\npublic:\n    bool leadsToDestination(int n, vector<vector<int>>& edges,\n                            int source, int dest) {\n        graph.assign(n, {});\n        state.assign(n, 0);\n        destination = dest;\n        for (const auto& edge : edges) {\n            graph[edge[0]].push_back(edge[1]);\n        }\n        return dfs(source);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178517351",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "622",
+  "title": "Design Circular Queue",
+  "slug": "design-circular-queue",
+  "url": "https://leetcode.com/problems/design-circular-queue/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Linked List",
+    "Design",
+    "Queue"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Linked list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Design your implementation of the circular queue. The circular queue is a linear data structure in which the operations are performed based on FIFO (First In First Out) principle, and the last position is connected back to the first position to make a circle. It is also called \"Ring Buffer\". \n \n One of the benefits of the circular queue is that we can make use of the spaces in front of the queue. In a normal queue, once the queue becomes full, we cannot insert the next element even if there is a space in front of the queue. But using the circular queue, we can use the space to store new values. \n \n Implement the MyCircularQueue class: \n\n MyCircularQueue(k) Initializes the object with the size of the queue to be k . \n \n int Front() Gets the front item from the queue. If the queue is empty, return -1 . \n \n int Rear() Gets the last item from the queue. If the queue is empty, return -1 . \n \n boolean enQueue(int value) Inserts an element into the circular queue. Return true if the operation is successful. \n \n boolean deQueue() Deletes an element from the circular queue. Return true if the operation is successful. \n \n boolean isEmpty() Checks whether the circular queue is empty or not. \n \n boolean isFull() Checks whether the circular queue is full or not. \n\n You must solve the problem without using the built-in queue data structure in your programming language.  \n\n Example 1: \n \n```\nInput\n\n[\"MyCircularQueue\", \"enQueue\", \"enQueue\", \"enQueue\", \"enQueue\", \"Rear\", \"isFull\", \"deQueue\", \"enQueue\", \"Rear\"]\n[[3], [1], [2], [3], [4], [], [], [], [4], []]\n\nOutput\n\n[null, true, true, true, false, 3, true, true, true, 4]\n\nExplanation\n\nMyCircularQueue myCircularQueue = new MyCircularQueue(3);\nmyCircularQueue.enQueue(1); // return True\nmyCircularQueue.enQueue(2); // return True\nmyCircularQueue.enQueue(3); // return True\nmyCircularQueue.enQueue(4); // return False\nmyCircularQueue.Rear(); // return 3\nmyCircularQueue.isFull(); // return True\nmyCircularQueue.deQueue(); // return True\nmyCircularQueue.enQueue(4); // return True\nmyCircularQueue.Rear(); // return 4\n```\n\n Constraints: \n\n 1 <= k <= 1000 \n \n 0 <= value <= 1000 \n \n At most 3000 calls will be made to  enQueue , deQueue ,  Front ,  Rear ,  isEmpty , and  isFull .",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass MyCircularQueue {\nprivate:\n    vector<int> data;\n    int head, tail, size, capacity;\n\npublic:\n    MyCircularQueue(int k) : data(k), head(-1), tail(-1), size(0), capacity(k) {}\n\n    bool enQueue(int value) {\n        if (isFull()) return false;\n        if (isEmpty()) head = 0;\n        tail = (tail + 1) % capacity;\n        data[tail] = value;\n        size++;\n        return true;\n    }\n\n    bool deQueue() {\n        if (isEmpty()) return false;\n        if (head == tail) head = tail = -1;\n        else head = (head + 1) % capacity;\n        size--;\n        return true;\n    }\n\n    int Front() { return isEmpty() ? -1 : data[head]; }\n    int Rear() { return isEmpty() ? -1 : data[tail]; }\n    bool isEmpty() { return size == 0; }\n    bool isFull() { return size == capacity; }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590144997",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "1838",
+  "title": "Frequency of the Most Frequent Element",
+  "slug": "frequency-of-the-most-frequent-element",
+  "url": "https://leetcode.com/problems/frequency-of-the-most-frequent-element/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Sliding Window",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "The frequency of an element is the number of times it occurs in an array. \n \n You are given an integer array nums and an integer k . In one operation, you can choose an index of nums and increment the element at that index by 1 . \n \n Return the maximum possible frequency of an element after performing at most k operations . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,4], k = 5\n\nOutput:\n 3\n\nExplanation:\n Increment the first element three times and the second element two times to make nums = [4,4,4].\n4 has a frequency of 3.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,4,8,13], k = 5\n\nOutput:\n 2\n\nExplanation:\n There are multiple optimal solutions:\n- Increment the first element three times to make nums = [4,4,8,13]. 4 has a frequency of 2.\n- Increment the second element four times to make nums = [1,8,8,13]. 8 has a frequency of 2.\n- Increment the third element five times to make nums = [1,4,13,13]. 13 has a frequency of 2.\n```\n\n Example 3: \n \n```\nInput:\n nums = [3,9,6], k = 2\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= k <= 10 5",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxFrequency(vector<int>& nums, int k) {\n        sort(nums.begin(), nums.end());\n        long total = 0;\n        int l = 0, res = 0;\n\n        for (int r = 0; r < nums.size(); ++r) {\n            total += nums[r];\n            while ((long)nums[r] * (r - l + 1) - total > k) {\n                total -= nums[l++];\n            }\n            res = max(res, r - l + 1);\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593828180",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

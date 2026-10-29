@@ -1,0 +1,27 @@
+{
+  "id": "3912",
+  "title": "Valid Elements in an Array",
+  "slug": "valid-elements-in-an-array",
+  "url": "https://leetcode.com/problems/valid-elements-in-an-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n An element nums[i] is considered valid if it satisfies at least one of the following conditions: \n\n It is strictly greater than every element to its left. \n \n It is strictly greater than every element to its right. \n\n The first and last elements are always valid. \n \n Return an array of all valid elements in the same order as they appear in nums . \n\n Example 1: \n\n Input: nums = [1,2,4,2,3,2] \n \n Output: [1,2,4,3,2] \n \n Explanation: \n\n nums[0] and nums[5] are always valid. \n \n nums[1] and nums[2] are strictly greater than every element to their left. \n \n nums[4] is strictly greater than every element to its right. \n \n Thus, the answer is [1, 2, 4, 3, 2] . \n\n Example 2: \n\n Input: nums = [5,5,5,5] \n \n Output: [5,5] \n \n Explanation: \n\n The first and last elements are always valid. \n \n No other elements are strictly greater than all elements to their left or to their right. \n \n Thus, the answer is [5, 5] . \n\n Example 3: \n\n Input: nums = [1] \n \n Output: [1] \n \n Explanation: \n \n Since there is only one element, it is always valid. Thus, the answer is [1] . \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    vector<int> findValidElements(vector<int>& nums) {\n        int n = (int)nums.size();\n        vector<int> rightMax(n);\n        rightMax[n - 1] = nums[n - 1];\n        for (int i = n - 2; i >= 0; --i) rightMax[i] = max(nums[i], rightMax[i + 1]);\n        vector<int> ans;\n        int leftMax = INT_MIN;\n        for (int i = 0; i < n; ++i) {\n            if (i == 0 || i == n - 1 || nums[i] > leftMax || nums[i] > rightMax[i + 1]) ans.push_back(nums[i]);\n            leftMax = max(leftMax, nums[i]);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179316831",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

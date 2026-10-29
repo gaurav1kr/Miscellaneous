@@ -1,0 +1,34 @@
+{
+  "id": "1203",
+  "title": "Sort Items by Groups Respecting Dependencies",
+  "slug": "sort-items-by-groups-respecting-dependencies",
+  "url": "https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort",
+    "Directed Acyclic Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Hash map",
+    "Ordered map",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There are  n  items each belonging to zero or one of  m  groups where group[i]  is the group that the i -th item belongs to and it's equal to -1  if the i -th item belongs to no group. The items and the groups are zero indexed. A group can have no item belonging to it. \n \n Return a sorted list of the items such that: \n\n The items that belong to the same group are next to each other in the sorted list. \n \n There are some relations between these items where  beforeItems[i]  is a list containing all the items that should come before the  i -th item in the sorted array (to the left of the  i -th item). \n\n Return any solution if there is more than one solution and return an empty list  if there is no solution. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2019/09/11/1359_ex1.png] \n \n```\nInput:\n n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3,6],[],[],[]]\n\nOutput:\n [6,3,4,1,5,2,0,7]\n```\n\n Example 2: \n \n```\nInput:\n n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3],[],[4],[]]\n\nOutput:\n []\n\nExplanation:\n This is the same as example 1 except that 4 needs to be before 6 in the sorted list.\n```\n\n Constraints: \n\n 1 <= m <= n <= 3 * 10 4 \n \n group.length == beforeItems.length == n \n \n -1 <= group[i] <= m - 1 \n \n 0 <= beforeItems[i].length <= n - 1 \n \n 0 <= beforeItems[i][j] <= n - 1 \n \n i != beforeItems[i][j] \n \n beforeItems[i]  does not contain duplicates elements.",
+  "code": "// Your solution here\nclass Solution {\npublic:\n    vector<int> sortItems(int n, int m, vector<int>& group, vector<vector<int>>& beforeItems) {\n        for (int i = 0; i < n; i++)\n            if (group[i] == -1)\n                group[i] = m++;\n\n        vector<vector<int>> itemGraph(n), groupGraph(m);\n        vector<int> itemIndegree(n), groupIndegree(m);\n\n        for (int i = 0; i < n; i++) {\n            for (int b : beforeItems[i]) {\n                itemGraph[b].push_back(i);\n                itemIndegree[i]++;\n                if (group[i] != group[b]) {\n                    groupGraph[group[b]].push_back(group[i]);\n                    groupIndegree[group[i]]++;\n                }\n            }\n        }\n\n        auto topSort = [](vector<vector<int>>& graph, vector<int>& indegree) {\n            vector<int> res;\n            queue<int> q;\n            for (int i = 0; i < indegree.size(); i++)\n                if (indegree[i] == 0) q.push(i);\n            while (!q.empty()) {\n                int u = q.front(); q.pop();\n                res.push_back(u);\n                for (int v : graph[u])\n                    if (--indegree[v] == 0) q.push(v);\n            }\n            return res.size() == indegree.size() ? res : vector<int>();\n        };\n\n        vector<int> itemOrder = topSort(itemGraph, itemIndegree);\n        vector<int> groupOrder = topSort(groupGraph, groupIndegree);\n        if (itemOrder.empty() || groupOrder.empty()) return {};\n\n        unordered_map<int, vector<int>> groupedItems;\n        for (int item : itemOrder)\n            groupedItems[group[item]].push_back(item);\n\n        vector<int> res;\n        for (int grp : groupOrder)\n            for (int item : groupedItems[grp])\n                res.push_back(item);\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617063222",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

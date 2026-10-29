@@ -1,0 +1,30 @@
+{
+  "id": "3775",
+  "title": "Reverse Words With Same Vowel Count",
+  "slug": "reverse-words-with-same-vowel-count",
+  "url": "https://leetcode.com/problems/reverse-words-with-same-vowel-count/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English words, each separated by a single space. \n \n Determine how many vowels appear in the first word. Then, reverse each following word that has the same vowel count . Leave all remaining words unchanged. \n \n Return the resulting string. \n \n Vowels are 'a' , 'e' , 'i' , 'o' , and 'u' . \n\n Example 1: \n\n Input: s = \"cat and mice\" \n \n Output: \"cat dna mice\" \n \n Explanation: ​​​​​​​ \n\n The first word \"cat\" has 1 vowel. \n \n \"and\" has 1 vowel, so it is reversed to form \"dna\" . \n \n \"mice\" has 2 vowels, so it remains unchanged. \n \n Thus, the resulting string is \"cat dna mice\" . \n\n Example 2: \n\n Input: s = \"book is nice\" \n \n Output: \"book is ecin\" \n \n Explanation: \n\n The first word \"book\" has 2 vowels. \n \n \"is\" has 1 vowel, so it remains unchanged. \n \n \"nice\" has 2 vowels, so it is reversed to form \"ecin\" . \n \n Thus, the resulting string is \"book is ecin\" . \n\n Example 3: \n\n Input: s = \"banana healthy\" \n \n Output: \"banana healthy\" \n \n Explanation: \n\n The first word \"banana\" has 3 vowels. \n \n \"healthy\" has 2 vowels, so it remains unchanged. \n \n Thus, the resulting string is \"banana healthy\" . \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters and spaces. \n \n Words in s are separated by a single space. \n \n s does not contain leading or trailing spaces.",
+  "code": "class Solution { public: string reverseWords(string s) { auto vow=[](char c){return c=='a'||c=='e'||c=='i'||c=='o'||c=='u';};int n=s.size(),start=0;while(start<n&&s[start]!=' ')++start;int target=0;for(int i=0;i<start;++i)target+=vow(s[i]);int i=start+1;while(i<n){int j=i,cnt=0;while(j<n&&s[j]!=' '){cnt+=vow(s[j]);++j;}if(cnt==target)reverse(s.begin()+i,s.begin()+j);i=j+1;}return s; } };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177755933",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

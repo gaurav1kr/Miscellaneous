@@ -1,0 +1,32 @@
+{
+  "id": "837",
+  "title": "New 21 Game",
+  "slug": "new-21-game",
+  "url": "https://leetcode.com/problems/new-21-game/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Sliding Window",
+    "Probability and Statistics"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Alice plays the following game, loosely based on the card game \"21\" . \n \n Alice starts with 0 points and draws numbers while she has less than k points. During each draw, she gains an integer number of points randomly from the range [1, maxPts] , where maxPts is an integer. Each draw is independent and the outcomes have equal probabilities. \n \n Alice stops drawing numbers when she gets k or more points . \n \n Return the probability that Alice has n or fewer points. \n \n Answers within 10 -5 of the actual answer are considered accepted. \n\n Example 1: \n \n```\nInput:\n n = 10, k = 1, maxPts = 10\n\nOutput:\n 1.00000\n\nExplanation:\n Alice gets a single card, then stops.\n```\n\n Example 2: \n \n```\nInput:\n n = 6, k = 1, maxPts = 10\n\nOutput:\n 0.60000\n\nExplanation:\n Alice gets a single card, then stops.\nIn 6 out of 10 possibilities, she is at or below 6 points.\n```\n\n Example 3: \n \n```\nInput:\n n = 21, k = 17, maxPts = 10\n\nOutput:\n 0.73278\n```\n\n Constraints: \n\n 0 <= k <= n <= 10 4 \n \n 1 <= maxPts <= 10 4",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    double new21Game(int n, int k, int maxPts) {\n        if (k == 0 || n >= k + maxPts) return 1.0;\n        vector<double> dp(n + 1);\n        dp[0] = 1.0;\n        double windowSum = 1.0, res = 0.0;\n\n        for (int i = 1; i <= n; ++i) {\n            dp[i] = windowSum / maxPts;\n            if (i < k) windowSum += dp[i];\n            else res += dp[i];\n            if (i - maxPts >= 0) windowSum -= dp[i - maxPts];\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593827590",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

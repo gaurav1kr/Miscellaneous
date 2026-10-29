@@ -1,0 +1,33 @@
+{
+  "id": "813",
+  "title": "Largest Sum of Averages",
+  "slug": "largest-sum-of-averages",
+  "url": "https://leetcode.com/problems/largest-sum-of-averages/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . You can partition the array into at most k non-empty adjacent subarrays. The score of a partition is the sum of the averages of each subarray. \n \n Note that the partition must use every integer in nums , and that the score is not necessarily an integer. \n \n Return the maximum score you can achieve of all the possible partitions . Answers within 10 -6 of the actual answer will be accepted. \n\n Example 1: \n \n```\nInput:\n nums = [9,1,2,3,9], k = 3\n\nOutput:\n 20.00000\n\nExplanation:\n \nThe best choice is to partition nums into [9], [1, 2, 3], [9]. The answer is 9 + (1 + 2 + 3) / 3 + 9 = 20.\nWe could have also partitioned nums into [9, 1], [2], [3, 9], for example.\nThat partition would lead to a score of 5 + 2 + 6 = 13, which is worse.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4,5,6,7], k = 4\n\nOutput:\n 20.50000\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 10 4 \n \n 1 <= k <= nums.length",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    double largestSumOfAverages(vector<int>& nums, int K) {\n        int n = nums.size();\n        vector<double> prefix(n + 1, 0);\n        vector<vector<double>> dp(n + 1, vector<double>(K + 1, 0));\n\n        for (int i = 0; i < n; i++) {\n            prefix[i + 1] = prefix[i] + nums[i];\n            dp[i + 1][1] = prefix[i + 1] / (i + 1);\n        }\n\n        for (int k = 2; k <= K; k++) {\n            for (int i = k; i <= n; i++) {\n                for (int j = k - 1; j < i; j++) {\n                    dp[i][k] = max(dp[i][k], dp[j][k - 1] + (prefix[i] - prefix[j]) / (i - j));\n                }\n            }\n        }\n        return dp[n][K];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590146599",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

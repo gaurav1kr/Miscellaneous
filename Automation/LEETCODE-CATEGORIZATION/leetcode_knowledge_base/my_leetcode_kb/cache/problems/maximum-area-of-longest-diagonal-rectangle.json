@@ -1,0 +1,27 @@
+{
+  "id": "3000",
+  "title": "Maximum Area of Longest Diagonal Rectangle",
+  "slug": "maximum-area-of-longest-diagonal-rectangle",
+  "url": "https://leetcode.com/problems/maximum-area-of-longest-diagonal-rectangle/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 2D 0-indexed integer array dimensions . \n \n For all indices i , 0 <= i < dimensions.length , dimensions[i][0] represents the length and dimensions[i][1] represents the width of the rectangle i . \n \n Return the area of the rectangle having the longest diagonal. If there are multiple rectangles with the longest diagonal, return the area of the rectangle having the maximum area. \n\n Example 1: \n \n```\nInput:\n dimensions = [[9,3],[8,6]]\n\nOutput:\n 48\n\nExplanation:\n \nFor index = 0, length = 9 and width = 3. Diagonal length = sqrt(9 * 9 + 3 * 3) = sqrt(90) ≈\n 9.487.\nFor index = 1, length = 8 and width = 6. Diagonal length = sqrt(8 * 8 + 6 * 6) = sqrt(100) = 10.\nSo, the rectangle at index 1 has a greater diagonal length therefore we return area = 8 * 6 = 48.\n```\n\n Example 2: \n \n```\nInput:\n dimensions = [[3,4],[4,3]]\n\nOutput:\n 12\n\nExplanation:\n Length of diagonal is the same for both which is 5, so maximum area = 12.\n```\n\n Constraints: \n\n 1 <= dimensions.length <= 100 \n \n dimensions[i].length == 2 \n \n 1 <= dimensions[i][0], dimensions[i][1] <= 100",
+  "code": "class Solution {public:int areaOfMaxDiagonal(vector<vector<int>>& dimensions){int diag=-1,area=0;for(auto&v:dimensions){int d=v[0]*v[0]+v[1]*v[1],a=v[0]*v[1];if(d>diag||(d==diag&&a>area))diag=d,area=a;}return area;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176803380",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

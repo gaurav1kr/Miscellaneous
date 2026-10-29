@@ -1,0 +1,36 @@
+{
+  "id": "23",
+  "title": "Merge k Sorted Lists",
+  "slug": "merge-k-sorted-lists",
+  "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Divide and Conquer",
+    "Heap (Priority Queue)",
+    "Merge Sort",
+    "Tournament Sort"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an array of k linked-lists lists , each linked-list is sorted in ascending order. \n \n Merge all the linked-lists into one sorted linked-list and return it. \n\n Example 1: \n \n```\nInput:\n lists = [[1,4,5],[1,3,4],[2,6]]\n\nOutput:\n [1,1,2,3,4,4,5,6]\n\nExplanation:\n The linked-lists are:\n[\n 1->4->5,\n 1->3->4,\n 2->6\n]\nmerging them into one sorted linked list:\n1->1->2->3->4->4->5->6\n```\n\n Example 2: \n \n```\nInput:\n lists = []\n\nOutput:\n []\n```\n\n Example 3: \n \n```\nInput:\n lists = [[]]\n\nOutput:\n []\n```\n\n Constraints: \n\n k == lists.length \n \n 0 <= k <= 10 4 \n \n 0 <= lists[i].length <= 500 \n \n -10 4 <= lists[i][j] <= 10 4 \n \n lists[i] is sorted in ascending order . \n \n The sum of lists[i].length will not exceed 10 4 .",
+  "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n   struct Compare {\n    bool operator()(ListNode* a, ListNode* b) {\n        return a->val > b->val;\n    }\n};\n\nListNode* mergeKLists(vector<ListNode*>& lists) {\n    priority_queue<ListNode*, vector<ListNode*>, Compare> pq;\n    \n    for (auto list : lists)\n        if (list) pq.push(list);\n    \n    ListNode dummy(0), *tail = &dummy;\n    \n    while (!pq.empty()) {\n        tail->next = pq.top();\n        pq.pop();\n        tail = tail->next;\n        if (tail->next) pq.push(tail->next);\n    }\n    \n    return dummy.next;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542486822",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

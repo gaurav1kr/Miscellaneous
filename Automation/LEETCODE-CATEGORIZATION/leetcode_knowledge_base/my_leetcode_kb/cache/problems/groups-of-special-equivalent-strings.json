@@ -1,0 +1,38 @@
+{
+  "id": "893",
+  "title": "Groups of Special-Equivalent Strings",
+  "slug": "groups-of-special-equivalent-strings",
+  "url": "https://leetcode.com/problems/groups-of-special-equivalent-strings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings of the same length words . \n \n In one move , you can swap any two even indexed characters or any two odd indexed characters of a string words[i] . \n \n Two strings words[i] and words[j] are special-equivalent if after any number of moves, words[i] == words[j] . \n\n For example, words[i] = \"zzxy\" and words[j] = \"xyzz\" are special-equivalent because we may make the moves \"zzxy\" -> \"xzzy\" -> \"xyzz\" . \n\n A group of special-equivalent strings from words is a non-empty subset of words such that: \n\n Every pair of strings in the group are special equivalent, and \n \n The group is the largest size possible (i.e., there is not a string words[i] not in the group such that words[i] is special-equivalent to every string in the group). \n\n Return the number of groups of special-equivalent strings from words . \n\n Example 1: \n \n```\nInput:\n words = [\"abcd\",\"cdab\",\"cbad\",\"xyzz\",\"zzxy\",\"zzyx\"]\n\nOutput:\n 3\n\nExplanation:\n \nOne group is [\"abcd\", \"cdab\", \"cbad\"], since they are all pairwise special equivalent, and none of the other strings is all pairwise special equivalent to these.\nThe other two groups are [\"xyzz\", \"zzxy\"] and [\"zzyx\"].\nNote that in particular, \"zzxy\" is not special equivalent to \"zzyx\".\n```\n\n Example 2: \n \n```\nInput:\n words = [\"abc\",\"acb\",\"bac\",\"bca\",\"cab\",\"cba\"]\n\nOutput:\n 3\n```\n\n Constraints: \n\n 1 <= words.length <= 1000 \n \n 1 <= words[i].length <= 20 \n \n words[i] consist of lowercase English letters. \n \n All the strings are of the same length.",
+  "code": "#include <string>\n#include <unordered_set>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numSpecialEquivGroups(vector<string>& words) {\n        unordered_set<string> seen;\n        for (auto& word : words) {\n            string even, odd;\n            for (int i = 0; i < word.size(); ++i) {\n                if (i % 2) odd += word[i];\n                else even += word[i];\n            }\n            sort(even.begin(), even.end());\n            sort(odd.begin(), odd.end());\n            seen.insert(even + odd);\n        }\n        return seen.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610602950",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

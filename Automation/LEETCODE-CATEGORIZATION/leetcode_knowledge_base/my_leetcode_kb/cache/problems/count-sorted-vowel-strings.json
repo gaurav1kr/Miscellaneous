@@ -1,0 +1,30 @@
+{
+  "id": "1641",
+  "title": "Count Sorted Vowel Strings",
+  "slug": "count-sorted-vowel-strings",
+  "url": "https://leetcode.com/problems/count-sorted-vowel-strings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer n , return the number of strings of length n that consist only of vowels ( a , e , i , o , u ) and are lexicographically sorted . \n \n A string s is lexicographically sorted if for all valid i , s[i] is the same as or comes before s[i+1] in the alphabet. \n\n Example 1: \n \n```\nInput:\n n = 1\n\nOutput:\n 5\n\nExplanation:\n The 5 sorted strings that consist of vowels only are \n[\"a\",\"e\",\"i\",\"o\",\"u\"].\n```\n\n Example 2: \n \n```\nInput:\n n = 2\n\nOutput:\n 15\n\nExplanation:\n The 15 sorted strings that consist of vowels only are\n[\"aa\",\"ae\",\"ai\",\"ao\",\"au\",\"ee\",\"ei\",\"eo\",\"eu\",\"ii\",\"io\",\"iu\",\"oo\",\"ou\",\"uu\"].\nNote that \"ea\" is not a valid string since 'e' comes after 'a' in the alphabet.\n```\n\n Example 3: \n \n```\nInput:\n n = 33\n\nOutput:\n 66045\n```\n\n Constraints: \n\n 1 <= n <= 50",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int countVowelStrings(int n) {\n        vector<int> dp(5, 1);\n        for (int i = 2; i <= n; i++) {\n            for (int j = 3; j >= 0; j--) {\n                dp[j] += dp[j + 1];\n            }\n        }\n        return dp[0] + dp[1] + dp[2] + dp[3] + dp[4];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590130172",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

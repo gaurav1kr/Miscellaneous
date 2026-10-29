@@ -1,0 +1,38 @@
+{
+  "id": "731",
+  "title": "My Calendar II",
+  "slug": "my-calendar-ii",
+  "url": "https://leetcode.com/problems/my-calendar-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Design",
+    "Segment Tree",
+    "Prefix Sum",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Prefix Sum / Difference Array",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Ordered map",
+    "Prefix-sum array",
+    "Segment tree"
+  ],
+  "description": "You are implementing a program to use as your calendar. We can add a new event if adding the event will not cause a triple booking . \n \n A triple booking happens when three events have some non-empty intersection (i.e., some moment is common to all the three events.). \n \n The event can be represented as a pair of integers startTime and endTime that represents a booking on the half-open interval [startTime, endTime) , the range of real numbers x such that startTime <= x < endTime . \n \n Implement the MyCalendarTwo class: \n\n MyCalendarTwo() Initializes the calendar object. \n \n boolean book(int startTime, int endTime) Returns true if the event can be added to the calendar successfully without causing a triple booking . Otherwise, return false and do not add the event to the calendar. \n\n Example 1: \n \n```\nInput\n\n[\"MyCalendarTwo\", \"book\", \"book\", \"book\", \"book\", \"book\", \"book\"]\n[[], [10, 20], [50, 60], [10, 40], [5, 15], [5, 10], [25, 55]]\n\nOutput\n\n[null, true, true, true, false, true, true]\n\nExplanation\n\nMyCalendarTwo myCalendarTwo = new MyCalendarTwo();\nmyCalendarTwo.book(10, 20); // return True, The event can be booked. \nmyCalendarTwo.book(50, 60); // return True, The event can be booked. \nmyCalendarTwo.book(10, 40); // return True, The event can be double booked. \nmyCalendarTwo.book(5, 15); // return False, The event cannot be booked, because it would result in a triple booking.\nmyCalendarTwo.book(5, 10); // return True, The event can be booked, as it does not use time 10 which is already double booked.\nmyCalendarTwo.book(25, 55); // return True, The event can be booked, as the time in [25, 40) will be double booked with the third event, the time [40, 50) will be single booked, and the time [50, 55) will be double booked with the second event.\n```\n\n Constraints: \n\n 0 <= start < end <= 10 9 \n \n At most 1000 calls will be made to book .",
+  "code": "\n#include <map>\nusing namespace std;\n\nclass MyCalendarTwo {\n    map<int, int> events;\n    \npublic:\n    MyCalendarTwo() {}\n    \n    bool book(int start, int end) {\n        events[start]++;\n        events[end]--;\n        \n        int active = 0;\n        for (auto& event : events) {\n            active += event.second;\n            if (active > 2) {\n                events[start]--;\n                events[end]++;\n                return false;\n            }\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592323058",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

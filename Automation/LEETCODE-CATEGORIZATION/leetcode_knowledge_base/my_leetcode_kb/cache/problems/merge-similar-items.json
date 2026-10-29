@@ -1,0 +1,35 @@
+{
+  "id": "2363",
+  "title": "Merge Similar Items",
+  "slug": "merge-similar-items",
+  "url": "https://leetcode.com/problems/merge-similar-items/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Ordered Set"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two 2D integer arrays, items1 and items2 , representing two sets of items. Each array items has the following properties: \n\n items[i] = [value i , weight i ] where value i represents the value and weight i represents the weight of the i th item. \n \n The value of each item in items is unique . \n\n Return a 2D integer array ret where ret[i] = [value i , weight i ] , with weight i being the sum of weights of all items with value value i . \n \n Note: ret should be returned in ascending order by value. \n\n Example 1: \n \n```\nInput:\n items1 = [[1,1],[4,5],[3,8]], items2 = [[3,1],[1,5]]\n\nOutput:\n [[1,6],[3,9],[4,5]]\n\nExplanation:\n \nThe item with value = 1 occurs in items1 with weight = 1 and in items2 with weight = 5, total weight = 1 + 5 = 6.\nThe item with value = 3 occurs in items1 with weight = 8 and in items2 with weight = 1, total weight = 8 + 1 = 9.\nThe item with value = 4 occurs in items1 with weight = 5, total weight = 5. \nTherefore, we return [[1,6],[3,9],[4,5]].\n```\n\n Example 2: \n \n```\nInput:\n items1 = [[1,1],[3,2],[2,3]], items2 = [[2,1],[3,2],[1,3]]\n\nOutput:\n [[1,4],[2,4],[3,4]]\n\nExplanation:\n \nThe item with value = 1 occurs in items1 with weight = 1 and in items2 with weight = 3, total weight = 1 + 3 = 4.\nThe item with value = 2 occurs in items1 with weight = 3 and in items2 with weight = 1, total weight = 3 + 1 = 4.\nThe item with value = 3 occurs in items1 with weight = 2 and in items2 with weight = 2, total weight = 2 + 2 = 4.\nTherefore, we return [[1,4],[2,4],[3,4]].\n```\n\n Example 3: \n \n```\nInput:\n items1 = [[1,3],[2,2]], items2 = [[7,1],[2,2],[1,4]]\n\nOutput:\n [[1,7],[2,4],[7,1]]\n\nExplanation:\n\nThe item with value = 1 occurs in items1 with weight = 3 and in items2 with weight = 4, total weight = 3 + 4 = 7. \nThe item with value = 2 occurs in items1 with weight = 2 and in items2 with weight = 2, total weight = 2 + 2 = 4. \nThe item with value = 7 occurs in items2 with weight = 1, total weight = 1.\nTherefore, we return [[1,7],[2,4],[7,1]].\n```\n\n Constraints: \n\n 1 <= items1.length, items2.length <= 1000 \n \n items1[i].length == items2[i].length == 2 \n \n 1 <= value i , weight i <= 1000 \n \n Each value i in items1 is unique . \n \n Each value i in items2 is unique .",
+  "code": "class Solution { public:\n    vector<vector<int>> mergeSimilarItems(vector<vector<int>>& items1,vector<vector<int>>& items2) {\n        map<int,int> sum;for(auto &v:items1)sum[v[0]]+=v[1];for(auto &v:items2)sum[v[0]]+=v[1];\n        vector<vector<int>> ans;for(auto &p:sum)ans.push_back({p.first,p.second});return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175926466",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "294",
+  "title": "Flip Game II",
+  "slug": "flip-game-ii",
+  "url": "https://leetcode.com/problems/flip-game-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Backtracking",
+    "Memoization",
+    "Minimax",
+    "Game Theory",
+    "Sprague–Grundy Theorem",
+    "Impartial Game"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map"
+  ],
+  "description": "You are playing a Flip Game with your friend. \n \n You are given a string currentState that contains only '+' and '-' . You and your friend take turns to flip two consecutive \"++\" into \"--\" . The game ends when a person can no longer make a move, and therefore the other person will be the winner. \n \n Return true if the starting player can guarantee a win , and false otherwise. \n\n Example 1: \n \n```\nInput:\n currentState = \"++++\"\n\nOutput:\n true\n\nExplanation:\n The starting player can guarantee a win by flipping the middle \"++\" to become \"+--+\".\n```\n\n Example 2: \n \n```\nInput:\n currentState = \"+\"\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= currentState.length <= 60 \n \n currentState[i] is either '+' or '-' . \n \n There cannot be more than 20 consecutive '+' . \n\n Follow up: Derive your algorithm's runtime complexity.",
+  "code": "class Solution\n{\n    unordered_map<string, bool> memo;\n    bool win(string state)\n    {\n        if (memo.count(state))\n        {\n            return memo[state];\n        }\n        for (int i = 0; i + 1 < (int)state.size(); ++i)\n        {\n            if (state[i] == '+' && state[i + 1] == '+')\n            {\n                state[i] = state[i + 1] = '-';\n                bool opponentWins = win(state);\n                state[i] = state[i + 1] = '+';\n                if (!opponentWins)\n                {\n                    return memo[state] = true;\n                }\n            }\n        }\n        return memo[state] = false;\n    }\npublic:\n    bool canWin(string currentState)\n    {\n        return win(currentState);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178448279",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "2221",
+  "title": "Find Triangular Sum of an Array",
+  "slug": "find-triangular-sum-of-an-array",
+  "url": "https://leetcode.com/problems/find-triangular-sum-of-an-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Simulation",
+    "Combinatorics",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums , where nums[i] is a digit between 0 and 9 ( inclusive ). \n \n The triangular sum of nums is the value of the only element present in nums after the following process terminates: \n\n Let nums comprise of n elements. If n == 1 , end the process. Otherwise, create a new 0-indexed integer array newNums of length n - 1 . \n \n For each index i , where 0 <= i < n - 1 , assign the value of newNums[i] as (nums[i] + nums[i+1]) % 10 , where % denotes modulo operator. \n \n Replace the array nums with newNums . \n \n Repeat the entire process starting from step 1. \n\n Return the triangular sum of nums . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/02/22/ex1drawio.png] \n \n```\nInput:\n nums = [1,2,3,4,5]\n\nOutput:\n 8\n\nExplanation:\n\nThe above diagram depicts the process from which we obtain the triangular sum of the array.\n```\n\n Example 2: \n \n```\nInput:\n nums = [5]\n\nOutput:\n 5\n\nExplanation:\n\nSince there is only one element in nums, the triangular sum is the value of that element itself.\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 0 <= nums[i] <= 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int triangularSum(vector<int>& nums){for(int n=nums.size();n>1;--n)for(int i=0;i<n-1;++i)nums[i]=(nums[i]+nums[i+1])%10;return nums[0];}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175890297",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

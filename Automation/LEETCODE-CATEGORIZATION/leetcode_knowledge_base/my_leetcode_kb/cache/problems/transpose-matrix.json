@@ -1,0 +1,30 @@
+{
+  "id": "867",
+  "title": "Transpose Matrix",
+  "slug": "transpose-matrix",
+  "url": "https://leetcode.com/problems/transpose-matrix/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a 2D integer array matrix , return the transpose of matrix . \n \n The transpose of a matrix is the matrix flipped over its main diagonal, switching the matrix's row and column indices. \n \n [Figure: https://assets.leetcode.com/uploads/2021/02/10/hint_transpose.png] \n\n Example 1: \n \n```\nInput:\n matrix = [[1,2,3],[4,5,6],[7,8,9]]\n\nOutput:\n [[1,4,7],[2,5,8],[3,6,9]]\n```\n\n Example 2: \n \n```\nInput:\n matrix = [[1,2,3],[4,5,6]]\n\nOutput:\n [[1,4],[2,5],[3,6]]\n```\n\n Constraints: \n\n m == matrix.length \n \n n == matrix[i].length \n \n 1 <= m, n <= 1000 \n \n 1 <= m * n <= 10 5 \n \n -10 9 <= matrix[i][j] <= 10 9",
+  "code": "\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<int>> transpose(vector<vector<int>>& A) {\n        int m = A.size(), n = A[0].size();\n        vector<vector<int>> result(n, vector<int>(m));\n        \n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                result[j][i] = A[i][j];\n        \n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592333867",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

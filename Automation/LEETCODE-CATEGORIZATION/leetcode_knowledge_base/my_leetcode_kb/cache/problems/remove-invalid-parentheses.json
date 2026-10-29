@@ -1,0 +1,34 @@
+{
+  "id": "301",
+  "title": "Remove Invalid Parentheses",
+  "slug": "remove-invalid-parentheses",
+  "url": "https://leetcode.com/problems/remove-invalid-parentheses/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid. \n \n Return a list of unique strings that are valid with the minimum number of removals . You may return the answer in any order . \n\n Example 1: \n \n```\nInput:\n s = \"()())()\"\n\nOutput:\n [\"(())()\",\"()()()\"]\n```\n\n Example 2: \n \n```\nInput:\n s = \"(a)())()\"\n\nOutput:\n [\"(a())()\",\"(a)()()\"]\n```\n\n Example 3: \n \n```\nInput:\n s = \")(\"\n\nOutput:\n [\"\"]\n```\n\n Constraints: \n\n 1 <= s.length <= 25 \n \n s consists of lowercase English letters and parentheses '(' and ')' . \n \n There will be at most 20 parentheses in s .",
+  "code": "class Solution {\npublic:\n    vector<string> removeInvalidParentheses(string s) {\n    vector<string> result;\n    unordered_set<string> visited;\n    queue<string> q;\n    bool found = false;\n\n    q.push(s);\n    visited.insert(s);\n\n    while (!q.empty()) {\n        string current = q.front();\n        q.pop();\n\n        if (isValid(current)) {\n            result.push_back(current);\n            found = true;\n        }\n\n        if (found) continue;\n\n        for (int i = 0; i < current.size(); ++i) {\n            if (current[i] != '(' && current[i] != ')') continue;\n            string next = current.substr(0, i) + current.substr(i + 1);\n            if (visited.find(next) == visited.end()) {\n                q.push(next);\n                visited.insert(next);\n            }\n        }\n    }\n\n    return result;\n}\nbool isValid(const string &s) {\n    int count = 0;\n    for (char c : s) {\n        if (c == '(') ++count;\n        else if (c == ')') {\n            if (--count < 0) return false;\n        }\n    }\n    return count == 0;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536926953",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "1316",
+  "title": "Distinct Echo Substrings",
+  "slug": "distinct-echo-substrings",
+  "url": "https://leetcode.com/problems/distinct-echo-substrings/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Trie",
+    "Rolling Hash",
+    "Suffix Array",
+    "Hash Function",
+    "Suffix Automaton",
+    "Suffix Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Return the number of distinct non-empty substrings of text  that can be written as the concatenation of some string with itself (i.e. it can be written as a + a  where a is some string). \n\n Example 1: \n \n```\nInput:\n text = \"abcabcabc\"\n\nOutput:\n 3\n\nExplanation: \nThe 3 substrings are \"abcabc\", \"bcabca\" and \"cabcab\".\n```\n\n Example 2: \n \n```\nInput:\n text = \"leetcodeleetcode\"\n\nOutput:\n 2\n\nExplanation: \nThe 2 substrings are \"ee\" and \"leetcodeleetcode\".\n```\n\n Constraints: \n\n 1 <= text.length <= 2000 \n \n text  has only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int distinctEchoSubstrings(string text) {\n        int n = text.size();\n        unordered_set<string> found;\n        for (int start = 0; start < n; ++start) {\n            int m = n - start;\n            vector<int> z(m, 0);\n            for (int i = 1, l = 0, r = 0; i < m; ++i) {\n                if (i <= r) z[i] = min(r - i + 1, z[i - l]);\n                while (i + z[i] < m && text[start + z[i]] == text[start + i + z[i]]) ++z[i];\n                if (i + z[i] - 1 > r) l = i, r = i + z[i] - 1;\n            }\n            for (int len = 1; 2 * len <= m; ++len)\n                if (z[len] >= len) found.insert(text.substr(start, 2 * len));\n        }\n        return found.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175749482",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

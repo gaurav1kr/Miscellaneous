@@ -1,0 +1,35 @@
+{
+  "id": "749",
+  "title": "Contain Virus",
+  "slug": "contain-virus",
+  "url": "https://leetcode.com/problems/contain-virus/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Ordered set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "A virus is spreading rapidly, and your task is to quarantine the infected area by installing walls. \n \n The world is modeled as an m x n binary grid isInfected , where isInfected[i][j] == 0 represents uninfected cells, and isInfected[i][j] == 1 represents cells contaminated with the virus. A wall (and only one wall) can be installed between any two 4-directionally adjacent cells, on the shared boundary. \n \n Every night, the virus spreads to all neighboring cells in all four directions unless blocked by a wall. Resources are limited. Each day, you can install walls around only one region (i.e., the affected area (continuous block of infected cells) that threatens the most uninfected cells the following night). There will never be a tie . \n \n Return the number of walls used to quarantine all the infected regions . If the world will become fully infected, return the number of walls used. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/01/virus11-grid.jpg] \n \n```\nInput:\n isInfected = [[0,1,0,0,0,0,0,1],[0,1,0,0,0,0,0,1],[0,0,0,0,0,0,0,1],[0,0,0,0,0,0,0,0]]\n\nOutput:\n 10\n\nExplanation:\n There are 2 contaminated regions.\nOn the first day, add 5 walls to quarantine the viral region on the left. The board after the virus spreads is:\n\nOn the second day, add 5 walls to quarantine the viral region on the right. The virus is fully contained.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/01/virus2-grid.jpg] \n \n```\nInput:\n isInfected = [[1,1,1],[1,0,1],[1,1,1]]\n\nOutput:\n 4\n\nExplanation:\n Even though there is only one cell saved, there are 4 walls built.\nNotice that walls are only built on the shared boundary of two different cells.\n```\n\n Example 3: \n \n```\nInput:\n isInfected = [[1,1,1,0,0,0,0,0,0],[1,0,1,0,1,1,1,1,1],[1,1,1,0,0,0,0,0,0]]\n\nOutput:\n 13\n\nExplanation:\n The region on the left only builds two new walls.\n```\n\n Constraints: \n\n m == isInfected.length \n \n n == isInfected[i].length \n \n 1 <= m, n <= 50 \n \n isInfected[i][j] is either 0 or 1 . \n \n There is always a contiguous viral region throughout the described process that will infect strictly more uncontaminated squares in the next round.",
+  "code": "#include <vector>\n#include <queue>\n#include <set>\nusing namespace std;\n\nclass Solution {\npublic:\n    int containVirus(vector<vector<int>>& isInfected) {\n        int m = isInfected.size(), n = isInfected[0].size(), res = 0;\n        int dirs[5] = {0, 1, 0, -1, 0};\n\n        while (true) {\n            vector<set<pair<int, int>>> frontiers;\n            vector<set<pair<int, int>>> regions;\n            vector<int> walls;\n\n            vector<vector<bool>> visited(m, vector<bool>(n, false));\n            for (int i = 0; i < m; ++i) {\n                for (int j = 0; j < n; ++j) {\n                    if (isInfected[i][j] == 1 && !visited[i][j]) {\n                        set<pair<int, int>> frontier, region;\n                        int wall = 0;\n                        queue<pair<int, int>> q;\n                        q.emplace(i, j);\n                        visited[i][j] = true;\n\n                        while (!q.empty()) {\n                            auto [x, y] = q.front(); q.pop();\n                            region.insert({x, y});\n                            for (int d = 0; d < 4; ++d) {\n                                int nx = x + dirs[d], ny = y + dirs[d + 1];\n                                if (nx < 0 || ny < 0 || nx >= m || ny >= n) continue;\n                                if (isInfected[nx][ny] == 1 && !visited[nx][ny]) {\n                                    q.emplace(nx, ny);\n                                    visited[nx][ny] = true;\n                                } else if (isInfected[nx][ny] == 0) {\n                                    frontier.insert({nx, ny});\n                                    wall++;\n                                }\n                            }\n                        }\n\n                        frontiers.push_back(frontier);\n                        regions.push_back(region);\n                        walls.push_back(wall);\n                    }\n                }\n            }\n\n            if (frontiers.empty()) break;\n            int idx = max_element(frontiers.begin(), frontiers.end(),\n                [](auto& a, auto& b) { return a.size() < b.size(); }) - frontiers.begin();\n\n            res += walls[idx];\n            for (int i = 0; i < frontiers.size(); ++i) {\n                if (i == idx) {\n                    for (auto& [x, y] : regions[i])\n                        isInfected[x][y] = -1;\n                } else {\n                    for (auto& [x, y] : frontiers[i])\n                        isInfected[x][y] = 1;\n                }\n            }\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610680465",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

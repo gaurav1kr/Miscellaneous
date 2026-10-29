@@ -1,0 +1,34 @@
+{
+  "id": "825",
+  "title": "Friends Of Appropriate Ages",
+  "slug": "friends-of-appropriate-ages",
+  "url": "https://leetcode.com/problems/friends-of-appropriate-ages/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There are n persons on a social media website. You are given an integer array ages where ages[i] is the age of the i th person. \n \n A Person x will not send a friend request to a person y ( x != y ) if any of the following conditions is true: \n\n age[y] <= 0.5 * age[x] + 7 \n \n age[y] > age[x] \n \n age[y] > 100 && age[x] < 100 \n\n Otherwise, x will send a friend request to y . \n \n Note that if x sends a request to y , y will not necessarily send a request to x . Also, a person will not send a friend request to themself. \n \n Return the total number of friend requests made . \n\n Example 1: \n \n```\nInput:\n ages = [16,16]\n\nOutput:\n 2\n\nExplanation:\n 2 people friend request each other.\n```\n\n Example 2: \n \n```\nInput:\n ages = [16,17,18]\n\nOutput:\n 2\n\nExplanation:\n Friend requests are made 17 -> 16, 18 -> 17.\n```\n\n Example 3: \n \n```\nInput:\n ages = [20,30,100,110,120]\n\nOutput:\n 3\n\nExplanation:\n Friend requests are made 110 -> 100, 120 -> 110, 120 -> 100.\n```\n\n Constraints: \n\n n == ages.length \n \n 1 <= n <= 2 * 10 4 \n \n 1 <= ages[i] <= 120",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numFriendRequests(vector<int>& ages) {\n        sort(ages.begin(), ages.end());\n        int n = ages.size(), res = 0;\n        for (int i = 0; i < n; ++i) {\n            int age = ages[i];\n            if (age < 15) continue;\n            int low = lower_bound(ages.begin(), ages.end(), age / 2 + 7 + 1) - ages.begin();\n            int high = upper_bound(ages.begin(), ages.end(), age) - ages.begin();\n            res += high - low - 1;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610569291",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

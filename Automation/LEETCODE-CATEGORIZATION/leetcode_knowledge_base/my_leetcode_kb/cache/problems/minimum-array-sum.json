@@ -1,0 +1,30 @@
+{
+  "id": "3366",
+  "title": "Minimum Array Sum",
+  "slug": "minimum-array-sum",
+  "url": "https://leetcode.com/problems/minimum-array-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and three integers k , op1 , and op2 . \n \n You can perform the following operations on nums : \n\n Operation 1 : Choose an index i and divide nums[i] by 2, rounding up to the nearest whole number. You can perform this operation at most op1 times, and not more than once per index. \n \n Operation 2 : Choose an index i and subtract k from nums[i] , but only if nums[i] is greater than or equal to k . You can perform this operation at most op2 times, and not more than once per index. \n\n Note: Both operations can be applied to the same index, but at most once each. \n \n Return the minimum possible sum of all elements in nums after performing any number of operations. \n\n Example 1: \n\n Input: nums = [2,8,3,19,3], k = 3, op1 = 1, op2 = 1 \n \n Output: 23 \n \n Explanation: \n\n Apply Operation 2 to nums[1] = 8 , making nums[1] = 5 . \n \n Apply Operation 1 to nums[3] = 19 , making nums[3] = 10 . \n \n The resulting array becomes [2, 5, 3, 10, 3] , which has the minimum possible sum of 23 after applying the operations. \n\n Example 2: \n\n Input: nums = [2,4,3], k = 3, op1 = 2, op2 = 1 \n \n Output: 3 \n \n Explanation: \n\n Apply Operation 1 to nums[0] = 2 , making nums[0] = 1 . \n \n Apply Operation 1 to nums[1] = 4 , making nums[1] = 2 . \n \n Apply Operation 2 to nums[2] = 3 , making nums[2] = 0 . \n \n The resulting array becomes [1, 2, 0] , which has the minimum possible sum of 3 after applying the operations. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 0 <= nums[i] <= 10 5 \n \n 0 <= k <= 10 5 \n \n 0 <= op1, op2 <= nums.length",
+  "code": "class Solution {\npublic:\n    int minArraySum(vector<int>& nums,int k,int op1,int op2) {\n        const int INF=1000000000;\n        vector<vector<int>> dp(op1+1,vector<int>(op2+1,INF));\n        dp[0][0]=0;\n        for (int x:nums) {\n            vector<vector<int>> next(op1+1,vector<int>(op2+1,INF));\n            for (int a=0;a<=op1;++a) for (int b=0;b<=op2;++b) {\n                if (dp[a][b]==INF) continue;\n                next[a][b]=min(next[a][b],dp[a][b]+x);\n                int half=(x+1)/2;\n                if (a<op1) next[a+1][b]=min(next[a+1][b],dp[a][b]+half);\n                if (b<op2 && x>=k) next[a][b+1]=min(next[a][b+1],dp[a][b]+x-k);\n                if (a<op1 && b<op2) {\n                    if (half>=k) next[a+1][b+1]=min(next[a+1][b+1],dp[a][b]+half-k);\n                    if (x>=k) next[a+1][b+1]=min(next[a+1][b+1],dp[a][b]+(x-k+1)/2);\n                }\n            }\n            dp.swap(next);\n        }\n        int ans=INF;\n        for (auto& row:dp) for (int v:row) ans=min(ans,v);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179718353",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "125",
+  "title": "Valid Palindrome",
+  "slug": "valid-palindrome",
+  "url": "https://leetcode.com/problems/valid-palindrome/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers. \n \n Given a string s , return true if it is a palindrome , or false otherwise . \n\n Example 1: \n \n```\nInput:\n s = \"A man, a plan, a canal: Panama\"\n\nOutput:\n true\n\nExplanation:\n \"amanaplanacanalpanama\" is a palindrome.\n```\n\n Example 2: \n \n```\nInput:\n s = \"race a car\"\n\nOutput:\n false\n\nExplanation:\n \"raceacar\" is not a palindrome.\n```\n\n Example 3: \n \n```\nInput:\n s = \" \"\n\nOutput:\n true\n\nExplanation:\n s is an empty string \"\" after removing non-alphanumeric characters.\nSince an empty string reads the same forward and backward, it is a palindrome.\n```\n\n Constraints: \n\n 1 <= s.length <= 2 * 10 5 \n \n s consists only of printable ASCII characters.",
+  "code": "class Solution {\npublic:\n    bool isPalindrome(string s) {\n        int left = 0, right = s.size() - 1;\n        while (left < right) {\n            while (left < right && !isalnum(s[left])) left++;\n            while (left < right && !isalnum(s[right])) right--;\n            if (tolower(s[left]) != tolower(s[right])) return false;\n            left++, right--;\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588101749",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1052",
+  "title": "Grumpy Bookstore Owner",
+  "slug": "grumpy-bookstore-owner",
+  "url": "https://leetcode.com/problems/grumpy-bookstore-owner/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "There is a bookstore owner that has a store open for n minutes. You are given an integer array customers of length n where customers[i] is the number of the customers that enter the store at the start of the i th minute and all those customers leave after the end of that minute. \n \n During certain minutes, the bookstore owner is grumpy. You are given a binary array grumpy where grumpy[i] is 1 if the bookstore owner is grumpy during the i th minute, and is 0 otherwise. \n \n When the bookstore owner is grumpy, the customers entering during that minute are not satisfied . Otherwise, they are satisfied. \n \n The bookstore owner knows a secret technique to remain not grumpy for minutes consecutive minutes, but this technique can only be used once . \n \n Return the maximum number of customers that can be satisfied throughout the day. \n\n Example 1: \n\n Input: customers = [1,0,1,2,1,1,7,5], grumpy = [0,1,0,1,0,1,0,1], minutes = 3 \n \n Output: 16 \n \n Explanation: \n \n The bookstore owner keeps themselves not grumpy for the last 3 minutes. \n \n The maximum number of customers that can be satisfied = 1 + 1 + 1 + 1 + 7 + 5 = 16. \n\n Example 2: \n\n Input: customers = [1], grumpy = [0], minutes = 1 \n \n Output: 1 \n\n Constraints: \n\n n == customers.length == grumpy.length \n \n 1 <= minutes <= n <= 2 * 10 4 \n \n 0 <= customers[i] <= 1000 \n \n grumpy[i] is either 0 or 1 .",
+  "code": "\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int X) {\n        int n = customers.size();\n        int result = 0, extra = 0;\n        \n        for (int i = 0; i < X; ++i) {\n            if (grumpy[i] == 0) result += customers[i];\n            else extra += customers[i];\n        }\n        \n        int maxExtra = extra;\n        for (int i = X; i < n; ++i) {\n            if (grumpy[i] == 0) result += customers[i];\n            else extra += customers[i];\n            \n            if (grumpy[i - X] == 1) extra -= customers[i - X];\n            maxExtra = max(maxExtra, extra);\n        }\n        \n        return result + maxExtra;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592327486",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

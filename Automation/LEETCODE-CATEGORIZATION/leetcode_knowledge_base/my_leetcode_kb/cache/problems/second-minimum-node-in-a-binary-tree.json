@@ -1,0 +1,30 @@
+{
+  "id": "671",
+  "title": "Second Minimum Node In a Binary Tree",
+  "slug": "second-minimum-node-in-a-binary-tree",
+  "url": "https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given a non-empty special binary tree consisting of nodes with the non-negative value, where each node in this tree has exactly two or zero sub-node. If the node has two sub-nodes, then this node's value is the smaller value among its two sub-nodes. More formally, the property  root.val = min(root.left.val, root.right.val)  always holds. \n \n Given such a binary tree, you need to output the second minimum value in the set made of all the nodes' value in the whole tree. \n \n If no such second minimum value exists, output -1 instead. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/15/smbt1.jpg] \n \n```\nInput:\n root = [2,2,5,null,null,5,7]\n\nOutput:\n 5\n\nExplanation:\n The smallest value is 2, the second smallest value is 5.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/10/15/smbt2.jpg] \n \n```\nInput:\n root = [2,2,2]\n\nOutput:\n -1\n\nExplanation:\n The smallest value is 2, but there isn't any second smallest value.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 25] . \n \n 1 <= Node.val <= 2 31 - 1 \n \n root.val == min(root.left.val, root.right.val)  for each internal node of the tree.",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    int sm = -1;\n    int diff = INT_MAX;\n    void rec(TreeNode* root,int tar){\n        if(root == NULL) return;\n        if(root->left){\n            if(root->left->val != tar && diff > root->left->val - tar){\n                sm = root->left->val;\n                diff = root->left->val - tar;\n            }\n            rec(root->left,tar);\n        }\n        if(root->right){\n            if(root->right->val != tar && diff > root->right->val - tar){\n                sm = root->right->val;\n                diff = root->right->val - tar;\n            }\n            rec(root->right,tar);\n        }\n    }\n\n    int findSecondMinimumValue(TreeNode* root) {\n        //one root\n        if(root == NULL || (root->left == NULL && root->right == NULL)){\n            return -1;\n        }\n        rec(root,root->val);\n        return sm;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617069360",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

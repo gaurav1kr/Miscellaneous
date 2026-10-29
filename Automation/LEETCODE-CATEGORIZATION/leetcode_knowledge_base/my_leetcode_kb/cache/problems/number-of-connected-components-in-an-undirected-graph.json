@@ -1,0 +1,31 @@
+{
+  "id": "323",
+  "title": "Number of Connected Components in an Undirected Graph",
+  "slug": "number-of-connected-components-in-an-undirected-graph",
+  "url": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "You have a graph of n nodes labeled from 0 to n - 1 . You are given an integer n and an array edges where edges[i] = [a i , b i ] indicates that there is an edge between a i and b i in the graph. \n \n Return the number of connected components in the graph . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/14/conn1-graph.jpg] \n \n```\nInput:\n n = 5, edges = [[0,1],[1,2],[3,4]]\n\nOutput:\n 2\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/14/conn2-graph.jpg] \n \n```\nInput:\n n = 5, edges = [[0,1],[1,2],[2,3],[3,4]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= n <= 2000 \n \n 1 <= edges.length <= 5000 \n \n edges[i] = [a i , b i ] \n \n a i != b i \n \n There are no repeated edges.",
+  "code": "class Solution\n{\n    vector<int> parent, size;\n    int find(int x)\n    {\n        if (parent[x] != x) parent[x] = find(parent[x]);\n        return parent[x];\n    }\npublic:\n    int countComponents(int n, vector<vector<int>>& edges)\n    {\n        parent.resize(n);\n        size.assign(n, 1);\n        iota(parent.begin(), parent.end(), 0);\n        int components = n;\n        for (const auto& edge : edges) {\n            int a = find(edge[0]), b = find(edge[1]);\n            if (a == b) continue;\n            if (size[a] < size[b]) swap(a, b);\n            parent[b] = a;\n            size[a] += size[b];\n            --components;\n        }\n        return components;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178453092",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

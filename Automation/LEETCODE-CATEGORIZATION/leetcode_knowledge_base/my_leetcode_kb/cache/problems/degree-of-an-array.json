@@ -1,0 +1,32 @@
+{
+  "id": "697",
+  "title": "Degree of an Array",
+  "slug": "degree-of-an-array",
+  "url": "https://leetcode.com/problems/degree-of-an-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given a non-empty array of non-negative integers nums , the degree of this array is defined as the maximum frequency of any one of its elements. \n \n Your task is to find the smallest possible length of a (contiguous) subarray of nums , that has the same degree as nums . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,2,3,1]\n\nOutput:\n 2\n\nExplanation:\n \nThe input array has a degree of 2 because both elements 1 and 2 appear twice.\nOf the subarrays that have the same degree:\n[1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]\nThe shortest length is 2. So return 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,2,3,1,4,2]\n\nOutput:\n 6\n\nExplanation:\n \nThe degree is 3 because the element 2 is repeated 3 times.\nSo [2,2,3,1,4,2] is the shortest subarray, therefore returning 6.\n```\n\n Constraints: \n\n nums.length will be between 1 and 50,000. \n \n nums[i] will be an integer between 0 and 49,999.",
+  "code": "class Solution {\npublic:\n    int findShortestSubArray(vector<int>& nums) {\n        unordered_map<int, int> freq, first;\n        int degree = 0, answer = nums.size();\n        for (int i = 0; i < (int)nums.size(); ++i) {\n            int x = nums[i];\n            if (!freq.count(x)) first[x] = i;\n            int count = ++freq[x];\n            if (count > degree) {\n                degree = count;\n                answer = i - first[x] + 1;\n            } else if (count == degree) {\n                answer = min(answer, i - first[x] + 1);\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175739670",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

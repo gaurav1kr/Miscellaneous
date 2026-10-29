@@ -1,0 +1,30 @@
+{
+  "id": "2198",
+  "title": "Number of Single Divisor Triplets",
+  "slug": "number-of-single-divisor-triplets",
+  "url": "https://leetcode.com/problems/number-of-single-divisor-triplets/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Counting",
+    "Enumeration"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of positive integers nums . A triplet of three distinct indices (i, j, k) is called a single divisor triplet of nums if nums[i] + nums[j] + nums[k] is divisible by exactly one of nums[i] , nums[j] , or nums[k] . \nReturn the number of single divisor triplets of nums . \n\n Example 1: \n \n```\nInput:\n nums = [4,6,7,3,2]\n\nOutput:\n 12\n\nExplanation:\n\nThe triplets (0, 3, 4), (0, 4, 3), (3, 0, 4), (3, 4, 0), (4, 0, 3), and (4, 3, 0) have the values of [4, 3, 2] (or a permutation of [4, 3, 2]).\n4 + 3 + 2 = 9 which is only divisible by 3, so all such triplets are single divisor triplets.\nThe triplets (0, 2, 3), (0, 3, 2), (2, 0, 3), (2, 3, 0), (3, 0, 2), and (3, 2, 0) have the values of [4, 7, 3] (or a permutation of [4, 7, 3]).\n4 + 7 + 3 = 14 which is only divisible by 7, so all such triplets are single divisor triplets.\nThere are 12 single divisor triplets in total.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,2]\n\nOutput:\n 6\n\nExplanation:\n\nThe triplets (0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), and (2, 1, 0) have the values of [1, 2, 2] (or a permutation of [1, 2, 2]).\n1 + 2 + 2 = 5 which is only divisible by 1, so all such triplets are single divisor triplets.\nThere are 6 single divisor triplets in total.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,1,1]\n\nOutput:\n 0\n\nExplanation:\n\nThere are no single divisor triplets.\nNote that (0, 1, 2) is not a single divisor triplet because nums[0] + nums[1] + nums[2] = 3 and 3 is divisible by nums[0], nums[1], and nums[2].\n```\n\n Constraints: \n\n 3 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    long long singleDivisorTriplet(vector<int>& nums) {\n        long long f[101]={};\n        for (int x:nums) ++f[x];\n        long long ans=0;\n        for (int a=1;a<=100;++a) if (f[a])\n            for (int b=a;b<=100;++b) if (f[b])\n                for (int c=b;c<=100;++c) if (f[c]) {\n                    int s=a+b+c;\n                    int count=(s%a==0)+(s%b==0)+(s%c==0);\n                    if (count!=1) continue;\n                    long long ways=0;\n                    if (a==b && b==c) ways=f[a]*(f[a]-1)*(f[a]-2);\n                    else if (a==b) ways=3*f[a]*(f[a]-1)*f[c];\n                    else if (b==c) ways=3*f[a]*f[b]*(f[b]-1);\n                    else ways=6*f[a]*f[b]*f[c];\n                    ans+=ways;\n                }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179695613",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

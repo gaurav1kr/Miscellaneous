@@ -1,0 +1,32 @@
+{
+  "id": "592",
+  "title": "Fraction Addition and Subtraction",
+  "slug": "fraction-addition-and-subtraction",
+  "url": "https://leetcode.com/problems/fraction-addition-and-subtraction/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Simulation",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string expression representing an expression of fraction addition and subtraction, return the calculation result in string format. \n \n The final result should be an irreducible fraction . If your final result is an integer, change it to the format of a fraction that has a denominator 1 . So in this case, 2 should be converted to 2/1 . \n\n Example 1: \n \n```\nInput:\n expression = \"-1/2+1/2\"\n\nOutput:\n \"0/1\"\n```\n\n Example 2: \n \n```\nInput:\n expression = \"-1/2+1/2+1/3\"\n\nOutput:\n \"1/3\"\n```\n\n Example 3: \n \n```\nInput:\n expression = \"1/3-1/2\"\n\nOutput:\n \"-1/6\"\n```\n\n Constraints: \n\n The input string only contains '0' to '9' , '/' , '+' and '-' . So does the output. \n \n Each fraction (input and output) has the format ±numerator/denominator . If the first input fraction or the output is positive, then '+' will be omitted. \n \n The input only contains valid irreducible fractions , where the numerator and denominator of each fraction will always be in the range [1, 10] . If the denominator is 1 , it means this fraction is actually an integer in a fraction format defined above. \n \n The number of given fractions will be in the range [1, 10] . \n \n The numerator and denominator of the final result are guaranteed to be valid and in the range of 32-bit int.",
+  "code": "#include <string>\n#include <numeric>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string fractionAddition(string expression) {\n        int num = 0, den = 1, i = 0;\n        while (i < expression.size()) {\n            int sign = 1;\n            if (expression[i] == '-' || expression[i] == '+') sign = (expression[i++] == '-') ? -1 : 1;\n            int n = 0;\n            while (isdigit(expression[i])) n = n * 10 + (expression[i++] - '0');\n            i++; // skip '/'\n            int d = 0;\n            while (i < expression.size() && isdigit(expression[i])) d = d * 10 + (expression[i++] - '0');\n            num = num * d + sign * n * den;\n            den *= d;\n            int g = gcd(abs(num), den);\n            num /= g; den /= g;\n        }\n        return to_string(num) + \"/\" + to_string(den);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610629314",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

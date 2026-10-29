@@ -1,0 +1,33 @@
+{
+  "id": "417",
+  "title": "Pacific Atlantic Water Flow",
+  "slug": "pacific-atlantic-water-flow",
+  "url": "https://leetcode.com/problems/pacific-atlantic-water-flow/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is an m x n rectangular island that borders both the Pacific Ocean and Atlantic Ocean . The Pacific Ocean touches the island's left and top edges, and the Atlantic Ocean touches the island's right and bottom edges. \n \n The island is partitioned into a grid of square cells. You are given an m x n integer matrix heights where heights[r][c] represents the height above sea level of the cell at coordinate (r, c) . \n \n The island receives a lot of rain, and the rain water can flow to neighboring cells directly north, south, east, and west if the neighboring cell's height is less than or equal to the current cell's height. Water can flow from any cell adjacent to an ocean into the ocean. \n \n Return a 2D list of grid coordinates result where result[i] = [r i , c i ] denotes that rain water can flow from cell (r i , c i ) to both the Pacific and Atlantic oceans . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/08/waterflow-grid.jpg] \n \n```\nInput:\n heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]\n\nOutput:\n [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]\n\nExplanation:\n The following cells can flow to the Pacific and Atlantic oceans, as shown below:\n[0,4]: [0,4] -> Pacific Ocean \n  [0,4] -> Atlantic Ocean\n[1,3]: [1,3] -> [0,3] -> Pacific Ocean \n  [1,3] -> [1,4] -> Atlantic Ocean\n[1,4]: [1,4] -> [1,3] -> [0,3] -> Pacific Ocean \n  [1,4] -> Atlantic Ocean\n[2,2]: [2,2] -> [1,2] -> [0,2] -> Pacific Ocean \n  [2,2] -> [2,3] -> [2,4] -> Atlantic Ocean\n[3,0]: [3,0] -> Pacific Ocean \n  [3,0] -> [4,0] -> Atlantic Ocean\n[3,1]: [3,1] -> [3,0] -> Pacific Ocean \n  [3,1] -> [4,1] -> Atlantic Ocean\n[4,0]: [4,0] -> Pacific Ocean \n [4,0] -> Atlantic Ocean\nNote that there are other possible paths for these cells to flow to the Pacific and Atlantic oceans.\n```\n\n Example 2: \n \n```\nInput:\n heights = [[1]]\n\nOutput:\n [[0,0]]\n\nExplanation:\n The water can flow from the only cell to the Pacific and Atlantic oceans.\n```\n\n Constraints: \n\n m == heights.length \n \n n == heights[r].length \n \n 1 <= m, n <= 200 \n \n 0 <= heights[r][c] <= 10 5",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {\n        int m = heights.size(), n = heights[0].size();\n        vector<vector<bool>> pac(m, vector<bool>(n, false));\n        vector<vector<bool>> atl(m, vector<bool>(n, false));\n        queue<pair<int,int>> qp, qa;\n        auto insert = [&](int r, int c, vector<vector<bool>>& seen,\n                          queue<pair<int,int>>& q) {\n            if (!seen[r][c]) {\n                seen[r][c] = true;\n                q.push({r, c});\n            }\n        };\n        for (int r = 0; r < m; ++r) {\n            insert(r, 0, pac, qp);\n            insert(r, n - 1, atl, qa);\n        }\n        for (int c = 0; c < n; ++c) {\n            insert(0, c, pac, qp);\n            insert(m - 1, c, atl, qa);\n        }\n        auto bfs = [&](queue<pair<int,int>>& q, vector<vector<bool>>& seen) {\n            int dr[4] = {1, -1, 0, 0};\n            int dc[4] = {0, 0, 1, -1};\n            while (!q.empty()) {\n                auto current = q.front();\n                q.pop();\n                int r = current.first, c = current.second;\n                for (int d = 0; d < 4; ++d) {\n                    int nr = r + dr[d], nc = c + dc[d];\n                    if (nr < 0 || nr >= m || nc < 0 || nc >= n) continue;\n                    if (!seen[nr][nc] && heights[nr][nc] >= heights[r][c]) {\n                        seen[nr][nc] = true;\n                        q.push({nr, nc});\n                    }\n                }\n            }\n        };\n        bfs(qp, pac);\n        bfs(qa, atl);\n        vector<vector<int>> result;\n        for (int r = 0; r < m; ++r)\n            for (int c = 0; c < n; ++c)\n                if (pac[r][c] && atl[r][c]) result.push_back({r, c});\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179684393",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

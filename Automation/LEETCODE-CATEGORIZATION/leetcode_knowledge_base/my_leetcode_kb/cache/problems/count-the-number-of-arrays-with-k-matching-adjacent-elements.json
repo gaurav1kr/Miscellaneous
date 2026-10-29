@@ -1,0 +1,28 @@
+{
+  "id": "3405",
+  "title": "Count the Number of Arrays with K Matching Adjacent Elements",
+  "slug": "count-the-number-of-arrays-with-k-matching-adjacent-elements",
+  "url": "https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Combinatorics",
+    "Fermat's Little Theorem"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given three integers n , m , k . A good array arr of size n is defined as follows: \n\n Each element in arr is in the inclusive range [1, m] . \n \n Exactly k indices i (where 1 <= i < n ) satisfy the condition arr[i - 1] == arr[i] . \n\n Return the number of good arrays that can be formed. \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: n = 3, m = 2, k = 1 \n \n Output: 4 \n \n Explanation: \n\n There are 4 good arrays. They are [1, 1, 2] , [1, 2, 2] , [2, 1, 1] and [2, 2, 1] . \n \n Hence, the answer is 4. \n\n Example 2: \n\n Input: n = 4, m = 2, k = 2 \n \n Output: 6 \n \n Explanation: \n\n The good arrays are [1, 1, 1, 2] , [1, 1, 2, 2] , [1, 2, 2, 2] , [2, 1, 1, 1] , [2, 2, 1, 1] and [2, 2, 2, 1] . \n \n Hence, the answer is 6. \n\n Example 3: \n\n Input: n = 5, m = 2, k = 0 \n \n Output: 2 \n \n Explanation: \n\n The good arrays are [1, 2, 1, 2, 1] and [2, 1, 2, 1, 2] . Hence, the answer is 2. \n\n Constraints: \n\n 1 <= n <= 10 5 \n \n 1 <= m <= 10 5 \n \n 0 <= k <= n - 1",
+  "code": "class Solution {static const long long M=1000000007;long long power(long long a,long long b){long long r=1;for(;b;b>>=1,a=a*a%M)if(b&1)r=r*a%M;return r;}public:int countGoodArrays(int n,int m,int k){vector<long long>f(n+1,1);for(int i=1;i<=n;i++)f[i]=f[i-1]*i%M;long long c=f[n-1]*power(f[k]*f[n-1-k]%M,M-2)%M;return c*m%M*power(m-1,n-1-k)%M;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177518644",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

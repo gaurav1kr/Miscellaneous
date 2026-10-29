@@ -1,0 +1,33 @@
+{
+  "id": "844",
+  "title": "Backspace String Compare",
+  "slug": "backspace-string-compare",
+  "url": "https://leetcode.com/problems/backspace-string-compare/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given two strings s and t , return true if they are equal when both are typed into empty text editors . '#' means a backspace character. \n \n Note that after backspacing an empty text, the text will continue empty. \n\n Example 1: \n \n```\nInput:\n s = \"ab#c\", t = \"ad#c\"\n\nOutput:\n true\n\nExplanation:\n Both s and t become \"ac\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"ab##\", t = \"c#d#\"\n\nOutput:\n true\n\nExplanation:\n Both s and t become \"\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"a#c\", t = \"b\"\n\nOutput:\n false\n\nExplanation:\n s becomes \"c\" while t becomes \"b\".\n```\n\n Constraints: \n\n 1 <= s.length, t.length <= 200 \n \n s and t only contain lowercase letters and '#' characters. \n\n Follow up: Can you solve it in O(n) time and O(1) space?",
+  "code": "class Solution {\npublic:\nstring buildString(string s) {\n    string result;\n    for (char c : s) {\n        if (c == '#' && !result.empty()) result.pop_back();\n        else if (c != '#') result.push_back(c);\n    }\n    return result;\n}\n\nbool backspaceCompare(string s, string t) {\n    return buildString(s) == buildString(t);\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588095940",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "3565",
+  "title": "Sequential Grid Path Cover",
+  "slug": "sequential-grid-path-cover",
+  "url": "https://leetcode.com/problems/sequential-grid-path-cover/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Recursion",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 2D array grid of size m x n , and an integer k . There are k cells in grid containing the values from 1 to k exactly once , and the rest of the cells have a value 0. \n \n You can start at any cell, and move from a cell to its neighbors (up, down, left, or right). You must find a path in grid which: \n\n Visits each cell in grid exactly once . \n \n Visits the cells with values from 1 to k in order . \n\n Return a 2D array result of size (m * n) x 2 , where result[i] = [x i , y i ] represents the i th cell visited in the path. If there are multiple such paths, you may return any one. \n \n If no such path exists, return an empty array. \n\n Example 1: \n\n Input: grid = [[0,0,0],[0,1,2]], k = 2 \n \n Output: [[0,0],[1,0],[1,1],[1,2],[0,2],[0,1]] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/05/16/ezgifcom-animated-gif-maker1.gif] \n\n Example 2: \n\n Input: grid = [[1,0,4],[3,0,2]], k = 4 \n \n Output: [] \n \n Explanation: \n \n There is no possible path that satisfies the conditions. \n\n Constraints: \n\n 1 <= m == grid.length <= 5 \n \n 1 <= n == grid[i].length <= 5 \n \n 1 <= k <= m * n \n \n 0 <= grid[i][j] <= k \n \n grid contains all integers between 1 and k exactly once.",
+  "code": "class Solution {\n    int m,n,k;\n    vector<vector<int>> *g;\n    vector<vector<int>> path;\n    const int dx[4]={1,-1,0,0},dy[4]={0,0,1,-1};\n    bool dfs(int x,int y,unsigned int mask,int next) {\n        path.push_back({x,y});\n        if((int)path.size()==m*n) return next==k+1;\n        for(int d=0;d<4;++d) {\n            int a=x+dx[d],b=y+dy[d];\n            if(a<0||a>=m||b<0||b>=n) continue;\n            int id=a*n+b;\n            if(mask&(1u<<id)) continue;\n            int val=(*g)[a][b];\n            if(val && val!=next) continue;\n            if(dfs(a,b,mask|(1u<<id),next+(val!=0))) return true;\n        }\n        path.pop_back();return false;\n    }\npublic:\n    vector<vector<int>> findPath(vector<vector<int>>& grid,int K) {\n        g=&grid;m=grid.size();n=grid[0].size();k=K;\n        for(int i=0;i<m;++i) for(int j=0;j<n;++j)\n            if((grid[i][j]==0||grid[i][j]==1) && dfs(i,j,1u<<(i*n+j),grid[i][j]==1?2:1)) return path;\n        return {};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180974683",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

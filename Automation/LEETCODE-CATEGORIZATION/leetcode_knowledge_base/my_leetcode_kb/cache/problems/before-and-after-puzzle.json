@@ -1,0 +1,37 @@
+{
+  "id": "1181",
+  "title": "Before and After Puzzle",
+  "slug": "before-and-after-puzzle",
+  "url": "https://leetcode.com/problems/before-and-after-puzzle/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a list of phrases , generate a list of Before and After puzzles. \n \n A phrase is a string that consists of lowercase English letters and spaces only. No space appears in the start or the end of a phrase. There are no consecutive spaces in a phrase. \n \n Before and After puzzles are phrases that are formed by merging two phrases where the last word of the first phrase is the same as the first word of the second phrase . Note that only the last word of the first phrase and the first word of the second phrase are merged in this process. \n \n Return the Before and After puzzles that can be formed by every two phrases  phrases[i]  and  phrases[j]  where  i != j . Note that the order of matching two phrases matters, we want to consider both orders. \n \n You should return a list of  distinct  strings sorted lexicographically , after removing all duplicate phrases in the generated Before and After puzzles. \n\n Example 1: \n\n Input: phrases = [\"writing code\",\"code rocks\"] \n \n Output: [\"writing code rocks\"] \n\n Example 2: \n\n Input: phrases = [\"mission statement\",\"a quick bite to eat\",\"a chip off the old block\",\"chocolate bar\",\"mission impossible\",\"a man on a mission\",\"block party\",\"eat my words\",\"bar of soap\"] \n \n Output: [\"a chip off the old block party\",\"a man on a mission impossible\",\"a man on a mission statement\",\"a quick bite to eat my words\",\"chocolate bar of soap\"] \n\n Example 3: \n\n Input: phrases = [\"a\",\"b\",\"a\"] \n \n Output: [\"a\"] \n\n Example 4: \n\n Input: phrases = [\"ab ba\",\"ba ab\",\"ab ba\"] \n \n Output: [\"ab ba ab\",\"ba ab ba\"] \n\n Constraints: \n\n 1 <= phrases.length <= 100 \n \n 1 <= phrases[i].length <= 100",
+  "code": "class Solution {\npublic:\n    vector<string> beforeAndAfterPuzzles(vector<string>& phrases) {\n        set<string> result;\n        for (int i = 0; i < static_cast<int>(phrases.size()); ++i) {\n            for (int j = 0; j < static_cast<int>(phrases.size()); ++j) {\n                if (i == j) {\n                    continue;\n                }\n                int last = phrases[i].find_last_of(' ');\n                int first = phrases[j].find(' ');\n                string tail = phrases[i].substr(\n                    last == string::npos ? 0 : last + 1);\n                string head = phrases[j].substr(0, first);\n                if (tail == head) {\n                    result.insert(phrases[i] +\n                        (first == string::npos ? \"\" : phrases[j].substr(first)));\n                }\n            }\n        }\n        return vector<string>(result.begin(), result.end());\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178544989",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

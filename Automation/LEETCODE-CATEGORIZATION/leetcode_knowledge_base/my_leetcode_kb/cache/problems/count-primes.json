@@ -1,0 +1,34 @@
+{
+  "id": "204",
+  "title": "Count Primes",
+  "slug": "count-primes",
+  "url": "https://leetcode.com/problems/count-primes/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Enumeration",
+    "Number Theory",
+    "Primality Test",
+    "Sieve Theory",
+    "Prime Number Sieve"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer n , return the number of prime numbers that are strictly less than n . \n\n Example 1: \n \n```\nInput:\n n = 10\n\nOutput:\n 4\n\nExplanation:\n There are 4 prime numbers less than 10, they are 2, 3, 5, 7.\n```\n\n Example 2: \n \n```\nInput:\n n = 0\n\nOutput:\n 0\n```\n\n Example 3: \n \n```\nInput:\n n = 1\n\nOutput:\n 0\n```\n\n Constraints: \n\n 0 <= n <= 5 * 10 6",
+  "code": "class Solution {\npublic:\n    int countPrimes(int n) {\n        if (n <= 2) return 0; // No primes below 2\n        \n        vector<bool> isPrime(n, true);\n        isPrime[0] = isPrime[1] = false; // 0 and 1 are not primes\n        \n        for (int i = 2; i * i < n; ++i) {\n            if (isPrime[i]) {\n                for (int j = i * i; j < n; j += i) {\n                    isPrime[j] = false;\n                }\n            }\n        }\n        \n        return count(isPrime.begin(), isPrime.end(), true);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536857043",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

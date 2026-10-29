@@ -1,0 +1,37 @@
+{
+  "id": "2389",
+  "title": "Longest Subsequence With Limited Sum",
+  "slug": "longest-subsequence-with-limited-sum",
+  "url": "https://leetcode.com/problems/longest-subsequence-with-limited-sum/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n , and an integer array queries of length m . \n \n Return an array answer of length m where answer[i] is the maximum size of a subsequence that you can take from nums such that the sum of its elements is less than or equal to queries[i] . \n \n A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements. \n\n Example 1: \n \n```\nInput:\n nums = [4,5,2,1], queries = [3,10,21]\n\nOutput:\n [2,3,4]\n\nExplanation:\n We answer the queries as follows:\n- The subsequence [2,1] has a sum less than or equal to 3. It can be proven that 2 is the maximum size of such a subsequence, so answer[0] = 2.\n- The subsequence [4,5,1] has a sum less than or equal to 10. It can be proven that 3 is the maximum size of such a subsequence, so answer[1] = 3.\n- The subsequence [4,5,2,1] has a sum less than or equal to 21. It can be proven that 4 is the maximum size of such a subsequence, so answer[2] = 4.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,3,4,5], queries = [1]\n\nOutput:\n [0]\n\nExplanation:\n The empty subsequence is the only subsequence that has a sum less than or equal to 1, so answer[0] = 0.\n```\n\n Constraints: \n\n n == nums.length \n \n m == queries.length \n \n 1 <= n, m <= 1000 \n \n 1 <= nums[i], queries[i] <= 10 6",
+  "code": "class Solution {public: vector<int> answerQueries(vector<int>& nums,vector<int>& queries){sort(nums.begin(),nums.end());vector<long long>p(1);for(int x:nums)p.push_back(p.back()+x);vector<int>ans;for(int q:queries)ans.push_back(upper_bound(p.begin(),p.end(),q)-p.begin()-1);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176531425",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

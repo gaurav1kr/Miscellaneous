@@ -1,0 +1,33 @@
+{
+  "id": "961",
+  "title": "N-Repeated Element in Size 2N Array",
+  "slug": "n-repeated-element-in-size-2n-array",
+  "url": "https://leetcode.com/problems/n-repeated-element-in-size-2n-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Pigeonhole Principle"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums with the following properties: \n\n nums.length == 2 * n . \n \n nums contains n + 1 unique values, n of which occur exactly once in the array. \n \n Exactly one element of nums is repeated n times. \n\n Return the element that is repeated n times . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,3]\n\nOutput:\n 3\n```\n \n Example 2: \n \n```\nInput:\n nums = [2,1,2,5,3,2]\n\nOutput:\n 2\n```\n \n Example 3: \n \n```\nInput:\n nums = [5,1,5,2,5,3,5,4]\n\nOutput:\n 5\n```\n\n Constraints: \n\n 2 <= n <= 5000 \n \n nums.length == 2 * n \n \n 0 <= nums[i] <= 10 4 \n \n nums contains n + 1 unique elements and one of them is repeated exactly n times.",
+  "code": "#include <vector>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int repeatedNTimes(vector<int>& nums) {\n        unordered_set<int> seen;\n        for (int num : nums) {\n            if (!seen.insert(num).second) return num;\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593841133",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

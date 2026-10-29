@@ -1,0 +1,46 @@
+{
+  "id": "499",
+  "title": "The Maze III",
+  "slug": "the-maze-iii",
+  "url": "https://leetcode.com/problems/the-maze-iii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Shortest Path",
+    "Dijkstra's Algorithm",
+    "Heuristic Search",
+    "A* Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "There is a ball in a maze with empty spaces (represented as 0 ) and walls (represented as 1 ). The ball can go through the empty spaces by rolling up, down, left or right , but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction (must be different from last chosen direction). There is also a hole in this maze. The ball will drop into the hole if it rolls onto the hole. \n \n Given the m x n maze , the ball's position ball and the hole's position hole , where ball = [ball row , ball col ] and hole = [hole row , hole col ] , return a string instructions of all the instructions that the ball should follow to drop in the hole with the shortest distance possible . If there are multiple valid instructions, return the lexicographically minimum one. If the ball can't drop in the hole, return \"impossible\" . \n \n If there is a way for the ball to drop in the hole, the answer instructions should contain the characters 'u' (i.e., up), 'd' (i.e., down), 'l' (i.e., left), and 'r' (i.e., right). \n \n The distance is the number of empty spaces traveled by the ball from the start position (excluded) to the destination (included). \n \n You may assume that the borders of the maze are all walls (see examples). \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/31/maze3-1-grid.jpg] \n \n```\nInput:\n maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], ball = [4,3], hole = [0,1]\n\nOutput:\n \"lul\"\n\nExplanation:\n There are two shortest ways for the ball to drop into the hole.\nThe first way is left -> up -> left, represented by \"lul\".\nThe second way is up -> left, represented by 'ul'.\nBoth ways have shortest distance 6, but the first way is lexicographically smaller because 'l' < 'u'. So the output is \"lul\".\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/31/maze3-2-grid.jpg] \n \n```\nInput:\n maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], ball = [4,3], hole = [3,0]\n\nOutput:\n \"impossible\"\n\nExplanation:\n The ball cannot reach the hole.\n```\n\n Example 3: \n \n```\nInput:\n maze = [[0,0,0,0,0,0,0],[0,0,1,0,0,1,0],[0,0,0,0,1,0,0],[0,0,0,0,0,0,1]], ball = [0,4], hole = [3,5]\n\nOutput:\n \"dldr\"\n```\n\n Constraints: \n\n m == maze.length \n \n n == maze[i].length \n \n 1 <= m, n <= 100 \n \n maze[i][j] is 0 or 1 . \n \n ball.length == 2 \n \n hole.length == 2 \n \n 0 <= ball row , hole row <= m \n \n 0 <= ball col , hole col <= n \n \n Both the ball and the hole exist in an empty space, and they will not be in the same position initially. \n \n The maze contains at least 2 empty spaces .",
+  "code": "class Solution {\npublic:\n    string findShortestWay(vector<vector<int>>& maze, vector<int>& ball, vector<int>& hole) {\n        int m = maze.size(), n = maze[0].size();\n        const int dr[4] = {1, 0, 0, -1};\n        const int dc[4] = {0, -1, 1, 0};\n        const string dirs = \"dlru\";\n        using State = tuple<int, string, int, int>;\n        priority_queue<State, vector<State>, greater<State>> pq;\n        vector<vector<int>> dist(m, vector<int>(n, INT_MAX));\n        vector<vector<string>> path(m, vector<string>(n, \"~\"));\n        dist[ball[0]][ball[1]] = 0;\n        path[ball[0]][ball[1]] = \"\";\n        pq.push(make_tuple(0, \"\", ball[0], ball[1]));\n        while (!pq.empty()) {\n            int steps, r, c;\n            string route;\n            tie(steps, route, r, c) = pq.top();\n            pq.pop();\n            if (steps != dist[r][c] || route != path[r][c]) {\n                continue;\n            }\n            if (r == hole[0] && c == hole[1]) {\n                return route;\n            }\n            for (int d = 0; d < 4; ++d) {\n                int nr = r, nc = c, count = 0;\n                while (nr + dr[d] >= 0 && nr + dr[d] < m &&\n                       nc + dc[d] >= 0 && nc + dc[d] < n &&\n                       maze[nr + dr[d]][nc + dc[d]] == 0) {\n                    nr += dr[d];\n                    nc += dc[d];\n                    ++count;\n                    if (nr == hole[0] && nc == hole[1]) {\n                        break;\n                    }\n                }\n                int nd = steps + count;\n                string np = route + dirs[d];\n                if (nd < dist[nr][nc] || (nd == dist[nr][nc] && np < path[nr][nc])) {\n                    dist[nr][nc] = nd;\n                    path[nr][nc] = np;\n                    pq.push(make_tuple(nd, np, nr, nc));\n                }\n            }\n        }\n        return \"impossible\";\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178474500",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

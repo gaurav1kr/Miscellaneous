@@ -1,0 +1,33 @@
+{
+  "id": "3538",
+  "title": "Merge Operations for Minimum Travel Time",
+  "slug": "merge-operations-for-minimum-travel-time",
+  "url": "https://leetcode.com/problems/merge-operations-for-minimum-travel-time/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a straight road of length l km, an integer n , an integer k , and two integer arrays, position and time , each of length n . \n \n The array position lists the positions (in km) of signs in strictly increasing order (with position[0] = 0 and position[n - 1] = l ). \n \n Each time[i] represents the time (in minutes) required to travel 1 km between position[i] and position[i + 1] . \n \n You must perform exactly k merge operations. In one merge, you can choose any two adjacent signs at indices i and i + 1 (with i > 0 and i + 1 < n ) and: \n\n Update the sign at index i + 1 so that its time becomes time[i] + time[i + 1] . \n \n Remove the sign at index i . \n\n Return the minimum total travel time (in minutes) to travel from 0 to l after exactly k merges. \n\n Example 1: \n\n Input: l = 10, n = 4, k = 1, position = [0,3,8,10], time = [5,8,3,6] \n \n Output: 62 \n \n Explanation: \n\n Merge the signs at indices 1 and 2. Remove the sign at index 1, and change the time at index 2 to 8 + 3 = 11 . \n\n After the merge:\n\n position array: [0, 8, 10] \n \n time array: [5, 11, 6] \n\n Segment \n Distance (km) \n Time per km (min) \n Segment Travel Time (min) \n\n 0 → 8 \n 8 \n 5 \n 8 × 5 = 40 \n\n 8 → 10 \n 2 \n 11 \n 2 × 11 = 22 \n\n Total Travel Time: 40 + 22 = 62 , which is the minimum possible time after exactly 1 merge. \n\n Example 2: \n\n Input: l = 5, n = 5, k = 1, position = [0,1,2,3,5], time = [8,3,9,3,3] \n \n Output: 34 \n \n Explanation: \n\n Merge the signs at indices 1 and 2. Remove the sign at index 1, and change the time at index 2 to 3 + 9 = 12 . \n \n After the merge:\n\n position array: [0, 2, 3, 5] \n \n time array: [8, 12, 3, 3] \n\n Segment \n Distance (km) \n Time per km (min) \n Segment Travel Time (min) \n\n 0 → 2 \n 2 \n 8 \n 2 × 8 = 16 \n\n 2 → 3 \n 1 \n 12 \n 1 × 12 = 12 \n\n 3 → 5 \n 2 \n 3 \n 2 × 3 = 6 \n\n Total Travel Time: 16 + 12 + 6 = 34 , which is the minimum possible time after exactly 1 merge. \n\n Constraints: \n\n 1 <= l <= 10 5 \n \n 2 <= n <= min(l + 1, 50) \n \n 0 <= k <= min(n - 2, 10) \n \n position.length == n \n \n position[0] = 0 and position[n - 1] = l \n \n position is sorted in strictly increasing order. \n \n time.length == n \n \n 1 <= time[i] <= 100​ \n \n 1 <= sum(time) <= 100 ​​​​​​",
+  "code": "class Solution {\npublic:\n    int minTravelTime(int l,int n,int k,vector<int>& position,vector<int>& time) {\n        const int INF=1000000000;\n        vector<int> pref(n+1);\n        for(int i=0;i<n;++i) pref[i+1]=pref[i]+time[i];\n        // dp[previous kept sign][current kept sign][merges so far]\n        vector<vector<vector<int>>> dp(n,vector<vector<int>>(n,vector<int>(k+1,INF)));\n        for(int j=1;j<n;++j) if(j-1<=k)\n            dp[0][j][j-1]=(position[j]-position[0])*time[0];\n        for(int a=0;a<n;++a) for(int b=a+1;b<n;++b)\n            for(int used=0;used<=k;++used) if(dp[a][b][used]<INF) {\n                for(int c=b+1;c<n;++c) {\n                    int extra=c-b-1;\n                    if(used+extra>k) break;\n                    int rate=pref[b+1]-pref[a+1];\n                    int cost=(position[c]-position[b])*rate;\n                    dp[b][c][used+extra]=min(dp[b][c][used+extra],dp[a][b][used]+cost);\n                }\n            }\n        int ans=INF;\n        for(int a=0;a<n-1;++a) ans=min(ans,dp[a][n-1][k]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181539822",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

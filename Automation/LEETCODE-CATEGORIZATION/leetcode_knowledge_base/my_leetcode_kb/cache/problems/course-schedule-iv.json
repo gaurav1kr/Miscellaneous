@@ -1,0 +1,30 @@
+{
+  "id": "1462",
+  "title": "Course Schedule IV",
+  "slug": "course-schedule-iv",
+  "url": "https://leetcode.com/problems/course-schedule-iv/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1 . You are given an array prerequisites where prerequisites[i] = [a i , b i ] indicates that you must take course a i first if you want to take course b i . \n\n For example, the pair [0, 1] indicates that you have to take course 0 before you can take course 1 . \n\n Prerequisites can also be indirect . If course a is a prerequisite of course b , and course b is a prerequisite of course c , then course a is a prerequisite of course c . \n \n You are also given an array queries where queries[j] = [u j , v j ] . For the j th query, you should answer whether course u j is a prerequisite of course v j or not. \n \n Return a boolean array answer , where answer[j] is the answer to the j th query. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/05/01/courses4-1-graph.jpg] \n \n```\nInput:\n numCourses = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]\n\nOutput:\n [false,true]\n\nExplanation:\n The pair [1, 0] indicates that you have to take course 1 before you can take course 0.\nCourse 0 is not a prerequisite of course 1, but the opposite is true.\n```\n\n Example 2: \n \n```\nInput:\n numCourses = 2, prerequisites = [], queries = [[1,0],[0,1]]\n\nOutput:\n [false,false]\n\nExplanation:\n There are no prerequisites, and each course is independent.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/05/01/courses4-3-graph.jpg] \n \n```\nInput:\n numCourses = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]\n\nOutput:\n [true,true]\n```\n\n Constraints: \n\n 2 <= numCourses <= 100 \n \n 0 <= prerequisites.length <= (numCourses * (numCourses - 1) / 2) \n \n prerequisites[i].length == 2 \n \n 0 <= a i , b i <= numCourses - 1 \n \n a i != b i \n \n All the pairs [a i , b i ] are unique . \n \n The prerequisites graph has no cycles. \n \n 1 <= queries.length <= 10 4 \n \n 0 <= u i , v i <= numCourses - 1 \n \n u i != v i",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<bool> checkIfPrerequisite(int n, vector<vector<int>>& prerequisites, vector<vector<int>>& queries) {\n        vector<vector<bool>> reach(n, vector<bool>(n, false));\n        for (auto& p : prerequisites)\n            reach[p[0]][p[1]] = true;\n\n        for (int k = 0; k < n; ++k)\n            for (int i = 0; i < n; ++i)\n                for (int j = 0; j < n; ++j)\n                    reach[i][j] = reach[i][j] || (reach[i][k] && reach[k][j]);\n\n        vector<bool> res;\n        for (auto& q : queries)\n            res.push_back(reach[q[0]][q[1]]);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595387650",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "1124",
+  "title": "Longest Well-Performing Interval",
+  "slug": "longest-well-performing-interval",
+  "url": "https://leetcode.com/problems/longest-well-performing-interval/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Stack",
+    "Monotonic Stack",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Monotonic stack",
+    "Ordered map",
+    "Prefix-sum array",
+    "Stack",
+    "Vector"
+  ],
+  "description": "We are given hours , a list of the number of hours worked per day for a given employee. \n \n A day is considered to be a tiring day if and only if the number of hours worked is (strictly) greater than 8 . \n \n A well-performing interval is an interval of days for which the number of tiring days is strictly larger than the number of non-tiring days. \n \n Return the length of the longest well-performing interval. \n\n Example 1: \n \n```\nInput:\n hours = [9,9,6,0,6,6,9]\n\nOutput:\n 3\n\nExplanation: \nThe longest well-performing interval is [9,9,6].\n```\n\n Example 2: \n \n```\nInput:\n hours = [6,6,6]\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= hours.length <= 10 4 \n \n 0 <= hours[i] <= 16",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int longestWPI(vector<int>& hours) {\n        unordered_map<int, int> seen;\n        int sum = 0, res = 0;\n        for (int i = 0; i < hours.size(); ++i) {\n            sum += hours[i] > 8 ? 1 : -1;\n            if (sum > 0)\n                res = i + 1;\n            else {\n                if (seen.count(sum - 1))\n                    res = max(res, i - seen[sum - 1]);\n            }\n            if (!seen.count(sum)) seen[sum] = i;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593833129",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

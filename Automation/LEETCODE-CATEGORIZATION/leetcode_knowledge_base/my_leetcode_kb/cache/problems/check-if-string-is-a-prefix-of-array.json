@@ -1,0 +1,32 @@
+{
+  "id": "1961",
+  "title": "Check If String Is a Prefix of Array",
+  "slug": "check-if-string-is-a-prefix-of-array",
+  "url": "https://leetcode.com/problems/check-if-string-is-a-prefix-of-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s and an array of strings words , determine whether s is a prefix string of words . \n \n A string s is a prefix string of words if s can be made by concatenating the first k strings in words for some positive k no larger than words.length . \n \n Return true if s is a prefix string of words , or false otherwise . \n\n Example 1: \n \n```\nInput:\n s = \"iloveleetcode\", words = [\"i\",\"love\",\"leetcode\",\"apples\"]\n\nOutput:\n true\n\nExplanation:\n\ns can be made by concatenating \"i\", \"love\", and \"leetcode\" together.\n```\n\n Example 2: \n \n```\nInput:\n s = \"iloveleetcode\", words = [\"apples\",\"i\",\"love\",\"leetcode\"]\n\nOutput:\n false\n\nExplanation:\n\nIt is impossible to make s using a prefix of arr.\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length <= 20 \n \n 1 <= s.length <= 1000 \n \n words[i] and s consist of only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    bool isPrefixString(string s, vector<string>& words) {\n        int i=0;\n        for(const string& w:words){\n            for(char c:w){if(i==(int)s.size()||s[i]!=c)return false;++i;}\n            if(i==(int)s.size())return true;\n        }\n        return false;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175766920",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

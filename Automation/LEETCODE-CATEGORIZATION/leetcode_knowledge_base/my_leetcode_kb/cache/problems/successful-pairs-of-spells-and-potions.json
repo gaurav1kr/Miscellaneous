@@ -1,0 +1,34 @@
+{
+  "id": "2300",
+  "title": "Successful Pairs of Spells and Potions",
+  "slug": "successful-pairs-of-spells-and-potions",
+  "url": "https://leetcode.com/problems/successful-pairs-of-spells-and-potions/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two positive integer arrays spells and potions , of length n and m respectively, where spells[i] represents the strength of the i th spell and potions[j] represents the strength of the j th potion. \n \n You are also given an integer success . A spell and potion pair is considered successful if the product of their strengths is at least success . \n \n Return an integer array pairs of length n where pairs[i] is the number of potions that will form a successful pair with the i th spell. \n\n Example 1: \n \n```\nInput:\n spells = [5,1,3], potions = [1,2,3,4,5], success = 7\n\nOutput:\n [4,0,3]\n\nExplanation:\n\n- 0\nth\n spell: 5 * [1,2,3,4,5] = [5,\n10\n,\n15\n,\n20\n,\n25\n]. 4 pairs are successful.\n- 1\nst\n spell: 1 * [1,2,3,4,5] = [1,2,3,4,5]. 0 pairs are successful.\n- 2\nnd\n spell: 3 * [1,2,3,4,5] = [3,6,\n9\n,\n12\n,\n15\n]. 3 pairs are successful.\nThus, [4,0,3] is returned.\n```\n\n Example 2: \n \n```\nInput:\n spells = [3,1,2], potions = [8,5,8], success = 16\n\nOutput:\n [2,0,2]\n\nExplanation:\n\n- 0\nth\n spell: 3 * [8,5,8] = [\n24\n,15,\n24\n]. 2 pairs are successful.\n- 1\nst\n spell: 1 * [8,5,8] = [8,5,8]. 0 pairs are successful. \n- 2\nnd\n spell: 2 * [8,5,8] = [\n16\n,10,\n16\n]. 2 pairs are successful. \nThus, [2,0,2] is returned.\n```\n\n Constraints: \n\n n == spells.length \n \n m == potions.length \n \n 1 <= n, m <= 10 5 \n \n 1 <= spells[i], potions[i] <= 10 5 \n \n 1 <= success <= 10 10",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:vector<int> successfulPairs(vector<int>& spells,vector<int>& potions,long long success){sort(potions.begin(),potions.end());vector<int> ans;for(long long s:spells){long long need=(success+s-1)/s;ans.push_back(potions.end()-lower_bound(potions.begin(),potions.end(),need));}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175910616",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

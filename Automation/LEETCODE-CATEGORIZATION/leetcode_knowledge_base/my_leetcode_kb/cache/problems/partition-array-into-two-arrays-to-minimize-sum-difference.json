@@ -1,0 +1,44 @@
+{
+  "id": "2035",
+  "title": "Partition Array Into Two Arrays to Minimize Sum Difference",
+  "slug": "partition-array-into-two-arrays-to-minimize-sum-difference",
+  "url": "https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Meet in the Middle",
+    "Sorting",
+    "Ordered Set",
+    "Bitmask"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Sorting / Divide and Conquer",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of 2 * n integers. You need to partition nums into two arrays of length n to minimize the absolute difference of the sums of the arrays. To partition nums , put each element of nums into one of the two arrays. \n \n Return the minimum possible absolute difference . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/10/02/ex1.png] \n \n```\nInput:\n nums = [3,9,7,3]\n\nOutput:\n 2\n\nExplanation:\n One optimal partition is: [3,9] and [7,3].\nThe absolute difference between the sums of the arrays is abs((3 + 9) - (7 + 3)) = 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [-36,36]\n\nOutput:\n 72\n\nExplanation:\n One optimal partition is: [-36] and [36].\nThe absolute difference between the sums of the arrays is abs((-36) - (36)) = 72.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/10/02/ex3.png] \n \n```\nInput:\n nums = [2,-1,0,4,-2,-9]\n\nOutput:\n 0\n\nExplanation:\n One optimal partition is: [2,4,-9] and [-1,0,-2].\nThe absolute difference between the sums of the arrays is abs((2 + 4 + -9) - (-1 + 0 + -2)) = 0.\n```\n\n Constraints: \n\n 1 <= n <= 15 \n \n nums.length == 2 * n \n \n -10 7 <= nums[i] <= 10 7",
+  "code": "class Solution {\npublic:\n    int minimumDifference(vector<int>& nums) {\n        vector<int> left, right;\n        int sum = 0;\n        int n = nums.size() / 2;\n        for(int i = 0; i < 2 * n; i++) {\n            if(i < n)\n                left.push_back(nums[i]);\n            else\n                right.push_back(nums[i]);\n            sum += nums[i];\n        }\n        vector<vector<int>> sumLeft(n + 1), sumRight(n + 1); //sumRight[i] stores all possible sum of i elements in the Right array\n        for(int i = 1; i < 1 << n; i++) {\n            int count = 0;\n            int subSetSum = 0;\n            for(int j = 0; j < n; j++) {\n                if((1 << j ) & i){\n                    count++;\n                    subSetSum += left[j];\n                }\n            }\n            sumLeft[count].push_back(subSetSum);\n            subSetSum = 0;\n            count = 0;\n            for(int j = 0; j < n; j++) {\n                if((1 << j ) & i){\n                    count++;\n                    subSetSum += right[j];\n                }\n            }\n            sumRight[count].push_back(subSetSum);\n        }\n        sumLeft[0].push_back(0);\n        sumRight[0].push_back(0);\n        for(auto it: sumLeft){\n            sort(it.begin(), it.end());\n        }\n        int ans = INT_MAX;\n        for(int i = 0; i <= n; i++) {\n                sort(sumRight[n-i].begin(), sumRight[n-i].end());\n            for(auto iSumLeft : sumLeft[i]) {\n                int fi = (sum - 2*iSumLeft) / 2;\n                auto it = lower_bound(sumRight[n-i].begin(), sumRight[n-i].end(), fi) - sumRight[n-i].begin();// try to find the closest element in the sumRight[n - i] array such that our answer is close to 0\n                if(it != sumRight[n-i].size())\n                    ans = min(ans, abs(sum - 2*((sumRight[n-i][it]) + iSumLeft)));\n                if(it != 0){\n                    ans = min(ans, abs(sum-2*(iSumLeft+(sumRight[n-i][it-1]))));}\n            }\n        }\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617064403",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

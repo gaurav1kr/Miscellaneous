@@ -1,0 +1,27 @@
+{
+  "id": "3407",
+  "title": "Substring Matching Pattern",
+  "slug": "substring-matching-pattern",
+  "url": "https://leetcode.com/problems/substring-matching-pattern/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "String Matching"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s and a pattern string p , where p contains exactly one '*' character. \n \n The '*' in p can be replaced with any sequence of zero or more characters. \n \n Return true if p can be made a substring of s , and false otherwise. \n\n Example 1: \n\n Input: s = \"leetcode\", p = \"ee*e\" \n \n Output: true \n \n Explanation: \n \n By replacing the '*' with \"tcod\" , the substring \"eetcode\" matches the pattern. \n\n Example 2: \n\n Input: s = \"car\", p = \"c*v\" \n \n Output: false \n \n Explanation: \n \n There is no substring matching the pattern. \n\n Example 3: \n\n Input: s = \"luck\", p = \"u*\" \n \n Output: true \n \n Explanation: \n \n The substrings \"u\" , \"uc\" , and \"uck\" match the pattern. \n\n Constraints: \n\n 1 <= s.length <= 50 \n \n 1 <= p.length <= 50 \n \n s contains only lowercase English letters. \n \n p contains only lowercase English letters and exactly one '*'",
+  "code": "class Solution {public:bool hasMatch(string s,string p){int pos=p.find('*');string a=p.substr(0,pos),b=p.substr(pos+1);size_t i=s.find(a);if(i==string::npos)return false;return s.find(b,i+a.size())!=string::npos;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177519076",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "3307",
+  "title": "Find the K-th Character in String Game II",
+  "slug": "find-the-k-th-character-in-string-game-ii",
+  "url": "https://leetcode.com/problems/find-the-k-th-character-in-string-game-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Bit Manipulation",
+    "Recursion"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "Alice and Bob are playing a game. Initially, Alice has a string word = \"a\" . \n \n You are given a positive integer k . You are also given an integer array operations , where operations[i] represents the type of the i th operation. \n \n Now Bob will ask Alice to perform all operations in sequence: \n\n If operations[i] == 0 , append a copy of word to itself. \n \n If operations[i] == 1 , generate a new string by changing each character in word to its next character in the English alphabet, and append it to the original word . For example, performing the operation on \"c\" generates \"cd\" and performing the operation on \"zb\" generates \"zbac\" . \n\n Return the value of the k th character in word after performing all the operations. \n \n Note that the character 'z' can be changed to 'a' in the second type of operation. \n\n Example 1: \n\n Input: k = 5, operations = [0,0,0] \n \n Output: \"a\" \n \n Explanation: \n \n Initially, word == \"a\" . Alice performs the three operations as follows: \n\n Appends \"a\" to \"a\" , word becomes \"aa\" . \n \n Appends \"aa\" to \"aa\" , word becomes \"aaaa\" . \n \n Appends \"aaaa\" to \"aaaa\" , word becomes \"aaaaaaaa\" . \n\n Example 2: \n\n Input: k = 10, operations = [0,1,0,1] \n \n Output: \"b\" \n \n Explanation: \n \n Initially, word == \"a\" . Alice performs the four operations as follows: \n\n Appends \"a\" to \"a\" , word becomes \"aa\" . \n \n Appends \"bb\" to \"aa\" , word becomes \"aabb\" . \n \n Appends \"aabb\" to \"aabb\" , word becomes \"aabbaabb\" . \n \n Appends \"bbccbbcc\" to \"aabbaabb\" , word becomes \"aabbaabbbbccbbcc\" . \n\n Constraints: \n\n 1 <= k <= 10 14 \n \n 1 <= operations.length <= 100 \n \n operations[i] is either 0 or 1. \n \n The input is generated such that word has at least k characters after all operations.",
+  "code": "class Solution { public: char kthCharacter(long long k,vector<int>&operations){long long len=1;int t=0;while(len<k&&t<(int)operations.size()){len=min(LLONG_MAX/2,len*2);++t;}int shift=0;for(int i=t-1;i>=0;--i){long long half=len/2;if(k>half){k-=half;shift+=operations[i];}len=half;}return char('a'+shift%26);} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177455259",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

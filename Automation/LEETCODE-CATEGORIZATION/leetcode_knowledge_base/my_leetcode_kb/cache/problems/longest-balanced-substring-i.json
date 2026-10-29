@@ -1,0 +1,31 @@
+{
+  "id": "3713",
+  "title": "Longest Balanced Substring I",
+  "slug": "longest-balanced-substring-i",
+  "url": "https://leetcode.com/problems/longest-balanced-substring-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting",
+    "Enumeration"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. \n \n A substring of s is called balanced if all distinct characters in the substring appear the same number of times. \n \n Return the length of the longest balanced substring of s . \n\n Example 1: \n\n Input: s = \"abbac\" \n \n Output: 4 \n \n Explanation: \n \n The longest balanced substring is \"abba\" because both distinct characters 'a' and 'b' each appear exactly 2 times. \n\n Example 2: \n\n Input: s = \"zzabccy\" \n \n Output: 4 \n \n Explanation: \n \n The longest balanced substring is \"zabc\" because the distinct characters 'z' , 'a' , 'b' , and 'c' each appear exactly 1 time.​​​​​​​ \n\n Example 3: \n\n Input: s = \"aba\" \n \n Output: 2 \n \n Explanation: \n \n ​​​​​​​ One of the longest balanced substrings is \"ab\" because both distinct characters 'a' and 'b' each appear exactly 1 time. Another longest balanced substring is \"ba\" . \n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int longestBalanced(string s) {\n        int best=0,n=s.size();\n        for(int i=0;i<n;++i) {\n            int cnt[26]={0};\n            for(int j=i;j<n;++j) {\n                ++cnt[s[j]-'a'];\n                int f=0;bool good=true;\n                for(int c=0;c<26;++c) if(cnt[c]) {\n                    if(!f) f=cnt[c];\n                    else if(cnt[c]!=f) {good=false;break;}\n                }\n                if(good) best=max(best,j-i+1);\n            }\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180994740",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

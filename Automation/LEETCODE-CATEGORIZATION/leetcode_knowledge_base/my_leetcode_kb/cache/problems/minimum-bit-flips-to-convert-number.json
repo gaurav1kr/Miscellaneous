@@ -1,0 +1,24 @@
+{
+  "id": "2220",
+  "title": "Minimum Bit Flips to Convert Number",
+  "slug": "minimum-bit-flips-to-convert-number",
+  "url": "https://leetcode.com/problems/minimum-bit-flips-to-convert-number/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "A bit flip of a number x is choosing a bit in the binary representation of x and flipping it from either 0 to 1 or 1 to 0 . \n\n For example, for x = 7 , the binary representation is 111 and we may choose any bit (including any leading zeros not shown) and flip it. We can flip the first bit from the right to get 110 , flip the second bit from the right to get 101 , flip the fifth bit from the right (a leading zero) to get 10111 , etc. \n\n Given two integers start and goal , return the minimum number of bit flips to convert start to goal . \n\n Example 1: \n \n```\nInput:\n start = 10, goal = 7\n\nOutput:\n 3\n\nExplanation:\n The binary representation of 10 and 7 are 1010 and 0111 respectively. We can convert 10 to 7 in 3 steps:\n- Flip the first bit from the right: 101\n0\n -> 101\n1\n.\n- Flip the third bit from the right: 1\n0\n11 -> 1\n1\n11.\n- Flip the fourth bit from the right: \n1\n111 -> \n0\n111.\nIt can be shown we cannot convert 10 to 7 in less than 3 steps. Hence, we return 3.\n```\n\n Example 2: \n \n```\nInput:\n start = 3, goal = 4\n\nOutput:\n 3\n\nExplanation:\n The binary representation of 3 and 4 are 011 and 100 respectively. We can convert 3 to 4 in 3 steps:\n- Flip the first bit from the right: 01\n1\n -> 01\n0\n.\n- Flip the second bit from the right: 0\n1\n0 -> 0\n0\n0.\n- Flip the third bit from the right: \n0\n00 -> \n1\n00.\nIt can be shown we cannot convert 3 to 4 in less than 3 steps. Hence, we return 3.\n```\n\n Constraints: \n\n 0 <= start, goal <= 10 9 \n\n Note: This question is the same as 461: Hamming Distance.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int minBitFlips(int start,int goal){int x=start^goal,ans=0;while(x){x&=x-1;++ans;}return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175890023",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

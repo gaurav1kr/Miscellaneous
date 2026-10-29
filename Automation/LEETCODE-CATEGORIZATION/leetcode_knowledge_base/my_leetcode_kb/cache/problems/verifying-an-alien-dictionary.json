@@ -1,0 +1,35 @@
+{
+  "id": "953",
+  "title": "Verifying an Alien Dictionary",
+  "slug": "verifying-an-alien-dictionary",
+  "url": "https://leetcode.com/problems/verifying-an-alien-dictionary/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "In an alien language, surprisingly, they also use English lowercase letters, but possibly in a different order . The order of the alphabet is some permutation of lowercase letters. \n \n Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographically in this alien language. \n\n Example 1: \n \n```\nInput:\n words = [\"hello\",\"leetcode\"], order = \"hlabcdefgijkmnopqrstuvwxyz\"\n\nOutput:\n true\n\nExplanation: \nAs 'h' comes before 'l' in this language, then the sequence is sorted.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"word\",\"world\",\"row\"], order = \"worldabcefghijkmnpqstuvxyz\"\n\nOutput:\n false\n\nExplanation: \nAs 'd' comes after 'l' in this language, then words[0] > words[1], hence the sequence is unsorted.\n```\n\n Example 3: \n \n```\nInput:\n words = [\"apple\",\"app\"], order = \"abcdefghijklmnopqrstuvwxyz\"\n\nOutput:\n false\n\nExplanation: \nThe first three characters \"app\" match, and the second string is shorter (in size.) According to lexicographical rules \"apple\" > \"app\", because 'l' > '∅', where '∅' is defined as the blank character which is less than any other character (\nMore info\n).\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length <= 20 \n \n order.length == 26 \n \n All characters in words[i] and order are English lowercase letters.",
+  "code": "class Solution {\npublic:\n    bool isAlienSorted(vector<string>& words, string order) {\n        unordered_map<char, int> dict;\n        for (int i = 0; i < order.size(); ++i) dict[order[i]] = i;\n        for (int i = 0; i < words.size() - 1; ++i) {\n            for (int j = 0; j < words[i].size(); ++j) {\n                if (j >= words[i+1].size()) return false;\n                if (dict[words[i][j]] < dict[words[i+1][j]]) break;\n                if (dict[words[i][j]] > dict[words[i+1][j]]) return false;\n            }\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588123167",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

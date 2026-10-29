@@ -1,0 +1,37 @@
+{
+  "id": "508",
+  "title": "Most Frequent Subtree Sum",
+  "slug": "most-frequent-subtree-sum",
+  "url": "https://leetcode.com/problems/most-frequent-subtree-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree, return the most frequent subtree sum . If there is a tie, return all the values with the highest frequency in any order. \n \n The subtree sum of a node is defined as the sum of all the node values formed by the subtree rooted at that node (including the node itself). \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/24/freq1-tree.jpg] \n \n```\nInput:\n root = [5,2,-3]\n\nOutput:\n [2,-3,4]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/24/freq2-tree.jpg] \n \n```\nInput:\n root = [5,2,-5]\n\nOutput:\n [2]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n -10 5 <= Node.val <= 10 5",
+  "code": "class Solution {\n    std::unordered_map<int, int> freq;\n    int best = 0;\n    int dfs(TreeNode* node) {\n        if (!node) return 0;\n        int sum = node->val + dfs(node->left) + dfs(node->right);\n        best = std::max(best, ++freq[sum]);\n        return sum;\n    }\npublic:\n    std::vector<int> findFrequentTreeSum(TreeNode* root) {\n        freq.clear(); best = 0;\n        dfs(root);\n        std::vector<int> ans;\n        for (const auto& p : freq) if (p.second == best) ans.push_back(p.first);\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175699870",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

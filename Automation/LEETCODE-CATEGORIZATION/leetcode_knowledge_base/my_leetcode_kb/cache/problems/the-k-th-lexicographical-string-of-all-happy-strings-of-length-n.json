@@ -1,0 +1,28 @@
+{
+  "id": "1415",
+  "title": "The k-th Lexicographical String of All Happy Strings of Length n",
+  "slug": "the-k-th-lexicographical-string-of-all-happy-strings-of-length-n",
+  "url": "https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A happy string is a string that: \n\n consists only of letters of the set ['a', 'b', 'c'] . \n \n s[i] != s[i + 1] for all values of i from 1 to s.length - 1 (string is 1-indexed). \n\n For example, strings \"abc\", \"ac\", \"b\" and \"abcbabcbcb\" are all happy strings and strings \"aa\", \"baa\" and \"ababbc\" are not happy strings. \n \n Given two integers n and k , consider a list of all happy strings of length n sorted in lexicographical order. \n \n Return the kth string of this list or return an empty string if there are less than k happy strings of length n . \n\n Example 1: \n \n```\nInput:\n n = 1, k = 3\n\nOutput:\n \"c\"\n\nExplanation:\n The list [\"a\", \"b\", \"c\"] contains all happy strings of length 1. The third string is \"c\".\n```\n\n Example 2: \n \n```\nInput:\n n = 1, k = 4\n\nOutput:\n \"\"\n\nExplanation:\n There are only 3 happy strings of length 1.\n```\n\n Example 3: \n \n```\nInput:\n n = 3, k = 9\n\nOutput:\n \"cab\"\n\nExplanation:\n There are 12 different happy string of length 3 [\"aba\", \"abc\", \"aca\", \"acb\", \"bab\", \"bac\", \"bca\", \"bcb\", \"cab\", \"cac\", \"cba\", \"cbc\"]. You will find the 9\nth\n string = \"cab\"\n```\n\n Constraints: \n\n 1 <= n <= 10 \n \n 1 <= k <= 100",
+  "code": "class Solution {\n    void dfs(int n, int k, string& cur, int& count, string& answer) {\n        if (!answer.empty()) return;\n        if ((int)cur.size() == n) {\n            if (++count == k) answer = cur;\n            return;\n        }\n        for (char c = 'a'; c <= 'c'; ++c) {\n            if (!cur.empty() && cur.back() == c) continue;\n            cur.push_back(c);\n            dfs(n, k, cur, count, answer);\n            cur.pop_back();\n            if (!answer.empty()) return;\n        }\n    }\npublic:\n    string getHappyString(int n, int k) {\n        string cur, ans;\n        int count = 0;\n        dfs(n, k, cur, count, ans);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175751902",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

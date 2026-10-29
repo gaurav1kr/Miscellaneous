@@ -1,0 +1,35 @@
+{
+  "id": "1775",
+  "title": "Equal Sum Arrays With Minimum Number of Operations",
+  "slug": "equal-sum-arrays-with-minimum-number-of-operations",
+  "url": "https://leetcode.com/problems/equal-sum-arrays-with-minimum-number-of-operations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Priority queue",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given two arrays of integers nums1 and nums2 , possibly of different lengths. The values in the arrays are between 1 and 6, inclusive. \n \n In one operation, you can change any integer's value in any of the arrays to any value between 1 and 6, inclusive. \n \n Return the minimum number of operations required to make the sum of values in nums1 equal to the sum of values in nums2 . Return -1​​​​​ if it is not possible to make the sum of the two arrays equal . \n\n Example 1: \n \n```\nInput:\n nums1 = [1,2,3,4,5,6], nums2 = [1,1,2,2,2,2]\n\nOutput:\n 3\n\nExplanation:\n You can make the sums of nums1 and nums2 equal with 3 operations. All indices are 0-indexed.\n- Change nums2[0] to 6. nums1 = [1,2,3,4,5,6], nums2 = [\n6\n,1,2,2,2,2].\n- Change nums1[5] to 1. nums1 = [1,2,3,4,5,\n1\n], nums2 = [6,1,2,2,2,2].\n- Change nums1[2] to 2. nums1 = [1,2,\n2\n,4,5,1], nums2 = [6,1,2,2,2,2].\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [1,1,1,1,1,1,1], nums2 = [6]\n\nOutput:\n -1\n\nExplanation:\n There is no way to decrease the sum of nums1 or to increase the sum of nums2 to make them equal.\n```\n\n Example 3: \n \n```\nInput:\n nums1 = [6,6], nums2 = [1]\n\nOutput:\n 3\n\nExplanation:\n You can make the sums of nums1 and nums2 equal with 3 operations. All indices are 0-indexed. \n- Change nums1[0] to 2. nums1 = [\n2\n,6], nums2 = [1].\n- Change nums1[1] to 2. nums1 = [2,\n2\n], nums2 = [1].\n- Change nums2[0] to 4. nums1 = [2,2], nums2 = [\n4\n].\n```\n\n Constraints: \n\n 1 <= nums1.length, nums2.length <= 10 5 \n \n 1 <= nums1[i], nums2[i] <= 6",
+  "code": "class Solution {\npublic:\n    int minOperations(vector<int>& nums1, vector<int>& nums2) {\n\n        int n1 = nums1.size();\n\n        int n2 = nums2.size();\n\n        // find the sum of nums1\n\n        int sum1 = accumulate(nums1.begin(), nums1.end(), 0);\n\n        // find the sum of nums2\n\n        int sum2 = accumulate(nums2.begin(), nums2.end(), 0);\n\n        // declare a max heap\n\n        priority_queue<int> pq;\n\n        // case 1 :- if sum1 > sum2 \n\n        // we have to check maximum decrement for each element of nums1\n\n        // we have to check maximum increment for each element of nums2\n\n        if(sum1 > sum2)\n        {\n            // find max. decrement for each element of nums1 and push into pq\n\n            for(int i = 0; i < n1; i++)\n            {\n                pq.push(nums1[i] - 1);\n            }\n\n            // find max. increment for each element of nums2 and push into pq\n\n            for(int i = 0; i < n2; i++)\n            {\n                pq.push(6 - nums2[i]);\n            }\n        }\n\n        // case 2 :- if sum1 < sum2 \n\n        // we have to check maximum decrement for each element of nums2\n\n        // we have to check maximum increment for each element of nums1\n\n        else\n        {\n            // find max. increment for each element of nums1 and push into pq\n\n            for(int i = 0; i < n1; i++)\n            {\n                pq.push(6 - nums1[i]);\n            }\n\n            // find the max. decrement for each element of nums2 and push into pq\n\n            for(int i = 0; i < n2; i++)\n            {\n                pq.push(nums2[i] - 1);\n            }\n        }\n\n        int diff = abs(sum1 - sum2);\n\n        int count = 0;\n\n        // now run the loop while diff becomes 0\n\n        while(diff > 0 && pq.size())\n        {\n            int top = pq.top();\n\n            pq.pop();\n\n            // update diff\n\n            diff -= min(diff, top);\n\n            // increment operation\n\n            count++;\n        }\n\n        if(diff > 0)\n        {\n            return -1;\n        }\n        else\n        {\n            return count;\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617065583",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

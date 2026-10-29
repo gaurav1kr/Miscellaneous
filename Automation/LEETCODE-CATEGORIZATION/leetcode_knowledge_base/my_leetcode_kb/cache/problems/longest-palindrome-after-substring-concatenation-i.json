@@ -1,0 +1,33 @@
+{
+  "id": "3503",
+  "title": "Longest Palindrome After Substring Concatenation I",
+  "slug": "longest-palindrome-after-substring-concatenation-i",
+  "url": "https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Dynamic Programming",
+    "Enumeration"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings, s and t . \n \n You can create a new string by selecting a substring from s (possibly empty) and a substring from t (possibly empty), then concatenating them in order . \n \n Return the length of the longest palindrome that can be formed this way. \n\n Example 1: \n\n Input: s = \"a\", t = \"a\" \n \n Output: 2 \n \n Explanation: \n \n Concatenating \"a\" from s and \"a\" from t results in \"aa\" , which is a palindrome of length 2. \n\n Example 2: \n\n Input: s = \"abc\", t = \"def\" \n \n Output: 1 \n \n Explanation: \n \n Since all characters are different, the longest palindrome is any single character, so the answer is 1. \n\n Example 3: \n\n Input: s = \"b\", t = \"aaaa\" \n \n Output: 4 \n \n Explanation: \n \n Selecting \" aaaa \" from t is the longest palindrome, so the answer is 4. \n\n Example 4: \n\n Input: s = \"abcde\", t = \"ecdba\" \n \n Output: 5 \n \n Explanation: \n \n Concatenating \"abc\" from s and \"ba\" from t results in \"abcba\" , which is a palindrome of length 5. \n\n Constraints: \n\n 1 <= s.length, t.length <= 30 \n \n s and t consist of lowercase English letters.",
+  "code": "class Solution {public:int longestPalindrome(string s,string t){int ans=0;vector<string>a={\"\"},b={\"\"};for(int i=0;i<(int)s.size();i++)for(int j=i;j<(int)s.size();j++)a.push_back(s.substr(i,j-i+1));for(int i=0;i<(int)t.size();i++)for(int j=i;j<(int)t.size();j++)b.push_back(t.substr(i,j-i+1));for(auto &x:a)for(auto &y:b){int len=x.size()+y.size();if(len<=ans)continue;string z=x+y;bool ok=true;for(int l=0,r=len-1;l<r;l++,r--)if(z[l]!=z[r]){ok=false;break;}if(ok)ans=len;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177550333",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

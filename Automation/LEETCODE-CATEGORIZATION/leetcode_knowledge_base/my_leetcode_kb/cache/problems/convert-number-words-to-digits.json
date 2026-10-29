@@ -1,0 +1,29 @@
+{
+  "id": "3758",
+  "title": "Convert Number Words to Digits",
+  "slug": "convert-number-words-to-digits",
+  "url": "https://leetcode.com/problems/convert-number-words-to-digits/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Trie"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. s may contain valid concatenated English words representing the digits 0 to 9, without spaces. \n \n Your task is to extract each valid number word in order and convert it to its corresponding digit, producing a string of digits. \n \n Parse s from left to right. At each position: \n\n If a valid number word starts at the current position, append its corresponding digit to the result and advance by the length of that word. \n \n Otherwise, skip exactly one character and continue parsing. \n\n Return the resulting digit string. If no number words are found, return an empty string. \n\n Example 1: \n\n Input: s = \"onefourthree\" \n \n Output: \"143\" \n \n Explanation: \n\n Parsing from left to right, extract the valid number words \"one\", \"four\", \"three\". \n \n These map to digits 1, 4, 3. Thus, the final result is \"143\" . \n\n Example 2: \n\n Input: s = \"ninexsix\" \n \n Output: \"96\" \n \n Explanation: \n\n The substring \"nine\" is a valid number word and maps to 9. \n \n The character \"x\" does not match any valid number word prefix and is skipped. \n \n Then, the substring \"six\" is a valid number word and maps to 6, so the final result is \"96\" . \n\n Example 3: \n\n Input: s = \"zeero\" \n \n Output: \"\" \n \n Explanation: \n\n No substring forms a valid number word during left-to-right parsing. \n \n All characters are skipped and incomplete fragments are ignored, so the result is an empty string. \n\n Example 4: \n\n Input: s = \"tw\" \n \n Output: \"\" \n \n Explanation: \n\n No substring forms a valid number word during left-to-right parsing. \n \n All characters are skipped and incomplete fragments are ignored, so the result is an empty string. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s contains only lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    string convertNumber(string s) {\n        static const string words[10] = {\"zero\",\"one\",\"two\",\"three\",\"four\",\n            \"five\",\"six\",\"seven\",\"eight\",\"nine\"};\n        string out;\n        for (size_t i = 0; i < s.size();) {\n            bool found = false;\n            for (int d = 0; d < 10; ++d) {\n                const string& w = words[d];\n                if (i + w.size() <= s.size() && s.compare(i,w.size(),w) == 0) {\n                    out.push_back(char('0' + d));\n                    i += w.size();\n                    found = true;\n                    break;\n                }\n            }\n            if (!found) ++i;\n        }\n        return out;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181016508",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

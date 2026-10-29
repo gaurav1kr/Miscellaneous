@@ -1,0 +1,26 @@
+{
+  "id": "551",
+  "title": "Student Attendance Record I",
+  "slug": "student-attendance-record-i",
+  "url": "https://leetcode.com/problems/student-attendance-record-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s representing an attendance record for a student where each character signifies whether the student was absent, late, or present on that day. The record only contains the following three characters: \n\n 'A' : Absent. \n \n 'L' : Late. \n \n 'P' : Present. \n\n The student is eligible for an attendance award if they meet both of the following criteria: \n\n The student was absent ( 'A' ) for strictly fewer than 2 days total . \n \n The student was never late ( 'L' ) for 3 or more consecutive days. \n\n Return true if the student is eligible for an attendance award, or false otherwise . \n\n Example 1: \n \n```\nInput:\n s = \"PPALLP\"\n\nOutput:\n true\n\nExplanation:\n The student has fewer than 2 absences and was never late 3 or more consecutive days.\n```\n\n Example 2: \n \n```\nInput:\n s = \"PPALLL\"\n\nOutput:\n false\n\nExplanation:\n The student was late 3 consecutive days in the last 3 days, so is not eligible for the award.\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s[i] is either 'A' , 'L' , or 'P' .",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool checkRecord(string s) {\n        int aCount = 0, lStreak = 0;\n        for (char c : s) {\n            if (c == 'A') {\n                aCount++;\n                if (aCount > 1) return false;\n                lStreak = 0;\n            } else if (c == 'L') {\n                lStreak++;\n                if (lStreak > 2) return false;\n            } else {\n                lStreak = 0;\n            }\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610663862",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

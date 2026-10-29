@@ -1,0 +1,35 @@
+{
+  "id": "1610",
+  "title": "Maximum Number of Visible Points",
+  "slug": "maximum-number-of-visible-points",
+  "url": "https://leetcode.com/problems/maximum-number-of-visible-points/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry",
+    "Sliding Window",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array points , an integer angle , and your location , where location = [pos x , pos y ] and points[i] = [x i , y i ] both denote integral coordinates on the X-Y plane. \n \n Initially, you are facing directly east from your position. You cannot move from your position, but you can rotate . In other words, pos x and pos y cannot be changed. Your field of view in degrees is represented by angle , determining how wide you can see from any given view direction. Let d be the amount in degrees that you rotate counterclockwise. Then, your field of view is the inclusive range of angles [d - angle/2, d + angle/2] . \n\n Your browser does not support the video tag or this video format. \n\n You can see some set of points if, for each point, the angle formed by the point, your position, and the immediate east direction from your position is in your field of view . \n \n There can be multiple points at one coordinate. There may be points at your location, and you can always see these points regardless of your rotation. Points do not obstruct your vision to other points. \n \n Return the maximum number of points you can see . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/30/89a07e9b-00ab-4967-976a-c723b2aa8656.png] \n \n```\nInput:\n points = [[2,1],[2,2],[3,3]], angle = 90, location = [1,1]\n\nOutput:\n 3\n\nExplanation:\n The shaded region represents your field of view. All points can be made visible in your field of view, including [3,3] even though [2,2] is in front and in the same line of sight.\n```\n\n Example 2: \n \n```\nInput:\n points = [[2,1],[2,2],[3,4],[1,1]], angle = 90, location = [1,1]\n\nOutput:\n 4\n\nExplanation:\n All points can be made visible in your field of view, including the one at your location.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/09/30/5010bfd3-86e6-465f-ac64-e9df941d2e49.png] \n \n```\nInput:\n points = [[1,0],[2,1]], angle = 13, location = [1,1]\n\nOutput:\n 1\n\nExplanation:\n You can only see one of the two points, as shown above.\n```\n\n Constraints: \n\n 1 <= points.length <= 10 5 \n \n points[i].length == 2 \n \n location.length == 2 \n \n 0 <= angle < 360 \n \n 0 <= pos x , pos y , x i , y i <= 100",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int visiblePoints(vector<vector<int>>& points, int angle,\n                      vector<int>& location) {\n        const double PI = acos(-1.0), EPS = 1e-10;\n        vector<double> a;\n        int same = 0;\n        for (auto& p : points) {\n            int x = p[0] - location[0], y = p[1] - location[1];\n            if (x == 0 && y == 0) ++same;\n            else a.push_back(atan2((double)y, (double)x));\n        }\n        sort(a.begin(), a.end());\n        int n = a.size();\n        for (int i = 0; i < n; ++i) a.push_back(a[i] + 2 * PI);\n        double width = angle * PI / 180.0;\n        int best = 0;\n        for (int l = 0, r = 0; l < n; ++l) {\n            if (r < l) r = l;\n            while (r < l + n && a[r] - a[l] <= width + EPS) ++r;\n            best = max(best, r - l);\n        }\n        return best + same;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175756216",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

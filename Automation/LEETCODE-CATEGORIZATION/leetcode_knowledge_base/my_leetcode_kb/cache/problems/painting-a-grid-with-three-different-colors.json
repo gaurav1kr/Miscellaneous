@@ -1,0 +1,30 @@
+{
+  "id": "1931",
+  "title": "Painting a Grid With Three Different Colors",
+  "slug": "painting-a-grid-with-three-different-colors",
+  "url": "https://leetcode.com/problems/painting-a-grid-with-three-different-colors/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Graph Coloring"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given two integers m and n . Consider an m x n grid where each cell is initially white. You can paint each cell red , green , or blue . All cells must be painted. \n \n Return the number of ways to color the grid with no two adjacent cells having the same color . Since the answer can be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/22/colorthegrid.png] \n \n```\nInput:\n m = 1, n = 1\n\nOutput:\n 3\n\nExplanation:\n The three possible colorings are shown in the image above.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/22/copy-of-colorthegrid.png] \n \n```\nInput:\n m = 1, n = 2\n\nOutput:\n 6\n\nExplanation:\n The six possible colorings are shown in the image above.\n```\n\n Example 3: \n \n```\nInput:\n m = 5, n = 5\n\nOutput:\n 580986\n```\n\n Constraints: \n\n 1 <= m <= 5 \n \n 1 <= n <= 1000",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int colorTheGrid(int m, int n) {\n        const int MOD = 1e9 + 7;\n        vector<int> valid;\n        function<void(int, int)> dfs = [&](int row, int code) {\n            if (row == m) {\n                valid.push_back(code);\n                return;\n            }\n            for (int c = 0; c < 3; ++c) {\n                if (row > 0 && ((code >> ((row - 1) * 2)) & 3) == c) continue;\n                dfs(row + 1, code | (c << (row * 2)));\n            }\n        };\n        dfs(0, 0);\n\n        unordered_map<int, vector<int>> next;\n        for (int a : valid) {\n            for (int b : valid) {\n                bool ok = true;\n                for (int i = 0; i < m; ++i) {\n                    if (((a >> (i * 2)) & 3) == ((b >> (i * 2)) & 3)) {\n                        ok = false;\n                        break;\n                    }\n                }\n                if (ok) next[a].push_back(b);\n            }\n        }\n\n        unordered_map<int, int> dp;\n        for (int a : valid) dp[a] = 1;\n\n        for (int col = 1; col < n; ++col) {\n            unordered_map<int, int> ndp;\n            for (auto& [a, cnt] : dp) {\n                for (int b : next[a]) {\n                    ndp[b] = (ndp[b] + cnt) % MOD;\n                }\n            }\n            dp = move(ndp);\n        }\n\n        int res = 0;\n        for (auto& [_, cnt] : dp) res = (res + cnt) % MOD;\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610641548",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

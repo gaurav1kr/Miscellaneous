@@ -1,0 +1,38 @@
+{
+  "id": "451",
+  "title": "Sort Characters By Frequency",
+  "slug": "sort-characters-by-frequency",
+  "url": "https://leetcode.com/problems/sort-characters-by-frequency/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Bucket Sort",
+    "Counting"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Priority queue / heap",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string. \n \n Return the sorted string . If there are multiple answers, return any of them . \n\n Example 1: \n \n```\nInput:\n s = \"tree\"\n\nOutput:\n \"eert\"\n\nExplanation:\n 'e' appears twice while 'r' and 't' both appear once.\nSo 'e' must appear before both 'r' and 't'. Therefore \"eetr\" is also a valid answer.\n```\n\n Example 2: \n \n```\nInput:\n s = \"cccaaa\"\n\nOutput:\n \"aaaccc\"\n\nExplanation:\n Both 'c' and 'a' appear three times, so both \"cccaaa\" and \"aaaccc\" are valid answers.\nNote that \"cacaca\" is incorrect, as the same characters must be together.\n```\n\n Example 3: \n \n```\nInput:\n s = \"Aabb\"\n\nOutput:\n \"bbAa\"\n\nExplanation:\n \"bbaA\" is also a valid answer, but \"Aabb\" is incorrect.\nNote that 'A' and 'a' are treated as two different characters.\n```\n\n Constraints: \n\n 1 <= s.length <= 5 * 10 5 \n \n s consists of uppercase and lowercase English letters and digits.",
+  "code": "class Solution {\npublic:\n  string frequencySort(string str) {\n    // Store the frequency each character appears\n    vector<int> freqs(256);\n    for (const char& ch : str)\n      ++freqs[ch];\n\n    // Use a \"bucket\" container to store which characters have a freqs[i] frequency\n    vector<vector<char>> bucket(str.length() + 1);\n    for (int i = 255; i >= 0; --i)\n      if (freqs[i]) \n        bucket[freqs[i]].push_back(static_cast<char>(i));\n\n    // Loop through all the possible frequencies a character could have\n    // Append them to our sorted string 'freq' times\n    string sorted;\n    for (int freq = str.length(); freq >= 0; --freq) \n      for (const char& ch : bucket[freq])\n        sorted += string(freq, ch);\n\n    return sorted;\n  }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1534893561",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

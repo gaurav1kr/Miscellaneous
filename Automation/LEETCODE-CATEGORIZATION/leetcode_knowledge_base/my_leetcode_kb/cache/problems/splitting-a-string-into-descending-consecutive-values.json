@@ -1,0 +1,29 @@
+{
+  "id": "1849",
+  "title": "Splitting a String Into Descending Consecutive Values",
+  "slug": "splitting-a-string-into-descending-consecutive-values",
+  "url": "https://leetcode.com/problems/splitting-a-string-into-descending-consecutive-values/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Enumeration"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s that consists of only digits. \n \n Check if we can split s into two or more non-empty substrings such that the numerical values of the substrings are in descending order and the difference between numerical values of every two adjacent substrings is equal to 1 . \n\n For example, the string s = \"0090089\" can be split into [\"0090\", \"089\"] with numerical values [90,89] . The values are in descending order and adjacent values differ by 1 , so this way is valid. \n \n Another example, the string s = \"001\" can be split into [\"0\", \"01\"] , [\"00\", \"1\"] , or [\"0\", \"0\", \"1\"] . However all the ways are invalid because they have numerical values [0,1] , [0,1] , and [0,0,1] respectively, all of which are not in descending order. \n\n Return true if it is possible to split s ​​​​​​ as described above , or false otherwise. \n \n A substring is a contiguous sequence of characters in a string. \n\n Example 1: \n \n```\nInput:\n s = \"1234\"\n\nOutput:\n false\n\nExplanation:\n There is no valid way to split s.\n```\n\n Example 2: \n \n```\nInput:\n s = \"050043\"\n\nOutput:\n true\n\nExplanation:\n s can be split into [\"05\", \"004\", \"3\"] with numerical values [5,4,3].\nThe values are in descending order with adjacent values differing by 1.\n```\n\n Example 3: \n \n```\nInput:\n s = \"9080701\"\n\nOutput:\n false\n\nExplanation:\n There is no valid way to split s.\n```\n\n Constraints: \n\n 1 <= s.length <= 20 \n \n s only consists of digits.",
+  "code": "class Solution {\npublic:\n    long long int mx=9999999999; // as max of s.size()==20 so if any number exceeds mx it will not be valid as we will not be able to make two partitions then, according to the situation given. \n    bool helper(string& s,int i,int j,long long int prev,int n)\n    {\n       // if we are at the last index then, we have to just check if the (prev-pres)==1.\n       // if that condition is true, then it means we got a correct match\n        if(j==n-1)\n        {\n            string str=s.substr(i,j-i+1);\n            long long int pres=stoll(str);\n            if(prev-pres==1)\n                return true;\n            return false;\n        }\n           bool m=false;\n           string str=s.substr(i,j-i+1);\n           long long int pres=stoll(str); \n           if(pres>mx)\n               return false;\n            if(prev==-1 || prev-pres==1)\n                m=m || helper(s,j+1,j+1,pres,n); // in this step we are calling the function  keeping in mind that we have found the integer till this index and freshly calculating the integer from the next index, that's why passed (j+1,j+1) inside the function. \n            \n        m=m || helper(s,i,j+1,prev,n);  // in this step we are calling the function keeping in mind that we will extend the integer to the next index and passing the prev val as it is. \n        \n        return m; \n    }\n    bool splitString(string s) {\n        int n=s.size();\n        long long int prev=-1;\n        return helper(s,0,0,prev,n);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1615795361",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

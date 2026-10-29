@@ -1,0 +1,29 @@
+{
+  "id": "1796",
+  "title": "Second Largest Digit in a String",
+  "slug": "second-largest-digit-in-a-string",
+  "url": "https://leetcode.com/problems/second-largest-digit-in-a-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Given an alphanumeric string s , return the second largest numerical digit that appears in s , or -1 if it does not exist . \n \n An alphanumeric string is a string consisting of lowercase English letters and digits. \n\n Example 1: \n \n```\nInput:\n s = \"dfa12321afd\"\n\nOutput:\n 2\n\nExplanation:\n The digits that appear in s are [1, 2, 3]. The second largest digit is 2.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abc1111\"\n\nOutput:\n -1\n\nExplanation:\n The digits that appear in s are [1]. There is no second largest digit.\n```\n\n Constraints: \n\n 1 <= s.length <= 500 \n \n s consists of only lowercase English letters and digits.",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    int secondHighest(string s) {\n        int max1 = -1, max2 = -1;\n        for (char c : s) {\n            if (isdigit(c)) {\n                int d = c - '0';\n                if (d > max1) {\n                    max2 = max1;\n                    max1 = d;\n                } else if (d < max1 && d > max2) {\n                    max2 = d;\n                }\n            }\n        }\n        return max2;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610678512",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

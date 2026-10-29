@@ -1,0 +1,35 @@
+{
+  "id": "1263",
+  "title": "Minimum Moves to Move a Box to Their Target Location",
+  "slug": "minimum-moves-to-move-a-box-to-their-target-location",
+  "url": "https://leetcode.com/problems/minimum-moves-to-move-a-box-to-their-target-location/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Heap (Priority Queue)",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Deque",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "A storekeeper is a game in which the player pushes boxes around in a warehouse trying to get them to target locations. \n \n The game is represented by an m x n grid of characters grid where each element is a wall, floor, or box. \n \n Your task is to move the box 'B' to the target position 'T' under the following rules: \n\n The character 'S' represents the player. The player can move up, down, left, right in grid if it is a floor (empty cell). \n \n The character '.' represents the floor which means a free cell to walk. \n \n The character   '#'   represents the wall which means an obstacle (impossible to walk there). \n \n There is only one box 'B' and one target cell 'T' in the grid . \n \n The box can be moved to an adjacent free cell by standing next to the box and then moving in the direction of the box. This is a push . \n \n The player cannot walk through the box. \n\n Return the minimum number of pushes to move the box to the target . If there is no way to reach the target, return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/11/06/sample_1_1620.png] \n \n```\nInput:\n grid = [[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],\n [\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],\n [\"#\",\".\",\".\",\"B\",\".\",\"#\"],\n [\"#\",\".\",\"#\",\"#\",\".\",\"#\"],\n [\"#\",\".\",\".\",\".\",\"S\",\"#\"],\n [\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]\n\nOutput:\n 3\n\nExplanation:\n We return only the number of times the box is pushed.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],\n [\"#\",\"T\",\"#\",\"#\",\"#\",\"#\"],\n [\"#\",\".\",\".\",\"B\",\".\",\"#\"],\n [\"#\",\"#\",\"#\",\"#\",\".\",\"#\"],\n [\"#\",\".\",\".\",\".\",\"S\",\"#\"],\n [\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]\n\nOutput:\n -1\n```\n\n Example 3: \n \n```\nInput:\n grid = [[\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"],\n [\"#\",\"T\",\".\",\".\",\"#\",\"#\"],\n [\"#\",\".\",\"#\",\"B\",\".\",\"#\"],\n [\"#\",\".\",\".\",\".\",\".\",\"#\"],\n [\"#\",\".\",\".\",\".\",\"S\",\"#\"],\n [\"#\",\"#\",\"#\",\"#\",\"#\",\"#\"]]\n\nOutput:\n 5\n\nExplanation:\n push the box down, left, left, up and up.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 20 \n \n grid contains only characters '.' , '#' , 'S' , 'T' , or 'B' . \n \n There is only one character 'S' , 'B' , and 'T' in the grid .",
+  "code": "class Solution {\npublic:\n    int minPushBox(vector<vector<char>>& grid) {\n        int rows = grid.size(), cols = grid[0].size();\n        int cells = rows * cols;\n        int player = -1, box = -1, target = -1;\n        for (int r = 0; r < rows; ++r) {\n            for (int c = 0; c < cols; ++c) {\n                int p = r * cols + c;\n                if (grid[r][c] == 'S') player = p;\n                if (grid[r][c] == 'B') box = p;\n                if (grid[r][c] == 'T') target = p;\n            }\n        }\n        auto valid = [&](int r, int c) {\n            return r >= 0 && r < rows && c >= 0 && c < cols &&\n                   grid[r][c] != '#';\n        };\n        const int dr[4] = {-1, 1, 0, 0};\n        const int dc[4] = {0, 0, -1, 1};\n        const int INF = INT_MAX / 2;\n        vector<int> dist(cells * cells, INF);\n        deque<pair<int, int>> dq;\n        dist[box * cells + player] = 0;\n        dq.push_front({box, player});\n        while (!dq.empty()) {\n            int b = dq.front().first, p = dq.front().second;\n            dq.pop_front();\n            int current = dist[b * cells + p];\n            // Relax all reachable states; no early return on a stale queue entry.\n            int pr = p / cols, pc = p % cols;\n            for (int d = 0; d < 4; ++d) {\n                int nr = pr + dr[d], nc = pc + dc[d];\n                if (!valid(nr, nc)) continue;\n                int np = nr * cols + nc, nb = b, cost = 0;\n                if (np == b) {\n                    int br = b / cols + dr[d], bc = b % cols + dc[d];\n                    if (!valid(br, bc)) continue;\n                    nb = br * cols + bc;\n                    cost = 1;\n                }\n                int key = nb * cells + np;\n                if (current + cost < dist[key]) {\n                    dist[key] = current + cost;\n                    if (cost) dq.push_back({nb, np});\n                    else dq.push_front({nb, np});\n                }\n            }\n        }\n        int best = INF;\n        for (int p = 0; p < cells; ++p)\n            best = min(best, dist[target * cells + p]);\n        return best == INF ? -1 : best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175748991",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

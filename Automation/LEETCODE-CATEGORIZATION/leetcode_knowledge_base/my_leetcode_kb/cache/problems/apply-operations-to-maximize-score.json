@@ -1,0 +1,41 @@
+{
+  "id": "2818",
+  "title": "Apply Operations to Maximize Score",
+  "slug": "apply-operations-to-maximize-score",
+  "url": "https://leetcode.com/problems/apply-operations-to-maximize-score/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Stack",
+    "Greedy",
+    "Sorting",
+    "Monotonic Stack",
+    "Number Theory"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Sorted array",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an array nums of n positive integers and an integer k . \n \n Initially, you start with a score of 1 . You have to maximize your score by applying the following operation at most k times: \n\n Choose any non-empty subarray nums[l, ..., r] that you haven't chosen previously. \n \n Choose an element x of nums[l, ..., r] with the highest prime score . If multiple such elements exist, choose the one with the smallest index. \n \n Multiply your score by x . \n\n Here, nums[l, ..., r] denotes the subarray of nums starting at index l and ending at the index r , both ends being inclusive. \n \n The prime score of an integer x is equal to the number of distinct prime factors of x . For example, the prime score of 300 is 3 since 300 = 2 * 2 * 3 * 5 * 5 . \n \n Return the maximum possible score after applying at most k operations . \n \n Since the answer may be large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n nums = [8,3,9,3,8], k = 2\n\nOutput:\n 81\n\nExplanation:\n To get a score of 81, we can apply the following operations:\n- Choose subarray nums[2, ..., 2]. nums[2] is the only element in this subarray. Hence, we multiply the score by nums[2]. The score becomes 1 * 9 = 9.\n- Choose subarray nums[2, ..., 3]. Both nums[2] and nums[3] have a prime score of 1, but nums[2] has the smaller index. Hence, we multiply the score by nums[2]. The score becomes 9 * 9 = 81.\nIt can be proven that 81 is the highest score one can obtain.\n```\n\n Example 2: \n \n```\nInput:\n nums = [19,12,14,6,10,18], k = 3\n\nOutput:\n 4788\n\nExplanation:\n To get a score of 4788, we can apply the following operations: \n- Choose subarray nums[0, ..., 0]. nums[0] is the only element in this subarray. Hence, we multiply the score by nums[0]. The score becomes 1 * 19 = 19.\n- Choose subarray nums[5, ..., 5]. nums[5] is the only element in this subarray. Hence, we multiply the score by nums[5]. The score becomes 19 * 18 = 342.\n- Choose subarray nums[2, ..., 3]. Both nums[2] and nums[3] have a prime score of 2, but nums[2] has the smaller index. Hence, we multipy the score by nums[2]. The score becomes 342 * 14 = 4788.\nIt can be proven that 4788 is the highest score one can obtain.\n```\n\n Constraints: \n\n 1 <= nums.length == n <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= k <= min(n * (n + 1) / 2, 10 9 )",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution { public:\nint maximumScore(vector<int>& nums, int k) {\n const long long MOD=1000000007; int n=nums.size(), mx=*max_element(nums.begin(),nums.end());\n vector<int> score(mx+1),prime(mx+1,1); prime[0]=prime[1]=0;\n for(int p=2;p<=mx;++p) if(prime[p]) {for(int j=p;j<=mx;j+=p) ++score[j]; if(1LL*p*p<=mx) for(long long j=1LL*p*p;j<=mx;j+=p) prime[j]=0;}\n vector<int> L(n),R(n),st;\n for(int i=0;i<n;++i){while(!st.empty()&&score[nums[st.back()]]<score[nums[i]]) st.pop_back(); L[i]=st.empty()?-1:st.back();st.push_back(i);}\n st.clear();for(int i=n-1;i>=0;--i){while(!st.empty()&&score[nums[st.back()]]<=score[nums[i]])st.pop_back();R[i]=st.empty()?n:st.back();st.push_back(i);}\n vector<int> order(n);iota(order.begin(),order.end(),0);sort(order.begin(),order.end(),[&](int a,int b){return nums[a]>nums[b];});\n auto power=[&](long long a,long long b){long long r=1;while(b){if(b&1)r=r*a%MOD;a=a*a%MOD;b>>=1;}return r;};\n long long ans=1;for(int i:order){long long cnt=1LL*(i-L[i])*(R[i]-i),take=min((long long)k,cnt);ans=ans*power(nums[i],take)%MOD;k-=take;if(!k)break;}return (int)ans;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176711447",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

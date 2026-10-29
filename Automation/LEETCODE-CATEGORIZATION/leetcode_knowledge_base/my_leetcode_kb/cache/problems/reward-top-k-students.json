@@ -1,0 +1,41 @@
+{
+  "id": "2512",
+  "title": "Reward Top K Students",
+  "slug": "reward-top-k-students",
+  "url": "https://leetcode.com/problems/reward-top-k-students/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Priority queue / heap",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two string arrays positive_feedback and negative_feedback , containing the words denoting positive and negative feedback, respectively. Note that no word is both positive and negative. \n \n Initially every student has 0 points. Each positive word in a feedback report increases the points of a student by 3 , whereas each negative word decreases the points by 1 . \n \n You are given n feedback reports, represented by a 0-indexed string array report  and a 0-indexed integer array student_id , where student_id[i] represents the ID of the student who has received the feedback report report[i] . The ID of each student is unique . \n \n Given an integer k , return the top k students after ranking them in non-increasing order by their points . In case more than one student has the same points, the one with the lower ID ranks higher. \n\n Example 1: \n \n```\nInput:\n positive_feedback = [\"smart\",\"brilliant\",\"studious\"], negative_feedback = [\"not\"], report = [\"this student is studious\",\"the student is smart\"], student_id = [1,2], k = 2\n\nOutput:\n [1,2]\n\nExplanation:\n \nBoth the students have 1 positive feedback and 3 points but since student 1 has a lower ID he ranks higher.\n```\n\n Example 2: \n \n```\nInput:\n positive_feedback = [\"smart\",\"brilliant\",\"studious\"], negative_feedback = [\"not\"], report = [\"this student is not studious\",\"the student is smart\"], student_id = [1,2], k = 2\n\nOutput:\n [2,1]\n\nExplanation:\n \n- The student with ID 1 has 1 positive feedback and 1 negative feedback, so he has 3-1=2 points. \n- The student with ID 2 has 1 positive feedback, so he has 3 points. \nSince student 2 has more points, [2,1] is returned.\n```\n\n Constraints: \n\n 1 <= positive_feedback.length, negative_feedback.length <= 10 4 \n \n 1 <= positive_feedback[i].length, negative_feedback[j].length <= 100 \n \n Both positive_feedback[i] and negative_feedback[j] consists of lowercase English letters. \n \n No word is present in both positive_feedback and negative_feedback . \n \n n == report.length == student_id.length \n \n 1 <= n <= 10 4 \n \n report[i] consists of lowercase English letters and spaces ' ' . \n \n There is a single space between consecutive words of report[i] . \n \n 1 <= report[i].length <= 100 \n \n 1 <= student_id[i] <= 10 9 \n \n All the values of student_id[i] are unique . \n \n 1 <= k <= n",
+  "code": "class Solution {public:vector<int> topStudents(vector<string>& positive_feedback,vector<string>& negative_feedback,vector<string>& report,vector<int>& student_id,int k){unordered_set<string>pos(positive_feedback.begin(),positive_feedback.end()),neg(negative_feedback.begin(),negative_feedback.end());vector<pair<int,int>>v;for(int i=0;i<(int)report.size();i++){istringstream ss(report[i]);string w;int score=0;while(ss>>w){if(pos.count(w))score+=3;if(neg.count(w))score--;}v.push_back({-score,student_id[i]});}sort(v.begin(),v.end());vector<int>ans;for(int i=0;i<k;i++)ans.push_back(v[i].second);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176595014",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

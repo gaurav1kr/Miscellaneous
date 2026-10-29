@@ -1,0 +1,30 @@
+{
+  "id": "2186",
+  "title": "Minimum Number of Steps to Make Two Strings Anagram II",
+  "slug": "minimum-number-of-steps-to-make-two-strings-anagram-ii",
+  "url": "https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given two strings s and t . In one step, you can append any character to either s or t . \n \n Return the minimum number of steps to make s and t anagrams of each other. \n \n An anagram of a string is a string that contains the same characters with a different (or the same) ordering. \n\n Example 1: \n \n```\nInput:\n s = \"\nlee\ntco\nde\n\", t = \"co\na\nt\ns\n\"\n\nOutput:\n 7\n\nExplanation:\n \n- In 2 steps, we can append the letters in \"as\" onto s = \"leetcode\", forming s = \"leetcode\nas\n\".\n- In 5 steps, we can append the letters in \"leede\" onto t = \"coats\", forming t = \"coats\nleede\n\".\n\"leetcodeas\" and \"coatsleede\" are now anagrams of each other.\nWe used a total of 2 + 5 = 7 steps.\nIt can be shown that there is no way to make them anagrams of each other with less than 7 steps.\n```\n\n Example 2: \n \n```\nInput:\n s = \"night\", t = \"thing\"\n\nOutput:\n 0\n\nExplanation:\n The given strings are already anagrams of each other. Thus, we do not need any further steps.\n```\n\n Constraints: \n\n 1 <= s.length, t.length <= 2 * 10 5 \n \n s and t consist of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int minSteps(string s, string t) {\n        int cnt[26]={0};for(char c:s) ++cnt[c-'a'];for(char c:t) --cnt[c-'a'];\n        int ans=0;for(int x:cnt) ans+=abs(x);return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175881816",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

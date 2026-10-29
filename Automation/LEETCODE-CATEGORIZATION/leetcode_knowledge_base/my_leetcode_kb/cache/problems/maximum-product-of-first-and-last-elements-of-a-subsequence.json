@@ -1,0 +1,29 @@
+{
+  "id": "3584",
+  "title": "Maximum Product of First and Last Elements of a Subsequence",
+  "slug": "maximum-product-of-first-and-last-elements-of-a-subsequence",
+  "url": "https://leetcode.com/problems/maximum-product-of-first-and-last-elements-of-a-subsequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer m . \n \n Return the maximum product of the first and last elements of any subsequence of nums of size m . \n\n Example 1: \n\n Input: nums = [-1,-9,2,3,-2,-3,1], m = 1 \n \n Output: 81 \n \n Explanation: \n \n The subsequence [-9] has the largest product of the first and last elements: -9 * -9 = 81 . Therefore, the answer is 81. \n\n Example 2: \n\n Input: nums = [1,3,-5,5,6,-4], m = 3 \n \n Output: 20 \n \n Explanation: \n \n The subsequence [-5, 6, -4] has the largest product of the first and last elements. \n\n Example 3: \n\n Input: nums = [2,-1,2,-6,5,2,-5,7], m = 2 \n \n Output: 35 \n \n Explanation: \n \n The subsequence [5, 7] has the largest product of the first and last elements. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 5 <= nums[i] <= 10 5 \n \n 1 <= m <= nums.length",
+  "code": "class Solution {public:\n long long maximumProduct(vector<int>& nums,int m){\n  int n=nums.size(),lo=INT_MAX,hi=INT_MIN;long long ans=LLONG_MIN;\n  for(int j=m-1;j<n;++j){lo=min(lo,nums[j-m+1]);hi=max(hi,nums[j-m+1]);\n   ans=max(ans,max(1LL*lo*nums[j],1LL*hi*nums[j]));\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177596067",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

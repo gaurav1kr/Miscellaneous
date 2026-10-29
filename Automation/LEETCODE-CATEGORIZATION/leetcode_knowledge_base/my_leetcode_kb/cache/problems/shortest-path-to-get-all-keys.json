@@ -1,0 +1,35 @@
+{
+  "id": "864",
+  "title": "Shortest Path to Get All Keys",
+  "slug": "shortest-path-to-get-all-keys",
+  "url": "https://leetcode.com/problems/shortest-path-to-get-all-keys/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an m x n grid grid where: \n\n '.' is an empty cell. \n \n '#' is a wall. \n \n '@' is the starting point. \n \n Lowercase letters represent keys. \n \n Uppercase letters represent locks. \n\n You start at the starting point and one move consists of walking one space in one of the four cardinal directions. You cannot walk outside the grid, or walk into a wall. \n \n If you walk over a key, you can pick it up and you cannot walk over a lock unless you have its corresponding key. \n \n For some 1 <= k <= 6 , there is exactly one lowercase and one uppercase letter of the first k letters of the English alphabet in the grid. This means that there is exactly one key for each lock, and one lock for each key; and also that the letters used to represent the keys and locks were chosen in the same order as the English alphabet. \n \n Return the lowest number of moves to acquire all keys . If it is impossible, return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/07/23/lc-keys2.jpg] \n \n```\nInput:\n grid = [\"@.a..\",\"###.#\",\"b.A.B\"]\n\nOutput:\n 8\n\nExplanation:\n Note that the goal is to obtain all the keys not to open all the locks.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/07/23/lc-key2.jpg] \n \n```\nInput:\n grid = [\"@..aA\",\"..B#.\",\"....b\"]\n\nOutput:\n 6\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/07/23/lc-keys3.jpg] \n \n```\nInput:\n grid = [\"@Aa\"]\n\nOutput:\n -1\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 30 \n \n grid[i][j] is either an English letter, '.' , '#' , or '@' .  \n \n There is exactly one  '@'  in the grid. \n \n The number of keys in the grid is in the range [1, 6] . \n \n Each key in the grid is unique . \n \n Each key in the grid has a matching lock.",
+  "code": "#include <vector>\n#include <string>\n#include <queue>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int shortestPathAllKeys(vector<string>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        queue<tuple<int, int, int, int>> q;\n        int allKeys = 0;\n        vector<vector<vector<bool>>> visited(m, vector<vector<bool>>(n, vector<bool>(64, false)));\n\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                if (grid[i][j] == '@') q.emplace(i, j, 0, 0);\n                else if (islower(grid[i][j]))\n                    allKeys |= (1 << (grid[i][j] - 'a'));\n\n        vector<int> dirs = {-1, 0, 1, 0, -1};\n        while (!q.empty()) {\n            auto [x, y, keys, steps] = q.front(); q.pop();\n            if (keys == allKeys) return steps;\n\n            for (int d = 0; d < 4; ++d) {\n                int nx = x + dirs[d], ny = y + dirs[d + 1];\n                if (nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] == '#') continue;\n\n                int nkeys = keys;\n                char cell = grid[nx][ny];\n                if (islower(cell)) nkeys |= (1 << (cell - 'a'));\n                if (isupper(cell) && !(keys & (1 << (cell - 'A')))) continue;\n\n                if (!visited[nx][ny][nkeys]) {\n                    visited[nx][ny][nkeys] = true;\n                    q.emplace(nx, ny, nkeys, steps + 1);\n                }\n            }\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595367867",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

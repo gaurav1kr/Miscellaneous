@@ -1,0 +1,34 @@
+{
+  "id": "3667",
+  "title": "Sort Array By Absolute Value",
+  "slug": "sort-array-by-absolute-value",
+  "url": "https://leetcode.com/problems/sort-array-by-absolute-value/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Rearrange elements of nums in non-decreasing order of their absolute value. \n \n Return any rearranged array that satisfies this condition. \n \n Note : The absolute value of an integer x is defined as: \n\n x if x >= 0 \n \n -x if x < 0 \n\n Example 1: \n\n Input: nums = [3,-1,-4,1,5] \n \n Output: [-1,1,3,-4,5] \n \n Explanation: \n\n The absolute values of elements in nums are 3, 1, 4, 1, 5 respectively. \n \n Rearranging them in increasing order, we get 1, 1, 3, 4, 5. \n \n This corresponds to [-1, 1, 3, -4, 5] . Another possible rearrangement is [1, -1, 3, -4, 5]. \n\n Example 2: \n\n Input: nums = [-100,100] \n \n Output: [-100,100] \n \n Explanation: \n\n The absolute values of elements in nums are 100, 100 respectively. \n \n Rearranging them in increasing order, we get 100, 100. \n \n This corresponds to [-100, 100] . Another possible rearrangement is [100, -100] . \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n -100 <= nums[i] <= 100",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> sortByAbsoluteValue(vector<int>& nums) {\n        stable_sort(nums.begin(), nums.end(), [](int a, int b) {\n            return abs(static_cast<long long>(a)) < abs(static_cast<long long>(b));\n        });\n        return nums;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178990699",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

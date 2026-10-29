@@ -1,0 +1,32 @@
+{
+  "id": "3652",
+  "title": "Best Time to Buy and Sell Stock using Strategy",
+  "slug": "best-time-to-buy-and-sell-stock-using-strategy",
+  "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays prices and strategy , where: \n\n prices[i] is the price of a given stock on the i th day. \n \n strategy[i] represents a trading action on the i th day, where:\n\n -1 indicates buying one unit of the stock. \n \n 0 indicates holding the stock. \n \n 1 indicates selling one unit of the stock. \n\n You are also given an even integer k , and may perform at most one modification to strategy . A modification consists of: \n\n Selecting exactly k consecutive elements in strategy . \n \n Set the first k / 2 elements to 0 (hold). \n \n Set the last k / 2 elements to 1 (sell). \n\n The profit is defined as the sum of strategy[i] * prices[i] across all days. \n \n Return the maximum possible profit you can achieve. \n \n Note: There are no constraints on budget or stock ownership, so all buy and sell operations are feasible regardless of past actions. \n\n Example 1: \n\n Input: prices = [4,2,8], strategy = [-1,0,1], k = 2 \n \n Output: 10 \n \n Explanation: \n\n Modification \n Strategy \n Profit Calculation \n Profit \n\n Original \n [-1, 0, 1] \n (-1 × 4) + (0 × 2) + (1 × 8) = -4 + 0 + 8 \n 4 \n\n Modify [0, 1] \n [0, 1, 1] \n (0 × 4) + (1 × 2) + (1 × 8) = 0 + 2 + 8 \n 10 \n\n Modify [1, 2] \n [-1, 0, 1] \n (-1 × 4) + (0 × 2) + (1 × 8) = -4 + 0 + 8 \n 4 \n\n Thus, the maximum possible profit is 10, which is achieved by modifying the subarray [0, 1] ​​​​​​​. \n\n Example 2: \n\n Input: prices = [5,4,3], strategy = [1,1,0], k = 2 \n \n Output: 9 \n \n Explanation: \n\n Modification \n Strategy \n Profit Calculation \n Profit \n\n Original \n [1, 1, 0] \n (1 × 5) + (1 × 4) + (0 × 3) = 5 + 4 + 0 \n 9 \n\n Modify [0, 1] \n [0, 1, 0] \n (0 × 5) + (1 × 4) + (0 × 3) = 0 + 4 + 0 \n 4 \n\n Modify [1, 2] \n [1, 0, 1] \n (1 × 5) + (0 × 4) + (1 × 3) = 5 + 0 + 3 \n 8 \n\n Thus, the maximum possible profit is 9, which is achieved without any modification. \n\n Constraints: \n\n 2 <= prices.length == strategy.length <= 10 5 \n \n 1 <= prices[i] <= 10 5 \n \n -1 <= strategy[i] <= 1 \n \n 2 <= k <= prices.length \n \n k is even",
+  "code": "class Solution { public: long long maxProfit(vector<int>& prices,vector<int>& strategy,int k){int n=prices.size();vector<long long>orig(n+1),p(n+1);for(int i=0;i<n;++i){orig[i+1]=orig[i]+1LL*prices[i]*strategy[i];p[i+1]=p[i]+prices[i];}long long ans=orig[n];for(int l=0;l+k<=n;++l){long long cur=orig[n]-(orig[l+k]-orig[l])+(p[l+k]-p[l+k/2]);ans=max(ans,cur);}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177643639",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

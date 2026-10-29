@@ -1,0 +1,30 @@
+{
+  "id": "198",
+  "title": "House Robber",
+  "slug": "house-robber",
+  "url": "https://leetcode.com/problems/house-robber/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and it will automatically contact the police if two adjacent houses were broken into on the same night . \n \n Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,1]\n\nOutput:\n 4\n\nExplanation:\n Rob house 1 (money = 1) and then rob house 3 (money = 3).\nTotal amount you can rob = 1 + 3 = 4.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,7,9,3,1]\n\nOutput:\n 12\n\nExplanation:\n Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).\nTotal amount you can rob = 2 + 9 + 1 = 12.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 0 <= nums[i] <= 400",
+  "code": "class Solution {\npublic:\n    int rob(vector<int>& nums) \n    {\n        int prev1 = 0;\n        int prev2 = 0 ;\n        for(int num:nums)\n        {\n            int temp = prev1 ;\n            prev1 = max(prev2 + num , prev1) ;\n            prev2 = temp ;\n        }\n        return prev1 ;\n    }\n};\n\n//Reoccurrence\n// dp[i] = max(dp[i-1], nums[i] + dp[i-2])",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2151960218",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

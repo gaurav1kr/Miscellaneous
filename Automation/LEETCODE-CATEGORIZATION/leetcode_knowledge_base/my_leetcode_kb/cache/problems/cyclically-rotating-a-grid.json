@@ -1,0 +1,30 @@
+{
+  "id": "1914",
+  "title": "Cyclically Rotating a Grid",
+  "slug": "cyclically-rotating-a-grid",
+  "url": "https://leetcode.com/problems/cyclically-rotating-a-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an m x n integer matrix grid ​​​, where m and n are both even integers, and an integer k . \n \n The matrix is composed of several layers, which is shown in the below image, where each color is its own layer: \n \n [Figure: https://assets.leetcode.com/uploads/2021/06/10/ringofgrid.png] \n \n A cyclic rotation of the matrix is done by cyclically rotating each layer in the matrix. To cyclically rotate a layer once, each element in the layer will take the place of the adjacent element in the counter-clockwise direction. An example rotation is shown below: \n [Figure: https://assets.leetcode.com/uploads/2021/06/22/explanation_grid.jpg] \n \n Return the matrix after applying k cyclic rotations to it . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/19/rod2.png] \n \n```\nInput:\n grid = [[40,10],[30,20]], k = 1\r\n\nOutput:\n [[10,20],[40,30]]\r\n\nExplanation:\n The figures above represent the grid at every state.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/10/ringofgrid5.png] [Figure: https://assets.leetcode.com/uploads/2021/06/10/ringofgrid6.png] [Figure: https://assets.leetcode.com/uploads/2021/06/10/ringofgrid7.png] \n \n```\nInput:\n grid = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], k = 2\r\n\nOutput:\n [[3,4,8,12],[2,11,10,16],[1,7,6,15],[5,9,13,14]]\r\n\nExplanation:\n The figures above represent the grid at every state.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 2 <= m, n <= 50 \n \n Both m and n are even integers. \n \n 1 <= grid[i][j] <= 5000 \n \n 1 <= k <= 10 9",
+  "code": "class Solution {public:vector<vector<int>> rotateGrid(vector<vector<int>>& grid,int k){int m=grid.size(),n=grid[0].size();for(int layer=0;layer<min(m,n)/2;++layer){int top=layer,left=layer,bottom=m-1-layer,right=n-1-layer;vector<pair<int,int>> cells;for(int c=left;c<=right;++c)cells.push_back({top,c});for(int r=top+1;r<=bottom;++r)cells.push_back({r,right});for(int c=right-1;c>=left;--c)cells.push_back({bottom,c});for(int r=bottom-1;r>top;--r)cells.push_back({r,left});vector<int> v;for(auto p:cells)v.push_back(grid[p.first][p.second]);int len=v.size();for(int i=0;i<len;++i)grid[cells[i].first][cells[i].second]=v[(i+k%len)%len];}return grid;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175765173",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

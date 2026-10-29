@@ -1,0 +1,30 @@
+{
+  "id": "2782",
+  "title": "Number of Unique Categories",
+  "slug": "number-of-unique-categories",
+  "url": "https://leetcode.com/problems/number-of-unique-categories/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Union-Find",
+    "Interactive",
+    "Counting"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Vector"
+  ],
+  "description": "You are given an integer n and an object categoryHandler of class CategoryHandler . \n \n There are n  elements, numbered from 0 to n - 1 . Each element has a category, and your task is to find the number of unique categories. \n \n The class CategoryHandler contains the following function, which may help you: \n\n boolean haveSameCategory(integer a, integer b) : Returns true if a and b are in the same category and false otherwise. Also, if either a or b is not a valid number (i.e. it's greater than or equal to n or less than 0 ), it returns false . \n\n Return the number of unique categories. \n\n Example 1: \n \n```\nInput:\n n = 6, categoryHandler = [1,1,2,2,3,3]\n\nOutput:\n 3\n\nExplanation:\n There are 6 elements in this example. The first two elements belong to category 1, the second two belong to category 2, and the last two elements belong to category 3. So there are 3 unique categories.\n```\n\n Example 2: \n \n```\nInput:\n n = 5, categoryHandler = [1,2,3,4,5]\n\nOutput:\n 5\n\nExplanation:\n There are 5 elements in this example. Each element belongs to a unique category. So there are 5 unique categories.\n```\n\n Example 3: \n \n```\nInput:\n n = 3, categoryHandler = [1,1,1]\n\nOutput:\n 1\n\nExplanation:\n There are 3 elements in this example. All of them belong to one category. So there is only 1 unique category.\n```\n\n Constraints: \n\n 1 <= n <= 100",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numberOfCategories(int n, CategoryHandler* categoryHandler) {\n        vector<int> parent(n);\n        iota(parent.begin(), parent.end(), 0);\n        function<int(int)> find = [&](int x) {\n            if (parent[x] != x) parent[x] = find(parent[x]);\n            return parent[x];\n        };\n        int count = n;\n        for (int i = 0; i < n; ++i) {\n            for (int j = i + 1; j < n; ++j) {\n                if (categoryHandler->haveSameCategory(i, j)) {\n                    int a = find(i), b = find(j);\n                    if (a != b) { parent[a] = b; --count; }\n                }\n            }\n        }\n        return count;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178907304",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

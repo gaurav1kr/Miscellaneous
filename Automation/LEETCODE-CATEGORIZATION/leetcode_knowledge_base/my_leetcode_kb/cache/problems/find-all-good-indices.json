@@ -1,0 +1,33 @@
+{
+  "id": "2420",
+  "title": "Find All Good Indices",
+  "slug": "find-all-good-indices",
+  "url": "https://leetcode.com/problems/find-all-good-indices/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums of size n and a positive integer k . \n \n We call an index i in the range k <= i < n - k good if the following conditions are satisfied: \n\n The k elements that are just before the index i are in non-increasing order. \n \n The k elements that are just after the index i are in non-decreasing order. \n\n Return an array of all good indices sorted in increasing order . \n\n Example 1: \n \n```\nInput:\n nums = [2,1,1,1,3,4,1], k = 2\n\nOutput:\n [2,3]\n\nExplanation:\n There are two good indices in the array:\n- Index 2. The subarray [2,1] is in non-increasing order, and the subarray [1,3] is in non-decreasing order.\n- Index 3. The subarray [1,1] is in non-increasing order, and the subarray [3,4] is in non-decreasing order.\nNote that the index 4 is not good because [4,1] is not non-decreasing.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,1,1,2], k = 2\n\nOutput:\n []\n\nExplanation:\n There are no good indices in this array.\n```\n\n Constraints: \n\n n == nums.length \n \n 3 <= n <= 10 5 \n \n 1 <= nums[i] <= 10 6 \n \n 1 <= k <= n / 2",
+  "code": "class Solution {public:vector<int> goodIndices(vector<int>& nums,int k){int n=nums.size();vector<int>left(n,1),right(n,1);for(int i=1;i<n;i++)if(nums[i]<=nums[i-1])left[i]=left[i-1]+1;for(int i=n-2;i>=0;i--)if(nums[i]<=nums[i+1])right[i]=right[i+1]+1;vector<int>ans;for(int i=k;i+k<n;i++)if(left[i-1]>=k&&right[i+1]>=k)ans.push_back(i);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176551668",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "3412",
+  "title": "Find Mirror Score of a String",
+  "slug": "find-mirror-score-of-a-string",
+  "url": "https://leetcode.com/problems/find-mirror-score-of-a-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s . \n \n We define the mirror of a letter in the English alphabet as its corresponding letter when the alphabet is reversed. For example, the mirror of 'a' is 'z' , and the mirror of 'y' is 'b' . \n \n Initially, all characters in the string s are unmarked . \n \n You start with a score of 0, and you perform the following process on the string s : \n\n Iterate through the string from left to right. \n \n At each index i , find the closest unmarked index j such that j < i and s[j] is the mirror of s[i] . Then, mark both indices i and j , and add the value i - j to the total score. \n \n If no such index j exists for the index i , move on to the next index without making any changes. \n\n Return the total score at the end of the process. \n\n Example 1: \n\n Input: s = \"aczzx\" \n \n Output: 5 \n \n Explanation: \n\n i = 0 . There is no index j that satisfies the conditions, so we skip. \n \n i = 1 . There is no index j that satisfies the conditions, so we skip. \n \n i = 2 . The closest index j that satisfies the conditions is j = 0 , so we mark both indices 0 and 2, and then add 2 - 0 = 2 to the score. \n \n i = 3 . There is no index j that satisfies the conditions, so we skip. \n \n i = 4 . The closest index j that satisfies the conditions is j = 1 , so we mark both indices 1 and 4, and then add 4 - 1 = 3 to the score. \n\n Example 2: \n\n Input: s = \"abcdef\" \n \n Output: 0 \n \n Explanation: \n \n For each index i , there is no index j that satisfies the conditions. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {public:long long calculateScore(string s){vector<vector<int>>pos(26);long long ans=0;for(int i=0;i<(int)s.size();i++){int c=s[i]-'a',mirror=25-c;if(!pos[mirror].empty()){ans+=i-pos[mirror].back();pos[mirror].pop_back();}else pos[c].push_back(i);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177520272",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

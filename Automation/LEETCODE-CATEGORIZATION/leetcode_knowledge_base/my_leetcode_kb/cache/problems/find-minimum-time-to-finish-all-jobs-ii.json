@@ -1,0 +1,32 @@
+{
+  "id": "2323",
+  "title": "Find Minimum Time to Finish All Jobs II",
+  "slug": "find-minimum-time-to-finish-all-jobs-ii",
+  "url": "https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two 0-indexed integer arrays jobs and workers of equal length, where jobs[i] is the amount of time needed to complete the i th job, and workers[j] is the amount of time the j th worker can work each day. \n \n Each job should be assigned to exactly one worker, such that each worker completes exactly one job. \n \n Return the minimum number of days needed to complete all the jobs after assignment. \n\n Example 1: \n \n```\nInput:\n jobs = [5,2,4], workers = [1,7,5]\n\nOutput:\n 2\n\nExplanation:\n\n- Assign the 2\nnd\n worker to the 0\nth\n job. It takes them 1 day to finish the job.\n- Assign the 0\nth\n worker to the 1\nst\n job. It takes them 2 days to finish the job.\n- Assign the 1\nst\n worker to the 2\nnd\n job. It takes them 1 day to finish the job.\nIt takes 2 days for all the jobs to be completed, so return 2.\nIt can be proven that 2 days is the minimum number of days needed.\n```\n\n Example 2: \n \n```\nInput:\n jobs = [3,18,15,9], workers = [6,5,1,3]\n\nOutput:\n 3\n\nExplanation:\n\n- Assign the 2\nnd\n worker to the 0\nth\n job. It takes them 3 days to finish the job.\n- Assign the 0\nth\n worker to the 1\nst\n job. It takes them 3 days to finish the job.\n- Assign the 1\nst\n worker to the 2\nnd\n job. It takes them 3 days to finish the job.\n- Assign the 3\nrd\n worker to the 3\nrd\n job. It takes them 3 days to finish the job.\nIt takes 3 days for all the jobs to be completed, so return 3.\nIt can be proven that 3 days is the minimum number of days needed.\n```\n\n Constraints: \n\n n == jobs.length == workers.length \n \n 1 <= n <= 10 5 \n \n 1 <= jobs[i], workers[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int minimumTime(vector<int>& jobs, vector<int>& workers) {\n        sort(jobs.begin(), jobs.end());\n        sort(workers.begin(), workers.end());\n        int answer = 0;\n        for (int i = 0; i < (int)jobs.size(); ++i)\n            answer = max(answer, (jobs[i] + workers[i] - 1) / workers[i]);\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178858433",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "3770",
+  "title": "Largest Prime from Consecutive Prime Sum",
+  "slug": "largest-prime-from-consecutive-prime-sum",
+  "url": "https://leetcode.com/problems/largest-prime-from-consecutive-prime-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer n . \n \n Return the largest prime number less than or equal to n that can be expressed as the sum of one or more consecutive prime numbers starting from 2. If no such number exists, return 0. \n\n Example 1: \n\n Input: n = 20 \n \n Output: 17 \n \n Explanation: \n \n The prime numbers less than or equal to n = 20 which are consecutive prime sums are: \n\n 2 = 2 \n\n 5 = 2 + 3 \n\n 17 = 2 + 3 + 5 + 7 \n\n The largest is 17, so it is the answer. \n\n Example 2: \n\n Input: n = 2 \n \n Output: 2 \n \n Explanation: \n \n The only consecutive prime sum less than or equal to 2 is 2 itself. \n\n Constraints: \n\n 1 <= n <= 5 * 10 5",
+  "code": "class Solution { public: int largestPrime(int n) { if(n<2)return 0;vector<char> p(n+1,true);p[0]=p[1]=false;for(int i=2;1LL*i*i<=n;++i)if(p[i])for(int j=i*i;j<=n;j+=i)p[j]=false;int sum=0,ans=0;for(int i=2;i<=n;++i)if(p[i]){sum+=i;if(sum>n)break;if(p[sum])ans=sum;}return ans; } };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177754443",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

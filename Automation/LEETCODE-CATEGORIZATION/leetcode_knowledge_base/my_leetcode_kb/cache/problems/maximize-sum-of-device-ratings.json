@@ -1,0 +1,34 @@
+{
+  "id": "3961",
+  "title": "Maximize Sum of Device Ratings",
+  "slug": "maximize-sum-of-device-ratings",
+  "url": "https://leetcode.com/problems/maximize-sum-of-device-ratings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Matrix"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array units of size m × n where units[i][j] represents the capacity of the j th unit in the i th device. Each device contains exactly n units. \n \n The rating of a device is the minimum capacity among all its units. \n \n You may perform the following operation any number of times (including zero): \n\n Choose a device i that has not been used as a source before. \n \n Remove exactly one unit from device i and add it to any different device. \n \n Then mark device i as used, so it cannot be chosen again as a source. \n\n Return the maximum possible sum of the ratings of all devices after any number of such operations. \n \n Note: \n\n Devices can receive units from multiple devices, regardless of whether they have been selected. \n \n The rating of an empty device is 0. \n\n Example 1: \n\n Input: units = [[1,3],[2,2]] \n \n Output: 4 \n \n Explanation: \n\n ​​​​​​​​​​​​​​Select device i = 0 and transfer units[0][0] = 1 to device i = 1 . \n \n After the transfer, the ratings are:\n\n Device 0 = [3] : rating[0] = 3 \n \n Device 1 = [2, 2, 1 ] : rating[1] = 1 \n\n Thus, the sum of ratings is 3 + 1 = 4 . \n\n Example 2: \n\n Input: units = [[1,2,3],[4,5,6]] \n \n Output: 6 \n \n Explanation: \n\n Select device i = 1 and transfer units[1][0] = 4 to device i = 0 . \n \n After the transfer, the ratings are:\n\n Device 0 = [1, 2, 3, 4 ] : rating[0] = 1 \n \n Device 1 = [5, 6] : rating[1] = 5 \n\n Thus, the sum of ratings is 1 + 5 = 6 . \n\n Example 3: \n\n Input: units = [[5,5,5],[1,1,1]] \n \n Output: 6 \n \n Explanation: \n\n No transfers increase the sum of ratings. Thus, the sum of ratings is 5 + 1 = 6 . \n\n Constraints: \n\n 1 <= m == units.length <= 10 5 \n \n 1 <= n == units[i].length <= 10 5 \n \n m * n <= 2 * 10 5 \n \n 1 <= units[i][j] <= 10 5",
+  "code": "class Solution {\npublic:\n    long long maxRatings(vector<vector<int>>& units) {\n        int m=units.size();\n        if(m==1) return *min_element(units[0].begin(),units[0].end());\n        long long sum=0;\n        int globalMin=INT_MAX;\n        vector<int> best(m),original(m);\n        for(int i=0;i<m;++i){\n            auto &v=units[i];\n            sort(v.begin(),v.end());\n            original[i]=v[0];\n            globalMin=min(globalMin,v[0]);\n            best[i]=v.size()>=2?v[1]:0;\n            sum+=best[i];\n        }\n        long long ans=0;\n        for(int i=0;i<m;++i){\n            // A sink receives all discarded minima; it may itself donate first.\n            ans=max(ans,sum-best[i]+globalMin);\n        }\n        // With no transfers, retain original ratings.\n        long long initial=0;\n        for(int x:original)initial+=x;\n        return max(ans,initial);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181096686",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

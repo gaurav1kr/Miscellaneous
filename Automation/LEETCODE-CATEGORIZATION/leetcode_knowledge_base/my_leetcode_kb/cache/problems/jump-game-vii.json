@@ -1,0 +1,35 @@
+{
+  "id": "1871",
+  "title": "Jump Game VII",
+  "slug": "jump-game-vii",
+  "url": "https://leetcode.com/problems/jump-game-vii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed binary string s and two integers minJump and maxJump . In the beginning, you are standing at index 0 , which is equal to '0' . You can move from index i to index j if the following conditions are fulfilled: \n\n i + minJump <= j <= min(i + maxJump, s.length - 1) , and \n \n s[j] == '0' . \n\n Return true if you can reach index s.length - 1 in s , or false otherwise. \n\n Example 1: \n \n```\nInput:\n s = \"\n0\n11\n0\n1\n0\n\", minJump = 2, maxJump = 3\n\nOutput:\n true\n\nExplanation:\n\nIn the first step, move from index 0 to index 3. \nIn the second step, move from index 3 to index 5.\n```\n\n Example 2: \n \n```\nInput:\n s = \"01101110\", minJump = 2, maxJump = 3\n\nOutput:\n false\n```\n\n Constraints: \n\n 2 <= s.length <= 10 5 \n \n s[i] is either '0' or '1' . \n \n s[0] == '0' \n \n 1 <= minJump <= maxJump < s.length",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool canReach(string s, int minJump, int maxJump) {\n        int n = s.size();\n        vector<bool> dp(n, false);\n        dp[0] = true;\n        int pre = 0;\n\n        for (int i = 1; i < n; ++i) {\n            if (i >= minJump) pre += dp[i - minJump];\n            if (i > maxJump) pre -= dp[i - maxJump - 1];\n            dp[i] = pre > 0 && s[i] == '0';\n        }\n        return dp[n - 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595378182",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

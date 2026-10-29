@@ -1,0 +1,31 @@
+{
+  "id": "1888",
+  "title": "Minimum Number of Flips to Make the Binary String Alternating",
+  "slug": "minimum-number-of-flips-to-make-the-binary-string-alternating",
+  "url": "https://leetcode.com/problems/minimum-number-of-flips-to-make-the-binary-string-alternating/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "You are given a binary string s . You are allowed to perform two types of operations on the string in any sequence: \n\n Type-1: Remove the character at the start of the string s and append it to the end of the string. \n \n Type-2: Pick any character in s and flip its value, i.e., if its value is '0' it becomes '1' and vice-versa. \n\n Return the minimum number of type-2 operations you need to perform such that s becomes alternating . \n \n The string is called alternating if no two adjacent characters are equal. \n\n For example, the strings \"010\" and \"1010\" are alternating, while the string \"0100\" is not. \n\n Example 1: \n \n```\nInput:\n s = \"111000\"\n\nOutput:\n 2\n\nExplanation\n: Use the first operation two times to make s = \"100011\".\nThen, use the second operation on the third and sixth elements to make s = \"10\n1\n01\n0\n\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"010\"\n\nOutput:\n 0\n\nExplanation\n: The string is already alternating.\n```\n\n Example 3: \n \n```\nInput:\n s = \"1110\"\n\nOutput:\n 1\n\nExplanation\n: Use the second operation on the second element to make s = \"1\n0\n10\".\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is either '0' or '1' .",
+  "code": "#include <string>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minFlips(string s) {\n        int n = s.size();\n        string s2 = s + s;\n        string alt1, alt2;\n        for (int i = 0; i < s2.size(); ++i) {\n            alt1 += i % 2 ? '1' : '0';\n            alt2 += i % 2 ? '0' : '1';\n        }\n\n        int res = n, diff1 = 0, diff2 = 0;\n        for (int i = 0; i < s2.size(); ++i) {\n            if (s2[i] != alt1[i]) diff1++;\n            if (s2[i] != alt2[i]) diff2++;\n\n            if (i >= n) {\n                if (s2[i - n] != alt1[i - n]) diff1--;\n                if (s2[i - n] != alt2[i - n]) diff2--;\n            }\n            if (i >= n - 1)\n                res = min({res, diff1, diff2});\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610557033",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

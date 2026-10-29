@@ -1,0 +1,24 @@
+{
+  "id": "3560",
+  "title": "Find Minimum Log Transportation Cost",
+  "slug": "find-minimum-log-transportation-cost",
+  "url": "https://leetcode.com/problems/find-minimum-log-transportation-cost/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given integers n , m , and k . \n \n There are two logs of lengths n and m units, which need to be transported in three trucks where each truck can carry one log with length at most k units. \n \n You may cut the logs into smaller pieces, where the cost of cutting a log of length x into logs of length len1 and len2 is cost = len1 * len2 such that len1 + len2 = x . \n \n Return the minimum total cost to distribute the logs onto the trucks. If the logs don't need to be cut, the total cost is 0. \n\n Example 1: \n\n Input: n = 6, m = 5, k = 5 \n \n Output: 5 \n \n Explanation: \n \n Cut the log with length 6 into logs with length 1 and 5, at a cost equal to 1 * 5 == 5 . Now the three logs of length 1, 5, and 5 can fit in one truck each. \n\n Example 2: \n\n Input: n = 4, m = 4, k = 6 \n \n Output: 0 \n \n Explanation: \n \n The two logs can fit in the trucks already, hence we don't need to cut the logs. \n\n Constraints: \n\n 2 <= k <= 10 5 \n \n 1 <= n, m <= 2 * k \n \n The input is generated such that it is always possible to transport the logs.",
+  "code": "class Solution {\npublic:\n    long long minCuttingCost(int n, int m, int k) {\n        if (n <= k && m <= k) return 0;\n        if (n > k && m > k) return -1;\n        long long large = max(n, m);\n        if (large > 2LL * k) return -1;\n        return (large - k) * k;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179672662",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

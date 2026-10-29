@@ -1,0 +1,30 @@
+{
+  "id": "2486",
+  "title": "Append Characters to String to Make Subsequence",
+  "slug": "append-characters-to-string-to-make-subsequence",
+  "url": "https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given two strings s and t consisting of only lowercase English letters. \n \n Return the minimum number of characters that need to be appended to the end of s so that t becomes a subsequence of s . \n \n A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters. \n\n Example 1: \n \n```\nInput:\n s = \"coaching\", t = \"coding\"\n\nOutput:\n 4\n\nExplanation:\n Append the characters \"ding\" to the end of s so that s = \"coachingding\".\nNow, t is a subsequence of s (\"\nco\naching\nding\n\").\nIt can be shown that appending any 3 characters to the end of s will never make t a subsequence.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abcde\", t = \"a\"\n\nOutput:\n 0\n\nExplanation:\n t is already a subsequence of s (\"\na\nbcde\").\n```\n\n Example 3: \n \n```\nInput:\n s = \"z\", t = \"abcde\"\n\nOutput:\n 5\n\nExplanation:\n Append the characters \"abcde\" to the end of s so that s = \"zabcde\".\nNow, t is a subsequence of s (\"z\nabcde\n\").\nIt can be shown that appending any 4 characters to the end of s will never make t a subsequence.\n```\n\n Constraints: \n\n 1 <= s.length, t.length <= 10 5 \n \n s and t consist only of lowercase English letters.",
+  "code": "class Solution {public:int appendCharacters(string s,string t){int j=0;for(char c:s)if(j<(int)t.size()&&c==t[j])++j;return t.size()-j;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176585015",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

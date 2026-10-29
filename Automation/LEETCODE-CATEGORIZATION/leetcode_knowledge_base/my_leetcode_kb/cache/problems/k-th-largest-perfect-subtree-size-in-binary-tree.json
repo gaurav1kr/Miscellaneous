@@ -1,0 +1,34 @@
+{
+  "id": "3319",
+  "title": "K-th Largest Perfect Subtree Size in Binary Tree",
+  "slug": "k-th-largest-perfect-subtree-size-in-binary-tree",
+  "url": "https://leetcode.com/problems/k-th-largest-perfect-subtree-size-in-binary-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Sorting",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Sorted array",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given the root of a binary tree and an integer k . \n \n Return an integer denoting the size of the k th largest perfect binary subtree , or -1 if it doesn't exist. \n \n A perfect binary tree is a tree where all leaves are on the same level, and every parent has two children. \n\n Example 1: \n\n Input: root = [5,3,6,5,2,5,7,1,8,null,null,6,8], k = 2 \n \n Output: 3 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/10/14/tmpresl95rp-1.png] \n \n The roots of the perfect binary subtrees are highlighted in black. Their sizes, in non-increasing order are [3, 3, 1, 1, 1, 1, 1, 1] . \nThe 2 nd largest size is 3. \n\n Example 2: \n\n Input: root = [1,2,3,4,5,6,7], k = 1 \n \n Output: 7 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/10/14/tmp_s508x9e-1.png] \n \n The sizes of the perfect binary subtrees in non-increasing order are [7, 3, 3, 1, 1, 1, 1] . The size of the largest perfect binary subtree is 7. \n\n Example 3: \n\n Input: root = [1,2,3,null,4], k = 3 \n \n Output: -1 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/10/14/tmp74xnmpj4-1.png] \n \n The sizes of the perfect binary subtrees in non-increasing order are [1, 1] . There are fewer than 3 perfect binary subtrees. \n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 2000] . \n \n 1 <= Node.val <= 2000 \n \n 1 <= k <= 1024",
+  "code": "class Solution {vector<int> sizes;int dfs(TreeNode* p){if(!p)return 0;int l=dfs(p->left),r=dfs(p->right);if(l<0||r<0||l!=r)return -1;int s=l+r+1;sizes.push_back(s);return s;}public:int kthLargestPerfectSubtree(TreeNode* root,int k){dfs(root);sort(sizes.rbegin(),sizes.rend());return k<=(int)sizes.size()?sizes[k-1]:-1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177458767",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

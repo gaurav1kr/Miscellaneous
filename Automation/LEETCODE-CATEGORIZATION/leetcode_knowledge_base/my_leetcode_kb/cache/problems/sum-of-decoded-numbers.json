@@ -1,0 +1,30 @@
+{
+  "id": "4039",
+  "title": "Sum of Decoded Numbers",
+  "slug": "sum-of-decoded-numbers",
+  "url": "https://leetcode.com/problems/sum-of-decoded-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Simulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Each nums[i] is an encoded integer representing two positive integers x i and y i . To decode nums[i] , define: \n\n width i = nums[i] % 10 . \n \n d i = floor(nums[i] / 10) . \n \n x i as the integer formed by the first width i digits of the decimal representation of d i . \n \n y i as the integer formed by all remaining digits of the decimal representation of d i . \n\n It is guaranteed that the decimal representation of d i contains more than width i digits. Therefore, both x i and y i contain at least one digit. \n \n The decoded value of nums[i] is x i y i . \n \n Return the sum of the decoded values of all elements in nums , modulo 10 9 + 7 . \n \n The floor() function returns the integer part of the division. \n\n Example 1: \n\n Input: nums = [231] \n \n Output: 8 \n \n Explanation: \n\n For 231, we have width = 1 , d = 23 , x = 2 , and y = 3 . \n \n The decoded value of 231 is 2 3 = 8 . \n \n Since there is only one element in nums , the sum of the decoded values is 8. \n\n Example 2: \n\n Input: nums = [2522,2101] \n \n Output: 1649 \n \n Explanation: \n\n For 2522, we have width = 2 , d = 252 , x = 25 , and y = 2 . \n \n The decoded value of 2522 is 25 2 = 625 . \n \n For 2101, we have width = 1 , d = 210 , x = 2 , and y = 10 . \n \n The decoded value of 2101 is 2 10 = 1024 . \n \n The sum of the decoded values is 625 + 1024 = 1649 . \n\n Example 3: \n\n Input: nums = [2301] \n \n Output: 73741817 \n \n Explanation: \n\n For 2301, we have width = 1 , d = 230 , x = 2 , and y = 30 . \n \n The decoded value is 2 30 = 1073741824 . \n \n Therefore, the answer is 1073741824 modulo (10 9 + 7) = 73741817 . \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 100 < nums[i] < 10 15 \n \n 1 <= width i <= 9 \n \n 1 <= x i , y i < 10 9 \n \n The digit sequences used to form x i and y i do not have leading zeros. \n \n It is guaranteed that every element in nums is a valid encoded integer.",
+  "code": "class Solution {\n    static const long long MOD = 1000000007;\n    long long modPow(long long a, long long e) {\n        long long r = 1;\n        while (e) {\n            if (e & 1) r = r * a % MOD;\n            a = a * a % MOD;\n            e >>= 1;\n        }\n        return r;\n    }\npublic:\n    int sumDecoded(vector<long long>& nums) {\n        long long ans = 0;\n        for (long long v : nums) {\n            int width = v % 10;\n            string digits = to_string(v / 10);\n            long long x = stoll(digits.substr(0, width));\n            long long y = stoll(digits.substr(width));\n            ans = (ans + modPow(x, y)) % MOD;\n        }\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179625293",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "4064",
+  "title": "Longest Subarray Divisible by K with At Most One Negation II",
+  "slug": "longest-subarray-divisible-by-k-with-at-most-one-negation-ii",
+  "url": "https://leetcode.com/problems/longest-subarray-divisible-by-k-with-at-most-one-negation-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n A subarray is valid if its sum is divisible by k , or can become divisible by k by negating one element within that subarray . \n \n Negating an element means replacing its value x with -x . \n \n Return the length of the longest valid subarray . If no valid subarray exists, return 0. \n\n Example 1: \n\n Input: nums = [4,1,2], k = 3 \n \n Output: 3 \n \n Explanation: \n\n The sum of the entire array is 7, and 7 % 3 = 1 , so it is not divisible by k = 3 . \n \n Negating nums[2] = 2 changes the sum to 4 + 1 − 2 = 3 , which is divisible by k . \n \n Therefore, the entire array is a valid subarray, giving a length of 3. \n\n Example 2: \n\n Input: nums = [5,3,4], k = 7 \n \n Output: 2 \n \n Explanation: \n\n The sum of the entire array is 12, and negating any one of its elements does not make its sum divisible by 7. \n \n However, the subarray [3, 4] has a sum of 7, which is divisible by k = 7 without any negation. \n \n Therefore, the longest valid subarray has a length of 2. \n\n Example 3: \n\n Input: nums = [2,2,5], k = 6 \n \n Output: 2 \n \n Explanation: \n\n The sum of the entire array is 9, and negating any one of its elements does not make its sum divisible by 6. \n \n The subarray [2, 2] has a sum of 4. Negating either element changes it to [-2, 2] or [2, -2] , both of which have a sum of 0. \n \n Therefore, the longest valid subarray has a length of 2. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 ​​​​​​​ \n \n -10 5 <= nums[i] <= 10 5 \n \n 1 <= k <= 3000 ​​​​​​​",
+  "code": "class Solution {\npublic:\n    int longestSubarray(vector<int>& nums, int k) {\n        int n = nums.size();\n        vector<int> pref(n + 1, 0);\n        for (int i = 0; i < n; ++i) {\n            long long v = (long long)pref[i] + nums[i];\n            pref[i + 1] = (int)((v % k + k) % k);\n        }\n        vector<int> earliest(k, n + 1), latest(k, -1);\n        for (int i = 0; i <= n; ++i) {\n            earliest[pref[i]] = min(earliest[pref[i]], i);\n            latest[pref[i]] = i;\n        }\n        int answer = 0;\n        vector<int> nextD(k, n + 1);\n        for (int i = n - 1; i >= 0; --i) {\n            int d = (int)((2LL * nums[i] % k + k) % k);\n            nextD[d] = i;\n            if (earliest[pref[i]] != i) continue;\n            int q = pref[i];\n            for (int c = 0; c < k; ++c) {\n                int j = latest[c];\n                if (j <= i) continue;\n                int required = (c - q + k) % k;\n                if (required == 0 || nextD[required] < j)\n                    answer = max(answer, j - i);\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181506530",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

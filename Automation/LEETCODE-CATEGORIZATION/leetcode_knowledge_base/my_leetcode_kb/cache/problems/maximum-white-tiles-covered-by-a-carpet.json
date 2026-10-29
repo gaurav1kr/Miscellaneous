@@ -1,0 +1,39 @@
+{
+  "id": "2271",
+  "title": "Maximum White Tiles Covered by a Carpet",
+  "slug": "maximum-white-tiles-covered-by-a-carpet",
+  "url": "https://leetcode.com/problems/maximum-white-tiles-covered-by-a-carpet/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Sliding Window",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array tiles where tiles[i] = [l i , r i ] represents that every tile j in the range l i <= j <= r i is colored white. \n \n You are also given an integer carpetLen , the length of a single carpet that can be placed anywhere . \n \n Return the maximum number of white tiles that can be covered by the carpet . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/03/25/example1drawio3.png] \n \n```\nInput:\n tiles = [[1,5],[10,11],[12,18],[20,25],[30,32]], carpetLen = 10\n\nOutput:\n 9\n\nExplanation:\n Place the carpet starting on tile 10. \nIt covers 9 white tiles, so we return 9.\nNote that there may be other places where the carpet covers 9 white tiles.\nIt can be shown that the carpet cannot cover more than 9 white tiles.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/03/24/example2drawio.png] \n \n```\nInput:\n tiles = [[10,11],[1,1]], carpetLen = 2\n\nOutput:\n 2\n\nExplanation:\n Place the carpet starting on tile 10. \nIt covers 2 white tiles, so we return 2.\n```\n\n Constraints: \n\n 1 <= tiles.length <= 5 * 10 4 \n \n tiles[i].length == 2 \n \n 1 <= l i <= r i <= 10 9 \n \n 1 <= carpetLen <= 10 9 \n \n The tiles are non-overlapping .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:int maximumWhiteTiles(vector<vector<int>>& tiles,int carpetLen){sort(tiles.begin(),tiles.end());int n=tiles.size();vector<long long> pre(n+1);for(int i=0;i<n;++i)pre[i+1]=pre[i]+tiles[i][1]-tiles[i][0]+1;int ans=0;for(int i=0;i<n;++i){long long end=1LL*tiles[i][0]+carpetLen-1;int j=upper_bound(tiles.begin(),tiles.end(),end,[](long long x,const vector<int>& t){return x<t[0];})-tiles.begin();long long covered=pre[j]-pre[i];if(j>i&&tiles[j-1][1]>end)covered-=tiles[j-1][1]-end;ans=max(ans,(int)covered);}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175902731",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

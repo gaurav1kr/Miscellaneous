@@ -1,0 +1,31 @@
+{
+  "id": "320",
+  "title": "Generalized Abbreviation",
+  "slug": "generalized-abbreviation",
+  "url": "https://leetcode.com/problems/generalized-abbreviation/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "A word's generalized abbreviation can be constructed by taking any number of non-overlapping and non-adjacent substrings and replacing them with their respective lengths. \n\n For example, \"abcde\" can be abbreviated into:\n\n \"a3e\" ( \"bcd\" turned into \"3\" ) \n \n \"1bcd1\" ( \"a\" and \"e\" both turned into \"1\" ) \n \n \"5\" ( \"abcde\" turned into \"5\" ) \n \n \"abcde\" (no substrings replaced) \n\n However, these abbreviations are invalid :\n\n \"23\" ( \"ab\" turned into \"2\" and \"cde\" turned into \"3\" ) is invalid as the substrings chosen are adjacent. \n \n \"22de\" ( \"ab\" turned into \"2\" and \"bc\" turned into \"2\" ) is invalid as the substring chosen overlap. \n\n Given a string word , return a list of all the possible generalized abbreviations of word . Return the answer in any order . \n\n Example 1: \n \n```\nInput:\n word = \"word\"\n\nOutput:\n [\"4\",\"3d\",\"2r1\",\"2rd\",\"1o2\",\"1o1d\",\"1or1\",\"1ord\",\"w3\",\"w2d\",\"w1r1\",\"w1rd\",\"wo2\",\"wo1d\",\"wor1\",\"word\"]\n```\n \n Example 2: \n \n```\nInput:\n word = \"a\"\n\nOutput:\n [\"1\",\"a\"]\n```\n\n Constraints: \n\n 1 <= word.length <= 15 \n \n word consists of only lowercase English letters.",
+  "code": "class Solution\n{\n    void dfs(const string& word, int index, int count, string current,\n             vector<string>& result) {\n        if (index == (int)word.size())\n        {\n            if (count) current += to_string(count);\n            result.push_back(current);\n            return;\n        }\n        dfs(word, index + 1, count + 1, current, result);\n        if (count) current += to_string(count);\n        current += word[index];\n        dfs(word, index + 1, 0, current, result);\n    }\npublic:\n    vector<string> generateAbbreviations(string word) {\n        vector<string> result;\n        dfs(word, 0, 0, \"\", result);\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178452619",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

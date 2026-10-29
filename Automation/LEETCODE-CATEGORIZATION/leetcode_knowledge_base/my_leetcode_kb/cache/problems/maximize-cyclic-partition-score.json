@@ -1,0 +1,31 @@
+{
+  "id": "3743",
+  "title": "Maximize Cyclic Partition Score",
+  "slug": "maximize-cyclic-partition-score",
+  "url": "https://leetcode.com/problems/maximize-cyclic-partition-score/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given a cyclic array nums and an integer k . \n \n Partition nums into at most k subarrays . As nums is cyclic, these subarrays may wrap around from the end of the array back to the beginning. \n \n The range of a subarray is the difference between its maximum and minimum values. The score of a partition is the sum of subarray ranges . \n \n Return the maximum possible score among all cyclic partitions. \n\n Example 1: \n\n Input: nums = [1,2,3,3], k = 2 \n \n Output: 3 \n \n Explanation: \n\n Partition nums into [2, 3] and [3, 1] (wrapped around). \n \n The range of [2, 3] is max(2, 3) - min(2, 3) = 3 - 2 = 1 . \n \n The range of [3, 1] is max(3, 1) - min(3, 1) = 3 - 1 = 2 . \n \n The score is 1 + 2 = 3 . \n\n Example 2: \n\n Input: nums = [1,2,3,3], k = 1 \n \n Output: 2 \n \n Explanation: \n\n Partition nums into [1, 2, 3, 3] . \n \n The range of [1, 2, 3, 3] is max(1, 2, 3, 3) - min(1, 2, 3, 3) = 3 - 1 = 2 . \n \n The score is 2. \n\n Example 3: \n\n Input: nums = [1,2,3,3], k = 4 \n \n Output: 3 \n \n Explanation: \n \n Identical to Example 1, we partition nums into [2, 3] and [3, 1] . Note that nums may be partitioned into fewer than k subarrays. \n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= k <= nums.length",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n    long long maximumScore(vector<int>& a,int k){\n        const long long NEG=LLONG_MIN/4;int n=a.size(),M=min(n,2*k);\n        long long answer=0;\n        for(int offset=0;offset<=2;offset++){\n            vector<array<long long,3>>dp(M+1),ndp(M+1);\n            for(auto &v:dp)v.fill(NEG);dp[0][offset]=0;\n            for(int x:a){\n                ndp=dp;\n                for(int j=0;j<M;j++)for(int b=0;b<=2;b++)if(dp[j][b]!=NEG){\n                    if(b<2)ndp[j+1][b+1]=max(ndp[j+1][b+1],dp[j][b]+x);\n                    if(b>0)ndp[j+1][b-1]=max(ndp[j+1][b-1],dp[j][b]-x);\n                }\n                dp.swap(ndp);\n            }\n            for(int j=0;j<=M;j+=2)answer=max(answer,dp[j][offset]);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181543916",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

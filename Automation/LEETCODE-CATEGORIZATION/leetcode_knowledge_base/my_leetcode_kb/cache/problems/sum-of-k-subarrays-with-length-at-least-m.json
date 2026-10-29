@@ -1,0 +1,33 @@
+{
+  "id": "3473",
+  "title": "Sum of K Subarrays With Length at Least M",
+  "slug": "sum-of-k-subarrays-with-length-at-least-m",
+  "url": "https://leetcode.com/problems/sum-of-k-subarrays-with-length-at-least-m/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers, k and m . \n \n Return the maximum sum of k non-overlapping subarrays of nums , where each subarray has a length of at least m . \n\n Example 1: \n\n Input: nums = [1,2,-1,3,3,4], k = 2, m = 2 \n \n Output: 13 \n \n Explanation: \n \n The optimal choice is: \n\n Subarray nums[3..5] with sum 3 + 3 + 4 = 10 (length is 3 >= m ). \n \n Subarray nums[0..1] with sum 1 + 2 = 3 (length is 2 >= m ). \n\n The total sum is 10 + 3 = 13 . \n\n Example 2: \n\n Input: nums = [-10,3,-1,-2], k = 4, m = 1 \n \n Output: -10 \n \n Explanation: \n \n The optimal choice is choosing each element as a subarray. The output is (-10) + 3 + (-1) + (-2) = -10 . \n\n Constraints: \n\n 1 <= nums.length <= 2000 \n \n -10 4 <= nums[i] <= 10 4 \n \n 1 <= k <= floor(nums.length / m) \n \n 1 <= m <= 3",
+  "code": "class Solution {public:\nlong long maxSum(vector<int>& nums,int k,int m){int n=nums.size(); const long long N=LLONG_MIN/4; vector<long long> p(n+1),prev(n+1,0),cur(n+1);for(int i=0;i<n;i++)p[i+1]=p[i]+nums[i];for(int j=1;j<=k;j++){fill(cur.begin(),cur.end(),N);long long best=N;for(int i=1;i<=n;i++){if(i>=m&&prev[i-m]!=N)best=max(best,prev[i-m]-p[i-m]);cur[i]=cur[i-1];if(best!=N)cur[i]=max(cur[i],p[i]+best);}prev.swap(cur);}return prev[n];}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177538082",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

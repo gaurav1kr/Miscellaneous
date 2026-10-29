@@ -1,0 +1,30 @@
+{
+  "id": "2291",
+  "title": "Maximum Profit From Trading Stocks",
+  "slug": "maximum-profit-from-trading-stocks",
+  "url": "https://leetcode.com/problems/maximum-profit-from-trading-stocks/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two 0-indexed integer arrays of the same length present and future where present[i] is the current price of the i th stock and future[i] is the price of the i th stock a year in the future. You may buy each stock at most once . You are also given an integer budget representing the amount of money you currently have. \n \n Return the maximum amount of profit you can make. \n\n Example 1: \n \n```\nInput:\n present = [5,4,6,2,3], future = [8,5,4,3,5], budget = 10\n\nOutput:\n 6\n\nExplanation:\n One possible way to maximize your profit is to:\nBuy the 0\nth\n, 3\nrd\n, and 4\nth\n stocks for a total of 5 + 2 + 3 = 10.\nNext year, sell all three stocks for a total of 8 + 3 + 5 = 16.\nThe profit you made is 16 - 10 = 6.\nIt can be shown that the maximum profit you can make is 6.\n```\n\n Example 2: \n \n```\nInput:\n present = [2,2,5], future = [3,4,10], budget = 6\n\nOutput:\n 5\n\nExplanation:\n The only possible way to maximize your profit is to:\nBuy the 2\nnd\n stock, and make a profit of 10 - 5 = 5.\nIt can be shown that the maximum profit you can make is 5.\n```\n\n Example 3: \n \n```\nInput:\n present = [3,3,12], future = [0,3,15], budget = 10\n\nOutput:\n 0\n\nExplanation:\n One possible way to maximize your profit is to:\nBuy the 1\nst\n stock, and make a profit of 3 - 3 = 0.\nIt can be shown that the maximum profit you can make is 0.\n```\n\n Constraints: \n\n n == present.length == future.length \n \n 1 <= n <= 1000 \n \n 0 <= present[i], future[i] <= 100 \n \n 0 <= budget <= 1000",
+  "code": "class Solution {\npublic:\n    int maximumProfit(vector<int>& present, vector<int>& future, int budget) {\n        vector<int> dp(budget + 1);\n        for (int i = 0; i < (int)present.size(); ++i)\n            for (int money = budget; money >= present[i]; --money)\n                dp[money] = max(dp[money], dp[money - present[i]] + future[i] - present[i]);\n        return dp[budget];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178854405",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

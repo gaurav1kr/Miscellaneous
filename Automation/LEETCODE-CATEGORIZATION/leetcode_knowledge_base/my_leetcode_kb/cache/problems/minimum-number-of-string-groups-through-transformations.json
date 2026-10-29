@@ -1,0 +1,34 @@
+{
+  "id": "3999",
+  "title": "Minimum Number of String Groups Through Transformations",
+  "slug": "minimum-number-of-string-groups-through-transformations",
+  "url": "https://leetcode.com/problems/minimum-number-of-string-groups-through-transformations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings words . \n \n Define a transformation on a string s as follows: \n\n Let E be the subsequence of characters at even indices of s . \n \n Let O be the subsequence of characters at odd indices of s . \n \n Independently cyclically shift E and O by any number of positions to the right, possibly zero. \n \n Reconstruct the string by placing the shifted E characters back into even indices and the shifted O characters back into odd indices. \n\n Two strings are equivalent if one can be transformed into the other by a single transformation. \n \n Partition words into the minimum number of groups such that: \n\n Every string belongs to exactly one group. \n \n Every pair of strings in the same group are equivalent . \n\n Return an integer denoting the minimum number of groups. \n\n Example 1: \n\n Input: words = [\"ntgwz\",\"zwntg\"] \n \n Output: 1 \n \n Explanation: \n\n For \"ntgwz\" , the even-index subsequence is \"ngz\" and the odd-index subsequence is \"tw\" . \n \n Shift \"ngz\" right by 1 position to obtain \"zng\" , and shift \"tw\" right by 1 position to obtain \"wt\" . \n \n After reconstructing the string, we obtain \"zwntg\" . \n \n Therefore, both strings are equivalent and belong to the same group. \n\n Example 2: \n\n Input: words = [\"abc\",\"cab\",\"bac\",\"acb\",\"bca\",\"cba\"] \n \n Output: 3 \n \n Explanation: \n \n The strings can be partitioned into the following groups: \n\n [\"abc\",\"cba\"] \n \n [\"cab\",\"bac\"] \n \n [\"acb\",\"bca\"] \n\n Example 3: \n\n Input: words = [\"leet\",\"abb\",\"bab\",\"deed\",\"edde\",\"code\",\"bba\"] \n \n Output: 5 \n \n Explanation: \n \n The strings can be partitioned into the following groups: \n\n [\"abb\",\"bba\"] \n \n [\"deed\",\"edde\"] \n \n [\"leet\"] \n \n [\"bab\"] \n \n [\"code\"] \n\n ​​​​​​​​​​​​​​All pairs of strings in each group are equivalent. \n\n Constraints: \n\n 1 <= words.length <= 10 5 \n \n 1 <= words[i].length <= 5 * 10 5 \n \n The sum of words[i].length does not exceed 5 * 10 5 . \n \n words[i] consist of lowercase English letters.",
+  "code": "class Solution {\n    string canonical(const string& s){int n=s.size();if(n==0)return s;string t=s+s;int i=0,j=1,k=0;\n        while(i<n&&j<n&&k<n){char a=t[i+k],b=t[j+k];if(a==b){k++;continue;}if(a>b)i+=k+1;else j+=k+1;if(i==j)j++;k=0;}\n        int p=min(i,j);return t.substr(p,n);\n    }\npublic:\n    int minimumGroups(vector<string>& words){unordered_set<string> keys;\n        for(const string &w:words){string e,o;for(int i=0;i<(int)w.size();i++)(i%2?o:e).push_back(w[i]);\n            keys.insert(to_string(w.size())+\":\"+canonical(e)+\"|\"+canonical(o));}\n        return keys.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181181020",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "1974",
+  "title": "Minimum Time to Type Word Using Special Typewriter",
+  "slug": "minimum-time-to-type-word-using-special-typewriter",
+  "url": "https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "There is a special typewriter with lowercase English letters 'a' to 'z' arranged in a circle with a pointer . A character can only be typed if the pointer is pointing to that character. The pointer is initially pointing to the character 'a' . \n [Figure: https://assets.leetcode.com/uploads/2021/07/31/chart.jpg] \n \n Each second, you may perform one of the following operations: \n\n Move the pointer one character counterclockwise or clockwise . \n \n Type the character the pointer is currently on. \n\n Given a string word , return the minimum number of seconds to type out the characters in word . \n\n Example 1: \n \n```\nInput:\n word = \"abc\"\n\nOutput:\n 5\n\nExplanation: \n\nThe characters are printed as follows:\n- Type the character 'a' in 1 second since the pointer is initially on 'a'.\n- Move the pointer clockwise to 'b' in 1 second.\n- Type the character 'b' in 1 second.\n- Move the pointer clockwise to 'c' in 1 second.\n- Type the character 'c' in 1 second.\n```\n\n Example 2: \n \n```\nInput:\n word = \"bza\"\n\nOutput:\n 7\n\nExplanation:\n\nThe characters are printed as follows:\n- Move the pointer clockwise to 'b' in 1 second.\n- Type the character 'b' in 1 second.\n- Move the pointer counterclockwise to 'z' in 2 seconds.\n- Type the character 'z' in 1 second.\n- Move the pointer clockwise to 'a' in 1 second.\n- Type the character 'a' in 1 second.\n```\n\n Example 3: \n \n```\nInput:\n word = \"zjpc\"\n\nOutput:\n 34\n\nExplanation:\n\nThe characters are printed as follows:\n- Move the pointer counterclockwise to 'z' in 1 second.\n- Type the character 'z' in 1 second.\n- Move the pointer clockwise to 'j' in 10 seconds.\n- Type the character 'j' in 1 second.\n- Move the pointer clockwise to 'p' in 6 seconds.\n- Type the character 'p' in 1 second.\n- Move the pointer counterclockwise to 'c' in 13 seconds.\n- Type the character 'c' in 1 second.\n```\n\n Constraints: \n\n 1 <= word.length <= 100 \n \n word consists of lowercase English letters.",
+  "code": "#include <string>\n#include <cmath>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minTimeToType(string word) {\n        int time = 0, prev = 'a';\n        for (char c : word) {\n            int dist = abs(c - prev);\n            time += min(dist, 26 - dist) + 1;\n            prev = c;\n        }\n        return time;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610647369",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

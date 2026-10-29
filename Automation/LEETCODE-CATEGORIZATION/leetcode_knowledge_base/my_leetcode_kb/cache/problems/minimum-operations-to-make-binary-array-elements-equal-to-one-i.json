@@ -1,0 +1,37 @@
+{
+  "id": "3191",
+  "title": "Minimum Operations to Make Binary Array Elements Equal to One I",
+  "slug": "minimum-operations-to-make-binary-array-elements-equal-to-one-i",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Queue",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Prefix Sum / Difference Array",
+    "Bit Manipulation",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a binary array nums . \n \n You can do the following operation on the array any number of times (possibly zero): \n\n Choose any 3 consecutive elements from the array and flip all of them. \n\n Flipping an element means changing its value from 0 to 1, and from 1 to 0. \n \n Return the minimum number of operations required to make all elements in nums equal to 1. If it is impossible, return -1. \n\n Example 1: \n\n Input: nums = [0,1,1,1,0,0] \n \n Output: 3 \n \n Explanation: \nWe can do the following operations: \n\n Choose the elements at indices 0, 1 and 2. The resulting array is nums = [ 1 , 0 , 0 ,1,0,0] . \n \n Choose the elements at indices 1, 2 and 3. The resulting array is nums = [1, 1 , 1 , 0 ,0,0] . \n \n Choose the elements at indices 3, 4 and 5. The resulting array is nums = [1,1,1, 1 , 1 , 1 ] . \n\n Example 2: \n\n Input: nums = [0,1,1,1] \n \n Output: -1 \n \n Explanation: \nIt is impossible to make all elements equal to 1. \n\n Constraints: \n\n 3 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 1",
+  "code": "class Solution {public:int minOperations(vector<int>& nums){int n=nums.size(),ans=0;for(int i=0;i+2<n;++i)if(!nums[i]){for(int j=i;j<i+3;++j)nums[j]^=1;++ans;}for(int x:nums)if(!x)return -1;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177415675",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "1801",
+  "title": "Number of Orders in the Backlog",
+  "slug": "number-of-orders-in-the-backlog",
+  "url": "https://leetcode.com/problems/number-of-orders-in-the-backlog/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Heap (Priority Queue)",
+    "Simulation"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array orders , where each orders[i] = [price i , amount i , orderType i ] denotes that amount i orders have been placed of type orderType i at the price price i . The orderType i is: \n\n 0 if it is a batch of buy orders, or \n \n 1 if it is a batch of sell orders. \n\n Note that orders[i] represents a batch of amount i independent orders with the same price and order type. All orders represented by orders[i] will be placed before all orders represented by orders[i+1] for all valid i . \n \n There is a backlog that consists of orders that have not been executed. The backlog is initially empty. When an order is placed, the following happens: \n\n If the order is a buy order, you look at the sell order with the smallest price in the backlog. If that sell order's price is smaller than or equal to the current buy order's price, they will match and be executed, and that sell order will be removed from the backlog. Else, the buy order is added to the backlog. \n \n Vice versa, if the order is a sell order, you look at the buy order with the largest price in the backlog. If that buy order's price is larger than or equal to the current sell order's price, they will match and be executed, and that buy order will be removed from the backlog. Else, the sell order is added to the backlog. \n\n Return the total amount of orders in the backlog after placing all the orders from the input . Since this number can be large, return it modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/11/ex1.png] \n \n```\nInput:\n orders = [[10,5,0],[15,2,1],[25,1,1],[30,4,0]]\r\n\nOutput:\n 6\r\n\nExplanation:\n Here is what happens with the orders:\r\n- 5 orders of type buy with price 10 are placed. There are no sell orders, so the 5 orders are added to the backlog.\r\n- 2 orders of type sell with price 15 are placed. There are no buy orders with prices larger than or equal to 15, so the 2 orders are added to the backlog.\r\n- 1 order of type sell with price 25 is placed. There are no buy orders with prices larger than or equal to 25 in the backlog, so this order is added to the backlog.\r\n- 4 orders of type buy with price 30 are placed. The first 2 orders are matched with the 2 sell orders of the least price, which is 15 and these 2 sell orders are removed from the backlog. The 3\nrd\n order is matched with the sell order of the least price, which is 25 and this sell order is removed from the backlog. Then, there are no more sell orders in the backlog, so the 4\nth\n order is added to the backlog.\r\nFinally, the backlog has 5 buy orders with price 10, and 1 buy order with price 30. So the total number of orders in the backlog is 6.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/11/ex2.png] \n \n```\nInput:\n orders = [[7,1000000000,1],[15,3,0],[5,999999995,0],[5,1,1]]\r\n\nOutput:\n 999999984\r\n\nExplanation:\n Here is what happens with the orders:\r\n- 10\n9\n orders of type sell with price 7 are placed. There are no buy orders, so the 10\n9\n orders are added to the backlog.\r\n- 3 orders of type buy with price 15 are placed. They are matched with the 3 sell orders with the least price which is 7, and those 3 sell orders are removed from the backlog.\r\n- 999999995 orders of type buy with price 5 are placed. The least price of a sell order is 7, so the 999999995 orders are added to the backlog.\r\n- 1 order of type sell with price 5 is placed. It is matched with the buy order of the highest price, which is 5, and that buy order is removed from the backlog.\r\nFinally, the backlog has (1000000000-3) sell orders with price 7, and (999999995-1) buy orders with price 5. So the total number of orders = 1999999991, which is equal to 999999984 % (10\n9\n + 7).\n```\n\n Constraints: \n\n 1 <= orders.length <= 10 5 \n \n orders[i].length == 3 \n \n 1 <= price i , amount i <= 10 9 \n \n orderType i is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n int getNumberOfBacklogOrders(vector<vector<int>>& orders){\n  priority_queue<pair<int,int>> buy;\n  priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> sell;\n  for(auto& o:orders){int price=o[0],amount=o[1],type=o[2];\n   if(type==0){while(amount && !sell.empty() && sell.top().first<=price){auto p=sell.top();sell.pop();int take=min(amount,p.second);amount-=take;p.second-=take;if(p.second)sell.push(p);}if(amount)buy.push({price,amount});}\n   else {while(amount && !buy.empty() && buy.top().first>=price){auto p=buy.top();buy.pop();int take=min(amount,p.second);amount-=take;p.second-=take;if(p.second)buy.push(p);}if(amount)sell.push({price,amount});}\n  }\n  const int MOD=1000000007;long long ans=0;\n  while(!buy.empty()){ans=(ans+buy.top().second)%MOD;buy.pop();}\n  while(!sell.empty()){ans=(ans+sell.top().second)%MOD;sell.pop();}\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175761660",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

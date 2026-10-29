@@ -1,0 +1,32 @@
+{
+  "id": "681",
+  "title": "Next Closest Time",
+  "slug": "next-closest-time",
+  "url": "https://leetcode.com/problems/next-closest-time/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking",
+    "Enumeration"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Given a time represented in the format \"HH:MM\" , form the next closest time by reusing the current digits. There is no limit on how many times a digit can be reused. \n \n You may assume the given input string is always valid. For example, \"01:34\" , \"12:09\" are all valid. \"1:34\" , \"12:9\" are all invalid. \n\n Example 1: \n \n```\nInput:\n time = \"19:34\"\n\nOutput:\n \"19:39\"\n\nExplanation:\n The next closest time choosing from digits \n1\n, \n9\n, \n3\n, \n4\n, is \n19:39\n, which occurs 5 minutes later.\nIt is not \n19:33\n, because this occurs 23 hours and 59 minutes later.\n```\n\n Example 2: \n \n```\nInput:\n time = \"23:59\"\n\nOutput:\n \"22:22\"\n\nExplanation:\n The next closest time choosing from digits \n2\n, \n3\n, \n5\n, \n9\n, is \n22:22\n.\nIt may be assumed that the returned time is next day's time since it is smaller than the input time numerically.\n```\n\n Constraints: \n\n time.length == 5 \n \n time is a valid time in the form \"HH:MM\" . \n \n 0 <= HH < 24 \n \n 0 <= MM < 60",
+  "code": "class Solution {\npublic:\n    string nextClosestTime(string time) {\n        bool allowed[10] = {};\n        for (char c : time) {\n            if (c != ':') {\n                allowed[c - '0'] = true;\n            }\n        }\n        int start = stoi(time.substr(0, 2)) * 60 + stoi(time.substr(3, 2));\n        for (int delta = 1; delta <= 1440; ++delta) {\n            int minute = (start + delta) % 1440;\n            int hour = minute / 60;\n            int rem = minute % 60;\n            string result = string(2 - to_string(hour).size(), '0')\n                          + to_string(hour) + \":\"\n                          + string(2 - to_string(rem).size(), '0')\n                          + to_string(rem);\n            bool valid = true;\n            for (char c : result) {\n                if (c != ':' && !allowed[c - '0']) {\n                    valid = false;\n                }\n            }\n            if (valid) {\n                return result;\n            }\n        }\n        return time;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178496329",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

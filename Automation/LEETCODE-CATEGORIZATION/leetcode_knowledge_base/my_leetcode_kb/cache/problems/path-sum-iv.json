@@ -1,0 +1,39 @@
+{
+  "id": "666",
+  "title": "Path Sum IV",
+  "slug": "path-sum-iv",
+  "url": "https://leetcode.com/problems/path-sum-iv/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "If the depth of a tree is smaller than 5 , then this tree can be represented by an array of three-digit integers. You are given an ascending array nums consisting of three-digit integers representing a binary tree with a depth smaller than 5 , where for each integer: \n\n The hundreds digit represents the depth d of this node, where 1 <= d <= 4 . \n \n The tens digit represents the position p of this node within its level, where 1 <= p <= 8 , corresponding to its position in a full binary tree . \n \n The units digit represents the value v of this node, where 0 <= v <= 9 . \n\n Return the sum of all paths from the root towards the leaves . \n \n It is guaranteed that the given array represents a valid connected binary tree. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2021/04/30/pathsum4-1-tree.jpg] \n\n Input: nums = [113,215,221] \n \n Output: 12 \n \n Explanation: \n \n The tree that the list represents is shown. \nThe path sum is (3 + 5) + (3 + 1) = 12. \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2021/04/30/pathsum4-2-tree.jpg] \n\n Input: nums = [113,221] \n \n Output: 4 \n \n Explanation: \n \n The tree that the list represents is shown.  \nThe path sum is (3 + 1) = 4. \n\n Constraints: \n\n 1 <= nums.length <= 15 \n \n 110 <= nums[i] <= 489 \n \n nums represents a valid binary tree with depth less than 5 . \n \n nums is sorted in ascending order.",
+  "code": "class Solution {\n    unordered_map<int, int> value;\n\n    int dfs(int depth, int pos, int sum) {\n        int key = depth * 10 + pos;\n        if (!value.count(key)) {\n            return 0;\n        }\n        sum += value[key];\n        int left = (depth + 1) * 10 + (2 * pos - 1);\n        int right = (depth + 1) * 10 + 2 * pos;\n        if (!value.count(left) && !value.count(right)) {\n            return sum;\n        }\n        return dfs(depth + 1, 2 * pos - 1, sum)\n             + dfs(depth + 1, 2 * pos, sum);\n    }\n\npublic:\n    int pathSum(vector<int>& nums) {\n        value.clear();\n        for (int x : nums) {\n            value[x / 10] = x % 10;\n        }\n        return dfs(1, 1, 0);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178495584",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

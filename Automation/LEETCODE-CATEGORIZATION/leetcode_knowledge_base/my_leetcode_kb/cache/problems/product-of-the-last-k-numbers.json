@@ -1,0 +1,35 @@
+{
+  "id": "1352",
+  "title": "Product of the Last K Numbers",
+  "slug": "product-of-the-last-k-numbers",
+  "url": "https://leetcode.com/problems/product-of-the-last-k-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Design",
+    "Data Stream",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Math / Number Theory",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Design an algorithm that accepts a stream of integers and retrieves the product of the last k integers of the stream. \n \n Implement the ProductOfNumbers class: \n\n ProductOfNumbers() Initializes the object with an empty stream. \n \n void add(int num) Appends the integer num to the stream. \n \n int getProduct(int k) Returns the product of the last k numbers in the current list. You can assume that always the current list has at least k numbers. \n\n The test cases are generated so that, at any time, the product of any contiguous sequence of numbers will fit into a single 32-bit integer without overflowing. \n\n Example: \n \n```\nInput\n\n[\"ProductOfNumbers\",\"add\",\"add\",\"add\",\"add\",\"add\",\"getProduct\",\"getProduct\",\"getProduct\",\"add\",\"getProduct\"]\n[[],[3],[0],[2],[5],[4],[2],[3],[4],[8],[2]]\n\nOutput\n\n[null,null,null,null,null,null,20,40,0,null,32]\n\nExplanation\n\nProductOfNumbers productOfNumbers = new ProductOfNumbers();\nproductOfNumbers.add(3); // [3]\nproductOfNumbers.add(0); // [3,0]\nproductOfNumbers.add(2); // [3,0,2]\nproductOfNumbers.add(5); // [3,0,2,5]\nproductOfNumbers.add(4); // [3,0,2,5,4]\nproductOfNumbers.getProduct(2); // return 20. The product of the last 2 numbers is 5 * 4 = 20\nproductOfNumbers.getProduct(3); // return 40. The product of the last 3 numbers is 2 * 5 * 4 = 40\nproductOfNumbers.getProduct(4); // return 0. The product of the last 4 numbers is 0 * 2 * 5 * 4 = 0\nproductOfNumbers.add(8); // [3,0,2,5,4,8]\nproductOfNumbers.getProduct(2); // return 32. The product of the last 2 numbers is 4 * 8 = 32\n```\n\n Constraints: \n\n 0 <= num <= 100 \n \n 1 <= k <= 4 * 10 4 \n \n At most 4 * 10 4 calls will be made to add and getProduct . \n \n The product of the stream at any point in time will fit in a 32-bit integer. \n\n Follow-up: Can you implement both GetProduct and Add to work in O(1) time complexity instead of O(k) time complexity?",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass ProductOfNumbers {\n    vector<int> products = {1};\n\npublic:\n    void add(int num) {\n        if (num == 0) {\n            products = {1};\n        } else {\n            products.push_back(products.back() * num);\n        }\n    }\n\n    int getProduct(int k) {\n        if (k >= products.size()) return 0;\n        return products.back() / products[products.size() - k - 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593845775",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

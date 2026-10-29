@@ -1,0 +1,26 @@
+{
+  "id": "1276",
+  "title": "Number of Burgers with No Waste of Ingredients",
+  "slug": "number-of-burgers-with-no-waste-of-ingredients",
+  "url": "https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "Given two integers tomatoSlices and cheeseSlices . The ingredients of different burgers are as follows: \n\n Jumbo Burger: 4 tomato slices and 1 cheese slice. \n \n Small Burger: 2 Tomato slices and 1 cheese slice. \n\n Return [total_jumbo, total_small] so that the number of remaining tomatoSlices equal to 0 and the number of remaining cheeseSlices equal to 0 . If it is not possible to make the remaining tomatoSlices and cheeseSlices equal to 0 return [] . \n\n Example 1: \n \n```\nInput:\n tomatoSlices = 16, cheeseSlices = 7\n\nOutput:\n [1,6]\n\nExplantion:\n To make one jumbo burger and 6 small burgers we need 4*1 + 2*6 = 16 tomato and 1 + 6 = 7 cheese.\nThere will be no remaining ingredients.\n```\n\n Example 2: \n \n```\nInput:\n tomatoSlices = 17, cheeseSlices = 4\n\nOutput:\n []\n\nExplantion:\n There will be no way to use all ingredients to make small and jumbo burgers.\n```\n\n Example 3: \n \n```\nInput:\n tomatoSlices = 4, cheeseSlices = 17\n\nOutput:\n []\n\nExplantion:\n Making 1 jumbo burger there will be 16 cheese remaining and making 2 small burgers there will be 15 cheese remaining.\n```\n\n Constraints: \n\n 0 <= tomatoSlices, cheeseSlices <= 10 7",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> numOfBurgers(int tomatoSlices, int cheeseSlices) {\n        int x = tomatoSlices - 2 * cheeseSlices;\n        if (x < 0 || x % 2 != 0) return {};\n        int jumbo = x / 2;\n        int small = cheeseSlices - jumbo;\n        if (small < 0) return {};\n        return {jumbo, small};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610682419",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

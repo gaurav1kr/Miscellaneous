@@ -1,0 +1,42 @@
+{
+  "id": "1820",
+  "title": "Maximum Number of Accepted Invitations",
+  "slug": "maximum-number-of-accepted-invitations",
+  "url": "https://leetcode.com/problems/maximum-number-of-accepted-invitations/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Graph Theory",
+    "Matrix",
+    "Maximum Flow",
+    "Maximum Matching",
+    "Bipartite Graph",
+    "Edmonds–Karp Algorithm",
+    "MPM Algorithm",
+    "Push-Relabel Algorithm",
+    "Matching (Graph)",
+    "Flow Network",
+    "Dinic's Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "There are m boys and n girls in a class attending an upcoming party. \n \n You are given an m x n integer matrix grid , where grid[i][j] equals 0 or 1 . If grid[i][j] == 1 , then that means the i th boy can invite the j th girl to the party. A boy can invite at most one girl , and a girl can accept at most one invitation from a boy. \n \n Return the maximum possible number of accepted invitations. \n\n Example 1: \n \n```\nInput:\n grid = [[1,1,1],\n [1,0,1],\n [0,0,1]]\n\nOutput:\n 3\n\nExplanation:\n The invitations are sent as follows:\n- The 1\nst\n boy invites the 2\nnd\n girl.\n- The 2\nnd\n boy invites the 1\nst\n girl.\n- The 3\nrd\n boy invites the 3\nrd\n girl.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[1,0,1,0],\n [1,0,0,0],\n [0,0,1,0],\n [1,1,1,0]]\n\nOutput:\n 3\n\nExplanation:\n The invitations are sent as follows:\n-The 1\nst\n boy invites the 3\nrd\n girl.\n-The 2\nnd\n boy invites the 1\nst\n girl.\n-The 3\nrd\n boy invites no one.\n-The 4\nth\n boy invites the 2\nnd\n girl.\n```\n\n Constraints: \n\n grid.length == m \n \n grid[i].length == n \n \n 1 <= m, n <= 200 \n \n grid[i][j] is either 0 or 1 .",
+  "code": "class Solution {\n    vector<vector<int>> edges;\n    vector<int> matched;\n    vector<bool> visited;\n    bool augment(int boy) {\n        for (int girl : edges[boy]) {\n            if (visited[girl]) continue;\n            visited[girl] = true;\n            if (matched[girl] == -1 || augment(matched[girl])) {\n                matched[girl] = boy;\n                return true;\n            }\n        }\n        return false;\n    }\npublic:\n    int maximumInvitations(vector<vector<int>>& grid) {\n        int boys = grid.size(), girls = grid[0].size();\n        edges.assign(boys, {});\n        for (int i = 0; i < boys; ++i) {\n            for (int j = 0; j < girls; ++j) if (grid[i][j]) edges[i].push_back(j);\n        }\n        matched.assign(girls, -1);\n        int answer = 0;\n        for (int i = 0; i < boys; ++i) {\n            visited.assign(girls, false);\n            if (augment(i)) ++answer;\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178615267",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

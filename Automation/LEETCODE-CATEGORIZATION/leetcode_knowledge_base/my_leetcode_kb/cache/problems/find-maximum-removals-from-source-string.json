@@ -1,0 +1,38 @@
+{
+  "id": "3316",
+  "title": "Find Maximum Removals From Source String",
+  "slug": "find-maximum-removals-from-source-string",
+  "url": "https://leetcode.com/problems/find-maximum-removals-from-source-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string source of size n , a string pattern that is a subsequence of source , and a sorted integer array targetIndices that contains distinct numbers in the range [0, n - 1] . \n \n We define an operation as removing a character at an index idx from source such that: \n\n idx is an element of targetIndices . \n \n pattern remains a subsequence of source after removing the character. \n\n Performing an operation does not change the indices of the other characters in source . For example, if you remove 'c' from \"acb\" , the character at index 2 would still be 'b' . \n \n Return the maximum number of operations that can be performed. \n\n Example 1: \n\n Input: source = \"abbaa\", pattern = \"aba\", targetIndices = [0,1,2] \n \n Output: 1 \n \n Explanation: \n \n We can't remove source[0] but we can do either of these two operations: \n\n Remove source[1] , so that source becomes \"a_baa\" . \n \n Remove source[2] , so that source becomes \"ab_aa\" . \n\n Example 2: \n\n Input: source = \"bcda\", pattern = \"d\", targetIndices = [0,3] \n \n Output: 2 \n \n Explanation: \n \n We can remove source[0] and source[3] in two operations. \n\n Example 3: \n\n Input: source = \"dda\", pattern = \"dda\", targetIndices = [0,1,2] \n \n Output: 0 \n \n Explanation: \n \n We can't remove any character from source . \n\n Example 4: \n\n Input: source = \"yeyeykyded\" , pattern = \"yeyyd\" , targetIndices = [0,2,3,4] \n \n Output: 2 \n \n Explanation: \n \n We can remove source[2] and source[3] in two operations. \n\n Constraints: \n\n 1 <= n == source.length <= 3 * 10 3 \n \n 1 <= pattern.length <= n \n \n 1 <= targetIndices.length <= n \n \n targetIndices is sorted in ascending order. \n \n The input is generated such that targetIndices contains distinct elements in the range [0, n - 1] . \n \n source and pattern consist only of lowercase English letters. \n \n The input is generated such that pattern appears as a subsequence in source .",
+  "code": "class Solution { public: int maxRemovals(string source,string pattern,vector<int>&targetIndices){int n=source.size(),m=pattern.size();vector<char>can(n);for(int i:targetIndices)can[i]=1;const int NEG=-1000000000;vector<int>dp(m+1,NEG);dp[0]=0;for(int i=0;i<n;++i){vector<int>ndp(m+1,NEG);for(int j=0;j<=m;++j)if(dp[j]>=0){ndp[j]=max(ndp[j],dp[j]+can[i]);if(j<m&&source[i]==pattern[j])ndp[j+1]=max(ndp[j+1],dp[j]);}dp.swap(ndp);}return dp[m];} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177457804",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

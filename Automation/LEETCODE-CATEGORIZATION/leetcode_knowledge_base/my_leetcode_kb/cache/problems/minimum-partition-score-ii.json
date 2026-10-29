@@ -1,0 +1,41 @@
+{
+  "id": "3929",
+  "title": "Minimum Partition Score II",
+  "slug": "minimum-partition-score-ii",
+  "url": "https://leetcode.com/problems/minimum-partition-score-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Queue",
+    "Prefix Sum",
+    "Monotonic Queue"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Monotonic deque",
+    "Prefix-sum array",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n Your task is to partition nums into exactly k subarrays and return an integer denoting the minimum possible score among all valid partitions. \n \n The score of a partition is the sum of the values of all its subarrays. \n \n The value of a subarray is defined as sumArr * (sumArr + 1) / 2 , where sumArr is the sum of its elements. \n\n Example 1: \n\n Input: nums = [5,1,2,1], k = 2 \n \n Output: 25 \n \n Explanation: \n\n We must partition the array into k = 2 subarrays. One optimal partition is [5] and [1, 2, 1] . \n \n The first subarray has sum = 5 and value = 5 * 6 / 2 = 15 . \n \n The second subarray has sum = 1 + 2 + 1 = 4 and value = 4 * 5 / 2 = 10 . \n \n The score of this partition is 15 + 10 = 25 , which is the minimum possible score. \n\n Example 2: \n\n Input: nums = [1,2,3,4], k = 1 \n \n Output: 55 \n \n Explanation: \n\n Since we must partition the array into k = 1 subarray, all elements belong to the same subarray: [1, 2, 3, 4] . \n \n This subarray has sum = 1 + 2 + 3 + 4 = 10 and value = 10 * 11 / 2 = 55 .​​​​​​​ \n \n The score of this partition is 55, which is the minimum possible score. \n\n Example 3: \n\n Input: nums = [1,1,1], k = 3 \n \n Output: 3 \n \n Explanation: \n\n We must partition the array into k = 3 subarrays. The only valid partition is [1], [1], [1] . \n \n Each subarray has sum = 1 and value = 1 * 2 / 2 = 1 . \n \n The score of this partition is 1 + 1 + 1 = 3 , which is the minimum possible score. \n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n 1 <= nums[i] <= 10 3 \n \n 1 <= k <= nums.length",
+  "code": "\nclass Solution {\n    using ll = long long;\n    using i128 = __int128_t;\n\n    struct Line {\n        ll m, b;\n        int cnt;\n\n        Line(ll slope, ll intercept, int count)\n            : m(slope), b(intercept), cnt(count) {}\n    };\n\n    vector<ll> pref;\n    int n;\n\n    static ll value(const Line& line, ll x) {\n        return line.m * x + line.b;\n    }\n\n    // Prefer lower cost; on ties prefer more partitions.\n    static bool better(const Line& a,\n                       const Line& b, ll x) {\n        ll va = value(a, x);\n        ll vb = value(b, x);\n\n        if (va != vb)\n            return va < vb;\n\n        return a.cnt > b.cnt;\n    }\n\n    // Slopes are strictly decreasing.\n    // Check whether b is unnecessary between a and c.\n    static bool redundant(const Line& a,\n                          const Line& b,\n                          const Line& c) {\n        return (i128)(b.b - a.b) * (b.m - c.m)\n             > (i128)(c.b - b.b) * (a.m - b.m);\n    }\n\n    pair<ll, int> solve(ll penalty) {\n        vector<Line> hull;\n        hull.reserve(n + 1);\n\n        hull.emplace_back(0, 0, 0);\n\n        int head = 0;\n        ll dp = 0;\n        int count = 0;\n\n        for (int i = 1; i <= n; ++i) {\n            ll x = pref[i];\n\n            // Prefix sums increase, so query pointer\n            // moves only forward.\n            while (head + 1 < (int)hull.size() &&\n                   better(hull[head + 1],\n                          hull[head], x)) {\n                ++head;\n            }\n\n            const Line& best = hull[head];\n\n            dp = x * x + x\n               + value(best, x)\n               + 2 * penalty;\n\n            count = best.cnt + 1;\n\n            Line next(\n                -2 * x,\n                dp + x * x - x,\n                count\n            );\n\n            // Remove lines that will never be optimal.\n            while (hull.size() >= 2 &&\n                   redundant(\n                       hull[hull.size() - 2],\n                       hull[hull.size() - 1],\n                       next)) {\n                hull.pop_back();\n            }\n\n            hull.push_back(next);\n\n            if (head >= (int)hull.size())\n                head = (int)hull.size() - 1;\n        }\n\n        return {dp, count};\n    }\n\npublic:\n    long long minPartitionScore(vector<int>& nums, int k) {\n        n = (int)nums.size();\n\n        pref.assign(n + 1, 0);\n\n        for (int i = 0; i < n; ++i)\n            pref[i + 1] = pref[i] + nums[i];\n\n        ll total = pref[n];\n\n        ll low = 0;\n        ll high = total * (total + 1) / 2;\n\n        while (low < high) {\n            ll mid = low + (high - low + 1) / 2;\n\n            pair<ll, int> result = solve(mid);\n\n            if (result.second >= k)\n                low = mid;\n            else\n                high = mid - 1;\n        }\n\n        pair<ll, int> result = solve(low);\n\n        return result.first / 2 - low * k;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181669394",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

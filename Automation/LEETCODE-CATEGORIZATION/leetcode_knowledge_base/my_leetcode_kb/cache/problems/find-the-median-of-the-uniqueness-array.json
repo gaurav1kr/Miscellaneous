@@ -1,0 +1,36 @@
+{
+  "id": "3134",
+  "title": "Find the Median of the Uniqueness Array",
+  "slug": "find-the-median-of-the-uniqueness-array",
+  "url": "https://leetcode.com/problems/find-the-median-of-the-uniqueness-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . The uniqueness array of nums is the sorted array that contains the number of distinct elements of all the subarrays of nums . In other words, it is a sorted array consisting of distinct(nums[i..j]) , for all 0 <= i <= j < nums.length . \n \n Here, distinct(nums[i..j]) denotes the number of distinct elements in the subarray that starts at index i and ends at index j . \n \n Return the median of the uniqueness array of nums . \n \n Note that the median of an array is defined as the middle element of the array when it is sorted in non-decreasing order. If there are two choices for a median, the smaller of the two values is taken. \n\n Example 1: \n\n Input: nums = [1,2,3] \n \n Output: 1 \n \n Explanation: \n \n The uniqueness array of nums is [distinct(nums[0..0]), distinct(nums[1..1]), distinct(nums[2..2]), distinct(nums[0..1]), distinct(nums[1..2]), distinct(nums[0..2])] which is equal to [1, 1, 1, 2, 2, 3] . The uniqueness array has a median of 1. Therefore, the answer is 1. \n\n Example 2: \n\n Input: nums = [3,4,3,4,5] \n \n Output: 2 \n \n Explanation: \n \n The uniqueness array of nums is [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3] . The uniqueness array has a median of 2. Therefore, the answer is 2. \n\n Example 3: \n\n Input: nums = [4,3,5,4] \n \n Output: 2 \n \n Explanation: \n \n The uniqueness array of nums is [1, 1, 1, 1, 2, 2, 2, 3, 3, 3] . The uniqueness array has a median of 2. Therefore, the answer is 2. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {public:int medianOfUniquenessArray(vector<int>& nums){int n=nums.size();long long need=(1LL*n*(n+1)/2+1)/2;auto count=[&](int k){unordered_map<int,int>f;long long ans=0;int l=0;for(int r=0;r<n;++r){++f[nums[r]];while((int)f.size()>k){if(--f[nums[l]]==0)f.erase(nums[l]);++l;}ans+=r-l+1;}return ans;};int l=1,r=n;while(l<r){int m=l+(r-l)/2;if(count(m)>=need)r=m;else l=m+1;}return l;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177388953",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

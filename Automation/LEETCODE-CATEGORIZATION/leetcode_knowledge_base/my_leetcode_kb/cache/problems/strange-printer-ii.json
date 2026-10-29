@@ -1,0 +1,34 @@
+{
+  "id": "1591",
+  "title": "Strange Printer II",
+  "slug": "strange-printer-ii",
+  "url": "https://leetcode.com/problems/strange-printer-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Topological Sort",
+    "Matrix",
+    "Directed Acyclic Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "There is a strange printer with the following two special requirements: \n\n On each turn, the printer will print a solid rectangular pattern of a single color on the grid. This will cover up the existing colors in the rectangle. \n \n Once the printer has used a color for the above operation, the same color cannot be used again . \n\n You are given a m x n matrix targetGrid , where targetGrid[row][col] is the color in the position (row, col) of the grid. \n \n Return true if it is possible to print the matrix targetGrid , otherwise, return false . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/12/23/print1.jpg] \n \n```\nInput:\n targetGrid = [[1,1,1,1],[1,2,2,1],[1,2,2,1],[1,1,1,1]]\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/12/23/print2.jpg] \n \n```\nInput:\n targetGrid = [[1,1,1,1],[1,1,3,3],[1,1,3,4],[5,5,1,4]]\n\nOutput:\n true\n```\n\n Example 3: \n \n```\nInput:\n targetGrid = [[1,2,1],[2,1,2],[1,2,1]]\n\nOutput:\n false\n\nExplanation:\n It is impossible to form targetGrid because it is not allowed to print the same color in different turns.\n```\n\n Constraints: \n\n m == targetGrid.length \n \n n == targetGrid[i].length \n \n 1 <= m, n <= 60 \n \n 1 <= targetGrid[row][col] <= 60",
+  "code": "class Solution {\npublic:\n    bool isPrintable(vector<vector<int>>& targetGrid) {\n        int m = targetGrid.size(), n = targetGrid[0].size();\n        vector<int> minR(61, m), minC(61, n), maxR(61, -1), maxC(61, -1);\n\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j) {\n                int c = targetGrid[i][j];\n                minR[c] = min(minR[c], i);\n                maxR[c] = max(maxR[c], i);\n                minC[c] = min(minC[c], j);\n                maxC[c] = max(maxC[c], j);\n            }\n\n        vector<vector<int>> grid = targetGrid;\n\n        bool changed = true;\n        while (changed) {\n            changed = false;\n            for (int c = 1; c <= 60; ++c) {\n                if (minR[c] == m) continue;\n                bool canErase = true;\n                for (int i = minR[c]; i <= maxR[c] && canErase; ++i)\n                    for (int j = minC[c]; j <= maxC[c] && canErase; ++j)\n                        if (grid[i][j] != 0 && grid[i][j] != c) canErase = false;\n\n                if (canErase) {\n                    for (int i = minR[c]; i <= maxR[c]; ++i)\n                        for (int j = minC[c]; j <= maxC[c]; ++j)\n                            if (grid[i][j] == c) grid[i][j] = 0;\n                    minR[c] = m;\n                    changed = true;\n                }\n            }\n        }\n\n        for (auto& row : grid)\n            for (int val : row)\n                if (val != 0) return false;\n\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1613573975",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

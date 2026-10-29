@@ -1,0 +1,40 @@
+{
+  "id": "1488",
+  "title": "Avoid Flood in The City",
+  "slug": "avoid-flood-in-the-city",
+  "url": "https://leetcode.com/problems/avoid-flood-in-the-city/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Ordered set",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "Your country has 10 9 lakes. Initially, all the lakes are empty, but when it rains over the n th lake, the n th lake becomes full of water. If it rains over a lake that is full of water , there will be a flood . Your goal is to avoid floods in any lake. \n \n Given an integer array rains where: \n\n rains[i] > 0 means there will be rains over the rains[i] lake. \n \n rains[i] == 0 means there are no rains this day and you  must choose  one lake this day and dry it . \n\n Return an array ans where: \n\n ans.length == rains.length \n \n ans[i] == -1 if rains[i] > 0 . \n \n ans[i] is the lake you choose to dry in the ith day if rains[i] == 0 . \n\n If there are multiple valid answers return any of them. If it is impossible to avoid flood return an empty array . \n \n Notice that if you chose to dry a full lake, it becomes empty, but if you chose to dry an empty lake, nothing changes. \n\n Example 1: \n \n```\nInput:\n rains = [1,2,3,4]\n\nOutput:\n [-1,-1,-1,-1]\n\nExplanation:\n After the first day full lakes are [1]\nAfter the second day full lakes are [1,2]\nAfter the third day full lakes are [1,2,3]\nAfter the fourth day full lakes are [1,2,3,4]\nThere's no day to dry any lake and there is no flood in any lake.\n```\n\n Example 2: \n \n```\nInput:\n rains = [1,2,0,0,2,1]\n\nOutput:\n [-1,-1,2,1,-1,-1]\n\nExplanation:\n After the first day full lakes are [1]\nAfter the second day full lakes are [1,2]\nAfter the third day, we dry lake 2. Full lakes are [1]\nAfter the fourth day, we dry lake 1. There is no full lakes.\nAfter the fifth day, full lakes are [2].\nAfter the sixth day, full lakes are [1,2].\nIt is easy that this scenario is flood-free. [-1,-1,1,2,-1,-1] is another acceptable scenario.\n```\n\n Example 3: \n \n```\nInput:\n rains = [1,2,0,1,2]\n\nOutput:\n []\n\nExplanation:\n After the second day, full lakes are [1,2]. We have to dry one lake in the third day.\nAfter that, it will rain over lakes [1,2]. It's easy to prove that no matter which lake you choose to dry in the 3rd day, the other one will flood.\n```\n\n Constraints: \n\n 1 <= rains.length <= 10 5 \n \n 0 <= rains[i] <= 10 9",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> avoidFlood(vector<int>& rains) {\n        int n = rains.size();\n        vector<int> res(n, 1);\n        unordered_map<int, int> full;\n        set<int> dryDays;\n\n        for (int i = 0; i < n; ++i) {\n            if (rains[i] == 0) {\n                dryDays.insert(i);\n                res[i] = 1; // default dry action\n            } else {\n                int lake = rains[i];\n                if (full.count(lake)) {\n                    auto it = dryDays.lower_bound(full[lake]);\n                    if (it == dryDays.end()) return {};\n                    res[*it] = lake;\n                    dryDays.erase(it);\n                }\n                full[lake] = i;\n                res[i] = -1;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593833483",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

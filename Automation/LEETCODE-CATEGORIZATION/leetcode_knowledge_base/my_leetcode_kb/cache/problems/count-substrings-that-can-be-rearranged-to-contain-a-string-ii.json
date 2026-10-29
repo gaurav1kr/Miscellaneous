@@ -1,0 +1,31 @@
+{
+  "id": "3298",
+  "title": "Count Substrings That Can Be Rearranged to Contain a String II",
+  "slug": "count-substrings-that-can-be-rearranged-to-contain-a-string-ii",
+  "url": "https://leetcode.com/problems/count-substrings-that-can-be-rearranged-to-contain-a-string-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given two strings word1 and word2 . \n \n A string x is called valid if x can be rearranged to have word2 as a prefix . \n \n Return the total number of valid substrings of word1 . \n \n Note that the memory limits in this problem are smaller than usual, so you must implement a solution with a linear runtime complexity. \n\n Example 1: \n\n Input: word1 = \"bcca\", word2 = \"abc\" \n \n Output: 1 \n \n Explanation: \n \n The only valid substring is \"bcca\" which can be rearranged to \"abcc\" having \"abc\" as a prefix. \n\n Example 2: \n\n Input: word1 = \"abcabc\", word2 = \"abc\" \n \n Output: 10 \n \n Explanation: \n \n All the substrings except substrings of size 1 and size 2 are valid. \n\n Example 3: \n\n Input: word1 = \"abcabc\", word2 = \"aaabc\" \n \n Output: 0 \n\n Constraints: \n\n 1 <= word1.length <= 10 6 \n \n 1 <= word2.length <= 10 4 \n \n word1 and word2 consist only of lowercase English letters.",
+  "code": "class Solution { public: long long validSubstringCount(string word1,string word2){int need[26]={},have[26]={};for(char c:word2)++need[c-'a'];int missing=0;for(int v:need)missing+=v;long long ans=0;int l=0;for(int r=0;r<(int)word1.size();++r){int x=word1[r]-'a';if(have[x]<need[x])--missing;++have[x];while(missing==0){int y=word1[l++]-'a';--have[y];if(have[y]<need[y])++missing;}ans+=l;}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177452363",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

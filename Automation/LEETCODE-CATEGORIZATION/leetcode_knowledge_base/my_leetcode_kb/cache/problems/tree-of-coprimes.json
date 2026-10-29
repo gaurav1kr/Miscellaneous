@@ -1,0 +1,35 @@
+{
+  "id": "1766",
+  "title": "Tree of Coprimes",
+  "slug": "tree-of-coprimes",
+  "url": "https://leetcode.com/problems/tree-of-coprimes/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Tree",
+    "Depth-First Search",
+    "Number Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There is a tree (i.e., a connected, undirected graph that has no cycles) consisting of n nodes numbered from 0 to n - 1 and exactly n - 1 edges. Each node has a value associated with it, and the root of the tree is node 0 . \n \n To represent this tree, you are given an integer array nums and a 2D array edges . Each nums[i] represents the i th node's value, and each edges[j] = [u j , v j ] represents an edge between nodes u j and v j in the tree. \n \n Two values x and y are coprime if gcd(x, y) == 1 where gcd(x, y) is the greatest common divisor of x and y . \n \n An ancestor of a node i is any other node on the shortest path from node i to the root . A node is not considered an ancestor of itself. \n \n Return an array ans of size n , where ans[i] is the closest ancestor to node i such that nums[i] and nums[ans[i]] are coprime , or -1 if there is no such ancestor . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2021/01/06/untitled-diagram.png] \n \n```\nInput:\n nums = [2,3,3,2], edges = [[0,1],[1,2],[1,3]]\n\nOutput:\n [-1,0,0,1]\n\nExplanation:\n In the above figure, each node's value is in parentheses.\n- Node 0 has no coprime ancestors.\n- Node 1 has only one ancestor, node 0. Their values are coprime (gcd(2,3) == 1).\n- Node 2 has two ancestors, nodes 1 and 0. Node 1's value is not coprime (gcd(3,3) == 3), but node 0's\n value is (gcd(2,3) == 1), so node 0 is the closest valid ancestor.\n- Node 3 has two ancestors, nodes 1 and 0. It is coprime with node 1 (gcd(3,2) == 1), so node 1 is its\n closest valid ancestor.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2021/01/06/untitled-diagram1.png] \n \n```\nInput:\n nums = [5,6,10,2,3,6,15], edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]\n\nOutput:\n [-1,0,-1,0,0,0,-1]\n```\n\n Constraints: \n\n nums.length == n \n \n 1 <= nums[i] <= 50 \n \n 1 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[j].length == 2 \n \n 0 <= u j , v j < n \n \n u j != v j",
+  "code": "class Solution {\npublic:\n    vector<int> coprimes[51];\n    void dfs(vector<vector<int>>& tree, vector<int>& nums, vector<int>& ans, int node, int parent, vector<vector<pair<int, int>>>& ancestors, int depth) {\n        int maxDepth = -1, ancestor = -1;\n        for (int val = 1; val <= 50; ++val) {\n            if (__gcd(nums[node], val) == 1 && !ancestors[val].empty()) {\n                if (ancestors[val].back().second > maxDepth) {\n                    maxDepth = ancestors[val].back().second;\n                    ancestor = ancestors[val].back().first;\n                }\n            }\n        }\n        ans[node] = ancestor;\n        ancestors[nums[node]].emplace_back(node, depth);\n        for (int child : tree[node]) {\n            if (child != parent) {\n                dfs(tree, nums, ans, child, node, ancestors, depth + 1);\n            }\n        }\n        ancestors[nums[node]].pop_back();\n    }\n\n    vector<int> getCoprimes(vector<int>& nums, vector<vector<int>>& edges) {\n        int n = nums.size();\n        vector<vector<int>> tree(n);\n        for (auto& e : edges) {\n            tree[e[0]].push_back(e[1]);\n            tree[e[1]].push_back(e[0]);\n        }\n        vector<int> ans(n, -1);\n        vector<vector<pair<int, int>>> ancestors(51);\n        dfs(tree, nums, ans, 0, -1, ancestors, 0);\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610701904",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

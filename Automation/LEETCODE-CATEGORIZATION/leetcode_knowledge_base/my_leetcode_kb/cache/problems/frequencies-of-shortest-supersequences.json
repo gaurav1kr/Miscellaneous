@@ -1,0 +1,38 @@
+{
+  "id": "3435",
+  "title": "Frequencies of Shortest Supersequences",
+  "slug": "frequencies-of-shortest-supersequences",
+  "url": "https://leetcode.com/problems/frequencies-of-shortest-supersequences/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Bit Manipulation",
+    "Graph Theory",
+    "Topological Sort",
+    "Enumeration"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings words . Find all shortest common supersequences (SCS) of words that are not permutations of each other. \n \n A shortest common supersequence is a string of minimum length that contains each string in words as a subsequence . \n \n Return a 2D array of integers freqs that represent all the SCSs. Each freqs[i] is an array of size 26, representing the frequency of each letter in the lowercase English alphabet for a single SCS. You may return the frequency arrays in any order. \n\n Example 1: \n\n Input: words = [\"ab\",\"ba\"] \n \n Output: [[1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]] \n \n Explanation: \n \n The two SCSs are \"aba\" and \"bab\" . The output is the letter frequencies for each one. \n\n Example 2: \n\n Input: words = [\"aa\",\"ac\"] \n \n Output: [[2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]] \n \n Explanation: \n \n The two SCSs are \"aac\" and \"aca\" . Since they are permutations of each other, keep only \"aac\" . \n\n Example 3: \n\n Input: words = [\"aa\",\"bb\",\"cc\"] \n \n Output: [[2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]] \n \n Explanation: \n \n \"aabbcc\" and all its permutations are SCSs. \n\n Constraints: \n\n 1 <= words.length <= 256 \n \n words[i].length == 2 \n \n All strings in words will altogether be composed of no more than 16 unique lowercase letters. \n \n All strings in words are unique.",
+  "code": "class Solution {public:vector<vector<int>> supersequences(vector<string>& words){\n int active=0;vector<int> adj(26);for(auto&w:words){int a=w[0]-'a',b=w[1]-'a';active|=1<<a;active|=1<<b;adj[a]|=1<<b;}\n vector<int>letters;for(int i=0;i<26;++i)if(active>>i&1)letters.push_back(i);int a=letters.size(),best=a+1;vector<vector<int>>ans;\n for(int mask=0;mask<(1<<a);++mask){int cnt=__builtin_popcount((unsigned)mask);if(cnt>best)continue;\n int indeg[26]={};bool kept[26]={};for(int j=0;j<a;++j)if(!(mask>>j&1))kept[letters[j]]=true;\n for(int i:letters)if(kept[i])for(int j:letters)if(kept[j]&&(adj[i]>>j&1))++indeg[j];\n queue<int>q;for(int i:letters)if(kept[i]&&!indeg[i])q.push(i);int seen=0;\n while(!q.empty()){int u=q.front();q.pop();++seen;for(int v:letters)if(kept[v]&&(adj[u]>>v&1)&&!--indeg[v])q.push(v);}\n if(seen!=a-cnt)continue;if(cnt<best){best=cnt;ans.clear();}\n vector<int>freq(26);for(int i:letters)freq[i]=1;for(int j=0;j<a;++j)if(mask>>j&1)++freq[letters[j]];ans.push_back(freq);\n }return ans;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177525711",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "3242",
+  "title": "Design Neighbor Sum Service",
+  "slug": "design-neighbor-sum-service",
+  "url": "https://leetcode.com/problems/design-neighbor-sum-service/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Design",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given a n x n 2D array grid containing distinct elements in the range [0, n 2 - 1] . \n \n Implement the NeighborSum class: \n\n NeighborSum(int [][]grid) initializes the object. \n \n int adjacentSum(int value) returns the sum of elements which are adjacent neighbors of value , that is either to the top, left, right, or bottom of value in grid . \n \n int diagonalSum(int value) returns the sum of elements which are diagonal neighbors of value , that is either to the top-left, top-right, bottom-left, or bottom-right of value in grid . \n\n [Figure: https://assets.leetcode.com/uploads/2024/06/24/design.png] \n\n Example 1: \n\n Input: \n \n [\"NeighborSum\", \"adjacentSum\", \"adjacentSum\", \"diagonalSum\", \"diagonalSum\"] \n \n [[[[0, 1, 2], [3, 4, 5], [6, 7, 8]]], [1], [4], [4], [8]] \n \n Output: [null, 6, 16, 16, 4] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/24/designexample0.png] \n\n The adjacent neighbors of 1 are 0, 2, and 4. \n \n The adjacent neighbors of 4 are 1, 3, 5, and 7. \n \n The diagonal neighbors of 4 are 0, 2, 6, and 8. \n \n The diagonal neighbor of 8 is 4. \n\n Example 2: \n\n Input: \n \n [\"NeighborSum\", \"adjacentSum\", \"diagonalSum\"] \n \n [[[[1, 2, 0, 3], [4, 7, 15, 6], [8, 9, 10, 11], [12, 13, 14, 5]]], [15], [9]] \n \n Output: [null, 23, 45] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/24/designexample2.png] \n\n The adjacent neighbors of 15 are 0, 10, 7, and 6. \n \n The diagonal neighbors of 9 are 4, 12, 14, and 15. \n\n Constraints: \n\n 3 <= n == grid.length == grid[0].length <= 10 \n \n 0 <= grid[i][j] <= n 2 - 1 \n \n All grid[i][j] are distinct. \n \n value in adjacentSum and diagonalSum will be in the range [0, n 2 - 1] . \n \n At most 2 * n 2 calls will be made to adjacentSum and diagonalSum .",
+  "code": "class NeighborSum {\n    vector<vector<int>> grid;\n    vector<pair<int,int>> position;\n    int n;\n    int calculate(int value, bool diagonal) {\n        int r = position[value].first, c = position[value].second;\n        int result = 0;\n        for (int dr = -1; dr <= 1; ++dr) {\n            for (int dc = -1; dc <= 1; ++dc) {\n                if (abs(dr) + abs(dc) != (diagonal ? 2 : 1)) continue;\n                int nr = r + dr, nc = c + dc;\n                if (nr >= 0 && nr < n && nc >= 0 && nc < n)\n                    result += grid[nr][nc];\n            }\n        }\n        return result;\n    }\npublic:\n    NeighborSum(vector<vector<int>>& input) : grid(input), n(input.size()) {\n        position.resize(n * n);\n        for (int i = 0; i < n; ++i)\n            for (int j = 0; j < n; ++j)\n                position[grid[i][j]] = {i, j};\n    }\n    int adjacentSum(int value) { return calculate(value, false); }\n    int diagonalSum(int value) { return calculate(value, true); }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179670209",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

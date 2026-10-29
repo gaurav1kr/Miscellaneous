@@ -1,0 +1,33 @@
+{
+  "id": "2338",
+  "title": "Count the Number of Ideal Arrays",
+  "slug": "count-the-number-of-ideal-arrays",
+  "url": "https://leetcode.com/problems/count-the-number-of-ideal-arrays/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics",
+    "Number Theory",
+    "Prime Factorization",
+    "Fermat's Little Theorem"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two integers n and maxValue , which are used to describe an ideal array. \n \n A 0-indexed integer array arr of length n is considered ideal if the following conditions hold: \n\n Every arr[i] is a value from 1 to maxValue , for 0 <= i < n . \n \n Every arr[i] is divisible by arr[i - 1] , for 0 < i < n . \n\n Return the number of distinct ideal arrays of length n . Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 2, maxValue = 5\n\nOutput:\n 10\n\nExplanation:\n The following are the possible ideal arrays:\n- Arrays starting with the value 1 (5 arrays): [1,1], [1,2], [1,3], [1,4], [1,5]\n- Arrays starting with the value 2 (2 arrays): [2,2], [2,4]\n- Arrays starting with the value 3 (1 array): [3,3]\n- Arrays starting with the value 4 (1 array): [4,4]\n- Arrays starting with the value 5 (1 array): [5,5]\nThere are a total of 5 + 2 + 1 + 1 + 1 = 10 distinct ideal arrays.\n```\n\n Example 2: \n \n```\nInput:\n n = 5, maxValue = 3\n\nOutput:\n 11\n\nExplanation:\n The following are the possible ideal arrays:\n- Arrays starting with the value 1 (9 arrays): \n - With no other distinct values (1 array): [1,1,1,1,1] \n - With 2\nnd\n distinct value 2 (4 arrays): [1,1,1,1,2], [1,1,1,2,2], [1,1,2,2,2], [1,2,2,2,2]\n - With 2\nnd\n distinct value 3 (4 arrays): [1,1,1,1,3], [1,1,1,3,3], [1,1,3,3,3], [1,3,3,3,3]\n- Arrays starting with the value 2 (1 array): [2,2,2,2,2]\n- Arrays starting with the value 3 (1 array): [3,3,3,3,3]\nThere are a total of 9 + 1 + 1 = 11 distinct ideal arrays.\n```\n\n Constraints: \n\n 2 <= n <= 10 4 \n \n 1 <= maxValue <= 10 4",
+  "code": "class Solution { public:\n    int idealArrays(int n, int maxValue) {\n        const long long MOD=1000000007;\n        int maxE=0; for(int x=maxValue;x>1;x/=2) ++maxE;\n        vector<long long> fact(n+maxE+1,1), inv(fact.size(),1);\n        for(int i=1;i<(int)fact.size();++i) fact[i]=fact[i-1]*i%MOD;\n        auto power=[&](long long a,long long b){long long r=1;while(b){if(b&1)r=r*a%MOD;a=a*a%MOD;b>>=1;}return r;};\n        inv.back()=power(fact.back(),MOD-2);\n        for(int i=(int)inv.size()-1;i>0;--i) inv[i-1]=inv[i]*i%MOD;\n        auto choose=[&](int a,int b){return fact[a]*inv[b]%MOD*inv[a-b]%MOD;};\n        vector<int> spf(maxValue+1);\n        for(int i=2;i<=maxValue;++i) if(!spf[i]) for(int j=i;j<=maxValue;j+=i) if(!spf[j]) spf[j]=i;\n        long long ans=0;\n        for(int v=1;v<=maxValue;++v){\n            int x=v; long long ways=1;\n            while(x>1){int p=spf[x],e=0;while(x%p==0){x/=p;++e;}ways=ways*choose(n+e-1,e)%MOD;}\n            ans=(ans+ways)%MOD;\n        }\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175920834",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

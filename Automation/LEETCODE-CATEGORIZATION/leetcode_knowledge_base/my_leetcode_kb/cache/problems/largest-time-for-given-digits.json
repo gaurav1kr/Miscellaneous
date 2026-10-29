@@ -1,0 +1,33 @@
+{
+  "id": "949",
+  "title": "Largest Time for Given Digits",
+  "slug": "largest-time-for-given-digits",
+  "url": "https://leetcode.com/problems/largest-time-for-given-digits/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Backtracking",
+    "Enumeration"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array arr of 4 digits, find the latest 24-hour time that can be made using each digit exactly once . \n \n 24-hour times are formatted as \"HH:MM\" , where HH is between 00 and 23 , and MM is between 00 and 59 . The earliest 24-hour time is 00:00 , and the latest is 23:59 . \n \n Return the latest 24-hour time in \"HH:MM\" format . If no valid time can be made, return an empty string. \n\n Example 1: \n \n```\nInput:\n arr = [1,2,3,4]\n\nOutput:\n \"23:41\"\n\nExplanation:\n The valid 24-hour times are \"12:34\", \"12:43\", \"13:24\", \"13:42\", \"14:23\", \"14:32\", \"21:34\", \"21:43\", \"23:14\", and \"23:41\". Of these times, \"23:41\" is the latest.\n```\n\n Example 2: \n \n```\nInput:\n arr = [5,5,5,5]\n\nOutput:\n \"\"\n\nExplanation:\n There are no valid 24-hour times as \"55:55\" is not valid.\n```\n\n Constraints: \n\n arr.length == 4 \n \n 0 <= arr[i] <= 9",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string largestTimeFromDigits(vector<int>& arr) {\n        string res = \"\";\n        sort(arr.begin(), arr.end());\n        do {\n            int h = arr[0] * 10 + arr[1], m = arr[2] * 10 + arr[3];\n            if (h < 24 && m < 60) {\n                char buf[6];\n                sprintf(buf, \"%02d:%02d\", h, m);\n                res = max(res, string(buf));\n            }\n        } while (next_permutation(arr.begin(), arr.end()));\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610558825",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

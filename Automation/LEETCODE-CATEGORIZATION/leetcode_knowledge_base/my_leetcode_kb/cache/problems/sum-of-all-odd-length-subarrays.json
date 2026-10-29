@@ -1,0 +1,32 @@
+{
+  "id": "1588",
+  "title": "Sum of All Odd Length Subarrays",
+  "slug": "sum-of-all-odd-length-subarrays",
+  "url": "https://leetcode.com/problems/sum-of-all-odd-length-subarrays/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an array of positive integers arr , return the sum of all possible odd-length subarrays of arr . \n \n A subarray is a contiguous subsequence of the array. \n\n Example 1: \n \n```\nInput:\n arr = [1,4,2,5,3]\n\nOutput:\n 58\n\nExplanation: \nThe odd-length subarrays of arr and their sums are:\n[1] = 1\n[4] = 4\n[2] = 2\n[5] = 5\n[3] = 3\n[1,4,2] = 7\n[4,2,5] = 11\n[2,5,3] = 10\n[1,4,2,5,3] = 15\nIf we add all these together we get 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,2]\n\nOutput:\n 3\n\nExplanation: \nThere are only 2 subarrays of odd length, [1] and [2]. Their sum is 3.\n```\n\n Example 3: \n \n```\nInput:\n arr = [10,11,12]\n\nOutput:\n 66\n```\n\n Constraints: \n\n 1 <= arr.length <= 100 \n \n 1 <= arr[i] <= 1000 \n\n Follow up: \n \n Could you solve this problem in O(n) time complexity?",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int sumOddLengthSubarrays(vector<int>& arr) {\n        int sum = 0, n = arr.size();\n        for (int i = 0; i < n; i++) {\n            int contribution = ((i + 1) * (n - i) + 1) / 2;\n            sum += arr[i] * contribution;\n        }\n        return sum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590136742",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

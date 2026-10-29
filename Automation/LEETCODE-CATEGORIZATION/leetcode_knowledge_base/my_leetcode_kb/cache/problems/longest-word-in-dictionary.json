@@ -1,0 +1,41 @@
+{
+  "id": "720",
+  "title": "Longest Word in Dictionary",
+  "slug": "longest-word-in-dictionary",
+  "url": "https://leetcode.com/problems/longest-word-in-dictionary/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie",
+    "Sorting"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Queue",
+    "Sorted array",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an array of strings words representing an English Dictionary, return the longest word in words that can be built one character at a time by other words in words . \n \n If there is more than one possible answer, return the longest word with the smallest lexicographical order. If there is no answer, return the empty string. \n \n Note that the word should be built from left to right with each additional character being added to the end of a previous word.  \n\n Example 1: \n \n```\nInput:\n words = [\"w\",\"wo\",\"wor\",\"worl\",\"world\"]\n\nOutput:\n \"world\"\n\nExplanation:\n The word \"world\" can be built one character at a time by \"w\", \"wo\", \"wor\", and \"worl\".\n```\n\n Example 2: \n \n```\nInput:\n words = [\"a\",\"banana\",\"app\",\"appl\",\"ap\",\"apply\",\"apple\"]\n\nOutput:\n \"apple\"\n\nExplanation:\n Both \"apply\" and \"apple\" can be built from other words in the dictionary. However, \"apple\" is lexicographically smaller than \"apply\".\n```\n\n Constraints: \n\n 1 <= words.length <= 1000 \n \n 1 <= words[i].length <= 30 \n \n words[i] consists of lowercase English letters.",
+  "code": "#include <string>\n#include <unordered_set>\n#include <queue>\nusing namespace std;\n\nclass TrieNode {\npublic:\n    TrieNode* children[26] = {};\n    bool isEnd = false;\n};\n\nclass Solution {\npublic:\n    string longestWord(vector<string>& words) {\n        TrieNode* root = new TrieNode();\n        for (const string& word : words) {\n            TrieNode* node = root;\n            for (char ch : word) {\n                if (!node->children[ch - 'a']) {\n                    node->children[ch - 'a'] = new TrieNode();\n                }\n                node = node->children[ch - 'a'];\n            }\n            node->isEnd = true;\n        }\n\n        queue<pair<TrieNode*, string>> q;\n        q.push({root, \"\"});\n        string result = \"\";\n\n        while (!q.empty()) {\n            auto [node, word] = q.front();\n            q.pop();\n            for (int i = 0; i < 26; i++) {\n                if (node->children[i] && node->children[i]->isEnd) {\n                    string nextWord = word + char(i + 'a');\n                    q.push({node->children[i], nextWord});\n                    if (nextWord.size() > result.size() || (nextWord.size() == result.size() && nextWord < result)) {\n                        result = nextWord;\n                    }\n                }\n            }\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591364773",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

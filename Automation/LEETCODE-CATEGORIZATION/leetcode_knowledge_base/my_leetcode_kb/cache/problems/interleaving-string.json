@@ -1,0 +1,30 @@
+{
+  "id": "97",
+  "title": "Interleaving String",
+  "slug": "interleaving-string",
+  "url": "https://leetcode.com/problems/interleaving-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given strings s1 , s2 , and s3 , find whether s3 is formed by an interleaving of s1 and s2 . \n \n An interleaving of two strings s and t is a configuration where s and t are divided into n and m substrings respectively, such that: \n\n s = s 1 + s 2 + ... + s n \n \n t = t 1 + t 2 + ... + t m \n \n |n - m| <= 1 \n \n The interleaving is s 1 + t 1 + s 2 + t 2 + s 3 + t 3 + ... or t 1 + s 1 + t 2 + s 2 + t 3 + s 3 + ... \n\n Note: a + b is the concatenation of strings a and b . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/02/interleave.jpg] \n \n```\nInput:\n s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbcbcac\"\n\nOutput:\n true\n\nExplanation:\n One way to obtain s3 is:\nSplit s1 into s1 = \"aa\" + \"bc\" + \"c\", and s2 into s2 = \"dbbc\" + \"a\".\nInterleaving the two splits, we get \"aa\" + \"dbbc\" + \"bc\" + \"a\" + \"c\" = \"aadbbcbcac\".\nSince s3 can be obtained by interleaving s1 and s2, we return true.\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbbaccc\"\n\nOutput:\n false\n\nExplanation:\n Notice how it is impossible to interleave s2 with any other string to obtain s3.\n```\n\n Example 3: \n \n```\nInput:\n s1 = \"\", s2 = \"\", s3 = \"\"\n\nOutput:\n true\n```\n\n Constraints: \n\n 0 <= s1.length, s2.length <= 100 \n \n 0 <= s3.length <= 200 \n \n s1 , s2 , and s3 consist of lowercase English letters. \n\n Follow up: Could you solve it using only O(s2.length) additional memory space?",
+  "code": "class Solution \n{\npublic:\n    bool isInterleave(string s1, string s2, string s3) \n    {\n        int n1 = s1.length(), n2 = s2.length(), n3 = s3.length();\n        if (n1 + n2 != n3) return false;\n\n        vector<vector<bool>> dp(n1 + 1, vector<bool>(n2 + 1, false));\n        dp[0][0] = true;\n\n        for (int i = 0; i <= n1; ++i) \n        {\n            for (int j = 0; j <= n2; ++j) \n            {\n                if (i > 0 && s1[i - 1] == s3[i + j - 1]) \n                {\n                    dp[i][j] = dp[i - 1][j];\n                }\n\n                if (j > 0 && s2[j - 1] == s3[i + j - 1])\n                {\n                    dp[i][j] = dp[i][j] || dp[i][j - 1];\n                }\n            }\n        }\n        return dp[n1][n2];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1528674128",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

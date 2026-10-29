@@ -1,0 +1,27 @@
+{
+  "id": "2194",
+  "title": "Cells in a Range on an Excel Sheet",
+  "slug": "cells-in-a-range-on-an-excel-sheet",
+  "url": "https://leetcode.com/problems/cells-in-a-range-on-an-excel-sheet/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "A cell (r, c) of an excel sheet is represented as a string \"<col><row>\" where: \n\n <col> denotes the column number c of the cell. It is represented by alphabetical letters .\n\n For example, the 1 st column is denoted by 'A' , the 2 nd by 'B' , the 3 rd by 'C' , and so on. \n\n <row> is the row number r of the cell. The r th row is represented by the integer r . \n\n You are given a string s  in the format \"<col1><row1>:<col2><row2>\" , where <col1> represents the column c1 , <row1> represents the row r1 , <col2> represents the column c2 , and <row2> represents the row r2 , such that r1 <= r2 and c1 <= c2 . \n \n Return the list of cells (x, y) such that r1 <= x <= r2 and c1 <= y <= c2 . The cells should be represented as  strings in the format mentioned above and be sorted in non-decreasing order first by columns and then by rows. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/02/08/ex1drawio.png] \n \n```\nInput:\n s = \"K1:L2\"\n\nOutput:\n [\"K1\",\"K2\",\"L1\",\"L2\"]\n\nExplanation:\n\nThe above diagram shows the cells which should be present in the list.\nThe red arrows denote the order in which the cells should be presented.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/02/09/exam2drawio.png] \n \n```\nInput:\n s = \"A1:F1\"\n\nOutput:\n [\"A1\",\"B1\",\"C1\",\"D1\",\"E1\",\"F1\"]\n\nExplanation:\n\nThe above diagram shows the cells which should be present in the list.\nThe red arrow denotes the order in which the cells should be presented.\n```\n\n Constraints: \n\n s.length == 5 \n \n 'A' <= s[0] <= s[3] <= 'Z' \n \n '1' <= s[1] <= s[4] <= '9' \n \n s consists of uppercase English letters, digits and ':' .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n vector<string> cellsInRange(string s){vector<string> ans;for(char c=s[0];c<=s[3];++c)for(char r=s[1];r<=s[4];++r)ans.push_back(string()+c+r);return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175883869",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

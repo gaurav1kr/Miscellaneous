@@ -1,0 +1,28 @@
+{
+  "id": "1768",
+  "title": "Merge Strings Alternately",
+  "slug": "merge-strings-alternately",
+  "url": "https://leetcode.com/problems/merge-strings-alternately/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given two strings word1 and word2 . Merge the strings by adding letters in alternating order, starting with word1 . If a string is longer than the other, append the additional letters onto the end of the merged string. \n \n Return the merged string. \n\n Example 1: \n \n```\nInput:\n word1 = \"abc\", word2 = \"pqr\"\r\n\nOutput:\n \"apbqcr\"\r\n\nExplanation:\n The merged string will be merged as so:\r\nword1: a b c\r\nword2: p q r\r\nmerged: a p b q c r\n```\n\n Example 2: \n \n```\nInput:\n word1 = \"ab\", word2 = \"pqrs\"\r\n\nOutput:\n \"apbqrs\"\r\n\nExplanation:\n Notice that as word2 is longer, \"rs\" is appended to the end.\r\nword1: a b \r\nword2: p q r s\r\nmerged: a p b q r s\n```\n\n Example 3: \n \n```\nInput:\n word1 = \"abcd\", word2 = \"pq\"\r\n\nOutput:\n \"apbqcd\"\r\n\nExplanation:\n Notice that as word1 is longer, \"cd\" is appended to the end.\r\nword1: a b c d\r\nword2: p q \r\nmerged: a p b q c d\n```\n\n Constraints: \n\n 1 <= word1.length, word2.length <= 100 \n \n word1 and word2 consist of lowercase English letters.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string mergeAlternately(string word1, string word2) {\n        string res;\n        int i = 0, j = 0;\n        while (i < word1.size() || j < word2.size()) {\n            if (i < word1.size()) res += word1[i++];\n            if (j < word2.size()) res += word2[j++];\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610611234",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

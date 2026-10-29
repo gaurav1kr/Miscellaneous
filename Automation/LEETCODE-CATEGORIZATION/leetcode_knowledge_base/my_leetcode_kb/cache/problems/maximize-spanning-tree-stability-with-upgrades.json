@@ -1,0 +1,34 @@
+{
+  "id": "3600",
+  "title": "Maximize Spanning Tree Stability with Upgrades",
+  "slug": "maximize-spanning-tree-stability-with-upgrades",
+  "url": "https://leetcode.com/problems/maximize-spanning-tree-stability-with-upgrades/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Binary Search",
+    "Greedy",
+    "Union-Find",
+    "Graph Theory",
+    "Minimum Spanning Tree"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Greedy / Intervals"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer n , representing n nodes numbered from 0 to n - 1 and a list of edges , where edges[i] = [u i , v i , s i , must i ] : \n\n u i and v i indicates an undirected edge between nodes u i and v i . \n \n s i is the strength of the edge. \n \n must i is an integer (0 or 1). If must i == 1 , the edge must be included in the spanning tree . These edges cannot be upgraded . \n\n You are also given an integer k , the maximum number of upgrades you can perform. Each upgrade doubles the strength of an edge, and each eligible edge (with must i == 0 ) can be upgraded at most once. \n \n The stability of a spanning tree is defined as the minimum strength score among all edges included in it. \n \n Return the maximum possible stability of any valid spanning tree. If it is impossible to connect all nodes, return -1 . \n \n Note : A spanning tree of a graph with n nodes is a subset of the edges that connects all nodes together (i.e. the graph is connected ) without forming any cycles, and uses exactly n - 1 edges. \n\n Example 1: \n\n Input: n = 3, edges = [[0,1,2,1],[1,2,3,0]], k = 1 \n \n Output: 2 \n \n Explanation: \n\n Edge [0,1] with strength = 2 must be included in the spanning tree. \n \n Edge [1,2] is optional and can be upgraded from 3 to 6 using one upgrade. \n \n The resulting spanning tree includes these two edges with strengths 2 and 6. \n \n The minimum strength in the spanning tree is 2, which is the maximum possible stability. \n\n Example 2: \n\n Input: n = 3, edges = [[0,1,4,0],[1,2,3,0],[0,2,1,0]], k = 2 \n \n Output: 6 \n \n Explanation: \n\n Since all edges are optional and up to k = 2 upgrades are allowed. \n \n Upgrade edges [0,1] from 4 to 8 and [1,2] from 3 to 6. \n \n The resulting spanning tree includes these two edges with strengths 8 and 6. \n \n The minimum strength in the tree is 6, which is the maximum possible stability. \n\n Example 3: \n\n Input: n = 3, edges = [[0,1,1,1],[1,2,1,1],[2,0,1,1]], k = 0 \n \n Output: -1 \n \n Explanation: \n\n All edges are mandatory and form a cycle, which violates the spanning tree property of acyclicity. Thus, the answer is -1. \n\n Constraints: \n\n 2 <= n <= 10 5 \n \n 1 <= edges.length <= 10 5 \n \n edges[i] = [u i , v i , s i , must i ] \n \n 0 <= u i , v i < n \n \n u i != v i \n \n 1 <= s i <= 10 5 \n \n must i is either 0 or 1 . \n \n 0 <= k <= n \n \n There are no duplicate edges.",
+  "code": "class Solution {\n struct DSU{vector<int> p,r;DSU(int n):p(n),r(n){iota(p.begin(),p.end(),0);}int find(int x){return p[x]==x?x:p[x]=find(p[x]);}bool join(int a,int b){a=find(a);b=find(b);if(a==b)return false;if(r[a]<r[b])swap(a,b);p[b]=a;if(r[a]==r[b])++r[a];return true;}};\npublic:\n int maxStability(int n,vector<vector<int>>& edges,int k){\n  auto feasible=[&](int x){DSU d(n);int count=0,upgrades=0;\n   for(auto&e:edges)if(e[3]){if(e[2]<x||!d.join(e[0],e[1]))return false;++count;}\n   for(auto&e:edges)if(!e[3]&&e[2]>=x&&d.join(e[0],e[1]))++count;\n   for(auto&e:edges)if(!e[3]&&e[2]<x&&2LL*e[2]>=x&&d.join(e[0],e[1])){++count;++upgrades;}\n   return count==n-1&&upgrades<=k;\n  };\n  int lo=1,hi=0;for(auto&e:edges)hi=max(hi,e[2]*2);\n  if(!feasible(1))return -1;\n  while(lo<hi){int mid=lo+(hi-lo+1)/2;if(feasible(mid))lo=mid;else hi=mid-1;}return lo;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177607013",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

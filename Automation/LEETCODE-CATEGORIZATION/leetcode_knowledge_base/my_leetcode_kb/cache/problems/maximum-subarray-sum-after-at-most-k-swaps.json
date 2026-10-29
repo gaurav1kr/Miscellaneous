@@ -1,0 +1,42 @@
+{
+  "id": "3962",
+  "title": "Maximum Subarray Sum After at Most K Swaps",
+  "slug": "maximum-subarray-sum-after-at-most-k-swaps",
+  "url": "https://leetcode.com/problems/maximum-subarray-sum-after-at-most-k-swaps/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Binary Indexed Tree",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Hash map / hash set",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n You are allowed to perform at most k swap operations on the array. \n \n In one swap operation, you may choose any two indices i and j and swap nums[i] and nums[j] . \n \n Return an integer denoting the maximum possible subarray sum after performing the swaps. \n\n Example 1: \n\n Input: nums = [1,-1,0,2], k = 1 \n \n Output: 3 \n \n Explanation: \n\n We can swap on indices 1 and 3, resulting in the array [1, 2, 0, -1] . \n \n The subarray [1, 2] has a sum of 3, which is the maximum possible subarray sum after at most k = 1 ​​​​​​​ swap. \n\n Example 2: \n\n Input: nums = [4,3,2,4], k = 2 \n \n Output: 13 \n \n Explanation: \n \n The maximum possible subarray sum after at most k = 2 swaps is the sum of the entire array, which is 13. \n\n Example 3: \n\n Input: nums = [-1,-2], k = 0 \n \n Output: -1 \n \n Explanation: \n\n k = 0 swaps are allowed. \n \n The possible subarrays are [-1] , [-2] , and [-1, -2] , with sums -1, -2, and -3 respectively. \n \n Among these sums, the maximum is -1. \n\n Constraints: \n\n 1 <= nums.length <= 1500 \n \n -10 5 <= nums[i] <= 10 5 \n \n 0 <= k <= nums.length",
+  "code": "\nclass Solution {\n    using ll = long long;\n\n    struct Fenwick {\n        int n;\n        vector<int> cnt;\n        vector<ll> sum;\n        const vector<int>& values;\n\n        Fenwick(const vector<int>& v)\n            : n((int)v.size()),\n              cnt(n + 1, 0),\n              sum(n + 1, 0),\n              values(v) {}\n\n        void add(int idx, int delta) {\n            int val = values[idx - 1];\n\n            for (int i = idx; i <= n; i += i & -i) {\n                cnt[i] += delta;\n                sum[i] += 1LL * delta * val;\n            }\n        }\n\n        // Find the 1-based index of the kth smallest value.\n        int kth(int k) const {\n            int idx = 0;\n            int step = 1;\n\n            while ((step << 1) <= n)\n                step <<= 1;\n\n            for (; step > 0; step >>= 1) {\n                int next = idx + step;\n\n                if (next <= n && cnt[next] < k) {\n                    idx = next;\n                    k -= cnt[next];\n                }\n            }\n\n            return idx + 1;\n        }\n\n        // Sum of the smallest k elements.\n        ll smallestSum(int k) const {\n            if (k == 0)\n                return 0;\n\n            int idx = 0;\n            int step = 1;\n            ll result = 0;\n\n            while ((step << 1) <= n)\n                step <<= 1;\n\n            for (; step > 0; step >>= 1) {\n                int next = idx + step;\n\n                if (next <= n && cnt[next] < k) {\n                    idx = next;\n                    k -= cnt[next];\n                    result += sum[next];\n                }\n            }\n\n            return result + 1LL * k * values[idx];\n        }\n    };\n\npublic:\n    long long maxSum(vector<int>& nums, int k) {\n        int n = (int)nums.size();\n\n        vector<int> values = nums;\n        sort(values.begin(), values.end());\n        values.erase(\n            unique(values.begin(), values.end()),\n            values.end()\n        );\n\n        vector<int> id(n);\n\n        for (int i = 0; i < n; ++i) {\n            id[i] = lower_bound(\n                values.begin(), values.end(), nums[i]\n            ) - values.begin() + 1;\n        }\n\n        ll answer = LLONG_MIN;\n\n        for (int left = 0; left < n; ++left) {\n            Fenwick inside(values);\n            Fenwick outside(values);\n\n            for (int i = 0; i < n; ++i)\n                outside.add(id[i], 1);\n\n            ll windowSum = 0;\n            ll outsideSum = 0;\n\n            for (int x : nums)\n                outsideSum += x;\n\n            int swaps = 0;\n\n            for (int right = left; right < n; ++right) {\n                inside.add(id[right], 1);\n                outside.add(id[right], -1);\n\n                windowSum += nums[right];\n                outsideSum -= nums[right];\n\n                int len = right - left + 1;\n                int out = n - len;\n\n                // The optimal number of beneficial swaps\n                // changes by at most one when right advances.\n                if (swaps < k &&\n                    swaps < len &&\n                    swaps < out &&\n                    inside.kth(swaps + 1) <\n                    outside.kth(out - swaps)) {\n\n                    ++swaps;\n\n                } else if (swaps > 0 &&\n                           inside.kth(swaps) >=\n                           outside.kth(out - swaps + 1)) {\n\n                    --swaps;\n                }\n\n                ll removed = inside.smallestSum(swaps);\n\n                ll incoming = outsideSum -\n                    outside.smallestSum(out - swaps);\n\n                ll current = windowSum\n                           - removed\n                           + incoming;\n\n                answer = max(answer, current);\n            }\n        }\n\n        return answer;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181671467",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

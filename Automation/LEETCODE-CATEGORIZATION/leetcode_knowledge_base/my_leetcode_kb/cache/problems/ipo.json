@@ -1,0 +1,37 @@
+{
+  "id": "502",
+  "title": "IPO",
+  "slug": "ipo",
+  "url": "https://leetcode.com/problems/ipo/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Suppose LeetCode will start its IPO soon. In order to sell a good price of its shares to Venture Capital, LeetCode would like to work on some projects to increase its capital before the IPO . Since it has limited resources, it can only finish at most k distinct projects before the IPO . Help LeetCode design the best way to maximize its total capital after finishing at most k distinct projects. \n \n You are given n projects where the i th project has a pure profit profits[i] and a minimum capital of capital[i] is needed to start it. \n \n Initially, you have w capital. When you finish a project, you will obtain its pure profit and the profit will be added to your total capital. \n \n Pick a list of at most k distinct projects from given projects to maximize your final capital , and return the final maximized capital . \n \n The answer is guaranteed to fit in a 32-bit signed integer. \n\n Example 1: \n \n```\nInput:\n k = 2, w = 0, profits = [1,2,3], capital = [0,1,1]\n\nOutput:\n 4\n\nExplanation:\n Since your initial capital is 0, you can only start the project indexed 0.\nAfter finishing it you will obtain profit 1 and your capital becomes 1.\nWith capital 1, you can either start the project indexed 1 or the project indexed 2.\nSince you can choose at most 2 projects, you need to finish the project indexed 2 to get the maximum capital.\nTherefore, output the final maximized capital, which is 0 + 1 + 3 = 4.\n```\n\n Example 2: \n \n```\nInput:\n k = 3, w = 0, profits = [1,2,3], capital = [0,1,2]\n\nOutput:\n 6\n```\n\n Constraints: \n\n 1 <= k <= 10 5 \n \n 0 <= w <= 10 9 \n \n n == profits.length \n \n n == capital.length \n \n 1 <= n <= 10 5 \n \n 0 <= profits[i] <= 10 4 \n \n 0 <= capital[i] <= 10 9",
+  "code": "#include <vector>\n#include <queue>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {\n        int n = profits.size();\n        vector<pair<int, int>> projects;\n        for (int i = 0; i < n; ++i)\n            projects.emplace_back(capital[i], profits[i]);\n\n        sort(projects.begin(), projects.end());\n        priority_queue<int> pq;\n        int i = 0;\n\n        while (k--) {\n            while (i < n && projects[i].first <= w)\n                pq.push(projects[i++].second);\n            if (!pq.empty())\n                w += pq.top(), pq.pop();\n            else\n                break;\n        }\n\n        return w;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595372798",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

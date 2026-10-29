@@ -1,0 +1,31 @@
+{
+  "id": "1835",
+  "title": "Find XOR Sum of All Pairs Bitwise AND",
+  "slug": "find-xor-sum-of-all-pairs-bitwise-and",
+  "url": "https://leetcode.com/problems/find-xor-sum-of-all-pairs-bitwise-and/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "The XOR sum of a list is the bitwise XOR of all its elements. If the list only contains one element, then its XOR sum will be equal to this element. \n\n For example, the XOR sum of [1,2,3,4] is equal to 1 XOR 2 XOR 3 XOR 4 = 4 , and the XOR sum of [3] is equal to 3 . \n\n You are given two 0-indexed arrays arr1 and arr2 that consist only of non-negative integers. \n \n Consider the list containing the result of arr1[i] AND arr2[j] (bitwise AND ) for every (i, j) pair where 0 <= i < arr1.length and 0 <= j < arr2.length . \n \n Return the XOR sum of the aforementioned list . \n\n Example 1: \n \n```\nInput:\n arr1 = [1,2,3], arr2 = [6,5]\n\nOutput:\n 0\n\nExplanation:\n The list = [1 AND 6, 1 AND 5, 2 AND 6, 2 AND 5, 3 AND 6, 3 AND 5] = [0,1,2,0,2,1].\nThe XOR sum = 0 XOR 1 XOR 2 XOR 0 XOR 2 XOR 1 = 0.\n```\n\n Example 2: \n \n```\nInput:\n arr1 = [12], arr2 = [4]\n\nOutput:\n 4\n\nExplanation:\n The list = [12 AND 4] = [4]. The XOR sum = 4.\n```\n\n Constraints: \n\n 1 <= arr1.length, arr2.length <= 10 5 \n \n 0 <= arr1[i], arr2[j] <= 10 9",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int getXORSum(vector<int>& arr1, vector<int>& arr2) {\n        int a = 0, b = 0;\n        for (int x : arr1) a ^= x;\n        for (int y : arr2) b ^= y;\n        return a & b;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610644468",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

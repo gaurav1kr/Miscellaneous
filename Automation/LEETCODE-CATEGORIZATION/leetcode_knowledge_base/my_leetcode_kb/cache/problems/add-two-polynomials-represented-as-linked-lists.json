@@ -1,0 +1,30 @@
+{
+  "id": "1634",
+  "title": "Add Two Polynomials Represented as Linked Lists",
+  "slug": "add-two-polynomials-represented-as-linked-lists",
+  "url": "https://leetcode.com/problems/add-two-polynomials-represented-as-linked-lists/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Linked List",
+    "Math",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Math / Number Theory",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "A polynomial linked list is a special type of linked list where every node represents a term in a polynomial expression. \n \n Each node has three attributes: \n\n coefficient : an integer representing the number multiplier of the term. The coefficient of the term 9 x 4 is 9 . \n \n power : an integer representing the exponent. The power of the term 9x 4 is 4 . \n \n next : a pointer to the next node in the list, or null if it is the last node of the list. \n\n For example, the polynomial 5x 3 + 4x - 7 is represented by the polynomial linked list illustrated below: \n \n [Figure: https://assets.leetcode.com/uploads/2020/09/30/polynomial2.png] \n \n The polynomial linked list must be in its standard form: the polynomial must be in strictly descending order by its power value. Also, terms with a coefficient of 0 are omitted. \n \n Given two polynomial linked list heads, poly1 and poly2 , add the polynomials together and return the head of the sum of the polynomials . \n \n PolyNode format: \n \n The input/output format is as a list of n nodes, where each node is represented as its [coefficient, power] . For example, the polynomial 5x 3 + 4x - 7 would be represented as: [[5,3],[4,1],[-7,0]] . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/10/14/ex1.png] \n \n```\nInput:\n poly1 = [[1,1]], poly2 = [[1,0]]\r\n\nOutput:\n [[1,1],[1,0]]\r\n\nExplanation:\n poly1 = x. poly2 = 1. The sum is x + 1.\n```\n\n Example 2: \n \n```\nInput:\n poly1 = [[2,2],[4,1],[3,0]], poly2 = [[3,2],[-4,1],[-1,0]]\r\n\nOutput:\n [[5,2],[2,0]]\r\n\nExplanation:\n poly1 = 2x\n2\n + 4x + 3. poly2 = 3x\n2\n - 4x - 1. The sum is 5x\n2\n + 2. Notice that we omit the \"0x\" term.\n```\n\n Example 3: \n \n```\nInput:\n poly1 = [[1,2]], poly2 = [[-1,2]]\r\n\nOutput:\n []\r\n\nExplanation:\n The sum is 0. We return an empty list.\n```\n\n Constraints: \n\n 0 <= n <= 10 4 \n \n -10 9  <= PolyNode.coefficient <= 10 9 \n \n PolyNode.coefficient != 0 \n \n 0 <= PolyNode.power <= 10 9 \n \n PolyNode.power > PolyNode.next.power",
+  "code": "class Solution {\npublic:\n    PolyNode* addPoly(PolyNode* poly1, PolyNode* poly2) {\n        PolyNode dummy(0, 0);\n        PolyNode* tail = &dummy;\n        while (poly1 || poly2) {\n            int power, coefficient;\n            if (!poly2 || (poly1 && poly1->power > poly2->power)) {\n                power = poly1->power; coefficient = poly1->coefficient;\n                poly1 = poly1->next;\n            } else if (!poly1 || poly2->power > poly1->power) {\n                power = poly2->power; coefficient = poly2->coefficient;\n                poly2 = poly2->next;\n            } else {\n                power = poly1->power;\n                coefficient = poly1->coefficient + poly2->coefficient;\n                poly1 = poly1->next; poly2 = poly2->next;\n            }\n            if (coefficient != 0) {\n                tail->next = new PolyNode(coefficient, power);\n                tail = tail->next;\n            }\n        }\n        return dummy.next;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178596875",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

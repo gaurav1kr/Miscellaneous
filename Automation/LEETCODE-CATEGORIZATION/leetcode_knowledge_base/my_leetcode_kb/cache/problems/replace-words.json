@@ -1,0 +1,38 @@
+{
+  "id": "648",
+  "title": "Replace Words",
+  "slug": "replace-words",
+  "url": "https://leetcode.com/problems/replace-words/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "In English, we have a concept called root , which can be followed by some other word to form another longer word - let's call this word derivative . For example, when the root \"help\" is followed by the word \"ful\" , we can form a derivative \"helpful\" . \n \n Given a dictionary consisting of many roots and a sentence consisting of words separated by spaces, replace all the derivatives in the sentence with the root forming it. If a derivative can be replaced by more than one root , replace it with the root that has the shortest length . \n \n Return the sentence after the replacement. \n\n Example 1: \n \n```\nInput:\n dictionary = [\"cat\",\"bat\",\"rat\"], sentence = \"the cattle was rattled by the battery\"\n\nOutput:\n \"the cat was rat by the bat\"\n```\n\n Example 2: \n \n```\nInput:\n dictionary = [\"a\",\"b\",\"c\"], sentence = \"aadsfasf absbs bbab cadsfafs\"\n\nOutput:\n \"a a b c\"\n```\n\n Constraints: \n\n 1 <= dictionary.length <= 1000 \n \n 1 <= dictionary[i].length <= 100 \n \n dictionary[i] consists of only lower-case letters. \n \n 1 <= sentence.length <= 10 6 \n \n sentence consists of only lower-case letters and spaces. \n \n The number of words in sentence is in the range [1, 1000] \n \n The length of each word in sentence is in the range [1, 1000] \n \n Every two consecutive words in sentence will be separated by exactly one space. \n \n sentence does not have leading or trailing spaces.",
+  "code": "#include <vector>\n#include <string>\n#include <unordered_map>\nusing namespace std;\n\nclass TrieNode {\npublic:\n    unordered_map<char, TrieNode*> children;\n    string word;\n};\n\nclass Solution {\npublic:\n    void insert(TrieNode* root, string& word) {\n        TrieNode* node = root;\n        for (char c : word) {\n            if (!node->children.count(c)) {\n                node->children[c] = new TrieNode();\n            }\n            node = node->children[c];\n        }\n        node->word = word;\n    }\n\n    string replaceWords(vector<string>& dictionary, string sentence) {\n        TrieNode* root = new TrieNode();\n        for (string& word : dictionary) {\n            insert(root, word);\n        }\n\n        stringstream ss(sentence);\n        string word, result = \"\";\n        while (ss >> word) {\n            TrieNode* node = root;\n            for (char c : word) {\n                if (!node->children.count(c) || !node->word.empty()) break;\n                node = node->children[c];\n            }\n            result += (node->word.empty() ? word : node->word) + \" \";\n        }\n        result.pop_back();\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590173341",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

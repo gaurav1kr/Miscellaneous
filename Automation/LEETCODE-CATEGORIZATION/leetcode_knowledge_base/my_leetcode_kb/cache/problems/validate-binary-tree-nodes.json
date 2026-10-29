@@ -1,0 +1,36 @@
+{
+  "id": "1361",
+  "title": "Validate Binary Tree Nodes",
+  "slug": "validate-binary-tree-nodes",
+  "url": "https://leetcode.com/problems/validate-binary-tree-nodes/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You have n binary tree nodes numbered from 0 to n - 1 where node i has two children leftChild[i] and rightChild[i] , return true if and only if all the given nodes form exactly one valid binary tree. \n \n If node i has no left child then leftChild[i] will equal -1 , similarly for the right child. \n \n Note that the nodes have no values and that we only use the node numbers in this problem. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/08/23/1503_ex1.png] \n \n```\nInput:\n n = 4, leftChild = [1,-1,3,-1], rightChild = [2,-1,-1,-1]\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/08/23/1503_ex2.png] \n \n```\nInput:\n n = 4, leftChild = [1,-1,3,-1], rightChild = [2,3,-1,-1]\n\nOutput:\n false\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2019/08/23/1503_ex3.png] \n \n```\nInput:\n n = 2, leftChild = [1,0], rightChild = [-1,-1]\n\nOutput:\n false\n```\n\n Constraints: \n\n n == leftChild.length == rightChild.length \n \n 1 <= n <= 10 4 \n \n -1 <= leftChild[i], rightChild[i] <= n - 1",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool validateBinaryTreeNodes(int n, vector<int>& leftChild, vector<int>& rightChild) {\n        vector<int> parent(n, -1);\n        for (int i = 0; i < n; ++i) {\n            if (leftChild[i] != -1) {\n                if (parent[leftChild[i]] != -1) return false;\n                parent[leftChild[i]] = i;\n            }\n            if (rightChild[i] != -1) {\n                if (parent[rightChild[i]] != -1) return false;\n                parent[rightChild[i]] = i;\n            }\n        }\n\n        int root = -1;\n        for (int i = 0; i < n; ++i) {\n            if (parent[i] == -1) {\n                if (root == -1) root = i;\n                else return false;\n            }\n        }\n\n        vector<bool> visited(n, false);\n        return dfs(root, leftChild, rightChild, visited) && count(visited.begin(), visited.end(), true) == n;\n    }\n\n    bool dfs(int node, vector<int>& left, vector<int>& right, vector<bool>& visited) {\n        if (node == -1) return true;\n        if (visited[node]) return false;\n        visited[node] = true;\n        return dfs(left[node], left, right, visited) && dfs(right[node], left, right, visited);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595383787",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

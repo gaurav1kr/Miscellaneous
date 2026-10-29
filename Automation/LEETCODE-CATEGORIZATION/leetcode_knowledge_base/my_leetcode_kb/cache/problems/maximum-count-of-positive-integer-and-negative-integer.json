@@ -1,0 +1,31 @@
+{
+  "id": "2529",
+  "title": "Maximum Count of Positive Integer and Negative Integer",
+  "slug": "maximum-count-of-positive-integer-and-negative-integer",
+  "url": "https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Counting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array nums sorted in non-decreasing order, return the maximum between the number of positive integers and the number of negative integers. \n\n In other words, if the number of positive integers in nums is pos and the number of negative integers is neg , then return the maximum of pos and neg . \n\n Note that 0 is neither positive nor negative. \n\n Example 1: \n \n```\nInput:\n nums = [-2,-1,-1,1,2,3]\n\nOutput:\n 3\n\nExplanation:\n There are 3 positive integers and 3 negative integers. The maximum count among them is 3.\n```\n\n Example 2: \n \n```\nInput:\n nums = [-3,-2,-1,0,0,1,2]\n\nOutput:\n 3\n\nExplanation:\n There are 2 positive integers and 3 negative integers. The maximum count among them is 3.\n```\n\n Example 3: \n \n```\nInput:\n nums = [5,20,66,1314]\n\nOutput:\n 4\n\nExplanation:\n There are 4 positive integers and 0 negative integers. The maximum count among them is 4.\n```\n\n Constraints: \n\n 1 <= nums.length <= 2000 \n \n -2000 <= nums[i] <= 2000 \n \n nums is sorted in a non-decreasing order . \n\n Follow up: Can you solve the problem in O(log(n)) time complexity?",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int maximumCount(vector<int>& nums){\n  int neg=lower_bound(nums.begin(),nums.end(),0)-nums.begin();\n  int pos=nums.end()-upper_bound(nums.begin(),nums.end(),0);\n  return max(neg,pos);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176601901",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

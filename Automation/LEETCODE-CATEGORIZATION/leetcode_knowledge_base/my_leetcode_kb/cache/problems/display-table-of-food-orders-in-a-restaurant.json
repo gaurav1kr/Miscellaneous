@@ -1,0 +1,39 @@
+{
+  "id": "1418",
+  "title": "Display Table of Food Orders in a Restaurant",
+  "slug": "display-table-of-food-orders-in-a-restaurant",
+  "url": "https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Ordered Set"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Ordered set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given the array orders , which represents the orders that customers have done in a restaurant. More specifically  orders[i]=[customerName i ,tableNumber i ,foodItem i ] where customerName i is the name of the customer, tableNumber i  is the table customer sit at, and foodItem i  is the item customer orders. \n \n Return the restaurant's “ display table ” . The “ display table ” is a table whose row entries denote how many of each food item each table ordered. The first column is the table number and the remaining columns correspond to each food item in alphabetical order. The first row should be a header whose first column is “Table”, followed by the names of the food items. Note that the customer names are not part of the table. Additionally, the rows should be sorted in numerically increasing order. \n\n Example 1: \n \n```\nInput:\n orders = [[\"David\",\"3\",\"Ceviche\"],[\"Corina\",\"10\",\"Beef Burrito\"],[\"David\",\"3\",\"Fried Chicken\"],[\"Carla\",\"5\",\"Water\"],[\"Carla\",\"5\",\"Ceviche\"],[\"Rous\",\"3\",\"Ceviche\"]]\r\n\nOutput:\n [[\"Table\",\"Beef Burrito\",\"Ceviche\",\"Fried Chicken\",\"Water\"],[\"3\",\"0\",\"2\",\"1\",\"0\"],[\"5\",\"0\",\"1\",\"0\",\"1\"],[\"10\",\"1\",\"0\",\"0\",\"0\"]] \r\n\nExplanation:\r\n\nThe displaying table looks like:\r\n\nTable,Beef Burrito,Ceviche,Fried Chicken,Water\n\r\n3 ,0 ,2 ,1 ,0\r\n5 ,0 ,1 ,0 ,1\r\n10 ,1 ,0 ,0 ,0\r\nFor the table 3: David orders \"Ceviche\" and \"Fried Chicken\", and Rous orders \"Ceviche\".\r\nFor the table 5: Carla orders \"Water\" and \"Ceviche\".\r\nFor the table 10: Corina orders \"Beef Burrito\".\n```\n\n Example 2: \n \n```\nInput:\n orders = [[\"James\",\"12\",\"Fried Chicken\"],[\"Ratesh\",\"12\",\"Fried Chicken\"],[\"Amadeus\",\"12\",\"Fried Chicken\"],[\"Adam\",\"1\",\"Canadian Waffles\"],[\"Brianna\",\"1\",\"Canadian Waffles\"]]\r\n\nOutput:\n [[\"Table\",\"Canadian Waffles\",\"Fried Chicken\"],[\"1\",\"2\",\"0\"],[\"12\",\"0\",\"3\"]] \r\n\nExplanation:\n \r\nFor the table 1: Adam and Brianna order \"Canadian Waffles\".\r\nFor the table 12: James, Ratesh and Amadeus order \"Fried Chicken\".\n```\n\n Example 3: \n \n```\nInput:\n orders = [[\"Laura\",\"2\",\"Bean Burrito\"],[\"Jhon\",\"2\",\"Beef Burrito\"],[\"Melissa\",\"2\",\"Soda\"]]\r\n\nOutput:\n [[\"Table\",\"Bean Burrito\",\"Beef Burrito\",\"Soda\"],[\"2\",\"1\",\"1\",\"1\"]]\n```\n\n Constraints: \n\n 1 <= orders.length <= 5 * 10^4 \n \n orders[i].length == 3 \n \n 1 <= customerName i .length, foodItem i .length <= 20 \n \n customerName i and foodItem i consist of lowercase and uppercase English letters and the space character. \n \n tableNumber i   is a valid integer between 1 and 500 .",
+  "code": "class Solution {\npublic:\n    vector<vector<string>> displayTable(vector<vector<string>>& orders) {\n        set<string> foods;\n        map<int, map<string, int>> tables;\n        for (const auto& order : orders) {\n            foods.insert(order[2]);\n            ++tables[stoi(order[1])][order[2]];\n        }\n        vector<vector<string>> result;\n        vector<string> header = {\"Table\"};\n        for (const string& food : foods) header.push_back(food);\n        result.push_back(header);\n        for (const auto& table : tables) {\n            vector<string> row = {to_string(table.first)};\n            for (const string& food : foods) {\n                auto it = table.second.find(food);\n                row.push_back(to_string(it == table.second.end() ? 0 : it->second));\n            }\n            result.push_back(row);\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175752373",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "2718",
+  "title": "Sum of Matrix After Queries",
+  "slug": "sum-of-matrix-after-queries",
+  "url": "https://leetcode.com/problems/sum-of-matrix-after-queries/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an integer n and a 0-indexed   2D array queries where queries[i] = [type i , index i , val i ] . \n \n Initially, there is a 0-indexed n x n matrix filled with 0 's. For each query, you must apply one of the following changes: \n\n if type i == 0 , set the values in the row with index i to val i , overwriting any previous values. \n \n if type i == 1 , set the values in the column with index i to val i , overwriting any previous values. \n\n Return the sum of integers in the matrix after all queries are applied . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/05/11/exm1.png] \n \n```\nInput:\n n = 3, queries = [[0,0,1],[1,2,2],[0,2,3],[1,0,4]]\n\nOutput:\n 23\n\nExplanation:\n The image above describes the matrix after each query. The sum of the matrix after all queries are applied is 23.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/05/11/exm2.png] \n \n```\nInput:\n n = 3, queries = [[0,0,4],[0,1,2],[1,0,1],[0,2,3],[1,2,1]]\n\nOutput:\n 17\n\nExplanation:\n The image above describes the matrix after each query. The sum of the matrix after all queries are applied is 17.\n```\n\n Constraints: \n\n 1 <= n <= 10 4 \n \n 1 <= queries.length <= 5 * 10 4 \n \n queries[i].length == 3 \n \n 0 <= type i <= 1 \n \n 0 <= index i  < n \n \n 0 <= val i <= 10 5",
+  "code": "class Solution {public:long long matrixSumQueries(int n,vector<vector<int>>& queries){vector<bool> rows(n),cols(n);long long ans=0;int nr=0,nc=0;for(int i=(int)queries.size()-1;i>=0;--i){auto &q=queries[i];int type=q[0],id=q[1],v=q[2];if(type==0&&!rows[id]){rows[id]=true;++nr;ans+=1LL*v*(n-nc);}if(type==1&&!cols[id]){cols[id]=true;++nc;ans+=1LL*v*(n-nr);}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176683611",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

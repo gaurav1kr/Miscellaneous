@@ -1,0 +1,32 @@
+{
+  "id": "1222",
+  "title": "Queens That Can Attack the King",
+  "slug": "queens-that-can-attack-the-king",
+  "url": "https://leetcode.com/problems/queens-that-can-attack-the-king/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "On a 0-indexed 8 x 8 chessboard, there can be multiple black queens and one white king. \n \n You are given a 2D integer array queens where queens[i] = [xQueen i , yQueen i ] represents the position of the i th black queen on the chessboard. You are also given an integer array king of length 2 where king = [xKing, yKing] represents the position of the white king. \n \n Return the coordinates of the black queens that can directly attack the king . You may return the answer in any order . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/12/21/chess1.jpg] \n \n```\nInput:\n queens = [[0,1],[1,0],[4,0],[0,4],[3,3],[2,4]], king = [0,0]\n\nOutput:\n [[0,1],[1,0],[3,3]]\n\nExplanation:\n The diagram above shows the three queens that can directly attack the king and the three queens that cannot attack the king (i.e., marked with red dashes).\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/12/21/chess2.jpg] \n \n```\nInput:\n queens = [[0,0],[1,1],[2,2],[3,4],[3,5],[4,4],[4,5]], king = [3,3]\n\nOutput:\n [[2,2],[3,4],[4,4]]\n\nExplanation:\n The diagram above shows the three queens that can directly attack the king and the three queens that cannot attack the king (i.e., marked with red dashes).\n```\n\n Constraints: \n\n 1 <= queens.length < 64 \n \n queens[i].length == king.length == 2 \n \n 0 <= xQueen i , yQueen i , xKing, yKing < 8 \n \n All the given positions are unique .",
+  "code": "#include <vector>\n#include <unordered_set>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<int>> queensAttacktheKing(vector<vector<int>>& queens, vector<int>& king) {\n        unordered_set<string> board;\n        for (auto& q : queens)\n            board.insert(to_string(q[0]) + \",\" + to_string(q[1]));\n\n        vector<vector<int>> res;\n        vector<pair<int, int>> dirs = {{-1,0},{1,0},{0,-1},{0,1},{-1,-1},{-1,1},{1,-1},{1,1}};\n        for (auto& d : dirs) {\n            int x = king[0], y = king[1];\n            while (true) {\n                x += d.first;\n                y += d.second;\n                if (x < 0 || y < 0 || x >= 8 || y >= 8) break;\n                if (board.count(to_string(x) + \",\" + to_string(y))) {\n                    res.push_back({x, y});\n                    break;\n                }\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595396665",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

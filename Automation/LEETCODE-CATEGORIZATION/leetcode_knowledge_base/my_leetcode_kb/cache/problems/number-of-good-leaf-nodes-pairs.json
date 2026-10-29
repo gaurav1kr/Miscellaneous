@@ -1,0 +1,32 @@
+{
+  "id": "1530",
+  "title": "Number of Good Leaf Nodes Pairs",
+  "slug": "number-of-good-leaf-nodes-pairs",
+  "url": "https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given the root of a binary tree and an integer distance . A pair of two different leaf nodes of a binary tree is said to be good if the length of the shortest path between them is less than or equal to distance . \n \n Return the number of good leaf node pairs in the tree. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/07/09/e1.jpg] \n \n```\nInput:\n root = [1,2,3,null,4], distance = 3\n\nOutput:\n 1\n\nExplanation:\n The leaf nodes of the tree are 3 and 4 and the length of the shortest path between them is 3. This is the only good pair.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/07/09/e2.jpg] \n \n```\nInput:\n root = [1,2,3,4,5,6,7], distance = 3\n\nOutput:\n 2\n\nExplanation:\n The good pairs are [4,5] and [6,7] with shortest path = 2. The pair [4,6] is not good because the length of ther shortest path between them is 4.\n```\n\n Example 3: \n \n```\nInput:\n root = [7,1,4,6,null,5,3,null,null,null,null,null,2], distance = 3\n\nOutput:\n 1\n\nExplanation:\n The only good pair is [2,5].\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 2 10 ]. \n \n 1 <= Node.val <= 100 \n \n 1 <= distance <= 10",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\n\nclass Solution {\npublic:\n    int countPairs(TreeNode* root, int distance) {\n        int count = 0;\n        dfs(root, distance, count);\n        return count;\n    }\n\n    vector<int> dfs(TreeNode* node, int distance, int& count) {\n        if (!node) return {};\n        if (!node->left && !node->right) return {1};\n\n        vector<int> left = dfs(node->left, distance, count);\n        vector<int> right = dfs(node->right, distance, count);\n\n        for (int l : left)\n            for (int r : right)\n                if (l + r <= distance)\n                    count++;\n\n        vector<int> res;\n        for (int l : left) if (l + 1 < distance) res.push_back(l + 1);\n        for (int r : right) if (r + 1 < distance) res.push_back(r + 1);\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593698529",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

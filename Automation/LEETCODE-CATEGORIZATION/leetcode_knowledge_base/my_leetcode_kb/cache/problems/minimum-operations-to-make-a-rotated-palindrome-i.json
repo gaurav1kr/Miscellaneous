@@ -1,0 +1,29 @@
+{
+  "id": "4021",
+  "title": "Minimum Operations to Make a Rotated Palindrome I",
+  "slug": "minimum-operations-to-make-a-rotated-palindrome-i",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-a-rotated-palindrome-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Enumeration"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. \n \n You can perform the following operations any number of times (including zero) and in any order: \n\n Increment : Choose any index i and replace s[i] with the next lowercase English letter. The letter after 'z' is 'a' . \n \n Left rotate : Move the first character of the string to the end. \n\n Return the minimum number of operations required to make s a palindrome . \n\n Example 1: \n\n Input: s = \"abc\" \n \n Output: 2 \n \n Explanation: \nOne optimal solution:\n\n Left rotate the string: \"abc\" -> \"bca\" . \n \n Increment 'a' to 'b' : \"bca\" -> \"bcb\" . \n \n \"bcb\" is a palindrome. Thus, the answer is 2. \n\n Example 2: \n\n Input: s = \"yb\" \n \n Output: 3 \n \n Explanation: \n\n Increment the first character three times: \"yb\" -> \"zb\" -> \"ab\" -> \"bb\" . \n \n \"bb\" is a palindrome. Thus, the answer is 3. \n\n Constraints: \n\n 2 <= s.length <= 2000 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int minOperations(string s) {\n        int n = s.size(), ans = INT_MAX;\n        for (int rot = 0; rot < n; ++rot) {\n            int cost = rot;\n            for (int i = 0; i < n / 2; ++i) {\n                int a = s[(rot + i) % n] - 'a';\n                int b = s[(rot + n - 1 - i) % n] - 'a';\n                int d = abs(a - b);\n                cost += min(d, 26 - d);\n            }\n            ans = min(ans, cost);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181114191",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

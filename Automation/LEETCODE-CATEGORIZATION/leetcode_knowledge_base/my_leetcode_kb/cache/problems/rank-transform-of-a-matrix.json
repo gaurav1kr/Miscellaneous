@@ -1,0 +1,40 @@
+{
+  "id": "1632",
+  "title": "Rank Transform of a Matrix",
+  "slug": "rank-transform-of-a-matrix",
+  "url": "https://leetcode.com/problems/rank-transform-of-a-matrix/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Union-Find",
+    "Graph Theory",
+    "Topological Sort",
+    "Sorting",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Hash map",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an m x n matrix , return a new matrix answer where answer[row][col] is the rank of matrix[row][col] . \n \n The rank is an integer that represents how large an element is compared to other elements. It is calculated using the following rules: \n\n The rank is an integer starting from 1 . \n \n If two elements p and q are in the same row or column , then:\n\n If p < q then rank(p) < rank(q) \n \n If p == q then rank(p) == rank(q) \n \n If p > q then rank(p) > rank(q) \n\n The rank should be as small as possible. \n\n The test cases are generated so that answer is unique under the given rules. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/18/rank1.jpg] \n \n```\nInput:\n matrix = [[1,2],[3,4]]\n\nOutput:\n [[1,2],[2,3]]\n\nExplanation:\n\nThe rank of matrix[0][0] is 1 because it is the smallest integer in its row and column.\nThe rank of matrix[0][1] is 2 because matrix[0][1] > matrix[0][0] and matrix[0][0] is rank 1.\nThe rank of matrix[1][0] is 2 because matrix[1][0] > matrix[0][0] and matrix[0][0] is rank 1.\nThe rank of matrix[1][1] is 3 because matrix[1][1] > matrix[0][1], matrix[1][1] > matrix[1][0], and both matrix[0][1] and matrix[1][0] are rank 2.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/10/18/rank2.jpg] \n \n```\nInput:\n matrix = [[7,7],[7,7]]\n\nOutput:\n [[1,1],[1,1]]\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/10/18/rank3.jpg] \n \n```\nInput:\n matrix = [[20,-21,14],[-19,4,19],[22,-47,24],[-19,4,19]]\n\nOutput:\n [[4,2,3],[1,3,4],[5,1,6],[1,3,4]]\n```\n\n Constraints: \n\n m == matrix.length \n \n n == matrix[i].length \n \n 1 <= m, n <= 500 \n \n -10 9 <= matrix[row][col] <= 10 9",
+  "code": "#include <vector>\n#include <map>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<int>> matrixRankTransform(vector<vector<int>>& matrix) {\n        int m = matrix.size(), n = matrix[0].size();\n        vector<vector<int>> res(m, vector<int>(n));\n        map<int, vector<pair<int, int>>> valueCells;\n\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                valueCells[matrix[i][j]].emplace_back(i, j);\n\n        vector<int> row(m), col(n);\n        for (auto& [val, cells] : valueCells) {\n            unordered_map<int, int> parent;\n            function<int(int)> find = [&](int u) {\n                if (!parent.count(u)) parent[u] = u;\n                if (u != parent[u]) parent[u] = find(parent[u]);\n                return parent[u];\n            };\n            for (auto& [i, j] : cells)\n                parent[find(i)] = find(~j);\n\n            unordered_map<int, int> maxRank;\n            for (auto& [i, j] : cells)\n                maxRank[find(i)] = max(maxRank[find(i)], max(row[i], col[j]));\n\n            for (auto& [i, j] : cells) {\n                res[i][j] = maxRank[find(i)] + 1;\n                row[i] = col[j] = res[i][j];\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612875917",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

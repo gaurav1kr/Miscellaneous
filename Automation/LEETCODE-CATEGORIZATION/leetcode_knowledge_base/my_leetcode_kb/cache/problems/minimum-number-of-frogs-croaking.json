@@ -1,0 +1,28 @@
+{
+  "id": "1419",
+  "title": "Minimum Number of Frogs Croaking",
+  "slug": "minimum-number-of-frogs-croaking",
+  "url": "https://leetcode.com/problems/minimum-number-of-frogs-croaking/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given the string croakOfFrogs , which represents a combination of the string \"croak\" from different frogs, that is, multiple frogs can croak at the same time, so multiple \"croak\" are mixed. \n \n Return the minimum number of different frogs to finish all the croaks in the given string. \n \n A valid \"croak\" means a frog is printing five letters 'c' , 'r' , 'o' , 'a' , and 'k' sequentially . The frogs have to print all five letters to finish a croak. If the given string is not a combination of a valid \"croak\" return -1 . \n\n Example 1: \n \n```\nInput:\n croakOfFrogs = \"croakcroak\"\n\nOutput:\n 1 \n\nExplanation:\n One frog yelling \"croak\n\"\n twice.\n```\n\n Example 2: \n \n```\nInput:\n croakOfFrogs = \"crcoakroak\"\n\nOutput:\n 2 \n\nExplanation:\n The minimum number of frogs is two. \nThe first frog could yell \"\ncr\nc\noak\nroak\".\nThe second frog could yell later \"cr\nc\noak\nroak\n\".\n```\n\n Example 3: \n \n```\nInput:\n croakOfFrogs = \"croakcrook\"\n\nOutput:\n -1\n\nExplanation:\n The given string is an invalid combination of \"croak\n\"\n from different frogs.\n```\n\n Constraints: \n\n 1 <= croakOfFrogs.length <= 10 5 \n \n croakOfFrogs is either 'c' , 'r' , 'o' , 'a' , or 'k' .",
+  "code": "class Solution {\npublic:\n    int minNumberOfFrogs(string croakOfFrogs) {\n        int stage[4] = {0, 0, 0, 0};\n        int active = 0, answer = 0;\n        string order = \"croak\";\n        for (char c : croakOfFrogs) {\n            int p = order.find(c);\n            if (p == (int)string::npos) return -1;\n            if (p == 0) {\n                ++stage[0];\n                answer = max(answer, ++active);\n            } else {\n                if (stage[p - 1] == 0) return -1;\n                --stage[p - 1];\n                if (p == 4) --active;\n                else ++stage[p];\n            }\n        }\n        return active == 0 ? answer : -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175752547",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

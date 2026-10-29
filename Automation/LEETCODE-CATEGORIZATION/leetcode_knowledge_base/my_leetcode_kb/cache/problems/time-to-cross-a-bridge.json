@@ -1,0 +1,33 @@
+{
+  "id": "2532",
+  "title": "Time to Cross a Bridge",
+  "slug": "time-to-cross-a-bridge",
+  "url": "https://leetcode.com/problems/time-to-cross-a-bridge/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Heap (Priority Queue)",
+    "Simulation"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There are k workers who want to move n boxes from the right (old) warehouse to the left (new) warehouse. You are given the two integers n and k , and a 2D integer array time of size k x 4 where time[i] = [right i , pick i , left i , put i ] . \n \n The warehouses are separated by a river and connected by a bridge. Initially, all k workers are waiting on the left side of the bridge. To move the boxes, the i th worker can do the following: \n\n Cross the bridge to the right side in right i minutes. \n \n Pick a box from the right warehouse in pick i minutes. \n \n Cross the bridge to the left side in left i minutes. \n \n Put the box into the left warehouse in put i minutes. \n\n The i th worker is less efficient than the j th worker if either condition is met: \n\n left i + right i > left j + right j \n \n left i + right i == left j + right j and i > j \n\n The following rules regulate the movement of the workers through the bridge: \n\n Only one worker can use the bridge at a time. \n \n When the bridge is unused prioritize the least efficient worker (who have picked up the box) on the right side to cross. If not, prioritize the least efficient worker on the left side to cross. \n \n If enough workers have already been dispatched from the left side to pick up all the remaining boxes, no more workers will be sent from the left side. \n\n Return the elapsed minutes at which the last box reaches the left side of the bridge . \n\n Example 1: \n\n Input: n = 1, k = 3, time = [[1,1,2,1],[1,1,3,1],[1,1,4,1]] \n \n Output: 6 \n \n Explanation: \n \n```\nFrom 0 to 1 minutes: worker 2 crosses the bridge to the right.\nFrom 1 to 2 minutes: worker 2 picks up a box from the right warehouse.\nFrom 2 to 6 minutes: worker 2 crosses the bridge to the left.\nFrom 6 to 7 minutes: worker 2 puts a box at the left warehouse.\nThe whole process ends after 7 minutes. We return 6 because the problem asks for the instance of time at which the last worker reaches the left side of the bridge.\n```\n\n Example 2: \n\n Input: n = 3, k = 2, time = [[1,5,1,8],[10,10,10,10]] \n \n Output: 37 \n \n Explanation: \n \n```\n\n```\n\n The last box reaches the left side at 37 seconds. Notice, how we do not put the last boxes down, as that would take more time, and they are already on the left with the workers. \n\n Constraints: \n\n 1 <= n, k <= 10 4 \n \n time.length == k \n \n time[i].length == 4 \n \n 1 <= left i , pick i , right i , put i <= 1000",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int findCrossingTime(int n,int k,vector<vector<int>>& time){\n  using P=pair<int,int>;\n  priority_queue<P> left,right;\n  priority_queue<P,vector<P>,greater<P>> pick,put;\n  for(int i=0;i<k;++i)left.push({time[i][0]+time[i][2],i});\n  long long t=0;int remaining=n;\n  while(remaining>0||!right.empty()||!pick.empty()){\n   while(!pick.empty()&&pick.top().first<=t){int i=pick.top().second;pick.pop();right.push({time[i][0]+time[i][2],i});}\n   while(!put.empty()&&put.top().first<=t){int i=put.top().second;put.pop();left.push({time[i][0]+time[i][2],i});}\n   if(!right.empty()){\n    int i=right.top().second;right.pop();t+=time[i][2];put.push({t+time[i][3],i});\n   }else if(remaining>0&&!left.empty()){\n    int i=left.top().second;left.pop();t+=time[i][0];--remaining;pick.push({t+time[i][1],i});\n   }else{\n    long long next=LLONG_MAX;\n    if(!pick.empty())next=min(next,(long long)pick.top().first);\n    if(!put.empty())next=min(next,(long long)put.top().first);\n    if(next==LLONG_MAX)break;t=next;\n   }\n  }\n  // The final bridge crossing completes before the worker puts down the box.\n  return (int)t;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176603174",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

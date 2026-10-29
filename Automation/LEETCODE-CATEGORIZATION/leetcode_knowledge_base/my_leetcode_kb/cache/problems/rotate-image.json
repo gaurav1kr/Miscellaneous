@@ -1,0 +1,31 @@
+{
+  "id": "48",
+  "title": "Rotate Image",
+  "slug": "rotate-image",
+  "url": "https://leetcode.com/problems/rotate-image/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Matrix"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise). \n \n You have to rotate the image in-place , which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/08/28/mat1.jpg] \n \n```\nInput:\n matrix = [[1,2,3],[4,5,6],[7,8,9]]\n\nOutput:\n [[7,4,1],[8,5,2],[9,6,3]]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/08/28/mat2.jpg] \n \n```\nInput:\n matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]\n\nOutput:\n [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]\n```\n\n Constraints: \n\n n == matrix.length == matrix[i].length \n \n 1 <= n <= 20 \n \n -1000 <= matrix[i][j] <= 1000",
+  "code": "class Solution {\npublic:\n    void rotate(vector<vector<int>>& matrix) {\n        int n = matrix.size();\n        for (int i = 0; i < n; i++) {\n            for (int j = i; j < n; j++) {\n                swap(matrix[i][j], matrix[j][i]);\n            }\n        }\n        for (int i = 0; i < n; i++) {\n            reverse(matrix[i].begin(), matrix[i].end());\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1615749221",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "3491",
+  "title": "Phone Number Prefix",
+  "slug": "phone-number-prefix",
+  "url": "https://leetcode.com/problems/phone-number-prefix/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String",
+    "Trie",
+    "Sorting"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given a string array numbers that represents phone numbers. Return true if no phone number is a prefix of any other phone number; otherwise, return false . \n\n Example 1: \n\n Input: numbers = [\"1\",\"2\",\"4\",\"3\"] \n \n Output: true \n \n Explanation: \n \n No number is a prefix of another number, so the output is true . \n\n Example 2: \n\n Input: numbers = [\"001\",\"007\",\"15\",\"00153\"] \n \n Output: false \n \n Explanation: \n \n The string \"001\" is a prefix of the string \"00153\" . Thus, the output is false . \n\n Constraints: \n\n 2 <= numbers.length <= 50 \n \n 1 <= numbers[i].length <= 50 \n \n All numbers contain only digits '0' to '9' .",
+  "code": "class Solution {\npublic:\n    bool phonePrefix(vector<string>& numbers) {\n        sort(numbers.begin(), numbers.end());\n        for (int i = 1; i < (int)numbers.size(); ++i) {\n            const string& a = numbers[i - 1];\n            const string& b = numbers[i];\n            if (b.compare(0, a.size(), a) == 0) return false;\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179671858",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

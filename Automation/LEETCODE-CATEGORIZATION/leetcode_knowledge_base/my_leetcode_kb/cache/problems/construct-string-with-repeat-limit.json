@@ -1,0 +1,35 @@
+{
+  "id": "2182",
+  "title": "Construct String With Repeat Limit",
+  "slug": "construct-string-with-repeat-limit",
+  "url": "https://leetcode.com/problems/construct-string-with-repeat-limit/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Heap (Priority Queue)",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Priority queue / heap",
+    "String"
+  ],
+  "description": "You are given a string s and an integer repeatLimit . Construct a new string repeatLimitedString using the characters of s such that no letter appears more than repeatLimit times in a row . You do not have to use all characters from s . \n \n Return the lexicographically largest repeatLimitedString possible . \n \n A string a is lexicographically larger than a string b if in the first position where a and b differ, string a has a letter that appears later in the alphabet than the corresponding letter in b . If the first min(a.length, b.length) characters do not differ, then the longer string is the lexicographically larger one. \n\n Example 1: \n \n```\nInput:\n s = \"cczazcc\", repeatLimit = 3\n\nOutput:\n \"zzcccac\"\n\nExplanation:\n We use all of the characters from s to construct the repeatLimitedString \"zzcccac\".\nThe letter 'a' appears at most 1 time in a row.\nThe letter 'c' appears at most 3 times in a row.\nThe letter 'z' appears at most 2 times in a row.\nHence, no letter appears more than repeatLimit times in a row and the string is a valid repeatLimitedString.\nThe string is the lexicographically largest repeatLimitedString possible so we return \"zzcccac\".\nNote that the string \"zzcccca\" is lexicographically larger but the letter 'c' appears more than 3 times in a row, so it is not a valid repeatLimitedString.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aababab\", repeatLimit = 2\n\nOutput:\n \"bbabaa\"\n\nExplanation:\n We use only some of the characters from s to construct the repeatLimitedString \"bbabaa\". \nThe letter 'a' appears at most 2 times in a row.\nThe letter 'b' appears at most 2 times in a row.\nHence, no letter appears more than repeatLimit times in a row and the string is a valid repeatLimitedString.\nThe string is the lexicographically largest repeatLimitedString possible so we return \"bbabaa\".\nNote that the string \"bbabaaa\" is lexicographically larger but the letter 'a' appears more than 2 times in a row, so it is not a valid repeatLimitedString.\n```\n\n Constraints: \n\n 1 <= repeatLimit <= s.length <= 10 5 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string repeatLimitedString(string s, int repeatLimit) {\n        int cnt[26]={0};for(char c:s) ++cnt[c-'a'];\n        string ans;int i=25;\n        while(i>=0) {\n            if(!cnt[i]){--i;continue;}\n            int take=min(cnt[i],repeatLimit);\n            ans.append(take,char('a'+i));cnt[i]-=take;\n            if(!cnt[i]) continue;\n            int j=i-1;while(j>=0&&!cnt[j])--j;\n            if(j<0) break;\n            ans.push_back(char('a'+j));--cnt[j];\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175880903",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

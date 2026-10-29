@@ -1,0 +1,30 @@
+{
+  "id": "3355",
+  "title": "Zero Array Transformation I",
+  "slug": "zero-array-transformation-i",
+  "url": "https://leetcode.com/problems/zero-array-transformation-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and a 2D array queries , where queries[i] = [l i , r i ] . \n \n For each queries[i] : \n\n Select a subset of indices within the range [l i , r i ] in nums . \n \n Decrement the values at the selected indices by 1. \n\n A Zero Array is an array where all elements are equal to 0. \n \n Return true if it is possible to transform nums into a Zero Array after processing all the queries sequentially, otherwise return false . \n\n Example 1: \n\n Input: nums = [1,0,1], queries = [[0,2]] \n \n Output: true \n \n Explanation: \n\n For i = 0: \n\n Select the subset of indices as [0, 2] and decrement the values at these indices by 1. \n \n The array will become [0, 0, 0] , which is a Zero Array. \n\n Example 2: \n\n Input: nums = [4,3,2,1], queries = [[1,3],[0,2]] \n \n Output: false \n \n Explanation: \n\n For i = 0: \n\n Select the subset of indices as [1, 2, 3] and decrement the values at these indices by 1. \n \n The array will become [4, 2, 1, 0] . \n\n For i = 1: \n\n Select the subset of indices as [0, 1, 2] and decrement the values at these indices by 1. \n \n The array will become [3, 1, 0, 0] , which is not a Zero Array. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5 \n \n 1 <= queries.length <= 10 5 \n \n queries[i].length == 2 \n \n 0 <= l i <= r i < nums.length",
+  "code": "class Solution {public:bool isZeroArray(vector<int>& nums,vector<vector<int>>& queries){int n=nums.size();vector<int>d(n+1);for(auto&q:queries)d[q[0]]++,d[q[1]+1]--;int cur=0;for(int i=0;i<n;i++){cur+=d[i];if(cur<nums[i])return false;}return true;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177468028",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

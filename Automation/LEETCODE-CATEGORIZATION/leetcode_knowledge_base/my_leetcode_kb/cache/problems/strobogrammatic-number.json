@@ -1,0 +1,33 @@
+{
+  "id": "246",
+  "title": "Strobogrammatic Number",
+  "slug": "strobogrammatic-number",
+  "url": "https://leetcode.com/problems/strobogrammatic-number/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given a string num which represents an integer, return true if num is a strobogrammatic number . \n \n A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down). \n\n Example 1: \n \n```\nInput:\n num = \"69\"\n\nOutput:\n true\n```\n\n Example 2: \n \n```\nInput:\n num = \"88\"\n\nOutput:\n true\n```\n\n Example 3: \n \n```\nInput:\n num = \"962\"\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= num.length <= 50 \n \n num consists of only digits. \n \n num does not contain any leading zeros except for zero itself.",
+  "code": "class Solution\n{\npublic:\n    bool isStrobogrammatic(string num)\n    {\n        unordered_map< char, char>rot = { { '0', '0' }, { '1', '1' }, { '6', '9' }, { '8', '8' }, { '9', '6' } };\n        for (int i = 0, j = (int) num.size() - 1; i <= j;++i,--j)\n        {\n            if (!rot.count(num[i]) || rot[num[i]] != num[j])\n            {\n                return false;\n            }\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178434697",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

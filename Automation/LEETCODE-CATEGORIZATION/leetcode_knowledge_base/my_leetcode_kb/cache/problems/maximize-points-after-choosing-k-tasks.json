@@ -1,0 +1,35 @@
+{
+  "id": "3767",
+  "title": "Maximize Points After Choosing K Tasks",
+  "slug": "maximize-points-after-choosing-k-tasks",
+  "url": "https://leetcode.com/problems/maximize-points-after-choosing-k-tasks/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays, technique1 and technique2 , each of length n , where n represents the number of tasks to complete. \n\n If the i th task is completed using technique 1, you earn technique1[i] points. \n \n If it is completed using technique 2, you earn technique2[i] points. \n\n You are also given an integer k , representing the minimum number of tasks that must be completed using technique 1. \n \n You must complete at least k tasks using technique 1 (they do not need to be the first k tasks). \n \n The remaining tasks may be completed using either technique. \n \n Return an integer denoting the maximum total points you can earn. \n\n Example 1: \n\n Input: technique1 = [5,2,10], technique2 = [10,3,8], k = 2 \n \n Output: 22 \n \n Explanation: \n \n We must complete at least k = 2 tasks using technique1 . \n \n Choosing technique1[1] and technique1[2] (completed using technique 1), and technique2[0] (completed using technique 2), yields the maximum points: 2 + 10 + 10 = 22 . \n\n Example 2: \n\n Input: technique1 = [10,20,30], technique2 = [5,15,25], k = 2 \n \n Output: 60 \n \n Explanation: \n \n We must complete at least k = 2 tasks using technique1 . \n \n Choosing all tasks using technique 1 yields the maximum points: 10 + 20 + 30 = 60 . \n\n Example 3: \n\n Input: technique1 = [1,2,3], technique2 = [4,5,6], k = 0 \n \n Output: 15 \n \n Explanation: \n \n Since k = 0 , we are not required to choose any task using technique1 . \n \n Choosing all tasks using technique 2 yields the maximum points: 4 + 5 + 6 = 15 . \n\n Constraints: \n\n 1 <= n == technique1.length == technique2.length <= 10 5 \n \n 1 <= technique1[i], technique2​​​​​​​[i] <= 10 ​​​​​​​5 \n \n 0 <= k <= n",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    long long maxPoints(vector<int>& technique1, vector<int>& technique2, int k) {\n        int n = technique1.size();\n        long long ans = 0;\n        vector<int> diff;\n        for (int i = 0; i < n; ++i) {\n            ans += technique2[i];\n            diff.push_back(technique1[i] - technique2[i]);\n        }\n        sort(diff.rbegin(), diff.rend());\n        for (int i = 0; i < n; ++i)\n            if (i < k || diff[i] > 0) ans += diff[i];\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181022289",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

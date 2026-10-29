@@ -1,0 +1,37 @@
+{
+  "id": "871",
+  "title": "Minimum Number of Refueling Stops",
+  "slug": "minimum-number-of-refueling-stops",
+  "url": "https://leetcode.com/problems/minimum-number-of-refueling-stops/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "A car travels from a starting position to a destination which is target miles east of the starting position. \n \n There are gas stations along the way. The gas stations are represented as an array stations where stations[i] = [position i , fuel i ] indicates that the i th gas station is position i miles east of the starting position and has fuel i liters of gas. \n \n The car starts with an infinite tank of gas, which initially has startFuel liters of fuel in it. It uses one liter of gas per one mile that it drives. When the car reaches a gas station, it may stop and refuel, transferring all the gas from the station into the car. \n \n Return the minimum number of refueling stops the car must make in order to reach its destination . If it cannot reach the destination, return -1 . \n \n Note that if the car reaches a gas station with 0 fuel left, the car can still refuel there. If the car reaches the destination with 0 fuel left, it is still considered to have arrived. \n\n Example 1: \n \n```\nInput:\n target = 1, startFuel = 1, stations = []\n\nOutput:\n 0\n\nExplanation:\n We can reach the target without refueling.\n```\n\n Example 2: \n \n```\nInput:\n target = 100, startFuel = 1, stations = [[10,100]]\n\nOutput:\n -1\n\nExplanation:\n We can not reach the target (or even the first gas station).\n```\n\n Example 3: \n \n```\nInput:\n target = 100, startFuel = 10, stations = [[10,60],[20,30],[30,30],[60,40]]\n\nOutput:\n 2\n\nExplanation:\n We start with 10 liters of fuel.\nWe drive to position 10, expending 10 liters of fuel. We refuel from 0 liters to 60 liters of gas.\nThen, we drive from position 10 to position 60 (expending 50 liters of fuel),\nand refuel from 10 liters to 50 liters of gas. We then drive to and reach the target.\nWe made 2 refueling stops along the way, so we return 2.\n```\n\n Constraints: \n\n 1 <= target, startFuel <= 10 9 \n \n 0 <= stations.length <= 500 \n \n 1 <= position i < position i+1 < target \n \n 1 <= fuel i < 10 9",
+  "code": "class Solution {\npublic:\n    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {\n        priority_queue<int> fuels;\n        long long reach = startFuel;\n        int i = 0, stops = 0;\n        while (reach < target) {\n            while (i < (int)stations.size() && stations[i][0] <= reach)\n                fuels.push(stations[i++][1]);\n            if (fuels.empty()) return -1;\n            reach += fuels.top();\n            fuels.pop();\n            ++stops;\n        }\n        return stops;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175743166",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

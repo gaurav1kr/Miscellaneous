@@ -1,0 +1,42 @@
+{
+  "id": "1066",
+  "title": "Campus Bikes II",
+  "slug": "campus-bikes-ii",
+  "url": "https://leetcode.com/problems/campus-bikes-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask",
+    "Hungarian Algorithm",
+    "Bipartite Graph",
+    "Successive Shortest Path Algorithm",
+    "Matching (Graph)",
+    "Minimum-Cost Flow",
+    "Flow Network"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "On a campus represented as a 2D grid, there are n workers and m bikes, with n <= m . Each worker and bike is a 2D coordinate on this grid. \n \n We assign one unique bike to each worker so that the sum of the Manhattan distances between each worker and their assigned bike is minimized. \n \n Return the minimum possible sum of Manhattan distances between each worker and their assigned bike . \n \n The Manhattan distance between two points p1 and p2 is Manhattan(p1, p2) = |p1.x - p2.x| + |p1.y - p2.y| . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/03/06/1261_example_1_v2.png] \n \n```\nInput:\n workers = [[0,0],[2,1]], bikes = [[1,2],[3,3]]\n\nOutput:\n 6\n\nExplanation:\n \nWe assign bike 0 to worker 0, bike 1 to worker 1. The Manhattan distance of both assignments is 3, so the output is 6.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/03/06/1261_example_2_v2.png] \n \n```\nInput:\n workers = [[0,0],[1,1],[2,0]], bikes = [[1,0],[2,2],[2,1]]\n\nOutput:\n 4\n\nExplanation: \n\nWe first assign bike 0 to worker 0, then assign bike 1 to worker 1 or worker 2, bike 2 to worker 2 or worker 1. Both assignments lead to sum of the Manhattan distances as 4.\n```\n\n Example 3: \n \n```\nInput:\n workers = [[0,0],[1,0],[2,0],[3,0],[4,0]], bikes = [[0,999],[1,999],[2,999],[3,999],[4,999]]\n\nOutput:\n 4995\n```\n\n Constraints: \n\n n == workers.length \n \n m == bikes.length \n \n 1 <= n <= m <= 10 \n \n workers[i].length == 2 \n \n bikes[i].length == 2 \n \n 0 <= workers[i][0], workers[i][1], bikes[i][0], bikes[i][1] < 1000 \n \n All the workers and the bikes locations are unique .",
+  "code": "class Solution {\npublic:\n    int assignBikes(vector<vector<int>>& workers,\n                    vector<vector<int>>& bikes) {\n        int w = workers.size();\n        int b = bikes.size();\n        int states = 1 << b;\n        vector<int> dp(states, INT_MAX / 4);\n        dp[0] = 0;\n        int answer = INT_MAX;\n        for (int mask = 0; mask < states; ++mask) {\n            int worker = __builtin_popcount(static_cast<unsigned>(mask));\n            if (worker == w) {\n                answer = min(answer, dp[mask]);\n                continue;\n            }\n            if (worker > w || dp[mask] == INT_MAX / 4) {\n                continue;\n            }\n            for (int bike = 0; bike < b; ++bike) {\n                if ((mask & (1 << bike)) == 0) {\n                    int distance = abs(workers[worker][0] - bikes[bike][0])\n                                 + abs(workers[worker][1] - bikes[bike][1]);\n                    int next = mask | (1 << bike);\n                    dp[next] = min(dp[next], dp[mask] + distance);\n                }\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178522372",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

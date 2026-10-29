@@ -1,0 +1,27 @@
+{
+  "id": "1437",
+  "title": "Check If All 1's Are at Least Length K Places Away",
+  "slug": "check-if-all-1s-are-at-least-length-k-places-away",
+  "url": "https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an binary array nums and an integer k , return true if all 1 's are at least k places away from each other, otherwise return false . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/04/15/sample_1_1791.png] \n \n```\nInput:\n nums = [1,0,0,0,1,0,0,1], k = 2\n\nOutput:\n true\n\nExplanation:\n Each of the 1s are at least 2 places away from each other.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/04/15/sample_2_1791.png] \n \n```\nInput:\n nums = [1,0,0,1,0,1], k = 2\n\nOutput:\n false\n\nExplanation:\n The second 1 and third 1 are only one apart from each other.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= k <= nums.length \n \n nums[i] is 0 or 1",
+  "code": "class Solution {\npublic:\n    bool kLengthApart(vector<int>& nums, int k) {\n        int prev = -k - 1;\n        for (int i = 0; i < (int)nums.size(); ++i) {\n            if (nums[i] == 1) {\n                if (i - prev <= k) return false;\n                prev = i;\n            }\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175752830",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

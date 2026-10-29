@@ -1,0 +1,33 @@
+{
+  "id": "3971",
+  "title": "Maximum Total Value",
+  "slug": "maximum-total-value",
+  "url": "https://leetcode.com/problems/maximum-total-value/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays value and decay , and an integer m . \n\n value[i] represents the initial value at index i . \n \n decay[i] represents how much the value decreases after each selection of index i . \n\n You may select any index multiple times. The total number of selections across all indices must not exceed m . \n \n If you select index i for the t th time, where t is 1-indexed, the value gained is value[i] - decay[i] * (t - 1) . \n \n Return the maximum total value you can obtain. Since the answer may be large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: value = [6,5,4], decay = [2,1,1], m = 4 \n \n Output: 19 \n \n Explanation: \n \n One optimal sequence of selections is as follows: \n\n By selecting index 0, the value gained is 6. \n \n By selecting index 1, the value gained is 5. \n \n By selecting index 2, the value gained is 4. \n \n By selecting index 0 again, the value gained is 6 - 2 = 4 . \n\n The total value is 6 + 5 + 4 + 4 = 19 . No other sequence of at most 4 selections gives a higher total value. \n\n Example 2: \n\n Input: value = [7,2,2], decay = [3,2,1], m = 2 \n \n Output: 11 \n \n Explanation: \n \n One optimal sequence of selections is as follows: \n\n By selecting index 0, the value gained is 7. \n \n By selecting index 0 again, the value gained is 7 - 3 = 4 . \n\n The total value is 7 + 4 = 11 . \n\n Example 3: \n\n Input: value = [4,3], decay = [5,4], m = 5 \n \n Output: 7 \n \n Explanation: \n \n One optimal sequence of selections is as follows: \n\n By selecting index 0, the value gained is 4. \n \n By selecting index 1, the value gained is 3. \n\n The total value is 4 + 3 = 7 . \n\n Constraints: \n\n 1 <= value.length == decay.length <= 10 5 \n \n 1 <= value[i], decay[i] <= 10 9 ​​​​​​​ \n \n 1 <= m <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n    int maxTotalValue(vector<int>& v,vector<int>& d,int m){\n        const long long MOD=1000000007LL;int n=v.size();\n        auto count=[&](long long x){long long z=0;\n            for(int i=0;i<n;i++)if(v[i]>=x){z+=(v[i]-x)/d[i]+1;if(z>m)return z;}\n            return z;\n        };\n        long long lo=1,hi=*max_element(v.begin(),v.end())+1LL;\n        while(lo<hi){long long mid=(lo+hi)/2;\n            if(count(mid)>m)lo=mid+1;else hi=mid;\n        }\n        // Take all gains >= lo, then fill remaining selections at gain lo-1.\n        long long used=0,sum=0;\n        for(int i=0;i<n;i++)if(v[i]>=lo){\n            long long c=(v[i]-lo)/d[i]+1;used+=c;\n            long long part=(c%MOD)*(v[i]%MOD)%MOD;\n            long long pairs=(c*(c-1)/2)%MOD;\n            part=(part-pairs*(d[i]%MOD)%MOD+MOD)%MOD;\n            sum=(sum+part)%MOD;\n        }\n        sum=(sum+(m-used)%MOD*((lo-1)%MOD))%MOD;\n        return (int)sum;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181552147",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

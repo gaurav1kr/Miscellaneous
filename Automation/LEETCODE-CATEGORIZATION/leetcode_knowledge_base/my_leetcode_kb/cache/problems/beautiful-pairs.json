@@ -1,0 +1,36 @@
+{
+  "id": "2613",
+  "title": "Beautiful Pairs",
+  "slug": "beautiful-pairs",
+  "url": "https://leetcode.com/problems/beautiful-pairs/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Divide and Conquer",
+    "Geometry",
+    "Sorting",
+    "Ordered Set"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two 0-indexed integer arrays nums1 and nums2 of the same length. A pair of indices (i,j) is called beautiful if |nums1[i] - nums1[j]| + |nums2[i] - nums2[j]| is the smallest amongst all possible indices pairs where i < j . \n \n Return the beautiful pair. In the case that there are multiple beautiful pairs, return the lexicographically smallest pair. \n \n Note that \n\n |x| denotes the absolute value of x . \n \n A pair of indices (i 1 , j 1 ) is lexicographically smaller than (i 2 , j 2 ) if i 1 < i 2 or i 1 == i 2 and j 1 < j 2 . \n\n Example 1: \n \n```\nInput:\n nums1 = [1,2,3,2,4], nums2 = [2,3,1,2,3]\n\nOutput:\n [0,3]\n\nExplanation:\n Consider index 0 and index 3. The value of |nums1[i]-nums1[j]| + |nums2[i]-nums2[j]| is 1, which is the smallest value we can achieve.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [1,2,4,3,2,5], nums2 = [1,4,2,3,5,1]\n\nOutput:\n [1,4]\n\nExplanation:\n Consider index 1 and index 4. The value of |nums1[i]-nums1[j]| + |nums2[i]-nums2[j]| is 1, which is the smallest value we can achieve.\n```\n\n Constraints: \n\n 2 <= nums1.length, nums2.length <= 10 5 \n \n nums1.length == nums2.length \n \n 0 <= nums1 i   <= nums1.length \n \n 0 <= nums2 i  <= nums2.length",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\n struct P{long long x,y;int id;};\n vector<P>p,tmp;long long best=LLONG_MAX;pair<int,int>idx={INT_MAX,INT_MAX};\n void check(const P&a,const P&b){long long d=llabs(a.x-b.x)+llabs(a.y-b.y);\n  pair<int,int>q={min(a.id,b.id),max(a.id,b.id)};\n  if(d<best||(d==best&&q<idx)){best=d;idx=q;}\n }\n void solve(int l,int r){if(r-l<=3){for(int i=l;i<r;i++)for(int j=i+1;j<r;j++)check(p[i],p[j]);\n   sort(p.begin()+l,p.begin()+r,[](const P&a,const P&b){return a.y<b.y;});return;}\n  int m=(l+r)/2;long long midx=p[m].x;solve(l,m);solve(m,r);\n  merge(p.begin()+l,p.begin()+m,p.begin()+m,p.begin()+r,tmp.begin()+l,[](const P&a,const P&b){return a.y<b.y;});\n  copy(tmp.begin()+l,tmp.begin()+r,p.begin()+l);\n  vector<P>strip;strip.reserve(r-l);\n  for(int i=l;i<r;i++)if(llabs(p[i].x-midx)<=best){\n   for(int j=(int)strip.size()-1;j>=0&&j>=(int)strip.size()-32;j--){\n    if(p[i].y-strip[j].y>best)break;check(p[i],strip[j]);\n   }strip.push_back(p[i]);\n  }\n }\npublic:\n vector<int> beautifulPair(vector<int>& nums1,vector<int>& nums2){int n=nums1.size();\n  map<pair<int,int>,int>seen;\n  for(int i=0;i<n;i++){auto key=make_pair(nums1[i],nums2[i]);auto it=seen.find(key);\n   if(it!=seen.end()){pair<int,int>q={it->second,i};if(q<idx)idx=q;best=0;}else seen[key]=i;\n  }\n  if(best==0)return {idx.first,idx.second};\n  p.resize(n);tmp.resize(n);for(int i=0;i<n;i++)p[i]={(long long)nums1[i],(long long)nums2[i],i};\n  sort(p.begin(),p.end(),[](const P&a,const P&b){return a.x<b.x||(a.x==b.x&&a.y<b.y);});\n  solve(0,n);return {idx.first,idx.second};\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181216929",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

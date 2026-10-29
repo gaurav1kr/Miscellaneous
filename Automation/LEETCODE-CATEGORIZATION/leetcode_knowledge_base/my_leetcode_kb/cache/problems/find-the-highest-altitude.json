@@ -1,0 +1,30 @@
+{
+  "id": "1732",
+  "title": "Find the Highest Altitude",
+  "slug": "find-the-highest-altitude",
+  "url": "https://leetcode.com/problems/find-the-highest-altitude/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "There is a biker going on a road trip. The road trip consists of n + 1 points at various altitudes. The biker starts his trip on point 0 with altitude equal 0 . \n \n You are given an integer array gain of length n where gain[i] is the net gain in altitude between points i ​​​​​​ and i + 1 for all ( 0 <= i < n) . Return the highest altitude of a point. \n\n Example 1: \n \n```\nInput:\n gain = [-5,1,5,0,-7]\n\nOutput:\n 1\n\nExplanation:\n The altitudes are [0,-5,-4,1,1,-6]. The highest is 1.\n```\n\n Example 2: \n \n```\nInput:\n gain = [-4,-3,-2,-1,4,3,2]\n\nOutput:\n 0\n\nExplanation:\n The altitudes are [0,-4,-7,-9,-10,-6,-3,-1]. The highest is 0.\n```\n\n Constraints: \n\n n == gain.length \n \n 1 <= n <= 100 \n \n -100 <= gain[i] <= 100",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int largestAltitude(vector<int>& gain) {\n        int res = 0, alt = 0;\n        for (int g : gain) {\n            alt += g;\n            res = max(res, alt);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595392786",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

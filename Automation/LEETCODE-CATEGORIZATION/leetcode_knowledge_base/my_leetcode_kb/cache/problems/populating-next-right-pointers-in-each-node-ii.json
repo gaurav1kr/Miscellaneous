@@ -1,0 +1,35 @@
+{
+  "id": "117",
+  "title": "Populating Next Right Pointers in Each Node II",
+  "slug": "populating-next-right-pointers-in-each-node-ii",
+  "url": "https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Linked list",
+    "Queue",
+    "Tree adjacency list"
+  ],
+  "description": "Given a binary tree \n \n```\nstruct Node {\n int val;\n Node *left;\n Node *right;\n Node *next;\n}\n```\n\n Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL . \n \n Initially, all next pointers are set to NULL . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/02/15/117_sample.png] \n \n```\nInput:\n root = [1,2,3,4,5,null,7]\n\nOutput:\n [1,#,2,3,#,4,5,7,#]\n\nExplanation: \nGiven the above binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.\n```\n\n Example 2: \n \n```\nInput:\n root = []\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 6000] . \n \n -100 <= Node.val <= 100 \n\n Follow-up: \n\n You may only use constant extra space. \n \n The recursive approach is fine. You may assume implicit stack space does not count as extra space for this problem.",
+  "code": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* next;\n\n    Node() : val(0), left(NULL), right(NULL), next(NULL) {}\n\n    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}\n\n    Node(int _val, Node* _left, Node* _right, Node* _next)\n        : val(_val), left(_left), right(_right), next(_next) {}\n};\n*/\n\nclass Solution {\npublic:\n    Node* connect(Node* root) \n    {\n        if (!root)\n            return root;\n        queue<Node*> q;\n        q.push(root);\n        q.push(NULL);\n        while (q.size() > 1)\n        {\n            Node* curr = q.front();\n            q.pop();\n            if (!curr)\n            {\n                q.push(NULL);\n                continue;\n            }\n            curr->next = q.front();\n            if (curr->left)\n                q.push(curr->left);\n            if (curr->right)\n                q.push(curr->right);\n        }\n        return root;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1514568838",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

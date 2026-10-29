@@ -1,0 +1,30 @@
+{
+  "id": "1682",
+  "title": "Longest Palindromic Subsequence II",
+  "slug": "longest-palindromic-subsequence-ii",
+  "url": "https://leetcode.com/problems/longest-palindromic-subsequence-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "A subsequence of a string s is considered a good palindromic subsequence if: \n\n It is a subsequence of s . \n \n It is a palindrome (has the same value if reversed). \n \n It has an even length. \n \n No two consecutive characters are equal, except the two middle ones. \n\n For example, if s = \"abcabcabb\" , then \"abba\" is considered a good palindromic subsequence , while \"bcb\" (not even length) and \"bbbb\" (has equal consecutive characters) are not. \n \n Given a string s , return the length of the longest good palindromic subsequence in s . \n\n Example 1: \n \n```\nInput:\n s = \"bbabab\"\n\nOutput:\n 4\n\nExplanation:\n The longest good palindromic subsequence of s is \"baab\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"dcbccacdb\"\n\nOutput:\n 4\n\nExplanation:\n The longest good palindromic subsequence of s is \"dccd\".\n```\n\n Constraints: \n\n 1 <= s.length <= 250 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int longestPalindromeSubseq(string s) {\n        int n = s.size();\n        if (n < 2) return 0;\n        vector<vector<array<int, 26>>> dp(n, vector<array<int, 26>>(n));\n        for (int len = 2; len <= n; ++len) {\n            for (int i = 0; i + len <= n; ++i) {\n                int j = i + len - 1;\n                for (int c = 0; c < 26; ++c) {\n                    dp[i][j][c] = max(dp[i + 1][j][c], dp[i][j - 1][c]);\n                }\n                if (s[i] == s[j]) {\n                    int c = s[i] - 'a';\n                    int best = 0;\n                    if (len > 2) {\n                        for (int other = 0; other < 26; ++other) {\n                            if (other != c) best = max(best, dp[i + 1][j - 1][other]);\n                        }\n                    }\n                    dp[i][j][c] = max(dp[i][j][c], 2 + best);\n                }\n            }\n        }\n        int answer = 0;\n        for (int x : dp[0][n - 1]) answer = max(answer, x);\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178602099",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

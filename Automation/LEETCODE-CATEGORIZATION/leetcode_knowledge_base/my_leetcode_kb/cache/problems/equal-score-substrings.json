@@ -1,0 +1,29 @@
+{
+  "id": "3707",
+  "title": "Equal Score Substrings",
+  "slug": "equal-score-substrings",
+  "url": "https://leetcode.com/problems/equal-score-substrings/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. \n \n The score of a string is the sum of the positions of its characters in the alphabet, where 'a' = 1 , 'b' = 2 , ..., 'z' = 26 . \n \n Determine whether there exists an index i such that the string can be split into two non-empty substrings s[0..i] and s[(i + 1)..(n - 1)] that have equal scores. \n \n Return true if such a split exists, otherwise return false . \n\n Example 1: \n\n Input: s = \"adcb\" \n \n Output: true \n \n Explanation: \n \n Split at index i = 1 : \n\n Left substring = s[0..1] = \"ad\" with score = 1 + 4 = 5 \n \n Right substring = s[2..3] = \"cb\" with score = 3 + 2 = 5 \n\n Both substrings have equal scores, so the output is true . \n\n Example 2: \n\n Input: s = \"bace\" \n \n Output: false \n \n Explanation:​​​​​​ \n \n ​​​​​​​ No split produces equal scores, so the output is false . \n\n Constraints: \n\n 2 <= s.length <= 100 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    bool scoreBalance(string s) {\n        int total = 0;\n        for (char c : s) total += c - 'a' + 1;\n        int left = 0;\n        for (int i = 0; i + 1 < (int)s.size(); ++i) {\n            left += s[i] - 'a' + 1;\n            if (2 * left == total) return true;\n        }\n        return false;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179309636",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

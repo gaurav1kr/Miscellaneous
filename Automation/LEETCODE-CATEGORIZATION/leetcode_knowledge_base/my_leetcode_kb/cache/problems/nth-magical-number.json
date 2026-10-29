@@ -1,0 +1,28 @@
+{
+  "id": "878",
+  "title": "Nth Magical Number",
+  "slug": "nth-magical-number",
+  "url": "https://leetcode.com/problems/nth-magical-number/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search",
+    "Least Common Multiple",
+    "Inclusion-Exclusion Principle"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "A positive integer is magical if it is divisible by either a or b . \n \n Given the three integers n , a , and b , return the n th magical number. Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 1, a = 2, b = 3\n\nOutput:\n 2\n```\n\n Example 2: \n \n```\nInput:\n n = 4, a = 2, b = 3\n\nOutput:\n 6\n```\n\n Constraints: \n\n 1 <= n <= 10 9 \n \n 2 <= a, b <= 4 * 10 4",
+  "code": "\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int nthMagicalNumber(int N, int A, int B) {\n        const int mod = 1e9 + 7;\n        int lcm = A * B / gcd(A, B);\n        \n        long long left = min(A, B), right = (long long)N * min(A, B);\n        \n        while (left < right) {\n            long long mid = left + (right - left) / 2;\n            if (mid / A + mid / B - mid / lcm >= N) right = mid;\n            else left = mid + 1;\n        }\n        \n        return (int)(left % mod);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592351011",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

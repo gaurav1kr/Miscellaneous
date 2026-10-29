@@ -1,0 +1,32 @@
+{
+  "id": "2898",
+  "title": "Maximum Linear Stock Score",
+  "slug": "maximum-linear-stock-score",
+  "url": "https://leetcode.com/problems/maximum-linear-stock-score/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given a 1-indexed integer array prices , where prices[i] is the price of a particular stock on the i th day, your task is to select some of the elements of prices such that your selection is linear . \n \n A selection indexes , where indexes is a 1-indexed integer array of length k which is a subsequence of the array [1, 2, ..., n] , is linear if: \n\n For every 1 < j <= k , prices[indexes[j]] - prices[indexes[j - 1]] == indexes[j] - indexes[j - 1] . \n\n A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements. \n \n The score of a selection indexes , is equal to the sum of the following array: [prices[indexes[1]], prices[indexes[2]], ..., prices[indexes[k]] . \n \n Return the maximum score that a linear selection can have . \n\n Example 1: \n \n```\nInput:\n prices = [1,5,3,7,8]\n\nOutput:\n 20\n\nExplanation:\n We can select the indexes [2,4,5]. We show that our selection is linear:\nFor j = 2, we have:\nindexes[2] - indexes[1] = 4 - 2 = 2.\nprices[4] - prices[2] = 7 - 5 = 2.\nFor j = 3, we have:\nindexes[3] - indexes[2] = 5 - 4 = 1.\nprices[5] - prices[4] = 8 - 7 = 1.\nThe sum of the elements is: prices[2] + prices[4] + prices[5] = 20.\nIt can be shown that the maximum sum a linear selection can have is 20.\n```\n\n Example 2: \n \n```\nInput:\n prices = [5,6,7,8,9]\n\nOutput:\n 35\n\nExplanation:\n We can select all of the indexes [1,2,3,4,5]. Since each element has a difference of exactly 1 from its previous element, our selection is linear.\nThe sum of all the elements is 35 which is the maximum possible some out of every selection.\n```\n\n Constraints: \n\n 1 <= prices.length <= 10 5 \n \n 1 <= prices[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    long long maxScore(vector<int>& prices) {\n        unordered_map<long long,long long> sums;\n        long long ans=LLONG_MIN;\n        for(int i=0;i<(int)prices.size();++i) {\n            long long key=(long long)prices[i]-i;\n            sums[key]+=prices[i];ans=max(ans,sums[key]);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178919136",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

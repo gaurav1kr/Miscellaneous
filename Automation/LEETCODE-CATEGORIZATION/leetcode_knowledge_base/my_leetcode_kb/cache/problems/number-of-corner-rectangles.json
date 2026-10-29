@@ -1,0 +1,34 @@
+{
+  "id": "750",
+  "title": "Number Of Corner Rectangles",
+  "slug": "number-of-corner-rectangles",
+  "url": "https://leetcode.com/problems/number-of-corner-rectangles/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an m x n integer matrix grid where each entry is only 0 or 1 , return the number of corner rectangles . \n \n A corner rectangle is four distinct 1 's on the grid that forms an axis-aligned rectangle. Note that only the corners need to have the value 1 . Also, all four 1 's used must be distinct. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/12/cornerrec1-grid.jpg] \n \n```\nInput:\n grid = [[1,0,0,1,0],[0,0,1,0,1],[0,0,0,1,0],[1,0,1,0,1]]\n\nOutput:\n 1\n\nExplanation:\n There is only one corner rectangle, with corners grid[1][2], grid[1][4], grid[3][2], grid[3][4].\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/12/cornerrec2-grid.jpg] \n \n```\nInput:\n grid = [[1,1,1],[1,1,1],[1,1,1]]\n\nOutput:\n 9\n\nExplanation:\n There are four 2x2 rectangles, four 2x3 and 3x2 rectangles, and one 3x3 rectangle.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/06/12/cornerrec3-grid.jpg] \n \n```\nInput:\n grid = [[1,1,1,1]]\n\nOutput:\n 0\n\nExplanation:\n Rectangles must have four distinct corners.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 200 \n \n grid[i][j] is either 0 or 1 . \n \n The number of 1 's in the grid is in the range [1, 6000] .",
+  "code": "class Solution {\npublic:\n    int countCornerRectangles(vector<vector<int>>& grid) {\n        int rows = grid.size();\n        int cols = grid[0].size();\n        int answer = 0;\n        for (int top = 0; top < rows; ++top) {\n            for (int bottom = top + 1; bottom < rows; ++bottom) {\n                int common = 0;\n                for (int c = 0; c < cols; ++c) {\n                    if (grid[top][c] && grid[bottom][c]) {\n                        ++common;\n                    }\n                }\n                answer += common * (common - 1) / 2;\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178506091",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

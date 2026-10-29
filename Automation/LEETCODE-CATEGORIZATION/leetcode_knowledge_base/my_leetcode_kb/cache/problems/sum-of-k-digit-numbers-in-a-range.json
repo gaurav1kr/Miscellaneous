@@ -1,0 +1,28 @@
+{
+  "id": "3855",
+  "title": "Sum of K-Digit Numbers in a Range",
+  "slug": "sum-of-k-digit-numbers-in-a-range",
+  "url": "https://leetcode.com/problems/sum-of-k-digit-numbers-in-a-range/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Divide and Conquer",
+    "Combinatorics",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [],
+  "description": "You are given three integers l , r , and k . \n \n Consider all possible integers consisting of exactly k digits, where each digit is chosen independently from the integer range [l, r] (inclusive). If 0 is included in the range, leading zeros are allowed. \n \n Return an integer representing the sum of all such numbers. ​​​​​​​ Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: l = 1, r = 2, k = 2 \n \n Output: 66 \n \n Explanation: \n\n All numbers formed using k = 2 digits in the range [1, 2] are 11, 12, 21, 22 . \n \n The total sum is 11 + 12 + 21 + 22 = 66 . \n\n Example 2: \n\n Input: l = 0, r = 1, k = 3 \n \n Output: 444 \n \n Explanation: \n\n All numbers formed using k = 3 digits in the range [0, 1] are 000, 001, 010, 011, 100, 101, 110, 111 ​​​​​​​. \n \n These numbers without leading zeros are 0, 1, 10, 11, 100, 101, 110, 111 . \n \n The total sum is 444. \n\n Example 3: \n\n Input: l = 5, r = 5, k = 10 \n \n Output: 555555520 \n \n Explanation: ​​​​​​​ \n\n 5555555555 is the only valid number consisting of k = 10 digits in the range [5, 5] . \n \n The total sum is 5555555555 % (10 9 + 7) = 555555520 . \n\n Constraints: \n\n 0 <= l <= r <= 9 \n \n 1 <= k <= 10 9",
+  "code": "class Solution {\n    static const long long MOD=1000000007;\n    long long power(long long a,long long e){long long r=1;while(e){if(e&1)r=r*a%MOD;a=a*a%MOD;e>>=1;}return r;}\npublic:\n    int sumOfNumbers(int l,int r,int k){long long count=r-l+1,sum=(long long)(l+r)*count/2;\n        long long ways=power(count,k-1),rep=(power(10,k)-1+MOD)%MOD*power(9,MOD-2)%MOD;\n        return (int)(sum%MOD*ways%MOD*rep%MOD);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181158122",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

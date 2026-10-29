@@ -1,0 +1,32 @@
+{
+  "id": "3581",
+  "title": "Count Odd Letters from Number",
+  "slug": "count-odd-letters-from-number",
+  "url": "https://leetcode.com/problems/count-odd-letters-from-number/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Simulation",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given an integer n perform the following steps: \n\n Convert each digit of n into its lowercase English word (e.g., 4 → \"four\", 1 → \"one\"). \n \n Concatenate those words in the original digit order to form a string s . \n\n Return the number of distinct characters in s that appear an odd number of times. \n\n Example 1: \n\n Input: n = 41 \n \n Output: 5 \n \n Explanation: \n \n 41 → \"fourone\" \n \n Characters with odd frequencies: 'f' , 'u' , 'r' , 'n' , 'e' . Thus, the answer is 5. \n\n Example 2: \n\n Input: n = 20 \n \n Output: 5 \n \n Explanation: \n \n 20 → \"twozero\" \n \n Characters with odd frequencies: 't' , 'w' , 'z' , 'e' , 'r' . Thus, the answer is 5. \n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "class Solution {\npublic:\n    int countOddLetters(int n) {\n        static const string names[10] = {\"zero\",\"one\",\"two\",\"three\",\"four\",\"five\",\"six\",\"seven\",\"eight\",\"nine\"};\n        int mask = 0;\n        string digits = to_string(n);\n        for (char c : digits) for (char letter : names[c - '0']) mask ^= 1 << (letter - 'a');\n        int ans = 0;\n        while (mask) { mask &= mask - 1; ++ans; }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179308503",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

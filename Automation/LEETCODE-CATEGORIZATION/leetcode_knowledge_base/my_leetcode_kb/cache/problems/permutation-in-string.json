@@ -1,0 +1,33 @@
+{
+  "id": "567",
+  "title": "Permutation in String",
+  "slug": "permutation-in-string",
+  "url": "https://leetcode.com/problems/permutation-in-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Two Pointers",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings s1 and s2 , return true if s2 contains a permutation of s1 , or false otherwise. \n \n In other words, return true if one of s1 's permutations is the substring of s2 . \n\n Example 1: \n \n```\nInput:\n s1 = \"ab\", s2 = \"eidbaooo\"\n\nOutput:\n true\n\nExplanation:\n s2 contains one permutation of s1 (\"ba\").\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"ab\", s2 = \"eidboaoo\"\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= s1.length, s2.length <= 10 4 \n \n s1 and s2 consist of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    bool checkInclusion(string s1, string s2) {\n        if (s1.size() > s2.size()) return false;\n\n        vector<int> s1Count(26, 0), s2Count(26, 0);\n\n        // Count frequency of characters in s1\n        for (char c : s1) s1Count[c - 'a']++;\n\n        // Sliding window on s2\n        for (int i = 0; i < s2.size(); i++) {\n            s2Count[s2[i] - 'a']++;  // Add current character to the window\n            if (i >= s1.size())     // Remove character out of window\n                s2Count[s2[i - s1.size()] - 'a']--;\n            if (s1Count == s2Count) // Compare counts\n                return true;\n        }\n\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536155477",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "1120",
+  "title": "Maximum Average Subtree",
+  "slug": "maximum-average-subtree",
+  "url": "https://leetcode.com/problems/maximum-average-subtree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, return the maximum average value of a subtree of that tree . Answers within 10 -5 of the actual answer will be accepted. \n \n A subtree of a tree is any node of that tree plus all its descendants. \n \n The average value of a tree is the sum of its values, divided by the number of nodes. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/04/09/1308_example_1.png] \n \n```\nInput:\n root = [5,6,1]\n\nOutput:\n 6.00000\n\nExplanation:\n \nFor the node with value = 5 we have an average of (5 + 6 + 1) / 3 = 4.\nFor the node with value = 6 we have an average of 6 / 1 = 6.\nFor the node with value = 1 we have an average of 1 / 1 = 1.\nSo the answer is 6 which is the maximum.\n```\n\n Example 2: \n \n```\nInput:\n root = [0,null,1]\n\nOutput:\n 1.00000\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n 0 <= Node.val <= 10 5",
+  "code": "class Solution {\n    double answer = 0.0;\n\n    pair<long long, int> dfs(TreeNode* node) {\n        if (!node) {\n            return {0, 0};\n        }\n        auto left = dfs(node->left);\n        auto right = dfs(node->right);\n        long long sum = left.first + right.first + node->val;\n        int count = left.second + right.second + 1;\n        answer = max(answer, static_cast<double>(sum) / count);\n        return {sum, count};\n    }\n\npublic:\n    double maximumAverageSubtree(TreeNode* root) {\n        answer = 0.0;\n        dfs(root);\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178532097",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

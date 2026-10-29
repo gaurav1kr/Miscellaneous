@@ -1,0 +1,36 @@
+{
+  "id": "432",
+  "title": "All O`one Data Structure",
+  "slug": "all-oone-data-structure",
+  "url": "https://leetcode.com/problems/all-oone-data-structure/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Linked List",
+    "Design",
+    "Doubly-Linked List"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Linked list",
+    "Ordered map",
+    "Ordered set"
+  ],
+  "description": "Design a data structure to store the strings' count with the ability to return the strings with minimum and maximum counts. \n \n Implement the AllOne class: \n\n AllOne() Initializes the object of the data structure. \n \n inc(String key) Increments the count of the string key by 1 . If key does not exist in the data structure, insert it with count 1 . \n \n dec(String key) Decrements the count of the string key by 1 . If the count of key is 0 after the decrement, remove it from the data structure. It is guaranteed that key exists in the data structure before the decrement. \n \n getMaxKey() Returns one of the keys with the maximal count. If no element exists, return an empty string \"\" . \n \n getMinKey() Returns one of the keys with the minimum count. If no element exists, return an empty string \"\" . \n\n Note that each function must run in O(1) average time complexity. \n\n Example 1: \n \n```\nInput\n\n[\"AllOne\", \"inc\", \"inc\", \"getMaxKey\", \"getMinKey\", \"inc\", \"getMaxKey\", \"getMinKey\"]\n[[], [\"hello\"], [\"hello\"], [], [], [\"leet\"], [], []]\n\nOutput\n\n[null, null, null, \"hello\", \"hello\", null, \"hello\", \"leet\"]\n\nExplanation\n\nAllOne allOne = new AllOne();\nallOne.inc(\"hello\");\nallOne.inc(\"hello\");\nallOne.getMaxKey(); // return \"hello\"\nallOne.getMinKey(); // return \"hello\"\nallOne.inc(\"leet\");\nallOne.getMaxKey(); // return \"hello\"\nallOne.getMinKey(); // return \"leet\"\n```\n\n Constraints: \n\n 1 <= key.length <= 10 \n \n key consists of lowercase English letters. \n \n It is guaranteed that for each call to dec , key is existing in the data structure. \n \n At most 5 * 10 4  calls will be made to inc , dec , getMaxKey , and getMinKey .",
+  "code": "#include <unordered_map>\n#include <unordered_set>\n#include <list>\n#include <string>\n\nusing namespace std;\n\nclass AllOne {\n    struct Bucket {\n        int count;\n        unordered_set<string> keys;\n    };\n\n    list<Bucket> buckets;\n    unordered_map<string, list<Bucket>::iterator> keyToBucket;\n\npublic:\n    AllOne() {}\n\n    void inc(string key) {\n        if (keyToBucket.count(key)) {\n            auto it = keyToBucket[key];\n            auto next = it;\n            ++next;\n\n            if (next == buckets.end() || next->count > it->count + 1) {\n                next = buckets.insert(next, {it->count + 1, {}});\n            }\n            next->keys.insert(key);\n            keyToBucket[key] = next;\n\n            it->keys.erase(key);\n            if (it->keys.empty()) buckets.erase(it);\n        } else {\n            if (buckets.empty() || buckets.front().count > 1) {\n                buckets.push_front({1, {key}});\n            } else {\n                buckets.front().keys.insert(key);\n            }\n            keyToBucket[key] = buckets.begin();\n        }\n    }\n\n    void dec(string key) {\n        auto it = keyToBucket[key];\n        if (it->count == 1) {\n            keyToBucket.erase(key);\n            it->keys.erase(key);\n            if (it->keys.empty()) buckets.erase(it);\n        } else {\n            auto prev = it;\n            --prev;\n            if (it == buckets.begin() || prev->count < it->count - 1) {\n                prev = buckets.insert(it, {it->count - 1, {}});\n            }\n            prev->keys.insert(key);\n            keyToBucket[key] = prev;\n\n            it->keys.erase(key);\n            if (it->keys.empty()) buckets.erase(it);\n        }\n    }\n\n    string getMaxKey() {\n        return buckets.empty() ? \"\" : *buckets.back().keys.begin();\n    }\n\n    string getMinKey() {\n        return buckets.empty() ? \"\" : *buckets.front().keys.begin();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593696310",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

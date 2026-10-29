@@ -1,0 +1,31 @@
+{
+  "id": "1794",
+  "title": "Count Pairs of Equal Substrings With Minimum Difference",
+  "slug": "count-pairs-of-equal-substrings-with-minimum-difference",
+  "url": "https://leetcode.com/problems/count-pairs-of-equal-substrings-with-minimum-difference/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given two strings firstString and secondString that are 0-indexed and consist only of lowercase English letters. Count the number of index quadruples (i,j,a,b) that satisfy the following conditions: \n\n 0 <= i <= j < firstString.length \n \n 0 <= a <= b < secondString.length \n \n The substring of firstString that starts at the i th character and ends at the j th character (inclusive) is equal to the substring of secondString that starts at the a th character and ends at the b th character (inclusive). \n \n j - a is the minimum possible value among all quadruples that satisfy the previous conditions. \n\n Return the number of such quadruples . \n\n Example 1: \n \n```\nInput:\n firstString = \"abcd\", secondString = \"bccda\"\n\nOutput:\n 1\n\nExplanation:\n The quadruple (0,0,4,4) is the only one that satisfies all the conditions and minimizes j - a.\n```\n\n Example 2: \n \n```\nInput:\n firstString = \"ab\", secondString = \"cd\"\n\nOutput:\n 0\n\nExplanation:\n There are no quadruples satisfying all the conditions.\n```\n\n Constraints: \n\n 1 <= firstString.length, secondString.length <= 2 * 10 5 \n \n Both strings consist only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int countQuadruples(string firstString, string secondString) {\n        int best=INT_MAX, ways=0;\n        int first[26], last[26];\n        fill(first,first+26,-1);\n        fill(last,last+26,-1);\n        for (int i=0;i<(int)firstString.size();++i)\n            if (first[firstString[i]-'a']==-1) first[firstString[i]-'a']=i;\n        for (int i=0;i<(int)secondString.size();++i)\n            last[secondString[i]-'a']=i;\n        for (int c=0;c<26;++c) {\n            if (first[c]==-1 || last[c]==-1) continue;\n            int diff=first[c]-last[c];\n            if (diff<best) {best=diff; ways=1;}\n            else if (diff==best) ++ways;\n        }\n        return ways;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179690095",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

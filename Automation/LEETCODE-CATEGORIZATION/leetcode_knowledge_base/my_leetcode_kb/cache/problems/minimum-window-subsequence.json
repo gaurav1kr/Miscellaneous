@@ -1,0 +1,32 @@
+{
+  "id": "727",
+  "title": "Minimum Window Subsequence",
+  "slug": "minimum-window-subsequence",
+  "url": "https://leetcode.com/problems/minimum-window-subsequence/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given strings s1 and s2 , return the minimum contiguous substring part of s1 , so that s2 is a subsequence of the part . \n \n If there is no such window in s1 that covers all characters in s2 , return the empty string \"\" . If there are multiple such minimum-length windows, return the one with the left-most starting index . \n\n Example 1: \n \n```\nInput:\n s1 = \"abcdebdde\", s2 = \"bde\"\n\nOutput:\n \"bcde\"\n\nExplanation:\n \n\"bcde\" is the answer because it occurs before \"bdde\" which has the same length.\n\"deb\" is not a smaller window because the elements of s2 in the window must occur in order.\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"jmeqksfrsdcmsiwvaovztaqenprpvnbstl\", s2 = \"u\"\n\nOutput:\n \"\"\n```\n\n Constraints: \n\n 1 <= s1.length <= 2 * 10 4 \n \n 1 <= s2.length <= 100 \n \n s1 and s2 consist of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string minWindow(string s, string t) {\n        int m = t.size();\n        vector<int> start(m, -1);\n        int bestStart = -1;\n        int bestLength = INT_MAX;\n        for (int i = 0; i < static_cast<int>(s.size()); ++i) {\n            for (int j = m - 1; j >= 0; --j) {\n                if (s[i] != t[j]) {\n                    continue;\n                }\n                if (j == 0) {\n                    start[j] = i;\n                } else if (start[j - 1] != -1) {\n                    start[j] = start[j - 1];\n                }\n            }\n            if (m > 0 && start[m - 1] != -1) {\n                int len = i - start[m - 1] + 1;\n                if (len < bestLength) {\n                    bestLength = len;\n                    bestStart = start[m - 1];\n                }\n            }\n        }\n        return bestStart == -1 ? \"\" : s.substr(bestStart, bestLength);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178502994",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

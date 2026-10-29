@@ -1,0 +1,39 @@
+{
+  "id": "269",
+  "title": "Alien Dictionary",
+  "slug": "alien-dictionary",
+  "url": "https://leetcode.com/problems/alien-dictionary/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort",
+    "Directed Acyclic Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Ordered set",
+    "Queue",
+    "String",
+    "Vector"
+  ],
+  "description": "There is a new alien language that uses the English alphabet. However, the order of the letters is unknown to you. \n \n You are given a list of strings words from the alien language's dictionary. Now it is claimed that the strings in words are sorted lexicographically by the rules of this new language. \n \n If this claim is incorrect, and the given arrangement of string in  words  cannot correspond to any order of letters, return  \"\". \n \n Otherwise, return a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules . If there are multiple solutions, return any of them . \n\n Example 1: \n \n```\nInput:\n words = [\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]\n\nOutput:\n \"wertf\"\n```\n\n Example 2: \n \n```\nInput:\n words = [\"z\",\"x\"]\n\nOutput:\n \"zx\"\n```\n\n Example 3: \n \n```\nInput:\n words = [\"z\",\"x\",\"z\"]\n\nOutput:\n \"\"\n\nExplanation:\n The order is invalid, so return \n\"\"\n.\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length <= 100 \n \n words[i] consists of only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string alienOrder(vector<string>& words) {\n        vector<set<int>> g(26);\n        vector<int> indeg(26, 0), present(26, 0);\n        for (const string& w : words)\n            for (char c : w) present[c - 'a'] = 1;\n        for (int i = 1; i < (int)words.size(); ++i) {\n            const string& a = words[i - 1];\n            const string& b = words[i];\n            int j = 0;\n            while (j < (int)min(a.size(), b.size()) && a[j] == b[j]) ++j;\n            if (j == (int)b.size() && a.size() > b.size()) return \"\";\n            if (j < (int)min(a.size(), b.size())) {\n                int u = a[j] - 'a', v = b[j] - 'a';\n                if (g[u].insert(v).second) ++indeg[v];\n            }\n        }\n        queue<int> q;\n        int count = accumulate(present.begin(), present.end(), 0);\n        for (int i = 0; i < 26; ++i)\n            if (present[i] && indeg[i] == 0) q.push(i);\n        string result;\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            result.push_back('a' + u);\n            for (int v : g[u]) if (--indeg[v] == 0) q.push(v);\n        }\n        return (int)result.size() == count ? result : \"\";\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179741573",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "3907",
+  "title": "Count Smaller Elements With Opposite Parity",
+  "slug": "count-smaller-elements-with-opposite-parity",
+  "url": "https://leetcode.com/problems/count-smaller-elements-with-opposite-parity/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n . \n \n The score of an index i is defined as the number of indices j such that: \n\n i < j < n \n \n nums[j] < nums[i] \n \n nums[i] and nums[j] have different parity (one is even and the other is odd). \n\n Return an integer array answer of length n , where answer[i] is the score of index i . \n\n Example 1: \n\n Input: nums = [5,2,4,1,3] \n \n Output: [2,1,2,0,0] \n \n Explanation: \n\n For i = 0 , the elements nums[1] = 2 and nums[2] = 4 are smaller and have different parity. \n \n For i = 1 , the element nums[3] = 1 is smaller and has different parity. \n \n For i = 2 , the elements nums[3] = 1 and nums[4] = 3 are smaller and have different parity. \n \n No valid elements exist for the remaining indices. \n\n Thus, the answer = [2, 1, 2, 0, 0] . \n\n Example 2: \n\n Input: nums = [4,4,1] \n \n Output: [1,1,0] \n \n Explanation: ​​​​​​​ \n \n For i = 0 and i = 1 , the element nums[2] = 1 is smaller and has different parity. Thus, the answer = [1, 1, 0] . \n\n Example 3: \n\n Input: nums = [7] \n \n Output: [0] \n \n Explanation: \n \n No elements exist to the right of index 0, so its score is 0. Thus, the answer = [0] . \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 ​​​​​​​",
+  "code": "class Solution {\n    struct BIT {\n        vector<int> tree;\n        BIT(int n) : tree(n+1, 0) {}\n        void add(int i) { for (int n=tree.size(); i<n; i+=i&-i) ++tree[i]; }\n        int sum(int i) { int r=0; for (; i>0; i-=i&-i) r+=tree[i]; return r; }\n    };\npublic:\n    vector<int> countSmallerOppositeParity(vector<int>& nums) {\n        vector<int> sorted = nums;\n        sort(sorted.begin(), sorted.end());\n        sorted.erase(unique(sorted.begin(), sorted.end()), sorted.end());\n        BIT even(sorted.size()), odd(sorted.size());\n        vector<int> ans(nums.size());\n        for (int i=(int)nums.size()-1; i>=0; --i) {\n            int rank = lower_bound(sorted.begin(), sorted.end(), nums[i])-sorted.begin()+1;\n            ans[i] = (nums[i]&1) ? even.sum(rank-1) : odd.sum(rank-1);\n            if (nums[i]&1) odd.add(rank); else even.add(rank);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181081751",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

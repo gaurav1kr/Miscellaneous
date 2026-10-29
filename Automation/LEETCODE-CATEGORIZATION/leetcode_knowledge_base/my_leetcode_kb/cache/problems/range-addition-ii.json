@@ -1,0 +1,29 @@
+{
+  "id": "598",
+  "title": "Range Addition II",
+  "slug": "range-addition-ii",
+  "url": "https://leetcode.com/problems/range-addition-ii/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an m x n matrix M initialized with all 0 's and an array of operations ops , where ops[i] = [a i , b i ] means M[x][y] should be incremented by one for all 0 <= x < a i and 0 <= y < b i . \n \n Count and return the number of maximum integers in the matrix after performing all the operations . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/02/ex1.jpg] \n \n```\nInput:\n m = 3, n = 3, ops = [[2,2],[3,3]]\n\nOutput:\n 4\n\nExplanation:\n The maximum integer in M is 2, and there are four of it in M. So return 4.\n```\n\n Example 2: \n \n```\nInput:\n m = 3, n = 3, ops = [[2,2],[3,3],[3,3],[3,3],[2,2],[3,3],[3,3],[3,3],[2,2],[3,3],[3,3],[3,3]]\n\nOutput:\n 4\n```\n\n Example 3: \n \n```\nInput:\n m = 3, n = 3, ops = []\n\nOutput:\n 9\n```\n\n Constraints: \n\n 1 <= m, n <= 4 * 10 4 \n \n 0 <= ops.length <= 10 4 \n \n ops[i].length == 2 \n \n 1 <= a i <= m \n \n 1 <= b i <= n",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxCount(int m, int n, vector<vector<int>>& ops) {\n        for (auto& op : ops) {\n            m = min(m, op[0]);\n            n = min(n, op[1]);\n        }\n        return m * n;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595402004",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

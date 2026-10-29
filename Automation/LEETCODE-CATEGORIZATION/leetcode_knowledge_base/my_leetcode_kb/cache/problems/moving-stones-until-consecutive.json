@@ -1,0 +1,27 @@
+{
+  "id": "1033",
+  "title": "Moving Stones Until Consecutive",
+  "slug": "moving-stones-until-consecutive",
+  "url": "https://leetcode.com/problems/moving-stones-until-consecutive/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Brainteaser"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "There are three stones in different positions on the X-axis. You are given three integers a , b , and c , the positions of the stones. \n \n In one move, you pick up a stone at an endpoint (i.e., either the lowest or highest position stone), and move it to an unoccupied position between those endpoints. Formally, let's say the stones are currently at positions x , y , and z with x < y < z . You pick up the stone at either position x or position z , and move that stone to an integer position k , with x < k < z and k != y . \n \n The game ends when you cannot make any more moves (i.e., the stones are in three consecutive positions). \n \n Return an integer array answer of length 2 where : \n\n answer[0] is the minimum number of moves you can play, and \n \n answer[1] is the maximum number of moves you can play . \n\n Example 1: \n \n```\nInput:\n a = 1, b = 2, c = 5\n\nOutput:\n [1,2]\n\nExplanation:\n Move the stone from 5 to 3, or move the stone from 5 to 4 to 3.\n```\n\n Example 2: \n \n```\nInput:\n a = 4, b = 3, c = 2\n\nOutput:\n [0,0]\n\nExplanation:\n We cannot make any moves.\n```\n\n Example 3: \n \n```\nInput:\n a = 3, b = 5, c = 1\n\nOutput:\n [1,2]\n\nExplanation:\n Move the stone from 1 to 4; or move the stone from 1 to 2 to 4.\n```\n\n Constraints: \n\n 1 <= a, b, c <= 100 \n \n a , b , and c have different values.",
+  "code": "class Solution {\npublic:\n    vector<int> numMovesStones(int a, int b, int c) {\n        vector<int> x = {a, b, c};\n        sort(x.begin(), x.end());\n        int left = x[1] - x[0], right = x[2] - x[1];\n        int minimum = (left == 1 && right == 1) ? 0 :\n                      (left <= 2 || right <= 2 ? 1 : 2);\n        return {minimum, x[2] - x[0] - 2};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175745385",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

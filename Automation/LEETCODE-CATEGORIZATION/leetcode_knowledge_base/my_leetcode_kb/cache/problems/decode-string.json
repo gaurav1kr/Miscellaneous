@@ -1,0 +1,30 @@
+{
+  "id": "394",
+  "title": "Decode String",
+  "slug": "decode-string",
+  "url": "https://leetcode.com/problems/decode-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given an encoded string, return its decoded string. \n \n The encoding rule is: k[encoded_string] , where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer. \n \n You may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k . For example, there will not be input like 3a or 2[4] . \n \n The test cases are generated so that the length of the output will never exceed 10 5 . \n\n Example 1: \n \n```\nInput:\n s = \"3[a]2[bc]\"\n\nOutput:\n \"aaabcbc\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"3[a2[c]]\"\n\nOutput:\n \"accaccacc\"\n```\n\n Example 3: \n \n```\nInput:\n s = \"2[abc]3[cd]ef\"\n\nOutput:\n \"abcabccdcdcdef\"\n```\n\n Constraints: \n\n 1 <= s.length <= 30 \n \n s consists of lowercase English letters, digits, and square brackets '[]' . \n \n s is guaranteed to be a valid input. \n \n All the integers in s are in the range [1, 300] .",
+  "code": "class Solution {\npublic:\n   string decodeString(const string &s) {\n    stack<string> strStack;\n    stack<int> numStack;\n    string currentStr = \"\";\n    int currentNum = 0;\n\n    for (char c : s) {\n        if (isdigit(c)) {\n            // Build the number\n            currentNum = currentNum * 10 + (c - '0');\n        } else if (c == '[') {\n            // Push the current string and number onto their respective stacks\n            strStack.push(currentStr);\n            numStack.push(currentNum);\n\n            // Reset current string and number\n            currentStr = \"\";\n            currentNum = 0;\n        } else if (c == ']') {\n            // Pop from the stacks\n            string tempStr = currentStr;\n            int repeatCount = numStack.top();\n            numStack.pop();\n            currentStr = strStack.top();\n            strStack.pop();\n\n            // Repeat the string and append it\n            while (repeatCount-- > 0) {\n                currentStr += tempStr;\n            }\n        } else {\n            // Append current character to the current string\n            currentStr += c;\n        }\n    }\n\n    return currentStr;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542119919",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

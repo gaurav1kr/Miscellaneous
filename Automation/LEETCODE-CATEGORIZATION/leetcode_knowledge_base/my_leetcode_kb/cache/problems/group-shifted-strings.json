@@ -1,0 +1,34 @@
+{
+  "id": "249",
+  "title": "Group Shifted Strings",
+  "slug": "group-shifted-strings",
+  "url": "https://leetcode.com/problems/group-shifted-strings/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Perform the following shift operations on a string: \n\n Right shift : Replace every letter with the successive letter of the English alphabet, where 'z' is replaced by 'a'. For example, \"abc\" can be right-shifted to \"bcd\" or \"xyz\" can be right-shifted to \"yza\" . \n \n Left shift : Replace every letter with the preceding letter of the English alphabet, where 'a' is replaced by 'z'. For example, \"bcd\" can be left-shifted to \"abc\" or \"yza\" can be left-shifted to \"xyz\" . \n\n We can keep shifting the string in both directions to form an endless shifting sequence . \n\n For example, shift \"abc\" to form the sequence: ... <-> \"abc\" <-> \"bcd\" <-> ... <-> \"xyz\" <-> \"yza\" <-> ... . <-> \"zab\" <-> \"abc\" <-> ... \n\n You are given an array of strings strings , group together all strings[i] that belong to the same shifting sequence. You may return the answer in any order . \n\n Example 1: \n\n Input: strings = [\"abc\",\"bcd\",\"acef\",\"xyz\",\"az\",\"ba\",\"a\",\"z\"] \n \n Output: [[\"acef\"],[\"a\",\"z\"],[\"abc\",\"bcd\",\"xyz\"],[\"az\",\"ba\"]] \n\n Example 2: \n\n Input: strings = [\"a\"] \n \n Output: [[\"a\"]] \n\n Constraints: \n\n 1 <= strings.length <= 200 \n \n 1 <= strings[i].length <= 50 \n \n strings[i] consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    vector<vector<string>> groupStrings(vector<string>& strings) {\n        map<string, vector<string>> groups;\n        for (const string& s : strings) {\n            string key;\n            for (char c : s) {\n                key.push_back(char('a' + (c - s[0] + 26) % 26));\n            }\n            groups[key].push_back(s);\n        }\n        vector<vector<string>> ans;\n        for (auto& group : groups) ans.push_back(group.second);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179681532",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

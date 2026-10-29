@@ -1,0 +1,35 @@
+{
+  "id": "3984",
+  "title": "Divisible Game",
+  "slug": "divisible-game",
+  "url": "https://leetcode.com/problems/divisible-game/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Enumeration",
+    "Number Theory"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n . \n \n Alice and Bob are playing a game. Alice chooses: \n\n An integer k such that k > 1 . \n \n Two integers l and r such that 0 <= l <= r < n . \n\n Initially, both Alice's and Bob's scores are 0. \n \n For each index i in the range [l, r] (inclusive): \n\n If nums[i] is divisible by k , Alice's score increases by nums[i] . \n \n Otherwise, Bob's score increases by nums[i] . \n\n The score difference is Alice's score minus Bob's score. \n \n Alice wants to maximize the score difference. If there are multiple values of k that achieve the maximum score difference, she chooses the smallest such k . \n \n Return the product of the maximum score difference and the chosen value of k . Since the result can be large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: nums = [1,4,6,8] \n \n Output: 36 \n \n Explanation: \n\n Alice can choose k = 2 , l = 1 , and r = 3 . \n \n All values in nums[1..3] are divisible by 2, so Alice's score is 4 + 6 + 8 = 18 , while Bob's score is 0. \n \n The score difference is 18, which is the maximum possible. Among all values of k that achieve this score difference, the smallest is 2. \n \n Therefore, the answer is 18 * 2 = 36 . \n\n Example 2: \n\n Input: nums = [2,1,2] \n \n Output: 6 \n \n Explanation: \n\n Alice can choose k = 2 , l = 0 , and r = 2 . \n \n The values nums[0] and nums[2] are divisible by 2, so Alice's score is 2 + 2 = 4 . The value nums[1] is not divisible by 2, so Bob's score is 1. \n \n The score difference is 4 - 1 = 3 , which is the maximum possible. Among all values of k that achieve this score difference, the smallest is 2. \n \n Therefore, the answer is 3 * 2 = 6 . \n\n Example 3: \n\n Input: nums = [1] \n \n Output: 1000000005 \n \n Explanation: \n\n Alice must choose some k > 1 . The smallest possible choice is k = 2 . \n \n Since nums[0] is not divisible by 2, Alice's score is 0, while Bob's score is 1. \n \n The score difference is -1, which is the maximum possible. \n \n Therefore, the answer is -1 * 2 = -2 . Modulo 10 9 + 7 , this equals 1000000005. \n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 10 6",
+  "code": "class Solution {\npublic:\n    int divisibleGame(vector<int>& nums) {\n        const long long MOD = 1000000007;\n        set<int> primes;\n\n        // Collect unique prime factors\n        for (int x : nums) {\n            int n = x;\n\n            for (int p = 2; 1LL * p * p <= n; ++p) {\n                if (n % p == 0) {\n                    primes.insert(p);\n\n                    while (n % p == 0)\n                        n /= p;\n                }\n            }\n\n            if (n > 1)\n                primes.insert(n);\n        }\n\n        // Important for nums containing only 1\n        if (primes.empty())\n            primes.insert(2);\n\n        long long bestScore = LLONG_MIN;\n        int bestK = 2;\n\n        for (int k : primes) {\n            long long curr = 0;\n            long long best = LLONG_MIN;\n\n            // Kadane\n            for (int x : nums) {\n                long long val = (x % k == 0) ? x : -x;\n\n                curr += val;\n                best = max(best, curr);\n\n                if (curr < 0)\n                    curr = 0;\n            }\n\n            // set is ascending, so first k for best score\n            // automatically gives smallest k\n            if (best > bestScore) {\n                bestScore = best;\n                bestK = k;\n            }\n        }\n\n        return ((bestScore % MOD + MOD) % MOD * bestK) % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163804968",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "221",
+  "title": "Maximal Square",
+  "slug": "maximal-square",
+  "url": "https://leetcode.com/problems/maximal-square/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an m x n binary matrix filled with 0 's and 1 's, find the largest square containing only 1 's and return its area . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/26/max1grid.jpg] \n \n```\nInput:\n matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]\n\nOutput:\n 4\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/11/26/max2grid.jpg] \n \n```\nInput:\n matrix = [[\"0\",\"1\"],[\"1\",\"0\"]]\n\nOutput:\n 1\n```\n\n Example 3: \n \n```\nInput:\n matrix = [[\"0\"]]\n\nOutput:\n 0\n```\n\n Constraints: \n\n m == matrix.length \n \n n == matrix[i].length \n \n 1 <= m, n <= 300 \n \n matrix[i][j] is '0' or '1' .",
+  "code": "class Solution {\npublic:\n    int maximalSquare(vector<vector<char>>& matrix) {\n        int m = matrix.size(), n = matrix[0].size(), maxlen = 0;\n        vector<vector<int>> dp(m+1, vector<int>(n+1, 0));\n        for (int i = 1; i <= m; i++) {\n            for (int j = 1; j <= n; j++) {\n                if (matrix[i-1][j-1] == '1') {\n                    dp[i][j] = min({dp[i-1][j], dp[i][j-1], dp[i-1][j-1]}) + 1;\n                    maxlen = max(maxlen, dp[i][j]);\n                }\n            }\n        }\n        return maxlen * maxlen;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1615749531",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

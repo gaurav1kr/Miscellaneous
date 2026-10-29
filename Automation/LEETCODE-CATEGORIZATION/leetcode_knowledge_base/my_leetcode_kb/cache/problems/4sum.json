@@ -1,0 +1,32 @@
+{
+  "id": "18",
+  "title": "4Sum",
+  "slug": "4sum",
+  "url": "https://leetcode.com/problems/4sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that: \n\n 0 <= a, b, c, d < n \n \n a , b , c , and d are distinct . \n \n nums[a] + nums[b] + nums[c] + nums[d] == target \n\n You may return the answer in any order . \n\n Example 1: \n \n```\nInput:\n nums = [1,0,-1,0,-2,2], target = 0\n\nOutput:\n [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,2,2,2,2], target = 8\n\nOutput:\n [[2,2,2,2]]\n```\n\n Constraints: \n\n 1 <= nums.length <= 200 \n \n -10 9 <= nums[i] <= 10 9 \n \n -10 9 <= target <= 10 9",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> fourSum(vector<int>& nums, int target) {\n    vector<vector<int>> result;\n    int n = nums.size();\n\n    if (n < 4) return result; // If fewer than 4 elements, no solution is possible.\n\n    sort(nums.begin(), nums.end()); // Sort the array for easier two-pointer traversal.\n\n    for (int i = 0; i < n - 3; ++i) {\n        // Avoid duplicates for the first number\n        if (i > 0 && nums[i] == nums[i - 1]) continue;\n\n        for (int j = i + 1; j < n - 2; ++j) {\n            // Avoid duplicates for the second number\n            if (j > i + 1 && nums[j] == nums[j - 1]) continue;\n\n            long long remainingTarget = (long long)target - nums[i] - nums[j];\n            int left = j + 1, right = n - 1;\n\n            while (left < right) {\n                int twoSum = nums[left] + nums[right];\n                if (twoSum == remainingTarget) {\n                    result.push_back({nums[i], nums[j], nums[left], nums[right]});\n\n                    // Move left and right pointers while avoiding duplicates\n                    while (left < right && nums[left] == nums[left + 1]) ++left;\n                    while (left < right && nums[right] == nums[right - 1]) --right;\n\n                    ++left;\n                    --right;\n                } else if (twoSum < remainingTarget) {\n                    ++left; // Increase the sum\n                } else {\n                    --right; // Decrease the sum\n                }\n            }\n        }\n    }\n\n    return result;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1540707787",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

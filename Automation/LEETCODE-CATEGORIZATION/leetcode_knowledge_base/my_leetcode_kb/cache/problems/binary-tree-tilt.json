@@ -1,0 +1,31 @@
+{
+  "id": "563",
+  "title": "Binary Tree Tilt",
+  "slug": "binary-tree-tilt",
+  "url": "https://leetcode.com/problems/binary-tree-tilt/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, return the sum of every tree node's tilt . \n \n The tilt of a tree node is the absolute difference between the sum of all left subtree node values and all right subtree node values . If a node does not have a left child, then the sum of the left subtree node values is treated as 0 . The rule is similar if the node does not have a right child. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/20/tilt1.jpg] \n \n```\nInput:\n root = [1,2,3]\n\nOutput:\n 1\n\nExplanation:\n \nTilt of node 2 : |0-0| = 0 (no children)\nTilt of node 3 : |0-0| = 0 (no children)\nTilt of node 1 : |2-3| = 1 (left subtree is just left child, so sum is 2; right subtree is just right child, so sum is 3)\nSum of every tilt : 0 + 0 + 1 = 1\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/10/20/tilt2.jpg] \n \n```\nInput:\n root = [4,2,9,3,5,null,7]\n\nOutput:\n 15\n\nExplanation:\n \nTilt of node 3 : |0-0| = 0 (no children)\nTilt of node 5 : |0-0| = 0 (no children)\nTilt of node 7 : |0-0| = 0 (no children)\nTilt of node 2 : |3-5| = 2 (left subtree is just left child, so sum is 3; right subtree is just right child, so sum is 5)\nTilt of node 9 : |0-7| = 7 (no left child, so sum is 0; right subtree is just right child, so sum is 7)\nTilt of node 4 : |(3+5+2)-(9+7)| = |10-16| = 6 (left subtree values are 3, 5, and 2, which sums to 10; right subtree values are 9 and 7, which sums to 16)\nSum of every tilt : 0 + 0 + 0 + 2 + 7 + 6 = 15\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/10/20/tilt3.jpg] \n \n```\nInput:\n root = [21,7,14,1,1,2,2,3,3]\n\nOutput:\n 9\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 4 ] . \n \n -1000 <= Node.val <= 1000",
+  "code": "\nclass Solution {\npublic:\n    int findTilt(TreeNode* root) {\n        int tilt = 0;\n        dfs(root, tilt);\n        return tilt;\n    }\n\n    int dfs(TreeNode* node, int& tilt) {\n        if (!node) return 0;\n        int left = dfs(node->left, tilt);\n        int right = dfs(node->right, tilt);\n        tilt += abs(left - right);\n        return node->val + left + right;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590141627",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

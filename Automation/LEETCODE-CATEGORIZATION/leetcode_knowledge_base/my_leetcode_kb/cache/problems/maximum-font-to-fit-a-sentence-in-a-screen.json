@@ -1,0 +1,33 @@
+{
+  "id": "1618",
+  "title": "Maximum Font to Fit a Sentence in a Screen",
+  "slug": "maximum-font-to-fit-a-sentence-in-a-screen",
+  "url": "https://leetcode.com/problems/maximum-font-to-fit-a-sentence-in-a-screen/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String",
+    "Binary Search",
+    "Interactive"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string text . We want to display text on a screen of width w and height h . You can choose any font size from array fonts , which contains the available font sizes in ascending order . \n \n You can use the FontInfo interface to get the width and height of any character at any available font size. \n \n The FontInfo interface is defined as such: \n \n```\ninterface FontInfo {\r\n // Returns the width of character ch on the screen using font size fontSize.\r\n // O(1) per call\r\n public int getWidth(int fontSize, char ch);\r\n\r\n // Returns the height of any character on the screen using font size fontSize.\r\n // O(1) per call\r\n public int getHeight(int fontSize);\r\n}\n```\n\n The calculated width of text for some fontSize is the sum of every getWidth(fontSize, text[i]) call for each 0 <= i < text.length ( 0-indexed ). The calculated height of text for some fontSize is getHeight(fontSize) . Note that text is displayed on a single line . \n \n It is guaranteed that FontInfo will return the same value if you call getHeight or getWidth with the same parameters. \n \n It is also guaranteed that for any font size fontSize and any character ch : \n\n getHeight(fontSize) <= getHeight(fontSize+1) \n \n getWidth(fontSize, ch) <= getWidth(fontSize+1, ch) \n\n Return the maximum font size you can use to display text on the screen . If text cannot fit on the display with any font size, return -1 . \n\n Example 1: \n \n```\nInput:\n text = \"helloworld\", w = 80, h = 20, fonts = [6,8,10,12,14,16,18,24,36]\r\n\nOutput:\n 6\n```\n\n Example 2: \n \n```\nInput:\n text = \"leetcode\", w = 1000, h = 50, fonts = [1,2,4]\r\n\nOutput:\n 4\n```\n\n Example 3: \n \n```\nInput:\n text = \"easyquestion\", w = 100, h = 100, fonts = [10,15,20,25]\r\n\nOutput:\n -1\n```\n\n Constraints: \n\n 1 <= text.length <= 50000 \n \n text contains only lowercase English letters. \n \n 1 <= w <= 10 7 \n \n 1 <= h <= 10 4 \n \n 1 <= fonts.length <= 10 5 \n \n 1 <= fonts[i] <= 10 5 \n \n fonts is sorted in ascending order and does not contain duplicates.",
+  "code": "class Solution {\npublic:\n    int maxFont(string text, int w, int h, vector<int>& fonts, FontInfo fontInfo) {\n        int low = 0, high = static_cast<int>(fonts.size()) - 1, answer = -1;\n        while (low <= high) {\n            int mid = low + (high - low) / 2;\n            int size = fonts[mid];\n            long long width = 0;\n            bool fits = fontInfo.getHeight(size) <= h;\n            if (fits) {\n                for (char c : text) {\n                    width += fontInfo.getWidth(size, c);\n                    if (width > w) { fits = false; break; }\n                }\n            }\n            if (fits) { answer = size; low = mid + 1; }\n            else high = mid - 1;\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178595277",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

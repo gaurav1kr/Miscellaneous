@@ -1,0 +1,32 @@
+{
+  "id": "994",
+  "title": "Rotting Oranges",
+  "slug": "rotting-oranges",
+  "url": "https://leetcode.com/problems/rotting-oranges/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an m x n grid where each cell can have one of three values: \n\n 0 representing an empty cell, \n \n 1 representing a fresh orange, or \n \n 2 representing a rotten orange. \n\n Every minute, any fresh orange that is 4-directionally adjacent to a rotten orange becomes rotten. \n \n Return the minimum number of minutes that must elapse until no cell has a fresh orange . If this is impossible, return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/02/16/oranges.png] \n \n```\nInput:\n grid = [[2,1,1],[1,1,0],[0,1,1]]\n\nOutput:\n 4\n```\n\n Example 2: \n \n```\nInput:\n grid = [[2,1,1],[0,1,1],[1,0,1]]\n\nOutput:\n -1\n\nExplanation:\n The orange in the bottom left corner (row 2, column 0) is never rotten, because rotting only happens 4-directionally.\n```\n\n Example 3: \n \n```\nInput:\n grid = [[0,2]]\n\nOutput:\n 0\n\nExplanation:\n Since there are already no fresh oranges at minute 0, the answer is just 0.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 10 \n \n grid[i][j] is 0 , 1 , or 2 .",
+  "code": "class Solution {\npublic:\n    int orangesRotting(vector<vector<int>>& grid) {\n    int rows = grid.size(), cols = grid[0].size();\n    queue<pair<int, int>> q;\n    int freshOranges = 0, minutes = 0;\n\n    // Initialize the queue with all rotten oranges and count fresh oranges\n    for (int r = 0; r < rows; ++r) {\n        for (int c = 0; c < cols; ++c) {\n            if (grid[r][c] == 2) {\n                q.push({r, c});\n            } else if (grid[r][c] == 1) {\n                ++freshOranges;\n            }\n        }\n    }\n\n    // Directions for 4 adjacent cells (right, down, left, up)\n    vector<pair<int, int>> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};\n\n    // Perform BFS to spread the rot\n    while (!q.empty() && freshOranges > 0) {\n        int size = q.size();\n        for (int i = 0; i < size; ++i) {\n            auto [r, c] = q.front();\n            q.pop();\n\n            for (auto [dr, dc] : directions) {\n                int nr = r + dr, nc = c + dc;\n                if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && grid[nr][nc] == 1) {\n                    grid[nr][nc] = 2; // Mark as rotten\n                    --freshOranges;\n                    q.push({nr, nc});\n                }\n            }\n        }\n        ++minutes;\n    }\n\n    // If there are still fresh oranges, return -1\n    return freshOranges > 0 ? -1 : minutes;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541334033",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

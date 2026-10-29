@@ -1,0 +1,32 @@
+{
+  "id": "416",
+  "title": "Partition Equal Subset Sum",
+  "slug": "partition-equal-subset-sum",
+  "url": "https://leetcode.com/problems/partition-equal-subset-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Knapsack Problem",
+    "0-1 Knapsack"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return true if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or false otherwise . \n\n Example 1: \n \n```\nInput:\n nums = [1,5,11,5]\n\nOutput:\n true\n\nExplanation:\n The array can be partitioned as [1, 5, 5] and [11].\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,5]\n\nOutput:\n false\n\nExplanation:\n The array cannot be partitioned into equal sum subsets.\n```\n\n Constraints: \n\n 1 <= nums.length <= 200 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    bool canPartition(vector<int>& nums) {\n        int totalSum = accumulate(nums.begin(), nums.end(), 0);\n\n        // If the total sum is odd, we cannot partition into two equal subsets\n        if (totalSum % 2 != 0) {\n            return false;\n        }\n\n        int target = totalSum / 2;\n        vector<bool> dp(target + 1, false);\n        dp[0] = true; // Base case: subset with sum 0 is always possible\n\n        for (int num : nums) {\n            for (int j = target; j >= num; --j) {\n                dp[j] = dp[j] || dp[j - num];\n            }\n        }\n\n        return dp[target];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542032034",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

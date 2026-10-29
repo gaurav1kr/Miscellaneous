@@ -1,0 +1,28 @@
+{
+  "id": "1067",
+  "title": "Digit Count in Range",
+  "slug": "digit-count-in-range",
+  "url": "https://leetcode.com/problems/digit-count-in-range/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "Given a single-digit integer d and two integers low and high , return the number of times that d occurs as a digit in all integers in the inclusive range [low, high] . \n\n Example 1: \n \n```\nInput:\n d = 1, low = 1, high = 13\n\nOutput:\n 6\n\nExplanation:\n The digit d = 1 occurs 6 times in 1, 10, 11, 12, 13.\nNote that the digit d = 1 occurs twice in the number 11.\n```\n\n Example 2: \n \n```\nInput:\n d = 3, low = 100, high = 250\n\nOutput:\n 35\n\nExplanation:\n The digit d = 3 occurs 35 times in 103,113,123,130,131,...,238,239,243.\n```\n\n Constraints: \n\n 0 <= d <= 9 \n \n 1 <= low <= high <= 2 * 10 8",
+  "code": "class Solution {\n    long long countUpTo(long long n, int digit) {\n        if (n <= 0) {\n            return 0;\n        }\n        long long result = 0;\n        for (long long place = 1; place <= n; place *= 10) {\n            long long high = n / place / 10;\n            long long current = (n / place) % 10;\n            long long low = n % place;\n            if (digit != 0) {\n                result += high * place;\n                if (current > digit) {\n                    result += place;\n                } else if (current == digit) {\n                    result += low + 1;\n                }\n            } else if (high > 0) {\n                result += (high - 1) * place;\n                if (current > 0) {\n                    result += place;\n                } else {\n                    result += low + 1;\n                }\n            }\n            if (place > n / 10) {\n                break;\n            }\n        }\n        return result;\n    }\n\npublic:\n    int digitsCount(int d, int low, int high) {\n        return static_cast<int>(countUpTo(high, d) - countUpTo(low - 1LL, d));\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178523223",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

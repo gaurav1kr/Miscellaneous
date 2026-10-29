@@ -1,0 +1,33 @@
+{
+  "id": "2714",
+  "title": "Find Shortest Path with K Hops",
+  "slug": "find-shortest-path-with-k-hops",
+  "url": "https://leetcode.com/problems/find-shortest-path-with-k-hops/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n which is the number of nodes of a 0-indexed undirected weighted connected graph and a 0-indexed 2D array edges where edges[i] = [u i , v i , w i ] indicates that there is an edge between nodes u i and v i with weight w i . \n \n You are also given two nodes s and d , and a positive integer k , your task is to find the shortest path from s to d , but you can hop over at most k edges. In other words, make the weight of at most k edges 0 and then find the shortest path from s to d . \n \n Return the length of the shortest path from s to d with the given condition . \n\n Example 1: \n \n```\nInput:\n n = 4, edges = [[0,1,4],[0,2,2],[2,3,6]], s = 1, d = 3, k = 2\n\nOutput:\n 2\n\nExplanation:\n In this example there is only one path from node 1 (the green node) to node 3 (the red node), which is (1->0->2->3) and the length of it is 4 + 2 + 6 = 12. Now we can make weight of two edges 0, we make weight of the blue edges 0, then we have 0 + 2 + 0 = 2. It can be shown that 2 is the minimum length of a path we can achieve with the given condition.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/05/30/1.jpg] \n \n Example 2: \n \n```\nInput:\n n = 7, edges = [[3,1,9],[3,2,4],[4,0,9],[0,5,6],[3,6,2],[6,0,4],[1,2,4]], s = 4, d = 1, k = 2\n\nOutput:\n 6\n\nExplanation:\n In this example there are 2 paths from node 4 (the green node) to node 1 (the red node), which are (4->0->6->3->2->1) and (4->0->6->3->1). The first one has the length 9 + 4 + 2 + 4 + 4 = 23, and the second one has the length 9 + 4 + 2 + 9 = 24. Now if we make weight of the blue edges 0, we get the shortest path with the length 0 + 4 + 2 + 0 = 6. It can be shown that 6 is the minimum length of a path we can achieve with the given condition.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/05/30/2.jpg] \n \n Example 3: \n \n```\nInput:\n n = 5, edges = [[0,4,2],[0,1,3],[0,2,1],[2,1,4],[1,3,4],[3,4,7]], s = 2, d = 3, k = 1\n\nOutput:\n 3\n\nExplanation:\n In this example there are 4 paths from node 2 (the green node) to node 3 (the red node), which are (2->1->3), (2->0->1->3), (2->1->0->4->3) and (2->0->4->3). The first two have the length 4 + 4 = 1 + 3 + 4 = 8, the third one has the length 4 + 3 + 2 + 7 = 16 and the last one has the length 1 + 2 + 7 = 10. Now if we make weight of the blue edge 0, we get the shortest path with the length 1 + 2 + 0 = 3. It can be shown that 3 is the minimum length of a path we can achieve with the given condition.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/05/30/3.jpg] \n\n Constraints: \n\n 2 <= n <= 500 \n \n n - 1 <= edges.length <= min(10 4 , n * (n - 1) / 2) \n \n edges[i].length = 3 \n \n 0 <= edges[i][0], edges[i][1] <= n - 1 \n \n 1 <= edges[i][2] <= 10 6 \n \n 0 <= s, d, k <= n - 1 \n \n s != d \n \n The input is generated such that the graph is connected and has no   repeated edges  or  self-loops",
+  "code": "class Solution {\npublic:\n    int shortestPathWithHops(int n, vector<vector<int>>& edges, int s, int d, int k) {\n        vector<vector<pair<int,int>>> g(n);\n        for (auto& e : edges) {\n            g[e[0]].push_back({e[1], e[2]});\n            g[e[1]].push_back({e[0], e[2]});\n        }\n        const long long INF = LLONG_MAX / 4;\n        vector<vector<long long>> dist(n, vector<long long>(k + 1, INF));\n        priority_queue<tuple<long long,int,int>, vector<tuple<long long,int,int>>,\n                       greater<tuple<long long,int,int>>> pq;\n        dist[s][k] = 0;\n        pq.emplace(0, s, k);\n        while (!pq.empty()) {\n            long long cost; int u, remaining;\n            tie(cost, u, remaining) = pq.top(); pq.pop();\n            if (cost != dist[u][remaining]) continue;\n            if (u == d) return (int)cost;\n            for (auto e : g[u]) {\n                int v = e.first, weight = e.second;\n                if (cost + weight < dist[v][remaining]) {\n                    dist[v][remaining] = cost + weight;\n                    pq.emplace(cost + weight, v, remaining);\n                }\n                if (remaining && cost < dist[v][remaining - 1]) {\n                    dist[v][remaining - 1] = cost;\n                    pq.emplace(cost, v, remaining - 1);\n                }\n            }\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178900568",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

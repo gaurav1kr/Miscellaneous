@@ -1,0 +1,33 @@
+{
+  "id": "1585",
+  "title": "Check If String Is Transformable With Substring Sort Operations",
+  "slug": "check-if-string-is-transformable-with-substring-sort-operations",
+  "url": "https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Queue",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings s and t , transform string s into string t using the following operation any number of times: \n\n Choose a non-empty substring in s and sort it in place so the characters are in ascending order .\n\n For example, applying the operation on the underlined substring in \"1 4234 \" results in \"1 2344 \" . \n\n Return true if it is possible to transform s into t . Otherwise, return false . \n \n A substring is a contiguous sequence of characters within a string. \n\n Example 1: \n \n```\nInput:\n s = \"84532\", t = \"34852\"\n\nOutput:\n true\n\nExplanation:\n You can transform s into t using the following sort operations:\n\"84\n53\n2\" (from index 2 to 3) -> \"84\n35\n2\"\n\"\n843\n52\" (from index 0 to 2) -> \"\n348\n52\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"34521\", t = \"23415\"\n\nOutput:\n true\n\nExplanation:\n You can transform s into t using the following sort operations:\n\"\n3452\n1\" -> \"\n2345\n1\"\n\"234\n51\n\" -> \"234\n15\n\"\n```\n\n Example 3: \n \n```\nInput:\n s = \"12345\", t = \"12435\"\n\nOutput:\n false\n```\n\n Constraints: \n\n s.length == t.length \n \n 1 <= s.length <= 10 5 \n \n s and t consist of only digits.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isTransformable(string s, string t) {\n        vector<queue<int>> pos(10);\n        for (int i = 0; i < (int)s.size(); ++i) pos[s[i] - '0'].push(i);\n        for (char ch : t) {\n            int d = ch - '0';\n            if (pos[d].empty()) return false;\n            int idx = pos[d].front();\n            for (int small = 0; small < d; ++small)\n                if (!pos[small].empty() && pos[small].front() < idx)\n                    return false;\n            pos[d].pop();\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175755608",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

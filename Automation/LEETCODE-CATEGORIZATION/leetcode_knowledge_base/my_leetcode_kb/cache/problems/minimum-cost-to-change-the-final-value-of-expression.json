@@ -1,0 +1,35 @@
+{
+  "id": "1896",
+  "title": "Minimum Cost to Change the Final Value of Expression",
+  "slug": "minimum-cost-to-change-the-final-value-of-expression",
+  "url": "https://leetcode.com/problems/minimum-cost-to-change-the-final-value-of-expression/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Dynamic Programming",
+    "Stack"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms",
+    "Math / Number Theory",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a valid boolean expression as a string expression consisting of the characters '1' , '0' , '&' (bitwise AND operator), '|' (bitwise OR operator), '(' , and ')' . \n\n For example, \"()1|1\" and \"(1)&()\" are not valid while \"1\" , \"(((1))|(0))\" , and \"1|(0&(1))\" are valid expressions. \n\n Return the minimum cost to change the final value of the expression . \n\n For example, if expression = \"1|1|(0&0)&1\" , its value is 1|1|(0&0)&1 = 1|1|0&1 = 1|0&1 = 1&1 = 1 . We want to apply operations so that the new expression evaluates to 0 . \n\n The cost of changing the final value of an expression is the number of operations performed on the expression. The types of operations are described as follows: \n\n Turn a '1' into a '0' . \n \n Turn a '0' into a '1' . \n \n Turn a '&' into a '|' . \n \n Turn a '|' into a '&' . \n\n Note: '&' does not take precedence over '|' in the order of calculation . Evaluate parentheses first , then in left-to-right order. \n\n Example 1: \n \n```\nInput:\n expression = \"1&(0|1)\"\n\nOutput:\n 1\n\nExplanation:\n We can turn \"1&(0\n|\n1)\" into \"1&(0\n&\n1)\" by changing the '|' to a '&' using 1 operation.\nThe new expression evaluates to 0.\n```\n\n Example 2: \n \n```\nInput:\n expression = \"(0&0)&(0&0&0)\"\n\nOutput:\n 3\n\nExplanation:\n We can turn \"(0\n&0\n)\n&\n(0&0&0)\" into \"(0\n|1\n)\n|\n(0&0&0)\" using 3 operations.\nThe new expression evaluates to 1.\n```\n\n Example 3: \n \n```\nInput:\n expression = \"(0|(1|0&1))\"\n\nOutput:\n 1\n\nExplanation:\n We can turn \"(0|(\n1\n|0&1))\" into \"(0|(\n0\n|0&1))\" using 1 operation.\nThe new expression evaluates to 0.\n```\n\n Constraints: \n\n 1 <= expression.length <= 10 5 \n \n expression  only contains  '1' , '0' , '&' , '|' , '(' , and  ')' \n \n All parentheses are properly matched. \n \n There will be no empty parentheses (i.e:  \"()\"  is not a substring of  expression ).",
+  "code": "class Solution {using P=pair<int,int>;P combine(P a,P b,char op){P out={INT_MAX/4,INT_MAX/4};for(int x=0;x<2;++x)for(int y=0;y<2;++y)for(int flip=0;flip<2;++flip){char c=flip?(op=='&'?'|':'&'):op;int z=c=='&'?(x&y):(x|y);int cost=(x?a.second:a.first)+(y?b.second:b.first)+flip;if(z==0)out.first=min(out.first,cost);else out.second=min(out.second,cost);}return out;}public:int minOperationsToFlip(string expression){vector<P> vals;vector<char> ops;auto reduce=[&](){P b=vals.back();vals.pop_back();P a=vals.back();vals.pop_back();char op=ops.back();ops.pop_back();vals.push_back(combine(a,b,op));};for(char c:expression){if(c=='0'||c=='1')vals.push_back(c=='0'?P{0,1}:P{1,0});else if(c=='(')ops.push_back(c);else if(c==')'){while(ops.back()!='(')reduce();ops.pop_back();}else{while(!ops.empty()&&ops.back()!='(')reduce();ops.push_back(c);}}while(!ops.empty())reduce();return max(vals.back().first,vals.back().second);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175764201",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

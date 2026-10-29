@@ -1,0 +1,30 @@
+{
+  "id": "3563",
+  "title": "Lexicographically Smallest String After Adjacent Removals",
+  "slug": "lexicographically-smallest-string-after-adjacent-removals",
+  "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-adjacent-removals/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. \n \n You can perform the following operation any number of times (including zero): \n\n Remove any pair of adjacent characters in the string that are consecutive in the alphabet, in either order (e.g., 'a' and 'b' , or 'b' and 'a' ). \n \n Shift the remaining characters to the left to fill the gap. \n\n Return the lexicographically smallest string that can be obtained after performing the operations optimally. \n \n Note: Consider the alphabet as circular, thus 'a' and 'z' are consecutive. \n\n Example 1: \n\n Input: s = \"abc\" \n \n Output: \"a\" \n \n Explanation: \n\n Remove \"bc\" from the string, leaving \"a\" as the remaining string. \n \n No further operations are possible. Thus, the lexicographically smallest string after all possible removals is \"a\" . \n\n Example 2: \n\n Input: s = \"bcda\" \n \n Output: \"\" \n \n Explanation: \n\n ​​​​​​​ Remove \"cd\" from the string, leaving \"ba\" as the remaining string. \n \n Remove \"ba\" from the string, leaving \"\" as the remaining string. \n \n No further operations are possible. Thus, the lexicographically smallest string after all possible removals is \"\" . \n\n Example 3: \n\n Input: s = \"zdce\" \n \n Output: \"zdce\" \n \n Explanation: \n\n Remove \"dc\" from the string, leaving \"ze\" as the remaining string. \n \n No further operations are possible on \"ze\" . \n \n However, since \"zdce\" is lexicographically smaller than \"ze\" , the smallest string after all possible removals is \"zdce\" . \n\n Constraints: \n\n 1 <= s.length <= 250 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {\n bool adjacent(char a,char b){return abs(a-b)==1||abs(a-b)==25;}\npublic:\n string lexicographicallySmallestString(string s){\n  int n=s.size();vector<vector<char>> erase(n+1,vector<char>(n+1));\n  for(int i=0;i<=n;++i)erase[i][i]=1;\n  for(int len=2;len<=n;len+=2)for(int l=0;l+len<=n;++l){int r=l+len;\n   for(int j=l+1;j<r;j+=2)if(adjacent(s[l],s[j])&&erase[l+1][j]&&erase[j+1][r]){erase[l][r]=1;break;}\n  }\n  vector<string> dp(n+1);dp[n]=\"\";\n  for(int i=n-1;i>=0;--i){dp[i]=s.substr(i,1)+dp[i+1];\n   for(int j=i+1;j<n;++j)if(adjacent(s[i],s[j])&&erase[i+1][j]){\n    string cand=dp[j+1];if(cand<dp[i])dp[i]=cand;\n   }\n  }\n  return dp[0];\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177584158",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

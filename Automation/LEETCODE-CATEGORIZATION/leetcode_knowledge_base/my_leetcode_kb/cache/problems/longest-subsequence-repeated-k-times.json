@@ -1,0 +1,36 @@
+{
+  "id": "2014",
+  "title": "Longest Subsequence Repeated k Times",
+  "slug": "longest-subsequence-repeated-k-times",
+  "url": "https://leetcode.com/problems/longest-subsequence-repeated-k-times/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Two Pointers",
+    "String",
+    "Backtracking",
+    "Counting",
+    "Enumeration"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Queue",
+    "String"
+  ],
+  "description": "You are given a string s of length n , and an integer k . You are tasked to find the longest subsequence repeated k times in string s . \n \n A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters. \n \n A subsequence seq is repeated k times in the string s if seq * k is a subsequence of s , where seq * k represents a string constructed by concatenating seq k times. \n\n For example, \"bba\" is repeated 2 times in the string \"bababcba\" , because the string \"bbabba\" , constructed by concatenating \"bba\" 2 times, is a subsequence of the string \" b a bab c ba \" . \n\n Return the longest subsequence repeated k times in string s . If multiple such subsequences are found, return the lexicographically largest one. If there is no such subsequence, return an empty string . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/08/30/longest-subsequence-repeat-k-times.png] \n \n```\nInput:\n s = \"letsleetcode\", k = 2\n\nOutput:\n \"let\"\n\nExplanation:\n There are two longest subsequences repeated 2 times: \"let\" and \"ete\".\n\"let\" is the lexicographically largest one.\n```\n\n Example 2: \n \n```\nInput:\n s = \"bb\", k = 2\n\nOutput:\n \"b\"\n\nExplanation:\n The longest subsequence repeated 2 times is \"b\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"ab\", k = 2\n\nOutput:\n \"\"\n\nExplanation:\n There is no subsequence repeated 2 times. Empty string is returned.\n```\n\n Constraints: \n\n n == s.length \n \n 2 <= k <= 2000 \n \n 2 <= n < min(2001, k * 8) \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\n    bool valid(const string& s,const string& t,int k){\n        int j=0;for(char c:s)if(c==t[j%t.size()]){\n            ++j;if(j==(int)t.size()*k)return true;\n        }\n        return false;\n    }\npublic:\n    string longestSubsequenceRepeatedK(string s,int k){\n        int freq[26]={};for(char c:s)++freq[c-'a'];\n        string alphabet;for(int i=0;i<26;++i)if(freq[i]>=k)alphabet+=char('a'+i);\n        queue<string>q;q.push(\"\");string ans;\n        while(!q.empty()){\n            string cur=q.front();q.pop();\n            for(char c:alphabet){string next=cur+c;\n                if(valid(s,next,k)){ans=next;q.push(next);}\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175768578",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

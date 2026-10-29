@@ -1,0 +1,30 @@
+{
+  "id": "2188",
+  "title": "Minimum Time to Finish the Race",
+  "slug": "minimum-time-to-finish-the-race",
+  "url": "https://leetcode.com/problems/minimum-time-to-finish-the-race/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed 2D integer array tires where tires[i] = [f i , r i ] indicates that the i th tire can finish its x th successive lap in f i * r i (x-1) seconds. \n\n For example, if f i = 3 and r i = 2 , then the tire would finish its 1 st lap in 3 seconds, its 2 nd lap in 3 * 2 = 6 seconds, its 3 rd lap in 3 * 2 2 = 12 seconds, etc. \n\n You are also given an integer changeTime and an integer numLaps . \n \n The race consists of numLaps laps and you may start the race with any tire. You have an unlimited supply of each tire and after every lap, you may change to any given tire (including the current tire type) if you wait changeTime seconds. \n \n Return the minimum time to finish the race. \n\n Example 1: \n \n```\nInput:\n tires = [[2,3],[3,4]], changeTime = 5, numLaps = 4\n\nOutput:\n 21\n\nExplanation:\n \nLap 1: Start with tire 0 and finish the lap in 2 seconds.\nLap 2: Continue with tire 0 and finish the lap in 2 * 3 = 6 seconds.\nLap 3: Change tires to a new tire 0 for 5 seconds and then finish the lap in another 2 seconds.\nLap 4: Continue with tire 0 and finish the lap in 2 * 3 = 6 seconds.\nTotal time = 2 + 6 + 5 + 2 + 6 = 21 seconds.\nThe minimum time to complete the race is 21 seconds.\n```\n\n Example 2: \n \n```\nInput:\n tires = [[1,10],[2,2],[3,4]], changeTime = 6, numLaps = 5\n\nOutput:\n 25\n\nExplanation:\n \nLap 1: Start with tire 1 and finish the lap in 2 seconds.\nLap 2: Continue with tire 1 and finish the lap in 2 * 2 = 4 seconds.\nLap 3: Change tires to a new tire 1 for 6 seconds and then finish the lap in another 2 seconds.\nLap 4: Continue with tire 1 and finish the lap in 2 * 2 = 4 seconds.\nLap 5: Change tires to tire 0 for 6 seconds then finish the lap in another 1 second.\nTotal time = 2 + 4 + 6 + 2 + 4 + 6 + 1 = 25 seconds.\nThe minimum time to complete the race is 25 seconds.\n```\n\n Constraints: \n\n 1 <= tires.length <= 10 5 \n \n tires[i].length == 2 \n \n 1 <= f i , changeTime <= 10 5 \n \n 2 <= r i <= 10 5 \n \n 1 <= numLaps <= 1000",
+  "code": "class Solution {\npublic:\n    int minimumFinishTime(vector<vector<int>>& tires, int changeTime, int numLaps) {\n        const long long INF=LLONG_MAX/4;\n        vector<long long> best(numLaps+1,INF);\n        for(auto &t:tires) {\n            long long lap=t[0],sum=0;\n            for(int j=1;j<=numLaps && lap<=t[0]+changeTime;++j) {\n                sum+=lap;best[j]=min(best[j],sum);\n                if(lap>INF/t[1]) break;\n                lap*=t[1];\n            }\n        }\n        vector<long long> dp(numLaps+1,INF);dp[0]=-changeTime;\n        for(int i=1;i<=numLaps;++i)\n            for(int j=1;j<=i && best[j]<INF;++j)\n                dp[i]=min(dp[i],dp[i-j]+changeTime+best[j]);\n        return (int)dp[numLaps];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175882385",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

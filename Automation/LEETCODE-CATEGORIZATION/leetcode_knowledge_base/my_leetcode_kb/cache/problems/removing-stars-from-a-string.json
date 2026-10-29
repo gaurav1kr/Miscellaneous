@@ -1,0 +1,31 @@
+{
+  "id": "2390",
+  "title": "Removing Stars From a String",
+  "slug": "removing-stars-from-a-string",
+  "url": "https://leetcode.com/problems/removing-stars-from-a-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a string s , which contains stars * . \n \n In one operation, you can: \n\n Choose a star in s . \n \n Remove the closest non-star character to its left , as well as remove the star itself. \n\n Return the string after all stars have been removed . \n \n Note: \n\n The input will be generated such that the operation is always possible. \n \n It can be shown that the resulting string will always be unique. \n\n Example 1: \n \n```\nInput:\n s = \"leet**cod*e\"\n\nOutput:\n \"lecoe\"\n\nExplanation:\n Performing the removals from left to right:\n- The closest character to the 1\nst\n star is 't' in \"lee\nt\n**cod*e\". s becomes \"lee*cod*e\".\n- The closest character to the 2\nnd\n star is 'e' in \"le\ne\n*cod*e\". s becomes \"lecod*e\".\n- The closest character to the 3\nrd\n star is 'd' in \"leco\nd\n*e\". s becomes \"lecoe\".\nThere are no more stars, so we return \"lecoe\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"erase*****\"\n\nOutput:\n \"\"\n\nExplanation:\n The entire string is removed, so we return an empty string.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters and stars * . \n \n The operation above can be performed on s .",
+  "code": "class Solution {public:string removeStars(string s){string out;for(char c:s){if(c=='*')out.pop_back();else out.push_back(c);}return out;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176532214",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

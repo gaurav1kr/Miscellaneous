@@ -1,0 +1,33 @@
+{
+  "id": "1554",
+  "title": "Strings Differ by One Character",
+  "slug": "strings-differ-by-one-character",
+  "url": "https://leetcode.com/problems/strings-differ-by-one-character/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Rolling Hash",
+    "Hash Function"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a list of strings dict where all the strings are of the same length. \n \n Return true if there are 2 strings that only differ by 1 character in the same index, otherwise return false . \n\n Example 1: \n \n```\nInput:\n dict = [\"abcd\",\"acbd\", \"aacd\"]\n\nOutput:\n true\n\nExplanation:\n Strings \"a\nb\ncd\" and \"a\na\ncd\" differ only by one character in the index 1.\n```\n\n Example 2: \n \n```\nInput:\n dict = [\"ab\",\"cd\",\"yz\"]\n\nOutput:\n false\n```\n\n Example 3: \n \n```\nInput:\n dict = [\"abcd\",\"cccc\",\"abyd\",\"abab\"]\n\nOutput:\n true\n```\n\n Constraints: \n\n The number of characters in dict <= 10 5 \n \n dict[i].length == dict[j].length \n \n dict[i] should be unique. \n \n dict[i] contains only lowercase English letters.",
+  "code": "class Solution {\npublic:\n bool differByOne(vector<string>& dict){\n  int n=dict.size(),m=dict[0].size();\n  const unsigned long long B1=1315423911ULL,B2=11400714819323198485ULL;\n  vector<unsigned long long> p1(m+1,1),p2(m+1,1);\n  for(int i=1;i<=m;++i){p1[i]=p1[i-1]*B1;p2[i]=p2[i-1]*B2;}\n  vector<vector<unsigned long long>> h1(n,vector<unsigned long long>(m+1)),h2(n,vector<unsigned long long>(m+1));\n  for(int i=0;i<n;++i)for(int j=0;j<m;++j){h1[i][j+1]=h1[i][j]*B1+(dict[i][j]-'a'+1);h2[i][j+1]=h2[i][j]*B2+(dict[i][j]-'a'+1);}\n  for(int j=0;j<m;++j){\n   set<pair<unsigned long long,unsigned long long>> seen;\n   for(int i=0;i<n;++i){\n    unsigned long long x=h1[i][j]*p1[m-j-1]+(h1[i][m]-h1[i][j+1]*p1[m-j-1]);\n    unsigned long long y=h2[i][j]*p2[m-j-1]+(h2[i][m]-h2[i][j+1]*p2[m-j-1]);\n    if(!seen.insert(make_pair(x,y)).second)return true;\n   }\n  }\n  return false;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181194554",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

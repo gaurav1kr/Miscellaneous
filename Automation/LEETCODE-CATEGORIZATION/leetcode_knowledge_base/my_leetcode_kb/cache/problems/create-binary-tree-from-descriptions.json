@@ -1,0 +1,39 @@
+{
+  "id": "2196",
+  "title": "Create Binary Tree From Descriptions",
+  "slug": "create-binary-tree-from-descriptions",
+  "url": "https://leetcode.com/problems/create-binary-tree-from-descriptions/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array descriptions where descriptions[i] = [parent i , child i , isLeft i ] indicates that parent i is the parent of child i in a binary tree of unique values. Furthermore, \n\n If isLeft i == 1 , then child i is the left child of parent i . \n \n If isLeft i == 0 , then child i is the right child of parent i . \n\n Construct the binary tree described by descriptions and return its root . \n \n The test cases will be generated such that the binary tree is valid . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/02/09/example1drawio.png] \n \n```\nInput:\n descriptions = [[20,15,1],[20,17,0],[50,20,1],[50,80,0],[80,19,1]]\n\nOutput:\n [50,20,80,15,17,19]\n\nExplanation:\n The root node is the node with value 50 since it has no parent.\nThe resulting binary tree is shown in the diagram.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/02/09/example2drawio.png] \n \n```\nInput:\n descriptions = [[1,2,1],[2,3,0],[3,4,1]]\n\nOutput:\n [1,2,null,null,3,4]\n\nExplanation:\n The root node is the node with value 1 since it has no parent.\nThe resulting binary tree is shown in the diagram.\n```\n\n Constraints: \n\n 1 <= descriptions.length <= 10 4 \n \n descriptions[i].length == 3 \n \n 1 <= parent i , child i <= 10 5 \n \n 0 <= isLeft i <= 1 \n \n The binary tree described by descriptions is valid.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n TreeNode* createBinaryTree(vector<vector<int>>& descriptions){unordered_map<int,TreeNode*> nodes;unordered_set<int> child;\n  for(auto&d:descriptions){int p=d[0],c=d[1];if(!nodes.count(p))nodes[p]=new TreeNode(p);if(!nodes.count(c))nodes[c]=new TreeNode(c);\n   if(d[2])nodes[p]->left=nodes[c];else nodes[p]->right=nodes[c];child.insert(c);\n  }for(auto&kv:nodes)if(!child.count(kv.first))return kv.second;return nullptr;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175884476",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

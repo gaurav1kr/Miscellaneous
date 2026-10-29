@@ -1,0 +1,42 @@
+{
+  "id": "1102",
+  "title": "Path With Maximum Minimum Value",
+  "slug": "path-with-maximum-minimum-value",
+  "url": "https://leetcode.com/problems/path-with-maximum-minimum-value/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Dijkstra's Algorithm"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given an m x n integer matrix grid , return the maximum score of a path starting at (0, 0) and ending at (m - 1, n - 1) moving in the 4 cardinal directions. \n \n The score of a path is the minimum value in that path. \n\n For example, the score of the path 8 → 4 → 5 → 9 is 4 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/08/05/maxgrid1.jpg] \n \n```\nInput:\n grid = [[5,4,5],[1,2,6],[7,4,6]]\n\nOutput:\n 4\n\nExplanation:\n The path with the maximum score is highlighted in yellow.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/08/05/maxgrid2.jpg] \n \n```\nInput:\n grid = [[2,2,1,2,2,2],[1,2,2,2,1,2]]\n\nOutput:\n 2\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/08/05/maxgrid3.jpg] \n \n```\nInput:\n grid = [[3,4,6,3,4],[0,2,1,1,7],[8,8,3,2,7],[3,2,4,9,8],[4,1,2,0,0],[4,6,5,4,3]]\n\nOutput:\n 3\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 100 \n \n 0 <= grid[i][j] <= 10 9",
+  "code": "class Solution {\npublic:\n    int maximumMinimumPath(vector<vector<int>>& grid) {\n        int m = grid.size();\n        int n = grid[0].size();\n        priority_queue<tuple<int, int, int>> pq;\n        vector<vector<bool>> seen(m, vector<bool>(n, false));\n        pq.emplace(grid[0][0], 0, 0);\n        int dr[4] = {1, -1, 0, 0};\n        int dc[4] = {0, 0, 1, -1};\n        while (!pq.empty()) {\n            int score = get<0>(pq.top());\n            int r = get<1>(pq.top());\n            int c = get<2>(pq.top());\n            pq.pop();\n            if (seen[r][c]) {\n                continue;\n            }\n            seen[r][c] = true;\n            if (r == m - 1 && c == n - 1) {\n                return score;\n            }\n            for (int d = 0; d < 4; ++d) {\n                int nr = r + dr[d];\n                int nc = c + dc[d];\n                if (nr >= 0 && nr < m && nc >= 0 && nc < n && !seen[nr][nc]) {\n                    pq.emplace(min(score, grid[nr][nc]), nr, nc);\n                }\n            }\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178529639",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

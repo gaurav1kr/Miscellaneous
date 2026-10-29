@@ -1,0 +1,32 @@
+{
+  "id": "313",
+  "title": "Super Ugly Number",
+  "slug": "super-ugly-number",
+  "url": "https://leetcode.com/problems/super-ugly-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "A super ugly number is a positive integer whose prime factors are in the array primes . \n \n Given an integer n and an array of integers primes , return the n th super ugly number . \n \n The n th super ugly number is guaranteed to fit in a 32-bit signed integer. \n\n Example 1: \n \n```\nInput:\n n = 12, primes = [2,7,13,19]\n\nOutput:\n 32\n\nExplanation:\n [1,2,4,7,8,13,14,16,19,26,28,32] is the sequence of the first 12 super ugly numbers given primes = [2,7,13,19].\n```\n\n Example 2: \n \n```\nInput:\n n = 1, primes = [2,3,5]\n\nOutput:\n 1\n\nExplanation:\n 1 has no prime factors, therefore all of its prime factors are in the array primes = [2,3,5].\n```\n\n Constraints: \n\n 1 <= n <= 10 5 \n \n 1 <= primes.length <= 100 \n \n 2 <= primes[i] <= 1000 \n \n primes[i] is guaranteed to be a prime number. \n \n All the values of primes are unique and sorted in ascending order .",
+  "code": "class Solution {\npublic:\n    int nthSuperUglyNumber(int n, vector<int>& primes) {\n        int k = primes.size();\n\n        vector<int> dp(n);\n        vector<int> idx(k, 0);\n        vector<long long> next(k);\n\n        dp[0] = 1;\n\n        for (int j = 0; j < k; ++j)\n            next[j] = primes[j];\n\n        for (int i = 1; i < n; ++i) {\n\n            // Find next smallest ugly number\n            long long mn = next[0];\n\n            for (int j = 1; j < k; ++j)\n                mn = min(mn, next[j]);\n\n            dp[i] = (int)mn;\n\n            // Move ALL pointers producing mn\n            for (int j = 0; j < k; ++j) {\n                if (next[j] == mn) {\n                    ++idx[j];\n                    next[j] = 1LL * primes[j] * dp[idx[j]];\n                }\n            }\n        }\n\n        return dp[n - 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163955139",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

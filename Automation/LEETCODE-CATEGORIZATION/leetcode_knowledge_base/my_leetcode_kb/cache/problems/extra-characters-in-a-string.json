@@ -1,0 +1,39 @@
+{
+  "id": "2707",
+  "title": "Extra Characters in a String",
+  "slug": "extra-characters-in-a-string",
+  "url": "https://leetcode.com/problems/extra-characters-in-a-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Trie"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed string s and a dictionary of words dictionary . You have to break s into one or more non-overlapping substrings such that each substring is present in dictionary . There may be some extra characters in s which are not present in any of the substrings. \n \n Return the minimum number of extra characters left over if you break up s optimally. \n\n Example 1: \n \n```\nInput:\n s = \"leetscode\", dictionary = [\"leet\",\"code\",\"leetcode\"]\n\nOutput:\n 1\n\nExplanation:\n We can break s in two substrings: \"leet\" from index 0 to 3 and \"code\" from index 5 to 8. There is only 1 unused character (at index 4), so we return 1.\n```\n\n Example 2: \n \n```\nInput:\n s = \"sayhelloworld\", dictionary = [\"hello\",\"world\"]\n\nOutput:\n 3\n\nExplanation:\n We can break s in two substrings: \"hello\" from index 3 to 7 and \"world\" from index 8 to 12. The characters at indices 0, 1, 2 are not used in any substring and thus are considered as extra characters. Hence, we return 3.\n```\n\n Constraints: \n\n 1 <= s.length <= 50 \n \n 1 <= dictionary.length <= 50 \n \n 1 <= dictionary[i].length <= 50 \n \n dictionary[i]  and s consists of only lowercase English letters \n \n dictionary contains distinct words",
+  "code": "class Solution {public:int minExtraChar(string s,vector<string>&dictionary){int n=s.size();vector<int>dp(n+1);for(int i=n-1;i>=0;i--){dp[i]=1+dp[i+1];for(const string&w:dictionary)if(i+(int)w.size()<=n&&s.compare(i,w.size(),w)==0)dp[i]=min(dp[i],dp[i+w.size()]);}return dp[0];}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176680230",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

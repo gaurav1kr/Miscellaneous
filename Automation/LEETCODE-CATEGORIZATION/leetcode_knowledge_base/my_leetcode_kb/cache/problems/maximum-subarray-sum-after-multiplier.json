@@ -1,0 +1,30 @@
+{
+  "id": "3976",
+  "title": "Maximum Subarray Sum After Multiplier",
+  "slug": "maximum-subarray-sum-after-multiplier",
+  "url": "https://leetcode.com/problems/maximum-subarray-sum-after-multiplier/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and a positive integer k . \n \n You must choose exactly one subarray of nums and perform exactly one of the following operations: \n\n Multiply each number in the chosen subarray by k . \n \n Divide each number in the chosen subarray by k .\n\n When dividing a positive number by k , use the floor value of the division result. \n \n When dividing a negative number by k , use the ceiling value of the division result. \n\n Return the maximum possible sum of a non-empty subarray in the resulting array. \n \n Note that the subarray chosen for the operation and the subarray chosen for the sum may be different . \n\n Example 1: \n\n Input: nums = [1,-2,3,4,-5], k = 2 \n \n Output: 14 \n \n Explanation: \n\n Multiply each number in the subarray [3, 4] by 2. \n \n This results in nums = [1, -2, 6, 8, -5] . \n \n The subarray with the largest sum is [6, 8] , so the output is 6 + 8 = 14 . \n\n Example 2: \n\n Input: nums = [-5,-4,-3], k = 2 \n \n Output: -1 \n \n Explanation: \n\n Divide each number in the subarray [-3] by 2. \n \n This results in nums = [-5, -4, -1] . \n \n The subarray with the largest sum is [-1] , so the output is -1. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 5 <= nums[i] <= 10 5 \n \n 1 <= k <= 10 5",
+  "code": "class Solution {\n    long long solve(const vector<int>& a,int k,bool multiply){\n        const long long NEG=LLONG_MIN/4;\n        long long before=NEG,inside=NEG,after=NEG,ans=NEG;\n        for(int x:a){\n            long long y=multiply?1LL*x*k:x/k;\n            long long newBefore=max((long long)x,before+x);\n            long long newInside=max(y,max(before+y,inside+y));\n            long long newAfter=max(inside+x,after+x);\n            before=newBefore;inside=newInside;after=newAfter;\n            ans=max(ans,max(inside,after));\n        }\n        return ans;\n    }\npublic:\n    long long maxSubarraySum(vector<int>& nums,int k){\n        long long cur=LLONG_MIN/4,plain=cur;\n        for(int x:nums){cur=max((long long)x,cur+x);plain=max(plain,cur);}\n        return max(solve(nums,k,true),solve(nums,k,false));\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181102311",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

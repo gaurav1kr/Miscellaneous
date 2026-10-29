@@ -1,0 +1,35 @@
+{
+  "id": "930",
+  "title": "Binary Subarrays With Sum",
+  "slug": "binary-subarrays-with-sum",
+  "url": "https://leetcode.com/problems/binary-subarrays-with-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given a binary array nums and an integer goal , return the number of non-empty subarrays with a sum goal . \n \n A subarray is a contiguous part of the array. \n\n Example 1: \n \n```\nInput:\n nums = [1,0,1,0,1], goal = 2\n\nOutput:\n 4\n\nExplanation:\n The 4 subarrays are bolded and underlined below:\n[\n1,0,1\n,0,1]\n[\n1,0,1,0\n,1]\n[1,\n0,1,0,1\n]\n[1,0,\n1,0,1\n]\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,0,0,0,0], goal = 0\n\nOutput:\n 15\n```\n\n Constraints: \n\n 1 <= nums.length <= 3 * 10 4 \n \n nums[i] is either 0 or 1 . \n \n 0 <= goal <= nums.length",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numSubarraysWithSum(vector<int>& nums, int goal) {\n        return atMost(nums, goal) - atMost(nums, goal - 1);\n    }\n    \n    int atMost(vector<int>& nums, int goal) {\n        if (goal < 0) return 0;\n        int left = 0, sum = 0, count = 0;\n        for (int right = 0; right < nums.size(); right++) {\n            sum += nums[right];\n            while (sum > goal) {\n                sum -= nums[left++];\n            }\n            count += right - left + 1;\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591369977",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

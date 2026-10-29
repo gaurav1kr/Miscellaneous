@@ -1,0 +1,31 @@
+{
+  "id": "3211",
+  "title": "Generate Binary Strings Without Adjacent Zeros",
+  "slug": "generate-binary-strings-without-adjacent-zeros",
+  "url": "https://leetcode.com/problems/generate-binary-strings-without-adjacent-zeros/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n . \n \n A binary string x is valid if all substrings of x of length 2 contain at least one \"1\" . \n \n Return all valid strings with length n , in any order. \n\n Example 1: \n\n Input: n = 3 \n \n Output: [\"010\",\"011\",\"101\",\"110\",\"111\"] \n \n Explanation: \n \n The valid strings of length 3 are: \"010\" , \"011\" , \"101\" , \"110\" , and \"111\" . \n\n Example 2: \n\n Input: n = 1 \n \n Output: [\"0\",\"1\"] \n \n Explanation: \n \n The valid strings of length 1 are: \"0\" and \"1\" . \n\n Constraints: \n\n 1 <= n <= 18",
+  "code": "class Solution {void dfs(int n,string&s,vector<string>&out){if((int)s.size()==n){out.push_back(s);return;}s+='1';dfs(n,s,out);s.pop_back();if(s.empty()||s.back()=='1'){s+='0';dfs(n,s,out);s.pop_back();}}public:vector<string> validStrings(int n){vector<string>r;string s;dfs(n,s,r);return r;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177424176",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

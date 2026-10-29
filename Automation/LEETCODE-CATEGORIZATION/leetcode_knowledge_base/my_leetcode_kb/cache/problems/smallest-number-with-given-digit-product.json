@@ -1,0 +1,26 @@
+{
+  "id": "2847",
+  "title": "Smallest Number With Given Digit Product",
+  "slug": "smallest-number-with-given-digit-product",
+  "url": "https://leetcode.com/problems/smallest-number-with-given-digit-product/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given a positive integer n . \n \n Return a string representing the smallest positive integer such that the product of its digits is equal to n , or \"-1\" if no such number exists. \n\n Example 1: \n \n```\nInput:\n n = 105\n\nOutput:\n \"357\"\n\nExplanation:\n 3 * 5 * 7 = 105. It can be shown that 357 is the smallest number with a product of digits equal to 105. So the answer would be \"357\".\n```\n\n Example 2: \n \n```\nInput:\n n = 7\n\nOutput:\n \"7\"\n\nExplanation:\n Since 7 has only one digit, its product of digits would be 7. We will show that 7 is the smallest number with a product of digits equal to 7. Since the product of numbers 1 to 6 is 1 to 6 respectively, so \"7\" would be the answer.\n```\n\n Example 3: \n \n```\nInput:\n n = 44\n\nOutput:\n \"-1\"\n\nExplanation:\n It can be shown that there is no number such that its product of digits is equal to 44. So the answer would be \"-1\".\n```\n\n Constraints: \n\n 1 <= n <= 10 15",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    string smallestNumber(long long n) {\n        if(n==1)return \"1\";\n        string digits;\n        for(int d=9;d>=2;--d) {\n            while(n%d==0) {digits.push_back(char('0'+d));n/=d;}\n        }\n        if(n!=1)return \"-1\";\n        reverse(digits.begin(),digits.end());\n        return digits;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178914327",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

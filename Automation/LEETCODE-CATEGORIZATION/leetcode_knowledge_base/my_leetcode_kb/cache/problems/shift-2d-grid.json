@@ -1,0 +1,30 @@
+{
+  "id": "1260",
+  "title": "Shift 2D Grid",
+  "slug": "shift-2d-grid",
+  "url": "https://leetcode.com/problems/shift-2d-grid/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a 2D grid of size m x n  and an integer k . You need to shift the grid   k times. \n \n In one shift operation: \n\n Element at grid[i][j] moves to grid[i][j + 1] . \n \n Element at grid[i][n - 1] moves to grid[i + 1][0] . \n \n Element at grid[m - 1][n - 1] moves to grid[0][0] . \n\n Return the 2D grid after applying shift operation k times. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/11/05/e1.png] \n \n```\nInput:\n \ngrid\n = [[1,2,3],[4,5,6],[7,8,9]], k = 1\n\nOutput:\n [[9,1,2],[3,4,5],[6,7,8]]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/11/05/e2.png] \n \n```\nInput:\n \ngrid\n = [[3,8,1,9],[19,7,2,5],[4,6,11,10],[12,0,21,13]], k = 4\n\nOutput:\n [[12,0,21,13],[3,8,1,9],[19,7,2,5],[4,6,11,10]]\n```\n\n Example 3: \n \n```\nInput:\n \ngrid\n = [[1,2,3],[4,5,6],[7,8,9]], k = 9\n\nOutput:\n [[1,2,3],[4,5,6],[7,8,9]]\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m <= 50 \n \n 1 <= n <= 50 \n \n -1000 <= grid[i][j] <= 1000 \n \n 0 <= k <= 100",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<int>> shiftGrid(vector<vector<int>>& grid, int k) {\n        int m = grid.size(), n = grid[0].size();\n        vector<int> flat;\n        for (auto& row : grid)\n            for (int val : row)\n                flat.push_back(val);\n        k = k % (m * n);\n        rotate(flat.rbegin(), flat.rbegin() + k, flat.rend());\n        vector<vector<int>> res(m, vector<int>(n));\n        for (int i = 0; i < m * n; ++i)\n            res[i / n][i % n] = flat[i];\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610587025",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

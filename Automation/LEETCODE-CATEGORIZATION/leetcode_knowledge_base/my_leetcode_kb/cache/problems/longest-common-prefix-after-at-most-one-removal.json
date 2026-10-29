@@ -1,0 +1,28 @@
+{
+  "id": "3460",
+  "title": "Longest Common Prefix After at Most One Removal",
+  "slug": "longest-common-prefix-after-at-most-one-removal",
+  "url": "https://leetcode.com/problems/longest-common-prefix-after-at-most-one-removal/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given two strings s and t . \n \n Return the length of the longest common prefix between s and t after removing at most one character from s . \n \n Note: s can be left without any removal. \n\n Example 1: \n\n Input: s = \"madxa\", t = \"madam\" \n \n Output: 4 \n \n Explanation: \n \n Removing s[3] from s results in \"mada\" , which has a longest common prefix of length 4 with t . \n\n Example 2: \n\n Input: s = \"leetcode\", t = \"eetcode\" \n \n Output: 7 \n \n Explanation: \n \n Removing s[0] from s results in \"eetcode\" , which matches t . \n\n Example 3: \n\n Input: s = \"one\", t = \"one\" \n \n Output: 3 \n \n Explanation: \n \n No removal is needed. \n\n Example 4: \n\n Input: s = \"a\", t = \"b\" \n \n Output: 0 \n \n Explanation: \n \n s and t cannot have a common prefix. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n 1 <= t.length <= 10 5 \n \n s and t contain only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int longestCommonPrefix(string s,string t) {\n        int i=0,n=s.size(),m=t.size();\n        while (i<n && i<m && s[i]==t[i]) ++i;\n        int ans=i;\n        if (i==n) return ans;\n        int j=i;\n        while (j<m && j+1<n && s[j+1]==t[j]) ++j;\n        return max(ans,j);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179719301",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

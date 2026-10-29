@@ -1,0 +1,29 @@
+{
+  "id": "422",
+  "title": "Valid Word Square",
+  "slug": "valid-word-square",
+  "url": "https://leetcode.com/problems/valid-word-square/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of strings words , return true if it forms a valid word square . \n \n A sequence of strings forms a valid word square if the k th row and column read the same string, where 0 <= k < max(numRows, numColumns) . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/09/validsq1-grid.jpg] \n \n```\nInput:\n words = [\"abcd\",\"bnrt\",\"crmy\",\"dtye\"]\n\nOutput:\n true\n\nExplanation:\n\nThe 1\nst\n row and 1\nst\n column both read \"abcd\".\nThe 2\nnd\n row and 2\nnd\n column both read \"bnrt\".\nThe 3\nrd\n row and 3\nrd\n column both read \"crmy\".\nThe 4\nth\n row and 4\nth\n column both read \"dtye\".\nTherefore, it is a valid word square.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/09/validsq2-grid.jpg] \n \n```\nInput:\n words = [\"abcd\",\"bnrt\",\"crm\",\"dt\"]\n\nOutput:\n true\n\nExplanation:\n\nThe 1\nst\n row and 1\nst\n column both read \"abcd\".\nThe 2\nnd\n row and 2\nnd\n column both read \"bnrt\".\nThe 3\nrd\n row and 3\nrd\n column both read \"crm\".\nThe 4\nth\n row and 4\nth\n column both read \"dt\".\nTherefore, it is a valid word square.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/04/09/validsq3-grid.jpg] \n \n```\nInput:\n words = [\"ball\",\"area\",\"read\",\"lady\"]\n\nOutput:\n false\n\nExplanation:\n\nThe 3\nrd\n row reads \"read\" while the 3\nrd\n column reads \"lead\".\nTherefore, it is NOT a valid word square.\n```\n\n Constraints: \n\n 1 <= words.length <= 500 \n \n 1 <= words[i].length <= 500 \n \n words[i] consists of only lowercase English letters.",
+  "code": "class Solution\n{\npublic:\n    bool validWordSquare(vector<string>& words)\n    {\n        for (int r = 0; r < (int)words.size(); ++r)\n        {\n            for (int c = 0; c < (int)words[r].size(); ++c)\n            {\n                if (c >= (int)words.size() ||\n                    r >= (int)words[c].size() ||\n                    words[r][c] != words[c][r])\n                    {\n                    return false;\n                }\n            }\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178465873",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

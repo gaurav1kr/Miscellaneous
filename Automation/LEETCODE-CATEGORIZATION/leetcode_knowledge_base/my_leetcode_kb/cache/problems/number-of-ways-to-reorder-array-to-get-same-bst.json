@@ -1,0 +1,46 @@
+{
+  "id": "1569",
+  "title": "Number of Ways to Reorder Array to Get Same BST",
+  "slug": "number-of-ways-to-reorder-array-to-get-same-bst",
+  "url": "https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Divide and Conquer",
+    "Dynamic Programming",
+    "Tree",
+    "Union-Find",
+    "Binary Search Tree",
+    "Memoization",
+    "Combinatorics",
+    "Binary Tree",
+    "Fermat's Little Theorem"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "DP array / memo table",
+    "Disjoint set union",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given an array nums that represents a permutation of integers from 1 to n . We are going to construct a binary search tree (BST) by inserting the elements of nums in order into an initially empty BST. Find the number of different ways to reorder nums so that the constructed BST is identical to that formed from the original array nums . \n\n For example, given nums = [2,1,3] , we will have 2 as the root, 1 as a left child, and 3 as a right child. The array [2,3,1] also yields the same BST but [3,2,1] yields a different BST. \n\n Return the number of ways to reorder nums such that the BST formed is identical to the original BST formed from nums . \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2026/02/23/1569_ex0.png] \n \n```\nInput:\n nums = [2,1,3]\n\nOutput:\n 1\n\nExplanation:\n We can reorder nums to be [2,3,1] which will yield the same BST. There are no other ways to reorder nums which will yield the same BST.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2026/02/23/1569_ex.png] \n \n```\nInput:\n nums = [3,4,5,1,2]\n\nOutput:\n 5\n\nExplanation:\n The following 5 arrays will yield the same BST: \n[3,1,2,4,5]\n[3,1,4,2,5]\n[3,1,4,5,2]\n[3,4,1,2,5]\n[3,4,1,5,2]\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2026/02/23/1569_ex2.png] \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n 0\n\nExplanation:\n There are no other orderings of nums that will yield the same BST.\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= nums.length \n \n All integers in nums are distinct .",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int MOD = 1e9 + 7;\n    vector<vector<int>> comb;\n\n    int numOfWays(vector<int>& nums) {\n        int n = nums.size();\n        comb.resize(n + 1, vector<int>(n + 1, 0));\n        for (int i = 0; i <= n; ++i) {\n            comb[i][0] = comb[i][i] = 1;\n            for (int j = 1; j < i; ++j)\n                comb[i][j] = (comb[i - 1][j - 1] + comb[i - 1][j]) % MOD;\n        }\n        return (dfs(nums) - 1 + MOD) % MOD;\n    }\n\n    int dfs(vector<int>& nums) {\n        if (nums.size() <= 2) return 1;\n        vector<int> left, right;\n        for (int i = 1; i < nums.size(); ++i)\n            (nums[i] < nums[0] ? left : right).push_back(nums[i]);\n        long long l = dfs(left), r = dfs(right);\n        return comb[left.size() + right.size()][left.size()] * l % MOD * r % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1599290013",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

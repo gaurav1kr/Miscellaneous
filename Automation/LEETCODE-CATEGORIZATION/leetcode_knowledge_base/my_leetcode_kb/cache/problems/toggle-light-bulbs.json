@@ -1,0 +1,34 @@
+{
+  "id": "3842",
+  "title": "Toggle Light Bulbs",
+  "slug": "toggle-light-bulbs",
+  "url": "https://leetcode.com/problems/toggle-light-bulbs/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array bulbs of integers between 1 and 100. \n \n There are 100 light bulbs numbered from 1 to 100. All of them are switched off initially. \n \n For each element bulbs[i] in the array bulbs : \n\n If the bulbs[i] th light bulb is currently off, switch it on. \n \n Otherwise, switch it off. \n\n Return the list of integers denoting the light bulbs that are on in the end, sorted in ascending order. If no bulb is on, return an empty list. \n\n Example 1: \n\n Input: bulbs = [10,30,20,10] \n \n Output: [20,30] \n \n Explanation: \n\n The bulbs[0] = 10 th light bulb is currently off. We switch it on. \n \n The bulbs[1] = 30 th light bulb is currently off. We switch it on. \n \n The bulbs[2] = 20 th light bulb is currently off. We switch it on. \n \n The bulbs[3] = 10 th light bulb is currently on. We switch it off. \n \n In the end, the 20 th and the 30 th light bulbs are on. \n\n Example 2: \n\n Input: bulbs = [100,100] \n \n Output: [] \n \n Explanation: \n\n The bulbs[0] = 100 th light bulb is currently off. We switch it on. \n \n The bulbs[1] = 100 th light bulb is currently on. We switch it off. \n \n In the end, no light bulb is on. \n\n Constraints: \n\n 1 <= bulbs.length <= 100 \n \n 1 <= bulbs[i] <= 100",
+  "code": "class Solution {\npublic:\n    vector<int> toggleLightBulbs(vector<int>& bulbs) {\n        bool on[101]={};\n        for(int x:bulbs) on[x]=!on[x];\n        vector<int> ans;\n        for(int x=1;x<=100;++x) if(on[x]) ans.push_back(x);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177771340",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

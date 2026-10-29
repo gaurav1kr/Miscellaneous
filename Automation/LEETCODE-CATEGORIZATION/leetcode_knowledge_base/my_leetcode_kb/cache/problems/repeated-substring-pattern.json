@@ -1,0 +1,29 @@
+{
+  "id": "459",
+  "title": "Repeated Substring Pattern",
+  "slug": "repeated-substring-pattern",
+  "url": "https://leetcode.com/problems/repeated-substring-pattern/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "String Matching",
+    "Z Algorithm",
+    "Knuth–Morris–Pratt Algorithm"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s , check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. \n\n Example 1: \n \n```\nInput:\n s = \"abab\"\n\nOutput:\n true\n\nExplanation:\n It is the substring \"ab\" twice.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aba\"\n\nOutput:\n false\n```\n\n Example 3: \n \n```\nInput:\n s = \"abcabcabcabc\"\n\nOutput:\n true\n\nExplanation:\n It is the substring \"abc\" four times or the substring \"abcabc\" twice.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    bool repeatedSubstringPattern(string s) {\n        string doubled = s + s;\n        return doubled.substr(1, doubled.size() - 2).find(s) != string::npos;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588099956",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

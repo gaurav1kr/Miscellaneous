@@ -1,0 +1,27 @@
+{
+  "id": "3200",
+  "title": "Maximum Height of a Triangle",
+  "slug": "maximum-height-of-a-triangle",
+  "url": "https://leetcode.com/problems/maximum-height-of-a-triangle/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Enumeration"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector"
+  ],
+  "description": "You are given two integers red and blue representing the count of red and blue colored balls. You have to arrange these balls to form a triangle such that the 1 st row will have 1 ball, the 2 nd row will have 2 balls, the 3 rd row will have 3 balls, and so on. \n \n All the balls in a particular row should be the same color, and adjacent rows should have different colors. \n \n Return the maximum height of the triangle that can be achieved. \n\n Example 1: \n\n Input: red = 2, blue = 4 \n \n Output: 3 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/16/brb.png] \n \n The only possible arrangement is shown above. \n\n Example 2: \n\n Input: red = 2, blue = 1 \n \n Output: 2 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/16/br.png] \nThe only possible arrangement is shown above. \n\n Example 3: \n\n Input: red = 1, blue = 1 \n \n Output: 1 \n\n Example 4: \n\n Input: red = 10, blue = 1 \n \n Output: 2 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/16/br.png] \nThe only possible arrangement is shown above. \n\n Constraints: \n\n 1 <= red, blue <= 100",
+  "code": "class Solution {public:int maxHeightOfTriangle(int red,int blue){auto run=[](int r,int b){int h=0;for(int row=1;;++row){int&v=(row%2?r:b);if(v<row)break;v-=row;++h;}return h;};return max(run(red,blue),run(blue,red));}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177419424",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

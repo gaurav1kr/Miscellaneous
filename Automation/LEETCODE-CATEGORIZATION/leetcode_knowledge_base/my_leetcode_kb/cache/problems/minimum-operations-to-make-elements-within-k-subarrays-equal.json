@@ -1,0 +1,41 @@
+{
+  "id": "3505",
+  "title": "Minimum Operations to Make Elements Within K Subarrays Equal",
+  "slug": "minimum-operations-to-make-elements-within-k-subarrays-equal",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-elements-within-k-subarrays-equal/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Dynamic Programming",
+    "Sliding Window",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Ordered set",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers, x and k . You can perform the following operation any number of times ( including zero ): \n\n Increase or decrease any element of nums by 1. \n\n Return the minimum number of operations needed to have at least k non-overlapping subarrays of size exactly x in nums , where all elements within each subarray are equal. \n\n Example 1: \n\n Input: nums = [5,-2,1,3,7,3,6,4,-1], x = 3, k = 2 \n \n Output: 8 \n \n Explanation: \n\n Use 3 operations to add 3 to nums[1] and use 2 operations to subtract 2 from nums[3] . The resulting array is [5, 1, 1, 1, 7, 3, 6, 4, -1] . \n \n Use 1 operation to add 1 to nums[5] and use 2 operations to subtract 2 from nums[6] . The resulting array is [5, 1, 1, 1, 7, 4, 4, 4, -1] . \n \n Now, all elements within each subarray [1, 1, 1] (from indices 1 to 3) and [4, 4, 4] (from indices 5 to 7) are equal. Since 8 total operations were used, 8 is the output. \n\n Example 2: \n\n Input: nums = [9,-2,-2,-2,1,5], x = 2, k = 2 \n \n Output: 3 \n \n Explanation: \n\n Use 3 operations to subtract 3 from nums[4] . The resulting array is [9, -2, -2, -2, -2, 5] . \n \n Now, all elements within each subarray [-2, -2] (from indices 1 to 2) and [-2, -2] (from indices 3 to 4) are equal. Since 3 operations were used, 3 is the output. \n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n -10 6 <= nums[i] <= 10 6 \n \n 2 <= x <= nums.length \n \n 1 <= k <= 15 \n \n 2 <= k * x <= nums.length",
+  "code": "class Solution {public:long long minOperations(vector<int>&nums,int x,int k){int n=nums.size();multiset<long long>lo,hi;long long sl=0,sh=0;auto rebalance=[&](){while(lo.size()<hi.size()){auto it=hi.begin();sl+=*it;sh-=*it;lo.insert(*it);hi.erase(it);}while(lo.size()>hi.size()+1){auto it=prev(lo.end());sh+=*it;sl-=*it;hi.insert(*it);lo.erase(it);}};auto ins=[&](long long v){if(lo.empty()||v<=*lo.rbegin()){lo.insert(v);sl+=v;}else{hi.insert(v);sh+=v;}rebalance();};auto del=[&](long long v){auto it=lo.find(v);if(it!=lo.end()){lo.erase(it);sl-=v;}else{it=hi.find(v);hi.erase(it);sh-=v;}rebalance();};vector<long long>cost(n-x+1);for(int i=0;i<n;i++){ins(nums[i]);if(i>=x)del(nums[i-x]);if(i>=x-1){long long mid=*lo.rbegin();cost[i-x+1]=mid*lo.size()-sl+sh-mid*hi.size();}}const long long INF=LLONG_MAX/4;vector<long long>prev(n+1,0),cur(n+1);for(int z=1;z<=k;z++){fill(cur.begin(),cur.end(),INF);for(int i=x;i<=n;i++){cur[i]=cur[i-1];if(prev[i-x]!=INF)cur[i]=min(cur[i],prev[i-x]+cost[i-x]);}prev.swap(cur);}return prev[n];}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177551446",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

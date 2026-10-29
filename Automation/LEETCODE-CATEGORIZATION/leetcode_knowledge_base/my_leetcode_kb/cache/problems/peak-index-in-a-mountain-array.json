@@ -1,0 +1,30 @@
+{
+  "id": "852",
+  "title": "Peak Index in a Mountain Array",
+  "slug": "peak-index-in-a-mountain-array",
+  "url": "https://leetcode.com/problems/peak-index-in-a-mountain-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Ternary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer mountain array arr of length n where the values increase to a peak element and then decrease. \n \n Return the index of the peak element. \n \n Your task is to solve it in O(log(n)) time complexity. \n\n Example 1: \n\n Input: arr = [0,1,0] \n \n Output: 1 \n\n Example 2: \n\n Input: arr = [0,2,1,0] \n \n Output: 1 \n\n Example 3: \n\n Input: arr = [0,10,5,2] \n \n Output: 1 \n\n Constraints: \n\n 3 <= arr.length <= 10 5 \n \n 0 <= arr[i] <= 10 6 \n \n arr is guaranteed to be a mountain array.",
+  "code": "class Solution \n{\npublic:\n    \t\tint peakIndexInMountainArray(vector<int>& arr) \n            {\n                int high = arr.size() - 1;\n                int low = 0 ;\n                while(low < high)\n                {\n                    int mid = low + (high-low)/2 ;\n                    if(arr[mid]<arr[mid+1])\n                    {\n                        low= mid+1 ;\n                    }\n                    else\n                    {\n                        high = mid ;\n                    }\n                }\n                return low ;\n    \t\t}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "564333396",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

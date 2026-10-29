@@ -1,0 +1,29 @@
+{
+  "id": "559",
+  "title": "Maximum Depth of N-ary Tree",
+  "slug": "maximum-depth-of-n-ary-tree",
+  "url": "https://leetcode.com/problems/maximum-depth-of-n-ary-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Tree adjacency list"
+  ],
+  "description": "Given a n-ary tree, find its maximum depth. \n \n The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node. \n \n Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See examples). \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2018/10/12/narytreeexample.png] \n \n```\nInput:\n root = [1,null,3,2,4,null,5,6]\n\nOutput:\n 3\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2019/11/08/sample_4_964.png] \n \n```\nInput:\n root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]\n\nOutput:\n 5\n```\n\n Constraints: \n\n The total number of nodes is in the range [0, 10 4 ] . \n \n The depth of the n-ary tree is less than or equal to 1000 .",
+  "code": "class Solution {\npublic:\n    int maxDepth(Node* root) {\n        if (!root) return 0;\n        int depth = 0;\n        for (Node* child : root->children) {\n            depth = max(depth, maxDepth(child));\n        }\n        return depth + 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588074387",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

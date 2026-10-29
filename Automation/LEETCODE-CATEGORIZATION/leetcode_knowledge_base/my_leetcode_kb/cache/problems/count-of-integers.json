@@ -1,0 +1,32 @@
+{
+  "id": "2719",
+  "title": "Count of Integers",
+  "slug": "count-of-integers",
+  "url": "https://leetcode.com/problems/count-of-integers/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two numeric strings num1 and num2 and two integers max_sum and min_sum . We denote an integer x to be good if: \n\n num1 <= x <= num2 \n \n min_sum <= digit_sum(x) <= max_sum . \n\n Return the number of good integers . Since the answer may be large, return it modulo 10 9 + 7 . \n \n Note that digit_sum(x) denotes the sum of the digits of x . \n\n Example 1: \n \n```\nInput:\n num1 = \"1\", num2 = \"12\", \nmin_sum\n = 1, max_sum = 8\n\nOutput:\n 11\n\nExplanation:\n There are 11 integers whose sum of digits lies between 1 and 8 are 1,2,3,4,5,6,7,8,10,11, and 12. Thus, we return 11.\n```\n\n Example 2: \n \n```\nInput:\n num1 = \"1\", num2 = \"5\", \nmin_sum\n = 1, max_sum = 5\n\nOutput:\n 5\n\nExplanation:\n The 5 integers whose sum of digits lies between 1 and 5 are 1,2,3,4, and 5. Thus, we return 5.\n```\n\n Constraints: \n\n 1 <= num1 <= num2 <= 10 22 \n \n 1 <= min_sum <= max_sum <= 400",
+  "code": "class Solution {\nstatic const int MOD=1000000007;\nint low,high;\nint countUpTo(const string& s){int n=s.size();vector<vector<int>> dp(2,vector<int>(high+1));dp[1][0]=1;for(int i=0;i<n;++i){vector<vector<int>> ndp(2,vector<int>(high+1));for(int tight=0;tight<=1;++tight)for(int sum=0;sum<=high;++sum)if(dp[tight][sum]){int lim=tight?s[i]-'0':9;for(int d=0;d<=lim&&sum+d<=high;++d){int &v=ndp[tight&&d==lim][sum+d];v=(v+dp[tight][sum])%MOD;}}dp.swap(ndp);}int ans=0;for(int t=0;t<2;++t)for(int s=low;s<=high;++s)ans=(ans+dp[t][s])%MOD;return ans;}\npublic:int count(string num1,string num2,int min_sum,int max_sum){low=min_sum;high=max_sum;int a=countUpTo(num2),b=countUpTo(num1);int digitSum=0;for(char c:num1)digitSum+=c-'0';return (a-b+(digitSum>=low&&digitSum<=high)+MOD)%MOD;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176683990",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

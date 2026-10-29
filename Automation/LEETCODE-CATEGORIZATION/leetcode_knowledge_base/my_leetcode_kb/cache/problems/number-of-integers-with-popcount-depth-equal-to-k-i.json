@@ -1,0 +1,31 @@
+{
+  "id": "3621",
+  "title": "Number of Integers With Popcount-Depth Equal to K I",
+  "slug": "number-of-integers-with-popcount-depth-equal-to-k-i",
+  "url": "https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-i/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You are given two integers n and k . \n \n For any positive integer x , define the following sequence: \n\n p 0 = x \n \n p i+1 = popcount(p i ) for all i >= 0 , where popcount(y) is the number of set bits (1's) in the binary representation of y . \n\n This sequence will eventually reach the value 1. \n \n The popcount-depth of x is defined as the smallest integer d >= 0 such that p d = 1 . \n \n For example, if x = 7 (binary representation \"111\" ). Then, the sequence is: 7 → 3 → 2 → 1 , so the popcount-depth of 7 is 3. \n \n Your task is to determine the number of integers in the range [1, n] whose popcount-depth is exactly equal to k . \n \n Return the number of such integers. \n\n Example 1: \n\n Input: n = 4, k = 1 \n \n Output: 2 \n \n Explanation: \n \n The following integers in the range [1, 4] have popcount-depth exactly equal to 1: \n\n x \n Binary \n Sequence \n\n 2 \n \"10\" \n 2 → 1 \n\n 4 \n \"100\" \n 4 → 1 \n\n Thus, the answer is 2. \n\n Example 2: \n\n Input: n = 7, k = 2 \n \n Output: 3 \n \n Explanation: \n \n The following integers in the range [1, 7] have popcount-depth exactly equal to 2: \n\n x \n Binary \n Sequence \n\n 3 \n \"11\" \n 3 → 2 → 1 \n\n 5 \n \"101\" \n 5 → 2 → 1 \n\n 6 \n \"110\" \n 6 → 2 → 1 \n\n Thus, the answer is 3. \n\n Constraints: \n\n 1 <= n <= 10 15 \n \n 0 <= k <= 5",
+  "code": "class Solution {\npublic:\n    long long popcountDepth(long long n,int k) {\n        if(k==0) return 1;\n        long long C[61][61]={};\n        for(int i=0;i<=60;++i) {\n            C[i][0]=C[i][i]=1;\n            for(int j=1;j<i;++j) C[i][j]=C[i-1][j-1]+C[i-1][j];\n        }\n        auto countBits=[&](int ones) {\n            long long ans=0;int used=0;\n            for(int b=59;b>=0;--b) if((n>>b)&1LL) {\n                int need=ones-used;\n                if(need>=0 && need<=b) ans+=C[b][need];\n                ++used;\n            }\n            if(used==ones) ++ans;\n            return ans;\n        };\n        long long ans=0;\n        for(int ones=1;ones<=50;++ones) {\n            int d=0,x=ones;\n            while(x!=1) {x=__builtin_popcount((unsigned)x);++d;}\n            if(d+1==k) ans+=countBits(ones);\n        }\n        if(k==1) --ans; // x=1 has depth zero, not one.\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179753608",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

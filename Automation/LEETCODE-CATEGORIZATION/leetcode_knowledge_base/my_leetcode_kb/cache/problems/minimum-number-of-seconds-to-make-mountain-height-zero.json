@@ -1,0 +1,36 @@
+{
+  "id": "3296",
+  "title": "Minimum Number of Seconds to Make Mountain Height Zero",
+  "slug": "minimum-number-of-seconds-to-make-mountain-height-zero",
+  "url": "https://leetcode.com/problems/minimum-number-of-seconds-to-make-mountain-height-zero/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "You are given an integer mountainHeight denoting the height of a mountain. \n \n You are also given an integer array workerTimes representing the work time of workers in seconds . \n \n Each worker may reduce the mountain's height by any non-negative integer amount. If worker i reduces the height by x , then: \n\n reducing the first unit of height takes workerTimes[i] seconds, \n \n reducing the second unit takes workerTimes[i] * 2 seconds, \n \n ... \n \n reducing the x -th unit takes workerTimes[i] * x seconds. \n\n The total time spent by worker i is the sum of the times required for all x units they reduce. As all workers operate simultaneously, the total time required is the maximum time spent by any worker. \n \n Return an integer representing the minimum number of seconds required for the workers to make the height of the mountain 0. \n\n Example 1: \n\n Input: mountainHeight = 4, workerTimes = [2,1,1] \n \n Output: 3 \n \n Explanation: \n \n One way the height of the mountain can be reduced to 0 is: \n\n Worker 0 reduces the height by 1, taking workerTimes[0] = 2 seconds. \n \n Worker 1 reduces the height by 2, taking workerTimes[1] + workerTimes[1] * 2 = 3 seconds. \n \n Worker 2 reduces the height by 1, taking workerTimes[2] = 1 second. \n\n Since they work simultaneously, the minimum time needed is max(2, 3, 1) = 3 seconds. \n\n Example 2: \n\n Input: mountainHeight = 10, workerTimes = [3,2,2,4] \n \n Output: 12 \n \n Explanation: \n\n Worker 0 reduces the height by 2, taking workerTimes[0] + workerTimes[0] * 2 = 9 seconds. \n \n Worker 1 reduces the height by 3, taking workerTimes[1] + workerTimes[1] * 2 + workerTimes[1] * 3 = 12 seconds. \n \n Worker 2 reduces the height by 3, taking workerTimes[2] + workerTimes[2] * 2 + workerTimes[2] * 3 = 12 seconds. \n \n Worker 3 reduces the height by 2, taking workerTimes[3] + workerTimes[3] * 2 = 12 seconds. \n\n The number of seconds needed is max(9, 12, 12, 12) = 12 seconds. \n\n Example 3: \n\n Input: mountainHeight = 5, workerTimes = [1] \n \n Output: 15 \n \n Explanation: \n \n There is only one worker in this example, so the answer is workerTimes[0] + workerTimes[0] * 2 + workerTimes[0] * 3 + workerTimes[0] * 4 + workerTimes[0] * 5 = 15 . \n\n Constraints: \n\n 1 <= mountainHeight <= 10 5 \n \n 1 <= workerTimes.length <= 10 4 \n \n 1 <= workerTimes[i] <= 10 6",
+  "code": "class Solution { public: long long minNumberOfSeconds(int mountainHeight,vector<int>&workerTimes){auto ok=[&](long long t){long long done=0;for(int w:workerTimes){long long l=0,r=mountainHeight;while(l<r){long long mid=(l+r+1)/2;if((__int128)w*mid*(mid+1)/2<=t)l=mid;else r=mid-1;}done+=l;if(done>=mountainHeight)return true;}return false;};long long lo=0,hi=1LL*(*min_element(workerTimes.begin(),workerTimes.end()))*mountainHeight*(mountainHeight+1)/2;while(lo<hi){long long mid=lo+(hi-lo)/2;if(ok(mid))hi=mid;else lo=mid+1;}return lo;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177451655",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

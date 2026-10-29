@@ -1,0 +1,28 @@
+{
+  "id": "696",
+  "title": "Count Binary Substrings",
+  "slug": "count-binary-substrings",
+  "url": "https://leetcode.com/problems/count-binary-substrings/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a binary string s , return the number of non-empty substrings that have the same number of 0 's and 1 's, and all the 0 's and all the 1 's in these substrings are grouped consecutively. \n \n Substrings that occur multiple times are counted the number of times they occur. \n\n Example 1: \n \n```\nInput:\n s = \"00110011\"\n\nOutput:\n 6\n\nExplanation:\n There are 6 substrings that have equal number of consecutive 1's and 0's: \"0011\", \"01\", \"1100\", \"10\", \"0011\", and \"01\".\nNotice that some of these substrings repeat and are counted the number of times they occur.\nAlso, \"00110011\" is not a valid substring because all the 0's (and 1's) are not grouped together.\n```\n\n Example 2: \n \n```\nInput:\n s = \"10101\"\n\nOutput:\n 4\n\nExplanation:\n There are 4 substrings: \"10\", \"01\", \"10\", \"01\" that have equal number of consecutive 1's and 0's.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is either '0' or '1' .",
+  "code": "class Solution {\npublic:\n    int countBinarySubstrings(string s) {\n        int prev = 0, cur = 1, count = 0;\n        for (int i = 1; i < s.size(); ++i) {\n            if (s[i] == s[i - 1])\n                cur++;\n            else {\n                count += min(prev, cur);\n                prev = cur;\n                cur = 1;\n            }\n        }\n        return count + min(prev, cur);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588124138",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

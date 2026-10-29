@@ -1,0 +1,27 @@
+{
+  "id": "790",
+  "title": "Domino and Tromino Tiling",
+  "slug": "domino-and-tromino-tiling",
+  "url": "https://leetcode.com/problems/domino-and-tromino-tiling/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You have two types of tiles: a 2 x 1 domino shape and a tromino shape. You may rotate these shapes. \n [Figure: https://assets.leetcode.com/uploads/2021/07/15/lc-domino.jpg] \n \n Given an integer n, return the number of ways to tile an 2 x n board . Since the answer may be very large, return it modulo 10 9 + 7 . \n \n In a tiling, every square must be covered by a tile. Two tilings are different if and only if there are two 4-directionally adjacent cells on the board such that exactly one of the tilings has both squares occupied by a tile. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/07/15/lc-domino1.jpg] \n \n```\nInput:\n n = 3\n\nOutput:\n 5\n\nExplanation:\n The five different ways are shown above.\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= n <= 1000",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numTilings(int n) {\n        if (n == 1) return 1;\n        if (n == 2) return 2;\n        if (n == 3) return 5;\n        \n        vector<long long> dp(n + 1);\n        dp[1] = 1; dp[2] = 2; dp[3] = 5;\n        int MOD = 1e9 + 7;\n        \n        for (int i = 4; i <= n; i++) {\n            dp[i] = (2 * dp[i - 1] + dp[i - 3]) % MOD;\n        }\n        return dp[n];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590177677",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

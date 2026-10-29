@@ -1,0 +1,29 @@
+{
+  "id": "2",
+  "title": "Add Two Numbers",
+  "slug": "add-two-numbers",
+  "url": "https://leetcode.com/problems/add-two-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List",
+    "Math",
+    "Recursion"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order , and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list. \n \n You may assume the two numbers do not contain any leading zero, except the number 0 itself. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/02/addtwonumber1.jpg] \n \n```\nInput:\n l1 = [2,4,3], l2 = [5,6,4]\n\nOutput:\n [7,0,8]\n\nExplanation:\n 342 + 465 = 807.\n```\n\n Example 2: \n \n```\nInput:\n l1 = [0], l2 = [0]\n\nOutput:\n [0]\n```\n\n Example 3: \n \n```\nInput:\n l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]\n\nOutput:\n [8,9,9,9,0,0,0,1]\n```\n\n Constraints: \n\n The number of nodes in each linked list is in the range [1, 100] . \n \n 0 <= Node.val <= 9 \n \n It is guaranteed that the list represents a number that does not have leading zeros.",
+  "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode *newNode(int data)  \n    {  \n        ListNode *new_node = new ListNode(); \n        new_node->val = data;  \n        new_node->next = NULL;  \n        return new_node;  \n    }  \n    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) \n    {\n        int sum = 0 , carry = 0 , n1 = 0 ;\n        ListNode *temp = NULL , *prev = NULL , *result = NULL;\n        while(l1 || l2)\n        {\n            sum = carry + (l1 ? l1->val:0) + (l2 ? l2->val:0) ;\n            carry = sum/10 ;\n            n1 = sum % 10 ;\n            temp = newNode(n1) ;\n            if(!result)\n                result = temp ;\n            else\n                prev->next = temp ;\n            prev = temp ;\n            if(l1)\n                l1 = l1->next ;\n            if(l2)\n                l2 = l2->next ;\n        }\n        if(carry)\n            temp->next = newNode(carry) ;\n        return result ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "334704279",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

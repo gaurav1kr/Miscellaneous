@@ -1,0 +1,39 @@
+{
+  "id": "786",
+  "title": "K-th Smallest Prime Fraction",
+  "slug": "k-th-smallest-prime-fraction",
+  "url": "https://leetcode.com/problems/k-th-smallest-prime-fraction/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a sorted integer array arr containing 1 and prime numbers, where all the integers of arr are unique. You are also given an integer k . \n \n For every i and j where 0 <= i < j < arr.length , we consider the fraction arr[i] / arr[j] . \n \n Return the k th smallest fraction considered . Return your answer as an array of integers of size 2 , where answer[0] == arr[i] and answer[1] == arr[j] . \n\n Example 1: \n \n```\nInput:\n arr = [1,2,3,5], k = 3\n\nOutput:\n [2,5]\n\nExplanation:\n The fractions to be considered in sorted order are:\n1/5, 1/3, 2/5, 1/2, 3/5, and 2/3.\nThe third fraction is 2/5.\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,7], k = 1\n\nOutput:\n [1,7]\n```\n\n Constraints: \n\n 2 <= arr.length <= 1000 \n \n 1 <= arr[i] <= 3 * 10 4 \n \n arr[0] == 1 \n \n arr[i] is a prime number for i > 0 . \n \n All the numbers of arr are unique and sorted in strictly increasing order. \n \n 1 <= k <= arr.length * (arr.length - 1) / 2 \n\n Follow up: Can you solve the problem with better than O(n 2 ) complexity?",
+  "code": "class Solution {\npublic:\n    vector<int> kthSmallestPrimeFraction(vector<int>& arr, int k) {\n        int n = arr.size();\n        priority_queue<pair<double,pair<int,int>>> pq;\n\n        for(int i=0;i<n;i++){\n            for(int j=i+1;j<n;j++){\n                double x = arr[i]/(arr[j]*1.0);\n                \n                if(pq.size() == k){\n                    if(x < pq.top().first){\n                        pq.pop();\n                        pq.push({x,{arr[i],arr[j]}});\n                    }\n                }\n                else{\n                    pq.push({x,{arr[i],arr[j]}});\n                }\n            }\n        }\n\n        return {pq.top().second.first,pq.top().second.second};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617068195",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

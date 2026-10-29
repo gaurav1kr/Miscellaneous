@@ -1,0 +1,38 @@
+{
+  "id": "2519",
+  "title": "Count the Number of K-Big Indices",
+  "slug": "count-the-number-of-k-big-indices",
+  "url": "https://leetcode.com/problems/count-the-number-of-k-big-indices/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Merge Sort",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums and a positive integer k . \n \n We call an index i k-big if the following conditions are satisfied: \n\n There exist at least k different indices idx1 such that idx1 < i and nums[idx1] < nums[i] . \n \n There exist at least k different indices idx2 such that idx2 > i and nums[idx2] < nums[i] . \n\n Return the number of k-big indices . \n\n Example 1: \n \n```\nInput:\n nums = [2,3,6,5,2,3], k = 2\n\nOutput:\n 2\n\nExplanation:\n There are only two 2-big indices in nums:\n- i = 2 --> There are two valid idx1: 0 and 1. There are three valid idx2: 2, 3, and 4.\n- i = 3 --> There are two valid idx1: 0 and 1. There are two valid idx2: 3 and 4.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,1], k = 3\n\nOutput:\n 0\n\nExplanation:\n There are no 3-big indices in nums.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i], k <= nums.length",
+  "code": "class Solution {\n    struct BIT {\n        vector<int> t;\n        BIT(int n): t(n + 1) {}\n        void add(int x) { for (; x < (int)t.size(); x += x & -x) ++t[x]; }\n        int sum(int x) { int s = 0; for (; x; x -= x & -x) s += t[x]; return s; }\n    };\npublic:\n    int kBigIndices(vector<int>& nums, int k) {\n        vector<int> sorted = nums;\n        sort(sorted.begin(), sorted.end());\n        sorted.erase(unique(sorted.begin(), sorted.end()), sorted.end());\n        int n = nums.size();\n        vector<int> left(n), right(n);\n        BIT a(sorted.size()), b(sorted.size());\n        for (int i = 0; i < n; ++i) {\n            int rank = lower_bound(sorted.begin(), sorted.end(), nums[i]) - sorted.begin() + 1;\n            left[i] = a.sum(rank - 1);\n            a.add(rank);\n        }\n        for (int i = n - 1; i >= 0; --i) {\n            int rank = lower_bound(sorted.begin(), sorted.end(), nums[i]) - sorted.begin() + 1;\n            right[i] = b.sum(rank - 1);\n            b.add(rank);\n        }\n        int answer = 0;\n        for (int i = 0; i < n; ++i) answer += left[i] >= k && right[i] >= k;\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178883135",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

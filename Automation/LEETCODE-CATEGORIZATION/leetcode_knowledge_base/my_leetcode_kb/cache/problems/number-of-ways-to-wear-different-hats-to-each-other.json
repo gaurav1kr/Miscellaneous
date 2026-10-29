@@ -1,0 +1,39 @@
+{
+  "id": "1434",
+  "title": "Number of Ways to Wear Different Hats to Each Other",
+  "slug": "number-of-ways-to-wear-different-hats-to-each-other",
+  "url": "https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask",
+    "Bipartite Graph",
+    "Matching (Graph)",
+    "Perfect Matching"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map",
+    "Vector"
+  ],
+  "description": "There are n people and 40 types of hats labeled from 1 to 40 . \n \n Given a 2D integer array hats , where hats[i] is a list of all hats preferred by the i th person. \n \n Return the number of ways that n people can wear different hats from each other. \n \n Since the answer may be too large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n hats = [[3,4],[4,5],[5]]\n\nOutput:\n 1\n\nExplanation:\n There is only one way to choose hats given the conditions. \nFirst person chooses hat 3, Second person chooses hat 4 and last one hat 5.\n```\n\n Example 2: \n \n```\nInput:\n hats = [[3,5,1],[3,5]]\n\nOutput:\n 4\n\nExplanation:\n There are 4 ways to choose hats:\n(3,5), (5,3), (1,3) and (1,5)\n```\n\n Example 3: \n \n```\nInput:\n hats = [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]]\n\nOutput:\n 24\n\nExplanation:\n Each person can choose hats labeled from 1 to 4.\nNumber of Permutations of (1,2,3,4) = 24.\n```\n\n Constraints: \n\n n == hats.length \n \n 1 <= n <= 10 \n \n 1 <= hats[i].length <= 40 \n \n 1 <= hats[i][j] <= 40 \n \n hats[i] contains a list of unique integers.",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numberWays(vector<vector<int>>& hats) {\n        const int MOD = 1e9 + 7;\n        vector<vector<int>> hatToPerson(41);\n        int n = hats.size();\n        for (int i = 0; i < n; ++i)\n            for (int h : hats[i])\n                hatToPerson[h].push_back(i);\n\n        vector<vector<int>> dp(41, vector<int>(1 << n, 0));\n        dp[0][0] = 1;\n\n        for (int h = 1; h <= 40; ++h) {\n            for (int mask = 0; mask < (1 << n); ++mask) {\n                dp[h][mask] = dp[h - 1][mask];\n                for (int p : hatToPerson[h]) {\n                    if (mask & (1 << p))\n                        dp[h][mask] = (dp[h][mask] + dp[h - 1][mask ^ (1 << p)]) % MOD;\n                }\n            }\n        }\n        return dp[40][(1 << n) - 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610553369",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

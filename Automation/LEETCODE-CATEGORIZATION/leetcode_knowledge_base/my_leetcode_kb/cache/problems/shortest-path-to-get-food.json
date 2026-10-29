@@ -1,0 +1,32 @@
+{
+  "id": "1730",
+  "title": "Shortest Path to Get Food",
+  "slug": "shortest-path-to-get-food",
+  "url": "https://leetcode.com/problems/shortest-path-to-get-food/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are starving and you want to eat food as quickly as possible. You want to find the shortest path to arrive at any food cell. \n \n You are given an m x n character matrix, grid , of these different types of cells: \n\n '*' is your location. There is exactly one '*' cell. \n \n '#' is a food cell. There may be multiple food cells. \n \n 'O' is free space, and you can travel through these cells. \n \n 'X' is an obstacle, and you cannot travel through these cells. \n\n You can travel to any adjacent cell north, east, south, or west of your current location if there is not an obstacle. \n \n Return the length of the shortest path for you to reach any food cell . If there is no path for you to reach food, return -1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/21/img1.jpg] \n \n```\nInput:\n grid = [[\"X\",\"X\",\"X\",\"X\",\"X\",\"X\"],[\"X\",\"*\",\"O\",\"O\",\"O\",\"X\"],[\"X\",\"O\",\"O\",\"#\",\"O\",\"X\"],[\"X\",\"X\",\"X\",\"X\",\"X\",\"X\"]]\n\nOutput:\n 3\n\nExplanation:\n It takes 3 steps to reach the food.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/09/21/img2.jpg] \n \n```\nInput:\n grid = [[\"X\",\"X\",\"X\",\"X\",\"X\"],[\"X\",\"*\",\"X\",\"O\",\"X\"],[\"X\",\"O\",\"X\",\"#\",\"X\"],[\"X\",\"X\",\"X\",\"X\",\"X\"]]\n\nOutput:\n -1\n\nExplanation:\n It is not possible to reach the food.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/09/21/img3.jpg] \n \n```\nInput:\n grid = [[\"X\",\"X\",\"X\",\"X\",\"X\",\"X\",\"X\",\"X\"],[\"X\",\"*\",\"O\",\"X\",\"O\",\"#\",\"O\",\"X\"],[\"X\",\"O\",\"O\",\"X\",\"O\",\"O\",\"X\",\"X\"],[\"X\",\"O\",\"O\",\"O\",\"O\",\"#\",\"O\",\"X\"],[\"X\",\"X\",\"X\",\"X\",\"X\",\"X\",\"X\",\"X\"]]\n\nOutput:\n 6\n\nExplanation:\n There can be multiple food cells. It only takes 6 steps to reach the bottom food.\n```\n\n Example 4: \n \n```\nInput:\n grid = [[\"X\",\"X\",\"X\",\"X\",\"X\",\"X\",\"X\",\"X\"],[\"X\",\"*\",\"O\",\"X\",\"O\",\"#\",\"O\",\"X\"],[\"X\",\"O\",\"O\",\"X\",\"O\",\"O\",\"X\",\"X\"],[\"X\",\"O\",\"O\",\"O\",\"O\",\"#\",\"O\",\"X\"],[\"O\",\"O\",\"O\",\"O\",\"O\",\"O\",\"O\",\"O\"]]\n\nOutput:\n 5\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 200 \n \n grid[row][col] is '*' , 'X' , 'O' , or '#' . \n \n The grid contains exactly one '*' .",
+  "code": "class Solution {\npublic:\n    int getFood(vector<vector<char>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        queue<pair<int, int>> q;\n        for (int r = 0; r < m; ++r) {\n            for (int c = 0; c < n; ++c) {\n                if (grid[r][c] == '*') { q.push({r, c}); grid[r][c] = 'X'; }\n            }\n        }\n        int dr[4] = {1, -1, 0, 0}, dc[4] = {0, 0, 1, -1};\n        int distance = 0;\n        while (!q.empty()) {\n            int count = q.size();\n            while (count--) {\n                auto cell = q.front(); q.pop();\n                for (int d = 0; d < 4; ++d) {\n                    int r = cell.first + dr[d], c = cell.second + dc[d];\n                    if (r < 0 || r >= m || c < 0 || c >= n || grid[r][c] == 'X') continue;\n                    if (grid[r][c] == '#') return distance + 1;\n                    grid[r][c] = 'X';\n                    q.push({r, c});\n                }\n            }\n            ++distance;\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178606830",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

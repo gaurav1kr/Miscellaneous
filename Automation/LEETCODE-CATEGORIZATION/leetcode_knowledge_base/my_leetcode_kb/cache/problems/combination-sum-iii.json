@@ -1,0 +1,29 @@
+{
+  "id": "216",
+  "title": "Combination Sum III",
+  "slug": "combination-sum-iii",
+  "url": "https://leetcode.com/problems/combination-sum-iii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Find all valid combinations of k numbers that sum up to n such that the following conditions are true: \n\n Only numbers 1 through 9 are used. \n \n Each number is used at most once . \n\n Return a list of all possible valid combinations . The list must not contain the same combination twice, and the combinations may be returned in any order. \n\n Example 1: \n \n```\nInput:\n k = 3, n = 7\n\nOutput:\n [[1,2,4]]\n\nExplanation:\n\n1 + 2 + 4 = 7\nThere are no other valid combinations.\n```\n\n Example 2: \n \n```\nInput:\n k = 3, n = 9\n\nOutput:\n [[1,2,6],[1,3,5],[2,3,4]]\n\nExplanation:\n\n1 + 2 + 6 = 9\n1 + 3 + 5 = 9\n2 + 3 + 4 = 9\nThere are no other valid combinations.\n```\n\n Example 3: \n \n```\nInput:\n k = 4, n = 1\n\nOutput:\n []\n\nExplanation:\n There are no valid combinations.\nUsing 4 different numbers in the range [1,9], the smallest sum we can get is 1+2+3+4 = 10 and since 10 > 1, there are no valid combination.\n```\n\n Constraints: \n\n 2 <= k <= 9 \n \n 1 <= n <= 60",
+  "code": "class Solution \n{\npublic:\n    vector<vector<int>> ans;    \n    void f(vector<int>& cur, int cnum, int k, int n) \n    {\n        if(n < 0 || cur.size() > k) return;\n        if(n == 0 && cur.size() == k) \n        {\n            ans.push_back(cur);\n            return;\n        }\n        \n        for(int i=cnum; i<=9; ++i) \n        {\n            cur.push_back(i);\n            f(cur, i+1, k, n-i);\n            cur.pop_back();\n        }\n    }\n    \n    vector<vector<int>> combinationSum3(int k, int n) \n    {\n        vector<int> cur;\n        f(cur, 1, k, n);\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1482920417",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

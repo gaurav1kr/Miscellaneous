@@ -1,0 +1,28 @@
+{
+  "id": "2027",
+  "title": "Minimum Moves to Convert String",
+  "slug": "minimum-moves-to-convert-string",
+  "url": "https://leetcode.com/problems/minimum-moves-to-convert-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s consisting of n characters which are either 'X' or 'O' . \n \n A move is defined as selecting three consecutive characters of s and converting them to 'O' . Note that if a move is applied to the character 'O' , it will stay the same . \n \n Return the minimum number of moves required so that all the characters of s are converted to 'O' . \n\n Example 1: \n \n```\nInput:\n s = \"XXX\"\n\nOutput:\n 1\n\nExplanation:\n \nXXX\n -> OOO\nWe select all the 3 characters and convert them in one move.\n```\n\n Example 2: \n \n```\nInput:\n s = \"XXOX\"\n\nOutput:\n 2\n\nExplanation:\n \nXXO\nX -> O\nOOX\n -> OOOO\nWe select the first 3 characters in the first move, and convert them to \n'O'\n.\nThen we select the last 3 characters and convert them so that the final string contains all \n'O'\ns.\n```\n\n Example 3: \n \n```\nInput:\n s = \"OOOO\"\n\nOutput:\n 0\n\nExplanation:\n There are no \n'X's\n in \ns\n to convert.\n```\n\n Constraints: \n\n 3 <= s.length <= 1000 \n \n s[i] is either 'X' or 'O' .",
+  "code": "class Solution {\npublic:\n    int minimumMoves(string s){int ans=0;\n        for(int i=0;i<(int)s.size();){if(s[i]=='X'){++ans;i+=3;}else ++i;}\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175769277",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

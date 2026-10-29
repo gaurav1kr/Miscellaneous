@@ -1,0 +1,39 @@
+{
+  "id": "943",
+  "title": "Find the Shortest Superstring",
+  "slug": "find-the-shortest-superstring",
+  "url": "https://leetcode.com/problems/find-the-shortest-superstring/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask",
+    "Hamiltonian Path"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of strings words , return the smallest string that contains each string in words as a substring . If there are multiple valid strings of the smallest length, return any of them . \n \n You may assume that no string in words is a substring of another string in words . \n\n Example 1: \n \n```\nInput:\n words = [\"alex\",\"loves\",\"leetcode\"]\n\nOutput:\n \"alexlovesleetcode\"\n\nExplanation:\n All permutations of \"alex\",\"loves\",\"leetcode\" would also be accepted.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"catg\",\"ctaagt\",\"gcta\",\"ttca\",\"atgcatc\"]\n\nOutput:\n \"gctaagttcatgcatc\"\n```\n\n Constraints: \n\n 1 <= words.length <= 12 \n \n 1 <= words[i].length <= 20 \n \n words[i] consists of lowercase English letters. \n \n All the strings of words are unique .",
+  "code": "#include <vector>\n#include <string>\n#include <climits>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string shortestSuperstring(vector<string>& A) {\n        int n = A.size();\n        vector<vector<int>> overlap(n, vector<int>(n, 0));\n\n        for (int i = 0; i < n; ++i)\n            for (int j = 0; j < n; ++j)\n                for (int k = min(A[i].size(), A[j].size()); k >= 0; --k)\n                    if (A[i].substr(A[i].size() - k) == A[j].substr(0, k)) {\n                        overlap[i][j] = k;\n                        break;\n                    }\n\n        vector<vector<int>> dp(1 << n, vector<int>(n, INT_MIN));\n        vector<vector<int>> parent(1 << n, vector<int>(n, -1));\n\n        for (int i = 0; i < n; ++i)\n            dp[1 << i][i] = 0;\n\n        for (int mask = 1; mask < (1 << n); ++mask)\n            for (int i = 0; i < n; ++i)\n                if (mask & (1 << i))\n                    for (int j = 0; j < n; ++j)\n                        if (!(mask & (1 << j))) {\n                            int nextMask = mask | (1 << j);\n                            int val = dp[mask][i] + overlap[i][j];\n                            if (val > dp[nextMask][j]) {\n                                dp[nextMask][j] = val;\n                                parent[nextMask][j] = i;\n                            }\n                        }\n\n        int last = 0, mask = (1 << n) - 1;\n        for (int i = 1; i < n; ++i)\n            if (dp[mask][i] > dp[mask][last])\n                last = i;\n\n        string res;\n        vector<int> path;\n        while (last != -1) {\n            path.push_back(last);\n            int temp = parent[mask][last];\n            mask ^= (1 << last);\n            last = temp;\n        }\n        reverse(path.begin(), path.end());\n\n        res += A[path[0]];\n        for (int i = 1; i < path.size(); ++i) {\n            int o = overlap[path[i - 1]][path[i]];\n            res += A[path[i]].substr(o);\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593698761",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

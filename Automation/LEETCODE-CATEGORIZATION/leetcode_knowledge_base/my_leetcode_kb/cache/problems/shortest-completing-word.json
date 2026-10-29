@@ -1,0 +1,33 @@
+{
+  "id": "748",
+  "title": "Shortest Completing Word",
+  "slug": "shortest-completing-word",
+  "url": "https://leetcode.com/problems/shortest-completing-word/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string licensePlate and an array of strings words , find the shortest completing word in words . \n \n A completing word is a word that contains all the letters in licensePlate . Ignore numbers and spaces in licensePlate , and treat letters as case insensitive . If a letter appears more than once in licensePlate , then it must appear in the word the same number of times or more. \n \n For example, if licensePlate = \"aBc 12c\" , then it contains letters 'a' , 'b' (ignoring case), and 'c' twice. Possible completing words are \"abccdef\" , \"caaacab\" , and \"cbca\" . \n \n Return the shortest completing word in words . It is guaranteed an answer exists. If there are multiple shortest completing words, return the first one that occurs in words . \n\n Example 1: \n \n```\nInput:\n licensePlate = \"1s3 PSt\", words = [\"step\",\"steps\",\"stripe\",\"stepple\"]\n\nOutput:\n \"steps\"\n\nExplanation:\n licensePlate contains letters 's', 'p', 's' (ignoring case), and 't'.\n\"step\" contains 't' and 'p', but only contains 1 's'.\n\"steps\" contains 't', 'p', and both 's' characters.\n\"stripe\" is missing an 's'.\n\"stepple\" is missing an 's'.\nSince \"steps\" is the only word containing all the letters, that is the answer.\n```\n\n Example 2: \n \n```\nInput:\n licensePlate = \"1s3 456\", words = [\"looks\",\"pest\",\"stew\",\"show\"]\n\nOutput:\n \"pest\"\n\nExplanation:\n licensePlate only contains the letter 's'. All the words contain 's', but among these \"pest\", \"stew\", and \"show\" are shortest. The answer is \"pest\" because it is the word that appears earliest of the 3.\n```\n\n Constraints: \n\n 1 <= licensePlate.length <= 7 \n \n licensePlate contains digits, letters (uppercase or lowercase), or space ' ' . \n \n 1 <= words.length <= 1000 \n \n 1 <= words[i].length <= 15 \n \n words[i] consists of lower case English letters.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string shortestCompletingWord(string licensePlate, vector<string>& words) {\n        vector<int> cnt(26, 0);\n        for (char c : licensePlate) {\n            if (isalpha(c)) cnt[tolower(c) - 'a']++;\n        }\n\n        string res;\n        for (string& w : words) {\n            vector<int> temp = cnt;\n            for (char c : w) temp[c - 'a']--;\n            if (all_of(temp.begin(), temp.end(), [](int x) { return x <= 0; })) {\n                if (res.empty() || w.size() < res.size()) res = w;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610631827",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

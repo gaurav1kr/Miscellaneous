@@ -1,0 +1,30 @@
+{
+  "id": "537",
+  "title": "Complex Number Multiplication",
+  "slug": "complex-number-multiplication",
+  "url": "https://leetcode.com/problems/complex-number-multiplication/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A complex number can be represented as a string on the form \" real + imaginary i\" where: \n\n real is the real part and is an integer in the range [-100, 100] . \n \n imaginary is the imaginary part and is an integer in the range [-100, 100] . \n \n i 2 == -1 . \n\n Given two complex numbers num1 and num2 as strings, return a string of the complex number that represents their multiplications . \n\n Example 1: \n \n```\nInput:\n num1 = \"1+1i\", num2 = \"1+1i\"\n\nOutput:\n \"0+2i\"\n\nExplanation:\n (1 + i) * (1 + i) = 1 + i2 + 2 * i = 2i, and you need convert it to the form of 0+2i.\n```\n\n Example 2: \n \n```\nInput:\n num1 = \"1+-1i\", num2 = \"1+-1i\"\n\nOutput:\n \"0+-2i\"\n\nExplanation:\n (1 - i) * (1 - i) = 1 + i2 - 2 * i = -2i, and you need convert it to the form of 0+-2i.\n```\n\n Constraints: \n\n num1 and num2 are valid complex numbers.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string complexNumberMultiply(string num1, string num2) {\n        auto [a, b] = parse(num1);\n        auto [c, d] = parse(num2);\n        int real = a * c - b * d;\n        int imag = a * d + b * c;\n        return to_string(real) + \"+\" + to_string(imag) + \"i\";\n    }\n\n    pair<int, int> parse(string s) {\n        int plus = s.find('+');\n        int a = stoi(s.substr(0, plus));\n        int b = stoi(s.substr(plus + 1, s.size() - plus - 2));\n        return {a, b};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610575889",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

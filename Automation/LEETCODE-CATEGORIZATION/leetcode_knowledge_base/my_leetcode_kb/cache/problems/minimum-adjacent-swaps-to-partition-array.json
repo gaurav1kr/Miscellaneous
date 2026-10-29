@@ -1,0 +1,29 @@
+{
+  "id": "3994",
+  "title": "Minimum Adjacent Swaps to Partition Array",
+  "slug": "minimum-adjacent-swaps-to-partition-array",
+  "url": "https://leetcode.com/problems/minimum-adjacent-swaps-to-partition-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers a and b such that a < b . \n \n An array is called good if it can be split into three contiguous parts, in this order, such that: \n\n Every element in the first part is less than a . \n \n Every element in the second part is in the range [a, b] inclusive. \n \n Every element in the third part is greater than b . \n\n Any of the three parts may be empty. \n \n In one adjacent swap , you may swap two neighboring elements of nums . \n \n Return the minimum number of adjacent swaps required to make nums good. Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: nums = [1,3,2,4,5,6], a = 3, b = 4 \n \n Output: 1 \n \n Explanation: \n\n Swap nums[1] and nums[2] . The array becomes [1, 2, 3, 4, 5, 6] . \n \n This array is good because it can be split into [1, 2] , [3, 4] , and [5, 6] . \n\n Example 2: \n\n Input: nums = [9,7,5,3], a = 4, b = 8 \n \n Output: 5 \n \n Explanation: \n \n One sequence of optimal swaps is as follows: \n\n Swap nums[2] and nums[3] . The array becomes [9, 7, 3, 5] . \n \n Swap nums[1] and nums[2] . The array becomes [9, 3, 7, 5] . \n \n Swap nums[0] and nums[1] . The array becomes [3, 9, 7, 5] . \n \n Swap nums[1] and nums[2] . The array becomes [3, 7, 9, 5] . \n \n Swap nums[2] and nums[3] . The array becomes [3, 7, 5, 9] . \n \n This array is good because it can be split into [3] , [7, 5] , and [9] . \n\n Example 3: \n\n Input: nums = [3,7,5,9], a = 4, b = 8 \n \n Output: 0 \n \n Explanation: \n \n The array is already good. No swaps are needed. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n ​​​​​​​1 <= nums[i] <= 10 9 \n \n 1 <= a < b <= 10 9 ​​​​​​​",
+  "code": "class Solution {\npublic:\n    int minAdjacentSwaps(vector<int>& nums,int a,int b){\n        const long long MOD=1000000007;\n        long long seenMid=0,seenHigh=0,ans=0;\n        for(int x:nums){\n            if(x<a)ans+=seenMid+seenHigh;\n            else if(x<=b){ans+=seenHigh;++seenMid;}\n            else ++seenHigh;\n        }\n        return (int)(ans%MOD);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181105829",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

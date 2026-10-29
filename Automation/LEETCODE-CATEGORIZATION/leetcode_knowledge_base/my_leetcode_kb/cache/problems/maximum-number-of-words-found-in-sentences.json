@@ -1,0 +1,30 @@
+{
+  "id": "2114",
+  "title": "Maximum Number of Words Found in Sentences",
+  "slug": "maximum-number-of-words-found-in-sentences",
+  "url": "https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "A sentence is a list of words that are separated by a single space with no leading or trailing spaces. \n \n You are given an array of strings sentences , where each sentences[i] represents a single sentence . \n \n Return the maximum number of words that appear in a single sentence . \n\n Example 1: \n \n```\nInput:\n sentences = [\"alice and bob love leetcode\", \"i think so too\", \n\"this is great thanks very much\"\n]\n\nOutput:\n 6\n\nExplanation:\n \n- The first sentence, \"alice and bob love leetcode\", has 5 words in total.\n- The second sentence, \"i think so too\", has 4 words in total.\n- The third sentence, \"this is great thanks very much\", has 6 words in total.\nThus, the maximum number of words in a single sentence comes from the third sentence, which has 6 words.\n```\n\n Example 2: \n \n```\nInput:\n sentences = [\"please wait\", \n\"continue to fight\"\n, \n\"continue to win\"\n]\n\nOutput:\n 3\n\nExplanation:\n It is possible that multiple sentences contain the same number of words. \nIn this example, the second and third sentences (underlined) have the same number of words.\n```\n\n Constraints: \n\n 1 <= sentences.length <= 100 \n \n 1 <= sentences[i].length <= 100 \n \n sentences[i] consists only of lowercase English letters and ' ' only. \n \n sentences[i] does not have leading or trailing spaces. \n \n All the words in sentences[i] are separated by a single space.",
+  "code": "class Solution {\npublic:\n int mostWordsFound(vector<string>& sentences){\n  int ans=0;for(const string&s:sentences){int cnt=1;for(char c:s)cnt+=(c==' ');ans=max(ans,cnt);}return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175736176",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

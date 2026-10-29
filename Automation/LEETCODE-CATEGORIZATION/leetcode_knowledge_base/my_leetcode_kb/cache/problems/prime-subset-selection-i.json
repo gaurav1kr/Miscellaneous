@@ -1,0 +1,22 @@
+{
+  "id": "4079",
+  "title": "Prime Subset Selection I",
+  "slug": "prime-subset-selection-i",
+  "url": "https://leetcode.com/problems/prime-subset-selection-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given two integers n and s . \n \n Consider all prime numbers less than or equal to n . Select some of these primes such that: \n\n The sum of the selected primes is less than or equal to s . \n \n The number of selected primes is maximized . \n \n Each prime can be selected at most once . \n\n Return an integer array containing the selected primes in increasing order. If multiple optimal selections exist, return any of them. \n \n If no prime can be selected, return an empty array. \n\n Example 1: \n\n Input: n = 7, s = 20 \n \n Output: [2,3,5,7] \n \n Explanation: \n\n The prime numbers less than or equal to n = 7 are 2, 3, 5, and 7. \n \n The sum of all these primes is 2 + 3 + 5 + 7 = 17 , which is less than or equal to s = 20 . \n \n Thus, the answer is [2, 3, 5, 7] . \n\n Example 2: \n\n Input: n = 15, s = 15 \n \n Output: [3,5,7] \n \n Explanation: \n\n The prime numbers less than or equal to n = 15 are 2, 3, 5, 7, 11, and 13. \n \n One possible selection is [3, 5, 7] , whose sum is 3 + 5 + 7 = 15 . \n \n The four smallest available primes have sum 2 + 3 + 5 + 7 = 17 , which exceeds s = 15 . Therefore, selecting four or more primes is impossible, and the maximum number of selected primes is three. \n \n Thus, [3, 5, 7] is one possible answer. Other valid answers include [2, 3, 5] , [2, 3, 7] , and [2, 5, 7] . \n\n Example 3: \n\n Input: n = 5, s = 1 \n \n Output: [] \n \n Explanation: \n\n The smallest prime number is 2, which is greater than s = 1 . \n \n Thus, no prime can be selected, so the answer is an empty array. \n\n Constraints: \n\n 1 <= n <= 10 6 \n \n 1 <= s <= 10 9",
+  "code": "class Solution {\npublic:\n    vector<int> maxPrimes(int n, int s) {\n        vector<bool> prime(n + 1, true);\n        prime[0] = false;\n        if (n >= 1) prime[1] = false;\n        for (int p = 2; 1LL * p * p <= n; ++p) {\n            if (prime[p]) for (int x = p * p; x <= n; x += p) prime[x] = false;\n        }\n        vector<int> ans;\n        long long sum = 0;\n        for (int p = 2; p <= n; ++p) {\n            if (!prime[p]) continue;\n            if (sum + p > s) break;\n            sum += p;\n            ans.push_back(p);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179632413",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

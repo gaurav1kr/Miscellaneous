@@ -1,0 +1,27 @@
+{
+  "id": "3881",
+  "title": "Direction Assignments with Exactly K Visible People",
+  "slug": "direction-assignments-with-exactly-k-visible-people",
+  "url": "https://leetcode.com/problems/direction-assignments-with-exactly-k-visible-people/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Combinatorics"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given three integers n , pos , and k . \n \n There are n people standing in a line indexed from 0 to n - 1 . Each person independently chooses a direction: \n\n 'L' : visible only to people on their right \n \n 'R' : visible only to people on their left \n \nA person at index pos sees others as follows:\n\n A person i < pos is visible if and only if they choose 'L' . \n \n A person i > pos is visible if and only if they choose 'R' . \n\n Return the number of possible direction assignments such that the person at index pos sees exactly k people. \n \n Since the answer may be large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: n = 3, pos = 1, k = 0 \n \n Output: 2 \n \n Explanation: ​​​​​​​ \n\n Index 0 is to the left of pos = 1 , and index 2 is to the right of pos = 1 . \n \n To see k = 0 people, index 0 must choose 'R' and index 2 must choose 'L' , keeping both invisible. \n \n The person at index 1 can choose 'L' or 'R' since it does not affect the count. Thus, the answer is 2. \n\n Example 2: \n\n Input: n = 3, pos = 2, k = 1 \n \n Output: 4 \n \n Explanation: \n\n Index 0 and index 1 are left of pos = 2 , and there is no index to the right. \n \n To see k = 1 person, exactly one of index 0 or index 1 must choose 'L' , and the other must choose 'R' . \n \n There are 2 ways to choose which index is visible from the left. \n \n The person at index 2 can choose 'L' or 'R' since it does not affect the count. Thus, the answer is 2 + 2 = 4 . \n\n Example 3: \n\n Input: n = 1, pos = 0, k = 0 \n \n Output: 2 \n \n Explanation: \n\n There are no indices to the left or right of pos = 0 . \n \n To see k = 0 people, no additional condition is required. \n \n The person at index 0 can choose 'L' or 'R' . Thus, the answer is 2. \n\n Constraints: \n\n 1 <= n <= 10 5 \n \n 0 <= pos, k <= n - 1",
+  "code": "class Solution {\n    static const long long MOD = 1000000007LL;\n    long long power(long long a, long long b) {\n        long long r = 1;\n        while (b) {\n            if (b & 1) r = r * a % MOD;\n            a = a * a % MOD;\n            b >>= 1;\n        }\n        return r;\n    }\npublic:\n    int countVisiblePeople(int n, int pos, int k) {\n        if (k > n-1) return 0;\n        vector<long long> fact(n+1, 1);\n        for (int i = 1; i <= n; ++i) fact[i] = fact[i-1] * i % MOD;\n        long long c = fact[n-1] * power(fact[k], MOD-2) % MOD;\n        c = c * power(fact[n-1-k], MOD-2) % MOD;\n        return (int)(2*c % MOD);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181074278",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

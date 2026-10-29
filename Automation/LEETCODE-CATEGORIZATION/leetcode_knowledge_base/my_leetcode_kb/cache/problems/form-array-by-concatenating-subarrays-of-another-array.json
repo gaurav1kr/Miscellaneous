@@ -1,0 +1,34 @@
+{
+  "id": "1764",
+  "title": "Form Array by Concatenating Subarrays of Another Array",
+  "slug": "form-array-by-concatenating-subarrays-of-another-array",
+  "url": "https://leetcode.com/problems/form-array-by-concatenating-subarrays-of-another-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "String Matching",
+    "Knuth–Morris–Pratt Algorithm"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array groups of length n . You are also given an integer array nums . \n \n You are asked if you can choose n disjoint subarrays from the array nums such that the i th subarray is equal to groups[i] ( 0-indexed ), and if i > 0 , the (i-1) th subarray appears before the i th subarray in nums (i.e. the subarrays must be in the same order as groups ). \n \n Return true if you can do this task, and false otherwise . \n \n Note that the subarrays are disjoint if and only if there is no index k such that nums[k] belongs to more than one subarray. A subarray is a contiguous sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n groups = [[1,-1,-1],[3,-2,0]], nums = [1,-1,0,1,-1,-1,3,-2,0]\n\nOutput:\n true\n\nExplanation:\n You can choose the 0\nth\n subarray as [1,-1,0,\n1,-1,-1\n,3,-2,0] and the 1\nst\n one as [1,-1,0,1,-1,-1,\n3,-2,0\n].\nThese subarrays are disjoint as they share no common nums[k] element.\n```\n\n Example 2: \n \n```\nInput:\n groups = [[10,-2],[1,2,3,4]], nums = [1,2,3,4,10,-2]\n\nOutput:\n false\n\nExplanation: \nNote that choosing the subarrays [\n1,2,3,4\n,10,-2] and [1,2,3,4,\n10,-2\n] is incorrect because they are not in the same order as in groups.\n[10,-2] must come before [1,2,3,4].\n```\n\n Example 3: \n \n```\nInput:\n groups = [[1,2,3],[3,4]], nums = [7,7,1,2,3,4,7,7]\n\nOutput:\n false\n\nExplanation: \nNote that choosing the subarrays [7,7,\n1,2,3\n,4,7,7] and [7,7,1,2,\n3,4\n,7,7] is invalid because they are not disjoint.\nThey share a common elements nums[4] (0-indexed).\n```\n\n Constraints: \n\n groups.length == n \n \n 1 <= n <= 10 3 \n \n 1 <= groups[i].length, sum(groups[i].length) <= 10 3 \n \n 1 <= nums.length <= 10 3 \n \n -10 7 <= groups[i][j], nums[k] <= 10 7",
+  "code": "class Solution {\npublic:\n bool canChoose(vector<vector<int>>& groups,vector<int>& nums){\n  int i=0,n=nums.size();\n  for(auto& g:groups){bool found=false;\n   while(i+(int)g.size()<=n){bool ok=true;\n    for(int j=0;j<(int)g.size();++j)if(nums[i+j]!=g[j]){ok=false;break;}\n    if(ok){i+=g.size();found=true;break;}++i;\n   }\n   if(!found)return false;\n  }return true;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175760547",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

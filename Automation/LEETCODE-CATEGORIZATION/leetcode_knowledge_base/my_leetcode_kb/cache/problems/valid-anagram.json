@@ -1,0 +1,33 @@
+{
+  "id": "242",
+  "title": "Valid Anagram",
+  "slug": "valid-anagram",
+  "url": "https://leetcode.com/problems/valid-anagram/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings s and t , return true if t is an anagram of s , and false otherwise. \n\n Example 1: \n\n Input: s = \"anagram\", t = \"nagaram\" \n \n Output: true \n\n Example 2: \n\n Input: s = \"rat\", t = \"car\" \n \n Output: false \n\n Constraints: \n\n 1 <= s.length, t.length <= 5 * 10 4 \n \n s and t consist of lowercase English letters. \n\n Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?",
+  "code": "class Solution {\npublic:\n    bool isAnagram(string s, string t) {\n        if (s.size() != t.size()) return false;\n        vector<int> count(26, 0);\n        for (char c : s) count[c - 'a']++;\n        for (char c : t) {\n            if (--count[c - 'a'] < 0) return false;\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588090138",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

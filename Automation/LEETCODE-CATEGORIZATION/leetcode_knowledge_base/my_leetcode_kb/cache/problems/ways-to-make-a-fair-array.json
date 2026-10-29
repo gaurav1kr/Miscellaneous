@@ -1,0 +1,30 @@
+{
+  "id": "1664",
+  "title": "Ways to Make a Fair Array",
+  "slug": "ways-to-make-a-fair-array",
+  "url": "https://leetcode.com/problems/ways-to-make-a-fair-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array  nums . You can choose exactly one index ( 0-indexed ) and remove the element. Notice that the index of the elements may change after the removal. \n \n For example, if nums = [6,1,7,4,1] : \n\n Choosing to remove index 1 results in nums = [6,7,4,1] . \n \n Choosing to remove index 2 results in nums = [6,1,4,1] . \n \n Choosing to remove index 4 results in nums = [6,1,7,4] . \n\n An array is fair if the sum of the odd-indexed values equals the sum of the even-indexed values. \n \n Return the number of indices that you could choose such that after the removal, nums is fair . \n\n Example 1: \n \n```\nInput:\n nums = [2,1,6,4]\n\nOutput:\n 1\n\nExplanation:\n\nRemove index 0: [1,6,4] -> Even sum: 1 + 4 = 5. Odd sum: 6. Not fair.\nRemove index 1: [2,6,4] -> Even sum: 2 + 4 = 6. Odd sum: 6. Fair.\nRemove index 2: [2,1,4] -> Even sum: 2 + 4 = 6. Odd sum: 1. Not fair.\nRemove index 3: [2,1,6] -> Even sum: 2 + 6 = 8. Odd sum: 1. Not fair.\nThere is 1 index that you can remove to make nums fair.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,1]\n\nOutput:\n 3\n\nExplanation:\n You can remove any index and the remaining array is fair.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n 0\n\nExplanation:\n You cannot make a fair array after removing any index.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 4",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int waysToMakeFair(vector<int>& nums) {\n        int even = 0, odd = 0, res = 0;\n        for (int i = 0; i < nums.size(); ++i)\n            (i % 2 == 0 ? even : odd) += nums[i];\n\n        int leftEven = 0, leftOdd = 0;\n        for (int i = 0; i < nums.size(); ++i) {\n            if (i % 2 == 0) even -= nums[i];\n            else odd -= nums[i];\n\n            if (leftEven + odd == leftOdd + even) res++;\n\n            if (i % 2 == 0) leftEven += nums[i];\n            else leftOdd += nums[i];\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595370978",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

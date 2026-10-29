@@ -1,0 +1,32 @@
+{
+  "id": "2370",
+  "title": "Longest Ideal Subsequence",
+  "slug": "longest-ideal-subsequence",
+  "url": "https://leetcode.com/problems/longest-ideal-subsequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase letters and an integer k . We call a string t ideal if the following conditions are satisfied: \n\n t is a subsequence of the string s . \n \n The absolute difference in the alphabet order of every two adjacent letters in t is less than or equal to k . \n\n Return the length of the longest ideal string . \n \n A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters. \n \n Note that the alphabet order is not cyclic. For example, the absolute difference in the alphabet order of 'a' and 'z' is 25 , not 1 . \n\n Example 1: \n \n```\nInput:\n s = \"acfgbd\", k = 2\n\nOutput:\n 4\n\nExplanation:\n The longest ideal string is \"acbd\". The length of this string is 4, so 4 is returned.\nNote that \"acfgbd\" is not ideal because 'c' and 'f' have a difference of 3 in alphabet order.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abcd\", k = 3\n\nOutput:\n 4\n\nExplanation:\n The longest ideal string is \"abcd\". The length of this string is 4, so 4 is returned.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n 0 <= k <= 25 \n \n s consists of lowercase English letters.",
+  "code": "class Solution { public:\n    int longestIdealString(string s,int k) {\n        int dp[26]={},ans=0;\n        for(char c:s){int x=c-'a',best=0;\n            for(int j=max(0,x-k);j<=min(25,x+k);++j)best=max(best,dp[j]);\n            dp[x]=max(dp[x],best+1);ans=max(ans,dp[x]);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175928904",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

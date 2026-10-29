@@ -1,0 +1,39 @@
+{
+  "id": "1938",
+  "title": "Maximum Genetic Difference Query",
+  "slug": "maximum-genetic-difference-query",
+  "url": "https://leetcode.com/problems/maximum-genetic-difference-query/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Depth-First Search",
+    "Trie"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Trie",
+    "Vector"
+  ],
+  "description": "There is a rooted tree consisting of n nodes numbered 0 to n - 1 . Each node's number denotes its unique genetic value (i.e. the genetic value of node x is x ). The genetic difference between two genetic values is defined as the bitwise- XOR of their values. You are given the integer array parents , where parents[i] is the parent for node i . If node x is the root of the tree, then parents[x] == -1 . \n \n You are also given the array queries where queries[i] = [node i , val i ] . For each query i , find the maximum genetic difference between val i and p i , where p i is the genetic value of any node that is on the path between node i and the root (including node i and the root). More formally, you want to maximize val i XOR p i . \n \n Return an array ans where ans[i] is the answer to the i th query . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/29/c1.png] \n \n```\nInput:\n parents = [-1,0,1,1], queries = [[0,2],[3,2],[2,5]]\n\nOutput:\n [2,3,7]\n\nExplanation: \nThe queries are processed as follows:\n- [0,2]: The node with the maximum genetic difference is 0, with a difference of 2 XOR 0 = 2.\n- [3,2]: The node with the maximum genetic difference is 1, with a difference of 2 XOR 1 = 3.\n- [2,5]: The node with the maximum genetic difference is 2, with a difference of 5 XOR 2 = 7.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/29/c2.png] \n \n```\nInput:\n parents = [3,7,-1,2,0,7,0,2], queries = [[4,6],[1,15],[0,5]]\n\nOutput:\n [6,14,7]\n\nExplanation: \nThe queries are processed as follows:\n- [4,6]: The node with the maximum genetic difference is 0, with a difference of 6 XOR 0 = 6.\n- [1,15]: The node with the maximum genetic difference is 1, with a difference of 15 XOR 1 = 14.\n- [0,5]: The node with the maximum genetic difference is 2, with a difference of 5 XOR 2 = 7.\n```\n\n Constraints: \n\n 2 <= parents.length <= 10 5 \n \n 0 <= parents[i] <= parents.length - 1 for every node i that is not the root. \n \n parents[root] == -1 \n \n 1 <= queries.length <= 3 * 10 4 \n \n 0 <= node i <= parents.length - 1 \n \n 0 <= val i <= 2 * 10 5",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <algorithm>\nusing namespace std;\n\nstruct Trie {\n    Trie* child[2] = {};\n    int count = 0;\n};\n\nclass Solution {\n    Trie* root = new Trie;\n    vector<vector<int>> tree;\n    unordered_map<int, vector<pair<int, int>>> queryMap;\n    vector<int> ans;\n\n    void insert(int x) {\n        Trie* node = root;\n        for (int i = 17; i >= 0; --i) {\n            int b = (x >> i) & 1;\n            if (!node->child[b]) node->child[b] = new Trie;\n            node = node->child[b];\n            node->count++;\n        }\n    }\n\n    void remove(int x) {\n        Trie* node = root;\n        for (int i = 17; i >= 0; --i) {\n            int b = (x >> i) & 1;\n            node = node->child[b];\n            node->count--;\n        }\n    }\n\n    int getMaxXor(int x) {\n        Trie* node = root;\n        int res = 0;\n        for (int i = 17; i >= 0; --i) {\n            int b = (x >> i) & 1;\n            if (node->child[1 - b] && node->child[1 - b]->count > 0) {\n                res |= (1 << i);\n                node = node->child[1 - b];\n            } else {\n                node = node->child[b];\n            }\n        }\n        return res;\n    }\n\n    void dfs(int u) {\n        insert(u);\n        for (auto& [x, idx] : queryMap[u]) {\n            ans[idx] = getMaxXor(x);\n        }\n        for (int v : tree[u]) {\n            dfs(v);\n        }\n        remove(u);\n    }\n\npublic:\n    vector<int> maxGeneticDifference(vector<int>& parents, vector<vector<int>>& queries) {\n        int n = parents.size();\n        tree.resize(n);\n        int rootIdx = 0;\n        for (int i = 0; i < n; ++i) {\n            if (parents[i] == -1) rootIdx = i;\n            else tree[parents[i]].push_back(i);\n        }\n\n        for (int i = 0; i < queries.size(); ++i) {\n            queryMap[queries[i][0]].emplace_back(queries[i][1], i);\n        }\n\n        ans.resize(queries.size());\n        dfs(rootIdx);\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1602420319",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

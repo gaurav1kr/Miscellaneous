@@ -1,0 +1,31 @@
+{
+  "id": "3924",
+  "title": "Minimum Threshold Path With Limited Heavy Edges",
+  "slug": "minimum-threshold-path-with-limited-heavy-edges",
+  "url": "https://leetcode.com/problems/minimum-threshold-path-with-limited-heavy-edges/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Binary Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Deque",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "There is an undirected weighted graph with n nodes labeled from 0 to n - 1 . \n \n The graph is represented by a 2D integer array edges , where each edge edges[i] = [u i , v i , w ​​​​​​​i ] indicates that there is an undirected edge between nodes u i and v i with weight w ​​​​​​​i . \n \n You are also given integers source , target and k . \n \n A threshold value determines whether an edge is considered light or heavy : \n\n An edge is light if its weight is less than or equal to threshold . \n\n An edge is heavy if its weight is greater than threshold . \n\n A path from source to target is valid if it contains at most k heavy edges. \n \n Return the minimum integer threshold such that at least one valid path exists from source to target . If no such path exists, return -1. \n\n Example 1: ​​​​​​​​​​​​​​ \n \n ​​​​​​​ [Figure: https://assets.leetcode.com/uploads/2025/10/13/g6.png] \n\n Input: n = 6, edges = [[0,1,5],[1,2,3],[3,4,4],[4,5,1],[1,4,2]], source = 0, target = 3, k = 1 \n \n Output: 4 \n \n Explanation: \n \n The minimum threshold such that a path from node 0 to node 3 uses at most 1 heavy edge is 4. \n\n Light edges: [1, 2, 3] , [3, 4, 4] , [4, 5, 1] , [1, 4, 2] \n\n Heavy edges: [0, 1, 5] \n\n A valid path is 0 → 1 → 4 → 3 . It uses only 1 heavy edge ( [0, 1, 5] ), which satisfies the limit k = 1 . \n \n Any smaller threshold would make it impossible to reach node 3 without exceeding 1 heavy edge. \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2025/10/12/g3_f.png] \n\n Input: n = 6, edges = [[0,1,3],[1,2,4],[3,4,5],[4,5,6]], source = 0, target = 4, k = 1 \n \n Output: -1 \n \n Explanation: \n \n There is no path from node 0 to node 4. Since the target cannot be reached, the output is -1. \n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2025/10/12/g5.png] \n\n Input: n = 4, edges = [[0,1,2],[1,2,2],[2,3,2],[3,0,2]], source = 0, target = 0, k = 0 \n \n Output: 0 \n \n Explanation: \n \n The source and target are the same node. No edges need to be traversed, so the minimum threshold is 0. \n\n Constraints: \n\n 1 <= n <= 10 3 ​​​​​​​ \n \n 0 <= edges.length <= 10 3 ​​​​​​​ \n \n edges[i] = [u i , v i , w i ] \n \n 0 <= u i , v i ​​​​​​​ <= n - 1 \n \n 1 <= w i ​​​​​​​ <= 10 9 \n \n 0 <= source, target <= n - 1 \n \n 0 <= k <= edges.length",
+  "code": "class Solution {\npublic:\n    int minimumThreshold(int n, vector<vector<int>>& edges,\n                         int source, int target, int k) {\n        if (source == target) return 0;\n        vector<vector<pair<int,int>>> g(n);\n        int hi = 0;\n        for (const auto& e : edges) {\n            g[e[0]].push_back({e[1], e[2]});\n            g[e[1]].push_back({e[0], e[2]});\n            hi = max(hi, e[2]);\n        }\n        auto feasible = [&](int threshold) {\n            const int INF = 1000000000;\n            vector<int> dist(n, INF);\n            deque<int> dq;\n            dist[source] = 0;\n            dq.push_front(source);\n            while (!dq.empty()) {\n                int u = dq.front();\n                dq.pop_front();\n                for (auto e : g[u]) {\n                    int v = e.first;\n                    int w = (e.second > threshold);\n                    if (dist[v] > dist[u] + w) {\n                        dist[v] = dist[u] + w;\n                        if (w == 0) dq.push_front(v);\n                        else dq.push_back(v);\n                    }\n                }\n            }\n            return dist[target] <= k;\n        };\n        if (!feasible(hi)) return -1;\n        int lo = 0;\n        while (lo < hi) {\n            int mid = lo + (hi - lo) / 2;\n            if (feasible(mid)) hi = mid;\n            else lo = mid + 1;\n        }\n        return lo;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179651846",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

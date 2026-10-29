@@ -1,0 +1,28 @@
+{
+  "id": "1603",
+  "title": "Design Parking System",
+  "slug": "design-parking-system",
+  "url": "https://leetcode.com/problems/design-parking-system/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Design",
+    "Simulation",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [],
+  "description": "Design a parking system for a parking lot. The parking lot has three kinds of parking spaces: big, medium, and small, with a fixed number of slots for each size. \n \n Implement the ParkingSystem class: \n\n ParkingSystem(int big, int medium, int small) Initializes object of the ParkingSystem class. The number of slots for each parking space are given as part of the constructor. \n \n bool addCar(int carType) Checks whether there is a parking space of carType for the car that wants to get into the parking lot. carType can be of three kinds: big, medium, or small, which are represented by 1 , 2 , and 3 respectively. A car can only park in a parking space of its carType . If there is no space available, return false , else park the car in that size space and return true . \n\n Example 1: \n \n```\nInput\n\n[\"ParkingSystem\", \"addCar\", \"addCar\", \"addCar\", \"addCar\"]\n[[1, 1, 0], [1], [2], [3], [1]]\n\nOutput\n\n[null, true, true, false, false]\n\nExplanation\n\nParkingSystem parkingSystem = new ParkingSystem(1, 1, 0);\nparkingSystem.addCar(1); // return true because there is 1 available slot for a big car\nparkingSystem.addCar(2); // return true because there is 1 available slot for a medium car\nparkingSystem.addCar(3); // return false because there is no available slot for a small car\nparkingSystem.addCar(1); // return false because there is no available slot for a big car. It is already occupied.\n```\n\n Constraints: \n\n 0 <= big, medium, small <= 1000 \n \n carType is 1 , 2 , or 3 \n \n At most 1000 calls will be made to addCar",
+  "code": "class ParkingSystem {\n    int count[4];\n\npublic:\n    ParkingSystem(int big, int medium, int small) {\n        count[1] = big;\n        count[2] = medium;\n        count[3] = small;\n    }\n\n    bool addCar(int carType) {\n        return count[carType]-- > 0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610559176",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1545",
+  "title": "Find Kth Bit in Nth Binary String",
+  "slug": "find-kth-bit-in-nth-binary-string",
+  "url": "https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Recursion",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given two positive integers n and k , the binary string S n is formed as follows: \n\n S 1 = \"0\" \n \n S i = S i - 1 + \"1\" + reverse(invert(S i - 1 )) for i > 1 \n\n Where + denotes the concatenation operation, reverse(x) returns the reversed string x , and invert(x) inverts all the bits in x ( 0 changes to 1 and 1 changes to 0 ). \n \n For example, the first four strings in the above sequence are: \n\n S 1 = \"0\" \n \n S 2 = \"0 1 1\" \n \n S 3 = \"011 1 001\" \n \n S 4 = \"0111001 1 0110001\" \n\n Return the k th bit in S n . It is guaranteed that k is valid for the given n . \n\n Example 1: \n \n```\nInput:\n n = 3, k = 1\n\nOutput:\n \"0\"\n\nExplanation:\n S\n3\n is \"\n0\n111001\".\nThe 1\nst\n bit is \"0\".\n```\n\n Example 2: \n \n```\nInput:\n n = 4, k = 11\n\nOutput:\n \"1\"\n\nExplanation:\n S\n4\n is \"0111001101\n1\n0001\".\nThe 11\nth\n bit is \"1\".\n```\n\n Constraints: \n\n 1 <= n <= 20 \n \n 1 <= k <= 2 n - 1",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    char findKthBit(int n, int k) {\n        if (n == 1) return '0';\n        int len = (1 << n) - 1, mid = len / 2 + 1;\n        if (k == mid) return '1';\n        if (k < mid) return findKthBit(n - 1, k);\n        char ch = findKthBit(n - 1, len - k + 1);\n        return ch == '0' ? '1' : '0';\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610610146",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

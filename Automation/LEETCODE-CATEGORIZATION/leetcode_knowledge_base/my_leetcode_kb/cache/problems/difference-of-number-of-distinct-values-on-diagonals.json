@@ -1,0 +1,34 @@
+{
+  "id": "2711",
+  "title": "Difference of Number of Distinct Values on Diagonals",
+  "slug": "difference-of-number-of-distinct-values-on-diagonals",
+  "url": "https://leetcode.com/problems/difference-of-number-of-distinct-values-on-diagonals/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "Given a 2D grid of size m x n , you should find the matrix answer of size m x n . \n \n The cell answer[r][c] is calculated by looking at the diagonal values of the cell grid[r][c] : \n\n Let leftAbove[r][c] be the number of distinct values on the diagonal to the left and above the cell grid[r][c] not including the cell grid[r][c] itself. \n \n Let rightBelow[r][c] be the number of distinct values on the diagonal to the right and below the cell grid[r][c] , not including the cell grid[r][c] itself. \n \n Then answer[r][c] = |leftAbove[r][c] - rightBelow[r][c]| . \n\n A matrix diagonal is a diagonal line of cells starting from some cell in either the topmost row or leftmost column and going in the bottom-right direction until the end of the matrix is reached. \n\n For example, in the below diagram the diagonal is highlighted using the cell with indices (2, 3) colored gray:\n\n Red-colored cells are left and above the cell. \n \n Blue-colored cells are right and below the cell. \n\n [Figure: https://assets.leetcode.com/uploads/2024/05/26/diagonal.png] \n \n Return the matrix answer . \n\n Example 1: \n\n Input: grid = [[1,2,3],[3,1,5],[3,2,1]] \n \n Output: Output: [[1,1,0],[1,0,1],[0,1,1]] \n \n Explanation: \n \n To calculate the answer cells: \n\n answer \n left-above elements \n leftAbove \n right-below elements \n rightBelow \n |leftAbove - rightBelow| \n\n [0][0] \n [] \n 0 \n [grid[1][1], grid[2][2]] \n |{1, 1}| = 1 \n 1 \n\n [0][1] \n [] \n 0 \n [grid[1][2]] \n |{5}| = 1 \n 1 \n\n [0][2] \n [] \n 0 \n [] \n 0 \n 0 \n\n [1][0] \n [] \n 0 \n [grid[2][1]] \n |{2}| = 1 \n 1 \n\n [1][1] \n [grid[0][0]] \n |{1}| = 1 \n [grid[2][2]] \n |{1}| = 1 \n 0 \n\n [1][2] \n [grid[0][1]] \n |{2}| = 1 \n [] \n 0 \n 1 \n\n [2][0] \n [] \n 0 \n [] \n 0 \n 0 \n\n [2][1] \n [grid[1][0]] \n |{3}| = 1 \n [] \n 0 \n 1 \n\n [2][2] \n [grid[0][0], grid[1][1]] \n |{1, 1}| = 1 \n [] \n 0 \n 1 \n\n Example 2: \n\n Input: grid = [[1]] \n \n Output: Output: [[0]] \n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n, grid[i][j] <= 50",
+  "code": "class Solution {public:\nvector<vector<int>> differenceOfDistinctValues(vector<vector<int>>& grid){int m=grid.size(),n=grid[0].size();vector<vector<int>> a(m,vector<int>(n));for(int i=0;i<m;++i)for(int j=0;j<n;++j){unordered_set<int>x,y;for(int r=i-1,c=j-1;r>=0&&c>=0;--r,--c)x.insert(grid[r][c]);for(int r=i+1,c=j+1;r<m&&c<n;++r,++c)y.insert(grid[r][c]);a[i][j]=abs((int)x.size()-(int)y.size());}return a;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176681715",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

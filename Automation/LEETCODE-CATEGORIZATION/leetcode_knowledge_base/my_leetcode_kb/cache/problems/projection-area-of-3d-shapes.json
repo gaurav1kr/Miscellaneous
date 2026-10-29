@@ -1,0 +1,32 @@
+{
+  "id": "883",
+  "title": "Projection Area of 3D Shapes",
+  "slug": "projection-area-of-3d-shapes",
+  "url": "https://leetcode.com/problems/projection-area-of-3d-shapes/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry",
+    "Matrix"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an n x n grid where we place some 1 x 1 x 1 cubes that are axis-aligned with the x , y , and z axes. \n \n Each value v = grid[i][j] represents a tower of v cubes placed on top of the cell (i, j) . \n \n We view the projection of these cubes onto the xy , yz , and zx planes. \n \n A projection is like a shadow, that maps our 3-dimensional figure to a 2-dimensional plane. We are viewing the \"shadow\" when looking at the cubes from the top, the front, and the side. \n \n Return the total area of all three projections . \n\n Example 1: \n [Figure: https://s3-lc-upload.s3.amazonaws.com/uploads/2018/08/02/shadow.png] \n \n```\nInput:\n grid = [[1,2],[3,4]]\n\nOutput:\n 17\n\nExplanation:\n Here are the three projections (\"shadows\") of the shape made with each axis-aligned plane.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[2]]\n\nOutput:\n 5\n```\n\n Example 3: \n \n```\nInput:\n grid = [[1,0],[0,2]]\n\nOutput:\n 8\n```\n\n Constraints: \n\n n == grid.length == grid[i].length \n \n 1 <= n <= 50 \n \n 0 <= grid[i][j] <= 50",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int projectionArea(vector<vector<int>>& grid) {\n        int n = grid.size(), res = 0;\n        for (int i = 0; i < n; ++i) {\n            int rowMax = 0, colMax = 0;\n            for (int j = 0; j < n; ++j) {\n                if (grid[i][j] > 0) res++;\n                rowMax = max(rowMax, grid[i][j]);\n                colMax = max(colMax, grid[j][i]);\n            }\n            res += rowMax + colMax;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1599286681",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

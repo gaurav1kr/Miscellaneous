@@ -1,0 +1,33 @@
+{
+  "id": "3288",
+  "title": "Length of the Longest Increasing Path",
+  "slug": "length-of-the-longest-increasing-path",
+  "url": "https://leetcode.com/problems/length-of-the-longest-increasing-path/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting",
+    "Longest Increasing Subsequence"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D array of integers coordinates of length n and an integer k , where 0 <= k < n . \n \n coordinates[i] = [x i , y i ] indicates the point (x i , y i ) in a 2D plane. \n \n An increasing path of length m is defined as a list of points (x 1 , y 1 ) , (x 2 , y 2 ) , (x 3 , y 3 ) , ..., (x m , y m ) such that: \n\n x i < x i + 1 and y i < y i + 1 for all i where 1 <= i < m . \n \n (x i , y i ) is in the given coordinates for all i where 1 <= i <= m . \n\n Return the maximum length of an increasing path that contains coordinates[k] . \n\n Example 1: \n\n Input: coordinates = [[3,1],[2,2],[4,1],[0,0],[5,3]], k = 1 \n \n Output: 3 \n \n Explanation: \n \n (0, 0) , (2, 2) , (5, 3) is the longest increasing path that contains (2, 2) . \n\n Example 2: \n\n Input: coordinates = [[2,1],[7,0],[5,6]], k = 2 \n \n Output: 2 \n \n Explanation: \n \n (2, 1) , (5, 6) is the longest increasing path that contains (5, 6) . \n\n Constraints: \n\n 1 <= n == coordinates.length <= 10 5 \n \n coordinates[i].length == 2 \n \n 0 <= coordinates[i][0], coordinates[i][1] <= 10 9 \n \n All elements in coordinates are distinct . \n \n 0 <= k <= n - 1",
+  "code": "class Solution { public: int maxPathLength(vector<vector<int>>&coordinates,int k){int x=coordinates[k][0],y=coordinates[k][1];vector<pair<int,int>>a,b;for(auto&p:coordinates){if(p[0]<x&&p[1]<y)a.push_back({p[0],p[1]});if(p[0]>x&&p[1]>y)b.push_back({p[0],p[1]});}auto lis=[](vector<pair<int,int>>&v){sort(v.begin(),v.end(),[](pair<int,int>a,pair<int,int>b){return a.first!=b.first?a.first<b.first:a.second>b.second;});vector<int>t;for(auto&p:v){auto it=lower_bound(t.begin(),t.end(),p.second);if(it==t.end())t.push_back(p.second);else *it=p.second;}return (int)t.size();};return lis(a)+1+lis(b);} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177449349",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

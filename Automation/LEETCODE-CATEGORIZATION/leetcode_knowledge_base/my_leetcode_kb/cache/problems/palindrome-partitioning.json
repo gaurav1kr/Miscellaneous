@@ -1,0 +1,34 @@
+{
+  "id": "131",
+  "title": "Palindrome Partitioning",
+  "slug": "palindrome-partitioning",
+  "url": "https://leetcode.com/problems/palindrome-partitioning/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Backtracking"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , partition s such that every substring of the partition is a palindrome . Return all possible palindrome partitioning of s . \n\n Example 1: \n \n```\nInput:\n s = \"aab\"\n\nOutput:\n [[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]\n```\n \n Example 2: \n \n```\nInput:\n s = \"a\"\n\nOutput:\n [[\"a\"]]\n```\n\n Constraints: \n\n 1 <= s.length <= 16 \n \n s contains only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    vector<vector<string>> partition(string s) {\n        vector<vector<string>> result;\n        vector<string> current;\n        backtrack(0, s, current, result);\n        return result;\n    }\n\nprivate:\n    // Memoization for isPalindrome\n    unordered_map<string, bool> palindromeCache;\n\n    void backtrack(int start, const string& s, vector<string>& current, vector<vector<string>>& result) {\n        if (start == s.size()) {\n            result.push_back(current);\n            return;\n        }\n\n        for (int end = start; end < s.size(); ++end) {\n            string substring = s.substr(start, end - start + 1);\n            if (isPalindrome(substring)) {\n                current.push_back(substring);\n                backtrack(end + 1, s, current, result);\n                current.pop_back();\n            }\n        }\n    }\n\n    bool isPalindrome(const string& s) {\n        if (palindromeCache.count(s)) return palindromeCache[s];\n        int left = 0, right = s.size() - 1;\n        while (left < right) {\n            if (s[left++] != s[right--]) return palindromeCache[s] = false;\n        }\n        return palindromeCache[s] = true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1539910927",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

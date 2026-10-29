@@ -1,0 +1,26 @@
+{
+  "id": "1933",
+  "title": "Check if String Is Decomposable Into Value-Equal Substrings",
+  "slug": "check-if-string-is-decomposable-into-value-equal-substrings",
+  "url": "https://leetcode.com/problems/check-if-string-is-decomposable-into-value-equal-substrings/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "A value-equal string is a string where all characters are the same. \n\n For example, \"1111\" and \"33\" are value-equal strings. \n \n In contrast, \"123\" is not a value-equal string. \n\n Given a digit string s , decompose the string into some number of consecutive value-equal substrings where exactly one substring has a length of 2 and the remaining substrings have a length of 3 . \n \n Return true if you can decompose s according to the above rules. Otherwise, return false . \n \n A substring is a contiguous sequence of characters in a string. \n\n Example 1: \n \n```\nInput:\n s = \"000111000\"\n\nOutput:\n false\n\nExplanation: \ns cannot be decomposed according to the rules because [\"000\", \"111\", \"000\"] does not have a substring of length 2.\n```\n\n Example 2: \n \n```\nInput:\n s = \"00011111222\"\n\nOutput:\n true\n\nExplanation: \ns can be decomposed into [\"000\", \"111\", \"11\", \"222\"].\n```\n\n Example 3: \n \n```\nInput:\n s = \"011100022233\"\n\nOutput:\n false\n\nExplanation: \ns cannot be decomposed according to the rules because of the first '0'.\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of only digits '0' through '9' .",
+  "code": "class Solution {\npublic:\n    bool isDecomposable(string s) {\n        int twos = 0;\n        for (int i = 0; i < (int)s.size();) {\n            int j = i;\n            while (j < (int)s.size() && s[j] == s[i]) {\n                ++j;\n            }\n            int rem = (j - i) % 3;\n            if (rem == 1) {\n                return false;\n            }\n            if (rem == 2) {\n                ++twos;\n            }\n            i = j;\n        }\n        return twos == 1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178625241",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

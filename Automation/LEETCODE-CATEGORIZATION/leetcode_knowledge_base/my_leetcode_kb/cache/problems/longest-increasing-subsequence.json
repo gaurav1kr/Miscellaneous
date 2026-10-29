@@ -1,0 +1,33 @@
+{
+  "id": "300",
+  "title": "Longest Increasing Subsequence",
+  "slug": "longest-increasing-subsequence",
+  "url": "https://leetcode.com/problems/longest-increasing-subsequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Longest Increasing Subsequence"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return the length of the longest strictly increasing subsequence . \n\n Example 1: \n \n```\nInput:\n nums = [10,9,2,5,3,7,101,18]\n\nOutput:\n 4\n\nExplanation:\n The longest increasing subsequence is [2,3,7,101], therefore the length is 4.\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,1,0,3,2,3]\n\nOutput:\n 4\n```\n\n Example 3: \n \n```\nInput:\n nums = [7,7,7,7,7,7,7]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= nums.length <= 2500 \n \n -10 4 <= nums[i] <= 10 4 \n\n Follow up:  Can you come up with an algorithm that runs in  O(n log(n)) time complexity?",
+  "code": "\n\nclass Solution {\npublic:\n    int lengthOfLIS(std::vector<int>& nums) {\n        std::vector<int> lis;\n        for (int num : nums) {\n            auto it = std::lower_bound(lis.begin(), lis.end(), num);\n            if (it == lis.end()) lis.push_back(num);\n            else *it = num;\n        }\n        return lis.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542496094",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "788",
+  "title": "Rotated Digits",
+  "slug": "rotated-digits",
+  "url": "https://leetcode.com/problems/rotated-digits/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "An integer x is a good if after rotating each digit individually by 180 degrees, we get a valid number that is different from x . Each digit must be rotated - we cannot choose to leave it alone. \n \n A number is valid if each digit remains a digit after rotation. For example: \n\n 0 , 1 , and 8 rotate to themselves, \n \n 2 and 5 rotate to each other (in this case they are rotated in a different direction, in other words, 2 or 5 gets mirrored), \n \n 6 and 9 rotate to each other, and \n \n the rest of the numbers do not rotate to any other number and become invalid. \n\n Given an integer n , return the number of good integers in the range [1, n] . \n\n Example 1: \n \n```\nInput:\n n = 10\n\nOutput:\n 4\n\nExplanation:\n There are four good numbers in the range [1, 10] : 2, 5, 6, 9.\nNote that 1 and 10 are not good numbers, since they remain unchanged after rotating.\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 0\n```\n\n Example 3: \n \n```\nInput:\n n = 2\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= n <= 10 4",
+  "code": "class Solution {\npublic:\n    int rotatedDigits(int n) {\n        int count = 0;\n        for (int i = 1; i <= n; ++i) {\n            string s = to_string(i);\n            bool valid = true, diff = false;\n            for (char c : s) {\n                if (c == '3' || c == '4' || c == '7') {\n                    valid = false;\n                    break;\n                }\n                if (c == '2' || c == '5' || c == '6' || c == '9')\n                    diff = true;\n            }\n            if (valid && diff) count++;\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612877059",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

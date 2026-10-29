@@ -1,0 +1,36 @@
+{
+  "id": "2971",
+  "title": "Find Polygon With the Largest Perimeter",
+  "slug": "find-polygon-with-the-largest-perimeter",
+  "url": "https://leetcode.com/problems/find-polygon-with-the-largest-perimeter/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Prefix Sum",
+    "Polygons"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array of positive integers nums of length n . \n \n A polygon is a closed plane figure that has at least 3 sides. The longest side of a polygon is smaller than the sum of its other sides. \n \n Conversely, if you have k ( k >= 3 ) positive real numbers a 1 , a 2 , a 3 , ..., a k where a 1 <= a 2 <= a 3 <= ... <= a k and a 1 + a 2 + a 3 + ... + a k-1 > a k , then there always exists a polygon with k sides whose lengths are a 1 , a 2 , a 3 , ..., a k . \n \n The perimeter of a polygon is the sum of lengths of its sides. \n \n Return the largest possible perimeter of a polygon whose sides can be formed from nums , or -1 if it is not possible to create a polygon . \n\n Example 1: \n \n```\nInput:\n nums = [5,5,5]\n\nOutput:\n 15\n\nExplanation:\n The only possible polygon that can be made from nums has 3 sides: 5, 5, and 5. The perimeter is 5 + 5 + 5 = 15.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,12,1,2,5,50,3]\n\nOutput:\n 12\n\nExplanation:\n The polygon with the largest perimeter which can be made from nums has 5 sides: 1, 1, 2, 3, and 5. The perimeter is 1 + 1 + 2 + 3 + 5 = 12.\nWe cannot have a polygon with either 12 or 50 as the longest side because it is not possible to include 2 or more smaller sides that have a greater sum than either of them.\nIt can be shown that the largest possible perimeter is 12.\n```\n\n Example 3: \n \n```\nInput:\n nums = [5,5,50]\n\nOutput:\n -1\n\nExplanation:\n There is no possible way to form a polygon from nums, as a polygon has at least 3 sides and 50 > 5 + 5.\n```\n\n Constraints: \n\n 3 <= n <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {public:long long largestPerimeter(vector<int>& nums){sort(nums.begin(),nums.end());long long sum=0,ans=-1;for(int x:nums){if(sum>x)ans=sum+x;sum+=x;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176785111",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

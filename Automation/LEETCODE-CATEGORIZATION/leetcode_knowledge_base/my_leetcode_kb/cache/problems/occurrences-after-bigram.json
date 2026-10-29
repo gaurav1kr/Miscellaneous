@@ -1,0 +1,27 @@
+{
+  "id": "1078",
+  "title": "Occurrences After Bigram",
+  "slug": "occurrences-after-bigram",
+  "url": "https://leetcode.com/problems/occurrences-after-bigram/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings first and second , consider occurrences in some text of the form \"first second third\" , where second comes immediately after first , and third comes immediately after second . \n \n Return an array of all the words third for each occurrence of \"first second third\" . \n\n Example 1: \n \n```\nInput:\n text = \"alice is a good girl she is a good student\", first = \"a\", second = \"good\"\n\nOutput:\n [\"girl\",\"student\"]\n```\n \n Example 2: \n \n```\nInput:\n text = \"we will we will rock you\", first = \"we\", second = \"will\"\n\nOutput:\n [\"we\",\"rock\"]\n```\n\n Constraints: \n\n 1 <= text.length <= 1000 \n \n text consists of lowercase English letters and spaces. \n \n All the words in text are separated by a single space . \n \n 1 <= first.length, second.length <= 10 \n \n first and second consist of lowercase English letters. \n \n text will not have any leading or trailing spaces.",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> findOcurrences(string text, string first, string second) {\n        vector<string> res;\n        vector<string> words;\n        string word;\n        for (char c : text) {\n            if (c == ' ') {\n                words.push_back(word);\n                word.clear();\n            } else {\n                word += c;\n            }\n        }\n        words.push_back(word);\n        for (int i = 0; i + 2 < words.size(); ++i) {\n            if (words[i] == first && words[i + 1] == second) {\n                res.push_back(words[i + 2]);\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610619638",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

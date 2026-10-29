@@ -1,0 +1,29 @@
+{
+  "id": "3817",
+  "title": "Good Indices in a Digit String",
+  "slug": "good-indices-in-a-digit-string",
+  "url": "https://leetcode.com/problems/good-indices-in-a-digit-string/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s consisting of digits. \n \n An index i is called good if there exists a substring of s that ends at index i and is equal to the decimal representation of i . \n \n Return an integer array of all good indices in increasing order . \n\n Example 1: \n\n Input: s = \"0234567890112\" \n \n Output: [0,11,12] \n \n Explanation:​​​​​​​ \n\n At index 0, the decimal representation of the index is \"0\" . The substring s[0] is \"0\" , which matches, so index 0 is good. \n\n At index 11, the decimal representation is \"11\" . The substring s[10..11] is \"11\" , which matches, so index 11 is good. \n\n At index 12, the decimal representation is \"12\" . The substring s[11..12] is \"12\" , which matches, so index 12 is good. \n\n No other index has a substring ending at it that equals its decimal representation. Therefore, the answer is [0, 11, 12] . \n\n Example 2: \n\n Input: s = \"01234\" \n \n Output: [0,1,2,3,4] \n \n Explanation: \n \n For every index i from 0 to 4, the decimal representation of i is a single digit, and the substring s[i] matches that digit. \n \n Therefore, a valid substring ending at each index exists, making all indices good. \n\n Example 3: \n\n Input: s = \"12345\" \n \n Output: [] \n \n Explanation: \n \n No index has a substring ending at it that matches its decimal representation. \n \n Therefore, there are no good indices and the result is an empty array. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s only consists of digits from '0' to '9' .",
+  "code": "class Solution {\npublic:\n    vector<int> goodIndices(string s) {\n        vector<int> ans;\n        for (int i = 0; i < (int)s.size(); ++i) {\n            string digits = to_string(i);\n            int len = digits.size();\n            if (len <= i + 1 && s.compare(i + 1 - len, len, digits) == 0)\n                ans.push_back(i);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181045461",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

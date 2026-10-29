@@ -1,0 +1,34 @@
+{
+  "id": "3485",
+  "title": "Longest Common Prefix of K Strings After Removal",
+  "slug": "longest-common-prefix-of-k-strings-after-removal",
+  "url": "https://leetcode.com/problems/longest-common-prefix-of-k-strings-after-removal/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Ordered set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given an array of strings words and an integer k . \n \n For each index i in the range [0, words.length - 1] , find the length of the longest common prefix among any k strings (selected at distinct indices ) from the remaining array after removing the i th element. \n \n Return an array answer , where answer[i] is the answer for i th element. If removing the i th element leaves the array with fewer than k strings, answer[i] is 0. \n\n Example 1: \n\n Input: words = [\"jump\",\"run\",\"run\",\"jump\",\"run\"], k = 2 \n \n Output: [3,4,4,3,4] \n \n Explanation: \n\n Removing index 0 ( \"jump\" ):\n\n words becomes: [\"run\", \"run\", \"jump\", \"run\"] . \"run\" occurs 3 times. Choosing any two gives the longest common prefix \"run\" (length 3). \n\n Removing index 1 ( \"run\" ):\n\n words becomes: [\"jump\", \"run\", \"jump\", \"run\"] . \"jump\" occurs twice. Choosing these two gives the longest common prefix \"jump\" (length 4). \n\n Removing index 2 ( \"run\" ):\n\n words becomes: [\"jump\", \"run\", \"jump\", \"run\"] . \"jump\" occurs twice. Choosing these two gives the longest common prefix \"jump\" (length 4). \n\n Removing index 3 ( \"jump\" ):\n\n words becomes: [\"jump\", \"run\", \"run\", \"run\"] . \"run\" occurs 3 times. Choosing any two gives the longest common prefix \"run\" (length 3). \n\n Removing index 4 (\"run\"):\n\n words becomes: [\"jump\", \"run\", \"run\", \"jump\"] . \"jump\" occurs twice. Choosing these two gives the longest common prefix \"jump\" (length 4). \n\n Example 2: \n\n Input: words = [\"dog\",\"racer\",\"car\"], k = 2 \n \n Output: [0,0,0] \n \n Explanation: \n\n Removing any index results in an answer of 0. \n\n Constraints: \n\n 1 <= k <= words.length <= 10 5 \n \n 1 <= words[i].length <= 10 4 \n \n words[i] consists of lowercase English letters. \n \n The sum of words[i].length is smaller than or equal 10 5 .",
+  "code": "class Solution {struct Node{int ch[26],cnt,dep;Node(int d=0):cnt(0),dep(d){fill(ch,ch+26,-1);}};public:vector<int> longestCommonPrefix(vector<string>&words,int k){int n=words.size();vector<int> ans(n);if(n<=k)return ans;vector<Node> tr(1);vector<vector<int>> paths(n);int maxD=0;for(int i=0;i<n;i++){int u=0;for(char c:words[i]){int t=c-'a';if(tr[u].ch[t]<0){int id=tr.size();tr[u].ch[t]=id;tr.emplace_back(tr[u].dep+1);}u=tr[u].ch[t];tr[u].cnt++;paths[i].push_back(u);maxD=max(maxD,tr[u].dep);}}vector<int> good(maxD+1);for(auto &v:tr)if(v.dep&&v.cnt>=k)good[v.dep]++;set<int> depths;for(int d=1;d<=maxD;d++)if(good[d])depths.insert(d);for(int i=0;i<n;i++){vector<int> gone;for(int u:paths[i])if(tr[u].cnt==k&&good[tr[u].dep]==1){depths.erase(tr[u].dep);gone.push_back(tr[u].dep);}ans[i]=depths.empty()?0:*depths.rbegin();for(int d:gone)depths.insert(d);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177542443",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

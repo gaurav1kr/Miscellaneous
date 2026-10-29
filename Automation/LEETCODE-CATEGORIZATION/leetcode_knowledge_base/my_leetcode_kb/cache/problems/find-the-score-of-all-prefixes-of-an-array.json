@@ -1,0 +1,30 @@
+{
+  "id": "2640",
+  "title": "Find the Score of All Prefixes of an Array",
+  "slug": "find-the-score-of-all-prefixes-of-an-array",
+  "url": "https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "We define the conversion array conver of an array arr as follows: \n\n conver[i] = arr[i] + max(arr[0..i]) where max(arr[0..i]) is the maximum value of arr[j] over 0 <= j <= i . \n\n We also define the score of an array arr as the sum of the values of the conversion array of arr . \n \n Given a 0-indexed integer array nums of length n , return an array ans of length n where ans[i] is the score of the prefix nums[0..i] . \n\n Example 1: \n \n```\nInput:\n nums = [2,3,7,5,10]\n\nOutput:\n [4,10,24,36,56]\n\nExplanation:\n \nFor the prefix [2], the conversion array is [4] hence the score is 4\nFor the prefix [2, 3], the conversion array is [4, 6] hence the score is 10\nFor the prefix [2, 3, 7], the conversion array is [4, 6, 14] hence the score is 24\nFor the prefix [2, 3, 7, 5], the conversion array is [4, 6, 14, 12] hence the score is 36\nFor the prefix [2, 3, 7, 5, 10], the conversion array is [4, 6, 14, 12, 20] hence the score is 56\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,2,4,8,16]\n\nOutput:\n [2,4,8,16,32,64]\n\nExplanation:\n \nFor the prefix [1], the conversion array is [2] hence the score is 2\nFor the prefix [1, 1], the conversion array is [2, 2] hence the score is 4\nFor the prefix [1, 1, 2], the conversion array is [2, 2, 4] hence the score is 8\nFor the prefix [1, 1, 2, 4], the conversion array is [2, 2, 4, 8] hence the score is 16\nFor the prefix [1, 1, 2, 4, 8], the conversion array is [2, 2, 4, 8, 16] hence the score is 32\nFor the prefix [1, 1, 2, 4, 8, 16], the conversion array is [2, 2, 4, 8, 16, 32] hence the score is 64\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9",
+  "code": "class Solution {\npublic:\n vector<long long> findPrefixScore(vector<int>& nums){\n  vector<long long> ans;long long total=0;int mx=0;\n  for(int x:nums){mx=max(mx,x);total+=x+mx;ans.push_back(total);}return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176630548",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

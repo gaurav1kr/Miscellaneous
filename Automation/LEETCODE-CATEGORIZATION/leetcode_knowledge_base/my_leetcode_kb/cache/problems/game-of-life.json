@@ -1,0 +1,30 @@
+{
+  "id": "289",
+  "title": "Game of Life",
+  "slug": "game-of-life",
+  "url": "https://leetcode.com/problems/game-of-life/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "According to Wikipedia's article : \"The Game of Life , also known simply as Life , is a cellular automaton devised by the British mathematician John Horton Conway in 1970.\" \n \n The board is made up of an m x n grid of cells, where each cell has an initial state: live (represented by a 1 ) or dead (represented by a 0 ). Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article): \n\n Any live cell with fewer than two live neighbors dies as if caused by under-population. \n \n Any live cell with two or three live neighbors lives on to the next generation. \n \n Any live cell with more than three live neighbors dies, as if by over-population. \n \n Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction. \n\n The next state of the board is determined by applying the above rules simultaneously to every cell in the current state of the m x n grid board . In this process, births and deaths occur simultaneously . \n \n Given the current state of the board , update the board to reflect its next state. \n \n Note that you do not need to return anything. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/12/26/grid1.jpg] \n \n```\nInput:\n board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]\n\nOutput:\n [[0,0,0],[1,0,1],[0,1,1],[0,1,0]]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/12/26/grid2.jpg] \n \n```\nInput:\n board = [[1,1],[1,0]]\n\nOutput:\n [[1,1],[1,1]]\n```\n\n Constraints: \n\n m == board.length \n \n n == board[i].length \n \n 1 <= m, n <= 25 \n \n board[i][j] is 0 or 1 . \n\n Follow up: \n\n Could you solve it in-place? Remember that the board needs to be updated simultaneously: You cannot update some cells first and then use their updated values to update other cells. \n \n In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches upon the border of the array (i.e., live cells reach the border). How would you address these problems?",
+  "code": "class Solution {\npublic:\n    int cntNeighbours(int i, int j, int m, int n, vector<vector<int>> board)\n    {\n        int cnt = 0;\n        vector<int> dx = {-1,-1,-1,0,0,1,1,1};\n        vector<int> dy = {-1,0,1,-1,1,-1,0,1};\n        for(int k = 0; k < 8;k++)\n        {\n            int r, c;\n            r = i + dx[k]; c = j + dy[k];\n            if(r >= 0 && r < m && c >=0 && c < n)\n            {\n                if(board[r][c]==1||board[r][c] == 2)\n                    cnt++;\n            }\n        }\n        return cnt;\n    }\n\n    void gameOfLife(vector<vector<int>>& board) {\n        int m = board.size();\n        int n = board[0].size();\n        //add temp values\n        for(int i = 0; i < m; i++)\n        {\n            for(int j = 0; j < n; j++)\n            {\n                int cnt = cntNeighbours(i,j,m,n,board);\n                if((board[i][j]== 1 ) && cnt < 2)\n                    board[i][j] = 2;\n                else if(board[i][j] == 0 && cnt == 3) //dead cell with 3 live neighbours\n                {\n                    board[i][j] = 3;\n                }\n                else if((board[i][j] == 1) &&cnt > 3)\n                    board[i][j] = 2;\n            }\n        }\n        for(int i = 0; i < m; i++)\n        {\n            for(int j = 0; j < n; j++)\n            {\n                if(board[i][j] == 2)\n                    board[i][j] = 0;\n                if(board[i][j] == 3)\n                    board[i][j] = 1;\n            }\n        }\n        \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1527899425",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "3806",
+  "title": "Maximum Bitwise AND After Increment Operations",
+  "slug": "maximum-bitwise-and-after-increment-operations",
+  "url": "https://leetcode.com/problems/maximum-bitwise-and-after-increment-operations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Bit Manipulation",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers k and m . \n \n You may perform at most k operations. In one operation, you may choose any index i and increase nums[i] by 1. \n \n Return an integer denoting the maximum possible bitwise AND of any subset of size m after performing up to k operations optimally. \n\n Example 1: \n\n Input: nums = [3,1,2], k = 8, m = 2 \n \n Output: 6 \n \n Explanation: \n\n We need a subset of size m = 2 . Choose indices [0, 2] . \n \n Increase nums[0] = 3 to 6 using 3 operations, and increase nums[2] = 2 to 6 using 4 operations. \n \n The total number of operations used is 7, which is not greater than k = 8 . \n \n The two chosen values become [6, 6] , and their bitwise AND is 6 , which is the maximum possible. \n\n Example 2: \n\n Input: nums = [1,2,8,4], k = 7, m = 3 \n \n Output: 4 \n \n Explanation: \n\n We need a subset of size m = 3 . Choose indices [0, 1, 3] . \n \n Increase nums[0] = 1 to 4 using 3 operations, increase nums[1] = 2 to 4 using 2 operations, and keep nums[3] = 4 . \n \n The total number of operations used is 5, which is not greater than k = 7 . \n \n The three chosen values become [4, 4, 4] , and their bitwise AND is 4, which is the maximum possible.​​​​​​​ \n\n Example 3: \n\n Input: nums = [1,1], k = 3, m = 2 \n \n Output: 2 \n \n Explanation: \n\n We need a subset of size m = 2 . Choose indices [0, 1] . \n \n Increase both values from 1 to 2 using 1 operation each. \n \n The total number of operations used is 2, which is not greater than k = 3 . \n \n The two chosen values become [2, 2] , and their bitwise AND is 2, which is the maximum possible. \n\n Constraints: \n\n 1 <= n == nums.length <= 5 * 10 4 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= k <= 10 9 \n \n 1 <= m <= n",
+  "code": "class Solution {\n    long long cost(long long x,long long mask){const long long INF=(1LL<<60);long long dp[2]={0,INF};\n        for(int b=30;b>=0;--b){long long nd[2]={INF,INF};int xb=(x>>b)&1,need=(mask>>b)&1;\n            for(int greater=0;greater<=1;++greater)if(dp[greater]!=INF)for(int yb=need;yb<=1;++yb){if(!greater&&yb<xb)continue;int ng=greater||(yb>xb);nd[ng]=min(nd[ng],dp[greater]+(yb?(1LL<<b):0));}\n            dp[0]=nd[0];dp[1]=nd[1];\n        }return min(dp[0],dp[1])-x;\n    }\npublic:\n    int maximumAND(vector<int>& nums,int k,int m){long long ans=0;vector<long long> costs(nums.size());\n        for(int b=30;b>=0;--b){long long cand=ans|(1LL<<b);for(int i=0;i<(int)nums.size();++i)costs[i]=cost(nums[i],cand);\n            nth_element(costs.begin(),costs.begin()+m-1,costs.end());long long sum=0;\n            for(int i=0;i<m;++i)sum+=costs[i];if(sum<=k)ans=cand;\n        }return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181153814",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

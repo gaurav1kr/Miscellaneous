@@ -1,0 +1,30 @@
+{
+  "id": "3734",
+  "title": "Lexicographically Smallest Palindromic Permutation Greater Than Target",
+  "slug": "lexicographically-smallest-palindromic-permutation-greater-than-target",
+  "url": "https://leetcode.com/problems/lexicographically-smallest-palindromic-permutation-greater-than-target/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Enumeration"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings s and target , each of length n , consisting of lowercase English letters. \n \n Return the lexicographically smallest string that is both a palindromic permutation of s and strictly greater than target . If no such permutation exists, return an empty string. \n\n Example 1: \n\n Input: s = \"baba\", target = \"abba\" \n \n Output: \"baab\" \n \n Explanation: \n\n The palindromic permutations of s (in lexicographical order) are \"abba\" and \"baab\" . \n \n The lexicographically smallest permutation that is strictly greater than target is \"baab\" . \n\n Example 2: \n\n Input: s = \"baba\", target = \"bbaa\" \n \n Output: \"\" \n \n Explanation: \n\n The palindromic permutations of s (in lexicographical order) are \"abba\" and \"baab\" . \n \n None of them is lexicographically strictly greater than target . Therefore, the answer is \"\" . \n\n Example 3: \n\n Input: s = \"abc\", target = \"abb\" \n \n Output: \"\" \n \n Explanation: \n \n s has no palindromic permutations. Therefore, the answer is \"\" . \n\n Example 4: \n\n Input: s = \"aac\", target = \"abb\" \n \n Output: \"aca\" \n \n Explanation: \n\n The only palindromic permutation of s is \"aca\" . \n \n \"aca\" is strictly greater than target . Therefore, the answer is \"aca\" . \n\n Constraints: \n\n 1 <= n == s.length == target.length <= 300 \n \n s and target consist of only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string lexPalindromicPermutation(string s,string target){int n=s.size(),h=n/2;vector<int> cnt(26,0);for(char c:s)++cnt[c-'a'];\n        string mid=\"\";for(int c=0;c<26;++c)if(cnt[c]%2){if(!mid.empty())return \"\";mid=string(1,char('a'+c));}\n        for(int &x:cnt)x/=2;\n        auto make=[&](const string &half){string r=half;reverse(r.begin(),r.end());return half+mid+r;};\n        string t=target.substr(0,h);vector<int> left=cnt;bool exact=true;\n        for(char c:t){if(--left[c-'a']<0){exact=false;break;}}\n        if(exact){string p=make(t);if(p>target)return p;}\n        vector<int> used(26,0);int valid=0;\n        for(int i=0;i<h;++i){int c=t[i]-'a';if(used[c]>=cnt[c])break;++used[c];++valid;}\n        for(int i=h-1;i>=0;--i){if(i>valid)continue;\n            vector<int> remain=cnt;for(int j=0;j<i;++j)--remain[t[j]-'a'];\n            for(int c=t[i]-'a'+1;c<26;++c)if(remain[c]>0){--remain[c];string half=t.substr(0,i)+char('a'+c);\n                for(int v=0;v<26;++v)half.append(remain[v],char('a'+v));return make(half);\n            }\n        }return \"\";\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181144968",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "1300",
+  "title": "Sum of Mutated Array Closest to Target",
+  "slug": "sum-of-mutated-array-closest-to-target",
+  "url": "https://leetcode.com/problems/sum-of-mutated-array-closest-to-target/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array arr and a target value target , return the integer value such that when we change all the integers larger than value in the given array to be equal to value , the sum of the array gets as close as possible (in absolute difference) to target . \n \n In case of a tie, return the minimum such integer. \n \n Notice that the answer is not neccesarilly a number from arr . \n\n Example 1: \n \n```\nInput:\n arr = [4,9,3], target = 10\n\nOutput:\n 3\n\nExplanation:\n When using 3 arr converts to [3, 3, 3] which sums 9 and that's the optimal answer.\n```\n\n Example 2: \n \n```\nInput:\n arr = [2,3,5], target = 10\n\nOutput:\n 5\n```\n\n Example 3: \n \n```\nInput:\n arr = [60864,25176,27249,21296,20204], target = 56803\n\nOutput:\n 11361\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 4 \n \n 1 <= arr[i], target <= 10 5",
+  "code": "#include <vector>\n#include <algorithm>\n#include <cmath>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findBestValue(vector<int>& arr, int target) {\n        sort(arr.begin(), arr.end());\n        int left = 0, right = arr.back();\n        while (left < right) {\n            int mid = (left + right) / 2;\n            if (getSum(arr, mid) < target)\n                left = mid + 1;\n            else\n                right = mid;\n        }\n\n        int sum1 = getSum(arr, left - 1), sum2 = getSum(arr, left);\n        return abs(sum1 - target) <= abs(sum2 - target) ? left - 1 : left;\n    }\n\n    int getSum(vector<int>& arr, int val) {\n        int sum = 0;\n        for (int a : arr)\n            sum += min(a, val);\n        return sum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595381748",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

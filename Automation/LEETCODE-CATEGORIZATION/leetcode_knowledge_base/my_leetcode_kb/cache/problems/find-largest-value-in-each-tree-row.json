@@ -1,0 +1,33 @@
+{
+  "id": "515",
+  "title": "Find Largest Value in Each Tree Row",
+  "slug": "find-largest-value-in-each-tree-row",
+  "url": "https://leetcode.com/problems/find-largest-value-in-each-tree-row/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree, return an array of the largest value in each row of the tree (0-indexed) . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/08/21/largest_e1.jpg] \n \n```\nInput:\n root = [1,3,2,5,3,null,9]\n\nOutput:\n [1,3,9]\n```\n\n Example 2: \n \n```\nInput:\n root = [1,2,3]\n\nOutput:\n [1,3]\n```\n\n Constraints: \n\n The number of nodes in the tree will be in the range [0, 10 4 ] . \n \n -2 31 <= Node.val <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    vector<int> largestValues(TreeNode* root) {\n    vector<int> result;\n    if (!root) {\n        return result;\n    }\n    queue<TreeNode*> current;\n    current.push(root);\n    while (!current.empty()) {\n        int levelMax = INT_MIN;\n        int levelSize = current.size();\n        for (int i = 0; i < levelSize; i++) {\n            TreeNode* node = current.front();\n            current.pop();\n            levelMax = max(levelMax, node->val);\n            if (node->left) {\n                current.push(node->left);\n            }\n            if (node->right) {\n                current.push(node->right);\n            }\n        }\n        result.push_back(levelMax);\n    }\n    return result;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1361650447",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

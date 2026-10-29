@@ -1,0 +1,31 @@
+{
+  "id": "4037",
+  "title": "Maximum Valid Split Positions II",
+  "slug": "maximum-valid-split-positions-ii",
+  "url": "https://leetcode.com/problems/maximum-valid-split-positions-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Enumeration",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n You may remove at most one element from nums . Let arr be the array of remaining elements in their original order, and let m be its length. \n \n A split position i of arr is valid if: \n\n 0 <= i < m - 1 , and \n \n gcd(arr[0..i]) == gcd(arr[i + 1..m - 1]) . \n\n An array of length 1 has no valid split positions. \n \n The score of arr is the number of valid split positions in it. \n \n Return the maximum possible score of arr . \n \n Here, gcd(a) denotes the greatest common divisor of all elements in the array a . \n\n Example 1: \n\n Input: nums = [10,30,15,10] \n \n Output: 2 \n \n Explanation: \n \n One optimal solution is to remove nums[2] = 15 . Then arr = [10, 30, 10] . \n \n The split positions are: \n\n Split Position i \n gcd(arr[0..i]) \n gcd(arr[i + 1..m - 1]) \n\n 0 \n 10 \n 10 \n\n 1 \n 10 \n 10 \n\n All split positions are valid. Thus, the answer is 2. \n\n Example 2: \n\n Input: nums = [2,10,14] \n \n Output: 1 \n \n Explanation: \n \n One optimal solution is to not remove any element. Then arr = [2, 10, 14] . \n \n The split positions are: \n\n Split Position i \n gcd(arr[0..i]) \n gcd(arr[i + 1..m - 1]) \n\n 0 \n 2 \n 2 \n\n 1 \n 2 \n 14 \n\n Only the split position at index 0 is valid. Thus, the answer is 1. \n\n Example 3: \n\n Input: nums = [2,4] \n \n Output: 0 \n \n Explanation: \n \n The only remaining array that has a split position is arr = [2, 4] . \n \n The split positions are: \n\n Split Position i \n gcd(arr[0..i]) \n gcd(arr[i + 1..m - 1]) \n\n 0 \n 2 \n 4 \n\n There are no valid split positions. Thus, the answer is 0. \n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 ​​​​​​​",
+  "code": "\nclass Solution {\n    using ll = long long;\n\n    int n;\n    vector<int> a;\n    vector<vector<int>> st;\n    vector<int> lg;\n\n    int rangeGcd(int l, int r) {\n        if (l > r) return 0;\n\n        int len = r - l + 1;\n        int k = lg[len];\n\n        return gcdValue(\n            st[k][l],\n            st[k][r - (1 << k) + 1]\n        );\n    }\n\n    int gcdValue(int x, int y) {\n        while (y) {\n            int t = x % y;\n            x = y;\n            y = t;\n        }\n        return x;\n    }\n\n    // GCD of the first 'len' elements\n    // after removing index 'skip'.\n    int prefixGcd(int skip, int len) {\n        if (len == 0) return 0;\n\n        if (len <= skip)\n            return rangeGcd(0, len - 1);\n\n        return gcdValue(\n            rangeGcd(0, skip - 1),\n            rangeGcd(skip + 1, len)\n        );\n    }\n\n    // GCD of elements starting at 'len'\n    // in the array after removal.\n    int suffixGcd(int skip, int len) {\n        int m = n - 1;\n\n        if (len >= m) return 0;\n\n        if (len < skip)\n            return gcdValue(\n                rangeGcd(len, skip - 1),\n                rangeGcd(skip + 1, n - 1)\n            );\n\n        return rangeGcd(len + 1, n - 1);\n    }\n\n    int countValid(int skip) {\n        int m = n - 1;\n\n        if (m < 2) return 0;\n\n        int total = gcdValue(\n            rangeGcd(0, skip - 1),\n            rangeGcd(skip + 1, n - 1)\n        );\n\n        // Find earliest prefix length whose GCD\n        // equals the total GCD.\n        int lo = 1, hi = m;\n\n        while (lo < hi) {\n            int mid = lo + (hi - lo) / 2;\n\n            if (prefixGcd(skip, mid) == total)\n                hi = mid;\n            else\n                lo = mid + 1;\n        }\n\n        int first = lo;\n\n        // Find latest prefix length whose suffix\n        // GCD equals the total GCD.\n        lo = 0;\n        hi = m - 1;\n\n        while (lo < hi) {\n            int mid = lo + (hi - lo + 1) / 2;\n\n            if (suffixGcd(skip, mid) == total)\n                lo = mid;\n            else\n                hi = mid - 1;\n        }\n\n        int last = lo;\n\n        // Valid split prefix lengths are in\n        // [first, last], restricted to [1, m-1].\n        return max(0, last - first + 1);\n    }\n\npublic:\n    int maxValidSplits(vector<int>& nums) {\n        a = nums;\n        n = (int)a.size();\n\n        lg.assign(n + 1, 0);\n\n        for (int i = 2; i <= n; ++i)\n            lg[i] = lg[i / 2] + 1;\n\n        int K = lg[n] + 1;\n\n        st.assign(K, vector<int>(n));\n\n        st[0] = a;\n\n        for (int k = 1; k < K; ++k) {\n            int len = 1 << k;\n\n            for (int i = 0; i + len <= n; ++i) {\n                st[k][i] = gcdValue(\n                    st[k - 1][i],\n                    st[k - 1][i + (len >> 1)]\n                );\n            }\n        }\n\n        // Case 1: No removal.\n        int total = rangeGcd(0, n - 1);\n\n        int ans = 0;\n\n        for (int i = 0; i < n - 1; ++i) {\n            if (rangeGcd(0, i) == total &&\n                rangeGcd(i + 1, n - 1) == total) {\n                ++ans;\n            }\n        }\n\n        // Case 2: Remove exactly one element.\n        for (int skip = 0; skip < n; ++skip) {\n            ans = max(ans, countValid(skip));\n        }\n\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181674568",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

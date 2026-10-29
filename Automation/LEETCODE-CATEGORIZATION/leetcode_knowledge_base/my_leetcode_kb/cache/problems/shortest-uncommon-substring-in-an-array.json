@@ -1,0 +1,40 @@
+{
+  "id": "3076",
+  "title": "Shortest Uncommon Substring in an Array",
+  "slug": "shortest-uncommon-substring-in-an-array",
+  "url": "https://leetcode.com/problems/shortest-uncommon-substring-in-an-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given an array arr of size n consisting of non-empty strings. \n \n Find a string array answer of size n such that: \n\n answer[i] is the shortest substring of arr[i] that does not occur as a substring in any other string in arr . If multiple such substrings exist, answer[i] should be the lexicographically smallest . And if no such substring exists, answer[i] should be an empty string. \n\n Return the array answer . \n\n Example 1: \n \n```\nInput:\n arr = [\"cab\",\"ad\",\"bad\",\"c\"]\n\nOutput:\n [\"ab\",\"\",\"ba\",\"\"]\n\nExplanation:\n We have the following:\n- For the string \"cab\", the shortest substring that does not occur in any other string is either \"ca\" or \"ab\", we choose the lexicographically smaller substring, which is \"ab\".\n- For the string \"ad\", there is no substring that does not occur in any other string.\n- For the string \"bad\", the shortest substring that does not occur in any other string is \"ba\".\n- For the string \"c\", there is no substring that does not occur in any other string.\n```\n\n Example 2: \n \n```\nInput:\n arr = [\"abc\",\"bcd\",\"abcd\"]\n\nOutput:\n [\"\",\"\",\"abcd\"]\n\nExplanation:\n We have the following:\n- For the string \"abc\", there is no substring that does not occur in any other string.\n- For the string \"bcd\", there is no substring that does not occur in any other string.\n- For the string \"abcd\", the shortest substring that does not occur in any other string is \"abcd\".\n```\n\n Constraints: \n\n n == arr.length \n \n 2 <= n <= 100 \n \n 1 <= arr[i].length <= 20 \n \n arr[i] consists only of lowercase English letters.",
+  "code": "class Solution {public:vector<string> shortestSubstrings(vector<string>& arr){\n unordered_map<string,int> count;\n for(auto &s:arr){unordered_set<string> seen;for(int i=0;i<(int)s.size();i++)for(int len=1;i+len<=(int)s.size();len++)seen.insert(s.substr(i,len));for(auto &v:seen)++count[v];}\n vector<string> ans;for(auto &s:arr){string best=\"\";for(int i=0;i<(int)s.size();i++)for(int len=1;i+len<=(int)s.size();len++){\n string v=s.substr(i,len);if(count[v]==1&&(best.empty()||v.size()<best.size()||(v.size()==best.size()&&v<best)))best=v;\n }ans.push_back(best);}return ans;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176851139",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

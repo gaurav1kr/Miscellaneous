@@ -1,0 +1,45 @@
+{
+  "id": "1202",
+  "title": "Smallest String With Swaps",
+  "slug": "smallest-string-with-swaps",
+  "url": "https://leetcode.com/problems/smallest-string-with-swaps/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Sorting"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue",
+    "Queue",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s , and an array of pairs of indices in the string  pairs  where  pairs[i] = [a, b]  indicates 2 indices(0-indexed) of the string. \n \n You can swap the characters at any pair of indices in the given  pairs   any number of times . \n \n Return the lexicographically smallest string that s  can be changed to after using the swaps. \n\n Example 1: \n \n```\nInput:\n s = \"dcab\", pairs = [[0,3],[1,2]]\n\nOutput:\n \"bacd\"\n\nExplaination:\n \nSwap s[0] and s[3], s = \"bcad\"\nSwap s[1] and s[2], s = \"bacd\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"dcab\", pairs = [[0,3],[1,2],[0,2]]\n\nOutput:\n \"abcd\"\n\nExplaination: \n\nSwap s[0] and s[3], s = \"bcad\"\nSwap s[0] and s[2], s = \"acbd\"\nSwap s[1] and s[2], s = \"abcd\"\n```\n\n Example 3: \n \n```\nInput:\n s = \"cba\", pairs = [[0,1],[1,2]]\n\nOutput:\n \"abc\"\n\nExplaination: \n\nSwap s[0] and s[1], s = \"bca\"\nSwap s[1] and s[2], s = \"bac\"\nSwap s[0] and s[1], s = \"abc\"\n```\n\n Constraints: \n\n 1 <= s.length <= 10^5 \n \n 0 <= pairs.length <= 10^5 \n \n 0 <= pairs[i][0], pairs[i][1] < s.length \n \n s  only contains lower case English letters.",
+  "code": "#include <vector>\n#include <string>\n#include <unordered_map>\n#include <queue>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> parent;\n    int find(int x) {\n        return parent[x] == x ? x : parent[x] = find(parent[x]);\n    }\n\n    void unionNodes(int x, int y) {\n        parent[find(x)] = find(y);\n    }\n\n    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {\n        int n = s.size();\n        parent.resize(n);\n        iota(parent.begin(), parent.end(), 0);\n\n        for (auto& p : pairs) unionNodes(p[0], p[1]);\n\n        unordered_map<int, priority_queue<char, vector<char>, greater<char>>> map;\n        for (int i = 0; i < n; i++) {\n            map[find(i)].push(s[i]);\n        }\n\n        for (int i = 0; i < n; i++) {\n            s[i] = map[find(i)].top();\n            map[find(i)].pop();\n        }\n        return s;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591356437",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

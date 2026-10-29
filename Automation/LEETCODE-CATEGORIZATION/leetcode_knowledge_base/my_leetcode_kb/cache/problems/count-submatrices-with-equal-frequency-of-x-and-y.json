@@ -1,0 +1,32 @@
+{
+  "id": "3212",
+  "title": "Count Submatrices With Equal Frequency of X and Y",
+  "slug": "count-submatrices-with-equal-frequency-of-x-and-y",
+  "url": "https://leetcode.com/problems/count-submatrices-with-equal-frequency-of-x-and-y/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given a 2D character matrix grid , where grid[i][j] is either 'X' , 'Y' , or '.' , return the number of submatrices that contain: \n\n grid[0][0] \n \n an equal frequency of 'X' and 'Y' . \n \n at least one 'X' . \n\n Example 1: \n\n Input: grid = [[\"X\",\"Y\",\".\"],[\"Y\",\".\",\".\"]] \n \n Output: 3 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/07/examplems.png] \n\n Example 2: \n\n Input: grid = [[\"X\",\"X\"],[\"X\",\"Y\"]] \n \n Output: 0 \n \n Explanation: \n \n No submatrix has an equal frequency of 'X' and 'Y' . \n\n Example 3: \n\n Input: grid = [[\".\",\".\"],[\".\",\".\"]] \n \n Output: 0 \n \n Explanation: \n \n No submatrix has at least one 'X' . \n\n Constraints: \n\n 1 <= grid.length, grid[i].length <= 1000 \n \n grid[i][j] is either 'X' , 'Y' , or '.' .",
+  "code": "class Solution {public:int numberOfSubmatrices(vector<vector<char>>& grid){int m=grid.size(),n=grid[0].size(),ans=0;vector<int>x(n),y(n);for(int i=0;i<m;++i){int a=0,b=0;for(int j=0;j<n;++j){x[j]+=grid[i][j]=='X';y[j]+=grid[i][j]=='Y';a+=x[j];b+=y[j];if(a>0&&a==b)++ans;}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177424668",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

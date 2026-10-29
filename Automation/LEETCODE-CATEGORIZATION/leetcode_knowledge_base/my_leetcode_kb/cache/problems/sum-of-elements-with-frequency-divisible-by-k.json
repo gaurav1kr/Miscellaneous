@@ -1,0 +1,33 @@
+{
+  "id": "3712",
+  "title": "Sum of Elements With Frequency Divisible by K",
+  "slug": "sum-of-elements-with-frequency-divisible-by-k",
+  "url": "https://leetcode.com/problems/sum-of-elements-with-frequency-divisible-by-k/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n Return an integer denoting the sum of all elements in nums whose frequency is divisible by k , or 0 if there are no such elements. \n \n Note: An element is included in the sum exactly as many times as it appears in the array if its total frequency is divisible by k . \n\n Example 1: \n\n Input: nums = [1,2,2,3,3,3,3,4], k = 2 \n \n Output: 16 \n \n Explanation: \n\n The number 1 appears once (odd frequency). \n \n The number 2 appears twice (even frequency). \n \n The number 3 appears four times (even frequency). \n \n The number 4 appears once (odd frequency). \n\n So, the total sum is 2 + 2 + 3 + 3 + 3 + 3 = 16 . \n\n Example 2: \n\n Input: nums = [1,2,3,4,5], k = 2 \n \n Output: 0 \n \n Explanation: \n \n There are no elements that appear an even number of times, so the total sum is 0. \n\n Example 3: \n\n Input: nums = [4,4,4,1,2,3], k = 3 \n \n Output: 12 \n \n Explanation: \n\n The number 1 appears once. \n \n The number 2 appears once. \n \n The number 3 appears once. \n \n The number 4 appears three times. \n\n So, the total sum is 4 + 4 + 4 = 12 . \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100 \n \n 1 <= k <= 100",
+  "code": "class Solution {public: int sumDivisibleByK(vector<int>& nums,int k) {unordered_map<int,int> f;for(int x:nums)++f[x];int ans=0;for(auto p:f)if(p.second%k==0)ans+=p.first*p.second;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177673013",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

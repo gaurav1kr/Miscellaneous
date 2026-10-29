@@ -1,0 +1,26 @@
+{
+  "id": "29",
+  "title": "Divide Two Integers",
+  "slug": "divide-two-integers",
+  "url": "https://leetcode.com/problems/divide-two-integers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "Given two integers dividend and divisor , divide two integers without using multiplication, division, and mod operator. \n \n The integer division should truncate toward zero, which means losing its fractional part. For example, 8.345 would be truncated to 8 , and -2.7335 would be truncated to -2 . \n \n Return the quotient after dividing dividend by divisor . \n \n Note: Assume we are dealing with an environment that could only store integers within the 32-bit signed integer range: [−2 31 , 2 31 − 1] . For this problem, if the quotient is strictly greater than 2 31 - 1 , then return 2 31 - 1 , and if the quotient is strictly less than -2 31 , then return -2 31 . \n\n Example 1: \n \n```\nInput:\n dividend = 10, divisor = 3\n\nOutput:\n 3\n\nExplanation:\n 10/3 = 3.33333.. which is truncated to 3.\n```\n\n Example 2: \n \n```\nInput:\n dividend = 7, divisor = -3\n\nOutput:\n -2\n\nExplanation:\n 7/-3 = -2.33333.. which is truncated to -2.\n```\n\n Constraints: \n\n -2 31 <= dividend, divisor <= 2 31 - 1 \n \n divisor != 0",
+  "code": "class Solution {\npublic:\n    int divide(int dividend, int divisor) {\n        if (dividend == INT_MIN && divisor == -1) return INT_MAX;\n        long long a = dividend, b = divisor;\n        bool negative = (a < 0) != (b < 0);\n        if (a < 0) a = -a;\n        if (b < 0) b = -b;\n        long long quotient = 0;\n        for (int bit = 31; bit >= 0; --bit) {\n            if ((b << bit) <= a) {\n                a -= b << bit;\n                quotient |= 1LL << bit;\n            }\n        }\n        return (int)(negative ? -quotient : quotient);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175685684",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

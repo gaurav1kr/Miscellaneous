@@ -1,0 +1,22 @@
+{
+  "id": "3893",
+  "title": "Maximum Team Size with Overlapping Intervals",
+  "slug": "maximum-team-size-with-overlapping-intervals",
+  "url": "https://leetcode.com/problems/maximum-team-size-with-overlapping-intervals/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given two integer arrays startTime and endTime of length n . \n\n startTime[i] represents the start time of the i th employee. \n \n endTime[i] represents the end time of the i th employee. \n\n Two employees i and j can interact if their time intervals overlap . Two intervals are considered overlapping if they share at least one common time point. \n \n A team is valid if there exists at least one employee in the team who can interact with every other member of the team. \n \n Return an integer denoting the maximum possible size of such a team. \n\n Example 1: \n\n Input: startTime = [1,2,3], endTime = [4,5,6] \n \n Output: 3 \n \n Explanation: \n\n For i = 0 with interval [1, 4] . \n \n It overlaps with i = 1 having interval [2, 5] and i = 2 having interval [3, 6] . \n \n Thus, index 0 can interact with all other indices, so the team size is 3. \n\n Example 2: \n\n Input: startTime = [2,5,8], endTime = [3,7,9] \n \n Output: 1 \n \n Explanation: \n\n For i = 0 , interval [2, 3] does not overlap with [5, 7] or [8, 9] . \n \n For i = 1 , interval [5, 7] does not overlap with [2, 3] or [8, 9] . \n \n For i = 2 , interval [8, 9] does not overlap with [2, 3] or [5, 7] . \n \n Thus, no index can interact with others, so the maximum team size is 1. \n\n Example 3: \n\n Input: startTime = [3,4,6], endTime = [8,5,7] \n \n Output: 3 \n \n Explanation: \n\n For i = 0 with interval [3, 8] . \n \n It overlaps with i = 1 having interval [4, 5] and i = 2 having interval [6, 7] . \n \n Thus, index 0 can interact with all other indices, so the team size is 3. \n\n Constraints: \n\n 1 <= n == startTime.length == endTime.length <= 10 5 \n \n 0 <= startTime[i] <= endTime[i] <= 10 9",
+  "code": "class Solution {public:int maximumTeamSize(vector<int>& startTime,vector<int>& endTime){vector<int> a=startTime,b=endTime;sort(a.begin(),a.end());sort(b.begin(),b.end());int ans=0;for(int i=0;i<(int)a.size();++i){int x=upper_bound(a.begin(),a.end(),endTime[i])-a.begin();int y=lower_bound(b.begin(),b.end(),startTime[i])-b.begin();ans=max(ans,x-y);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181208647",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

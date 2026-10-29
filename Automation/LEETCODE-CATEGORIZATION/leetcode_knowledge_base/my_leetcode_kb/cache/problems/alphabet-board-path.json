@@ -1,0 +1,29 @@
+{
+  "id": "1138",
+  "title": "Alphabet Board Path",
+  "slug": "alphabet-board-path",
+  "url": "https://leetcode.com/problems/alphabet-board-path/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "On an alphabet board, we start at position (0, 0) , corresponding to character  board[0][0] . \n \n Here, board = [\"abcde\", \"fghij\", \"klmno\", \"pqrst\", \"uvwxy\", \"z\"] , as shown in the diagram below. \n \n [Figure: https://assets.leetcode.com/uploads/2019/07/28/azboard.png] \n \n We may make the following moves: \n\n 'U' moves our position up one row, if the position exists on the board; \n \n 'D' moves our position down one row, if the position exists on the board; \n \n 'L' moves our position left one column, if the position exists on the board; \n \n 'R' moves our position right one column, if the position exists on the board; \n \n '!'  adds the character board[r][c] at our current position (r, c)  to the answer. \n\n (Here, the only positions that exist on the board are positions with letters on them.) \n \n Return a sequence of moves that makes our answer equal to target  in the minimum number of moves.  You may return any path that does so. \n\n Example 1: \n \n```\nInput:\n target = \"leet\"\r\n\nOutput:\n \"DDR!UURRR!!DDD!\"\n```\n \n Example 2: \n \n```\nInput:\n target = \"code\"\r\n\nOutput:\n \"RR!DDRR!UUL!R!\"\n```\n\n Constraints: \n\n 1 <= target.length <= 100 \n \n target consists only of English lowercase letters.",
+  "code": "class Solution {\npublic:\n    string alphabetBoardPath(string target) {\n        string answer;\n        int row = 0, col = 0;\n        for (char ch : target) {\n            int nr = (ch - 'a') / 5, nc = (ch - 'a') % 5;\n            while (row > nr) { answer += 'U'; --row; }\n            while (col > nc) { answer += 'L'; --col; }\n            while (row < nr) { answer += 'D'; ++row; }\n            while (col < nc) { answer += 'R'; ++col; }\n            answer += '!';\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175747427",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

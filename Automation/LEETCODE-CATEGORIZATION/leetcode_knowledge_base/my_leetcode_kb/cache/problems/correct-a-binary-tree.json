@@ -1,0 +1,36 @@
+{
+  "id": "1660",
+  "title": "Correct a Binary Tree",
+  "slug": "correct-a-binary-tree",
+  "url": "https://leetcode.com/problems/correct-a-binary-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Tree adjacency list"
+  ],
+  "description": "You have a binary tree with a small defect. There is exactly one invalid node where its right child incorrectly points to another node at the same depth but to the invalid node's right . \n \n Given the root of the binary tree with this defect, root , return the root of the binary tree after removing this invalid node and every node underneath it (minus the node it incorrectly points to). \n \n Custom testing: \n \n The test input is read as 3 lines: \n\n TreeNode root \n \n int fromNode ( not available to correctBinaryTree ) \n \n int toNode ( not available to correctBinaryTree ) \n\n After the binary tree rooted at root is parsed, the TreeNode with value of fromNode will have its right child pointer pointing to the TreeNode with a value of toNode . Then, root is passed to correctBinaryTree . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/10/22/ex1v2.png] \n \n```\nInput:\n root = [1,2,3], fromNode = 2, toNode = 3\r\n\nOutput:\n [1,null,3]\r\n\nExplanation:\n The node with value 2 is invalid, so remove it.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2020/10/22/ex2v3.png] \n \n```\nInput:\n root = [8,3,1,7,null,9,4,2,null,null,null,5,6], fromNode = 7, toNode = 4\r\n\nOutput:\n [8,3,1,null,null,9,4,null,null,5,6]\r\n\nExplanation:\n The node with value 7 is invalid, so remove it and the node underneath it, node 2.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [3, 10 4 ] . \n \n -10 9 <= Node.val <= 10 9 \n \n All Node.val are unique . \n \n fromNode != toNode \n \n fromNode and toNode will exist in the tree and will be on the same depth. \n \n toNode is to the right of fromNode . \n \n fromNode.right is null in the initial tree from the test data.",
+  "code": "class Solution {\n    unordered_set<TreeNode*> seen;\n    TreeNode* dfs(TreeNode* root) {\n        if (!root) return nullptr;\n        if (root->right && seen.count(root->right)) return nullptr;\n        seen.insert(root);\n        root->right = dfs(root->right);\n        root->left = dfs(root->left);\n        return root;\n    }\npublic:\n    TreeNode* correctBinaryTree(TreeNode* root) {\n        seen.clear();\n        return dfs(root);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178599497",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

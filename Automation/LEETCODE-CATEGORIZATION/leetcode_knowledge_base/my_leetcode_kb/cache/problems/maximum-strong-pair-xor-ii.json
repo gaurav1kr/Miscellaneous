@@ -1,0 +1,37 @@
+{
+  "id": "2935",
+  "title": "Maximum Strong Pair XOR II",
+  "slug": "maximum-strong-pair-xor-ii",
+  "url": "https://leetcode.com/problems/maximum-strong-pair-xor-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Trie",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . A pair of integers x and y is called a strong pair if it satisfies the condition: \n\n |x - y| <= min(x, y) \n\n You need to select two integers from nums such that they form a strong pair and their bitwise XOR is the maximum among all strong pairs in the array. \n \n Return the maximum XOR value out of all possible strong pairs in the array nums . \n \n Note that you can pick the same integer twice to form a pair. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4,5]\n\nOutput:\n 7\n\nExplanation:\n There are 11 strong pairs in the array \nnums\n: (1, 1), (1, 2), (2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (3, 5), (4, 4), (4, 5) and (5, 5).\nThe maximum XOR possible from these pairs is 3 XOR 4 = 7.\n```\n\n Example 2: \n \n```\nInput:\n nums = [10,100]\n\nOutput:\n 0\n\nExplanation:\n There are 2 strong pairs in the array nums: (10, 10) and (100, 100).\nThe maximum XOR possible from these pairs is 10 XOR 10 = 0 since the pair (100, 100) also gives 100 XOR 100 = 0.\n```\n\n Example 3: \n \n```\nInput:\n nums = [500,520,2500,3000]\n\nOutput:\n 1020\n\nExplanation:\n There are 6 strong pairs in the array nums: (500, 500), (500, 520), (520, 520), (2500, 2500), (2500, 3000) and (3000, 3000).\nThe maximum XOR possible from these pairs is 500 XOR 520 = 1020 since the only other non-zero XOR value is 2500 XOR 3000 = 636.\n```\n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n 1 <= nums[i] <= 2 20 - 1",
+  "code": "class Solution{struct Node{int ch[2]={-1,-1};int cnt=0;};vector<Node> tr;void modify(int x,int delta){int u=0;tr[u].cnt+=delta;for(int b=20;b>=0;b--){int z=(x>>b)&1;if(tr[u].ch[z]<0){tr[u].ch[z]=tr.size();tr.emplace_back();}u=tr[u].ch[z];tr[u].cnt+=delta;}}int query(int x){int u=0,ans=0;for(int b=20;b>=0;b--){int z=(x>>b)&1,v=tr[u].ch[z^1];if(v>=0&&tr[v].cnt){ans|=1<<b;u=v;}else{u=tr[u].ch[z];if(u<0)break;}}return ans;}public:int maximumStrongPairXor(vector<int>& nums){sort(nums.begin(),nums.end());tr.emplace_back();int l=0,ans=0;for(int r=0;r<(int)nums.size();r++){modify(nums[r],1);while(2LL*nums[l]<nums[r])modify(nums[l++],-1);ans=max(ans,query(nums[r]));}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176761259",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

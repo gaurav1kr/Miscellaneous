@@ -1,0 +1,29 @@
+{
+  "id": "26",
+  "title": "Remove Duplicates from Sorted Array",
+  "slug": "remove-duplicates-from-sorted-array",
+  "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array nums sorted in non-decreasing order , remove the duplicates in-place such that each unique element appears only once . The relative order of the elements should be kept the same . \n \n Consider the number of unique elements in  nums to be k ​​​​​​​ ​​​​​​​. After removing duplicates, return the number of unique elements  k . \n \n The first  k  elements of  nums  should contain the unique numbers in sorted order . The remaining elements beyond index  k - 1  can be ignored. \n \n Custom Judge: \n \n The judge will test your solution with the following code: \n \n```\nint[] nums = [...]; // Input array\nint[] expectedNums = [...]; // The expected answer with correct length\n\nint k = removeDuplicates(nums); // Calls your implementation\n\nassert k == expectedNums.length;\nfor (int i = 0; i < k; i++) {\n assert nums[i] == expectedNums[i];\n}\n```\n\n If all assertions pass, then your solution will be accepted . \n\n Example 1: \n \n```\nInput:\n nums = [1,1,2]\n\nOutput:\n 2, nums = [1,2,_]\n\nExplanation:\n Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.\nIt does not matter what you leave beyond the returned k (hence they are underscores).\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,0,1,1,1,2,2,3,3,4]\n\nOutput:\n 5, nums = [0,1,2,3,4,_,_,_,_,_]\n\nExplanation:\n Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.\nIt does not matter what you leave beyond the returned k (hence they are underscores).\n```\n\n Constraints: \n\n 1 <= nums.length <= 3 * 10 4 \n \n -100 <= nums[i] <= 100 \n \n nums is sorted in non-decreasing order.",
+  "code": "class Solution {\npublic:\n    int removeDuplicates(vector<int>& nums) {\n        int i = 0;\n        for (int j = 1; j < nums.size(); j++) {\n            if (nums[j] != nums[i]) nums[++i] = nums[j];\n        }\n        return i + 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588081665",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

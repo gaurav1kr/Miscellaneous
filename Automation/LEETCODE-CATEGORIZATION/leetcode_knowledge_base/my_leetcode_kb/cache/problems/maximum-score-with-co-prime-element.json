@@ -1,0 +1,35 @@
+{
+  "id": "3953",
+  "title": "Maximum Score with Co-Prime Element",
+  "slug": "maximum-score-with-co-prime-element",
+  "url": "https://leetcode.com/problems/maximum-score-with-co-prime-element/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Combinatorics",
+    "Enumeration",
+    "Number Theory"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and an integer maxVal . \n \n You may change any element in nums to any positive integer less than or equal to maxVal . Each such change costs 1. \n \n Two integers are co-prime if their greatest common divisor (GCD) is 1. \n \n After all modifications, you must choose an index i such that, nums[i] is co-prime with every other element nums[j] . \n \n Let: \n\n selectedValue be the final value of nums[i] after modifications. \n \n modificationCost be the total number of elements changed. \n\n The score is defined as score = selectedValue - modificationCost . \n \n Return the maximum possible score. \n\n Example 1: \n\n Input: nums = [3,4,6], maxVal = 5 \n \n Output: 4 \n \n Explanation: \n \n Change nums[2] from 6 to 5, which costs 1. Choose nums[2] = 5 , since it is co-prime with 3 and 4. \n\n selectedValue = 5 \n \n modificationCost = 1 \n \n The score is 5 - 1 = 4 \n\n Example 2: \n\n Input: nums = [1,2,3], maxVal = 4 \n \n Output: 3 \n \n Explanation: \n \n No modifications are required. Choose nums[2] = 3 , since it is co-prime with 1 and 2. \n\n selectedValue = 3 \n \n modificationCost = 0 \n \n The score is 3 - 0 = 3 \n\n Example 3: \n\n Input: nums = [2,2], maxVal = 1 \n \n Output: 1 \n \n Explanation: \n \n Change nums[0] from 2 to 1, which costs 1. Choose nums[1] = 2 , since it is co-prime with 1. \n\n selectedValue = 2 \n \n modificationCost = 1 \n \n The score is ​​​​​​​ 2 - 1 = 1 \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= maxVal <= 10 ​​​​​​​5",
+  "code": "\nclass Solution {\npublic:\n    int maxScore(vector<int>& nums, int maxVal) {\n        int n = nums.size();\n        int M = max(maxVal,\n                    *max_element(nums.begin(), nums.end()));\n\n        vector<int> freq(M + 1, 0);\n\n        for (int x : nums)\n            freq[x]++;\n\n        // Step 1: Compute Mobius function.\n        vector<int> mu(M + 1, 0);\n        vector<int> lp(M + 1, 0);\n        vector<int> primes;\n\n        mu[1] = 1;\n\n        for (int i = 2; i <= M; ++i) {\n            if (lp[i] == 0) {\n                lp[i] = i;\n                primes.push_back(i);\n                mu[i] = -1;\n            }\n\n            for (int p : primes) {\n                long long v = 1LL * i * p;\n\n                if (v > M)\n                    break;\n\n                lp[v] = p;\n\n                if (i % p == 0) {\n                    mu[v] = 0;\n                    break;\n                }\n\n                mu[v] = -mu[i];\n            }\n        }\n\n        // Step 2: Count multiples of each divisor.\n        vector<int> divisible(M + 1, 0);\n\n        for (int d = 1; d <= M; ++d) {\n            for (int j = d; j <= M; j += d) {\n                divisible[d] += freq[j];\n            }\n        }\n\n        // Step 3: Count elements coprime to each x.\n        vector<int> coprime(M + 1, 0);\n\n        for (int d = 1; d <= M; ++d) {\n            if (mu[d] == 0)\n                continue;\n\n            int contribution = mu[d] * divisible[d];\n\n            for (int x = d; x <= M; x += d) {\n                coprime[x] += contribution;\n            }\n        }\n\n        // Step 4: Calculate maximum score.\n        int ans = 0;\n\n        for (int x = 1; x <= M; ++x) {\n            int bad = n - coprime[x];\n\n            if (freq[x] > 0) {\n                // Select an existing occurrence of x.\n                // That occurrence does not need modification.\n                ans = max(ans, x - bad + (x > 1));\n            }\n            else if (x <= maxVal) {\n                // Create x by changing one element.\n                int cost = max(1, bad);\n                ans = max(ans, x - cost);\n            }\n        }\n\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181670483",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

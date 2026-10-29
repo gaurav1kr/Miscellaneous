@@ -1,0 +1,31 @@
+{
+  "id": "3494",
+  "title": "Find the Minimum Amount of Time to Brew Potions",
+  "slug": "find-the-minimum-amount-of-time-to-brew-potions",
+  "url": "https://leetcode.com/problems/find-the-minimum-amount-of-time-to-brew-potions/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays, skill and mana , of length n and m , respectively. \n \n In a laboratory, n wizards must brew m potions in order . Each potion has a mana capacity mana[j] and must pass through all the wizards sequentially to be brewed properly. The time taken by the i th wizard on the j th potion is time ij = skill[i] * mana[j] . \n \n Since the brewing process is delicate, a potion must be passed to the next wizard immediately after the current wizard completes their work. This means the timing must be synchronized so that each wizard begins working on a potion exactly when it arrives. ​ \n \n Return the minimum amount of time required for the potions to be brewed properly. \n\n Example 1: \n\n Input: skill = [1,5,2,4], mana = [5,1,4,2] \n \n Output: 110 \n \n Explanation: \n\n Potion Number \n Start time \n Wizard 0 done by \n Wizard 1 done by \n Wizard 2 done by \n Wizard 3 done by \n\n 0 \n 0 \n 5 \n 30 \n 40 \n 60 \n\n 1 \n 52 \n 53 \n 58 \n 60 \n 64 \n\n 2 \n 54 \n 58 \n 78 \n 86 \n 102 \n\n 3 \n 86 \n 88 \n 98 \n 102 \n 110 \n\n As an example for why wizard 0 cannot start working on the 1 st potion before time t = 52 , consider the case where the wizards started preparing the 1 st potion at time t = 50 . At time t = 58 , wizard 2 is done with the 1 st potion, but wizard 3 will still be working on the 0 th potion till time t = 60 . \n\n Example 2: \n\n Input: skill = [1,1,1], mana = [1,1,1] \n \n Output: 5 \n \n Explanation: \n\n Preparation of the 0 th potion begins at time t = 0 , and is completed by time t = 3 . \n \n Preparation of the 1 st potion begins at time t = 1 , and is completed by time t = 4 . \n \n Preparation of the 2 nd potion begins at time t = 2 , and is completed by time t = 5 . \n\n Example 3: \n\n Input: skill = [1,2,3,4], mana = [1,2] \n \n Output: 21 \n\n Constraints: \n\n n == skill.length \n \n m == mana.length \n \n 1 <= n, m <= 5000 \n \n 1 <= mana[i], skill[i] <= 5000",
+  "code": "class Solution {public:long long minTime(vector<int>&skill,vector<int>&mana){int n=skill.size();vector<long long>done(n);for(int x:mana){long long start=done[0];long long elapsed=0;for(int i=0;i<n;i++){start=max(start,done[i]-elapsed);elapsed+=1LL*skill[i]*x;}elapsed=0;for(int i=0;i<n;i++){elapsed+=1LL*skill[i]*x;done[i]=start+elapsed;}}return done.back();}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177546751",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

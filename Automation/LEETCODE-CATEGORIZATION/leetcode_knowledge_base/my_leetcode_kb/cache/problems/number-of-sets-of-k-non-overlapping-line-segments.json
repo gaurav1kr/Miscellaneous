@@ -1,0 +1,32 @@
+{
+  "id": "1621",
+  "title": "Number of Sets of K Non-Overlapping Line Segments",
+  "slug": "number-of-sets-of-k-non-overlapping-line-segments",
+  "url": "https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Combinatorics",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Prefix-sum array"
+  ],
+  "description": "Given n points on a 1-D plane, where the i th point (from 0 to n-1 ) is at x = i , find the number of ways we can draw exactly k non-overlapping line segments such that each segment covers two or more points. The endpoints of each segment must have integral coordinates . The k line segments do not have to cover all n points, and they are allowed to share endpoints. \n \n Return the number of ways we can draw k non-overlapping line segments . Since this number can be huge, return it modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/07/ex1.png] \n \n```\nInput:\n n = 4, k = 2\n\nOutput:\n 5\n\nExplanation:\n The two line segments are shown in red and blue.\nThe image above shows the 5 different ways {(0,2),(2,3)}, {(0,1),(1,3)}, {(0,1),(2,3)}, {(1,2),(2,3)}, {(0,1),(1,2)}.\n```\n\n Example 2: \n \n```\nInput:\n n = 3, k = 1\n\nOutput:\n 3\n\nExplanation:\n The 3 ways are {(0,1)}, {(0,2)}, {(1,2)}.\n```\n\n Example 3: \n \n```\nInput:\n n = 30, k = 7\n\nOutput:\n 796297179\n\nExplanation:\n The total number of possible ways to draw 7 line segments is 3796297200. Taking this number modulo 10\n9\n + 7 gives us 796297179.\n```\n\n Constraints: \n\n 2 <= n <= 1000 \n \n 1 <= k <= n-1",
+  "code": "const int m = 1e9 + 7;\nclass Solution{\n    int dp[1111][1111];\npublic:\n    int solver(int n, int k){\n        if(k>=n)\n            return 0; // if no of points is less than or equal to no of segments\n        \n        if(k<=0)\n            return 1; // if no of segments is 0 (or negative) only 1 way dont draw any segment\n        \n        if(dp[n][k]!=-1)\n            return dp[n][k]; // if already solved\n        \n        dp[n][k] = solver(n-1, k); // if current poinnt is not chosen in any segment\n        \n        for(int len=1;len<n;len++)\n            dp[n][k] = (dp[n][k] + solver(n-len, k-1))%m; // if 1st segment has length len so remaining points - [n-len, k-1]\n        \n        return dp[n][k];\n    }\n    \n    int numberOfSets(int n, int k){\n        memset(dp, -1, sizeof(dp));\n        for(int i=2;i<n;i++)\n            dp[i][i-1] = 1;    \n        return solver(n, k);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1615794684",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

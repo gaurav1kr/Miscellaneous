@@ -1,0 +1,30 @@
+{
+  "id": "54",
+  "title": "Spiral Matrix",
+  "slug": "spiral-matrix",
+  "url": "https://leetcode.com/problems/spiral-matrix/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an m x n matrix , return all elements of the matrix in spiral order . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/13/spiral1.jpg] \n \n```\nInput:\n matrix = [[1,2,3],[4,5,6],[7,8,9]]\n\nOutput:\n [1,2,3,6,9,8,7,4,5]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/11/13/spiral.jpg] \n \n```\nInput:\n matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]\n\nOutput:\n [1,2,3,4,8,12,11,10,9,5,6,7]\n```\n\n Constraints: \n\n m == matrix.length \n \n n == matrix[i].length \n \n 1 <= m, n <= 10 \n \n -100 <= matrix[i][j] <= 100",
+  "code": "class Solution {\npublic:\n    vector<int> spiralOrder(vector<vector<int>>& matrix) {\n        vector<int> result;\n        int top = 0, bottom = matrix.size() - 1;\n        int left = 0, right = matrix[0].size() - 1;\n\n        while (top <= bottom && left <= right) {\n            for (int i = left; i <= right; ++i) result.push_back(matrix[top][i]);\n            ++top;\n\n            for (int i = top; i <= bottom; ++i) result.push_back(matrix[i][right]);\n            --right;\n\n            if (top <= bottom) {\n                for (int i = right; i >= left; --i) result.push_back(matrix[bottom][i]);\n                --bottom;\n            }\n\n            if (left <= right) {\n                for (int i = bottom; i >= top; --i) result.push_back(matrix[i][left]);\n                ++left;\n            }\n        }\n\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541510389",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

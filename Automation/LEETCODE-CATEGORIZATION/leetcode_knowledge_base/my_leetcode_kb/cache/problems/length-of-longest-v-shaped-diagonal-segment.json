@@ -1,0 +1,33 @@
+{
+  "id": "3459",
+  "title": "Length of Longest V-Shaped Diagonal Segment",
+  "slug": "length-of-longest-v-shaped-diagonal-segment",
+  "url": "https://leetcode.com/problems/length-of-longest-v-shaped-diagonal-segment/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Memoization",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer matrix grid of size n x m , where each element is either 0 , 1 , or 2 . \n \n A V-shaped diagonal segment is defined as: \n\n The segment starts with 1 . \n \n The subsequent elements follow this infinite sequence: 2, 0, 2, 0, ... . \n \n The segment:\n\n Starts along a diagonal direction (top-left to bottom-right, bottom-right to top-left, top-right to bottom-left, or bottom-left to top-right). \n \n Continues the sequence in the same diagonal direction. \n \n Makes at most one clockwise 90-degree turn to another diagonal direction while maintaining the sequence. \n\n Return the length of the longest V-shaped diagonal segment . If no valid segment exists , return 0. \n\n Example 1: \n\n Input: grid = [[2,2,1,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]] \n \n Output: 5 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/12/09/matrix_1-2.jpg] \n \n The longest V-shaped diagonal segment has a length of 5 and follows these coordinates: (0,2) → (1,3) → (2,4) , takes a 90-degree clockwise turn at (2,4) , and continues as (3,3) → (4,2) . \n\n Example 2: \n\n Input: grid = [[2,2,2,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]] \n \n Output: 4 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/12/09/matrix_2.jpg] \n \n The longest V-shaped diagonal segment has a length of 4 and follows these coordinates: (2,3) → (3,2) , takes a 90-degree clockwise turn at (3,2) , and continues as (2,1) → (1,0) . \n\n Example 3: \n\n Input: grid = [[1,2,2,2,2],[2,2,2,2,0],[2,0,0,0,0],[0,0,2,2,2],[2,0,0,2,0]] \n \n Output: 5 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/12/09/matrix_3.jpg] \n \n The longest V-shaped diagonal segment has a length of 5 and follows these coordinates: (0,0) → (1,1) → (2,2) → (3,3) → (4,4) . \n\n Example 4: \n\n Input: grid = [[1]] \n \n Output: 1 \n \n Explanation: \n \n The longest V-shaped diagonal segment has a length of 1 and follows these coordinates: (0,0) . \n\n Constraints: \n\n n == grid.length \n \n m == grid[i].length \n \n 1 <= n, m <= 500 \n \n grid[i][j] is either 0 , 1 or 2 .",
+  "code": "\nclass Solution {\n    int n, m;\n    int dr[4] = {1, 1, -1, -1};\n    int dc[4] = {1, -1, -1, 1};\n    vector<int> dp;\n\n    int dfs(vector<vector<int>>& grid, int r, int c,\n            int d, int turn) {\n        int id = ((r * m + c) * 4 + d) * 2 + turn;\n\n        if (dp[id] != -1)\n            return dp[id];\n\n        int next = grid[r][c] == 1 ? 2 : 2 - grid[r][c];\n        int ans = 1;\n\n        int x = r + dr[d], y = c + dc[d];\n\n        if (x >= 0 && x < n && y >= 0 && y < m &&\n            grid[x][y] == next)\n            ans = max(ans, 1 + dfs(grid, x, y, d, turn));\n\n        if (turn) {\n            int nd = (d + 1) % 4;\n            x = r + dr[nd];\n            y = c + dc[nd];\n\n            if (x >= 0 && x < n && y >= 0 && y < m &&\n                grid[x][y] == next)\n                ans = max(ans, 1 + dfs(grid, x, y, nd, 0));\n        }\n\n        return dp[id] = ans;\n    }\n\npublic:\n    int lenOfVDiagonal(vector<vector<int>>& grid) {\n        n = grid.size();\n        m = grid[0].size();\n\n        dp.assign(n * m * 8, -1);\n        int ans = 0;\n\n        for (int i = 0; i < n; ++i) {\n            for (int j = 0; j < m; ++j) {\n                if (grid[i][j] != 1) continue;\n\n                for (int d = 0; d < 4; ++d)\n                    ans = max(ans, dfs(grid, i, j, d, 1));\n            }\n        }\n\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2167654194",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

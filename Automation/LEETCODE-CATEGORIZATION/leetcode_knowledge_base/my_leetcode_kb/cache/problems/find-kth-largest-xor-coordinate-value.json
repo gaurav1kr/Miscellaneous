@@ -1,0 +1,44 @@
+{
+  "id": "1738",
+  "title": "Find Kth Largest XOR Coordinate Value",
+  "slug": "find-kth-largest-xor-coordinate-value",
+  "url": "https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Bit Manipulation",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Prefix Sum",
+    "Quickselect"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Prefix-sum array",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D matrix of size m x n , consisting of non-negative integers. You are also given an integer k . \n \n The value of coordinate (a, b) of the matrix is the XOR of all matrix[i][j] where 0 <= i <= a < m and 0 <= j <= b < n (0-indexed) . \n \n Find the k th largest value (1-indexed) of all the coordinates of matrix . \n\n Example 1: \n \n```\nInput:\n matrix = [[5,2],[1,6]], k = 1\n\nOutput:\n 7\n\nExplanation:\n The value of coordinate (0,1) is 5 XOR 2 = 7, which is the largest value.\n```\n\n Example 2: \n \n```\nInput:\n matrix = [[5,2],[1,6]], k = 2\n\nOutput:\n 5\n\nExplanation:\n The value of coordinate (0,0) is 5 = 5, which is the 2nd largest value.\n```\n\n Example 3: \n \n```\nInput:\n matrix = [[5,2],[1,6]], k = 3\n\nOutput:\n 4\n\nExplanation:\n The value of coordinate (1,0) is 5 XOR 1 = 4, which is the 3rd largest value.\n```\n\n Constraints: \n\n m == matrix.length \n \n n == matrix[i].length \n \n 1 <= m, n <= 1000 \n \n 0 <= matrix[i][j] <= 10 6 \n \n 1 <= k <= m * n",
+  "code": "#include <vector>\n#include <queue>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int kthLargestValue(vector<vector<int>>& matrix, int k) {\n        int m = matrix.size(), n = matrix[0].size();\n        vector<vector<int>> pre(m + 1, vector<int>(n + 1));\n        priority_queue<int, vector<int>, greater<>> pq;\n\n        for (int i = 1; i <= m; ++i)\n            for (int j = 1; j <= n; ++j) {\n                pre[i][j] = pre[i - 1][j] ^ pre[i][j - 1] ^ pre[i - 1][j - 1] ^ matrix[i - 1][j - 1];\n                pq.push(pre[i][j]);\n                if (pq.size() > k) pq.pop();\n            }\n\n        return pq.top();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610646240",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

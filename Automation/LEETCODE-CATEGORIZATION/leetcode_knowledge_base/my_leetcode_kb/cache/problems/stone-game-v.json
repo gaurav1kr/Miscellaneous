@@ -1,0 +1,33 @@
+{
+  "id": "1563",
+  "title": "Stone Game V",
+  "slug": "stone-game-v",
+  "url": "https://leetcode.com/problems/stone-game-v/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Game Theory"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "There are several stones arranged in a row , and each stone has an associated value which is an integer given in the array stoneValue . \n \n In each round of the game, Alice divides the row into two non-empty rows (i.e. left row and right row), then Bob calculates the value of each row which is the sum of the values of all the stones in this row. Bob throws away the row which has the maximum value, and Alice's score increases by the value of the remaining row. If the value of the two rows are equal, Bob lets Alice decide which row will be thrown away. The next round starts with the remaining row. \n \n The game ends when there is only one stone remaining . Alice's score is initially zero . \n \n Return the maximum score that Alice can obtain . \n\n Example 1: \n \n```\nInput:\n stoneValue = [6,2,3,4,5,5]\n\nOutput:\n 18\n\nExplanation:\n In the first round, Alice divides the row to [6,2,3], [4,5,5]. The left row has the value 11 and the right row has value 14. Bob throws away the right row and Alice's score is now 11.\nIn the second round Alice divides the row to [6], [2,3]. This time Bob throws away the left row and Alice's score becomes 16 (11 + 5).\nThe last round Alice has only one choice to divide the row which is [2], [3]. Bob throws away the right row and Alice's score is now 18 (16 + 2). The game ends because only one stone is remaining in the row.\n```\n\n Example 2: \n \n```\nInput:\n stoneValue = [7,7,7,7,7,7,7]\n\nOutput:\n 28\n```\n\n Example 3: \n \n```\nInput:\n stoneValue = [4]\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= stoneValue.length <= 500 \n \n 1 <= stoneValue[i] <= 10 6",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int stoneGameV(vector<int>& stoneValue) {\n        int n = stoneValue.size();\n        vector<int> pre(n + 1, 0);\n        for (int i = 0; i < n; ++i) pre[i + 1] = pre[i] + stoneValue[i];\n        vector<vector<int>> dp(n, vector<int>(n, 0));\n        for (int len = 2; len <= n; ++len) {\n            for (int l = 0; l + len <= n; ++l) {\n                int r = l + len - 1;\n                for (int m = l; m < r; ++m) {\n                    int left = pre[m + 1] - pre[l];\n                    int right = pre[r + 1] - pre[m + 1];\n                    if (left <= right) dp[l][r] = max(dp[l][r], left + dp[l][m]);\n                    if (right <= left) dp[l][r] = max(dp[l][r], right + dp[m + 1][r]);\n                }\n            }\n        }\n        return dp[0][n - 1];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175754862",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

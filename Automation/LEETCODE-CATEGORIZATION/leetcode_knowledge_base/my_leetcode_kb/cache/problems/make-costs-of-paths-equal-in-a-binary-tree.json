@@ -1,0 +1,37 @@
+{
+  "id": "2673",
+  "title": "Make Costs of Paths Equal in a Binary Tree",
+  "slug": "make-costs-of-paths-equal-in-a-binary-tree",
+  "url": "https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy",
+    "Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer n representing the number of nodes in a perfect binary tree consisting of nodes numbered from 1 to n . The root of the tree is node 1 and each node i in the tree has two children where the left child is the node 2 * i and the right child is 2 * i + 1 . \n \n Each node in the tree also has a cost represented by a given 0-indexed integer array cost of size n where cost[i] is the cost of node i + 1 . You are allowed to increment the cost of any node by 1 any number of times. \n \n Return the minimum number of increments you need to make the cost of paths from the root to each leaf node equal . \n \n Note : \n\n A perfect binary tree is a tree where each node, except the leaf nodes, has exactly 2 children. \n \n The cost of a path is the sum of costs of nodes in the path. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/04/04/binaryytreeedrawio-4.png] \n \n```\nInput:\n n = 7, cost = [1,5,2,2,3,3,1]\n\nOutput:\n 6\n\nExplanation:\n We can do the following increments:\n- Increase the cost of node 4 one time.\n- Increase the cost of node 3 three times.\n- Increase the cost of node 7 two times.\nEach path from the root to a leaf will have a total cost of 9.\nThe total increments we did is 1 + 3 + 2 = 6.\nIt can be shown that this is the minimum answer we can achieve.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2023/04/04/binaryytreee2drawio.png] \n \n```\nInput:\n n = 3, cost = [5,3,3]\n\nOutput:\n 0\n\nExplanation:\n The two paths already have equal total costs, so no increments are needed.\n```\n\n Constraints: \n\n 3 <= n <= 10 5 \n \n n + 1 is a power of 2 \n \n cost.length == n \n \n 1 <= cost[i] <= 10 4",
+  "code": "class Solution {public:int minIncrements(int n,vector<int>&cost){int ans=0;for(int i=n/2;i>=1;i--){int l=2*i-1,r=2*i;ans+=abs(cost[l]-cost[r]);cost[i-1]+=max(cost[l],cost[r]);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176637130",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "2201",
+  "title": "Count Artifacts That Can Be Extracted",
+  "slug": "count-artifacts-that-can-be-extracted",
+  "url": "https://leetcode.com/problems/count-artifacts-that-can-be-extracted/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "There is an n x n 0-indexed grid with some artifacts buried in it. You are given the integer n and a 0-indexed 2D integer array artifacts describing the positions of the rectangular artifacts where artifacts[i] = [r1 i , c1 i , r2 i , c2 i ] denotes that the i th artifact is buried in the subgrid where: \n\n (r1 i , c1 i ) is the coordinate of the top-left cell of the i th artifact and \n \n (r2 i , c2 i ) is the coordinate of the bottom-right cell of the i th artifact. \n\n You will excavate some cells of the grid and remove all the mud from them. If the cell has a part of an artifact buried underneath, it will be uncovered. If all the parts of an artifact are uncovered, you can extract it. \n \n Given a 0-indexed 2D integer array dig where dig[i] = [r i , c i ] indicates that you will excavate the cell (r i , c i ) , return the number of artifacts that you can extract . \n \n The test cases are generated such that: \n\n No two artifacts overlap. \n \n Each artifact only covers at most 4 cells. \n \n The entries of dig are unique. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/09/16/untitled-diagram.jpg] \n \n```\nInput:\n n = 2, artifacts = [[0,0,0,0],[0,1,1,1]], dig = [[0,0],[0,1]]\n\nOutput:\n 1\n\nExplanation:\n \nThe different colors represent different artifacts. Excavated cells are labeled with a 'D' in the grid.\nThere is 1 artifact that can be extracted, namely the red artifact.\nThe blue artifact has one part in cell (1,1) which remains uncovered, so we cannot extract it.\nThus, we return 1.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/09/16/untitled-diagram-1.jpg] \n \n```\nInput:\n n = 2, artifacts = [[0,0,0,0],[0,1,1,1]], dig = [[0,0],[0,1],[1,1]]\n\nOutput:\n 2\n\nExplanation:\n Both the red and blue artifacts have all parts uncovered (labeled with a 'D') and can be extracted, so we return 2.\n```\n\n Constraints: \n\n 1 <= n <= 1000 \n \n 1 <= artifacts.length, dig.length <= min(n 2 , 10 5 ) \n \n artifacts[i].length == 4 \n \n dig[i].length == 2 \n \n 0 <= r1 i , c1 i , r2 i , c2 i , r i , c i <= n - 1 \n \n r1 i <= r2 i \n \n c1 i <= c2 i \n \n No two artifacts will overlap. \n \n The number of cells covered by an artifact is at most 4 . \n \n The entries of dig are unique.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int digArtifacts(int n,vector<vector<int>>& artifacts,vector<vector<int>>& dig){unordered_set<long long> seen;\n  for(auto&p:dig)seen.insert((long long)p[0]*n+p[1]);int ans=0;\n  for(auto&a:artifacts){bool ok=true;for(int r=a[0];r<=a[2];++r)for(int c=a[1];c<=a[3];++c)if(!seen.count((long long)r*n+c))ok=false;ans+=ok;}\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175885346",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

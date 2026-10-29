@@ -1,0 +1,28 @@
+{
+  "id": "1663",
+  "title": "Smallest String With A Given Numeric Value",
+  "slug": "smallest-string-with-a-given-numeric-value",
+  "url": "https://leetcode.com/problems/smallest-string-with-a-given-numeric-value/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "The numeric value of a lowercase character is defined as its position (1-indexed) in the alphabet, so the numeric value of a is 1 , the numeric value of b is 2 , the numeric value of c is 3 , and so on. \n \n The numeric value of a string consisting of lowercase characters is defined as the sum of its characters' numeric values. For example, the numeric value of the string \"abe\" is equal to 1 + 2 + 5 = 8 . \n \n You are given two integers n and k . Return the lexicographically smallest string with length equal to n and numeric value equal to k . \n \n Note that a string x is lexicographically smaller than string y if x comes before y in dictionary order, that is, either x is a prefix of y , or if i is the first position such that x[i] != y[i] , then x[i] comes before y[i] in alphabetic order. \n\n Example 1: \n \n```\nInput:\n n = 3, k = 27\n\nOutput:\n \"aay\"\n\nExplanation:\n The numeric value of the string is 1 + 1 + 25 = 27, and it is the smallest string with such a value and length equal to 3.\n```\n\n Example 2: \n \n```\nInput:\n n = 5, k = 73\n\nOutput:\n \"aaszz\"\n```\n\n Constraints: \n\n 1 <= n <= 10 5 \n \n n <= k <= 26 * n",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string getSmallestString(int n, int k) {\n        string res(n, 'a');\n        k -= n;\n        for (int i = n - 1; i >= 0 && k > 0; --i) {\n            int add = min(25, k);\n            res[i] += add;\n            k -= add;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610557401",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

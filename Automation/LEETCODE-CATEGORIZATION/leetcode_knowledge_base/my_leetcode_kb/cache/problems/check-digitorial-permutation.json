@@ -1,0 +1,26 @@
+{
+  "id": "3848",
+  "title": "Check Digitorial Permutation",
+  "slug": "check-digitorial-permutation",
+  "url": "https://leetcode.com/problems/check-digitorial-permutation/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given an integer n . \n \n A number is called digitorial if the sum of the factorials of its digits is equal to the number itself. \n \n Determine whether any permutation of n (including the original order) forms a digitorial number. \n \n Return true if such a permutation exists, otherwise return false . \n \n Note : \n\n The factorial of a non-negative integer x , denoted as x! , is the product of all positive integers less than or equal to x , and 0! = 1 . \n \n A permutation is a rearrangement of all the digits of a number that does not start with zero. Any arrangement starting with zero is invalid. \n\n Example 1: \n\n Input: n = 145 \n \n Output: true \n \n Explanation: \n \n The number 145 itself is digitorial since 1! + 4! + 5! = 1 + 24 + 120 = 145 . Thus, the answer is true . \n\n Example 2: \n\n Input: n = 10 \n \n Output: false \n \n Explanation: ​​​​​​​ \n \n 10 is not digitorial since 1! + 0! = 2 is not equal to 10, and the permutation \"01\" is invalid because it starts with zero. \n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "class Solution {\npublic:\n    bool isDigitorialPermutation(int n) {\n        int fact[10];fact[0]=1;\n        for(int i=1;i<10;++i)fact[i]=fact[i-1]*i;\n        int sum=0, t=n;\n        while(t){sum+=fact[t%10];t/=10;}\n        string a=to_string(n),b=to_string(sum);\n        sort(a.begin(),a.end());sort(b.begin(),b.end());\n        return a==b;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177772102",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "799",
+  "title": "Champagne Tower",
+  "slug": "champagne-tower",
+  "url": "https://leetcode.com/problems/champagne-tower/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "We stack glasses in a pyramid, where the first row has 1 glass, the second row has 2 glasses, and so on until the 100 th row.  Each glass holds one cup of champagne. \n \n Then, some champagne is poured into the first glass at the top.  When the topmost glass is full, any excess liquid poured will fall equally to the glass immediately to the left and right of it.  When those glasses become full, any excess champagne will fall equally to the left and right of those glasses, and so on.  (A glass at the bottom row has its excess champagne fall on the floor.) \n \n For example, after one cup of champagne is poured, the top most glass is full.  After two cups of champagne are poured, the two glasses on the second row are half full.  After three cups of champagne are poured, those two cups become full - there are 3 full glasses total now.  After four cups of champagne are poured, the third row has the middle glass half full, and the two outside glasses are a quarter full, as pictured below. \n \n [Figure: https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/09/tower.png] \n \n Now after pouring some non-negative integer cups of champagne, return how full the j th glass in the i th row is (both i and j are 0-indexed.) \n\n Example 1: \n \n```\nInput:\n poured = 1, query_row = 1, query_glass = 1\n\nOutput:\n 0.00000\n\nExplanation:\n We poured 1 cup of champange to the top glass of the tower (which is indexed as (0, 0)). There will be no excess liquid so all the glasses under the top glass will remain empty.\n```\n\n Example 2: \n \n```\nInput:\n poured = 2, query_row = 1, query_glass = 1\n\nOutput:\n 0.50000\n\nExplanation:\n We poured 2 cups of champange to the top glass of the tower (which is indexed as (0, 0)). There is one cup of excess liquid. The glass indexed as (1, 0) and the glass indexed as (1, 1) will share the excess liquid equally, and each will get half cup of champange.\n```\n\n Example 3: \n \n```\nInput:\n poured = 100000009, query_row = 33, query_glass = 17\n\nOutput:\n 1.00000\n```\n\n Constraints: \n\n 0 <= poured <= 10 9 \n \n 0 <= query_glass <= query_row < 100",
+  "code": "\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    double champagneTower(int poured, int row, int col) {\n        vector<vector<double>> dp(row + 1, vector<double>(row + 1, 0));\n        dp[0][0] = poured;\n        \n        for (int i = 0; i < row; ++i) {\n            for (int j = 0; j <= i; ++j) {\n                double overflow = (dp[i][j] - 1) / 2;\n                if (overflow > 0) {\n                    dp[i + 1][j] += overflow;\n                    dp[i + 1][j + 1] += overflow;\n                }\n            }\n        }\n        \n        return min(1.0, dp[row][col]);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592338574",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

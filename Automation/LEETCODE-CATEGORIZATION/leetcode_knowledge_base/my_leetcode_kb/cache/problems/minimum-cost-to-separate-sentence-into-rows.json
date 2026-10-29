@@ -1,0 +1,30 @@
+{
+  "id": "2052",
+  "title": "Minimum Cost to Separate Sentence Into Rows",
+  "slug": "minimum-cost-to-separate-sentence-into-rows",
+  "url": "https://leetcode.com/problems/minimum-cost-to-separate-sentence-into-rows/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string sentence containing words separated by spaces, and an integer k . Your task is to separate sentence into rows where the number of characters in each row is at most k . You may assume that sentence does not begin or end with a space, and the words in sentence are separated by a single space. \n \n You can split sentence into rows by inserting line breaks between words in sentence . A word cannot be split between two rows. Each word must be used exactly once, and the word order cannot be rearranged. Adjacent words in a row should be separated by a single space, and rows should not begin or end with spaces. \n \n The cost of a row with length n is (k - n) 2 , and the total cost is the sum of the costs for all rows except the last one. \n\n For example if sentence = \"i love leetcode\" and k = 12 :\n\n Separating sentence into \"i\" , \"love\" , and \"leetcode\" has a cost of (12 - 1) 2 + (12 - 4) 2 = 185 . \n \n Separating sentence into \"i love\" , and \"leetcode\" has a cost of (12 - 6) 2 = 36 . \n \n Separating sentence into \"i\" , and \"love leetcode\" is not possible because the length of \"love leetcode\" is greater than k . \n\n Return the minimum possible total cost of separating sentence into rows. \n\n Example 1: \n \n```\nInput:\n sentence = \"i love leetcode\", k = 12\n\nOutput:\n 36\n\nExplanation:\n\nSeparating sentence into \"i\", \"love\", and \"leetcode\" has a cost of (12 - 1)\n2\n + (12 - 4)\n2\n = 185.\nSeparating sentence into \"i love\", and \"leetcode\" has a cost of (12 - 6)\n2\n = 36.\nSeparating sentence into \"i\", \"love leetcode\" is not possible because \"love leetcode\" has length 13.\n36 is the minimum possible total cost so return it.\n```\n\n Example 2: \n \n```\nInput:\n sentence = \"apples and bananas taste great\", k = 7\n\nOutput:\n 21\n\nExplanation\n\nSeparating sentence into \"apples\", \"and\", \"bananas\", \"taste\", and \"great\" has a cost of (7 - 6)\n2\n + (7 - 3)\n2\n + (7 - 7)\n2\n + (7 - 5)\n2 \n= 21.\n21 is the minimum possible total cost so return it.\n```\n\n Example 3: \n \n```\nInput:\n sentence = \"a\", k = 5\n\nOutput:\n 0\n\nExplanation:\n\nThe cost of the last row is not included in the total cost, and since there is only one row, return 0.\n```\n\n Constraints: \n\n 1 <= sentence.length <= 5000 \n \n 1 <= k <= 5000 \n \n The length of each word in sentence is at most k . \n \n sentence consists of only lowercase English letters and spaces. \n \n sentence does not begin or end with a space. \n \n Words in sentence are separated by a single space.",
+  "code": "class Solution {\npublic:\n    int minimumCost(string sentence, int k) {\n        vector<int> lengths;\n        string word;\n        stringstream ss(sentence);\n        while (ss >> word) lengths.push_back(word.size());\n        int n = lengths.size();\n        const int INF = 1000000000;\n        vector<int> dp(n + 1, INF);\n        dp[n] = 0;\n        for (int i = n - 1; i >= 0; --i) {\n            int width = 0;\n            for (int j = i; j < n; ++j) {\n                width += lengths[j] + (j > i ? 1 : 0);\n                if (width > k) break;\n                int cost = (j == n - 1 ? 0 : (k - width) * (k - width));\n                dp[i] = min(dp[i], cost + dp[j + 1]);\n            }\n        }\n        return dp[0];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178635291",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

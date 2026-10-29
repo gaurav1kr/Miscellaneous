@@ -1,0 +1,35 @@
+{
+  "id": "2170",
+  "title": "Minimum Operations to Make the Array Alternating",
+  "slug": "minimum-operations-to-make-the-array-alternating",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-the-array-alternating/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array nums consisting of n positive integers. \n \n The array nums is called alternating if: \n\n nums[i - 2] == nums[i] , where 2 <= i <= n - 1 . \n \n nums[i - 1] != nums[i] , where 1 <= i <= n - 1 . \n\n In one operation , you can choose an index i and change nums[i] into any positive integer. \n \n Return the minimum number of operations required to make the array alternating . \n\n Example 1: \n \n```\nInput:\n nums = [3,1,3,2,4,3]\n\nOutput:\n 3\n\nExplanation:\n\nOne way to make the array alternating is by converting it to [3,1,3,\n1\n,\n3\n,\n1\n].\nThe number of operations required in this case is 3.\nIt can be proven that it is not possible to make the array alternating in less than 3 operations.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,2,2,2]\n\nOutput:\n 2\n\nExplanation:\n\nOne way to make the array alternating is by converting it to [1,2,\n1\n,2,\n1\n].\nThe number of operations required in this case is 2.\nNote that the array cannot be converted to [\n2\n,2,2,2,2] because in this case nums[0] == nums[1] which violates the conditions of an alternating array.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\n    vector<pair<int,int>> topTwo(const unordered_map<int,int>& f) {\n        vector<pair<int,int>> a={{0,-1},{0,-2}};\n        for(auto &p:f) {\n            pair<int,int> cur={p.second,p.first};\n            if(cur.first>a[0].first){a[1]=a[0];a[0]=cur;}\n            else if(cur.first>a[1].first) a[1]=cur;\n        }\n        return a;\n    }\npublic:\n    int minimumOperations(vector<int>& nums) {\n        unordered_map<int,int> even,odd;\n        for(int i=0;i<(int)nums.size();++i) ++(i%2?odd:even)[nums[i]];\n        auto a=topTwo(even),b=topTwo(odd);\n        int keep=(a[0].second!=b[0].second)?a[0].first+b[0].first:\n                 max(a[0].first+b[1].first,a[1].first+b[0].first);\n        return (int)nums.size()-keep;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175878336",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

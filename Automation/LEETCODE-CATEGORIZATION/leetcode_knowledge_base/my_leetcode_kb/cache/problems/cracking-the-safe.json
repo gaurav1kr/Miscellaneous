@@ -1,0 +1,35 @@
+{
+  "id": "753",
+  "title": "Cracking the Safe",
+  "slug": "cracking-the-safe",
+  "url": "https://leetcode.com/problems/cracking-the-safe/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Depth-First Search",
+    "Graph Theory",
+    "Eulerian Circuit",
+    "Eulerian Path",
+    "Eulerian Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Hash set",
+    "Ordered set",
+    "String"
+  ],
+  "description": "There is a safe protected by a password. The password is a sequence of n digits where each digit can be in the range [0, k - 1] . \n \n The safe has a peculiar way of checking the password. When you enter in a sequence, it checks the most recent n digits that were entered each time you type a digit. \n\n For example, the correct password is \"345\" and you enter in \"012345\" :\n\n After typing 0 , the most recent 3 digits is \"0\" , which is incorrect. \n \n After typing 1 , the most recent 3 digits is \"01\" , which is incorrect. \n \n After typing 2 , the most recent 3 digits is \"012\" , which is incorrect. \n \n After typing 3 , the most recent 3 digits is \"123\" , which is incorrect. \n \n After typing 4 , the most recent 3 digits is \"234\" , which is incorrect. \n \n After typing 5 , the most recent 3 digits is \"345\" , which is correct and the safe unlocks. \n\n Return any string of minimum length that will unlock the safe at some point of entering it . \n\n Example 1: \n \n```\nInput:\n n = 1, k = 2\n\nOutput:\n \"10\"\n\nExplanation:\n The password is a single digit, so enter each digit. \"01\" would also unlock the safe.\n```\n\n Example 2: \n \n```\nInput:\n n = 2, k = 2\n\nOutput:\n \"01100\"\n\nExplanation:\n For each possible password:\n- \"00\" is typed in starting from the 4\nth\n digit.\n- \"01\" is typed in starting from the 1\nst\n digit.\n- \"10\" is typed in starting from the 3\nrd\n digit.\n- \"11\" is typed in starting from the 2\nnd\n digit.\nThus \"01100\" will unlock the safe. \"10011\", and \"11001\" would also unlock the safe.\n```\n\n Constraints: \n\n 1 <= n <= 4 \n \n 1 <= k <= 10 \n \n 1 <= k n <= 4096",
+  "code": "class Solution {\n    unordered_set<string> seen;\n    string result;\n    int k;\n    void dfs(const string& node) {\n        for (int digit = 0; digit < k; ++digit) {\n            string edge = node + char('0' + digit);\n            if (seen.insert(edge).second) {\n                dfs(edge.substr(1));\n                result += char('0' + digit);\n            }\n        }\n    }\npublic:\n    string crackSafe(int n, int alphabetSize) {\n        k = alphabetSize;\n        string start(n - 1, '0');\n        dfs(start);\n        return result + start;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175740509",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

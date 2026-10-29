@@ -1,0 +1,34 @@
+{
+  "id": "945",
+  "title": "Minimum Increment to Make Array Unique",
+  "slug": "minimum-increment-to-make-array-unique",
+  "url": "https://leetcode.com/problems/minimum-increment-to-make-array-unique/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . In one move, you can pick an index i where 0 <= i < nums.length and increment nums[i] by 1 . \n \n Return the minimum number of moves to make every value in nums unique . \n \n The test cases are generated so that the answer fits in a 32-bit integer. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,2]\n\nOutput:\n 1\n\nExplanation:\n After 1 move, the array could be [1, 2, 3].\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,2,1,2,1,7]\n\nOutput:\n 6\n\nExplanation:\n After 6 moves, the array could be [3, 4, 1, 2, 5, 7].\nIt can be shown that it is impossible for the array to have all unique values with 5 or less moves.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5",
+  "code": "\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minIncrementForUnique(vector<int>& A) {\n        sort(A.begin(), A.end());\n        int result = 0, prev = -1;\n        \n        for (int num : A) {\n            if (num <= prev) {\n                result += prev - num + 1;\n                prev++;\n            } else {\n                prev = num;\n            }\n        }\n        \n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592346978",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

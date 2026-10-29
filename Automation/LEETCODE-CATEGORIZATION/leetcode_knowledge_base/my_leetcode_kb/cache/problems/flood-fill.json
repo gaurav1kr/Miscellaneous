@@ -1,0 +1,32 @@
+{
+  "id": "733",
+  "title": "Flood Fill",
+  "slug": "flood-fill",
+  "url": "https://leetcode.com/problems/flood-fill/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an image represented by an m x n grid of integers image , where image[i][j] represents the pixel value of the image. You are also given three integers sr , sc , and color . Your task is to perform a flood fill on the image starting from the pixel image[sr][sc] . \n \n To perform a flood fill : \n\n Begin with the starting pixel and change its color to color . \n \n Perform the same process for each pixel that is directly adjacent (pixels that share a side with the original pixel, either horizontally or vertically) and shares the same color as the starting pixel. \n \n Keep repeating this process by checking neighboring pixels of the updated pixels and modifying their color if it matches the original color of the starting pixel. \n \n The process stops when there are no more adjacent pixels of the original color to update. \n\n Return the modified image after performing the flood fill. \n\n Example 1: \n\n Input: image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2 \n \n Output: [[2,2,2],[2,2,0],[2,0,1]] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2021/06/01/flood1-grid.jpg] \n \n From the center of the image with position (sr, sc) = (1, 1) (i.e., the red pixel), all pixels connected by a path of the same color as the starting pixel (i.e., the blue pixels) are colored with the new color. \n \n Note the bottom corner is not colored 2, because it is not horizontally or vertically connected to the starting pixel. \n\n Example 2: \n\n Input: image = [[0,0,0],[0,0,0]], sr = 0, sc = 0, color = 0 \n \n Output: [[0,0,0],[0,0,0]] \n \n Explanation: \n \n The starting pixel is already colored with 0, which is the same as the target color. Therefore, no changes are made to the image. \n\n Constraints: \n\n m == image.length \n \n n == image[i].length \n \n 1 <= m, n <= 50 \n \n 0 <= image[i][j], color < 2 16 \n \n 0 <= sr < m \n \n 0 <= sc < n",
+  "code": "class Solution {\npublic:\n    void dfs(vector<vector<int>>& image, int sr, int sc, int color, int newColor) {\n        if (sr < 0 || sc < 0 || sr >= image.size() || sc >= image[0].size() || image[sr][sc] != color) return;\n        image[sr][sc] = newColor;\n        dfs(image, sr + 1, sc, color, newColor);\n        dfs(image, sr - 1, sc, color, newColor);\n        dfs(image, sr, sc + 1, color, newColor);\n        dfs(image, sr, sc - 1, color, newColor);\n    }\n    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {\n        if (image[sr][sc] != newColor) dfs(image, sr, sc, image[sr][sc], newColor);\n        return image;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588097677",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

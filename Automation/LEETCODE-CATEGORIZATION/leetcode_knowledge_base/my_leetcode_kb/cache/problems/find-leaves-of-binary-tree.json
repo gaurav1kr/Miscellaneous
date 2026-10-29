@@ -1,0 +1,32 @@
+{
+  "id": "366",
+  "title": "Find Leaves of Binary Tree",
+  "slug": "find-leaves-of-binary-tree",
+  "url": "https://leetcode.com/problems/find-leaves-of-binary-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree, collect a tree's nodes as if you were doing this: \n\n Collect all the leaf nodes. \n \n Remove all the leaf nodes. \n \n Repeat until the tree is empty. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/16/remleaves-tree.jpg] \n \n```\nInput:\n root = [1,2,3,4,5]\n\nOutput:\n [[4,5,3],[2],[1]]\nExplanation:\n[[3,5,4],[2],[1]] and [[3,4,5],[2],[1]] are also considered correct answers since per each level it does not matter the order on which elements are returned.\n```\n\n Example 2: \n \n```\nInput:\n root = [1]\n\nOutput:\n [[1]]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 100] . \n \n -100 <= Node.val <= 100",
+  "code": "class Solution\n{\n    int dfs(TreeNode* node, vector<vector<int>>& groups)\n    {\n        if (!node) return -1;\n        int level = 1 + max(dfs(node->left, groups),\n                            dfs(node->right, groups));\n        if (level == (int)groups.size()) groups.push_back({});\n        groups[level].push_back(node->val);\n        return level;\n    }\npublic:\n    vector<vector<int>> findLeaves(TreeNode* root) {\n        vector<vector<int>> groups;\n        dfs(root, groups);\n        return groups;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178461805",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

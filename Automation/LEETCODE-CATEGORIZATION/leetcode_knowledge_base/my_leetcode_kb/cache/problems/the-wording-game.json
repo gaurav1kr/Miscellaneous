@@ -1,0 +1,37 @@
+{
+  "id": "2868",
+  "title": "The Wording Game",
+  "slug": "the-wording-game",
+  "url": "https://leetcode.com/problems/the-wording-game/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Two Pointers",
+    "String",
+    "Greedy",
+    "Game Theory"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Alice and Bob each have a lexicographically sorted array of strings named a and b respectively. \n \n They are playing a wording game with the following rules: \n\n On each turn, the current player should play a word from their list such that the new word is closely greater than the last played word; then it's the other player's turn. \n \n If a player can't play a word on their turn, they lose. \n\n Alice starts the game by playing her lexicographically smallest word. \n \n Given a and b , return true if Alice can win knowing that both players play their best, and false otherwise. \n \n A word w is closely greater than a word z if the following conditions are met: \n\n w is lexicographically greater than z . \n \n If w 1 is the first letter of w and z 1 is the first letter of z , w 1 should either be equal to z 1 or be the letter after z 1 in the alphabet. \n \n For example, the word \"care\" is closely greater than \"book\" and \"car\" , but is not closely greater than \"ant\" or \"cook\" . \n\n A string s is lexicographically greater than a string t if in the first position where s and t differ, string s has a letter that appears later in the alphabet than the corresponding letter in t . If the first min(s.length, t.length) characters do not differ, then the longer string is the lexicographically greater one. \n\n Example 1: \n \n```\nInput:\n a = [\"avokado\",\"dabar\"], b = [\"brazil\"]\n\nOutput:\n false\n\nExplanation:\n Alice must start the game by playing the word \"avokado\" since it's her smallest word, then Bob plays his only word, \"brazil\", which he can play because its first letter, 'b', is the letter after Alice's word's first letter, 'a'.\nAlice can't play a word since the first letter of the only word left is not equal to 'b' or the letter after 'b', 'c'.\nSo, Alice loses, and the game ends.\n```\n\n Example 2: \n \n```\nInput:\n a = [\"ananas\",\"atlas\",\"banana\"], b = [\"albatros\",\"cikla\",\"nogomet\"]\n\nOutput:\n true\n\nExplanation:\n Alice must start the game by playing the word \"ananas\".\nBob can't play a word since the only word he has that starts with the letter 'a' or 'b' is \"albatros\", which is smaller than Alice's word.\nSo Alice wins, and the game ends.\n```\n\n Example 3: \n \n```\nInput:\n a = [\"hrvatska\",\"zastava\"], b = [\"bijeli\",\"galeb\"]\n\nOutput:\n true\n\nExplanation:\n Alice must start the game by playing the word \"hrvatska\".\nBob can't play a word since the first letter of both of his words are smaller than the first letter of Alice's word, 'h'.\nSo Alice wins, and the game ends.\n```\n\n Constraints: \n\n 1 <= a.length, b.length <= 10 5 \n \n a[i] and b[i] consist only of lowercase English letters. \n \n a and b are lexicographically sorted . \n \n All the words in a and b combined are distinct . \n \n The sum of the lengths of all the words in a and b combined does not exceed 10 6 .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n bool canAliceWin(vector<string>& a,vector<string>& b){bool good[2][27]={};int i=(int)a.size()-1,j=(int)b.size()-1;\n  while(i>=0||j>=0){int who;\n   if(j<0||(i>=0&&a[i]>b[j]))who=0;else who=1;\n   string &w=who==0?a[i--]:b[j--];int c=w[0]-'a';\n   if(!good[1-who][c]&&!good[1-who][c+1])good[who][c]=true;\n  }\n  int c=a[0][0]-'a';\n  // Alice's mandatory opening is not necessarily winning even if some later Alice word is.\n  // Re-evaluate the response set using only Bob's words larger than a[0].\n  return ! (good[1][c]||good[1][c+1]);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181218860",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "803",
+  "title": "Bricks Falling When Hit",
+  "slug": "bricks-falling-when-hit",
+  "url": "https://leetcode.com/problems/bricks-falling-when-hit/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Union-Find",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Vector"
+  ],
+  "description": "You are given an m x n binary grid , where each 1 represents a brick and 0 represents an empty space. A brick is stable if: \n\n It is directly connected to the top of the grid, or \n \n At least one other brick in its four adjacent cells is stable . \n\n You are also given an array hits , which is a sequence of erasures we want to apply. Each time we want to erase the brick at the location hits[i] = (row i , col i ) . The brick on that location (if it exists) will disappear. Some other bricks may no longer be stable because of that erasure and will fall . Once a brick falls, it is immediately erased from the grid (i.e., it does not land on other stable bricks). \n \n Return an array result , where each result[i] is the number of bricks that will fall after the i th erasure is applied. \n \n Note that an erasure may refer to a location with no brick, and if it does, no bricks drop. \n\n Example 1: \n \n```\nInput:\n grid = [[1,0,0,0],[1,1,1,0]], hits = [[1,0]]\n\nOutput:\n [2]\n\nExplanation: \nStarting with the grid:\n[[1,0,0,0],\n [\n1\n,1,1,0]]\nWe erase the underlined brick at (1,0), resulting in the grid:\n[[1,0,0,0],\n [0,\n1\n,\n1\n,0]]\nThe two underlined bricks are no longer stable as they are no longer connected to the top nor adjacent to another stable brick, so they will fall. The resulting grid is:\n[[1,0,0,0],\n [0,0,0,0]]\nHence the result is [2].\n```\n\n Example 2: \n \n```\nInput:\n grid = [[1,0,0,0],[1,1,0,0]], hits = [[1,1],[1,0]]\n\nOutput:\n [0,0]\n\nExplanation: \nStarting with the grid:\n[[1,0,0,0],\n [1,\n1\n,0,0]]\nWe erase the underlined brick at (1,1), resulting in the grid:\n[[1,0,0,0],\n [1,0,0,0]]\nAll remaining bricks are still stable, so no bricks fall. The grid remains the same:\n[[1,0,0,0],\n [\n1\n,0,0,0]]\nNext, we erase the underlined brick at (1,0), resulting in the grid:\n[[1,0,0,0],\n [0,0,0,0]]\nOnce again, all remaining bricks are still stable, so no bricks fall.\nHence the result is [0,0].\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 200 \n \n grid[i][j] is 0 or 1 . \n \n 1 <= hits.length <= 4 * 10 4 \n \n hits[i].length == 2 \n \n 0 <= x i  <= m - 1 \n \n 0 <= y i <= n - 1 \n \n All (x i , y i ) are unique.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\n    int R, C;\n    vector<int> parent, size;\n\n    int index(int r, int c) {\n        return r * C + c;\n    }\n\n    int find(int x) {\n        return parent[x] == x ? x : parent[x] = find(parent[x]);\n    }\n\n    void unite(int x, int y) {\n        int rx = find(x), ry = find(y);\n        if (rx != ry) {\n            parent[rx] = ry;\n            size[ry] += size[rx];\n        }\n    }\n\n    int getSize(int x) {\n        return size[find(x)];\n    }\n\npublic:\n    vector<int> hitBricks(vector<vector<int>>& grid, vector<vector<int>>& hits) {\n        R = grid.size();\n        C = grid[0].size();\n        vector<vector<int>> copy = grid;\n\n        for (auto& h : hits)\n            copy[h[0]][h[1]] = 0;\n\n        parent.resize(R * C + 1);\n        size.resize(R * C + 1, 1);\n        for (int i = 0; i < R * C + 1; ++i)\n            parent[i] = i;\n\n        for (int i = 0; i < R; ++i)\n            for (int j = 0; j < C; ++j)\n                if (copy[i][j]) {\n                    if (i == 0) unite(index(i, j), R * C);\n                    if (i && copy[i - 1][j]) unite(index(i, j), index(i - 1, j));\n                    if (j && copy[i][j - 1]) unite(index(i, j), index(i, j - 1));\n                }\n\n        vector<int> res(hits.size());\n        vector<vector<int>> dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};\n        for (int i = hits.size() - 1; i >= 0; --i) {\n            int x = hits[i][0], y = hits[i][1];\n            if (!grid[x][y]) continue;\n            int before = getSize(R * C);\n            int idx = index(x, y);\n\n            copy[x][y] = 1;\n            if (x == 0) unite(idx, R * C);\n            for (auto& d : dirs) {\n                int nx = x + d[0], ny = y + d[1];\n                if (nx >= 0 && ny >= 0 && nx < R && ny < C && copy[nx][ny])\n                    unite(idx, index(nx, ny));\n            }\n            int after = getSize(R * C);\n            res[i] = max(0, after - before - 1);\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593856304",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

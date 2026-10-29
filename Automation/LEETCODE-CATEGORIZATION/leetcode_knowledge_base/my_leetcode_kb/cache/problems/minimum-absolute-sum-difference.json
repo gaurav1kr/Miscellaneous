@@ -1,0 +1,33 @@
+{
+  "id": "1818",
+  "title": "Minimum Absolute Sum Difference",
+  "slug": "minimum-absolute-sum-difference",
+  "url": "https://leetcode.com/problems/minimum-absolute-sum-difference/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two positive integer arrays nums1 and nums2 , both of length n . \n \n The absolute sum difference of arrays nums1 and nums2 is defined as the sum of |nums1[i] - nums2[i]| for each 0 <= i < n ( 0-indexed ). \n \n You can replace at most one element of nums1 with any other element in nums1 to minimize the absolute sum difference. \n \n Return the minimum absolute sum difference after replacing at most one element in the array nums1 . Since the answer may be large, return it modulo 10 9 + 7 . \n \n |x| is defined as: \n\n x if x >= 0 , or \n \n -x if x < 0 . \n\n Example 1: \n \n```\nInput:\n nums1 = [1,7,5], nums2 = [2,3,5]\n\nOutput:\n 3\n\nExplanation: \nThere are two possible optimal solutions:\n- Replace the second element with the first: [1,\n7\n,5] => [1,\n1\n,5], or\n- Replace the second element with the third: [1,\n7\n,5] => [1,\n5\n,5].\nBoth will yield an absolute sum difference of \n|1-2| + (|1-3| or |5-3|) + |5-5| = \n3.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [2,4,6,8,10], nums2 = [2,4,6,8,10]\n\nOutput:\n 0\n\nExplanation: \nnums1 is equal to nums2 so no replacement is needed. This will result in an \nabsolute sum difference of 0.\n```\n\n Example 3: \n \n```\nInput:\n nums1 = [1,10,4,4,2,7], nums2 = [9,3,5,1,7,4]\n\nOutput:\n 20\n\nExplanation: \nReplace the first element with the second: [\n1\n,10,4,4,2,7] => [\n10\n,10,4,4,2,7].\nThis yields an absolute sum difference of \n|10-9| + |10-3| + |4-5| + |4-1| + |2-7| + |7-4| = 20\n```\n\n Constraints: \n\n n == nums1.length \n \n n == nums2.length \n \n 1 <= n <= 10 5 \n \n 1 <= nums1[i], nums2[i] <= 10 5",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minAbsoluteSumDiff(vector<int>& nums1, vector<int>& nums2) {\n        const int MOD = 1e9 + 7;\n        int n = nums1.size(), maxGain = 0, total = 0;\n        vector<int> sorted = nums1;\n        sort(sorted.begin(), sorted.end());\n\n        for (int i = 0; i < n; ++i) {\n            int diff = abs(nums1[i] - nums2[i]);\n            total = (total + diff) % MOD;\n\n            auto it = lower_bound(sorted.begin(), sorted.end(), nums2[i]);\n            if (it != sorted.end()) maxGain = max(maxGain, diff - abs(*it - nums2[i]));\n            if (it != sorted.begin()) maxGain = max(maxGain, diff - abs(*prev(it) - nums2[i]));\n        }\n\n        return (total - maxGain + MOD) % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610604781",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "2708",
+  "title": "Maximum Strength of a Group",
+  "slug": "maximum-strength-of-a-group",
+  "url": "https://leetcode.com/problems/maximum-strength-of-a-group/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Greedy",
+    "Bit Manipulation",
+    "Sorting",
+    "Enumeration"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Backtracking / Bitmask",
+    "Sorting / Divide and Conquer",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums representing the score of students in an exam. The teacher would like to form one non-empty group of students with maximal strength , where the strength of a group of students of indices i 0 , i 1 , i 2 , ... , i k is defined as nums[i 0 ] * nums[i 1 ] * nums[i 2 ] * ... * nums[i k ​] . \n \n Return the maximum strength of a group the teacher can create . \n\n Example 1: \n \n```\nInput:\n nums = [3,-1,-5,2,5,-9]\n\nOutput:\n 1350\n\nExplanation:\n One way to form a group of maximal strength is to group the students at indices [0,2,3,4,5]. Their strength is 3 * (-5) * 2 * 5 * (-9) = 1350, which we can show is optimal.\n```\n\n Example 2: \n \n```\nInput:\n nums = [-4,-5,-4]\n\nOutput:\n 20\n\nExplanation:\n Group the students at indices [0, 1] . Then, we’ll have a resulting strength of 20. We cannot achieve greater strength.\n```\n\n Constraints: \n\n 1 <= nums.length <= 13 \n \n -9 <= nums[i] <= 9",
+  "code": "class Solution {public:long long maxStrength(vector<int>&nums){if(nums.size()==1)return nums[0];long long prod=1;int neg=0,nonzero=0,closest=INT_MIN;for(int x:nums)if(x){prod*=x;nonzero++;if(x<0){neg++;closest=max(closest,x);}}if(nonzero==0)return 0;if(neg%2){if(nonzero==1)return 0;prod/=closest;}return prod;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176680630",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

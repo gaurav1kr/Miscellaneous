@@ -1,0 +1,39 @@
+{
+  "id": "3286",
+  "title": "Find a Safe Walk Through a Grid",
+  "slug": "find-a-safe-walk-through-a-grid",
+  "url": "https://leetcode.com/problems/find-a-safe-walk-through-a-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an m x n binary matrix grid and an integer health . \n \n You start on the upper-left corner (0, 0) and would like to get to the lower-right corner (m - 1, n - 1) . \n \n You can move up, down, left, or right from one cell to another adjacent cell as long as your health remains positive . \n \n Cells (i, j) with grid[i][j] = 1 are considered unsafe and reduce your health by 1. \n \n Return true if you can reach the final cell with a health value of 1 or more, and false otherwise. \n\n Example 1: \n\n Input: grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]], health = 1 \n \n Output: true \n \n Explanation: \n \n The final cell can be reached safely by walking along the gray cells below. \n [Figure: https://assets.leetcode.com/uploads/2024/08/04/3868_examples_1drawio.png] \n \n Example 2: \n\n Input: grid = [[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]], health = 3 \n \n Output: false \n \n Explanation: \n \n A minimum of 4 health points is needed to reach the final cell safely. \n [Figure: https://assets.leetcode.com/uploads/2024/08/04/3868_examples_2drawio.png] \n \n Example 3: \n\n Input: grid = [[1,1,1],[1,0,1],[1,1,1]], health = 5 \n \n Output: true \n \n Explanation: \n \n The final cell can be reached safely by walking along the gray cells below. \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/04/3868_examples_3drawio.png] \n \n Any path that does not go through the cell (1, 1) is unsafe since your health will drop to 0 when reaching the final cell. \n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 50 \n \n 2 <= m * n \n \n 1 <= health <= m + n \n \n grid[i][j] is either 0 or 1.",
+  "code": "class Solution { public: bool findSafeWalk(vector<vector<int>>&grid,int health){int m=grid.size(),n=grid[0].size();vector<vector<int>>dist(m,vector<int>(n,INT_MAX));using T=tuple<int,int,int>;priority_queue<T,vector<T>,greater<T>>pq;dist[0][0]=grid[0][0];pq.push({dist[0][0],0,0});int dx[]={1,-1,0,0},dy[]={0,0,1,-1};while(!pq.empty()){int d,x,y;tie(d,x,y)=pq.top();pq.pop();if(d!=dist[x][y])continue;if(x==m-1&&y==n-1)return d<health;for(int z=0;z<4;++z){int a=x+dx[z],b=y+dy[z];if(a>=0&&a<m&&b>=0&&b<n&&d+grid[a][b]<dist[a][b]){dist[a][b]=d+grid[a][b];pq.push({dist[a][b],a,b});}}}return false;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177448552",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

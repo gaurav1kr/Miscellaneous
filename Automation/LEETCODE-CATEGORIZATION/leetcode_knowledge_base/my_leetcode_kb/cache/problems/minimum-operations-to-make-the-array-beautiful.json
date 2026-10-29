@@ -1,0 +1,30 @@
+{
+  "id": "3717",
+  "title": "Minimum Operations to Make the Array Beautiful",
+  "slug": "minimum-operations-to-make-the-array-beautiful",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-the-array-beautiful/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n An array is called beautiful if for every index i > 0 , the value at nums[i] is divisible by nums[i - 1] . \n \n In one operation, you may increment any element nums[i] (with i > 0 ) by 1 . \n \n Return the minimum number of operations required to make the array beautiful. \n\n Example 1: \n\n Input: nums = [3,7,9] \n \n Output: 2 \n \n Explanation: \n \n Applying the operation twice on nums[1] makes the array beautiful: [3,9,9] \n\n Example 2: \n\n Input: nums = [1,1,1] \n \n Output: 0 \n \n Explanation: \n \n The given array is already beautiful. \n\n Example 3: \n\n Input: nums = [4] \n \n Output: 0 \n \n Explanation: \n \n The array has only one element, so it's already beautiful. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 50​​​",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        const int LIMIT = 100, INF = 1000000000;\n        vector<int> dp(LIMIT + 1, INF);\n        dp[nums[0]] = 0;\n        for (int i = 1; i < (int)nums.size(); ++i) {\n            vector<int> next(LIMIT + 1, INF);\n            for (int v = nums[i]; v <= LIMIT; ++v) {\n                for (int u = 1; u <= v; ++u) {\n                    if (v % u == 0 && dp[u] != INF)\n                        next[v] = min(next[v], dp[u] + v - nums[i]);\n                }\n            }\n            dp.swap(next);\n        }\n        return *min_element(dp.begin(), dp.end());\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180998081",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

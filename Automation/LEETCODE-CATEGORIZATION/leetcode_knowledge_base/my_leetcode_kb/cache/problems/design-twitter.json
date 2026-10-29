@@ -1,0 +1,39 @@
+{
+  "id": "355",
+  "title": "Design Twitter",
+  "slug": "design-twitter",
+  "url": "https://leetcode.com/problems/design-twitter/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Linked List",
+    "Design",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Linked list",
+    "Ordered map",
+    "Ordered set",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "Design a simplified version of Twitter where users can post tweets, follow/unfollow another user, and is able to see the 10 most recent tweets in the user's news feed. \n \n Implement the Twitter class: \n\n Twitter() Initializes your twitter object. \n \n void postTweet(int userId, int tweetId) Composes a new tweet with ID tweetId by the user userId . Each call to this function will be made with a unique tweetId . \n \n List<Integer> getNewsFeed(int userId) Retrieves the 10 most recent tweet IDs in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user themself. Tweets must be ordered from most recent to least recent . \n \n void follow(int followerId, int followeeId) The user with ID followerId started following the user with ID followeeId . \n \n void unfollow(int followerId, int followeeId) The user with ID followerId started unfollowing the user with ID followeeId . \n\n Example 1: \n \n```\nInput\n\n[\"Twitter\", \"postTweet\", \"getNewsFeed\", \"follow\", \"postTweet\", \"getNewsFeed\", \"unfollow\", \"getNewsFeed\"]\n[[], [1, 5], [1], [1, 2], [2, 6], [1], [1, 2], [1]]\n\nOutput\n\n[null, null, [5], null, null, [6, 5], null, [5]]\n\nExplanation\n\nTwitter twitter = new Twitter();\ntwitter.postTweet(1, 5); // User 1 posts a new tweet (id = 5).\ntwitter.getNewsFeed(1); // User 1's news feed should return a list with 1 tweet id -> [5]. return [5]\ntwitter.follow(1, 2); // User 1 follows user 2.\ntwitter.postTweet(2, 6); // User 2 posts a new tweet (id = 6).\ntwitter.getNewsFeed(1); // User 1's news feed should return a list with 2 tweet ids -> [6, 5]. Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5.\ntwitter.unfollow(1, 2); // User 1 unfollows user 2.\ntwitter.getNewsFeed(1); // User 1's news feed should return a list with 1 tweet id -> [5], since user 1 is no longer following user 2.\n```\n\n Constraints: \n\n 1 <= userId, followerId, followeeId <= 500 \n \n 0 <= tweetId <= 10 4 \n \n All the tweets have unique IDs. \n \n At most 3 * 10 4 calls will be made to postTweet , getNewsFeed , follow , and unfollow . \n \n A user cannot follow himself.",
+  "code": "#include<vector>\n#include<unordered_map>\n#include<unordered_set>\nusing namespace std ;\nclass Twitter \n{\npublic:\n    Twitter() \n    {\n \n    }\n \n    void postTweet(int userId, int tweetId) \n    {\n        feed.push_back({ userId, tweetId });\n    }\n \n    vector<int> getNewsFeed(int userId) \n    {\n        vector<int> ret;\n        for (int i = feed.size() - 1; i >= 0; --i) \n        {\n            auto& [user, tweet] = feed[i];\n            if (userId == user || (following[userId].contains(user))) \n            {\n                ret.push_back(tweet);\n                if (ret.size() == 10) break;\n            }\n        }\n        return ret;\n    }\n \n    void follow(int followerId, int followeeId) {\n        following[followerId].insert(followeeId);\n    }\n \n    void unfollow(int followerId, int followeeId) {\n        following[followerId].erase(followeeId);\n    }\n \n    std::unordered_map<int, std::unordered_set<int>> following;\n    std::vector<std::pair<int, int>> feed;\n};\n \n/**\n * Your Twitter object will be instantiated and called as such:\n * Twitter* obj = new Twitter();\n * obj->postTweet(userId,tweetId);\n * vector<int> param_2 = obj->getNewsFeed(userId);\n * obj->follow(followerId,followeeId);\n * obj->unfollow(followerId,followeeId);\n */",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1359332541",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

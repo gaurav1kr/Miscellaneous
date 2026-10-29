@@ -1,0 +1,40 @@
+{
+  "id": "253",
+  "title": "Meeting Rooms II",
+  "slug": "meeting-rooms-ii",
+  "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an array of meeting time intervals intervals where intervals[i] = [start i , end i ] , return the minimum number of conference rooms required . \n\n Example 1: \n \n```\nInput:\n intervals = [[0,30],[5,10],[15,20]]\n\nOutput:\n 2\n```\n \n Example 2: \n \n```\nInput:\n intervals = [[7,10],[2,4]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= intervals.length <= 10 4 \n \n 0 <= start i < end i <= 10 6",
+  "code": "class Solution\n{\npublic:\n    int minMeetingRooms(vector< vector< int >>& intervals)\n    {\n        int n = intervals.size();\n        vector< int>starts, ends;\n        for (auto&v : intervals)\n        {\n            starts.push_back(v[0]);\n            ends.push_back(v[1]);\n        }\n        sort(starts.begin(), starts.end());\n        sort(ends.begin(), ends.end());\n        int j = 0, rooms = 0, best = 0;\n        for (int s : starts)\n        {\n            while (j < n && ends[j] <= s)\n            {\n                --rooms;\n                ++j;\n            }\n            best = max(best,++rooms);\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178437911",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

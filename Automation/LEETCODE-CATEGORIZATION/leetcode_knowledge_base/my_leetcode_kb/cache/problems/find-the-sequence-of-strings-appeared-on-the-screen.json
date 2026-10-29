@@ -1,0 +1,29 @@
+{
+  "id": "3324",
+  "title": "Find the Sequence of Strings Appeared on the Screen",
+  "slug": "find-the-sequence-of-strings-appeared-on-the-screen",
+  "url": "https://leetcode.com/problems/find-the-sequence-of-strings-appeared-on-the-screen/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string target . \n \n Alice is going to type target on her computer using a special keyboard that has only two keys: \n\n Key 1 appends the character \"a\" to the string on the screen. \n \n Key 2 changes the last character of the string on the screen to its next character in the English alphabet. For example, \"c\" changes to \"d\" and \"z\" changes to \"a\" . \n\n Note that initially there is an empty string \"\" on the screen, so she can only press key 1. \n \n Return a list of all strings that appear on the screen as Alice types target , in the order they appear, using the minimum key presses. \n\n Example 1: \n\n Input: target = \"abc\" \n \n Output: [\"a\",\"aa\",\"ab\",\"aba\",\"abb\",\"abc\"] \n \n Explanation: \n \n The sequence of key presses done by Alice are: \n\n Press key 1, and the string on the screen becomes \"a\" . \n \n Press key 1, and the string on the screen becomes \"aa\" . \n \n Press key 2, and the string on the screen becomes \"ab\" . \n \n Press key 1, and the string on the screen becomes \"aba\" . \n \n Press key 2, and the string on the screen becomes \"abb\" . \n \n Press key 2, and the string on the screen becomes \"abc\" . \n\n Example 2: \n\n Input: target = \"he\" \n \n Output: [\"a\",\"b\",\"c\",\"d\",\"e\",\"f\",\"g\",\"h\",\"ha\",\"hb\",\"hc\",\"hd\",\"he\"] \n\n Constraints: \n\n 1 <= target.length <= 400 \n \n target consists only of lowercase English letters.",
+  "code": "class Solution {public:vector<string> stringSequence(string target){vector<string> ans;string cur;for(char c:target){cur+='a';ans.push_back(cur);while(cur.back()!=c){cur.back()++;ans.push_back(cur);}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177459783",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

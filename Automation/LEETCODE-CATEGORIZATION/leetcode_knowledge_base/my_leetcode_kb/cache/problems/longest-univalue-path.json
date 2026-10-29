@@ -1,0 +1,31 @@
+{
+  "id": "687",
+  "title": "Longest Univalue Path",
+  "slug": "longest-univalue-path",
+  "url": "https://leetcode.com/problems/longest-univalue-path/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, return the length of the longest path, where each node in the path has the same value . This path may or may not pass through the root. \n \n The length of the path between two nodes is represented by the number of edges between them. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/13/ex1.jpg] \n \n```\nInput:\n root = [5,4,5,1,1,null,5]\n\nOutput:\n 2\n\nExplanation:\n The shown image shows that the longest path of the same value (i.e. 5).\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/10/13/ex2.jpg] \n \n```\nInput:\n root = [1,4,5,4,4,null,5]\n\nOutput:\n 2\n\nExplanation:\n The shown image shows that the longest path of the same value (i.e. 4).\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 4 ] . \n \n -1000 <= Node.val <= 1000 \n \n The depth of the tree will not exceed 1000 .",
+  "code": "class Solution {\n    int best = 0;\n    int dfs(TreeNode* node) {\n        if (!node) return 0;\n        int l = dfs(node->left), r = dfs(node->right);\n        int left = node->left && node->left->val == node->val ? l + 1 : 0;\n        int right = node->right && node->right->val == node->val ? r + 1 : 0;\n        best = max(best, left + right);\n        return max(left, right);\n    }\npublic:\n    int longestUnivaluePath(TreeNode* root) {\n        dfs(root);\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175739515",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

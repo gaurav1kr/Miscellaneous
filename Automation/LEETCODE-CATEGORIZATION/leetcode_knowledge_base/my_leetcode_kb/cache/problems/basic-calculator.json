@@ -1,0 +1,32 @@
+{
+  "id": "224",
+  "title": "Basic Calculator",
+  "slug": "basic-calculator",
+  "url": "https://leetcode.com/problems/basic-calculator/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given a string s representing a valid expression, implement a basic calculator to evaluate it, and return the result of the evaluation . \n \n Note: You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as eval() . \n\n Example 1: \n \n```\nInput:\n s = \"1 + 1\"\n\nOutput:\n 2\n```\n\n Example 2: \n \n```\nInput:\n s = \" 2-1 + 2 \"\n\nOutput:\n 3\n```\n\n Example 3: \n \n```\nInput:\n s = \"(1+(4+5+2)-3)+(6+8)\"\n\nOutput:\n 23\n```\n\n Constraints: \n\n 1 <= s.length <= 3 * 10 5 \n \n s consists of digits, '+' , '-' , '(' , ')' , and ' ' . \n \n s represents a valid expression. \n \n '+' is not used as a unary operation (i.e., \"+1\" and \"+(2 + 3)\" is invalid). \n \n '-' could be used as a unary operation (i.e., \"-1\" and \"-(2 + 3)\" is valid). \n \n There will be no two consecutive operators in the input. \n \n Every number and running calculation will fit in a signed 32-bit integer.",
+  "code": "class Solution \n{\npublic:\n    int calculate(string s) \n    {\n        long long int sum = 0;\n        int sign = 1;\n        stack<pair<int,int>> st;\n\n        for(int i=0; i<s.size();i++)\n        {\n            if(isdigit(s[i]))\n            {\n                long long int num = 0;\n                while(i<s.size() && isdigit(s[i]))\n                {\n                    num = num * 10 + (s[i] - '0');\n                    i++;\n                }\n                i--;\n                sum += num * sign;\n                sign = 1;\n            }\n            else if(s[i] == '(')\n            {\n                st.push({sum, sign});\n                sum = 0;\n                sign = 1;\n            }\n            else if(s[i] == ')')\n            {\n                sum = st.top().first + (st.top().second * sum);\n                st.pop();\n\n            }\n            else if(s[i] == '-')\n            {\n                sign = -1 * sign;\n            }\n        }\n        return sum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1513665407",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

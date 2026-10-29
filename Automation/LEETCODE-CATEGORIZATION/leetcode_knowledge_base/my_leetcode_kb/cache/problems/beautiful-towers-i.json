@@ -1,0 +1,33 @@
+{
+  "id": "2865",
+  "title": "Beautiful Towers I",
+  "slug": "beautiful-towers-i",
+  "url": "https://leetcode.com/problems/beautiful-towers-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an array heights of n integers representing the number of bricks in n consecutive towers. Your task is to remove some bricks to form a mountain-shaped tower arrangement. In this arrangement, the tower heights are non-decreasing, reaching a maximum peak value with one or multiple consecutive towers and then non-increasing. \n \n Return the maximum possible sum of heights of a mountain-shaped tower arrangement. \n\n Example 1: \n\n Input: heights = [5,3,4,1,1] \n \n Output: 13 \n \n Explanation: \n \n We remove some bricks to make heights = [5,3,3,1,1] , the peak is at index 0. \n\n Example 2: \n\n Input: heights = [6,5,3,9,2,7] \n \n Output: 22 \n \n Explanation: \n \n We remove some bricks to make heights = [3,3,3,9,2,2] , the peak is at index 3. \n\n Example 3: \n\n Input: heights = [3,2,5,5,2,3] \n \n Output: 18 \n \n Explanation: \n \n We remove some bricks to make heights = [2,2,5,5,2,2] , the peak is at index 2 or 3. \n\n Constraints: \n\n 1 <= n == heights.length <= 10 3 \n \n 1 <= heights[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:long long maximumSumOfHeights(vector<int>& maxHeights){int n=maxHeights.size();long long ans=0;for(int p=0;p<n;++p){long long sum=maxHeights[p],h=maxHeights[p];for(int i=p-1;i>=0;--i){h=min(h,(long long)maxHeights[i]);sum+=h;}h=maxHeights[p];for(int i=p+1;i<n;++i){h=min(h,(long long)maxHeights[i]);sum+=h;}ans=max(ans,sum);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176730960",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

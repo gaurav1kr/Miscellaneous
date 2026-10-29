@@ -1,0 +1,30 @@
+{
+  "id": "940",
+  "title": "Distinct Subsequences II",
+  "slug": "distinct-subsequences-ii",
+  "url": "https://leetcode.com/problems/distinct-subsequences-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s, return the number of distinct non-empty subsequences of s . Since the answer may be very large, return it modulo 10 9 + 7 . \nA subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., \"ace\" is a subsequence of \" a b c d e \" while \"aec\" is not.\n\n Example 1: \n \n```\nInput:\n s = \"abc\"\n\nOutput:\n 7\n\nExplanation:\n The 7 distinct subsequences are \"a\", \"b\", \"c\", \"ab\", \"ac\", \"bc\", and \"abc\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"aba\"\n\nOutput:\n 6\n\nExplanation:\n The 6 distinct subsequences are \"a\", \"b\", \"ab\", \"aa\", \"ba\", and \"aba\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"aaa\"\n\nOutput:\n 3\n\nExplanation:\n The 3 distinct subsequences are \"a\", \"aa\" and \"aaa\".\n```\n\n Constraints: \n\n 1 <= s.length <= 2000 \n \n s consists of lowercase English letters.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int distinctSubseqII(string s) {\n        const int MOD = 1e9 + 7;\n        int n = s.size();\n        vector<int> dp(n + 1);\n        vector<int> last(26, -1);\n        dp[0] = 1;\n\n        for (int i = 0; i < n; ++i) {\n            dp[i + 1] = (2 * dp[i]) % MOD;\n            if (last[s[i] - 'a'] != -1) {\n                dp[i + 1] = (dp[i + 1] - dp[last[s[i] - 'a']] + MOD) % MOD;\n            }\n            last[s[i] - 'a'] = i;\n        }\n\n        return (dp[n] - 1 + MOD) % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593697263",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

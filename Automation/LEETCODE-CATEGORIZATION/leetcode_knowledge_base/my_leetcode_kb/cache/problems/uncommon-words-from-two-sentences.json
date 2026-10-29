@@ -1,0 +1,33 @@
+{
+  "id": "884",
+  "title": "Uncommon Words from Two Sentences",
+  "slug": "uncommon-words-from-two-sentences",
+  "url": "https://leetcode.com/problems/uncommon-words-from-two-sentences/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "A sentence is a string of single-space separated words where each word consists only of lowercase letters. \n \n A word is uncommon if it appears exactly once in one of the sentences, and does not appear in the other sentence. \n \n Given two sentences s1 and s2 , return a list of all the uncommon words . You may return the answer in any order . \n\n Example 1: \n\n Input: s1 = \"this apple is sweet\", s2 = \"this apple is sour\" \n \n Output: [\"sweet\",\"sour\"] \n \n Explanation: \n \n The word \"sweet\" appears only in s1 , while the word \"sour\" appears only in s2 . \n\n Example 2: \n\n Input: s1 = \"apple apple\", s2 = \"banana\" \n \n Output: [\"banana\"] \n\n Constraints: \n\n 1 <= s1.length, s2.length <= 200 \n \n s1 and s2 consist of lowercase English letters and spaces. \n \n s1 and s2 do not have leading or trailing spaces. \n \n All the words in s1 and s2 are separated by a single space.",
+  "code": "#include <vector>\n#include <string>\n#include <sstream>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> uncommonFromSentences(string s1, string s2) {\n        unordered_map<string, int> count;\n        istringstream iss(s1 + \" \" + s2);\n        string word;\n        while (iss >> word) count[word]++;\n        vector<string> res;\n        for (auto& [w, c] : count)\n            if (c == 1) res.push_back(w);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593839031",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

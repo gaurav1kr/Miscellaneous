@@ -1,0 +1,38 @@
+{
+  "id": "49",
+  "title": "Group Anagrams",
+  "slug": "group-anagrams",
+  "url": "https://leetcode.com/problems/group-anagrams/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of strings strs , group the anagrams together. You can return the answer in any order . \n\n Example 1: \n\n Input: strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"] \n \n Output: [[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]] \n \n Explanation: \n\n There is no string in strs that can be rearranged to form \"bat\" . \n \n The strings \"nat\" and \"tan\" are anagrams as they can be rearranged to form each other. \n \n The strings \"ate\" , \"eat\" , and \"tea\" are anagrams as they can be rearranged to form each other. \n\n Example 2: \n\n Input: strs = [\"\"] \n \n Output: [[\"\"]] \n\n Example 3: \n\n Input: strs = [\"a\"] \n \n Output: [[\"a\"]] \n\n Constraints: \n\n 1 <= strs.length <= 10 4 \n \n 0 <= strs[i].length <= 100 \n \n strs[i] consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    vector<vector<string>> groupAnagrams(vector<string>& strs) {\n    unordered_map<string, vector<string>> mp;\n    \n    for (string& s : strs) {\n        string key = s;\n        sort(key.begin(), key.end());  // Sort to create the key\n        mp[key].push_back(s);\n    }\n    \n    vector<vector<string>> result;\n    for (auto& [_, group] : mp) {\n        result.push_back(move(group));  // Move for efficiency\n    }\n    \n    return result;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542176881",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

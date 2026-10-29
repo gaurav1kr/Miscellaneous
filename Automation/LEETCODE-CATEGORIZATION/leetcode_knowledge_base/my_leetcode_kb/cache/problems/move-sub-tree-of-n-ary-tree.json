@@ -1,0 +1,30 @@
+{
+  "id": "1516",
+  "title": "Move Sub-Tree of N-Ary Tree",
+  "slug": "move-sub-tree-of-n-ary-tree",
+  "url": "https://leetcode.com/problems/move-sub-tree-of-n-ary-tree/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Ordered map",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of an N-ary tree of unique values, and two nodes of the tree p and q . \n \n You should move the subtree of the node p to become a direct child of node q . If p is already a direct child of q , do not change anything. Node p must be the last child in the children list of node q . \n \n Return the root of the tree after adjusting it. \n\n There are 3 cases for nodes p and q : \n\n Node q is in the sub-tree of node p . \n \n Node p is in the sub-tree of node q . \n \n Neither node p is in the sub-tree of node q nor node q is in the sub-tree of node p . \n\n In cases 2 and 3, you just need to move p (with its sub-tree) to be a child of q , but in case 1 the tree may be disconnected, thus you need to reconnect the tree again. Please read the examples carefully before solving this problem. \n\n Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See examples). \n \n [Figure: https://assets.leetcode.com/uploads/2019/11/08/sample_4_964.png] \n \n For example, the above tree is serialized as [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14] . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/07/13/move_e1.jpg] \n \n```\nInput:\n root = [1,null,2,3,null,4,5,null,6,null,7,8], p = 4, q = 1\n\nOutput:\n [1,null,2,3,4,null,5,null,6,null,7,8]\n\nExplanation:\n This example follows the second case as node p is in the sub-tree of node q. We move node p with its sub-tree to be a direct child of node q.\nNotice that node 4 is the last child of node 1.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/07/13/move_e2.jpg] \n \n```\nInput:\n root = [1,null,2,3,null,4,5,null,6,null,7,8], p = 7, q = 4\n\nOutput:\n [1,null,2,3,null,4,5,null,6,null,7,8]\n\nExplanation:\n Node 7 is already a direct child of node 4. We don't change anything.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/07/13/move_e3.jpg] \n \n```\nInput:\n root = [1,null,2,3,null,4,5,null,6,null,7,8], p = 3, q = 8\n\nOutput:\n [1,null,2,null,4,5,null,7,8,null,null,null,3,null,6]\n\nExplanation:\n This example follows case 3 because node p is not in the sub-tree of node q and vice-versa. We can move node 3 with its sub-tree and make it as node 8's child.\n```\n\n Example 4: \n [Figure: https://assets.leetcode.com/uploads/2025/08/01/untitled-diagramdrawio.png] \n \n```\nInput:\n root = [1,null,2,3,null,4], p = 1, q = 4\n\nOutput:\n [4,null,1,null,2,3]\n\nExplanation:\n This example follows case 1 because node q is in the sub-tree of node p. Disconnect 4 with its parent and move node 1 with its sub-tree and make it as node 4's child.\n```\n\n Constraints: \n\n The total number of nodes is between [2, 1000] . \n \n Each node has a unique value. \n \n p != null \n \n q != null \n \n p and q are two different nodes (i.e. p != q ).",
+  "code": "class Solution {\n    unordered_map<Node*, Node*> parent;\n\n    void build(Node* node) {\n        for (Node* child : node->children) {\n            parent[child] = node;\n            build(child);\n        }\n    }\n\n    void replaceChild(Node* owner, Node* oldNode, Node* newNode) {\n        if (!owner) {\n            return;\n        }\n        for (Node*& child : owner->children) {\n            if (child == oldNode) {\n                child = newNode;\n                return;\n            }\n        }\n    }\n\n    void removeChild(Node* owner, Node* child) {\n        if (!owner) {\n            return;\n        }\n        auto& children = owner->children;\n        children.erase(remove(children.begin(), children.end(), child),\n                       children.end());\n    }\n\npublic:\n    Node* moveSubTree(Node* root, Node* p, Node* q) {\n        parent.clear();\n        parent[root] = nullptr;\n        build(root);\n        Node* oldParentP = parent[p];\n        Node* oldParentQ = parent[q];\n        if (oldParentP == q) {\n            return root;\n        }\n        bool qInsideP = false;\n        for (Node* current = q; current; current = parent[current]) {\n            if (current == p) {\n                qInsideP = true;\n                break;\n            }\n        }\n        if (qInsideP) {\n            removeChild(oldParentQ, q);\n            replaceChild(oldParentP, p, q);\n            if (!oldParentP) {\n                root = q;\n            }\n        } else {\n            removeChild(oldParentP, p);\n        }\n        q->children.push_back(p);\n        return root;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178583828",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "522",
+  "title": "Longest Uncommon Subsequence II",
+  "slug": "longest-uncommon-subsequence-ii",
+  "url": "https://leetcode.com/problems/longest-uncommon-subsequence-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of strings strs , return the length of the longest uncommon subsequence between them . If the longest uncommon subsequence does not exist, return -1 . \n \n An uncommon subsequence between an array of strings is a string that is a subsequence of one string but not the others . \n \n A subsequence of a string s is a string that can be obtained after deleting any number of characters from s . \n\n For example, \"abc\" is a subsequence of \"aebdc\" because you can delete the underlined characters in \"a e b d c\" to get \"abc\" . Other subsequences of \"aebdc\" include \"aebdc\" , \"aeb\" , and \"\" (empty string). \n\n Example 1: \n \n```\nInput:\n strs = [\"aba\",\"cdc\",\"eae\"]\n\nOutput:\n 3\n```\n \n Example 2: \n \n```\nInput:\n strs = [\"aaa\",\"aaa\",\"aa\"]\n\nOutput:\n -1\n```\n\n Constraints: \n\n 2 <= strs.length <= 50 \n \n 1 <= strs[i].length <= 10 \n \n strs[i] consists of lowercase English letters.",
+  "code": "class Solution {\n    bool subseq(const std::string& a, const std::string& b) {\n        int i = 0;\n        for (char c : b) if (i < (int)a.size() && a[i] == c) ++i;\n        return i == (int)a.size();\n    }\npublic:\n    int findLUSlength(std::vector<std::string>& strs) {\n        std::vector<int> ids(strs.size());\n        std::iota(ids.begin(), ids.end(), 0);\n        std::sort(ids.begin(), ids.end(), [&](int a, int b) {\n            return strs[a].size() > strs[b].size();\n        });\n        for (int i : ids) {\n            bool uncommon = true;\n            for (int j = 0; j < (int)strs.size(); ++j) {\n                if (i != j && strs[j].size() >= strs[i].size() &&\n                    subseq(strs[i], strs[j])) { uncommon = false; break; }\n            }\n            if (uncommon) return strs[i].size();\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175700116",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

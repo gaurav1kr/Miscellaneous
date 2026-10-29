@@ -1,0 +1,30 @@
+{
+  "id": "110",
+  "title": "Balanced Binary Tree",
+  "slug": "balanced-binary-tree",
+  "url": "https://leetcode.com/problems/balanced-binary-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given a binary tree, determine if it is height-balanced . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/06/balance_1.jpg] \n \n```\nInput:\n root = [3,9,20,null,null,15,7]\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/10/06/balance_2.jpg] \n \n```\nInput:\n root = [1,2,2,3,3,null,null,4,4]\n\nOutput:\n false\n```\n\n Example 3: \n \n```\nInput:\n root = []\n\nOutput:\n true\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 5000] . \n \n -10 4 <= Node.val <= 10 4",
+  "code": "class Solution {\npublic:\n    int height(TreeNode* root) {\n        if (!root) return 0;\n        int left = height(root->left);\n        int right = height(root->right);\n        if (left == -1 || right == -1 || abs(left - right) > 1) return -1;\n        return max(left, right) + 1;\n    }\n    bool isBalanced(TreeNode* root) {\n        return height(root) != -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588082907",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2422",
+  "title": "Merge Operations to Turn Array Into a Palindrome",
+  "slug": "merge-operations-to-turn-array-into-a-palindrome",
+  "url": "https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array nums consisting of positive integers. \n \n You can perform the following operation on the array any number of times: \n\n Choose any two adjacent elements and replace them with their sum .\n\n For example, if nums = [1, 2,3 ,1] , you can apply one operation to make it [1,5,1] . \n\n Return the minimum number of operations needed to turn the array into a palindrome . \n\n Example 1: \n \n```\nInput:\n nums = [4,3,2,1,2,3,1]\n\nOutput:\n 2\n\nExplanation:\n We can turn the array into a palindrome in 2 operations as follows:\n- Apply the operation on the fourth and fifth element of the array, nums becomes equal to [4,3,2,\n3\n,3,1].\n- Apply the operation on the fifth and sixth element of the array, nums becomes equal to [4,3,2,3,\n4\n].\nThe array [4,3,2,3,4] is a palindrome.\nIt can be shown that 2 is the minimum number of operations needed.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4]\n\nOutput:\n 3\n\nExplanation:\n We do the operation 3 times in any position, we obtain the array [10] at the end which is a palindrome.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 6",
+  "code": "class Solution {\npublic:\n    int minimumOperations(vector<int>& nums) {\n        int i = 0, j = nums.size() - 1, answer = 0;\n        long long left = nums[i], right = nums[j];\n        while (i < j) {\n            if (left == right) {\n                if (++i >= --j) break;\n                left = nums[i]; right = nums[j];\n            } else if (left < right) {\n                left += nums[++i]; ++answer;\n            } else {\n                right += nums[--j]; ++answer;\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178870215",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

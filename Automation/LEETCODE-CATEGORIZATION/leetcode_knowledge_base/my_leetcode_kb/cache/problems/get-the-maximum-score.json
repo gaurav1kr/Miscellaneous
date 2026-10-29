@@ -1,0 +1,34 @@
+{
+  "id": "1537",
+  "title": "Get the Maximum Score",
+  "slug": "get-the-maximum-score",
+  "url": "https://leetcode.com/problems/get-the-maximum-score/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two sorted arrays of distinct integers nums1 and nums2 . \n \n A valid path is defined as follows: \n\n Choose array nums1 or nums2 to traverse (from index-0). \n \n Traverse the current array from left to right. \n \n If you are reading any value that is present in nums1 and nums2 you are allowed to change your path to the other array. (Only one repeated value is considered in the valid path). \n\n The score is defined as the sum of unique values in a valid path. \n \n Return the maximum score you can obtain of all possible valid paths . Since the answer may be too large, return it modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/07/16/sample_1_1893.png] \n \n```\nInput:\n nums1 = [2,4,5,8,10], nums2 = [4,6,8,9]\n\nOutput:\n 30\n\nExplanation:\n Valid paths:\n[2,4,5,8,10], [2,4,5,8,9], [2,4,6,8,9], [2,4,6,8,10], (starting from nums1)\n[4,6,8,9], [4,5,8,10], [4,5,8,9], [4,6,8,10] (starting from nums2)\nThe maximum is obtained with the path in green \n[2,4,6,8,10]\n.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [1,3,5,7,9], nums2 = [3,5,100]\n\nOutput:\n 109\n\nExplanation:\n Maximum sum is obtained with the path \n[1,3,5,100]\n.\n```\n\n Example 3: \n \n```\nInput:\n nums1 = [1,2,3,4,5], nums2 = [6,7,8,9,10]\n\nOutput:\n 40\n\nExplanation:\n There are no common elements between nums1 and nums2.\nMaximum sum is obtained with the path [6,7,8,9,10].\n```\n\n Constraints: \n\n 1 <= nums1.length, nums2.length <= 10 5 \n \n 1 <= nums1[i], nums2[i] <= 10 7 \n \n nums1 and nums2 are strictly increasing.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxSum(vector<int>& nums1, vector<int>& nums2) {\n        const int MOD = 1e9 + 7;\n        int i = 0, j = 0;\n        long sum1 = 0, sum2 = 0, total = 0;\n\n        while (i < nums1.size() && j < nums2.size()) {\n            if (nums1[i] < nums2[j]) {\n                sum1 += nums1[i++];\n            } else if (nums1[i] > nums2[j]) {\n                sum2 += nums2[j++];\n            } else {\n                total += max(sum1, sum2) + nums1[i];\n                sum1 = sum2 = 0;\n                i++; j++;\n            }\n        }\n\n        while (i < nums1.size()) sum1 += nums1[i++];\n        while (j < nums2.size()) sum2 += nums2[j++];\n\n        total += max(sum1, sum2);\n        return total % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610563559",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

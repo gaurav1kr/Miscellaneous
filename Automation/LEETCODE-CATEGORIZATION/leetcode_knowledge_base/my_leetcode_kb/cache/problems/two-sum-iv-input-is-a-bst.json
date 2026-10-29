@@ -1,0 +1,39 @@
+{
+  "id": "653",
+  "title": "Two Sum IV - Input is a BST",
+  "slug": "two-sum-iv-input-is-a-bst",
+  "url": "https://leetcode.com/problems/two-sum-iv-input-is-a-bst/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Two Pointers",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary search tree and an integer k , return true if there exist two elements in the BST such that their sum is equal to k , or false otherwise . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/21/sum_tree_1.jpg] \n \n```\nInput:\n root = [5,3,6,2,4,null,7], k = 9\n\nOutput:\n true\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/09/21/sum_tree_2.jpg] \n \n```\nInput:\n root = [5,3,6,2,4,null,7], k = 28\n\nOutput:\n false\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n -10 4 <= Node.val <= 10 4 \n \n root is guaranteed to be a valid binary search tree. \n \n -10 5 <= k <= 10 5",
+  "code": "class Solution {\npublic:\n    bool findTarget(TreeNode* root, int k) {\n        unordered_set<int> s;\n        return inorder(root, k, s);\n    }\n    bool inorder(TreeNode* node, int k, unordered_set<int>& s) {\n        if (!node) return false;\n        if (s.count(k - node->val)) return true;\n        s.insert(node->val);\n        return inorder(node->left, k, s) || inorder(node->right, k, s);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588098227",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

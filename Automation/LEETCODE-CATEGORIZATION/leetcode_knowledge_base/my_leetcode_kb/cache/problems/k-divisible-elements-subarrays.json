@@ -1,0 +1,38 @@
+{
+  "id": "2261",
+  "title": "K Divisible Elements Subarrays",
+  "slug": "k-divisible-elements-subarrays",
+  "url": "https://leetcode.com/problems/k-divisible-elements-subarrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Trie",
+    "Rolling Hash",
+    "Hash Function",
+    "Enumeration"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and two integers k and p , return the number of distinct subarrays, which have at most k elements that are divisible by p . \n \n Two arrays nums1 and nums2 are said to be distinct if: \n\n They are of different lengths, or \n \n There exists at least one index i where nums1[i] != nums2[i] . \n\n A subarray is defined as a non-empty contiguous sequence of elements in an array. \n\n Example 1: \n \n```\nInput:\n nums = [\n2\n,3,3,\n2\n,\n2\n], k = 2, p = 2\n\nOutput:\n 11\n\nExplanation:\n\nThe elements at indices 0, 3, and 4 are divisible by p = 2.\nThe 11 distinct subarrays which have at most k = 2 elements divisible by 2 are:\n[2], [2,3], [2,3,3], [2,3,3,2], [3], [3,3], [3,3,2], [3,3,2,2], [3,2], [3,2,2], and [2,2].\nNote that the subarrays [2] and [3] occur more than once in nums, but they should each be counted only once.\nThe subarray [2,3,3,2,2] should not be counted because it has 3 elements that are divisible by 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4], k = 4, p = 1\n\nOutput:\n 10\n\nExplanation:\n\nAll element of nums are divisible by p = 1.\nAlso, every subarray of nums will have at most 4 elements that are divisible by 1.\nSince all subarrays are distinct, the total number of subarrays satisfying all the constraints is 10.\n```\n\n Constraints: \n\n 1 <= nums.length <= 200 \n \n 1 <= nums[i], p <= 200 \n \n 1 <= k <= nums.length \n\n Follow up: \n \n Can you solve this problem in O(n 2 ) time complexity?",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {struct Node {unordered_map<int,int> child;};public:int countDistinct(vector<int>& nums,int k,int p){vector<Node> trie(1);int ans=0,n=nums.size();for(int i=0;i<n;++i){int node=0,bad=0;for(int j=i;j<n;++j){bad+=nums[j]%p==0;if(bad>k)break;int x=nums[j];if(!trie[node].child.count(x)){int id=trie.size();trie[node].child[x]=id;trie.emplace_back();++ans;}node=trie[node].child[x];}}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175900057",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

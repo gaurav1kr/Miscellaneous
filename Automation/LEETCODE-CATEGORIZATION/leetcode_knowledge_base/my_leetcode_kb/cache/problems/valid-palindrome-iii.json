@@ -1,0 +1,30 @@
+{
+  "id": "1216",
+  "title": "Valid Palindrome III",
+  "slug": "valid-palindrome-iii",
+  "url": "https://leetcode.com/problems/valid-palindrome-iii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s and an integer k , return true if s is a k -palindrome . \n \n A string is k -palindrome if it can be transformed into a palindrome by removing at most k characters from it. \n\n Example 1: \n \n```\nInput:\n s = \"abcdeca\", k = 2\n\nOutput:\n true\n\nExplanation:\n Remove 'b' and 'e' characters.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abbababa\", k = 1\n\nOutput:\n true\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of only lowercase English letters. \n \n 1 <= k <= s.length",
+  "code": "class Solution {\npublic:\n    bool isValidPalindrome(string s, int k) {\n        int n = s.size();\n        vector<vector<int>> dp(n, vector<int>(n, 0));\n        for (int len = 2; len <= n; ++len) {\n            for (int left = 0; left + len <= n; ++left) {\n                int right = left + len - 1;\n                if (s[left] == s[right]) {\n                    dp[left][right] = (len == 2 ? 0 : dp[left + 1][right - 1]);\n                } else {\n                    dp[left][right] = 1 + min(dp[left + 1][right],\n                                               dp[left][right - 1]);\n                }\n            }\n        }\n        return n == 0 || dp[0][n - 1] <= k;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178554308",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "2656",
+  "title": "Maximum Sum With Exactly K Elements ",
+  "slug": "maximum-sum-with-exactly-k-elements",
+  "url": "https://leetcode.com/problems/maximum-sum-with-exactly-k-elements/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums and an integer k . Your task is to perform the following operation exactly k times in order to maximize your score: \n\n Select an element m from nums . \n \n Remove the selected element m from the array. \n \n Add a new element with a value of m + 1 to the array. \n \n Increase your score by m . \n\n Return the maximum score you can achieve after performing the operation exactly k times. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,4,5], k = 3\n\nOutput:\n 18\n\nExplanation:\n We need to choose exactly 3 elements from nums to maximize the sum.\nFor the first iteration, we choose 5. Then sum is 5 and nums = [1,2,3,4,6]\nFor the second iteration, we choose 6. Then sum is 5 + 6 and nums = [1,2,3,4,7]\nFor the third iteration, we choose 7. Then sum is 5 + 6 + 7 = 18 and nums = [1,2,3,4,8]\nSo, we will return 18.\nIt can be proven, that 18 is the maximum answer that we can achieve.\n```\n\n Example 2: \n \n```\nInput:\n nums = [5,5,5], k = 2\n\nOutput:\n 11\n\nExplanation:\n We need to choose exactly 2 elements from nums to maximize the sum.\nFor the first iteration, we choose 5. Then sum is 5 and nums = [5,5,6]\nFor the second iteration, we choose 6. Then sum is 5 + 6 = 11 and nums = [5,5,7]\nSo, we will return 11.\nIt can be proven, that 11 is the maximum answer that we can achieve.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100 \n \n 1 <= k <= 100",
+  "code": "class Solution {public:int maximizeSum(vector<int>& nums,int k){int m=*max_element(nums.begin(),nums.end());return k*m+k*(k-1)/2;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176633769",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

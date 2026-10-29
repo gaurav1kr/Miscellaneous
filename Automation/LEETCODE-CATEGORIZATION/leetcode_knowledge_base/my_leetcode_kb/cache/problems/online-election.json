@@ -1,0 +1,36 @@
+{
+  "id": "911",
+  "title": "Online Election",
+  "slug": "online-election",
+  "url": "https://leetcode.com/problems/online-election/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Design"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays persons and times . In an election, the i th vote was cast for persons[i] at time times[i] . \n \n For each query at a time t , find the person that was leading the election at time t . Votes cast at time t will count towards our query. In the case of a tie, the most recent vote (among tied candidates) wins. \n \n Implement the TopVotedCandidate class: \n\n TopVotedCandidate(int[] persons, int[] times) Initializes the object with the persons and times arrays. \n \n int q(int t) Returns the number of the person that was leading the election at time t according to the mentioned rules. \n\n Example 1: \n \n```\nInput\n\n[\"TopVotedCandidate\", \"q\", \"q\", \"q\", \"q\", \"q\", \"q\"]\n[[[0, 1, 1, 0, 0, 1, 0], [0, 5, 10, 15, 20, 25, 30]], [3], [12], [25], [15], [24], [8]]\n\nOutput\n\n[null, 0, 1, 1, 0, 0, 1]\n\nExplanation\n\nTopVotedCandidate topVotedCandidate = new TopVotedCandidate([0, 1, 1, 0, 0, 1, 0], [0, 5, 10, 15, 20, 25, 30]);\ntopVotedCandidate.q(3); // return 0, At time 3, the votes are [0], and 0 is leading.\ntopVotedCandidate.q(12); // return 1, At time 12, the votes are [0,1,1], and 1 is leading.\ntopVotedCandidate.q(25); // return 1, At time 25, the votes are [0,1,1,0,0,1], and 1 is leading (as ties go to the most recent vote.)\ntopVotedCandidate.q(15); // return 0\ntopVotedCandidate.q(24); // return 0\ntopVotedCandidate.q(8); // return 1\n```\n\n Constraints: \n\n 1 <= persons.length <= 5000 \n \n times.length == persons.length \n \n 0 <= persons[i] < persons.length \n \n 0 <= times[i] <= 10 9 \n \n times is sorted in a strictly increasing order. \n \n times[0] <= t <= 10 9 \n \n At most 10 4 calls will be made to q .",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <map>\n\nusing namespace std;\n\nclass TopVotedCandidate {\n    vector<int> times, leaders;\n\npublic:\n    TopVotedCandidate(vector<int>& persons, vector<int>& times) {\n        unordered_map<int, int> count;\n        int lead = -1, maxVotes = 0;\n        for (int i = 0; i < persons.size(); ++i) {\n            count[persons[i]]++;\n            if (count[persons[i]] >= maxVotes) {\n                maxVotes = count[persons[i]];\n                lead = persons[i];\n            }\n            leaders.push_back(lead);\n        }\n        this->times = times;\n    }\n\n    int q(int t) {\n        int l = 0, r = times.size() - 1;\n        while (l < r) {\n            int m = (l + r + 1) / 2;\n            if (times[m] <= t) l = m;\n            else r = m - 1;\n        }\n        return leaders[l];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595397022",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

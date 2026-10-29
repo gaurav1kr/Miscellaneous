@@ -1,0 +1,32 @@
+{
+  "id": "2510",
+  "title": "Check if There is a Path With Equal Number of 0's And 1's",
+  "slug": "check-if-there-is-a-path-with-equal-number-of-0s-and-1s",
+  "url": "https://leetcode.com/problems/check-if-there-is-a-path-with-equal-number-of-0s-and-1s/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed m x n binary matrix grid . You can move from a cell (row, col) to any of the cells (row + 1, col) or (row, col + 1) . \n \n Return true if there is a path from (0, 0) to (m - 1, n - 1) that visits an equal number of 0 's and 1 's . Otherwise return false . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/12/20/yetgriddrawio-4.png] \n \n```\nInput:\n grid = [[0,1,0,0],[0,1,0,0],[1,0,1,0]]\n\nOutput:\n true\n\nExplanation:\n The path colored in blue in the above diagram is a valid path because we have 3 cells with a value of 1 and 3 with a value of 0. Since there is a valid path, we return true.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/12/20/yetgrid2drawio-1.png] \n \n```\nInput:\n grid = [[1,1,0],[0,0,1],[1,0,0]]\n\nOutput:\n false\n\nExplanation:\n There is no path in this grid with an equal number of 0's and 1's.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 2 <= m, n <= 100 \n \n grid[i][j] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n    bool isThereAPath(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size(), length = m + n - 1;\n        if (length % 2) return false;\n        vector<vector<vector<char>>> dp(m, vector<vector<char>>(n, vector<char>(length + 1)));\n        dp[0][0][grid[0][0]] = true;\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if (i == 0 && j == 0) continue;\n                for (int k = grid[i][j]; k <= length; ++k) {\n                    int previous = k - grid[i][j];\n                    if (i && dp[i - 1][j][previous]) dp[i][j][k] = true;\n                    if (j && dp[i][j - 1][previous]) dp[i][j][k] = true;\n                }\n            }\n        }\n        return dp[m - 1][n - 1][length / 2];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178882207",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

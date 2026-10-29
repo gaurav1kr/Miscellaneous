@@ -1,0 +1,27 @@
+{
+  "id": "1752",
+  "title": "Check if Array Is Sorted and Rotated",
+  "slug": "check-if-array-is-sorted-and-rotated",
+  "url": "https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array nums , return true if the array was originally sorted in non-decreasing order, then rotated some number of positions (including zero) . Otherwise, return false . \n \n There may be duplicates in the original array. \n \n Note: An array A rotated by x positions results in an array B of the same length such that B[i] == A[(i+x) % A.length] for every valid index i . \n\n Example 1: \n \n```\nInput:\n nums = [3,4,5,1,2]\n\nOutput:\n true\n\nExplanation:\n [1,2,3,4,5] is the original sorted array.\nYou can rotate the array by x = 2 positions to begin on the element of value 3: [3,4,5,1,2].\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,1,3,4]\n\nOutput:\n false\n\nExplanation:\n There is no sorted array once rotated that can make nums.\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3]\n\nOutput:\n true\n\nExplanation:\n [1,2,3] is the original sorted array.\nYou can rotate the array by x = 0 positions (i.e. no rotation) to make nums.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool check(vector<int>& nums) {\n        int count = 0, n = nums.size();\n        for (int i = 0; i < n; ++i)\n            if (nums[i] > nums[(i + 1) % n])\n                count++;\n        return count <= 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610609452",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

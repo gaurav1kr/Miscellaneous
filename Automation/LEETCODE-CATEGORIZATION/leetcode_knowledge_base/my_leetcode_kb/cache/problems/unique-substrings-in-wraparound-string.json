@@ -1,0 +1,30 @@
+{
+  "id": "467",
+  "title": "Unique Substrings in Wraparound String",
+  "slug": "unique-substrings-in-wraparound-string",
+  "url": "https://leetcode.com/problems/unique-substrings-in-wraparound-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "We define the string base to be the infinite wraparound string of \"abcdefghijklmnopqrstuvwxyz\" , so base will look like this: \n\n \"...zabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd....\" . \n\n Given a string s , return the number of unique non-empty substrings of s are present in base . \n\n Example 1: \n \n```\nInput:\n s = \"a\"\n\nOutput:\n 1\n\nExplanation:\n Only the substring \"a\" of s is in base.\n```\n\n Example 2: \n \n```\nInput:\n s = \"cac\"\n\nOutput:\n 2\n\nExplanation:\n There are two substrings (\"a\", \"c\") of s in base.\n```\n\n Example 3: \n \n```\nInput:\n s = \"zab\"\n\nOutput:\n 6\n\nExplanation:\n There are six substrings (\"z\", \"a\", \"b\", \"za\", \"ab\", and \"zab\") of s in base.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters.",
+  "code": "#include <string>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findSubstringInWraproundString(string s) {\n        vector<int> dp(26, 0);\n        int len = 0;\n\n        for (int i = 0; i < s.size(); ++i) {\n            if (i > 0 && (s[i] - s[i - 1] + 26) % 26 == 1)\n                len++;\n            else\n                len = 1;\n\n            dp[s[i] - 'a'] = max(dp[s[i] - 'a'], len);\n        }\n\n        return accumulate(dp.begin(), dp.end(), 0);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593695822",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

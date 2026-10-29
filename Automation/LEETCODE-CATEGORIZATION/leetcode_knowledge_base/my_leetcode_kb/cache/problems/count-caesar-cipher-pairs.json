@@ -1,0 +1,38 @@
+{
+  "id": "3805",
+  "title": "Count Caesar Cipher Pairs",
+  "slug": "count-caesar-cipher-pairs",
+  "url": "https://leetcode.com/problems/count-caesar-cipher-pairs/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array words of n strings. Each string has length m and contains only lowercase English letters. \n \n Two strings s and t are similar if we can apply the following operation any number of times (possibly zero times) so that s and t become equal . \n\n Choose either s or t . \n \n Replace every letter in the chosen string with the next letter in the alphabet cyclically. The next letter after 'z' is 'a' . \n\n Count the number of pairs of indices (i, j) such that: \n\n i < j \n \n words[i] and words[j] are similar . \n\n Return an integer denoting the number of such pairs. \n\n Example 1: \n\n Input: words = [\"fusion\",\"layout\"] \n \n Output: 1 \n \n Explanation: \n \n words[0] = \"fusion\" and words[1] = \"layout\" are similar because we can apply the operation to \"fusion\" 6 times. The string \"fusion\" changes as follows. \n\n \"fusion\" \n \n \"gvtjpo\" \n \n \"hwukqp\" \n \n \"ixvlrq\" \n \n \"jywmsr\" \n \n \"kzxnts\" \n \n \"layout\" \n\n Example 2: \n\n Input: words = [\"ab\",\"aa\",\"za\",\"aa\"] \n \n Output: 2 \n \n Explanation: \n \n words[0] = \"ab\" and words[2] = \"za\" are similar. words[1] = \"aa\" and words[3] = \"aa\" are similar. \n\n Constraints: \n\n 1 <= n == words.length <= 10 5 \n \n 1 <= m == words[i].length <= 10 5 \n \n 1 <= n * m <= 10 5 \n \n words[i] consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    long long countPairs(vector<string>& words) {\n        unordered_map<string,long long> freq;\n        long long ans=0;\n        for(const string &s:words){\n            string key;\n            for(int i=1;i<(int)s.size();++i)\n                key+=char('a'+(s[i]-s[i-1]+26)%26);\n            key+='#';\n            ans+=freq[key]++;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177765176",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "1096",
+  "title": "Brace Expansion II",
+  "slug": "brace-expansion-ii",
+  "url": "https://leetcode.com/problems/brace-expansion-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking",
+    "Stack",
+    "Breadth-First Search",
+    "Sorting"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered set",
+    "Sorted array",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "Under the grammar given below, strings can represent a set of lowercase words. Let  R(expr)  denote the set of words the expression represents. \n \n The grammar can best be understood through simple examples: \n\n Single letters represent a singleton set containing that word.\n\n R(\"a\") = {\"a\"} \n \n R(\"w\") = {\"w\"} \n\n When we take a comma-delimited list of two or more expressions, we take the union of possibilities.\n\n R(\"{a,b,c}\") = {\"a\",\"b\",\"c\"} \n \n R(\"{{a,b},{b,c}}\") = {\"a\",\"b\",\"c\"} (notice the final set only contains each word at most once) \n\n When we concatenate two expressions, we take the set of possible concatenations between two words where the first word comes from the first expression and the second word comes from the second expression.\n\n R(\"{a,b}{c,d}\") = {\"ac\",\"ad\",\"bc\",\"bd\"} \n \n R(\"a{b,c}{d,e}f{g,h}\") = {\"abdfg\", \"abdfh\", \"abefg\", \"abefh\", \"acdfg\", \"acdfh\", \"acefg\", \"acefh\"} \n\n Formally, the three rules for our grammar: \n\n For every lowercase letter x , we have R(x) = {x} . \n \n For expressions e 1 , e 2 , ... , e k with k >= 2 , we have R({e 1 , e 2 , ...}) = R(e 1 ) ∪ R(e 2 ) ∪ ... \n \n For expressions e 1 and e 2 , we have R(e 1 + e 2 ) = {a + b for (a, b) in R(e 1 ) × R(e 2 )} , where + denotes concatenation, and × denotes the cartesian product. \n\n Given an expression representing a set of words under the given grammar, return the sorted list of words that the expression represents . \n\n Example 1: \n \n```\nInput:\n expression = \"{a,b}{c,{d,e}}\"\n\nOutput:\n [\"ac\",\"ad\",\"ae\",\"bc\",\"bd\",\"be\"]\n```\n\n Example 2: \n \n```\nInput:\n expression = \"{{a,z},a{b,c},{ab,z}}\"\n\nOutput:\n [\"a\",\"ab\",\"ac\",\"z\"]\n\nExplanation:\n Each distinct word is written only once in the final answer.\n```\n\n Constraints: \n\n 1 <= expression.length <= 60 \n \n expression[i] consists of '{' , '}' , ',' or lowercase English letters. \n \n The given  expression  represents a set of words based on the grammar given in the description.",
+  "code": "class Solution {\n    string s;\n    int pos = 0;\n    using Words = set<string>;\n\n    Words expression() {\n        Words result;\n        while (true) {\n            Words term = product();\n            result.insert(term.begin(), term.end());\n            if (pos >= static_cast<int>(s.size()) || s[pos] != ',') break;\n            ++pos;\n        }\n        return result;\n    }\n\n    Words product() {\n        Words result = {\"\"};\n        while (pos < static_cast<int>(s.size()) && s[pos] != '}' && s[pos] != ',') {\n            Words part;\n            if (s[pos] == '{') {\n                ++pos;\n                part = expression();\n                ++pos; // consume '}'\n            } else {\n                part.insert(string(1, s[pos++]));\n            }\n            Words next;\n            for (const string& a : result)\n                for (const string& b : part) next.insert(a + b);\n            result.swap(next);\n        }\n        return result;\n    }\npublic:\n    vector<string> braceExpansionII(string expressionText) {\n        s = expressionText;\n        pos = 0;\n        Words words = expression();\n        return vector<string>(words.begin(), words.end());\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175746473",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

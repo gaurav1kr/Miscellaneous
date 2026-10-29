@@ -1,0 +1,33 @@
+{
+  "id": "3901",
+  "title": "Good Subsequence Queries",
+  "slug": "good-subsequence-queries",
+  "url": "https://leetcode.com/problems/good-subsequence-queries/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Segment Tree",
+    "Number Theory"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and an integer p . \n \n A non-empty subsequence of nums is called good if: \n\n Its length is strictly less than n . \n \n The greatest common divisor (GCD) of its elements is exactly p . \n\n You are also given a 2D integer array queries of length q , where each queries[i] = [ind i , val i ] indicates that you should update nums[ind i ] to val i . \n \n After each query, determine whether there exists any good subsequence in the current array. \n \n Return the number of queries for which a good subsequence exists. \nThe term gcd(a, b) denotes the greatest common divisor of a and b .\n\n Example 1: \n\n Input: nums = [4,8,12,16], p = 2, queries = [[0,3],[2,6]] \n \n Output: 1 \n \n Explanation: \n\n i \n [ind i , val i ] \n Operation \n Updated nums \n Any good Subsequence \n\n 0 \n [0, 3] \n Update nums[0] to 3 \n [3, 8, 12, 16] \n No, as no subsequence has GCD exactly p = 2 \n\n 1 \n [2, 6] \n Update nums[2] to 6 \n [3, 8, 6, 16] \n Yes, subsequence [8, 6] has GCD exactly p = 2 \n\n Thus, the answer is 1. \n\n Example 2: \n\n Input: nums = [4,5,7,8], p = 3, queries = [[0,6],[1,9],[2,3]] \n \n Output: 2 \n \n Explanation: \n\n i \n [ind i , val i ] \n Operation \n Updated nums \n Any good Subsequence \n\n 0 \n [0, 6] \n Update nums[0] to 6 \n [6, 5, 7, 8] \n No, as no subsequence has GCD exactly p = 3 \n\n 1 \n [1, 9] \n Update nums[1] to 9 \n [6, 9, 7, 8] \n Yes, subsequence [6, 9] has GCD exactly p = 3 \n\n 2 \n [2, 3] \n Update nums[2] to 3 \n [6, 9, 3, 8] \n Yes, subsequence [6, 9, 3] has GCD exactly p = 3 \n\n Thus, the answer is 2. \n\n Example 3: \n\n Input: nums = [5,7,9], p = 2, queries = [[1,4],[2,8]] \n \n Output: 0 \n \n Explanation: \n\n i \n [ind i , val i ] \n Operation \n Updated nums \n Any good Subsequence \n\n 0 \n [1, 4] \n Update nums[1] to 4 \n [5, 4, 9] \n No, as no subsequence has GCD exactly p = 2 \n\n 1 \n [2, 8] \n Update nums[2] to 8 \n [5, 4, 8] \n No, as no subsequence has GCD exactly p = 2 \n\n Thus, the answer is 0. \n\n Constraints: \n\n 2 <= n == nums.length <= 5 * 10 4 \n \n 1 <= nums[i] <= 5 * 10 4 \n \n 1 <= queries.length <= 5 * 10 4 \n \n queries[i] = [ind i , val i ] \n \n 1 <= val i , p <= 5 * 10 4 \n \n 0 <= ind i <= n - 1",
+  "code": "class Solution {\n    int gcd(int a,int b){return b?gcd(b,a%b):a;}\npublic:\n    int countGoodSubseq(vector<int>& nums,int p,vector<vector<int>>& queries){\n        int n=nums.size(),size=1;while(size<n)size*=2;\n        vector<int> tree(size*2),norm(n),spf(50001);\n        for(int i=2;i<=50000;++i)if(!spf[i]){\n            for(int j=i;j<=50000;j+=i)if(!spf[j])spf[j]=i;\n        }\n        auto factors=[&](int x){vector<int> f;while(x>1){int z=spf[x];f.push_back(z);while(x%z==0)x/=z;}return f;};\n        int divisible=0,ones=0,totalXor=0;\n        for(int i=0;i<n;++i){totalXor^=i;norm[i]=nums[i]%p?0:nums[i]/p;\n            divisible+=norm[i]!=0;ones+=norm[i]==1;tree[size+i]=norm[i];}\n        for(int i=size-1;i;--i)tree[i]=gcd(tree[i*2],tree[i*2+1]);\n        vector<int> cnt(50001),xorDiv(50001),bad(n);\n        for(int i=0;i<n;++i)for(int prime:factors(norm[i])){\n            ++cnt[prime];xorDiv[prime]^=i;\n        }\n        int badIndices=0;\n        auto modifyBad=[&](int prime,int delta){\n            if(cnt[prime]==n-1){int index=totalXor^xorDiv[prime];\n                if((bad[index]+=delta)==(delta>0?1:0))badIndices+=delta;}\n        };\n        for(int prime=2;prime<=50000;++prime)modifyBad(prime,1);\n        int ans=0;\n        for(auto &q:queries){int i=q[0],v=q[1];\n            for(int prime:factors(norm[i])){modifyBad(prime,-1);--cnt[prime];xorDiv[prime]^=i;modifyBad(prime,1);}\n            divisible-=norm[i]!=0;ones-=norm[i]==1;\n            norm[i]=v%p?0:v/p;divisible+=norm[i]!=0;ones+=norm[i]==1;\n            for(int prime:factors(norm[i])){modifyBad(prime,-1);++cnt[prime];xorDiv[prime]^=i;modifyBad(prime,1);}\n            int pos=size+i;tree[pos]=norm[i];\n            for(pos/=2;pos;pos/=2)tree[pos]=gcd(tree[pos*2],tree[pos*2+1]);\n            if(ones>0 || (divisible>=2 && tree[1]==1 && (divisible<n || badIndices<n)))++ans;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181166644",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

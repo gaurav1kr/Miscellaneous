@@ -1,0 +1,34 @@
+{
+  "id": "3795",
+  "title": "Minimum Subarray Length With Distinct Sum At Least K",
+  "slug": "minimum-subarray-length-with-distinct-sum-at-least-k",
+  "url": "https://leetcode.com/problems/minimum-subarray-length-with-distinct-sum-at-least-k/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n Return the minimum length of a subarray whose sum of the distinct values present in that subarray (each value counted once) is at least k . If no such subarray exists, return -1. \n\n Example 1: \n\n Input: nums = [2,2,3,1], k = 4 \n \n Output: 2 \n \n Explanation: \n \n The subarray [2, 3] has distinct elements {2, 3} whose sum is 2 + 3 = 5 , which is ​​​​​​​at least k = 4 . Thus, the answer is 2. \n\n Example 2: \n\n Input: nums = [3,2,3,4], k = 5 \n \n Output: 2 \n \n Explanation: \n \n The subarray [3, 2] has distinct elements {3, 2} whose sum is 3 + 2 = 5 , which is ​​​​​​​at least k = 5 . Thus, the answer is 2. \n\n Example 3: \n\n Input: nums = [5,5,4], k = 5 \n \n Output: 1 \n \n Explanation: \n \n The subarray [5] has distinct elements {5} whose sum is 5 , which is at least k = 5 . Thus, the answer is 1. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= k <= 10 9",
+  "code": "class Solution {\npublic:\n    int minLength(vector<int>& nums, int k) {\n        unordered_map<int,int> cnt;\n        long long sum=0;\n        int ans=INT_MAX,l=0;\n        for(int r=0;r<(int)nums.size();++r){\n            if(++cnt[nums[r]]==1) sum+=nums[r];\n            while(l<=r&&sum>=k){\n                ans=min(ans,r-l+1);\n                if(--cnt[nums[l]]==0) sum-=nums[l];\n                ++l;\n            }\n        }\n        return ans==INT_MAX?-1:ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177762776",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

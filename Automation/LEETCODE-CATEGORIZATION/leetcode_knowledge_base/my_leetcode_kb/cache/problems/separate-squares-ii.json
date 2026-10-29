@@ -1,0 +1,33 @@
+{
+  "id": "3454",
+  "title": "Separate Squares II",
+  "slug": "separate-squares-ii",
+  "url": "https://leetcode.com/problems/separate-squares-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Segment Tree",
+    "Sweep Line"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array squares . Each squares[i] = [x i , y i , l i ] represents the coordinates of the bottom-left point and the side length of a square parallel to the x-axis. \n \n Find the minimum y-coordinate value of a horizontal line such that the total area covered by squares above the line equals the total area covered by squares below the line. \n \n Answers within 10 -5 of the actual answer will be accepted. \n \n Note : Squares may overlap. Overlapping areas should be counted only once in this version. \n\n Example 1: \n\n Input: squares = [[0,0,1],[2,2,1]] \n \n Output: 1.00000 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/01/15/4065example1drawio.png] \n \n Any horizontal line between y = 1 and y = 2 results in an equal split, with 1 square unit above and 1 square unit below. The minimum y-value is 1. \n\n Example 2: \n\n Input: squares = [[0,0,2],[1,1,1]] \n \n Output: 1.00000 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/01/15/4065example2drawio.png] \n \n Since the blue square overlaps with the red square, it will not be counted again. Thus, the line y = 1 splits the squares into two equal parts. \n\n Constraints: \n\n 1 <= squares.length <= 5 * 10 4 \n \n squares[i] = [x i , y i , l i ] \n \n squares[i].length == 3 \n \n 0 <= x i , y i <= 10 9 \n \n 1 <= l i <= 10 9 \n \n The total area of all the squares will not exceed 10 15 .",
+  "code": "class Solution {struct Event{long long y,x1,x2;int delta;bool operator<(const Event&o)const{return y<o.y;}};\n vector<int>cnt;vector<long long>len,xs;\n void upd(int p,int l,int r,int ql,int qr,int d){if(ql<=l&&r<=qr)cnt[p]+=d;else{int mid=(l+r)/2;if(ql<=mid)upd(p*2,l,mid,ql,qr,d);if(qr>mid)upd(p*2+1,mid+1,r,ql,qr,d);}if(cnt[p])len[p]=xs[r+1]-xs[l];else len[p]=l==r?0:len[p*2]+len[p*2+1];}\n public:double separateSquares(vector<vector<int>>& squares){vector<Event>ev;xs.clear();for(auto&s:squares){long long x=s[0],y=s[1],l=s[2];ev.push_back({y,x,x+l,1});ev.push_back({y+l,x,x+l,-1});xs.push_back(x);xs.push_back(x+l);}sort(ev.begin(),ev.end());sort(xs.begin(),xs.end());xs.erase(unique(xs.begin(),xs.end()),xs.end());int N=xs.size()-1;cnt.assign(4*N+8,0);len.assign(4*N+8,0);\n vector<pair<long long,long long>>slabs;long double total=0;for(int i=0;i<(int)ev.size();){long long y=ev[i].y;while(i<(int)ev.size()&&ev[i].y==y){int l=lower_bound(xs.begin(),xs.end(),ev[i].x1)-xs.begin(),r=lower_bound(xs.begin(),xs.end(),ev[i].x2)-xs.begin()-1;upd(1,0,N-1,l,r,ev[i].delta);++i;}if(i<(int)ev.size()){long long next=ev[i].y;slabs.push_back({y,len[1]});total+=(long double)len[1]*(next-y);}}\n long double half=total/2,acc=0;for(int i=0;i<(int)slabs.size();++i){long long y=slabs[i].first,ny=(i+1<(int)slabs.size()?slabs[i+1].first:ev.back().y),w=slabs[i].second;long double a=(long double)w*(ny-y);if(acc+a>=half&&w)return (double)(y+(half-acc)/w);acc+=a;}return (double)ev.back().y;\n }};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177531242",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "361",
+  "title": "Bomb Enemy",
+  "slug": "bomb-enemy",
+  "url": "https://leetcode.com/problems/bomb-enemy/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an m x n matrix grid where each cell is either a wall 'W' , an enemy 'E' or empty '0' , return the maximum enemies you can kill using one bomb . You can only place the bomb in an empty cell. \n \n The bomb kills all the enemies in the same row and column from the planted point until it hits the wall since it is too strong to be destroyed. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/27/bomb1-grid.jpg] \n \n```\nInput:\n grid = [[\"0\",\"E\",\"0\",\"0\"],[\"E\",\"0\",\"W\",\"E\"],[\"0\",\"E\",\"0\",\"0\"]]\n\nOutput:\n 3\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/27/bomb2-grid.jpg] \n \n```\nInput:\n grid = [[\"W\",\"W\",\"W\"],[\"0\",\"0\",\"0\"],[\"E\",\"E\",\"E\"]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 500 \n \n grid[i][j] is either 'W' , 'E' , or '0' .",
+  "code": "class Solution\n{\npublic:\n    int maxKilledEnemies(vector<vector<char>>& grid)\n    {\n        if (grid.empty() || grid[0].empty()) return 0;\n        int m = grid.size(), n = grid[0].size();\n        vector<int> colHits(n, 0);\n        int rowHits = 0, best = 0;\n        for (int r = 0; r < m; ++r)\n        {\n            for (int c = 0; c < n; ++c)\n            {\n                if (c == 0 || grid[r][c - 1] == 'W')\n                {\n                    rowHits = 0;\n                    for (int j = c; j < n && grid[r][j] != 'W'; ++j)\n                    {\n                        if (grid[r][j] == 'E') ++rowHits;\n                    }\n                }\n                if (r == 0 || grid[r - 1][c] == 'W')\n                {\n                    colHits[c] = 0;\n                    for (int i = r; i < m && grid[i][c] != 'W'; ++i)\n                    {\n                        if (grid[i][c] == 'E') ++colHits[c];\n                    }\n                }\n                if (grid[r][c] == '0')\n                {\n                    best = max(best, rowHits + colHits[c]);\n                }\n            }\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178460079",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

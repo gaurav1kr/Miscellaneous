@@ -1,0 +1,38 @@
+{
+  "id": "2054",
+  "title": "Two Best Non-Overlapping Events",
+  "slug": "two-best-non-overlapping-events",
+  "url": "https://leetcode.com/problems/two-best-non-overlapping-events/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed 2D integer array of events where events[i] = [startTime i , endTime i , value i ] . The i th event starts at startTime i and ends at endTime i , and if you attend this event, you will receive a value of value i . You can choose at most two non-overlapping events to attend such that the sum of their values is maximized . \n \n Return this maximum sum. \n \n Note that the start time and end time is inclusive : that is, you cannot attend two events where one of them starts and the other ends at the same time. More specifically, if you attend an event with end time t , the next event must start at or after t + 1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2026/01/03/untitled-diagramdrawio.png] \n \n```\nInput:\n events = [[1,3,2],[4,5,2],[2,4,3]]\n\nOutput:\n 4\n\nExplanation: \nChoose the green events, 0 and 1 for a sum of 2 + 2 = 4.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2026/01/03/2054b.png] \n \n```\nInput:\n events = [[1,3,2],[4,5,2],[1,5,5]]\n\nOutput:\n 5\n\nExplanation: \nChoose event 2 for a sum of 5.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2026/01/03/2054c.png] \n \n```\nInput:\n events = [[1,5,3],[1,5,1],[6,6,5]]\n\nOutput:\n 8\n\nExplanation: \nChoose events 0 and 2 for a sum of 3 + 5 = 8.\n```\n\n Constraints: \n\n 2 <= events.length <= 10 5 \n \n events[i].length == 3 \n \n 1 <= startTime i <= endTime i <= 10 9 \n \n 1 <= value i <= 10 6",
+  "code": "class Solution {\npublic:\n    int maxTwoEvents(vector<vector<int>>& events) {\n        int n = events.size();\n        \n        sort(events.begin(), events.end(), [](const vector<int>& a, const vector<int>& b) {\n            return a[0] < b[0];\n        });\n        \n        vector<int> suffixMax(n);\n        suffixMax[n - 1] = events[n - 1][2];\n        \n        for (int i = n - 2; i >= 0; --i) {\n            suffixMax[i] = max(events[i][2], suffixMax[i + 1]);\n        }\n        \n        int maxSum = 0;\n        \n        for (int i = 0; i < n; ++i) {\n            int left = i + 1, right = n - 1;\n            int nextEventIndex = -1;\n            \n            while (left <= right) {\n                int mid = left + (right - left) / 2;\n                if (events[mid][0] > events[i][1]) {\n                    nextEventIndex = mid;\n                    right = mid - 1;\n                } else {\n                    left = mid + 1;\n                }\n            }\n            \n            if (nextEventIndex != -1) {\n                maxSum = max(maxSum, events[i][2] + suffixMax[nextEventIndex]);\n            }\n            \n            maxSum = max(maxSum, events[i][2]);\n        }\n        \n        return maxSum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617064259",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

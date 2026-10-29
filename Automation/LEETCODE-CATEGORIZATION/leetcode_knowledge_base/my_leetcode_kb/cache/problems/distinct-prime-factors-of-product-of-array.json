@@ -1,0 +1,41 @@
+{
+  "id": "2521",
+  "title": "Distinct Prime Factors of Product of Array",
+  "slug": "distinct-prime-factors-of-product-of-array",
+  "url": "https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Number Theory",
+    "Prime Factorization",
+    "Euclidean Algorithm",
+    "Primality Test",
+    "Greatest Common Divisor",
+    "Sieve Theory",
+    "Prime Number Sieve"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "Given an array of positive integers nums , return the number of distinct prime factors in the product of the elements of nums . \n \n Note that: \n\n A number greater than 1 is called prime if it is divisible by only 1 and itself. \n \n An integer val1 is a factor of another integer val2 if val2 / val1 is an integer. \n\n Example 1: \n \n```\nInput:\n nums = [2,4,3,7,10,6]\n\nOutput:\n 4\n\nExplanation:\n\nThe product of all the elements in nums is: 2 * 4 * 3 * 7 * 10 * 6 = 10080 = 2\n5\n * 3\n2\n * 5 * 7.\nThere are 4 distinct prime factors so we return 4.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,4,8,16]\n\nOutput:\n 1\n\nExplanation:\n\nThe product of all the elements in nums is: 2 * 4 * 8 * 16 = 1024 = 2\n10\n.\nThere is 1 distinct prime factor so we return 1.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 4 \n \n 2 <= nums[i] <= 1000",
+  "code": "class Solution {public:int distinctPrimeFactors(vector<int>& nums){unordered_set<int>seen;for(int x:nums){for(int p=2;1LL*p*p<=x;p++)if(x%p==0){seen.insert(p);while(x%p==0)x/=p;}if(x>1)seen.insert(x);}return seen.size();}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176598795",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

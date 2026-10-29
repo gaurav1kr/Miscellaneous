@@ -1,0 +1,26 @@
+{
+  "id": "92",
+  "title": "Reverse Linked List II",
+  "slug": "reverse-linked-list-ii",
+  "url": "https://leetcode.com/problems/reverse-linked-list-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list"
+  ],
+  "description": "Given the head of a singly linked list and two integers left and right where left <= right , reverse the nodes of the list from position left to position right , and return the reversed list . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/19/rev2ex2.jpg] \n \n```\nInput:\n head = [1,2,3,4,5], left = 2, right = 4\n\nOutput:\n [1,4,3,2,5]\n```\n\n Example 2: \n \n```\nInput:\n head = [5], left = 1, right = 1\n\nOutput:\n [5]\n```\n\n Constraints: \n\n The number of nodes in the list is n . \n \n 1 <= n <= 500 \n \n -500 <= Node.val <= 500 \n \n 1 <= left <= right <= n \n\n Follow up: Could you do it in one pass?",
+  "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* reverseBetween(ListNode* head, int left, int right) {\n        if (!head || left == right) return head;\n\n        ListNode dummy(0);\n        dummy.next = head;\n        ListNode* prev = &dummy;\n\n        // Move `prev` to the node before `left`\n        for (int i = 1; i < left; ++i) {\n            prev = prev->next;\n        }\n\n        // Reverse the sublist\n        ListNode* curr = prev->next;\n        ListNode* next = nullptr;\n        for (int i = 0; i < right - left; ++i) {\n            next = curr->next;\n            curr->next = next->next;\n            next->next = prev->next;\n            prev->next = next;\n        }\n\n        return dummy.next;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1540985361",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

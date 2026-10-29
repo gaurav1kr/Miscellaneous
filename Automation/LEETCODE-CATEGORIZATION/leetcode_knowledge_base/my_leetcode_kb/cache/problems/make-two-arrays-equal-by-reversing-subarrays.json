@@ -1,0 +1,33 @@
+{
+  "id": "1460",
+  "title": "Make Two Arrays Equal by Reversing Subarrays",
+  "slug": "make-two-arrays-equal-by-reversing-subarrays",
+  "url": "https://leetcode.com/problems/make-two-arrays-equal-by-reversing-subarrays/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays of equal length target and arr . In one step, you can select any non-empty subarray of arr and reverse it. You are allowed to make any number of steps. \n \n Return true if you can make arr equal to target  or false otherwise . \n\n Example 1: \n \n```\nInput:\n target = [1,2,3,4], arr = [2,4,1,3]\n\nOutput:\n true\n\nExplanation:\n You can follow the next steps to convert arr to target:\n1- Reverse subarray [2,4,1], arr becomes [1,4,2,3]\n2- Reverse subarray [4,2], arr becomes [1,2,4,3]\n3- Reverse subarray [4,3], arr becomes [1,2,3,4]\nThere are multiple ways to convert arr to target, this is not the only way to do so.\n```\n\n Example 2: \n \n```\nInput:\n target = [7], arr = [7]\n\nOutput:\n true\n\nExplanation:\n arr is equal to target without any reverses.\n```\n\n Example 3: \n \n```\nInput:\n target = [3,7,9], arr = [3,7,11]\n\nOutput:\n false\n\nExplanation:\n arr does not have value 9 and it can never be converted to target.\n```\n\n Constraints: \n\n target.length == arr.length \n \n 1 <= target.length <= 1000 \n \n 1 <= target[i] <= 1000 \n \n 1 <= arr[i] <= 1000",
+  "code": "class Solution {\npublic:\n    bool canBeEqual(vector<int>& target, vector<int>& arr) {\n        sort(target.begin(), target.end());\n        sort(arr.begin(), arr.end());\n        return target == arr;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175753104",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

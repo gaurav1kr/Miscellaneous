@@ -1,0 +1,36 @@
+{
+  "id": "2281",
+  "title": "Sum of Total Strength of Wizards",
+  "slug": "sum-of-total-strength-of-wizards",
+  "url": "https://leetcode.com/problems/sum-of-total-strength-of-wizards/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Prefix Sum / Difference Array",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Prefix-sum array",
+    "Stack",
+    "Vector"
+  ],
+  "description": "As the ruler of a kingdom, you have an army of wizards at your command. \n \n You are given a 0-indexed integer array strength , where strength[i] denotes the strength of the i th wizard. For a contiguous group of wizards (i.e. the wizards' strengths form a subarray of strength ), the total strength is defined as the product of the following two values: \n\n The strength of the weakest wizard in the group. \n \n The total of all the individual strengths of the wizards in the group. \n\n Return the sum of the total strengths of all contiguous groups of wizards . Since the answer may be very large, return it modulo 10 9 + 7 . \n \n A subarray is a contiguous non-empty sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n strength = [1,3,1,2]\n\nOutput:\n 44\n\nExplanation:\n The following are all the contiguous groups of wizards:\n- [1] from [\n1\n,3,1,2] has a total strength of min([1]) * sum([1]) = 1 * 1 = 1\n- [3] from [1,\n3\n,1,2] has a total strength of min([3]) * sum([3]) = 3 * 3 = 9\n- [1] from [1,3,\n1\n,2] has a total strength of min([1]) * sum([1]) = 1 * 1 = 1\n- [2] from [1,3,1,\n2\n] has a total strength of min([2]) * sum([2]) = 2 * 2 = 4\n- [1,3] from [\n1,3\n,1,2] has a total strength of min([1,3]) * sum([1,3]) = 1 * 4 = 4\n- [3,1] from [1,\n3,1\n,2] has a total strength of min([3,1]) * sum([3,1]) = 1 * 4 = 4\n- [1,2] from [1,3,\n1,2\n] has a total strength of min([1,2]) * sum([1,2]) = 1 * 3 = 3\n- [1,3,1] from [\n1,3,1\n,2] has a total strength of min([1,3,1]) * sum([1,3,1]) = 1 * 5 = 5\n- [3,1,2] from [1,\n3,1,2\n] has a total strength of min([3,1,2]) * sum([3,1,2]) = 1 * 6 = 6\n- [1,3,1,2] from [\n1,3,1,2\n] has a total strength of min([1,3,1,2]) * sum([1,3,1,2]) = 1 * 7 = 7\nThe sum of all the total strengths is 1 + 9 + 1 + 4 + 4 + 4 + 3 + 5 + 6 + 7 = 44.\n```\n\n Example 2: \n \n```\nInput:\n strength = [5,4,6]\n\nOutput:\n 213\n\nExplanation:\n The following are all the contiguous groups of wizards: \n- [5] from [\n5\n,4,6] has a total strength of min([5]) * sum([5]) = 5 * 5 = 25\n- [4] from [5,\n4\n,6] has a total strength of min([4]) * sum([4]) = 4 * 4 = 16\n- [6] from [5,4,\n6\n] has a total strength of min([6]) * sum([6]) = 6 * 6 = 36\n- [5,4] from [\n5,4\n,6] has a total strength of min([5,4]) * sum([5,4]) = 4 * 9 = 36\n- [4,6] from [5,\n4,6\n] has a total strength of min([4,6]) * sum([4,6]) = 4 * 10 = 40\n- [5,4,6] from [\n5,4,6\n] has a total strength of min([5,4,6]) * sum([5,4,6]) = 4 * 15 = 60\nThe sum of all the total strengths is 25 + 16 + 36 + 36 + 40 + 60 = 213.\n```\n\n Constraints: \n\n 1 <= strength.length <= 10 5 \n \n 1 <= strength[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:int totalStrength(vector<int>& a){const long long MOD=1000000007;int n=a.size();vector<int> L(n),R(n),st;for(int i=0;i<n;++i){while(!st.empty()&&a[st.back()]>=a[i])st.pop_back();L[i]=st.empty()?-1:st.back();st.push_back(i);}st.clear();for(int i=n-1;i>=0;--i){while(!st.empty()&&a[st.back()]>a[i])st.pop_back();R[i]=st.empty()?n:st.back();st.push_back(i);}vector<long long> p(n+1),pp(n+2);for(int i=0;i<n;++i)p[i+1]=(p[i]+a[i])%MOD;for(int i=0;i<=n;++i)pp[i+1]=(pp[i]+p[i])%MOD;long long ans=0;for(int i=0;i<n;++i){long long right=(pp[R[i]+1]-pp[i+1]+MOD)%MOD,left=(pp[i+1]-pp[L[i]+1]+MOD)%MOD;long long contribution=(right*(i-L[i])%MOD-left*(R[i]-i)%MOD+MOD)%MOD;ans=(ans+a[i]*contribution)%MOD;}return (int)ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175905719",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

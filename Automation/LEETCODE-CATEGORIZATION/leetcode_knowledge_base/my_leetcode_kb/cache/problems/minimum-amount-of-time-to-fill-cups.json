@@ -1,0 +1,35 @@
+{
+  "id": "2335",
+  "title": "Minimum Amount of Time to Fill Cups",
+  "slug": "minimum-amount-of-time-to-fill-cups",
+  "url": "https://leetcode.com/problems/minimum-amount-of-time-to-fill-cups/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You have a water dispenser that can dispense cold, warm, and hot water. Every second, you can either fill up 2 cups with different types of water, or 1 cup of any type of water. \n \n You are given a 0-indexed integer array amount of length 3 where amount[0] , amount[1] , and amount[2] denote the number of cold, warm, and hot water cups you need to fill respectively. Return the minimum number of seconds needed to fill up all the cups . \n\n Example 1: \n \n```\nInput:\n amount = [1,4,2]\n\nOutput:\n 4\n\nExplanation:\n One way to fill up the cups is:\nSecond 1: Fill up a cold cup and a warm cup.\nSecond 2: Fill up a warm cup and a hot cup.\nSecond 3: Fill up a warm cup and a hot cup.\nSecond 4: Fill up a warm cup.\nIt can be proven that 4 is the minimum number of seconds needed.\n```\n\n Example 2: \n \n```\nInput:\n amount = [5,4,4]\n\nOutput:\n 7\n\nExplanation:\n One way to fill up the cups is:\nSecond 1: Fill up a cold cup, and a hot cup.\nSecond 2: Fill up a cold cup, and a warm cup.\nSecond 3: Fill up a cold cup, and a warm cup.\nSecond 4: Fill up a warm cup, and a hot cup.\nSecond 5: Fill up a cold cup, and a hot cup.\nSecond 6: Fill up a cold cup, and a warm cup.\nSecond 7: Fill up a hot cup.\n```\n\n Example 3: \n \n```\nInput:\n amount = [5,0,0]\n\nOutput:\n 5\n\nExplanation:\n Every second, we fill up a cold cup.\n```\n\n Constraints: \n\n amount.length == 3 \n \n 0 <= amount[i] <= 100",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int fillCups(vector<int>& amount){int total=accumulate(amount.begin(),amount.end(),0);return max(*max_element(amount.begin(),amount.end()),(total+1)/2);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175919790",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

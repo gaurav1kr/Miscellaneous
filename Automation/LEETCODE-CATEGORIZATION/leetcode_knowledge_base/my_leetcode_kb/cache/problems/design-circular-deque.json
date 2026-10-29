@@ -1,0 +1,34 @@
+{
+  "id": "641",
+  "title": "Design Circular Deque",
+  "slug": "design-circular-deque",
+  "url": "https://leetcode.com/problems/design-circular-deque/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Linked List",
+    "Design",
+    "Queue"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Linked list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Design your implementation of the circular double-ended queue (deque). \n \n Implement the MyCircularDeque class: \n\n MyCircularDeque(int k) Initializes the deque with a maximum size of k . \n \n boolean insertFront() Adds an item at the front of Deque. Returns true if the operation is successful, or false otherwise. \n \n boolean insertLast() Adds an item at the rear of Deque. Returns true if the operation is successful, or false otherwise. \n \n boolean deleteFront() Deletes an item from the front of Deque. Returns true if the operation is successful, or false otherwise. \n \n boolean deleteLast() Deletes an item from the rear of Deque. Returns true if the operation is successful, or false otherwise. \n \n int getFront() Returns the front item from the Deque. Returns -1 if the deque is empty. \n \n int getRear() Returns the last item from Deque. Returns -1 if the deque is empty. \n \n boolean isEmpty() Returns true if the deque is empty, or false otherwise. \n \n boolean isFull() Returns true if the deque is full, or false otherwise. \n\n Example 1: \n \n```\nInput\n\n[\"MyCircularDeque\", \"insertLast\", \"insertLast\", \"insertFront\", \"insertFront\", \"getRear\", \"isFull\", \"deleteLast\", \"insertFront\", \"getFront\"]\n[[3], [1], [2], [3], [4], [], [], [], [4], []]\n\nOutput\n\n[null, true, true, true, false, 2, true, true, true, 4]\n\nExplanation\n\nMyCircularDeque myCircularDeque = new MyCircularDeque(3);\nmyCircularDeque.insertLast(1); // return True\nmyCircularDeque.insertLast(2); // return True\nmyCircularDeque.insertFront(3); // return True\nmyCircularDeque.insertFront(4); // return False, the queue is full.\nmyCircularDeque.getRear(); // return 2\nmyCircularDeque.isFull(); // return True\nmyCircularDeque.deleteLast(); // return True\nmyCircularDeque.insertFront(4); // return True\nmyCircularDeque.getFront(); // return 4\n```\n\n Constraints: \n\n 1 <= k <= 1000 \n \n 0 <= value <= 1000 \n \n At most 2000 calls will be made to insertFront , insertLast , deleteFront , deleteLast , getFront , getRear , isEmpty , isFull .",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass MyCircularDeque {\n    vector<int> data;\n    int front, rear, size, capacity;\n\npublic:\n    MyCircularDeque(int k) {\n        capacity = k + 1;\n        data.resize(capacity);\n        front = 0;\n        rear = 0;\n        size = 0;\n    }\n\n    bool insertFront(int value) {\n        if (isFull()) return false;\n        front = (front - 1 + capacity) % capacity;\n        data[front] = value;\n        size++;\n        return true;\n    }\n\n    bool insertLast(int value) {\n        if (isFull()) return false;\n        data[rear] = value;\n        rear = (rear + 1) % capacity;\n        size++;\n        return true;\n    }\n\n    bool deleteFront() {\n        if (isEmpty()) return false;\n        front = (front + 1) % capacity;\n        size--;\n        return true;\n    }\n\n    bool deleteLast() {\n        if (isEmpty()) return false;\n        rear = (rear - 1 + capacity) % capacity;\n        size--;\n        return true;\n    }\n\n    int getFront() {\n        return isEmpty() ? -1 : data[front];\n    }\n\n    int getRear() {\n        return isEmpty() ? -1 : data[(rear - 1 + capacity) % capacity];\n    }\n\n    bool isEmpty() {\n        return size == 0;\n    }\n\n    bool isFull() {\n        return size == capacity - 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595401679",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

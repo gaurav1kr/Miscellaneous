@@ -1,0 +1,25 @@
+{
+  "id": "479",
+  "title": "Largest Palindrome Product",
+  "slug": "largest-palindrome-product",
+  "url": "https://leetcode.com/problems/largest-palindrome-product/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Enumeration"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given an integer n, return the largest palindromic integer that can be represented as the product of two n -digits integers . Since the answer can be very large, return it modulo 1337 . \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n 987\nExplanation: 99 x 91 = 9009, 9009 % 1337 = 987\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 9\n```\n\n Constraints: \n\n 1 <= n <= 8",
+  "code": "class Solution {\npublic:\n    int largestPalindrome(int n) {\n        if (n == 1) return 9;\n        long long upper = 1;\n        for (int i = 0; i < n; ++i) upper *= 10;\n        long long lower = upper / 10;\n        --upper;\n        for (long long left = upper; left >= lower; --left) {\n            std::string a = std::to_string(left);\n            std::string b = a;\n            std::reverse(b.begin(), b.end());\n            long long pal = std::stoll(a + b);\n            for (long long factor = upper; factor * factor >= pal; --factor) {\n                if (pal % factor == 0 && pal / factor >= lower &&\n                    pal / factor <= upper) return pal % 1337;\n            }\n        }\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175698567",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "2492",
+  "title": "Minimum Score of a Path Between Two Cities",
+  "slug": "minimum-score-of-a-path-between-two-cities",
+  "url": "https://leetcode.com/problems/minimum-score-of-a-path-between-two-cities/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n representing n cities numbered from 1 to n . You are also given a 2D array roads where roads[i] = [a i , b i , distance i ] indicates that there is a bidirectional road between cities a i and b i with a distance equal to distance i . The cities graph is not necessarily connected. \n \n The score of a path between two cities is defined as the minimum distance of a road in this path. \n \n Return the minimum possible score of a path between cities 1 and n . \n \n Note : \n\n A path is a sequence of roads between two cities. \n \n It is allowed for a path to contain the same road multiple times, and you can visit cities 1 and n multiple times along the path. \n \n The test cases are generated such that there is at least one path between 1 and n . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/10/12/graph11.png] \n \n```\nInput:\n n = 4, roads = [[1,2,9],[2,3,6],[2,4,5],[1,4,7]]\n\nOutput:\n 5\n\nExplanation:\n The path from city 1 to 4 with the minimum score is: 1 -> 2 -> 4. The score of this path is min(9,5) = 5.\nIt can be shown that no other path has less score.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/10/12/graph22.png] \n \n```\nInput:\n n = 4, roads = [[1,2,2],[1,3,4],[3,4,7]]\n\nOutput:\n 2\n\nExplanation:\n The path from city 1 to 4 with the minimum score is: 1 -> 2 -> 1 -> 3 -> 4. The score of this path is min(2,2,4,7) = 2.\n```\n\n Constraints: \n\n 2 <= n <= 10 5 \n \n 1 <= roads.length <= 10 5 \n \n roads[i].length == 3 \n \n 1 <= a i , b i <= n \n \n a i != b i \n \n 1 <= distance i <= 10 4 \n \n There are no repeated edges. \n \n There is at least one path between 1 and n .",
+  "code": "class Solution {public:int minScore(int n,vector<vector<int>>& roads){vector<vector<pair<int,int>>> g(n+1);for(auto&e:roads){g[e[0]].push_back({e[1],e[2]});g[e[1]].push_back({e[0],e[2]});}vector<int> seen(n+1);queue<int> q;q.push(1);seen[1]=1;int ans=INT_MAX;while(!q.empty()){int u=q.front();q.pop();for(auto e:g[u]){ans=min(ans,e.second);if(!seen[e.first]){seen[e.first]=1;q.push(e.first);}}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176587503",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "3237",
+  "title": "Alt and Tab Simulation",
+  "slug": "alt-and-tab-simulation",
+  "url": "https://leetcode.com/problems/alt-and-tab-simulation/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Simulation"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "There are n windows open numbered from 1 to n , we want to simulate using alt + tab to navigate between the windows. \n \n You are given an array windows which contains the initial order of the windows (the first element is at the top and the last one is at the bottom). \n \n You are also given an array queries where for each query, the window queries[i] is brought to the top. \n \n Return the final state of the array windows . \n\n Example 1: \n\n Input: windows = [1,2,3], queries = [3,3,2] \n \n Output: [2,3,1] \n \n Explanation: \n \n Here is the window array after each query: \n\n Initial order: [1,2,3] \n \n After the first query: [ 3 ,1,2] \n \n After the second query: [ 3 ,1,2] \n \n After the last query: [ 2 ,3,1] \n\n Example 2: \n\n Input: windows = [1,4,2,3], queries = [4,1,3] \n \n Output: [3,1,4,2] \n \n Explanation: \n \n Here is the window array after each query: \n\n Initial order: [1,4,2,3] \n \n After the first query: [ 4 ,1,2,3] \n \n After the second query: [ 1 ,4,2,3] \n \n After the last query: [ 3 ,1,4,2] \n\n Constraints: \n\n 1 <= n == windows.length <= 10 5 \n \n windows is a permutation of [1, n] . \n \n 1 <= queries.length <= 10 5 \n \n 1 <= queries[i] <= n",
+  "code": "class Solution {\npublic:\n    vector<int> simulationResult(vector<int>& windows,vector<int>& queries) {\n        unordered_set<int> seen;\n        vector<int> ans;\n        for (int i=(int)queries.size()-1;i>=0;--i)\n            if (seen.insert(queries[i]).second) ans.push_back(queries[i]);\n        for (int x:windows) if (!seen.count(x)) ans.push_back(x);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179715508",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

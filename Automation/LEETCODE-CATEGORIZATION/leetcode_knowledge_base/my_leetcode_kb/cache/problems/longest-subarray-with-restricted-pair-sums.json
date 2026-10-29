@@ -1,0 +1,32 @@
+{
+  "id": "4067",
+  "title": "Longest Subarray With Restricted Pair Sums",
+  "slug": "longest-subarray-with-restricted-pair-sums",
+  "url": "https://leetcode.com/problems/longest-subarray-with-restricted-pair-sums/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n A subarray nums[l..r] is valid if there are no three distinct indices i , j , and k such that l <= i, j, k <= r and: \n\n nums[i] + nums[j] == nums[k] \n\n Return the maximum length of a valid subarray of nums . \n\n Example 1: \n\n Input: nums = [2,3,5,3,2,1] \n \n Output: 3 \n \n Explanation: \n \n Consider the subarray [3, 5, 3] . The pairs of elements at distinct indices have the following sums: \n\n 3 + 5 = 8 \n \n 3 + 3 = 6 , using the two different occurrences of 3 \n \n 5 + 3 = 8 \n\n None of these sums is an element at the remaining index, so the subarray is valid. \n \n Every subarray of length 4 contains 2, 3, and 5 at distinct indices, where 2 + 3 = 5 . Therefore, no longer valid subarray exists, and the answer is 3. \n\n Example 2: \n\n Input: nums = [3,4,5,6] \n \n Output: 4 \n \n Explanation: \n \n The sums obtained from every pair of elements at distinct indices are 7, 8, 9, 9, 10, and 11. None of these values appears at the remaining index, so the entire array is valid. \n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 500",
+  "code": "class Solution {\npublic:\n    int maxSubarray(vector<int>& nums) {\n        const int V = 500;\n        vector<long long> freq(V + 1, 0), pairs(2 * V + 1, 0);\n        long long triples = 0;\n        int left = 0, ans = 0;\n        for (int right = 0; right < (int)nums.size(); ++right) {\n            int x = nums[right];\n            triples += pairs[x];\n            for (int y = 1; y <= V; ++y)\n                if (x + y <= V) triples += freq[y] * freq[x + y];\n            for (int y = 1; y <= V; ++y)\n                if (freq[y]) pairs[x + y] += freq[y];\n            ++freq[x];\n            while (triples > 0) {\n                int z = nums[left++];\n                --freq[z];\n                for (int y = 1; y <= V; ++y)\n                    if (freq[y]) pairs[z + y] -= freq[y];\n                triples -= pairs[z];\n                for (int y = 1; y <= V; ++y)\n                    if (z + y <= V) triples -= freq[y] * freq[z + y];\n            }\n            ans = max(ans, right - left + 1);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181124187",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

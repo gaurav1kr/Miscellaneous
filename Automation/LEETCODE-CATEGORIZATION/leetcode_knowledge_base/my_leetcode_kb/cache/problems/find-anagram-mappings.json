@@ -1,0 +1,32 @@
+{
+  "id": "760",
+  "title": "Find Anagram Mappings",
+  "slug": "find-anagram-mappings",
+  "url": "https://leetcode.com/problems/find-anagram-mappings/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays nums1 and nums2 where nums2 is an anagram of nums1 . Both arrays may contain duplicates. \n \n Return an index mapping array mapping from nums1 to nums2 where mapping[i] = j means the i th element in nums1 appears in nums2 at index j . If there are multiple answers, return any of them . \n \n An array a is an anagram of an array b means b is made by randomizing the order of the elements in a . \n\n Example 1: \n \n```\nInput:\n nums1 = [12,28,46,32,50], nums2 = [50,12,32,46,28]\n\nOutput:\n [1,4,3,2,0]\n\nExplanation:\n As mapping[0] = 1 because the 0\nth\n element of nums1 appears at nums2[1], and mapping[1] = 4 because the 1\nst\n element of nums1 appears at nums2[4], and so on.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [84,46], nums2 = [84,46]\n\nOutput:\n [0,1]\n```\n\n Constraints: \n\n 1 <= nums1.length <= 100 \n \n nums2.length == nums1.length \n \n 0 <= nums1[i], nums2[i] <= 10 5 \n \n nums2 is an anagram of nums1 .",
+  "code": "class Solution {\npublic:\n    vector<int> anagramMappings(vector<int>& nums1, vector<int>& nums2) {\n        unordered_map<int, int> index;\n        for (int i = 0; i < static_cast<int>(nums2.size()); ++i) {\n            index[nums2[i]] = i;\n        }\n        vector<int> answer;\n        for (int x : nums1) {\n            answer.push_back(index[x]);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178510172",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

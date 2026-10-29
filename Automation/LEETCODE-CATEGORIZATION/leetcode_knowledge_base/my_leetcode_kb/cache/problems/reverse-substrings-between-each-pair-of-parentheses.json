@@ -1,0 +1,30 @@
+{
+  "id": "1190",
+  "title": "Reverse Substrings Between Each Pair of Parentheses",
+  "slug": "reverse-substrings-between-each-pair-of-parentheses",
+  "url": "https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Bracket Sequences"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a string s that consists of lower case English letters and brackets. \n \n Reverse the strings in each pair of matching parentheses, starting from the innermost one. \n \n Your result should not contain any brackets. \n\n Example 1: \n \n```\nInput:\n s = \"(abcd)\"\n\nOutput:\n \"dcba\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"(u(love)i)\"\n\nOutput:\n \"iloveu\"\n\nExplanation:\n The substring \"love\" is reversed first, then the whole string is reversed.\n```\n\n Example 3: \n \n```\nInput:\n s = \"(ed(et(oc))el)\"\n\nOutput:\n \"leetcode\"\n\nExplanation:\n First, we reverse the substring \"oc\", then \"etco\", and finally, the whole string.\n```\n\n Constraints: \n\n 1 <= s.length <= 2000 \n \n s only contains lower case English characters and parentheses. \n \n It is guaranteed that all parentheses are balanced.",
+  "code": "\n#include <string>\n#include <stack>\nusing namespace std;\n\nclass Solution {\npublic:\n    string reverseParentheses(string s) {\n        stack<string> stk;\n        string curr = \"\";\n        for (char c : s) {\n            if (c == '(') {\n                stk.push(curr);\n                curr = \"\";\n            } else if (c == ')') {\n                reverse(curr.begin(), curr.end());\n                curr = stk.top() + curr;\n                stk.pop();\n            } else {\n                curr += c;\n            }\n        }\n        return curr;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592311322",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

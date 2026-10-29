@@ -1,0 +1,26 @@
+{
+  "id": "1317",
+  "title": "Convert Integer to the Sum of Two No-Zero Integers",
+  "slug": "convert-integer-to-the-sum-of-two-no-zero-integers",
+  "url": "https://leetcode.com/problems/convert-integer-to-the-sum-of-two-no-zero-integers/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "No-Zero integer is a positive integer that does not contain any 0 in its decimal representation. \n \n Given an integer n , return a list of two integers [a, b] where : \n\n a and b are No-Zero integers . \n \n a + b = n \n\n The test cases are generated so that there is at least one valid solution. If there are many valid solutions, you can return any of them. \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n [1,1]\n\nExplanation:\n Let a = 1 and b = 1.\nBoth a and b are no-zero integers, and a + b = 2 = n.\n```\n\n Example 2: \n \n```\nInput:\n n = 11\n\nOutput:\n [2,9]\n\nExplanation:\n Let a = 2 and b = 9.\nBoth a and b are no-zero integers, and a + b = 11 = n.\nNote that there are other valid answers as [8, 3] that can be accepted.\n```\n\n Constraints: \n\n 2 <= n <= 10 4",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\n    bool hasZero(int n) {\n        while (n) {\n            if (n % 10 == 0) return true;\n            n /= 10;\n        }\n        return false;\n    }\npublic:\n    vector<int> getNoZeroIntegers(int n) {\n        for (int i = 1; i < n; ++i) {\n            if (!hasZero(i) && !hasZero(n - i))\n                return {i, n - i};\n        }\n        return {};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610656034",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "3628",
+  "title": "Maximum Number of Subsequences After One Inserting",
+  "slug": "maximum-number-of-subsequences-after-one-inserting",
+  "url": "https://leetcode.com/problems/maximum-number-of-subsequences-after-one-inserting/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Greedy",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Prefix Sum / Difference Array",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "You are given a string s consisting of uppercase English letters. \n \n You are allowed to insert at most one uppercase English letter at any position (including the beginning or end) of the string. \n \n Return the maximum number of \"LCT\" subsequences that can be formed in the resulting string after at most one insertion . \n\n Example 1: \n\n Input: s = \"LMCT\" \n \n Output: 2 \n \n Explanation: \n \n We can insert a \"L\" at the beginning of the string s to make \"LLMCT\" , which has 2 subsequences, at indices [0, 3, 4] and [1, 3, 4]. \n\n Example 2: \n\n Input: s = \"LCCT\" \n \n Output: 4 \n \n Explanation: \n \n We can insert a \"L\" at the beginning of the string s to make \"LLCCT\" , which has 4 subsequences, at indices [0, 2, 4], [0, 3, 4], [1, 2, 4] and [1, 3, 4]. \n\n Example 3: \n\n Input: s = \"L\" \n \n Output: 0 \n \n Explanation: \n \n Since it is not possible to obtain the subsequence \"LCT\" by inserting a single letter, the result is 0. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of uppercase English letters.",
+  "code": "class Solution {\npublic:\n long long numOfSubsequences(string s){long long L=0,LC=0,LCT=0,C=0,T=0,CT=0;\n  for(char c:s){if(c=='L')++L;else if(c=='C'){LC+=L;++C;}else if(c=='T'){LCT+=LC;CT+=C;++T;}}\n  long long best=max(LC,CT),leftL=0,leftLC=0,rightT=T;\n  for(int i=0;i<=(int)s.size();++i){best=max(best,leftL*rightT);if(i==(int)s.size())break;\n   if(s[i]=='L')++leftL;else if(s[i]=='C')leftLC+=leftL;else if(s[i]=='T')--rightT;}\n  return LCT+best;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177627201",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "599",
+  "title": "Minimum Index Sum of Two Lists",
+  "slug": "minimum-index-sum-of-two-lists",
+  "url": "https://leetcode.com/problems/minimum-index-sum-of-two-lists/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two arrays of strings list1 and list2 , find the common strings with the least index sum . \n \n A common string is a string that appeared in both list1 and list2 . \n \n A common string with the least index sum is a common string such that if it appeared at list1[i] and list2[j] then i + j should be the minimum value among all the other common strings . \n \n Return all the common strings with the least index sum . Return the answer in any order . \n\n Example 1: \n \n```\nInput:\n list1 = [\"Shogun\",\"Tapioca Express\",\"Burger King\",\"KFC\"], list2 = [\"Piatti\",\"The Grill at Torrey Pines\",\"Hungry Hunter Steakhouse\",\"Shogun\"]\n\nOutput:\n [\"Shogun\"]\n\nExplanation:\n The only common string is \"Shogun\".\n```\n\n Example 2: \n \n```\nInput:\n list1 = [\"Shogun\",\"Tapioca Express\",\"Burger King\",\"KFC\"], list2 = [\"KFC\",\"Shogun\",\"Burger King\"]\n\nOutput:\n [\"Shogun\"]\n\nExplanation:\n The common string with the least index sum is \"Shogun\" with index sum = (0 + 1) = 1.\n```\n\n Example 3: \n \n```\nInput:\n list1 = [\"happy\",\"sad\",\"good\"], list2 = [\"sad\",\"happy\",\"good\"]\n\nOutput:\n [\"sad\",\"happy\"]\n\nExplanation:\n There are three common strings:\n\"happy\" with index sum = (0 + 1) = 1.\n\"sad\" with index sum = (1 + 0) = 1.\n\"good\" with index sum = (2 + 2) = 4.\nThe strings with the least index sum are \"sad\" and \"happy\".\n```\n\n Constraints: \n\n 1 <= list1.length, list2.length <= 1000 \n \n 1 <= list1[i].length, list2[i].length <= 30 \n \n list1[i] and list2[i] consist of spaces ' ' and English letters. \n \n All the strings of list1 are unique . \n \n All the strings of list2 are unique . \n \n There is at least a common string between list1 and list2 .",
+  "code": "\n#include <vector>\n#include <unordered_map>\n#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {\n        unordered_map<string, int> map;\n        for (int i = 0; i < list1.size(); ++i) map[list1[i]] = i;\n        \n        vector<string> result;\n        int minSum = INT_MAX;\n        \n        for (int i = 0; i < list2.size(); ++i) {\n            if (map.find(list2[i]) != map.end()) {\n                int sum = i + map[list2[i]];\n                if (sum < minSum) {\n                    result.clear();\n                    result.push_back(list2[i]);\n                    minSum = sum;\n                } else if (sum == minSum) {\n                    result.push_back(list2[i]);\n                }\n            }\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592322641",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

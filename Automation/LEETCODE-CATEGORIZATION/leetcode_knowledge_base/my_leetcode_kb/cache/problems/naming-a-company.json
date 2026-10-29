@@ -1,0 +1,38 @@
+{
+  "id": "2306",
+  "title": "Naming a Company",
+  "slug": "naming-a-company",
+  "url": "https://leetcode.com/problems/naming-a-company/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Enumeration"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings ideas that represents a list of names to be used in the process of naming a company. The process of naming a company is as follows: \n\n Choose 2 distinct names from ideas , call them idea A and idea B . \n \n Swap the first letters of idea A and idea B with each other. \n \n If both of the new names are not found in the original ideas , then the name idea A idea B (the concatenation of idea A and idea B , separated by a space) is a valid company name. \n \n Otherwise, it is not a valid name. \n\n Return the number of distinct valid names for the company . \n\n Example 1: \n \n```\nInput:\n ideas = [\"coffee\",\"donuts\",\"time\",\"toffee\"]\n\nOutput:\n 6\n\nExplanation:\n The following selections are valid:\n- (\"coffee\", \"donuts\"): The company name created is \"doffee conuts\".\n- (\"donuts\", \"coffee\"): The company name created is \"conuts doffee\".\n- (\"donuts\", \"time\"): The company name created is \"tonuts dime\".\n- (\"donuts\", \"toffee\"): The company name created is \"tonuts doffee\".\n- (\"time\", \"donuts\"): The company name created is \"dime tonuts\".\n- (\"toffee\", \"donuts\"): The company name created is \"doffee tonuts\".\nTherefore, there are a total of 6 distinct company names.\n\nThe following are some examples of invalid selections:\n- (\"coffee\", \"time\"): The name \"toffee\" formed after swapping already exists in the original array.\n- (\"time\", \"toffee\"): Both names are still the same after swapping and exist in the original array.\n- (\"coffee\", \"toffee\"): Both names formed after swapping already exist in the original array.\n```\n\n Example 2: \n \n```\nInput:\n ideas = [\"lack\",\"back\"]\n\nOutput:\n 0\n\nExplanation:\n There are no valid selections. Therefore, 0 is returned.\n```\n\n Constraints: \n\n 2 <= ideas.length <= 5 * 10 4 \n \n 1 <= ideas[i].length <= 10 \n \n ideas[i] consists of lowercase English letters. \n \n All the strings in ideas are unique .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:long long distinctNames(vector<string>& ideas){vector<unordered_set<string>> g(26);for(auto& s:ideas)g[s[0]-'a'].insert(s.substr(1));long long ans=0;for(int i=0;i<26;++i)for(int j=i+1;j<26;++j){int common=0;for(auto& x:g[i])if(g[j].count(x))++common;ans+=2LL*(g[i].size()-common)*(g[j].size()-common);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175912574",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

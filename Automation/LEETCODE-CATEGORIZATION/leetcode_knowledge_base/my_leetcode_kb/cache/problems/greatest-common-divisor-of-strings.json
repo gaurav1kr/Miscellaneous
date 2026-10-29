@@ -1,0 +1,30 @@
+{
+  "id": "1071",
+  "title": "Greatest Common Divisor of Strings",
+  "slug": "greatest-common-divisor-of-strings",
+  "url": "https://leetcode.com/problems/greatest-common-divisor-of-strings/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "For two strings s and t , we say \" t divides s \" if and only if s = t + t + t + ... + t + t (i.e., t is concatenated with itself one or more times). \n \n Given two strings str1 and str2 , return the largest string x such that x divides both str1 and str2 . \n\n Example 1: \n\n Input: str1 = \"ABCABC\", str2 = \"ABC\" \n \n Output: \"ABC\" \n\n Example 2: \n\n Input: str1 = \"ABABAB\", str2 = \"ABAB\" \n \n Output: \"AB\" \n\n Example 3: \n\n Input: str1 = \"LEET\", str2 = \"CODE\" \n \n Output: \"\" \n\n Example 4: \n\n Input: str1 = \"AAAAAB\", str2 = \"AAA\" \n \n Output: \"\" ​​​​​​​ \n\n Constraints: \n\n 1 <= str1.length, str2.length <= 1000 \n \n str1 and str2 consist of English uppercase letters.",
+  "code": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    string gcdOfStrings(string str1, string str2) {\n        if (str1 + str2 != str2 + str1) return \"\";\n        return str1.substr(0, gcd(str1.size(), str2.size()));\n    }\n    \n    int gcd(int a, int b) {\n        return b == 0 ? a : gcd(b, a % b);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591374409",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "65",
+  "title": "Valid Number",
+  "slug": "valid-number",
+  "url": "https://leetcode.com/problems/valid-number/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s , return whether s is a valid number . \n \nFor example, all the following are valid numbers: \"2\", \"0089\", \"-0.1\", \"+3.14\", \"4.\", \"-.9\", \"2e10\", \"-90E3\", \"3e+7\", \"+6e-1\", \"53.5e93\", \"-123.456e789\" , while the following are not valid numbers: \"abc\", \"1a\", \"1e\", \"e3\", \"99e2.5\", \"--6\", \"-+3\", \"95a54e53\" . \n \n Formally, a  valid number is defined using one of the following definitions: \n\n An integer number followed by an optional exponent . \n \n A decimal number followed by an optional exponent . \n\n An integer number is defined with an optional sign '-' or '+' followed by digits . \n \n A decimal number is defined with an optional sign '-' or '+' followed by one of the following definitions: \n\n Digits followed by a dot '.' . \n \n Digits followed by a dot '.' followed by digits . \n \n A dot '.' followed by digits . \n\n An exponent is defined with an exponent notation 'e' or 'E' followed by an integer number . \n \n The digits are defined as one or more digits. \n\n Example 1: \n\n Input: s = \"0\" \n \n Output: true \n\n Example 2: \n\n Input: s = \"e\" \n \n Output: false \n\n Example 3: \n\n Input: s = \".\" \n \n Output: false \n\n Constraints: \n\n 1 <= s.length <= 20 \n \n s consists of only English letters (both uppercase and lowercase), digits ( 0-9 ), plus '+' , minus '-' , or dot '.' .",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isNumber(string s) {\n        bool num = false, dot = false, exp = false;\n        for (int i = 0; i < s.size(); ++i) {\n            if (isdigit(s[i])) num = true;\n            else if (s[i] == '.') {\n                if (dot || exp) return false;\n                dot = true;\n            } else if (s[i] == 'e' || s[i] == 'E') {\n                if (exp || !num) return false;\n                exp = true; num = false;\n            } else if (s[i] == '+' || s[i] == '-') {\n                if (i > 0 && s[i - 1] != 'e' && s[i - 1] != 'E') return false;\n            } else return false;\n        }\n        return num;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610607341",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

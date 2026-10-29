@@ -1,0 +1,36 @@
+{
+  "id": "2790",
+  "title": "Maximum Number of Groups With Increasing Length",
+  "slug": "maximum-number-of-groups-with-increasing-length",
+  "url": "https://leetcode.com/problems/maximum-number-of-groups-with-increasing-length/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array usageLimits of length n . \n \n Your task is to create groups using numbers from 0 to n - 1 , ensuring that each number, i , is used no more than usageLimits[i] times in total across all groups . You must also satisfy the following conditions: \n\n Each group must consist of distinct numbers, meaning that no duplicate numbers are allowed within a single group. \n \n Each group (except the first one) must have a length strictly greater than the previous group. \n\n Return an integer denoting the maximum number of groups you can create while satisfying these conditions. \n\n Example 1: \n \n```\nInput:\n \nusageLimits\n = [1,2,5]\n\nOutput:\n 3\n\nExplanation:\n In this example, we can use 0 at most once, 1 at most twice, and 2 at most five times.\nOne way of creating the maximum number of groups while satisfying the conditions is: \nGroup 1 contains the number [2].\nGroup 2 contains the numbers [1,2].\nGroup 3 contains the numbers [0,1,2]. \nIt can be shown that the maximum number of groups is 3. \nSo, the output is 3.\n```\n\n Example 2: \n \n```\nInput:\n \nusageLimits\n = [2,1,2]\n\nOutput:\n 2\n\nExplanation:\n In this example, we can use 0 at most twice, 1 at most once, and 2 at most twice.\nOne way of creating the maximum number of groups while satisfying the conditions is:\nGroup 1 contains the number [0].\nGroup 2 contains the numbers [1,2].\nIt can be shown that the maximum number of groups is 2.\nSo, the output is 2.\n```\n\n Example 3: \n \n```\nInput:\n \nusageLimits\n = [1,1]\n\nOutput:\n 1\n\nExplanation:\n In this example, we can use both 0 and 1 at most once.\nOne way of creating the maximum number of groups while satisfying the conditions is:\nGroup 1 contains the number [0].\nIt can be shown that the maximum number of groups is 1.\nSo, the output is 1.\n```\n\n Constraints: \n\n 1 <= usageLimits.length <= 10 5 \n \n 1 <= usageLimits[i] <= 10 9",
+  "code": "class Solution {public:int maxIncreasingGroups(vector<int>& usageLimits){sort(usageLimits.begin(),usageLimits.end());long long spare=0;int groups=0;for(int x:usageLimits){spare+=x;if(spare>=groups+1){++groups;spare-=groups;}}return groups;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176702932",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

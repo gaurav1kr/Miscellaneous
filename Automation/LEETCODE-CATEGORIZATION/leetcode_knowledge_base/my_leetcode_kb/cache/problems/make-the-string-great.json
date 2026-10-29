@@ -1,0 +1,29 @@
+{
+  "id": "1544",
+  "title": "Make The String Great",
+  "slug": "make-the-string-great",
+  "url": "https://leetcode.com/problems/make-the-string-great/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given a string s of lower and upper case English letters. \n \n A good string is a string which doesn't have two adjacent characters s[i] and s[i + 1] where: \n\n 0 <= i <= s.length - 2 \n \n s[i] is a lower-case letter and s[i + 1] is the same letter but in upper-case or vice-versa . \n\n To make the string good, you can choose two adjacent characters that make the string bad and remove them. You can keep doing this until the string becomes good. \n \n Return the string after making it good. The answer is guaranteed to be unique under the given constraints. \n \n Notice that an empty string is also good. \n\n Example 1: \n \n```\nInput:\n s = \"leEeetcode\"\n\nOutput:\n \"leetcode\"\n\nExplanation:\n In the first step, either you choose i = 1 or i = 2, both will result \"leEeetcode\" to be reduced to \"leetcode\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"abBAcC\"\n\nOutput:\n \"\"\n\nExplanation:\n We have many possible scenarios, and all lead to the same answer. For example:\n\"abBAcC\" --> \"aAcC\" --> \"cC\" --> \"\"\n\"abBAcC\" --> \"abBA\" --> \"aA\" --> \"\"\n```\n\n Example 3: \n \n```\nInput:\n s = \"s\"\n\nOutput:\n \"s\"\n```\n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s contains only lower and upper case English letters.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string makeGood(string s) {\n        string res;\n        for (char c : s) {\n            if (!res.empty() && abs(res.back() - c) == 32)\n                res.pop_back();\n            else\n                res.push_back(c);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595393166",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

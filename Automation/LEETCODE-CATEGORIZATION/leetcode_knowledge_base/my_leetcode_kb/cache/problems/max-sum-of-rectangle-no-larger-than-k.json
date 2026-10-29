@@ -1,0 +1,36 @@
+{
+  "id": "363",
+  "title": "Max Sum of Rectangle No Larger Than K",
+  "slug": "max-sum-of-rectangle-no-larger-than-k",
+  "url": "https://leetcode.com/problems/max-sum-of-rectangle-no-larger-than-k/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Matrix",
+    "Prefix Sum",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Ordered set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an m x n matrix matrix and an integer k , return the max sum of a rectangle in the matrix such that its sum is no larger than k . \n \n It is guaranteed that there will be a rectangle with a sum no larger than k . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/18/sum-grid.jpg] \n \n```\nInput:\n matrix = [[1,0,1],[0,-2,3]], k = 2\n\nOutput:\n 2\n\nExplanation:\n Because the sum of the blue rectangle [[0, 1], [-2, 3]] is 2, and 2 is the max number no larger than k (k = 2).\n```\n\n Example 2: \n \n```\nInput:\n matrix = [[2,2,-1]], k = 3\n\nOutput:\n 3\n```\n\n Constraints: \n\n m == matrix.length \n \n n == matrix[i].length \n \n 1 <= m, n <= 100 \n \n -100 <= matrix[i][j] <= 100 \n \n -10 5 <= k <= 10 5 \n\n Follow up: What if the number of rows is much larger than the number of columns?",
+  "code": "class Solution {\npublic:\n    int maxSumSubmatrix(vector<vector<int>>& m, int k) \n    {\n        int res = INT_MIN, rows = m.size(), cols = m[0].size();\n        for (int l = 0; l < cols; ++l) \n        {\n            vector<int> sums(rows);\n            for (int r = l; r < cols; ++r) \n            {\n                int kadane = 0, max_kadane = INT_MIN;\n                for (int i = 0; i < rows; ++i) \n                {\n                    sums[i] += m[i][r];\n                    kadane = max(kadane + sums[i], sums[i]);\n                    max_kadane = max(max_kadane, kadane);\n                }\n                if (max_kadane <= k) \n                {\n                    res = max(res, max_kadane);\n                    continue;\n                }\n                set<int> s = {0};\n                int run_sum = 0;\n                for (int sum : sums) \n                {\n                    run_sum += sum;\n                    auto it = s.lower_bound(run_sum - k);\n                    if (it != end(s))\n                        res = max(res, run_sum - *it);\n                    s.insert(run_sum);\n                }\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1362388565",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

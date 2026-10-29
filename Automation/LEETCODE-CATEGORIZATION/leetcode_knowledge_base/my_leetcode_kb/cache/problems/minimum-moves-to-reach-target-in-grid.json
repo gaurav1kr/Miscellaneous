@@ -1,0 +1,24 @@
+{
+  "id": "3609",
+  "title": "Minimum Moves to Reach Target in Grid",
+  "slug": "minimum-moves-to-reach-target-in-grid",
+  "url": "https://leetcode.com/problems/minimum-moves-to-reach-target-in-grid/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given four integers sx , sy , tx , and ty , representing two points (sx, sy) and (tx, ty) on an infinitely large 2D grid. \n \n You start at (sx, sy) . \n \n At any point (x, y) , define m = max(x, y) . You can either: \n\n Move to (x + m, y) , or \n \n Move to (x, y + m) . \n\n Return the minimum number of moves required to reach (tx, ty) . If it is impossible to reach the target, return -1. \n\n Example 1: \n\n Input: sx = 1, sy = 2, tx = 5, ty = 4 \n \n Output: 2 \n \n Explanation: \n \n The optimal path is: \n\n Move 1: max(1, 2) = 2 . Increase the y-coordinate by 2, moving from (1, 2) to (1, 2 + 2) = (1, 4) . \n \n Move 2: max(1, 4) = 4 . Increase the x-coordinate by 4, moving from (1, 4) to (1 + 4, 4) = (5, 4) . \n\n Thus, the minimum number of moves to reach (5, 4) is 2. \n\n Example 2: \n\n Input: sx = 0, sy = 1, tx = 2, ty = 3 \n \n Output: 3 \n \n Explanation: \n \n The optimal path is: \n\n Move 1: max(0, 1) = 1 . Increase the x-coordinate by 1, moving from (0, 1) to (0 + 1, 1) = (1, 1) . \n \n Move 2: max(1, 1) = 1 . Increase the x-coordinate by 1, moving from (1, 1) to (1 + 1, 1) = (2, 1) . \n \n Move 3: max(2, 1) = 2 . Increase the y-coordinate by 2, moving from (2, 1) to (2, 1 + 2) = (2, 3) . \n\n Thus, the minimum number of moves to reach (2, 3) is 3. \n\n Example 3: \n\n Input: sx = 1, sy = 1, tx = 2, ty = 2 \n \n Output: -1 \n \n Explanation: \n\n It is impossible to reach (2, 2) from (1, 1) using the allowed moves. Thus, the answer is -1. \n\n Constraints: \n\n 0 <= sx <= tx <= 10 9 \n \n 0 <= sy <= ty <= 10 9",
+  "code": "class Solution {\n    int solve(long long sx,long long sy,long long x,long long y) {\n        if(x<sx || y<sy) return -1;\n        if(x==sx && y==sy) return 0;\n        if(x==y) {\n            int a=solve(sx,sy,0,y),b=solve(sx,sy,x,0);\n            if(a<0) return b<0?-1:b+1;\n            if(b<0) return a+1;\n            return 1+min(a,b);\n        }\n        if(x>y) {\n            if(x>=2*y) {\n                if(x%2) return -1;\n                int sub=solve(sx,sy,x/2,y);\n                return sub<0?-1:sub+1;\n            }\n            int sub=solve(sx,sy,x-y,y);\n            return sub<0?-1:sub+1;\n        }\n        if(y>=2*x) {\n            if(y%2) return -1;\n            int sub=solve(sx,sy,x,y/2);\n            return sub<0?-1:sub+1;\n        }\n        int sub=solve(sx,sy,x,y-x);\n        return sub<0?-1:sub+1;\n    }\npublic:\n    int minMoves(int sx,int sy,int tx,int ty) {\n        return solve(sx,sy,tx,ty);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181541848",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

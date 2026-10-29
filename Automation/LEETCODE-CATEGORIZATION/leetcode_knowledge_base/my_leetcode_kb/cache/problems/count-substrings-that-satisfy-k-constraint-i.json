@@ -1,0 +1,28 @@
+{
+  "id": "3258",
+  "title": "Count Substrings That Satisfy K-Constraint I",
+  "slug": "count-substrings-that-satisfy-k-constraint-i",
+  "url": "https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a binary string s and an integer k . \n \n A binary string satisfies the k-constraint if either of the following conditions holds: \n\n The number of 0 's in the string is at most k . \n \n The number of 1 's in the string is at most k . \n\n Return an integer denoting the number of substrings of s that satisfy the k-constraint . \n\n Example 1: \n\n Input: s = \"10101\", k = 1 \n \n Output: 12 \n \n Explanation: \n \n Every substring of s except the substrings \"1010\" , \"10101\" , and \"0101\" satisfies the k-constraint. \n\n Example 2: \n\n Input: s = \"1010101\", k = 2 \n \n Output: 25 \n \n Explanation: \n \n Every substring of s except the substrings with a length greater than 5 satisfies the k-constraint. \n\n Example 3: \n\n Input: s = \"11111\", k = 1 \n \n Output: 15 \n \n Explanation: \n \n All substrings of s satisfy the k-constraint. \n\n Constraints: \n\n 1 <= s.length <= 50 \n \n 1 <= k <= s.length \n \n s[i] is either '0' or '1' .",
+  "code": "class Solution { public: int countKConstraintSubstrings(string s,int k){int cnt[2]={},l=0,ans=0;for(int r=0;r<(int)s.size();++r){++cnt[s[r]-'0'];while(cnt[0]>k&&cnt[1]>k)--cnt[s[l++]-'0'];ans+=r-l+1;}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177439878",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

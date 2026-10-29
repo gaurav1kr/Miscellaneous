@@ -1,0 +1,42 @@
+{
+  "id": "218",
+  "title": "The Skyline Problem",
+  "slug": "the-skyline-problem",
+  "url": "https://leetcode.com/problems/the-skyline-problem/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Sweep Line",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Ordered Set"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Ordered set",
+    "Priority queue / heap",
+    "Segment tree",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "A city's skyline is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Given the locations and heights of all the buildings, return the skyline formed by these buildings collectively . \n \n The geometric information of each building is given in the array buildings where buildings[i] = [left i , right i , height i ] : \n\n left i is the x coordinate of the left edge of the i th building. \n \n right i is the x coordinate of the right edge of the i th building. \n \n height i is the height of the i th building. \n\n You may assume all buildings are perfect rectangles grounded on an absolutely flat surface at height 0 . \n \n The skyline should be represented as a list of \"key points\" sorted by their x-coordinate in the form [[x 1 ,y 1 ],[x 2 ,y 2 ],...] . Each key point is the left endpoint of some horizontal segment in the skyline except the last point in the list, which always has a y-coordinate 0 and is used to mark the skyline's termination where the rightmost building ends. Any ground between the leftmost and rightmost buildings should be part of the skyline's contour. \n \n Note: There must be no consecutive horizontal lines of equal height in the output skyline. For instance, [...,[2 3],[4 5],[7 5],[11 5],[12 7],...] is not acceptable; the three lines of height 5 should be merged into one in the final output as such: [...,[2 3],[4 5],[12 7],...] \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/12/01/merged.jpg] \n \n```\nInput:\n buildings = [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]\n\nOutput:\n [[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]\n\nExplanation:\n\nFigure A shows the buildings of the input.\nFigure B shows the skyline formed by those buildings. The red points in figure B represent the key points in the output list.\n```\n\n Example 2: \n \n```\nInput:\n buildings = [[0,2,3],[2,5,3]]\n\nOutput:\n [[0,3],[5,0]]\n```\n\n Constraints: \n\n 1 <= buildings.length <= 10 4 \n \n 0 <= left i < right i <= 2 31 - 1 \n \n 1 <= height i <= 2 31 - 1 \n \n buildings is sorted by left i in non-decreasing order.",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {\n        vector<pair<int, int>> h;\n\t\t\n        // Convert each building into two segments.\n        for (auto b : buildings) {\n            h.push_back({b[0], -b[2]});\n            h.push_back({b[1], b[2]});\n        }\n        \n        // Sort the segments.\n        sort(h.begin(), h.end());\n        int prev = 0, cur = 0;\n        \n        multiset<int> m;\n        vector<vector<int>> res;\n        \n        m.insert(0);\n        for (auto i:h) {\n            \n            // If i.second is less than zero, then it means it is left boundary.\n            if (i.second < 0) {\n                m.insert(-i.second);\n            } else { // else it is right boundary.\n                m.erase(m.find(i.second));\n            } \n            \n            cur = *m.rbegin();\n            \n            // If current maximum height is not equal to maximum previuous height, it is a key point.\n            if (cur != prev) {\n                res.push_back({i.first, cur});\n                prev = cur;\n            }\n        }\n        return res;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1534152567",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

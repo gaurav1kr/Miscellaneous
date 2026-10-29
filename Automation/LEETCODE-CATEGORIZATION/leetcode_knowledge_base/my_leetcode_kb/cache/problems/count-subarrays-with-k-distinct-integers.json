@@ -1,0 +1,33 @@
+{
+  "id": "3859",
+  "title": "Count Subarrays With K Distinct Integers",
+  "slug": "count-subarrays-with-k-distinct-integers",
+  "url": "https://leetcode.com/problems/count-subarrays-with-k-distinct-integers/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Counting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers k and m . \n \n Return an integer denoting the count of subarrays of nums such that: \n\n The subarray contains exactly k distinct integers. \n \n Within the subarray, each distinct integer appears at least m times. \n\n Example 1: \n\n Input: nums = [1,2,1,2,2], k = 2, m = 2 \n \n Output: 2 \n \n Explanation: \n \n The possible subarrays with k = 2 distinct integers, each appearing at least m = 2 times are: \n\n Subarray \n Distinct \n numbers \n Frequency \n\n [1, 2, 1, 2] \n {1, 2} → 2 \n {1: 2, 2: 2} \n\n [1, 2, 1, 2, 2] \n {1, 2} → 2 \n {1: 2, 2: 3} \n\n Thus, the answer is 2. \n\n Example 2: \n\n Input: nums = [3,1,2,4], k = 2, m = 1 \n \n Output: 3 \n \n Explanation: \n \n The possible subarrays with k = 2 distinct integers, each appearing at least m = 1 times are: \n\n Subarray \n Distinct \n numbers \n Frequency \n\n [3, 1] \n {3, 1} → 2 \n {3: 1, 1: 1} \n\n [1, 2] \n {1, 2} → 2 \n {1: 1, 2: 1} \n\n [2, 4] \n {2, 4} → 2 \n {2: 1, 4: 1} \n\n Thus, the answer is 3. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= k, m <= nums.length",
+  "code": "class Solution {\npublic:\n    long long countSubarrays(vector<int>& nums, int k, int m) {\n        int n=nums.size(), a=0,b=0, da=0,db=0,good=0;\n        vector<int> fa(100001),fb(100001);\n        long long ans=0;\n        for(int x:nums){\n            if(fa[x]++==0) ++da;\n            if(fb[x]++==0) ++db;\n            if(fb[x]==m) ++good;\n            while(da>k){int y=nums[a++];if(--fa[y]==0)--da;}\n            while(db>k){int y=nums[b++];if(fb[y]==m)--good;if(--fb[y]==0)--db;}\n            while(db==k && good==k){\n                int y=nums[b++];if(fb[y]==m)--good;if(--fb[y]==0)--db;\n            }\n            ans+=b-a;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181158977",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

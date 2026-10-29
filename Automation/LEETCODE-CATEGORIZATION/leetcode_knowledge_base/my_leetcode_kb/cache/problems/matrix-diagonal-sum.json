@@ -1,0 +1,29 @@
+{
+  "id": "1572",
+  "title": "Matrix Diagonal Sum",
+  "slug": "matrix-diagonal-sum",
+  "url": "https://leetcode.com/problems/matrix-diagonal-sum/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a square matrix  mat , return the sum of the matrix diagonals. \n \n Only include the sum of all the elements on the primary diagonal and all the elements on the secondary diagonal that are not part of the primary diagonal. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/08/14/sample_1911.png] \n \n```\nInput:\n mat = [[\n1\n,2,\n3\n],\n  [4,\n5\n,6],\n  [\n7\n,8,\n9\n]]\n\nOutput:\n 25\n\nExplanation: \nDiagonals sum: 1 + 5 + 9 + 3 + 7 = 25\nNotice that element mat[1][1] = 5 is counted only once.\n```\n\n Example 2: \n \n```\nInput:\n mat = [[\n1\n,1,1,\n1\n],\n  [1,\n1\n,\n1\n,1],\n  [1,\n1\n,\n1\n,1],\n  [\n1\n,1,1,\n1\n]]\n\nOutput:\n 8\n```\n\n Example 3: \n \n```\nInput:\n mat = [[\n5\n]]\n\nOutput:\n 5\n```\n\n Constraints: \n\n n == mat.length == mat[i].length \n \n 1 <= n <= 100 \n \n 1 <= mat[i][j] <= 100",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int diagonalSum(vector<vector<int>>& mat) {\n        int n = mat.size(), sum = 0;\n        for (int i = 0; i < n; ++i) {\n            sum += mat[i][i] + mat[i][n - i - 1];\n        }\n        if (n % 2) sum -= mat[n / 2][n / 2];\n        return sum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593840228",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

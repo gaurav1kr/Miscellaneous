@@ -1,0 +1,28 @@
+{
+  "id": "3687",
+  "title": "Library Late Fee Calculator",
+  "slug": "library-late-fee-calculator",
+  "url": "https://leetcode.com/problems/library-late-fee-calculator/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array daysLate where daysLate[i] indicates how many days late the i th book was returned. \n \n The penalty is calculated as follows: \n\n If daysLate[i] == 1 , penalty is 1. \n \n If 2 <= daysLate[i] <= 5 , penalty is 2 * daysLate[i] . \n \n If daysLate[i] > 5 , penalty is 3 * daysLate[i] . \n\n Return the total penalty for all books. \n\n Example 1: \n\n Input: daysLate = [5,1,7] \n \n Output: 32 \n \n Explanation: \n\n daysLate[0] = 5 : Penalty is 2 * daysLate[0] = 2 * 5 = 10 . \n \n daysLate[1] = 1 : Penalty is 1 . \n \n daysLate[2] = 7 : Penalty is 3 * daysLate[2] = 3 * 7 = 21 . \n \n Thus, the total penalty is 10 + 1 + 21 = 32 . \n\n Example 2: \n\n Input: daysLate = [1,1] \n \n Output: 2 \n \n Explanation: \n\n daysLate[0] = 1 : Penalty is 1 . \n \n daysLate[1] = 1 : Penalty is 1 . \n \n Thus, the total penalty is 1 + 1 = 2 . \n\n Constraints: \n\n 1 <= daysLate.length <= 100 \n \n 1 <= daysLate[i] <= 100",
+  "code": "class Solution {\npublic:\n    int lateFee(vector<int>& daysLate) {\n        int total = 0;\n        for (int d : daysLate) total += d == 1 ? 1 : (d <= 5 ? 2 * d : 3 * d);\n        return total;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179309093",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

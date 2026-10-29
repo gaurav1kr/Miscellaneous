@@ -1,0 +1,30 @@
+{
+  "id": "1828",
+  "title": "Queries on Number of Points Inside a Circle",
+  "slug": "queries-on-number-of-points-inside-a-circle",
+  "url": "https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Geometry"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array points where points[i] = [x i , y i ] is the coordinates of the i th point on a 2D plane. Multiple points can have the same coordinates. \n \n You are also given an array queries where queries[j] = [x j , y j , r j ] describes a circle centered at (x j , y j ) with a radius of r j . \n \n For each query queries[j] , compute the number of points inside the j th circle. Points on the border of the circle are considered inside . \n \n Return an array answer , where answer[j] is the answer to the j th query . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/25/chrome_2021-03-25_22-34-16.png] \n \n```\nInput:\n points = [[1,3],[3,3],[5,3],[2,2]], queries = [[2,3,1],[4,3,1],[1,1,2]]\n\nOutput:\n [3,2,2]\n\nExplanation: \nThe points and circles are shown above.\nqueries[0] is the green circle, queries[1] is the red circle, and queries[2] is the blue circle.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/25/chrome_2021-03-25_22-42-07.png] \n \n```\nInput:\n points = [[1,1],[2,2],[3,3],[4,4],[5,5]], queries = [[1,2,2],[2,2,2],[4,3,2],[4,3,3]]\n\nOutput:\n [2,3,2,4]\n\nExplanation: \nThe points and circles are shown above.\nqueries[0] is green, queries[1] is red, queries[2] is blue, and queries[3] is purple.\n```\n\n Constraints: \n\n 1 <= points.length <= 500 \n \n points[i].length == 2 \n \n 0 <= x ​​​​​​i , y ​​​​​​i <= 500 \n \n 1 <= queries.length <= 500 \n \n queries[j].length == 3 \n \n 0 <= x j , y j <= 500 \n \n 1 <= r j <= 500 \n \n All coordinates are integers. \n\n Follow up: Could you find the answer for each query in better complexity than O(n) ?",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> countPoints(vector<vector<int>>& points, vector<vector<int>>& queries) {\n        vector<int> res;\n        for (auto& q : queries) {\n            int x = q[0], y = q[1], r2 = q[2] * q[2], cnt = 0;\n            for (auto& p : points) {\n                int dx = p[0] - x, dy = p[1] - y;\n                if (dx * dx + dy * dy <= r2) cnt++;\n            }\n            res.push_back(cnt);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610605147",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "543",
+  "title": "Diameter of Binary Tree",
+  "slug": "diameter-of-binary-tree",
+  "url": "https://leetcode.com/problems/diameter-of-binary-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, return the length of the diameter of the tree . \n \n The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root . \n \n The length of a path between two nodes is represented by the number of edges between them. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/06/diamtree.jpg] \n \n```\nInput:\n root = [1,2,3,4,5]\n\nOutput:\n 3\n\nExplanation:\n 3 is the length of the path [4,2,1,3] or [5,2,1,3].\n```\n\n Example 2: \n \n```\nInput:\n root = [1,2]\n\nOutput:\n 1\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n -100 <= Node.val <= 100",
+  "code": "class Solution \n{\npublic:\n    int res=0;\n    \n    int diameter_util(TreeNode* root)\n\t{\n        if(!root)\n            return 0;\n        int l= diameter_util(root->left);\n        int r= diameter_util(root->right);\n        int temp=max(l,r)+1;\n        res=max(res,(l+r));\n        return temp;\n    }\n    \n    \n    int diameterOfBinaryTree(TreeNode* root) \n\t{\n       if(!root)\n             return 0;\n        int l= diameterOfBinaryTree(root->left);\n        int d= diameterOfBinaryTree(root->right);\n        int a=diameter_util(root);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "404036931",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

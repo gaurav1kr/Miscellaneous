@@ -1,0 +1,31 @@
+{
+  "id": "12",
+  "title": "Integer to Roman",
+  "slug": "integer-to-roman",
+  "url": "https://leetcode.com/problems/integer-to-roman/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Seven different symbols represent Roman numerals with the following values: \n\n Symbol \n Value \n\n I \n 1 \n\n V \n 5 \n\n X \n 10 \n\n L \n 50 \n\n C \n 100 \n\n D \n 500 \n\n M \n 1000 \n\n Roman numerals are formed by appending the conversions of decimal place values from highest to lowest. Converting a decimal place value into a Roman numeral has the following rules: \n\n If the value does not start with 4 or 9, select the symbol of the maximal value that can be subtracted from the input, append that symbol to the result, subtract its value, and convert the remainder to a Roman numeral. \n \n If the value starts with 4 or 9 use the  subtractive form  representing one symbol subtracted from the following symbol, for example, 4 is 1 ( I ) less than 5 ( V ): IV  and 9 is 1 ( I ) less than 10 ( X ): IX . Only the following subtractive forms are used: 4 ( IV ), 9 ( IX ), 40 ( XL ), 90 ( XC ), 400 ( CD ) and 900 ( CM ). \n \n Only powers of 10 ( I , X , C , M ) can be appended consecutively at most 3 times to represent multiples of 10. You cannot append 5 ( V ), 50 ( L ), or 500 ( D ) multiple times. If you need to append a symbol 4 times use the subtractive form . \n\n Given an integer, convert it to a Roman numeral. \n\n Example 1: \n\n Input: num = 3749 \n \n Output: \"MMMDCCXLIX\" \n \n Explanation: \n \n```\n3000 = MMM as 1000 (M) + 1000 (M) + 1000 (M)\n 700 = DCC as 500 (D) + 100 (C) + 100 (C)\n 40 = XL as 10 (X) less of 50 (L)\n 9 = IX as 1 (I) less of 10 (X)\nNote: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal places\n```\n\n Example 2: \n\n Input: num = 58 \n \n Output: \"LVIII\" \n \n Explanation: \n \n```\n50 = L\n 8 = VIII\n```\n\n Example 3: \n\n Input: num = 1994 \n \n Output: \"MCMXCIV\" \n \n Explanation: \n \n```\n1000 = M\n 900 = CM\n 90 = XC\n 4 = IV\n```\n\n Constraints: \n\n 1 <= num <= 3999",
+  "code": "class Solution \n{\npublic:\n    string intToRoman(int num) \n    {\n        int n[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};\n        string s[] = {\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"};\n        int i =0;\n        string str ; \n        while (num>0)\n        {\n            if (num>=n[i])\n            {\n                str=str+s[i];\n                num-=n[i];\n            } \n            else\n            {\n                i++;\n            }\n        }\n        return str;    \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1485487959",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

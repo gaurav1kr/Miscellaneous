@@ -1,0 +1,32 @@
+{
+  "id": "922",
+  "title": "Sort Array By Parity II",
+  "slug": "sort-array-by-parity-ii",
+  "url": "https://leetcode.com/problems/sort-array-by-parity-ii/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an array of integers nums , half of the integers in nums are odd , and the other half are even . \n \n Sort the array so that whenever nums[i] is odd, i is odd , and whenever nums[i] is even, i is even . \n \n Return any answer array that satisfies this condition . \n\n Example 1: \n \n```\nInput:\n nums = [4,2,5,7]\n\nOutput:\n [4,5,2,7]\n\nExplanation:\n [4,7,2,5], [2,5,4,7], [2,7,4,5] would also have been accepted.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,3]\n\nOutput:\n [2,3]\n```\n\n Constraints: \n\n 2 <= nums.length <= 2 * 10 4 \n \n nums.length is even. \n \n Half of the integers in nums are even. \n \n 0 <= nums[i] <= 1000 \n\n Follow Up: Could you solve it in-place?",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> sortArrayByParityII(vector<int>& nums) {\n        int i = 0, j = 1, n = nums.size();\n        while (i < n && j < n) {\n            while (i < n && nums[i] % 2 == 0) i += 2;\n            while (j < n && nums[j] % 2 == 1) j += 2;\n            if (i < n && j < n) swap(nums[i], nums[j]);\n        }\n        return nums;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590126671",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

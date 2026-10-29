@@ -1,0 +1,30 @@
+{
+  "id": "156",
+  "title": "Binary Tree Upside Down",
+  "slug": "binary-tree-upside-down",
+  "url": "https://leetcode.com/problems/binary-tree-upside-down/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, turn the tree upside down and return the new root . \n \n You can turn a binary tree upside down with the following steps: \n\n The original left child becomes the new root. \n \n The original root becomes the new right child. \n \n The original right child becomes the new left child. \n \n [Figure: https://assets.leetcode.com/uploads/2020/08/29/main.jpg] \n \n The mentioned steps are done level by level. It is guaranteed that every right node has a sibling (a left node with the same parent) and has no children. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/08/29/updown.jpg] \n \n```\nInput:\n root = [1,2,3,4,5]\n\nOutput:\n [4,5,2,null,null,3,1]\n```\n\n Example 2: \n \n```\nInput:\n root = []\n\nOutput:\n []\n```\n\n Example 3: \n \n```\nInput:\n root = [1]\n\nOutput:\n [1]\n```\n\n Constraints: \n\n The number of nodes in the tree will be in the range [0, 10] . \n \n 1 <= Node.val <= 10 \n \n Every right node in the tree has a sibling (a left node that shares the same parent). \n \n Every right node in the tree has no children.",
+  "code": "class Solution\n{\npublic:\n    TreeNode*upsideDownBinaryTree(TreeNode*root)\n    {\n        TreeNode*parent = nullptr,*right = nullptr;\n        while (root)\n        {\n            TreeNode*next = root->left;\n            root->left = right;\n            right = root->right;\n            root->right = parent;\n            parent = root;\n            root = next;\n        }\n        return parent;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178286405",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

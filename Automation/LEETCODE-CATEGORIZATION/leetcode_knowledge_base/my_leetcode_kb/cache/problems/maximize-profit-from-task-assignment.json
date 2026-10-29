@@ -1,0 +1,37 @@
+{
+  "id": "3476",
+  "title": "Maximize Profit from Task Assignment",
+  "slug": "maximize-profit-from-task-assignment",
+  "url": "https://leetcode.com/problems/maximize-profit-from-task-assignment/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Ordered map",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array workers , where workers[i] represents the skill level of the i th worker. You are also given a 2D integer array tasks , where: \n\n tasks[i][0] represents the skill requirement needed to complete the task. \n \n tasks[i][1] represents the profit earned from completing the task. \n\n Each worker can complete at most one task, and they can only take a task if their skill level is equal to the task's skill requirement. An additional worker joins today who can take up any task, regardless of the skill requirement. \n \n Return the maximum total profit that can be earned by optimally assigning the tasks to the workers. \n\n Example 1: \n\n Input: workers = [1,2,3,4,5], tasks = [[1,100],[2,400],[3,100],[3,400]] \n \n Output: 1000 \n \n Explanation: \n\n Worker 0 completes task 0. \n \n Worker 1 completes task 1. \n \n Worker 2 completes task 3. \n \n The additional worker completes task 2. \n\n Example 2: \n\n Input: workers = [10,10000,100000000], tasks = [[1,100]] \n \n Output: 100 \n \n Explanation: \n \n Since no worker matches the skill requirement, only the additional worker can complete task 0. \n\n Example 3: \n\n Input: workers = [7], tasks = [[3,3],[3,3]] \n \n Output: 3 \n \n Explanation: \n \n The additional worker completes task 1. Worker 0 cannot work since no task has a skill requirement of 7. \n\n Constraints: \n\n 1 <= workers.length <= 10 5 \n \n 1 <= workers[i] <= 10 9 \n \n 1 <= tasks.length <= 10 5 \n \n tasks[i].length == 2 \n \n 1 <= tasks[i][0], tasks[i][1] <= 10 9",
+  "code": "class Solution {\n    public:long long maxProfit(vector<int>& workers,vector<vector<int>>& tasks) {\n        unordered_map<int,int> capacity;\n        for(int w:workers)capacity[w]++;\n        unordered_map<int,vector<int>> profit;\n        for(auto &t:tasks)profit[t[0]].push_back(t[1]);\n        long long base=0;\n        int extra=0;\n        for(auto &entry:profit) {\n            auto &v=entry.second;\n            sort(v.begin(),v.end(),greater<int>());\n            int cnt=min((int)v.size(),capacity[entry.first]);\n            for(int i=0; i<cnt; i++)base+=v[i];\n            if(cnt<(int)v.size())extra=max(extra,v[cnt]);\n            else if(cnt>0)extra=max(extra,0);\n        }\n        return base+extra;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179345142",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

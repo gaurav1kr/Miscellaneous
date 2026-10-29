@@ -1,0 +1,31 @@
+{
+  "id": "2310",
+  "title": "Sum of Numbers With Units Digit K",
+  "slug": "sum-of-numbers-with-units-digit-k",
+  "url": "https://leetcode.com/problems/sum-of-numbers-with-units-digit-k/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Greedy",
+    "Enumeration"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "Given two integers num and k , consider a set of positive integers with the following properties: \n\n The units digit of each integer is k . \n \n The sum of the integers is num . \n\n Return the minimum possible size of such a set, or -1 if no such set exists. \n \n Note: \n\n The set can contain multiple instances of the same integer, and the sum of an empty set is considered 0 . \n \n The units digit of a number is the rightmost digit of the number. \n\n Example 1: \n \n```\nInput:\n num = 58, k = 9\n\nOutput:\n 2\n\nExplanation:\n\nOne valid set is [9,49], as the sum is 58 and each integer has a units digit of 9.\nAnother valid set is [19,39].\nIt can be shown that 2 is the minimum possible size of a valid set.\n```\n\n Example 2: \n \n```\nInput:\n num = 37, k = 2\n\nOutput:\n -1\n\nExplanation:\n It is not possible to obtain a sum of 37 using only integers that have a units digit of 2.\n```\n\n Example 3: \n \n```\nInput:\n num = 0, k = 7\n\nOutput:\n 0\n\nExplanation:\n The sum of an empty set is considered 0.\n```\n\n Constraints: \n\n 0 <= num <= 3000 \n \n 0 <= k <= 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int minimumNumbers(int num,int k){if(num==0)return 0;for(int cnt=1;cnt<=10;++cnt)if(cnt*k<=num&&(cnt*k)%10==num%10)return cnt;return -1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175913300",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

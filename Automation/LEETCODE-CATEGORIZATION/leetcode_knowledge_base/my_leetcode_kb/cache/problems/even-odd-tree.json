@@ -1,0 +1,31 @@
+{
+  "id": "1609",
+  "title": "Even Odd Tree",
+  "slug": "even-odd-tree",
+  "url": "https://leetcode.com/problems/even-odd-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list"
+  ],
+  "description": "A binary tree is named Even-Odd if it meets the following conditions: \n\n The root of the binary tree is at level index 0 , its children are at level index 1 , their children are at level index 2 , etc. \n \n For every even-indexed level, all nodes at the level have odd integer values in strictly increasing order (from left to right). \n \n For every odd-indexed level, all nodes at the level have even integer values in strictly decreasing order (from left to right). \n\n Given the root of a binary tree, return true if the binary tree is Even-Odd , otherwise return false . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/15/sample_1_1966.png] \n \n```\nInput:\n root = [1,10,4,3,null,7,9,12,8,6,null,null,2]\n\nOutput:\n true\n\nExplanation:\n The node values on each level are:\nLevel 0: [1]\nLevel 1: [10,4]\nLevel 2: [3,7,9]\nLevel 3: [12,8,6,2]\nSince levels 0 and 2 are all odd and increasing and levels 1 and 3 are all even and decreasing, the tree is Even-Odd.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/09/15/sample_2_1966.png] \n \n```\nInput:\n root = [5,4,2,3,3,7]\n\nOutput:\n false\n\nExplanation:\n The node values on each level are:\nLevel 0: [5]\nLevel 1: [4,2]\nLevel 2: [3,3,7]\nNode values in level 2 must be in strictly increasing order, so the tree is not Even-Odd.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/09/22/sample_1_333_1966.png] \n \n```\nInput:\n root = [5,9,1,3,5,7]\n\nOutput:\n false\n\nExplanation:\n Node values in the level 1 should be even integers.\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 5 ] . \n \n 1 <= Node.val <= 10 6",
+  "code": "#include <queue>\n\n\nclass Solution {\npublic:\n    bool isEvenOddTree(TreeNode* root) {\n        queue<TreeNode*> q;\n        q.push(root);\n        bool even = true;\n        while (!q.empty()) {\n            int size = q.size();\n            int prev = even ? INT_MIN : INT_MAX;\n            for (int i = 0; i < size; ++i) {\n                TreeNode* node = q.front(); q.pop();\n                if ((even && (node->val % 2 == 0 || node->val <= prev)) ||\n                    (!even && (node->val % 2 == 1 || node->val >= prev)))\n                    return false;\n                prev = node->val;\n                if (node->left) q.push(node->left);\n                if (node->right) q.push(node->right);\n            }\n            even = !even;\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612879344",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

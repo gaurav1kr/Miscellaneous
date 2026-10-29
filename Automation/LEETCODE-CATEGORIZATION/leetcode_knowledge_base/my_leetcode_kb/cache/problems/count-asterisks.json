@@ -1,0 +1,26 @@
+{
+  "id": "2315",
+  "title": "Count Asterisks",
+  "slug": "count-asterisks",
+  "url": "https://leetcode.com/problems/count-asterisks/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s , where every two consecutive vertical bars '|' are grouped into a pair . In other words, the 1 st and 2 nd '|' make a pair, the 3 rd and 4 th '|' make a pair, and so forth. \n \n Return the number of '*' in s , excluding the '*' between each pair of '|' . \n \n Note that each '|' will belong to exactly one pair. \n\n Example 1: \n \n```\nInput:\n s = \"l|*e*et|c**o|*de|\"\n\nOutput:\n 2\n\nExplanation:\n The considered characters are underlined: \"\nl\n|*e*et|\nc**o\n|*de|\".\nThe characters between the first and second '|' are excluded from the answer.\nAlso, the characters between the third and fourth '|' are excluded from the answer.\nThere are 2 asterisks considered. Therefore, we return 2.\n```\n\n Example 2: \n \n```\nInput:\n s = \"iamprogrammer\"\n\nOutput:\n 0\n\nExplanation:\n In this example, there are no asterisks in s. Therefore, we return 0.\n```\n\n Example 3: \n \n```\nInput:\n s = \"yo|uar|e**|b|e***au|tifu|l\"\n\nOutput:\n 5\n\nExplanation:\n The considered characters are underlined: \"\nyo\n|uar|\ne**\n|b|\ne***au\n|tifu|\nl\n\". There are 5 asterisks considered. Therefore, we return 5.\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of lowercase English letters, vertical bars '|' , and asterisks '*' . \n \n s contains an even number of vertical bars '|' .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int countAsterisks(string s){bool inside=false;int ans=0;for(char c:s){if(c=='|')inside=!inside;else if(c=='*'&&!inside)++ans;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175914325",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

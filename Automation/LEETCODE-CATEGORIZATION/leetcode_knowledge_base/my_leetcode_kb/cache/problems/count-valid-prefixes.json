@@ -1,0 +1,28 @@
+{
+  "id": "4006",
+  "title": "Count Valid Prefixes",
+  "slug": "count-valid-prefixes",
+  "url": "https://leetcode.com/problems/count-valid-prefixes/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a binary string s . \n \n A prefix of s is considered valid if its characters can be rearranged to form an alternating string. \n \n Return the number of valid prefixes of s . \n \n A string is considered alternating if no two adjacent characters are equal. \n\n Example 1: \n\n Input: s = \"00101\" \n \n Output: 3 \n \n Explanation: \n \n The valid prefixes are: \n\n \"0\" : It is already an alternating string. \n \n \"001\" : It can be rearranged into \"010\" , which is an alternating string. \n \n \"00101\" : It can be rearranged into \"01010\" , which is an alternating string. \n\n Thus, the answer is 3. \n\n Example 2: \n\n Input: s = \"101\" \n \n Output: 3 \n \n Explanation: \n \n All prefixes of s = \"101\" are already alternating strings. Thus, the answer is 3. \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists only of '0' and '1' .",
+  "code": "class Solution {\npublic:\n    int countValidPrefixes(string s) {\n        int zeros = 0, ones = 0, ans = 0;\n        for (char c : s) {\n            if (c == '0') ++zeros; else ++ones;\n            if (abs(zeros - ones) <= 1) ++ans;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179329261",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

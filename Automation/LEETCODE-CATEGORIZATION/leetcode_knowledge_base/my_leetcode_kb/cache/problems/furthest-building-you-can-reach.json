@@ -1,0 +1,34 @@
+{
+  "id": "1642",
+  "title": "Furthest Building You Can Reach",
+  "slug": "furthest-building-you-can-reach",
+  "url": "https://leetcode.com/problems/furthest-building-you-can-reach/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer array heights representing the heights of buildings, some bricks , and some ladders . \n \n You start your journey from building 0 and move to the next building by possibly using bricks or ladders. \n \n While moving from building i to building i+1 ( 0-indexed ), \n\n If the current building's height is greater than or equal to the next building's height, you do not need a ladder or bricks. \n \n If the current building's height is less than the next building's height, you can either use one ladder or (h[i+1] - h[i]) bricks . \n\n Return the furthest building index (0-indexed) you can reach if you use the given ladders and bricks optimally. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/27/q4.gif] \n \n```\nInput:\n heights = [4,2,7,6,9,14,12], bricks = 5, ladders = 1\n\nOutput:\n 4\n\nExplanation:\n Starting at building 0, you can follow these steps:\n- Go to building 1 without using ladders nor bricks since 4 >= 2.\n- Go to building 2 using 5 bricks. You must use either bricks or ladders because 2 < 7.\n- Go to building 3 without using ladders nor bricks since 7 >= 6.\n- Go to building 4 using your only ladder. You must use either bricks or ladders because 6 < 9.\nIt is impossible to go beyond building 4 because you do not have any more bricks or ladders.\n```\n\n Example 2: \n \n```\nInput:\n heights = [4,12,2,7,3,18,20,3,19], bricks = 10, ladders = 2\n\nOutput:\n 7\n```\n\n Example 3: \n \n```\nInput:\n heights = [14,3,19,3], bricks = 17, ladders = 0\n\nOutput:\n 3\n```\n\n Constraints: \n\n 1 <= heights.length <= 10 5 \n \n 1 <= heights[i] <= 10 6 \n \n 0 <= bricks <= 10 9 \n \n 0 <= ladders <= heights.length",
+  "code": "#include <vector>\n#include <queue>\nusing namespace std;\n\nclass Solution {\npublic:\n    int furthestBuilding(vector<int>& heights, int bricks, int ladders) {\n        priority_queue<int> maxHeap;\n        for (int i = 0; i < heights.size() - 1; i++) {\n            int diff = heights[i + 1] - heights[i];\n            if (diff > 0) {\n                maxHeap.push(diff);\n                bricks -= diff;\n                if (bricks < 0) {\n                    if (ladders == 0) return i;\n                    bricks += maxHeap.top();\n                    maxHeap.pop();\n                    ladders--;\n                }\n            }\n        }\n        return heights.size() - 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590162734",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

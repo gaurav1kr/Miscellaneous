@@ -1,0 +1,35 @@
+{
+  "id": "1568",
+  "title": "Minimum Number of Days to Disconnect Island",
+  "slug": "minimum-number-of-days-to-disconnect-island",
+  "url": "https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Matrix",
+    "Strongly Connected Component",
+    "Articulation Point"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an m x n binary grid grid where 1 represents land and 0 represents water. An island is a maximal 4-directionally (horizontal or vertical) connected group of 1 's. \n \n The grid is said to be connected if we have exactly one island , otherwise is said disconnected . \n \n In one day, we are allowed to change any single land cell (1) into a water cell (0) . \n \n Return the minimum number of days to disconnect the grid . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/12/24/land1.jpg] \n \n```\nInput:\n grid = [[0,1,1,0],[0,1,1,0],[0,0,0,0]]\n\nOutput:\n 2\n\nExplanation:\n We need at least 2 days to get a disconnected grid.\nChange land grid[1][1] and grid[0][2] to water and get 2 disconnected island.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/12/24/land2.jpg] \n \n```\nInput:\n grid = [[1,1]]\n\nOutput:\n 2\n\nExplanation:\n Grid of full water is also disconnected ([[1,1]] -> [[0,0]]), 0 islands.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 30 \n \n grid[i][j] is either 0 or 1 .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\n    int islands(vector<vector<int>>& g) {\n        int m = g.size(), n = g[0].size(), count = 0;\n        vector<vector<bool>> seen(m, vector<bool>(n, false));\n        int dx[4] = {1, -1, 0, 0}, dy[4] = {0, 0, 1, -1};\n        for (int i = 0; i < m; ++i) for (int j = 0; j < n; ++j) {\n            if (g[i][j] != 1 || seen[i][j]) continue;\n            ++count;\n            queue<pair<int,int>> q; q.push({i,j}); seen[i][j] = true;\n            while (!q.empty()) {\n                auto p = q.front(); q.pop();\n                for (int d = 0; d < 4; ++d) {\n                    int x = p.first + dx[d], y = p.second + dy[d];\n                    if (x < 0 || y < 0 || x >= m || y >= n ||\n                        g[x][y] != 1 || seen[x][y]) continue;\n                    seen[x][y] = true; q.push({x,y});\n                }\n            }\n        }\n        return count;\n    }\npublic:\n    int minDays(vector<vector<int>>& grid) {\n        if (islands(grid) != 1) return 0;\n        for (int i = 0; i < (int)grid.size(); ++i)\n            for (int j = 0; j < (int)grid[0].size(); ++j) {\n                if (grid[i][j] == 0) continue;\n                grid[i][j] = 0;\n                int count = islands(grid);\n                grid[i][j] = 1;\n                if (count != 1) return 1;\n            }\n        return 2;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175755021",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "390",
+  "title": "Elimination Game",
+  "slug": "elimination-game",
+  "url": "https://leetcode.com/problems/elimination-game/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Recursion"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You have a list arr of all integers in the range [1, n] sorted in a strictly increasing order. Apply the following algorithm on arr : \n\n Starting from left to right, remove the first number and every other number afterward until you reach the end of the list. \n \n Repeat the previous step again, but this time from right to left, remove the rightmost number and every other number from the remaining numbers. \n \n Keep repeating the steps again, alternating left to right and right to left, until a single number remains. \n\n Given the integer n , return the last number that remains in arr . \n\n Example 1: \n \n```\nInput:\n n = 9\n\nOutput:\n 6\n\nExplanation:\n\narr = [\n1\n, 2, \n3\n, 4, \n5\n, 6, \n7\n, 8, \n9\n]\narr = [2, \n4\n, 6, \n8\n]\narr = [\n2\n, 6]\narr = [6]\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "class Solution {\npublic:\n    int lastRemaining(int n) {\n        int head = 1, step = 1;\n        bool left = true;\n        while (n > 1) {\n            if (left || n % 2 == 1)\n                head += step;\n            step *= 2;\n            n /= 2;\n            left = !left;\n        }\n        return head;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595369106",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

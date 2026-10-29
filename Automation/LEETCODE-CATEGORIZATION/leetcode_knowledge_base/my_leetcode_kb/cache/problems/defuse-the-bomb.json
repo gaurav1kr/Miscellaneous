@@ -1,0 +1,29 @@
+{
+  "id": "1652",
+  "title": "Defuse the Bomb",
+  "slug": "defuse-the-bomb",
+  "url": "https://leetcode.com/problems/defuse-the-bomb/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You have a bomb to defuse, and your time is running out! Your informer will provide you with a circular array code  of length of n  and a key k . \n \n To decrypt the code, you must replace every number. All the numbers are replaced simultaneously . \n\n If k > 0 , replace the i th number with the sum of the next k numbers. \n \n If k < 0 , replace the i th number with the sum of the previous  - k numbers. \n \n If k == 0 , replace the i th number with 0 . \n\n As code is circular, the next element of code[n-1] is code[0] , and the previous element of code[0] is code[n-1] . \n \n Given the circular array code and an integer key k , return the decrypted code to defuse the bomb ! \n\n Example 1: \n \n```\nInput:\n code = [5,7,1,4], k = 3\n\nOutput:\n [12,10,16,13]\n\nExplanation:\n Each number is replaced by the sum of the next 3 numbers. The decrypted code is [7+1+4, 1+4+5, 4+5+7, 5+7+1]. Notice that the numbers wrap around.\n```\n\n Example 2: \n \n```\nInput:\n code = [1,2,3,4], k = 0\n\nOutput:\n [0,0,0,0]\n\nExplanation:\n When k is zero, the numbers are replaced by 0.\n```\n\n Example 3: \n \n```\nInput:\n code = [2,4,9,3], k = -2\n\nOutput:\n [12,5,6,13]\n\nExplanation:\n The decrypted code is [3+9, 2+3, 4+2, 9+4]. Notice that the numbers wrap around again. If k is negative, the sum is of the \nprevious\n numbers.\n```\n\n Constraints: \n\n n == code.length \n \n 1 <= n <= 100 \n \n 1 <= code[i] <= 100 \n \n -(n - 1) <= k <= n - 1",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> decrypt(vector<int>& code, int k) {\n        int n = code.size();\n        vector<int> ans(n, 0);\n        if (k == 0) return ans;\n        int start = k > 0 ? 1 : n + k;\n        int length = abs(k), sum = 0;\n        for (int j = 0; j < length; ++j) sum += code[(start + j) % n];\n        for (int i = 0; i < n; ++i) {\n            ans[i] = sum;\n            sum -= code[(start + i) % n];\n            sum += code[(start + i + length) % n];\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175757041",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

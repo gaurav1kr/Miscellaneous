@@ -1,0 +1,29 @@
+{
+  "id": "1827",
+  "title": "Minimum Operations to Make the Array Increasing",
+  "slug": "minimum-operations-to-make-the-array-increasing",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-the-array-increasing/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums ( 0-indexed ). In one operation, you can choose an element of the array and increment it by 1 . \n\n For example, if nums = [1,2,3] , you can choose to increment nums[1] to make nums = [1, 3 ,3] . \n\n Return the minimum number of operations needed to make nums strictly increasing . \n \n An array nums is strictly increasing if nums[i] < nums[i+1] for all 0 <= i < nums.length - 1 . An array of length 1 is trivially strictly increasing. \n\n Example 1: \n \n```\nInput:\n nums = [1,1,1]\r\n\nOutput:\n 3\r\n\nExplanation:\n You can do the following operations:\r\n1) Increment nums[2], so nums becomes [1,1,\n2\n].\r\n2) Increment nums[1], so nums becomes [1,\n2\n,2].\r\n3) Increment nums[2], so nums becomes [1,2,\n3\n].\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,5,2,4,1]\r\n\nOutput:\n 14\n```\n\n Example 3: \n \n```\nInput:\n nums = [8]\r\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= nums.length <= 5000 \n \n 1 <= nums[i] <= 10 4",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        int res = 0;\n        for (int i = 1; i < nums.size(); ++i) {\n            if (nums[i] <= nums[i - 1]) {\n                res += nums[i - 1] - nums[i] + 1;\n                nums[i] = nums[i - 1] + 1;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610584276",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

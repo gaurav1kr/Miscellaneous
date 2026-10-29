@@ -1,0 +1,24 @@
+{
+  "id": "476",
+  "title": "Number Complement",
+  "slug": "number-complement",
+  "url": "https://leetcode.com/problems/number-complement/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "The complement of an integer is the integer you get when you flip all the 0 's to 1 's and all the 1 's to 0 's in its binary representation. \n\n For example, The integer 5 is \"101\" in binary and its complement is \"010\" which is the integer 2 . \n\n Given an integer num , return its complement . \n\n Example 1: \n \n```\nInput:\n num = 5\n\nOutput:\n 2\n\nExplanation:\n The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.\n```\n\n Example 2: \n \n```\nInput:\n num = 1\n\nOutput:\n 0\n\nExplanation:\n The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.\n```\n\n Constraints: \n\n 1 <= num < 2 31 \n\n Note: This question is the same as 1009: https://leetcode.com/problems/complement-of-base-10-integer/",
+  "code": "class Solution {\npublic:\n    int findComplement(int num) {\n        int mask = 0, temp = num;\n        while (temp) {\n            mask = (mask << 1) | 1;\n            temp >>= 1;\n        }\n        return num ^ mask;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588072267",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "1017",
+  "title": "Convert to Base -2",
+  "slug": "convert-to-base-2",
+  "url": "https://leetcode.com/problems/convert-to-base-2/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given an integer n , return a binary string representing its representation in base -2 . \n \n Note that the returned string should not have leading zeros unless the string is \"0\" . \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n \"110\"\n\nExplantion:\n (-2)\n2\n + (-2)\n1\n = 2\n```\n\n Example 2: \n \n```\nInput:\n n = 3\n\nOutput:\n \"111\"\n\nExplantion:\n (-2)\n2\n + (-2)\n1\n + (-2)\n0\n = 3\n```\n\n Example 3: \n \n```\nInput:\n n = 4\n\nOutput:\n \"100\"\n\nExplantion:\n (-2)\n2\n = 4\n```\n\n Constraints: \n\n 0 <= n <= 10 9",
+  "code": "class Solution {\npublic:\n    string baseNeg2(int n) {\n        if (n == 0) return \"0\";\n        string result;\n        while (n != 0) {\n            int bit = n & 1;\n            result += char('0' + bit);\n            n = (n - bit) / -2;\n        }\n        reverse(result.begin(), result.end());\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175745242",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

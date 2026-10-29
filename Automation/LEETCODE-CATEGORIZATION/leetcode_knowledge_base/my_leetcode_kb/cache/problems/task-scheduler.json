@@ -1,0 +1,39 @@
+{
+  "id": "621",
+  "title": "Task Scheduler",
+  "slug": "task-scheduler",
+  "url": "https://leetcode.com/problems/task-scheduler/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array of CPU tasks , each labeled with a letter from A to Z, and a number n . Each CPU interval can be idle or allow the completion of one task. Tasks can be completed in any order, but there's a constraint: there has to be a gap of at least n intervals between two tasks with the same label. \n \n Return the minimum number of CPU intervals required to complete all tasks. \n\n Example 1: \n\n Input: tasks = [\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], n = 2 \n \n Output: 8 \n \n Explanation: A possible sequence is: A -> B -> idle -> A -> B -> idle -> A -> B. \n \n After completing task A, you must wait two intervals before doing A again. The same applies to task B. In the 3 rd interval, neither A nor B can be done, so you idle. By the 4 th interval, you can do A again as 2 intervals have passed. \n\n Example 2: \n\n Input: tasks = [\"A\",\"C\",\"A\",\"B\",\"D\",\"B\"], n = 1 \n \n Output: 6 \n \n Explanation: A possible sequence is: A -> B -> C -> D -> A -> B. \n \n With a cooling interval of 1, you can repeat a task after just one other task. \n\n Example 3: \n\n Input: tasks = [\"A\",\"A\",\"A\", \"B\",\"B\",\"B\"], n = 3 \n \n Output: 10 \n \n Explanation: A possible sequence is: A -> B -> idle -> idle -> A -> B -> idle -> idle -> A -> B. \n \n There are only two types of tasks, A and B, which need to be separated by 3 intervals. This leads to idling twice between repetitions of these tasks. \n\n Constraints: \n\n 1 <= tasks.length <= 10 4 \n \n tasks[i] is an uppercase English letter. \n \n 0 <= n <= 100",
+  "code": "class Solution {\npublic:\n    int leastInterval(vector<char>& tasks, int n) {\n        // Step 1: Count the frequency of each task\n        vector<int> freq(26, 0);\n        for (char task : tasks) {\n            freq[task - 'A']++;\n        }\n\n        // Step 2: Find the task with the maximum frequency\n        int maxFreq = *max_element(freq.begin(), freq.end());\n        int maxCount = count(freq.begin(), freq.end(), maxFreq);\n\n        // Step 3: Calculate the minimum time using the formula\n        int partCount = maxFreq - 1;\n        int partLength = n - (maxCount - 1);\n        int emptySlots = partCount * partLength;\n        int availableTasks = tasks.size() - maxFreq * maxCount;\n        int idleTime = max(0, emptySlots - availableTasks);\n\n        return tasks.size() + idleTime;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541827282",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "4004",
+  "title": "Minimum Moves to Balance Circular Array II",
+  "slug": "minimum-moves-to-balance-circular-array-ii",
+  "url": "https://leetcode.com/problems/minimum-moves-to-balance-circular-array-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Graph Theory",
+    "Minimum-Cost Flow"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a circular array balance of length n , where balance[i] is the net balance of person i . \n \n In one move, a person can transfer exactly 1 unit of balance to either their left or right neighbor. \n \n Return the minimum number of moves required so that every person has a non-negative balance. If it is impossible, return -1. \n\n Example 1: \n\n Input: balance = [-1,2,-1] \n \n Output: 2 \n \n Explanation: \n \n One optimal sequence of moves is: \n\n Move 1 unit from i = 1 to i = 0 , resulting in balance = [0, 1, -1] \n \n Move 1 unit from i = 1 to i = 2 , resulting in balance = [0, 0, 0] \n\n Thus, the minimum number of moves required is 2. \n\n Example 2: \n\n Input: balance = [4,-1,-2] \n \n Output: 3 \n \n Explanation: \n \n One optimal sequence of moves is: \n\n Move 1 unit from i = 0 to i = 1 , resulting in balance = [3, 0, -2] \n \n Move 1 unit from i = 0 to i = 2 , resulting in balance = [2, 0, -1] \n \n Move 1 unit from i = 0 to i = 2 , resulting in balance = [1, 0, 0] \n\n Thus, the minimum number of moves required is 3. \n\n Example 3: \n\n Input: balance = [-3,-3,5] \n \n Output: -1 \n \n Explanation: \n \n It is impossible to make all balances non-negative for balance = [-3, -3, 5] , so the answer is -1. \n\n Constraints: \n\n 1 <= n == balance.length <= 1000 \n \n -10 5 <= balance[i] <= 10 5",
+  "code": "class Solution {\n    struct Edge { int to, rev; long long cap, cost; };\n    vector<vector<Edge>> g;\n    void addEdge(int u,int v,long long cap,long long cost) {\n        Edge a={v,(int)g[v].size(),cap,cost};\n        Edge b={u,(int)g[u].size(),0,-cost};\n        g[u].push_back(a);g[v].push_back(b);\n    }\npublic:\n    long long minMoves(vector<int>& balance) {\n        int n=balance.size(),S=n,T=n+1;\n        long long total=0,need=0;\n        for(int x:balance)total+=x;\n        if(total<0)return -1;\n        g.assign(n+2,{});\n        const long long INF=(1LL<<60);\n        for(int i=0;i<n;++i) {\n            if(balance[i]>0)addEdge(S,i,balance[i],0);\n            if(balance[i]<0) {\n                addEdge(i,T,-(long long)balance[i],0);\n                need-=balance[i];\n            }\n            if(n>1) addEdge(i,(i+1)%n,INF,1);\n            if(n>1) addEdge(i,(i+n-1)%n,INF,1);\n        }\n        vector<long long> pot(n+2,0),dist(n+2);\n        long long answer=0;\n        while(need>0) {\n            fill(dist.begin(),dist.end(),INF);\n            vector<int> pv(n+2,-1),pe(n+2,-1);\n            priority_queue<pair<long long,int>,vector<pair<long long,int>>,\n                           greater<pair<long long,int>>> pq;\n            dist[S]=0;pq.push({0,S});\n            while(!pq.empty()) {\n                auto cur=pq.top();pq.pop();\n                long long d=cur.first;int u=cur.second;\n                if(d!=dist[u])continue;\n                for(int i=0;i<(int)g[u].size();++i) {\n                    Edge &e=g[u][i];\n                    if(e.cap==0)continue;\n                    long long nd=d+e.cost+pot[u]-pot[e.to];\n                    if(nd<dist[e.to]) {\n                        dist[e.to]=nd;pv[e.to]=u;pe[e.to]=i;\n                        pq.push({nd,e.to});\n                    }\n                }\n            }\n            if(dist[T]==INF)return -1;\n            for(int v=0;v<n+2;++v)if(dist[v]<INF)pot[v]+=dist[v];\n            long long f=need;\n            for(int v=T;v!=S;v=pv[v])\n                f=min(f,g[pv[v]][pe[v]].cap);\n            for(int v=T;v!=S;v=pv[v]) {\n                Edge &e=g[pv[v]][pe[v]];\n                e.cap-=f;g[v][e.rev].cap+=f;\n                answer+=f*e.cost;\n            }\n            need-=f;\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181502057",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

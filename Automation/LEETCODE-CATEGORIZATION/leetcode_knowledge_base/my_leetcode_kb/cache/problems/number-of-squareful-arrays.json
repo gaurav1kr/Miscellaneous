@@ -1,0 +1,41 @@
+{
+  "id": "996",
+  "title": "Number of Squareful Arrays",
+  "slug": "number-of-squareful-arrays",
+  "url": "https://leetcode.com/problems/number-of-squareful-arrays/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "An array is squareful if the sum of every pair of adjacent elements is a perfect square . \n \n Given an integer array nums, return the number of permutations of nums that are squareful . \n \n Two permutations perm1 and perm2 are different if there is some index i such that perm1[i] != perm2[i] . \n\n Example 1: \n \n```\nInput:\n nums = [1,17,8]\n\nOutput:\n 2\n\nExplanation:\n [1,8,17] and [17,8,1] are the valid permutations.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,2,2]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= nums.length <= 12 \n \n 0 <= nums[i] <= 10 9",
+  "code": "#include <vector>\n#include <cmath>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\n    int res = 0;\n\npublic:\n    int numSquarefulPerms(vector<int>& nums) {\n        sort(nums.begin(), nums.end());\n        vector<bool> used(nums.size(), false);\n        backtrack(nums, used, {}, 0);\n        return res;\n    }\n\n    void backtrack(vector<int>& nums, vector<bool>& used, vector<int> path, int depth) {\n        if (depth == nums.size()) {\n            res++;\n            return;\n        }\n\n        for (int i = 0; i < nums.size(); ++i) {\n            if (used[i] || (i > 0 && nums[i] == nums[i - 1] && !used[i - 1])) continue;\n            if (!path.empty()) {\n                int sum = path.back() + nums[i];\n                int root = sqrt(sum);\n                if (root * root != sum) continue;\n            }\n            used[i] = true;\n            path.push_back(nums[i]);\n            backtrack(nums, used, path, depth + 1);\n            path.pop_back();\n            used[i] = false;\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595400783",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

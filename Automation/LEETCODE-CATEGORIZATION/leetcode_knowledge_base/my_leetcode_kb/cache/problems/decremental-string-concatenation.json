@@ -1,0 +1,33 @@
+{
+  "id": "2746",
+  "title": "Decremental String Concatenation",
+  "slug": "decremental-string-concatenation",
+  "url": "https://leetcode.com/problems/decremental-string-concatenation/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array words containing n strings. \n \n Let's define a join operation join(x, y) between two strings x and y as concatenating them into xy . However, if the last character of x is equal to the first character of y , one of them is deleted . \n \n For example join(\"ab\", \"ba\") = \"aba\" and join(\"ab\", \"cde\") = \"abcde\" . \n \n You are to perform n - 1 join operations. Let str 0 = words[0] . Starting from i = 1 up to i = n - 1 , for the i th operation, you can do one of the following: \n\n Make str i = join(str i - 1 , words[i]) \n \n Make str i = join(words[i], str i - 1 ) \n\n Your task is to minimize the length of str n - 1 . \n \n Return an integer denoting the minimum possible length of str n - 1 . \n\n Example 1: \n \n```\nInput:\n words = [\"aa\",\"ab\",\"bc\"]\n\nOutput:\n 4\n\nExplanation: \nIn this example, we can perform join operations in the following order to minimize the length of str\n2\n: \nstr\n0\n = \"aa\"\nstr\n1\n = join(str\n0\n, \"ab\") = \"aab\"\nstr\n2\n = join(str\n1\n, \"bc\") = \"aabc\" \nIt can be shown that the minimum possible length of str\n2\n is 4.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"ab\",\"b\"]\n\nOutput:\n 2\n\nExplanation:\n In this example, str\n0\n = \"ab\", there are two ways to get str\n1\n: \njoin(str\n0\n, \"b\") = \"ab\" or join(\"b\", str\n0\n) = \"bab\". \nThe first string, \"ab\", has the minimum length. Hence, the answer is 2.\n```\n\n Example 3: \n \n```\nInput:\n words = [\"aaa\",\"c\",\"aba\"]\n\nOutput:\n 6\n\nExplanation:\n In this example, we can perform join operations in the following order to minimize the length of str\n2\n: \nstr\n0\n = \"aaa\"\nstr\n1\n = join(str\n0\n, \"c\") = \"aaac\"\nstr\n2\n = join(\"aba\", str\n1\n) = \"abaaac\"\nIt can be shown that the minimum possible length of str\n2\n is 6.\n```\n\n Constraints: \n\n 1 <= words.length <= 1000 \n \n 1 <= words[i].length <= 50 \n \n Each character in words[i] is an English lowercase letter",
+  "code": "class Solution {public:int minimizeConcatenatedLength(vector<string>& words){const int INF=1e9;vector<vector<int>>dp(26,vector<int>(26,INF));int a=words[0].front()-'a',b=words[0].back()-'a';dp[a][b]=words[0].size();for(int i=1;i<(int)words.size();++i){vector<vector<int>>ndp(26,vector<int>(26,INF));int x=words[i].front()-'a',y=words[i].back()-'a',len=words[i].size();for(int f=0;f<26;++f)for(int l=0;l<26;++l)if(dp[f][l]<INF){ndp[f][y]=min(ndp[f][y],dp[f][l]+len-(l==x));ndp[x][l]=min(ndp[x][l],dp[f][l]+len-(y==f));}dp.swap(ndp);}int ans=INF;for(auto &row:dp)for(int v:row)ans=min(ans,v);return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176690246",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

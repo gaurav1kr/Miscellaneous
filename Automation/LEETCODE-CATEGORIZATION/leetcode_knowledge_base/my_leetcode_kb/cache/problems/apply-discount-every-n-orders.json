@@ -1,0 +1,34 @@
+{
+  "id": "1357",
+  "title": "Apply Discount Every n Orders",
+  "slug": "apply-discount-every-n-orders",
+  "url": "https://leetcode.com/problems/apply-discount-every-n-orders/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Design"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "There is a supermarket that is frequented by many customers. The products sold at the supermarket are represented as two parallel integer arrays products and prices , where the i th product has an ID of products[i] and a price of prices[i] . \n \n When a customer is paying, their bill is represented as two parallel integer arrays product and amount , where the j th product they purchased has an ID of product[j] , and amount[j] is how much of the product they bought. Their subtotal is calculated as the sum of each amount[j] * (price of the j th product) . \n \n The supermarket decided to have a sale. Every n th customer paying for their groceries will be given a percentage discount . The discount amount is given by discount , where they will be given discount percent off their subtotal. More formally, if their subtotal is bill , then they would actually pay bill * ((100 - discount) / 100) . \n \n Implement the Cashier class: \n\n Cashier(int n, int discount, int[] products, int[] prices) Initializes the object with n , the discount , and the products and their prices . \n \n double getBill(int[] product, int[] amount) Returns the final total of the bill with the discount applied (if any). Answers within 10 -5 of the actual value will be accepted. \n\n Example 1: \n \n```\nInput\n\n[\"Cashier\",\"getBill\",\"getBill\",\"getBill\",\"getBill\",\"getBill\",\"getBill\",\"getBill\"]\n[[3,50,[1,2,3,4,5,6,7],[100,200,300,400,300,200,100]],[[1,2],[1,2]],[[3,7],[10,10]],[[1,2,3,4,5,6,7],[1,1,1,1,1,1,1]],[[4],[10]],[[7,3],[10,10]],[[7,5,3,1,6,4,2],[10,10,10,9,9,9,7]],[[2,3,5],[5,3,2]]]\n\nOutput\n\n[null,500.0,4000.0,800.0,4000.0,4000.0,7350.0,2500.0]\n\nExplanation\n\nCashier cashier = new Cashier(3,50,[1,2,3,4,5,6,7],[100,200,300,400,300,200,100]);\ncashier.getBill([1,2],[1,2]); // return 500.0. 1\nst\n customer, no discount.\n // bill = 1 * 100 + 2 * 200 = 500.\ncashier.getBill([3,7],[10,10]); // return 4000.0. 2\nnd\n customer, no discount.\n // bill = 10 * 300 + 10 * 100 = 4000.\ncashier.getBill([1,2,3,4,5,6,7],[1,1,1,1,1,1,1]); // return 800.0. 3\nrd\n customer, 50% discount.\n // Original bill = 1600\n // Actual bill = 1600 * ((100 - 50) / 100) = 800.\ncashier.getBill([4],[10]); // return 4000.0. 4\nth\n customer, no discount.\ncashier.getBill([7,3],[10,10]); // return 4000.0. 5\nth\n customer, no discount.\ncashier.getBill([7,5,3,1,6,4,2],[10,10,10,9,9,9,7]); // return 7350.0. 6\nth\n customer, 50% discount.\n // Original bill = 14700, but with\n // Actual bill = 14700 * ((100 - 50) / 100) = 7350.\ncashier.getBill([2,3,5],[5,3,2]); // return 2500.0. 7\nth\n customer, no discount.\n```\n\n Constraints: \n\n 1 <= n <= 10 4 \n \n 0 <= discount <= 100 \n \n 1 <= products.length <= 200 \n \n prices.length == products.length \n \n 1 <= products[i] <= 200 \n \n 1 <= prices[i] <= 1000 \n \n The elements in products are unique . \n \n 1 <= product.length <= products.length \n \n amount.length == product.length \n \n product[j] exists in products . \n \n 1 <= amount[j] <= 1000 \n \n The elements of product are unique . \n \n At most 1000 calls will be made to getBill . \n \n Answers within 10 -5 of the actual value will be accepted.",
+  "code": "class Cashier {\n    int n, discount, orders = 0;\n    unordered_map<int, int> price;\npublic:\n    Cashier(int n, int discount, vector<int>& products, vector<int>& prices)\n        : n(n), discount(discount) {\n        for (int i = 0; i < (int)products.size(); ++i)\n            price[products[i]] = prices[i];\n    }\n    double getBill(vector<int> product, vector<int> amount) {\n        double total = 0;\n        for (int i = 0; i < (int)product.size(); ++i)\n            total += 1.0 * price[product[i]] * amount[i];\n        if (++orders % n == 0) total *= (100.0 - discount) / 100.0;\n        return total;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175750218",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "624",
+  "title": "Maximum Distance in Arrays",
+  "slug": "maximum-distance-in-arrays",
+  "url": "https://leetcode.com/problems/maximum-distance-in-arrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given m arrays , where each array is sorted in ascending order . \n \n You can pick up two integers from two different arrays (each array picks one) and calculate the distance. We define the distance between two integers a and b to be their absolute difference |a - b| . \n \n Return the maximum distance . \n\n Example 1: \n \n```\nInput:\n arrays = [[1,2,3],[4,5],[1,2,3]]\n\nOutput:\n 4\n\nExplanation:\n One way to reach the maximum distance 4 is to pick 1 in the first or third array and pick 5 in the second array.\n```\n\n Example 2: \n \n```\nInput:\n arrays = [[1],[1]]\n\nOutput:\n 0\n```\n\n Constraints: \n\n m == arrays.length \n \n 2 <= m <= 10 5 \n \n 1 <= arrays[i].length <= 500 \n \n -10 4 <= arrays[i][j] <= 10 4 \n \n arrays[i] is sorted in ascending order . \n \n There will be at most 10 5 integers in all the arrays.",
+  "code": "class Solution {\npublic:\n    int maxDistance(std::vector<std::vector<int>>& arrays) {\n        int mn = arrays[0].front(), mx = arrays[0].back(), ans = 0;\n        for (int i = 1; i < (int)arrays.size(); ++i) {\n            ans = std::max(ans, arrays[i].back() - mn);\n            ans = std::max(ans, mx - arrays[i].front());\n            mn = std::min(mn, arrays[i].front());\n            mx = std::max(mx, arrays[i].back());\n        }\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175701528",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2046",
+  "title": "Sort Linked List Already Sorted Using Absolute Values",
+  "slug": "sort-linked-list-already-sorted-using-absolute-values",
+  "url": "https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Linked List",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Sorting / Divide and Conquer",
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list",
+    "Sorted array"
+  ],
+  "description": "Given the head of a singly linked list that is sorted in non-decreasing order using the absolute values of its nodes, return the list sorted in non-decreasing order using the actual values of its nodes .\n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/10/17/image-20211017201240-3.png] \n \n```\nInput:\n head = [0,2,-5,5,10,-10]\n\nOutput:\n [-10,-5,0,2,5,10]\n\nExplanation:\n\nThe list sorted in non-descending order using the absolute values of the nodes is [0,2,-5,5,10,-10].\nThe list sorted in non-descending order using the actual values is [-10,-5,0,2,5,10].\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/10/17/image-20211017201318-4.png] \n \n```\nInput:\n head = [0,1,2]\n\nOutput:\n [0,1,2]\n\nExplanation:\n\nThe linked list is already sorted in non-decreasing order.\n```\n\n Example 3: \n \n```\nInput:\n head = [1]\n\nOutput:\n [1]\n\nExplanation:\n\nThe linked list is already sorted in non-decreasing order.\n```\n\n Constraints: \n\n The number of nodes in the list is the range [1, 10 5 ] . \n \n -5000 <= Node.val <= 5000 \n \n head is sorted in non-decreasing order using the absolute value of its nodes. \n\n Follow up: \n\n Can you think of a solution with O(n) time complexity?",
+  "code": "class Solution {\npublic:\n    ListNode* sortLinkedList(ListNode* head) {\n        if (!head) return head;\n        ListNode* prev = head;\n        ListNode* current = head->next;\n        while (current) {\n            if (current->val < 0) {\n                prev->next = current->next;\n                current->next = head;\n                head = current;\n                current = prev->next;\n            } else {\n                prev = current;\n                current = current->next;\n            }\n        }\n        return head;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178634639",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

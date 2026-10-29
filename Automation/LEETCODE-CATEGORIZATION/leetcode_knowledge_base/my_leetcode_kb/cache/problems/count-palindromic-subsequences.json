@@ -1,0 +1,29 @@
+{
+  "id": "2484",
+  "title": "Count Palindromic Subsequences",
+  "slug": "count-palindromic-subsequences",
+  "url": "https://leetcode.com/problems/count-palindromic-subsequences/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "Given a string of digits s , return the number of palindromic subsequences of s having length 5 . Since the answer may be very large, return it modulo 10 9 + 7 . \n \n Note: \n\n A string is palindromic if it reads the same forward and backward. \n \n A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters. \n\n Example 1: \n \n```\nInput:\n s = \"103301\"\n\nOutput:\n 2\n\nExplanation:\n \nThere are 6 possible subsequences of length 5: \"10330\",\"10331\",\"10301\",\"10301\",\"13301\",\"03301\". \nTwo of them (both equal to \"10301\") are palindromic.\n```\n\n Example 2: \n \n```\nInput:\n s = \"0000000\"\n\nOutput:\n 21\n\nExplanation:\n All 21 subsequences are \"00000\", which is palindromic.\n```\n\n Example 3: \n \n```\nInput:\n s = \"9999900000\"\n\nOutput:\n 2\n\nExplanation:\n The only two palindromic subsequences are \"99999\" and \"00000\".\n```\n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists of digits.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n int countPalindromes(string s) {\n  const long long M=1000000007LL;\n  long long L[10]={},R[10]={},LP[10][10]={},RP[10][10]={};\n  for(char ch:s){int d=ch-'0';for(int a=0;a<10;a++)RP[a][d]+=R[a];R[d]++;}\n  long long ans=0;\n  for(char ch:s){int d=ch-'0';R[d]--;for(int b=0;b<10;b++)RP[d][b]-=R[b];\n   for(int a=0;a<10;a++)for(int b=0;b<10;b++)ans=(ans+LP[a][b]*RP[b][a])%M;\n   for(int a=0;a<10;a++)LP[a][d]+=L[a];L[d]++;\n  }\n  return (int)ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181214271",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

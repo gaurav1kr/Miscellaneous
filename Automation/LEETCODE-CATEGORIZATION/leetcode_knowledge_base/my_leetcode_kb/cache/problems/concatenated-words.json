@@ -1,0 +1,43 @@
+{
+  "id": "472",
+  "title": "Concatenated Words",
+  "slug": "concatenated-words",
+  "url": "https://leetcode.com/problems/concatenated-words/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming",
+    "Depth-First Search",
+    "Trie",
+    "Sorting"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash set",
+    "Ordered set",
+    "Sorted array",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an array of strings words ( without duplicates ), return all the concatenated words in the given list of words . \n \n A concatenated word is defined as a string that is comprised entirely of at least two shorter words (not necessarily distinct) in the given array. \n\n Example 1: \n \n```\nInput:\n words = [\"cat\",\"cats\",\"catsdogcats\",\"dog\",\"dogcatsdog\",\"hippopotamuses\",\"rat\",\"ratcatdogcat\"]\n\nOutput:\n [\"catsdogcats\",\"dogcatsdog\",\"ratcatdogcat\"]\n\nExplanation:\n \"catsdogcats\" can be concatenated by \"cats\", \"dog\" and \"cats\"; \n\"dogcatsdog\" can be concatenated by \"dog\", \"cats\" and \"dog\"; \n\"ratcatdogcat\" can be concatenated by \"rat\", \"cat\", \"dog\" and \"cat\".\n```\n\n Example 2: \n \n```\nInput:\n words = [\"cat\",\"dog\",\"catdog\"]\n\nOutput:\n [\"catdog\"]\n```\n\n Constraints: \n\n 1 <= words.length <= 10 4 \n \n 1 <= words[i].length <= 30 \n \n words[i] consists of only lowercase English letters. \n \n All the strings of words are unique . \n \n 1 <= sum(words[i].length) <= 10 5",
+  "code": "class Solution {\npublic:\n    vector<string> findAllConcatenatedWordsInADict(vector<string>& words) {\n        unordered_set<string>word_set(words.begin(),words.end());\n        vector<string>ans;\n        for(auto w:words){\n            int n=w.size();\n            vector<bool>dp(n+1,false);\n            dp[0]=1;\n            for(int i=0;i<n;i++){\n                if(!dp[i])continue;\n                for(int j=i+1;j<=n;j++){\n                    if(j-i<n and word_set.count(w.substr(i,j-i)))\n                    dp[j]=1;\n                }\n            }\n            if(dp[n]==1)ans.push_back(w);\n        }\n       return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1012902243",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

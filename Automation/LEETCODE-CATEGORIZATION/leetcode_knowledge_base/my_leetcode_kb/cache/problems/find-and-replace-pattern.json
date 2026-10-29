@@ -1,0 +1,35 @@
+{
+  "id": "890",
+  "title": "Find and Replace Pattern",
+  "slug": "find-and-replace-pattern",
+  "url": "https://leetcode.com/problems/find-and-replace-pattern/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a list of strings words and a string pattern , return a list of words[i] that match pattern . You may return the answer in any order . \n \n A word matches the pattern if there exists a permutation of letters p so that after replacing every letter x in the pattern with p(x) , we get the desired word. \n \n Recall that a permutation of letters is a bijection from letters to letters: every letter maps to another letter, and no two letters map to the same letter. \n\n Example 1: \n \n```\nInput:\n words = [\"abc\",\"deq\",\"mee\",\"aqq\",\"dkd\",\"ccc\"], pattern = \"abb\"\n\nOutput:\n [\"mee\",\"aqq\"]\n\nExplanation:\n \"mee\" matches the pattern because there is a permutation {a -> m, b -> e, ...}. \n\"ccc\" does not match the pattern because {a -> c, b -> c, ...} is not a permutation, since a and b map to the same letter.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"a\",\"b\",\"c\"], pattern = \"a\"\n\nOutput:\n [\"a\",\"b\",\"c\"]\n```\n\n Constraints: \n\n 1 <= pattern.length <= 20 \n \n 1 <= words.length <= 50 \n \n words[i].length == pattern.length \n \n pattern and words[i] are lowercase English letters.",
+  "code": "class Solution {\npublic:\n\n\n    void normalize(string& s)\n    {\n        unordered_map<char, char> mp;\n        char c = 'a';\n        for (auto& i : s)\n        {\n            if (mp.find(i) == mp.end())\n            {\n                mp[i] = c++;\n            }\n        }\n\n        for (int i = 0; i < s.length(); i++)\n        {\n            s[i] = mp[s[i]];\n        }\n\n    }\n    vector<string> findAndReplacePattern(vector<string>& w, string p) {\n        normalize(p);\n        vector<string> res;\n        for (auto& s : w)\n        {\n            string t = s;\n            normalize(t);\n            if (p == t)\n                res.push_back(s);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "995819579",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

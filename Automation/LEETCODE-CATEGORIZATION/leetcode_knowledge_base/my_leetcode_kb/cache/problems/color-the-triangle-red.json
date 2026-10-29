@@ -1,0 +1,29 @@
+{
+  "id": "2647",
+  "title": "Color the Triangle Red",
+  "slug": "color-the-triangle-red",
+  "url": "https://leetcode.com/problems/color-the-triangle-red/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer n . Consider an equilateral triangle of side length n , broken up into n 2 unit equilateral triangles. The triangle has n 1-indexed rows where the i th row has 2i - 1 unit equilateral triangles. \n \n The triangles in the i th row are also 1-indexed with coordinates from (i, 1) to (i, 2i - 1) . The following image shows a triangle of side length 4 with the indexing of its triangle. \n [Figure: https://assets.leetcode.com/uploads/2022/09/01/triangle4.jpg] \n \n Two triangles are neighbors if they share a side . For example: \n\n Triangles (1,1) and (2,2) are neighbors \n \n Triangles (3,2) and (3,3) are neighbors. \n \n Triangles (2,2) and (3,3) are not neighbors because they do not share any side. \n\n Initially, all the unit triangles are white . You want to choose k triangles and color them red . We will then run the following algorithm: \n\n Choose a white triangle that has at least two red neighbors.\n\n If there is no such triangle, stop the algorithm. \n\n Color that triangle red . \n \n Go to step 1. \n\n Choose the minimum k possible and set k triangles red before running this algorithm such that after the algorithm stops, all unit triangles are colored red. \n \n Return a 2D list of the coordinates of the triangles that you will color red initially . The answer has to be of the smallest size possible. If there are multiple valid solutions, return any. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/09/01/example1.jpg] \n \n```\nInput:\n n = 3\n\nOutput:\n [[1,1],[2,1],[2,3],[3,1],[3,5]]\n\nExplanation:\n Initially, we choose the shown 5 triangles to be red. Then, we run the algorithm:\n- Choose (2,2) that has three red neighbors and color it red.\n- Choose (3,2) that has two red neighbors and color it red.\n- Choose (3,4) that has three red neighbors and color it red.\n- Choose (3,3) that has three red neighbors and color it red.\nIt can be shown that choosing any 4 triangles and running the algorithm will not make all triangles red.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/09/01/example2.jpg] \n \n```\nInput:\n n = 2\n\nOutput:\n [[1,1],[2,1],[2,3]]\n\nExplanation:\n Initially, we choose the shown 3 triangles to be red. Then, we run the algorithm:\n- Choose (2,2) that has three red neighbors and color it red.\nIt can be shown that choosing any 2 triangles and running the algorithm will not make all triangles red.\n```\n\n Constraints: \n\n 1 <= n <= 1000",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> colorRed(int n) {\n        vector<vector<int>> ans(1, vector<int>{1, 1});\n        for (int row=n, phase=0; row>1; --row, phase=(phase+1)%4) {\n            if (phase==0) {\n                for(int col=1;col<2*row;col+=2) ans.push_back({row,col});\n            } else if (phase==1) {\n                ans.push_back({row,2});\n            } else if (phase==2) {\n                for(int col=3;col<2*row;col+=2) ans.push_back({row,col});\n            } else {\n                ans.push_back({row,1});\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181530911",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

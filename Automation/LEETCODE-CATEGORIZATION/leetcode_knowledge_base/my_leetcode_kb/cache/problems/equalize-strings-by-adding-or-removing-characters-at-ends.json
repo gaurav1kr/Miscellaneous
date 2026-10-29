@@ -1,0 +1,36 @@
+{
+  "id": "3135",
+  "title": "Equalize Strings by Adding or Removing Characters at Ends",
+  "slug": "equalize-strings-by-adding-or-removing-characters-at-ends",
+  "url": "https://leetcode.com/problems/equalize-strings-by-adding-or-removing-characters-at-ends/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sliding Window",
+    "Hash Function"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings initial and target , your task is to modify initial by performing a series of operations to make it equal to target . \n \n In one operation, you can add or remove one character only at the beginning or the end of the string initial . \n \n Return the minimum number of operations required to transform initial into target . \n\n Example 1: \n\n Input: initial = \"abcde\", target = \"cdef\" \n \n Output: 3 \n \n Explanation: \n \n Remove 'a' and 'b' from the beginning of initial , then add 'f' to the end. \n\n Example 2: \n\n Input: initial = \"axxy\", target = \"yabx\" \n \n Output: 6 \n \n Explanation: \n\n Operation \n Resulting String \n\n Add 'y' to the beginning \n \"yaxxy\" \n\n Remove from end \n \"yaxx\" \n\n Remove from end \n \"yax\" \n\n Remove from end \n \"ya\" \n\n Add 'b' to the end \n \"yab\" \n\n Add 'x' to the end \n \"yabx\" \n\n Example 3: \n\n Input: initial = \"xyz\", target = \"xyz\" \n \n Output: 0 \n \n Explanation: \n \n No operations are needed as the strings are already equal. \n\n Constraints: \n\n 1 <= initial.length, target.length <= 1000 \n \n initial and target consist only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int minOperations(string initial, string target) {\n        int n = initial.size(), m = target.size(), best = 0;\n        vector<int> dp(m + 1);\n        for (int i = 1; i <= n; ++i) {\n            for (int j = m; j >= 1; --j) {\n                dp[j] = initial[i - 1] == target[j - 1] ? dp[j - 1] + 1 : 0;\n                best = max(best, dp[j]);\n            }\n        }\n        return n + m - 2 * best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178949959",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "3786",
+  "title": "Total Sum of Interaction Cost in Tree Groups",
+  "slug": "total-sum-of-interaction-cost-in-tree-groups",
+  "url": "https://leetcode.com/problems/total-sum-of-interaction-cost-in-tree-groups/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer n and an undirected tree with n nodes numbered from 0 to n - 1 . This is represented by a 2D array edges of length n - 1 , where edges[i] = [u i , v i ] indicates an undirected edge between nodes u i and v i . \n \n You are also given an integer array group of length n , where group[i] denotes the group label assigned to node i . \n\n Two nodes u and v are considered part of the same group if group[u] == group[v] . \n \n The interaction cost between u and v is defined as the number of edges on the unique path connecting them in the tree. \n\n Return an integer denoting the sum of interaction costs over all unordered pairs (u, v) with u != v such that group[u] == group[v] . \n\n Example 1: \n\n Input: n = 3, edges = [[0,1],[1,2]], group = [1,1,1] \n \n Output: 4 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/09/24/screenshot-2025-09-24-at-50538-pm.png] \n \n All nodes belong to group 1. The interaction costs between the pairs of nodes are: \n\n Nodes (0, 1) : 1 \n \n Nodes (1, 2) : 1 \n \n Nodes (0, 2) : 2 \n\n Thus, the total interaction cost is 1 + 1 + 2 = 4 . \n\n Example 2: \n\n Input: n = 3, edges = [[0,1],[1,2]], group = [3,2,3] \n \n Output: 2 \n \n Explanation: \n\n Nodes 0 and 2 belong to group 3. The interaction cost between this pair is 2. \n \n Node 1 belongs to a different group and forms no valid pair. Therefore, the total interaction cost is 2. \n\n Example 3: \n\n Input: n = 4, edges = [[0,1],[0,2],[0,3]], group = [1,1,4,4] \n \n Output: 3 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/09/24/screenshot-2025-09-24-at-51312-pm.png] \n \n Nodes belonging to the same groups and their interaction costs are: \n\n Group 1: Nodes (0, 1) : 1 \n \n Group 4: Nodes (2, 3) : 2 \n\n Thus, the total interaction cost is 1 + 2 = 3 . \n\n Example 4: \n\n Input: n = 2, edges = [[0,1]], group = [9,8] \n \n Output: 0 \n \n Explanation: \n \n All nodes belong to different groups and there are no valid pairs. Therefore, the total interaction cost is 0. \n\n Constraints: \n\n 1 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i] = [u i , v i ] \n \n 0 <= u i , v i <= n - 1 \n \n group.length == n \n \n 1 <= group[i] <= 20 \n \n The input is generated such that edges represents a valid tree.",
+  "code": "class Solution {\npublic:\n    long long interactionCosts(int n, vector<vector<int>>& edges, vector<int>& group) {\n        vector<vector<int>> adj(n);\n        for (auto &e : edges) {\n            adj[e[0]].push_back(e[1]);\n            adj[e[1]].push_back(e[0]);\n        }\n        vector<int> parent(n, -1), order(1, 0);\n        for (int i = 0; i < (int)order.size(); ++i) {\n            int u = order[i];\n            for (int v : adj[u]) if (v != parent[u]) {\n                parent[v] = u;\n                order.push_back(v);\n            }\n        }\n        vector<array<int, 21>> cnt(n);\n        array<int, 21> total = {};\n        for (int i = 0; i < n; ++i) ++total[group[i]];\n        long long ans = 0;\n        for (int i = n - 1; i >= 0; --i) {\n            int u = order[i];\n            ++cnt[u][group[u]];\n            if (parent[u] != -1) {\n                for (int g = 1; g <= 20; ++g) {\n                    ans += 1LL * cnt[u][g] * (total[g] - cnt[u][g]);\n                    cnt[parent[u]][g] += cnt[u][g];\n                }\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179644362",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

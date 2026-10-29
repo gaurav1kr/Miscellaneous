@@ -1,0 +1,25 @@
+{
+  "id": "1922",
+  "title": "Count Good Numbers",
+  "slug": "count-good-numbers",
+  "url": "https://leetcode.com/problems/count-good-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Recursion"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "A digit string is good if the digits (0-indexed) at even indices are even and the digits at odd indices are prime ( 2 , 3 , 5 , or 7 ). \n\n For example, \"2582\" is good because the digits ( 2 and 8 ) at even positions are even and the digits ( 5 and 2 ) at odd positions are prime. However, \"3245\" is not good because 3 is at an even index but is not even. \n\n Given an integer n , return the total number of good digit strings of length n . Since the answer may be large, return it modulo 10 9 + 7 . \n \n A digit string is a string consisting of digits 0 through 9 that may contain leading zeros. \n\n Example 1: \n \n```\nInput:\n n = 1\n\nOutput:\n 5\n\nExplanation:\n The good numbers of length 1 are \"0\", \"2\", \"4\", \"6\", \"8\".\n```\n\n Example 2: \n \n```\nInput:\n n = 4\n\nOutput:\n 400\n```\n\n Example 3: \n \n```\nInput:\n n = 50\n\nOutput:\n 564908303\n```\n\n Constraints: \n\n 1 <= n <= 10 15",
+  "code": "class Solution {\n    const int MOD = 1e9 + 7;\n\n    long modPow(long x, long n) {\n        long res = 1;\n        while (n) {\n            if (n % 2) res = res * x % MOD;\n            x = x * x % MOD;\n            n /= 2;\n        }\n        return res;\n    }\n\npublic:\n    int countGoodNumbers(long n) {\n        return modPow(5, (n + 1) / 2) * modPow(4, n / 2) % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610646592",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

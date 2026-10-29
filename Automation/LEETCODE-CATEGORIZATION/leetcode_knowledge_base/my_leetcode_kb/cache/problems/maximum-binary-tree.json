@@ -1,0 +1,41 @@
+{
+  "id": "654",
+  "title": "Maximum Binary Tree",
+  "slug": "maximum-binary-tree",
+  "url": "https://leetcode.com/problems/maximum-binary-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Stack",
+    "Tree",
+    "Monotonic Stack",
+    "Binary Tree",
+    "Cartesian Tree"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "Monotonic stack",
+    "Stack",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums with no duplicates. A maximum binary tree can be built recursively from nums using the following algorithm: \n\n Create a root node whose value is the maximum value in nums . \n \n Recursively build the left subtree on the subarray prefix to the left of the maximum value. \n \n Recursively build the right subtree on the subarray suffix to the right of the maximum value. \n\n Return the maximum binary tree built from nums . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/12/24/tree1.jpg] \n \n```\nInput:\n nums = [3,2,1,6,0,5]\n\nOutput:\n [6,3,5,null,2,0,null,null,1]\n\nExplanation:\n The recursive calls are as follow:\n- The largest value in [3,2,1,6,0,5] is 6. Left prefix is [3,2,1] and right suffix is [0,5].\n - The largest value in [3,2,1] is 3. Left prefix is [] and right suffix is [2,1].\n - Empty array, so no child.\n - The largest value in [2,1] is 2. Left prefix is [] and right suffix is [1].\n - Empty array, so no child.\n - Only one element, so child is a node with value 1.\n - The largest value in [0,5] is 5. Left prefix is [0] and right suffix is [].\n - Only one element, so child is a node with value 0.\n - Empty array, so no child.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/12/24/tree2.jpg] \n \n```\nInput:\n nums = [3,2,1]\n\nOutput:\n [3,null,2,null,1]\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 0 <= nums[i] <= 1000 \n \n All integers in nums are unique .",
+  "code": "class Solution {\npublic:\n    TreeNode* buildTree(vector<int>&nums, int start, int end){\n        if(start == end){\n            return NULL;\n        }\n        int maxIndex = start;\n        for(int i = start + 1; i < end; i++){\n            if(nums[i] > nums[maxIndex]){\n                maxIndex = i;\n            }\n        }\n        TreeNode* root = new TreeNode(nums[maxIndex]);\n        root->left = buildTree(nums, start, maxIndex);\n        root->right = buildTree(nums, maxIndex + 1, end);\n        return root;\n    }\n      TreeNode* constructMaximumBinaryTree(vector<int>& nums){\n        return buildTree(nums, 0, nums.size());\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1514565836",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

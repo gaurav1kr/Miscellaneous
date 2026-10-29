@@ -1,0 +1,38 @@
+{
+  "id": "1504",
+  "title": "Count Submatrices With All Ones",
+  "slug": "count-submatrices-with-all-ones",
+  "url": "https://leetcode.com/problems/count-submatrices-with-all-ones/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Matrix",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Dynamic Programming",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given an m x n binary matrix mat , return the number of submatrices that have all ones . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/10/27/ones1-grid.jpg] \n \n```\nInput:\n mat = [[1,0,1],[1,1,0],[1,1,0]]\n\nOutput:\n 13\n\nExplanation:\n \nThere are 6 rectangles of side 1x1.\nThere are 2 rectangles of side 1x2.\nThere are 3 rectangles of side 2x1.\nThere is 1 rectangle of side 2x2. \nThere is 1 rectangle of side 3x1.\nTotal number of rectangles = 6 + 2 + 3 + 1 + 1 = 13.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/10/27/ones2-grid.jpg] \n \n```\nInput:\n mat = [[0,1,1,0],[0,1,1,1],[1,1,1,0]]\n\nOutput:\n 24\n\nExplanation:\n \nThere are 8 rectangles of side 1x1.\nThere are 5 rectangles of side 1x2.\nThere are 2 rectangles of side 1x3. \nThere are 4 rectangles of side 2x1.\nThere are 2 rectangles of side 2x2. \nThere are 2 rectangles of side 3x1. \nThere is 1 rectangle of side 3x2. \nTotal number of rectangles = 8 + 5 + 2 + 4 + 2 + 2 + 1 = 24.\n```\n\n Constraints: \n\n 1 <= m, n <= 150 \n \n mat[i][j] is either 0 or 1 .",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numSubmat(vector<vector<int>>& mat) {\n        int rows = mat.size(), cols = mat[0].size();\n        vector<vector<int>> dp(rows, vector<int>(cols, 0));\n        int result = 0;\n\n        for (int i = 0; i < rows; i++) {\n            for (int j = 0; j < cols; j++) {\n                if (mat[i][j] == 1) {\n                    dp[i][j] = (j == 0) ? 1 : dp[i][j-1] + 1;\n                    int minWidth = dp[i][j];\n                    for (int k = i; k >= 0; k--) {\n                        minWidth = min(minWidth, dp[k][j]);\n                        result += minWidth;\n                    }\n                }\n            }\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590170537",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

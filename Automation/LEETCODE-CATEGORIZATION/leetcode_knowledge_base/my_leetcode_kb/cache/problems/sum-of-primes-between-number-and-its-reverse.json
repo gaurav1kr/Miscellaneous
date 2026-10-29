@@ -1,0 +1,27 @@
+{
+  "id": "3918",
+  "title": "Sum of Primes Between Number and Its Reverse",
+  "slug": "sum-of-primes-between-number-and-its-reverse",
+  "url": "https://leetcode.com/problems/sum-of-primes-between-number-and-its-reverse/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer n . \n \n Let r be the integer formed by reversing the digits of n . \n \n Return the sum of all prime numbers between min(n, r) and max(n, r) , inclusive. \n\n Example 1: \n\n Input: n = 13 \n \n Output: 132 \n \n Explanation: \n\n The reverse of 13 is 31. Thus, the range is [13, 31] . \n \n The prime numbers in this range are 13, 17, 19, 23, 29, and 31. \n \n The sum of these prime numbers is 13 + 17 + 19 + 23 + 29 + 31 = 132 . \n\n Example 2: \n\n Input: n = 10 \n \n Output: 17 \n \n Explanation: \n\n The reverse of 10 is 1. Thus, the range is [1, 10] . \n \n The prime numbers in this range are 2, 3, 5, and 7. \n \n The sum of these prime numbers is 2 + 3 + 5 + 7 = 17 . \n\n Example 3: \n\n Input: n = 8 \n \n Output: 0 \n \n Explanation: \n\n The reverse of 8 is 8. Thus, the range is [8, 8] . \n \n There are no prime numbers in this range, so the sum is 0. \n\n Constraints: \n\n 1 <= n <= 1000",
+  "code": "class Solution {\npublic:\n    int sumOfPrimesInRange(int n) {\n        int t=n,r=0;\n        while(t){r=r*10+t%10;t/=10;}\n        int lo=min(n,r),hi=max(n,r);\n        vector<bool> prime(hi+1,true);\n        prime[0]=false;\n        if(hi>=1) prime[1]=false;\n        for(int p=2;p*p<=hi;++p) if(prime[p])\n            for(int j=p*p;j<=hi;j+=p) prime[j]=false;\n        int ans=0;\n        for(int x=lo;x<=hi;++x) if(prime[x]) ans+=x;\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181084274",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

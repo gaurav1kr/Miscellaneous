@@ -1,0 +1,20 @@
+{
+  "id": "4071",
+  "title": "Minimum Rotations to Dial a Number II",
+  "slug": "minimum-rotations-to-dial-a-number-ii",
+  "url": "https://leetcode.com/problems/minimum-rotations-to-dial-a-number-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "You are given an integer n and a string s of length n consisting of digits. \n \n The dial contains the digits 0 through 9 in order and is circular , so 0 and 9 are adjacent. The pointer initially points to 0. \n \n To dial each digit of s in order , rotate the pointer until it points to that digit. Each rotation moves the pointer to an adjacent digit, and you may rotate in either direction. Dialing a digit that the pointer already points to requires no rotations. \n \n Before dialing, you may perform the following operation at most once : \n\n Choose an index k such that 0 <= k < n and reverse the suffix s[k..n - 1] . \n\n Return the minimum total number of rotations needed to dial the string after optimally choosing whether to perform the operation and which suffix to reverse. \n\n Example 1: \n\n Input: n = 4, s = \"1502\" \n \n Output: 9 \n \n Explanation: \n \n Reverse the suffix starting at k = 1 to obtain \"1205\" , then dial it. \n\n Step \n From \n To \n Rotations \n\n 1 \n 0 \n 1 \n 1 \n\n 2 \n 1 \n 2 \n 1 \n\n 3 \n 2 \n 0 \n 2 \n\n 4 \n 0 \n 5 \n 5 \n\n The total is 1 + 1 + 2 + 5 = 9 , which is the minimum total number of rotations. \n\n Example 2: \n\n Input: n = 4, s = \"2916\" \n \n Output: 12 \n \n Explanation: \n \n Choose not to reverse a suffix and dial \"2916\" . \n\n Step \n From \n To \n Rotations \n\n 1 \n 0 \n 2 \n 2 \n\n 2 \n 2 \n 9 \n 3 \n\n 3 \n 9 \n 1 \n 2 \n\n 4 \n 1 \n 6 \n 5 \n\n The total is 2 + 3 + 2 + 5 = 12 , which is the minimum total number of rotations. \n\n Example 3: \n\n Input: n = 4, s = \"4219\" \n \n Output: 6 \n \n Explanation: \n \n Reverse the suffix starting at k = 0 , which reverses the entire string, to obtain \"9124\" , then dial it. \n\n Step \n From \n To \n Rotations \n\n 1 \n 0 \n 9 \n 1 \n\n 2 \n 9 \n 1 \n 2 \n\n 3 \n 1 \n 2 \n 1 \n\n 4 \n 2 \n 4 \n 2 \n\n The total is 1 + 2 + 1 + 2 = 6 , which is the minimum total number of rotations. \n\n Constraints: \n\n 1 <= n == s.length <= 10 5 ​​​​​​​ \n \n s consists only of digits '0' to '9'",
+  "code": "class Solution {\n    int dist(char a, char b) {\n        int d = abs(a - b);\n        return min(d, 10 - d);\n    }\npublic:\n    int minRotations(int n, string s) {\n        int base = dist('0', s[0]);\n        for (int i = 1; i < n; ++i) base += dist(s[i - 1], s[i]);\n        int ans = base;\n        for (int k = 0; k < n; ++k) {\n            int before = k == 0 ? dist('0', s[0]) : dist(s[k - 1], s[k]);\n            int after = k == 0 ? dist('0', s[n - 1]) : dist(s[k - 1], s[n - 1]);\n            ans = min(ans, base - before + after);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179630336",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

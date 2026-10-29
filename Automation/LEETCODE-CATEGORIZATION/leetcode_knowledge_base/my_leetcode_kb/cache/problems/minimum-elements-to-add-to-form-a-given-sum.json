@@ -1,0 +1,29 @@
+{
+  "id": "1785",
+  "title": "Minimum Elements to Add to Form a Given Sum",
+  "slug": "minimum-elements-to-add-to-form-a-given-sum",
+  "url": "https://leetcode.com/problems/minimum-elements-to-add-to-form-a-given-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers limit and goal . The array nums has an interesting property that abs(nums[i]) <= limit . \n \n Return the minimum number of elements you need to add to make the sum of the array equal to goal . The array must maintain its property that abs(nums[i]) <= limit . \n \n Note that abs(x) equals x if x >= 0 , and -x otherwise. \n\n Example 1: \n \n```\nInput:\n nums = [1,-1,1], limit = 3, goal = -4\n\nOutput:\n 2\n\nExplanation:\n You can add -2 and -3, then the sum of the array will be 1 - 1 + 1 - 2 - 3 = -4.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,-10,9,1], limit = 100, goal = 0\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= limit <= 10 6 \n \n -limit <= nums[i] <= limit \n \n -10 9 <= goal <= 10 9",
+  "code": "class Solution {\npublic:\n int minElements(vector<int>& nums,int limit,int goal){\n  long long sum=accumulate(nums.begin(),nums.end(),0LL);\n  long long diff=llabs((long long)goal-sum);\n  return (diff+limit-1)/limit;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175761094",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

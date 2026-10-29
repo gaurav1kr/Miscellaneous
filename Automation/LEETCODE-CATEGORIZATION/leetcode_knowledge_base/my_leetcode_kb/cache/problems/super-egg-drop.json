@@ -1,0 +1,31 @@
+{
+  "id": "887",
+  "title": "Super Egg Drop",
+  "slug": "super-egg-drop",
+  "url": "https://leetcode.com/problems/super-egg-drop/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given k identical eggs and you have access to a building with n floors labeled from 1 to n . \n \n You know that there exists a floor f where 0 <= f <= n such that any egg dropped at a floor higher than f will break , and any egg dropped at or below floor f will not break . \n \n Each move, you may take an unbroken egg and drop it from any floor x (where 1 <= x <= n ). If the egg breaks, you can no longer use it. However, if the egg does not break, you may reuse it in future moves. \n \n Return the minimum number of moves that you need to determine with certainty what the value of f is. \n\n Example 1: \n \n```\nInput:\n k = 1, n = 2\n\nOutput:\n 2\n\nExplanation: \n\nDrop the egg from floor 1. If it breaks, we know that f = 0.\nOtherwise, drop the egg from floor 2. If it breaks, we know that f = 1.\nIf it does not break, then we know f = 2.\nHence, we need at minimum 2 moves to determine with certainty what the value of f is.\n```\n\n Example 2: \n \n```\nInput:\n k = 2, n = 6\n\nOutput:\n 3\n```\n\n Example 3: \n \n```\nInput:\n k = 3, n = 14\n\nOutput:\n 4\n```\n\n Constraints: \n\n 1 <= k <= 100 \n \n 1 <= n <= 10 4",
+  "code": "//Memoization + Binary Search\nclass Solution \n{\npublic:\n    //Time: O(n*k*logn), Space: O(n*k)\n    int helper(int k, int n, vector<vector<int>>& memo)\n\t{\n        if(n == 0 || n == 1) return n;\n\t\t\n        if(k == 1) return n;\n        \n        if(memo[k][n] != -1) return memo[k][n];\n        \n        int mn = INT_MAX, low = 0, high = n, temp = 0;\n        \n        while(low<=high){\n            \n            int mid = (low + high)/2;\n            \n            int left = helper(k-1, mid-1, memo);\n            int right = helper(k, n-mid, memo);\n            \n            temp = 1 + max(left, right);\n            \n            if(left < right) \n                low = mid+1;\n            else \n                high = mid-1;     \n    \n            mn = min(mn, temp); \n        }\n        return memo[k][n] = mn;\n    }\n    \n    int superEggDrop(int k, int n) \n\t{\n        vector<vector<int>> memo(k+1, vector<int>(n+1, -1));\n        return helper(k, n, memo);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1405888490",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

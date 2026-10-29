@@ -1,0 +1,28 @@
+{
+  "id": "3983",
+  "title": "Subsequence After One Replacement",
+  "slug": "subsequence-after-one-replacement",
+  "url": "https://leetcode.com/problems/subsequence-after-one-replacement/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given two strings s and t consisting of lowercase English letters. \n \n You may choose at most one index in s and replace the character at that index with any lowercase English letter. \n \n Return true if it is possible to make s a subsequence of t ; otherwise, return false . \n\n Example 1: \n\n Input: s = \"cat\", t = \"chat\" \n \n Output: true \n \n Explanation: \n\n Replace s[1] from 'a' to 'h' . The resulting string is \"cht\" . \n \n \"cht\" is a subsequence of \"chat\" because we can match 'c' , 'h' , and 't' in order. \n\n Example 2: \n\n Input: s = \"plane\", t = \"apple\" \n \n Output: false \n \n Explanation: \n\n The characters 'p' , 'l' , and 'e' can be matched in t , but the remaining characters cannot be matched while preserving the required order. \n \n Even after replacing any one character in s , it is impossible to make s a subsequence of t . \n\n Constraints: \n\n 1 <= s.length, t.length <= 10 5 \n \n s and t consist only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    bool canMakeSubsequence(string s,string t){\n        int exact=0,one=0,m=s.size();\n        if(m>t.size())return false;\n        for(char c:t){\n            int oldExact=exact,oldOne=one;\n            if(oldOne<m && s[oldOne]==c)++one;\n            if(oldExact<m)one=max(one,oldExact+1);\n            if(oldExact<m && s[oldExact]==c)++exact;\n            if(one==m || exact==m)return true;\n        }\n        return false;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181103693",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

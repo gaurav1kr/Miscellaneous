@@ -1,0 +1,30 @@
+{
+  "id": "1745",
+  "title": "Palindrome Partitioning IV",
+  "slug": "palindrome-partitioning-iv",
+  "url": "https://leetcode.com/problems/palindrome-partitioning-iv/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s , return true if it is possible to split the string s into three non-empty palindromic substrings. Otherwise, return false .​​​​​ \n \n A string is said to be palindrome if it the same string when reversed. \n\n Example 1: \n \n```\nInput:\n s = \"abcbdd\"\n\nOutput:\n true\n\nExplanation: \n\"abcbdd\" = \"a\" + \"bcb\" + \"dd\", and all three substrings are palindromes.\n```\n\n Example 2: \n \n```\nInput:\n s = \"bcbddxy\"\n\nOutput:\n false\n\nExplanation: \ns cannot be split into 3 palindromes.\n```\n\n Constraints: \n\n 3 <= s.length <= 2000 \n \n s ​​​​​​ consists only of lowercase English letters.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool checkPartitioning(string s) {\n        int n = s.size();\n        vector<vector<bool>> isPal(n, vector<bool>(n, false));\n        for (int i = n - 1; i >= 0; --i)\n            for (int j = i; j < n; ++j)\n                isPal[i][j] = (s[i] == s[j]) && (j - i < 2 || isPal[i + 1][j - 1]);\n\n        for (int i = 1; i < n - 1; ++i)\n            for (int j = i; j < n - 1; ++j)\n                if (isPal[0][i - 1] && isPal[i][j] && isPal[j + 1][n - 1])\n                    return true;\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610603722",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

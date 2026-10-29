@@ -1,0 +1,26 @@
+{
+  "id": "1323",
+  "title": "Maximum 69 Number",
+  "slug": "maximum-69-number",
+  "url": "https://leetcode.com/problems/maximum-69-number/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given a positive integer num consisting only of digits 6 and 9 . \n \n Return the maximum number you can get by changing at most one digit ( 6 becomes 9 , and 9 becomes 6 ) . \n\n Example 1: \n \n```\nInput:\n num = 9669\n\nOutput:\n 9969\n\nExplanation:\n \nChanging the first digit results in 6669.\nChanging the second digit results in 9969.\nChanging the third digit results in 9699.\nChanging the fourth digit results in 9666.\nThe maximum number is 9969.\n```\n\n Example 2: \n \n```\nInput:\n num = 9996\n\nOutput:\n 9999\n\nExplanation:\n Changing the last digit 6 to 9 results in the maximum number.\n```\n\n Example 3: \n \n```\nInput:\n num = 9999\n\nOutput:\n 9999\n\nExplanation:\n It is better not to apply any change.\n```\n\n Constraints: \n\n 1 <= num <= 10 4 \n \n num  consists of only 6 and 9 digits.",
+  "code": "class Solution {\npublic:\n    int maximum69Number (int num) {\n        string s = to_string(num);\n        for (char& c : s) {\n            if (c == '6') {\n                c = '9';\n                break;\n            }\n        }\n        return stoi(s);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593832524",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

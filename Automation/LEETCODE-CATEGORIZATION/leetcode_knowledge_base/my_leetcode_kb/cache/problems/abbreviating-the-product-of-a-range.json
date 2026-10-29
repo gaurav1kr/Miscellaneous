@@ -1,0 +1,25 @@
+{
+  "id": "2117",
+  "title": "Abbreviating the Product of a Range",
+  "slug": "abbreviating-the-product-of-a-range",
+  "url": "https://leetcode.com/problems/abbreviating-the-product-of-a-range/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given two positive integers left and right with left <= right . Calculate the product of all integers in the inclusive range [left, right] . \n \n Since the product may be very large, you will abbreviate it following these steps: \n\n Count all trailing zeros in the product and remove them. Let us denote this count as C .\n\n For example, there are 3 trailing zeros in 1000 , and there are 0 trailing zeros in 546 . \n\n Denote the remaining number of digits in the product as d . If d > 10 , then express the product as <pre>...<suf> where <pre> denotes the first 5 digits of the product, and <suf> denotes the last 5 digits of the product after removing all trailing zeros. If d <= 10 , we keep it unchanged.\n\n For example, we express 1234567654321 as 12345...54321 , but 1234567 is represented as 1234567 . \n\n Finally, represent the product as a string \"<pre>...<suf>eC\" .\n\n For example, 12345678987600000 will be represented as \"12345...89876e5\" . \n\n Return a string denoting the abbreviated product of all integers in the inclusive range [left, right] . \n\n Example 1: \n \n```\nInput:\n left = 1, right = 4\n\nOutput:\n \"24e0\"\n\nExplanation:\n The product is 1 × 2 × 3 × 4 = 24.\nThere are no trailing zeros, so 24 remains the same. The abbreviation will end with \"e0\".\nSince the number of digits is 2, which is less than 10, we do not have to abbreviate it further.\nThus, the final representation is \"24e0\".\n```\n\n Example 2: \n \n```\nInput:\n left = 2, right = 11\n\nOutput:\n \"399168e2\"\n\nExplanation:\n The product is 39916800.\nThere are 2 trailing zeros, which we remove to get 399168. The abbreviation will end with \"e2\".\nThe number of digits after removing the trailing zeros is 6, so we do not abbreviate it further.\nHence, the abbreviated product is \"399168e2\".\n```\n\n Example 3: \n \n```\nInput:\n left = 371, right = 375\n\nOutput:\n \"7219856259e3\"\n\nExplanation:\n The product is 7219856259000.\n```\n\n Constraints: \n\n 1 <= left <= right <= 10 4",
+  "code": "class Solution {\npublic:\n string abbreviateProduct(int left,int right){\n  const long long MOD=100000;long long tail=1;int twos=0,fives=0;\n  long double logs=0;\n  for(int x=left;x<=right;++x){\n   logs+=log10l((long double)x);\n   int v=x;while(v%2==0){v/=2;++twos;}while(v%5==0){v/=5;++fives;}\n   tail=tail*v%MOD;\n  }\n  int zeros=min(twos,fives);twos-=zeros;fives-=zeros;\n  auto power=[&](long long base,int exp){long long r=1;while(exp){if(exp&1)r=r*base%MOD;base=base*base%MOD;exp>>=1;}return r;};\n  tail=tail*power(2,twos)%MOD*power(5,fives)%MOD;\n  long double digitsLog=logs-zeros;\n  if(digitsLog<10.0L-1e-10L){\n   // The nonzero product fits into ten decimal digits.\n   unsigned long long exact=1;\n   for(int x=left;x<=right;++x){\n    int v=x;while(v%2==0)v/=2;while(v%5==0)v/=5;\n    exact*=v;\n   }\n   for(int i=0;i<twos;++i)exact*=2;\n   for(int i=0;i<fives;++i)exact*=5;\n   return to_string(exact)+\"e\"+to_string(zeros);\n  }\n  long double fractional=digitsLog-floorl(digitsLog);\n  int first=(int)(powl(10.0L,fractional+4)+1e-9L);\n  if(first>=100000)first=99999;\n  ostringstream os;os<<first<<\"...\"<<setw(5)<<setfill('0')<<tail<<\"e\"<<zeros;\n  return os.str();\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175736364",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "1243",
+  "title": "Array Transformation",
+  "slug": "array-transformation",
+  "url": "https://leetcode.com/problems/array-transformation/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an initial array arr , every day you produce a new array using the array of the previous day. \n \n On the i -th day, you do the following operations on the array of day  i-1  to produce the array of day i : \n\n If an element is smaller than both its left neighbor and its right neighbor, then this element is incremented. \n \n If an element is bigger than both its left neighbor and its right neighbor, then this element is decremented. \n \n The first and last elements never change. \n\n After some days, the array does not change. Return that final array. \n\n Example 1: \n \n```\nInput:\n arr = [6,2,3,4]\n\nOutput:\n [6,3,3,4]\n\nExplanation: \n\nOn the first day, the array is changed from [6,2,3,4] to [6,3,3,4].\nNo more operations can be done to this array.\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,6,3,4,3,5]\n\nOutput:\n [1,4,4,4,4,5]\n\nExplanation: \n\nOn the first day, the array is changed from [1,6,3,4,3,5] to [1,5,4,3,4,5].\nOn the second day, the array is changed from [1,5,4,3,4,5] to [1,4,4,4,4,5].\nNo more operations can be done to this array.\n```\n\n Constraints: \n\n 3 <= arr.length <= 100 \n \n 1 <= arr[i] <= 100",
+  "code": "class Solution {\npublic:\n    vector<int> transformArray(vector<int>& arr) {\n        int n = arr.size();\n        while (true) {\n            vector<int> next = arr;\n            bool changed = false;\n            for (int i = 1; i + 1 < n; ++i) {\n                if (arr[i] < arr[i - 1] && arr[i] < arr[i + 1]) {\n                    ++next[i];\n                    changed = true;\n                } else if (arr[i] > arr[i - 1] && arr[i] > arr[i + 1]) {\n                    --next[i];\n                    changed = true;\n                }\n            }\n            if (!changed) {\n                return arr;\n            }\n            arr.swap(next);\n        }\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178560426",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

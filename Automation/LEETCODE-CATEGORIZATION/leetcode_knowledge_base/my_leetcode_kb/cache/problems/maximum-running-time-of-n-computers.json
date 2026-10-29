@@ -1,0 +1,34 @@
+{
+  "id": "2141",
+  "title": "Maximum Running Time of N Computers",
+  "slug": "maximum-running-time-of-n-computers",
+  "url": "https://leetcode.com/problems/maximum-running-time-of-n-computers/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You have n computers. You are given the integer n and a 0-indexed integer array batteries where the i th battery can run a computer for batteries[i] minutes. You are interested in running all n computers simultaneously using the given batteries. \n \n Initially, you can insert at most one battery into each computer. After that and at any integer time moment, you can remove a battery from a computer and insert another battery any number of times . The inserted battery can be a totally new battery or a battery from another computer. You may assume that the removing and inserting processes take no time. \n \n Note that the batteries cannot be recharged. \n \n Return the maximum number of minutes you can run all the n computers simultaneously. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/01/06/example1-fit.png] \n \n```\nInput:\n n = 2, batteries = [3,3,3]\n\nOutput:\n 4\n\nExplanation:\n \nInitially, insert battery 0 into the first computer and battery 1 into the second computer.\nAfter two minutes, remove battery 1 from the second computer and insert battery 2 instead. Note that battery 1 can still run for one minute.\nAt the end of the third minute, battery 0 is drained, and you need to remove it from the first computer and insert battery 1 instead.\nBy the end of the fourth minute, battery 1 is also drained, and the first computer is no longer running.\nWe can run the two computers simultaneously for at most 4 minutes, so we return 4.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/01/06/example2.png] \n \n```\nInput:\n n = 2, batteries = [1,1,1,1]\n\nOutput:\n 2\n\nExplanation:\n \nInitially, insert battery 0 into the first computer and battery 2 into the second computer. \nAfter one minute, battery 0 and battery 2 are drained so you need to remove them and insert battery 1 into the first computer and battery 3 into the second computer. \nAfter another minute, battery 1 and battery 3 are also drained so the first and second computers are no longer running.\nWe can run the two computers simultaneously for at most 2 minutes, so we return 2.\n```\n\n Constraints: \n\n 1 <= n <= batteries.length <= 10 5 \n \n 1 <= batteries[i] <= 10 9",
+  "code": "class Solution {\npublic:\n    long long maxRunTime(int n, vector<int>& batteries) {\n        long long total=accumulate(batteries.begin(),batteries.end(),0LL);\n        long long lo=0,hi=total/n;\n        while(lo<hi) {\n            long long mid=lo+(hi-lo+1)/2,available=0;\n            for(int b:batteries) available+=min((long long)b,mid);\n            if(available>=mid*n) lo=mid; else hi=mid-1;\n        }\n        return lo;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175872102",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

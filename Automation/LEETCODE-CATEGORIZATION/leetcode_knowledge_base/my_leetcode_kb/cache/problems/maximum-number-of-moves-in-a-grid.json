@@ -1,0 +1,32 @@
+{
+  "id": "2684",
+  "title": "Maximum Number of Moves in a Grid",
+  "slug": "maximum-number-of-moves-in-a-grid",
+  "url": "https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed m x n matrix grid consisting of positive integers. \n \n You can start at any cell in the first column of the matrix, and traverse the grid in the following way: \n\n From a cell (row, col) , you can move to any of the cells: (row - 1, col + 1) , (row, col + 1) and (row + 1, col + 1) such that the value of the cell you move to, should be strictly bigger than the value of the current cell. \n\n Return the maximum number of moves that you can perform. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2023/04/11/yetgriddrawio-10.png] \n \n```\nInput:\n grid = [[2,4,3,5],[5,4,9,3],[3,4,2,11],[10,9,13,15]]\n\nOutput:\n 3\n\nExplanation:\n We can start at the cell (0, 0) and make the following moves:\n- (0, 0) -> (0, 1).\n- (0, 1) -> (1, 2).\n- (1, 2) -> (2, 3).\nIt can be shown that it is the maximum number of moves that can be made.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[3,2,4],[2,1,9],[1,1,7]]\n\nOutput:\n 0\n\nExplanation:\n Starting from any cell in the first column we cannot perform any moves.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 2 <= m, n <= 1000 \n \n 4 <= m * n <= 10 5 \n \n 1 <= grid[i][j] <= 10 6",
+  "code": "class Solution {public:int maxMoves(vector<vector<int>>&grid){int m=grid.size(),n=grid[0].size(),ans=0;vector<int>prev(m,1);for(int j=1;j<n;j++){vector<int>cur(m);for(int i=0;i<m;i++)for(int di=-1;di<=1;di++){int p=i+di;if(p>=0&&p<m&&prev[p]&&grid[p][j-1]<grid[i][j])cur[i]=1;}if(none_of(cur.begin(),cur.end(),[](int x){return x;}))break;ans=j;prev.swap(cur);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176639105",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

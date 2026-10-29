@@ -1,0 +1,37 @@
+{
+  "id": "1074",
+  "title": "Number of Submatrices That Sum to Target",
+  "slug": "number-of-submatrices-that-sum-to-target",
+  "url": "https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given a matrix  and a target , return the number of non-empty submatrices that sum to target . \n \n A submatrix x1, y1, x2, y2 is the set of all cells matrix[x][y] with x1 <= x <= x2 and y1 <= y <= y2 . \n \n Two submatrices (x1, y1, x2, y2) and (x1', y1', x2', y2') are different if they have some coordinate that is different: for example, if x1 != x1' . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/02/mate1.jpg] \n \n```\nInput:\n matrix = [[0,1,0],[1,1,1],[0,1,0]], target = 0\n\nOutput:\n 4\n\nExplanation:\n The four 1x1 submatrices that only contain 0.\n```\n\n Example 2: \n \n```\nInput:\n matrix = [[1,-1],[-1,1]], target = 0\n\nOutput:\n 5\n\nExplanation:\n The two 1x2 submatrices, plus the two 2x1 submatrices, plus the 2x2 submatrix.\n```\n\n Example 3: \n \n```\nInput:\n matrix = [[904]], target = 0\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= matrix.length <= 100 \n \n 1 <= matrix[0].length <= 100 \n \n -1000 <= matrix[i][j] <= 1000 \n \n -10^8 <= target <= 10^8",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {\n        int m = matrix.size(), n = matrix[0].size(), count = 0;\n        \n        for (int r = 0; r < m; r++) {\n            vector<int> sum(n, 0);\n            for (int i = r; i < m; i++) {\n                for (int j = 0; j < n; j++) {\n                    sum[j] += matrix[i][j];\n                }\n                \n                count += subarraySum(sum, target);\n            }\n        }\n        return count;\n    }\n\n    int subarraySum(vector<int>& nums, int target) {\n        unordered_map<int, int> prefix;\n        prefix[0] = 1;\n        int sum = 0, count = 0;\n\n        for (int num : nums) {\n            sum += num;\n            if (prefix.find(sum - target) != prefix.end()) {\n                count += prefix[sum - target];\n            }\n            prefix[sum]++;\n        }\n\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590147724",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

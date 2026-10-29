@@ -1,0 +1,30 @@
+{
+  "id": "3442",
+  "title": "Maximum Difference Between Even and Odd Frequency I",
+  "slug": "maximum-difference-between-even-and-odd-frequency-i",
+  "url": "https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. \n \n Your task is to find the maximum difference diff = freq(a 1 ) - freq(a 2 ) between the frequency of characters a 1 and a 2 in the string such that: \n\n a 1 has an odd frequency in the string. \n \n a 2 has an even frequency in the string. \n\n Return this maximum difference. \n\n Example 1: \n\n Input: s = \"aaaaabbc\" \n \n Output: 3 \n \n Explanation: \n\n The character 'a' has an odd frequency of 5 , and 'b' has an even frequency of 2 . \n \n The maximum difference is 5 - 2 = 3 . \n\n Example 2: \n\n Input: s = \"abcabcab\" \n \n Output: 1 \n \n Explanation: \n\n The character 'a' has an odd frequency of 3 , and 'c' has an even frequency of 2 . \n \n The maximum difference is 3 - 2 = 1 . \n\n Constraints: \n\n 3 <= s.length <= 100 \n \n s consists only of lowercase English letters. \n \n s contains at least one character with an odd frequency and one with an even frequency.",
+  "code": "class Solution {public:int maxDifference(string s){int f[26]={};for(char c:s)++f[c-'a'];int odd=0,even=INT_MAX;for(int x:f){if(x&1)odd=max(odd,x);else if(x)even=min(even,x);}return odd-even;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177527518",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

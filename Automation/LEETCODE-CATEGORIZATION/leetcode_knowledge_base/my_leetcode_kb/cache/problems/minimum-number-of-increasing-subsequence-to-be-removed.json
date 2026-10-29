@@ -1,0 +1,29 @@
+{
+  "id": "3231",
+  "title": "Minimum Number of Increasing Subsequence to Be Removed",
+  "slug": "minimum-number-of-increasing-subsequence-to-be-removed",
+  "url": "https://leetcode.com/problems/minimum-number-of-increasing-subsequence-to-be-removed/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of integers nums , you are allowed to perform the following operation any number of times: \n\n Remove a strictly increasing subsequence from the array. \n\n Your task is to find the minimum number of operations required to make the array empty . \n\n Example 1: \n\n Input: nums = [5,3,1,4,2] \n \n Output: 3 \n \n Explanation: \n \n We remove subsequences [1, 2] , [3, 4] , [5] . \n\n Example 2: \n\n Input: nums = [1,2,3,4,5] \n \n Output: 1 \n\n Example 3: \n\n Input: nums = [5,4,3,2,1] \n \n Output: 5 \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution { public: int minOperations(vector<int>& nums) { vector<int> d; for(int x:nums){int y=-x; auto it=upper_bound(d.begin(),d.end(),y); if(it==d.end()) d.push_back(y); else *it=y;} return d.size(); } };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181226473",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

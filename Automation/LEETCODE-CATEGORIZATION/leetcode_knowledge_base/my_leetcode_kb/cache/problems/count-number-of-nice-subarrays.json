@@ -1,0 +1,37 @@
+{
+  "id": "1248",
+  "title": "Count Number of Nice Subarrays",
+  "slug": "count-number-of-nice-subarrays",
+  "url": "https://leetcode.com/problems/count-number-of-nice-subarrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an array of integers nums and an integer k . A continuous subarray is called nice if there are k odd numbers on it. \n \n Return the number of nice sub-arrays . \n\n Example 1: \n \n```\nInput:\n nums = [1,1,2,1,1], k = 3\n\nOutput:\n 2\n\nExplanation:\n The only sub-arrays with 3 odd numbers are [1,1,2,1] and [1,2,1,1].\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,4,6], k = 1\n\nOutput:\n 0\n\nExplanation:\n There are no odd numbers in the array.\n```\n\n Example 3: \n \n```\nInput:\n nums = [2,2,2,1,2,2,1,2,2,2], k = 2\n\nOutput:\n 16\n```\n\n Constraints: \n\n 1 <= nums.length <= 50000 \n \n 1 <= nums[i] <= 10^5 \n \n 1 <= k <= nums.length",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int atMostK(vector<int>& nums, int k) {\n        int i = 0, count = 0;\n        for (int j = 0; j < nums.size(); j++) {\n            k -= nums[j] % 2;\n            while (k < 0) {\n                k += nums[i] % 2;\n                i++;\n            }\n            count += j - i + 1;\n        }\n        return count;\n    }\n\n    int numberOfSubarrays(vector<int>& nums, int k) {\n        return atMostK(nums, k) - atMostK(nums, k - 1);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590159414",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

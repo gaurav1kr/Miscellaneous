@@ -1,0 +1,27 @@
+{
+  "id": "2787",
+  "title": "Ways to Express an Integer as Sum of Powers",
+  "slug": "ways-to-express-an-integer-as-sum-of-powers",
+  "url": "https://leetcode.com/problems/ways-to-express-an-integer-as-sum-of-powers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given two positive integers n and x . \n \n Return the number of ways n can be expressed as the sum of the x th power of unique positive integers, in other words, the number of sets of unique integers [n 1 , n 2 , ..., n k ] where n = n 1 x + n 2 x + ... + n k x . \n \n Since the result can be very large, return it modulo 10 9 + 7 . \n \n For example, if n = 160 and x = 3 , one way to express n is n = 2 3 + 3 3 + 5 3 . \n\n Example 1: \n \n```\nInput:\n n = 10, x = 2\n\nOutput:\n 1\n\nExplanation:\n We can express n as the following: n = 3\n2\n + 1\n2\n = 10.\nIt can be shown that it is the only way to express 10 as the sum of the 2\nnd\n power of unique integers.\n```\n\n Example 2: \n \n```\nInput:\n n = 4, x = 1\n\nOutput:\n 2\n\nExplanation:\n We can express n in the following ways:\n- n = 4\n1\n = 4.\n- n = 3\n1\n + 1\n1\n = 4.\n```\n\n Constraints: \n\n 1 <= n <= 300 \n \n 1 <= x <= 5",
+  "code": "class Solution {public:int numberOfWays(int n,int x){const int MOD=1000000007;vector<int> dp(n+1);dp[0]=1;for(int a=1;;++a){long long p=1;for(int j=0;j<x;++j)p*=a;if(p>n)break;for(int s=n;s>=p;--s)dp[s]=(dp[s]+dp[s-(int)p])%MOD;}return dp[n];}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176701433",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

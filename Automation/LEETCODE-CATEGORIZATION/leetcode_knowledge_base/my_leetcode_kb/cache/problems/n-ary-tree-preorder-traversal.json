@@ -1,0 +1,32 @@
+{
+  "id": "589",
+  "title": "N-ary Tree Preorder Traversal",
+  "slug": "n-ary-tree-preorder-traversal",
+  "url": "https://leetcode.com/problems/n-ary-tree-preorder-traversal/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Stack",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of an n-ary tree, return the preorder traversal of its nodes' values . \n \n Nary-Tree input serialization is represented in their level order traversal. Each group of children is separated by the null value (See examples) \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2018/10/12/narytreeexample.png] \n \n```\nInput:\n root = [1,null,3,2,4,null,5,6]\n\nOutput:\n [1,3,5,6,2,4]\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2019/11/08/sample_4_964.png] \n \n```\nInput:\n root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]\n\nOutput:\n [1,2,3,6,7,11,14,4,8,12,5,9,13,10]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 4 ] . \n \n 0 <= Node.val <= 10 4 \n \n The height of the n-ary tree is less than or equal to 1000 . \n\n Follow up: Recursive solution is trivial, could you do it iteratively?",
+  "code": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    vector<Node*> children;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n    }\n\n    Node(int _val, vector<Node*> _children) {\n        val = _val;\n        children = _children;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    vector<int> preorder(Node* root)\n    {\n        vector<int> pre_vec ;\n        stack<Node *> stk ;\n        stk.push(root);\n        while(!stk.empty())\n        {\n            Node *curr = stk.top() ;\n            stk.pop() ;       \n            if(curr)\n            {\n                pre_vec.push_back(curr->val) ;\n                vector<Node *>::iterator i1 = (curr->children).end();\n                while(i1!=(curr->children).begin())\n                {\n                    i1-- ;\n                    stk.push(*i1);\n                }\n            }\n        }\n        return pre_vec ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "332363496",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

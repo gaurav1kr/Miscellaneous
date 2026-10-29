@@ -1,0 +1,33 @@
+{
+  "id": "1722",
+  "title": "Minimize Hamming Distance After Swap Operations",
+  "slug": "minimize-hamming-distance-after-swap-operations",
+  "url": "https://leetcode.com/problems/minimize-hamming-distance-after-swap-operations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Union-Find"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays, source and target , both of length n . You are also given an array allowedSwaps where each allowedSwaps[i] = [a i , b i ] indicates that you are allowed to swap the elements at index a i and index b i (0-indexed) of array source . Note that you can swap elements at a specific pair of indices multiple times and in any order. \n \n The Hamming distance of two arrays of the same length, source and target , is the number of positions where the elements are different. Formally, it is the number of indices i for 0 <= i <= n-1 where source[i] != target[i] (0-indexed) . \n \n Return the minimum Hamming distance of source and target after performing any amount of swap operations on array source . \n\n Example 1: \n \n```\nInput:\n source = [1,2,3,4], target = [2,1,4,5], allowedSwaps = [[0,1],[2,3]]\n\nOutput:\n 1\n\nExplanation:\n source can be transformed the following way:\n- Swap indices 0 and 1: source = [\n2\n,\n1\n,3,4]\n- Swap indices 2 and 3: source = [2,1,\n4\n,\n3\n]\nThe Hamming distance of source and target is 1 as they differ in 1 position: index 3.\n```\n\n Example 2: \n \n```\nInput:\n source = [1,2,3,4], target = [1,3,2,4], allowedSwaps = []\n\nOutput:\n 2\n\nExplanation:\n There are no allowed swaps.\nThe Hamming distance of source and target is 2 as they differ in 2 positions: index 1 and index 2.\n```\n\n Example 3: \n \n```\nInput:\n source = [5,1,2,4,3], target = [1,5,4,2,3], allowedSwaps = [[0,4],[4,2],[1,3],[1,4]]\n\nOutput:\n 0\n```\n\n Constraints: \n\n n == source.length == target.length \n \n 1 <= n <= 10 5 \n \n 1 <= source[i], target[i] <= 10 5 \n \n 0 <= allowedSwaps.length <= 10 5 \n \n allowedSwaps[i].length == 2 \n \n 0 <= a i , b i <= n - 1 \n \n a i != b i",
+  "code": "#include <vector>\n#include <unordered_map>\n\nusing namespace std;\n\nclass DSU {\npublic:\n    vector<int> parent;\n    DSU(int n) : parent(n) {\n        for (int i = 0; i < n; ++i) parent[i] = i;\n    }\n    int find(int x) {\n        if (parent[x] != x) parent[x] = find(parent[x]);\n        return parent[x];\n    }\n    void unite(int x, int y) {\n        parent[find(x)] = find(y);\n    }\n};\n\nclass Solution {\npublic:\n    int minimumHammingDistance(vector<int>& source, vector<int>& target, vector<vector<int>>& allowedSwaps) {\n        int n = source.size();\n        DSU dsu(n);\n        for (auto& swap : allowedSwaps) {\n            dsu.unite(swap[0], swap[1]);\n        }\n\n        unordered_map<int, unordered_map<int, int>> groups;\n        for (int i = 0; i < n; ++i) {\n            groups[dsu.find(i)][source[i]]++;\n        }\n\n        int res = 0;\n        for (int i = 0; i < n; ++i) {\n            int group = dsu.find(i);\n            if (groups[group][target[i]] > 0) {\n                groups[group][target[i]]--;\n            } else {\n                res++;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610566872",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

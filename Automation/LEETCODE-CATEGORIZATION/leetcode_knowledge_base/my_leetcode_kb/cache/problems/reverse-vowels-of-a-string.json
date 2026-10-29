@@ -1,0 +1,30 @@
+{
+  "id": "345",
+  "title": "Reverse Vowels of a String",
+  "slug": "reverse-vowels-of-a-string",
+  "url": "https://leetcode.com/problems/reverse-vowels-of-a-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash set",
+    "Ordered set",
+    "String"
+  ],
+  "description": "Given a string s , reverse only all the vowels in the string and return it. \n \n The vowels are 'a' , 'e' , 'i' , 'o' , and 'u' , and they can appear in both lower and upper cases, more than once. \n\n Example 1: \n\n Input: s = \"IceCreAm\" \n \n Output: \"AceCreIm\" \n \n Explanation: \n \n The vowels in s are ['I', 'e', 'e', 'A'] . On reversing the vowels, s becomes \"AceCreIm\" . \n\n Example 2: \n\n Input: s = \"leetcode\" \n \n Output: \"leotcede\" \n\n Constraints: \n\n 1 <= s.length <= 3 * 10 5 \n \n s consist of printable ASCII characters.",
+  "code": "#include <string>\n#include <unordered_set>\nusing namespace std;\n\nclass Solution {\npublic:\n    string reverseVowels(string s) {\n        unordered_set<char> vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};\n        int left = 0, right = s.size() - 1;\n        \n        while (left < right) {\n            while (left < right && vowels.find(s[left]) == vowels.end()) left++;\n            while (left < right && vowels.find(s[right]) == vowels.end()) right--;\n            swap(s[left++], s[right--]);\n        }\n        return s;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590164398",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

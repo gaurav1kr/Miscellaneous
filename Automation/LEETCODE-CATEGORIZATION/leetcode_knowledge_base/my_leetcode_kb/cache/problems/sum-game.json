@@ -1,0 +1,31 @@
+{
+  "id": "1927",
+  "title": "Sum Game",
+  "slug": "sum-game",
+  "url": "https://leetcode.com/problems/sum-game/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Greedy",
+    "Game Theory"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Alice and Bob take turns playing a game, with Alice  starting first . \n \n You are given a string num of even length consisting of digits and '?' characters. On each turn, a player will do the following if there is still at least one '?' in num : \n\n Choose an index i where num[i] == '?' . \n \n Replace num[i] with any digit between '0' and '9' . \n\n The game ends when there are no more '?' characters in num . \n \n For Bob to win, the sum of the digits in the first half of num must be equal to the sum of the digits in the second half. For Alice to win, the sums must not be equal . \n\n For example, if the game ended with num = \"243801\" , then Bob wins because 2+4+3 = 8+0+1 . If the game ended with num = \"243803\" , then Alice wins because 2+4+3 != 8+0+3 . \n\n Assuming Alice and Bob play optimally , return true if Alice will win and false if Bob will win . \n\n Example 1: \n \n```\nInput:\n num = \"5023\"\n\nOutput:\n false\n\nExplanation:\n There are no moves to be made.\nThe sum of the first half is equal to the sum of the second half: 5 + 0 = 2 + 3.\n```\n\n Example 2: \n \n```\nInput:\n num = \"25??\"\n\nOutput:\n true\n\nExplanation: \nAlice can replace one of the '?'s with '9' and it will be impossible for Bob to make the sums equal.\n```\n\n Example 3: \n \n```\nInput:\n num = \"?3295???\"\n\nOutput:\n false\n\nExplanation:\n It can be proven that Bob will always win. One possible outcome is:\n- Alice replaces the first '?' with '9'. num = \"93295???\".\n- Bob replaces one of the '?' in the right half with '9'. num = \"932959??\".\n- Alice replaces one of the '?' in the right half with '2'. num = \"9329592?\".\n- Bob replaces the last '?' in the right half with '7'. num = \"93295927\".\nBob wins because 9 + 3 + 2 + 9 = 5 + 9 + 2 + 7.\n```\n\n Constraints: \n\n 2 <= num.length <= 10 5 \n \n num.length is even . \n \n num consists of only digits and '?' .",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool sumGame(string num) {\n        int n = num.size(), leftSum = 0, rightSum = 0, leftQ = 0, rightQ = 0;\n        for (int i = 0; i < n / 2; ++i) {\n            if (num[i] == '?') ++leftQ;\n            else leftSum += num[i] - '0';\n        }\n        for (int i = n / 2; i < n; ++i) {\n            if (num[i] == '?') ++rightQ;\n            else rightSum += num[i] - '0';\n        }\n\n        if ((leftQ + rightQ) % 2) return true;\n        int deltaQ = leftQ - rightQ;\n        int deltaS = rightSum - leftSum;\n        return deltaS != (deltaQ / 2) * 9;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610637908",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

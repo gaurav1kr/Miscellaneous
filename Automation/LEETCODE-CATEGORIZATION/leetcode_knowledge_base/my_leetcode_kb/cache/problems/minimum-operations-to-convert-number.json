@@ -1,0 +1,30 @@
+{
+  "id": "2059",
+  "title": "Minimum Operations to Convert Number",
+  "slug": "minimum-operations-to-convert-number",
+  "url": "https://leetcode.com/problems/minimum-operations-to-convert-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums containing distinct numbers, an integer start , and an integer goal . There is an integer x that is initially set to start , and you want to perform operations on x such that it is converted to goal . You can perform the following operation repeatedly on the number x : \n \n If 0 <= x <= 1000 , then for any index i in the array ( 0 <= i < nums.length ), you can set x to any of the following: \n\n x + nums[i] \n \n x - nums[i] \n \n x ^ nums[i] (bitwise-XOR) \n\n Note that you can use each nums[i] any number of times in any order. Operations that set x to be out of the range 0 <= x <= 1000 are valid, but no more operations can be done afterward. \n \n Return the minimum number of operations needed to convert x = start into goal , and -1 if it is not possible . \n\n Example 1: \n \n```\nInput:\n nums = [2,4,12], start = 2, goal = 12\n\nOutput:\n 2\n\nExplanation:\n We can go from 2 → 14 → 12 with the following 2 operations.\n- 2 + 12 = 14\n- 14 - 2 = 12\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,5,7], start = 0, goal = -4\n\nOutput:\n 2\n\nExplanation:\n We can go from 0 → 3 → -4 with the following 2 operations. \n- 0 + 3 = 3\n- 3 - 7 = -4\nNote that the last operation sets x out of the range 0 <= x <= 1000, which is valid.\n```\n\n Example 3: \n \n```\nInput:\n nums = [2,8,16], start = 0, goal = 1\n\nOutput:\n -1\n\nExplanation:\n There is no way to convert 0 into 1.\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n -10 9 <= nums[i], goal <= 10 9 \n \n 0 <= start <= 1000 \n \n start != goal \n \n All the integers in nums are distinct.",
+  "code": "// Your solution here\nclass Solution {\npublic:\n    int minimumOperations(vector<int>& nums, int start, int goal) \n    {\n        queue<int> que;\n        que.push(start); \n        vector<int> visit(1001, 0); \n        int level = 0;\n        \n        while(!que.empty()) {\n            int size = que.size(); \n            for(int i=0; i<size; i++) {\n                int curr = que.front(); \n                que.pop();\n                if(curr == goal)\n                    return level; \n                if(curr<0 || curr>1000 || visit[curr] == 1)\n                    continue; \n                visit[curr] = 1; \n                for(int i=0; i< nums.size(); i++) {\n                    que.push(curr + nums[i]);\n                    que.push(curr - nums[i]); \n                    que.push(curr ^ nums[i]);                    \n                }\n            }\n            level++; \n        }\n        return -1; \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617064108",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

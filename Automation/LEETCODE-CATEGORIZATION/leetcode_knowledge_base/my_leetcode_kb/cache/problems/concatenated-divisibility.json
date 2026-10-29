@@ -1,0 +1,35 @@
+{
+  "id": "3533",
+  "title": "Concatenated Divisibility",
+  "slug": "concatenated-divisibility",
+  "url": "https://leetcode.com/problems/concatenated-divisibility/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an array of positive integers nums and a positive integer k . \n \n A permutation of nums is said to form a divisible concatenation if, when you concatenate the decimal representations of the numbers in the order specified by the permutation, the resulting number is divisible by k . \n \n Return the lexicographically smallest permutation (when considered as a list of integers) that forms a divisible concatenation . If no such permutation exists, return an empty list. \n\n Example 1: \n\n Input: nums = [3,12,45], k = 5 \n \n Output: [3,12,45] \n \n Explanation: \n\n Permutation \n Concatenated Value \n Divisible by 5 \n\n [3, 12, 45] \n 31245 \n Yes \n\n [3, 45, 12] \n 34512 \n No \n\n [12, 3, 45] \n 12345 \n Yes \n\n [12, 45, 3] \n 12453 \n No \n\n [45, 3, 12] \n 45312 \n No \n\n [45, 12, 3] \n 45123 \n No \n\n The lexicographically smallest permutation that forms a divisible concatenation is [3,12,45] . \n\n Example 2: \n\n Input: nums = [10,5], k = 10 \n \n Output: [5,10] \n \n Explanation: \n\n Permutation \n Concatenated Value \n Divisible by 10 \n\n [5, 10] \n 510 \n Yes \n\n [10, 5] \n 105 \n No \n\n The lexicographically smallest permutation that forms a divisible concatenation is [5,10] . \n\n Example 3: \n\n Input: nums = [1,2,3], k = 5 \n \n Output: [] \n \n Explanation: \n \n Since no permutation of nums forms a valid divisible concatenation, return an empty list. \n\n Constraints: \n\n 1 <= nums.length <= 13 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= k <= 100",
+  "code": "class Solution {public:vector<int> concatenatedDivisibility(vector<int>&nums,int k){int n=nums.size();vector<int> mul(n),rem(n);for(int i=0;i<n;i++){long long p=10;while(p<=nums[i])p*=10;mul[i]=p%k;rem[i]=nums[i]%k;}vector<vector<int8_t>> memo(1<<n,vector<int8_t>(k,-1));function<bool(int,int)>dfs=[&](int mask,int r){if(mask==(1<<n)-1)return r==0;int8_t &v=memo[mask][r];if(v!=-1)return v==1;for(int i=0;i<n;i++)if(!(mask>>i&1)&&dfs(mask|1<<i,((long long)r*mul[i]+rem[i])%k))return v=1,true;return v=0,false;};vector<int> ord(n);iota(ord.begin(),ord.end(),0);sort(ord.begin(),ord.end(),[&](int a,int b){return nums[a]<nums[b];});if(!dfs(0,0))return {};vector<int>ans;int mask=0,r=0;while(mask!=(1<<n)-1)for(int i:ord)if(!(mask>>i&1)){int nr=((long long)r*mul[i]+rem[i])%k;if(dfs(mask|1<<i,nr)){ans.push_back(nums[i]);mask|=1<<i;r=nr;break;}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177565749",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

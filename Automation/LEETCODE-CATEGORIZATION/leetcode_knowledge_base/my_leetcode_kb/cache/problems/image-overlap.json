@@ -1,0 +1,30 @@
+{
+  "id": "835",
+  "title": "Image Overlap",
+  "slug": "image-overlap",
+  "url": "https://leetcode.com/problems/image-overlap/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given two images, img1 and img2 , represented as binary, square matrices of size n x n . A binary matrix has only 0 s and 1 s as values. \n \n We translate one image however we choose by sliding all the 1 bits left, right, up, and/or down any number of units. We then place it on top of the other image. We can then calculate the overlap by counting the number of positions that have a 1 in both images. \n \n Note also that a translation does not include any kind of rotation. Any 1 bits that are translated outside of the matrix borders are erased. \n \n Return the largest possible overlap . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/09/overlap1.jpg] \n \n```\nInput:\n img1 = [[1,1,0],[0,1,0],[0,1,0]], img2 = [[0,0,0],[0,1,1],[0,0,1]]\n\nOutput:\n 3\n\nExplanation:\n We translate img1 to right by 1 unit and down by 1 unit.\n\nThe number of positions that have a 1 in both images is 3 (shown in red).\n```\n\n Example 2: \n \n```\nInput:\n img1 = [[1]], img2 = [[1]]\n\nOutput:\n 1\n```\n\n Example 3: \n \n```\nInput:\n img1 = [[0]], img2 = [[0]]\n\nOutput:\n 0\n```\n\n Constraints: \n\n n == img1.length == img1[i].length \n \n n == img2.length == img2[i].length \n \n 1 <= n <= 30 \n \n img1[i][j] is either 0 or 1 . \n \n img2[i][j] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n    int largestOverlap(vector<vector<int>>& img1, vector<vector<int>>& img2) {\n        int n = img1.size();\n        vector<pair<int,int>> a, b;\n        for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) {\n            if (img1[i][j]) a.push_back({i, j});\n            if (img2[i][j]) b.push_back({i, j});\n        }\n        map<pair<int,int>, int> count;\n        int best = 0;\n        for (const auto& x : a) for (const auto& y : b)\n            best = max(best, ++count[{x.first - y.first, x.second - y.second}]);\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175742248",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

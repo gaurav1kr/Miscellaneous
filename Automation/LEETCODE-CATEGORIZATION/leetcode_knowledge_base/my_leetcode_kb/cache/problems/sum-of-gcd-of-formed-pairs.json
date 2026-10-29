@@ -1,0 +1,36 @@
+{
+  "id": "3867",
+  "title": "Sum of GCD of Formed Pairs",
+  "slug": "sum-of-gcd-of-formed-pairs",
+  "url": "https://leetcode.com/problems/sum-of-gcd-of-formed-pairs/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Two Pointers",
+    "Sorting",
+    "Simulation",
+    "Number Theory"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n . \n \n Construct an array prefixGcd where for each index i : \n\n Let mx i = max(nums[0], nums[1], ..., nums[i]) . \n \n prefixGcd[i] = gcd(nums[i], mx i ) . \n\n After constructing prefixGcd : \n\n Sort prefixGcd in non-decreasing order. \n \n Form pairs by taking the smallest unpaired element and the largest unpaired element. \n \n Repeat this process until no more pairs can be formed. \n \n For each formed pair, compute the gcd of the two elements. \n \n If n is odd, the middle element in the prefixGcd array remains unpaired and should be ignored. \n\n Return an integer denoting the sum of the GCD values of all formed pairs. \nThe term gcd(a, b) denotes the greatest common divisor of a and b .\n\n Example 1: \n\n Input: nums = [2,6,4] \n \n Output: 2 \n \n Explanation: \n \n Construct prefixGcd : \n\n i \n nums[i] \n mx i \n prefixGcd[i] \n\n 0 \n 2 \n 2 \n 2 \n\n 1 \n 6 \n 6 \n 6 \n\n 2 \n 4 \n 6 \n 2 \n\n prefixGcd = [2, 6, 2] . After sorting, it forms [2, 2, 6] . \n \n Pair the smallest and largest elements: gcd(2, 6) = 2 . The remaining middle element 2 is ignored. Thus, the sum is 2. \n\n Example 2: \n\n Input: nums = [3,6,2,8] \n \n Output: 5 \n \n Explanation: \n \n Construct prefixGcd : \n\n i \n nums[i] \n mx i \n prefixGcd[i] \n\n 0 \n 3 \n 3 \n 3 \n\n 1 \n 6 \n 6 \n 6 \n\n 2 \n 2 \n 6 \n 2 \n\n 3 \n 8 \n 8 \n 8 \n\n prefixGcd = [3, 6, 2, 8] . After sorting, it forms [2, 3, 6, 8] . \n \n Form pairs: gcd(2, 8) = 2 and gcd(3, 6) = 3 . Thus, the sum is 2 + 3 = 5 . \n\n Constraints: \n\n 1 <= n == nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 ​​​​​​​9",
+  "code": "class Solution {\n    int gcdInt(int a, int b) {\n        while (b) { int t = a % b; a = b; b = t; }\n        return a;\n    }\npublic:\n    long long gcdSum(vector<int>& nums) {\n        vector<int> a;\n        a.reserve(nums.size());\n        int mx = 0;\n        for (int x : nums) {\n            mx = max(mx, x);\n            a.push_back(gcdInt(x, mx));\n        }\n        sort(a.begin(), a.end());\n        long long ans = 0;\n        for (int i = 0, j = (int)a.size() - 1; i < j; ++i, --j)\n            ans += gcdInt(a[i], a[j]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181069770",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

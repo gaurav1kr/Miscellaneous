@@ -1,0 +1,37 @@
+{
+  "id": "308",
+  "title": "Range Sum Query 2D - Mutable",
+  "slug": "range-sum-query-2d-mutable",
+  "url": "https://leetcode.com/problems/range-sum-query-2d-mutable/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Design",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Matrix",
+    "Sqrt Decomposition"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Fenwick tree",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "Given a 2D matrix matrix , handle multiple queries of the following types: \n\n Update the value of a cell in matrix . \n \n Calculate the sum of the elements of matrix inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2) . \n\n Implement the NumMatrix class: \n\n NumMatrix(int[][] matrix) Initializes the object with the integer matrix matrix . \n \n void update(int row, int col, int val) Updates the value of matrix[row][col] to be val . \n \n int sumRegion(int row1, int col1, int row2, int col2) Returns the sum of the elements of matrix inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2) . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/14/summut-grid.jpg] \n \n```\nInput\n\n[\"NumMatrix\", \"sumRegion\", \"update\", \"sumRegion\"]\n[[[[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]]], [2, 1, 4, 3], [3, 2, 2], [2, 1, 4, 3]]\n\nOutput\n\n[null, 8, null, 10]\n\nExplanation\n\nNumMatrix numMatrix = new NumMatrix([[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]]);\nnumMatrix.sumRegion(2, 1, 4, 3); // return 8 (i.e. sum of the left red rectangle)\nnumMatrix.update(3, 2, 2); // matrix changes from left image to right image\nnumMatrix.sumRegion(2, 1, 4, 3); // return 10 (i.e. sum of the right red rectangle)\n```\n\n Constraints: \n\n m == matrix.length \n \n n == matrix[i].length \n \n 1 <= m, n <= 200 \n \n -1000 <= matrix[i][j] <= 1000 \n \n 0 <= row < m \n \n 0 <= col < n \n \n -1000 <= val <= 1000 \n \n 0 <= row1 <= row2 < m \n \n 0 <= col1 <= col2 < n \n \n At most 5000 calls will be made to sumRegion and update .",
+  "code": "class NumMatrix\n{\n    vector<vector<int>> bit, values;\n    int m, n;\n    void add(int r, int c, int delta)\n    {\n        for (int i = r + 1; i <= m; i += i & -i)\n        {\n            for (int j = c + 1; j <= n; j += j & -j)\n            {\n                bit[i][j] += delta;\n            }\n        }\n    }\n    int prefix(int r, int c) const\n    {\n        int result = 0;\n        for (int i = r; i > 0; i -= i & -i)\n        {\n            for (int j = c; j > 0; j -= j & -j)\n            {\n                result += bit[i][j];\n            }\n        }\n        return result;\n    }\npublic:\n    NumMatrix(vector<vector<int>>& matrix)\n    {\n        m = matrix.size();\n        n = m ? matrix[0].size() : 0;\n        bit.assign(m + 1, vector<int>(n + 1, 0));\n        values.assign(m, vector<int>(n, 0));\n        for (int r = 0; r < m; ++r)\n        {\n            for (int c = 0; c < n; ++c)\n            {\n                update(r, c, matrix[r][c]);\n            }\n        }\n    }\n    void update(int row, int col, int val)\n    {\n        int delta = val - values[row][col];\n        values[row][col] = val;\n        add(row, col, delta);\n    }\n    int sumRegion(int row1, int col1, int row2, int col2)\n    {\n        return prefix(row2 + 1, col2 + 1) - prefix(row1, col2 + 1)\n             - prefix(row2 + 1, col1) + prefix(row1, col1);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178450620",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

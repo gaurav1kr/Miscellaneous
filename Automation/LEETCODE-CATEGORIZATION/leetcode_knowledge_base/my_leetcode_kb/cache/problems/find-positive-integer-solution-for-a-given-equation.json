@@ -1,0 +1,31 @@
+{
+  "id": "1237",
+  "title": "Find Positive Integer Solution for a Given Equation",
+  "slug": "find-positive-integer-solution-for-a-given-equation",
+  "url": "https://leetcode.com/problems/find-positive-integer-solution-for-a-given-equation/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Two Pointers",
+    "Binary Search",
+    "Interactive"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "Given a callable function f(x, y) with a hidden formula and a value z , reverse engineer the formula and return all positive integer pairs x and y where f(x,y) == z . You may return the pairs in any order. \n \n While the exact formula is hidden, the function is monotonically increasing, i.e.: \n\n f(x, y) < f(x + 1, y) \n \n f(x, y) < f(x, y + 1) \n\n The function interface is defined like this: \n \n```\ninterface CustomFunction {\npublic:\n // Returns some positive integer f(x, y) for two positive integers x and y based on a formula.\n int f(int x, int y);\n};\n```\n\n We will judge your solution as follows: \n\n The judge has a list of 9 hidden implementations of CustomFunction , along with a way to generate an answer key of all valid pairs for a specific z . \n \n The judge will receive two inputs: a function_id (to determine which implementation to test your code with), and the target z . \n \n The judge will call your findSolution and compare your results with the answer key . \n \n If your results match the answer key , your solution will be Accepted . \n\n Example 1: \n \n```\nInput:\n function_id = 1, z = 5\n\nOutput:\n [[1,4],[2,3],[3,2],[4,1]]\n\nExplanation:\n The hidden formula for function_id = 1 is f(x, y) = x + y.\nThe following positive integer values of x and y make f(x, y) equal to 5:\nx=1, y=4 -> f(1, 4) = 1 + 4 = 5.\nx=2, y=3 -> f(2, 3) = 2 + 3 = 5.\nx=3, y=2 -> f(3, 2) = 3 + 2 = 5.\nx=4, y=1 -> f(4, 1) = 4 + 1 = 5.\n```\n\n Example 2: \n \n```\nInput:\n function_id = 2, z = 5\n\nOutput:\n [[1,5],[5,1]]\n\nExplanation:\n The hidden formula for function_id = 2 is f(x, y) = x * y.\nThe following positive integer values of x and y make f(x, y) equal to 5:\nx=1, y=5 -> f(1, 5) = 1 * 5 = 5.\nx=5, y=1 -> f(5, 1) = 5 * 1 = 5.\n```\n\n Constraints: \n\n 1 <= function_id <= 9 \n \n 1 <= z <= 100 \n \n It is guaranteed that the solutions of f(x, y) == z will be in the range 1 <= x, y <= 1000 . \n \n It is also guaranteed that f(x, y) will fit in 32 bit signed integer if 1 <= x, y <= 1000 .",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> findSolution(CustomFunction& customfunction, int z) {\n        vector<vector<int>> answer;\n        int x = 1, y = 1000;\n        while (x <= 1000 && y >= 1) {\n            int value = customfunction.f(x, y);\n            if (value == z) {\n                answer.push_back({x, y});\n                ++x;\n                --y;\n            } else if (value < z) {\n                ++x;\n            } else {\n                --y;\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175748830",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

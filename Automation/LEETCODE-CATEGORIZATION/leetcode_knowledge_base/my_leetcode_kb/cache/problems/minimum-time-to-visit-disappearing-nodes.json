@@ -1,0 +1,36 @@
+{
+  "id": "3112",
+  "title": "Minimum Time to Visit Disappearing Nodes",
+  "slug": "minimum-time-to-visit-disappearing-nodes",
+  "url": "https://leetcode.com/problems/minimum-time-to-visit-disappearing-nodes/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is an undirected graph of n nodes. You are given a 2D array edges , where edges[i] = [u i , v i , length i ] describes an edge between node u i and node v i with a traversal time of length i units. \n \n Additionally, you are given an array disappear , where disappear[i] denotes the time when the node i disappears from the graph and you won't be able to visit it. \n \n Note  that the graph might be disconnected and might contain multiple edges . \n \n Return the array answer , with answer[i] denoting the minimum units of time required to reach node i from node 0. If node i is unreachable from node 0 then answer[i] is -1 . \n\n Example 1: \n\n Input: n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,1,5] \n \n Output: [0,-1,4] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/11/output-onlinepngtools.png] \n \n We are starting our journey from node 0, and our goal is to find the minimum time required to reach each node before it disappears. \n\n For node 0, we don't need any time as it is our starting point. \n \n For node 1, we need at least 2 units of time to traverse edges[0] . Unfortunately, it disappears at that moment, so we won't be able to visit it. \n \n For node 2, we need at least 4 units of time to traverse edges[2] . \n\n Example 2: \n\n Input: n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,3,5] \n \n Output: [0,2,3] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/11/output-onlinepngtools-1.png] \n \n We are starting our journey from node 0, and our goal is to find the minimum time required to reach each node before it disappears. \n\n For node 0, we don't need any time as it is the starting point. \n \n For node 1, we need at least 2 units of time to traverse edges[0] . \n \n For node 2, we need at least 3 units of time to traverse edges[0] and edges[1] . \n\n Example 3: \n\n Input: n = 2, edges = [[0,1,1]], disappear = [1,1] \n \n Output: [0,-1] \n \n Explanation: \n \n Exactly when we reach node 1, it disappears. \n\n Constraints: \n\n 1 <= n <= 5 * 10 4 \n \n 0 <= edges.length <= 10 5 \n \n edges[i] == [u i , v i , length i ] \n \n 0 <= u i , v i <= n - 1 \n \n 1 <= length i <= 10 5 \n \n disappear.length == n \n \n 1 <= disappear[i] <= 10 5",
+  "code": "class Solution {public:vector<int> minimumTime(int n,vector<vector<int>>& edges,vector<int>& disappear){\n vector<vector<pair<int,int>>> g(n);for(auto &e:edges){g[e[0]].push_back({e[1],e[2]});g[e[1]].push_back({e[0],e[2]});}\n vector<int> d(n,INT_MAX);priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;\n if(disappear[0]>0){d[0]=0;pq.push({0,0});}\n while(!pq.empty()){auto cur=pq.top();pq.pop();int t=cur.first,u=cur.second;if(t!=d[u])continue;\n for(auto e:g[u]){int v=e.first,nt=t+e.second;if(nt<d[v]&&nt<disappear[v]){d[v]=nt;pq.push({nt,v});}}}\n for(int &x:d)if(x==INT_MAX)x=-1;return d;\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177376098",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

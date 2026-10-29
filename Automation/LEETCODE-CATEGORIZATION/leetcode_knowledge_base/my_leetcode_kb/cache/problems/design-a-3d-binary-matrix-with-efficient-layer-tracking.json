@@ -1,0 +1,39 @@
+{
+  "id": "3391",
+  "title": "Design a 3D Binary Matrix with Efficient Layer Tracking",
+  "slug": "design-a-3d-binary-matrix-with-efficient-layer-tracking",
+  "url": "https://leetcode.com/problems/design-a-3d-binary-matrix-with-efficient-layer-tracking/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Design",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Ordered Set"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered set",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "You are given a n x n x n binary 3D array matrix . \n \n Implement the Matrix3D class: \n\n Matrix3D(int n) Initializes the object with the 3D binary array matrix , where all elements are initially set to 0. \n \n void setCell(int x, int y, int z) Sets the value at matrix[x][y][z] to 1. \n \n void unsetCell(int x, int y, int z) Sets the value at matrix[x][y][z] to 0. \n \n int largestMatrix() Returns the index x where matrix[x] contains the most number of 1's. If there are multiple such indices, return the largest x . \n\n Example 1: \n\n Input: \n [\"Matrix3D\", \"setCell\", \"largestMatrix\", \"setCell\", \"largestMatrix\", \"setCell\", \"largestMatrix\"] \n[[3], [0, 0, 0], [], [1, 1, 2], [], [0, 0, 1], []] \n \n Output: \n [null, null, 0, null, 1, null, 0] \n \n Explanation \nMatrix3D matrix3D = new Matrix3D(3); // Initializes a 3 x 3 x 3 3D array matrix , filled with all 0's. \nmatrix3D.setCell(0, 0, 0); // Sets matrix[0][0][0] to 1. \nmatrix3D.largestMatrix(); // Returns 0. matrix[0] has the most number of 1's. \nmatrix3D.setCell(1, 1, 2); // Sets matrix[1][1][2] to 1. \nmatrix3D.largestMatrix(); // Returns 1. matrix[0] and matrix[1] tie with the most number of 1's, but index 1 is bigger. \nmatrix3D.setCell(0, 0, 1); // Sets matrix[0][0][1] to 1. \nmatrix3D.largestMatrix(); // Returns 0. matrix[0] has the most number of 1's. \n \n Example 2: \n\n Input: \n [\"Matrix3D\", \"setCell\", \"largestMatrix\", \"unsetCell\", \"largestMatrix\"] \n[[4], [2, 1, 1], [], [2, 1, 1], []] \n \n Output: \n [null, null, 2, null, 3] \n \n Explanation \nMatrix3D matrix3D = new Matrix3D(4); // Initializes a 4 x 4 x 4 3D array matrix , filled with all 0's. \nmatrix3D.setCell(2, 1, 1); // Sets matrix[2][1][1] to 1. \nmatrix3D.largestMatrix(); // Returns 2. matrix[2] has the most number of 1's. \nmatrix3D.unsetCell(2, 1, 1); // Sets matrix[2][1][1] to 0. \nmatrix3D.largestMatrix(); // Returns 3. All indices from 0 to 3 tie with the same number of 1's, but index 3 is the biggest. \n\n Constraints: \n\n 1 <= n <= 100 \n \n 0 <= x, y, z < n \n \n At most 10 5 calls are made in total to setCell and unsetCell . \n \n At most 10 4 calls are made to largestMatrix .",
+  "code": "class Matrix3D {\n    int n;\n    vector<unsigned char> cells;\n    vector<int> count;\n    set<pair<int,int>> rank;\n    int idx(int x,int y,int z) {\n        return (x*n+y)*n+z;\n    }\n    void change(int x,int y,int z,int value) {\n        int i=idx(x,y,z);\n        if(cells[i]==value)return;\n        rank.erase( {\n            count[x],x\n        }\n        );\n        count[x]+=value?1:-1;\n        cells[i]=value;\n        rank.insert( {\n            count[x],x\n        }\n        );\n    }\n    public:Matrix3D(int n):n(n),cells(n*n*n,0),count(n,0) {\n        for(int x=0; x<n; x++)rank.insert( {\n            0,x\n        }\n        );\n    }\n    void setCell(int x,int y,int z) {\n        change(x,y,z,1);\n    }\n    void unsetCell(int x,int y,int z) {\n        change(x,y,z,0);\n    }\n    int largestMatrix() {\n        return rank.rbegin()->second;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179342716",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

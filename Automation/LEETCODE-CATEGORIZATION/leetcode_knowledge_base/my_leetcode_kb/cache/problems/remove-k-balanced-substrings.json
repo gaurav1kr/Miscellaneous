@@ -1,0 +1,32 @@
+{
+  "id": "3703",
+  "title": "Remove K-Balanced Substrings",
+  "slug": "remove-k-balanced-substrings",
+  "url": "https://leetcode.com/problems/remove-k-balanced-substrings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s consisting of '(' and ')' , and an integer k . \n \n A string is k-balanced if it is exactly k consecutive '(' followed by k consecutive ')' , i.e., '(' * k + ')' * k . \n \n For example, if k = 3 , k-balanced is \"((()))\" . \n \n You must repeatedly remove all non-overlapping k-balanced substrings from s , and then join the remaining parts. Continue this process until no k-balanced substring exists. \n \n Return the final string after all possible removals. \n\n ​​​​​​​ Example 1: \n\n Input: s = \"(())\", k = 1 \n \n Output: \"\" \n \n Explanation: \n \n k-balanced substring is \"()\" \n\n Step \n Current s \n k-balanced \n Result s \n\n 1 \n (()) \n ( () ) \n () \n\n 2 \n () \n () \n Empty \n\n Thus, the final string is \"\" . \n\n Example 2: \n\n Input: s = \"(()(\", k = 1 \n \n Output: \"((\" \n \n Explanation: \n \n k-balanced substring is \"()\" \n\n Step \n Current s \n k-balanced \n Result s \n\n 1 \n (()( \n ( () ( \n (( \n\n 2 \n (( \n - \n (( \n\n Thus, the final string is \"((\" . \n\n Example 3: \n\n Input: s = \"((()))()()()\", k = 3 \n \n Output: \"()()()\" \n \n Explanation: \n \n k-balanced substring is \"((()))\" \n\n Step \n Current s \n k-balanced \n Result s \n\n 1 \n ((()))()()() \n ((())) ()()() \n ()()() \n\n 2 \n ()()() \n - \n ()()() \n\n Thus, the final string is \"()()()\" . \n\n Constraints: \n\n 2 <= s.length <= 10 5 \n \n s consists only of '(' and ')' . \n \n 1 <= k <= s.length / 2",
+  "code": "class Solution {\npublic:\n    string removeSubstring(string s,int k) {\n        vector<pair<char,int>> st;\n        for(char c:s) {\n            if(!st.empty() && st.back().first==c) ++st.back().second;\n            else st.push_back({c,1});\n            while(st.size()>=2 && st.back().first==')' &&\n                  st[st.size()-2].first=='(' &&\n                  st.back().second>=k && st[st.size()-2].second>=k) {\n                st.back().second-=k;\n                st[st.size()-2].second-=k;\n                int right=st.back().second;\n                int left=st[st.size()-2].second;\n                st.pop_back();st.pop_back();\n                if(left) {\n                    if(!st.empty()&&st.back().first=='(') st.back().second+=left;\n                    else st.push_back({'(',left});\n                }\n                if(right) st.push_back({')',right});\n            }\n        }\n        string out;\n        for(auto &p:st) out.append(p.second,p.first);\n        return out;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180991574",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

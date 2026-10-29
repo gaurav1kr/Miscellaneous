@@ -1,0 +1,29 @@
+{
+  "id": "1582",
+  "title": "Special Positions in a Binary Matrix",
+  "slug": "special-positions-in-a-binary-matrix",
+  "url": "https://leetcode.com/problems/special-positions-in-a-binary-matrix/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an m x n binary matrix mat , return the number of special positions in mat . \n \n A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column j are 0 (rows and columns are 0-indexed ). \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/12/23/special1.jpg] \n \n```\nInput:\n mat = [[1,0,0],[0,0,1],[1,0,0]]\n\nOutput:\n 1\n\nExplanation:\n (1, 2) is a special position because mat[1][2] == 1 and all other elements in row 1 and column 2 are 0.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/12/24/special-grid.jpg] \n \n```\nInput:\n mat = [[1,0,0],[0,1,0],[0,0,1]]\n\nOutput:\n 3\n\nExplanation:\n (0, 0), (1, 1) and (2, 2) are special positions.\n```\n\n Constraints: \n\n m == mat.length \n \n n == mat[i].length \n \n 1 <= m, n <= 100 \n \n mat[i][j] is either 0 or 1 .",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numSpecial(vector<vector<int>>& mat) {\n        int m = mat.size(), n = mat[0].size(), res = 0;\n        vector<int> row(m), col(n);\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                row[i] += mat[i][j], col[j] += mat[i][j];\n\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                if (mat[i][j] == 1 && row[i] == 1 && col[j] == 1)\n                    res++;\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610614493",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

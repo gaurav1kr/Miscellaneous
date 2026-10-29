@@ -1,0 +1,35 @@
+{
+  "id": "1902",
+  "title": "Depth of BST Given Insertion Order",
+  "slug": "depth-of-bst-given-insertion-order",
+  "url": "https://leetcode.com/problems/depth-of-bst-given-insertion-order/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Tree",
+    "Binary Search Tree",
+    "Binary Tree",
+    "Ordered Set"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Binary tree",
+    "Ordered map",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array order of length n , a permutation of integers from 1 to n representing the order of insertion into a binary search tree . \n \n A binary search tree is defined as follows: \n\n The left subtree of a node contains only nodes with keys less than the node's key. \n \n The right subtree of a node contains only nodes with keys greater than the node's key. \n \n Both the left and right subtrees must also be binary search trees. \n\n The binary search tree is constructed as follows: \n\n order[0] will be the root of the binary search tree. \n \n All subsequent elements are inserted as the child of any existing node such that the binary search tree properties hold. \n\n Return the depth of the binary search tree . \n \n A binary tree's depth is the number of nodes along the longest path from the root node down to the farthest leaf node. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/15/1.png] \n \n```\nInput:\n order = [2,1,4,3]\n\nOutput:\n 3\n\nExplanation: \nThe binary search tree has a depth of 3 with path 2->3->4.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/15/2.png] \n \n```\nInput:\n order = [2,1,3,4]\n\nOutput:\n 3\n\nExplanation: \nThe binary search tree has a depth of 3 with path 2->3->4.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/06/15/3.png] \n \n```\nInput:\n order = [1,2,3,4]\n\nOutput:\n 4\n\nExplanation: \nThe binary search tree has a depth of 4 with path 1->2->3->4.\n```\n\n Constraints: \n\n n == order.length \n \n 1 <= n <= 10 5 \n \n order is a permutation of integers between 1 and n .",
+  "code": "class Solution {\npublic:\n    int maxDepthBST(vector<int>& order) {\n        map<int, int> depth;\n        int answer = 0;\n        for (int value : order) {\n            auto it = depth.lower_bound(value);\n            int left = 0, right = 0;\n            if (it != depth.end()) {\n                right = it->second;\n            }\n            if (it != depth.begin()) {\n                left = prev(it)->second;\n            }\n            int d = max(left, right) + 1;\n            depth[value] = d;\n            answer = max(answer, d);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178622444",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

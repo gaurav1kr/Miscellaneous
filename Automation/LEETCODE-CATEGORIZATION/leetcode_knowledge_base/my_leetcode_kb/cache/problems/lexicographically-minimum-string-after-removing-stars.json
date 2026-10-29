@@ -1,0 +1,38 @@
+{
+  "id": "3170",
+  "title": "Lexicographically Minimum String After Removing Stars",
+  "slug": "lexicographically-minimum-string-after-removing-stars",
+  "url": "https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Stack",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Priority queue / heap",
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string s . It may contain any number of '*' characters. Your task is to remove all '*' characters. \n \n While there is a '*' , do the following operation: \n\n Delete the leftmost '*' and the smallest non- '*' character to its left . If there are several smallest characters, you can delete any of them. \n\n Return the lexicographically smallest resulting string after removing all '*' characters. \n\n Example 1: \n\n Input: s = \"aaba*\" \n \n Output: \"aab\" \n \n Explanation: \n \n We should delete one of the 'a' characters with '*' . If we choose s[3] , s becomes the lexicographically smallest. \n\n Example 2: \n\n Input: s = \"abc\" \n \n Output: \"abc\" \n \n Explanation: \n \n There is no '*' in the string. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists only of lowercase English letters and '*' . \n \n The input is generated such that it is possible to delete all '*' characters.",
+  "code": "class Solution { public:\n string clearStars(string s) { vector<int> pos[26]; vector<bool> dead(s.size());\n for(int i=0;i<(int)s.size();++i){ if(s[i]=='*'){dead[i]=true;for(int c=0;c<26;++c)if(!pos[c].empty()){dead[pos[c].back()]=true;pos[c].pop_back();break;}}else pos[s[i]-'a'].push_back(i);}\n string r;for(int i=0;i<(int)s.size();++i)if(!dead[i])r+=s[i];return r; }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177406883",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

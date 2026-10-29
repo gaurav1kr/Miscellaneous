@@ -1,0 +1,28 @@
+{
+  "id": "1088",
+  "title": "Confusing Number II",
+  "slug": "confusing-number-ii",
+  "url": "https://leetcode.com/problems/confusing-number-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "A confusing number is a number that when rotated 180 degrees becomes a different number with each digit valid . \n \n We can rotate digits of a number by 180 degrees to form new digits. \n\n When 0 , 1 , 6 , 8 , and 9 are rotated 180 degrees, they become 0 , 1 , 9 , 8 , and 6 respectively. \n \n When 2 , 3 , 4 , 5 , and 7 are rotated 180 degrees, they become invalid . \n\n Note that after rotating a number, we can ignore leading zeros. \n\n For example, after rotating 8000 , we have 0008 which is considered as just 8 . \n\n Given an integer n , return the number of confusing numbers in the inclusive range [1, n] . \n\n Example 1: \n \n```\nInput:\n n = 20\n\nOutput:\n 6\n\nExplanation:\n The confusing numbers are [6,9,10,16,18,19].\n6 converts to 9.\n9 converts to 6.\n10 converts to 01 which is just 1.\n16 converts to 91.\n18 converts to 81.\n19 converts to 61.\n```\n\n Example 2: \n \n```\nInput:\n n = 100\n\nOutput:\n 19\n\nExplanation:\n The confusing numbers are [6,9,10,16,18,19,60,61,66,68,80,81,86,89,90,91,98,99,100].\n```\n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "class Solution {\n    int limit;\n    int count = 0;\n    const vector<int> digits = {0, 1, 6, 8, 9};\n    const vector<int> rotated = {0, 1, 9, 8, 6};\n\n    void dfs(long long value, long long rotation, long long place) {\n        if (value > limit) {\n            return;\n        }\n        if (value != 0 && value != rotation) {\n            ++count;\n        }\n        for (int i = 0; i < 5; ++i) {\n            if (value == 0 && digits[i] == 0) {\n                continue;\n            }\n            long long next = value * 10 + digits[i];\n            if (next <= limit) {\n                dfs(next, rotated[i] * place + rotation, place * 10);\n            }\n        }\n    }\n\npublic:\n    int confusingNumberII(int n) {\n        limit = n;\n        count = 0;\n        dfs(0, 0, 1);\n        return count;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178526485",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

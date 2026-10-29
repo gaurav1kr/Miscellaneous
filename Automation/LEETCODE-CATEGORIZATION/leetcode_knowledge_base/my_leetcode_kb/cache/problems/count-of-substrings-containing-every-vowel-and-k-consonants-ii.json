@@ -1,0 +1,31 @@
+{
+  "id": "3306",
+  "title": "Count of Substrings Containing Every Vowel and K Consonants II",
+  "slug": "count-of-substrings-containing-every-vowel-and-k-consonants-ii",
+  "url": "https://leetcode.com/problems/count-of-substrings-containing-every-vowel-and-k-consonants-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string word and a non-negative integer k . \n \n Return the total number of substrings of word that contain every vowel ( 'a' , 'e' , 'i' , 'o' , and 'u' ) at least once and exactly k consonants. \n\n Example 1: \n\n Input: word = \"aeioqq\", k = 1 \n \n Output: 0 \n \n Explanation: \n \n There is no substring with every vowel. \n\n Example 2: \n\n Input: word = \"aeiou\", k = 0 \n \n Output: 1 \n \n Explanation: \n \n The only substring with every vowel and zero consonants is word[0..4] , which is \"aeiou\" . \n\n Example 3: \n\n Input: word = \" ieaouqqieaouqq \", k = 1 \n \n Output: 3 \n \n Explanation: \n \n The substrings with every vowel and one consonant are: \n\n word[0..5] , which is \"ieaouq\" . \n \n word[6..11] , which is \"qieaou\" . \n \n word[7..12] , which is \"ieaouq\" . \n\n Constraints: \n\n 5 <= word.length <= 2 * 10 5 \n \n word consists only of lowercase English letters. \n \n 0 <= k <= word.length - 5",
+  "code": "class Solution { int id(char c){string s=\"aeiou\";size_t p=s.find(c);return p==string::npos?-1:(int)p;}long long atLeast(const string&w,int k){int cnt[5]={},distinct=0,con=0,l=0;long long ans=0;for(int r=0;r<(int)w.size();++r){int x=id(w[r]);if(x<0)++con;else if(++cnt[x]==1)++distinct;while(distinct==5&&con>=k){int y=id(w[l++]);if(y<0)--con;else if(--cnt[y]==0)--distinct;}ans+=l;}return ans;}public:long long countOfSubstrings(string word,int k){return atLeast(word,k)-atLeast(word,k+1);} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177454898",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

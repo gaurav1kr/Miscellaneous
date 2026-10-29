@@ -1,0 +1,35 @@
+{
+  "id": "1966",
+  "title": "Binary Searchable Numbers in an Unsorted Array",
+  "slug": "binary-searchable-numbers-in-an-unsorted-array",
+  "url": "https://leetcode.com/problems/binary-searchable-numbers-in-an-unsorted-array/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Binary Search / Answer Search",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Consider a function that implements an algorithm similar to Binary Search . The function has two input parameters: sequence is a sequence of integers, and target is an integer value. The purpose of the function is to find if the target exists in the sequence . \n \n The pseudocode of the function is as follows: \n \n```\nfunc(sequence, target)\n while sequence is not empty\n \nrandomly\n choose an element from sequence as the pivot\n if pivot = target, return \ntrue\n\n else if pivot < target, remove pivot and all elements to its left from the sequence\n else, remove pivot and all elements to its right from the sequence\n end while\n return \nfalse\n```\n\n When the sequence is sorted, the function works correctly for all values. When the sequence is not sorted, the function does not work for all values, but may still work for some values. \n \n Given an integer array nums , representing the sequence , that contains unique numbers and may or may not be sorted , return the number of values that are guaranteed to be found using the function, for every possible pivot selection . \n\n Example 1: \n \n```\nInput:\n nums = [7]\n\nOutput:\n 1\n\nExplanation\n: \nSearching for value 7 is guaranteed to be found.\nSince the sequence has only one element, 7 will be chosen as the pivot. Because the pivot equals the target, the function will return true.\n```\n\n Example 2: \n \n```\nInput:\n nums = [-1,5,2]\n\nOutput:\n 1\n\nExplanation\n: \nSearching for value -1 is guaranteed to be found.\nIf -1 was chosen as the pivot, the function would return true.\nIf 5 was chosen as the pivot, 5 and 2 would be removed. In the next loop, the sequence would have only -1 and the function would return true.\nIf 2 was chosen as the pivot, 2 would be removed. In the next loop, the sequence would have -1 and 5. No matter which number was chosen as the next pivot, the function would find -1 and return true.\n\nSearching for value 5 is NOT guaranteed to be found.\nIf 2 was chosen as the pivot, -1, 5 and 2 would be removed. The sequence would be empty and the function would return false.\n\nSearching for value 2 is NOT guaranteed to be found.\nIf 5 was chosen as the pivot, 5 and 2 would be removed. In the next loop, the sequence would have only -1 and the function would return false.\n\nBecause only -1 is guaranteed to be found, you should return 1.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 5 <= nums[i] <= 10 5 \n \n All the values of nums are unique . \n\n Follow-up: If nums has duplicates , would you modify your algorithm? If so, how?",
+  "code": "class Solution {\npublic:\n    int binarySearchableNumbers(vector<int>& nums) {\n        int n = nums.size();\n        vector<int> suffix(n + 1, INT_MAX);\n        for (int i = n - 1; i >= 0; --i) {\n            suffix[i] = min(suffix[i + 1], nums[i]);\n        }\n        int prefix = INT_MIN, answer = 0;\n        for (int i = 0; i < n; ++i) {\n            if (prefix < nums[i] && nums[i] < suffix[i + 1]) {\n                ++answer;\n            }\n            prefix = max(prefix, nums[i]);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178628084",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

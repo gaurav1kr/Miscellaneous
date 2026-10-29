@@ -1,0 +1,30 @@
+{
+  "id": "3277",
+  "title": "Maximum XOR Score Subarray Queries",
+  "slug": "maximum-xor-score-subarray-queries",
+  "url": "https://leetcode.com/problems/maximum-xor-score-subarray-queries/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an array nums of n integers, and a 2D integer array queries of size q , where queries[i] = [l i , r i ] . \n \n For each query, you must find the maximum XOR score of any subarray of nums[l i ..r i ] . \n \n The XOR score of an array a is found by repeatedly applying the following operations on a so that only one element remains, that is the score : \n\n Simultaneously replace a[i] with a[i] XOR a[i + 1] for all indices i except the last one. \n \n Remove the last element of a . \n\n Return an array answer of size q where answer[i] is the answer to query i . \n\n Example 1: \n\n Input: nums = [2,8,4,32,16,1], queries = [[0,2],[1,4],[0,5]] \n \n Output: [12,60,60] \n \n Explanation: \n \n In the first query, nums[0..2] has 6 subarrays [2] , [8] , [4] , [2, 8] , [8, 4] , and [2, 8, 4] each with a respective XOR score of 2, 8, 4, 10, 12, and 6. The answer for the query is 12, the largest of all XOR scores. \n \n In the second query, the subarray of nums[1..4] with the largest XOR score is nums[1..4] with a score of 60. \n \n In the third query, the subarray of nums[0..5] with the largest XOR score is nums[1..4] with a score of 60. \n\n Example 2: \n\n Input: nums = [0,7,3,2,8,5,1], queries = [[0,3],[1,5],[2,4],[2,6],[5,6]] \n \n Output: [7,14,11,14,5] \n \n Explanation: \n\n Index \n nums[l i ..r i ] \n Maximum XOR Score Subarray \n Maximum Subarray XOR Score \n\n 0 \n [0, 7, 3, 2] \n [7] \n 7 \n\n 1 \n [7, 3, 2, 8, 5] \n [7, 3, 2, 8] \n 14 \n\n 2 \n [3, 2, 8] \n [3, 2, 8] \n 11 \n\n 3 \n [3, 2, 8, 5, 1] \n [2, 8, 5, 1] \n 14 \n\n 4 \n [5, 1] \n [5] \n 5 \n\n Constraints: \n\n 1 <= n == nums.length <= 2000 \n \n 0 <= nums[i] <= 2 31 - 1 \n \n 1 <= q == queries.length <= 10 5 \n \n queries[i].length == 2 \n \n queries[i] = [l i , r i ] \n \n 0 <= l i <= r i <= n - 1",
+  "code": "class Solution { public: vector<int> maximumSubarrayXor(vector<int>&nums,vector<vector<int>>&queries){int n=nums.size();vector<vector<int>>v(n,vector<int>(n)),best(n,vector<int>(n));for(int i=0;i<n;++i)v[i][i]=best[i][i]=nums[i];for(int len=2;len<=n;++len)for(int l=0;l+len<=n;++l){int r=l+len-1;v[l][r]=v[l+1][r]^v[l][r-1];best[l][r]=max(v[l][r],max(best[l+1][r],best[l][r-1]));}vector<int>a;for(auto&q:queries)a.push_back(best[q[0]][q[1]]);return a;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177446078",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

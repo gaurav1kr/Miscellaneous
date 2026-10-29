@@ -1,0 +1,36 @@
+{
+  "id": "341",
+  "title": "Flatten Nested List Iterator",
+  "slug": "flatten-nested-list-iterator",
+  "url": "https://leetcode.com/problems/flatten-nested-list-iterator/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Stack",
+    "Tree",
+    "Depth-First Search",
+    "Design",
+    "Queue",
+    "Iterator"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Queue",
+    "Stack",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a nested list of integers nestedList . Each element is either an integer or a list whose elements may also be integers or other lists. Implement an iterator to flatten it. \n \n Implement the NestedIterator class: \n\n NestedIterator(List<NestedInteger> nestedList) Initializes the iterator with the nested list nestedList . \n \n int next() Returns the next integer in the nested list. \n \n boolean hasNext() Returns true if there are still some integers in the nested list and false otherwise. \n\n Your code will be tested with the following pseudocode: \n \n```\ninitialize iterator with nestedList\nres = []\nwhile iterator.hasNext()\n append iterator.next() to the end of res\nreturn res\n```\n\n If res matches the expected flattened list, then your code will be judged as correct. \n\n Example 1: \n \n```\nInput:\n nestedList = [[1,1],2,[1,1]]\n\nOutput:\n [1,1,2,1,1]\n\nExplanation:\n By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].\n```\n\n Example 2: \n \n```\nInput:\n nestedList = [1,[4,[6]]]\n\nOutput:\n [1,4,6]\n\nExplanation:\n By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].\n```\n\n Constraints: \n\n 1 <= nestedList.length <= 500 \n \n The values of the integers in the nested list is in the range [-10 6 , 10 6 ] .",
+  "code": "/**\n * // This is the interface that allows for creating nested lists.\n * // You should not implement it, or speculate about its implementation\n * class NestedInteger {\n *   public:\n *     // Return true if this NestedInteger holds a single integer, rather than a nested list.\n *     bool isInteger() const;\n *\n *     // Return the single integer that this NestedInteger holds, if it holds a single integer\n *     // The result is undefined if this NestedInteger holds a nested list\n *     int getInteger() const;\n *\n *     // Return the nested list that this NestedInteger holds, if it holds a nested list\n *     // The result is undefined if this NestedInteger holds a single integer\n *     const vector<NestedInteger> &getList() const;\n * };\n */\nclass NestedIterator \n{\nprivate:\n    \n    vector<NestedInteger> nestedList;\n    vector<int> flattenedList;\n    int currentIndex = 0;\n\n    void flatten(vector<NestedInteger>& currentList) \n\t{\n        for (int i = 0; i < currentList.size(); i++) \n\t\t{\n            if (currentList[i].isInteger()) \n\t\t\t{\n                flattenedList.push_back(currentList[i].getInteger());\n            } \n\t\t\telse \n\t\t\t{\n                flatten(currentList[i].getList());\n            }\n        }\n    }\n\npublic:\n    NestedIterator(vector<NestedInteger> &nestedList) \n\t{\n        this->nestedList = nestedList;\n        flatten(nestedList);\n    }\n\n    \n    int next() \n\t{\n        int number = flattenedList[currentIndex];\n        currentIndex++;\n        return number;\n    }\n\n    bool hasNext()\n\t{\n        return currentIndex < flattenedList.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1497918365",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

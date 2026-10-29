@@ -1,0 +1,32 @@
+{
+  "id": "102",
+  "title": "Binary Tree Level Order Traversal",
+  "slug": "binary-tree-level-order-traversal",
+  "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree, return the level order traversal of its nodes' values . (i.e., from left to right, level by level). \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/19/tree1.jpg] \n \n```\nInput:\n root = [3,9,20,null,null,15,7]\n\nOutput:\n [[3],[9,20],[15,7]]\n```\n\n Example 2: \n \n```\nInput:\n root = [1]\n\nOutput:\n [[1]]\n```\n\n Example 3: \n \n```\nInput:\n root = []\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 2000] . \n \n -1000 <= Node.val <= 1000",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    vector<vector<int>> levelOrder(TreeNode* root) {\n        vector<vector<int>> result;\n        if (!root) return result;\n\n        queue<TreeNode*> q;\n        q.push(root);\n\n        while (!q.empty()) {\n            int size = q.size();\n            vector<int> level;\n\n            for (int i = 0; i < size; ++i) {\n                TreeNode* node = q.front();\n                q.pop();\n                level.push_back(node->val);\n\n                if (node->left) q.push(node->left);\n                if (node->right) q.push(node->right);\n            }\n\n            result.push_back(level);\n        }\n\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542047535",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

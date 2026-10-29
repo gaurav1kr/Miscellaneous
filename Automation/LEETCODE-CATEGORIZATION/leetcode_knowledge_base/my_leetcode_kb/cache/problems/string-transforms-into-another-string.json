@@ -1,0 +1,34 @@
+{
+  "id": "1153",
+  "title": "String Transforms Into Another String",
+  "slug": "string-transforms-into-another-string",
+  "url": "https://leetcode.com/problems/string-transforms-into-another-string/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Hash map / hash set",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings str1 and str2 of the same length, determine whether you can transform str1 into str2 by doing zero or more conversions . \n \n In one conversion you can convert all occurrences of one character in str1 to any other lowercase English character. \n \n Return true if and only if you can transform str1 into str2 . \n\n Example 1: \n \n```\nInput:\n str1 = \"aabcc\", str2 = \"ccdee\"\n\nOutput:\n true\n\nExplanation: \nConvert 'c' to 'e' then 'b' to 'd' then 'a' to 'c'. Note that the order of conversions matter.\n```\n\n Example 2: \n \n```\nInput:\n str1 = \"leetcode\", str2 = \"codeleet\"\n\nOutput:\n false\n\nExplanation: \nThere is no way to transform str1 to str2.\n```\n\n Constraints: \n\n 1 <= str1.length == str2.length <= 10 4 \n \n str1 and str2 contain only lowercase English letters.",
+  "code": "class Solution {\npublic:\n    bool canConvert(string str1, string str2) {\n        if (str1 == str2) {\n            return true;\n        }\n        vector<int> mapping(26, -1);\n        set<char> targets;\n        for (int i = 0; i < static_cast<int>(str1.size()); ++i) {\n            int c = str1[i] - 'a';\n            int d = str2[i] - 'a';\n            if (mapping[c] != -1 && mapping[c] != d) {\n                return false;\n            }\n            mapping[c] = d;\n            targets.insert(str2[i]);\n        }\n        return targets.size() < 26;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178539332",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

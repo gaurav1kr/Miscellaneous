@@ -1,0 +1,33 @@
+{
+  "id": "1622",
+  "title": "Fancy Sequence",
+  "slug": "fancy-sequence",
+  "url": "https://leetcode.com/problems/fancy-sequence/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Design",
+    "Segment Tree",
+    "Number Theory",
+    "Fermat's Little Theorem"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Math / Number Theory",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "Write an API that generates fancy sequences using the append , addAll , and multAll operations. \n \n Implement the Fancy class: \n\n Fancy() Initializes the object with an empty sequence. \n \n void append(val) Appends an integer val to the end of the sequence. \n \n void addAll(inc) Increments all existing values in the sequence by an integer inc . \n \n void multAll(m) Multiplies all existing values in the sequence by an integer m . \n \n int getIndex(idx) Gets the current value at index idx (0-indexed) of the sequence modulo 10 9 + 7 . If the index is greater or equal than the length of the sequence, return -1 . \n\n Example 1: \n \n```\nInput\n\n[\"Fancy\", \"append\", \"addAll\", \"append\", \"multAll\", \"getIndex\", \"addAll\", \"append\", \"multAll\", \"getIndex\", \"getIndex\", \"getIndex\"]\n[[], [2], [3], [7], [2], [0], [3], [10], [2], [0], [1], [2]]\n\nOutput\n\n[null, null, null, null, null, 10, null, null, null, 26, 34, 20]\n\nExplanation\n\nFancy fancy = new Fancy();\nfancy.append(2); // fancy sequence: [2]\nfancy.addAll(3); // fancy sequence: [2+3] -> [5]\nfancy.append(7); // fancy sequence: [5, 7]\nfancy.multAll(2); // fancy sequence: [5*2, 7*2] -> [10, 14]\nfancy.getIndex(0); // return 10\nfancy.addAll(3); // fancy sequence: [10+3, 14+3] -> [13, 17]\nfancy.append(10); // fancy sequence: [13, 17, 10]\nfancy.multAll(2); // fancy sequence: [13*2, 17*2, 10*2] -> [26, 34, 20]\nfancy.getIndex(0); // return 26\nfancy.getIndex(1); // return 34\nfancy.getIndex(2); // return 20\n```\n\n Constraints: \n\n 1 <= val, inc, m <= 100 \n \n 0 <= idx <= 10 5 \n \n At most 10 5 calls total will be made to append , addAll , multAll , and getIndex .",
+  "code": "#include <vector>\n#include <cmath>\nusing namespace std;\n\nclass Fancy {\n    static constexpr int MOD = 1e9 + 7;\n    vector<long long> seq;\n    long long add = 0, mult = 1;\n\n    long long modinv(long long x) {\n        long long res = 1, p = MOD - 2;\n        while (p) {\n            if (p & 1) res = res * x % MOD;\n            x = x * x % MOD;\n            p >>= 1;\n        }\n        return res;\n    }\n\npublic:\n    Fancy() {}\n\n    void append(int val) {\n        seq.push_back(((val - add + MOD) % MOD) * modinv(mult) % MOD);\n    }\n\n    void addAll(int inc) {\n        add = (add + inc) % MOD;\n    }\n\n    void multAll(int m) {\n        add = add * m % MOD;\n        mult = mult * m % MOD;\n    }\n\n    int getIndex(int idx) {\n        if (idx >= seq.size()) return -1;\n        return (seq[idx] * mult + add) % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610662802",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

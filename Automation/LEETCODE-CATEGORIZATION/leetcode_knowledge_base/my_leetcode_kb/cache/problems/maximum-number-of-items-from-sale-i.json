@@ -1,0 +1,32 @@
+{
+  "id": "3946",
+  "title": "Maximum Number of Items From Sale I",
+  "slug": "maximum-number-of-items-from-sale-i",
+  "url": "https://leetcode.com/problems/maximum-number-of-items-from-sale-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array items , where items[i] = [factor i , price i ] represents the i th item. You are also given an integer budget . \n \n There are unlimited copies of each item available for purchase.You may buy any number of copies of any items such that the total cost of the purchased copies is at most budget . \n \n After buying items, you may receive free copies according to the following rules: \n\n For each item i that you bought at least one copy of, you receive one free copy of every item j such that j != i and factor i divides factor j . \n \n Buying multiple copies of the same item i does not give additional free copies through item i . \n \n The same item j can be received multiple times for free if it is received from purchases of different item types. \n\n Return the maximum total number of item copies you can obtain, including both purchased copies and free copies, while spending at most budget on purchased items. \n\n Example 1: \n\n Input: items = [[6,2],[2,6],[3,4]], budget = 9 \n \n Output: 4 \n \n Explanation: \n\n You can buy 2 copies of item 0 and 1 copy of item 2 for a total cost of 2 * 2 + 4 = 8 , which is not greater than budget = 9 . \n \n Buying item 2 gives 1 free copy of item 0, because factor 2 = 3 divides factor 0 = 6 . \n \n You leave with 3 purchased copies and 1 free copy, for a total of 4 item copies. \n\n Example 2: \n\n Input: items = [[2,4],[3,2],[4,1],[6,4],[12,4]], budget = 8 \n \n Output: 10 \n \n Explanation: \n\n You can buy 1 copy of item 0, 1 copy of item 1, and 2 copies of item 2 for a total cost of 4 + 2 + 2 * 1 = 8 . \n \n Buying item 0 gives 1 free copy of items 2, 3, and 4. \n \n Buying item 1 gives 1 free copy of items 3 and 4. \n \n Buying item 2 gives 1 free copy of item 4. \n \n Thus, you receive 6 free copies. You leave with 4 purchased copies and 6 free copies, for a total of 10 item copies. \n\n Constraints: \n\n 1 <= items.length <= 1000 \n \n items[i] = [factor i , price i ] \n \n 1 <= factor i , price i <= 1500 \n \n 1 <= budget <= 1500",
+  "code": "class Solution {\npublic:\n    int maximumSaleItems(vector<vector<int>>& items,int budget){\n        int n=items.size(),cheapest=INT_MAX;\n        for(const auto& x:items) cheapest=min(cheapest,x[1]);\n        vector<int> dp(budget+1,-1000000000);\n        dp[0]=0;\n        for(int i=0;i<n;++i){\n            int freebies=0;\n            for(int j=0;j<n;++j) if(j!=i && items[j][0]%items[i][0]==0)\n                ++freebies;\n            int cost=items[i][1];\n            if(cost>budget) continue;\n            for(int b=budget;b>=cost;--b)\n                if(dp[b-cost]>=0) dp[b]=max(dp[b],dp[b-cost]+1+freebies);\n        }\n        int ans=0;\n        for(int b=0;b<=budget;++b) if(dp[b]>=0)\n            ans=max(ans,dp[b]+(budget-b)/cheapest);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181092499",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

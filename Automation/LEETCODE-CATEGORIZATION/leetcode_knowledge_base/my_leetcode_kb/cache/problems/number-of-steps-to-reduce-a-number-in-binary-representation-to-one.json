@@ -1,0 +1,30 @@
+{
+  "id": "1404",
+  "title": "Number of Steps to Reduce a Number in Binary Representation to One",
+  "slug": "number-of-steps-to-reduce-a-number-in-binary-representation-to-one",
+  "url": "https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Bit Manipulation",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given the binary representation of an integer as a string s , return the number of steps to reduce it to 1 under the following rules : \n\n If the current number is even, you have to divide it by 2 . \n\n If the current number is odd, you have to add 1 to it. \n\n It is guaranteed that you can always reach one for all test cases. \n\n Example 1: \n \n```\nInput:\n s = \"1101\"\n\nOutput:\n 6\n\nExplanation:\n \"1101\" corressponds to number 13 in their decimal representation.\nStep 1) 13 is odd, add 1 and obtain 14. \nStep 2) 14 is even, divide by 2 and obtain 7.\nStep 3) 7 is odd, add 1 and obtain 8.\nStep 4) 8 is even, divide by 2 and obtain 4.  \nStep 5) 4 is even, divide by 2 and obtain 2. \nStep 6) 2 is even, divide by 2 and obtain 1.\n```\n\n Example 2: \n \n```\nInput:\n s = \"10\"\n\nOutput:\n 1\n\nExplanation:\n \"10\" corresponds to number 2 in their decimal representation.\nStep 1) 2 is even, divide by 2 and obtain 1.\n```\n\n Example 3: \n \n```\nInput:\n s = \"1\"\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= s.length <= 500 \n \n s consists of characters '0' or '1' \n \n s[0] == '1'",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numSteps(string s) {\n        int steps = 0, carry = 0;\n        for (int i = s.size() - 1; i > 0; --i) {\n            if ((s[i] - '0' + carry) % 2 == 0) steps += 1;\n            else {\n                steps += 2;\n                carry = 1;\n            }\n        }\n        return steps + carry;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610594369",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

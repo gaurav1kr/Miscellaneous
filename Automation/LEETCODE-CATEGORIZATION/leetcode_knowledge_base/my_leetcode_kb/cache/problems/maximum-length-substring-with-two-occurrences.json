@@ -1,0 +1,31 @@
+{
+  "id": "3090",
+  "title": "Maximum Length Substring With Two Occurrences",
+  "slug": "maximum-length-substring-with-two-occurrences",
+  "url": "https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "Given a string s , return the maximum length of a substring  such that it contains at most two occurrences of each character.\n\n Example 1: \n\n Input: s = \"bcbbbcba\" \n \n Output: 4 \n \n Explanation: \nThe following substring has a length of 4 and contains at most two occurrences of each character: \"bcbb bcba \" . \n \n Example 2: \n\n Input: s = \"aaaa\" \n \n Output: 2 \n \n Explanation: \nThe following substring has a length of 2 and contains at most two occurrences of each character: \" aa aa\" . \n\n Constraints: \n\n 2 <= s.length <= 100 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {public:int maximumLengthSubstring(string s){int f[26]={},l=0,ans=0;for(int r=0;r<(int)s.size();r++){int c=s[r]-'a';++f[c];while(f[c]>2)--f[s[l++]-'a'];ans=max(ans,r-l+1);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176859380",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

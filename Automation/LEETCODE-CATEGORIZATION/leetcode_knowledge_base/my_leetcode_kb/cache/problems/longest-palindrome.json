@@ -1,0 +1,33 @@
+{
+  "id": "409",
+  "title": "Longest Palindrome",
+  "slug": "longest-palindrome",
+  "url": "https://leetcode.com/problems/longest-palindrome/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given a string s which consists of lowercase or uppercase letters, return the length of the longest palindrome  that can be built with those letters. \n \n Letters are case sensitive , for example, \"Aa\" is not considered a palindrome. \n\n Example 1: \n \n```\nInput:\n s = \"abccccdd\"\n\nOutput:\n 7\n\nExplanation:\n One longest palindrome that can be built is \"dccaccd\", whose length is 7.\n```\n\n Example 2: \n \n```\nInput:\n s = \"a\"\n\nOutput:\n 1\n\nExplanation:\n The longest palindrome that can be built is \"a\", whose length is 1.\n```\n\n Constraints: \n\n 1 <= s.length <= 2000 \n \n s consists of lowercase and/or uppercase English letters only.",
+  "code": "#include <string>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    int longestPalindrome(string s) {\n        unordered_map<char, int> count;\n        for (char c : s) count[c]++;\n        int length = 0, odd = 0;\n        for (auto& p : count) {\n            length += p.second / 2 * 2;\n            if (p.second % 2) odd = 1;\n        }\n        return length + odd;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588373271",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

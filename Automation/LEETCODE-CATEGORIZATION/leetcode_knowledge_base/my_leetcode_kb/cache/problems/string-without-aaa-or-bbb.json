@@ -1,0 +1,28 @@
+{
+  "id": "984",
+  "title": "String Without AAA or BBB",
+  "slug": "string-without-aaa-or-bbb",
+  "url": "https://leetcode.com/problems/string-without-aaa-or-bbb/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given two integers a and b , return any string s such that: \n\n s has length a + b and contains exactly a 'a' letters, and exactly b 'b' letters, \n \n The substring 'aaa' does not occur in s , and \n \n The substring 'bbb' does not occur in s . \n\n Example 1: \n \n```\nInput:\n a = 1, b = 2\n\nOutput:\n \"abb\"\n\nExplanation:\n \"abb\", \"bab\" and \"bba\" are all correct answers.\n```\n\n Example 2: \n \n```\nInput:\n a = 4, b = 1\n\nOutput:\n \"aabaa\"\n```\n\n Constraints: \n\n 0 <= a, b <= 100 \n \n It is guaranteed such an s exists for the given a and b .",
+  "code": "class Solution {\npublic:\n    string strWithout3a3b(int a, int b) {\n       string ans=\"\";  //String to store the answer\n        int counta=0,countb=0; // Counter to check that a and b should not be greater than two;\n        int total=a+b;         //No of times the loop will run;\n        for(int i=0;i<total;i++)\n        {\n            if((b>=a && countb<2) || (counta==2 && b>0)) //If b is greater than a and count of b is less than 2 || if count of a ==2 and b is greater than 2 add 'a';\n            {\n                ans+='b';\n                b--;    // decrement given count of b;\n\n                countb++; //increment count of b;\n\n                counta=0; // make the count of a to 0 , if we don't do that then the length of the string will remain 3 because counta<2 || countb<2 condition will never become true after the string size becomes three that's why we are making counta=0 and countb=0 in every condition;\n            }\n            else if((a>=b && counta<2) || (countb==2 && a>0))\n            {\n                ans+='a';\n                a--;\n                counta++;\n                countb=0;\n            }\n        }\n        return ans; // Return the answer;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617066048",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

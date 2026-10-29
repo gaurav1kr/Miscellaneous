@@ -1,0 +1,26 @@
+{
+  "id": "2928",
+  "title": "Distribute Candies Among Children I",
+  "slug": "distribute-candies-among-children-i",
+  "url": "https://leetcode.com/problems/distribute-candies-among-children-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Combinatorics",
+    "Enumeration"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given two positive integers n and limit . \n \n Return the total number of ways to distribute n candies among 3 children such that no child gets more than limit candies. \n\n Example 1: \n \n```\nInput:\n n = 5, limit = 2\n\nOutput:\n 3\n\nExplanation:\n There are 3 ways to distribute 5 candies such that no child gets more than 2 candies: (1, 2, 2), (2, 1, 2) and (2, 2, 1).\n```\n\n Example 2: \n \n```\nInput:\n n = 3, limit = 3\n\nOutput:\n 10\n\nExplanation:\n There are 10 ways to distribute 3 candies such that no child gets more than 3 candies: (0, 0, 3), (0, 1, 2), (0, 2, 1), (0, 3, 0), (1, 0, 2), (1, 1, 1), (1, 2, 0), (2, 0, 1), (2, 1, 0) and (3, 0, 0).\n```\n\n Constraints: \n\n 1 <= n <= 50 \n \n 1 <= limit <= 50",
+  "code": "class Solution{public:int distributeCandies(int n,int limit){int ans=0;for(int a=0;a<=min(n,limit);a++)for(int b=0;b<=min(n-a,limit);b++)if(n-a-b<=limit)ans++;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176756202",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

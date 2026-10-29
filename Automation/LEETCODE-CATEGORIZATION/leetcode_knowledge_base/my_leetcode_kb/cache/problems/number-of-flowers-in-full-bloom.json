@@ -1,0 +1,39 @@
+{
+  "id": "2251",
+  "title": "Number of Flowers in Full Bloom",
+  "slug": "number-of-flowers-in-full-bloom",
+  "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Sorting",
+    "Prefix Sum",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed 2D integer array flowers , where flowers[i] = [start i , end i ] means the i th flower will be in full bloom from start i to end i ( inclusive ). You are also given a 0-indexed integer array people of size n , where people[i] is the time that the i th person will arrive to see the flowers. \n \n Return an integer array answer of size n , where answer[i] is the number of flowers that are in full bloom when the i th person arrives. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/03/02/ex1new.jpg] \n \n```\nInput:\n flowers = [[1,6],[3,7],[9,12],[4,13]], people = [2,3,7,11]\n\nOutput:\n [1,2,2,2]\n\nExplanation: \nThe figure above shows the times when the flowers are in full bloom and when the people arrive.\nFor each person, we return the number of flowers in full bloom during their arrival.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/03/02/ex2new.jpg] \n \n```\nInput:\n flowers = [[1,10],[3,3]], people = [3,3,2]\n\nOutput:\n [2,2,1]\n\nExplanation:\n The figure above shows the times when the flowers are in full bloom and when the people arrive.\nFor each person, we return the number of flowers in full bloom during their arrival.\n```\n\n Constraints: \n\n 1 <= flowers.length <= 5 * 10 4 \n \n flowers[i].length == 2 \n \n 1 <= start i <= end i <= 10 9 \n \n 1 <= people.length <= 5 * 10 4 \n \n 1 <= people[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {public:vector<int> fullBloomFlowers(vector<vector<int>>& flowers,vector<int>& people){vector<int> a,b;for(auto &f:flowers){a.push_back(f[0]);b.push_back(f[1]);}sort(a.begin(),a.end());sort(b.begin(),b.end());vector<int> ans;for(int t:people)ans.push_back(upper_bound(a.begin(),a.end(),t)-a.begin()-(lower_bound(b.begin(),b.end(),t)-b.begin()));return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175897599",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

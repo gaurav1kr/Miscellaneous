@@ -1,0 +1,29 @@
+{
+  "id": "2643",
+  "title": "Row With Maximum Ones",
+  "slug": "row-with-maximum-ones",
+  "url": "https://leetcode.com/problems/row-with-maximum-ones/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a m x n binary matrix mat , find the 0-indexed position of the row that contains the maximum count of ones, and the number of ones in that row. \n \n In case there are multiple rows that have the maximum count of ones, the row with the smallest row number should be selected. \n \n Return an array containing the index of the row, and the number of ones in it. \n\n Example 1: \n \n```\nInput:\n mat = [[0,1],[1,0]]\n\nOutput:\n [0,1]\n\nExplanation:\n Both rows have the same number of 1's. So we return the index of the smaller row, 0, and the maximum count of ones (1\n)\n. So, the answer is [0,1].\n```\n\n Example 2: \n \n```\nInput:\n mat = [[0,0,0],[0,1,1]]\n\nOutput:\n [1,2]\n\nExplanation:\n The row indexed 1 has the maximum count of ones \n(2)\n. So we return its index, \n1\n, and the count. So, the answer is [1,2].\n```\n\n Example 3: \n \n```\nInput:\n mat = [[0,0],[1,1],[0,0]]\n\nOutput:\n [1,2]\n\nExplanation:\n The row indexed 1 has the maximum count of ones (2). So the answer is [1,2].\n```\n\n Constraints: \n\n m == mat.length   \n \n n == mat[i].length   \n \n 1 <= m, n <= 100   \n \n mat[i][j] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n vector<int> rowAndMaximumOnes(vector<vector<int>>& mat){\n  int row=0,best=-1;\n  for(int i=0;i<(int)mat.size();++i){int c=accumulate(mat[i].begin(),mat[i].end(),0);if(c>best){best=c;row=i;}}\n  return {row,best};\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176631424",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

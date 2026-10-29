@@ -1,0 +1,31 @@
+{
+  "id": "107",
+  "title": "Binary Tree Level Order Traversal II",
+  "slug": "binary-tree-level-order-traversal-ii",
+  "url": "https://leetcode.com/problems/binary-tree-level-order-traversal-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree, return the bottom-up level order traversal of its nodes' values . (i.e., from left to right, level by level from leaf to root). \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/19/tree1.jpg] \n \n```\nInput:\n root = [3,9,20,null,null,15,7]\n\nOutput:\n [[15,7],[9,20],[3]]\n```\n\n Example 2: \n \n```\nInput:\n root = [1]\n\nOutput:\n [[1]]\n```\n\n Example 3: \n \n```\nInput:\n root = []\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 2000] . \n \n -1000 <= Node.val <= 1000",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n   int depth(TreeNode *root) {\n    if (!root) return 0;\n    return max(depth(root->left),depth(root->right))+1;\n}\n\nvoid levelOrder(vector<vector<int>> &ans, TreeNode *node, int level) {\n    if (!node) return;\n    ans[level].push_back(node->val);\n    levelOrder(ans,node->left,level-1);\n    levelOrder(ans,node->right,level-1);\n}\n\nvector<vector<int>> levelOrderBottom(TreeNode* root) {\n    int d = depth(root);\n    vector<vector<int>> ans(d,vector<int> {});\n    levelOrder(ans,root,d-1);\n    return ans;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1493206753",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

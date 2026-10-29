@@ -1,0 +1,34 @@
+{
+  "id": "4016",
+  "title": "Maximum Area of Two Non-Overlapping Square Submatrices",
+  "slug": "maximum-area-of-two-non-overlapping-square-submatrices",
+  "url": "https://leetcode.com/problems/maximum-area-of-two-non-overlapping-square-submatrices/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer matrix mat of size m × n , where: \n\n mat[r][c] == 1 means the cell at row r and column c is usable. \n \n mat[r][c] == 0 means it is not usable. \n\n Your task is to find two submatrices that satisfy the following conditions: \n\n Both submatrices must be squares of the same side length k . \n \n The two submatrices must not share any cell. \n \n Each submatrix can only cover cells where mat[r][c] == 1 . \n\n Return the maximum possible area of each of the two squares. If it is not possible to choose two such squares, return 0. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2026/06/13/image.png] \n\n Input: mat = [[1,1,1,0],[1,1,1,1],[0,0,1,1]] \n \n Output: 4 \n \n Explanation: \n \n The largest equal non-overlapping squares have side length k = 2 with area 4. \n\n First square starts at top-left (0, 0) and covers cells (0, 0) , (0, 1) , (1, 0) , and (1, 1) . \n \n Second square starts at top-left (1, 2) and covers cells (1, 2) , (1, 3) , (2, 2) , and (2, 3) . \n\n Thus, the answer is 4. \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2026/06/13/screenshot-2026-06-13-at-83728pm.png] \n\n Input: mat = [[0,1],[1,0]] \n \n Output: 1 \n \n Explanation: \n \n The largest equal non-overlapping squares have side length k = 1 with area 1. \n\n First square starts at top-left (0, 1) and covers cell (0, 1) . \n \n Second square starts at top-left (1, 0) and covers cell (1, 0) . \n\n Thus, the answer is 1. \n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2026/06/13/screenshot-2026-06-13-at-83751pm.png] \n\n Input: mat = [[0,0],[0,1]] \n \n Output: 0 \n \n Explanation: \n \n There is only one usable cell, so it is impossible to choose two non-overlapping squares. Thus, the answer is 0. \n\n Constraints: \n\n mat.length == m \n \n mat[i].length == n \n \n 1 <= m, n <= 500 \n \n mat[i][j] is either 0 or 1.",
+  "code": "class Solution {\nprivate:\n    int m, n;\n    vector<vector<int> > prefix;\n\n    // Sum of rectangle:\n    // [r1, c1] -> [r2, c2], inclusive\n    int getSum(int r1, int c1, int r2, int c2) {\n        return prefix[r2 + 1][c2 + 1]\n             - prefix[r1][c2 + 1]\n             - prefix[r2 + 1][c1]\n             + prefix[r1][c1];\n    }\n\n    bool possible(int k) {\n        int minRow = m;\n        int maxRow = -1;\n\n        int minCol = n;\n        int maxCol = -1;\n\n        int count = 0;\n\n        for (int r = 0; r + k <= m; ++r) {\n            for (int c = 0; c + k <= n; ++c) {\n\n                // Check if entire k x k square is 1.\n                if (getSum(r, c,\n                           r + k - 1,\n                           c + k - 1) == k * k) {\n\n                    ++count;\n\n                    minRow = min(minRow, r);\n                    maxRow = max(maxRow, r);\n\n                    minCol = min(minCol, c);\n                    maxCol = max(maxCol, c);\n                }\n            }\n        }\n\n        if (count < 2)\n            return false;\n\n        // Two squares separated vertically\n        if (maxRow - minRow >= k)\n            return true;\n\n        // Two squares separated horizontally\n        if (maxCol - minCol >= k)\n            return true;\n\n        return false;\n    }\n\npublic:\n    int maxArea(vector<vector<int> >& mat) {\n        m = mat.size();\n        n = mat[0].size();\n\n        // --------------------------------\n        // Build 2D prefix sum\n        // --------------------------------\n        prefix.assign(m + 1,\n                      vector<int>(n + 1, 0));\n\n        for (int r = 0; r < m; ++r) {\n            for (int c = 0; c < n; ++c) {\n\n                prefix[r + 1][c + 1] =\n                    mat[r][c]\n                    + prefix[r][c + 1]\n                    + prefix[r + 1][c]\n                    - prefix[r][c];\n            }\n        }\n\n        // --------------------------------\n        // Binary search side length\n        // --------------------------------\n        int low = 1;\n        int high = min(m, n);\n\n        int best = 0;\n\n        while (low <= high) {\n\n            int mid = low + (high - low) / 2;\n\n            if (possible(mid)) {\n                best = mid;\n                low = mid + 1;\n            }\n            else {\n                high = mid - 1;\n            }\n        }\n\n        return best * best;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163650018",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

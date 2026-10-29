@@ -1,0 +1,33 @@
+{
+  "id": "2326",
+  "title": "Spiral Matrix IV",
+  "slug": "spiral-matrix-iv",
+  "url": "https://leetcode.com/problems/spiral-matrix-iv/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Linked List",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Linked list",
+    "Vector"
+  ],
+  "description": "You are given two integers m and n , which represent the dimensions of a matrix. \n \n You are also given the head of a linked list of integers. \n \n Generate an m x n matrix that contains the integers in the linked list presented in spiral order (clockwise) , starting from the top-left of the matrix. If there are remaining empty spaces, fill them with -1 . \n \n Return the generated matrix . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/05/09/ex1new.jpg] \n \n```\nInput:\n m = 3, n = 5, head = [3,0,2,6,8,1,7,9,4,2,5,5,0]\n\nOutput:\n [[3,0,2,6,8],[5,0,-1,-1,1],[5,2,4,9,7]]\n\nExplanation:\n The diagram above shows how the values are printed in the matrix.\nNote that the remaining spaces in the matrix are filled with -1.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/05/11/ex2.jpg] \n \n```\nInput:\n m = 1, n = 4, head = [0,1,2]\n\nOutput:\n [[0,1,2,-1]]\n\nExplanation:\n The diagram above shows how the values are printed from left to right in the matrix.\nThe last space in the matrix is set to -1.\n```\n\n Constraints: \n\n 1 <= m, n <= 10 5 \n \n 1 <= m * n <= 10 5 \n \n The number of nodes in the list is in the range [1, m * n] . \n \n 0 <= Node.val <= 1000",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:vector<vector<int>> spiralMatrix(int m,int n,ListNode* head){vector<vector<int>> a(m,vector<int>(n,-1));int dr[]={0,1,0,-1},dc[]={1,0,-1,0},r=0,c=0,d=0;while(head){a[r][c]=head->val;head=head->next;if(!head)break;int nr=r+dr[d],nc=c+dc[d];if(nr<0||nr>=m||nc<0||nc>=n||a[nr][nc]!=-1){d=(d+1)%4;nr=r+dr[d];nc=c+dc[d];}r=nr;c=nc;}return a;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175917348",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

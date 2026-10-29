@@ -1,0 +1,20 @@
+{
+  "id": "4078",
+  "title": "Three Fibonacci Sum",
+  "slug": "three-fibonacci-sum",
+  "url": "https://leetcode.com/problems/three-fibonacci-sum/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [],
+  "description": "You are given an integer n . \n \n The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the previous two numbers. Its first few terms are 0, 1, 1, 2, 3, 5, 8, 13, ... . \n \n Return true if n can be expressed as the sum of three consecutive terms in the Fibonacci sequence, and false otherwise. \n\n Example 1: \n\n Input: n = 16 \n \n Output: true \n \n Explanation: \n \n The three consecutive terms 3, 5, and 8 have a sum of 3 + 5 + 8 = 16 . \n\n Example 2: \n\n Input: n = 8 \n \n Output: false \n \n Explanation: \n \n Although 1 + 2 + 5 = 8 , these terms are not consecutive in the Fibonacci sequence. No three consecutive terms have a sum of 8. \n\n Example 3: \n\n Input: n = 2 \n \n Output: true \n \n Explanation: \n \n The first three terms have a sum of 0 + 1 + 1 = 2 . \n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "class Solution {\n    public: bool threeFibonacciSum(int n) {\n        long long a=0,b=1;\n        while(a+b+(a+b)<=n) {\n            if(2*(a+b)==n)return true;\n            long long c=a+b;\n            a=b;\n            b=c;\n        }\n        return false;\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179339647",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

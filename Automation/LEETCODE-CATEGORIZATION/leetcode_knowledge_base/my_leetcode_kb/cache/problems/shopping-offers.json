@@ -1,0 +1,41 @@
+{
+  "id": "638",
+  "title": "Shopping Offers",
+  "slug": "shopping-offers",
+  "url": "https://leetcode.com/problems/shopping-offers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Memoization",
+    "Bitmask",
+    "Knapsack Problem",
+    "Complete Knapsack"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "In LeetCode Store, there are n items to sell. Each item has a price. However, there are some special offers, and a special offer consists of one or more different kinds of items with a sale price. \n \n You are given an integer array price where price[i] is the price of the i th item, and an integer array needs where needs[i] is the number of pieces of the i th item you want to buy. \n \n You are also given an array special where special[i] is of size n + 1 where special[i][j] is the number of pieces of the j th item in the i th offer and special[i][n] (i.e., the last integer in the array) is the price of the i th offer. \n \n Return the lowest price you have to pay for exactly certain items as given, where you could make optimal use of the special offers . You are not allowed to buy more items than you want, even if that would lower the overall price. You could use any of the special offers as many times as you want. \n\n Example 1: \n \n```\nInput:\n price = [2,5], special = [[3,0,5],[1,2,10]], needs = [3,2]\n\nOutput:\n 14\n\nExplanation:\n There are two kinds of items, A and B. Their prices are $2 and $5 respectively. \nIn special offer 1, you can pay $5 for 3A and 0B\nIn special offer 2, you can pay $10 for 1A and 2B. \nYou need to buy 3A and 2B, so you may pay $10 for 1A and 2B (special offer #2), and $4 for 2A.\n```\n\n Example 2: \n \n```\nInput:\n price = [2,3,4], special = [[1,1,0,4],[2,2,1,9]], needs = [1,2,1]\n\nOutput:\n 11\n\nExplanation:\n The price of A is $2, and $3 for B, $4 for C. \nYou may pay $4 for 1A and 1B, and $9 for 2A ,2B and 1C. \nYou need to buy 1A ,2B and 1C, so you may pay $4 for 1A and 1B (special offer #1), and $3 for 1B, $4 for 1C. \nYou cannot add more items, though only $9 for 2A ,2B and 1C.\n```\n\n Constraints: \n\n n == price.length == needs.length \n \n 1 <= n <= 6 \n \n 0 <= price[i], needs[i] <= 10 \n \n 1 <= special.length <= 100 \n \n special[i].length == n + 1 \n \n 0 <= special[i][j] <= 50 \n \n The input is generated that at least one of special[i][j] is non-zero for 0 <= j <= n - 1 .",
+  "code": "class Solution {\n    unordered_map<string, int> memo;\n    int dfs(vector<int>& price, vector<vector<int>>& special, vector<int> needs) {\n        string key = \"\";\n        for (int n : needs) key += to_string(n) + \",\";\n        if (memo.count(key)) return memo[key];\n        \n        int res = 0;\n        for (int i = 0; i < price.size(); i++) res += price[i] * needs[i];\n\n        for (auto& sp : special) {\n            vector<int> temp = needs;\n            int i = 0;\n            for (; i < needs.size(); i++) {\n                if (temp[i] < sp[i]) break;\n                temp[i] -= sp[i];\n            }\n            if (i == needs.size()) {\n                res = min(res, sp.back() + dfs(price, special, temp));\n            }\n        }\n        return memo[key] = res;\n    }\n\npublic:\n    int shoppingOffers(vector<int>& price, vector<vector<int>>& special, vector<int>& needs) {\n        return dfs(price, special, needs);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612881823",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

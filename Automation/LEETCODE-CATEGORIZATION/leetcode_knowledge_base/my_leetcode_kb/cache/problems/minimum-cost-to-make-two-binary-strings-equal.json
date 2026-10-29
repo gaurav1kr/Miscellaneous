@@ -1,0 +1,28 @@
+{
+  "id": "3800",
+  "title": "Minimum Cost to Make Two Binary Strings Equal",
+  "slug": "minimum-cost-to-make-two-binary-strings-equal",
+  "url": "https://leetcode.com/problems/minimum-cost-to-make-two-binary-strings-equal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given two binary strings s and t , both of length n , and three positive integers flipCost , swapCost , and crossCost . \n \n You are allowed to apply the following operations any number of times (in any order) to the strings s and t : \n\n Choose any index i and flip s[i] or t[i] (change '0' to '1' or '1' to '0' ). The cost of this operation is flipCost . \n \n Choose two distinct indices i and j , and swap either s[i] and s[j] or t[i] and t[j] . The cost of this operation is swapCost . \n \n Choose an index i and swap s[i] with t[i] . The cost of this operation is crossCost . \n\n Return an integer denoting the minimum total cost needed to make the strings s and t equal. \n\n Example 1: \n\n Input: s = \"01000\", t = \"10111\", flipCost = 10, swapCost = 2, crossCost = 2 \n \n Output: 16 \n \n Explanation: \n \n We can perform the following operations: \n\n Swap s[0] and s[1] ( swapCost = 2 ). After this operation, s = \"10000\" and t = \"10111\" . \n \n Cross swap s[2] and t[2] ( crossCost = 2 ). After this operation, s = \"10100\" and t = \"10011\" . \n \n Swap s[2] and s[3] ( swapCost = 2 ). After this operation, s = \"10010\" and t = \"10011\" . \n \n Flip s[4] ( flipCost = 10 ). After this operation, s = t = \"10011\" . \n\n The total cost is 2 + 2 + 2 + 10 = 16 . \n\n Example 2: \n\n Input: s = \"001\", t = \"110\", flipCost = 2, swapCost = 100, crossCost = 100 \n \n Output: 6 \n \n Explanation: \n \n Flipping all the bits of s makes the strings equal, and the total cost is 3 * flipCost = 3 * 2 = 6 . \n\n Example 3: \n\n Input: s = \"1010\", t = \"1010\", flipCost = 5, swapCost = 5, crossCost = 5 \n \n Output: 0 \n \n Explanation: \n \n The strings are already equal, so no operations are required. \n\n Constraints: \n\n n == s.length == t.length \n \n 1 <= n <= 10 5 ​​​​​​​ \n \n 1 <= flipCost, swapCost, crossCost <= 10 9 \n \n s and t consist only of the characters '0' and '1' .",
+  "code": "class Solution {\npublic:\n    long long minimumCost(string s,string t,int flipCost,int swapCost,int crossCost) {\n        long long a=0,b=0;\n        for(int i=0;i<(int)s.size();i++)if(s[i]!=t[i]){\n            if(s[i]=='0')a++;else b++;\n        }\n        long long p=min(a,b);\n        long long ans=p*min(1LL*swapCost,2LL*flipCost);\n        long long r=max(a,b)-p;\n        ans+=(r/2)*min(1LL*swapCost+crossCost,2LL*flipCost);\n        ans+=(r%2)*flipCost;\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181520175",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

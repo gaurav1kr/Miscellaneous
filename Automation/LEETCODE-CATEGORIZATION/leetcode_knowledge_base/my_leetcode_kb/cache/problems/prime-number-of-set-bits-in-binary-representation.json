@@ -1,0 +1,30 @@
+{
+  "id": "762",
+  "title": "Prime Number of Set Bits in Binary Representation",
+  "slug": "prime-number-of-set-bits-in-binary-representation",
+  "url": "https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Bit Manipulation",
+    "Primality Test"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Hash set",
+    "Ordered set"
+  ],
+  "description": "Given two integers left and right , return the count of numbers in the inclusive range [left, right] having a prime number of set bits in their binary representation . \n \n Recall that the number of set bits an integer has is the number of 1 's present when written in binary. \n\n For example, 21 written in binary is 10101 , which has 3 set bits. \n\n Example 1: \n \n```\nInput:\n left = 6, right = 10\n\nOutput:\n 4\n\nExplanation:\n\n6 -> 110 (2 set bits, 2 is prime)\n7 -> 111 (3 set bits, 3 is prime)\n8 -> 1000 (1 set bit, 1 is not prime)\n9 -> 1001 (2 set bits, 2 is prime)\n10 -> 1010 (2 set bits, 2 is prime)\n4 numbers have a prime number of set bits.\n```\n\n Example 2: \n \n```\nInput:\n left = 10, right = 15\n\nOutput:\n 5\n\nExplanation:\n\n10 -> 1010 (2 set bits, 2 is prime)\n11 -> 1011 (3 set bits, 3 is prime)\n12 -> 1100 (2 set bits, 2 is prime)\n13 -> 1101 (3 set bits, 3 is prime)\n14 -> 1110 (3 set bits, 3 is prime)\n15 -> 1111 (4 set bits, 4 is not prime)\n5 numbers have a prime number of set bits.\n```\n\n Constraints: \n\n 1 <= left <= right <= 10 6 \n \n 0 <= right - left <= 10 4",
+  "code": "#include <unordered_set>\n\nclass Solution {\npublic:\n    int countPrimeSetBits(int left, int right) {\n        unordered_set<int> primes = {2,3,5,7,11,13,17,19};\n        int res = 0;\n        for (int i = left; i <= right; ++i) {\n            int bits = __builtin_popcount(i);\n            if (primes.count(bits)) res++;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610596470",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

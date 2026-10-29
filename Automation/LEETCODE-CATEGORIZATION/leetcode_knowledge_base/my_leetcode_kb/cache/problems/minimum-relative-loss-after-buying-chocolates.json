@@ -1,0 +1,35 @@
+{
+  "id": "2819",
+  "title": "Minimum Relative Loss After Buying Chocolates",
+  "slug": "minimum-relative-loss-after-buying-chocolates",
+  "url": "https://leetcode.com/problems/minimum-relative-loss-after-buying-chocolates/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array prices , which shows the chocolate prices and a 2D integer array queries , where queries[i] = [k i , m i ] . \n \n Alice and Bob went to buy some chocolates, and Alice suggested a way to pay for them, and Bob agreed. \n \n The terms for each query are as follows: \n\n If the price of a chocolate is less than or equal to k i , Bob pays for it. \n \n Otherwise, Bob pays k i of it, and Alice pays the rest . \n\n Bob wants to select exactly m i chocolates such that his relative loss is minimized , more formally, if, in total, Alice has paid a i and Bob has paid b i , Bob wants to minimize b i - a i . \n \n Return an integer array ans where ans[i] is Bob's minimum relative loss possible for queries[i] . \n\n Example 1: \n \n```\nInput:\n prices = [1,9,22,10,19], queries = [[18,4],[5,2]]\n\nOutput:\n [34,-21]\n\nExplanation:\n For the 1\nst\n query Bob selects the chocolates with prices [1,9,10,22]. He pays 1 + 9 + 10 + 18 = 38 and Alice pays 0 + 0 + 0 + 4 = 4. So Bob's relative loss is 38 - 4 = 34.\nFor the 2\nnd\n query Bob selects the chocolates with prices [19,22]. He pays 5 + 5 = 10 and Alice pays 14 + 17 = 31. So Bob's relative loss is 10 - 31 = -21.\nIt can be shown that these are the minimum possible relative losses.\n```\n\n Example 2: \n \n```\nInput:\n prices = [1,5,4,3,7,11,9], queries = [[5,4],[5,7],[7,3],[4,5]]\n\nOutput:\n [4,16,7,1]\n\nExplanation:\n For the 1\nst\n query Bob selects the chocolates with prices [1,3,9,11]. He pays 1 + 3 + 5 + 5 = 14 and Alice pays 0 + 0 + 4 + 6 = 10. So Bob's relative loss is 14 - 10 = 4.\nFor the 2\nnd\n query Bob has to select all the chocolates. He pays 1 + 5 + 4 + 3 + 5 + 5 + 5 = 28 and Alice pays 0 + 0 + 0 + 0 + 2 + 6 + 4 = 12. So Bob's relative loss is 28 - 12 = 16.\nFor the 3\nrd\n query Bob selects the chocolates with prices [1,3,11] and he pays 1 + 3 + 7 = 11 and Alice pays 0 + 0 + 4 = 4. So Bob's relative loss is 11 - 4 = 7.\nFor the 4\nth\n query Bob selects the chocolates with prices [1,3,7,9,11] and he pays 1 + 3 + 4 + 4 + 4 = 16 and Alice pays 0 + 0 + 3 + 5 + 7 = 15. So Bob's relative loss is 16 - 15 = 1.\nIt can be shown that these are the minimum possible relative losses.\n```\n\n Example 3: \n \n```\nInput:\n prices = [5,6,7], queries = [[10,1],[5,3],[3,3]]\n\nOutput:\n [5,12,0]\n\nExplanation:\n For the 1\nst\n query Bob selects the chocolate with price 5 and he pays 5 and Alice pays 0. So Bob's relative loss is 5 - 0 = 5.\nFor the 2\nnd\n query Bob has to select all the chocolates. He pays 5 + 5 + 5 = 15 and Alice pays 0 + 1 + 2 = 3. So Bob's relative loss is 15 - 3 = 12.\nFor the 3\nrd\n query Bob has to select all the chocolates. He pays 3 + 3 + 3 = 9 and Alice pays 2 + 3 + 4 = 9. So Bob's relative loss is 9 - 9 = 0.\nIt can be shown that these are the minimum possible relative losses.\n```\n\n Constraints: \n\n 1 <= prices.length == n <= 10 5 \n \n 1 <= prices[i] <= 10 9 \n \n 1 <= queries.length <= 10 5 \n \n queries[i].length == 2 \n \n 1 <= k i <= 10 9 \n \n 1 <= m i <= n",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<long long> minimumRelativeLosses(vector<int>& prices, vector<vector<int>>& queries) {\n        sort(prices.begin(),prices.end());\n        int n=prices.size();\n        vector<long long> pref(n+1);\n        for(int i=0;i<n;++i)pref[i+1]=pref[i]+prices[i];\n        vector<long long> ans;\n        for(auto& query:queries) {\n            long long k=query[0]; int m=query[1];\n            int low=0,high=m;\n            auto cost=[&](int x)->long long {\n                int right=m-x;\n                return pref[x]+2LL*k*right-(pref[n]-pref[n-right]);\n            };\n            while(low<high) {\n                int mid=(low+high)/2;\n                if(cost(mid+1)<cost(mid))low=mid+1;\n                else high=mid;\n            }\n            ans.push_back(cost(low));\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178911346",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

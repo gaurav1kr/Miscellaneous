@@ -1,0 +1,32 @@
+{
+  "id": "67",
+  "title": "Add Binary",
+  "slug": "add-binary",
+  "url": "https://leetcode.com/problems/add-binary/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Bit Manipulation",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given two binary strings a and b , return their sum as a binary string . \n\n Example 1: \n \n```\nInput:\n a = \"11\", b = \"1\"\n\nOutput:\n \"100\"\n```\n \n Example 2: \n \n```\nInput:\n a = \"1010\", b = \"1011\"\n\nOutput:\n \"10101\"\n```\n\n Constraints: \n\n 1 <= a.length, b.length <= 10 4 \n \n a and b consist only of '0' or '1' characters. \n \n Each string does not contain leading zeros except for the zero itself.",
+  "code": "class Solution {\npublic:\n    string addBinary(string a, string b) {\n        string result = \"\";\n        int carry = 0, i = a.size() - 1, j = b.size() - 1;\n        while (i >= 0 || j >= 0 || carry) {\n            int sum = carry;\n            if (i >= 0) sum += a[i--] - '0';\n            if (j >= 0) sum += b[j--] - '0';\n            result += (sum % 2) + '0';\n            carry = sum / 2;\n        }\n        reverse(result.begin(), result.end());\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588089620",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

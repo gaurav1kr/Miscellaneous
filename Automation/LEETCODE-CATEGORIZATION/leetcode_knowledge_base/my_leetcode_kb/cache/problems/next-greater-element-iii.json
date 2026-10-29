@@ -1,0 +1,30 @@
+{
+  "id": "556",
+  "title": "Next Greater Element III",
+  "slug": "next-greater-element-iii",
+  "url": "https://leetcode.com/problems/next-greater-element-iii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a positive integer n , find the smallest integer which has exactly the same digits existing in the integer n and is greater in value than n . If no such positive integer exists, return -1 . \n \n Note that the returned integer should fit in 32-bit integer , if there is a valid answer but it does not fit in 32-bit integer , return -1 . \n\n Example 1: \n \n```\nInput:\n n = 12\n\nOutput:\n 21\n```\n \n Example 2: \n \n```\nInput:\n n = 21\n\nOutput:\n -1\n```\n\n Constraints: \n\n 1 <= n <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    bool nextPermutation(string& nums) {\n        int i = nums.size()-1;\n        while (i > 0 && nums[i-1] >= nums[i]) i--;\n        if (i == 0) return false;\n        \n        int j = nums.size()-1;\n        while (j > 0 && nums[i-1]>=nums[j]) j--;\n        swap(nums[j], nums[i-1]);\n        reverse(nums.begin()+i, nums.end());\n        return true;\n    }\n    \n    int nextGreaterElement(int n) {\n        string num = to_string(n);\n        bool res = nextPermutation(num);\n        size_t ans = stoll(num);\n        return (!res || ans > INT_MAX) ? -1 : ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1364515679",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

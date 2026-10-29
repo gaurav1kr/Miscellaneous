@@ -1,0 +1,42 @@
+{
+  "id": "767",
+  "title": "Reorganize String",
+  "slug": "reorganize-string",
+  "url": "https://leetcode.com/problems/reorganize-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "String"
+  ],
+  "description": "Given a string s , rearrange the characters of s so that any two adjacent characters are not the same. \n \n Return any possible rearrangement of s or return \"\" if not possible . \n\n Example 1: \n \n```\nInput:\n s = \"aab\"\n\nOutput:\n \"aba\"\n```\n \n Example 2: \n \n```\nInput:\n s = \"aaab\"\n\nOutput:\n \"\"\n```\n\n Constraints: \n\n 1 <= s.length <= 500 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string reorganizeString(string s) {\n        unordered_map<char, int> freq;\n        for (char c : s) freq[c]++;\n        \n        priority_queue<pair<int, char>> pq;\n        for (auto& [ch, count] : freq) {\n            if (count > (s.size() + 1) / 2) return \"\"; // Impossible to reorganize\n            pq.push({count, ch});\n        }\n\n        string result;\n        while (pq.size() > 1) {\n            auto [freq1, ch1] = pq.top(); pq.pop();\n            auto [freq2, ch2] = pq.top(); pq.pop();\n\n            result += ch1;\n            result += ch2;\n\n            if (--freq1 > 0) pq.push({freq1, ch1});\n            if (--freq2 > 0) pq.push({freq2, ch2});\n        }\n\n        if (!pq.empty()) result += pq.top().second; // Add the last remaining character\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536159115",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

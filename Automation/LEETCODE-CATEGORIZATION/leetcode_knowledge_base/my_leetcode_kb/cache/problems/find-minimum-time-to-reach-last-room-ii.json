@@ -1,0 +1,38 @@
+{
+  "id": "3342",
+  "title": "Find Minimum Time to Reach Last Room II",
+  "slug": "find-minimum-time-to-reach-last-room-ii",
+  "url": "https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Matrix",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is a dungeon with n x m rooms arranged as a grid. \n \n You are given a 2D array moveTime of size n x m , where moveTime[i][j] represents the minimum time in seconds when you can start moving to that room. You start from the room (0, 0) at time t = 0 and can move to an adjacent room. Moving between adjacent rooms takes one second for one move and two seconds for the next, alternating between the two. \n \n Return the minimum time to reach the room (n - 1, m - 1) . \n \n Two rooms are adjacent if they share a common wall, either horizontally or vertically . \n\n Example 1: \n\n Input: moveTime = [[0,4],[4,4]] \n \n Output: 7 \n \n Explanation: \n \n The minimum time required is 7 seconds. \n\n At time t == 4 , move from room (0, 0) to room (1, 0) in one second. \n \n At time t == 5 , move from room (1, 0) to room (1, 1) in two seconds. \n\n Example 2: \n\n Input: moveTime = [[0,0,0,0],[0,0,0,0]] \n \n Output: 6 \n \n Explanation: \n \n The minimum time required is 6 seconds. \n\n At time t == 0 , move from room (0, 0) to room (1, 0) in one second. \n \n At time t == 1 , move from room (1, 0) to room (1, 1) in two seconds. \n \n At time t == 3 , move from room (1, 1) to room (1, 2) in one second. \n \n At time t == 4 , move from room (1, 2) to room (1, 3) in two seconds. \n\n Example 3: \n\n Input: moveTime = [[0,1],[1,2]] \n \n Output: 4 \n\n Constraints: \n\n 2 <= n == moveTime.length <= 750 \n \n 2 <= m == moveTime[i].length <= 750 \n \n 0 <= moveTime[i][j] <= 10 9",
+  "code": "class Solution {public:int minTimeToReach(vector<vector<int>>& moveTime){int m=moveTime.size(),n=moveTime[0].size();vector<vector<int>> d(m,vector<int>(n,INT_MAX));priority_queue<tuple<int,int,int>,vector<tuple<int,int,int>>,greater<tuple<int,int,int>>> q;d[0][0]=0;q.emplace(0,0,0);int dr[]={1,-1,0,0},dc[]={0,0,1,-1};while(!q.empty()){int t,r,c;tie(t,r,c)=q.top();q.pop();if(t!=d[r][c])continue;if(r==m-1&&c==n-1)return t;for(int z=0;z<4;z++){int x=r+dr[z],y=c+dc[z];if(x<0||y<0||x>=m||y>=n)continue;int nt=max(t,moveTime[x][y])+1+(r+c)%2;if(nt<d[x][y])d[x][y]=nt,q.emplace(nt,x,y);}}return -1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177464477",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

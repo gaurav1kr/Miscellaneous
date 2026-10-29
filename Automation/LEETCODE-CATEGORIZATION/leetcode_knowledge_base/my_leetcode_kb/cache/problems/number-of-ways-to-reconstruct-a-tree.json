@@ -1,0 +1,41 @@
+{
+  "id": "1719",
+  "title": "Number Of Ways To Reconstruct A Tree",
+  "slug": "number-of-ways-to-reconstruct-a-tree",
+  "url": "https://leetcode.com/problems/number-of-ways-to-reconstruct-a-tree/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Tree",
+    "Graph Theory",
+    "Simulation"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an array pairs , where pairs[i] = [x i , y i ] , and: \n\n There are no duplicates. \n \n x i < y i \n\n Let ways be the number of rooted trees that satisfy the following conditions: \n\n The tree consists of nodes whose values appeared in pairs . \n \n A pair [x i , y i ] exists in pairs if and only if x i is an ancestor of y i or y i is an ancestor of x i . \n \n Note: the tree does not have to be a binary tree. \n\n Two ways are considered to be different if there is at least one node that has different parents in both ways. \n \n Return: \n\n 0 if ways == 0 \n \n 1 if ways == 1 \n \n 2 if ways > 1 \n\n A rooted tree is a tree that has a single root node, and all edges are oriented to be outgoing from the root. \n \n An ancestor of a node is any node on the path from the root to that node (excluding the node itself). The root has no ancestors. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/12/03/trees2.png] \n \n```\nInput:\n pairs = [[1,2],[2,3]]\n\nOutput:\n 1\n\nExplanation:\n There is exactly one valid rooted tree, which is shown in the above figure.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/12/03/tree.png] \n \n```\nInput:\n pairs = [[1,2],[2,3],[1,3]]\n\nOutput:\n 2\n\nExplanation:\n There are multiple valid rooted trees. Three of them are shown in the above figures.\n```\n\n Example 3: \n \n```\nInput:\n pairs = [[1,2],[2,3],[2,4],[1,5]]\n\nOutput:\n 0\n\nExplanation:\n There are no valid rooted trees.\n```\n\n Constraints: \n\n 1 <= pairs.length <= 10 5 \n \n 1 <= x i < y i <= 500 \n \n The elements in pairs are unique.",
+  "code": "class Solution {\npublic:\n int checkWays(vector<vector<int>>& pairs){\n  unordered_map<int,unordered_set<int>> adj;\n  for(auto& p:pairs){adj[p[0]].insert(p[1]);adj[p[1]].insert(p[0]);}\n  int n=adj.size(),root=-1;\n  for(auto& e:adj)if((int)e.second.size()==n-1){root=e.first;break;}\n  if(root==-1)return 0;\n  int ways=1;\n  for(auto& e:adj){\n   int u=e.first;if(u==root)continue;\n   int deg=e.second.size(),parent=-1,parentDeg=INT_MAX;\n   for(int v:e.second){int d=adj[v].size();if(d>=deg && d<parentDeg){parent=v;parentDeg=d;}}\n   if(parent==-1)return 0;\n   for(int v:e.second)if(v!=parent && !adj[parent].count(v))return 0;\n   if(parentDeg==deg)ways=2;\n  }\n  return ways;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175758737",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "1559",
+  "title": "Detect Cycles in 2D Grid",
+  "slug": "detect-cycles-in-2d-grid",
+  "url": "https://leetcode.com/problems/detect-cycles-in-2d-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Vector"
+  ],
+  "description": "Given a 2D array of characters grid of size m x n , you need to find if there exists any cycle consisting of the same value in grid . \n \n A cycle is a path of length 4 or more in the grid that starts and ends at the same cell. From a given cell, you can move to one of the cells adjacent to it - in one of the four directions (up, down, left, or right), if it has the same value of the current cell. \n \n Also, you cannot move to the cell that you visited in your last move. For example, the cycle (1, 1) -> (1, 2) -> (1, 1) is invalid because from (1, 2) we visited (1, 1) which was the last visited cell. \n \n Return true if any cycle of the same value exists in grid , otherwise, return false . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/07/15/1.png] \n \n```\nInput:\n grid = [[\"a\",\"a\",\"a\",\"a\"],[\"a\",\"b\",\"b\",\"a\"],[\"a\",\"b\",\"b\",\"a\"],[\"a\",\"a\",\"a\",\"a\"]]\n\nOutput:\n true\n\nExplanation: \nThere are two valid cycles shown in different colors in the image below:\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2020/07/15/22.png] \n \n```\nInput:\n grid = [[\"c\",\"c\",\"c\",\"a\"],[\"c\",\"d\",\"c\",\"c\"],[\"c\",\"c\",\"e\",\"c\"],[\"f\",\"c\",\"c\",\"c\"]]\n\nOutput:\n true\n\nExplanation: \nThere is only one valid cycle highlighted in the image below:\n```\n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2020/07/15/3.png] \n \n```\nInput:\n grid = [[\"a\",\"b\",\"b\"],[\"b\",\"z\",\"b\"],[\"b\",\"b\",\"a\"]]\n\nOutput:\n false\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 500 \n \n grid consists only of lowercase English letters.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool containsCycle(vector<vector<char>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        vector<vector<bool>> visited(m, vector<bool>(n, false));\n\n        function<bool(int,int,int,int,char)> dfs = [&](int x, int y, int px, int py, char c) {\n            if (x < 0 || y < 0 || x >= m || y >= n || grid[x][y] != c)\n                return false;\n            if (visited[x][y]) return true;\n            visited[x][y] = true;\n\n            vector<pair<int,int>> dirs = {{0,1},{1,0},{0,-1},{-1,0}};\n            for (auto [dx, dy] : dirs) {\n                int nx = x + dx, ny = y + dy;\n                if (nx == px && ny == py) continue;\n                if (dfs(nx, ny, x, y, c)) return true;\n            }\n\n            return false;\n        };\n\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                if (!visited[i][j] && dfs(i, j, -1, -1, grid[i][j]))\n                    return true;\n\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610567917",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

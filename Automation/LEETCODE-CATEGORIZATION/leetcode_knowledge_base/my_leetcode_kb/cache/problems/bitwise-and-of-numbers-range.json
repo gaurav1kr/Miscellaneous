@@ -1,0 +1,24 @@
+{
+  "id": "201",
+  "title": "Bitwise AND of Numbers Range",
+  "slug": "bitwise-and-of-numbers-range",
+  "url": "https://leetcode.com/problems/bitwise-and-of-numbers-range/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "Given two integers left and right that represent the range [left, right] , return the bitwise AND of all numbers in this range, inclusive . \n\n Example 1: \n \n```\nInput:\n left = 5, right = 7\n\nOutput:\n 4\n```\n\n Example 2: \n \n```\nInput:\n left = 0, right = 0\n\nOutput:\n 0\n```\n\n Example 3: \n \n```\nInput:\n left = 1, right = 2147483647\n\nOutput:\n 0\n```\n\n Constraints: \n\n 0 <= left <= right <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    int rangeBitwiseAnd(int n, int m) {\n    int ans=0;\n    for(int i=0;i<32;i++){\n        if(((n/(1<<i))==(m/(1<<i))) && (n & (1 << i))){\n            ans=(ans|(1<<i));\n        }\n    }\n    return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1405917249",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

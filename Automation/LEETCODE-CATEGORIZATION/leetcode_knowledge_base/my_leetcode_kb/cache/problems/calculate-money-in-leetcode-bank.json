@@ -1,0 +1,24 @@
+{
+  "id": "1716",
+  "title": "Calculate Money in Leetcode Bank",
+  "slug": "calculate-money-in-leetcode-bank",
+  "url": "https://leetcode.com/problems/calculate-money-in-leetcode-bank/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Hercy wants to save money for his first car. He puts money in the Leetcode bank every day . \n \n He starts by putting in $1 on Monday, the first day. Every day from Tuesday to Sunday, he will put in $1 more than the day before. On every subsequent Monday, he will put in $1 more than the previous Monday . \n \n Given n , return the total amount of money he will have in the Leetcode bank at the end of the n th day. \n\n Example 1: \n \n```\nInput:\n n = 4\n\nOutput:\n 10\n\nExplanation:\n After the 4\nth\n day, the total is 1 + 2 + 3 + 4 = 10.\n```\n\n Example 2: \n \n```\nInput:\n n = 10\n\nOutput:\n 37\n\nExplanation:\n After the 10\nth\n day, the total is (1 + 2 + 3 + 4 + 5 + 6 + 7) + (2 + 3 + 4) = 37. Notice that on the 2\nnd\n Monday, Hercy only puts in $2.\n```\n\n Example 3: \n \n```\nInput:\n n = 20\n\nOutput:\n 96\n\nExplanation:\n After the 20\nth\n day, the total is (1 + 2 + 3 + 4 + 5 + 6 + 7) + (2 + 3 + 4 + 5 + 6 + 7 + 8) + (3 + 4 + 5 + 6 + 7 + 8) = 96.\n```\n\n Constraints: \n\n 1 <= n <= 1000",
+  "code": "class Solution {\npublic:\n    int totalMoney(int n) {\n        int weeks = n / 7, days = n % 7;\n        int sum = 28 * weeks + 7 * (weeks - 1) * weeks / 2;\n        for (int i = 0; i < days; ++i)\n            sum += weeks + 1 + i;\n        return sum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610612341",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

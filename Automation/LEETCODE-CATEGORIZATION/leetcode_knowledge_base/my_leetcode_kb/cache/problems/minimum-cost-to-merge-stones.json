@@ -1,0 +1,33 @@
+{
+  "id": "1000",
+  "title": "Minimum Cost to Merge Stones",
+  "slug": "minimum-cost-to-merge-stones",
+  "url": "https://leetcode.com/problems/minimum-cost-to-merge-stones/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "There are n piles of stones arranged in a row. The i th pile has stones[i] stones. \n \n A move consists of merging exactly k consecutive piles into one pile, and the cost of this move is equal to the total number of stones in these k piles. \n \n Return the minimum cost to merge all piles of stones into one pile . If it is impossible, return -1 . \n\n Example 1: \n \n```\nInput:\n stones = [3,2,4,1], k = 2\n\nOutput:\n 20\n\nExplanation:\n We start with [3, 2, 4, 1].\nWe merge [3, 2] for a cost of 5, and we are left with [5, 4, 1].\nWe merge [4, 1] for a cost of 5, and we are left with [5, 5].\nWe merge [5, 5] for a cost of 10, and we are left with [10].\nThe total cost was 20, and this is the minimum possible.\n```\n\n Example 2: \n \n```\nInput:\n stones = [3,2,4,1], k = 3\n\nOutput:\n -1\n\nExplanation:\n After any merge operation, there are 2 piles left, and we can't merge anymore. So the task is impossible.\n```\n\n Example 3: \n \n```\nInput:\n stones = [3,5,1,2,6], k = 3\n\nOutput:\n 25\n\nExplanation:\n We start with [3, 5, 1, 2, 6].\nWe merge [5, 1, 2] for a cost of 8, and we are left with [3, 8, 6].\nWe merge [3, 8, 6] for a cost of 17, and we are left with [17].\nThe total cost was 25, and this is the minimum possible.\n```\n\n Constraints: \n\n n == stones.length \n \n 1 <= n <= 30 \n \n 1 <= stones[i] <= 100 \n \n 2 <= k <= 30",
+  "code": "#include <vector>\n#include <climits>\nusing namespace std;\n\nclass Solution {\npublic:\n    int mergeStones(vector<int>& stones, int k) {\n        int n = stones.size();\n        if ((n - 1) % (k - 1) != 0) return -1;\n\n        vector<int> prefix(n + 1, 0);\n        for (int i = 0; i < n; i++) prefix[i + 1] = prefix[i] + stones[i];\n\n        vector<vector<int>> dp(n, vector<int>(n, 0));\n        for (int length = k; length <= n; length++) {\n            for (int i = 0; i + length <= n; i++) {\n                int j = i + length - 1;\n                dp[i][j] = INT_MAX;\n                for (int m = i; m < j; m += k - 1) {\n                    dp[i][j] = min(dp[i][j], dp[i][m] + dp[m + 1][j]);\n                }\n                if ((j - i) % (k - 1) == 0) {\n                    dp[i][j] += prefix[j + 1] - prefix[i];\n                }\n            }\n        }\n        return dp[0][n - 1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590162182",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

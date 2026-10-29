@@ -1,0 +1,34 @@
+{
+  "id": "3389",
+  "title": "Minimum Operations to Make Character Frequencies Equal",
+  "slug": "minimum-operations-to-make-character-frequencies-equal",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-character-frequencies-equal/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Dynamic Programming",
+    "Counting",
+    "Enumeration"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given a string s . \n \n A string t is called good if all characters of t occur the same number of times. \n \n You can perform the following operations any number of times : \n\n Delete a character from s . \n \n Insert a character in s . \n \n Change a character in s to its next letter in the alphabet. \n\n Note that you cannot change 'z' to 'a' using the third operation. \n \n Return the minimum number of operations required to make s good . \n\n Example 1: \n\n Input: s = \"acab\" \n \n Output: 1 \n \n Explanation: \n \n We can make s good by deleting one occurrence of character 'a' . \n\n Example 2: \n\n Input: s = \"wddw\" \n \n Output: 0 \n \n Explanation: \n \n We do not need to perform any operations since s is initially good. \n\n Example 3: \n\n Input: s = \"aaabc\" \n \n Output: 2 \n \n Explanation: \n \n We can make s good by applying these operations: \n\n Change one occurrence of 'a' to 'b' \n \n Insert one occurrence of 'c' into s \n\n Constraints: \n\n 3 <= s.length <= 2 * 10 4 \n \n s contains only lowercase English letters.",
+  "code": "\nclass Solution {\npublic:\n    int makeStringGood(string s) {\n        int freq[26] = {};\n        for (char c : s)\n            ++freq[c - 'a'];\n\n        int mx = *max_element(freq, freq + 26);\n        int ans = s.size();\n\n        // Required by problem statement\n        string ternolish = s;\n\n        for (int t = 1; t <= mx; ++t) {\n            int dp[28] = {};\n\n            for (int i = 25; i >= 0; --i) {\n                int x = freq[i];\n\n                // Option 1: Delete all occurrences\n                // Option 2: Make frequency equal to t\n                dp[i] = min(x, abs(x - t)) + dp[i + 1];\n\n                if (i == 25 || freq[i + 1] >= t)\n                    continue;\n\n                int need = t - freq[i + 1];\n\n                // Characters available to convert to next letter\n                int extra = (x > t) ? x - t : x;\n\n                // Convert characters instead of\n                // deleting and inserting separately\n                dp[i] = min(dp[i],\n                            max(extra, need) + dp[i + 2]);\n            }\n\n            ans = min(ans, dp[0]);\n        }\n\n        return ans;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2168455168",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

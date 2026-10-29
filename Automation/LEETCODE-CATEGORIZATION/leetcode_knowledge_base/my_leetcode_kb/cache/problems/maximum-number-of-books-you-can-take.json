@@ -1,0 +1,36 @@
+{
+  "id": "2355",
+  "title": "Maximum Number of Books You Can Take",
+  "slug": "maximum-number-of-books-you-can-take",
+  "url": "https://leetcode.com/problems/maximum-number-of-books-you-can-take/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Dynamic Programming",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array books of length n where books[i] denotes the number of books on the i th shelf of a bookshelf. \n \n You are going to take books from a contiguous section of the bookshelf spanning from l to r where 0 <= l <= r < n . For each index i in the range l <= i < r , you must take strictly fewer books from shelf i than shelf i + 1 . \n \n Return the maximum number of books you can take from the bookshelf. \n\n Example 1: \n \n```\nInput:\n books = [8,5,2,7,9]\n\nOutput:\n 19\n\nExplanation:\n\n- Take 1 book from shelf 1.\n- Take 2 books from shelf 2.\n- Take 7 books from shelf 3.\n- Take 9 books from shelf 4.\nYou have taken 19 books, so return 19.\nIt can be proven that 19 is the maximum number of books you can take.\n```\n\n Example 2: \n \n```\nInput:\n books = [7,0,3,4,5]\n\nOutput:\n 12\n\nExplanation:\n\n- Take 3 books from shelf 2.\n- Take 4 books from shelf 3.\n- Take 5 books from shelf 4.\nYou have taken 12 books so return 12.\nIt can be proven that 12 is the maximum number of books you can take.\n```\n\n Example 3: \n \n```\nInput:\n books = [8,2,3,7,3,4,0,1,4,3]\n\nOutput:\n 13\n\nExplanation:\n\n- Take 1 book from shelf 0.\n- Take 2 books from shelf 1.\n- Take 3 books from shelf 2.\n- Take 7 books from shelf 3.\nYou have taken 13 books so return 13.\nIt can be proven that 13 is the maximum number of books you can take.\n```\n\n Constraints: \n\n 1 <= books.length <= 10 5 \n \n 0 <= books[i] <= 10 5",
+  "code": "class Solution {\n    long long sum(long long end, long long len) {\n        return (2 * end - len + 1) * len / 2;\n    }\npublic:\n    long long maximumBooks(vector<int>& books) {\n        int n = books.size();\n        vector<long long> dp(n);\n        vector<int> st;\n        long long answer = 0;\n        for (int i = 0; i < n; ++i) {\n            while (!st.empty() && books[st.back()] >= books[i] - (i - st.back())) st.pop_back();\n            int prev = st.empty() ? -1 : st.back();\n            long long len = min((long long)books[i], (long long)i - prev);\n            dp[i] = sum(books[i], len) + (prev == -1 ? 0 : dp[prev]);\n            answer = max(answer, dp[i]);\n            st.push_back(i);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178862315",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

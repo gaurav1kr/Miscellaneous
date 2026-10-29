@@ -1,0 +1,35 @@
+{
+  "id": "3311",
+  "title": "Construct 2D Grid Matching Graph Layout",
+  "slug": "construct-2d-grid-matching-graph-layout",
+  "url": "https://leetcode.com/problems/construct-2d-grid-matching-graph-layout/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Graph Theory",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Graph adjacency list",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array edges representing an undirected graph having n nodes, where edges[i] = [u i , v i ] denotes an edge between nodes u i and v i . \n \n Construct a 2D grid that satisfies these conditions: \n\n The grid contains all nodes from 0 to n - 1 in its cells, with each node appearing exactly once . \n \n Two nodes should be in adjacent grid cells ( horizontally or vertically ) if and only if there is an edge between them in edges . \n\n It is guaranteed that edges can form a 2D grid that satisfies the conditions. \n \n Return a 2D integer array satisfying the conditions above. If there are multiple solutions, return any of them. \n\n Example 1: \n\n Input: n = 4, edges = [[0,1],[0,2],[1,3],[2,3]] \n \n Output: [[3,1],[2,0]] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/11/screenshot-from-2024-08-11-14-07-59.png] \n\n Example 2: \n\n Input: n = 5, edges = [[0,1],[1,3],[2,3],[2,4]] \n \n Output: [[4,2,3,1,0]] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/11/screenshot-from-2024-08-11-14-06-02.png] \n\n Example 3: \n\n Input: n = 9, edges = [[0,1],[0,4],[0,5],[1,7],[2,3],[2,4],[2,5],[3,6],[4,6],[4,7],[6,8],[7,8]] \n \n Output: [[8,6,3],[7,4,2],[1,0,5]] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/08/11/screenshot-from-2024-08-11-14-06-38.png] \n\n Constraints: \n\n 2 <= n <= 5 * 10 4 \n \n 1 <= edges.length <= 10 5 \n \n edges[i] = [u i , v i ] \n \n 0 <= u i < v i < n \n \n All the edges are distinct. \n \n The input is generated such that edges can form a 2D grid that satisfies the conditions.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution { public: vector<vector<int>> constructGridLayout(int n,vector<vector<int>>& edges){vector<vector<int>> g(n);for(auto &e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}int start=min_element(g.begin(),g.end(),[](const vector<int>&a,const vector<int>&b){return a.size()<b.size();})-g.begin();vector<int> first{start},seen(n);seen[start]=1;if(g[start].size()==1){int prev=-1,u=start;while(1){int nxt=-1;for(int v:g[u])if(v!=prev){nxt=v;break;}if(nxt<0)break;first.push_back(nxt);seen[nxt]=1;prev=u;u=nxt;}return {first};}int cur=start;while(1){int nxt=-1;for(int v:g[cur])if(!seen[v]&&g[v].size()<4){if(nxt==-1||g[v].size()<g[nxt].size())nxt=v;}if(nxt==-1)break;first.push_back(nxt);seen[nxt]=1;cur=nxt;if(g[cur].size()==2)break;}int w=first.size(),h=n/w;vector<vector<int>> a(h,vector<int>(w));a[0]=first;for(int r=1;r<h;r++)for(int j=0;j<w;j++){int up=a[r-1][j],v=-1;for(int x:g[up])if(!seen[x]&&(j==0||find(g[x].begin(),g[x].end(),a[r][j-1])!=g[x].end())){v=x;break;}a[r][j]=v;seen[v]=1;}return a;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181228541",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

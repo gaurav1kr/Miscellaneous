@@ -1,0 +1,26 @@
+{
+  "id": "2429",
+  "title": "Minimize XOR",
+  "slug": "minimize-xor",
+  "url": "https://leetcode.com/problems/minimize-xor/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Greedy",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "Given two positive integers num1 and num2 , find the positive integer x such that: \n\n x has the same number of set bits as num2 , and \n \n The value x XOR num1 is minimal . \n\n Note that XOR is the bitwise XOR operation. \n \n Return the integer x . The test cases are generated such that x is uniquely determined . \n \n The number of set bits of an integer is the number of 1 's in its binary representation. \n\n Example 1: \n \n```\nInput:\n num1 = 3, num2 = 5\n\nOutput:\n 3\n\nExplanation:\n\nThe binary representations of num1 and num2 are 0011 and 0101, respectively.\nThe integer \n3\n has the same number of set bits as num2, and the value \n3 XOR 3 = 0\n is minimal.\n```\n\n Example 2: \n \n```\nInput:\n num1 = 1, num2 = 12\n\nOutput:\n 3\n\nExplanation:\n\nThe binary representations of num1 and num2 are 0001 and 1100, respectively.\nThe integer \n3\n has the same number of set bits as num2, and the value \n3 XOR 1 = 2\n is minimal.\n```\n\n Constraints: \n\n 1 <= num1, num2 <= 10 9",
+  "code": "class Solution {public:int minimizeXor(int num1,int num2){int need=__builtin_popcount((unsigned)num2),ans=0;for(int b=30;b>=0&&need;b--)if(num1&(1<<b)){ans|=1<<b;need--;}for(int b=0;b<=30&&need;b++)if(!(ans&(1<<b))){ans|=1<<b;need--;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176557134",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

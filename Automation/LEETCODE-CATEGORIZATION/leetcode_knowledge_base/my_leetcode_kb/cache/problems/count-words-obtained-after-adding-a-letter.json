@@ -1,0 +1,40 @@
+{
+  "id": "2135",
+  "title": "Count Words Obtained After Adding a Letter",
+  "slug": "count-words-obtained-after-adding-a-letter",
+  "url": "https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two 0-indexed arrays of strings startWords and targetWords . Each string consists of lowercase English letters only. \n \n For each string in targetWords , check if it is possible to choose a string from startWords and perform a conversion operation on it to be equal to that from targetWords . \n \n The conversion operation is described in the following two steps: \n\n Append any lowercase letter that is not present in the string to its end.\n\n For example, if the string is \"abc\" , the letters 'd' , 'e' , or 'y' can be added to it, but not 'a' . If 'd' is added, the resulting string will be \"abcd\" . \n\n Rearrange the letters of the new string in any arbitrary order.\n\n For example, \"abcd\" can be rearranged to \"acbd\" , \"bacd\" , \"cbda\" , and so on. Note that it can also be rearranged to \"abcd\" itself. \n\n Return the number of strings in targetWords that can be obtained by performing the operations on any string of startWords . \n \n Note that you will only be verifying if the string in targetWords can be obtained from a string in startWords by performing the operations. The strings in startWords do not actually change during this process. \n\n Example 1: \n \n```\nInput:\n startWords = [\"ant\",\"act\",\"tack\"], targetWords = [\"tack\",\"act\",\"acti\"]\n\nOutput:\n 2\n\nExplanation:\n\n- In order to form targetWords[0] = \"tack\", we use startWords[1] = \"act\", append 'k' to it, and rearrange \"actk\" to \"tack\".\n- There is no string in startWords that can be used to obtain targetWords[1] = \"act\".\n Note that \"act\" does exist in startWords, but we \nmust\n append one letter to the string before rearranging it.\n- In order to form targetWords[2] = \"acti\", we use startWords[1] = \"act\", append 'i' to it, and rearrange \"acti\" to \"acti\" itself.\n```\n\n Example 2: \n \n```\nInput:\n startWords = [\"ab\",\"a\"], targetWords = [\"abc\",\"abcd\"]\n\nOutput:\n 1\n\nExplanation:\n\n- In order to form targetWords[0] = \"abc\", we use startWords[0] = \"ab\", add 'c' to it, and rearrange it to \"abc\".\n- There is no string in startWords that can be used to obtain targetWords[1] = \"abcd\".\n```\n\n Constraints: \n\n 1 <= startWords.length, targetWords.length <= 5 * 10 4 \n \n 1 <= startWords[i].length, targetWords[j].length <= 26 \n \n Each string of startWords and targetWords consists of lowercase English letters only. \n \n No letter occurs more than once in any string of startWords or targetWords .",
+  "code": "class Solution {\n int mask(const string&s){int x=0;for(char c:s)x|=1<<(c-'a');return x;}\npublic:\n int wordCount(vector<string>& startWords,vector<string>& targetWords){\n  unordered_set<int> starts;for(auto&s:startWords)starts.insert(mask(s));int ans=0;\n  for(auto&s:targetWords){int x=mask(s);for(char c:s){if(starts.count(x^(1<<(c-'a')))){++ans;break;}}}\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175738711",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

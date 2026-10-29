@@ -1,0 +1,32 @@
+{
+  "id": "281",
+  "title": "Zigzag Iterator",
+  "slug": "zigzag-iterator",
+  "url": "https://leetcode.com/problems/zigzag-iterator/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Design",
+    "Queue",
+    "Iterator"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Given two vectors of integers v1 and v2 , implement an iterator to return their elements alternately. \n \n Implement the ZigzagIterator class: \n\n ZigzagIterator(List<int> v1, List<int> v2) initializes the object with the two vectors v1 and v2 . \n \n boolean hasNext() returns true if the iterator still has elements, and false otherwise. \n \n int next() returns the current element of the iterator and moves the iterator to the next element. \n\n Example 1: \n \n```\nInput:\n v1 = [1,2], v2 = [3,4,5,6]\n\nOutput:\n [1,3,2,4,5,6]\n\nExplanation:\n By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,3,2,4,5,6].\n```\n\n Example 2: \n \n```\nInput:\n v1 = [1], v2 = []\n\nOutput:\n [1]\n```\n\n Example 3: \n \n```\nInput:\n v1 = [], v2 = [1]\n\nOutput:\n [1]\n```\n\n Constraints: \n\n 0 <= v1.length, v2.length <= 1000 \n \n 1 <= v1.length + v2.length <= 2000 \n \n -2 31 <= v1[i], v2[i] <= 2 31 - 1 \n\n Follow up: What if you are given k vectors? How well can your code be extended to such cases? \n \n Clarification for the follow-up question: \n \n The \"Zigzag\" order is not clearly defined and is ambiguous for k > 2 cases. If \"Zigzag\" does not look right to you, replace \"Zigzag\" with \"Cyclic\". \n \n Follow-up Example: \n \n```\nInput:\n v1 = [1,2,3], v2 = [4,5,6,7], v3 = [8,9]\n\nOutput:\n [1,4,8,2,5,9,3,6,7]\n```",
+  "code": "class ZigzagIterator\n{\n    vector< vector< int >>a;\n    queue< pair< int, int >>q;\npublic:\n    ZigzagIterator(vector< int>& v1, vector< int>& v2) : a\n    {\n        v1, v2\n    }\n    {\n        for (int i = 0; i < 2;++i) if(!a[i].empty()) q.push( { i, 0 });\n    }\n    int next()\n    {\n        auto p = q.front();\n        q.pop();\n        int x = a[p.first][p.second];\n        if (p.second + 1 < (int) a[p.first].size()) q.push( { p.first, p.second + 1 });\n        return x;\n    }\n    bool hasNext()\n    {\n        return !q.empty();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178445283",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

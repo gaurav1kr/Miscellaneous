@@ -1,0 +1,33 @@
+{
+  "id": "503",
+  "title": "Next Greater Element II",
+  "slug": "next-greater-element-ii",
+  "url": "https://leetcode.com/problems/next-greater-element-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given a circular integer array nums (i.e., the next element of nums[nums.length - 1] is nums[0] ), return the next greater number for every element in nums . \n \n The next greater number of a number x is the first greater number to its traversing-order next in the array, which means you could search circularly to find its next greater number. If it doesn't exist, return -1 for this number. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,1]\n\nOutput:\n [2,-1,2]\nExplanation: The first 1's next greater number is 2; \nThe number 2 can't find next greater number. \nThe second 1's next greater number needs to search circularly, which is also 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4,3]\n\nOutput:\n [2,3,4,-1,4]\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 4 \n \n -10 9 <= nums[i] <= 10 9",
+  "code": "class Solution \n{\npublic:\n    vector<int> nextGreaterElements(vector<int>& nums) \n    {\n        int n = nums.size();\n        vector<int> res(n, -1); // Initialize result array with -1\n        stack<int> st;         // Stack to store indices\n\n    // Iterate over the array twice for circular traversal\n        for (int i = 0; i < 2 * n; ++i) \n        {\n            while (!st.empty() && nums[st.top()] < nums[i % n])\n            {\n                res[st.top()] = nums[i % n];\n                st.pop();\n            }\n            if (i < n) \n            { // Push indices only in the first pass\n                st.push(i);\n            }\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1536013925",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "2737",
+  "title": "Find the Closest Marked Node",
+  "slug": "find-the-closest-marked-node",
+  "url": "https://leetcode.com/problems/find-the-closest-marked-node/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a positive integer n which is the number of nodes of a 0-indexed directed weighted graph and a 0-indexed 2D array edges where edges[i] = [u i , v i , w i ] indicates that there is an edge from node u i to node v i with weight w i . \n \n You are also given a node s and a node array marked ; your task is to find the minimum distance from s to any of the nodes in marked . \n \n Return an integer denoting the minimum distance from s to any node in marked or -1 if there are no paths from s to any of the marked nodes . \n\n Example 1: \n \n```\nInput:\n n = 4, edges = [[0,1,1],[1,2,3],[2,3,2],[0,3,4]], s = 0, marked = [2,3]\n\nOutput:\n 4\n\nExplanation:\n There is one path from node 0 (the green node) to node 2 (a red node), which is 0->1->2, and has a distance of 1 + 3 = 4.\nThere are two paths from node 0 to node 3 (a red node), which are 0->1->2->3 and 0->3, the first one has a distance of 1 + 3 + 2 = 6 and the second one has a distance of 4.\nThe minimum of them is 4.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/06/13/image_2023-06-13_16-34-38.png] \n \n Example 2: \n \n```\nInput:\n n = 5, edges = [[0,1,2],[0,2,4],[1,3,1],[2,3,3],[3,4,2]], s = 1, marked = [0,4]\n\nOutput:\n 3\n\nExplanation:\n There are no paths from node 1 (the green node) to node 0 (a red node).\nThere is one path from node 1 to node 4 (a red node), which is 1->3->4, and has a distance of 1 + 2 = 3.\nSo the answer is 3.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/06/13/image_2023-06-13_16-35-13.png] \n \n Example 3: \n \n```\nInput:\n n = 4, edges = [[0,1,1],[1,2,3],[2,3,2]], s = 3, marked = [0,1]\n\nOutput:\n -1\n\nExplanation:\n There are no paths from node 3 (the green node) to any of the marked nodes (the red nodes), so the answer is -1.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/06/13/image_2023-06-13_16-35-47.png] \n\n Constraints: \n\n 2 <= n <= 500 \n \n 1 <= edges.length <= 10 4 \n \n edges[i].length = 3 \n \n 0 <= edges[i][0], edges[i][1] <= n - 1 \n \n 1 <= edges[i][2] <= 10 6 \n \n 1 <= marked.length <= n - 1 \n \n 0 <= s, marked[i] <= n - 1 \n \n s != marked[i] \n \n marked[i] != marked[j] for every i != j \n \n The graph might have  repeated edges . \n \n The graph is generated such that it has no  self-loops .",
+  "code": "class Solution {\npublic:\n    int minimumDistance(int n, vector<vector<int>>& edges, int s, vector<int>& marked) {\n        vector<vector<pair<int,int>>> graph(n);\n        for (auto& e : edges) graph[e[0]].push_back({e[1], e[2]});\n        vector<long long> dist(n, LLONG_MAX);\n        priority_queue<pair<long long,int>, vector<pair<long long,int>>, greater<pair<long long,int>>> pq;\n        dist[s] = 0;\n        pq.push({0, s});\n        while (!pq.empty()) {\n            auto cur = pq.top(); pq.pop();\n            if (cur.first != dist[cur.second]) continue;\n            for (auto edge : graph[cur.second]) {\n                long long next = cur.first + edge.second;\n                if (next < dist[edge.first]) {\n                    dist[edge.first] = next;\n                    pq.push({next, edge.first});\n                }\n            }\n        }\n        long long answer = LLONG_MAX;\n        for (int v : marked) answer = min(answer, dist[v]);\n        return answer == LLONG_MAX ? -1 : (int)answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178902559",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "1079",
+  "title": "Letter Tile Possibilities",
+  "slug": "letter-tile-possibilities",
+  "url": "https://leetcode.com/problems/letter-tile-possibilities/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking",
+    "Counting"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "You have n    tiles , where each tile has one letter tiles[i] printed on it. \n \n Return the number of possible non-empty sequences of letters you can make using the letters printed on those tiles . \n\n Example 1: \n \n```\nInput:\n tiles = \"AAB\"\n\nOutput:\n 8\n\nExplanation: \nThe possible sequences are \"A\", \"B\", \"AA\", \"AB\", \"BA\", \"AAB\", \"ABA\", \"BAA\".\n```\n\n Example 2: \n \n```\nInput:\n tiles = \"AAABBC\"\n\nOutput:\n 188\n```\n\n Example 3: \n \n```\nInput:\n tiles = \"V\"\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= tiles.length <= 7 \n \n tiles consists of uppercase English letters.",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numTilePossibilities(string tiles) {\n        vector<int> freq(26, 0);\n        for (char c : tiles) freq[c - 'A']++;\n        return backtrack(freq);\n    }\n\n    int backtrack(vector<int>& freq) {\n        int sum = 0;\n        for (int i = 0; i < 26; i++) {\n            if (freq[i] > 0) {\n                sum++;\n                freq[i]--;\n                sum += backtrack(freq);\n                freq[i]++;\n            }\n        }\n        return sum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590144431",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

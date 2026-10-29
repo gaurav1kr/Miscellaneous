@@ -1,0 +1,30 @@
+{
+  "id": "3823",
+  "title": "Reverse Letters Then Special Characters in a String",
+  "slug": "reverse-letters-then-special-characters-in-a-string",
+  "url": "https://leetcode.com/problems/reverse-letters-then-special-characters-in-a-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters and special characters. \n \n Your task is to perform these in order : \n\n Reverse the lowercase letters and place them back into the positions originally occupied by letters. \n \n Reverse the special characters and place them back into the positions originally occupied by special characters. \n\n Return the resulting string after performing the reversals. \n\n Example 1: \n\n Input: s = \" )ebc#da@f( \" \n \n Output: \" (fad@cb#e) \" \n \n Explanation: \n\n The letters in the string are ['e', 'b', 'c', 'd', 'a', 'f'] :\n\n Reversing them gives ['f', 'a', 'd', 'c', 'b', 'e'] \n \n s becomes \")fad#cb@e(\" \n\n ​​​​​​​The special characters in the string are [')', '#', '@', '('] :\n\n Reversing them gives ['(', '@', '#', ')'] \n \n s becomes \" (fad@cb#e) \" \n\n Example 2: \n\n Input: s = \"z\" \n \n Output: \"z\" \n \n Explanation: \n \n The string contains only one letter, and reversing it does not change the string. There are no special characters. \n\n Example 3: \n\n Input: s = \"!@#$%^&*()\" \n \n Output: \" )(*&^%$#@! \" \n \n Explanation: \n \n The string contains no letters. The string contains all special characters, so reversing the special characters reverses the whole string. \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists only of lowercase English letters and the special characters in \"!@#$%^&*()\" .",
+  "code": "class Solution {\npublic:\n    string reverseByType(string s) {\n        string letters,special;\n        for(char c:s){\n            if(isalpha((unsigned char)c)) letters+=c;\n            else special+=c;\n        }\n        reverse(letters.begin(),letters.end());\n        reverse(special.begin(),special.end());\n        int a=0,b=0;\n        for(char &c:s){\n            if(isalpha((unsigned char)c)) c=letters[a++];\n            else c=special[b++];\n        }\n        return s;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177768263",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "3635",
+  "title": "Earliest Finish Time for Land and Water Rides II",
+  "slug": "earliest-finish-time-for-land-and-water-rides-ii",
+  "url": "https://leetcode.com/problems/earliest-finish-time-for-land-and-water-rides-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given two categories of theme park attractions: land rides and water rides . \n\n Land rides \n\n landStartTime[i] – the earliest time the i th land ride can be boarded. \n \n landDuration[i] – how long the i th land ride lasts. \n\n Water rides \n\n waterStartTime[j] – the earliest time the j th water ride can be boarded. \n \n waterDuration[j] – how long the j th water ride lasts. \n\n A tourist must experience exactly one ride from each category, in either order . \n\n A ride may be started at its opening time or any later moment . \n \n If a ride is started at time t , it finishes at time t + duration . \n \n Immediately after finishing one ride the tourist may board the other (if it is already open) or wait until it opens. \n\n Return the earliest possible time at which the tourist can finish both rides. \n\n Example 1: \n\n Input: landStartTime = [2,8], landDuration = [4,1], waterStartTime = [6], waterDuration = [3] \n \n Output: 9 \n \n Explanation: ​​​​​​​ \n\n Plan A (land ride 0 → water ride 0):\n\n Start land ride 0 at time landStartTime[0] = 2 . Finish at 2 + landDuration[0] = 6 . \n \n Water ride 0 opens at time waterStartTime[0] = 6 . Start immediately at 6 , finish at 6 + waterDuration[0] = 9 . \n\n Plan B (water ride 0 → land ride 1):\n\n Start water ride 0 at time waterStartTime[0] = 6 . Finish at 6 + waterDuration[0] = 9 . \n \n Land ride 1 opens at landStartTime[1] = 8 . Start at time 9 , finish at 9 + landDuration[1] = 10 . \n\n Plan C (land ride 1 → water ride 0):\n\n Start land ride 1 at time landStartTime[1] = 8 . Finish at 8 + landDuration[1] = 9 . \n \n Water ride 0 opened at waterStartTime[0] = 6 . Start at time 9 , finish at 9 + waterDuration[0] = 12 . \n\n Plan D (water ride 0 → land ride 0):\n\n Start water ride 0 at time waterStartTime[0] = 6 . Finish at 6 + waterDuration[0] = 9 . \n \n Land ride 0 opened at landStartTime[0] = 2 . Start at time 9 , finish at 9 + landDuration[0] = 13 . \n\n Plan A gives the earliest finish time of 9. \n\n Example 2: \n\n Input: landStartTime = [5], landDuration = [3], waterStartTime = [1], waterDuration = [10] \n \n Output: 14 \n \n Explanation: ​​​​​​​ \n\n Plan A (water ride 0 → land ride 0):\n\n Start water ride 0 at time waterStartTime[0] = 1 . Finish at 1 + waterDuration[0] = 11 . \n \n Land ride 0 opened at landStartTime[0] = 5 . Start immediately at 11 and finish at 11 + landDuration[0] = 14 . \n\n Plan B (land ride 0 → water ride 0):\n\n Start land ride 0 at time landStartTime[0] = 5 . Finish at 5 + landDuration[0] = 8 . \n \n Water ride 0 opened at waterStartTime[0] = 1 . Start immediately at 8 and finish at 8 + waterDuration[0] = 18 . \n\n Plan A provides the earliest finish time of 14. ​​​​​​​ \n\n Constraints: \n\n 1 <= n, m <= 5 * 10 4 \n \n landStartTime.length == landDuration.length == n \n \n waterStartTime.length == waterDuration.length == m \n \n 1 <= landStartTime[i], landDuration[i], waterStartTime[j], waterDuration[j] <= 10 5",
+  "code": "class Solution {\n    int evaluate(const vector<int>& as, const vector<int>& ad,\n                 const vector<int>& bs, const vector<int>& bd) {\n        int m = bs.size();\n        vector<pair<int,int>> rides(m);\n        for (int i = 0; i < m; ++i) rides[i] = {bs[i], bd[i]};\n        sort(rides.begin(), rides.end());\n        vector<int> pref(m), suff(m + 1, INT_MAX);\n        for (int i = 0; i < m; ++i)\n            pref[i] = min(i ? pref[i - 1] : INT_MAX, rides[i].second);\n        for (int i = m - 1; i >= 0; --i)\n            suff[i] = min(suff[i + 1], rides[i].first + rides[i].second);\n        int ans = INT_MAX;\n        for (int i = 0; i < (int)as.size(); ++i) {\n            int finish = as[i] + ad[i];\n            int pos = upper_bound(rides.begin(), rides.end(), make_pair(finish, INT_MAX)) - rides.begin();\n            if (pos > 0) ans = min(ans, finish + pref[pos - 1]);\n            if (pos < m) ans = min(ans, suff[pos]);\n        }\n        return ans;\n    }\npublic:\n    int earliestFinishTime(vector<int>& landStartTime, vector<int>& landDuration,\n                           vector<int>& waterStartTime, vector<int>& waterDuration) {\n        return min(evaluate(landStartTime, landDuration, waterStartTime, waterDuration),\n                   evaluate(waterStartTime, waterDuration, landStartTime, landDuration));\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179728644",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

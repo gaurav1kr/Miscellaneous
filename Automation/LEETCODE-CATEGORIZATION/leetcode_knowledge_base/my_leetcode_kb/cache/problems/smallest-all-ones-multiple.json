@@ -1,0 +1,28 @@
+{
+  "id": "3790",
+  "title": "Smallest All-Ones Multiple",
+  "slug": "smallest-all-ones-multiple",
+  "url": "https://leetcode.com/problems/smallest-all-ones-multiple/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map / hash set"
+  ],
+  "description": "You are given a positive integer k . \n \n Find the smallest integer n divisible by k that consists of only the digit 1 in its decimal representation (e.g., 1, 11, 111, ...). \n \n Return an integer denoting the number of digits in the decimal representation of n . If no such n exists, return -1 . \n\n Example 1: \n\n Input: k = 3 \n \n Output: 3 \n \n Explanation: \n \n n = 111 because 111 is divisible by 3, but 1 and 11 are not. The length of n = 111 is 3. \n\n Example 2: \n\n Input: k = 7 \n \n Output: 6 \n \n Explanation: \n \n n = 111111 . The length of n = 111111 is 6. \n\n Example 3: \n\n Input: k = 2 \n \n Output: -1 \n \n Explanation: \n \n There does not exist a valid n that is a multiple of 2. \n\n Constraints: \n\n 2 <= k <= 10 5",
+  "code": "class Solution {\npublic:\n    int minAllOneMultiple(int k) {\n        if (k % 2 == 0 || k % 5 == 0) return -1;\n        int remainder = 0;\n        for (int length = 1; length <= k; ++length) {\n            remainder = (remainder * 10LL + 1) % k;\n            if (remainder == 0) return length;\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179739896",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

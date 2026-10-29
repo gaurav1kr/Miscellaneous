@@ -1,0 +1,32 @@
+{
+  "id": "977",
+  "title": "Squares of a Sorted Array",
+  "slug": "squares-of-a-sorted-array",
+  "url": "https://leetcode.com/problems/squares-of-a-sorted-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order . \n\n Example 1: \n \n```\nInput:\n nums = [-4,-1,0,3,10]\n\nOutput:\n [0,1,9,16,100]\n\nExplanation:\n After squaring, the array becomes [16,1,0,9,100].\nAfter sorting, it becomes [0,1,9,16,100].\n```\n\n Example 2: \n \n```\nInput:\n nums = [-7,-3,2,3,11]\n\nOutput:\n [4,9,9,49,121]\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 4 \n \n -10 4 <= nums[i] <= 10 4 \n \n nums is sorted in non-decreasing order. \n\n Follow up: Squaring each element and sorting the new array is very trivial, could you find an O(n) solution using a different approach?",
+  "code": "class Solution {\npublic:\n    vector<int> sortedSquares(vector<int>& nums) {\n        int n = nums.size(), left = 0, right = n - 1;\n        vector<int> res(n);\n        for (int i = n - 1; i >= 0; i--) {\n            if (abs(nums[left]) > abs(nums[right])) res[i] = nums[left] * nums[left++];\n            else res[i] = nums[right] * nums[right--];\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588087960",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

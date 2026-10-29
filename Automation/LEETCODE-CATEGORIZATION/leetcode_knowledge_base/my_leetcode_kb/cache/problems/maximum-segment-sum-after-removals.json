@@ -1,0 +1,34 @@
+{
+  "id": "2382",
+  "title": "Maximum Segment Sum After Removals",
+  "slug": "maximum-segment-sum-after-removals",
+  "url": "https://leetcode.com/problems/maximum-segment-sum-after-removals/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Union-Find",
+    "Prefix Sum",
+    "Ordered Set"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given two 0-indexed integer arrays nums and removeQueries , both of length n . For the i th query, the element in nums at the index removeQueries[i] is removed, splitting nums into different segments. \n \n A segment is a contiguous sequence of positive integers in nums . A segment sum is the sum of every element in a segment. \n \n Return an integer array answer , of length n , where answer[i] is the maximum segment sum after applying the i th removal. \n \n Note: The same index will not be removed more than once. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,5,6,1], removeQueries = [0,3,2,4,1]\n\nOutput:\n [14,7,2,2,0]\n\nExplanation:\n Using 0 to indicate a removed element, the answer is as follows:\nQuery 1: Remove the 0th element, nums becomes [0,2,5,6,1] and the maximum segment sum is 14 for segment [2,5,6,1].\nQuery 2: Remove the 3rd element, nums becomes [0,2,5,0,1] and the maximum segment sum is 7 for segment [2,5].\nQuery 3: Remove the 2nd element, nums becomes [0,2,0,0,1] and the maximum segment sum is 2 for segment [2]. \nQuery 4: Remove the 4th element, nums becomes [0,2,0,0,0] and the maximum segment sum is 2 for segment [2]. \nQuery 5: Remove the 1st element, nums becomes [0,0,0,0,0] and the maximum segment sum is 0, since there are no segments.\nFinally, we return [14,7,2,2,0].\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,2,11,1], removeQueries = [3,2,1,0]\n\nOutput:\n [16,5,3,0]\n\nExplanation:\n Using 0 to indicate a removed element, the answer is as follows:\nQuery 1: Remove the 3rd element, nums becomes [3,2,11,0] and the maximum segment sum is 16 for segment [3,2,11].\nQuery 2: Remove the 2nd element, nums becomes [3,2,0,0] and the maximum segment sum is 5 for segment [3,2].\nQuery 3: Remove the 1st element, nums becomes [3,0,0,0] and the maximum segment sum is 3 for segment [3].\nQuery 4: Remove the 0th element, nums becomes [0,0,0,0] and the maximum segment sum is 0, since there are no segments.\nFinally, we return [16,5,3,0].\n```\n\n Constraints: \n\n n == nums.length == removeQueries.length \n \n 1 <= n <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 0 <= removeQueries[i] < n \n \n All the values of removeQueries are unique .",
+  "code": "class Solution { public:\n    vector<long long> maximumSegmentSum(vector<int>& nums,vector<int>& removeQueries) {\n        int n=nums.size();vector<int> parent(n),sz(n,1);iota(parent.begin(),parent.end(),0);\n        vector<long long> sum(n,0),ans(n);vector<char> active(n,0);\n        function<int(int)> find=[&](int x){return parent[x]==x?x:parent[x]=find(parent[x]);};\n        auto join=[&](int a,int b){a=find(a);b=find(b);if(a==b)return;\n            if(sz[a]<sz[b])swap(a,b);parent[b]=a;sz[a]+=sz[b];sum[a]+=sum[b];};\n        long long best=0;\n        for(int i=n-1;i>=0;--i){\n            ans[i]=best;int x=removeQueries[i];active[x]=1;sum[x]=nums[x];\n            if(x>0&&active[x-1])join(x,x-1);\n            if(x+1<n&&active[x+1])join(x,x+1);\n            best=max(best,sum[find(x)]);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175931744",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

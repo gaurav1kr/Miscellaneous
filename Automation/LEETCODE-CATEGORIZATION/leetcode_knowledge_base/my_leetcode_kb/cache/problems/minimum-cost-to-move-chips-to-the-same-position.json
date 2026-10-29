@@ -1,0 +1,31 @@
+{
+  "id": "1217",
+  "title": "Minimum Cost to Move Chips to The Same Position",
+  "slug": "minimum-cost-to-move-chips-to-the-same-position",
+  "url": "https://leetcode.com/problems/minimum-cost-to-move-chips-to-the-same-position/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "We have n chips, where the position of the i th chip is position[i] . \n \n We need to move all the chips to the same position . In one step, we can change the position of the i th chip from position[i] to: \n\n position[i] + 2 or position[i] - 2 with cost = 0 . \n \n position[i] + 1 or position[i] - 1 with cost = 1 . \n\n Return the minimum cost needed to move all the chips to the same position. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/08/15/chips_e1.jpg] \n \n```\nInput:\n position = [1,2,3]\n\nOutput:\n 1\n\nExplanation:\n First step: Move the chip at position 3 to position 1 with cost = 0.\nSecond step: Move the chip at position 2 to position 1 with cost = 1.\nTotal cost is 1.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/08/15/chip_e2.jpg] \n \n```\nInput:\n position = [2,2,2,3,3]\n\nOutput:\n 2\n\nExplanation:\n We can move the two chips at position 3 to position 2. Each move has cost = 1. The total cost = 2.\n```\n\n Example 3: \n \n```\nInput:\n position = [1,1000000000]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= position.length <= 100 \n \n 1 <= position[i] <= 10^9",
+  "code": "class Solution {\npublic:\n    int minCostToMoveChips(vector<int>& position) {\n        int even = 0, odd = 0;\n        for (int p : position) {\n            if (p % 2) ++odd;\n            else ++even;\n        }\n        return min(even, odd);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175748223",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "3736",
+  "title": "Minimum Moves to Equal Array Elements III",
+  "slug": "minimum-moves-to-equal-array-elements-iii",
+  "url": "https://leetcode.com/problems/minimum-moves-to-equal-array-elements-iii/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n In one move, you may increase the value of any single element nums[i] by 1. \n \n Return the minimum total number of moves required so that all elements in nums become equal . \n\n Example 1: \n\n Input: nums = [2,1,3] \n \n Output: 3 \n \n Explanation: \n \n To make all elements equal: \n\n Increase nums[0] = 2 by 1 to make it 3. \n \n Increase nums[1] = 1 by 1 to make it 2. \n \n Increase nums[1] = 2 by 1 to make it 3. \n\n Now, all elements of nums are equal to 3. The minimum total moves is 3 . \n\n Example 2: \n\n Input: nums = [4,4,5] \n \n Output: 2 \n \n Explanation: \n \n To make all elements equal: \n\n Increase nums[0] = 4 by 1 to make it 5. \n \n Increase nums[1] = 4 by 1 to make it 5. \n\n Now, all elements of nums are equal to 5. The minimum total moves is 2 . \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    int minMoves(vector<int>& nums) {\n        int largest = *max_element(nums.begin(), nums.end());\n        long long ans = 0;\n        for (int x : nums) ans += largest - x;\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179676099",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

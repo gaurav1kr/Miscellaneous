@@ -1,0 +1,31 @@
+{
+  "id": "1575",
+  "title": "Count All Possible Routes",
+  "slug": "count-all-possible-routes",
+  "url": "https://leetcode.com/problems/count-all-possible-routes/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Memoization"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an array of distinct positive integers locations where locations[i] represents the position of city i . You are also given integers start , finish and fuel representing the starting city, ending city, and the initial amount of fuel you have, respectively. \n \n At each step, if you are at city i , you can pick any city j such that j != i and 0 <= j < locations.length and move to city j . Moving from city i to city j reduces the amount of fuel you have by |locations[i] - locations[j]| . Please notice that |x| denotes the absolute value of x . \n \n Notice that fuel cannot become negative at any point in time, and that you are allowed to visit any city more than once (including start and finish ). \n \n Return the count of all possible routes from start to finish . Since the answer may be too large, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n locations = [2,3,6,8,4], start = 1, finish = 3, fuel = 5\n\nOutput:\n 4\n\nExplanation:\n The following are all possible routes, each uses 5 units of fuel:\n1 -> 3\n1 -> 2 -> 3\n1 -> 4 -> 3\n1 -> 4 -> 2 -> 3\n```\n\n Example 2: \n \n```\nInput:\n locations = [4,3,1], start = 1, finish = 0, fuel = 6\n\nOutput:\n 5\n\nExplanation:\n The following are all possible routes:\n1 -> 0, used fuel = 1\n1 -> 2 -> 0, used fuel = 5\n1 -> 2 -> 1 -> 0, used fuel = 5\n1 -> 0 -> 1 -> 0, used fuel = 3\n1 -> 0 -> 1 -> 0 -> 1 -> 0, used fuel = 5\n```\n\n Example 3: \n \n```\nInput:\n locations = [5,2,1], start = 0, finish = 2, fuel = 3\n\nOutput:\n 0\n\nExplanation:\n It is impossible to get from 0 to 2 using only 3 units of fuel since the shortest route needs 4 units of fuel.\n```\n\n Constraints: \n\n 2 <= locations.length <= 100 \n \n 1 <= locations[i] <= 10 9 \n \n All integers in locations are distinct . \n \n 0 <= start, finish < locations.length \n \n 1 <= fuel <= 200",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\n    static const int MOD = 1000000007;\n    vector<vector<int>> memo;\n    int dfs(int u, int fuel, const vector<int>& a, int finish) {\n        int& ans = memo[u][fuel];\n        if (ans != -1) return ans;\n        long long ways = (u == finish);\n        for (int v = 0; v < (int)a.size(); ++v) {\n            int cost = abs(a[u] - a[v]);\n            if (u != v && cost <= fuel)\n                ways += dfs(v, fuel - cost, a, finish);\n        }\n        return ans = ways % MOD;\n    }\npublic:\n    int countRoutes(vector<int>& locations, int start, int finish, int fuel) {\n        memo.assign(locations.size(), vector<int>(fuel + 1, -1));\n        return dfs(start, fuel, locations, finish);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175755191",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

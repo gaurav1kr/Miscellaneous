@@ -1,0 +1,35 @@
+{
+  "id": "3967",
+  "title": "Finish Time of Tasks II",
+  "slug": "finish-time-of-tasks-ii",
+  "url": "https://leetcode.com/problems/finish-time-of-tasks-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given an integer n representing the number of tasks in a project, numbered from 0 to n - 1 . These tasks are connected as an undirected tree . This is represented by a 2D integer array edges of length n - 1 , where edges[i] = [u i , v i ] indicates an undirected connection between task u i and task v i . \n \n You are also given an array baseTime of length n , where baseTime[i] represents the time to complete task i . \n \n For any chosen task as the root, the finish time of each task is calculated as follows: \n\n Leaf task: The finish time is baseTime[i] . \n \n Non-leaf task:\n\n Let earliest be the minimum finish time among its children, and latest be the maximum finish time among its children. \n \n Let ownDuration be (latest - earliest) + baseTime[i] . \n \n Finish time of task i is latest + ownDuration . \n\n Choose any task as the root and compute the finish time of that root based on the rules above. \n \n Return the minimum possible finish time among all choices of root. \n\n Example 1: \n\n Input: n = 3, edges = [[0,1],[1,2]], baseTime = [9,1,5] \n \n Output: 14 \n \n Explanation: \n 0 9 1 1 2 5 \n \n The optimal choice is to treat task 1 as the root. \n\n Task 0 is a leaf, so its finish time is baseTime[0] = 9 . \n \n Task 2 is a leaf, so its finish time is baseTime[2] = 5 . \n \n Task 1 has two children with finish times 9 and 5:\n\n earliest = 5 , latest = 9 \n \n ownDuration = (latest - earliest) + baseTime[1] = (9 - 5) + 1 = 5 \n \n Finish time of task 1 is latest + ownDuration = 9 + 5 = 14 \n\n Thus, the minimum possible finish time among all choices of root is 14. \n\n Example 2: \n\n Input: n = 3, edges = [[0,1],[0,2]], baseTime = [4,7,6] \n \n Output: 12 \n \n Explanation: \n 0 4 1 7 2 6 \n \n The optimal choice is to treat task 0 as the root. \n\n Task 1 is a leaf, so its finish time is baseTime[1] = 7 . \n \n Task 2 is a leaf, so its finish time is baseTime[2] = 6 . \n \n Task 0 has two children with finish times 7 and 6:\n\n earliest = 6 , latest = 7 \n \n ownDuration = (latest - earliest) + baseTime[0] = (7 - 6) + 4 = 5 \n \n Finish time of task 0 is latest + ownDuration = 7 + 5 = 12 \n\n Thus, the minimum possible finish time among all choices of root is 12. \n\n Example 3: \n\n Input: n = 4, edges = [[0,1],[0,2],[2,3]], baseTime = [5,8,2,1] \n \n Output: 16 \n \n Explanation: \n 0 5 1 8 2 2 3 1 \n \n The optimal choice is to treat task 1 as the root. \n\n Task 3 is a leaf, so its finish time is baseTime[3] = 1 . \n \n Task 2 has one child task 3:\n\n earliest = latest = 1 \n \n ownDuration = (latest - earliest) + baseTime[2] = 0 + 2 = 2 \n \n Finish time of task 2 is latest + ownDuration = 1 + 2 = 3 \n\n Task 0 has one child task 2:\n\n earliest = latest = 3 \n \n ownDuration = (latest - earliest) + baseTime[0] = 0 + 5 = 5 \n \n Finish time of task 0 is latest + ownDuration = 3 + 5 = 8 \n\n Task 1 has one child task 0:\n\n earliest = latest = 8 \n \n ownDuration = (latest - earliest) + baseTime[1] = 0 + 8 = 8 \n \n Finish time of task 1 is latest + ownDuration = 8 + 8 = 16 \n\n Thus, the minimum possible finish time among all choices of root is 16. \n\n Constraints: \n\n 1 <= n <= 10 5 \n \n edges.length = n - 1 \n \n edges[i] == [u i , v i ] \n \n 0 <= u i , v i <= n - 1 \n \n u i != v i \n \n The input is generated such that edges represents a valid undirected tree. \n \n baseTime.length == n \n \n 1 <= baseTime[i] <= 10 5",
+  "code": "class Solution {\n    long long combine(long long mn,long long mx,int cnt,int b){return cnt==0?b:2*mx-mn+b;}\npublic:\n    long long finishTime(int n,vector<vector<int>>& edges,vector<int>& baseTime){\n        vector<vector<int>> adj(n);for(auto &e:edges){adj[e[0]].push_back(e[1]);adj[e[1]].push_back(e[0]);}\n        vector<int> par(n,-1),order;order.push_back(0);par[0]=0;\n        for(int i=0;i<(int)order.size();i++){int u=order[i];for(int v:adj[u])if(v!=par[u]){par[v]=u;order.push_back(v);}}\n        vector<long long> down(n),up(n);for(int i=n-1;i>=0;i--){int u=order[i];long long lo=LLONG_MAX,hi=0;int cnt=0;for(int v:adj[u])if(v!=par[u]){lo=min(lo,down[v]);hi=max(hi,down[v]);cnt++;}down[u]=combine(lo,hi,cnt,baseTime[u]);}\n        long long ans=LLONG_MAX;\n        for(int u:order){int d=adj[u].size();vector<long long> a(d),preMin(d+1,LLONG_MAX),preMax(d+1,0),sufMin(d+1,LLONG_MAX),sufMax(d+1,0);\n            for(int i=0;i<d;i++){int v=adj[u][i];a[i]=(u!=0&&v==par[u])?up[u]:down[v];preMin[i+1]=min(preMin[i],a[i]);preMax[i+1]=max(preMax[i],a[i]);}\n            for(int i=d-1;i>=0;i--){sufMin[i]=min(sufMin[i+1],a[i]);sufMax[i]=max(sufMax[i+1],a[i]);}\n            ans=min(ans,combine(preMin[d],preMax[d],d,baseTime[u]));\n            for(int i=0;i<d;i++){int v=adj[u][i];if(v==par[u])continue;long long lo=min(preMin[i],sufMin[i+1]),hi=max(preMax[i],sufMax[i+1]);up[v]=combine(lo,hi,d-1,baseTime[u]);}\n        }return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181176923",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

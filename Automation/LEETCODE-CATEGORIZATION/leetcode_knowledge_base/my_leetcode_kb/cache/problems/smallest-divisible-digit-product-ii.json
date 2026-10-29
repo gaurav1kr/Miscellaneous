@@ -1,0 +1,35 @@
+{
+  "id": "3348",
+  "title": "Smallest Divisible Digit Product II",
+  "slug": "smallest-divisible-digit-product-ii",
+  "url": "https://leetcode.com/problems/smallest-divisible-digit-product-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Backtracking",
+    "Greedy",
+    "Number Theory"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Backtracking / Bitmask",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string num which represents a positive integer, and an integer t . \n \n A number is called zero-free if none of its digits are 0. \n \n Return a string representing the smallest zero-free number greater than or equal to num such that the product of its digits is divisible by t . If no such number exists, return \"-1\" . \n\n Example 1: \n\n Input: num = \"1234\", t = 256 \n \n Output: \"1488\" \n \n Explanation: \n \n The smallest zero-free number that is greater than 1234 and has the product of its digits divisible by 256 is 1488, with the product of its digits equal to 256. \n\n Example 2: \n\n Input: num = \"12355\", t = 50 \n \n Output: \"12355\" \n \n Explanation: \n \n 12355 is already zero-free and has the product of its digits divisible by 50, with the product of its digits equal to 150. \n\n Example 3: \n\n Input: num = \"11111\", t = 26 \n \n Output: \"-1\" \n \n Explanation: \n \n No number greater than 11111 has the product of its digits divisible by 26. \n\n Constraints: \n\n 2 <= num.length <= 2 * 10 5 \n \n num consists only of digits in the range ['0', '9'] . \n \n num does not contain leading zeros. \n \n 1 <= t <= 10 14",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution { int req[4],p[10][4]={{0},{0,0,0,0},{1,0,0,0},{0,1,0,0},{2,0,0,0},{0,0,1,0},{1,1,0,0},{0,0,0,1},{3,0,0,0},{0,2,0,0}}; map<array<int,4>,int> memo;int need(array<int,4> a){if(a==array<int,4>{0,0,0,0})return 0;auto it=memo.find(a);if(it!=memo.end())return it->second;int best=1000000;for(int d=2;d<=9;d++){array<int,4>b=a;bool change=false;for(int j=0;j<4;j++){b[j]=max(0,b[j]-p[d][j]);change|=b[j]!=a[j];}if(change)best=min(best,1+need(b));}return memo[a]=best;}array<int,4> sub(array<int,4>a,int d){for(int j=0;j<4;j++)a[j]=max(0,a[j]-p[d][j]);return a;}string suffix(array<int,4>a,int len){string s;for(int i=0;i<len;i++)for(int d=1;d<=9;d++)if(need(sub(a,d))<=len-i-1){s+=char('0'+d);a=sub(a,d);break;}return s;}public:string smallestNumber(string num,long long t){int primes[]={2,3,5,7};for(int j=0;j<4;j++)while(t%primes[j]==0){t/=primes[j];req[j]++;}if(t!=1)return \"-1\";array<int,4> a={req[0],req[1],req[2],req[3]};int n=num.size();vector<array<int,4>> pre(n+1);pre[0]=a;int firstZero=n;for(int i=0;i<n;i++){if(num[i]=='0'&&firstZero==n)firstZero=i;pre[i+1]=sub(pre[i],num[i]-'0');}if(firstZero==n&&need(pre[n])==0)return num;for(int i=n-1;i>=0;i--){if(i>firstZero)continue;for(int d=(num[i]-'0')+1;d<=9;d++){auto b=sub(pre[i],d);if(need(b)<=n-i-1)return num.substr(0,i)+char('0'+d)+suffix(b,n-i-1);}}int len=max(n+1,need(a));return suffix(a,len);} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181229465",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

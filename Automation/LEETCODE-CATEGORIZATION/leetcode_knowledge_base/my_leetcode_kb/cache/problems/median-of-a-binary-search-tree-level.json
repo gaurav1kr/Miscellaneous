@@ -1,0 +1,34 @@
+{
+  "id": "3831",
+  "title": "Median of a Binary Search Tree Level",
+  "slug": "median-of-a-binary-search-tree-level",
+  "url": "https://leetcode.com/problems/median-of-a-binary-search-tree-level/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given the root of a Binary Search Tree (BST) and an integer level . \n \n The root node is at level 0. Each level represents the distance from the root. \n \n Return the median value of all node values present at the given level . If the level does not exist or contains no nodes, return -1. \n \n The median is defined as the middle element after sorting the values at that level in non-decreasing order. If the number of values at that level is even, return the upper median (the larger of the two middle elements after sorting). \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2026/01/27/screenshot-2026-01-27-at-20801pm.png] \n\n Input: root = [4,null,5,null,7], level = 2 \n \n Output: 7 \n \n Explanation: \n \n The nodes at level = 2 are [7] . The median value is 7. \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2026/01/27/screenshot-2026-01-27-at-20926pm.png] \n\n Input: root = [6,3,8], level = 1 \n \n Output: 8 \n \n Explanation: \n \n The nodes at level = 1 are [3, 8] . There are two possible median values, so the larger one 8 is the answer. \n\n Example 3: \n \n ​​​​​​​​​​​​​​ [Figure: https://assets.leetcode.com/uploads/2026/01/27/screenshot-2026-01-27-at-21001pm.png] \n\n Input: root = [2,1], level = 2 \n \n Output: -1 \n \n Explanation: \n \n There is no node present at level = 2 ​​​​​​​, so the answer is -1. \n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 2 * 10 5 ] . \n \n 1 <= Node.val <= 10 6 \n \n 0 <= level <= 2 * 10 ​​​​​​​5",
+  "code": "class Solution {public:int levelMedian(TreeNode* root,int level){queue<TreeNode*> q;q.push(root);for(int d=0;d<level&&!q.empty();++d){int n=q.size();while(n--){auto p=q.front();q.pop();if(p->left)q.push(p->left);if(p->right)q.push(p->right);}}if(q.empty())return -1;vector<int> a;while(!q.empty()){a.push_back(q.front()->val);q.pop();}nth_element(a.begin(),a.begin()+a.size()/2,a.end());return a[a.size()/2];}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181207269",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

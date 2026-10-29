@@ -1,0 +1,24 @@
+{
+  "id": "3950",
+  "title": "Exactly One Consecutive Set Bits Pair",
+  "slug": "exactly-one-consecutive-set-bits-pair",
+  "url": "https://leetcode.com/problems/exactly-one-consecutive-set-bits-pair/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "You are given an integer n . \n \n Return true if its binary representation contains exactly one adjacent pair of  set bits , and false otherwise. \n\n Example 1: \n\n Input: n = 6 \n \n Output: true \n \n Explanation: \n\n Binary representation of 6 is 110 . \n \n There is exactly one adjacent pair of set bits ( \"11\" ). Thus, the answer is true ​​​​​​​. \n\n Example 2: \n\n Input: n = 5 \n \n Output: false \n \n Explanation: \n\n Binary representation of 5 is 101 . \n \n There is no adjacent pair of set bits. Thus, the answer is false ​​​​​​​. \n\n Constraints: \n\n 0 <= n <= 10 5",
+  "code": "class Solution {\npublic:\n    bool consecutiveSetBits(int n) {\n        int pairs = 0;\n        while (n > 1) {\n            if ((n & 3) == 3) ++pairs;\n            n >>= 1;\n        }\n        return pairs == 1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179321952",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

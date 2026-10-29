@@ -1,0 +1,27 @@
+{
+  "id": "6",
+  "title": "Zigzag Conversion",
+  "slug": "zigzag-conversion",
+  "url": "https://leetcode.com/problems/zigzag-conversion/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "The string \"PAYPALISHIRING\" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) \n \n```\nP A H N\nA P L S I I G\nY I R\n```\n\n And then read line by line: \"PAHNAPLSIIGYIR\" \n \n Write the code that will take a string and make this conversion given a number of rows: \n \n```\nstring convert(string s, int numRows);\n```\n\n Example 1: \n \n```\nInput:\n s = \"PAYPALISHIRING\", numRows = 3\n\nOutput:\n \"PAHNAPLSIIGYIR\"\n```\n\n Example 2: \n \n```\nInput:\n s = \"PAYPALISHIRING\", numRows = 4\n\nOutput:\n \"PINALSIGYAHRPI\"\n\nExplanation:\n\nP I N\nA L S I G\nY A H R\nP I\n```\n\n Example 3: \n \n```\nInput:\n s = \"A\", numRows = 1\n\nOutput:\n \"A\"\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of English letters (lower-case and upper-case), ',' and '.' . \n \n 1 <= numRows <= 1000",
+  "code": "class Solution {\npublic:\n    string convert(string s, int numRows) {\n        if (numRows == 1 || numRows >= (int)s.size()) return s;\n        vector<string> rows(numRows);\n        int row = 0, direction = 1;\n        for (char c : s) {\n            rows[row] += c;\n            if (row == 0) direction = 1;\n            else if (row == numRows - 1) direction = -1;\n            row += direction;\n        }\n        string result;\n        for (const string& part : rows) result += part;\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175684623",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

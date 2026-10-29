@@ -1,0 +1,36 @@
+{
+  "id": "1485",
+  "title": "Clone Binary Tree With Random Pointer",
+  "slug": "clone-binary-tree-with-random-pointer",
+  "url": "https://leetcode.com/problems/clone-binary-tree-with-random-pointer/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Tree adjacency list"
+  ],
+  "description": "A binary tree is given such that each node contains an additional random pointer which could point to any node in the tree or null. \n \n Return a deep copy of the tree. \n \n The tree is represented in the same input/output way as normal binary trees where each node is represented as a pair of [val, random_index] where: \n\n val : an integer representing Node.val \n \n random_index : the index of the node (in the input) where the random pointer points to, or null if it does not point to any node. \n\n You will be given the tree in class Node and you should return the cloned tree in class NodeCopy . NodeCopy class is just a clone of Node class with the same attributes and constructors. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/06/17/clone_1.png] \n \n```\nInput:\n root = [[1,null],null,[4,3],[7,0]]\n\nOutput:\n [[1,null],null,[4,3],[7,0]]\n\nExplanation:\n The original binary tree is [1,null,4,7].\nThe random pointer of node one is null, so it is represented as [1, null].\nThe random pointer of node 4 is node 7, so it is represented as [4, 3] where 3 is the index of node 7 in the array representing the tree.\nThe random pointer of node 7 is node 1, so it is represented as [7, 0] where 0 is the index of node 1 in the array representing the tree.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/06/17/clone_2.png] \n \n```\nInput:\n root = [[1,4],null,[1,0],null,[1,5],[1,5]]\n\nOutput:\n [[1,4],null,[1,0],null,[1,5],[1,5]]\n\nExplanation:\n The random pointer of a node can be the node itself.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2020/06/17/clone_3.png] \n \n```\nInput:\n root = [[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]\n\nOutput:\n [[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 1000]. \n \n 1 <= Node.val <= 10 6",
+  "code": "class Solution {\n    unordered_map<Node*, NodeCopy*> clones;\n\n    NodeCopy* copyStructure(Node* node) {\n        if (!node) {\n            return nullptr;\n        }\n        NodeCopy* result = new NodeCopy(node->val);\n        clones[node] = result;\n        result->left = copyStructure(node->left);\n        result->right = copyStructure(node->right);\n        return result;\n    }\n\n    void copyRandom(Node* node) {\n        if (!node) {\n            return;\n        }\n        clones[node]->random = node->random ? clones[node->random] : nullptr;\n        copyRandom(node->left);\n        copyRandom(node->right);\n    }\n\npublic:\n    NodeCopy* copyRandomBinaryTree(Node* root) {\n        clones.clear();\n        NodeCopy* result = copyStructure(root);\n        copyRandom(root);\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178580199",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

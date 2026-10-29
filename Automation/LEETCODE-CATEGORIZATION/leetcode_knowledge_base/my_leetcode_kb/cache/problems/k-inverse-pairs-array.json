@@ -1,0 +1,27 @@
+{
+  "id": "629",
+  "title": "K Inverse Pairs Array",
+  "slug": "k-inverse-pairs-array",
+  "url": "https://leetcode.com/problems/k-inverse-pairs-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "For an integer array nums , an inverse pair is a pair of integers [i, j] where 0 <= i < j < nums.length and nums[i] > nums[j] . \n \n Given two integers n and k, return the number of different arrays consisting of numbers from 1 to n such that there are exactly k inverse pairs . Since the answer can be huge, return it modulo 10 9 + 7 . \n\n Example 1: \n \n```\nInput:\n n = 3, k = 0\n\nOutput:\n 1\n\nExplanation:\n Only the array [1,2,3] which consists of numbers from 1 to 3 has exactly 0 inverse pairs.\n```\n\n Example 2: \n \n```\nInput:\n n = 3, k = 1\n\nOutput:\n 2\n\nExplanation:\n The array [1,3,2] and [2,1,3] have exactly 1 inverse pair.\n```\n\n Constraints: \n\n 1 <= n <= 1000 \n \n 0 <= k <= 1000",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int kInversePairs(int n, int k) {\n        const int MOD = 1e9 + 7;\n        vector<vector<int>> dp(n + 1, vector<int>(k + 1, 0));\n        dp[0][0] = 1;\n\n        for (int i = 1; i <= n; ++i) {\n            vector<int> prefix(k + 1, 0);\n            prefix[0] = dp[i - 1][0];\n            for (int j = 1; j <= k; ++j)\n                prefix[j] = (prefix[j - 1] + dp[i - 1][j]) % MOD;\n\n            for (int j = 0; j <= k; ++j) {\n                dp[i][j] = prefix[j];\n                if (j >= i)\n                    dp[i][j] = (dp[i][j] - prefix[j - i] + MOD) % MOD;\n            }\n        }\n\n        return dp[n][k];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593853983",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

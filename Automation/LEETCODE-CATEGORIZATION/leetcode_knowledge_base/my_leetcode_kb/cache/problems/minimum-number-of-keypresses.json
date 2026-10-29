@@ -1,0 +1,36 @@
+{
+  "id": "2268",
+  "title": "Minimum Number of Keypresses",
+  "slug": "minimum-number-of-keypresses",
+  "url": "https://leetcode.com/problems/minimum-number-of-keypresses/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Greedy",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You have a keypad with 9 buttons, numbered from 1 to 9 , each mapped to lowercase English letters. You can choose which characters each button is matched to as long as: \n\n All 26 lowercase English letters are mapped to. \n \n Each character is mapped to by exactly 1 button. \n \n Each button maps to at most 3 characters. \n\n To type the first character matched to a button, you press the button once. To type the second character, you press the button twice, and so on. \n \n Given a string s , return the minimum number of keypresses needed to type s using your keypad. \n \n Note that the characters mapped to by each button, and the order they are mapped in cannot be changed. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/05/05/image-20220505184346-1.png] \n \n```\nInput:\n s = \"apple\"\n\nOutput:\n 5\n\nExplanation:\n One optimal way to setup your keypad is shown above.\nType 'a' by pressing button 1 once.\nType 'p' by pressing button 6 once.\nType 'p' by pressing button 6 once.\nType 'l' by pressing button 5 once.\nType 'e' by pressing button 3 once.\nA total of 5 button presses are needed, so return 5.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/05/05/image-20220505203823-1.png] \n \n```\nInput:\n s = \"abcdefghijkl\"\n\nOutput:\n 15\n\nExplanation:\n One optimal way to setup your keypad is shown above.\nThe letters 'a' to 'i' can each be typed by pressing a button once.\nType 'j' by pressing button 1 twice.\nType 'k' by pressing button 2 twice.\nType 'l' by pressing button 3 twice.\nA total of 15 button presses are needed, so return 15.\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int minimumKeypresses(string s) {\n        vector<int> freq(26);\n        for (char c : s) ++freq[c - 'a'];\n        sort(freq.rbegin(), freq.rend());\n        int answer = 0;\n        for (int i = 0; i < 26; ++i) answer += freq[i] * (i / 9 + 1);\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178851429",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

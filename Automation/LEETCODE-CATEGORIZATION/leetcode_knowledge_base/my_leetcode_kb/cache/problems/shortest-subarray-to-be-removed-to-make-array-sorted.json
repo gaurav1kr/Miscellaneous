@@ -1,0 +1,37 @@
+{
+  "id": "1574",
+  "title": "Shortest Subarray to be Removed to Make Array Sorted",
+  "slug": "shortest-subarray-to-be-removed-to-make-array-sorted",
+  "url": "https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Stack",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given an integer array arr , remove a subarray (can be empty) from arr such that the remaining elements in arr are non-decreasing . \n \n Return the length of the shortest subarray to remove . \n \n A subarray is a contiguous subsequence of the array. \n\n Example 1: \n \n```\nInput:\n arr = [1,2,3,10,4,2,3,5]\n\nOutput:\n 3\n\nExplanation:\n The shortest subarray we can remove is [10,4,2] of length 3. The remaining elements after that will be [1,2,3,3,5] which are sorted.\nAnother correct solution is to remove the subarray [3,10,4].\n```\n\n Example 2: \n \n```\nInput:\n arr = [5,4,3,2,1]\n\nOutput:\n 4\n\nExplanation:\n Since the array is strictly decreasing, we can only keep a single element. Therefore we need to remove a subarray of length 4, either [5,4,3,2] or [4,3,2,1].\n```\n\n Example 3: \n \n```\nInput:\n arr = [1,2,3]\n\nOutput:\n 0\n\nExplanation:\n The array is already non-decreasing. We do not need to remove any elements.\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 5 \n \n 0 <= arr[i] <= 10 9",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findLengthOfShortestSubarray(vector<int>& arr) {\n        int n = arr.size(), l = 0, r = n - 1;\n        while (l + 1 < n && arr[l] <= arr[l + 1]) l++;\n        if (l == n - 1) return 0;\n        while (r > l && arr[r - 1] <= arr[r]) r--;\n        int res = min(n - l - 1, r);\n\n        int i = 0, j = r;\n        while (i <= l && j < n) {\n            if (arr[i] <= arr[j]) {\n                res = min(res, j - i - 1);\n                i++;\n            } else {\n                j++;\n            }\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593834925",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

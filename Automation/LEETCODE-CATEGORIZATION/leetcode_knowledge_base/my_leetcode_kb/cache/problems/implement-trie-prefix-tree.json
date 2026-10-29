@@ -1,0 +1,36 @@
+{
+  "id": "208",
+  "title": "Implement Trie (Prefix Tree)",
+  "slug": "implement-trie-prefix-tree",
+  "url": "https://leetcode.com/problems/implement-trie-prefix-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Design",
+    "Trie"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Trie"
+  ],
+  "description": "A trie (pronounced as \"try\") or prefix tree is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker. \n \n Implement the Trie class: \n\n Trie() Initializes the trie object. \n \n void insert(String word) Inserts the string word into the trie. \n \n boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise. \n \n boolean startsWith(String prefix) Returns true if there is a previously inserted string word that has the prefix prefix , and false otherwise. \n\n Example 1: \n \n```\nInput\n\n[\"Trie\", \"insert\", \"search\", \"search\", \"startsWith\", \"insert\", \"search\"]\n[[], [\"apple\"], [\"apple\"], [\"app\"], [\"app\"], [\"app\"], [\"app\"]]\n\nOutput\n\n[null, null, true, false, true, null, true]\n\nExplanation\n\nTrie trie = new Trie();\ntrie.insert(\"apple\");\ntrie.search(\"apple\"); // return True\ntrie.search(\"app\"); // return False\ntrie.startsWith(\"app\"); // return True\ntrie.insert(\"app\");\ntrie.search(\"app\"); // return True\n```\n\n Constraints: \n\n 1 <= word.length, prefix.length <= 2000 \n \n word and prefix consist only of lowercase English letters. \n \n At most 3 * 10 4 calls in total will be made to insert , search , and startsWith .",
+  "code": "\nclass TrieNode {\npublic:\n    unordered_map<char, TrieNode*> children;\n    bool isEndOfWord;\n\n    TrieNode() : isEndOfWord(false) {}\n};\n\nclass Trie {\nprivate:\n    TrieNode* root;\n\npublic:\n    Trie() {\n        root = new TrieNode();\n    }\n\n    void insert(string word) {\n        TrieNode* current = root;\n        for (char ch : word) {\n            if (current->children.find(ch) == current->children.end()) {\n                current->children[ch] = new TrieNode();\n            }\n            current = current->children[ch];\n        }\n        current->isEndOfWord = true;\n    }\n\n    bool search(string word) {\n        TrieNode* current = root;\n        for (char ch : word) {\n            if (current->children.find(ch) == current->children.end()) {\n                return false;\n            }\n            current = current->children[ch];\n        }\n        return current->isEndOfWord;\n    }\n\n    bool startsWith(string prefix) {\n        TrieNode* current = root;\n        for (char ch : prefix) {\n            if (current->children.find(ch) == current->children.end()) {\n                return false;\n            }\n            current = current->children[ch];\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541865709",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

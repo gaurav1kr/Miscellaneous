@@ -1,0 +1,30 @@
+{
+  "id": "1666",
+  "title": "Change the Root of a Binary Tree",
+  "slug": "change-the-root-of-a-binary-tree",
+  "url": "https://leetcode.com/problems/change-the-root-of-a-binary-tree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree and a leaf node, reroot the tree so that the leaf is the new root. \n \n You can reroot the tree with the following steps for each node cur on the path starting from the leaf up to the root ​​​ excluding the root : \n\n If cur has a left child, then that child becomes cur 's right child. \n \n cur 's original parent becomes cur 's left child. Note that in this process the original parent's pointer to cur becomes null , making it have at most one child. \n\n Return the new root of the rerooted tree. \n \n Note: Ensure that your solution sets the Node.parent pointers correctly after rerooting or you will receive \"Wrong Answer\". \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2024/09/21/bt_image_1.png] \n \n```\nInput:\n root = [3,5,1,6,2,0,8,null,null,7,4], leaf = 7\n\nOutput:\n [7,2,null,5,4,3,6,null,null,null,1,null,null,0,8]\n```\n\n Example 2: \n \n```\nInput:\n root = [3,5,1,6,2,0,8,null,null,7,4], leaf = 0\n\nOutput:\n [0,1,null,3,8,5,null,null,null,6,2,null,null,7,4]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [2, 100] . \n \n -10 9 <= Node.val <= 10 9 \n \n All Node.val are unique . \n \n leaf exist in the tree.",
+  "code": "class Solution {\npublic:\n    Node* flipBinaryTree(Node* root, Node* leaf) {\n        Node* current = leaf;\n        Node* previous = nullptr;\n        while (current != root) {\n            Node* parent = current->parent;\n            if (current->left) current->right = current->left;\n            current->left = parent;\n            current->parent = previous;\n            if (parent->left == current) parent->left = nullptr;\n            else parent->right = nullptr;\n            previous = current;\n            current = parent;\n        }\n        current->parent = previous;\n        return leaf;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178600364",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

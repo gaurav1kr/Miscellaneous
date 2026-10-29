@@ -1,0 +1,38 @@
+{
+  "id": "1261",
+  "title": "Find Elements in a Contaminated Binary Tree",
+  "slug": "find-elements-in-a-contaminated-binary-tree",
+  "url": "https://leetcode.com/problems/find-elements-in-a-contaminated-binary-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Design",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Tree adjacency list"
+  ],
+  "description": "Given a binary tree with the following rules: \n\n root.val == 0 \n \n For any treeNode :\n\n If treeNode.val has a value x and treeNode.left != null , then treeNode.left.val == 2 * x + 1 \n \n If treeNode.val has a value x and treeNode.right != null , then treeNode.right.val == 2 * x + 2 \n\n Now the binary tree is contaminated, which means all treeNode.val have been changed to -1 . \n \n Implement the FindElements class: \n\n FindElements(TreeNode* root) Initializes the object with a contaminated binary tree and recovers it. \n \n bool find(int target) Returns true if the target value exists in the recovered binary tree. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/11/06/untitled-diagram-4-1.jpg] \n \n```\nInput\n\n[\"FindElements\",\"find\",\"find\"]\n[[[-1,null,-1]],[1],[2]]\n\nOutput\n\n[null,false,true]\n\nExplanation\n\nFindElements findElements = new FindElements([-1,null,-1]); \nfindElements.find(1); // return False \nfindElements.find(2); // return True\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/11/06/untitled-diagram-4.jpg] \n \n```\nInput\n\n[\"FindElements\",\"find\",\"find\",\"find\"]\n[[[-1,-1,-1,-1,-1]],[1],[3],[5]]\n\nOutput\n\n[null,true,true,false]\n\nExplanation\n\nFindElements findElements = new FindElements([-1,-1,-1,-1,-1]);\nfindElements.find(1); // return True\nfindElements.find(3); // return True\nfindElements.find(5); // return False\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2019/11/07/untitled-diagram-4-1-1.jpg] \n \n```\nInput\n\n[\"FindElements\",\"find\",\"find\",\"find\",\"find\"]\n[[[-1,null,-1,-1,null,-1]],[2],[3],[4],[5]]\n\nOutput\n\n[null,true,false,false,true]\n\nExplanation\n\nFindElements findElements = new FindElements([-1,null,-1,-1,null,-1]);\nfindElements.find(2); // return True\nfindElements.find(3); // return False\nfindElements.find(4); // return False\nfindElements.find(5); // return True\n```\n\n Constraints: \n\n TreeNode.val == -1 \n \n The height of the binary tree is less than or equal to 20 \n \n The total number of nodes is between [1, 10 4 ] \n \n Total calls of find() is between [1, 10 4 ] \n \n 0 <= target <= 10 6",
+  "code": "#include <unordered_set>\n\n\nclass FindElements {\n    unordered_set<int> vals;\n\npublic:\n    FindElements(TreeNode* root) {\n        dfs(root, 0);\n    }\n\n    void dfs(TreeNode* node, int val) {\n        if (!node) return;\n        node->val = val;\n        vals.insert(val);\n        dfs(node->left, 2 * val + 1);\n        dfs(node->right, 2 * val + 2);\n    }\n\n    bool find(int target) {\n        return vals.count(target);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610561369",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

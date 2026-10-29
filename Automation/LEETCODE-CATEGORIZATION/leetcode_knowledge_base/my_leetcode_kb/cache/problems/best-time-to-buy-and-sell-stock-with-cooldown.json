@@ -1,0 +1,30 @@
+{
+  "id": "309",
+  "title": "Best Time to Buy and Sell Stock with Cooldown",
+  "slug": "best-time-to-buy-and-sell-stock-with-cooldown",
+  "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an array prices where prices[i] is the price of a given stock on the i th day. \n \n Find the maximum profit you can achieve. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times) with the following restrictions: \n\n After you sell your stock, you cannot buy stock on the next day (i.e., cooldown one day). \n\n Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again). \n\n Example 1: \n \n```\nInput:\n prices = [1,2,3,0,2]\n\nOutput:\n 3\n\nExplanation:\n transactions = [buy, sell, cooldown, buy, sell]\n```\n\n Example 2: \n \n```\nInput:\n prices = [1]\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= prices.length <= 5000 \n \n 0 <= prices[i] <= 1000",
+  "code": "class Solution {\npublic:\n    int maxProfit(vector<int>& prices) {\n    int n = prices.size();\n    if (n <= 1) return 0;\n\n    int sold = 0, hold = INT_MIN, rest = 0;\n\n    for (int price : prices) {\n        int prev_sold = sold;\n        sold = hold + price;      // Sell stock\n        hold = max(hold, rest - price); // Buy stock or keep holding\n        rest = max(rest, prev_sold);   // Cooldown or stay in cooldown\n    }\n\n    return max(sold, rest);\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1540690258",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

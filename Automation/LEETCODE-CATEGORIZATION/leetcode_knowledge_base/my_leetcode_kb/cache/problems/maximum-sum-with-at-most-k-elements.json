@@ -1,0 +1,37 @@
+{
+  "id": "3462",
+  "title": "Maximum Sum With at Most K Elements",
+  "slug": "maximum-sum-with-at-most-k-elements",
+  "url": "https://leetcode.com/problems/maximum-sum-with-at-most-k-elements/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Matrix"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer matrix grid of size n x m , an integer array limits of length n , and an integer k . The task is to find the maximum sum of at most k elements from the matrix grid such that: \n\n The number of elements taken from the i th row of grid does not exceed limits[i] . \n\n Return the maximum sum . \n\n Example 1: \n\n Input: grid = [[1,2],[3,4]], limits = [1,2], k = 2 \n \n Output: 7 \n \n Explanation: \n\n From the second row, we can take at most 2 elements. The elements taken are 4 and 3. \n \n The maximum possible sum of at most 2 selected elements is 4 + 3 = 7 . \n\n Example 2: \n\n Input: grid = [[5,3,7],[8,2,6]], limits = [2,2], k = 3 \n \n Output: 21 \n \n Explanation: \n\n From the first row, we can take at most 2 elements. The element taken is 7. \n \n From the second row, we can take at most 2 elements. The elements taken are 8 and 6. \n \n The maximum possible sum of at most 3 selected elements is 7 + 8 + 6 = 21 . \n\n Constraints: \n\n n == grid.length == limits.length \n \n m == grid[i].length \n \n 1 <= n, m <= 500 \n \n 0 <= grid[i][j] <= 10 5 \n \n 0 <= limits[i] <= m \n \n 0 <= k <= min(n * m, sum(limits))",
+  "code": "class Solution {public:long long maxSum(vector<vector<int>>& grid,vector<int>& limits,int k){vector<int>v;for(int i=0;i<(int)grid.size();++i){sort(grid[i].rbegin(),grid[i].rend());for(int j=0;j<limits[i];++j)v.push_back(grid[i][j]);}sort(v.rbegin(),v.rend());long long ans=0;for(int i=0;i<k;++i)ans+=v[i];return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177533636",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

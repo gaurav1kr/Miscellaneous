@@ -1,0 +1,24 @@
+{
+  "id": "461",
+  "title": "Hamming Distance",
+  "slug": "hamming-distance",
+  "url": "https://leetcode.com/problems/hamming-distance/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation"
+  ],
+  "data_structures": [],
+  "description": "The Hamming distance between two integers is the number of positions at which the corresponding bits are different. \n \n Given two integers x and y , return the Hamming distance between them . \n\n Example 1: \n \n```\nInput:\n x = 1, y = 4\n\nOutput:\n 2\n\nExplanation:\n\n1 (0 0 0 1)\n4 (0 1 0 0)\n ↑ ↑\nThe above arrows point to positions where the corresponding bits are different.\n```\n\n Example 2: \n \n```\nInput:\n x = 3, y = 1\n\nOutput:\n 1\n```\n\n Constraints: \n\n 0 <= x, y <= 2 31 - 1 \n\n Note: This question is the same as 2220: Minimum Bit Flips to Convert Number.",
+  "code": "class Solution {\npublic:\n    int hammingDistance(int x, int y) {\n        int xor_val = x ^ y, count = 0;\n        while (xor_val) {\n            count += xor_val & 1;\n            xor_val >>= 1;\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588101285",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

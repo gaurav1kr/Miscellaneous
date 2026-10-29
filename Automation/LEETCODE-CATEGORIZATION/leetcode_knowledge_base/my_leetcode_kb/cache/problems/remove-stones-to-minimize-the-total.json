@@ -1,0 +1,34 @@
+{
+  "id": "1962",
+  "title": "Remove Stones to Minimize the Total",
+  "slug": "remove-stones-to-minimize-the-total",
+  "url": "https://leetcode.com/problems/remove-stones-to-minimize-the-total/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array piles , where piles[i] represents the number of stones in the i th pile, and an integer k . You should apply the following operation exactly k times: \n\n Choose any piles[i] and remove floor(piles[i] / 2) stones from it. \n\n Notice that you can apply the operation on the same pile more than once. \n \n Return the minimum possible total number of stones remaining after applying the k operations . \n \n floor(x) is the largest  integer that is smaller than or equal to x (i.e., rounds x  down). \n\n Example 1: \n \n```\nInput:\n piles = [5,4,9], k = 2\n\nOutput:\n 12\n\nExplanation:\n Steps of a possible scenario are:\n- Apply the operation on pile 2. The resulting piles are [5,4,\n5\n].\n- Apply the operation on pile 0. The resulting piles are [\n3\n,4,5].\nThe total number of stones in [3,4,5] is 12.\n```\n\n Example 2: \n \n```\nInput:\n piles = [4,3,6,7], k = 3\n\nOutput:\n 12\n\nExplanation:\n Steps of a possible scenario are:\n- Apply the operation on pile 2. The resulting piles are [4,3,\n3\n,7].\n- Apply the operation on pile 3. The resulting piles are [4,3,3,\n4\n].\n- Apply the operation on pile 0. The resulting piles are [\n2\n,3,3,4].\nThe total number of stones in [2,3,3,4] is 12.\n```\n\n Constraints: \n\n 1 <= piles.length <= 10 5 \n \n 1 <= piles[i] <= 10 4 \n \n 1 <= k <= 10 5",
+  "code": "#include <vector>\n#include <queue>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minStoneSum(vector<int>& piles, int k) {\n        priority_queue<int> pq(piles.begin(), piles.end());\n        while (k--) {\n            int top = pq.top(); pq.pop();\n            pq.push(top - top / 2);\n        }\n        int sum = 0;\n        while (!pq.empty()) {\n            sum += pq.top(); pq.pop();\n        }\n        return sum;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610658551",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

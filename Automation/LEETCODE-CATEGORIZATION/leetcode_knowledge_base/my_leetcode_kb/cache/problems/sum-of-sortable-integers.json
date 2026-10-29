@@ -1,0 +1,33 @@
+{
+  "id": "3886",
+  "title": "Sum of Sortable Integers",
+  "slug": "sum-of-sortable-integers",
+  "url": "https://leetcode.com/problems/sum-of-sortable-integers/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Sorting",
+    "Enumeration"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n . \n \n An integer k is called sortable if k divides n and you can sort nums in non-decreasing order by sequentially performing the following operations: \n\n Partition nums into consecutive subarrays of length k . \n \n Cyclically rotate each subarray independently any number of times to the left or to the right. \n\n Return an integer denoting the sum of all possible sortable integers k . \n\n Example 1: \n\n Input: nums = [3,1,2] \n \n Output: 3 \n \n Explanation: ​​​​​​​ \n\n For n = 3 , possible divisors are 1 and 3. \n \n For k = 1 : each subarray has one element. No rotation can sort the array. \n \n For k = 3 : the single subarray [3, 1, 2] can be rotated once to produce [1, 2, 3] , which is sorted. \n \n Only k = 3 is sortable. Hence, the answer is 3. \n\n Example 2: \n\n Input: nums = [7,6,5] \n \n Output: 0 \n \n Explanation: \n\n For n = 3 , possible divisors are 1 and 3. \n \n For k = 1 : each subarray has one element. No rotation can sort the array. \n \n For k = 3 : the single subarray [7, 6, 5] cannot be rotated into non-decreasing order. \n \n No k is sortable. Hence, the answer is 0. \n\n Example 3: \n\n Input: nums = [5,8] \n \n Output: 3 \n \n Explanation: ​​​​​​​ \n\n For n = 2 , possible divisors are 1 and 2. \n \n Since [5, 8] is already sorted, every divisor is sortable. Hence, the answer is 1 + 2 = 3 . \n\n Constraints: \n\n 1 <= n == nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\n    bool rotationMatches(const vector<int>& a, const vector<int>& b, int l, int k) {\n        vector<int> pi(k, 0);\n        for (int i = 1; i < k; ++i) {\n            int j = pi[i - 1];\n            while (j && b[l + i] != b[l + j]) j = pi[j - 1];\n            if (b[l + i] == b[l + j]) ++j;\n            pi[i] = j;\n        }\n        int j = 0;\n        for (int i = 0; i < 2 * k - 1; ++i) {\n            int x = a[l + i % k];\n            while (j && x != b[l + j]) j = pi[j - 1];\n            if (x == b[l + j]) ++j;\n            if (j == k) return true;\n        }\n        return false;\n    }\npublic:\n    int sortableIntegers(vector<int>& nums) {\n        int n = nums.size(), answer = 0;\n        vector<int> sorted = nums;\n        sort(sorted.begin(), sorted.end());\n        for (int k = 1; k <= n; ++k) if (n % k == 0) {\n            bool ok = true;\n            for (int l = 0; l < n; l += k) {\n                if (!rotationMatches(nums, sorted, l, k)) {\n                    ok = false;\n                    break;\n                }\n            }\n            if (ok) answer += k;\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179651062",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

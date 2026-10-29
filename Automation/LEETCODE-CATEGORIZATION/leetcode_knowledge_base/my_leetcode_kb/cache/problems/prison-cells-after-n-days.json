@@ -1,0 +1,37 @@
+{
+  "id": "957",
+  "title": "Prison Cells After N Days",
+  "slug": "prison-cells-after-n-days",
+  "url": "https://leetcode.com/problems/prison-cells-after-n-days/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Bit Manipulation",
+    "Floyd's Cycle Finding Algorithm"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "There are 8 prison cells in a row and each cell is either occupied or vacant. \n \n Each day, whether the cell is occupied or vacant changes according to the following rules: \n\n If a cell has two adjacent neighbors that are both occupied or both vacant, then the cell becomes occupied. \n \n Otherwise, it becomes vacant. \n\n Note that because the prison is a row, the first and the last cells in the row can't have two adjacent neighbors. \n \n You are given an integer array cells where cells[i] == 1 if the i th cell is occupied and cells[i] == 0 if the i th cell is vacant, and you are given an integer n . \n \n Return the state of the prison after n days (i.e., n such changes described above). \n\n Example 1: \n \n```\nInput:\n cells = [0,1,0,1,1,0,0,1], n = 7\n\nOutput:\n [0,0,1,1,0,0,0,0]\n\nExplanation:\n The following table summarizes the state of the prison on each day:\nDay 0: [0, 1, 0, 1, 1, 0, 0, 1]\nDay 1: [0, 1, 1, 0, 0, 0, 0, 0]\nDay 2: [0, 0, 0, 0, 1, 1, 1, 0]\nDay 3: [0, 1, 1, 0, 0, 1, 0, 0]\nDay 4: [0, 0, 0, 0, 0, 1, 0, 0]\nDay 5: [0, 1, 1, 1, 0, 1, 0, 0]\nDay 6: [0, 0, 1, 0, 1, 1, 0, 0]\nDay 7: [0, 0, 1, 1, 0, 0, 0, 0]\n```\n\n Example 2: \n \n```\nInput:\n cells = [1,0,0,1,0,0,1,0], n = 1000000000\n\nOutput:\n [0,0,1,1,1,1,1,0]\n```\n\n Constraints: \n\n cells.length == 8 \n \n cells[i]  is either 0 or 1 . \n \n 1 <= n <= 10 9",
+  "code": "#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> prisonAfterNDays(vector<int>& cells, int n) {\n        unordered_map<int, int> seen;\n        int state = 0;\n\n        for (int cell : cells) {\n            state <<= 1;\n            state |= cell;\n        }\n\n        while (n > 0) {\n            if (seen.count(state)) {\n                n %= seen[state] - n;\n            }\n            seen[state] = n;\n            if (n == 0) break;\n            n--;\n\n            int nextState = 0;\n            for (int i = 1; i < 7; i++) {\n                nextState |= ((state >> (i - 1) & 1) == (state >> (i + 1) & 1)) << i;\n            }\n            state = nextState;\n        }\n\n        vector<int> result(8);\n        for (int i = 7; i >= 0; i--) {\n            result[i] = state & 1;\n            state >>= 1;\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591367686",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

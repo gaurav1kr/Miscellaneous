@@ -1,0 +1,34 @@
+{
+  "id": "3624",
+  "title": "Number of Integers With Popcount-Depth Equal to K II",
+  "slug": "number-of-integers-with-popcount-depth-equal-to-k-ii",
+  "url": "https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Binary Indexed Tree",
+    "Segment Tree"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Fenwick tree",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n For any positive integer x , define the following sequence: \n\n p 0 = x \n \n p i+1 = popcount(p i ) for all i >= 0 , where popcount(y) is the number of set bits (1's) in the binary representation of y . \n\n This sequence will eventually reach the value 1. \n \n The popcount-depth of x is defined as the smallest integer d >= 0 such that p d = 1 . \n \n For example, if x = 7 (binary representation \"111\" ). Then, the sequence is: 7 → 3 → 2 → 1 , so the popcount-depth of 7 is 3. \n \n You are also given a 2D integer array queries , where each queries[i] is either: \n\n [1, l, r, k] - Determine the number of indices j such that l <= j <= r and the popcount-depth of nums[j] is equal to k . \n \n [2, idx, val] - Update nums[idx] to val . \n\n Return an integer array answer , where answer[i] is the number of indices for the i th query of type [1, l, r, k] . \n\n Example 1: \n\n Input: nums = [2,4], queries = [[1,0,1,1],[2,1,1],[1,0,1,0]] \n \n Output: [2,1] \n \n Explanation: \n\n i \n queries[i] \n nums \n binary( nums ) \n popcount- \n depth \n [l, r] \n k \n Valid \n nums[j] \n updated \n nums \n Answer \n\n 0 \n [1,0,1,1] \n [2,4] \n [10, 100] \n [1, 1] \n [0, 1] \n 1 \n [0, 1] \n — \n 2 \n\n 1 \n [2,1,1] \n [2,4] \n [10, 100] \n [1, 1] \n — \n — \n — \n [2,1] \n — \n\n 2 \n [1,0,1,0] \n [2,1] \n [10, 1] \n [1, 0] \n [0, 1] \n 0 \n [1] \n — \n 1 \n\n Thus, the final answer is [2, 1] . \n\n Example 2: \n\n Input: nums = [3,5,6], queries = [[1,0,2,2],[2,1,4],[1,1,2,1],[1,0,1,0]] \n \n Output: [3,1,0] \n \n Explanation: \n\n i \n queries[i] \n nums \n binary( nums ) \n popcount- \n depth \n [l, r] \n k \n Valid \n nums[j] \n updated \n nums \n Answer \n\n 0 \n [1,0,2,2] \n [3, 5, 6] \n [11, 101, 110] \n [2, 2, 2] \n [0, 2] \n 2 \n [0, 1, 2] \n — \n 3 \n\n 1 \n [2,1,4] \n [3, 5, 6] \n [11, 101, 110] \n [2, 2, 2] \n — \n — \n — \n [3, 4, 6] \n — \n\n 2 \n [1,1,2,1] \n [3, 4, 6] \n [11, 100, 110] \n [2, 1, 2] \n [1, 2] \n 1 \n [1] \n — \n 1 \n\n 3 \n [1,0,1,0] \n [3, 4, 6] \n [11, 100, 110] \n [2, 1, 2] \n [0, 1] \n 0 \n [] \n — \n 0 \n\n Thus, the final answer is [3, 1, 0] . \n\n Example 3: \n\n Input: nums = [1,2], queries = [[1,0,1,1],[2,0,3],[1,0,0,1],[1,0,0,2]] \n \n Output: [1,0,1] \n \n Explanation: \n\n i \n queries[i] \n nums \n binary( nums ) \n popcount- \n depth \n [l, r] \n k \n Valid \n nums[j] \n updated \n nums \n Answer \n\n 0 \n [1,0,1,1] \n [1, 2] \n [1, 10] \n [0, 1] \n [0, 1] \n 1 \n [1] \n — \n 1 \n\n 1 \n [2,0,3] \n [1, 2] \n [1, 10] \n [0, 1] \n — \n — \n — \n [3, 2] \n\n 2 \n [1,0,0,1] \n [3, 2] \n [11, 10] \n [2, 1] \n [0, 0] \n 1 \n [] \n — \n 0 \n\n 3 \n [1,0,0,2] \n [3, 2] \n [11, 10] \n [2, 1] \n [0, 0] \n 2 \n [0] \n — \n 1 \n\n Thus, the final answer is [1, 0, 1] . \n\n Constraints: \n\n 1 <= n == nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 15 \n \n 1 <= queries.length <= 10 5 \n \n queries[i].length == 3 or 4 \n\n queries[i] == [1, l, r, k] or, \n \n queries[i] == [2, idx, val] \n \n 0 <= l <= r <= n - 1 \n \n 0 <= k <= 5 \n \n 0 <= idx <= n - 1 \n \n 1 <= val <= 10 15",
+  "code": "class Solution {\n int depth(long long x){if(x==1)return 0;int d=0;while(x!=1){x=__builtin_popcountll(x);++d;}return d;}\npublic:\n vector<int> popcountDepth(vector<long long>& nums,vector<vector<long long>>& queries){\n  int n=nums.size();vector<vector<int>>bit(7,vector<int>(n+1));auto upd=[&](int d,int i,int v){for(++i;i<=n;i+=i&-i)bit[d][i]+=v;};\n  auto pref=[&](int d,int i){int s=0;for(++i;i>0;i-=i&-i)s+=bit[d][i];return s;};\n  for(int i=0;i<n;++i)upd(depth(nums[i]),i,1);vector<int>ans;\n  for(auto&q:queries){if(q[0]==1){int l=q[1],r=q[2],k=q[3];ans.push_back(k>=0&&k<7?pref(k,r)-(l?pref(k,l-1):0):0);}\n   else{int i=q[1];upd(depth(nums[i]),i,-1);nums[i]=q[2];upd(depth(nums[i]),i,1);}}\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177624402",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

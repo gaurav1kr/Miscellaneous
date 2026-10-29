@@ -1,0 +1,35 @@
+{
+  "id": "3552",
+  "title": "Grid Teleportation Traversal",
+  "slug": "grid-teleportation-traversal",
+  "url": "https://leetcode.com/problems/grid-teleportation-traversal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Deque",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given a 2D character grid matrix of size m x n , represented as an array of strings, where matrix[i][j] represents the cell at the intersection of the i th row and j th column. Each cell is one of the following: \n\n '.' representing an empty cell. \n \n '#' representing an obstacle. \n \n An uppercase letter ( 'A' - 'Z' ) representing a teleportation portal. \n\n You start at the top-left cell (0, 0) , and your goal is to reach the bottom-right cell (m - 1, n - 1) . You can move from the current cell to any adjacent cell (up, down, left, right) as long as the destination cell is within the grid bounds and is not an obstacle . \n \n If you step on a cell containing a portal letter and you haven't used that portal letter before, you may instantly teleport to any other cell in the grid with the same letter. This teleportation does not count as a move, but each portal letter can be used at most once during your journey. \n \n Return the minimum number of moves required to reach the bottom-right cell. If it is not possible to reach the destination, return -1 . \n\n Example 1: \n\n Input: matrix = [\"A..\",\".A.\",\"...\"] \n \n Output: 2 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/15/example04140.png] \n\n Before the first move, teleport from (0, 0) to (1, 1) . \n \n In the first move, move from (1, 1) to (1, 2) . \n \n In the second move, move from (1, 2) to (2, 2) . \n\n Example 2: \n\n Input: matrix = [\".#...\",\".#.#.\",\".#.#.\",\"...#.\"] \n \n Output: 13 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/03/15/ezgifcom-animated-gif-maker.gif] \n\n Constraints: \n\n 1 <= m == matrix.length <= 10 3 \n \n 1 <= n == matrix[i].length <= 10 3 \n \n matrix[i][j] is either '#' , '.' , or an uppercase English letter. \n \n matrix[0][0] is not an obstacle.",
+  "code": "class Solution {public:int minMoves(vector<string>&matrix){int m=matrix.size(),n=matrix[0].size();vector<vector<pair<int,int>>> portals(26);for(int i=0;i<m;i++)for(int j=0;j<n;j++)if(isupper(matrix[i][j]))portals[matrix[i][j]-'A'].push_back({i,j});vector<vector<int>>dist(m,vector<int>(n,INT_MAX));deque<pair<int,int>>dq;dist[0][0]=0;dq.push_front({0,0});int di[4]={1,-1,0,0},dj[4]={0,0,1,-1};while(!dq.empty()){auto [i,j]=dq.front();dq.pop_front();int d=dist[i][j];if(i==m-1&&j==n-1)return d;char c=matrix[i][j];if(isupper(c)){auto &p=portals[c-'A'];for(auto [x,y]:p)if(dist[x][y]>d){dist[x][y]=d;dq.push_front({x,y});}p.clear();}for(int z=0;z<4;z++){int x=i+di[z],y=j+dj[z];if(x>=0&&x<m&&y>=0&&y<n&&matrix[x][y]!='#'&&dist[x][y]>d+1){dist[x][y]=d+1;dq.push_back({x,y});}}}return -1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177577292",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

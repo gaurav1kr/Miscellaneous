@@ -1,0 +1,29 @@
+{
+  "id": "2639",
+  "title": "Find the Width of Columns of a Grid",
+  "slug": "find-the-width-of-columns-of-a-grid",
+  "url": "https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed m x n integer matrix grid . The width of a column is the maximum length of its integers. \n\n For example, if grid = [[-10], [3], [12]] , the width of the only column is 3 since -10 is of length 3 . \n\n Return an integer array ans of size n where ans[i] is the width of the i th column . \n \n The length of an integer x with len digits is equal to len if x is non-negative, and len + 1 otherwise. \n\n Example 1: \n \n```\nInput:\n grid = [[1],[22],[333]]\n\nOutput:\n [3]\n\nExplanation:\n In the 0\nth\n column, 333 is of length 3.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[-15,1,3],[15,7,12],[5,6,-2]]\n\nOutput:\n [3,1,2]\n\nExplanation:\n \nIn the 0\nth\n column, only -15 is of length 3.\nIn the 1\nst\n column, all integers are of length 1. \nIn the 2\nnd\n column, both 12 and -2 are of length 2.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 100 \n \n -10 9 <= grid[r][c] <= 10 9",
+  "code": "class Solution {\npublic:\n vector<int> findColumnWidth(vector<vector<int>>& grid){\n  int m=grid.size(),n=grid[0].size();vector<int> ans(n,0);\n  for(int i=0;i<m;++i)for(int j=0;j<n;++j)ans[j]=max(ans[j],(int)to_string(grid[i][j]).size());\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176630259",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

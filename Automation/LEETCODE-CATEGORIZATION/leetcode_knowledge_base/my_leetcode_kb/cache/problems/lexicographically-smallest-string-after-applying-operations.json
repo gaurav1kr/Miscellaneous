@@ -1,0 +1,33 @@
+{
+  "id": "1625",
+  "title": "Lexicographically Smallest String After Applying Operations",
+  "slug": "lexicographically-smallest-string-after-applying-operations",
+  "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-applying-operations/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Enumeration"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "String"
+  ],
+  "description": "You are given a string s of even length consisting of digits from 0 to 9 , and two integers a and b . \n \n You can apply either of the following two operations any number of times and in any order on s : \n\n Add a to all odd indices of s (0-indexed) . Digits post 9 are cycled back to 0 . For example, if s = \"3456\" and a = 5 , s becomes \"3951\" . \n \n Rotate s to the right by b positions. For example, if s = \"3456\" and b = 1 , s becomes \"6345\" . \n\n Return the lexicographically smallest string you can obtain by applying the above operations any number of times on s . \n \n A string a is lexicographically smaller than a string b (of the same length) if in the first position where a and b differ, string a has a letter that appears earlier in the alphabet than the corresponding letter in b . For example, \"0158\" is lexicographically smaller than \"0190\" because the first position they differ is at the third letter, and '5' comes before '9' . \n\n Example 1: \n \n```\nInput:\n s = \"5525\", a = 9, b = 2\n\nOutput:\n \"2050\"\n\nExplanation:\n We can apply the following operations:\nStart: \"5525\"\nRotate: \"2555\"\nAdd: \"2454\"\nAdd: \"2353\"\nRotate: \"5323\"\nAdd: \"5222\"\nAdd: \"5121\"\nRotate: \"2151\"\nAdd: \"2050\"​​​​​\nThere is no way to obtain a string that is lexicographically smaller than \"2050\".\n```\n\n Example 2: \n \n```\nInput:\n s = \"74\", a = 5, b = 1\n\nOutput:\n \"24\"\n\nExplanation:\n We can apply the following operations:\nStart: \"74\"\nRotate: \"47\"\n​​​​​​​Add: \"42\"\n​​​​​​​Rotate: \"24\"​​​​​​​​​​​​\nThere is no way to obtain a string that is lexicographically smaller than \"24\".\n```\n\n Example 3: \n \n```\nInput:\n s = \"0011\", a = 4, b = 2\n\nOutput:\n \"0011\"\n\nExplanation:\n There are no sequence of operations that will give us a lexicographically smaller string than \"0011\".\n```\n\n Constraints: \n\n 2 <= s.length <= 100 \n \n s.length is even. \n \n s consists of digits from 0 to 9 only. \n \n 1 <= a <= 9 \n \n 1 <= b <= s.length - 1",
+  "code": "#include <string>\n#include <queue>\n#include <unordered_set>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    string findLexSmallestString(string s, int a, int b) {\n        unordered_set<string> seen;\n        queue<string> q;\n        q.push(s);\n        seen.insert(s);\n        string res = s;\n\n        while (!q.empty()) {\n            string cur = q.front(); q.pop();\n            res = min(res, cur);\n\n            // Add operation\n            string t = cur;\n            for (int i = 1; i < t.size(); i += 2)\n                t[i] = (t[i] - '0' + a) % 10 + '0';\n\n            if (!seen.count(t)) {\n                seen.insert(t);\n                q.push(t);\n            }\n\n            // Rotate operation\n            t = cur.substr(cur.size() - b) + cur.substr(0, cur.size() - b);\n            if (!seen.count(t)) {\n                seen.insert(t);\n                q.push(t);\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610677377",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

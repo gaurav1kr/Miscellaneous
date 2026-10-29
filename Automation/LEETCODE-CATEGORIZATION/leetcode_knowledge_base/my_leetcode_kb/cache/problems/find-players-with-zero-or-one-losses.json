@@ -1,0 +1,35 @@
+{
+  "id": "2225",
+  "title": "Find Players With Zero or One Losses",
+  "slug": "find-players-with-zero-or-one-losses",
+  "url": "https://leetcode.com/problems/find-players-with-zero-or-one-losses/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array matches where matches[i] = [winner i , loser i ] indicates that the player winner i defeated player loser i in a match. \n \n Return a list answer of size 2 where: \n\n answer[0] is a list of all players that have not lost any matches. \n \n answer[1] is a list of all players that have lost exactly one match. \n\n The values in the two lists should be returned in increasing order. \n \n Note: \n\n You should only consider the players that have played at least one match. \n \n The testcases will be generated such that no two matches will have the same outcome. \n\n Example 1: \n \n```\nInput:\n matches = [[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]]\n\nOutput:\n [[1,2,10],[4,5,7,8]]\n\nExplanation:\n\nPlayers 1, 2, and 10 have not lost any matches.\nPlayers 4, 5, 7, and 8 each have lost one match.\nPlayers 3, 6, and 9 each have lost two matches.\nThus, answer[0] = [1,2,10] and answer[1] = [4,5,7,8].\n```\n\n Example 2: \n \n```\nInput:\n matches = [[2,3],[1,3],[5,4],[6,4]]\n\nOutput:\n [[1,2,5,6],[]]\n\nExplanation:\n\nPlayers 1, 2, 5, and 6 have not lost any matches.\nPlayers 3 and 4 each have lost two matches.\nThus, answer[0] = [1,2,5,6] and answer[1] = [].\n```\n\n Constraints: \n\n 1 <= matches.length <= 10 5 \n \n matches[i].length == 2 \n \n 1 <= winner i , loser i <= 10 5 \n \n winner i != loser i \n \n All matches[i] are unique .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n vector<vector<int>> findWinners(vector<vector<int>>& matches){map<int,int> loss;for(auto&m:matches){loss.emplace(m[0],0);++loss[m[1]];}\n  vector<vector<int>>ans(2);for(auto&kv:loss){if(kv.second==0)ans[0].push_back(kv.first);if(kv.second==1)ans[1].push_back(kv.first);}return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175891488",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

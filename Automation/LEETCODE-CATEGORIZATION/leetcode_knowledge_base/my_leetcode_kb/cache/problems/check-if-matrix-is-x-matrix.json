@@ -1,0 +1,29 @@
+{
+  "id": "2319",
+  "title": "Check if Matrix Is X-Matrix",
+  "slug": "check-if-matrix-is-x-matrix",
+  "url": "https://leetcode.com/problems/check-if-matrix-is-x-matrix/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "A square matrix is said to be an X-Matrix if both of the following conditions hold: \n\n All the elements in the diagonals of the matrix are non-zero . \n \n All other elements are 0. \n\n Given a 2D integer array grid of size n x n representing a square matrix, return true if grid is an X-Matrix . Otherwise, return false . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/05/03/ex1.jpg] \n \n```\nInput:\n grid = [[2,0,0,1],[0,3,1,0],[0,5,2,0],[4,0,0,2]]\n\nOutput:\n true\n\nExplanation:\n Refer to the diagram above. \nAn X-Matrix should have the green elements (diagonals) be non-zero and the red elements be 0.\nThus, grid is an X-Matrix.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/05/03/ex2.jpg] \n \n```\nInput:\n grid = [[5,7,0],[0,3,1],[0,5,0]]\n\nOutput:\n false\n\nExplanation:\n Refer to the diagram above.\nAn X-Matrix should have the green elements (diagonals) be non-zero and the red elements be 0.\nThus, grid is not an X-Matrix.\n```\n\n Constraints: \n\n n == grid.length == grid[i].length \n \n 3 <= n <= 100 \n \n 0 <= grid[i][j] <= 10 5",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:bool checkXMatrix(vector<vector<int>>& grid){int n=grid.size();for(int i=0;i<n;++i)for(int j=0;j<n;++j){bool diag=i==j||i+j==n-1;if(diag?(grid[i][j]==0):(grid[i][j]!=0))return false;}return true;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175915676",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "1314",
+  "title": "Matrix Block Sum",
+  "slug": "matrix-block-sum",
+  "url": "https://leetcode.com/problems/matrix-block-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given a m x n matrix mat and an integer k , return a matrix answer where each answer[i][j] is the sum of all elements mat[r][c] for : \n\n i - k <= r <= i + k, \n \n j - k <= c <= j + k , and \n \n (r, c) is a valid position in the matrix. \n\n Example 1: \n \n```\nInput:\n mat = [[1,2,3],[4,5,6],[7,8,9]], k = 1\n\nOutput:\n [[12,21,16],[27,45,33],[24,39,28]]\n```\n\n Example 2: \n \n```\nInput:\n mat = [[1,2,3],[4,5,6],[7,8,9]], k = 2\n\nOutput:\n [[45,45,45],[45,45,45],[45,45,45]]\n```\n\n Constraints: \n\n m == mat.length \n \n n == mat[i].length \n \n 1 <= m, n, k <= 100 \n \n 1 <= mat[i][j] <= 100",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<int>> matrixBlockSum(vector<vector<int>>& mat, int K) {\n        int m = mat.size(), n = mat[0].size();\n        vector<vector<int>> prefix(m + 1, vector<int>(n + 1, 0));\n\n        for (int i = 1; i <= m; i++) {\n            for (int j = 1; j <= n; j++) {\n                prefix[i][j] = mat[i - 1][j - 1] + prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1];\n            }\n        }\n\n        vector<vector<int>> result(m, vector<int>(n));\n        for (int i = 0; i < m; i++) {\n            for (int j = 0; j < n; j++) {\n                int r1 = max(0, i - K), c1 = max(0, j - K);\n                int r2 = min(m - 1, i + K), c2 = min(n - 1, j + K);\n                result[i][j] = prefix[r2 + 1][c2 + 1] - prefix[r1][c2 + 1] - prefix[r2 + 1][c1] + prefix[r1][c1];\n            }\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590146053",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

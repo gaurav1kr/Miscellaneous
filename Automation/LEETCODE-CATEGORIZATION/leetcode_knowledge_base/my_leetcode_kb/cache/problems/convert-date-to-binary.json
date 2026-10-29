@@ -1,0 +1,28 @@
+{
+  "id": "3280",
+  "title": "Convert Date to Binary",
+  "slug": "convert-date-to-binary",
+  "url": "https://leetcode.com/problems/convert-date-to-binary/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string date representing a Gregorian calendar date in the yyyy-mm-dd format. \n \n date can be written in its binary representation obtained by converting year, month, and day to their binary representations without any leading zeroes and writing them down in year-month-day format. \n \n Return the binary representation of date . \n\n Example 1: \n\n Input: date = \"2080-02-29\" \n \n Output: \"100000100000-10-11101\" \n \n Explanation: \n \n 100000100000, 10, and 11101 are the binary representations of 2080, 02, and 29 respectively. \n\n Example 2: \n\n Input: date = \"1900-01-01\" \n \n Output: \"11101101100-1-1\" \n \n Explanation: \n \n 11101101100, 1, and 1 are the binary representations of 1900, 1, and 1 respectively. \n\n Constraints: \n\n date.length == 10 \n \n date[4] == date[7] == '-' , and all other date[i] 's are digits. \n \n The input is generated such that date represents a valid Gregorian calendar date between Jan 1 st , 1900 and Dec 31 st , 2100 (both inclusive).",
+  "code": "class Solution { string bin(int x){string s;do{s+=char('0'+x%2);x/=2;}while(x);reverse(s.begin(),s.end());return s;}public:string convertDateToBinary(string date){return bin(stoi(date.substr(0,4)))+\"-\"+bin(stoi(date.substr(5,2)))+\"-\"+bin(stoi(date.substr(8,2)));} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177446501",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

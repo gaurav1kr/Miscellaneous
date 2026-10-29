@@ -1,0 +1,31 @@
+{
+  "id": "3470",
+  "title": "Permutations IV",
+  "slug": "permutations-iv",
+  "url": "https://leetcode.com/problems/permutations-iv/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Combinatorics",
+    "Enumeration"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given two integers, n and k , an alternating permutation is a permutation of the first n positive integers such that no two adjacent elements are both odd or both even. \n \n Return the k-th alternating permutation sorted in lexicographical order . If there are fewer than k valid alternating permutations , return an empty list. \n\n Example 1: \n\n Input: n = 4, k = 6 \n \n Output: [3,4,1,2] \n \n Explanation: \n \n The lexicographically-sorted alternating permutations of [1, 2, 3, 4] are: \n\n [1, 2, 3, 4] \n \n [1, 4, 3, 2] \n \n [2, 1, 4, 3] \n \n [2, 3, 4, 1] \n \n [3, 2, 1, 4] \n \n [3, 4, 1, 2] ← 6th permutation \n \n [4, 1, 2, 3] \n \n [4, 3, 2, 1] \n\n Since k = 6 , we return [3, 4, 1, 2] . \n\n Example 2: \n\n Input: n = 3, k = 2 \n \n Output: [3,2,1] \n \n Explanation: \n \n The lexicographically-sorted alternating permutations of [1, 2, 3] are: \n\n [1, 2, 3] \n \n [3, 2, 1] ← 2nd permutation \n\n Since k = 2 , we return [3, 2, 1] . \n\n Example 3: \n\n Input: n = 2, k = 3 \n \n Output: [] \n \n Explanation: \n \n The lexicographically-sorted alternating permutations of [1, 2] are: \n\n [1, 2] \n \n [2, 1] \n\n There are only 2 alternating permutations, but k = 3 , which is out of range. Thus, we return an empty list [] . \n\n Constraints: \n\n 1 <= n <= 100 \n \n 1 <= k <= 10 15",
+  "code": "class Solution {public:vector<int> permute(int n,long long k){vector<int>od,ev;for(int i=1;i<=n;++i)(i%2?od:ev).push_back(i);vector<long long>fact(n+1,1);const long long LIM=4000000000000000000LL;for(int i=1;i<=n;++i)fact[i]=fact[i-1]>LIM/i?LIM:fact[i-1]*i;\n auto mul=[&](long long a,long long b){return a>LIM/b?LIM:a*b;};vector<int>ans;int prev=-1;\n for(int pos=0;pos<n;++pos){bool found=false;for(int x=1;x<=n;++x){if((prev!=-1&&x%2==prev%2))continue;vector<int>&v=x%2?od:ev;auto it=find(v.begin(),v.end(),x);if(it==v.end())continue;\n int o=od.size()-(x%2),e=ev.size()-(x%2==0);int rem=n-pos-1;int nextParity=1-x%2;\n bool valid=(rem==0)||(nextParity?o==(rem+1)/2&&e==rem/2:e==(rem+1)/2&&o==rem/2);long long ways=valid?mul(fact[o],fact[e]):0;\n if(k>ways){k-=ways;continue;}ans.push_back(x);v.erase(it);prev=x;found=true;break;\n }if(!found)return {}; }return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177536585",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

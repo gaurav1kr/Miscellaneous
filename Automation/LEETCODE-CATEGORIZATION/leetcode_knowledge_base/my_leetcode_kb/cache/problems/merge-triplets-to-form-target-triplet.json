@@ -1,0 +1,29 @@
+{
+  "id": "1899",
+  "title": "Merge Triplets to Form Target Triplet",
+  "slug": "merge-triplets-to-form-target-triplet",
+  "url": "https://leetcode.com/problems/merge-triplets-to-form-target-triplet/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "A triplet is an array of three integers. You are given a 2D integer array triplets , where triplets[i] = [a i , b i , c i ] describes the i th triplet . You are also given an integer array target = [x, y, z] that describes the triplet you want to obtain. \n \n To obtain target , you may apply the following operation on triplets any number of times (possibly zero ): \n\n Choose two indices ( 0-indexed ) i and j ( i != j ) and update triplets[j] to become [max(a i , a j ), max(b i , b j ), max(c i , c j )] .\n\n For example, if triplets[i] = [2, 5, 3] and triplets[j] = [1, 7, 5] , triplets[j] will be updated to [max(2, 1), max(5, 7), max(3, 5)] = [2, 7, 5] . \n\n Return true if it is possible to obtain the target triplet [x, y, z] as an element of triplets , or false otherwise . \n\n Example 1: \n \n```\nInput:\n triplets = [[2,5,3],[1,8,4],[1,7,5]], target = [2,7,5]\n\nOutput:\n true\n\nExplanation:\n Perform the following operations:\n- Choose the first and last triplets [\n[2,5,3]\n,[1,8,4],\n[1,7,5]\n]. Update the last triplet to be [max(2,1), max(5,7), max(3,5)] = [2,7,5]. triplets = [[2,5,3],[1,8,4],\n[2,7,5]\n]\nThe target triplet [2,7,5] is now an element of triplets.\n```\n\n Example 2: \n \n```\nInput:\n triplets = [[3,4,5],[4,5,6]], target = [3,2,5]\n\nOutput:\n false\n\nExplanation:\n It is impossible to have [3,2,5] as an element because there is no 2 in any of the triplets.\n```\n\n Example 3: \n \n```\nInput:\n triplets = [[2,5,3],[2,3,4],[1,2,5],[5,2,3]], target = [5,5,5]\n\nOutput:\n true\n\nExplanation: \nPerform the following operations:\n- Choose the first and third triplets [\n[2,5,3]\n,[2,3,4],\n[1,2,5]\n,[5,2,3]]. Update the third triplet to be [max(2,1), max(5,2), max(3,5)] = [2,5,5]. triplets = [[2,5,3],[2,3,4],\n[2,5,5]\n,[5,2,3]].\n- Choose the third and fourth triplets [[2,5,3],[2,3,4],\n[2,5,5]\n,\n[5,2,3]\n]. Update the fourth triplet to be [max(2,5), max(5,2), max(5,3)] = [5,5,5]. triplets = [[2,5,3],[2,3,4],[2,5,5],\n[5,5,5]\n].\nThe target triplet [5,5,5] is now an element of triplets.\n```\n\n Constraints: \n\n 1 <= triplets.length <= 10 5 \n \n triplets[i].length == target.length == 3 \n \n 1 <= a i , b i , c i , x, y, z <= 1000",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool mergeTriplets(vector<vector<int>>& triplets, vector<int>& target) {\n        vector<int> res(3, 0);\n        for (auto& t : triplets) {\n            if (t[0] <= target[0] && t[1] <= target[1] && t[2] <= target[2]) {\n                res[0] = max(res[0], t[0]);\n                res[1] = max(res[1], t[1]);\n                res[2] = max(res[2], t[2]);\n            }\n        }\n        return res == target;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610651044",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

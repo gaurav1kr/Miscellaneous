@@ -1,0 +1,38 @@
+{
+  "id": "3229",
+  "title": "Minimum Operations to Make Array Equal to Target",
+  "slug": "minimum-operations-to-make-array-equal-to-target",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-array-equal-to-target/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given two positive integer arrays nums and target , of the same length. \n \n In a single operation, you can select any subarray of nums and increment each element within that subarray by 1 or decrement each element within that subarray by 1. \n \n Return the minimum number of operations required to make nums equal to the array target . \n\n Example 1: \n\n Input: nums = [3,5,1,2], target = [4,6,2,4] \n \n Output: 2 \n \n Explanation: \n \n We will perform the following operations to make nums equal to target : \n- Increment  nums[0..3] by 1, nums = [4,6,2,3] . \n- Increment  nums[3..3] by 1, nums = [4,6,2,4] . \n\n Example 2: \n\n Input: nums = [1,3,2], target = [2,1,4] \n \n Output: 5 \n \n Explanation: \n \n We will perform the following operations to make nums equal to target : \n- Increment  nums[0..0] by 1, nums = [2,3,2] . \n- Decrement  nums[1..1] by 1, nums = [2,2,2] . \n- Decrement  nums[1..1] by 1, nums = [2,1,2] . \n- Increment  nums[2..2] by 1, nums = [2,1,3] . \n- Increment  nums[2..2] by 1, nums = [2,1,4] . \n\n Constraints: \n\n 1 <= nums.length == target.length <= 10 5 \n \n 1 <= nums[i], target[i] <= 10 8",
+  "code": "class Solution { public:\n long long minimumOperations(vector<int>& nums,vector<int>& target) {\n  long long ans=0,prev=0;\n  for(int i=0;i<(int)nums.size();++i) { long long d=(long long)target[i]-nums[i];\n   if(d>0) ans+=max(0LL,d-max(0LL,prev));\n   else if(d<0) ans+=max(0LL,-d-max(0LL,-prev));\n   prev=d;\n  } return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177430773",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

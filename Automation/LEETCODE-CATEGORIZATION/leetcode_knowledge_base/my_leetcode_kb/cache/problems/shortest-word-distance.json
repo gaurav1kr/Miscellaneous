@@ -1,0 +1,30 @@
+{
+  "id": "243",
+  "title": "Shortest Word Distance",
+  "slug": "shortest-word-distance",
+  "url": "https://leetcode.com/problems/shortest-word-distance/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of strings wordsDict and two different strings that already exist in the array word1 and word2 , return the shortest distance between these two words in the list . \n\n Example 1: \n \n```\nInput:\n wordsDict = [\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"], word1 = \"coding\", word2 = \"practice\"\n\nOutput:\n 3\n```\n\n Example 2: \n \n```\nInput:\n wordsDict = [\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"], word1 = \"makes\", word2 = \"coding\"\n\nOutput:\n 1\n```\n\n Constraints: \n\n 2 <= wordsDict.length <= 3 * 10 4 \n \n 1 <= wordsDict[i].length <= 10 \n \n wordsDict[i] consists of lowercase English letters. \n \n word1 and word2 are in wordsDict . \n \n word1 != word2",
+  "code": "class Solution\n{\npublic:\n    int shortestDistance(vector< string>& wordsDict, string word1, string word2)\n    {\n        int a = - 1, b = - 1, best = INT_MAX;\n        for (int i = 0; i < (int) wordsDict.size();++i)\n        {\n            if (wordsDict[i] == word1)\n            {\n                a = i;\n            }\n            if (wordsDict[i] == word2)\n            {\n                b = i;\n            }\n            if (a >= 0 && b >= 0)\n            {\n                best = min(best, abs(a - b));\n            }\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178433536",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

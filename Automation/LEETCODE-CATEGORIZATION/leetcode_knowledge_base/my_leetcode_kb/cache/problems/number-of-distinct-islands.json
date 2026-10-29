@@ -1,0 +1,43 @@
+{
+  "id": "694",
+  "title": "Number of Distinct Islands",
+  "slug": "number-of-distinct-islands",
+  "url": "https://leetcode.com/problems/number-of-distinct-islands/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Sorting",
+    "Matrix",
+    "Hash Function"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map / hash set",
+    "Ordered set",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an m x n binary matrix grid . An island is a group of 1 's (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water. \n \n An island is considered to be the same as another if and only if one island can be translated (and not rotated or reflected) to equal the other. \n \n Return the number of distinct islands . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/05/01/distinctisland1-1-grid.jpg] \n \n```\nInput:\n grid = [[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]\n\nOutput:\n 1\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/05/01/distinctisland1-2-grid.jpg] \n \n```\nInput:\n grid = [[1,1,0,1,1],[1,0,0,0,0],[0,0,0,0,1],[1,1,0,1,1]]\n\nOutput:\n 3\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 50 \n \n grid[i][j] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n    int numDistinctIslands(vector<vector<int>>& grid) {\n        int m = grid.size();\n        if (m == 0) {\n            return 0;\n        }\n        int n = grid[0].size();\n        set<vector<pair<int, int>>> shapes;\n        int dr[4] = {1, -1, 0, 0};\n        int dc[4] = {0, 0, 1, -1};\n        for (int r = 0; r < m; ++r) {\n            for (int c = 0; c < n; ++c) {\n                if (grid[r][c] != 1) {\n                    continue;\n                }\n                vector<pair<int, int>> shape;\n                queue<pair<int, int>> q;\n                q.push({r, c});\n                grid[r][c] = 0;\n                while (!q.empty()) {\n                    auto cell = q.front();\n                    q.pop();\n                    shape.push_back({cell.first - r, cell.second - c});\n                    for (int d = 0; d < 4; ++d) {\n                        int nr = cell.first + dr[d];\n                        int nc = cell.second + dc[d];\n                        if (nr >= 0 && nr < m && nc >= 0 && nc < n\n                            && grid[nr][nc] == 1) {\n                            grid[nr][nc] = 0;\n                            q.push({nr, nc});\n                        }\n                    }\n                }\n                sort(shape.begin(), shape.end());\n                shapes.insert(shape);\n            }\n        }\n        return shapes.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178498001",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "3259",
+  "title": "Maximum Energy Boost From Two Drinks",
+  "slug": "maximum-energy-boost-from-two-drinks",
+  "url": "https://leetcode.com/problems/maximum-energy-boost-from-two-drinks/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two integer arrays energyDrinkA and energyDrinkB of the same length n by a futuristic sports scientist. These arrays represent the energy boosts per hour provided by two different energy drinks, A and B, respectively. \n \n You want to maximize your total energy boost by drinking one energy drink per hour . However, if you want to switch from consuming one energy drink to the other, you need to wait for one hour to cleanse your system (meaning you won't get any energy boost in that hour). \n \n Return the maximum total energy boost you can gain in the next n hours. \n \n Note that you can start consuming either of the two energy drinks. \n\n Example 1: \n\n Input: energyDrinkA = [1,3,1], energyDrinkB = [3,1,1] \n \n Output: 5 \n \n Explanation: \n \n To gain an energy boost of 5, drink only the energy drink A (or only B). \n\n Example 2: \n\n Input: energyDrinkA = [4,1,1], energyDrinkB = [1,1,3] \n \n Output: 7 \n \n Explanation: \n \n To gain an energy boost of 7: \n\n Drink the energy drink A for the first hour. \n \n Switch to the energy drink B and we lose the energy boost of the second hour. \n \n Gain the energy boost of the drink B in the third hour. \n\n Constraints: \n\n n == energyDrinkA.length == energyDrinkB.length \n \n 3 <= n <= 10 5 \n \n 1 <= energyDrinkA[i], energyDrinkB[i] <= 10 5",
+  "code": "class Solution { public:\n long long maxEnergyBoost(vector<int>& a,vector<int>& b){int n=a.size();vector<long long>A(n+2),B(n+2);for(int i=0;i<n;++i){A[i+2]=a[i]+max(A[i+1],B[i]);B[i+2]=b[i]+max(B[i+1],A[i]);}return max(A[n+1],B[n+1]);}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177440326",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

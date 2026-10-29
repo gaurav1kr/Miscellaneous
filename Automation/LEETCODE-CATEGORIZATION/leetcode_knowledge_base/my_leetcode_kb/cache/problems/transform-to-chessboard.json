@@ -1,0 +1,33 @@
+{
+  "id": "782",
+  "title": "Transform to Chessboard",
+  "slug": "transform-to-chessboard",
+  "url": "https://leetcode.com/problems/transform-to-chessboard/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Bit Manipulation",
+    "Matrix"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an n x n binary grid board . In each move, you can swap any two rows with each other, or any two columns with each other. \n \n Return the minimum number of moves to transform the board into a chessboard board . If the task is impossible, return -1 . \n \n A chessboard board is a board where no 0 's and no 1 's are 4-directionally adjacent. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/29/chessboard1-grid.jpg] \n \n```\nInput:\n board = [[0,1,1,0],[0,1,1,0],[1,0,0,1],[1,0,0,1]]\n\nOutput:\n 2\n\nExplanation:\n One potential sequence of moves is shown.\nThe first move swaps the first and second column.\nThe second move swaps the second and third row.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/29/chessboard2-grid.jpg] \n \n```\nInput:\n board = [[0,1],[1,0]]\n\nOutput:\n 0\n\nExplanation:\n Also note that the board with 0 in the top left corner, is also a valid chessboard.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/06/29/chessboard3-grid.jpg] \n \n```\nInput:\n board = [[1,0],[1,0]]\n\nOutput:\n -1\n\nExplanation:\n No matter what sequence of moves you make, you cannot end with a valid chessboard.\n```\n\n Constraints: \n\n n == board.length \n \n n == board[i].length \n \n 2 <= n <= 30 \n \n board[i][j] is either  0 or 1 .",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int movesToChessboard(vector<vector<int>>& board) {\n        int n = board.size(), rowSum = 0, colSum = 0, rowSwap = 0, colSwap = 0;\n        for (int i = 0; i < n; ++i) {\n            rowSum += board[0][i];\n            colSum += board[i][0];\n            rowSwap += board[i][0] == i % 2;\n            colSwap += board[0][i] == i % 2;\n        }\n\n        for (int i = 0; i < n; ++i)\n            for (int j = 0; j < n; ++j)\n                if ((board[0][0] ^ board[i][0] ^ board[0][j] ^ board[i][j]) != 0)\n                    return -1;\n\n        if (rowSum < n / 2 || rowSum > (n + 1) / 2) return -1;\n        if (colSum < n / 2 || colSum > (n + 1) / 2) return -1;\n\n        if (n % 2 == 0)\n            return min(n - rowSwap, rowSwap) / 2 + min(n - colSwap, colSwap) / 2;\n        else\n            return ((rowSwap % 2 == 0) ? rowSwap : n - rowSwap) / 2 +\n                   ((colSwap % 2 == 0) ? colSwap : n - colSwap) / 2;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610634133",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

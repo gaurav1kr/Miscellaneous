@@ -1,0 +1,41 @@
+{
+  "id": "3481",
+  "title": "Apply Substitutions",
+  "slug": "apply-substitutions",
+  "url": "https://leetcode.com/problems/apply-substitutions/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory",
+    "Topological Sort"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a replacements mapping and a text string that may contain placeholders formatted as %var% , where each var corresponds to a key in the replacements mapping. Each replacement value may itself contain one or more such placeholders . Each placeholder is replaced by the value associated with its corresponding replacement key. \n \n Return the fully substituted text string which does not contain any placeholders . \n\n Example 1: \n\n Input: replacements = [[\"A\",\"abc\"],[\"B\",\"def\"]], text = \"%A%_%B%\" \n \n Output: \"abc_def\" \n \n Explanation: \n\n The mapping associates \"A\" with \"abc\" and \"B\" with \"def\" . \n \n Replace %A% with \"abc\" and %B% with \"def\" in the text. \n \n The final text becomes \"abc_def\" . \n\n Example 2: \n\n Input: replacements = [[\"A\",\"bce\"],[\"B\",\"ace\"],[\"C\",\"abc%B%\"]], text = \"%A%_%B%_%C%\" \n \n Output: \"bce_ace_abcace\" \n \n Explanation: \n\n The mapping associates \"A\" with \"bce\" , \"B\" with \"ace\" , and \"C\" with \"abc%B%\" . \n \n Replace %A% with \"bce\" and %B% with \"ace\" in the text. \n \n Then, for %C% , substitute %B% in \"abc%B%\" with \"ace\" to obtain \"abcace\" . \n \n The final text becomes \"bce_ace_abcace\" . \n\n Constraints: \n\n 1 <= replacements.length <= 10 \n \n Each element of replacements is a two-element list [key, value] , where:\n\n key is a single uppercase English letter. \n \n value is a non-empty string of at most 8 characters that may contain zero or more placeholders formatted as %<key>% . \n\n All replacement keys are unique. \n \n The text string is formed by concatenating all key placeholders (formatted as %<key>% ) randomly from the replacements mapping, separated by underscores. \n \n text.length == 4 * replacements.length - 1 \n \n Every placeholder in the text or in any replacement value corresponds to a key in the replacements mapping. \n \n There are no cyclic dependencies between replacement keys.",
+  "code": "class Solution {\n    unordered_map<string,string> raw,memo;\n    string expand(string s) {\n        string out;\n        for(int i=0; i<(int)s.size(); ) {\n            if(s[i]=='%') {\n                int j=s.find('%',i+1);\n                string key=s.substr(i+1,j-i-1);\n                if(!memo.count(key))memo[key]=expand(raw[key]);\n                out+=memo[key];\n                i=j+1;\n            }\n            else out+=s[i++];\n        }\n        return out;\n    }\n    public:string applySubstitutions(vector<vector<string>>& replacements,string text) {\n        for(auto &r:replacements)raw[r[0]]=r[1];\n        return expand(text);\n    }\n}\n;\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179345967",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

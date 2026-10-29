@@ -1,0 +1,29 @@
+{
+  "id": "3587",
+  "title": "Minimum Adjacent Swaps to Alternate Parity",
+  "slug": "minimum-adjacent-swaps-to-alternate-parity",
+  "url": "https://leetcode.com/problems/minimum-adjacent-swaps-to-alternate-parity/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array nums of distinct integers. \n \n In one operation, you can swap any two adjacent elements in the array. \n \n An arrangement of the array is considered valid if the parity of adjacent elements alternates , meaning every pair of neighboring elements consists of one even and one odd number. \n \n Return the minimum number of adjacent swaps required to transform nums into any valid arrangement. \n \n If it is impossible to rearrange nums such that no two adjacent elements have the same parity, return -1 . \n\n Example 1: \n\n Input: nums = [2,4,6,5,7] \n \n Output: 3 \n \n Explanation: \n \n Swapping 5 and 6, the array becomes [2,4,5,6,7] \n \n Swapping 5 and 4, the array becomes [2,5,4,6,7] \n \n Swapping 6 and 7, the array becomes [2,5,4,7,6] . The array is now a valid arrangement. Thus, the answer is 3. \n\n Example 2: \n\n Input: nums = [2,4,5,7] \n \n Output: 1 \n \n Explanation: \n \n By swapping 4 and 5, the array becomes [2,5,4,7] , which is a valid arrangement. Thus, the answer is 1. \n\n Example 3: \n\n Input: nums = [1,2,3] \n \n Output: 0 \n \n Explanation: \n \n The array is already a valid arrangement. Thus, no operations are needed. \n\n Example 4: \n\n Input: nums = [4,5,6,8] \n \n Output: -1 \n \n Explanation: \n \n No valid arrangement is possible. Thus, the answer is -1. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n All elements in nums are distinct .",
+  "code": "class Solution {public:\n int minSwaps(vector<int>& nums){\n  int n=nums.size(),odd=0;for(int x:nums)odd+=abs(x)%2;\n  if(abs(2*odd-n)>1)return -1;\n  auto solve=[&](int start){long long cost=0;int slot=0;\n   for(int i=0;i<n;++i)if(abs(nums[i])%2==start){cost+=abs(i-2*slot);++slot;}\n   return (int)cost;\n  };\n  if(2*odd>n)return solve(1);if(2*odd<n)return solve(0);\n  return min(solve(0),solve(1));\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177597725",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

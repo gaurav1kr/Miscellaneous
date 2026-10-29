@@ -1,0 +1,28 @@
+{
+  "id": "1535",
+  "title": "Find the Winner of an Array Game",
+  "slug": "find-the-winner-of-an-array-game",
+  "url": "https://leetcode.com/problems/find-the-winner-of-an-array-game/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array arr of distinct integers and an integer k . \n \n A game will be played between the first two elements of the array (i.e. arr[0] and arr[1] ). In each round of the game, we compare arr[0] with arr[1] , the larger integer wins and remains at position 0 , and the smaller integer moves to the end of the array. The game ends when an integer wins k consecutive rounds. \n \n Return the integer which will win the game . \n \n It is guaranteed that there will be a winner of the game. \n\n Example 1: \n \n```\nInput:\n arr = [2,1,3,5,4,6,7], k = 2\n\nOutput:\n 5\n\nExplanation:\n Let's see the rounds of the game:\nRound | arr | winner | win_count\n 1 | [2,1,3,5,4,6,7] | 2 | 1\n 2 | [2,3,5,4,6,7,1] | 3 | 1\n 3 | [3,5,4,6,7,1,2] | 5 | 1\n 4 | [5,4,6,7,1,2,3] | 5 | 2\nSo we can see that 4 rounds will be played and 5 is the winner because it wins 2 consecutive games.\n```\n\n Example 2: \n \n```\nInput:\n arr = [3,2,1], k = 10\n\nOutput:\n 3\n\nExplanation:\n 3 will win the first 10 rounds consecutively.\n```\n\n Constraints: \n\n 2 <= arr.length <= 10 5 \n \n 1 <= arr[i] <= 10 6 \n \n arr contains distinct integers. \n \n 1 <= k <= 10 9",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int getWinner(vector<int>& arr, int k) {\n        int win = arr[0], count = 0;\n        for (int i = 1; i < arr.size(); ++i) {\n            if (win > arr[i]) count++;\n            else {\n                win = arr[i];\n                count = 1;\n            }\n            if (count == k) return win;\n        }\n        return win;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610592610",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

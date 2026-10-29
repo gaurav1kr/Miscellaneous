@@ -1,0 +1,38 @@
+{
+  "id": "3484",
+  "title": "Design Spreadsheet",
+  "slug": "design-spreadsheet",
+  "url": "https://leetcode.com/problems/design-spreadsheet/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Design",
+    "Matrix"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "A spreadsheet is a grid with 26 columns (labeled from 'A' to 'Z' ) and a given number of rows . Each cell in the spreadsheet can hold an integer value between 0 and 10 5 . \n \n Implement the Spreadsheet class: \n\n Spreadsheet(int rows) Initializes a spreadsheet with 26 columns (labeled 'A' to 'Z' ) and the specified number of rows. All cells are initially set to 0. \n \n void setCell(String cell, int value) Sets the value of the specified cell . The cell reference is provided in the format \"AX\" (e.g., \"A1\" , \"B10\" ), where the letter represents the column (from 'A' to 'Z' ) and the number represents a 1-indexed row. \n \n void resetCell(String cell) Resets the specified cell to 0. \n \n int getValue(String formula) Evaluates a formula of the form \"=X+Y\" , where X and Y are either cell references or non-negative integers, and returns the computed sum. \n\n Note: If getValue references a cell that has not been explicitly set using setCell , its value is considered 0. \n\n Example 1: \n\n Input: \n [\"Spreadsheet\", \"getValue\", \"setCell\", \"getValue\", \"setCell\", \"getValue\", \"resetCell\", \"getValue\"] \n[[3], [\"=5+7\"], [\"A1\", 10], [\"=A1+6\"], [\"B2\", 15], [\"=A1+B2\"], [\"A1\"], [\"=A1+B2\"]] \n \n Output: \n [null, 12, null, 16, null, 25, null, 15] \n \n Explanation \nSpreadsheet spreadsheet = new Spreadsheet(3); // Initializes a spreadsheet with 3 rows and 26 columns \nspreadsheet.getValue(\"=5+7\"); // returns 12 (5+7) \nspreadsheet.setCell(\"A1\", 10); // sets A1 to 10 \nspreadsheet.getValue(\"=A1+6\"); // returns 16 (10+6) \nspreadsheet.setCell(\"B2\", 15); // sets B2 to 15 \nspreadsheet.getValue(\"=A1+B2\"); // returns 25 (10+15) \nspreadsheet.resetCell(\"A1\"); // resets A1 to 0 \nspreadsheet.getValue(\"=A1+B2\"); // returns 15 (0+15) \n\n Constraints: \n\n 1 <= rows <= 10 3 \n \n 0 <= value <= 10 5 \n \n The formula is always in the format \"=X+Y\" , where X and Y are either valid cell references or non-negative integers with values less than or equal to 10 5 . \n \n Each cell reference consists of a capital letter from 'A' to 'Z' followed by a row number between 1 and rows . \n \n At most 10 4 calls will be made in total to setCell , resetCell , and getValue .",
+  "code": "class Spreadsheet {unordered_map<string,int> a;int value(string s){if(isdigit(s[0]))return stoi(s);return a.count(s)?a[s]:0;}public:Spreadsheet(int rows){}void setCell(string cell,int value){a[cell]=value;}void resetCell(string cell){a.erase(cell);}int getValue(string formula){string s=formula.substr(1);int p=s.find('+');return value(s.substr(0,p))+value(s.substr(p+1));}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177541835",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

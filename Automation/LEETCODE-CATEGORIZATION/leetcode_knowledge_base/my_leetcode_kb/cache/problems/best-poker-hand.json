@@ -1,0 +1,31 @@
+{
+  "id": "2347",
+  "title": "Best Poker Hand",
+  "slug": "best-poker-hand",
+  "url": "https://leetcode.com/problems/best-poker-hand/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an integer array ranks and a character array suits . You have 5 cards where the i th card has a rank of ranks[i] and a suit of suits[i] . \n \n The following are the types of poker hands you can make from best to worst: \n\n \"Flush\" : Five cards of the same suit. \n \n \"Three of a Kind\" : Three cards of the same rank. \n \n \"Pair\" : Two cards of the same rank. \n \n \"High Card\" : Any single card. \n\n Return a string representing the best type of poker hand you can make with the given cards. \n \n Note that the return values are case-sensitive . \n\n Example 1: \n \n```\nInput:\n ranks = [13,2,3,1,9], suits = [\"a\",\"a\",\"a\",\"a\",\"a\"]\n\nOutput:\n \"Flush\"\n\nExplanation:\n The hand with all the cards consists of 5 cards with the same suit, so we have a \"Flush\".\n```\n\n Example 2: \n \n```\nInput:\n ranks = [4,4,2,4,4], suits = [\"d\",\"a\",\"a\",\"b\",\"c\"]\n\nOutput:\n \"Three of a Kind\"\n\nExplanation:\n The hand with the first, second, and fourth card consists of 3 cards with the same rank, so we have a \"Three of a Kind\".\nNote that we could also make a \"Pair\" hand but \"Three of a Kind\" is a better hand.\nAlso note that other cards could be used to make the \"Three of a Kind\" hand.\n```\n\n Example 3: \n \n```\nInput:\n ranks = [10,10,2,12,9], suits = [\"a\",\"b\",\"c\",\"a\",\"d\"]\n\nOutput:\n \"Pair\"\n\nExplanation:\n The hand with the first and second card consists of 2 cards with the same rank, so we have a \"Pair\".\nNote that we cannot make a \"Flush\" or a \"Three of a Kind\".\n```\n\n Constraints: \n\n ranks.length == suits.length == 5 \n \n 1 <= ranks[i] <= 13 \n \n 'a' <= suits[i] <= 'd' \n \n No two cards have the same rank and suit.",
+  "code": "class Solution { public:\n    string bestHand(vector<int>& ranks, vector<char>& suits) {\n        if(all_of(suits.begin(),suits.end(),[&](char c){return c==suits[0];}))return \"Flush\";\n        int f[14]={};int mx=0;for(int x:ranks)mx=max(mx,++f[x]);\n        if(mx>=3)return \"Three of a Kind\";\n        if(mx>=2)return \"Pair\";\n        return \"High Card\";\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175922464",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

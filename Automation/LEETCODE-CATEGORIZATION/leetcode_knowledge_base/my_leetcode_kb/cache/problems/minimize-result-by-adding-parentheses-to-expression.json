@@ -1,0 +1,27 @@
+{
+  "id": "2232",
+  "title": "Minimize Result by Adding Parentheses to Expression",
+  "slug": "minimize-result-by-adding-parentheses-to-expression",
+  "url": "https://leetcode.com/problems/minimize-result-by-adding-parentheses-to-expression/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Enumeration"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a 0-indexed string expression of the form \"<num1>+<num2>\" where <num1> and <num2> represent positive integers. \n \n Add a pair of parentheses to expression such that after the addition of parentheses, expression is a valid mathematical expression and evaluates to the smallest possible value. The left parenthesis must be added to the left of '+' and the right parenthesis must be added to the right of '+' . \n \n Return expression after adding a pair of parentheses such that expression evaluates to the smallest possible value. If there are multiple answers that yield the same result, return any of them. \n \n The input has been generated such that the original value of expression , and the value of expression after adding any pair of parentheses that meets the requirements fits within a signed 32-bit integer. \n\n Example 1: \n \n```\nInput:\n expression = \"247+38\"\n\nOutput:\n \"2(47+38)\"\n\nExplanation:\n The \nexpression\n evaluates to 2 * (47 + 38) = 2 * 85 = 170.\nNote that \"2(4)7+38\" is invalid because the right parenthesis must be to the right of the \n'+'\n.\nIt can be shown that 170 is the smallest possible value.\n```\n\n Example 2: \n \n```\nInput:\n expression = \"12+34\"\n\nOutput:\n \"1(2+3)4\"\n\nExplanation:\n The expression evaluates to 1 * (2 + 3) * 4 = 1 * 5 * 4 = 20.\n```\n\n Example 3: \n \n```\nInput:\n expression = \"999+999\"\n\nOutput:\n \"(999+999)\"\n\nExplanation:\n The \nexpression\n evaluates to 999 + 999 = 1998.\n```\n\n Constraints: \n\n 3 <= expression.length <= 10 \n \n expression consists of digits from '1' to '9' and '+' . \n \n expression starts and ends with digits. \n \n expression contains exactly one '+' . \n \n The original value of expression , and the value of expression after adding any pair of parentheses that meets the requirements fits within a signed 32-bit integer.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n string minimizeResult(string expression){int plus=expression.find('+'),n=expression.size();long long best=LLONG_MAX;string ans;\n  for(int i=0;i<plus;++i)for(int j=plus+2;j<=n;++j){long long a=i?stoll(expression.substr(0,i)):1;\n   long long b=stoll(expression.substr(i,plus-i)),c=stoll(expression.substr(plus+1,j-plus-1));\n   long long d=j<n?stoll(expression.substr(j)):1;long long val=a*(b+c)*d;\n   if(val<best){best=val;ans=expression.substr(0,i)+\"(\"+expression.substr(i,j-i)+\")\"+expression.substr(j);}\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175892773",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

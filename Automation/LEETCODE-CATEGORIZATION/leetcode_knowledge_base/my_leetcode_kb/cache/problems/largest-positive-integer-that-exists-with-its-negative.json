@@ -1,0 +1,37 @@
+{
+  "id": "2441",
+  "title": "Largest Positive Integer That Exists With Its Negative",
+  "slug": "largest-positive-integer-that-exists-with-its-negative",
+  "url": "https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums that does not contain any zeros, find the largest positive integer k such that -k also exists in the array. \n \n Return the positive integer k . If there is no such integer, return -1 . \n\n Example 1: \n \n```\nInput:\n nums = [-1,2,-3,3]\n\nOutput:\n 3\n\nExplanation:\n 3 is the only valid k we can find in the array.\n```\n\n Example 2: \n \n```\nInput:\n nums = [-1,10,6,7,-7,1]\n\nOutput:\n 7\n\nExplanation:\n Both 1 and 7 have their corresponding negative values in the array. 7 has a larger value.\n```\n\n Example 3: \n \n```\nInput:\n nums = [-10,8,6,7,-2,-3]\n\nOutput:\n -1\n\nExplanation:\n There is no a single valid k, we return -1.\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n -1000 <= nums[i] <= 1000 \n \n nums[i] != 0",
+  "code": "class Solution { public: int findMaxK(vector<int>& nums){unordered_set<int>s(nums.begin(),nums.end());int ans=-1;for(int x:nums)if(x>0&&s.count(-x))ans=max(ans,x);return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176563481",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "3623",
+  "title": "Count Number of Trapezoids I",
+  "slug": "count-number-of-trapezoids-i",
+  "url": "https://leetcode.com/problems/count-number-of-trapezoids-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Geometry"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array points , where points[i] = [x i , y i ] represents the coordinates of the i th point on the Cartesian plane. \n \n A horizontal trapezoid is a convex quadrilateral with at least one pair of horizontal sides (i.e. parallel to the x-axis). Two lines are parallel if and only if they have the same slope. \n \n Return the number of unique horizontal trapezoids that can be formed by choosing any four distinct points from points . \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: points = [[1,0],[2,0],[3,0],[2,2],[3,2]] \n \n Output: 3 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/05/01/desmos-graph-6.png] [Figure: https://assets.leetcode.com/uploads/2025/05/01/desmos-graph-7.png] [Figure: https://assets.leetcode.com/uploads/2025/05/01/desmos-graph-8.png] \n \n There are three distinct ways to pick four points that form a horizontal trapezoid: \n\n Using points [1,0] , [2,0] , [3,2] , and [2,2] . \n \n Using points [2,0] , [3,0] , [3,2] , and [2,2] . \n \n Using points [1,0] , [3,0] , [3,2] , and [2,2] . \n\n Example 2: \n\n Input: points = [[0,0],[1,0],[0,1],[2,1]] \n \n Output: 1 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/04/29/desmos-graph-5.png] \n \n There is only one horizontal trapezoid that can be formed. \n\n Constraints: \n\n 4 <= points.length <= 10 5 \n \n –10 8 <= x i , y i <= 10 8 \n \n All points are pairwise distinct.",
+  "code": "class Solution {\npublic:\n int countTrapezoids(vector<vector<int>>& points){const long long MOD=1000000007;unordered_map<int,long long>cnt;for(auto&p:points)++cnt[p[1]];\n long long total=0,ans=0;for(auto &p:cnt){long long ways=p.second*(p.second-1)/2%MOD;ans=(ans+total*ways)%MOD;total=(total+ways)%MOD;}return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177623429",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

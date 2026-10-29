@@ -1,0 +1,32 @@
+{
+  "id": "1567",
+  "title": "Maximum Length of Subarray With Positive Product",
+  "slug": "maximum-length-of-subarray-with-positive-product",
+  "url": "https://leetcode.com/problems/maximum-length-of-subarray-with-positive-product/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given an array of integers nums , find the maximum length of a subarray where the product of all its elements is positive. \n \n A subarray of an array is a consecutive sequence of zero or more values taken out of that array. \n \n Return the maximum length of a subarray with positive product . \n\n Example 1: \n \n```\nInput:\n nums = [1,-2,-3,4]\n\nOutput:\n 4\n\nExplanation:\n The array nums already has a positive product of 24.\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,1,-2,-3,-4]\n\nOutput:\n 3\n\nExplanation:\n The longest subarray with positive product is [1,-2,-3] which has a product of 6.\nNotice that we cannot include 0 in the subarray since that'll make the product 0 which is not positive.\n```\n\n Example 3: \n \n```\nInput:\n nums = [-1,-2,-3,0,1]\n\nOutput:\n 2\n\nExplanation:\n The longest subarray with positive product is [-1,-2] or [-2,-3].\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n -10 9 <= nums[i] <= 10 9",
+  "code": "\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int getMaxLen(vector<int>& nums) {\n        int n = nums.size();\n        int pos = 0, neg = 0, result = 0;\n        \n        for (int i = 0; i < n; ++i) {\n            if (nums[i] > 0) {\n                pos++;\n                neg = (neg == 0) ? 0 : neg + 1;\n            } else if (nums[i] < 0) {\n                int temp = pos;\n                pos = (neg == 0) ? 0 : neg + 1;\n                neg = temp + 1;\n            } else {\n                pos = neg = 0;\n            }\n            \n            result = max(result, pos);\n        }\n        \n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592339025",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

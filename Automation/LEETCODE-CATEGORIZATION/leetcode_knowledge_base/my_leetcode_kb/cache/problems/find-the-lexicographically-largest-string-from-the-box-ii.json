@@ -1,0 +1,28 @@
+{
+  "id": "3406",
+  "title": "Find the Lexicographically Largest String From the Box II",
+  "slug": "find-the-lexicographically-largest-string-from-the-box-ii",
+  "url": "https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string word , and an integer numFriends . \n \n Alice is organizing a game for her numFriends friends. There are multiple rounds in the game, where in each round: \n\n word is split into numFriends non-empty strings, such that no previous round has had the exact same split. \n \n All the split words are put into a box. \n\n Find the lexicographically largest string from the box after all the rounds are finished. \n \n A string a is lexicographically smaller than a string b if in the first position where a and b differ, string a has a letter that appears earlier in the alphabet than the corresponding letter in b . \nIf the first min(a.length, b.length) characters do not differ, then the shorter string is the lexicographically smaller one. \n\n Example 1: \n\n Input: word = \"dbca\", numFriends = 2 \n \n Output: \"dbc\" \n \n Explanation: \n \n All possible splits are: \n\n \"d\" and \"bca\" . \n \n \"db\" and \"ca\" . \n \n \"dbc\" and \"a\" . \n\n Example 2: \n\n Input: word = \"gggg\", numFriends = 4 \n \n Output: \"g\" \n \n Explanation: \n \n The only possible split is: \"g\" , \"g\" , \"g\" , and \"g\" . \n\n Constraints: \n\n 1 <= word.length <= 2 * 10 5 \n \n word consists only of lowercase English letters. \n \n 1 <= numFriends <= word.length",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:string answerString(string word,int numFriends){int n=word.size();if(numFriends==1)return word;int i=0,j=1,k=0;while(j+k<n){if(word[i+k]==word[j+k]){k++;continue;}if(word[i+k]<word[j+k]){i=max(i+k+1,j);j=i+1;}else j=j+k+1;k=0;}return word.substr(i,min(n-i,n-numFriends+1));} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181231606",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

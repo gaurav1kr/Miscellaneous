@@ -1,0 +1,40 @@
+{
+  "id": "2501",
+  "title": "Longest Square Streak in an Array",
+  "slug": "longest-square-streak-in-an-array",
+  "url": "https://leetcode.com/problems/longest-square-streak-in-an-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Dynamic Programming",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . A subsequence of nums is called a square streak if: \n\n The length of the subsequence is at least 2 , and \n \n after sorting the subsequence, each element (except the first element) is the square of the previous number. \n\n Return the length of the longest square streak in nums , or return -1 if there is no square streak . \n \n A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements. \n\n Example 1: \n \n```\nInput:\n nums = [4,3,6,16,8,2]\n\nOutput:\n 3\n\nExplanation:\n Choose the subsequence [4,16,2]. After sorting it, it becomes [2,4,16].\n- 4 = 2 * 2.\n- 16 = 4 * 4.\nTherefore, [4,16,2] is a square streak.\nIt can be shown that every subsequence of length 4 is not a square streak.\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,3,5,6,7]\n\nOutput:\n -1\n\nExplanation:\n There is no square streak in nums so return -1.\n```\n\n Constraints: \n\n 2 <= nums.length <= 10 5 \n \n 2 <= nums[i] <= 10 5",
+  "code": "class Solution {public:int longestSquareStreak(vector<int>& nums){sort(nums.begin(),nums.end());unordered_map<int,int>dp;int ans=0;for(int x:nums){int r=sqrt(x),v=1;if(1LL*r*r==x&&r!=x&&dp.count(r))v=dp[r]+1;dp[x]=max(dp[x],v);ans=max(ans,dp[x]);}return ans>=2?ans:-1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176591201",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

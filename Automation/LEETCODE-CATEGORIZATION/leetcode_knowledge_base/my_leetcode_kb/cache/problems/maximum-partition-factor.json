@@ -1,0 +1,37 @@
+{
+  "id": "3710",
+  "title": "Maximum Partition Factor",
+  "slug": "maximum-partition-factor",
+  "url": "https://leetcode.com/problems/maximum-partition-factor/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array points , where points[i] = [x i , y i ] represents the coordinates of the i th point on the Cartesian plane. \n \n The Manhattan distance between two points points[i] = [x i , y i ] and points[j] = [x j , y j ] is |x i - x j | + |y i - y j | . \n \n Split the n points into exactly two non-empty groups. The partition factor of a split is the minimum Manhattan distance among all unordered pairs of points that lie in the same group. \n \n Return the maximum possible partition factor over all valid splits. \n \n Note: A group of size 1 contributes no intra-group pairs. When n = 2 (both groups size 1), there are no intra-group pairs, so define the partition factor as 0. \n\n Example 1: \n\n Input: points = [[0,0],[0,2],[2,0],[2,2]] \n \n Output: 4 \n \n Explanation: \n \n We split the points into two groups: {[0, 0], [2, 2]} and {[0, 2], [2, 0]} . \n\n In the first group, the only pair has Manhattan distance |0 - 2| + |0 - 2| = 4 . \n\n In the second group, the only pair also has Manhattan distance |0 - 2| + |2 - 0| = 4 . \n\n The partition factor of this split is min(4, 4) = 4 , which is maximal. \n\n Example 2: \n\n Input: points = [[0,0],[0,1],[10,0]] \n \n Output: 11 \n \n Explanation:​​​​​​​ \n \n We split the points into two groups: {[0, 1], [10, 0]} and {[0, 0]} . \n\n In the first group, the only pair has Manhattan distance |0 - 10| + |1 - 0| = 11 . \n\n The second group is a singleton, so it contributes no pairs. \n\n The partition factor of this split is 11 , which is maximal. \n\n Constraints: \n\n 2 <= points.length <= 500 \n \n points[i] = [x i , y i ] \n \n -10 8 <= x i , y i <= 10 8",
+  "code": "class Solution {\npublic:\n    int maxPartitionFactor(vector<vector<int>>& points){\n        int n=points.size();if(n==2)return 0;\n        vector<vector<int>> d(n,vector<int>(n));int high=0;\n        for(int i=0;i<n;++i)for(int j=i+1;j<n;++j){\n            d[i][j]=d[j][i]=abs(points[i][0]-points[j][0])+abs(points[i][1]-points[j][1]);\n            high=max(high,d[i][j]);\n        }\n        int lo=0,hi=high;\n        while(lo<hi){int mid=lo+(hi-lo+1)/2;vector<int> color(n,-1);bool ok=true;\n            for(int i=0;i<n&&ok;++i)if(color[i]<0){\n                queue<int> q;q.push(i);color[i]=0;\n                while(!q.empty()&&ok){int u=q.front();q.pop();\n                    for(int v=0;v<n;++v)if(u!=v&&d[u][v]<mid){\n                        if(color[v]<0){color[v]=color[u]^1;q.push(v);}\n                        else if(color[v]==color[u]){ok=false;break;}\n                    }\n                }\n            }\n            if(ok)lo=mid;else hi=mid-1;\n        }\n        return lo;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181140779",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "1410",
+  "title": "HTML Entity Parser",
+  "slug": "html-entity-parser",
+  "url": "https://leetcode.com/problems/html-entity-parser/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "HTML entity parser is the parser that takes HTML code as input and replace all the entities of the special characters by the characters itself. \n \n The special characters and their entities for HTML are: \n\n Quotation Mark: the entity is \" and symbol character is \" . \n \n Single Quote Mark: the entity is ' and symbol character is ' . \n \n Ampersand: the entity is & and symbol character is & . \n \n Greater Than Sign: the entity is > and symbol character is > . \n \n Less Than Sign: the entity is < and symbol character is < . \n \n Slash: the entity is ⁄ and symbol character is / . \n\n Given the input text string to the HTML parser, you have to implement the entity parser. \n \n Return the text after replacing the entities by the special characters . \n\n Example 1: \n \n```\nInput:\n text = \"& is an HTML entity but &ambassador; is not.\"\n\nOutput:\n \"& is an HTML entity but &ambassador; is not.\"\n\nExplanation:\n The parser will replace the & entity by &\n```\n\n Example 2: \n \n```\nInput:\n text = \"and I quote: \"...\"\"\n\nOutput:\n \"and I quote: \\\"...\\\"\"\n```\n\n Constraints: \n\n 1 <= text.length <= 10 5 \n \n The string may contain any possible characters out of all the 256 ASCII characters.",
+  "code": "class Solution {\npublic:\n    string entityParser(string text) {\n        const vector<pair<string, string>> entities = {\n            {\"&quot;\", \"\\\"\"}, {\"&apos;\", \"'\"}, {\"&amp;\", \"&\"},\n            {\"&gt;\", \">\"}, {\"&lt;\", \"<\"}, {\"&frasl;\", \"/\"}\n        };\n        string ans;\n        for (int i = 0; i < (int)text.size();) {\n            bool matched = false;\n            if (text[i] == '&') {\n                for (const auto& e : entities) {\n                    if (text.compare(i, e.first.size(), e.first) == 0) {\n                        ans += e.second;\n                        i += e.first.size();\n                        matched = true;\n                        break;\n                    }\n                }\n            }\n            if (!matched) ans += text[i++];\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175751745",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

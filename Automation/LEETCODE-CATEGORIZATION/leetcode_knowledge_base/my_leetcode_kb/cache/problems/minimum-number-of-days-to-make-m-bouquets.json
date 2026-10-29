@@ -1,0 +1,29 @@
+{
+  "id": "1482",
+  "title": "Minimum Number of Days to Make m Bouquets",
+  "slug": "minimum-number-of-days-to-make-m-bouquets",
+  "url": "https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array bloomDay , an integer m and an integer k . \n \n You want to make m bouquets. To make a bouquet, you need to use k adjacent flowers from the garden. \n \n The garden consists of n flowers, the i th flower will bloom in the bloomDay[i] and then can be used in exactly one bouquet. \n \n Return the minimum number of days you need to wait to be able to make m bouquets from the garden. If it is impossible to make m bouquets return -1. \n\n Example 1: \n \n```\nInput:\n bloomDay = [1,10,3,10,2], m = 3, k = 1\n\nOutput:\n 3\n\nExplanation:\n Let us see what happened in the first three days. x means flower bloomed and _ means flower did not bloom in the garden.\nWe need 3 bouquets each should contain 1 flower.\nAfter day 1: [x, _, _, _, _] // we can only make one bouquet.\nAfter day 2: [x, _, _, _, x] // we can only make two bouquets.\nAfter day 3: [x, _, x, _, x] // we can make 3 bouquets. The answer is 3.\n```\n\n Example 2: \n \n```\nInput:\n bloomDay = [1,10,3,10,2], m = 3, k = 2\n\nOutput:\n -1\n\nExplanation:\n We need 3 bouquets each has 2 flowers, that means we need 6 flowers. We only have 5 flowers so it is impossible to get the needed bouquets and we return -1.\n```\n\n Example 3: \n \n```\nInput:\n bloomDay = [7,7,7,7,12,7,7], m = 2, k = 3\n\nOutput:\n 12\n\nExplanation:\n We need 2 bouquets each should have 3 flowers.\nHere is the garden after the 7 and 12 days:\nAfter day 7: [x, x, x, x, _, x, x]\nWe can make one bouquet of the first three flowers that bloomed. We cannot make another bouquet from the last three flowers that bloomed because they are not adjacent.\nAfter day 12: [x, x, x, x, x, x, x]\nIt is obvious that we can make two bouquets in different ways.\n```\n\n Constraints: \n\n bloomDay.length == n \n \n 1 <= n <= 10 5 \n \n 1 <= bloomDay[i] <= 10 9 \n \n 1 <= m <= 10 6 \n \n 1 <= k <= n",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool canMake(vector<int>& bloomDay, int m, int k, int day) {\n        int count = 0, bouquets = 0;\n        for (int bloom : bloomDay) {\n            if (bloom <= day) {\n                count++;\n                if (count == k) {\n                    bouquets++;\n                    count = 0;\n                }\n            } else {\n                count = 0;\n            }\n        }\n        return bouquets >= m;\n    }\n    \n    int minDays(vector<int>& bloomDay, int m, int k) {\n        long long totalFlowers = (long long)m * k;\n        if (totalFlowers > bloomDay.size()) return -1;\n        \n        int low = *min_element(bloomDay.begin(), bloomDay.end());\n        int high = *max_element(bloomDay.begin(), bloomDay.end());\n        \n        while (low < high) {\n            int mid = low + (high - low) / 2;\n            if (canMake(bloomDay, m, k, mid)) {\n                high = mid;\n            } else {\n                low = mid + 1;\n            }\n        }\n        return low;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590169369",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

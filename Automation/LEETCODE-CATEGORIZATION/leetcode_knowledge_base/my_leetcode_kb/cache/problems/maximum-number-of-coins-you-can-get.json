@@ -1,0 +1,35 @@
+{
+  "id": "1561",
+  "title": "Maximum Number of Coins You Can Get",
+  "slug": "maximum-number-of-coins-you-can-get",
+  "url": "https://leetcode.com/problems/maximum-number-of-coins-you-can-get/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Greedy",
+    "Sorting",
+    "Game Theory"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There are 3n piles of coins of varying size, you and your friends will take piles of coins as follows: \n\n In each step, you will choose any 3 piles of coins (not necessarily consecutive). \n \n Of your choice, Alice will pick the pile with the maximum number of coins. \n \n You will pick the next pile with the maximum number of coins. \n \n Your friend Bob will pick the last pile. \n \n Repeat until there are no more piles of coins. \n\n Given an array of integers piles where piles[i] is the number of coins in the i th pile. \n \n Return the maximum number of coins that you can have. \n\n Example 1: \n \n```\nInput:\n piles = [2,4,1,2,7,8]\n\nOutput:\n 9\n\nExplanation: \nChoose the triplet (2, 7, 8), Alice Pick the pile with 8 coins, you the pile with \n7\n coins and Bob the last one.\nChoose the triplet (1, 2, 4), Alice Pick the pile with 4 coins, you the pile with \n2\n coins and Bob the last one.\nThe maximum number of coins which you can have are: 7 + 2 = 9.\nOn the other hand if we choose this arrangement (1, \n2\n, 8), (2, \n4\n, 7) you only get 2 + 4 = 6 coins which is not optimal.\n```\n\n Example 2: \n \n```\nInput:\n piles = [2,4,5]\n\nOutput:\n 4\n```\n\n Example 3: \n \n```\nInput:\n piles = [9,8,7,6,5,1,2,3,4]\n\nOutput:\n 18\n```\n\n Constraints: \n\n 3 <= piles.length <= 10 5 \n \n piles.length % 3 == 0 \n \n 1 <= piles[i] <= 10 4",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxCoins(vector<int>& piles) {\n        sort(piles.begin(), piles.end());\n        int res = 0, n = piles.size() / 3;\n        for (int i = piles.size() - 2; i >= n; i -= 2)\n            res += piles[i];\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610561728",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

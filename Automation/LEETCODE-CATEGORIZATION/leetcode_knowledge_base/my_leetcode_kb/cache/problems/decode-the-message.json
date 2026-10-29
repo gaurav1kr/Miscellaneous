@@ -1,0 +1,29 @@
+{
+  "id": "2325",
+  "title": "Decode the Message",
+  "slug": "decode-the-message",
+  "url": "https://leetcode.com/problems/decode-the-message/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String"
+  ],
+  "description": "You are given the strings key and message , which represent a cipher key and a secret message, respectively. The steps to decode message are as follows: \n\n Use the first appearance of all 26 lowercase English letters in key as the order of the substitution table. \n \n Align the substitution table with the regular English alphabet. \n \n Each letter in message is then substituted using the table. \n \n Spaces ' ' are transformed to themselves. \n\n For example, given key = \" hap p y bo y\" (actual key would have at least one instance of each letter in the alphabet), we have the partial substitution table of ( 'h' -> 'a' , 'a' -> 'b' , 'p' -> 'c' , 'y' -> 'd' , 'b' -> 'e' , 'o' -> 'f' ). \n\n Return the decoded message . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/05/08/ex1new4.jpg] \n \n```\nInput:\n key = \"the quick brown fox jumps over the lazy dog\", message = \"vkbs bs t suepuv\"\n\nOutput:\n \"this is a secret\"\n\nExplanation:\n The diagram above shows the substitution table.\nIt is obtained by taking the first appearance of each letter in \"\nthe\n \nquick\n \nbrown\n \nf\no\nx\n \nj\nu\nmps\n o\nv\ner the \nlazy\n \nd\no\ng\n\".\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/05/08/ex2new.jpg] \n \n```\nInput:\n key = \"eljuxhpwnyrdgtqkviszcfmabo\", message = \"zwx hnfx lqantp mnoeius ycgk vcnjrdb\"\n\nOutput:\n \"the five boxing wizards jump quickly\"\n\nExplanation:\n The diagram above shows the substitution table.\nIt is obtained by taking the first appearance of each letter in \"\neljuxhpwnyrdgtqkviszcfmabo\n\".\n```\n\n Constraints: \n\n 26 <= key.length <= 2000 \n \n key consists of lowercase English letters and ' ' . \n \n key contains every letter in the English alphabet ( 'a' to 'z' ) at least once . \n \n 1 <= message.length <= 2000 \n \n message consists of lowercase English letters and ' ' .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:string decodeMessage(string key,string message){char map[26]={};char next='a';for(char c:key)if(c!=' '&&!map[c-'a'])map[c-'a']=next++;for(char& c:message)if(c!=' ')c=map[c-'a'];return message;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175917001",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

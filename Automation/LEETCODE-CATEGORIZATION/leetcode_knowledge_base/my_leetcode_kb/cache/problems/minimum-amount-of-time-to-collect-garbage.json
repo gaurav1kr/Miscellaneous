@@ -1,0 +1,33 @@
+{
+  "id": "2391",
+  "title": "Minimum Amount of Time to Collect Garbage",
+  "slug": "minimum-amount-of-time-to-collect-garbage",
+  "url": "https://leetcode.com/problems/minimum-amount-of-time-to-collect-garbage/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of strings garbage where garbage[i] represents the assortment of garbage at the i th house. garbage[i] consists only of the characters 'M' , 'P' and 'G' representing one unit of metal, paper and glass garbage respectively. Picking up one unit of any type of garbage takes 1 minute. \n \n You are also given a 0-indexed integer array travel where travel[i] is the number of minutes needed to go from house i to house i + 1 . \n \n There are three garbage trucks in the city, each responsible for picking up one type of garbage. Each garbage truck starts at house 0 and must visit each house in order ; however, they do not need to visit every house. \n \n Only one garbage truck may be used at any given moment. While one truck is driving or picking up garbage, the other two trucks cannot do anything. \n \n Return the minimum number of minutes needed to pick up all the garbage. \n\n Example 1: \n \n```\nInput:\n garbage = [\"G\",\"P\",\"GP\",\"GG\"], travel = [2,4,3]\n\nOutput:\n 21\n\nExplanation:\n\nThe paper garbage truck:\n1. Travels from house 0 to house 1\n2. Collects the paper garbage at house 1\n3. Travels from house 1 to house 2\n4. Collects the paper garbage at house 2\nAltogether, it takes 8 minutes to pick up all the paper garbage.\nThe glass garbage truck:\n1. Collects the glass garbage at house 0\n2. Travels from house 0 to house 1\n3. Travels from house 1 to house 2\n4. Collects the glass garbage at house 2\n5. Travels from house 2 to house 3\n6. Collects the glass garbage at house 3\nAltogether, it takes 13 minutes to pick up all the glass garbage.\nSince there is no metal garbage, we do not need to consider the metal garbage truck.\nTherefore, it takes a total of 8 + 13 = 21 minutes to collect all the garbage.\n```\n\n Example 2: \n \n```\nInput:\n garbage = [\"MMM\",\"PGM\",\"GP\"], travel = [3,10]\n\nOutput:\n 37\n\nExplanation:\n\nThe metal garbage truck takes 7 minutes to pick up all the metal garbage.\nThe paper garbage truck takes 15 minutes to pick up all the paper garbage.\nThe glass garbage truck takes 15 minutes to pick up all the glass garbage.\nIt takes a total of 7 + 15 + 15 = 37 minutes to collect all the garbage.\n```\n\n Constraints: \n\n 2 <= garbage.length <= 10 5 \n \n garbage[i] consists of only the letters 'M' , 'P' , and 'G' . \n \n 1 <= garbage[i].length <= 10 \n \n travel.length == garbage.length - 1 \n \n 1 <= travel[i] <= 100",
+  "code": "class Solution {public:int garbageCollection(vector<string>& garbage,vector<int>& travel){int ans=0;vector<int>last(3,-1);string types=\"MPG\";for(int i=0;i<(int)garbage.size();i++){ans+=garbage[i].size();for(char c:garbage[i])last[types.find(c)]=i;}for(int i=1;i<(int)garbage.size();i++)travel[i-1]+=(i>1?travel[i-2]:0);for(int p:last)if(p>0)ans+=travel[p-1];return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176533004",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

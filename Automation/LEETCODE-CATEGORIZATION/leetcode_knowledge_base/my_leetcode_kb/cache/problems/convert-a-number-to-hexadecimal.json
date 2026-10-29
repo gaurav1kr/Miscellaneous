@@ -1,0 +1,30 @@
+{
+  "id": "405",
+  "title": "Convert a Number to Hexadecimal",
+  "slug": "convert-a-number-to-hexadecimal",
+  "url": "https://leetcode.com/problems/convert-a-number-to-hexadecimal/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a 32-bit integer num , return a string representing its hexadecimal representation . For negative integers, two’s complement method is used. \n \n All the letters in the answer string should be lowercase characters, and there should not be any leading zeros in the answer except for the zero itself. \n \n Note:  You are not allowed to use any built-in library method to directly solve this problem. \n\n Example 1: \n \n```\nInput:\n num = 26\n\nOutput:\n \"1a\"\n```\n \n Example 2: \n \n```\nInput:\n num = -1\n\nOutput:\n \"ffffffff\"\n```\n\n Constraints: \n\n -2 31 <= num <= 2 31 - 1",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string toHex(int num) {\n        if (num == 0) return \"0\";\n        unsigned int n = num;\n        string hex = \"\";\n        string digits = \"0123456789abcdef\";\n        while (n) {\n            hex = digits[n % 16] + hex;\n            n /= 16;\n        }\n        return hex;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593842011",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "536",
+  "title": "Construct Binary Tree from String",
+  "slug": "construct-binary-tree-from-string",
+  "url": "https://leetcode.com/problems/construct-binary-tree-from-string/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Stack",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Stack",
+    "String",
+    "Tree adjacency list"
+  ],
+  "description": "You need to construct a binary tree from a string consisting of parenthesis and integers. \n \n The whole input represents a binary tree. It contains an integer followed by zero, one or two pairs of parenthesis. The integer represents the root's value and a pair of parenthesis contains a child binary tree with the same structure. \n \n You always start to construct the left child node of the parent first if it exists. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/09/02/butree.jpg] \n \n```\nInput:\n s = \"4(2(3)(1))(6(5))\"\n\nOutput:\n [4,2,6,3,1,5]\n```\n\n Example 2: \n \n```\nInput:\n s = \"4(2(3)(1))(6(5)(7))\"\n\nOutput:\n [4,2,6,3,1,5,7]\n```\n\n Example 3: \n \n```\nInput:\n s = \"-4(2(3)(1))(6(5)(7))\"\n\nOutput:\n [-4,2,6,3,1,5,7]\n```\n\n Constraints: \n\n 0 <= s.length <= 3 * 10 4 \n \n s consists of digits, '(' , ')' , and '-' only. \n \n All numbers in the tree have value at most than 2 30 .",
+  "code": "class Solution {\n    TreeNode* parse(const string& s, int& index) {\n        int sign = 1;\n        if (s[index] == '-') {\n            sign = -1;\n            ++index;\n        }\n        int value = 0;\n        while (index < static_cast<int>(s.size()) && isdigit(s[index])) {\n            value = value * 10 + (s[index++] - '0');\n        }\n        TreeNode* node = new TreeNode(sign * value);\n        if (index < static_cast<int>(s.size()) && s[index] == '(') {\n            ++index;\n            if (s[index] != ')') {\n                node->left = parse(s, index);\n            }\n            ++index;\n        }\n        if (index < static_cast<int>(s.size()) && s[index] == '(') {\n            ++index;\n            if (s[index] != ')') {\n                node->right = parse(s, index);\n            }\n            ++index;\n        }\n        return node;\n    }\n\npublic:\n    TreeNode* str2tree(string s) {\n        if (s.empty()) {\n            return nullptr;\n        }\n        int index = 0;\n        return parse(s, index);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178478468",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

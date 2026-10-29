@@ -1,0 +1,28 @@
+{
+  "id": "495",
+  "title": "Teemo Attacking",
+  "slug": "teemo-attacking",
+  "url": "https://leetcode.com/problems/teemo-attacking/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Our hero Teemo is attacking an enemy Ashe with poison attacks! When Teemo attacks Ashe, Ashe gets poisoned for a exactly duration seconds. More formally, an attack at second t will mean Ashe is poisoned during the inclusive time interval [t, t + duration - 1] . If Teemo attacks again before the poison effect ends, the timer for it is reset , and the poison effect will end duration seconds after the new attack. \n \n You are given a non-decreasing integer array timeSeries , where timeSeries[i] denotes that Teemo attacks Ashe at second timeSeries[i] , and an integer duration . \n \n Return the total number of seconds that Ashe is poisoned . \n\n Example 1: \n \n```\nInput:\n timeSeries = [1,4], duration = 2\n\nOutput:\n 4\n\nExplanation:\n Teemo's attacks on Ashe go as follows:\n- At second 1, Teemo attacks, and Ashe is poisoned for seconds 1 and 2.\n- At second 4, Teemo attacks, and Ashe is poisoned for seconds 4 and 5.\nAshe is poisoned for seconds 1, 2, 4, and 5, which is 4 seconds in total.\n```\n\n Example 2: \n \n```\nInput:\n timeSeries = [1,2], duration = 2\n\nOutput:\n 3\n\nExplanation:\n Teemo's attacks on Ashe go as follows:\n- At second 1, Teemo attacks, and Ashe is poisoned for seconds 1 and 2.\n- At second 2 however, Teemo attacks again and resets the poison timer. Ashe is poisoned for seconds 2 and 3.\nAshe is poisoned for seconds 1, 2, and 3, which is 3 seconds in total.\n```\n\n Constraints: \n\n 1 <= timeSeries.length <= 10 4 \n \n 0 <= timeSeries[i], duration <= 10 7 \n \n timeSeries is sorted in non-decreasing order.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findPoisonedDuration(vector<int>& timeSeries, int duration) {\n        int total = 0;\n        for (int i = 0; i < timeSeries.size(); ++i) {\n            if (i == 0) total += duration;\n            else total += min(duration, timeSeries[i] - timeSeries[i - 1]);\n        }\n        return total;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610644093",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "2515",
+  "title": "Shortest Distance to Target String in a Circular Array",
+  "slug": "shortest-distance-to-target-string-in-a-circular-array",
+  "url": "https://leetcode.com/problems/shortest-distance-to-target-string-in-a-circular-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed circular string array words and a string target . A circular array means that the array's end connects to the array's beginning. \n\n Formally, the next element of words[i] is words[(i + 1) % n] and the previous element of words[i] is words[(i - 1 + n) % n] , where n is the length of words . \n\n Starting from startIndex , you can move to either the next word or the previous word with 1 step at a time. \n \n Return the shortest distance needed to reach the string target . If the string target does not exist in words , return -1 . \n\n Example 1: \n \n```\nInput:\n words = [\"hello\",\"i\",\"am\",\"leetcode\",\"hello\"], target = \"hello\", startIndex = 1\n\nOutput:\n 1\n\nExplanation:\n We start from index 1 and can reach \"hello\" by\n- moving 3 units to the right to reach index 4.\n- moving 2 units to the left to reach index 4.\n- moving 4 units to the right to reach index 0.\n- moving 1 unit to the left to reach index 0.\nThe shortest distance to reach \"hello\" is 1.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"a\",\"b\",\"leetcode\"], target = \"leetcode\", startIndex = 0\n\nOutput:\n 1\n\nExplanation:\n We start from index 0 and can reach \"leetcode\" by\n- moving 2 units to the right to reach index 2.\n- moving 1 unit to the left to reach index 2.\nThe shortest distance to reach \"leetcode\" is 1.\n```\n\n Example 3: \n \n```\nInput:\n words = [\"i\",\"eat\",\"leetcode\"], target = \"ate\", startIndex = 0\n\nOutput:\n -1\n\nExplanation:\n Since \"ate\" does not exist in \nwords\n, we return -1.\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length <= 100 \n \n words[i] and target consist of only lowercase English letters. \n \n 0 <= startIndex < words.length",
+  "code": "class Solution {\npublic:\n    int closestTarget(vector<string>& words, string target, int startIndex) {\n        int n = words.size(), ans = n + 1;\n        for (int i = 0; i < n; ++i) {\n            if (words[i] != target) continue;\n            int diff = abs(i - startIndex);\n            ans = min(ans, min(diff, n - diff));\n        }\n        return ans == n + 1 ? -1 : ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179664350",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

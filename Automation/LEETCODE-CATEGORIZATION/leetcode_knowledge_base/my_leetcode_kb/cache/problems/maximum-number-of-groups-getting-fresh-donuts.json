@@ -1,0 +1,38 @@
+{
+  "id": "1815",
+  "title": "Maximum Number of Groups Getting Fresh Donuts",
+  "slug": "maximum-number-of-groups-getting-fresh-donuts",
+  "url": "https://leetcode.com/problems/maximum-number-of-groups-getting-fresh-donuts/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Memoization",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "There is a donuts shop that bakes donuts in batches of batchSize . They have a rule where they must serve all of the donuts of a batch before serving any donuts of the next batch. You are given an integer batchSize and an integer array groups , where groups[i] denotes that there is a group of groups[i] customers that will visit the shop. Each customer will get exactly one donut. \n \n When a group visits the shop, all customers of the group must be served before serving any of the following groups. A group will be happy if they all get fresh donuts. That is, the first customer of the group does not receive a donut that was left over from the previous group. \n \n You can freely rearrange the ordering of the groups. Return the maximum possible number of happy groups after rearranging the groups. \n\n Example 1: \n \n```\nInput:\n batchSize = 3, groups = [1,2,3,4,5,6]\n\nOutput:\n 4\n\nExplanation:\n You can arrange the groups as [6,2,4,5,1,3]. Then the 1\nst\n, 2\nnd\n, 4\nth\n, and 6\nth\n groups will be happy.\n```\n\n Example 2: \n \n```\nInput:\n batchSize = 4, groups = [1,3,2,5,2,2,1,6]\n\nOutput:\n 4\n```\n\n Constraints: \n\n 1 <= batchSize <= 9 \n \n 1 <= groups.length <= 30 \n \n 1 <= groups[i] <= 10 9",
+  "code": "#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxHappyGroups(int batchSize, vector<int>& groups) {\n        vector<int> rem(batchSize, 0);\n        int res = 0;\n        for (int g : groups) {\n            int r = g % batchSize;\n            if (r == 0) res++;\n            else rem[r]++;\n        }\n\n        unordered_map<long long, int> memo;\n        function<int(int, vector<int>&)> dfs = [&](int prev, vector<int>& r) {\n            long long key = prev;\n            for (int i = 1; i < batchSize; ++i)\n                key = key * 31 + r[i];\n            if (memo.count(key)) return memo[key];\n\n            int ans = 0;\n            for (int i = 1; i < batchSize; ++i) {\n                if (r[i]) {\n                    r[i]--;\n                    ans = max(ans, (prev == 0) + dfs((prev + i) % batchSize, r));\n                    r[i]++;\n                }\n            }\n            return memo[key] = ans;\n        };\n\n        return res + dfs(0, rem);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610681235",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

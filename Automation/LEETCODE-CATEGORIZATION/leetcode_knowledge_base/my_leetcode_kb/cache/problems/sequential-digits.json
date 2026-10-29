@@ -1,0 +1,25 @@
+{
+  "id": "1291",
+  "title": "Sequential Digits",
+  "slug": "sequential-digits",
+  "url": "https://leetcode.com/problems/sequential-digits/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Enumeration"
+  ],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Queue",
+    "Vector"
+  ],
+  "description": "An integer has sequential digits if and only if each digit in the number is one more than the previous digit. \n \n Return a sorted list of all the integers in the range [low, high]  inclusive that have sequential digits. \n\n Example 1: \n \n```\nInput:\n low = 100, high = 300\n\nOutput:\n [123,234]\n```\n \n Example 2: \n \n```\nInput:\n low = 1000, high = 13000\n\nOutput:\n [1234,2345,3456,4567,5678,6789,12345]\n```\n\n Constraints: \n\n 10 <= low <= high <= 10^9",
+  "code": "#include <vector>\n#include <queue>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> sequentialDigits(int low, int high) {\n        queue<int> q;\n        for (int i = 1; i <= 9; ++i)\n            q.push(i);\n\n        vector<int> res;\n        while (!q.empty()) {\n            int num = q.front(); q.pop();\n            if (num >= low && num <= high) res.push_back(num);\n            if (num % 10 < 9) {\n                int next = num * 10 + (num % 10 + 1);\n                if (next <= high) q.push(next);\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595377881",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

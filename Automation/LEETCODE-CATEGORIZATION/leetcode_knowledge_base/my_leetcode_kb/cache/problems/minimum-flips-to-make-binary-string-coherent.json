@@ -1,0 +1,27 @@
+{
+  "id": "3922",
+  "title": "Minimum Flips to Make Binary String Coherent",
+  "slug": "minimum-flips-to-make-binary-string-coherent",
+  "url": "https://leetcode.com/problems/minimum-flips-to-make-binary-string-coherent/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a binary string s . \n \n A string is considered coherent if it does not contain \"011\" or \"110\" as subsequences . \n \n In one operation, you can flip any character in s ( '0' to '1' or '1' to '0' ). \n \n Return an integer denoting the minimum number of operations required to make s coherent. \n\n Example 1: \n\n Input: s = \"1010\" \n \n Output: 1 \n \n Explanation: \n \n Flip s[0] to get \"0010\" , which contains no \"011\" or \"110\" subsequences. \n\n Example 2: \n\n Input: s = \"0110\" \n \n Output: 1 \n \n Explanation: \n \n Flip s[1] to get \"0010\" , removing all forbidden subsequences \"011\" and \"110\" . \n\n Example 3: \n\n Input: s = \"1000\" \n \n Output: 0 \n \n Explanation: \n \n The string already has no \"011\" or \"110\" subsequences, so no flips are needed. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is either '0' or '1' .",
+  "code": "class Solution {\npublic:\n    int minFlips(string s) {\n        const int INF=1000000000;\n        vector<int> dp(16,INF); dp[0]=0;\n        for(char original:s){\n            vector<int> ndp(16,INF);\n            for(int mask=0;mask<16;++mask) if(dp[mask]!=INF){\n                for(int bit=0;bit<=1;++bit){\n                    if(bit==1 && (mask&4)) continue; // 01 + 1 -> 011\n                    if(bit==0 && (mask&8)) continue; // 11 + 0 -> 110\n                    int nxt=mask;\n                    if(bit==0) nxt|=1;\n                    else nxt|=2;\n                    if(bit==1 && (mask&1)) nxt|=4;\n                    if(bit==1 && (mask&2)) nxt|=8;\n                    ndp[nxt]=min(ndp[nxt],dp[mask]+(original-'0'!=bit));\n                }\n            }\n            dp.swap(ndp);\n        }\n        return *min_element(dp.begin(),dp.end());\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181085668",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

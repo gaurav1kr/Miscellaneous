@@ -1,0 +1,38 @@
+{
+  "id": "2099",
+  "title": "Find Subsequence of Length K With the Largest Sum",
+  "slug": "find-subsequence-of-length-k-with-the-largest-sum",
+  "url": "https://leetcode.com/problems/find-subsequence-of-length-k-with-the-largest-sum/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . You want to find a subsequence of nums of length k that has the largest sum. \n \n Return any such subsequence as an integer array of length k . \n \n A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements. \n\n Example 1: \n \n```\nInput:\n nums = [2,1,3,3], k = 2\n\nOutput:\n [3,3]\n\nExplanation:\n\nThe subsequence has the largest sum of 3 + 3 = 6.\n```\n\n Example 2: \n \n```\nInput:\n nums = [-1,-2,3,4], k = 3\n\nOutput:\n [-1,3,4]\n\nExplanation:\n \nThe subsequence has the largest sum of -1 + 3 + 4 = 6.\n```\n\n Example 3: \n \n```\nInput:\n nums = [3,4,3,3], k = 2\n\nOutput:\n [3,4]\n\nExplanation:\n\nThe subsequence has the largest sum of 3 + 4 = 7. \nAnother possible subsequence is [4, 3].\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n -10 5  <= nums[i] <= 10 5 \n \n 1 <= k <= nums.length",
+  "code": "#include <vector>\n#include <queue>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> maxSubsequence(vector<int>& nums, int k) {\n        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;\n        for (int i = 0; i < nums.size(); ++i) {\n            pq.push({nums[i], i});\n            if (pq.size() > k) pq.pop();\n        }\n\n        vector<pair<int, int>> top(pq.size());\n        int idx = 0;\n        while (!pq.empty()) {\n            top[idx++] = pq.top();\n            pq.pop();\n        }\n\n        sort(top.begin(), top.end(), [](auto& a, auto& b) {\n            return a.second < b.second;\n        });\n\n        vector<int> res;\n        for (auto& [val, i] : top) res.push_back(val);\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610670849",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

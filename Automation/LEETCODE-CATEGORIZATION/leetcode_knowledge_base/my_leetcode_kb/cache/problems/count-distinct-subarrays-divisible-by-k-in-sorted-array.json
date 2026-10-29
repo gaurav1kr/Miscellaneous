@@ -1,0 +1,35 @@
+{
+  "id": "3729",
+  "title": "Count Distinct Subarrays Divisible by K in Sorted Array",
+  "slug": "count-distinct-subarrays-divisible-by-k-in-sorted-array",
+  "url": "https://leetcode.com/problems/count-distinct-subarrays-divisible-by-k-in-sorted-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums sorted in non-descending order and a positive integer k . \n \n A subarray of nums is good if the sum of its elements is divisible by k . \n \n Return an integer denoting the number of distinct good subarrays of nums . \n \n Subarrays are distinct if their sequences of values are. For example, there are 3 distinct subarrays in [1, 1, 1] , namely [1] , [1, 1] , and [1, 1, 1] . \n\n Example 1: \n\n Input: nums = [1,2,3], k = 3 \n \n Output: 3 \n \n Explanation: \n \n The good subarrays are [1, 2] , [3] , and [1, 2, 3] . For example, [1, 2, 3] is good because the sum of its elements is 1 + 2 + 3 = 6 , and 6 % k = 6 % 3 = 0 . \n\n Example 2: \n\n Input: nums = [2,2,2,2,2,2], k = 6 \n \n Output: 2 \n \n Explanation: \n \n The good subarrays are [2, 2, 2] and [2, 2, 2, 2, 2, 2] . For example, [2, 2, 2] is good because the sum of its elements is 2 + 2 + 2 = 6 , and 6 % k = 6 % 6 = 0 . \n \n Note that [2, 2, 2] is counted only once. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n nums is sorted in non-descending order. \n \n 1 <= k <= 10 9",
+  "code": "class Solution {\nstatic long long gcdll(long long a,long long b){while(b){long long t=a%b;a=b;b=t;}return a;}\npublic:\n    long long numGoodSubarrays(vector<int>& nums,int k){\n        unordered_map<long long,long long> freq;freq.reserve(nums.size()*2+1);freq[0]=1;\n        long long pref=0,ans=0;\n        for(int x:nums){pref=(pref+x)%k;ans+=freq[pref]++;}\n        int n=nums.size();\n        for(int i=0;i<n;){int j=i;while(j<n&&nums[j]==nums[i])++j;long long len=j-i;\n            long long step=k/gcdll(k,nums[i]);\n            for(long long t=step;t<=len;t+=step)ans-=len-t;\n            i=j;\n        }return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181144134",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

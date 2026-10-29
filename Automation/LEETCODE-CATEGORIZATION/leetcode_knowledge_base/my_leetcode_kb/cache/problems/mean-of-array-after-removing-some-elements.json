@@ -1,0 +1,30 @@
+{
+  "id": "1619",
+  "title": "Mean of Array After Removing Some Elements",
+  "slug": "mean-of-array-after-removing-some-elements",
+  "url": "https://leetcode.com/problems/mean-of-array-after-removing-some-elements/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array arr , return the mean of the remaining integers after removing the smallest 5% and the largest 5% of the elements. \n \n Answers within 10 -5 of the actual answer will be considered accepted. \n\n Example 1: \n \n```\nInput:\n arr = [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3]\n\nOutput:\n 2.00000\n\nExplanation:\n After erasing the minimum and the maximum values of this array, all elements are equal to 2, so the mean is 2.\n```\n\n Example 2: \n \n```\nInput:\n arr = [6,2,7,5,1,2,0,3,10,2,5,0,5,5,0,8,7,6,8,0]\n\nOutput:\n 4.00000\n```\n\n Example 3: \n \n```\nInput:\n arr = [6,0,7,0,7,5,7,8,3,4,0,7,8,1,6,8,1,1,2,4,8,1,9,5,4,3,8,5,10,8,6,6,1,0,6,10,8,2,3,4]\n\nOutput:\n 4.77778\n```\n\n Constraints: \n\n 20 <= arr.length <= 1000 \n \n arr.length is a multiple of 20 . \n \n 0 <= arr[i] <= 10 5",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    double trimMean(vector<int>& arr) {\n        sort(arr.begin(), arr.end());\n        int n = arr.size(), k = n / 20;\n        double sum = 0;\n        for (int i = k; i < n - k; ++i) sum += arr[i];\n        return sum / (n - 2 * k);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610660992",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

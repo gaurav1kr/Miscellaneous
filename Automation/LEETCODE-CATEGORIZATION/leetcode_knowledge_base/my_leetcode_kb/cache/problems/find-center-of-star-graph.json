@@ -1,0 +1,27 @@
+{
+  "id": "1791",
+  "title": "Find Center of Star Graph",
+  "slug": "find-center-of-star-graph",
+  "url": "https://leetcode.com/problems/find-center-of-star-graph/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "There is an undirected star graph consisting of n nodes labeled from 1 to n . A star graph is a graph where there is one center node and exactly n - 1 edges that connect the center node with every other node. \n \n You are given a 2D integer array edges where each edges[i] = [u i , v i ] indicates that there is an edge between the nodes u i and v i . Return the center of the given star graph. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/24/star_graph.png] \n \n```\nInput:\n edges = [[1,2],[2,3],[4,2]]\n\nOutput:\n 2\n\nExplanation:\n As shown in the figure above, node 2 is connected to every other node, so 2 is the center.\n```\n\n Example 2: \n \n```\nInput:\n edges = [[1,2],[5,1],[1,3],[1,4]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 3 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i].length == 2 \n \n 1 <= u i, v i <= n \n \n u i != v i \n \n The given edges represent a valid star graph.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findCenter(vector<vector<int>>& edges) {\n        return edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1]\n            ? edges[0][0] : edges[0][1];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1599288037",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

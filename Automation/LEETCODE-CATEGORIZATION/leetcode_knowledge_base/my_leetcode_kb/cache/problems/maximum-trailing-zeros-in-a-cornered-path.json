@@ -1,0 +1,32 @@
+{
+  "id": "2245",
+  "title": "Maximum Trailing Zeros in a Cornered Path",
+  "slug": "maximum-trailing-zeros-in-a-cornered-path",
+  "url": "https://leetcode.com/problems/maximum-trailing-zeros-in-a-cornered-path/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array grid of size m x n , where each cell contains a positive integer. \n \n A cornered path is defined as a set of adjacent cells with at most one turn. More specifically, the path should exclusively move either horizontally or vertically up to the turn (if there is one), without returning to a previously visited cell. After the turn, the path will then move exclusively in the alternate direction: move vertically if it moved horizontally, and vice versa, also without returning to a previously visited cell. \n \n The product of a path is defined as the product of all the values in the path. \n \n Return the maximum number of trailing zeros in the product of a cornered path found in grid . \n \n Note: \n\n Horizontal movement means moving in either the left or right direction. \n \n Vertical movement means moving in either the up or down direction. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/03/23/ex1new2.jpg] \n \n```\nInput:\n grid = [[23,17,15,3,20],[8,1,20,27,11],[9,4,6,2,21],[40,9,1,10,6],[22,7,4,5,3]]\n\nOutput:\n 3\n\nExplanation:\n The grid on the left shows a valid cornered path.\nIt has a product of 15 * 20 * 6 * 1 * 10 = 18000 which has 3 trailing zeros.\nIt can be shown that this is the maximum trailing zeros in the product of a cornered path.\n\nThe grid in the middle is not a cornered path as it has more than one turn.\nThe grid on the right is not a cornered path as it requires a return to a previously visited cell.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/03/25/ex2.jpg] \n \n```\nInput:\n grid = [[4,3,2],[7,6,1],[8,8,8]]\n\nOutput:\n 0\n\nExplanation:\n The grid is shown in the figure above.\nThere are no cornered paths in the grid that result in a product with a trailing zero.\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 10 5 \n \n 1 <= m * n <= 10 5 \n \n 1 <= grid[i][j] <= 1000",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public: int maxTrailingZeros(vector<vector<int>>& grid){int m=grid.size(),n=grid[0].size();vector<vector<int>> a(m,vector<int>(n)),b=a;for(int i=0;i<m;++i)for(int j=0;j<n;++j){int x=grid[i][j];while(x%2==0){++a[i][j];x/=2;}while(x%5==0){++b[i][j];x/=5;}}vector<vector<int>> r2(m,vector<int>(n+1)),r5=r2,c2(m+1,vector<int>(n)),c5=c2;for(int i=0;i<m;++i)for(int j=0;j<n;++j){r2[i][j+1]=r2[i][j]+a[i][j];r5[i][j+1]=r5[i][j]+b[i][j];c2[i+1][j]=c2[i][j]+a[i][j];c5[i+1][j]=c5[i][j]+b[i][j];}int ans=0;for(int i=0;i<m;++i)for(int j=0;j<n;++j){int L2=r2[i][j],R2=r2[i][n]-r2[i][j+1],U2=c2[i][j],D2=c2[m][j]-c2[i+1][j];int L5=r5[i][j],R5=r5[i][n]-r5[i][j+1],U5=c5[i][j],D5=c5[m][j]-c5[i+1][j];for(auto x:vector<pair<int,int>>{{L2,L5},{R2,R5}})for(auto y:vector<pair<int,int>>{{U2,U5},{D2,D5}})ans=max(ans,min(x.first+y.first+a[i][j],x.second+y.second+b[i][j]));}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175895993",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

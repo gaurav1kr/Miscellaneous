@@ -1,0 +1,35 @@
+{
+  "id": "1586",
+  "title": "Binary Search Tree Iterator II",
+  "slug": "binary-search-tree-iterator-ii",
+  "url": "https://leetcode.com/problems/binary-search-tree-iterator-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Stack",
+    "Tree",
+    "Design",
+    "Binary Search Tree",
+    "Binary Tree",
+    "Iterator"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Stack",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Implement the BSTIterator class that represents an iterator over the in-order traversal of a binary search tree (BST): \n\n BSTIterator(TreeNode root) Initializes an object of the BSTIterator class. The root of the BST is given as part of the constructor. The pointer should be initialized to a non-existent number smaller than any element in the BST. \n \n boolean hasNext() Returns true if there exists a number in the traversal to the right of the pointer, otherwise returns false . \n \n int next() Moves the pointer to the right, then returns the number at the pointer. \n \n boolean hasPrev() Returns true if there exists a number in the traversal to the left of the pointer, otherwise returns false . \n \n int prev() Moves the pointer to the left, then returns the number at the pointer. \n\n Notice that by initializing the pointer to a non-existent smallest number, the first call to next() will return the smallest element in the BST. \n \n You may assume that next() and prev() calls will always be valid. That is, there will be at least a next/previous number in the in-order traversal when next() / prev() is called. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/09/14/untitled-diagram-1.png] \n \n```\nInput\n\n[\"BSTIterator\", \"next\", \"next\", \"prev\", \"next\", \"hasNext\", \"next\", \"next\", \"next\", \"hasNext\", \"hasPrev\", \"prev\", \"prev\"]\n[[[7, 3, 15, null, null, 9, 20]], [null], [null], [null], [null], [null], [null], [null], [null], [null], [null], [null], [null]]\n\nOutput\n\n[null, 3, 7, 3, 7, true, 9, 15, 20, false, true, 15, 9]\n\nExplanation\n\n// The underlined element is where the pointer currently is.\nBSTIterator bSTIterator = new BSTIterator([7, 3, 15, null, null, 9, 20]); // state is \n \n [3, 7, 9, 15, 20]\nbSTIterator.next(); // state becomes [\n3\n, 7, 9, 15, 20], return 3\nbSTIterator.next(); // state becomes [3, \n7\n, 9, 15, 20], return 7\nbSTIterator.prev(); // state becomes [\n3\n, 7, 9, 15, 20], return 3\nbSTIterator.next(); // state becomes [3, \n7\n, 9, 15, 20], return 7\nbSTIterator.hasNext(); // return true\nbSTIterator.next(); // state becomes [3, 7, \n9\n, 15, 20], return 9\nbSTIterator.next(); // state becomes [3, 7, 9, \n15\n, 20], return 15\nbSTIterator.next(); // state becomes [3, 7, 9, 15, \n20\n], return 20\nbSTIterator.hasNext(); // return false\nbSTIterator.hasPrev(); // return true\nbSTIterator.prev(); // state becomes [3, 7, 9, \n15\n, 20], return 15\nbSTIterator.prev(); // state becomes [3, 7, \n9\n, 15, 20], return 9\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 5 ] . \n \n 0 <= Node.val <= 10 6 \n \n At most 10 5 calls will be made to hasNext , next , hasPrev , and prev . \n\n Follow up: Could you solve the problem without precalculating the values of the tree?",
+  "code": "class BSTIterator {\n    stack<TreeNode*> pending;\n    vector<int> history;\n    int index = -1;\n\n    void pushLeft(TreeNode* node) {\n        while (node) {\n            pending.push(node);\n            node = node->left;\n        }\n    }\n\npublic:\n    BSTIterator(TreeNode* root) { pushLeft(root); }\n\n    bool hasNext() { return index + 1 < static_cast<int>(history.size()) || !pending.empty(); }\n    int next() {\n        if (index + 1 < static_cast<int>(history.size())) return history[++index];\n        TreeNode* node = pending.top();\n        pending.pop();\n        pushLeft(node->right);\n        history.push_back(node->val);\n        ++index;\n        return node->val;\n    }\n    bool hasPrev() { return index > 0; }\n    int prev() { return history[--index]; }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178591839",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

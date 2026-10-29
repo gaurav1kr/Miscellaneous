@@ -1,0 +1,25 @@
+{
+  "id": "60",
+  "title": "Permutation Sequence",
+  "slug": "permutation-sequence",
+  "url": "https://leetcode.com/problems/permutation-sequence/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Recursion"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "The set [1, 2, 3, ..., n] contains a total of n! unique permutations. \n \n By listing and labeling all of the permutations in order, we get the following sequence for n = 3 : \n\n \"123\" \n \n \"132\" \n \n \"213\" \n \n \"231\" \n \n \"312\" \n \n \"321\" \n\n Given n and k , return the k th permutation sequence. \n\n Example 1: \n \n```\nInput:\n n = 3, k = 3\n\nOutput:\n \"213\"\n```\n \n Example 2: \n \n```\nInput:\n n = 4, k = 9\n\nOutput:\n \"2314\"\n```\n \n Example 3: \n \n```\nInput:\n n = 3, k = 1\n\nOutput:\n \"123\"\n```\n\n Constraints: \n\n 1 <= n <= 9 \n \n 1 <= k <= n!",
+  "code": "class Solution \n{\npublic:\n    string getPermutation(int n, int k) \n\t{\n        string res;\n        string nums = \"123456789\";\n        int f[10] = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};\n        --k;\n        for (int i = n; i >= 1; --i) \n\t\t{\n            int j = k / f[i - 1];\n            k %= f[i - 1];\n            res.push_back(nums[j]);\n            nums.erase(nums.begin() + j);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1508562665",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

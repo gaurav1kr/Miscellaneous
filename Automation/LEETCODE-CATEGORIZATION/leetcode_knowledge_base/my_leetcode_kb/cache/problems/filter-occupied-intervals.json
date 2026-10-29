@@ -1,0 +1,30 @@
+{
+  "id": "3975",
+  "title": "Filter Occupied Intervals",
+  "slug": "filter-occupied-intervals",
+  "url": "https://leetcode.com/problems/filter-occupied-intervals/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 2D integer array occupiedIntervals , where occupiedIntervals[i] = [start i , end i ] represents a time interval during which you are occupied. Each interval starts at start i and ends at end i , inclusive . These intervals may overlap . \n \n You are also given two integers freeStart and freeEnd , which define a free time interval from freeStart to freeEnd , inclusive. \n \n Your task is to merge all occupied intervals that overlap or touch, then remove all integer points in the free interval from the merged occupied intervals. \n \n Two intervals touch if the second interval starts immediately after the first one ends. For example, [1, 1] and [2, 2] touch and should be merged into [1, 2] . \n \n Return the remaining occupied intervals in sorted order. The returned intervals must be non-overlapping and must contain the minimum number of intervals possible. If there are no remaining occupied points, return an empty list. \n\n Example 1: \n\n Input: occupiedIntervals = [[2,6],[4,8],[10,10],[10,12],[14,16]], freeStart = 7, freeEnd = 11 \n \n Output: [[2,6],[12,12],[14,16]] \n \n Explanation: \n\n After merging, the occupied intervals are [2, 8] , [10, 12] , and [14, 16] . \n \n Excluding the free interval [7, 11] results in [2, 6] , [12, 12] , and [14, 16] . \n\n Example 2: \n\n Input: occupiedIntervals = [[1,5],[2,3]], freeStart = 3, freeEnd = 8 \n \n Output: [[1,2]] \n \n Explanation: \n\n After merging, the occupied interval is [1, 5] . \n \n Excluding the free interval [3, 8] results in [1, 2] . \n\n Constraints: \n\n 1 <= occupiedIntervals.length <= 5 * 10 4 \n \n occupiedIntervals[i].length == 2 \n \n 1 <= start i <= end i <= 10 9 \n \n 1 <= freeStart <= freeEnd <= 10 9",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> filterOccupiedIntervals(vector<vector<int>>& occupiedIntervals,\n                                                 int freeStart,int freeEnd) {\n        sort(occupiedIntervals.begin(),occupiedIntervals.end());\n        vector<vector<int>> merged,ans;\n        for(const auto& v:occupiedIntervals){\n            if(merged.empty() || (long long)v[0]>1LL+merged.back()[1])\n                merged.push_back(v);\n            else merged.back()[1]=max(merged.back()[1],v[1]);\n        }\n        for(const auto& v:merged){\n            int l=v[0],r=v[1];\n            if(l<freeStart)ans.push_back({l,min(r,freeStart-1)});\n            if(r>freeEnd)ans.push_back({max(l,freeEnd+1),r});\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181101609",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

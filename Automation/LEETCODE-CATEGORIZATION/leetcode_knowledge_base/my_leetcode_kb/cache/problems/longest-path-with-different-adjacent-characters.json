@@ -1,0 +1,38 @@
+{
+  "id": "2246",
+  "title": "Longest Path With Different Adjacent Characters",
+  "slug": "longest-path-with-different-adjacent-characters",
+  "url": "https://leetcode.com/problems/longest-path-with-different-adjacent-characters/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Tree",
+    "Depth-First Search",
+    "Graph Theory",
+    "Topological Sort"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "String",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a tree (i.e. a connected, undirected graph that has no cycles) rooted at node 0 consisting of n nodes numbered from 0 to n - 1 . The tree is represented by a 0-indexed array parent of size n , where parent[i] is the parent of node i . Since node 0 is the root, parent[0] == -1 . \n \n You are also given a string s of length n , where s[i] is the character assigned to node i . \n \n Return the length of the longest path in the tree such that no pair of adjacent nodes on the path have the same character assigned to them. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/03/25/testingdrawio.png] \n \n```\nInput:\n parent = [-1,0,0,1,1,2], s = \"abacbe\"\n\nOutput:\n 3\n\nExplanation:\n The longest path where each two adjacent nodes have different characters in the tree is the path: 0 -> 1 -> 3. The length of this path is 3, so 3 is returned.\nIt can be proven that there is no longer path that satisfies the conditions.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/03/25/graph2drawio.png] \n \n```\nInput:\n parent = [-1,0,0,0], s = \"aabc\"\n\nOutput:\n 3\n\nExplanation:\n The longest path where each two adjacent nodes have different characters is the path: 2 -> 0 -> 3. The length of this path is 3, so 3 is returned.\n```\n\n Constraints: \n\n n == parent.length == s.length \n \n 1 <= n <= 10 5 \n \n 0 <= parent[i] <= n - 1 for all i >= 1 \n \n parent[0] == -1 \n \n parent represents a valid tree. \n \n s consists of only lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {int ans=1;vector<vector<int>> g;string s;int dfs(int u){int a=0,b=0;for(int v:g[u]){int d=dfs(v);if(s[u]==s[v])continue;if(d>a){b=a;a=d;}else b=max(b,d);}ans=max(ans,1+a+b);return a+1;}public:int longestPath(vector<int>& parent,string str){s=str;g.assign(parent.size(),{});for(int i=1;i<(int)parent.size();++i)g[parent[i]].push_back(i);dfs(0);return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175896297",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

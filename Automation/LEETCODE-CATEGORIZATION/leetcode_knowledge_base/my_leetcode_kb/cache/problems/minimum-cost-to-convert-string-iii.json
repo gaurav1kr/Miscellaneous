@@ -1,0 +1,33 @@
+{
+  "id": "3995",
+  "title": "Minimum Cost to Convert String III",
+  "slug": "minimum-cost-to-convert-string-iii",
+  "url": "https://leetcode.com/problems/minimum-cost-to-convert-string-iii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two strings, source and target . \n \n You are also given a 2D string array rules , where rules[i] = [pattern i , replacement i ] , and an integer array costs , where costs[i] is the base cost of applying rules[i] . Both arrays have the same length. Additionally, pattern i and replacement i have the same length. \n \n You may apply any rule any number of times. Each rule application works as follows: \n\n Choose an index l such that the range of positions from l to l + pattern i .length - 1 exists in the current string and none of these positions has been used in a previous rule application. \n \n For each index j , the character pattern i [j] must either be equal to the current character at position l + j , or be '*' . \n \n Replace the characters in this range with replacement i . The replacement is used exactly as given and does not contain wildcards. \n \n The cost of this rule application is costs[i] plus the number of '*' characters in pattern i . \n \n Once a character position has been used in a rule application, it cannot be used in any later rule application. \n\n Since every pattern i and replacement i have the same length, character positions are preserved after every rule application. \n \n Return the minimum total cost required to transform source into target . If it is impossible, return -1. \n\n Example 1: \n\n Input: source = \"hello\", target = \"world\", rules = [[\"he\",\"wo\"],[\"llo\",\"rld\"]], costs = [3,4] \n \n Output: 7 \n \n Explanation: \n\n Apply rules[0] to replace \"he\" with \"wo\" at cost 3, so the string becomes \"wollo\" . \n \n Apply rules[1] to replace \"llo\" with \"rld\" at cost 4, so the string becomes \"world\" . \n \n The total cost is 3 + 4 = 7 . \n\n Example 2: \n\n Input: source = \"cat\", target = \"dog\", rules = [[\"c*t\",\"dog\"]], costs = [2] \n \n Output: 3 \n \n Explanation: \n\n Apply rules[0] to replace \"cat\" with \"dog\" . The wildcard '*' matches 'a' , adding 1 to the base cost 2. \n \n The total cost is 2 + 1 = 3 . \n\n Example 3: \n\n Input: source = \"test\", target = \"next\", rules = [[\"*e*t\",\"next\"]], costs = [4] \n \n Output: 6 \n \n Explanation: \n\n Apply rules[0] to replace \"test\" with \"next\" . The first wildcard matches 't' and the second wildcard matches 's' , adding 2 to the base cost 4. \n \n The total cost is 4 + 2 = 6 . \n\n Example 4: \n\n Input: source = \"ab\", target = \"bc\", rules = [[\"a*\",\"bd\"]], costs = [9] \n \n Output: -1 \n \n Explanation: \n \n No sequence of rule applications can transform source into target , so the answer is -1. \n\n Constraints: \n\n 1 <= source.length == target.length <= 5000 \n \n source and target consist of lowercase English letters. \n \n 1 <= rules.length == costs.length <= 200 \n \n rules[i] = [pattern i , replacement i ] \n \n 1 <= pattern i .length == replacement i .length <= 20 \n \n pattern i contains at least one lowercase English letter and at most 5 '*' characters. \n \n replacement i contains only lowercase English letters. \n \n 1 <= costs[i] <= 1000",
+  "code": "class Solution {\npublic:\n    int minCost(string source, string target,\n                vector<vector<string>>& rules,\n                vector<int>& costs) {\n\n        int n = source.size(), m = rules.size();\n        const long long INF = 1e18;\n\n        vector<long long> dp(n + 1, INF);\n        dp[0] = 0;\n\n        for (int i = 0; i < n; ++i) {\n            if (dp[i] == INF) continue;\n\n            // No operation needed at this position\n            if (source[i] == target[i])\n                dp[i + 1] = min(dp[i + 1], dp[i]);\n\n            // Try every rule starting at i\n            for (int j = 0; j < m; ++j) {\n                string &p = rules[j][0];\n                string &r = rules[j][1];\n\n                int len = p.size();\n                if (i + len > n) continue;\n\n                bool ok = true;\n                int cost = costs[j];\n\n                for (int k = 0; k < len; ++k) {\n\n                    // Replacement must exactly match target\n                    if (r[k] != target[i + k]) {\n                        ok = false;\n                        break;\n                    }\n\n                    // Pattern must match source\n                    if (p[k] == '*')\n                        ++cost;\n                    else if (p[k] != source[i + k]) {\n                        ok = false;\n                        break;\n                    }\n                }\n\n                if (ok)\n                    dp[i + len] =\n                        min(dp[i + len],\n                            dp[i] + cost);\n            }\n        }\n\n        return dp[n] == INF ? -1 : (int)dp[n];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163779815",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "3719",
+  "title": "Longest Balanced Subarray I",
+  "slug": "longest-balanced-subarray-i",
+  "url": "https://leetcode.com/problems/longest-balanced-subarray-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Divide and Conquer",
+    "Segment Tree",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Prefix-sum array",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n A subarray is called balanced if the number of distinct even numbers in the subarray is equal to the number of distinct odd numbers. \n \n Return the length of the longest balanced subarray. \n\n Example 1: \n\n Input: nums = [2,5,4,3] \n \n Output: 4 \n \n Explanation: \n\n The longest balanced subarray is [2, 5, 4, 3] . \n \n It has 2 distinct even numbers [2, 4] and 2 distinct odd numbers [5, 3] . Thus, the answer is 4. \n\n Example 2: \n\n Input: nums = [3,2,2,5,4] \n \n Output: 5 \n \n Explanation: \n\n The longest balanced subarray is [3, 2, 2, 5, 4] . \n \n It has 2 distinct even numbers [2, 4] and 2 distinct odd numbers [3, 5] . Thus, the answer is 5. \n\n Example 3: \n\n Input: nums = [1,2,3,2] \n \n Output: 3 \n \n Explanation: \n\n The longest balanced subarray is [2, 3, 2] . \n \n It has 1 distinct even number [2] and 1 distinct odd number [3] . Thus, the answer is 3. \n\n Constraints: \n\n 1 <= nums.length <= 1500 \n \n 1 <= nums[i] <= 10 5",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int longestBalanced(vector<int>& nums) {\n        int n = nums.size(), ans = 0;\n        for (int l = 0; l < n; ++l) {\n            unordered_set<int> seen;\n            int balance = 0;\n            for (int r = l; r < n; ++r) {\n                if (seen.insert(nums[r]).second)\n                    balance += (nums[r] % 2 == 0 ? 1 : -1);\n                if (balance == 0) ans = max(ans, r - l + 1);\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180999584",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

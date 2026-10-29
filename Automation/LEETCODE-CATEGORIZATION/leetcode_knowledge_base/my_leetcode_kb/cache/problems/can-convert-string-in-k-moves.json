@@ -1,0 +1,30 @@
+{
+  "id": "1540",
+  "title": "Can Convert String in K Moves",
+  "slug": "can-convert-string-in-k-moves",
+  "url": "https://leetcode.com/problems/can-convert-string-in-k-moves/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "String",
+    "Vector"
+  ],
+  "description": "Given two strings  s  and  t , your goal is to convert  s  into  t  in  k   moves or less. \n \n During the  i th  ( 1 <= i <= k )  move you can: \n\n Choose any index  j  (1-indexed) from  s , such that  1 <= j <= s.length  and j  has not been chosen in any previous move, and shift the character at that index  i  times. \n \n Do nothing. \n\n Shifting a character means replacing it by the next letter in the alphabet (wrapping around so that  'z'  becomes  'a' ). Shifting a character by  i  means applying the shift operations  i  times. \n \n Remember that any index  j  can be picked at most once. \n \n Return  true  if it's possible to convert  s  into  t  in no more than  k  moves, otherwise return  false . \n\n Example 1: \n \n```\nInput:\n s = \"input\", t = \"ouput\", k = 9\n\nOutput:\n true\n\nExplanation: \nIn the 6th move, we shift 'i' 6 times to get 'o'. And in the 7th move we shift 'n' to get 'u'.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abc\", t = \"bcd\", k = 10\n\nOutput:\n false\n\nExplanation: \nWe need to shift each character in s one time to convert it into t. We can shift 'a' to 'b' during the 1st move. However, there is no way to shift the other characters in the remaining moves to obtain t from s.\n```\n\n Example 3: \n \n```\nInput:\n s = \"aab\", t = \"bbb\", k = 27\n\nOutput:\n true\n\nExplanation: \nIn the 1st move, we shift the first 'a' 1 time to get 'b'. In the 27th move, we shift the second 'a' 27 times to get 'b'.\n```\n\n Constraints: \n\n 1 <= s.length, t.length <= 10^5 \n \n 0 <= k <= 10^9 \n \n s , t contain only lowercase English letters.",
+  "code": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool canConvertString(string s, string t, int k) {\n        if (s.size() != t.size()) return false;\n        vector<int> count(26, 0);\n        for (int i = 0; i < s.size(); ++i) {\n            int diff = (t[i] - s[i] + 26) % 26;\n            if (diff != 0) {\n                int time = diff + 26 * count[diff]++;\n                if (time > k) return false;\n            }\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610640440",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

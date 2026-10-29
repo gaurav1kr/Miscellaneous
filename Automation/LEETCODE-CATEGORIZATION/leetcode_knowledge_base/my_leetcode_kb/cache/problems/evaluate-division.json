@@ -1,0 +1,44 @@
+{
+  "id": "399",
+  "title": "Evaluate Division",
+  "slug": "evaluate-division",
+  "url": "https://leetcode.com/problems/evaluate-division/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory",
+    "Shortest Path",
+    "Bellman–Ford Algorithm",
+    "Floyd–Warshall Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Hash map",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of variable pairs equations and an array of real numbers values , where equations[i] = [A i , B i ] and values[i] represent the equation A i / B i = values[i] . Each A i or B i is a string that represents a single variable. \n \n You are also given some queries , where queries[j] = [C j , D j ] represents the j th query where you must find the answer for C j / D j = ? . \n \n Return the answers to all queries . If a single answer cannot be determined, return -1.0 . \n \n Note: The input is always valid. You may assume that evaluating the queries will not result in division by zero and that there is no contradiction. \n \n Note:  The variables that do not occur in the list of equations are undefined, so the answer cannot be determined for them. \n\n Example 1: \n \n```\nInput:\n equations = [[\"a\",\"b\"],[\"b\",\"c\"]], values = [2.0,3.0], queries = [[\"a\",\"c\"],[\"b\",\"a\"],[\"a\",\"e\"],[\"a\",\"a\"],[\"x\",\"x\"]]\n\nOutput:\n [6.00000,0.50000,-1.00000,1.00000,-1.00000]\n\nExplanation:\n \nGiven: \na / b = 2.0\n, \nb / c = 3.0\n\nqueries are: \na / c = ?\n, \nb / a = ?\n, \na / e = ?\n, \na / a = ?\n, \nx / x = ? \n\nreturn: [6.0, 0.5, -1.0, 1.0, -1.0 ]\nnote: x is undefined => -1.0\n```\n\n Example 2: \n \n```\nInput:\n equations = [[\"a\",\"b\"],[\"b\",\"c\"],[\"bc\",\"cd\"]], values = [1.5,2.5,5.0], queries = [[\"a\",\"c\"],[\"c\",\"b\"],[\"bc\",\"cd\"],[\"cd\",\"bc\"]]\n\nOutput:\n [3.75000,0.40000,5.00000,0.20000]\n```\n\n Example 3: \n \n```\nInput:\n equations = [[\"a\",\"b\"]], values = [0.5], queries = [[\"a\",\"b\"],[\"b\",\"a\"],[\"a\",\"c\"],[\"x\",\"y\"]]\n\nOutput:\n [0.50000,2.00000,-1.00000,-1.00000]\n```\n\n Constraints: \n\n 1 <= equations.length <= 20 \n \n equations[i].length == 2 \n \n 1 <= A i .length, B i .length <= 5 \n \n values.length == equations.length \n \n 0.0 < values[i] <= 20.0 \n \n 1 <= queries.length <= 20 \n \n queries[i].length == 2 \n \n 1 <= C j .length, D j .length <= 5 \n \n A i , B i , C j , D j consist of lower case English letters and digits.",
+  "code": "class Solution {\nprivate:\n    double dfs(const string& start, const string& end, unordered_set<string>& visited, unordered_map<string, unordered_map<string, double>>& graph) {\n        if (graph[start].count(end)) return graph[start][end];\n        visited.insert(start);\n\n        for (const auto& [neighbor, weight] : graph[start]) {\n            if (!visited.count(neighbor)) {\n                double result = dfs(neighbor, end, visited, graph);\n                if (result != -1.0) {\n                    return result * weight;\n                }\n            }\n        }\n\n        return -1.0;\n    }\n\npublic:\n    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries) {\n        unordered_map<string, unordered_map<string, double>> graph;\n\n        // Build the graph\n        for (int i = 0; i < equations.size(); ++i) {\n            const string& a = equations[i][0];\n            const string& b = equations[i][1];\n            double value = values[i];\n            graph[a][b] = value;\n            graph[b][a] = 1.0 / value;\n        }\n\n        // Process each query\n        vector<double> results;\n        for (const auto& query : queries) {\n            const string& start = query[0];\n            const string& end = query[1];\n\n            if (!graph.count(start) || !graph.count(end)) {\n                results.push_back(-1.0);\n            } else if (start == end) {\n                results.push_back(1.0);\n            } else {\n                unordered_set<string> visited;\n                results.push_back(dfs(start, end, visited, graph));\n            }\n        }\n\n        return results;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1538711728",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

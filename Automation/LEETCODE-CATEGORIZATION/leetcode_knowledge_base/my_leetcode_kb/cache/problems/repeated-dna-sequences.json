@@ -1,0 +1,40 @@
+{
+  "id": "187",
+  "title": "Repeated DNA Sequences",
+  "slug": "repeated-dna-sequences",
+  "url": "https://leetcode.com/problems/repeated-dna-sequences/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Bit Manipulation",
+    "Sliding Window",
+    "Rolling Hash",
+    "Hash Function",
+    "Z Algorithm",
+    "Boyer–Moore String-Search Algorithm"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "The DNA sequence is composed of a series of nucleotides abbreviated as 'A' , 'C' , 'G' , and 'T' . \n\n For example, \"ACGAATTCCG\" is a DNA sequence . \n\n When studying DNA , it is useful to identify repeated sequences within the DNA. \n \n Given a string s that represents a DNA sequence , return all the 10 -letter-long sequences (substrings) that occur more than once in a DNA molecule. You may return the answer in any order . \n\n Example 1: \n \n```\nInput:\n s = \"AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT\"\n\nOutput:\n [\"AAAAACCCCC\",\"CCCCCAAAAA\"]\n```\n \n Example 2: \n \n```\nInput:\n s = \"AAAAAAAAAAAAA\"\n\nOutput:\n [\"AAAAAAAAAA\"]\n```\n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s[i] is either 'A' , 'C' , 'G' , or 'T' .",
+  "code": "class Solution \n{\npublic:\n    vector<string> findRepeatedDnaSequences(string s) \n    {\n        int n = s.size();\n        unordered_map<string, int> m;\n        vector<string> res;\n\n        for (int i = 0; i < n - 9; i++) \n        {\n            m[s.substr(i, 10)]++;\n        }\n\n        for (auto itr = m.begin(); itr != m.end(); itr++) \n        {\n            if (itr->second > 1) \n            {\n                res.push_back(itr->first);\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1007950652",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

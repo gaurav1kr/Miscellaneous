@@ -1,0 +1,39 @@
+{
+  "id": "588",
+  "title": "Design In-Memory File System",
+  "slug": "design-in-memory-file-system",
+  "url": "https://leetcode.com/problems/design-in-memory-file-system/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Design",
+    "Trie",
+    "Sorting"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Design a data structure that simulates an in-memory file system. \n \n Implement the FileSystem class: \n\n FileSystem() Initializes the object of the system. \n \n List<String> ls(String path) \n\n If path is a file path, returns a list that only contains this file's name. \n \n If path is a directory path, returns the list of file and directory names in this directory . \n \n The answer should in lexicographic order . \n \n void mkdir(String path) Makes a new directory according to the given path . The given directory path does not exist. If the middle directories in the path do not exist, you should create them as well. \n \n void addContentToFile(String filePath, String content) \n\n If filePath does not exist, creates that file containing given content . \n \n If filePath already exists, appends the given content to original content. \n\n String readContentFromFile(String filePath) Returns the content in the file at filePath . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/28/filesystem.png] \n \n```\nInput\n\n[\"FileSystem\", \"ls\", \"mkdir\", \"addContentToFile\", \"ls\", \"readContentFromFile\"]\n[[], [\"/\"], [\"/a/b/c\"], [\"/a/b/c/d\", \"hello\"], [\"/\"], [\"/a/b/c/d\"]]\n\nOutput\n\n[null, [], null, null, [\"a\"], \"hello\"]\n\nExplanation\n\nFileSystem fileSystem = new FileSystem();\nfileSystem.ls(\"/\"); // return []\nfileSystem.mkdir(\"/a/b/c\");\nfileSystem.addContentToFile(\"/a/b/c/d\", \"hello\");\nfileSystem.ls(\"/\"); // return [\"a\"]\nfileSystem.readContentFromFile(\"/a/b/c/d\"); // return \"hello\"\n```\n\n Constraints: \n\n 1 <= path.length, filePath.length <= 100 \n \n path and filePath  are absolute paths which begin with '/'  and do not end with '/'  except that the path is just  \"/\" . \n \n You can assume that all directory names and file names only contain lowercase letters, and the same names will not exist in the same directory. \n \n You can assume that all operations will be passed valid parameters, and users will not attempt to retrieve file content or list a directory or file that does not exist. \n \n You can assume that the parent directory for the file in addContentToFile will exist. \n \n 1 <= content.length <= 50 \n \n At most 300 calls will be made to ls , mkdir ,  addContentToFile , and  readContentFromFile .",
+  "code": "class FileSystem {\n    struct Entry {\n        map<string, unique_ptr<Entry>> children;\n        string content;\n        bool file = false;\n    };\n    Entry root;\n\n    vector<string> parts(const string& path) {\n        vector<string> result;\n        stringstream in(path);\n        string segment;\n        while (getline(in, segment, '/')) {\n            if (!segment.empty()) {\n                result.push_back(segment);\n            }\n        }\n        return result;\n    }\n\n    Entry* walk(const string& path) {\n        Entry* node = &root;\n        for (const string& part : parts(path)) {\n            if (!node->children.count(part)) {\n                node->children[part].reset(new Entry());\n            }\n            node = node->children[part].get();\n        }\n        return node;\n    }\n\npublic:\n    vector<string> ls(string path) {\n        Entry* node = walk(path);\n        if (node->file) {\n            vector<string> p = parts(path);\n            return {p.back()};\n        }\n        vector<string> names;\n        for (const auto& child : node->children) {\n            names.push_back(child.first);\n        }\n        return names;\n    }\n\n    void mkdir(string path) {\n        walk(path);\n    }\n\n    void addContentToFile(string filePath, string content) {\n        Entry* node = walk(filePath);\n        node->file = true;\n        node->content += content;\n    }\n\n    string readContentFromFile(string filePath) {\n        return walk(filePath)->content;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178485590",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

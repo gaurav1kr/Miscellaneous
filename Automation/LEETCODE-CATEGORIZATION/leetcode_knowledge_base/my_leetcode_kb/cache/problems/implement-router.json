@@ -1,0 +1,41 @@
+{
+  "id": "3508",
+  "title": "Implement Router",
+  "slug": "implement-router",
+  "url": "https://leetcode.com/problems/implement-router/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Design",
+    "Queue",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Deque",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Ordered set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "Design a data structure that can efficiently manage data packets in a network router. Each data packet consists of the following attributes: \n\n source : A unique identifier for the machine that generated the packet. \n \n destination : A unique identifier for the target machine. \n \n timestamp : The time at which the packet arrived at the router. \n\n Implement the Router class: \n \n Router(int memoryLimit) : Initializes the Router object with a fixed memory limit. \n\n memoryLimit is the maximum number of packets the router can store at any given time. \n \n If adding a new packet would exceed this limit, the oldest packet must be removed to free up space. \n\n bool addPacket(int source, int destination, int timestamp) : Adds a packet with the given attributes to the router. \n\n A packet is considered a duplicate if another packet with the same source , destination , and timestamp already exists in the router. \n \n Return true if the packet is successfully added (i.e., it is not a duplicate); otherwise return false . \n\n int[] forwardPacket() : Forwards the next packet in FIFO (First In First Out) order. \n\n Remove the packet from storage. \n \n Return the packet as an array [source, destination, timestamp] . \n \n If there are no packets to forward, return an empty array. \n\n int getCount(int destination, int startTime, int endTime) : \n\n Returns the number of packets currently stored in the router (i.e., not yet forwarded) that have the specified destination and have timestamps in the inclusive range [startTime, endTime] . \n\n Note that queries for addPacket will be made in non-decreasing order of timestamp . \n\n Example 1: \n\n Input: \n [\"Router\", \"addPacket\", \"addPacket\", \"addPacket\", \"addPacket\", \"addPacket\", \"forwardPacket\", \"addPacket\", \"getCount\"] \n[[3], [1, 4, 90], [2, 5, 90], [1, 4, 90], [3, 5, 95], [4, 5, 105], [], [5, 2, 110], [5, 100, 110]] \n \n Output: \n [null, true, true, false, true, true, [2, 5, 90], true, 1] \n \n Explanation \nRouter router = new Router(3); // Initialize Router with memoryLimit of 3. \nrouter.addPacket(1, 4, 90); // Packet is added. Return True. \nrouter.addPacket(2, 5, 90); // Packet is added. Return True. \nrouter.addPacket(1, 4, 90); // This is a duplicate packet. Return False. \nrouter.addPacket(3, 5, 95); // Packet is added. Return True \nrouter.addPacket(4, 5, 105); // Packet is added, [1, 4, 90] is removed as number of packets exceeds memoryLimit. Return True. \nrouter.forwardPacket(); // Return [2, 5, 90] and remove it from router. \nrouter.addPacket(5, 2, 110); // Packet is added. Return True. \nrouter.getCount(5, 100, 110); // The only packet with destination 5 and timestamp in the inclusive range [100, 110] is [4, 5, 105] . Return 1. \n \n Example 2: \n\n Input: \n [\"Router\", \"addPacket\", \"forwardPacket\", \"forwardPacket\"] \n[[2], [7, 4, 90], [], []] \n \n Output: \n [null, true, [7, 4, 90], []] \n \n Explanation \nRouter router = new Router(2); // Initialize Router with memoryLimit of 2. \nrouter.addPacket(7, 4, 90); // Return True. \nrouter.forwardPacket(); // Return [7, 4, 90] . \nrouter.forwardPacket(); // There are no packets left, return [] . \n\n Constraints: \n\n 2 <= memoryLimit <= 10 5 \n \n 1 <= source, destination <= 2 * 10 5 \n \n 1 <= timestamp <= 10 9 \n \n 1 <= startTime <= endTime <= 10 9 \n \n At most 10 5 calls will be made to addPacket , forwardPacket , and getCount methods altogether. \n \n queries for addPacket will be made in non-decreasing order of timestamp .",
+  "code": "class Router {int cap;deque<array<int,3>>q;set<array<int,3>>seen;unordered_map<int,deque<int>>ts;void evict(){auto a=q.front();q.pop_front();seen.erase(a);ts[a[1]].pop_front();}public:Router(int memoryLimit):cap(memoryLimit){}bool addPacket(int source,int destination,int timestamp){array<int,3>a={source,destination,timestamp};if(seen.count(a))return false;if((int)q.size()==cap)evict();q.push_back(a);seen.insert(a);ts[destination].push_back(timestamp);return true;}vector<int> forwardPacket(){if(q.empty())return {};auto a=q.front();evict();return {a[0],a[1],a[2]};}int getCount(int destination,int startTime,int endTime){auto &d=ts[destination];return upper_bound(d.begin(),d.end(),endTime)-lower_bound(d.begin(),d.end(),startTime);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177552589",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

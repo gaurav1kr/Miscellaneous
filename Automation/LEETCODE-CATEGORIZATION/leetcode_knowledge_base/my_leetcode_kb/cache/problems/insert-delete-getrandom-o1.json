@@ -1,0 +1,37 @@
+{
+  "id": "380",
+  "title": "Insert Delete GetRandom O(1)",
+  "slug": "insert-delete-getrandom-o1",
+  "url": "https://leetcode.com/problems/insert-delete-getrandom-o1/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Design",
+    "Randomized"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Implement the RandomizedSet class: \n\n RandomizedSet() Initializes the RandomizedSet object. \n \n bool insert(int val) Inserts an item val into the set if not present. Returns true if the item was not present, false otherwise. \n \n bool remove(int val) Removes an item val from the set if present. Returns true if the item was present, false otherwise. \n \n int getRandom() Returns a random element from the current set of elements (it's guaranteed that at least one element exists when this method is called). Each element must have the same probability of being returned. \n\n You must implement the functions of the class such that each function works in  average   O(1)  time complexity. \n\n Example 1: \n \n```\nInput\n\n[\"RandomizedSet\", \"insert\", \"remove\", \"insert\", \"getRandom\", \"remove\", \"insert\", \"getRandom\"]\n[[], [1], [2], [2], [], [1], [2], []]\n\nOutput\n\n[null, true, false, true, 2, true, false, 2]\n\nExplanation\n\nRandomizedSet randomizedSet = new RandomizedSet();\nrandomizedSet.insert(1); // Inserts 1 to the set. Returns true as 1 was inserted successfully.\nrandomizedSet.remove(2); // Returns false as 2 does not exist in the set.\nrandomizedSet.insert(2); // Inserts 2 to the set, returns true. Set now contains [1,2].\nrandomizedSet.getRandom(); // getRandom() should return either 1 or 2 randomly.\nrandomizedSet.remove(1); // Removes 1 from the set, returns true. Set now contains [2].\nrandomizedSet.insert(2); // 2 was already in the set, so return false.\nrandomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom() will always return 2.\n```\n\n Constraints: \n\n -2 31 <= val <= 2 31 - 1 \n \n At most 2 *  10 5 calls will be made to insert , remove , and getRandom . \n \n There will be at least one element in the data structure when getRandom is called.",
+  "code": "class RandomizedSet {\n    std::unordered_map<int, int> valToIndex;\n    std::vector<int> values;\n\npublic:\n    RandomizedSet() {}\n\n    bool insert(int val) {\n        if (valToIndex.count(val)) return false;\n        valToIndex[val] = values.size();\n        values.push_back(val);\n        return true;\n    }\n\n    bool remove(int val) {\n        if (!valToIndex.count(val)) return false;\n        int idx = valToIndex[val];\n        int lastVal = values.back();\n        values[idx] = lastVal; // Replace with last element\n        valToIndex[lastVal] = idx; // Update index of last element\n        values.pop_back(); // Remove last element\n        valToIndex.erase(val); // Erase removed element\n        return true;\n    }\n\n    int getRandom() {\n        return values[rand() % values.size()];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1539874960",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "3915",
+  "title": "Maximum Sum of Alternating Subsequence With Distance at Least K",
+  "slug": "maximum-sum-of-alternating-subsequence-with-distance-at-least-k",
+  "url": "https://leetcode.com/problems/maximum-sum-of-alternating-subsequence-with-distance-at-least-k/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Segment Tree"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n and an integer k . \n \n Pick a subsequence with indices 0 <= i 1 < i 2 < ... < i m < n such that: \n\n For every 1 <= t < m , i t+1 - i t >= k . \n \n The selected values form a strictly alternating sequence. In other words, either:\n\n nums[i 1 ] < nums[i 2 ] > nums[i 3 ] < ... , or \n \n nums[i 1 ] > nums[i 2 ] < nums[i 3 ] > ... \n\n A subsequence of length 1 is also considered strictly alternating. The score of a valid subsequence is the sum of its selected values. \n \n Return an integer denoting the maximum possible score of a valid subsequence. \n\n Example 1: \n\n Input: nums = [5,4,2], k = 2 \n \n Output: 7 \n \n Explanation: \n \n An optimal choice is indices [0, 2] , which gives values [5, 2] . \n\n The distance condition holds because 2 - 0 = 2 >= k . \n \n The values are strictly alternating because 5 > 2 . \n\n The score is 5 + 2 = 7 . \n\n Example 2: \n\n Input: nums = [3,5,4,2,4], k = 1 \n \n Output: 14 \n \n Explanation: \n \n An optimal choice is indices [0, 1, 3, 4] , which gives values [3, 5, 2, 4] . \n\n The distance condition holds because each pair of consecutive chosen indices differs by at least k = 1 . \n \n The values are strictly alternating since 3 < 5 > 2 < 4 . \n\n The score is 3 + 5 + 2 + 4 = 14 . \n\n Example 3: \n\n Input: nums = [5], k = 1 \n \n Output: 5 \n \n Explanation: \n \n The only valid subsequence is [5] . A subsequence with 1 element is always strictly alternating, so the score is 5. \n\n Constraints: \n\n 1 <= n == nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n 1 <= k <= n",
+  "code": "class Solution {\n    struct BIT{\n        int n;vector<long long> bit;\n        BIT(int n):n(n),bit(n+1,0){}\n        void update(int x,long long v){for(;x<=n;x+=x&-x)bit[x]=max(bit[x],v);}\n        long long query(int x){long long ans=0;for(;x>0;x-=x&-x)ans=max(ans,bit[x]);return ans;}\n    };\npublic:\n    long long maxAlternatingSum(vector<int>& nums,int k){\n        int n=nums.size(),V=*max_element(nums.begin(),nums.end());\n        BIT up(V),down(V);vector<long long> dpUp(n),dpDown(n);\n        long long ans=0;\n        for(int i=0;i<n;++i){\n            if(i>=k){int j=i-k,x=nums[j];up.update(V-x+1,dpUp[j]);down.update(x,dpDown[j]);}\n            int x=nums[i];\n            dpUp[i]=x+down.query(x-1);\n            dpDown[i]=x+up.query(V-x);\n            ans=max(ans,max(dpUp[i],dpDown[i]));\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181170165",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "487",
+  "title": "Max Consecutive Ones II",
+  "slug": "max-consecutive-ones-ii",
+  "url": "https://leetcode.com/problems/max-consecutive-ones-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given a binary array nums , return the maximum number of consecutive 1 's in the array if you can flip at most one 0 . \n\n Example 1: \n \n```\nInput:\n nums = [1,0,1,1,0]\n\nOutput:\n 4\n\nExplanation:\n \n- If we flip the first zero, nums becomes [1,1,1,1,0] and we have 4 consecutive ones.\n- If we flip the second zero, nums becomes [1,0,1,1,1] and we have 3 consecutive ones.\nThe max number of consecutive ones is 4.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,0,1,1,0,1]\n\nOutput:\n 4\n\nExplanation:\n \n- If we flip the first zero, nums becomes [1,1,1,1,0,1] and we have 4 consecutive ones.\n- If we flip the second zero, nums becomes [1,0,1,1,1,1] and we have 4 consecutive ones.\nThe max number of consecutive ones is 4.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n nums[i] is either 0 or 1 . \n\n Follow up: What if the input numbers come in one by one as an infinite stream? In other words, you can't store all numbers coming from the stream as it's too large to hold in memory. Could you solve it efficiently?",
+  "code": "class Solution {\npublic:\n    int findMaxConsecutiveOnes(vector<int>& nums) {\n        int left = 0, zeros = 0, best = 0;\n        for (int right = 0; right < static_cast<int>(nums.size()); ++right) {\n            zeros += nums[right] == 0;\n            while (zeros > 1) {\n                zeros -= nums[left++] == 0;\n            }\n            best = max(best, right - left + 1);\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178472523",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "3884",
+  "title": "First Matching Character From Both Ends",
+  "slug": "first-matching-character-from-both-ends",
+  "url": "https://leetcode.com/problems/first-matching-character-from-both-ends/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s of length n consisting of lowercase English letters. \n \n Return the smallest index i such that s[i] == s[n - i - 1] . \n \n If no such index exists, return -1. \n\n Example 1: \n\n Input: s = \"abcacbd\" \n \n Output: 1 \n \n Explanation: \n \n At index i = 1 , s[1] and s[5] are both 'b' . \n \n No smaller index satisfies the condition, so the answer is 1. \n\n Example 2: \n\n Input: s = \"abc\" \n \n Output: 1 \n \n Explanation: \n \n ​​​​​​​At index i = 1 , the two compared positions coincide, so both characters are 'b' . \n \n No smaller index satisfies the condition, so the answer is 1. \n\n Example 3: \n\n Input: s = \"abcdab\" \n \n Output: -1 \n \n Explanation: \n \n ​​​​​​​For every index i , the characters at positions i and n - i - 1 are different. \n \n Therefore, no valid index exists, so the answer is -1. \n\n Constraints: \n\n 1 <= n == s.length <= 100 \n \n s consists of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int firstMatchingIndex(string s) {\n        int n = (int)s.size();\n        for (int i = 0; i < n; ++i) if (s[i] == s[n - 1 - i]) return i;\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179313762",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

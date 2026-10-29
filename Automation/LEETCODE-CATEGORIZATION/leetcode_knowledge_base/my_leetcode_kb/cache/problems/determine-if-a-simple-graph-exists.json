@@ -1,0 +1,38 @@
+{
+  "id": "3656",
+  "title": "Determine if a Simple Graph Exists",
+  "slug": "determine-if-a-simple-graph-exists",
+  "url": "https://leetcode.com/problems/determine-if-a-simple-graph-exists/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Graph Theory",
+    "Sorting",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Prefix Sum / Difference Array",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Prefix-sum array",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array degrees , where degrees[i] represents the desired degree of the i th vertex. \n \n Your task is to determine if there exists an undirected simple graph with exactly these vertex degrees. \n \n A simple graph has no self-loops or parallel edges between the same pair of vertices. \n \n Return true if such a graph exists, otherwise return false . \n\n Example 1: \n\n Input: degrees = [3,1,2,2] \n \n Output: true \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2025/08/12/screenshot-2025-08-13-at-24347-am.png] ​​​​​​​ \n \n One possible undirected simple graph is: \n\n Edges: (0, 1), (0, 2), (0, 3), (2, 3) \n \n Degrees: deg(0) = 3 , deg(1) = 1 , deg(2) = 2 , deg(3) = 2 . \n\n Example 2: \n\n Input: degrees = [1,3,3,1] \n \n Output: false \n \n Explanation: ​​​​​​​ \n\n degrees[1] = 3 and degrees[2] = 3 means they must be connected to all other vertices. \n \n This requires degrees[0] and degrees[3] to be at least 2, but both are equal to 1, which contradicts the requirement. \n \n Thus, the answer is false . \n\n Constraints: \n\n 1 <= n == degrees.length <= 10 ​​​​​​​5 \n \n 0 <= degrees[i] <= n - 1",
+  "code": "class Solution {\npublic:\n    bool simpleGraphExists(vector<int>& degrees) {\n        int n = degrees.size();\n        sort(degrees.rbegin(), degrees.rend());\n        vector<long long> pref(n + 1, 0);\n        for (int i = 0; i < n; ++i) {\n            if (degrees[i] < 0 || degrees[i] >= n) return false;\n            pref[i + 1] = pref[i] + degrees[i];\n        }\n        if (pref[n] & 1) return false;\n        for (int k = 1; k <= n; ++k) {\n            int lo = k, hi = n;\n            while (lo < hi) {\n                int mid = (lo + hi) / 2;\n                if (degrees[mid] > k) lo = mid + 1;\n                else hi = mid;\n            }\n            int pos = lo;\n            long long rhs = 1LL * k * (k - 1)\n                          + 1LL * (pos - k) * k\n                          + (pref[n] - pref[pos]);\n            if (pref[k] > rhs) return false;\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179729588",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

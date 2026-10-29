@@ -1,0 +1,33 @@
+{
+  "id": "1230",
+  "title": "Toss Strange Coins",
+  "slug": "toss-strange-coins",
+  "url": "https://leetcode.com/problems/toss-strange-coins/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Probability and Statistics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You have some coins.  The i -th coin has a probability  prob[i] of facing heads when tossed. \n \n Return the probability that the number of coins facing heads equals target if you toss every coin exactly once. \n\n Example 1: \n \n```\nInput:\n prob = [0.4], target = 1\n\nOutput:\n 0.40000\n```\n \n Example 2: \n \n```\nInput:\n prob = [0.5,0.5,0.5,0.5,0.5], target = 0\n\nOutput:\n 0.03125\n```\n\n Constraints: \n\n 1 <= prob.length <= 1000 \n \n 0 <= prob[i] <= 1 \n \n 0 <= target  <= prob.length \n \n Answers will be accepted as correct if they are within 10^-5 of the correct answer.",
+  "code": "class Solution {\npublic:\n    double probabilityOfHeads(vector<double>& prob, int target) {\n        vector<double> dp(target + 1, 0.0);\n        dp[0] = 1.0;\n        int used = 0;\n        for (double p : prob) {\n            ++used;\n            for (int heads = min(target, used); heads >= 0; --heads) {\n                double without = dp[heads] * (1.0 - p);\n                double with = heads > 0 ? dp[heads - 1] * p : 0.0;\n                dp[heads] = without + with;\n            }\n        }\n        return dp[target];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178556863",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

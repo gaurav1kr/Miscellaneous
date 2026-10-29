@@ -1,0 +1,32 @@
+{
+  "id": "1840",
+  "title": "Maximum Building Height",
+  "slug": "maximum-building-height",
+  "url": "https://leetcode.com/problems/maximum-building-height/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Sorting"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You want to build n new buildings in a city. The new buildings will be built in a line and are labeled from 1 to n . \n \n However, there are city restrictions on the heights of the new buildings: \n\n The height of each building must be a non-negative integer. \n \n The height of the first building must be 0 . \n \n The height difference between any two adjacent buildings cannot exceed 1 . \n\n Additionally, there are city restrictions on the maximum height of specific buildings. These restrictions are given as a 2D integer array restrictions where restrictions[i] = [id i , maxHeight i ] indicates that building id i must have a height less than or equal to maxHeight i . \n \n It is guaranteed that each building will appear at most once in restrictions , and building 1 will not be in restrictions . \n \n Return the maximum possible height of the tallest building . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/04/08/ic236-q4-ex1-1.png] \n \n```\nInput:\n n = 5, restrictions = [[2,1],[4,1]]\n\nOutput:\n 2\n\nExplanation:\n The green area in the image indicates the maximum allowed height for each building.\nWe can build the buildings with heights [0,1,2,1,2], and the tallest building has a height of 2.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/04/08/ic236-q4-ex2.png] \n \n```\nInput:\n n = 6, restrictions = []\n\nOutput:\n 5\n\nExplanation:\n The green area in the image indicates the maximum allowed height for each building.\nWe can build the buildings with heights [0,1,2,3,4,5], and the tallest building has a height of 5.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/04/08/ic236-q4-ex3.png] \n \n```\nInput:\n n = 10, restrictions = [[5,3],[2,5],[7,4],[10,3]]\n\nOutput:\n 5\n\nExplanation:\n The green area in the image indicates the maximum allowed height for each building.\nWe can build the buildings with heights [0,1,2,3,3,4,4,5,4,3], and the tallest building has a height of 5.\n```\n\n Constraints: \n\n 2 <= n <= 10 9 \n \n 0 <= restrictions.length <= min(n - 1, 10 5 ) \n \n 2 <= id i <= n \n \n id i  is unique . \n \n 0 <= maxHeight i <= 10 9",
+  "code": "class Solution {\npublic:\n    int maxBuilding(int n, vector<vector<int>>& restrictions) {\n        restrictions.push_back({1, 0});\n        restrictions.push_back({n, n - 1});\n        sort(restrictions.begin(), restrictions.end());\n\n        int m = restrictions.size();\n        for (int i = 1; i < m; ++i)\n            restrictions[i][1] = min(restrictions[i][1], restrictions[i - 1][1] + restrictions[i][0] - restrictions[i - 1][0]);\n\n        for (int i = m - 2; i >= 0; --i)\n            restrictions[i][1] = min(restrictions[i][1], restrictions[i + 1][1] + restrictions[i + 1][0] - restrictions[i][0]);\n\n        int res = 0;\n        for (int i = 1; i < m; ++i) {\n            int d = restrictions[i][0] - restrictions[i - 1][0];\n            int h1 = restrictions[i - 1][1], h2 = restrictions[i][1];\n            res = max(res, (h1 + h2 + d) / 2);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610695901",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1380",
+  "title": "Lucky Numbers in a Matrix",
+  "slug": "lucky-numbers-in-a-matrix",
+  "url": "https://leetcode.com/problems/lucky-numbers-in-a-matrix/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an m x n matrix of distinct numbers, return all lucky numbers in the matrix in any order . \n \n A lucky number is an element of the matrix such that it is the minimum element in its row and maximum in its column. \n\n Example 1: \n \n```\nInput:\n matrix = [[3,7,8],[9,11,13],[15,16,17]]\n\nOutput:\n [15]\n\nExplanation:\n 15 is the only lucky number since it is the minimum in its row and the maximum in its column.\n```\n\n Example 2: \n \n```\nInput:\n matrix = [[1,10,4,2],[9,3,8,7],[15,16,17,12]]\n\nOutput:\n [12]\n\nExplanation:\n 12 is the only lucky number since it is the minimum in its row and the maximum in its column.\n```\n\n Example 3: \n \n```\nInput:\n matrix = [[7,8],[1,2]]\n\nOutput:\n [7]\n\nExplanation:\n 7 is the only lucky number since it is the minimum in its row and the maximum in its column.\n```\n\n Constraints: \n\n m == mat.length \n \n n == mat[i].length \n \n 1 <= n, m <= 50 \n \n 1 <= matrix[i][j] <= 10 5 . \n \n All elements in the matrix are distinct.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> luckyNumbers (vector<vector<int>>& matrix) {\n        vector<int> res;\n        for (int i = 0; i < matrix.size(); ++i) {\n            int colIdx = 0;\n            for (int j = 1; j < matrix[0].size(); ++j)\n                if (matrix[i][j] < matrix[i][colIdx])\n                    colIdx = j;\n\n            bool isMax = true;\n            for (int k = 0; k < matrix.size(); ++k)\n                if (matrix[k][colIdx] > matrix[i][colIdx]) {\n                    isMax = false;\n                    break;\n                }\n\n            if (isMax) res.push_back(matrix[i][colIdx]);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593847333",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

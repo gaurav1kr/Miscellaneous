@@ -1,0 +1,32 @@
+{
+  "id": "2653",
+  "title": "Sliding Subarray Beauty",
+  "slug": "sliding-subarray-beauty",
+  "url": "https://leetcode.com/problems/sliding-subarray-beauty/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Given an integer array nums containing n integers, find the beauty of each subarray of size k . \n \n The beauty of a subarray is the x th smallest integer in the subarray if it is negative , or 0 if there are fewer than x negative integers. \n \n Return an integer array containing n - k + 1 integers, which denote the beauty of the subarrays in order from the first index in the array. \n\n A subarray is a contiguous non-empty sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n nums = [1,-1,-3,-2,3], k = 3, x = 2\n\nOutput:\n [-1,-2,-2]\n\nExplanation:\n There are 3 subarrays with size k = 3. \nThe first subarray is \n[1, -1, -3]\n and the 2\nnd\n smallest negative integer is -1. \nThe second subarray is \n[-1, -3, -2]\n and the 2\nnd\n smallest negative integer is -2. \nThe third subarray is \n[-3, -2, 3] \nand the 2\nnd\n smallest negative integer is -2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [-1,-2,-3,-4,-5], k = 2, x = 2\n\nOutput:\n [-1,-2,-3,-4]\n\nExplanation:\n There are 4 subarrays with size k = 2.\nFor \n[-1, -2]\n, the 2\nnd\n smallest negative integer is -1.\nFor \n[-2, -3]\n, the 2\nnd\n smallest negative integer is -2.\nFor \n[-3, -4]\n, the 2\nnd\n smallest negative integer is -3.\nFor \n[-4, -5]\n, the 2\nnd\n smallest negative integer is -4.\n```\n\n Example 3: \n \n```\nInput:\n nums = [-3,1,2,-3,0,-3], k = 2, x = 1\n\nOutput:\n [-3,0,-3,-3,-3]\n\nExplanation:\n There are 5 subarrays with size k = 2\n.\n\nFor \n[-3, 1]\n, the 1\nst\n smallest negative integer is -3.\nFor \n[1, 2]\n, there is no negative integer so the beauty is 0.\nFor \n[2, -3]\n, the 1\nst\n smallest negative integer is -3.\nFor \n[-3, 0]\n, the 1\nst\n smallest negative integer is -3.\nFor \n[0, -3]\n, the 1\nst\n smallest negative integer is -3.\n```\n\n Constraints: \n\n n == nums.length  \n \n 1 <= n <= 10 5 \n \n 1 <= k <= n \n \n 1 <= x <= k  \n \n -50 <= nums[i] <= 50",
+  "code": "class Solution {\npublic:\n vector<int> getSubarrayBeauty(vector<int>& nums,int k,int x){\n  int freq[101]={};vector<int> ans;\n  for(int i=0;i<(int)nums.size();++i){\n   ++freq[nums[i]+50];\n   if(i>=k)--freq[nums[i-k]+50];\n   if(i>=k-1){int need=x,beauty=0;\n    for(int v=-50;v<0;++v){need-=freq[v+50];if(need<=0){beauty=v;break;}}\n    ans.push_back(beauty);\n   }\n  }return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176633219",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

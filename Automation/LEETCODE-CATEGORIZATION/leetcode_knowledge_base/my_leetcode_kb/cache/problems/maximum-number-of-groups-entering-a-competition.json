@@ -1,0 +1,33 @@
+{
+  "id": "2358",
+  "title": "Maximum Number of Groups Entering a Competition",
+  "slug": "maximum-number-of-groups-entering-a-competition",
+  "url": "https://leetcode.com/problems/maximum-number-of-groups-entering-a-competition/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Greedy"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a positive integer array grades which represents the grades of students in a university. You would like to enter all these students into a competition in ordered non-empty groups, such that the ordering meets the following conditions: \n\n The sum of the grades of students in the i th group is less than the sum of the grades of students in the (i + 1) th group, for all groups (except the last). \n \n The total number of students in the i th group is less than the total number of students in the (i + 1) th group, for all groups (except the last). \n\n Return the maximum number of groups that can be formed . \n\n Example 1: \n \n```\nInput:\n grades = [10,6,12,7,3,5]\n\nOutput:\n 3\n\nExplanation:\n The following is a possible way to form 3 groups of students:\n- 1\nst\n group has the students with grades = [12]. Sum of grades: 12. Student count: 1\n- 2\nnd\n group has the students with grades = [6,7]. Sum of grades: 6 + 7 = 13. Student count: 2\n- 3\nrd\n group has the students with grades = [10,3,5]. Sum of grades: 10 + 3 + 5 = 18. Student count: 3\nIt can be shown that it is not possible to form more than 3 groups.\n```\n\n Example 2: \n \n```\nInput:\n grades = [8,8]\n\nOutput:\n 1\n\nExplanation:\n We can only form 1 group, since forming 2 groups would lead to an equal number of students in both groups.\n```\n\n Constraints: \n\n 1 <= grades.length <= 10 5 \n \n 1 <= grades[i] <= 10 5",
+  "code": "class Solution { public:\n    int maximumGroups(vector<int>& grades) {\n        int n=grades.size(),g=0;while((long long)(g+1)*(g+2)/2<=n)++g;return g;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175925356",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

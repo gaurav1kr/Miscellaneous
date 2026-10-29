@@ -1,0 +1,29 @@
+{
+  "id": "1283",
+  "title": "Find the Smallest Divisor Given a Threshold",
+  "slug": "find-the-smallest-divisor-given-a-threshold",
+  "url": "https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of integers nums and an integer threshold , we will choose a positive integer divisor , divide all the array by it, and sum the division's result. Find the smallest divisor such that the result mentioned above is less than or equal to threshold . \n \n Each result of the division is rounded to the nearest integer greater than or equal to that element. (For example: 7/3 = 3 and 10/2 = 5 ). \n \n The test cases are generated so that there will be an answer. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,5,9], threshold = 6\n\nOutput:\n 5\n\nExplanation:\n We can get a sum to 17 (1+2+5+9) if the divisor is 1. \nIf the divisor is 4 we can get a sum of 7 (1+1+2+3) and if the divisor is 5 the sum will be 5 (1+1+1+2).\n```\n\n Example 2: \n \n```\nInput:\n nums = [44,22,33,11,1], threshold = 5\n\nOutput:\n 44\n```\n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n 1 <= nums[i] <= 10 6 \n \n nums.length <= threshold <= 10 6",
+  "code": "#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int smallestDivisor(vector<int>& nums, int threshold) {\n        int left = 1, right = *max_element(nums.begin(), nums.end());\n        while (left < right) {\n            int mid = left + (right - left) / 2;\n            if (check(nums, mid, threshold)) {\n                right = mid;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return left;\n    }\n    \n    bool check(vector<int>& nums, int divisor, int threshold) {\n        int sum = 0;\n        for (int num : nums) {\n            sum += (num + divisor - 1) / divisor;\n        }\n        return sum <= threshold;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591268674",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

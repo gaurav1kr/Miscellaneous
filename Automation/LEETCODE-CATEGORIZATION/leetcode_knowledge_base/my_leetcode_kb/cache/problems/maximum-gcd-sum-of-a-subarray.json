@@ -1,0 +1,34 @@
+{
+  "id": "2941",
+  "title": "Maximum GCD-Sum of a Subarray",
+  "slug": "maximum-gcd-sum-of-a-subarray",
+  "url": "https://leetcode.com/problems/maximum-gcd-sum-of-a-subarray/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Number Theory",
+    "Euclidean Algorithm",
+    "Greatest Common Divisor"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums and an integer k . \n \n The gcd-sum of an array a is calculated as follows: \n\n Let s be the sum of all the elements of a . \n \n Let g be the greatest common divisor of all the elements of a . \n \n The gcd-sum of a is equal to s * g . \n\n Return the maximum gcd-sum of a subarray of nums with at least k elements. \n\n Example 1: \n \n```\nInput:\n nums = [2,1,4,4,4,2], k = 2\n\nOutput:\n 48\n\nExplanation:\n We take the subarray [4,4,4], the gcd-sum of this array is 4 * (4 + 4 + 4) = 48.\nIt can be shown that we can not select any other subarray with a gcd-sum greater than 48.\n```\n\n Example 2: \n \n```\nInput:\n nums = [7,3,9,4], k = 1\n\nOutput:\n 81\n\nExplanation:\n We take the subarray [9], the gcd-sum of this array is 9 * 9 = 81.\nIt can be shown that we can not select any other subarray with a gcd-sum greater than 81.\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 10 5 \n \n 1 <= nums[i] <= 10 6 \n \n 1 <= k <= n",
+  "code": "class Solution {\n    int gcd(int a, int b) { while (b) { int t = a % b; a = b; b = t; } return a; }\npublic:\n    long long maxGcdSum(vector<int>& nums, int k) {\n        int n = nums.size();\n        vector<long long> pre(n + 1);\n        for (int i = 0; i < n; ++i) pre[i + 1] = pre[i] + nums[i];\n        vector<pair<int, int>> prev;\n        long long answer = 0;\n        for (int r = 0; r < n; ++r) {\n            vector<pair<int, int>> cur;\n            cur.push_back({nums[r], r});\n            for (auto p : prev) {\n                int g = gcd(p.first, nums[r]);\n                if (cur.back().first == g) cur.back().second = p.second;\n                else cur.push_back({g, p.second});\n            }\n            for (int j = 0; j < (int)cur.size(); ++j) {\n                int left = cur[j].second;\n                int right = (j == 0 ? r : cur[j - 1].second - 1);\n                if (left <= r - k + 1) {\n                    int start = left;\n                    answer = max(answer, (pre[r + 1] - pre[start]) * cur[j].first);\n                }\n            }\n            prev.swap(cur);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178925037",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "1376",
+  "title": "Time Needed to Inform All Employees",
+  "slug": "time-needed-to-inform-all-employees",
+  "url": "https://leetcode.com/problems/time-needed-to-inform-all-employees/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "A company has n employees with a unique ID for each employee from 0 to n - 1 . The head of the company is the one with headID . \n \n Each employee has one direct manager given in the manager array where manager[i] is the direct manager of the i-th employee, manager[headID] = -1 . Also, it is guaranteed that the subordination relationships have a tree structure. \n \n The head of the company wants to inform all the company employees of an urgent piece of news. He will inform his direct subordinates, and they will inform their subordinates, and so on until all employees know about the urgent news. \n \n The i-th employee needs informTime[i] minutes to inform all of his direct subordinates (i.e., After informTime[i] minutes, all his direct subordinates can start spreading the news). \n \n Return the number of minutes needed to inform all the employees about the urgent news. \n\n Example 1: \n \n```\nInput:\n n = 1, headID = 0, manager = [-1], informTime = [0]\n\nOutput:\n 0\n\nExplanation:\n The head of the company is the only employee in the company.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/02/27/graph.png] \n \n```\nInput:\n n = 6, headID = 2, manager = [2,2,-1,2,2,2], informTime = [0,0,1,0,0,0]\n\nOutput:\n 1\n\nExplanation:\n The head of the company with id = 2 is the direct manager of all the employees in the company and needs 1 minute to inform them all.\nThe tree structure of the employees in the company is shown.\n```\n\n Constraints: \n\n 1 <= n <= 10 5 \n \n 0 <= headID < n \n \n manager.length == n \n \n 0 <= manager[i] < n \n \n manager[headID] == -1 \n \n informTime.length == n \n \n 0 <= informTime[i] <= 1000 \n \n informTime[i] == 0 if employee i has no subordinates. \n \n It is guaranteed that all the employees can be informed.",
+  "code": "#include <vector>\n#include <queue>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numOfMinutes(int n, int headID, vector<int>& manager, vector<int>& informTime) {\n        vector<vector<int>> tree(n);\n        for (int i = 0; i < n; i++) {\n            if (manager[i] != -1) {\n                tree[manager[i]].push_back(i);\n            }\n        }\n        \n        queue<pair<int, int>> q;\n        q.push({headID, 0});\n        int maxTime = 0;\n\n        while (!q.empty()) {\n            auto [id, time] = q.front();\n            q.pop();\n            maxTime = max(maxTime, time);\n            for (int sub : tree[id]) {\n                q.push({sub, time + informTime[id]});\n            }\n        }\n        return maxTime;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590172193",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

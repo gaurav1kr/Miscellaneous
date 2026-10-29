@@ -1,0 +1,30 @@
+{
+  "id": "3269",
+  "title": "Constructing Two Increasing Arrays",
+  "slug": "constructing-two-increasing-arrays",
+  "url": "https://leetcode.com/problems/constructing-two-increasing-arrays/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given 2 integer arrays nums1 and nums2 consisting only of 0 and 1, your task is to calculate the minimum possible largest number in arrays nums1 and nums2 , after doing the following. \n \n Replace every 0 with an even positive integer and every 1 with an odd positive integer . After replacement, both arrays should be increasing and each integer should be used at most once. \n \n Return the minimum possible largest number after applying the changes. \n\n Example 1: \n\n Input: nums1 = [], nums2 = [1,0,1,1] \n \n Output: 5 \n \n Explanation: \n \n After replacing, nums1 = [] , and nums2 = [1, 2, 3, 5] . \n\n Example 2: \n\n Input: nums1 = [0,1,0,1], nums2 = [1,0,0,1] \n \n Output: 9 \n \n Explanation: \n \n One way to replace, having 9 as the largest element is nums1 = [2, 3, 8, 9] , and nums2 = [1, 4, 6, 7] . \n\n Example 3: \n\n Input: nums1 = [0,1,0,0,1], nums2 = [0,0,0,1] \n \n Output: 13 \n \n Explanation: \n \n One way to replace, having 13 as the largest element is nums1 = [2, 3, 4, 6, 7] , and nums2 = [8, 10, 12, 13] . \n\n Constraints: \n\n 0 <= nums1.length <= 1000 \n \n 1 <= nums2.length <= 1000 \n \n nums1 and nums2 consist only of 0 and 1.",
+  "code": "class Solution {\n    bool feasible(const vector<int>& a,const vector<int>& b,int limit) {\n        int n=a.size(),m=b.size();vector<int> dp(n+1,-1),next(n+1);\n        dp[0]=0;\n        for(int x=1;x<=limit;++x) {\n            next=dp;int parity=x&1;\n            for(int i=0;i<=n;++i) {\n                if(dp[i]<0)continue;\n                if(i<n && a[i]==parity)next[i+1]=max(next[i+1],dp[i]);\n                if(dp[i]<m && b[dp[i]]==parity)next[i]=max(next[i],dp[i]+1);\n            }\n            dp.swap(next);\n        }\n        return dp[n]==m;\n    }\npublic:\n    int minLargest(vector<int>& nums1,vector<int>& nums2) {\n        int lo=1,hi=2*(nums1.size()+nums2.size())+2;\n        while(lo<hi) {int mid=lo+(hi-lo)/2;\n            if(feasible(nums1,nums2,mid))hi=mid;else lo=mid+1;\n        }\n        return lo;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181128909",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

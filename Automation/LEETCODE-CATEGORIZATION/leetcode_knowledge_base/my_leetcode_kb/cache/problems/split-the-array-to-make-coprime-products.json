@@ -1,0 +1,36 @@
+{
+  "id": "2584",
+  "title": "Split the Array to Make Coprime Products",
+  "slug": "split-the-array-to-make-coprime-products",
+  "url": "https://leetcode.com/problems/split-the-array-to-make-coprime-products/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Number Theory",
+    "Prime Factorization"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums of length n . \n \n A split at an index i where 0 <= i <= n - 2 is called valid if the product of the first i + 1 elements and the product of the remaining elements are coprime. \n\n For example, if nums = [2, 3, 3] , then a split at the index i = 0 is valid because 2 and 9 are coprime, while a split at the index i = 1 is not valid because 6 and 3 are not coprime. A split at the index i = 2 is not valid because i == n - 1 . \n\n Return the smallest index i at which the array can be split validly or -1 if there is no such split . \n \n Two values val1 and val2 are coprime if gcd(val1, val2) == 1 where gcd(val1, val2) is the greatest common divisor of val1 and val2 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/12/14/second.PNG] \n \n```\nInput:\n nums = [4,7,8,15,3,5]\n\nOutput:\n 2\n\nExplanation:\n The table above shows the values of the product of the first i + 1 elements, the remaining elements, and their gcd at each index i.\nThe only valid split is at index 2.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/12/14/capture.PNG] \n \n```\nInput:\n nums = [4,7,15,8,3,5]\n\nOutput:\n -1\n\nExplanation:\n The table above shows the values of the product of the first i + 1 elements, the remaining elements, and their gcd at each index i.\nThere is no valid split.\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 10 4 \n \n 1 <= nums[i] <= 10 6",
+  "code": "class Solution {public:int findValidSplit(vector<int>& nums){int n=nums.size();unordered_map<int,int> last;vector<vector<int>> factors(n);for(int i=0;i<n;i++){int x=nums[i];for(int p=2;1LL*p*p<=x;p++)if(x%p==0){factors[i].push_back(p);while(x%p==0)x/=p;}if(x>1)factors[i].push_back(x);for(int p:factors[i])last[p]=i;}int reach=0;for(int i=0;i<n-1;i++){for(int p:factors[i])reach=max(reach,last[p]);if(i==reach)return i;}return -1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176620901",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "600",
+  "title": "Non-negative Integers without Consecutive Ones",
+  "slug": "non-negative-integers-without-consecutive-ones",
+  "url": "https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given a positive integer n , return the number of the integers in the range [0, n] whose binary representations do not contain consecutive ones. \n\n Example 1: \n \n```\nInput:\n n = 5\n\nOutput:\n 5\n\nExplanation:\n\nHere are the non-negative integers <= 5 with their corresponding binary representations:\n0 : 0\n1 : 1\n2 : 10\n3 : 11\n4 : 100\n5 : 101\nAmong them, only integer 3 disobeys the rule (two consecutive ones) and the other 5 satisfy the rule.\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 2\n```\n\n Example 3: \n \n```\nInput:\n n = 2\n\nOutput:\n 3\n```\n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "class Solution {\npublic:\n    int findIntegers(int n) {\n        vector<int> dp(31, 0);\n        dp[0] = 1;\n        dp[1] = 2;\n\n        for (int i = 2; i < 31; ++i)\n            dp[i] = dp[i - 1] + dp[i - 2];\n\n        int res = 0, prevBit = 0;\n        for (int i = 29; i >= 0; --i) {\n            if ((n & (1 << i)) != 0) {\n                res += dp[i];\n                if (prevBit) return res;\n                prevBit = 1;\n            } else {\n                prevBit = 0;\n            }\n        }\n\n        return res + 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593694865",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

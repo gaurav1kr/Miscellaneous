@@ -1,0 +1,33 @@
+{
+  "id": "3024",
+  "title": "Type of Triangle",
+  "slug": "type-of-triangle",
+  "url": "https://leetcode.com/problems/type-of-triangle/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Sorting",
+    "Polygons"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums of size 3 which can form the sides of a triangle. \n\n A triangle is called equilateral if it has all sides of equal length. \n \n A triangle is called isosceles if it has exactly two sides of equal length. \n \n A triangle is called scalene if all its sides are of different lengths. \n\n Return a string representing the type of triangle that can be formed or \"none\" if it cannot form a triangle. \n\n Example 1: \n \n```\nInput:\n nums = [3,3,3]\n\nOutput:\n \"equilateral\"\n\nExplanation:\n Since all the sides are of equal length, therefore, it will form an equilateral triangle.\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,4,5]\n\nOutput:\n \"scalene\"\n\nExplanation:\n \nnums[0] + nums[1] = 3 + 4 = 7, which is greater than nums[2] = 5.\nnums[0] + nums[2] = 3 + 5 = 8, which is greater than nums[1] = 4.\nnums[1] + nums[2] = 4 + 5 = 9, which is greater than nums[0] = 3. \nSince the sum of the two sides is greater than the third side for all three cases, therefore, it can form a triangle.\nAs all the sides are of different lengths, it will form a scalene triangle.\n```\n\n Constraints: \n\n nums.length == 3 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {public:string triangleType(vector<int>&a){sort(a.begin(),a.end());if(a[0]+a[1]<=a[2])return \"none\";if(a[0]==a[2])return \"equilateral\";if(a[0]==a[1]||a[1]==a[2])return \"isosceles\";return \"scalene\";}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176821610",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

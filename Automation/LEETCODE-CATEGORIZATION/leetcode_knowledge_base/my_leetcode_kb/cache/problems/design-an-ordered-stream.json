@@ -1,0 +1,33 @@
+{
+  "id": "1656",
+  "title": "Design an Ordered Stream",
+  "slug": "design-an-ordered-stream",
+  "url": "https://leetcode.com/problems/design-an-ordered-stream/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Design",
+    "Data Stream"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "There is a stream of n (idKey, value) pairs arriving in an arbitrary order, where idKey is an integer between 1 and n and value is a string. No two pairs have the same id . \n \n Design a stream that returns the values in increasing order of their IDs by returning a chunk (list) of values after each insertion. The concatenation of all the chunks should result in a list of the sorted values. \n \n Implement the OrderedStream class: \n\n OrderedStream(int n) Constructs the stream to take n values. \n \n String[] insert(int idKey, String value) Inserts the pair (idKey, value) into the stream, then returns the largest possible chunk of currently inserted values that appear next in the order. \n\n Example: \n \n [Figure: https://assets.leetcode.com/uploads/2020/11/10/q1.gif] \n \n```\nInput\n\n[\"OrderedStream\", \"insert\", \"insert\", \"insert\", \"insert\", \"insert\"]\n[[5], [3, \"ccccc\"], [1, \"aaaaa\"], [2, \"bbbbb\"], [5, \"eeeee\"], [4, \"ddddd\"]]\n\nOutput\n\n[null, [], [\"aaaaa\"], [\"bbbbb\", \"ccccc\"], [], [\"ddddd\", \"eeeee\"]]\n\nExplanation\n\n// Note that the values ordered by ID is [\"aaaaa\", \"bbbbb\", \"ccccc\", \"ddddd\", \"eeeee\"].\nOrderedStream os = new OrderedStream(5);\nos.insert(3, \"ccccc\"); // Inserts (3, \"ccccc\"), returns [].\nos.insert(1, \"aaaaa\"); // Inserts (1, \"aaaaa\"), returns [\"aaaaa\"].\nos.insert(2, \"bbbbb\"); // Inserts (2, \"bbbbb\"), returns [\"bbbbb\", \"ccccc\"].\nos.insert(5, \"eeeee\"); // Inserts (5, \"eeeee\"), returns [].\nos.insert(4, \"ddddd\"); // Inserts (4, \"ddddd\"), returns [\"ddddd\", \"eeeee\"].\n// Concatentating all the chunks returned:\n// [] + [\"aaaaa\"] + [\"bbbbb\", \"ccccc\"] + [] + [\"ddddd\", \"eeeee\"] = [\"aaaaa\", \"bbbbb\", \"ccccc\", \"ddddd\", \"eeeee\"]\n// The resulting order is the same as the order above.\n```\n\n Constraints: \n\n 1 <= n <= 1000 \n \n 1 <= id <= n \n \n value.length == 5 \n \n value  consists only of lowercase letters. \n \n Each call to insert  will have a unique id. \n \n Exactly n calls will be made to insert .",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass OrderedStream {\n    vector<string> data;\n    int ptr;\npublic:\n    OrderedStream(int n) : data(n + 1), ptr(1) {}\n    vector<string> insert(int idKey, string value) {\n        data[idKey] = value;\n        vector<string> result;\n        while (ptr < (int)data.size() && !data[ptr].empty())\n            result.push_back(data[ptr++]);\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175757334",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

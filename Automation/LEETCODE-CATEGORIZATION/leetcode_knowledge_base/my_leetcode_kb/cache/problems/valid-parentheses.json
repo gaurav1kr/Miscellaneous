@@ -1,0 +1,32 @@
+{
+  "id": "20",
+  "title": "Valid Parentheses",
+  "slug": "valid-parentheses",
+  "url": "https://leetcode.com/problems/valid-parentheses/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Bracket Sequences"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Ordered map",
+    "Stack",
+    "String"
+  ],
+  "description": "Given a string s containing just the characters '(' , ')' , '{' , '}' , '[' and ']' , determine if the input string is valid. \n \n An input string is valid if: \n\n Open brackets must be closed by the same type of brackets. \n \n Open brackets must be closed in the correct order. \n \n Every close bracket has a corresponding open bracket of the same type. \n\n Example 1: \n\n Input: s = \"()\" \n \n Output: true \n\n Example 2: \n\n Input: s = \"()[]{}\" \n \n Output: true \n\n Example 3: \n\n Input: s = \"(]\" \n \n Output: false \n\n Example 4: \n\n Input: s = \"([])\" \n \n Output: true \n\n Example 5: \n\n Input: s = \"([)]\" \n \n Output: false \n\n Constraints: \n\n 1 <= s.length <= 10 4 \n \n s consists of parentheses only '()[]{}' .",
+  "code": "#include <stack>\n#include <unordered_map>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isValid(string s) {\n        stack<char> st;\n        unordered_map<char, char> pairs = {{')', '('}, {']', '['}, {'}', '{'}};\n        \n        for (char c : s) {\n            if (pairs.count(c)) {\n                if (st.empty() || st.top() != pairs[c]) return false;\n                st.pop();\n            } else {\n                st.push(c);\n            }\n        }\n        return st.empty();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588370210",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

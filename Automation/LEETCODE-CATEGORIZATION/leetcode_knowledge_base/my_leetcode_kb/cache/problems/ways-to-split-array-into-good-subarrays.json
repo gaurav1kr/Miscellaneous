@@ -1,0 +1,32 @@
+{
+  "id": "2750",
+  "title": "Ways to Split Array Into Good Subarrays",
+  "slug": "ways-to-split-array-into-good-subarrays",
+  "url": "https://leetcode.com/problems/ways-to-split-array-into-good-subarrays/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a binary array nums . \n \n A subarray of an array is good if it contains exactly one element with the value 1 . \n \n Return an integer denoting the number of ways to split the array nums into good subarrays . As the number may be too large, return it modulo 10 9 + 7 . \n \n A subarray is a contiguous non-empty sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n nums = [0,1,0,0,1]\n\nOutput:\n 3\n\nExplanation:\n There are 3 ways to split nums into good subarrays:\n- [0,1] [0,0,1]\n- [0,1,0] [0,1]\n- [0,1,0,0] [1]\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,1,0]\n\nOutput:\n 1\n\nExplanation:\n There is 1 way to split nums into good subarrays:\n- [0,1,0]\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 1",
+  "code": "class Solution {public:int numberOfGoodSubarraySplits(vector<int>& nums){const int MOD=1000000007;long long ans=1;int prev=-1;for(int i=0;i<(int)nums.size();++i)if(nums[i]==1){if(prev>=0)ans=ans*(i-prev)%MOD;prev=i;}return prev<0?0:(int)ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176691929",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "2206",
+  "title": "Divide Array Into Equal Pairs",
+  "slug": "divide-array-into-equal-pairs",
+  "url": "https://leetcode.com/problems/divide-array-into-equal-pairs/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Bit Manipulation",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums consisting of 2 * n integers. \n \n You need to divide nums into n pairs such that: \n\n Each element belongs to exactly one pair. \n \n The elements present in a pair are equal . \n\n Return true if nums can be divided into n pairs, otherwise return false . \n\n Example 1: \n \n```\nInput:\n nums = [3,2,3,2,2,2]\n\nOutput:\n true\n\nExplanation:\n \nThere are 6 elements in nums, so they should be divided into 6 / 2 = 3 pairs.\nIf nums is divided into the pairs (2, 2), (3, 3), and (2, 2), it will satisfy all the conditions.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4]\n\nOutput:\n false\n\nExplanation:\n \nThere is no way to divide nums into 4 / 2 = 2 pairs such that the pairs satisfy every condition.\n```\n\n Constraints: \n\n nums.length == 2 * n \n \n 1 <= n <= 500 \n \n 1 <= nums[i] <= 500",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n bool divideArray(vector<int>& nums){unordered_set<int> odd;for(int x:nums){if(odd.count(x))odd.erase(x);else odd.insert(x);}return odd.empty();}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175886253",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

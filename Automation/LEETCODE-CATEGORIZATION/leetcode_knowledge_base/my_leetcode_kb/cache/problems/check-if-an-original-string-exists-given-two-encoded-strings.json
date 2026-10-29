@@ -1,0 +1,30 @@
+{
+  "id": "2060",
+  "title": "Check if an Original String Exists Given Two Encoded Strings",
+  "slug": "check-if-an-original-string-exists-given-two-encoded-strings",
+  "url": "https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Ordered set",
+    "String"
+  ],
+  "description": "An original string, consisting of lowercase English letters, can be encoded by the following steps: \n\n Arbitrarily split it into a sequence of some number of non-empty substrings. \n \n Arbitrarily choose some elements (possibly none) of the sequence, and replace each with its length (as a numeric string). \n \n Concatenate the sequence as the encoded string. \n\n For example, one way to encode an original string \"abcdefghijklmnop\" might be: \n\n Split it as a sequence: [\"ab\", \"cdefghijklmn\", \"o\", \"p\"] . \n \n Choose the second and third elements to be replaced by their lengths, respectively. The sequence becomes [\"ab\", \"12\", \"1\", \"p\"] . \n \n Concatenate the elements of the sequence to get the encoded string: \"ab121p\" . \n\n Given two encoded strings s1 and s2 , consisting of lowercase English letters and digits 1-9 (inclusive), return true if there exists an original string that could be encoded as both s1 and s2 . Otherwise, return false . \n \n Note : The test cases are generated such that the number of consecutive digits in s1 and s2 does not exceed 3 . \n\n Example 1: \n \n```\nInput:\n s1 = \"internationalization\", s2 = \"i18n\"\n\nOutput:\n true\n\nExplanation:\n It is possible that \"internationalization\" was the original string.\n- \"internationalization\" \n -> Split: [\"internationalization\"]\n -> Do not replace any element\n -> Concatenate: \"internationalization\", which is s1.\n- \"internationalization\"\n -> Split: [\"i\", \"nternationalizatio\", \"n\"]\n -> Replace: [\"i\", \"18\", \"n\"]\n -> Concatenate: \"i18n\", which is s2\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"l123e\", s2 = \"44\"\n\nOutput:\n true\n\nExplanation:\n It is possible that \"leetcode\" was the original string.\n- \"leetcode\" \n -> Split: [\"l\", \"e\", \"et\", \"cod\", \"e\"]\n -> Replace: [\"l\", \"1\", \"2\", \"3\", \"e\"]\n -> Concatenate: \"l123e\", which is s1.\n- \"leetcode\" \n -> Split: [\"leet\", \"code\"]\n -> Replace: [\"4\", \"4\"]\n -> Concatenate: \"44\", which is s2.\n```\n\n Example 3: \n \n```\nInput:\n s1 = \"a5b\", s2 = \"c5b\"\n\nOutput:\n false\n\nExplanation:\n It is impossible.\n- The original string encoded as s1 must start with the letter 'a'.\n- The original string encoded as s2 must start with the letter 'c'.\n```\n\n Constraints: \n\n 1 <= s1.length, s2.length <= 40 \n \n s1 and s2 consist of digits 1-9 (inclusive), and lowercase English letters only. \n \n The number of consecutive digits in s1 and s2 does not exceed 3 .",
+  "code": "class Solution {\n    string a,b;\n    set<tuple<int,int,int>>bad;\n    bool dfs(int i,int j,int diff){\n        if(i==(int)a.size()&&j==(int)b.size())return diff==0;\n        auto state=make_tuple(i,j,diff);\n        if(bad.count(state))return false;\n        if(i<(int)a.size()&&isdigit(a[i])){\n            int x=0;for(int k=i;k<(int)a.size()&&k<i+3&&isdigit(a[k]);++k){\n                x=x*10+a[k]-'0';if(dfs(k+1,j,diff+x))return true;\n            }\n        }\n        if(j<(int)b.size()&&isdigit(b[j])){\n            int x=0;for(int k=j;k<(int)b.size()&&k<j+3&&isdigit(b[k]);++k){\n                x=x*10+b[k]-'0';if(dfs(i,k+1,diff-x))return true;\n            }\n        }\n        if(diff>0&&j<(int)b.size()&&isalpha(b[j])&&dfs(i,j+1,diff-1))return true;\n        if(diff<0&&i<(int)a.size()&&isalpha(a[i])&&dfs(i+1,j,diff+1))return true;\n        if(diff==0&&i<(int)a.size()&&j<(int)b.size()&&\n           isalpha(a[i])&&isalpha(b[j])&&a[i]==b[j]&&dfs(i+1,j+1,0))return true;\n        bad.insert(state);return false;\n    }\npublic:\n    bool possiblyEquals(string s1,string s2){a=s1;b=s2;bad.clear();return dfs(0,0,0);}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175771202",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

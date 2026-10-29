@@ -1,0 +1,38 @@
+{
+  "id": "616",
+  "title": "Add Bold Tag in String",
+  "slug": "add-bold-tag-in-string",
+  "url": "https://leetcode.com/problems/add-bold-tag-in-string/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Trie",
+    "String Matching",
+    "Aho–Corasick Algorithm"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "You are given a string s and an array of strings words . \n \n You should add a closed pair of bold tag <b> and </b> to wrap the substrings in s that exist in words . \n\n If two such substrings overlap, you should wrap them together with only one pair of closed bold-tag. \n \n If two substrings wrapped by bold tags are consecutive, you should combine them. \n\n Return s after adding the bold tags . \n\n Example 1: \n \n```\nInput:\n s = \"abcxyz123\", words = [\"abc\",\"123\"]\n\nOutput:\n \"<b>abc</b>xyz<b>123</b>\"\n\nExplanation:\n The two strings of words are substrings of s as following: \"\nabc\nxyz\n123\n\".\nWe add <b> before each substring and </b> after each substring.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aaabbb\", words = [\"aa\",\"b\"]\n\nOutput:\n \"<b>aaabbb</b>\"\n\nExplanation:\n \n\"aa\" appears as a substring two times: \"\naa\nabbb\" and \"a\naa\nbbb\".\n\"b\" appears as a substring three times: \"aaa\nb\nbb\", \"aaab\nb\nb\", and \"aaabb\nb\n\".\nWe add <b> before each substring and </b> after each substring: \"<b>a<b>a</b>a</b><b>b</b><b>b</b><b>b</b>\".\nSince the first two <b>'s overlap, we merge them: \"<b>aaa</b><b>b</b><b>b</b><b>b</b>\".\nSince now the four <b>'s are consecutive, we merge them: \"<b>aaabbb</b>\".\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n 0 <= words.length <= 100 \n \n 1 <= words[i].length <= 1000 \n \n s and words[i] consist of English letters and digits. \n \n All the values of words are unique . \n\n Note: This question is the same as 758. Bold Words in String .",
+  "code": "class Solution {\npublic:\n    string addBoldTag(string s, vector<string>& dict) {\n        int n = s.size();\n        vector<bool> bold(n, false);\n        for (const string& word : dict) {\n            if (word.empty()) {\n                continue;\n            }\n            size_t position = s.find(word);\n            while (position != string::npos) {\n                for (size_t j = position; j < position + word.size(); ++j) {\n                    bold[j] = true;\n                }\n                position = s.find(word, position + 1);\n            }\n        }\n        string result;\n        for (int i = 0; i < n;) {\n            if (!bold[i]) {\n                result += s[i++];\n                continue;\n            }\n            result += \"<b>\";\n            while (i < n && bold[i]) {\n                result += s[i++];\n            }\n            result += \"</b>\";\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178487090",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

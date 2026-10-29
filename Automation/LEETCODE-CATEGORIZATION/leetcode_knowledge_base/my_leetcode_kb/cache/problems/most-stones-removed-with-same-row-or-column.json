@@ -1,0 +1,34 @@
+{
+  "id": "947",
+  "title": "Most Stones Removed with Same Row or Column",
+  "slug": "most-stones-removed-with-same-row-or-column",
+  "url": "https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Depth-First Search",
+    "Union-Find",
+    "Graph Theory",
+    "Bipartite Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "On a 2D plane, we place n stones at some integer coordinate points. Each coordinate point may have at most one stone. \n \n A stone can be removed if it shares either the same row or the same column as another stone that has not been removed. \n \n Given an array stones of length n where stones[i] = [x i , y i ] represents the location of the i th stone, return the largest possible number of stones that can be removed . \n\n Example 1: \n \n```\nInput:\n stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]]\n\nOutput:\n 5\n\nExplanation:\n One way to remove 5 stones is as follows:\n1. Remove stone [2,2] because it shares the same row as [2,1].\n2. Remove stone [2,1] because it shares the same column as [0,1].\n3. Remove stone [1,2] because it shares the same row as [1,0].\n4. Remove stone [1,0] because it shares the same column as [0,0].\n5. Remove stone [0,1] because it shares the same row as [0,0].\nStone [0,0] cannot be removed since it does not share a row/column with another stone still on the plane.\n```\n\n Example 2: \n \n```\nInput:\n stones = [[0,0],[0,2],[1,1],[2,0],[2,2]]\n\nOutput:\n 3\n\nExplanation:\n One way to make 3 moves is as follows:\n1. Remove stone [2,2] because it shares the same row as [2,0].\n2. Remove stone [2,0] because it shares the same column as [0,0].\n3. Remove stone [0,2] because it shares the same row as [0,0].\nStones [0,0] and [1,1] cannot be removed since they do not share a row/column with another stone still on the plane.\n```\n\n Example 3: \n \n```\nInput:\n stones = [[0,0]]\n\nOutput:\n 0\n\nExplanation:\n [0,0] is the only stone on the plane, so you cannot remove it.\n```\n\n Constraints: \n\n 1 <= stones.length <= 1000 \n \n 0 <= x i , y i <= 10 4 \n \n No two stones are at the same coordinate point.",
+  "code": "class Solution {\npublic:\n    void dfs(int &n, int idx, vector<bool>&visited, vector<vector<int>>&stones)\n    {\n        visited[idx] = true;\n        for(int i = 0; i<n; i++)\n        {\n            if(!visited[i])\n            {\n                if(stones[idx][0] == stones[i][0])\n                    dfs(n, i, visited, stones);\n\n                if(stones[idx][1] == stones[i][1])\n                    dfs(n, i, visited, stones);\n            }\n        }\n    }\n    int removeStones(vector<vector<int>>& stones) \n    {\n        int n = stones.size();\n        int group = 0;\n\n        vector<bool>visited(n);\n        for(int i = 0; i<n; i++)\n        {\n            if(!visited[i])\n            {\n                dfs(n, i, visited, stones);\n                group += 1;\n            }\n        }\n        return n - group;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1411019252",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

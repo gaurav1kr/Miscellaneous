@@ -1,0 +1,37 @@
+{
+  "id": "1296",
+  "title": "Divide Array in Sets of K Consecutive Numbers",
+  "slug": "divide-array-in-sets-of-k-consecutive-numbers",
+  "url": "https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an array of integers nums and a positive integer k , check whether it is possible to divide this array into sets of k consecutive numbers. \n \n Return true if it is possible . Otherwise, return false . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,3,4,4,5,6], k = 4\n\nOutput:\n true\n\nExplanation:\n Array can be divided into [1,2,3,4] and [3,4,5,6].\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,2,1,2,3,4,3,4,5,9,10,11], k = 3\n\nOutput:\n true\n\nExplanation:\n Array can be divided into [1,2,3] , [2,3,4] , [3,4,5] and [9,10,11].\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3,4], k = 3\n\nOutput:\n false\n\nExplanation:\n Each array should be divided in subarrays of size 3.\n```\n\n Constraints: \n\n 1 <= k <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n\n Note: This question is the same as 846:  https://leetcode.com/problems/hand-of-straights/",
+  "code": "\n#include <vector>\n#include <unordered_map>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isPossibleDivide(vector<int>& nums, int k) {\n        if (nums.size() % k != 0) return false;\n        \n        unordered_map<int, int> count;\n        for (int num : nums) count[num]++;\n        \n        sort(nums.begin(), nums.end());\n        \n        for (int num : nums) {\n            if (count[num] == 0) continue;\n            for (int i = 0; i < k; ++i) {\n                if (count[num + i] == 0) return false;\n                count[num + i]--;\n            }\n        }\n        \n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592334676",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

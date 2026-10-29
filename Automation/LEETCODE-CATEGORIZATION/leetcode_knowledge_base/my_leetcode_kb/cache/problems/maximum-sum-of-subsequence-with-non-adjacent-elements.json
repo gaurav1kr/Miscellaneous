@@ -1,0 +1,35 @@
+{
+  "id": "3165",
+  "title": "Maximum Sum of Subsequence With Non-adjacent Elements",
+  "slug": "maximum-sum-of-subsequence-with-non-adjacent-elements",
+  "url": "https://leetcode.com/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Divide and Conquer",
+    "Dynamic Programming",
+    "Segment Tree"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Segment tree",
+    "Vector"
+  ],
+  "description": "You are given an array nums consisting of integers. You are also given a 2D array queries , where queries[i] = [pos i , x i ] . \n \n For query i , we first set nums[pos i ] equal to x i , then we calculate the answer to query i which is the maximum sum of a subsequence of nums where no two adjacent elements are selected . \n \n Return the sum of the answers to all queries. \n \n Since the final answer may be very large, return it modulo 10 9 + 7 . \n \n A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements. \n\n Example 1: \n\n Input: nums = [3,5,9], queries = [[1,-2],[0,-3]] \n \n Output: 21 \n \n Explanation: \nAfter the 1 st query, nums = [3,-2,9] and the maximum sum of a subsequence with non-adjacent elements is 3 + 9 = 12 . \nAfter the 2 nd query, nums = [-3,-2,9] and the maximum sum of a subsequence with non-adjacent elements is 9. \n\n Example 2: \n\n Input: nums = [0,-1], queries = [[0,-5]] \n \n Output: 0 \n \n Explanation: \nAfter the 1 st query, nums = [-5,-1] and the maximum sum of a subsequence with non-adjacent elements is 0 (choosing an empty subsequence). \n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n -10 5 <= nums[i] <= 10 5 \n \n 1 <= queries.length <= 5 * 10 4 \n \n queries[i] == [pos i , x i ] \n \n 0 <= pos i <= nums.length - 1 \n \n -10 5 <= x i <= 10 5",
+  "code": "class Solution {using A=array<array<long long,2>,2>;struct Seg{int n;vector<A>t;A merge(A a,A b){A c;for(int x=0;x<2;++x)for(int y=0;y<2;++y){c[x][y]=LLONG_MIN/4;for(int i=0;i<2;++i)for(int j=0;j<2;++j)if(!(i&&j))c[x][y]=max(c[x][y],a[x][i]+b[j][y]);}return c;}Seg(vector<int>&v):n(v.size()),t(4*n){build(1,0,n-1,v);}void build(int p,int l,int r,vector<int>&v){if(l==r){t[p]={{{0,LLONG_MIN/4},{LLONG_MIN/4,v[l]}}};return;}int m=(l+r)/2;build(p*2,l,m,v);build(p*2+1,m+1,r,v);t[p]=merge(t[p*2],t[p*2+1]);}void upd(int p,int l,int r,int i,int v){if(l==r){t[p]={{{0,LLONG_MIN/4},{LLONG_MIN/4,v}}};return;}int m=(l+r)/2;if(i<=m)upd(p*2,l,m,i,v);else upd(p*2+1,m+1,r,i,v);t[p]=merge(t[p*2],t[p*2+1]);}long long best(){long long a=0;for(auto row:t[1])for(long long x:row)a=max(a,x);return a;}};\n public:int maximumSumSubsequence(vector<int>& nums,vector<vector<int>>& queries){const long long MOD=1000000007;Seg s(nums);long long ans=0;for(auto&q:queries){s.upd(1,0,nums.size()-1,q[0],q[1]);ans=(ans+s.best())%MOD;}return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177405146",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

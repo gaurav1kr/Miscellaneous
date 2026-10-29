@@ -1,0 +1,27 @@
+{
+  "id": "1272",
+  "title": "Remove Interval",
+  "slug": "remove-interval",
+  "url": "https://leetcode.com/problems/remove-interval/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "A set of real numbers can be represented as the union of several disjoint intervals, where each interval is in the form [a, b) . A real number x is in the set if one of its intervals [a, b) contains x (i.e. a <= x < b ). \n \n You are given a sorted list of disjoint intervals intervals representing a set of real numbers as described above, where intervals[i] = [a i , b i ] represents the interval [a i , b i ) . You are also given another interval toBeRemoved . \n \n Return the set of real numbers with the interval toBeRemoved removed from intervals . In other words, return the set of real numbers such that every x in the set is in intervals but not in toBeRemoved . Your answer should be a sorted list of disjoint intervals as described above. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/12/24/removeintervalex1.png] \n \n```\nInput:\n intervals = [[0,2],[3,4],[5,7]], toBeRemoved = [1,6]\n\nOutput:\n [[0,1],[6,7]]\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/12/24/removeintervalex2.png] \n \n```\nInput:\n intervals = [[0,5]], toBeRemoved = [2,3]\n\nOutput:\n [[0,2],[3,5]]\n```\n\n Example 3: \n \n```\nInput:\n intervals = [[-5,-4],[-3,-2],[1,2],[3,5],[8,9]], toBeRemoved = [-1,4]\n\nOutput:\n [[-5,-4],[-3,-2],[4,5],[8,9]]\n```\n\n Constraints: \n\n 1 <= intervals.length <= 10 4 \n \n -10 9 <= a i < b i <= 10 9",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> removeInterval(vector<vector<int>>& intervals,\n                                       vector<int>& toBeRemoved) {\n        vector<vector<int>> answer;\n        int low = toBeRemoved[0];\n        int high = toBeRemoved[1];\n        for (const auto& interval : intervals) {\n            if (interval[0] < low) {\n                int end = min(interval[1], low);\n                if (interval[0] < end) {\n                    answer.push_back({interval[0], end});\n                }\n            }\n            if (interval[1] > high) {\n                int start = max(interval[0], high);\n                if (start < interval[1]) {\n                    answer.push_back({start, interval[1]});\n                }\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178569753",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "37",
+  "title": "Sudoku Solver",
+  "slug": "sudoku-solver",
+  "url": "https://leetcode.com/problems/sudoku-solver/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Backtracking",
+    "Matrix",
+    "Algorithm X",
+    "Dancing Links"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Write a program to solve a Sudoku puzzle by filling the empty cells. \n \n A sudoku solution must satisfy all of the following rules : \n\n Each of the digits 1-9 must occur exactly once in each row. \n \n Each of the digits 1-9 must occur exactly once in each column. \n \n Each of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid. \n\n The '.' character indicates empty cells. \n\n Example 1: \n [Figure: https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png] \n \n```\nInput:\n board = [[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n\nOutput:\n [[\"5\",\"3\",\"4\",\"6\",\"7\",\"8\",\"9\",\"1\",\"2\"],[\"6\",\"7\",\"2\",\"1\",\"9\",\"5\",\"3\",\"4\",\"8\"],[\"1\",\"9\",\"8\",\"3\",\"4\",\"2\",\"5\",\"6\",\"7\"],[\"8\",\"5\",\"9\",\"7\",\"6\",\"1\",\"4\",\"2\",\"3\"],[\"4\",\"2\",\"6\",\"8\",\"5\",\"3\",\"7\",\"9\",\"1\"],[\"7\",\"1\",\"3\",\"9\",\"2\",\"4\",\"8\",\"5\",\"6\"],[\"9\",\"6\",\"1\",\"5\",\"3\",\"7\",\"2\",\"8\",\"4\"],[\"2\",\"8\",\"7\",\"4\",\"1\",\"9\",\"6\",\"3\",\"5\"],[\"3\",\"4\",\"5\",\"2\",\"8\",\"6\",\"1\",\"7\",\"9\"]]\n\nExplanation:\n The input board is shown above and the only valid solution is shown below:\n```\n\n Constraints: \n\n board.length == 9 \n \n board[i].length == 9 \n \n board[i][j] is a digit or '.' . \n \n It is guaranteed that the input board has only one solution.",
+  "code": "class Solution \n{\npublic:\n    void solveSudoku(vector<vector<char>>& board) \n    {\n        solve(board);\n    }\n\nprivate:\n    bool solve(vector<vector<char>>& board) \n    {\n        for (int row = 0; row < 9; ++row) \n        {\n            for (int col = 0; col < 9; ++col) \n            {\n                if (board[row][col] == '.') \n                {\n                    for (char num = '1'; num <= '9'; ++num) \n                    {\n                        if (isValid(board, row, col, num)) \n                        {\n                            board[row][col] = num;\n                            if (solve(board)) return true;\n                            board[row][col] = '.'; // backtrack\n                        }\n                    }\n                    return false; // no valid number found\n                }\n            }\n        }\n        return true; // solved\n    }\n\n    bool isValid(vector<vector<char>>& board, int row, int col, char num) \n    {\n        for (int i = 0; i < 9; ++i) \n        {\n            if (board[row][i] == num || board[i][col] == num ||\n                board[row / 3 * 3 + i / 3][col / 3 * 3 + i % 3] == num) \n                {\n                return false;\n                }\n        }\n        return true;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1537032303",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

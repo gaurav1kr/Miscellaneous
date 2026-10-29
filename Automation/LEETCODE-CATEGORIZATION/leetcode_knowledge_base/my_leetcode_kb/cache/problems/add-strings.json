@@ -1,0 +1,30 @@
+{
+  "id": "415",
+  "title": "Add Strings",
+  "slug": "add-strings",
+  "url": "https://leetcode.com/problems/add-strings/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given two non-negative integers, num1 and num2 represented as string, return the sum of num1 and num2 as a string . \n \n You must solve the problem without using any built-in library for handling large integers (such as BigInteger ). You must also not convert the inputs to integers directly. \n\n Example 1: \n \n```\nInput:\n num1 = \"11\", num2 = \"123\"\n\nOutput:\n \"134\"\n```\n\n Example 2: \n \n```\nInput:\n num1 = \"456\", num2 = \"77\"\n\nOutput:\n \"533\"\n```\n\n Example 3: \n \n```\nInput:\n num1 = \"0\", num2 = \"0\"\n\nOutput:\n \"0\"\n```\n\n Constraints: \n\n 1 <= num1.length, num2.length <= 10 4 \n \n num1 and num2 consist of only digits. \n \n num1 and num2 don't have any leading zeros except for the zero itself.",
+  "code": "class Solution {\npublic:\n    string addStrings(string num1, string num2) {\n        int i = num1.size() - 1, j = num2.size() - 1, carry = 0;\n        string result = \"\";\n        while (i >= 0 || j >= 0 || carry) {\n            int sum = carry;\n            if (i >= 0) sum += num1[i--] - '0';\n            if (j >= 0) sum += num2[j--] - '0';\n            result += (sum % 10) + '0';\n            carry = sum / 10;\n        }\n        reverse(result.begin(), result.end());\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588102201",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

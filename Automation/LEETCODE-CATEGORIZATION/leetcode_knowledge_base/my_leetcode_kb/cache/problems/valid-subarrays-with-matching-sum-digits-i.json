@@ -1,0 +1,36 @@
+{
+  "id": "3969",
+  "title": "Valid Subarrays With Matching Sum Digits I",
+  "slug": "valid-subarrays-with-matching-sum-digits-i",
+  "url": "https://leetcode.com/problems/valid-subarrays-with-matching-sum-digits-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Enumeration",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer digit x . \n \n A subarray nums[l..r] is considered valid if the sum of its elements satisfies both of the following conditions: \n\n The first digit of the sum is equal to x . \n \n The last digit of the sum is equal to x . \n\n Return the number of valid subarrays. \n\n Example 1: \n\n Input: nums = [1,100,1], x = 1 \n \n Output: 4 \n \n Explanation: \n \n The valid subarrays are: \n\n nums[0..0] : sum = 1 \n \n nums[0..1] : sum = 1 + 100 = 101 \n \n nums[1..2] : sum = 100 + 1 = 101 \n \n nums[2..2] : sum = 1 \n\n Thus, the answer is 4. \n\n Example 2: \n\n Input: nums = [1], x = 2 \n \n Output: 0 \n \n Explanation: \n \n The only subarray is nums[0..0] with a sum of 1, which does not satisfy the conditions. \n \n Thus, the answer is 0. \n\n Constraints: \n\n 1 <= nums.length <= 1500 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= x <= 9",
+  "code": "class Solution {\npublic:\n    int countValidSubarrays(vector<int>& nums, int x) {\n        int ans=0,n=nums.size();\n        for(int i=0;i<n;++i){\n            long long sum=0;\n            for(int j=i;j<n;++j){\n                sum+=nums[j];\n                if(sum%10!=x)continue;\n                long long first=sum;\n                while(first>=10)first/=10;\n                if(first==x)++ans;\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181099444",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

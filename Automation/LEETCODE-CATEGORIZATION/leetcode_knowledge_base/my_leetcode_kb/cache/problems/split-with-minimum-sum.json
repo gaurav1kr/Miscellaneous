@@ -1,0 +1,30 @@
+{
+  "id": "2578",
+  "title": "Split With Minimum Sum",
+  "slug": "split-with-minimum-sum",
+  "url": "https://leetcode.com/problems/split-with-minimum-sum/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Sorted array"
+  ],
+  "description": "Given a positive integer num , split it into two non-negative integers num1 and num2 such that: \n\n The concatenation of num1 and num2 is a permutation of num .\n\n In other words, the sum of the number of occurrences of each digit in num1 and num2 is equal to the number of occurrences of that digit in num . \n\n num1 and num2 can contain leading zeros. \n\n Return the minimum possible sum of num1 and num2 . \n \n Notes: \n\n It is guaranteed that num does not contain any leading zeros. \n \n The order of occurrence of the digits in num1 and num2 may differ from the order of occurrence of num . \n\n Example 1: \n \n```\nInput:\n num = 4325\n\nOutput:\n 59\n\nExplanation:\n We can split 4325 so that \nnum1\n is 24 and \nnum2\n is 35, giving a sum of 59. We can prove that 59 is indeed the minimal possible sum.\n```\n\n Example 2: \n \n```\nInput:\n num = 687\n\nOutput:\n 75\n\nExplanation:\n We can split 687 so that \nnum1\n is 68 and \nnum2\n is 7, which would give an optimal sum of 75.\n```\n\n Constraints: \n\n 10 <= num <= 10 9",
+  "code": "class Solution {public:int splitNum(int num){string s=to_string(num);sort(s.begin(),s.end());int a=0,b=0;for(int i=0;i<(int)s.size();i++)(i%2?b:a)=(i%2?b:a)*10+s[i]-'0';return a+b;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176618889",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

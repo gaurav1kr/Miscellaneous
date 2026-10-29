@@ -1,0 +1,36 @@
+{
+  "id": "2345",
+  "title": "Finding the Number of Visible Mountains",
+  "slug": "finding-the-number-of-visible-mountains",
+  "url": "https://leetcode.com/problems/finding-the-number-of-visible-mountains/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Stack",
+    "Sorting",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Sorted array",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed 2D integer array peaks where peaks[i] = [x i , y i ] states that mountain i has a peak at coordinates (x i , y i ) . A mountain can be described as a right-angled isosceles triangle, with its base along the x -axis and a right angle at its peak. More formally, the gradients of ascending and descending the mountain are 1 and -1 respectively. \n \n A mountain is considered visible if its peak does not lie within another mountain (including the border of other mountains). \n \n Return the number of visible mountains . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/07/19/ex1.png] \n \n```\nInput:\n peaks = [[2,2],[6,3],[5,4]]\n\nOutput:\n 2\n\nExplanation:\n The diagram above shows the mountains.\n- Mountain 0 is visible since its peak does not lie within another mountain or its sides.\n- Mountain 1 is not visible since its peak lies within the side of mountain 2.\n- Mountain 2 is visible since its peak does not lie within another mountain or its sides.\nThere are 2 mountains that are visible.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/07/19/ex2new1.png] \n \n```\nInput:\n peaks = [[1,3],[1,3]]\n\nOutput:\n 0\n\nExplanation:\n The diagram above shows the mountains (they completely overlap).\nBoth mountains are not visible since their peaks lie within each other.\n```\n\n Constraints: \n\n 1 <= peaks.length <= 10 5 \n \n peaks[i].length == 2 \n \n 1 <= x i , y i <= 10 5",
+  "code": "class Solution {\npublic:\n    int visibleMountains(vector<vector<int>>& peaks) {\n        vector<pair<int, int>> ranges;\n        for (auto& p : peaks) ranges.push_back({p[0] - p[1], p[0] + p[1]});\n        sort(ranges.begin(), ranges.end(), [](pair<int,int> a, pair<int,int> b) {\n            return a.first != b.first ? a.first < b.first : a.second > b.second;\n        });\n        int answer = 0, farthest = INT_MIN;\n        for (int i = 0; i < (int)ranges.size(); ++i) {\n            if (ranges[i].second > farthest) {\n                if (i + 1 == (int)ranges.size() || ranges[i] != ranges[i + 1]) ++answer;\n                farthest = ranges[i].second;\n            }\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178861392",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

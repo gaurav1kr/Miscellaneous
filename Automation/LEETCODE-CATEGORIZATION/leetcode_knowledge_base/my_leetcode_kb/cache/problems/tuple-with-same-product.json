@@ -1,0 +1,33 @@
+{
+  "id": "1726",
+  "title": "Tuple with Same Product",
+  "slug": "tuple-with-same-product",
+  "url": "https://leetcode.com/problems/tuple-with-same-product/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an array nums of distinct positive integers, return the number of tuples (a, b, c, d) such that a * b = c * d where a , b , c , and d are elements of nums , and a != b != c != d . \n\n Example 1: \n \n```\nInput:\n nums = [2,3,4,6]\n\nOutput:\n 8\n\nExplanation:\n There are 8 valid tuples:\n(2,6,3,4) , (2,6,4,3) , (6,2,3,4) , (6,2,4,3)\n(3,4,2,6) , (4,3,2,6) , (3,4,6,2) , (4,3,6,2)\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,4,5,10]\n\nOutput:\n 16\n\nExplanation:\n There are 16 valid tuples:\n(1,10,2,5) , (1,10,5,2) , (10,1,2,5) , (10,1,5,2)\n(2,5,1,10) , (2,5,10,1) , (5,2,1,10) , (5,2,10,1)\n(2,10,4,5) , (2,10,5,4) , (10,2,4,5) , (10,2,5,4)\n(4,5,2,10) , (4,5,10,2) , (5,4,2,10) , (5,4,10,2)\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 10 4 \n \n All elements in nums are distinct .",
+  "code": "class Solution {\npublic:\n int tupleSameProduct(vector<int>& nums){\n  unordered_map<int,int> cnt;int ans=0;\n  for(int i=0;i<(int)nums.size();++i)for(int j=i+1;j<(int)nums.size();++j){\n   int p=nums[i]*nums[j];ans+=8*cnt[p]++;\n  }\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175758989",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "291",
+  "title": "Word Pattern II",
+  "slug": "word-pattern-ii",
+  "url": "https://leetcode.com/problems/word-pattern-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "String"
+  ],
+  "description": "Given a pattern and a string s , return true if s matches the pattern . \n \n A string s matches a pattern if there is some bijective mapping of single characters to non-empty strings such that if each character in pattern is replaced by the string it maps to, then the resulting string is s . A bijective mapping means that no two characters map to the same string, and no character maps to two different strings. \n\n Example 1: \n \n```\nInput:\n pattern = \"abab\", s = \"redblueredblue\"\n\nOutput:\n true\n\nExplanation:\n One possible mapping is as follows:\n'a' -> \"red\"\n'b' -> \"blue\"\n```\n\n Example 2: \n \n```\nInput:\n pattern = \"aaaa\", s = \"asdasdasdasd\"\n\nOutput:\n true\n\nExplanation:\n One possible mapping is as follows:\n'a' -> \"asd\"\n```\n\n Example 3: \n \n```\nInput:\n pattern = \"aabb\", s = \"xyzabcxzyabc\"\n\nOutput:\n false\n```\n\n Constraints: \n\n 1 <= pattern.length, s.length <= 20 \n \n pattern and s consist of only lowercase English letters.",
+  "code": "class Solution\n{\n    bool dfs(const string& p, int i, const string& s, int j,\n             unordered_map<char, string>& mapping,\n             unordered_set<string>& used)\n             {\n        if (i == (int)p.size() || j == (int)s.size())\n        {\n            return i == (int)p.size() && j == (int)s.size();\n        }\n        char c = p[i];\n        if (mapping.count(c))\n        {\n            const string& word = mapping[c];\n            if (s.compare(j, word.size(), word) != 0)\n            {\n                return false;\n            }\n            return dfs(p, i + 1, s, j + word.size(), mapping, used);\n        }\n        for (int end = j + 1; end <= (int)s.size(); ++end)\n        {\n            string word = s.substr(j, end - j);\n            if (used.count(word))\n            {\n                continue;\n            }\n            mapping[c] = word;\n            used.insert(word);\n            if (dfs(p, i + 1, s, end, mapping, used))\n            {\n                return true;\n            }\n            used.erase(word);\n            mapping.erase(c);\n        }\n        return false;\n    }\npublic:\n    bool wordPatternMatch(string pattern, string s)\n    {\n        unordered_map<char, string> mapping;\n        unordered_set<string> used;\n        return dfs(pattern, 0, s, 0, mapping, used);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178447297",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

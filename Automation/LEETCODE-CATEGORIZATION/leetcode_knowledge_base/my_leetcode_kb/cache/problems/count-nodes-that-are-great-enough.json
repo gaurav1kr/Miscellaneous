@@ -1,0 +1,33 @@
+{
+  "id": "2792",
+  "title": "Count Nodes That Are Great Enough",
+  "slug": "count-nodes-that-are-great-enough",
+  "url": "https://leetcode.com/problems/count-nodes-that-are-great-enough/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Divide and Conquer",
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are given a root to a binary tree and an integer k . A node of this tree is called great enough if the followings hold: \n\n Its subtree has at least k nodes. \n \n Its value is greater than the value of at least k nodes in its subtree. \n\n Return the number of nodes in this tree that are great enough. \n \n The node u is in the subtree of the node  v , if u == v  or  v  is an ancestor of u . \n\n Example 1: \n \n```\nInput:\n root = [7,6,5,4,3,2,1], k = 2\n\nOutput:\n 3\n\nExplanation:\n Number the nodes from 1 to 7.\nThe values in the subtree of node 1: {1,2,3,4,5,6,7}. Since node.val == 7, there are 6 nodes having a smaller value than its value. So it's great enough.\nThe values in the subtree of node 2: {3,4,6}. Since node.val == 6, there are 2 nodes having a smaller value than its value. So it's great enough.\nThe values in the subtree of node 3: {1,2,5}. Since node.val == 5, there are 2 nodes having a smaller value than its value. So it's great enough.\nIt can be shown that other nodes are not great enough.\nSee the picture below for a better understanding.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/07/25/1.png] \n \n Example 2: \n \n```\nInput:\n root = [1,2,3], k = 1\n\nOutput:\n 0\n\nExplanation: \nNumber the nodes from 1 to 3.\nThe values in the subtree of node 1: {1,2,3}. Since node.val == 1, there are no nodes having a smaller value than its value. So it's not great enough.\nThe values in the subtree of node 2: {2}. Since node.val == 2, there are no nodes having a smaller value than its value. So it's not great enough.\nThe values in the subtree of node 3: {3}. Since node.val == 3, there are no nodes having a smaller value than its value. So it's not great enough.\nSee the picture below for a better understanding.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/07/25/2.png] \n \n Example 3: \n \n```\nInput:\n root = [3,2,2], k = 2\n\nOutput:\n 1\n\nExplanation: \nNumber the nodes from 1 to 3.\nThe values in the subtree of node 1: {2,2,3}. Since node.val == 3, there are 2 nodes having a smaller value than its value. So it's great enough.\nThe values in the subtree of node 2: {2}. Since node.val == 2, there are no nodes having a smaller value than its value. So it's not great enough.\nThe values in the subtree of node 3: {2}. Since node.val == 2, there are no nodes having a smaller value than its value. So it's not great enough.\nSee the picture below for a better understanding.\n```\n\n [Figure: https://assets.leetcode.com/uploads/2023/07/25/3.png] \n\n Constraints: \n\n The number of nodes in the tree is in the range  [1, 10 4 ] .   \n \n 1 <= Node.val <= 10 4 \n \n 1 <= k <= 10",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\n    int answer = 0;\n    int kValue = 0;\n    vector<int> dfs(TreeNode* node) {\n        if (!node) return {};\n        vector<int> a = dfs(node->left), b = dfs(node->right);\n        a.insert(a.end(), b.begin(), b.end());\n        sort(a.begin(), a.end());\n        if ((int)a.size() >= kValue && node->val > a[kValue - 1]) ++answer;\n        a.push_back(node->val);\n        sort(a.begin(), a.end());\n        if ((int)a.size() > kValue) a.resize(kValue);\n        return a;\n    }\npublic:\n    int countGreatEnoughNodes(TreeNode* root, int k) {\n        answer = 0;\n        kValue = k;\n        dfs(root);\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178908290",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "2482",
+  "title": "Difference Between Ones and Zeros in Row and Column",
+  "slug": "difference-between-ones-and-zeros-in-row-and-column",
+  "url": "https://leetcode.com/problems/difference-between-ones-and-zeros-in-row-and-column/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed m x n binary matrix grid . \n \n A 0-indexed m x n difference matrix diff is created with the following procedure: \n\n Let the number of ones in the i th row be onesRow i . \n \n Let the number of ones in the j th column be onesCol j . \n \n Let the number of zeros in the i th row be zerosRow i . \n \n Let the number of zeros in the j th column be zerosCol j . \n \n diff[i][j] = onesRow i + onesCol j - zerosRow i - zerosCol j \n\n Return the difference matrix diff . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/11/06/image-20221106171729-5.png] \n \n```\nInput:\n grid = [[0,1,1],[1,0,1],[0,0,1]]\n\nOutput:\n [[0,0,4],[0,0,4],[-2,-2,2]]\n\nExplanation:\n\n- diff[0][0] = \nonesRow\n0\n + onesCol\n0\n - zerosRow\n0\n - zerosCol\n0\n = 2 + 1 - 1 - 2 = 0 \n- diff[0][1] = \nonesRow\n0\n + onesCol\n1\n - zerosRow\n0\n - zerosCol\n1\n = 2 + 1 - 1 - 2 = 0 \n- diff[0][2] = \nonesRow\n0\n + onesCol\n2\n - zerosRow\n0\n - zerosCol\n2\n = 2 + 3 - 1 - 0 = 4 \n- diff[1][0] = \nonesRow\n1\n + onesCol\n0\n - zerosRow\n1\n - zerosCol\n0\n = 2 + 1 - 1 - 2 = 0 \n- diff[1][1] = \nonesRow\n1\n + onesCol\n1\n - zerosRow\n1\n - zerosCol\n1\n = 2 + 1 - 1 - 2 = 0 \n- diff[1][2] = \nonesRow\n1\n + onesCol\n2\n - zerosRow\n1\n - zerosCol\n2\n = 2 + 3 - 1 - 0 = 4 \n- diff[2][0] = \nonesRow\n2\n + onesCol\n0\n - zerosRow\n2\n - zerosCol\n0\n = 1 + 1 - 2 - 2 = -2\n- diff[2][1] = \nonesRow\n2\n + onesCol\n1\n - zerosRow\n2\n - zerosCol\n1\n = 1 + 1 - 2 - 2 = -2\n- diff[2][2] = \nonesRow\n2\n + onesCol\n2\n - zerosRow\n2\n - zerosCol\n2\n = 1 + 3 - 2 - 0 = 2\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/11/06/image-20221106171747-6.png] \n \n```\nInput:\n grid = [[1,1,1],[1,1,1]]\n\nOutput:\n [[5,5,5],[5,5,5]]\n\nExplanation:\n\n- diff[0][0] = onesRow\n0\n + onesCol\n0\n - zerosRow\n0\n - zerosCol\n0\n = 3 + 2 - 0 - 0 = 5\n- diff[0][1] = onesRow\n0\n + onesCol\n1\n - zerosRow\n0\n - zerosCol\n1\n = 3 + 2 - 0 - 0 = 5\n- diff[0][2] = onesRow\n0\n + onesCol\n2\n - zerosRow\n0\n - zerosCol\n2\n = 3 + 2 - 0 - 0 = 5\n- diff[1][0] = onesRow\n1\n + onesCol\n0\n - zerosRow\n1\n - zerosCol\n0\n = 3 + 2 - 0 - 0 = 5\n- diff[1][1] = onesRow\n1\n + onesCol\n1\n - zerosRow\n1\n - zerosCol\n1\n = 3 + 2 - 0 - 0 = 5\n- diff[1][2] = onesRow\n1\n + onesCol\n2\n - zerosRow\n1\n - zerosCol\n2\n = 3 + 2 - 0 - 0 = 5\n```\n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 1 <= m, n <= 10 5 \n \n 1 <= m * n <= 10 5 \n \n grid[i][j] is either 0 or 1 .",
+  "code": "class Solution {public:vector<vector<int>> onesMinusZeros(vector<vector<int>>& grid){int m=grid.size(),n=grid[0].size();vector<int> r(m),c(n);for(int i=0;i<m;i++)for(int j=0;j<n;j++){r[i]+=grid[i][j];c[j]+=grid[i][j];}vector<vector<int>> ans(m,vector<int>(n));for(int i=0;i<m;i++)for(int j=0;j<n;j++)ans[i][j]=2*r[i]+2*c[j]-m-n;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176582905",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

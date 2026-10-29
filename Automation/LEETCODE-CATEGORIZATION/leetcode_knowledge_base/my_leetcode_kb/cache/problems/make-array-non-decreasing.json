@@ -1,0 +1,35 @@
+{
+  "id": "3523",
+  "title": "Make Array Non-decreasing",
+  "slug": "make-array-non-decreasing",
+  "url": "https://leetcode.com/problems/make-array-non-decreasing/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Greedy",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Greedy / Intervals",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . In one operation, you can select a subarray and replace it with a single element equal to its maximum value. \n \n Return the maximum possible size of the array after performing zero or more operations such that the resulting array is non-decreasing . \n\n Example 1: \n\n Input: nums = [4,2,5,3,5] \n \n Output: 3 \n \n Explanation: \n \n One way to achieve the maximum size is: \n\n Replace subarray nums[1..2] = [2, 5] with 5 → [4, 5, 3, 5] . \n \n Replace subarray nums[2..3] = [3, 5] with 5 → [4, 5, 5] . \n\n The final array [4, 5, 5] is non-decreasing with size 3. \n\n Example 2: \n\n Input: nums = [1,2,3] \n \n Output: 3 \n \n Explanation: \n \n No operation is needed as the array [1,2,3] is already non-decreasing. \n\n Constraints: \n\n 1 <= nums.length <= 2 * 10 5 \n \n 1 <= nums[i] <= 2 * 10 5",
+  "code": "class Solution {public:int maximumPossibleSize(vector<int>& nums){vector<int> st;for(int x:nums){if(st.empty()||st.back()<=x)st.push_back(x);}return st.size();}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177559927",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

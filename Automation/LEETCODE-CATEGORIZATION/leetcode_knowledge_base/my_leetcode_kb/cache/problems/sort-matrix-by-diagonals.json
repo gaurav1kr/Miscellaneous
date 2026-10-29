@@ -1,0 +1,32 @@
+{
+  "id": "3446",
+  "title": "Sort Matrix by Diagonals",
+  "slug": "sort-matrix-by-diagonals",
+  "url": "https://leetcode.com/problems/sort-matrix-by-diagonals/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting",
+    "Matrix"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an n x n square matrix of integers grid . Return the matrix such that: \n\n The diagonals in the bottom-left triangle (including the middle diagonal) are sorted in non-increasing order . \n \n The diagonals in the top-right triangle are sorted in non-decreasing order . \n\n Example 1: \n\n Input: grid = [[1,7,3],[9,8,2],[4,5,6]] \n \n Output: [[8,2,3],[9,6,7],[4,5,1]] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/12/29/4052example1drawio.png] \n \n The diagonals with a black arrow (bottom-left triangle) should be sorted in non-increasing order: \n\n [1, 8, 6] becomes [8, 6, 1] . \n \n [9, 5] and [4] remain unchanged. \n\n The diagonals with a blue arrow (top-right triangle) should be sorted in non-decreasing order: \n\n [7, 2] becomes [2, 7] . \n \n [3] remains unchanged. \n\n Example 2: \n\n Input: grid = [[0,1],[1,2]] \n \n Output: [[2,1],[1,0]] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/12/29/4052example2adrawio.png] \n \n The diagonals with a black arrow must be non-increasing, so [0, 2] is changed to [2, 0] . The other diagonals are already in the correct order. \n\n Example 3: \n\n Input: grid = [[1]] \n \n Output: [[1]] \n \n Explanation: \n \n Diagonals with exactly one element are already in order, so no changes are needed. \n\n Constraints: \n\n grid.length == grid[i].length == n \n \n 1 <= n <= 10 \n \n -10 5 <= grid[i][j] <= 10 5",
+  "code": "class Solution {public:vector<vector<int>> sortMatrix(vector<vector<int>>& grid){int n=grid.size();for(int d=-(n-1);d<n;++d){vector<int>v;for(int i=max(0,d);i<n&&i-d<n;++i)v.push_back(grid[i][i-d]);if(d>=0)sort(v.rbegin(),v.rend());else sort(v.begin(),v.end());int p=0;for(int i=max(0,d);i<n&&i-d<n;++i)grid[i][i-d]=v[p++];}return grid;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177528863",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

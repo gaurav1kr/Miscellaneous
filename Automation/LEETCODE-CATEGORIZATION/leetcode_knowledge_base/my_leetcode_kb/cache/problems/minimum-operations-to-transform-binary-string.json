@@ -1,0 +1,31 @@
+{
+  "id": "3980",
+  "title": "Minimum Operations to Transform Binary String",
+  "slug": "minimum-operations-to-transform-binary-string",
+  "url": "https://leetcode.com/problems/minimum-operations-to-transform-binary-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String"
+  ],
+  "description": "You are given two binary strings s1 and s2 of the same length n . \n \n You can perform the following operations on s1 any number of times, in any order: \n\n Choose an index i such that s1[i] == '0' , and change it to '1' . \n \n Choose an index i such that 0 <= i < n - 1 , and both s1[i] and s1[i + 1] are '1' . Change both characters to '0' . \n\n Return the minimum number of operations required to make s1 equal to s2 . If it is impossible, return -1. \n\n Example 1: \n\n Input: s1 = \"11\", s2 = \"00\" \n \n Output: 1 \n \n Explanation: \n \n Change indices 0 and 1 from '1' to '0' in one operation, so \"11\" becomes \"00\" . Thus, the answer is 1. \n\n Example 2: \n\n Input: s1 = \"01\", s2 = \"10\" \n \n Output: 3 \n \n Explanation: \n\n Change index 0 from '0' to '1' , so \"01\" becomes \"11\" . \n \n Change indices 0 and 1 from '1' to '0' , so \"11\" becomes \"00\" . \n \n Change index 0 from '0' to '1' , so \"00\" becomes \"10\" . \n \n Thus, the answer is 3. \n\n Example 3: \n\n Input: s1 = \"1\", s2 = \"0\" \n \n Output: -1 \n \n Explanation: \n \n The first operation cannot change '1' to '0' , and the second operation requires two adjacent characters. Therefore, it is impossible. \n\n Constraints: \n\n 1 <= n == s1.length == s2.length <= 10 5 \n \n s1 and s2 consist only of '0' and '1' .",
+  "code": "class Solution {\npublic:\n    int minOperations(string s1, string s2) {\n        const int INF = 1e9;\n        int n = s1.size();\n\n        int dp0 = 0;\n        int dp1 = INF;\n\n        for (int i = 0; i < n; ++i) {\n            int next0 = INF;\n            int next1 = INF;\n\n            // Current bit is original s1[i]\n            if (dp0 < INF) {\n                int cur = s1[i] - '0';\n                int tar = s2[i] - '0';\n\n                // Don't use pair operation\n                if (cur == tar)\n                    next0 = min(next0, dp0);\n                else if (cur == 0 && tar == 1)\n                    next0 = min(next0, dp0 + 1);\n\n                // Use 11 -> 00 on i, i+1\n                if (i + 1 < n) {\n                    int cost = 1;\n\n                    if (cur == 0) ++cost;\n                    if (s1[i + 1] == '0') ++cost;\n                    if (tar == 1) ++cost;\n\n                    next1 = min(next1, dp0 + cost);\n                }\n            }\n\n            // Current bit was already changed to 0\n            // by pair operation from previous position\n            if (dp1 < INF) {\n                int cur = 0;\n                int tar = s2[i] - '0';\n\n                // Don't use pair operation\n                if (cur == tar)\n                    next0 = min(next0, dp1);\n                else // 0 -> 1\n                    next0 = min(next0, dp1 + 1);\n\n                // Use pair operation on i, i+1\n                if (i + 1 < n) {\n                    int cost = 1;\n\n                    // cur is 0, so first make it 1\n                    ++cost;\n\n                    if (s1[i + 1] == '0')\n                        ++cost;\n\n                    if (tar == 1)\n                        ++cost;\n\n                    next1 = min(next1, dp1 + cost);\n                }\n            }\n\n            dp0 = next0;\n            dp1 = next1;\n        }\n\n        return dp0 == INF ? -1 : dp0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163828147",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

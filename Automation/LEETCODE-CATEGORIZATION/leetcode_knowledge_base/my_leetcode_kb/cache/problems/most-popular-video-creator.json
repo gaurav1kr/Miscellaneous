@@ -1,0 +1,41 @@
+{
+  "id": "2456",
+  "title": "Most Popular Video Creator",
+  "slug": "most-popular-video-creator",
+  "url": "https://leetcode.com/problems/most-popular-video-creator/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Heap / Priority Queue",
+  "related_topics": [
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue / heap",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given two string arrays creators and ids , and an integer array views , all of length n . The i th video on a platform was created by creators[i] , has an id of ids[i] , and has views[i] views. \n \n The popularity of a creator is the sum of the number of views on all of the creator's videos. Find the creator with the highest popularity and the id of their most viewed video. \n\n If multiple creators have the highest popularity, find all of them. \n \n If multiple videos have the highest view count for a creator, find the lexicographically smallest id. \n\n Note: It is possible for different videos to have the same id , meaning that id s do not uniquely identify a video. For example, two videos with the same ID are considered as distinct videos with their own viewcount. \n \n Return a 2D array of strings answer where answer[i] = [creators i , id i ] means that creators i has the highest popularity and id i is the id of their most popular video. The answer can be returned in any order. \n\n Example 1: \n\n Input: creators = [\"alice\",\"bob\",\"alice\",\"chris\"], ids = [\"one\",\"two\",\"three\",\"four\"], views = [5,10,5,4] \n \n Output: [[\"alice\",\"one\"],[\"bob\",\"two\"]] \n \n Explanation: \n \n The popularity of alice is 5 + 5 = 10. \nThe popularity of bob is 10. \nThe popularity of chris is 4. \nalice and bob are the most popular creators. \nFor bob, the video with the highest view count is \"two\". \nFor alice, the videos with the highest view count are \"one\" and \"three\". Since \"one\" is lexicographically smaller than \"three\", it is included in the answer. \n\n Example 2: \n\n Input: creators = [\"alice\",\"alice\",\"alice\"], ids = [\"a\",\"b\",\"c\"], views = [1,2,2] \n \n Output: [[\"alice\",\"b\"]] \n \n Explanation: \n \n The videos with id \"b\" and \"c\" have the highest view count. \nSince \"b\" is lexicographically smaller than \"c\", it is included in the answer. \n\n Constraints: \n\n n == creators.length == ids.length == views.length \n \n 1 <= n <= 10 5 \n \n 1 <= creators[i].length, ids[i].length <= 5 \n \n creators[i] and ids[i] consist only of lowercase English letters. \n \n 0 <= views[i] <= 10 5",
+  "code": "class Solution { public: vector<vector<string>> mostPopularCreator(vector<string>& creators,vector<string>& ids,vector<int>& views){unordered_map<string,long long> total;unordered_map<string,pair<int,string>> best;for(int i=0;i<(int)views.size();++i){string c=creators[i];total[c]+=views[i];if(!best.count(c)||views[i]>best[c].first||(views[i]==best[c].first&&ids[i]<best[c].second))best[c]={views[i],ids[i]};}long long mx=0;for(auto &p:total)mx=max(mx,p.second);vector<vector<string>>ans;for(auto &p:total)if(p.second==mx)ans.push_back({p.first,best[p.first].second});return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176571451",
+  "approach_summary": "Repeatedly select the current min/max or maintain top-k candidates.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

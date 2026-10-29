@@ -1,0 +1,29 @@
+{
+  "id": "1061",
+  "title": "Lexicographically Smallest Equivalent String",
+  "slug": "lexicographically-smallest-equivalent-string",
+  "url": "https://leetcode.com/problems/lexicographically-smallest-equivalent-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Union-Find"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "String"
+  ],
+  "description": "You are given two strings of the same length s1 and s2 and a string baseStr . \n \n We say s1[i] and s2[i] are equivalent characters. \n\n For example, if s1 = \"abc\" and s2 = \"cde\" , then we have 'a' == 'c' , 'b' == 'd' , and 'c' == 'e' . \n\n Equivalent characters follow the usual rules of any equivalence relation: \n\n Reflexivity: 'a' == 'a' . \n \n Symmetry: 'a' == 'b' implies 'b' == 'a' . \n \n Transitivity: 'a' == 'b' and 'b' == 'c' implies 'a' == 'c' . \n\n For example, given the equivalency information from s1 = \"abc\" and s2 = \"cde\" , \"acd\" and \"aab\" are equivalent strings of baseStr = \"eed\" , and \"aab\" is the lexicographically smallest equivalent string of baseStr . \n \n Return the lexicographically smallest equivalent string of baseStr by using the equivalency information from s1 and s2 . \n\n Example 1: \n \n```\nInput:\n s1 = \"parker\", s2 = \"morris\", baseStr = \"parser\"\n\nOutput:\n \"makkek\"\n\nExplanation:\n Based on the equivalency information in s1 and s2, we can group their characters as [m,p], [a,o], [k,r,s], [e,i].\nThe characters in each group are equivalent and sorted in lexicographical order.\nSo the answer is \"makkek\".\n```\n\n Example 2: \n \n```\nInput:\n s1 = \"hello\", s2 = \"world\", baseStr = \"hold\"\n\nOutput:\n \"hdld\"\n\nExplanation: \nBased on the equivalency information in s1 and s2, we can group their characters as [h,w], [d,e,o], [l,r].\nSo only the second letter 'o' in baseStr is changed to 'd', the answer is \"hdld\".\n```\n\n Example 3: \n \n```\nInput:\n s1 = \"leetcode\", s2 = \"programs\", baseStr = \"sourcecode\"\n\nOutput:\n \"aauaaaaada\"\n\nExplanation:\n We group the equivalent characters in s1 and s2 as [a,o,e,r,s,c], [l,p], [g,t] and [d,m], thus all letters in baseStr except 'u' and 'd' are transformed to 'a', the answer is \"aauaaaaada\".\n```\n\n Constraints: \n\n 1 <= s1.length, s2.length, baseStr <= 1000 \n \n s1.length == s2.length \n \n s1 , s2 , and baseStr consist of lowercase English letters.",
+  "code": "class Solution {\n    int parent[26];\n    int find(int x) {\n        if (parent[x] != x) parent[x] = find(parent[x]);\n        return parent[x];\n    }\npublic:\n    string smallestEquivalentString(string s1, string s2, string baseStr) {\n        for (int i = 0; i < 26; ++i) parent[i] = i;\n        for (int i = 0; i < static_cast<int>(s1.size()); ++i) {\n            int a = find(s1[i] - 'a'), b = find(s2[i] - 'a');\n            parent[max(a, b)] = min(a, b);\n        }\n        for (char& c : baseStr) c = char('a' + find(c - 'a'));\n        return baseStr;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175746158",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

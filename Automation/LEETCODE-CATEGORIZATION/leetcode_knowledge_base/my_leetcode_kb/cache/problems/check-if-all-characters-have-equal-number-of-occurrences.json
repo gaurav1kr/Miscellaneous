@@ -1,0 +1,32 @@
+{
+  "id": "1941",
+  "title": "Check if All Characters Have Equal Number of Occurrences",
+  "slug": "check-if-all-characters-have-equal-number-of-occurrences",
+  "url": "https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given a string s , return true if s is a good string, or false otherwise . \n \n A string s is good if all the characters that appear in s have the same number of occurrences (i.e., the same frequency). \n\n Example 1: \n \n```\nInput:\n s = \"abacbc\"\n\nOutput:\n true\n\nExplanation:\n The characters that appear in s are 'a', 'b', and 'c'. All characters occur 2 times in s.\n```\n\n Example 2: \n \n```\nInput:\n s = \"aaabb\"\n\nOutput:\n false\n\nExplanation:\n The characters that appear in s are 'a' and 'b'.\n'a' occurs 3 times while 'b' occurs 2 times, which is not the same number of times.\n```\n\n Constraints: \n\n 1 <= s.length <= 1000 \n \n s consists of lowercase English letters.",
+  "code": "#include <string>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool areOccurrencesEqual(string s) {\n        unordered_map<char, int> count;\n        for (char c : s) count[c]++;\n        int val = count[s[0]];\n        for (auto& [k, v] : count)\n            if (v != val) return false;\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610655659",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

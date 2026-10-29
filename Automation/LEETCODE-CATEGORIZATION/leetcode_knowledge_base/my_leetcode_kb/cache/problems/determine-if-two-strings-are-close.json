@@ -1,0 +1,34 @@
+{
+  "id": "1657",
+  "title": "Determine if Two Strings Are Close",
+  "slug": "determine-if-two-strings-are-close",
+  "url": "https://leetcode.com/problems/determine-if-two-strings-are-close/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Two strings are considered close if you can attain one from the other using the following operations: \n\n Operation 1: Swap any two existing characters.\n\n For example, a b cd e -> a e cd b \n\n Operation 2: Transform every occurrence of one existing character into another existing character, and do the same with the other character.\n\n For example, aa c abb -> bb c baa (all a 's turn into b 's, and all b 's turn into a 's) \n\n You can use the operations on either string as many times as necessary. \n \n Given two strings, word1 and word2 , return true if word1 and word2 are close , and false otherwise. \n\n Example 1: \n \n```\nInput:\n word1 = \"abc\", word2 = \"bca\"\n\nOutput:\n true\n\nExplanation:\n You can attain word2 from word1 in 2 operations.\nApply Operation 1: \"a\nbc\n\" -> \"a\ncb\n\"\nApply Operation 1: \"\na\nc\nb\n\" -> \"\nb\nc\na\n\"\n```\n\n Example 2: \n \n```\nInput:\n word1 = \"a\", word2 = \"aa\"\n\nOutput:\n false\n\nExplanation: \nIt is impossible to attain word2 from word1, or vice versa, in any number of operations.\n```\n\n Example 3: \n \n```\nInput:\n word1 = \"cabbba\", word2 = \"abbccc\"\n\nOutput:\n true\n\nExplanation:\n You can attain word2 from word1 in 3 operations.\nApply Operation 1: \"ca\nb\nbb\na\n\" -> \"ca\na\nbb\nb\n\"\nApply Operation 2: \"\nc\naa\nbbb\n\" -> \"\nb\naa\nccc\n\"\nApply Operation 2: \"\nbaa\nccc\" -> \"\nabb\nccc\"\n```\n\n Constraints: \n\n 1 <= word1.length, word2.length <= 10 5 \n \n word1 and word2 contain only lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool closeStrings(string word1, string word2) {\n        if (word1.size() != word2.size()) return false;\n        vector<int> a(26, 0), b(26, 0);\n        for (char c : word1) ++a[c - 'a'];\n        for (char c : word2) ++b[c - 'a'];\n        for (int i = 0; i < 26; ++i)\n            if ((a[i] == 0) != (b[i] == 0)) return false;\n        sort(a.begin(), a.end()); sort(b.begin(), b.end());\n        return a == b;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175757474",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "1782",
+  "title": "Count Pairs Of Nodes",
+  "slug": "count-pairs-of-nodes",
+  "url": "https://leetcode.com/problems/count-pairs-of-nodes/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Binary Search",
+    "Graph Theory",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an undirected graph defined by an integer n , the number of nodes, and a 2D integer array edges , the edges in the graph, where edges[i] = [u i , v i ] indicates that there is an undirected edge between u i and v i . You are also given an integer array queries . \n \n Let incident(a, b) be defined as the number of edges that are connected to either node a or b . \n \n The answer to the j th query is the number of pairs of nodes (a, b) that satisfy both of the following conditions: \n\n a < b \n \n incident(a, b) > queries[j] \n\n Return an array answers such that answers.length == queries.length and answers[j] is the answer of the j th query . \n \n Note that there can be multiple edges between the same two nodes. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/08/winword_2021-06-08_00-58-39.png] \n \n```\nInput:\n n = 4, edges = [[1,2],[2,4],[1,3],[2,3],[2,1]], queries = [2,3]\n\nOutput:\n [6,5]\n\nExplanation:\n The calculations for incident(a, b) are shown in the table above.\nThe answers for each of the queries are as follows:\n- answers[0] = 6. All the pairs have an incident(a, b) value greater than 2.\n- answers[1] = 5. All the pairs except (3, 4) have an incident(a, b) value greater than 3.\n```\n\n Example 2: \n \n```\nInput:\n n = 5, edges = [[1,5],[1,5],[3,4],[2,5],[1,3],[5,1],[2,3],[2,5]], queries = [1,2,3,4,5]\n\nOutput:\n [10,10,9,8,6]\n```\n\n Constraints: \n\n 2 <= n <= 2 * 10 4 \n \n 1 <= edges.length <= 10 5 \n \n 1 <= u i , v i <= n \n \n u i != v i \n \n 1 <= queries.length <= 20 \n \n 0 <= queries[j] < edges.length",
+  "code": "#include <vector>\n#include <unordered_map>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> countPairs(int n, vector<vector<int>>& edges, vector<int>& queries) {\n        vector<int> degree(n + 1, 0);\n        unordered_map<int, unordered_map<int, int>> freq;\n        for (auto& e : edges) {\n            int u = e[0], v = e[1];\n            degree[u]++;\n            degree[v]++;\n            if (u > v) swap(u, v);\n            freq[u][v]++;\n        }\n\n        vector<int> sorted = degree;\n        sort(sorted.begin(), sorted.end());\n        vector<int> res;\n        for (int q : queries) {\n            int total = 0;\n            int l = 1, r = n;\n            while (l < r) {\n                if (sorted[l] + sorted[r] <= q) l++;\n                else {\n                    total += r - l;\n                    r--;\n                }\n            }\n\n            for (auto& [u, mp] : freq)\n                for (auto& [v, cnt] : mp)\n                    if (degree[u] + degree[v] > q && degree[u] + degree[v] - cnt <= q)\n                        total--;\n\n            res.push_back(total);\n        }\n\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610687316",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

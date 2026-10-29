@@ -1,0 +1,33 @@
+{
+  "id": "845",
+  "title": "Longest Mountain in Array",
+  "slug": "longest-mountain-in-array",
+  "url": "https://leetcode.com/problems/longest-mountain-in-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Dynamic Programming",
+    "Enumeration"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You may recall that an array arr is a mountain array if and only if: \n\n arr.length >= 3 \n \n There exists some index i ( 0-indexed ) with 0 < i < arr.length - 1 such that:\n\n arr[0] < arr[1] < ... < arr[i - 1] < arr[i] \n \n arr[i] > arr[i + 1] > ... > arr[arr.length - 1] \n\n Given an integer array arr , return the length of the longest subarray, which is a mountain . Return 0 if there is no mountain subarray. \n\n Example 1: \n \n```\nInput:\n arr = [2,1,4,7,3,2,5]\n\nOutput:\n 5\n\nExplanation:\n The largest mountain is [1,4,7,3,2] which has length 5.\n```\n\n Example 2: \n \n```\nInput:\n arr = [2,2,2]\n\nOutput:\n 0\n\nExplanation:\n There is no mountain.\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 4 \n \n 0 <= arr[i] <= 10 4 \n\n Follow up: \n\n Can you solve it using only one pass? \n \n Can you solve it in O(1) space?",
+  "code": "class Solution {\npublic:\n    int longestMountain(vector<int>& arr) {\n        int n = arr.size(), best = 0;\n        for (int i = 1; i + 1 < n; ++i) {\n            if (arr[i - 1] >= arr[i] || arr[i] <= arr[i + 1]) continue;\n            int left = i, right = i;\n            while (left > 0 && arr[left - 1] < arr[left]) --left;\n            while (right + 1 < n && arr[right] > arr[right + 1]) ++right;\n            best = max(best, right - left + 1);\n            i = right;\n        }\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175742722",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

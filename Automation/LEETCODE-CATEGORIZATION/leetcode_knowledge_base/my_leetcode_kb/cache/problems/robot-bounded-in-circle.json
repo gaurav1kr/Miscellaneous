@@ -1,0 +1,31 @@
+{
+  "id": "1041",
+  "title": "Robot Bounded In Circle",
+  "slug": "robot-bounded-in-circle",
+  "url": "https://leetcode.com/problems/robot-bounded-in-circle/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "On an infinite plane, a robot initially stands at (0, 0) and faces north. Note that: \n\n The north direction is the positive direction of the y-axis. \n \n The south direction is the negative direction of the y-axis. \n \n The east direction is the positive direction of the x-axis. \n \n The west direction is the negative direction of the x-axis. \n\n The robot can receive one of three instructions: \n\n \"G\" : go straight 1 unit. \n \n \"L\" : turn 90 degrees to the left (i.e., anti-clockwise direction). \n \n \"R\" : turn 90 degrees to the right (i.e., clockwise direction). \n\n The robot performs the instructions given in order, and repeats them forever. \n \n Return true if and only if there exists a circle in the plane such that the robot never leaves the circle. \n\n Example 1: \n \n```\nInput:\n instructions = \"GGLLGG\"\n\nOutput:\n true\n\nExplanation:\n The robot is initially at (0, 0) facing the north direction.\n\"G\": move one step. Position: (0, 1). Direction: North.\n\"G\": move one step. Position: (0, 2). Direction: North.\n\"L\": turn 90 degrees anti-clockwise. Position: (0, 2). Direction: West.\n\"L\": turn 90 degrees anti-clockwise. Position: (0, 2). Direction: South.\n\"G\": move one step. Position: (0, 1). Direction: South.\n\"G\": move one step. Position: (0, 0). Direction: South.\nRepeating the instructions, the robot goes into the cycle: (0, 0) --> (0, 1) --> (0, 2) --> (0, 1) --> (0, 0).\nBased on that, we return true.\n```\n\n Example 2: \n \n```\nInput:\n instructions = \"GG\"\n\nOutput:\n false\n\nExplanation:\n The robot is initially at (0, 0) facing the north direction.\n\"G\": move one step. Position: (0, 1). Direction: North.\n\"G\": move one step. Position: (0, 2). Direction: North.\nRepeating the instructions, keeps advancing in the north direction and does not go into cycles.\nBased on that, we return false.\n```\n\n Example 3: \n \n```\nInput:\n instructions = \"GL\"\n\nOutput:\n true\n\nExplanation:\n The robot is initially at (0, 0) facing the north direction.\n\"G\": move one step. Position: (0, 1). Direction: North.\n\"L\": turn 90 degrees anti-clockwise. Position: (0, 1). Direction: West.\n\"G\": move one step. Position: (-1, 1). Direction: West.\n\"L\": turn 90 degrees anti-clockwise. Position: (-1, 1). Direction: South.\n\"G\": move one step. Position: (-1, 0). Direction: South.\n\"L\": turn 90 degrees anti-clockwise. Position: (-1, 0). Direction: East.\n\"G\": move one step. Position: (0, 0). Direction: East.\n\"L\": turn 90 degrees anti-clockwise. Position: (0, 0). Direction: North.\nRepeating the instructions, the robot goes into the cycle: (0, 0) --> (0, 1) --> (-1, 1) --> (-1, 0) --> (0, 0).\nBased on that, we return true.\n```\n\n Constraints: \n\n 1 <= instructions.length <= 100 \n \n instructions[i] is 'G' , 'L' or, 'R' .",
+  "code": "class Solution {\npublic:\n       bool isRobotBounded(string instructions) {\n        int x = 0, y = 0, i = 0;\n        vector<vector<int>> d = {{0, 1}, {1, 0}, {0, -1}, { -1, 0}};\n        for (char & ins : instructions)\n            if (ins == 'R')\n                i = (i + 1) % 4;\n            else if (ins == 'L')\n                i = (i + 3) % 4;\n            else\n                x += d[i][0], y += d[i][1];\n        return x == 0 && y == 0 || i > 0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1404329724",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

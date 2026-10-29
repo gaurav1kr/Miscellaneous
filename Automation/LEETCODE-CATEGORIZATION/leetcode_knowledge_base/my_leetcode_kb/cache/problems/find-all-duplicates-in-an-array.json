@@ -1,0 +1,33 @@
+{
+  "id": "442",
+  "title": "Find All Duplicates in an Array",
+  "slug": "find-all-duplicates-in-an-array",
+  "url": "https://leetcode.com/problems/find-all-duplicates-in-an-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums of length n where all the integers of nums are in the range [1, n] and each integer appears at most twice , return an array of all the integers that appears twice . \n \n You must write an algorithm that runs in O(n) time and uses only constant auxiliary space, excluding the space needed to store the output \n\n Example 1: \n \n```\nInput:\n nums = [4,3,2,7,8,2,3,1]\n\nOutput:\n [2,3]\n```\n \n Example 2: \n \n```\nInput:\n nums = [1,1,2]\n\nOutput:\n [1]\n```\n \n Example 3: \n \n```\nInput:\n nums = [1]\n\nOutput:\n []\n```\n\n Constraints: \n\n n == nums.length \n \n 1 <= n <= 10 5 \n \n 1 <= nums[i] <= n \n \n Each element in nums appears once or twice .",
+  "code": "class Solution {\npublic:\n    vector<int> findDuplicates(vector<int>& nums) {\n        vector<int> duplicates;\n        for (int i = 0; i < nums.size(); ++i) {\n            int index = abs(nums[i]) - 1;\n            if (nums[index] < 0)\n                duplicates.push_back(index + 1);\n            else\n                nums[index] = -nums[index];\n        }\n        return duplicates;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541013660",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

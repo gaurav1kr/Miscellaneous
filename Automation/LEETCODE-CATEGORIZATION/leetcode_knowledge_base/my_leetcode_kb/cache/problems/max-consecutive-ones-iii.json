@@ -1,0 +1,34 @@
+{
+  "id": "1004",
+  "title": "Max Consecutive Ones III",
+  "slug": "max-consecutive-ones-iii",
+  "url": "https://leetcode.com/problems/max-consecutive-ones-iii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Sliding Window",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given a binary array nums and an integer k , return the maximum number of consecutive 1 's in the array if you can flip at most k 0 's. \n\n Example 1: \n \n```\nInput:\n nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2\n\nOutput:\n 6\n\nExplanation:\n [1,1,1,0,0,\n1\n,1,1,1,1,\n1\n]\nBolded numbers were flipped from 0 to 1. The longest subarray is underlined.\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3\n\nOutput:\n 10\n\nExplanation:\n [0,0,\n1,1,\n1\n,\n1\n,1,1,1,\n1\n,1,1\n,0,0,0,1,1,1,1]\nBolded numbers were flipped from 0 to 1. The longest subarray is underlined.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n nums[i] is either 0 or 1. \n \n 0 <= k <= nums.length",
+  "code": "class Solution {\npublic:\n    int longestOnes(vector<int>& nums, int k) {\n        int zeros = 0; \n        int max_len = 0;\n        int l = 0;\n\n        for (int r = 0; r < nums.size(); r++) {\n            if (nums[r] == 0)\n                zeros++;\n\n            if(zeros>k){\n                if(nums[l]==0)\n                    zeros--;\n                l++;\n            }\n            else\n                max_len = max(max_len, r - l + 1); \n        }\n        return max_len;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1535274510",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

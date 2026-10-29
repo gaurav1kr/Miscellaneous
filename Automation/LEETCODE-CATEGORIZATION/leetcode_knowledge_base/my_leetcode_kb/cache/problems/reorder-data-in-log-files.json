@@ -1,0 +1,33 @@
+{
+  "id": "937",
+  "title": "Reorder Data in Log Files",
+  "slug": "reorder-data-in-log-files",
+  "url": "https://leetcode.com/problems/reorder-data-in-log-files/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of logs . Each log is a space-delimited string of words, where the first word is the identifier . \n \n There are two types of logs: \n\n Letter-logs : All words (except the identifier) consist of lowercase English letters. \n \n Digit-logs : All words (except the identifier) consist of digits. \n\n Reorder these logs so that: \n\n The letter-logs come before all digit-logs . \n \n The letter-logs are sorted lexicographically by their contents. If their contents are the same, then sort them lexicographically by their identifiers. \n \n The digit-logs maintain their relative ordering. \n\n Return the final order of the logs. \n\n Example 1: \n \n```\nInput:\n logs = [\"dig1 8 1 5 1\",\"let1 art can\",\"dig2 3 6\",\"let2 own kit dig\",\"let3 art zero\"]\n\nOutput:\n [\"let1 art can\",\"let3 art zero\",\"let2 own kit dig\",\"dig1 8 1 5 1\",\"dig2 3 6\"]\n\nExplanation:\n\nThe letter-log contents are all different, so their ordering is \"art can\", \"art zero\", \"own kit dig\".\nThe digit-logs have a relative order of \"dig1 8 1 5 1\", \"dig2 3 6\".\n```\n\n Example 2: \n \n```\nInput:\n logs = [\"a1 9 2 3 1\",\"g1 act car\",\"zo4 4 7\",\"ab1 off key dog\",\"a8 act zoo\"]\n\nOutput:\n [\"g1 act car\",\"a8 act zoo\",\"ab1 off key dog\",\"a1 9 2 3 1\",\"zo4 4 7\"]\n```\n\n Constraints: \n\n 1 <= logs.length <= 100 \n \n 3 <= logs[i].length <= 100 \n \n All the tokens of logs[i] are separated by a single space. \n \n logs[i] is guaranteed to have an identifier and at least one word after the identifier.",
+  "code": "#include <vector>\n#include <string>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> reorderLogFiles(vector<string>& logs) {\n        auto compare = [](const string& a, const string& b) {\n            int posA = a.find(' '), posB = b.find(' ');\n            bool isDigitA = isdigit(a[posA + 1]);\n            bool isDigitB = isdigit(b[posB + 1]);\n            \n            if (!isDigitA && !isDigitB) {\n                string subA = a.substr(posA + 1);\n                string subB = b.substr(posB + 1);\n                return subA == subB ? a < b : subA < subB;\n            }\n            return isDigitA ? false : true;\n        };\n\n        stable_sort(logs.begin(), logs.end(), compare);\n        return logs;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590139307",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

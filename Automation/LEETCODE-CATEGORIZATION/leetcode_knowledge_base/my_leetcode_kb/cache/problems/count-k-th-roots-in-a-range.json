@@ -1,0 +1,26 @@
+{
+  "id": "3932",
+  "title": "Count K-th Roots in a Range",
+  "slug": "count-k-th-roots-in-a-range",
+  "url": "https://leetcode.com/problems/count-k-th-roots-in-a-range/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given three integers l , r , and k . \n \n An integer y is said to be a perfect k th power if there exists an integer x such that y = x k . \n \n Return the number of integers y in the range [l, r] (inclusive) that are perfect k th powers . \n\n Example 1: \n\n Input: l = 1, r = 9, k = 3 \n \n Output: 2 \n \n Explanation: \nThe perfect cubes in the range [1, 9] are:\n\n 1 = 1 3 \n \n 8 = 2 3 \n \nHence, the answer is 2. \n \n Example 2: \n\n Input: l = 8, r = 30, k = 2 \n \n Output: 3 \n \n Explanation: \nThe perfect squares in the range [8, 30] are:\n\n 9 = 3 2 \n \n 16 = 4 2 \n \n 25 = 5 2 \n \nHence, the answer is 3. \n\n Constraints: \n\n 0 <= l <= r <= 10 9 \n \n 1 <= k <= 30",
+  "code": "class Solution {\n    bool fits(long long x,int k,long long limit){\n        long long p=1;\n        for(int i=0;i<k;++i){\n            if(x!=0 && p>limit/x) return false;\n            p*=x;\n        }\n        return p<=limit;\n    }\n    int root(long long limit,int k){\n        if(limit<0) return -1;\n        long long lo=0,hi=limit+1;\n        while(lo+1<hi){\n            long long mid=lo+(hi-lo)/2;\n            if(fits(mid,k,limit)) lo=mid;\n            else hi=mid;\n        }\n        return (int)lo;\n    }\npublic:\n    int countKthRoots(int l,int r,int k){\n        if(k==1) return r-l+1;\n        return root(r,k)-root((long long)l-1,k);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181088287",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

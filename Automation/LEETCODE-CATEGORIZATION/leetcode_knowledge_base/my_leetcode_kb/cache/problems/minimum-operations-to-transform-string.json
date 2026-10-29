@@ -1,0 +1,28 @@
+{
+  "id": "3675",
+  "title": "Minimum Operations to Transform String",
+  "slug": "minimum-operations-to-transform-string",
+  "url": "https://leetcode.com/problems/minimum-operations-to-transform-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s consisting only of lowercase English letters. \n \n You can perform the following operation any number of times (including zero): \n\n Choose any character c in the string and replace every occurrence of c with the next lowercase letter in the English alphabet. \n\n Return the minimum number of operations required to transform s into a string consisting of only 'a' characters. \n \n Note: Consider the alphabet as circular, thus 'a' comes after 'z' . \n\n Example 1: \n\n Input: s = \"yz\" \n \n Output: 2 \n \n Explanation: \n\n Change 'y' to 'z' to get \"zz\" . \n \n Change 'z' to 'a' to get \"aa\" . \n \n Thus, the answer is 2. \n\n Example 2: \n\n Input: s = \"a\" \n \n Output: 0 \n \n Explanation: \n\n The string \"a\" only consists of 'a' ​​​​​​​ characters. Thus, the answer is 0. \n\n Constraints: \n\n 1 <= s.length <= 5 * 10 5 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int minOperations(string s) {\n        int ans=0;\n        for(char c:s) if(c!='a') ans=max(ans,26-(c-'a'));\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2180988213",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

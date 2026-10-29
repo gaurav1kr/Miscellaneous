@@ -1,0 +1,33 @@
+{
+  "id": "3551",
+  "title": "Minimum Swaps to Sort by Digit Sum",
+  "slug": "minimum-swaps-to-sort-by-digit-sum",
+  "url": "https://leetcode.com/problems/minimum-swaps-to-sort-by-digit-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an array nums of distinct positive integers. You need to sort the array in increasing order based on the sum of the digits of each number. If two numbers have the same digit sum, the smaller number appears first in the sorted order. \n \n Return the minimum number of swaps required to rearrange nums into this sorted order. \n \n A swap is defined as exchanging the values at two distinct positions in the array. \n\n Example 1: \n\n Input: nums = [37,100] \n \n Output: 1 \n \n Explanation: \n\n Compute the digit sum for each integer: [3 + 7 = 10, 1 + 0 + 0 = 1] → [10, 1] \n \n Sort the integers based on digit sum: [100, 37] . Swap 37 with 100 to obtain the sorted order. \n \n Thus, the minimum number of swaps required to rearrange nums is 1. \n\n Example 2: \n\n Input: nums = [22,14,33,7] \n \n Output: 0 \n \n Explanation: \n\n Compute the digit sum for each integer: [2 + 2 = 4, 1 + 4 = 5, 3 + 3 = 6, 7 = 7] → [4, 5, 6, 7] \n \n Sort the integers based on digit sum: [22, 14, 33, 7] . The array is already sorted. \n \n Thus, the minimum number of swaps required to rearrange nums is 0. \n\n Example 3: \n\n Input: nums = [18,43,34,16] \n \n Output: 2 \n \n Explanation: \n\n Compute the digit sum for each integer: [1 + 8 = 9, 4 + 3 = 7, 3 + 4 = 7, 1 + 6 = 7] → [9, 7, 7, 7] \n \n Sort the integers based on digit sum: [16, 34, 43, 18] . Swap 18 with 16 , and swap 43 with 34 to obtain the sorted order. \n \n Thus, the minimum number of swaps required to rearrange nums is 2. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n nums consists of distinct positive integers.",
+  "code": "class Solution {public:int minSwaps(vector<int>&nums){int n=nums.size();auto sum=[](int x){int s=0;while(x){s+=x%10;x/=10;}return s;};vector<int>ord(n);iota(ord.begin(),ord.end(),0);sort(ord.begin(),ord.end(),[&](int i,int j){int a=sum(nums[i]),b=sum(nums[j]);return a!=b?a<b:nums[i]<nums[j];});vector<char>seen(n);int ans=0;for(int i=0;i<n;i++)if(!seen[i]){int j=i,len=0;while(!seen[j]){seen[j]=1;j=ord[j];len++;}ans+=len-1;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177576542",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

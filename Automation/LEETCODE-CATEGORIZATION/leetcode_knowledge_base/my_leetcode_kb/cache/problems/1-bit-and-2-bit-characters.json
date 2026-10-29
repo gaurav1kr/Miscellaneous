@@ -1,0 +1,27 @@
+{
+  "id": "717",
+  "title": "1-bit and 2-bit Characters",
+  "slug": "1-bit-and-2-bit-characters",
+  "url": "https://leetcode.com/problems/1-bit-and-2-bit-characters/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "We have two special characters: \n\n The first character can be represented by one bit 0 . \n \n The second character can be represented by two bits ( 10 or 11 ). \n\n Given a binary array bits that ends with 0 , return true if the last character must be a one-bit character. \n\n Example 1: \n \n```\nInput:\n bits = [1,0,0]\n\nOutput:\n true\n\nExplanation:\n The only way to decode it is two-bit character and one-bit character.\nSo the last character is one-bit character.\n```\n\n Example 2: \n \n```\nInput:\n bits = [1,1,1,0]\n\nOutput:\n false\n\nExplanation:\n The only way to decode it is two-bit character and two-bit character.\nSo the last character is not one-bit character.\n```\n\n Constraints: \n\n 1 <= bits.length <= 1000 \n \n bits[i] is either 0 or 1 .",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isOneBitCharacter(vector<int>& bits) {\n        int i = 0;\n        while (i < bits.size() - 1)\n            i += bits[i] + 1;\n        return i == bits.size() - 1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595386909",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

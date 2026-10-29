@@ -1,0 +1,38 @@
+{
+  "id": "1140",
+  "title": "Stone Game II",
+  "slug": "stone-game-ii",
+  "url": "https://leetcode.com/problems/stone-game-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Minimax",
+    "Prefix Sum",
+    "Game Theory",
+    "Zero-Sum Game"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Prefix Sum / Difference Array",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Alice and Bob continue their games with piles of stones. There are a number of piles arranged in a row , and each pile has a positive integer number of stones piles[i] . The objective of the game is to end with the most stones. \n \n Alice and Bob take turns, with Alice starting first. \n \n On each player's turn, that player can take all the stones in the first X remaining piles, where 1 <= X <= 2M . Then, we set M = max(M, X) . Initially, M = 1. \n \n The game continues until all the stones have been taken. \n \n Assuming Alice and Bob play optimally, return the maximum number of stones Alice can get. \n\n Example 1: \n\n Input: piles = [2,7,9,4,4] \n \n Output: 10 \n \n Explanation: \n\n If Alice takes one pile at the beginning, Bob takes two piles, then Alice takes 2 piles again. Alice can get 2 + 4 + 4 = 10 stones in total. \n \n If Alice takes two piles at the beginning, then Bob can take all three piles left. In this case, Alice get 2 + 7 = 9 stones in total. \n\n So we return 10 since it's larger. \n\n Example 2: \n\n Input: piles = [1,2,3,4,5,100] \n \n Output: 104 \n\n Constraints: \n\n 1 <= piles.length <= 100 \n \n 1 <= piles[i] <= 10 4",
+  "code": "class Solution {\npublic:\n    int n;\n    int dp[101][101];// stones diff\n    int alice(int i, int m, vector<int>& piles){\n        if (i == n) return 0;\n        if (dp[i][m]!=-1) return dp[i][m];\n        int diff=INT_MIN;\n        int sum = 0, xN= min(2*m, n-i);\n        for (int x = 1; x <= xN; x++) {\n            sum += piles[i+x-1];\n            diff=max(diff, sum-alice(i+x, max(m, x), piles));                      \n        }\n        return dp[i][m]=diff;\n    }\n\n    int stoneGameII(vector<int>& piles) {\n        n = piles.size();\n        memset(dp, -1, sizeof(dp));\n        int sum=accumulate(piles.begin(), piles.end(), 0);\n        return (sum+alice(0, 1,  piles))/2;// A=((A+B)+(A-B))/2\n    }\n};\n\n\nauto init = []() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    cout.tie(nullptr);\n    return 'c';\n}();",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591369346",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

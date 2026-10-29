@@ -1,0 +1,36 @@
+{
+  "id": "1023",
+  "title": "Camelcase Matching",
+  "slug": "camelcase-matching",
+  "url": "https://leetcode.com/problems/camelcase-matching/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String",
+    "Trie",
+    "String Matching"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Tree / Trie",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Given an array of strings queries and a string pattern , return a boolean array answer where answer[i] is true if queries[i] matches pattern , and false otherwise. \n \n A query word queries[i] matches pattern if you can insert lowercase English letters into the pattern so that it equals the query. You may insert a character at any position in pattern or you may choose not to insert any characters at all . \n\n Example 1: \n \n```\nInput:\n queries = [\"FooBar\",\"FooBarTest\",\"FootBall\",\"FrameBuffer\",\"ForceFeedBack\"], pattern = \"FB\"\n\nOutput:\n [true,false,true,true,false]\n\nExplanation:\n \"FooBar\" can be generated like this \"F\" + \"oo\" + \"B\" + \"ar\".\n\"FootBall\" can be generated like this \"F\" + \"oot\" + \"B\" + \"all\".\n\"FrameBuffer\" can be generated like this \"F\" + \"rame\" + \"B\" + \"uffer\".\n```\n\n Example 2: \n \n```\nInput:\n queries = [\"FooBar\",\"FooBarTest\",\"FootBall\",\"FrameBuffer\",\"ForceFeedBack\"], pattern = \"FoBa\"\n\nOutput:\n [true,false,true,false,false]\n\nExplanation:\n \"FooBar\" can be generated like this \"Fo\" + \"o\" + \"Ba\" + \"r\".\n\"FootBall\" can be generated like this \"Fo\" + \"ot\" + \"Ba\" + \"ll\".\n```\n\n Example 3: \n \n```\nInput:\n queries = [\"FooBar\",\"FooBarTest\",\"FootBall\",\"FrameBuffer\",\"ForceFeedBack\"], pattern = \"FoBaT\"\n\nOutput:\n [false,true,false,false,false]\n\nExplanation:\n \"FooBarTest\" can be generated like this \"Fo\" + \"o\" + \"Ba\" + \"r\" + \"T\" + \"est\".\n```\n\n Constraints: \n\n 1 <= pattern.length, queries.length <= 100 \n \n 1 <= queries[i].length <= 100 \n \n queries[i] and pattern consist of English letters.",
+  "code": "#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<bool> camelMatch(vector<string>& queries, string pattern) {\n        vector<bool> res;\n        for (string& q : queries) {\n            int i = 0;\n            bool valid = true;\n            for (char c : q) {\n                if (i < pattern.size() && c == pattern[i]) {\n                    i++;\n                } else if (isupper(c)) {\n                    valid = false;\n                    break;\n                }\n            }\n            res.push_back(valid && i == pattern.size());\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610568623",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

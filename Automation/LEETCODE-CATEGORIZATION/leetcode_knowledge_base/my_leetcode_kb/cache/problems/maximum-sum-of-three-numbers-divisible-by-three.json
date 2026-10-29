@@ -1,0 +1,35 @@
+{
+  "id": "3780",
+  "title": "Maximum Sum of Three Numbers Divisible by Three",
+  "slug": "maximum-sum-of-three-numbers-divisible-by-three",
+  "url": "https://leetcode.com/problems/maximum-sum-of-three-numbers-divisible-by-three/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n Your task is to choose exactly three integers from nums such that their sum is divisible by three. \n \n Return the maximum possible sum of such a triplet. If no such triplet exists, return 0. \n\n Example 1: \n\n Input: nums = [4,2,3,1] \n \n Output: 9 \n \n Explanation: \n \n The valid triplets whose sum is divisible by 3 are: \n\n (4, 2, 3) with a sum of 4 + 2 + 3 = 9 . \n \n (2, 3, 1) with a sum of 2 + 3 + 1 = 6 . \n\n Thus, the answer is 9. \n\n Example 2: \n\n Input: nums = [2,1,5] \n \n Output: 0 \n \n Explanation: \n \n No triplet forms a sum divisible by 3, so the answer is 0. \n\n Constraints: \n\n 3 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int maximumSum(vector<int>& nums) {\n        const int NEG = -1000000000;\n        int dp[4][3];\n        for (int i = 0; i <= 3; ++i)\n            for (int r = 0; r < 3; ++r) dp[i][r] = NEG;\n        dp[0][0] = 0;\n        for (int x : nums) {\n            for (int k = 3; k >= 1; --k) {\n                for (int r = 0; r < 3; ++r) {\n                    if (dp[k - 1][r] != NEG)\n                        dp[k][(r + x) % 3] = max(dp[k][(r + x) % 3], dp[k - 1][r] + x);\n                }\n            }\n        }\n        return max(0, dp[3][0]);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179736140",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

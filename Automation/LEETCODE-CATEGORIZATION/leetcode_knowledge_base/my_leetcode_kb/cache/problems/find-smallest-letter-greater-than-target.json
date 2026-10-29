@@ -1,0 +1,29 @@
+{
+  "id": "744",
+  "title": "Find Smallest Letter Greater Than Target",
+  "slug": "find-smallest-letter-greater-than-target",
+  "url": "https://leetcode.com/problems/find-smallest-letter-greater-than-target/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an array of characters letters that is sorted in non-decreasing order , and a character target . There are at least two different characters in letters . \n \n Return the smallest character in letters that is lexicographically greater than target . If such a character does not exist, return the first character in letters . \n\n Example 1: \n \n```\nInput:\n letters = [\"c\",\"f\",\"j\"], target = \"a\"\n\nOutput:\n \"c\"\n\nExplanation:\n The smallest character that is lexicographically greater than 'a' in letters is 'c'.\n```\n\n Example 2: \n \n```\nInput:\n letters = [\"c\",\"f\",\"j\"], target = \"c\"\n\nOutput:\n \"f\"\n\nExplanation:\n The smallest character that is lexicographically greater than 'c' in letters is 'f'.\n```\n\n Example 3: \n \n```\nInput:\n letters = [\"x\",\"x\",\"y\",\"y\"], target = \"z\"\n\nOutput:\n \"x\"\n\nExplanation:\n There are no characters in letters that is lexicographically greater than 'z' so we return letters[0].\n```\n\n Constraints: \n\n 2 <= letters.length <= 10 4 \n \n letters[i] is a lowercase English letter. \n \n letters is sorted in non-decreasing order. \n \n letters contains at least two different characters. \n \n target is a lowercase English letter.",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    char nextGreatestLetter(vector<char>& letters, char target) {\n        int low = 0, high = letters.size() - 1;\n        while (low <= high) {\n            int mid = low + (high - low) / 2;\n            if (letters[mid] <= target) {\n                low = mid + 1;\n            } else {\n                high = mid - 1;\n            }\n        }\n        return letters[low % letters.size()];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591364415",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

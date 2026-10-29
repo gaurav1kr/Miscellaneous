@@ -1,0 +1,34 @@
+{
+  "id": "716",
+  "title": "Max Stack",
+  "slug": "max-stack",
+  "url": "https://leetcode.com/problems/max-stack/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Linked List",
+    "Stack",
+    "Design",
+    "Doubly-Linked List",
+    "Ordered Set"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Linked list",
+    "Ordered map",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Design a max stack data structure that supports the stack operations and supports finding the stack's maximum element. \n \n Implement the MaxStack class: \n\n MaxStack() Initializes the stack object. \n \n void push(int x) Pushes element x onto the stack. \n \n int pop() Removes the element on top of the stack and returns it. \n \n int top() Gets the element on the top of the stack without removing it. \n \n int peekMax() Retrieves the maximum element in the stack without removing it. \n \n int popMax() Retrieves the maximum element in the stack and removes it. If there is more than one maximum element, only remove the top-most one. \n\n You must come up with a solution that supports O(1) for each top call and O(logn) for each other call. \n\n Example 1: \n \n```\nInput\n\n[\"MaxStack\", \"push\", \"push\", \"push\", \"top\", \"popMax\", \"top\", \"peekMax\", \"pop\", \"top\"]\n[[], [5], [1], [5], [], [], [], [], [], []]\n\nOutput\n\n[null, null, null, null, 5, 5, 1, 5, 1, 5]\n\nExplanation\n\nMaxStack stk = new MaxStack();\nstk.push(5); // [\n5\n] the top of the stack and the maximum number is 5.\nstk.push(1); // [\n5\n, \n1\n] the top of the stack is 1, but the maximum is 5.\nstk.push(5); // [5, 1, \n5\n] the top of the stack is 5, which is also the maximum, because it is the top most one.\nstk.top(); // return 5, [5, 1, \n5\n] the stack did not change.\nstk.popMax(); // return 5, [\n5\n, \n1\n] the stack is changed now, and the top is different from the max.\nstk.top(); // return 1, [\n5\n, \n1\n] the stack did not change.\nstk.peekMax(); // return 5, [\n5\n, \n1\n] the stack did not change.\nstk.pop(); // return 1, [\n5\n] the top of the stack and the max element is now 5.\nstk.top(); // return 5, [\n5\n] the stack did not change.\n```\n\n Constraints: \n\n -10 7 <= x <= 10 7 \n \n At most 10 5  calls will be made to push , pop , top , peekMax , and popMax . \n \n There will be at least one element in the stack when pop , top , peekMax , or popMax is called.",
+  "code": "class MaxStack {\n    list<int> values;\n    map<int, vector<list<int>::iterator>> positions;\n\npublic:\n    MaxStack() {}\n\n    void push(int x) {\n        values.push_back(x);\n        auto it = values.end();\n        --it;\n        positions[x].push_back(it);\n    }\n\n    int pop() {\n        int x = values.back();\n        values.pop_back();\n        positions[x].pop_back();\n        if (positions[x].empty()) {\n            positions.erase(x);\n        }\n        return x;\n    }\n\n    int top() {\n        return values.back();\n    }\n\n    int peekMax() {\n        return positions.rbegin()->first;\n    }\n\n    int popMax() {\n        int x = peekMax();\n        auto& nodes = positions[x];\n        values.erase(nodes.back());\n        nodes.pop_back();\n        if (nodes.empty()) {\n            positions.erase(x);\n        }\n        return x;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178501389",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

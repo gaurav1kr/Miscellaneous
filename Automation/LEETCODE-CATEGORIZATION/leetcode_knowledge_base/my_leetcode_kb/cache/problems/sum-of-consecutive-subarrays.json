@@ -1,0 +1,32 @@
+{
+  "id": "3284",
+  "title": "Sum of Consecutive Subarrays",
+  "slug": "sum-of-consecutive-subarrays",
+  "url": "https://leetcode.com/problems/sum-of-consecutive-subarrays/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "We call an array arr of length n consecutive if one of the following holds: \n\n arr[i] - arr[i - 1] == 1 for all 1 <= i < n . \n \n arr[i] - arr[i - 1] == -1 for all 1 <= i < n . \n\n The value of an array is the sum of its elements. \n \n For example, [3, 4, 5] is a consecutive array of value 12 and [9, 8] is another of value 17. While [3, 4, 3] and [8, 6] are not consecutive. \n \n Given an array of integers nums , return the sum of the values of all consecutive subarrays . \n \n Since the answer may be very large, return it modulo 10 9 + 7. \n \n Note that an array of length 1 is also considered consecutive. \n\n Example 1: \n\n Input: nums = [1,2,3] \n \n Output: 20 \n \n Explanation: \n \n The consecutive subarrays are: [1] , [2] , [3] , [1, 2] , [2, 3] , [1, 2, 3] . \nSum of their values would be: 1 + 2 + 3 + 3 + 5 + 6 = 20 . \n\n Example 2: \n\n Input: nums = [1,3,5,7] \n \n Output: 16 \n \n Explanation: \n \n The consecutive subarrays are: [1] , [3] , [5] , [7] . \nSum of their values would be: 1 + 3 + 5 + 7 = 16 . \n\n Example 3: \n\n Input: nums = [7,6,1,2] \n \n Output: 32 \n \n Explanation: \n \n The consecutive subarrays are: [7] , [6] , [1] , [2] , [7, 6] , [1, 2] . \nSum of their values would be: 7 + 6 + 1 + 2 + 13 + 3 = 32 . \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int getSum(vector<int>& nums) {\n        const long long MOD=1000000007;\n        long long ans=0;\n        for (int d : {1,-1}) {\n            long long runSum=0, runCount=0;\n            for (int i=0;i<(int)nums.size();++i) {\n                if (i>0 && nums[i]-nums[i-1]==d) {\n                    runSum=(runSum+runCount*nums[i]+nums[i])%MOD;\n                    ++runCount;\n                } else {runSum=nums[i];runCount=1;}\n                ans=(ans+runSum)%MOD;\n            }\n        }\n        for (int x:nums) ans=(ans-x+MOD)%MOD;\n        return (int)ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179716488",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

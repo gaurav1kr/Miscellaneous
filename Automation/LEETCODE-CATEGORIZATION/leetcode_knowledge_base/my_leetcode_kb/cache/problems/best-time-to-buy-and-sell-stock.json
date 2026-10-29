@@ -1,0 +1,30 @@
+{
+  "id": "121",
+  "title": "Best Time to Buy and Sell Stock",
+  "slug": "best-time-to-buy-and-sell-stock",
+  "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an array prices where prices[i] is the price of a given stock on the i th day. \n \n You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. \n \n Return the maximum profit you can achieve from this transaction . If you cannot achieve any profit, return 0 . \n\n Example 1: \n \n```\nInput:\n prices = [7,1,5,3,6,4]\n\nOutput:\n 5\n\nExplanation:\n Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.\nNote that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.\n```\n\n Example 2: \n \n```\nInput:\n prices = [7,6,4,3,1]\n\nOutput:\n 0\n\nExplanation:\n In this case, no transactions are done and the max profit = 0.\n```\n\n Constraints: \n\n 1 <= prices.length <= 10 5 \n \n 0 <= prices[i] <= 10 4",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxProfit(vector<int>& prices) {\n        int minPrice = INT_MAX, maxProfit = 0;\n        for (int price : prices) {\n            minPrice = min(minPrice, price);\n            maxProfit = max(maxProfit, price - minPrice);\n        }\n        return maxProfit;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588369686",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

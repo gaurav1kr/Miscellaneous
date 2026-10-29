@@ -1,0 +1,28 @@
+{
+  "id": "3880",
+  "title": "Minimum Absolute Difference Between Two Values",
+  "slug": "minimum-absolute-difference-between-two-values",
+  "url": "https://leetcode.com/problems/minimum-absolute-difference-between-two-values/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Enumeration"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums consisting only of 0, 1, and 2. \n \n A pair of indices (i, j) is called valid if nums[i] == 1 and nums[j] == 2 . \n \n Return the minimum absolute difference between i and j among all valid pairs. If no valid pair exists, return -1. \n \n The absolute difference between indices i and j is defined as abs(i - j) . \n\n Example 1: \n\n Input: nums = [1,0,0,2,0,1] \n \n Output: 2 \n \n Explanation: \n \n The valid pairs are: \n\n (0, 3) which has absolute difference of abs(0 - 3) = 3 . \n \n (5, 3) which has absolute difference of abs(5 - 3) = 2 . \n\n Thus, the answer is 2. \n\n Example 2: \n\n Input: nums = [1,0,1,0] \n \n Output: -1 \n \n Explanation: \n \n There are no valid pairs in the array, thus the answer is -1. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 0 <= nums[i] <= 2",
+  "code": "class Solution {\npublic:\n    int minAbsoluteDifference(vector<int>& nums) {\n        int last1 = -1, last2 = -1, best = INT_MAX;\n        for (int i = 0; i < (int)nums.size(); ++i) {\n            if (nums[i] == 1) { last1 = i; if (last2 != -1) best = min(best, i - last2); }\n            if (nums[i] == 2) { last2 = i; if (last1 != -1) best = min(best, i - last1); }\n        }\n        return best == INT_MAX ? -1 : best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179313122",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

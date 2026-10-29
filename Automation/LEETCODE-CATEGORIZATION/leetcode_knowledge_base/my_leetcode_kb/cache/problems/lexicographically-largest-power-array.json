@@ -1,0 +1,31 @@
+{
+  "id": "4059",
+  "title": "Lexicographically Largest Power Array",
+  "slug": "lexicographically-largest-power-array",
+  "url": "https://leetcode.com/problems/lexicographically-largest-power-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n . You may rearrange its elements to form any permutation perm . \n \n Define an array power of length 15. For each 0 <= i < 15 , power[i] is the largest integer j , where 0 <= j <= n , such that the first j elements of perm all have the (14 - i) th bit set . \n \n Bit positions are indexed from right to left, starting with the 0 th bit. \n \n Return the lexicographically largest possible power array. \n\n Example 1: \n\n Input: nums = [7,5] \n \n Output: [0,0,0,0,0,0,0,0,0,0,0,0,2,1,2] \n \n Explanation: \n \n Choose perm = [7, 5] . \n\n Both elements have bit 2 set, so power[12] = 2 . \n \n The first element has bit 1 set, but the second does not, so power[13] = 1 . \n \n Both elements have bit 0 set, so power[14] = 2 . \n\n All higher bits are unset in the first element, so the remaining entries are 0. \n\n Example 2: \n\n Input: nums = [3,1,7] \n \n Output: [0,0,0,0,0,0,0,0,0,0,0,0,1,2,3] \n \n Explanation: \n \n Choose perm = [7, 3, 1] . \n\n The first element has bit 2 set, but the second does not, so power[12] = 1 . \n \n The first two elements have bit 1 set, but the third does not, so power[13] = 2 . \n \n All three elements have bit 0 set, so power[14] = 3 . \n\n All higher bits are unset in the first element, so the remaining entries are 0. \n\n Constraints: \n\n 1 <= nums.length <= 5 * 10 4 \n \n 0 <= nums[i] < 2 15",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n    vector<int> largestPower(vector<int>& a){\n        vector<vector<int>> groups(1,a);vector<int>ans;\n        for(int b=14;b>=0;b--){\n            int prefix=0;vector<vector<int>>next;bool split=false;\n            for(auto &g:groups){\n                if(split){next.push_back(g);continue;}\n                vector<int>yes,no;\n                for(int x:g)((x>>b)&1?yes:no).push_back(x);\n                if(no.empty()){prefix+=g.size();next.push_back(g);}\n                else{\n                    prefix+=yes.size();if(!yes.empty())next.push_back(yes);\n                    next.push_back(no);split=true;\n                }\n            }\n            ans.push_back(prefix);groups.swap(next);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181559466",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

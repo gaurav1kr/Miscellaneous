@@ -1,0 +1,32 @@
+{
+  "id": "2148",
+  "title": "Count Elements With Strictly Smaller and Greater Elements ",
+  "slug": "count-elements-with-strictly-smaller-and-greater-elements",
+  "url": "https://leetcode.com/problems/count-elements-with-strictly-smaller-and-greater-elements/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return the number of elements that have both a strictly smaller and a strictly greater element appear in nums . \n\n Example 1: \n \n```\nInput:\n nums = [11,7,2,15]\n\nOutput:\n 2\n\nExplanation:\n The element 7 has the element 2 strictly smaller than it and the element 11 strictly greater than it.\nElement 11 has element 7 strictly smaller than it and element 15 strictly greater than it.\nIn total there are 2 elements having both a strictly smaller and a strictly greater element appear in \nnums\n.\n```\n\n Example 2: \n \n```\nInput:\n nums = [-3,3,3,90]\n\nOutput:\n 2\n\nExplanation:\n The element 3 has the element -3 strictly smaller than it and the element 90 strictly greater than it.\nSince there are two elements with the value 3, in total there are 2 elements having both a strictly smaller and a strictly greater element appear in \nnums\n.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n -10 5 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int countElements(vector<int>& nums) {\n        int lo=*min_element(nums.begin(),nums.end()),hi=*max_element(nums.begin(),nums.end()),ans=0;\n        for(int x:nums) if(lo<x&&x<hi) ++ans;\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175873494",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

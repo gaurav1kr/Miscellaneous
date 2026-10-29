@@ -1,0 +1,28 @@
+{
+  "id": "1328",
+  "title": "Break a Palindrome",
+  "slug": "break-a-palindrome",
+  "url": "https://leetcode.com/problems/break-a-palindrome/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a palindromic string of lowercase English letters palindrome , replace exactly one character with any lowercase English letter so that the resulting string is not a palindrome and that it is the lexicographically smallest one possible. \n \n Return the resulting string. If there is no way to replace a character to make it not a palindrome, return an empty string . \n \n A string a is lexicographically smaller than a string b (of the same length) if in the first position where a and b differ, a has a character strictly smaller than the corresponding character in b . For example, \"abcc\" is lexicographically smaller than \"abcd\" because the first position they differ is at the fourth character, and 'c' is smaller than 'd' . \n\n Example 1: \n \n```\nInput:\n palindrome = \"abccba\"\n\nOutput:\n \"aaccba\"\n\nExplanation:\n There are many ways to make \"abccba\" not a palindrome, such as \"\nz\nbccba\", \"a\na\nccba\", and \"ab\na\ncba\".\nOf all the ways, \"aaccba\" is the lexicographically smallest.\n```\n\n Example 2: \n \n```\nInput:\n palindrome = \"a\"\n\nOutput:\n \"\"\n\nExplanation:\n There is no way to replace a single character to make \"a\" not a palindrome, so return an empty string.\n```\n\n Constraints: \n\n 1 <= palindrome.length <= 1000 \n \n palindrome consists of only lowercase English letters.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string breakPalindrome(string palindrome) {\n        if (palindrome.size() == 1) return \"\";\n\n        for (int i = 0; i < palindrome.size() / 2; ++i) {\n            if (palindrome[i] != 'a') {\n                palindrome[i] = 'a';\n                return palindrome;\n            }\n        }\n\n        palindrome.back() = 'b';\n        return palindrome;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595378898",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

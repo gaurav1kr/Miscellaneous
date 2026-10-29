@@ -1,0 +1,28 @@
+{
+  "id": "3833",
+  "title": "Count Dominant Indices",
+  "slug": "count-dominant-indices",
+  "url": "https://leetcode.com/problems/count-dominant-indices/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Enumeration"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of length n . \n \n An element at index i is called dominant if: nums[i] > average(nums[i + 1], nums[i + 2], ..., nums[n - 1]) \n \n Your task is to count the number of indices i that are dominant . \n \n The average of a set of numbers is the value obtained by adding all the numbers together and dividing the sum by the total number of numbers. \n \n Note : The rightmost element of any array is not dominant . \n\n Example 1: \n\n Input: nums = [5,4,3] \n \n Output: 2 \n \n Explanation: \n\n At index i = 0 , the value 5 is dominant as 5 > average(4, 3) = 3.5 . \n \n At index i = 1 , the value 4 is dominant over the subarray [3] . \n \n Index i = 2 is not dominant as there are no elements to its right. Thus, the answer is 2. \n\n Example 2: \n\n Input: nums = [4,1,2] \n \n Output: 1 \n \n Explanation: \n\n At index i = 0 , the value 4 is dominant over the subarray [1, 2] . \n \n At index i = 1 , the value 1 is not dominant. \n \n Index i = 2 is not dominant as there are no elements to its right. Thus, the answer is 1. \n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100 ​​​​​​​",
+  "code": "class Solution {\npublic:\n    int dominantIndices(vector<int>& nums) {\n        long long suffix = 0;\n        int ans = 0;\n        for (int i = (int)nums.size() - 1; i >= 0; --i) {\n            int count = (int)nums.size() - 1 - i;\n            if (count && (long long)nums[i] * count > suffix) ++ans;\n            suffix += nums[i];\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179310197",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

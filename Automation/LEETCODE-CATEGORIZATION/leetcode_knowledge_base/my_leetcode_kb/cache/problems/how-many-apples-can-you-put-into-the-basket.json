@@ -1,0 +1,32 @@
+{
+  "id": "1196",
+  "title": "How Many Apples Can You Put into the Basket",
+  "slug": "how-many-apples-can-you-put-into-the-basket",
+  "url": "https://leetcode.com/problems/how-many-apples-can-you-put-into-the-basket/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You have some apples and a basket that can carry up to 5000 units of weight. \n \n Given an integer array weight where weight[i] is the weight of the i th apple, return the maximum number of apples you can put in the basket . \n\n Example 1: \n \n```\nInput:\n weight = [100,200,150,1000]\n\nOutput:\n 4\n\nExplanation:\n All 4 apples can be carried by the basket since their sum of weights is 1450.\n```\n\n Example 2: \n \n```\nInput:\n weight = [900,950,800,1000,700,800]\n\nOutput:\n 5\n\nExplanation:\n The sum of weights of the 6 apples exceeds 5000 so we choose any 5 of them.\n```\n\n Constraints: \n\n 1 <= weight.length <= 10 3 \n \n 1 <= weight[i] <= 10 3",
+  "code": "class Solution {\npublic:\n    int maxNumberOfApples(vector<int>& weight) {\n        sort(weight.begin(), weight.end());\n        int total = 0;\n        int count = 0;\n        for (int x : weight) {\n            if (total + x > 5000) {\n                break;\n            }\n            total += x;\n            ++count;\n        }\n        return count;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178548339",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "2321",
+  "title": "Maximum Score Of Spliced Array",
+  "slug": "maximum-score-of-spliced-array",
+  "url": "https://leetcode.com/problems/maximum-score-of-spliced-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two 0-indexed integer arrays nums1 and nums2 , both of length n . \n \n You can choose two integers left and right where 0 <= left <= right < n and swap the subarray nums1[left...right] with the subarray nums2[left...right] . \n\n For example, if nums1 = [1,2,3,4,5] and nums2 = [11,12,13,14,15] and you choose left = 1 and right = 2 , nums1 becomes [1, 12,13 ,4,5] and nums2 becomes [11, 2,3 ,14,15] . \n\n You may choose to apply the mentioned operation once or not do anything. \n \n The score of the arrays is the maximum of sum(nums1) and sum(nums2) , where sum(arr) is the sum of all the elements in the array arr . \n \n Return the maximum possible score . \n \n A subarray is a contiguous sequence of elements within an array. arr[left...right] denotes the subarray that contains the elements of nums between indices left and right ( inclusive ). \n\n Example 1: \n \n```\nInput:\n nums1 = [60,60,60], nums2 = [10,90,10]\n\nOutput:\n 210\n\nExplanation:\n Choosing left = 1 and right = 1, we have nums1 = [60,\n90\n,60] and nums2 = [10,\n60\n,10].\nThe score is max(sum(nums1), sum(nums2)) = max(210, 80) = 210.\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [20,40,20,70,30], nums2 = [50,20,50,40,20]\n\nOutput:\n 220\n\nExplanation:\n Choosing left = 3, right = 4, we have nums1 = [20,40,20,\n40,20\n] and nums2 = [50,20,50,\n70,30\n].\nThe score is max(sum(nums1), sum(nums2)) = max(140, 220) = 220.\n```\n\n Example 3: \n \n```\nInput:\n nums1 = [7,11,13], nums2 = [1,1,1]\n\nOutput:\n 31\n\nExplanation:\n We choose not to swap any subarray.\nThe score is max(sum(nums1), sum(nums2)) = max(31, 3) = 31.\n```\n\n Constraints: \n\n n == nums1.length == nums2.length \n \n 1 <= n <= 10 5 \n \n 1 <= nums1[i], nums2[i] <= 10 4",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int maximumsSplicedArray(vector<int>& nums1,vector<int>& nums2){long long s1=0,s2=0,cur1=0,cur2=0,best1=0,best2=0;for(int i=0;i<(int)nums1.size();++i){s1+=nums1[i];s2+=nums2[i];long long d=nums2[i]-nums1[i];cur1=max(0LL,cur1+d);best1=max(best1,cur1);cur2=max(0LL,cur2-d);best2=max(best2,cur2);}return max(s1+best1,s2+best2);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175916330",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

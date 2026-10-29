@@ -1,0 +1,37 @@
+{
+  "id": "449",
+  "title": "Serialize and Deserialize BST",
+  "slug": "serialize-and-deserialize-bst",
+  "url": "https://leetcode.com/problems/serialize-and-deserialize-bst/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Design",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "String",
+    "Tree adjacency list"
+  ],
+  "description": "Serialization is converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment. \n \n Design an algorithm to serialize and deserialize a binary search tree . There is no restriction on how your serialization/deserialization algorithm should work. You need to ensure that a binary search tree can be serialized to a string, and this string can be deserialized to the original tree structure. \n \n The encoded string should be as compact as possible. \n\n Example 1: \n \n```\nInput:\n root = [2,1,3]\n\nOutput:\n [2,1,3]\n```\n \n Example 2: \n \n```\nInput:\n root = []\n\nOutput:\n []\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 4 ] . \n \n 0 <= Node.val <= 10 4 \n \n The input tree is guaranteed to be a binary search tree.",
+  "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Codec \n{\n\tint i ;\npublic:\n\tCodec()\n\t{\n\t\ti = 0 ;\n\t}\n    // Encodes a tree to a single string.\n    string serialize(TreeNode* root) \n\t{\n        if(!root) return \"null,\";\n        return to_string(root->val)+ \",\" +serialize(root->left)  +serialize(root->right);        \n    }\n\n    //int i=0;\n    // Decodes your encoded data to tree.\n    TreeNode* deserialize(string data) \n\t{\n        if(i>=data.size())return nullptr;\n\n        string t=\"\";\n        while(data[i]!=',') t+=data[i++];\n        i++;\n\n        if(t==\"null\") return nullptr;\n        TreeNode* root=new TreeNode(stoi(t));\n        root->left=deserialize(data);\n        root->right=deserialize(data);\n        return root;\n    }\n};\n\n// Your Codec object will be instantiated and called as such:\n// Codec* ser = new Codec();\n// Codec* deser = new Codec();\n// string tree = ser->serialize(root);\n// TreeNode* ans = deser->deserialize(tree);\n// return ans;",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1484111652",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

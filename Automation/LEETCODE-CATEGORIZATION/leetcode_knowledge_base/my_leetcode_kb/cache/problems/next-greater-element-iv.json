@@ -1,0 +1,43 @@
+{
+  "id": "2454",
+  "title": "Next Greater Element IV",
+  "slug": "next-greater-element-iv",
+  "url": "https://leetcode.com/problems/next-greater-element-iv/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Stack",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Binary Search / Answer Search",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of non-negative integers nums . For each integer in nums , you must find its respective second greater integer. \n \n The second greater integer of nums[i] is nums[j] such that: \n\n j > i \n \n nums[j] > nums[i] \n \n There exists exactly one index k such that nums[k] > nums[i] and i < k < j . \n\n If there is no such nums[j] , the second greater integer is considered to be -1 . \n\n For example, in the array [1, 2, 4, 3] , the second greater integer of 1 is 4 , 2 is 3 , and that of 3 and 4 is -1 . \n\n Return an integer array answer , where answer[i] is the second greater integer of nums[i] . \n\n Example 1: \n \n```\nInput:\n nums = [2,4,0,9,6]\n\nOutput:\n [9,6,6,-1,-1]\n\nExplanation:\n\n0th index: 4 is the first integer greater than 2, and 9 is the second integer greater than 2, to the right of 2.\n1st index: 9 is the first, and 6 is the second integer greater than 4, to the right of 4.\n2nd index: 9 is the first, and 6 is the second integer greater than 0, to the right of 0.\n3rd index: There is no integer greater than 9 to its right, so the second greater integer is considered to be -1.\n4th index: There is no integer greater than 6 to its right, so the second greater integer is considered to be -1.\nThus, we return [9,6,6,-1,-1].\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,3]\n\nOutput:\n [-1,-1]\n\nExplanation:\n\nWe return [-1,-1] since neither integer has any integer greater than it.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 9",
+  "code": "class Solution { public: vector<int> secondGreaterElement(vector<int>& nums){int n=nums.size();vector<int>ans(n,-1),st;priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;for(int i=0;i<n;++i){int x=nums[i];while(!pq.empty()&&pq.top().first<x){ans[pq.top().second]=x;pq.pop();}while(!st.empty()&&nums[st.back()]<x){int j=st.back();st.pop_back();pq.push({nums[j],j});}st.push_back(i);}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176570257",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "454",
+  "title": "4Sum II",
+  "slug": "4sum-ii",
+  "url": "https://leetcode.com/problems/4sum-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given four integer arrays nums1 , nums2 , nums3 , and nums4 all of length n , return the number of tuples (i, j, k, l) such that: \n\n 0 <= i, j, k, l < n \n \n nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0 \n\n Example 1: \n \n```\nInput:\n nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2]\n\nOutput:\n 2\n\nExplanation:\n\nThe two tuples are:\n1. (0, 0, 0, 1) -> nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0\n2. (1, 1, 0, 0) -> nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0\n```\n\n Example 2: \n \n```\nInput:\n nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]\n\nOutput:\n 1\n```\n\n Constraints: \n\n n == nums1.length \n \n n == nums2.length \n \n n == nums3.length \n \n n == nums4.length \n \n 1 <= n <= 200 \n \n -2 28 <= nums1[i], nums2[i], nums3[i], nums4[i] <= 2 28",
+  "code": "class Solution {\npublic:\n    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {\n          int count=0;\n        unordered_map<int,int> mp;\n        \n        /* Philosophy\n        \n        1. I know that Addtion have two parts in it  EG (a +b , Part 1 - a, Part 2- b.\n        2.So, Lets make and find this dependency factors. How can I do it?\n        \n        3. If there are 4 Sum. it means 2 sums is going to Part 1 and another 2 gonna be Part 2 which are dependent on Part 1 for 0 resultant.\n        \n        4. I gonna store summation 2 nums1 in a FREQUENCY Hashmap.\n        \n        5. Then I traverse 2nd part of the summation (rest to nums) and keep checking that do (0-it1-it2) is exist in map . \n       \n        6. If yes, the add the frequency of Part1 int COUNT var.\n        \n        7. return count;\n        */\n        \n        //Traversing Part 1\n        for (auto &it1: nums1)\n            for (auto &it2:nums2)\n                mp[it1+it2]++; \n        \n        // Traversing Part 2\n        for(auto &it3: nums3)\n            for(auto &it4:nums4)\n               if(mp.count(0-it3-it4)) count+=mp[0-it3-it4];\n        \n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1487241814",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

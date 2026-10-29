@@ -1,0 +1,32 @@
+{
+  "id": "2862",
+  "title": "Maximum Element-Sum of a Complete Subset of Indices",
+  "slug": "maximum-element-sum-of-a-complete-subset-of-indices",
+  "url": "https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a 1 -indexed array nums . Your task is to select a complete subset from nums where every pair of selected indices multiplied is a perfect square, . i. e. if you select a i and a j , i * j must be a perfect square. \n \n Return the sum of the complete subset with the maximum sum . \n\n Example 1: \n\n Input: nums = [8,7,3,5,7,2,4,9] \n \n Output: 16 \n \n Explanation: \n \n We select elements at indices 2 and 8 and 2 * 8 is a perfect square. \n\n Example 2: \n\n Input: nums = [8,10,3,8,1,13,7,9,4] \n \n Output: 20 \n \n Explanation: \n \n We select elements at indices 1, 4, and 9. 1 * 4 , 1 * 9 , 4 * 9 are perfect squares. \n\n Constraints: \n\n 1 <= n == nums.length <= 10 4 \n \n 1 <= nums[i] <= 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:long long maximumSum(vector<int>& nums){unordered_map<int,long long> sums;long long ans=0;for(int i=1;i<=(int)nums.size();++i){int x=i,key=1;for(int p=2;p*p<=x;++p){int parity=0;while(x%p==0){x/=p;parity^=1;}if(parity)key*=p;}if(x>1)key*=x;ans=max(ans,sums[key]+=nums[i-1]);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176729724",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

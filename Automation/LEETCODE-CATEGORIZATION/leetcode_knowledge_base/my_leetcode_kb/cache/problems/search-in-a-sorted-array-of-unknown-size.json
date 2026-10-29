@@ -1,0 +1,29 @@
+{
+  "id": "702",
+  "title": "Search in a Sorted Array of Unknown Size",
+  "slug": "search-in-a-sorted-array-of-unknown-size",
+  "url": "https://leetcode.com/problems/search-in-a-sorted-array-of-unknown-size/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Interactive"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector"
+  ],
+  "description": "This is an interactive problem . \n \n You have a sorted array of unique elements and an unknown size . You do not have an access to the array but you can use the ArrayReader interface to access it. You can call ArrayReader.get(i) that: \n\n returns the value at the i th index ( 0-indexed ) of the secret array (i.e., secret[i] ), or \n \n returns 2 31 - 1 if the i is out of the boundary of the array. \n\n You are also given an integer target . \n \n Return the index k of the hidden array where secret[k] == target or return -1 otherwise. \n \n You must write an algorithm with O(log n) runtime complexity. \n\n Example 1: \n \n```\nInput:\n secret = [-1,0,3,5,9,12], target = 9\n\nOutput:\n 4\n\nExplanation:\n 9 exists in secret and its index is 4.\n```\n\n Example 2: \n \n```\nInput:\n secret = [-1,0,3,5,9,12], target = 2\n\nOutput:\n -1\n\nExplanation:\n 2 does not exist in secret so return -1.\n```\n\n Constraints: \n\n 1 <= secret.length <= 10 4 \n \n -10 4 <= secret[i], target <= 10 4 \n \n secret is sorted in a strictly increasing order.",
+  "code": "class Solution {\npublic:\n    int search(const ArrayReader& reader, int target) {\n        int left = 0;\n        int right = 1;\n        while (reader.get(right) < target) {\n            left = right + 1;\n            right *= 2;\n        }\n        while (left <= right) {\n            int mid = left + (right - left) / 2;\n            int value = reader.get(mid);\n            if (value == target) {\n                return mid;\n            }\n            if (value < target) {\n                left = mid + 1;\n            } else {\n                right = mid - 1;\n            }\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178498853",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

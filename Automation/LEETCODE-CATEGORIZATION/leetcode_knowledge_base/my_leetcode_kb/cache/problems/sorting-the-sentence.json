@@ -1,0 +1,31 @@
+{
+  "id": "1859",
+  "title": "Sorting the Sentence",
+  "slug": "sorting-the-sentence",
+  "url": "https://leetcode.com/problems/sorting-the-sentence/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String",
+    "Sorting",
+    "Bubble Sort"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "A sentence is a list of words that are separated by a single space with no leading or trailing spaces. Each word consists of lowercase and uppercase English letters. \n \n A sentence can be shuffled by appending the 1-indexed word position to each word then rearranging the words in the sentence. \n\n For example, the sentence \"This is a sentence\" can be shuffled as \"sentence4 a3 is2 This1\" or \"is2 sentence4 This1 a3\" . \n\n Given a shuffled sentence s containing no more than 9 words, reconstruct and return the original sentence . \n\n Example 1: \n \n```\nInput:\n s = \"is2 sentence4 This1 a3\"\n\nOutput:\n \"This is a sentence\"\n\nExplanation:\n Sort the words in s to their original positions \"This1 is2 a3 sentence4\", then remove the numbers.\n```\n\n Example 2: \n \n```\nInput:\n s = \"Myself2 Me1 I4 and3\"\n\nOutput:\n \"Me Myself and I\"\n\nExplanation:\n Sort the words in s to their original positions \"Me1 Myself2 and3 I4\", then remove the numbers.\n```\n\n Constraints: \n\n 2 <= s.length <= 200 \n \n s consists of lowercase and uppercase English letters, spaces, and digits from 1 to 9 . \n \n The number of words in s is between 1 and 9 . \n \n The words in s are separated by a single space. \n \n s contains no leading or trailing spaces.",
+  "code": "#include <string>\n#include <sstream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string sortSentence(string s) {\n        stringstream ss(s);\n        string word;\n        vector<string> words(10);\n        while (ss >> word) {\n            int pos = word.back() - '0';\n            word.pop_back();\n            words[pos - 1] = word;\n        }\n\n        string res;\n        for (const string& w : words) {\n            if (w.empty()) break;\n            if (!res.empty()) res += \" \";\n            res += w;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595380319",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

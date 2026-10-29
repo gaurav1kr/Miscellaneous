@@ -1,0 +1,29 @@
+{
+  "id": "2340",
+  "title": "Minimum Adjacent Swaps to Make a Valid Array",
+  "slug": "minimum-adjacent-swaps-to-make-a-valid-array",
+  "url": "https://leetcode.com/problems/minimum-adjacent-swaps-to-make-a-valid-array/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . \n \n Swaps of adjacent elements are able to be performed on nums . \n \n A valid array meets the following conditions: \n\n The largest element (any of the largest elements if there are multiple) is at the rightmost position in the array. \n \n The smallest element (any of the smallest elements if there are multiple) is at the leftmost position in the array. \n\n Return the minimum swaps required to make nums a valid array . \n\n Example 1: \n \n```\nInput:\n nums = [3,4,5,5,3,1]\n\nOutput:\n 6\n\nExplanation:\n Perform the following swaps:\n- Swap 1: Swap the 3\nrd\n and 4\nth\n elements, nums is then [3,4,5,\n3\n,\n5\n,1].\n- Swap 2: Swap the 4\nth\n and 5\nth\n elements, nums is then [3,4,5,3,\n1\n,\n5\n].\n- Swap 3: Swap the 3\nrd\n and 4\nth\n elements, nums is then [3,4,5,\n1\n,\n3\n,5].\n- Swap 4: Swap the 2\nnd\n and 3\nrd\n elements, nums is then [3,4,\n1\n,\n5\n,3,5].\n- Swap 5: Swap the 1\nst\n and 2\nnd\n elements, nums is then [3,\n1\n,\n4\n,5,3,5].\n- Swap 6: Swap the 0\nth\n and 1\nst\n elements, nums is then [\n1\n,\n3\n,4,5,3,5].\nIt can be shown that 6 swaps is the minimum swaps required to make a valid array.\n```\n \n Example 2: \n \n```\nInput:\n nums = [9]\n\nOutput:\n 0\n\nExplanation:\n The array is already valid, so we return 0.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int minimumSwaps(vector<int>& nums) {\n        int mn = 0, mx = 0, n = nums.size();\n        for (int i = 0; i < n; ++i) {\n            if (nums[i] < nums[mn]) mn = i;\n            if (nums[i] >= nums[mx]) mx = i;\n        }\n        return mn + (n - 1 - mx) - (mn > mx ? 1 : 0);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178860404",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

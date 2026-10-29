@@ -1,0 +1,37 @@
+{
+  "id": "1439",
+  "title": "Find the Kth Smallest Sum of a Matrix With Sorted Rows",
+  "slug": "find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows",
+  "url": "https://leetcode.com/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Heap (Priority Queue)",
+    "Matrix"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Heap / Priority Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Ordered set",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an m x n matrix mat that has its rows sorted in non-decreasing order and an integer k . \n \n You are allowed to choose exactly one element from each row to form an array. \n \n Return the k th smallest array sum among all possible arrays . \n\n Example 1: \n \n```\nInput:\n mat = [[1,3,11],[2,4,6]], k = 5\n\nOutput:\n 7\n\nExplanation:\n Choosing one element from each row, the first k smallest sum are:\n[1,2], [1,4], [3,2], [3,4], [1,6]. Where the 5th sum is 7.\n```\n\n Example 2: \n \n```\nInput:\n mat = [[1,3,11],[2,4,6]], k = 9\n\nOutput:\n 17\n```\n\n Example 3: \n \n```\nInput:\n mat = [[1,10,10],[1,4,5],[2,3,6]], k = 7\n\nOutput:\n 9\n\nExplanation:\n Choosing one element from each row, the first k smallest sum are:\n[1,1,2], [1,1,3], [1,4,2], [1,4,3], [1,1,6], [1,5,2], [1,5,3]. Where the 7th sum is 9.\n```\n\n Constraints: \n\n m == mat.length \n \n n == mat.length[i] \n \n 1 <= m, n <= 40 \n \n 1 <= mat[i][j] <= 5000 \n \n 1 <= k <= min(200, n m ) \n \n mat[i] is a non-decreasing array.",
+  "code": "#include <vector>\n#include <queue>\n#include <set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int kthSmallest(vector<vector<int>>& mat, int k) {\n        auto cmp = [](const pair<int, vector<int>>& a, const pair<int, vector<int>>& b) {\n            return a.first > b.first;\n        };\n\n        int m = mat.size(), n = mat[0].size();\n        priority_queue<pair<int, vector<int>>, vector<pair<int, vector<int>>>, decltype(cmp)> pq(cmp);\n        set<vector<int>> seen;\n\n        vector<int> init(m, 0);\n        int sum = 0;\n        for (int i = 0; i < m; ++i) sum += mat[i][0];\n        pq.push({sum, init});\n        seen.insert(init);\n\n        while (--k) {\n            auto [curSum, idxs] = pq.top(); pq.pop();\n            for (int i = 0; i < m; ++i) {\n                if (idxs[i] + 1 < n) {\n                    vector<int> newIdxs = idxs;\n                    newIdxs[i]++;\n                    if (seen.count(newIdxs)) continue;\n                    int newSum = curSum - mat[i][idxs[i]] + mat[i][newIdxs[i]];\n                    pq.push({newSum, newIdxs});\n                    seen.insert(newIdxs);\n                }\n            }\n        }\n\n        return pq.top().first;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593851497",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

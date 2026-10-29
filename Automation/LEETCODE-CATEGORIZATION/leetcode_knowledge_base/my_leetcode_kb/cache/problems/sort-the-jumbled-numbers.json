@@ -1,0 +1,30 @@
+{
+  "id": "2191",
+  "title": "Sort the Jumbled Numbers",
+  "slug": "sort-the-jumbled-numbers",
+  "url": "https://leetcode.com/problems/sort-the-jumbled-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array mapping which represents the mapping rule of a shuffled decimal system. mapping[i] = j means digit i should be mapped to digit j in this system. \n \n The mapped value of an integer is the new integer obtained by replacing each occurrence of digit i in the integer with mapping[i] for all 0 <= i <= 9 . \n \n You are also given another integer array nums . Return the array nums sorted in non-decreasing order based on the mapped values of its elements. \n \n Notes: \n\n Elements with the same mapped values should appear in the same relative order as in the input. \n \n The elements of nums should only be sorted based on their mapped values and not be replaced by them. \n\n Example 1: \n \n```\nInput:\n mapping = [8,9,4,0,2,1,3,5,7,6], nums = [991,338,38]\n\nOutput:\n [338,38,991]\n\nExplanation:\n \nMap the number 991 as follows:\n1. mapping[9] = 6, so all occurrences of the digit 9 will become 6.\n2. mapping[1] = 9, so all occurrences of the digit 1 will become 9.\nTherefore, the mapped value of 991 is 669.\n338 maps to 007, or 7 after removing the leading zeros.\n38 maps to 07, which is also 7 after removing leading zeros.\nSince 338 and 38 share the same mapped value, they should remain in the same relative order, so 338 comes before 38.\nThus, the sorted array is [338,38,991].\n```\n\n Example 2: \n \n```\nInput:\n mapping = [0,1,2,3,4,5,6,7,8,9], nums = [789,456,123]\n\nOutput:\n [123,456,789]\n\nExplanation:\n 789 maps to 789, 456 maps to 456, and 123 maps to 123. Thus, the sorted array is [123,456,789].\n```\n\n Constraints: \n\n mapping.length == 10 \n \n 0 <= mapping[i] <= 9 \n \n All the values of mapping[i] are unique . \n \n 1 <= nums.length <= 3 * 10 4 \n \n 0 <= nums[i] < 10 9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n vector<int> sortJumbled(vector<int>& mapping,vector<int>& nums) {\n  auto val=[&](int x){if(!x)return (long long)mapping[0]; long long y=0,p=1;while(x){y+=mapping[x%10]*p;p*=10;x/=10;}return y;};\n  stable_sort(nums.begin(),nums.end(),[&](int a,int b){return val(a)<val(b);});return nums;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175882969",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

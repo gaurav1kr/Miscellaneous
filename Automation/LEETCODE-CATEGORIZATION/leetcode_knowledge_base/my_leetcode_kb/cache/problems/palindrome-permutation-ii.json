@@ -1,0 +1,33 @@
+{
+  "id": "267",
+  "title": "Palindrome Permutation II",
+  "slug": "palindrome-permutation-ii",
+  "url": "https://leetcode.com/problems/palindrome-permutation-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a string s, return all the palindromic permutations (without duplicates) of it . \n \n You may return the answer in any order . If s has no palindromic permutation, return an empty list. \n\n Example 1: \n \n```\nInput:\n s = \"aabb\"\n\nOutput:\n [\"abba\",\"baab\"]\n```\n \n Example 2: \n \n```\nInput:\n s = \"abc\"\n\nOutput:\n []\n```\n\n Constraints: \n\n 1 <= s.length <= 16 \n \n s consists of only lowercase English letters.",
+  "code": "class Solution\n{\npublic:\n    vector< string>generatePalindromes(string s)\n    {\n        map< char, int>freq;\n        for (char c : s)++freq[c];\n        int odd = 0;\n        string half, mid;\n        for (auto&p : freq)\n        {\n            if (p.second % 2)\n            {\n                ++odd;\n                mid = string(1, p.first);\n            }\n            half.append(p.second / 2, p.first);\n        }\n        if (odd >1) return { };\n        vector< string>ans;\n        do\n        {\n            string right = half;\n            reverse(right.begin(), right.end());\n            ans.push_back(half + mid + right);\n        }\n        while (next_permutation(half.begin(), half.end()));\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178441490",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

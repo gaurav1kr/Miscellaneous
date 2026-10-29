@@ -1,0 +1,38 @@
+{
+  "id": "1923",
+  "title": "Longest Common Subpath",
+  "slug": "longest-common-subpath",
+  "url": "https://leetcode.com/problems/longest-common-subpath/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Binary Search",
+    "Rolling Hash",
+    "Suffix Array",
+    "Hash Function",
+    "Suffix Automaton",
+    "Suffix Tree"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "There is a country of n cities numbered from 0 to n - 1 . In this country, there is a road connecting every pair of cities. \n \n There are m friends numbered from 0 to m - 1 who are traveling through the country. Each one of them will take a path consisting of some cities. Each path is represented by an integer array that contains the visited cities in order. The path may contain a city more than once , but the same city will not be listed consecutively. \n \n Given an integer n and a 2D integer array paths where paths[i] is an integer array representing the path of the i th friend, return the length of the longest common subpath that is shared by every friend's path, or 0 if there is no common subpath at all . \n \n A subpath of a path is a contiguous sequence of cities within that path. \n\n Example 1: \n \n```\nInput:\n n = 5, paths = [[0,1,\n2,3\n,4],\n [\n2,3\n,4],\n [4,0,1,\n2,3\n]]\n\nOutput:\n 2\n\nExplanation:\n The longest common subpath is [2,3].\n```\n\n Example 2: \n \n```\nInput:\n n = 3, paths = [[0],[1],[2]]\n\nOutput:\n 0\n\nExplanation:\n There is no common subpath shared by the three paths.\n```\n\n Example 3: \n \n```\nInput:\n n = 5, paths = [[\n0\n,1,2,3,4],\n [4,3,2,1,\n0\n]]\n\nOutput:\n 1\n\nExplanation:\n The possible longest common subpaths are [0], [1], [2], [3], and [4]. All have a length of 1.\n```\n\n Constraints: \n\n 1 <= n <= 10 5 \n \n m == paths.length \n \n 2 <= m <= 10 5 \n \n sum(paths[i].length) <= 10 5 \n \n 0 <= paths[i][j] < n \n \n The same city is not listed multiple times consecutively in paths[i] .",
+  "code": "#include <vector>\n#include <unordered_set>\nusing namespace std;\n\nclass Solution {\n    const long long mod = 1e11 + 19, base = 1e5 + 7;\n\n    bool check(int len, vector<vector<int>>& paths) {\n        unordered_set<long long> common;\n        long long hash = 0, pow = 1;\n\n        for (int i = 0; i < len; ++i) pow = (pow * base) % mod;\n\n        for (int i = 0; i < paths[0].size(); ++i) {\n            hash = (hash * base + paths[0][i]) % mod;\n            if (i >= len) hash = (hash - pow * paths[0][i - len] % mod + mod) % mod;\n            if (i >= len - 1) common.insert(hash);\n        }\n\n        for (int k = 1; k < paths.size(); ++k) {\n            unordered_set<long long> seen;\n            hash = 0;\n            for (int i = 0; i < paths[k].size(); ++i) {\n                hash = (hash * base + paths[k][i]) % mod;\n                if (i >= len) hash = (hash - pow * paths[k][i - len] % mod + mod) % mod;\n                if (i >= len - 1 && common.count(hash)) seen.insert(hash);\n            }\n            common = seen;\n            if (common.empty()) return false;\n        }\n        return true;\n    }\n\npublic:\n    int longestCommonSubpath(int n, vector<vector<int>>& paths) {\n        int l = 0, r = INT_MAX;\n        for (auto& p : paths) r = min(r, (int)p.size());\n\n        int res = 0;\n        while (l <= r) {\n            int m = (l + r) / 2;\n            if (check(m, paths)) {\n                res = m;\n                l = m + 1;\n            } else {\n                r = m - 1;\n            }\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610658218",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

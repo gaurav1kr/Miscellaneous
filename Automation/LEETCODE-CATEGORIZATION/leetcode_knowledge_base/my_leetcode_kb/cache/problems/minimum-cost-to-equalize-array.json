@@ -1,0 +1,30 @@
+{
+  "id": "3139",
+  "title": "Minimum Cost to Equalize Array",
+  "slug": "minimum-cost-to-equalize-array",
+  "url": "https://leetcode.com/problems/minimum-cost-to-equalize-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Enumeration"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and two integers cost1 and cost2 . You are allowed to perform either of the following operations any number of times: \n\n Choose an index i from nums and increase nums[i] by 1 for a cost of cost1 . \n \n Choose two different indices i , j , from nums and increase nums[i] and nums[j] by 1 for a cost of cost2 . \n\n Return the minimum cost required to make all elements in the array equal . \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: nums = [4,1], cost1 = 5, cost2 = 2 \n \n Output: 15 \n \n Explanation: \n \n The following operations can be performed to make the values equal: \n\n Increase nums[1] by 1 for a cost of 5. nums becomes [4,2] . \n \n Increase nums[1] by 1 for a cost of 5. nums becomes [4,3] . \n \n Increase nums[1] by 1 for a cost of 5. nums becomes [4,4] . \n\n The total cost is 15. \n\n Example 2: \n\n Input: nums = [2,3,3,3,5], cost1 = 2, cost2 = 1 \n \n Output: 6 \n \n Explanation: \n \n The following operations can be performed to make the values equal: \n\n Increase nums[0] and nums[1] by 1 for a cost of 1. nums becomes [3,4,3,3,5] . \n \n Increase nums[0] and nums[2] by 1 for a cost of 1. nums becomes [4,4,4,3,5] . \n \n Increase nums[0] and nums[3] by 1 for a cost of 1. nums becomes [5,4,4,4,5] . \n \n Increase nums[1] and nums[2] by 1 for a cost of 1. nums becomes [5,5,5,4,5] . \n \n Increase nums[3] by 1 for a cost of 2. nums becomes [5,5,5,5,5] . \n\n The total cost is 6. \n\n Example 3: \n\n Input: nums = [3,5,3], cost1 = 1, cost2 = 3 \n \n Output: 4 \n \n Explanation: \n \n The following operations can be performed to make the values equal: \n\n Increase nums[0] by 1 for a cost of 1. nums becomes [4,5,3] . \n \n Increase nums[0] by 1 for a cost of 1. nums becomes [5,5,3] . \n \n Increase nums[2] by 1 for a cost of 1. nums becomes [5,5,4] . \n \n Increase nums[2] by 1 for a cost of 1. nums becomes [5,5,5] . \n\n The total cost is 4. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 6 \n \n 1 <= cost1 <= 10 6 \n \n 1 <= cost2 <= 10 6",
+  "code": "class Solution {public:int minCostToEqualizeArray(vector<int>& nums,int cost1,int cost2){\n const long long MOD=1000000007;int n=nums.size();long long mn=*min_element(nums.begin(),nums.end()),mx=*max_element(nums.begin(),nums.end()),sum=accumulate(nums.begin(),nums.end(),0LL);\n if(n<=2||2LL*cost1<=cost2){long long v=mx*n-sum;return (int)(v*cost1%MOD);}\n auto calc=[&](long long t){long long total=t*n-sum,largest=t-mn;long long pairs=min(total/2,total-largest);return pairs*cost2+(total-2*pairs)*cost1;};\n long long best=calc(mx);long long threshold=max(mx,(sum-2*mn+n-3)/(n-2));\n for(long long t=mx;t<=mx+2;++t)best=min(best,calc(t));\n for(long long t=max(mx,threshold-2);t<=threshold+2;++t)best=min(best,calc(t));\n return (int)(best%MOD);\n}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177391832",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

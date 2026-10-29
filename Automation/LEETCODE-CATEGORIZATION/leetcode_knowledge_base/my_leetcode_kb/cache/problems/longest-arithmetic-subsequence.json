@@ -1,0 +1,37 @@
+{
+  "id": "1027",
+  "title": "Longest Arithmetic Subsequence",
+  "slug": "longest-arithmetic-subsequence",
+  "url": "https://leetcode.com/problems/longest-arithmetic-subsequence/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Dynamic Programming",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an array nums of integers, return the length of the longest arithmetic subsequence in nums . \n \n Note that: \n\n A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements. \n \n A sequence seq is arithmetic if seq[i + 1] - seq[i] are all the same value (for 0 <= i < seq.length - 1 ). \n\n Example 1: \n\n Input: nums = [3, 6, 9, 12] \n \n Output: 4 \n \n Explanation: The whole array is already an arithmetic sequence with a common difference of 3, so the longest arithmetic subsequence is [3, 6, 9, 12] , of length 4. \n\n Example 2: \n\n Input: nums = [9, 4, 7, 2, 10] \n \n Output: 3 \n \n Explanation: The longest arithmetic subsequence is [4, 7, 10] (indices 1 , 2 , 4 ), with a common difference of 3. There is no arithmetic subsequence of length 4. \n\n Example 3: \n\n Input: nums = [20, 1, 15, 3, 10, 5, 8] \n \n Output: 4 \n \n Explanation: The longest arithmetic subsequence is [20, 15, 10, 5] (indices 0 , 2 , 4 , 5 ), with a common difference of -5. \n\n Constraints: \n\n 2 <= nums.length <= 1500 \n \n 0 <= nums[i] <= 500",
+  "code": "class Solution {\npublic:\n    int longestArithSeqLength(vector<int>& A) {\n        \n        int n=A.size();\n        unordered_map<int,unordered_map<int,int>>dp;\n        \n        int ans=0;\n        for(int i=0;i<n;i++){\n            \n            for(int j=0;j<i;j++){\n                int d=A[i]-A[j];\n                if(dp[d].find(j)==dp[d].end()){\n                    dp[d][i]=2;\n                }\n                else dp[d][i]=max(dp[d][j]+1,dp[d][i]);\n                \n                \n                ans=max(ans,dp[d][i]);\n            }\n        }\n        \n        \n        \n        return ans;\n        \n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1366786586",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

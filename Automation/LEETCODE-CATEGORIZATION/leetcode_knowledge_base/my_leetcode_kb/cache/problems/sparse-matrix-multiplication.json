@@ -1,0 +1,33 @@
+{
+  "id": "311",
+  "title": "Sparse Matrix Multiplication",
+  "slug": "sparse-matrix-multiplication",
+  "url": "https://leetcode.com/problems/sparse-matrix-multiplication/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Matrix",
+    "Linear Algebra"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Given two sparse matrices mat1 of size m x k and mat2 of size k x n , return the result of mat1 x mat2 . You may assume that multiplication is always possible. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/12/mult-grid.jpg] \n \n```\nInput:\n mat1 = [[1,0,0],[-1,0,3]], mat2 = [[7,0,0],[0,0,0],[0,0,1]]\n\nOutput:\n [[7,0,0],[-7,0,3]]\n```\n\n Example 2: \n \n```\nInput:\n mat1 = [[0]], mat2 = [[0]]\n\nOutput:\n [[0]]\n```\n\n Constraints: \n\n m == mat1.length \n \n k == mat1[i].length == mat2.length \n \n n == mat2[i].length \n \n 1 <= m, n, k <= 100 \n \n -100 <= mat1[i][j], mat2[i][j] <= 100",
+  "code": "class Solution\n{\npublic:\n    vector<vector<int>> multiply(vector<vector<int>>& mat1,\n                                 vector<vector<int>>& mat2) {\n        int m = mat1.size(), k = mat1[0].size(), n = mat2[0].size();\n        vector<vector<int>> result(m, vector<int>(n, 0));\n        for (int i = 0; i < m; ++i)\n        {\n            for (int t = 0; t < k; ++t)\n            {\n                if (mat1[i][t] == 0) continue;\n                for (int j = 0; j < n; ++j)\n                {\n                    if (mat2[t][j] != 0)\n                    {\n                        result[i][j] += mat1[i][t] * mat2[t][j];\n                    }\n                }\n            }\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178451130",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

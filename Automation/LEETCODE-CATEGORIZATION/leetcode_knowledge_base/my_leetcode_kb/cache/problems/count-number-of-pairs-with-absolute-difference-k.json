@@ -1,0 +1,33 @@
+{
+  "id": "2006",
+  "title": "Count Number of Pairs With Absolute Difference K",
+  "slug": "count-number-of-pairs-with-absolute-difference-k",
+  "url": "https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "Given an integer array nums and an integer k , return the number of pairs (i, j) where i < j such that |nums[i] - nums[j]| == k . \n \n The value of |x| is defined as: \n\n x if x >= 0 . \n \n -x if x < 0 . \n\n Example 1: \n \n```\nInput:\n nums = [1,2,2,1], k = 1\n\nOutput:\n 4\n\nExplanation:\n The pairs with an absolute difference of 1 are:\n- [\n1\n,\n2\n,2,1]\n- [\n1\n,2,\n2\n,1]\n- [1,\n2\n,2,\n1\n]\n- [1,2,\n2\n,\n1\n]\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,3], k = 3\n\nOutput:\n 0\n\nExplanation:\n There are no pairs with an absolute difference of 3.\n```\n\n Example 3: \n \n```\nInput:\n nums = [3,2,1,5,4], k = 2\n\nOutput:\n 3\n\nExplanation:\n The pairs with an absolute difference of 2 are:\n- [\n3\n,2,\n1\n,5,4]\n- [\n3\n,2,1,\n5\n,4]\n- [3,\n2\n,1,5,\n4\n]\n```\n\n Constraints: \n\n 1 <= nums.length <= 200 \n \n 1 <= nums[i] <= 100 \n \n 1 <= k <= 99",
+  "code": "class Solution {\npublic:\n    int countKDifference(vector<int>& nums,int k){unordered_map<int,int>freq;int ans=0;\n        for(int x:nums){ans+=freq[x-k]+freq[x+k];++freq[x];}return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175768193",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

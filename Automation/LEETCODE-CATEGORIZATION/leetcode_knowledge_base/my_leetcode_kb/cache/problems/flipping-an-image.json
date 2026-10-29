@@ -1,0 +1,34 @@
+{
+  "id": "832",
+  "title": "Flipping an Image",
+  "slug": "flipping-an-image",
+  "url": "https://leetcode.com/problems/flipping-an-image/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Bit Manipulation",
+    "Matrix",
+    "Simulation"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an n x n binary matrix image , flip the image horizontally , then invert it, and return the resulting image . \n \n To flip an image horizontally means that each row of the image is reversed. \n\n For example, flipping [1,1,0] horizontally results in [0,1,1] . \n\n To invert an image means that each 0 is replaced by 1 , and each 1 is replaced by 0 . \n\n For example, inverting [0,1,1] results in [1,0,0] . \n\n Example 1: \n \n```\nInput:\n image = [[1,1,0],[1,0,1],[0,0,0]]\n\nOutput:\n [[1,0,0],[0,1,0],[1,1,1]]\n\nExplanation:\n First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].\nThen, invert the image: [[1,0,0],[0,1,0],[1,1,1]]\n```\n\n Example 2: \n \n```\nInput:\n image = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]\n\nOutput:\n [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]\n\nExplanation:\n First reverse each row: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]].\nThen invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]\n```\n\n Constraints: \n\n n == image.length \n \n n == image[i].length \n \n 1 <= n <= 20 \n \n images[i][j] is either 0 or 1 .",
+  "code": "class Solution {\npublic:\n    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& image) {\n        for (auto &row : image) {\n            reverse(row.begin(), row.end());\n            for (int &pixel : row) pixel ^= 1;\n        }\n        return image;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588073553",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

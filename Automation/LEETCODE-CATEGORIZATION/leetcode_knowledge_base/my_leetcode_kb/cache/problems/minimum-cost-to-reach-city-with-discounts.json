@@ -1,0 +1,34 @@
+{
+  "id": "2093",
+  "title": "Minimum Cost to Reach City With Discounts",
+  "slug": "minimum-cost-to-reach-city-with-discounts",
+  "url": "https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Shortest Path",
+    "Dijkstra's Algorithm"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "A series of highways connect n cities numbered from 0 to n - 1 . You are given a 2D integer array highways where highways[i] = [city1 i , city2 i , toll i ] indicates that there is a highway that connects city1 i and city2 i , allowing a car to go from city1 i to city2 i and vice versa for a cost of toll i . \n \n You are also given an integer discounts which represents the number of discounts you have. You can use a discount to travel across the i th highway for a cost of toll i / 2 ( integer division ). Each discount may only be used once , and you can only use at most one discount per highway. \n \n Return the minimum total cost to go from city 0 to city n - 1 , or -1 if it is not possible to go from city 0 to city n - 1 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/11/29/image-20211129222429-1.png] \n \n```\nInput:\n n = 5, highways = [[0,1,4],[2,1,3],[1,4,11],[3,2,3],[3,4,2]], discounts = 1\n\nOutput:\n 9\n\nExplanation:\n\nGo from 0 to 1 for a cost of 4.\nGo from 1 to 4 and use a discount for a cost of 11 / 2 = 5.\nThe minimum cost to go from 0 to 4 is 4 + 5 = 9.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/11/29/image-20211129222650-4.png] \n \n```\nInput:\n n = 4, highways = [[1,3,17],[1,2,7],[3,2,5],[0,1,6],[3,0,20]], discounts = 20\n\nOutput:\n 8\n\nExplanation:\n\nGo from 0 to 1 and use a discount for a cost of 6 / 2 = 3.\nGo from 1 to 2 and use a discount for a cost of 7 / 2 = 3.\nGo from 2 to 3 and use a discount for a cost of 5 / 2 = 2.\nThe minimum cost to go from 0 to 3 is 3 + 3 + 2 = 8.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/11/29/image-20211129222531-3.png] \n \n```\nInput:\n n = 4, highways = [[0,1,3],[2,3,2]], discounts = 0\n\nOutput:\n -1\n\nExplanation:\n\nIt is impossible to go from 0 to 3 so return -1.\n```\n\n Constraints: \n\n 2 <= n <= 1000 \n \n 1 <= highways.length <= 1000 \n \n highways[i].length == 3 \n \n 0 <= city1 i , city2 i <= n - 1 \n \n city1 i != city2 i \n \n 0 <= toll i <= 10 5 \n \n 0 <= discounts <= 500 \n \n There are no duplicate highways.",
+  "code": "class Solution {\npublic:\n    int minimumCost(int n, vector<vector<int>>& highways, int discounts) {\n        vector<vector<pair<int, int>>> graph(n);\n        for (const auto& edge : highways) {\n            graph[edge[0]].push_back({edge[1], edge[2]});\n            graph[edge[1]].push_back({edge[0], edge[2]});\n        }\n        const long long INF = LLONG_MAX / 4;\n        vector<vector<long long>> dist(n, vector<long long>(discounts + 1, INF));\n        using State = tuple<long long, int, int>;\n        priority_queue<State, vector<State>, greater<State>> pq;\n        dist[0][0] = 0;\n        pq.emplace(0, 0, 0);\n        while (!pq.empty()) {\n            long long cost = get<0>(pq.top());\n            int city = get<1>(pq.top()), used = get<2>(pq.top());\n            pq.pop();\n            if (cost != dist[city][used]) continue;\n            if (city == n - 1) return (int)cost;\n            for (auto edge : graph[city]) {\n                int next = edge.first, toll = edge.second;\n                if (cost + toll < dist[next][used]) {\n                    dist[next][used] = cost + toll;\n                    pq.emplace(cost + toll, next, used);\n                }\n                if (used < discounts && cost + toll / 2 < dist[next][used + 1]) {\n                    dist[next][used + 1] = cost + toll / 2;\n                    pq.emplace(cost + toll / 2, next, used + 1);\n                }\n            }\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178638563",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "2139",
+  "title": "Minimum Moves to Reach Target Score",
+  "slug": "minimum-moves-to-reach-target-score",
+  "url": "https://leetcode.com/problems/minimum-moves-to-reach-target-score/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are playing a game with integers. You start with the integer 1 and you want to reach the integer target . \n \n In one move, you can either: \n\n Increment the current integer by one (i.e., x = x + 1 ). \n \n Double the current integer (i.e., x = 2 * x ). \n\n You can use the increment operation any number of times, however, you can only use the double operation at most maxDoubles times. \n \n Given the two integers target and maxDoubles , return the minimum number of moves needed to reach target starting with 1 . \n\n Example 1: \n \n```\nInput:\n target = 5, maxDoubles = 0\n\nOutput:\n 4\n\nExplanation:\n Keep incrementing by 1 until you reach target.\n```\n\n Example 2: \n \n```\nInput:\n target = 19, maxDoubles = 2\n\nOutput:\n 7\n\nExplanation:\n Initially, x = 1\nIncrement 3 times so x = 4\nDouble once so x = 8\nIncrement once so x = 9\nDouble again so x = 18\nIncrement once so x = 19\n```\n\n Example 3: \n \n```\nInput:\n target = 10, maxDoubles = 4\n\nOutput:\n 4\n\nExplanation:\n \nInitially, x = 1\nIncrement once so x = 2\nDouble once so x = 4\nIncrement once so x = 5\nDouble again so x = 10\n```\n\n Constraints: \n\n 1 <= target <= 10 9 \n \n 0 <= maxDoubles <= 100",
+  "code": "class Solution {\npublic:\n int minMoves(int target,int maxDoubles){\n  int ans=0;while(target>1 && maxDoubles){\n   if(target%2){--target;++ans;}else{target/=2;--maxDoubles;++ans;}\n  }\n  return ans+target-1;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175739180",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

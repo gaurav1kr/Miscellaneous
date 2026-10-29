@@ -1,0 +1,33 @@
+{
+  "id": "305",
+  "title": "Number of Islands II",
+  "slug": "number-of-islands-ii",
+  "url": "https://leetcode.com/problems/number-of-islands-ii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Union-Find"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "You are given an empty 2D binary grid grid of size m x n . The grid represents a map where 0 's represent water and 1 's represent land. Initially, all the cells of grid are water cells (i.e., all the cells are 0 's). \n \n We may perform an add land operation which turns the water at position into a land. You are given an array positions where positions[i] = [r i , c i ] is the position (r i , c i ) at which we should operate the i th operation. \n \n Return an array of integers answer where answer[i] is the number of islands after turning the cell (r i , c i ) into a land . \n \n An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/10/tmp-grid.jpg] \n \n```\nInput:\n m = 3, n = 3, positions = [[0,0],[0,1],[1,2],[2,1]]\n\nOutput:\n [1,1,2,3]\n\nExplanation:\n\nInitially, the 2d grid is filled with water.\n- Operation #1: addLand(0, 0) turns the water at grid[0][0] into a land. We have 1 island.\n- Operation #2: addLand(0, 1) turns the water at grid[0][1] into a land. We still have 1 island.\n- Operation #3: addLand(1, 2) turns the water at grid[1][2] into a land. We have 2 islands.\n- Operation #4: addLand(2, 1) turns the water at grid[2][1] into a land. We have 3 islands.\n```\n\n Example 2: \n \n```\nInput:\n m = 1, n = 1, positions = [[0,0]]\n\nOutput:\n [1]\n```\n\n Constraints: \n\n 1 <= m, n, positions.length <= 10 4 \n \n 1 <= m * n <= 10 4 \n \n positions[i].length == 2 \n \n 0 <= r i < m \n \n 0 <= c i < n \n\n Follow up: Could you solve it in time complexity O(k log(mn)) , where k == positions.length ?",
+  "code": "class Solution\n{\n    vector<int> parent, rankValue;\n    int find(int x)\n    {\n        if (parent[x] != x)\n        {\n            parent[x] = find(parent[x]);\n        }\n        return parent[x];\n    }\n    bool unite(int a, int b)\n    {\n        a = find(a);\n        b = find(b);\n        if (a == b) return false;\n        if (rankValue[a] < rankValue[b]) swap(a, b);\n        parent[b] = a;\n        if (rankValue[a] == rankValue[b]) ++rankValue[a];\n        return true;\n    }\npublic:\n    vector<int> numIslands2(int m, int n, vector<vector<int>>& positions) {\n        parent.assign(m * n, -1);\n        rankValue.assign(m * n, 0);\n        vector<int> answer;\n        int islands = 0;\n        const int dr[] = {1, -1, 0, 0};\n        const int dc[] = {0, 0, 1, -1};\n        for (const auto& p : positions) {\n            int r = p[0], c = p[1], id = r * n + c;\n            if (parent[id] == -1)\n            {\n                parent[id] = id;\n                ++islands;\n                for (int d = 0; d < 4; ++d)\n                {\n                    int nr = r + dr[d], nc = c + dc[d];\n                    if (nr >= 0 && nr < m && nc >= 0 && nc < n)\n                    {\n                        int neighbor = nr * n + nc;\n                        if (parent[neighbor] != -1 && unite(id, neighbor))\n                        {\n                            --islands;\n                        }\n                    }\n                }\n            }\n            answer.push_back(islands);\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178450145",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

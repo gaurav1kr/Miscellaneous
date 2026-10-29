@@ -1,0 +1,29 @@
+{
+  "id": "165",
+  "title": "Compare Version Numbers",
+  "slug": "compare-version-numbers",
+  "url": "https://leetcode.com/problems/compare-version-numbers/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "Given two version strings , version1 and version2 , compare them. A version string consists of revisions separated by dots '.' . The value of the revision is its integer conversion ignoring leading zeros. \n \n To compare version strings, compare their revision values in left-to-right order . If one of the version strings has fewer revisions, treat the missing revision values as 0 . \n \n Return the following: \n\n If version1 < version2 , return -1. \n \n If version1 > version2 , return 1. \n \n Otherwise, return 0. \n\n Example 1: \n\n Input: version1 = \"1.2\", version2 = \"1.10\" \n \n Output: -1 \n \n Explanation: \n \n version1's second revision is \"2\" and version2's second revision is \"10\": 2 < 10, so version1 < version2. \n\n Example 2: \n\n Input: version1 = \"1.01\", version2 = \"1.001\" \n \n Output: 0 \n \n Explanation: \n \n Ignoring leading zeroes, both \"01\" and \"001\" represent the same integer \"1\". \n\n Example 3: \n\n Input: version1 = \"1.0\", version2 = \"1.0.0.0\" \n \n Output: 0 \n \n Explanation: \n \n version1 has less revisions, which means every missing revision are treated as \"0\". \n\n Constraints: \n\n 1 <= version1.length, version2.length <= 500 \n \n version1 and version2  only contain digits and '.' . \n \n version1 and version2   are valid version numbers . \n \n All the given revisions in  version1 and version2  can be stored in a  32-bit integer .",
+  "code": "\n#include <string>\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int compareVersion(string version1, string version2) {\n        vector<int> v1, v2;\n        string temp = \"\";\n        for (char c : version1) {\n            if (c == '.') {\n                v1.push_back(stoi(temp));\n                temp = \"\";\n            } else {\n                temp += c;\n            }\n        }\n        if (!temp.empty()) v1.push_back(stoi(temp));\n        \n        temp = \"\";\n        for (char c : version2) {\n            if (c == '.') {\n                v2.push_back(stoi(temp));\n                temp = \"\";\n            } else {\n                temp += c;\n            }\n        }\n        if (!temp.empty()) v2.push_back(stoi(temp));\n        \n        int len = max(v1.size(), v2.size());\n        for (int i = 0; i < len; ++i) {\n            int num1 = (i < v1.size()) ? v1[i] : 0;\n            int num2 = (i < v2.size()) ? v2[i] : 0;\n            if (num1 > num2) return 1;\n            if (num1 < num2) return -1;\n        }\n        return 0;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592324830",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

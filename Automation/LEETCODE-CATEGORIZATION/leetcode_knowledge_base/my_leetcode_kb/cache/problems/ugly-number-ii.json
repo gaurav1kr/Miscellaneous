@@ -1,0 +1,35 @@
+{
+  "id": "264",
+  "title": "Ugly Number II",
+  "slug": "ugly-number-ii",
+  "url": "https://leetcode.com/problems/ugly-number-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "Dynamic Programming",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Hash map / hash set",
+    "Ordered set",
+    "Priority queue / heap"
+  ],
+  "description": "An ugly number is a positive integer whose prime factors are limited to 2 , 3 , and 5 . \n \n Given an integer n , return the n th ugly number . \n\n Example 1: \n \n```\nInput:\n n = 10\n\nOutput:\n 12\n\nExplanation:\n [1, 2, 3, 4, 5, 6, 8, 9, 10, 12] is the sequence of the first 10 ugly numbers.\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n 1\n\nExplanation:\n 1 has no prime factors, therefore all of its prime factors are limited to 2, 3, and 5.\n```\n\n Constraints: \n\n 1 <= n <= 1690",
+  "code": "class Solution \n{\npublic:\n    int nthUglyNumber(int n) \n    {\n        set<long> st;\n        st.insert(1);\n        long num = 1;\n        for(int i=0;i<n;i++)\n        {\n            num = *st.begin();\n            st.erase(num);\n            st.insert(num * 2);\n            st.insert(num * 3);\n            st.insert(num * 5);\n        }\n        return num;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1534165949",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

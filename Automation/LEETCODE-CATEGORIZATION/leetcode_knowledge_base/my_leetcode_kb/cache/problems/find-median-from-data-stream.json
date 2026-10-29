@@ -1,0 +1,37 @@
+{
+  "id": "295",
+  "title": "Find Median from Data Stream",
+  "slug": "find-median-from-data-stream",
+  "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "Design",
+    "Sorting",
+    "Heap (Priority Queue)",
+    "Data Stream"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value, and the median is the mean of the two middle values. \n\n For example, for arr = [2,3,4] , the median is 3 . \n \n For example, for arr = [2,3] , the median is (2 + 3) / 2 = 2.5 . \n\n Implement the MedianFinder class: \n\n MedianFinder() initializes the MedianFinder object. \n \n void addNum(int num) adds the integer num from the data stream to the data structure. \n \n double findMedian() returns the median of all elements so far. Answers within 10 -5 of the actual answer will be accepted. \n\n Example 1: \n \n```\nInput\n\n[\"MedianFinder\", \"addNum\", \"addNum\", \"findMedian\", \"addNum\", \"findMedian\"]\n[[], [1], [2], [], [3], []]\n\nOutput\n\n[null, null, null, 1.5, null, 2.0]\n\nExplanation\n\nMedianFinder medianFinder = new MedianFinder();\nmedianFinder.addNum(1); // arr = [1]\nmedianFinder.addNum(2); // arr = [1, 2]\nmedianFinder.findMedian(); // return 1.5 (i.e., (1 + 2) / 2)\nmedianFinder.addNum(3); // arr[1, 2, 3]\nmedianFinder.findMedian(); // return 2.0\n```\n\n Constraints: \n\n -10 5 <= num <= 10 5 \n \n There will be at least one element in the data structure before calling findMedian . \n \n At most 5 * 10 4 calls will be made to addNum and findMedian . \n\n Follow up: \n\n If all integer numbers from the stream are in the range [0, 100] , how would you optimize your solution? \n \n If 99% of all integer numbers from the stream are in the range [0, 100] , how would you optimize your solution?",
+  "code": "class MedianFinder {\nprivate:\n    priority_queue<int> lower; // Max-heap\n    priority_queue<int, vector<int>, greater<int>> upper; // Min-heap\n\npublic:\n    MedianFinder() {}\n\n    void addNum(int num) {\n        // Step 1: Add to max-heap first\n        lower.push(num);\n\n        // Step 2: Balance the heaps\n        // Move the largest element from lower to upper\n        upper.push(lower.top());\n        lower.pop();\n\n        // Step 3: Ensure size property (lower >= upper)\n        if (lower.size() < upper.size()) {\n            lower.push(upper.top());\n            upper.pop();\n        }\n    }\n\n    double findMedian() {\n        if (lower.size() > upper.size()) {\n            return lower.top(); // Odd total, median is the top of lower\n        } else {\n            return (lower.top() + upper.top()) / 2.0; // Even total, average of tops\n        }\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1541835411",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

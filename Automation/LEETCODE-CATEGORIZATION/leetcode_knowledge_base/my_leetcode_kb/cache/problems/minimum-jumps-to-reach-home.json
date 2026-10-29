@@ -1,0 +1,35 @@
+{
+  "id": "1654",
+  "title": "Minimum Jumps to Reach Home",
+  "slug": "minimum-jumps-to-reach-home",
+  "url": "https://leetcode.com/problems/minimum-jumps-to-reach-home/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Queue",
+    "Vector"
+  ],
+  "description": "A certain bug's home is on the x-axis at position x . Help them get there from position 0 . \n \n The bug jumps according to the following rules: \n\n It can jump exactly a positions forward (to the right). \n \n It can jump exactly b positions backward (to the left). \n \n It cannot jump backward twice in a row. \n \n It cannot jump to any forbidden positions. \n\n The bug may jump forward beyond its home, but it cannot jump to positions numbered with negative integers. \n \n Given an array of integers forbidden , where forbidden[i] means that the bug cannot jump to the position forbidden[i] , and integers a , b , and x , return the minimum number of jumps needed for the bug to reach its home . If there is no possible sequence of jumps that lands the bug on position x , return -1. \n\n Example 1: \n \n```\nInput:\n forbidden = [14,4,18,1,15], a = 3, b = 15, x = 9\n\nOutput:\n 3\n\nExplanation:\n 3 jumps forward (0 -> 3 -> 6 -> 9) will get the bug home.\n```\n\n Example 2: \n \n```\nInput:\n forbidden = [8,3,16,6,12,20], a = 15, b = 13, x = 11\n\nOutput:\n -1\n```\n\n Example 3: \n \n```\nInput:\n forbidden = [1,6,2,14,5,17,4], a = 16, b = 9, x = 7\n\nOutput:\n 2\n\nExplanation:\n One jump forward (0 -> 16) then one jump backward (16 -> 7) will get the bug home.\n```\n\n Constraints: \n\n 1 <= forbidden.length <= 1000 \n \n 1 <= a, b, forbidden[i] <= 2000 \n \n 0 <= x <= 2000 \n \n All the elements in forbidden are distinct. \n \n Position x is not forbidden.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minimumJumps(vector<int>& forbidden, int a, int b, int x) {\n        unordered_set<int> blocked(forbidden.begin(), forbidden.end());\n        int maxF = forbidden.empty() ? 0 : *max_element(forbidden.begin(), forbidden.end());\n        int limit = max(maxF, x) + a + b;\n        vector<array<bool, 2>> seen(limit + 1);\n        queue<tuple<int,int,int>> q;\n        q.push(make_tuple(0, 0, 0)); seen[0][0] = true;\n        while (!q.empty()) {\n            int pos, back, steps;\n            tie(pos, back, steps) = q.front(); q.pop();\n            if (pos == x) return steps;\n            int f = pos + a;\n            if (f <= limit && !blocked.count(f) && !seen[f][0]) {\n                seen[f][0] = true; q.push(make_tuple(f, 0, steps + 1));\n            }\n            int r = pos - b;\n            if (!back && r >= 0 && !blocked.count(r) && !seen[r][1]) {\n                seen[r][1] = true; q.push(make_tuple(r, 1, steps + 1));\n            }\n        }\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175757172",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

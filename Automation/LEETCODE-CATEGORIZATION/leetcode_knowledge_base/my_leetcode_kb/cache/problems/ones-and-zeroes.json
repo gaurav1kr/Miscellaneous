@@ -1,0 +1,35 @@
+{
+  "id": "474",
+  "title": "Ones and Zeroes",
+  "slug": "ones-and-zeroes",
+  "url": "https://leetcode.com/problems/ones-and-zeroes/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Dynamic Programming",
+    "Knapsack Problem",
+    "0-1 Knapsack"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of binary strings strs and two integers m and n . \n \n Return the size of the largest subset of strs such that there are at most m 0 's and n 1 's in the subset . \n \n A set x is a subset of a set y if all elements of x are also elements of y . \n\n Example 1: \n \n```\nInput:\n strs = [\"10\",\"0001\",\"111001\",\"1\",\"0\"], m = 5, n = 3\n\nOutput:\n 4\n\nExplanation:\n The largest subset with at most 5 0's and 3 1's is {\"10\", \"0001\", \"1\", \"0\"}, so the answer is 4.\nOther valid but smaller subsets include {\"0001\", \"1\"} and {\"10\", \"1\", \"0\"}.\n{\"111001\"} is an invalid subset because it contains 4 1's, greater than the maximum of 3.\n```\n\n Example 2: \n \n```\nInput:\n strs = [\"10\",\"0\",\"1\"], m = 1, n = 1\n\nOutput:\n 2\n\nExplanation:\n The largest subset is {\"0\", \"1\"}, so the answer is 2.\n```\n\n Constraints: \n\n 1 <= strs.length <= 600 \n \n 1 <= strs[i].length <= 100 \n \n strs[i] consists only of digits '0' and '1' . \n \n 1 <= m, n <= 100",
+  "code": "class Solution {\npublic:\n    int findMaxForm(vector<string>& strs, int m, int n) {\n        vector<vector<int> > dp(m + 1, vector<int>(n + 1, 0));\n\n        for (const string& s : strs) {\n            int zeros = 0, ones = 0;\n\n            for (char c : s) {\n                if (c == '0')\n                    ++zeros;\n                else\n                    ++ones;\n            }\n\n            // Reverse traversal => each string used only once\n            for (int i = m; i >= zeros; --i) {\n                for (int j = n; j >= ones; --j) {\n                    dp[i][j] = max(dp[i][j],\n                                   1 + dp[i - zeros][j - ones]);\n                }\n            }\n        }\n\n        return dp[m][n];\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2163976769",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "3148",
+  "title": "Maximum Difference Score in a Grid",
+  "slug": "maximum-difference-score-in-a-grid",
+  "url": "https://leetcode.com/problems/maximum-difference-score-in-a-grid/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an m x n matrix grid consisting of positive integers. You can move from a cell in the matrix to any other cell that is either to the bottom or to the right (not necessarily adjacent). The score of a move from a cell with the value c1 to a cell with the value c2 is c2 - c1 . \n \n You can start at any cell, and you have to make at least one move. \n \n Return the maximum total score you can achieve. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2024/03/14/grid1.png] \n\n Input: grid = [[9,5,7,3],[8,9,6,1],[6,7,14,3],[2,5,3,1]] \n \n Output: 9 \n \n Explanation: We start at the cell (0, 1) , and we perform the following moves: \n- Move from the cell (0, 1) to (2, 1) with a score of 7 - 5 = 2 . \n- Move from the cell (2, 1) to (2, 2) with a score of 14 - 7 = 7 . \nThe total score is 2 + 7 = 9 . \n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2024/04/08/moregridsdrawio-1.png] \n\n Input: grid = [[4,3,2],[3,2,1]] \n \n Output: -1 \n \n Explanation: We start at the cell (0, 0) , and we perform one move: (0, 0) to (0, 1) . The score is 3 - 4 = -1 . \n\n Constraints: \n\n m == grid.length \n \n n == grid[i].length \n \n 2 <= m, n <= 1000 \n \n 4 <= m * n <= 10 5 \n \n 1 <= grid[i][j] <= 10 5",
+  "code": "class Solution {public:int maxScore(vector<vector<int>>& grid){int m=grid.size(),n=grid[0].size(),ans=INT_MIN;vector<vector<int>>mn(m,vector<int>(n));for(int i=0;i<m;++i)for(int j=0;j<n;++j){int best=INT_MAX;if(i)best=min(best,mn[i-1][j]);if(j)best=min(best,mn[i][j-1]);if(best!=INT_MAX)ans=max(ans,grid[i][j]-best);mn[i][j]=min(grid[i][j],best);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177396684",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

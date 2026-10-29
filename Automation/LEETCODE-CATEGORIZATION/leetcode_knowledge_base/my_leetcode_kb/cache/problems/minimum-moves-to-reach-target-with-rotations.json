@@ -1,0 +1,32 @@
+{
+  "id": "1210",
+  "title": "Minimum Moves to Reach Target with Rotations",
+  "slug": "minimum-moves-to-reach-target-with-rotations",
+  "url": "https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Breadth-First Search",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Queue",
+    "Vector"
+  ],
+  "description": "In an  n*n  grid, there is a snake that spans 2 cells and starts moving from the top left corner at (0, 0) and (0, 1) . The grid has empty cells represented by zeros and blocked cells represented by ones. The snake wants to reach the lower right corner at  (n-1, n-2)  and  (n-1, n-1) . \n \n In one move the snake can: \n\n Move one cell to the right if there are no blocked cells there. This move keeps the horizontal/vertical position of the snake as it is. \n \n Move down one cell if there are no blocked cells there. This move keeps the horizontal/vertical position of the snake as it is. \n \n Rotate clockwise if it's in a horizontal position and the two cells under it are both empty. In that case the snake moves from  (r, c)  and  (r, c+1)  to  (r, c)  and  (r+1, c) . \n [Figure: https://assets.leetcode.com/uploads/2019/09/24/image-2.png] \n \n Rotate counterclockwise if it's in a vertical position and the two cells to its right are both empty. In that case the snake moves from  (r, c)  and  (r+1, c)  to  (r, c)  and  (r, c+1) . \n [Figure: https://assets.leetcode.com/uploads/2019/09/24/image-1.png] \n\n Return the minimum number of moves to reach the target. \n \n If there is no way to reach the target, return  -1 . \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2019/09/24/image.png] \n \n```\nInput:\n grid = [[0,0,0,0,0,1],\n [1,1,0,0,1,0],\n  [0,0,0,0,1,1],\n  [0,0,1,0,1,0],\n  [0,1,1,0,0,0],\n  [0,1,1,0,0,0]]\n\nOutput:\n 11\n\nExplanation:\n\nOne possible solution is [right, right, rotate clockwise, right, down, down, down, down, rotate counterclockwise, right, down].\n```\n\n Example 2: \n \n```\nInput:\n grid = [[0,0,1,1,1,1],\n  [0,0,0,0,1,1],\n  [1,1,0,0,0,1],\n  [1,1,1,0,0,1],\n  [1,1,1,0,0,1],\n  [1,1,1,0,0,0]]\n\nOutput:\n 9\n```\n\n Constraints: \n\n 2 <= n <= 100 \n \n 0 <= grid[i][j] <= 1 \n \n It is guaranteed that the snake starts at empty cells.",
+  "code": "#include <vector>\n#include <queue>\n#include <tuple>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minimumMoves(vector<vector<int>>& grid) {\n        int n = grid.size();\n        queue<tuple<int, int, int>> q;\n        q.push({0, 0, 0}); // x, y, horizontal(0)/vertical(1)\n        vector<vector<vector<bool>>> vis(n, vector<vector<bool>>(n, vector<bool>(2, false)));\n        vis[0][0][0] = true;\n        int steps = 0;\n\n        while (!q.empty()) {\n            int sz = q.size();\n            while (sz--) {\n                auto [x, y, d] = q.front(); q.pop();\n                if (x == n - 1 && y == n - 2 && d == 0) return steps;\n\n                if (d == 0) { // horizontal\n                    if (y + 2 < n && !grid[x][y + 2] && !vis[x][y + 1][0]) {\n                        vis[x][y + 1][0] = true;\n                        q.push({x, y + 1, 0});\n                    }\n                    if (x + 1 < n && !grid[x + 1][y] && !grid[x + 1][y + 1] && !vis[x + 1][y][0]) {\n                        vis[x + 1][y][0] = true;\n                        q.push({x + 1, y, 0});\n                    }\n                    if (x + 1 < n && !grid[x + 1][y] && !grid[x + 1][y + 1] && !vis[x][y][1]) {\n                        vis[x][y][1] = true;\n                        q.push({x, y, 1});\n                    }\n                } else { // vertical\n                    if (x + 2 < n && !grid[x + 2][y] && !vis[x + 1][y][1]) {\n                        vis[x + 1][y][1] = true;\n                        q.push({x + 1, y, 1});\n                    }\n                    if (y + 1 < n && !grid[x][y + 1] && !grid[x + 1][y + 1] && !vis[x][y + 1][1]) {\n                        vis[x][y + 1][1] = true;\n                        q.push({x, y + 1, 1});\n                    }\n                    if (y + 1 < n && !grid[x][y + 1] && !grid[x + 1][y + 1] && !vis[x][y][0]) {\n                        vis[x][y][0] = true;\n                        q.push({x, y, 0});\n                    }\n                }\n            }\n            steps++;\n        }\n\n        return -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610690052",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "2949",
+  "title": "Count Beautiful Substrings II",
+  "slug": "count-beautiful-substrings-ii",
+  "url": "https://leetcode.com/problems/count-beautiful-substrings-ii/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "Math",
+    "String",
+    "Number Theory",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Prefix-sum array",
+    "String"
+  ],
+  "description": "You are given a string s and a positive integer k . \n \n Let vowels and consonants be the number of vowels and consonants in a string. \n \n A string is beautiful if: \n\n vowels == consonants . \n \n (vowels * consonants) % k == 0 , in other terms the multiplication of vowels and consonants is divisible by k . \n\n Return the number of non-empty beautiful substrings in the given string s . \n \n A substring is a contiguous sequence of characters in a string. \n \n Vowel letters in English are 'a' , 'e' , 'i' , 'o' , and 'u' . \n \n Consonant letters in English are every letter except vowels. \n\n Example 1: \n \n```\nInput:\n s = \"baeyh\", k = 2\n\nOutput:\n 2\n\nExplanation:\n There are 2 beautiful substrings in the given string.\n- Substring \"b\naeyh\n\", vowels = 2 ([\"a\",e\"]), consonants = 2 ([\"y\",\"h\"]).\nYou can see that string \"aeyh\" is beautiful as vowels == consonants and vowels * consonants % k == 0.\n- Substring \"\nbaey\nh\", vowels = 2 ([\"a\",e\"]), consonants = 2 ([\"b\",\"y\"]).\nYou can see that string \"baey\" is beautiful as vowels == consonants and vowels * consonants % k == 0.\nIt can be shown that there are only 2 beautiful substrings in the given string.\n```\n\n Example 2: \n \n```\nInput:\n s = \"abba\", k = 1\n\nOutput:\n 3\n\nExplanation:\n There are 3 beautiful substrings in the given string.\n- Substring \"\nab\nba\", vowels = 1 ([\"a\"]), consonants = 1 ([\"b\"]).\n- Substring \"ab\nba\n\", vowels = 1 ([\"a\"]), consonants = 1 ([\"b\"]).\n- Substring \"\nabba\n\", vowels = 2 ([\"a\",\"a\"]), consonants = 2 ([\"b\",\"b\"]).\nIt can be shown that there are only 3 beautiful substrings in the given string.\n```\n\n Example 3: \n \n```\nInput:\n s = \"bcdf\", k = 1\n\nOutput:\n 0\n\nExplanation:\n There are no beautiful substrings in the given string.\n```\n\n Constraints: \n\n 1 <= s.length <= 5 * 10 4 \n \n 1 <= k <= 1000 \n \n s consists of only English lowercase letters.",
+  "code": "class Solution{public:long long beautifulSubstrings(string s,int k){int p=1,x=k;for(int d=2;d*d<=x;d++)if(x%d==0){int e=0;while(x%d==0){x/=d;e++;}for(int j=0;j<(e+1)/2;j++)p*=d;}if(x>1)p*=x;int mod=2*p,balance=0;unordered_map<long long,long long> cnt;auto key=[&](int b,int r){return ((long long)(b+(int)s.size())*mod+r);};cnt[key(0,0)]=1;long long ans=0;for(int i=0;i<(int)s.size();i++){balance+=(string(\"aeiou\").find(s[i])!=string::npos)?1:-1;long long z=key(balance,(i+1)%mod);ans+=cnt[z]++;}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176770328",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "1566",
+  "title": "Detect Pattern of Length M Repeated K or More Times",
+  "slug": "detect-pattern-of-length-m-repeated-k-or-more-times",
+  "url": "https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Enumeration"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an array of positive integers arr , find a pattern of length m that is repeated k or more times. \n \n A pattern is a subarray (consecutive sub-sequence) that consists of one or more values, repeated multiple times consecutively without overlapping. A pattern is defined by its length and the number of repetitions. \n \n Return true if there exists a pattern of length m that is repeated k or more times, otherwise return false . \n\n Example 1: \n \n```\nInput:\n arr = [1,2,4,4,4,4], m = 1, k = 3\n\nOutput:\n true\n\nExplanation: \nThe pattern \n(4)\n of length 1 is repeated 4 consecutive times. Notice that pattern can be repeated k or more times but not less.\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,2,1,2,1,1,1,3], m = 2, k = 2\n\nOutput:\n true\n\nExplanation: \nThe pattern \n(1,2)\n of length 2 is repeated 2 consecutive times. Another valid pattern \n(2,1) is\n also repeated 2 times.\n```\n\n Example 3: \n \n```\nInput:\n arr = [1,2,1,2,1,3], m = 2, k = 3\n\nOutput:\n false\n\nExplanation: \nThe pattern (1,2) is of length 2 but is repeated only 2 times. There is no pattern of length 2 that is repeated 3 or more times.\n```\n\n Constraints: \n\n 2 <= arr.length <= 100 \n \n 1 <= arr[i] <= 100 \n \n 1 <= m <= 100 \n \n 2 <= k <= 100",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool containsPattern(vector<int>& arr, int m, int k) {\n        int n = arr.size();\n        for (int i = 0; i <= n - m * k; ++i) {\n            bool match = true;\n            for (int j = 0; j < m * k; ++j) {\n                if (arr[i + j] != arr[i + j % m]) {\n                    match = false;\n                    break;\n                }\n            }\n            if (match) return true;\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610590858",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

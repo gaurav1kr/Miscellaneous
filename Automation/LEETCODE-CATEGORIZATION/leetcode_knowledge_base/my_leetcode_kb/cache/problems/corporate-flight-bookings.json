@@ -1,0 +1,30 @@
+{
+  "id": "1109",
+  "title": "Corporate Flight Bookings",
+  "slug": "corporate-flight-bookings",
+  "url": "https://leetcode.com/problems/corporate-flight-bookings/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "There are n flights that are labeled from 1 to n . \n \n You are given an array of flight bookings bookings , where bookings[i] = [first i , last i , seats i ] represents a booking for flights first i through last i ( inclusive ) with seats i seats reserved for each flight in the range. \n \n Return an array answer of length n , where answer[i] is the total number of seats reserved for flight i . \n\n Example 1: \n \n```\nInput:\n bookings = [[1,2,10],[2,3,20],[2,5,25]], n = 5\n\nOutput:\n [10,55,45,25,25]\n\nExplanation:\n\nFlight labels: 1 2 3 4 5\nBooking 1 reserved: 10 10\nBooking 2 reserved: 20 20\nBooking 3 reserved: 25 25 25 25\nTotal seats: 10 55 45 25 25\nHence, answer = [10,55,45,25,25]\n```\n\n Example 2: \n \n```\nInput:\n bookings = [[1,2,10],[2,2,15]], n = 2\n\nOutput:\n [10,25]\n\nExplanation:\n\nFlight labels: 1 2\nBooking 1 reserved: 10 10\nBooking 2 reserved: 15\nTotal seats: 10 25\nHence, answer = [10,25]\n```\n\n Constraints: \n\n 1 <= n <= 2 * 10 4 \n \n 1 <= bookings.length <= 2 * 10 4 \n \n bookings[i].length == 3 \n \n 1 <= first i <= last i <= n \n \n 1 <= seats i <= 10 4",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {\n        vector<int> res(n + 1, 0);\n        for (auto& b : bookings) {\n            res[b[0] - 1] += b[2];\n            res[b[1]] -= b[2];\n        }\n\n        for (int i = 1; i < n; ++i) {\n            res[i] += res[i - 1];\n        }\n\n        res.pop_back();\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593826962",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

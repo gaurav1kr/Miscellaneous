@@ -1,0 +1,32 @@
+{
+  "id": "3192",
+  "title": "Minimum Operations to Make Binary Array Elements Equal to One II",
+  "slug": "minimum-operations-to-make-binary-array-elements-equal-to-one-ii",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-ii/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given a binary array nums . \n \n You can do the following operation on the array any number of times (possibly zero): \n\n Choose any index i from the array and flip all the elements from index i to the end of the array. \n\n Flipping an element means changing its value from 0 to 1, and from 1 to 0. \n \n Return the minimum number of operations required to make all elements in nums equal to 1. \n\n Example 1: \n\n Input: nums = [0,1,1,0,1] \n \n Output: 4 \n \n Explanation: \nWe can do the following operations: \n\n Choose the index i = 1 . The resulting array will be nums = [0, 0 , 0 , 1 , 0 ] . \n \n Choose the index i = 0 . The resulting array will be nums = [ 1 , 1 , 1 , 0 , 1 ] . \n \n Choose the index i = 4 . The resulting array will be nums = [1,1,1,0, 0 ] . \n \n Choose the index i = 3 . The resulting array will be nums = [1,1,1, 1 , 1 ] . \n\n Example 2: \n\n Input: nums = [1,0,0,0] \n \n Output: 1 \n \n Explanation: \nWe can do the following operation: \n\n Choose the index i = 1 . The resulting array will be nums = [1, 1 , 1 , 1 ] . \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 1",
+  "code": "class Solution {public:int minOperations(vector<int>& nums){int flips=0;for(int x:nums)if((x^(flips&1))==0)++flips;return flips;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177416280",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

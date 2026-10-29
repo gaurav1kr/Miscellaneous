@@ -1,0 +1,33 @@
+{
+  "id": "637",
+  "title": "Average of Levels in Binary Tree",
+  "slug": "average-of-levels-in-binary-tree",
+  "url": "https://leetcode.com/problems/average-of-levels-in-binary-tree/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "Given the root of a binary tree, return the average value of the nodes on each level in the form of an array . Answers within 10 -5 of the actual answer will be accepted.\n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/03/09/avg1-tree.jpg] \n \n```\nInput:\n root = [3,9,20,null,null,15,7]\n\nOutput:\n [3.00000,14.50000,11.00000]\nExplanation: The average value of nodes on level 0 is 3, on level 1 is 14.5, and on level 2 is 11.\nHence return [3, 14.5, 11].\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/03/09/avg2-tree.jpg] \n \n```\nInput:\n root = [3,9,20,15,7]\n\nOutput:\n [3.00000,14.50000,11.00000]\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [1, 10 4 ] . \n \n -2 31 <= Node.val <= 2 31 - 1",
+  "code": "class Solution {\npublic:\n    vector<double> averageOfLevels(TreeNode* root) {\n        vector<double> result;\n        queue<TreeNode*> q;\n        q.push(root);\n        while (!q.empty()) {\n            long sum = 0, count = q.size();\n            for (int i = 0; i < count; i++) {\n                TreeNode* node = q.front(); q.pop();\n                sum += node->val;\n                if (node->left) q.push(node->left);\n                if (node->right) q.push(node->right);\n            }\n            result.push_back((double)sum / count);\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588104978",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

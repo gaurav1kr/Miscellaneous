@@ -1,0 +1,26 @@
+{
+  "id": "793",
+  "title": "Preimage Size of Factorial Zeroes Function",
+  "slug": "preimage-size-of-factorial-zeroes-function",
+  "url": "https://leetcode.com/problems/preimage-size-of-factorial-zeroes-function/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Binary Search"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Let f(x) be the number of zeroes at the end of x! . Recall that x! = 1 * 2 * 3 * ... * x and by convention, 0! = 1 . \n\n For example, f(3) = 0 because 3! = 6 has no zeroes at the end, while f(11) = 2 because 11! = 39916800 has two zeroes at the end. \n\n Given an integer k , return the number of non-negative integers x have the property that f(x) = k . \n\n Example 1: \n \n```\nInput:\n k = 0\n\nOutput:\n 5\n\nExplanation:\n 0!, 1!, 2!, 3!, and 4! end with k = 0 zeroes.\n```\n\n Example 2: \n \n```\nInput:\n k = 5\n\nOutput:\n 0\n\nExplanation:\n There is no x such that x! ends in k = 5 zeroes.\n```\n\n Example 3: \n \n```\nInput:\n k = 3\n\nOutput:\n 5\n```\n\n Constraints: \n\n 0 <= k <= 10 9",
+  "code": "class Solution {\npublic:\n    int preimageSizeFZF(int k) {\n        return helper(k) - helper(k - 1);\n    }\n\n    int helper(int k) {\n        long l = 0, r = 5L * (k + 1);\n        while (l < r) {\n            long mid = l + (r - l) / 2;\n            if (trailingZeroes(mid) <= k) l = mid + 1;\n            else r = mid;\n        }\n        return l;\n    }\n\n    int trailingZeroes(long n) {\n        int count = 0;\n        while (n) {\n            count += n / 5;\n            n /= 5;\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610636831",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

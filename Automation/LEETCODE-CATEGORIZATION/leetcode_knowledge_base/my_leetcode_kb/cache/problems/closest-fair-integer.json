@@ -1,0 +1,25 @@
+{
+  "id": "2417",
+  "title": "Closest Fair Integer",
+  "slug": "closest-fair-integer",
+  "url": "https://leetcode.com/problems/closest-fair-integer/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Enumeration"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "You are given a positive integer n . \n \n We call an integer k fair if the number of even digits in k is equal to the number of odd digits in it. \n \n Return the smallest fair integer that is greater than or equal to n . \n\n Example 1: \n \n```\nInput:\n n = 2\n\nOutput:\n 10\n\nExplanation:\n The smallest fair integer that is greater than or equal to 2 is 10.\n10 is fair because it has an equal number of even and odd digits (one odd digit and one even digit).\n```\n\n Example 2: \n \n```\nInput:\n n = 403\n\nOutput:\n 1001\n\nExplanation:\n The smallest fair integer that is greater than or equal to 403 is 1001.\n1001 is fair because it has an equal number of even and odd digits (two odd digits and two even digits).\n```\n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "class Solution {\n    bool fair(long long x) {\n        int odd = 0, even = 0;\n        while (x) { if ((x % 10) % 2) ++odd; else ++even; x /= 10; }\n        return odd == even;\n    }\npublic:\n    int closestFair(int n) {\n        long long x = n;\n        while (!fair(x)) {\n            string s = to_string(x);\n            if (s.size() % 2) {\n                long long power = 1;\n                for (int i = 0; i < (int)s.size(); ++i) power *= 10;\n                x = power;\n            } else ++x;\n        }\n        return (int)x;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178869147",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

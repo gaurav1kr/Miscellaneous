@@ -1,0 +1,36 @@
+{
+  "id": "3839",
+  "title": "Number of Prefix Connected Groups",
+  "slug": "number-of-prefix-connected-groups",
+  "url": "https://leetcode.com/problems/number-of-prefix-connected-groups/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an array of strings words and an integer k . \n \n Two words a and b at distinct indices are prefix -connected if a[0..k-1] == b[0..k-1] . \n \n A connected group is a set of words such that each pair of words is prefix-connected. \n \n Return the number of connected groups that contain at least two words, formed from the given words. \n \n Note: \n\n Words with length less than k cannot join any group and are ignored. \n \n Duplicate strings are treated as separate words. \n\n Example 1: \n\n Input: words = [\"apple\",\"apply\",\"banana\",\"bandit\"], k = 2 \n \n Output: 2 \n \n Explanation: \n \n Words sharing the same first k = 2 letters are grouped together: \n\n words[0] = \"apple\" and words[1] = \"apply\" share prefix \"ap\" . \n \n words[2] = \"banana\" and words[3] = \"bandit\" share prefix \"ba\" . \n\n Thus, there are 2 connected groups, each containing at least two words. \n\n Example 2: \n\n Input: words = [\"car\",\"cat\",\"cartoon\"], k = 3 \n \n Output: 1 \n \n Explanation: \n \n Words are evaluated for a prefix of length k = 3 : \n\n words[0] = \"car\" and words[2] = \"cartoon\" share prefix \"car\" . \n \n words[1] = \"cat\" does not share a 3-length prefix with any other word. \n\n Thus, there is 1 connected group. \n\n Example 3: \n\n Input: words = [\"bat\",\"dog\",\"dog\",\"doggy\",\"bat\"] , k = 3 \n \n Output: 2 \n \n Explanation: \n \n Words are evaluated for a prefix of length k = 3 : \n\n words[0] = \"bat\" and words[4] = \"bat\" form a group. \n \n words[1] = \"dog\" , words[2] = \"dog\" and words[3] = \"doggy\" share prefix \"dog\" . \n\n Thus, there are 2 connected groups, each containing at least two words. \n\n Constraints: \n\n 1 <= words.length <= 5000 \n \n 1 <= words[i].length <= 100 \n \n 1 <= k <= 100 \n \n All strings in words consist of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    int prefixConnected(vector<string>& words, int k) {\n        unordered_map<string, int> freq;\n        for (const string& w : words)\n            if ((int)w.size() >= k) ++freq[w.substr(0, k)];\n        int ans = 0;\n        for (const auto& p : freq) if (p.second >= 2) ++ans;\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181057052",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

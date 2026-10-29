@@ -1,0 +1,31 @@
+{
+  "id": "2062",
+  "title": "Count Vowel Substrings of a String",
+  "slug": "count-vowel-substrings-of-a-string",
+  "url": "https://leetcode.com/problems/count-vowel-substrings-of-a-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String"
+  ],
+  "description": "A substring is a contiguous (non-empty) sequence of characters within a string. \n \n A vowel substring is a substring that only consists of vowels ( 'a' , 'e' , 'i' , 'o' , and 'u' ) and has all five vowels present in it. \n \n Given a string word , return the number of vowel substrings in word . \n\n Example 1: \n \n```\nInput:\n word = \"aeiouu\"\n\nOutput:\n 2\n\nExplanation:\n The vowel substrings of word are as follows (underlined):\n- \"\naeiou\nu\"\n- \"\naeiouu\n\"\n```\n\n Example 2: \n \n```\nInput:\n word = \"unicornarihan\"\n\nOutput:\n 0\n\nExplanation:\n Not all 5 vowels are present, so there are no vowel substrings.\n```\n\n Example 3: \n \n```\nInput:\n word = \"cuaieuouac\"\n\nOutput:\n 7\n\nExplanation:\n The vowel substrings of word are as follows (underlined):\n- \"c\nuaieuo\nuac\"\n- \"c\nuaieuou\nac\"\n- \"c\nuaieuoua\nc\"\n- \"cu\naieuo\nuac\"\n- \"cu\naieuou\nac\"\n- \"cu\naieuoua\nc\"\n- \"cua\nieuoua\nc\"\n```\n\n Constraints: \n\n 1 <= word.length <= 100 \n \n word consists of lowercase English letters only.",
+  "code": "#include <string>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int countVowelSubstrings(string word) {\n        int res = 0, n = word.size();\n        for (int i = 0; i < n; ++i) {\n            unordered_set<char> st;\n            for (int j = i; j < n; ++j) {\n                if (!isVowel(word[j])) break;\n                st.insert(word[j]);\n                if (st.size() == 5) res++;\n            }\n        }\n        return res;\n    }\n\n    bool isVowel(char c) {\n        return string(\"aeiou\").find(c) != string::npos;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610652870",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "346",
+  "title": "Moving Average from Data Stream",
+  "slug": "moving-average-from-data-stream",
+  "url": "https://leetcode.com/problems/moving-average-from-data-stream/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Design",
+    "Queue",
+    "Data Stream"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Queue"
+  ],
+  "description": "Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window. \n \n Implement the  MovingAverage class: \n\n MovingAverage(int size) Initializes the object with the size of the window size . \n \n double next(int val) Returns the moving average of the last size values of the stream. \n\n Example 1: \n \n```\nInput\n\n[\"MovingAverage\", \"next\", \"next\", \"next\", \"next\"]\n[[3], [1], [10], [3], [5]]\n\nOutput\n\n[null, 1.0, 5.5, 4.66667, 6.0]\n\nExplanation\n\nMovingAverage movingAverage = new MovingAverage(3);\nmovingAverage.next(1); // return 1.0 = 1 / 1\nmovingAverage.next(10); // return 5.5 = (1 + 10) / 2\nmovingAverage.next(3); // return 4.66667 = (1 + 10 + 3) / 3\nmovingAverage.next(5); // return 6.0 = (10 + 3 + 5) / 3\n```\n\n Constraints: \n\n 1 <= size <= 1000 \n \n -10 5 <= val <= 10 5 \n \n At most 10 4 calls will be made to next .",
+  "code": "class MovingAverage\n{\n    queue<int> window;\n    int capacity;\n    long long sum = 0;\npublic:\n    MovingAverage(int size) : capacity(size) {}\n    double next(int val)\n    {\n        window.push(val);\n        sum += val;\n        if ((int)window.size() > capacity)\n        {\n            sum -= window.front();\n            window.pop();\n        }\n        return (double)sum / window.size();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178455737",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

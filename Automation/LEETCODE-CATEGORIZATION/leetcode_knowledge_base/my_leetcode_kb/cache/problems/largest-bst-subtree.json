@@ -1,0 +1,35 @@
+{
+  "id": "333",
+  "title": "Largest BST Subtree",
+  "slug": "largest-bst-subtree",
+  "url": "https://leetcode.com/problems/largest-bst-subtree/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Binary Search Tree",
+    "Binary Tree",
+    "DP on Trees"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "DP array / memo table",
+    "Tree adjacency list"
+  ],
+  "description": "Given the root of a binary tree, find the largest subtree , which is also a Binary Search Tree (BST), where the largest means subtree has the largest number of nodes. \n \n A Binary Search Tree (BST) is a tree in which all the nodes follow the below-mentioned properties: \n\n The left subtree values are less than the value of their parent (root) node's value. \n \n The right subtree values are greater than the value of their parent (root) node's value. \n\n Note: A subtree must include all of its descendants. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/10/17/tmp.jpg] \n \n```\nInput:\n root = [10,5,15,1,8,null,7]\n\nOutput:\n 3\n\nExplanation: \nThe Largest BST Subtree in this case is the highlighted one. The return value is the subtree's size, which is 3.\n```\n\n Example 2: \n \n```\nInput:\n root = [4,2,7,2,3,5,null,2,null,null,null,null,null,1]\n\nOutput:\n 2\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [0, 10 4 ] . \n \n -10 4 <= Node.val <= 10 4 \n\n Follow up: Can you figure out ways to solve it with O(n) time complexity?",
+  "code": "class Solution\n{\n    struct Info\n    {\n        bool valid;\n        int count;\n        long long minimum, maximum;\n    };\n    int best = 0;\n    Info dfs(TreeNode* node)\n    {\n        if (!node) return {true, 0, LLONG_MAX, LLONG_MIN};\n        Info left = dfs(node->left);\n        Info right = dfs(node->right);\n        if (left.valid && right.valid &&\n            left.maximum < node->val && node->val < right.minimum)\n            {\n            int count = left.count + right.count + 1;\n            best = max(best, count);\n            return {true, count, min(left.minimum, (long long)node->val),\n                    max(right.maximum, (long long)node->val)};\n        }\n        return {false, 0, 0, 0};\n    }\npublic:\n    int largestBSTSubtree(TreeNode* root)\n    {\n        best = 0;\n        dfs(root);\n        return best;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178454136",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

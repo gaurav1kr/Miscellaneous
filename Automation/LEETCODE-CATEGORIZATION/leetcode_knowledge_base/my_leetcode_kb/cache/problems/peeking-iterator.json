@@ -1,0 +1,30 @@
+{
+  "id": "284",
+  "title": "Peeking Iterator",
+  "slug": "peeking-iterator",
+  "url": "https://leetcode.com/problems/peeking-iterator/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Design",
+    "Iterator"
+  ],
+  "primary_topic": "Stack / Queue",
+  "related_topics": [
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Design an iterator that supports the peek operation on an existing iterator in addition to the hasNext and the next operations. \n \n Implement the PeekingIterator class: \n\n PeekingIterator(Iterator<int> nums) Initializes the object with the given integer iterator iterator . \n \n int next() Returns the next element in the array and moves the pointer to the next element. \n \n boolean hasNext() Returns true if there are still elements in the array. \n \n int peek() Returns the next element in the array without moving the pointer. \n\n Note: Each language may have a different implementation of the constructor and Iterator , but they all support the int next() and boolean hasNext() functions. \n\n Example 1: \n \n```\nInput\n\n[\"PeekingIterator\", \"next\", \"peek\", \"next\", \"next\", \"hasNext\"]\n[[[1, 2, 3]], [], [], [], [], []]\n\nOutput\n\n[null, 1, 2, 2, 3, false]\n\nExplanation\n\nPeekingIterator peekingIterator = new PeekingIterator([1, 2, 3]); // [\n1\n,2,3]\npeekingIterator.next(); // return 1, the pointer moves to the next element [1,\n2\n,3].\npeekingIterator.peek(); // return 2, the pointer does not move [1,\n2\n,3].\npeekingIterator.next(); // return 2, the pointer moves to the next element [1,2,\n3\n]\npeekingIterator.next(); // return 3, the pointer moves to the next element [1,2,3]\npeekingIterator.hasNext(); // return False\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 1000 \n \n All the calls to next and peek are valid. \n \n At most 1000 calls will be made to next , hasNext , and peek . \n\n Follow up: How would you extend your design to be generic and work with all types, not just integer?",
+  "code": "class PeekingIterator : public Iterator {\n    bool hasPeeked;\n    int peekedElem;\npublic:\n\tPeekingIterator(const vector<int>& num) : Iterator(num) {\n        hasPeeked = false;\n\t}\n\n\tint peek() {\n        peekedElem = hasPeeked?peekedElem:Iterator::next();\n        hasPeeked = true;\n        return peekedElem;\n\t}\n\n\tint next() {\n\t    int nextElem = hasPeeked?peekedElem:Iterator::next();\n\t    hasPeeked = false;\n\t    return nextElem;\n\t}\n\n\tbool hasNext() const {\n\t    return hasPeeked||Iterator::hasNext();\n\t}\n};  ",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1617069080",
+  "approach_summary": "LIFO/FIFO processing, parser state, or online operations.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

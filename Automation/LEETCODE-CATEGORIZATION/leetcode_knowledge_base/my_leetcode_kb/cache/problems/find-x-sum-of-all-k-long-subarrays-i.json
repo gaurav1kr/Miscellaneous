@@ -1,0 +1,37 @@
+{
+  "id": "3318",
+  "title": "Find X-Sum of All K-Long Subarrays I",
+  "slug": "find-x-sum-of-all-k-long-subarrays-i",
+  "url": "https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Sliding Window",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Priority queue / heap",
+    "Vector"
+  ],
+  "description": "You are given an array nums of n integers and two integers k and x . \n \n The x-sum of an array is calculated by the following procedure: \n\n Count the occurrences of all elements in the array. \n \n Keep only the occurrences of the top x most frequent elements. If two elements have the same number of occurrences, the element with the bigger value is considered more frequent. \n \n Calculate the sum of the resulting array. \n\n Note that if an array has less than x distinct elements, its x-sum is the sum of the array. \n \n Return an integer array answer of length n - k + 1 where answer[i] is the x-sum of the subarray nums[i..i + k - 1] . \n\n Example 1: \n\n Input: nums = [1,1,2,2,3,4,2,3], k = 6, x = 2 \n \n Output: [6,10,12] \n \n Explanation: \n\n For subarray [1, 1, 2, 2, 3, 4] , only elements 1 and 2 will be kept in the resulting array. Hence, answer[0] = 1 + 1 + 2 + 2 . \n \n For subarray [1, 2, 2, 3, 4, 2] , only elements 2 and 4 will be kept in the resulting array. Hence, answer[1] = 2 + 2 + 2 + 4 . Note that 4 is kept in the array since it is bigger than 3 and 1 which occur the same number of times. \n \n For subarray [2, 2, 3, 4, 2, 3] , only elements 2 and 3 are kept in the resulting array. Hence, answer[2] = 2 + 2 + 2 + 3 + 3 . \n\n Example 2: \n\n Input: nums = [3,8,7,8,7,5], k = 2, x = 2 \n \n Output: [11,15,15,15,12] \n \n Explanation: \n \n Since k == x , answer[i] is equal to the sum of the subarray nums[i..i + k - 1] . \n\n Constraints: \n\n 1 <= n == nums.length <= 50 \n \n 1 <= nums[i] <= 50 \n \n 1 <= x <= k <= nums.length",
+  "code": "class Solution {public:vector<int> findXSum(vector<int>& nums,int k,int x){vector<int> ans;for(int l=0;l+k<=(int)nums.size();l++){unordered_map<int,int> f;for(int i=l;i<l+k;i++)f[nums[i]]++;vector<pair<int,int>> v;for(auto p:f)v.push_back({p.second,p.first});sort(v.rbegin(),v.rend());int sum=0;for(int i=0;i<min(x,(int)v.size());i++)sum+=v[i].first*v[i].second;ans.push_back(sum);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177458459",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

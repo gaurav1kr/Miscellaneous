@@ -1,0 +1,29 @@
+{
+  "id": "1259",
+  "title": "Handshakes That Don't Cross",
+  "slug": "handshakes-that-dont-cross",
+  "url": "https://leetcode.com/problems/handshakes-that-dont-cross/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an even number of people numPeople that stand around a circle and each person shakes hands with someone else so that there are numPeople / 2 handshakes total. \n \n Return the number of ways these handshakes could occur such that none of the handshakes cross . \n \n Since the answer could be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/07/11/5125_example_2.png] \n \n```\nInput:\n numPeople = 4\n\nOutput:\n 2\n\nExplanation:\n There are two ways to do it, the first way is [(1,2),(3,4)] and the second one is [(2,3),(4,1)].\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2019/07/11/5125_example_3.png] \n \n```\nInput:\n numPeople = 6\n\nOutput:\n 5\n```\n\n Constraints: \n\n 2 <= numPeople <= 1000 \n \n numPeople is even.",
+  "code": "class Solution {\npublic:\n    int numberOfWays(int numPeople) {\n        const long long MOD = 1000000007LL;\n        int pairs = numPeople / 2;\n        vector<long long> dp(pairs + 1, 0);\n        dp[0] = 1;\n        for (int n = 1; n <= pairs; ++n) {\n            for (int left = 0; left < n; ++left) {\n                dp[n] = (dp[n] + dp[left] * dp[n - 1 - left]) % MOD;\n            }\n        }\n        return static_cast<int>(dp[pairs]);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178567003",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "2216",
+  "title": "Minimum Deletions to Make Array Beautiful",
+  "slug": "minimum-deletions-to-make-array-beautiful",
+  "url": "https://leetcode.com/problems/minimum-deletions-to-make-array-beautiful/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Stack",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Stack",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . The array nums is beautiful if: \n\n nums.length is even. \n \n nums[i] != nums[i + 1] for all i % 2 == 0 . \n\n Note that an empty array is considered beautiful. \n \n You can delete any number of elements from nums . When you delete an element, all the elements to the right of the deleted element will be shifted one unit to the left to fill the gap created and all the elements to the left of the deleted element will remain unchanged . \n \n Return the minimum number of elements to delete from nums to make it beautiful. \n\n Example 1: \n \n```\nInput:\n nums = [1,1,2,3,5]\n\nOutput:\n 1\n\nExplanation:\n You can delete either \nnums[0]\n or \nnums[1]\n to make \nnums\n = [1,2,3,5] which is beautiful. It can be proven you need at least 1 deletion to make \nnums\n beautiful.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,1,2,2,3,3]\n\nOutput:\n 2\n\nExplanation:\n You can delete \nnums[0]\n and \nnums[5]\n to make nums = [1,2,2,3] which is beautiful. It can be proven you need at least 2 deletions to make nums beautiful.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution { public:\n int minDeletion(vector<int>& nums){int kept=0,last=0;for(int x:nums){if(kept%2==0||x!=last){last=x;++kept;}}\n  return (int)nums.size()-kept+(kept%2);\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175889129",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "1402",
+  "title": "Reducing Dishes",
+  "slug": "reducing-dishes",
+  "url": "https://leetcode.com/problems/reducing-dishes/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Greedy",
+    "Sorting"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "A chef has collected data on the satisfaction level of his n dishes. Chef can cook any dish in 1 unit of time. \n \n Like-time coefficient of a dish is defined as the time taken to cook that dish including previous dishes multiplied by its satisfaction level i.e. time[i] * satisfaction[i] . \n \n Return the maximum sum of like-time coefficient that the chef can obtain after preparing some amount of dishes. \n \n Dishes can be prepared in any order and the chef can discard some dishes to get this maximum value. \n\n Example 1: \n \n```\nInput:\n satisfaction = [-1,-8,0,5,-9]\n\nOutput:\n 14\n\nExplanation:\n After Removing the second and last dish, the maximum total \nlike-time coefficient\n will be equal to (-1*1 + 0*2 + 5*3 = 14).\nEach dish is prepared in one unit of time.\n```\n\n Example 2: \n \n```\nInput:\n satisfaction = [4,3,2]\n\nOutput:\n 20\n\nExplanation:\n Dishes can be prepared in any order, (2*1 + 3*2 + 4*3 = 20)\n```\n\n Example 3: \n \n```\nInput:\n satisfaction = [-1,-4,-5]\n\nOutput:\n 0\n\nExplanation:\n People do not like the dishes. No dish is prepared.\n```\n\n Constraints: \n\n n == satisfaction.length \n \n 1 <= n <= 500 \n \n -1000 <= satisfaction[i] <= 1000",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxSatisfaction(vector<int>& satisfaction) {\n        sort(satisfaction.rbegin(), satisfaction.rend());\n        int total = 0, res = 0;\n        for (int s : satisfaction) {\n            total += s;\n            if (total < 0) break;\n            res += total;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593846720",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

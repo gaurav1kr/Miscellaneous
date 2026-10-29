@@ -1,0 +1,31 @@
+{
+  "id": "807",
+  "title": "Max Increase to Keep City Skyline",
+  "slug": "max-increase-to-keep-city-skyline",
+  "url": "https://leetcode.com/problems/max-increase-to-keep-city-skyline/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Matrix"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "There is a city composed of n x n blocks, where each block contains a single building shaped like a vertical square prism. You are given a 0-indexed n x n integer matrix grid where grid[r][c] represents the height of the building located in the block at row r and column c . \n \n A city's skyline is the outer contour formed by all the building when viewing the side of the city from a distance. The skyline from each cardinal direction north, east, south, and west may be different. \n \n We are allowed to increase the height of any number of buildings by any amount (the amount can be different per building). The height of a 0 -height building can also be increased. However, increasing the height of a building should not affect the city's skyline from any cardinal direction. \n \n Return the maximum total sum that the height of the buildings can be increased by without changing the city's skyline from any cardinal direction . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/21/807-ex1.png] \n \n```\nInput:\n grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]\n\nOutput:\n 35\n\nExplanation:\n The building heights are shown in the center of the above image.\nThe skylines when viewed from each cardinal direction are drawn in red.\nThe grid after increasing the height of buildings without affecting skylines is:\ngridNew = [ [8, 4, 8, 7],\n [7, 4, 7, 7],\n [9, 4, 8, 7],\n [3, 3, 3, 3] ]\n```\n\n Example 2: \n \n```\nInput:\n grid = [[0,0,0],[0,0,0],[0,0,0]]\n\nOutput:\n 0\n\nExplanation:\n Increasing the height of any building will result in the skyline changing.\n```\n\n Constraints: \n\n n == grid.length \n \n n == grid[r].length \n \n 2 <= n <= 50 \n \n 0 <= grid[r][c] <= 100",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxIncreaseKeepingSkyline(vector<vector<int>>& grid) {\n        int n = grid.size();\n        vector<int> rowMax(n, 0), colMax(n, 0);\n\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j < n; j++) {\n                rowMax[i] = max(rowMax[i], grid[i][j]);\n                colMax[j] = max(colMax[j], grid[i][j]);\n            }\n        }\n\n        int increase = 0;\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j < n; j++) {\n                increase += min(rowMax[i], colMax[j]) - grid[i][j];\n            }\n        }\n\n        return increase;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590133466",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

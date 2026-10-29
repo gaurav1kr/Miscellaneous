@@ -1,0 +1,43 @@
+{
+  "id": "1916",
+  "title": "Count Ways to Build Rooms in an Ant Colony",
+  "slug": "count-ways-to-build-rooms-in-an-ant-colony",
+  "url": "https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Tree",
+    "Depth-First Search",
+    "Graph Theory",
+    "Topological Sort",
+    "Combinatorics",
+    "DP on Trees",
+    "Fermat's Little Theorem"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Graph adjacency list",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are an ant tasked with adding n new rooms numbered 0 to n-1 to your colony. You are given the expansion plan as a 0-indexed integer array of length n , prevRoom , where prevRoom[i] indicates that you must build room prevRoom[i] before building room i , and these two rooms must be connected directly . Room 0 is already built, so prevRoom[0] = -1 . The expansion plan is given such that once all the rooms are built, every room will be reachable from room 0 . \n \n You can only build one room at a time, and you can travel freely between rooms you have already built only if they are connected . You can choose to build any room as long as its previous room  is already built. \n \n Return the number of different orders you can build all the rooms in . Since the answer may be large, return it modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/06/19/d1.JPG] \n \n```\nInput:\n prevRoom = [-1,0,1]\r\n\nOutput:\n 1\r\n\nExplanation:\n There is only one way to build the additional rooms: 0 → 1 → 2\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/06/19/d2.JPG] \n \n```\nInput:\n prevRoom = [-1,0,0,1,2]\r\n\nOutput:\n 6\r\n\nExplanation:\r\n\nThe 6 ways are:\r\n0 → 1 → 3 → 2 → 4\r\n0 → 2 → 4 → 1 → 3\r\n0 → 1 → 2 → 3 → 4\r\n0 → 1 → 2 → 4 → 3\r\n0 → 2 → 1 → 3 → 4\r\n0 → 2 → 1 → 4 → 3\n```\n\n Constraints: \n\n n == prevRoom.length \n \n 2 <= n <= 10 5 \n \n prevRoom[0] == -1 \n \n 0 <= prevRoom[i] < n for all 1 <= i < n \n \n Every room is reachable from room 0 once all the rooms are built.",
+  "code": "#include <vector>\nusing namespace std;\n\nclass Solution {\n    static constexpr int MOD = 1e9 + 7;\n    vector<long long> fact, invFact;\n    vector<vector<int>> tree;\n\n    long long modinv(long long a) {\n        long long res = 1, p = MOD - 2;\n        while (p) {\n            if (p & 1) res = res * a % MOD;\n            a = a * a % MOD;\n            p >>= 1;\n        }\n        return res;\n    }\n\n    void buildFactorials(int n) {\n        fact.resize(n + 1, 1);\n        invFact.resize(n + 1, 1);\n        for (int i = 1; i <= n; ++i)\n            fact[i] = fact[i - 1] * i % MOD;\n        for (int i = 0; i <= n; ++i)\n            invFact[i] = modinv(fact[i]);\n    }\n\n    pair<long long, int> dfs(int u) {\n        long long ways = 1;\n        int size = 0;\n        for (int v : tree[u]) {\n            auto [w, s] = dfs(v);\n            ways = ways * w % MOD * invFact[s] % MOD;\n            size += s;\n        }\n        ways = ways * fact[size] % MOD;\n        return {ways, size + 1};\n    }\n\npublic:\n    int waysToBuildRooms(vector<int>& prevRoom) {\n        int n = prevRoom.size();\n        tree.resize(n);\n        for (int i = 1; i < n; ++i)\n            tree[prevRoom[i]].push_back(i);\n        buildFactorials(n);\n        return dfs(0).first;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610667272",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

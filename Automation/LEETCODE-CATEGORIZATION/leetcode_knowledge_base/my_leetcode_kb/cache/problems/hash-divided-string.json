@@ -1,0 +1,28 @@
+{
+  "id": "3271",
+  "title": "Hash Divided String",
+  "slug": "hash-divided-string",
+  "url": "https://leetcode.com/problems/hash-divided-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string s of length n and an integer k , where n is a multiple of k . Your task is to hash the string s into a new string called result , which has a length of n / k . \n \n First, divide s into n / k substrings , each with a length of k . Then, initialize result as an empty string. \n \n For each substring in order from the beginning: \n\n The hash value of a character is the index of that characte r in the English alphabet (e.g., 'a' → 0 , 'b' → 1 , ..., 'z' → 25 ). \n \n Calculate the sum of all the hash values of the characters in the substring. \n \n Find the remainder of this sum when divided by 26, which is called hashedChar . \n \n Identify the character in the English lowercase alphabet that corresponds to hashedChar . \n \n Append that character to the end of result . \n\n Return result . \n\n Example 1: \n\n Input: s = \"abcd\", k = 2 \n \n Output: \"bf\" \n \n Explanation: \n \n First substring: \"ab\" , 0 + 1 = 1 , 1 % 26 = 1 , result[0] = 'b' . \n \n Second substring: \"cd\" , 2 + 3 = 5 , 5 % 26 = 5 , result[1] = 'f' . \n\n Example 2: \n\n Input: s = \"mxz\", k = 3 \n \n Output: \"i\" \n \n Explanation: \n \n The only substring: \"mxz\" , 12 + 23 + 25 = 60 , 60 % 26 = 8 , result[0] = 'i' . \n\n Constraints: \n\n 1 <= k <= 100 \n \n k <= s.length <= 1000 \n \n s.length is divisible by k . \n \n s consists only of lowercase English letters.",
+  "code": "class Solution { public: string stringHash(string s, int k) { string out; for(int i=0;i<(int)s.size();i+=k){int v=0;for(int j=i;j<i+k;++j)v+=s[j]-'a';out+=char('a'+v%26);}return out;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177443693",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

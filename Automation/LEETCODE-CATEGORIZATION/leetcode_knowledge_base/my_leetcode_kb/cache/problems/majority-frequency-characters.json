@@ -1,0 +1,31 @@
+{
+  "id": "3692",
+  "title": "Majority Frequency Characters",
+  "slug": "majority-frequency-characters",
+  "url": "https://leetcode.com/problems/majority-frequency-characters/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "You are given a string s consisting of lowercase English letters. \n \n The frequency group for a value k is the set of characters that appear exactly k times in s. \n \n The majority frequency group is the frequency group that contains the largest number of distinct characters. \n \n Return a string containing all characters in the majority frequency group, in any order. If two or more frequency groups tie for that largest size, pick the group whose frequency k is larger . \n\n Example 1: \n\n Input: s = \"aaabbbccdddde\" \n \n Output: \"ab\" \n \n Explanation: \n\n Frequency (k) \n Distinct characters in group \n Group size \n Majority? \n\n 4 \n {d} \n 1 \n No \n\n 3 \n {a, b} \n 2 \n Yes \n\n 2 \n {c} \n 1 \n No \n\n 1 \n {e} \n 1 \n No \n\n Both characters 'a' and 'b' share the same frequency 3, they are in the majority frequency group. \"ba\" is also a valid answer. \n\n Example 2: \n\n Input: s = \"abcd\" \n \n Output: \"abcd\" \n \n Explanation: \n\n Frequency (k) \n Distinct characters in group \n Group size \n Majority? \n\n 1 \n {a, b, c, d} \n 4 \n Yes \n\n All characters share the same frequency 1, they are all in the majority frequency group. \n\n Example 3: \n\n Input: s = \"pfpfgi\" \n \n Output: \"fp\" \n \n Explanation: \n\n Frequency (k) \n Distinct characters in group \n Group size \n Majority? \n\n 2 \n {p, f} \n 2 \n Yes \n\n 1 \n {g, i} \n 2 \n No (tied size, lower frequency) \n\n Both characters 'p' and 'f' share the same frequency 2, they are in the majority frequency group. There is a tie in group size with frequency 1, but we pick the higher frequency: 2. \n\n Constraints: \n\n 1 <= s.length <= 100 \n \n s consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n    string majorityFrequencyGroup(string s) {\n        int freq[26] = {};\n        for (char c : s) ++freq[c - 'a'];\n        map<int, string> groups;\n        for (int i = 0; i < 26; ++i) {\n            if (freq[i]) groups[freq[i]].push_back(char('a' + i));\n        }\n        string ans;\n        for (const auto& entry : groups) {\n            if (entry.second.size() >= ans.size()) ans = entry.second;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179674384",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "2108",
+  "title": "Find First Palindromic String in the Array",
+  "slug": "find-first-palindromic-string-in-the-array",
+  "url": "https://leetcode.com/problems/find-first-palindromic-string-in-the-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "String"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "Given an array of strings words , return the first palindromic string in the array . If there is no such string, return an empty string \"\" . \n \n A string is palindromic if it reads the same forward and backward. \n\n Example 1: \n \n```\nInput:\n words = [\"abc\",\"car\",\"ada\",\"racecar\",\"cool\"]\n\nOutput:\n \"ada\"\n\nExplanation:\n The first string that is palindromic is \"ada\".\nNote that \"racecar\" is also palindromic, but it is not the first.\n```\n\n Example 2: \n \n```\nInput:\n words = [\"notapalindrome\",\"racecar\"]\n\nOutput:\n \"racecar\"\n\nExplanation:\n The first and only string that is palindromic is \"racecar\".\n```\n\n Example 3: \n \n```\nInput:\n words = [\"def\",\"ghi\"]\n\nOutput:\n \"\"\n\nExplanation:\n There are no palindromic strings, so the empty string is returned.\n```\n\n Constraints: \n\n 1 <= words.length <= 100 \n \n 1 <= words[i].length <= 100 \n \n words[i] consists only of lowercase English letters.",
+  "code": "class Solution {\npublic:\n string firstPalindrome(vector<string>& words){\n  for(const string& s:words){int i=0,j=(int)s.size()-1;\n   while(i<j && s[i]==s[j]){++i;--j;}\n   if(i>=j)return s;\n  }\n  return \"\";\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175735828",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

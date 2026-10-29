@@ -1,0 +1,29 @@
+{
+  "id": "330",
+  "title": "Patching Array",
+  "slug": "patching-array",
+  "url": "https://leetcode.com/problems/patching-array/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a sorted integer array nums and an integer n , add/patch elements to the array such that any number in the range [1, n] inclusive can be formed by the sum of some elements in the array. \n \n Return the minimum number of patches required . \n\n Example 1: \n \n```\nInput:\n nums = [1,3], n = 6\n\nOutput:\n 1\nExplanation:\nCombinations of nums are [1], [3], [1,3], which form possible sums of: 1, 3, 4.\nNow if we add/patch 2 to nums, the combinations are: [1], [2], [3], [1,3], [2,3], [1,2,3].\nPossible sums are 1, 2, 3, 4, 5, 6, which now covers the range [1, 6].\nSo we only need 1 patch.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,5,10], n = 20\n\nOutput:\n 2\nExplanation: The two patches can be [2, 4].\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,2], n = 5\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= nums.length <= 1000 \n \n 1 <= nums[i] <= 10 4 \n \n nums is sorted in ascending order . \n \n 1 <= n <= 2 31 - 1",
+  "code": "\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minPatches(vector<int>& nums, int n) {\n        long long covered = 0;\n        int patches = 0, i = 0;\n        \n        while (covered < n) {\n            if (i < nums.size() && nums[i] <= covered + 1) {\n                covered += nums[i++];\n            } else {\n                covered += covered + 1;\n                patches++;\n            }\n        }\n        return patches;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592321771",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

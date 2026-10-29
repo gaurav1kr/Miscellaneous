@@ -1,0 +1,33 @@
+{
+  "id": "3",
+  "title": "Longest Substring Without Repeating Characters",
+  "slug": "longest-substring-without-repeating-characters",
+  "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given a string s , find the length of the longest substring without duplicate characters. \n\n Example 1: \n \n```\nInput:\n s = \"abcabcbb\"\n\nOutput:\n 3\n\nExplanation:\n The answer is \"abc\", with the length of 3. Note that \n\"bca\"\n and \n\"cab\"\n are also correct answers.\n```\n\n Example 2: \n \n```\nInput:\n s = \"bbbbb\"\n\nOutput:\n 1\n\nExplanation:\n The answer is \"b\", with the length of 1.\n```\n\n Example 3: \n \n```\nInput:\n s = \"pwwkew\"\n\nOutput:\n 3\n\nExplanation:\n The answer is \"wke\", with the length of 3.\nNotice that the answer must be a substring, \"pwke\" is a subsequence and not a substring.\n```\n\n Constraints: \n\n 0 <= s.length <= 10 5 \n \n s consists of English letters, digits, symbols and spaces.",
+  "code": "class Solution {\npublic:\n    int lengthOfLongestSubstring(string s) {\n    unordered_map<char, int> lastIndex;\n    int maxLength = 0, start = 0;\n\n    for (int i = 0; i < s.size(); ++i) {\n        if (lastIndex.count(s[i]) && lastIndex[s[i]] >= start) {\n            start = lastIndex[s[i]] + 1;  // Move start to avoid repeating\n        }\n        lastIndex[s[i]] = i;  // Update the index of the character\n        maxLength = max(maxLength, i - start + 1);  // Update the max length\n    }\n\n    return maxLength;\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542684133",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

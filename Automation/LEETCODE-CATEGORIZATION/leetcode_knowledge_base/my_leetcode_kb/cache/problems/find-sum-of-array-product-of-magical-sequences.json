@@ -1,0 +1,38 @@
+{
+  "id": "3539",
+  "title": "Find Sum of Array Product of Magical Sequences",
+  "slug": "find-sum-of-array-product-of-magical-sequences",
+  "url": "https://leetcode.com/problems/find-sum-of-array-product-of-magical-sequences/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Combinatorics",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given two integers, m and k , and an integer array nums . \nA sequence of integers seq is called magical if:\n\n seq has a size of m . \n \n 0 <= seq[i] < nums.length \n \n The binary representation of 2 seq[0] + 2 seq[1] + ... + 2 seq[m - 1] has k set bits . \n\n The array product of this sequence is defined as prod(seq) = (nums[seq[0]] * nums[seq[1]] * ... * nums[seq[m - 1]]) . \n \n Return the sum of the array products for all valid magical sequences. \n \n Since the answer may be large, return it modulo 10 9 + 7 . \n \n A set bit refers to a bit in the binary representation of a number that has a value of 1. \n\n Example 1: \n\n Input: m = 5, k = 5, nums = [1,10,100,10000,1000000] \n \n Output: 991600007 \n \n Explanation: \n \n All permutations of [0, 1, 2, 3, 4] are magical sequences, each with an array product of 10 13 . \n\n Example 2: \n\n Input: m = 2, k = 2, nums = [5,4,3,2,1] \n \n Output: 170 \n \n Explanation: \n \n The magical sequences are [0, 1] , [0, 2] , [0, 3] , [0, 4] , [1, 0] , [1, 2] , [1, 3] , [1, 4] , [2, 0] , [2, 1] , [2, 3] , [2, 4] , [3, 0] , [3, 1] , [3, 2] , [3, 4] , [4, 0] , [4, 1] , [4, 2] , and [4, 3] . \n\n Example 3: \n\n Input: m = 1, k = 1, nums = [28] \n \n Output: 28 \n \n Explanation: \n \n The only magical sequence is [0] . \n\n Constraints: \n\n 1 <= k <= m <= 30 \n \n 1 <= nums.length <= 50 \n \n 1 <= nums[i] <= 10 8",
+  "code": "class Solution {\n    static const int MOD=1000000007;\n    long long power(long long a,int b){long long r=1;for(;b;b>>=1,a=a*a%MOD)if(b&1)r=r*a%MOD;return r;}\npublic:int magicalSum(int m,int k,vector<int>&nums){int n=nums.size();vector<vector<long long>> C(m+1,vector<long long>(m+1));for(int i=0;i<=m;i++){C[i][0]=C[i][i]=1;for(int j=1;j<i;j++)C[i][j]=(C[i-1][j-1]+C[i-1][j])%MOD;}vector<vector<vector<long long>>>dp(m+1,vector<vector<long long>>(m+1,vector<long long>(k+1)));dp[0][0][0]=1;for(int x:nums){vector<vector<vector<long long>>>ndp(m+1,vector<vector<long long>>(m+1,vector<long long>(k+1)));vector<long long> pw(m+1,1);for(int j=1;j<=m;j++)pw[j]=pw[j-1]*x%MOD;for(int used=0;used<=m;used++)for(int carry=0;carry<=m;carry++)for(int bits=0;bits<=k;bits++)if(dp[used][carry][bits])for(int take=0;used+take<=m;take++){int s=carry+take,b=bits+(s&1);if(b>k)continue;long long ways=C[used+take][take]*pw[take]%MOD;auto &v=ndp[used+take][s/2][b];v=(v+dp[used][carry][bits]*ways)%MOD;}dp.swap(ndp);}long long ans=0;for(int carry=0;carry<=m;carry++)for(int bits=0;bits<=k;bits++)if(bits+__builtin_popcount((unsigned)carry)==k)ans=(ans+dp[m][carry][bits])%MOD;return ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177569403",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

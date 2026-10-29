@@ -1,0 +1,40 @@
+{
+  "id": "581",
+  "title": "Shortest Unsorted Continuous Subarray",
+  "slug": "shortest-unsorted-continuous-subarray",
+  "url": "https://leetcode.com/problems/shortest-unsorted-continuous-subarray/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Stack",
+    "Greedy",
+    "Sorting",
+    "Monotonic Stack"
+  ],
+  "primary_topic": "Monotonic Stack / Queue",
+  "related_topics": [
+    "Monotonic Stack / Queue",
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "Sorting / Divide and Conquer",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Monotonic stack",
+    "Sorted array",
+    "Stack",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , you need to find one continuous subarray such that if you only sort this subarray in non-decreasing order, then the whole array will be sorted in non-decreasing order. \n \n Return the shortest such subarray and output its length . \n\n Example 1: \n \n```\nInput:\n nums = [2,6,4,8,10,9,15]\n\nOutput:\n 5\n\nExplanation:\n You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4]\n\nOutput:\n 0\n```\n\n Example 3: \n \n```\nInput:\n nums = [1]\n\nOutput:\n 0\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 4 \n \n -10 5 <= nums[i] <= 10 5 \n\n Follow up: Can you solve it in O(n) time complexity?",
+  "code": "class Solution {\npublic:\n    int findUnsortedSubarray(std::vector<int>& nums) {\n        int n = nums.size();\n        int start = -1, end = -1;\n        int maxVal = INT_MIN, minVal = INT_MAX;\n\n        // Traverse from left to right to find the right boundary\n        for (int i = 0; i < n; ++i) {\n            if (nums[i] < maxVal) end = i;\n            else maxVal = nums[i];\n        }\n\n        // Traverse from right to left to find the left boundary\n        for (int i = n - 1; i >= 0; --i) {\n            if (nums[i] > minVal) start = i;\n            else minVal = nums[i];\n        }\n\n        return (start == -1) ? 0 : (end - start + 1);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1539843477",
+  "approach_summary": "Nearest greater/smaller element, next boundary, or a window extremum.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

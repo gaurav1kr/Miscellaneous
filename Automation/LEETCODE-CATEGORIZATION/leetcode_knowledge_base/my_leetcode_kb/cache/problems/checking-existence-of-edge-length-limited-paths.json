@@ -1,0 +1,37 @@
+{
+  "id": "1697",
+  "title": "Checking Existence of Edge Length Limited Paths",
+  "slug": "checking-existence-of-edge-length-limited-paths",
+  "url": "https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Union-Find",
+    "Graph Theory",
+    "Sorting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Graph Traversal / Shortest Path",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "An undirected graph of n nodes is defined by edgeList , where edgeList[i] = [u i , v i , dis i ] denotes an edge between nodes u i and v i with distance dis i . Note that there may be multiple edges between two nodes. \n \n Given an array queries , where queries[j] = [p j , q j , limit j ] , your task is to determine for each queries[j] whether there is a path between p j and q j such that each edge on the path has a distance strictly less than limit j . \n \n Return a boolean array answer , where answer.length == queries.length and the j th value of answer is true if there is a path for queries[j] is true , and false otherwise . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/12/08/h.png] \n \n```\nInput:\n n = 3, edgeList = [[0,1,2],[1,2,4],[2,0,8],[1,0,16]], queries = [[0,1,2],[0,2,5]]\n\nOutput:\n [false,true]\n\nExplanation:\n The above figure shows the given graph. Note that there are two overlapping edges between 0 and 1 with distances 2 and 16.\nFor the first query, between 0 and 1 there is no path where each distance is less than 2, thus we return false for this query.\nFor the second query, there is a path (0 -> 1 -> 2) of two edges with distances less than 5, thus we return true for this query.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/12/08/q.png] \n \n```\nInput:\n n = 5, edgeList = [[0,1,10],[1,2,5],[2,3,9],[3,4,13]], queries = [[0,4,14],[1,4,13]]\n\nOutput:\n [true,false]\n\nExplanation:\n The above figure shows the given graph.\n```\n\n Constraints: \n\n 2 <= n <= 10 5 \n \n 1 <= edgeList.length, queries.length <= 10 5 \n \n edgeList[i].length == 3 \n \n queries[j].length == 3 \n \n 0 <= u i , v i , p j , q j <= n - 1 \n \n u i != v i \n \n p j != q j \n \n 1 <= dis i , limit j <= 10 9 \n \n There may be multiple edges between two nodes.",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> parent;\n\n    int find(int x) {\n        return parent[x] == x ? x : parent[x] = find(parent[x]);\n    }\n\n    void unite(int x, int y) {\n        parent[find(x)] = find(y);\n    }\n\n    vector<bool> distanceLimitedPathsExist(int n, vector<vector<int>>& edgeList, vector<vector<int>>& queries) {\n        parent.resize(n);\n        iota(parent.begin(), parent.end(), 0);\n\n        sort(edgeList.begin(), edgeList.end(), [](auto& a, auto& b) {\n            return a[2] < b[2];\n        });\n\n        int m = queries.size();\n        vector<int> idx(m);\n        iota(idx.begin(), idx.end(), 0);\n        sort(idx.begin(), idx.end(), [&](int i, int j) {\n            return queries[i][2] < queries[j][2];\n        });\n\n        vector<bool> res(m);\n        int j = 0;\n        for (int i : idx) {\n            while (j < edgeList.size() && edgeList[j][2] < queries[i][2]) {\n                unite(edgeList[j][0], edgeList[j][1]);\n                j++;\n            }\n            res[i] = find(queries[i][0]) == find(queries[i][1]);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610596112",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

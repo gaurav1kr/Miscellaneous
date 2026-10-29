@@ -1,0 +1,30 @@
+{
+  "id": "2419",
+  "title": "Longest Subarray With Maximum Bitwise AND",
+  "slug": "longest-subarray-with-maximum-bitwise-and",
+  "url": "https://leetcode.com/problems/longest-subarray-with-maximum-bitwise-and/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Bit Manipulation",
+    "Brainteaser"
+  ],
+  "primary_topic": "Bit Manipulation",
+  "related_topics": [
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums of size n . \n \n Consider a non-empty subarray from nums that has the maximum possible bitwise AND . \n\n In other words, let k be the maximum value of the bitwise AND of any subarray of nums . Then, only subarrays with a bitwise AND equal to k should be considered. \n\n Return the length of the longest such subarray . \n \n The bitwise AND of an array is the bitwise AND of all the numbers in it. \n \n A subarray is a contiguous sequence of elements within an array. \n\n Example 1: \n \n```\nInput:\n nums = [1,2,3,3,2,2]\n\nOutput:\n 2\n\nExplanation:\n\nThe maximum possible bitwise AND of a subarray is 3.\nThe longest subarray with that value is [3,3], so we return 2.\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,2,3,4]\n\nOutput:\n 1\n\nExplanation:\n\nThe maximum possible bitwise AND of a subarray is 4.\nThe longest subarray with that value is [4], so we return 1.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 6",
+  "code": "class Solution {public:int longestSubarray(vector<int>& nums){int mx=*max_element(nums.begin(),nums.end()),cur=0,ans=0;for(int x:nums){cur=x==mx?cur+1:0;ans=max(ans,cur);}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176551003",
+  "approach_summary": "Use XOR, bit masks, bit positions, or binary representation.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

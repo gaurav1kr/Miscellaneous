@@ -1,0 +1,35 @@
+{
+  "id": "539",
+  "title": "Minimum Time Difference",
+  "slug": "minimum-time-difference",
+  "url": "https://leetcode.com/problems/minimum-time-difference/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Given a list of 24-hour clock time points in \"HH:MM\" format, return the minimum minutes difference between any two time-points in the list .\n\n Example 1: \n \n```\nInput:\n timePoints = [\"23:59\",\"00:00\"]\n\nOutput:\n 1\n```\n \n Example 2: \n \n```\nInput:\n timePoints = [\"00:00\",\"23:59\",\"00:00\"]\n\nOutput:\n 0\n```\n\n Constraints: \n\n 2 <= timePoints.length <= 2 * 10 4 \n \n timePoints[i] is in the format \"HH:MM\" .",
+  "code": "#include <vector>\n#include <string>\n#include <algorithm>\n#include <climits>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int findMinDifference(vector<string>& timePoints) {\n        vector<int> minutes;\n        for (string& t : timePoints) {\n            int h = stoi(t.substr(0, 2));\n            int m = stoi(t.substr(3));\n            minutes.push_back(h * 60 + m);\n        }\n\n        sort(minutes.begin(), minutes.end());\n        int minDiff = INT_MAX;\n\n        for (int i = 1; i < minutes.size(); ++i)\n            minDiff = min(minDiff, minutes[i] - minutes[i - 1]);\n\n        minDiff = min(minDiff, 1440 - minutes.back() + minutes.front());\n        return minDiff;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593835844",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

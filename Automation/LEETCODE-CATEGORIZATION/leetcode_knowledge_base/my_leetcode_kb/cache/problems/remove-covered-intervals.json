@@ -1,0 +1,30 @@
+{
+  "id": "1288",
+  "title": "Remove Covered Intervals",
+  "slug": "remove-covered-intervals",
+  "url": "https://leetcode.com/problems/remove-covered-intervals/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "Given an array intervals where intervals[i] = [l i , r i ] represent the interval [l i , r i ) , remove all intervals that are covered by another interval in the list. \n \n The interval [a, b) is covered by the interval [c, d) if and only if c <= a and b <= d . \n \n Return the number of remaining intervals . \n\n Example 1: \n \n```\nInput:\n intervals = [[1,4],[3,6],[2,8]]\n\nOutput:\n 2\n\nExplanation:\n Interval [3,6] is covered by [2,8], therefore it is removed.\n```\n\n Example 2: \n \n```\nInput:\n intervals = [[1,4],[2,3]]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= intervals.length <= 1000 \n \n intervals[i].length == 2 \n \n 0 <= l i < r i <= 10 5 \n \n All the given intervals are unique .",
+  "code": "#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int removeCoveredIntervals(vector<vector<int>>& intervals) {\n        sort(intervals.begin(), intervals.end(), [](auto& a, auto& b) {\n            return a[0] < b[0] || (a[0] == b[0] && a[1] > b[1]);\n        });\n\n        int count = 0, end = 0;\n        for (auto& i : intervals) {\n            if (i[1] > end) {\n                ++count;\n                end = i[1];\n            }\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1593840510",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

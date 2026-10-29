@@ -1,0 +1,32 @@
+{
+  "id": "2495",
+  "title": "Number of Subarrays Having Even Product",
+  "slug": "number-of-subarrays-having-even-product",
+  "url": "https://leetcode.com/problems/number-of-subarrays-having-even-product/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Given a 0-indexed integer array nums , return the number of subarrays of nums having an even product . \n\n Example 1: \n \n```\nInput:\n nums = [9,6,7,13]\n\nOutput:\n 6\n\nExplanation:\n There are 6 subarrays with an even product:\n- nums[0..1] = 9 * 6 = 54.\n- nums[0..2] = 9 * 6 * 7 = 378.\n- nums[0..3] = 9 * 6 * 7 * 13 = 4914.\n- nums[1..1] = 6.\n- nums[1..2] = 6 * 7 = 42.\n- nums[1..3] = 6 * 7 * 13 = 546.\n```\n\n Example 2: \n \n```\nInput:\n nums = [7,3,5]\n\nOutput:\n 0\n\nExplanation:\n There are no subarrays with an even product.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    long long evenProduct(vector<int>& nums) {\n        long long answer = 0, oddRun = 0;\n        for (int i = 0; i < (int)nums.size(); ++i) {\n            oddRun = nums[i] % 2 ? oddRun + 1 : 0;\n            answer += i + 1 - oddRun;\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178880239",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "439",
+  "title": "Ternary Expression Parser",
+  "slug": "ternary-expression-parser",
+  "url": "https://leetcode.com/problems/ternary-expression-parser/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Stack",
+    "Recursion"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "Given a string expression representing arbitrarily nested ternary expressions, evaluate the expression, and return the result of it . \n \n You can always assume that the given expression is valid and only contains digits, '?' , ':' , 'T' , and 'F' where 'T' is true and 'F' is false. All the numbers in the expression are one-digit numbers (i.e., in the range [0, 9] ). \n \n The conditional expressions group right-to-left (as usual in most languages), and the result of the expression will always evaluate to either a digit, 'T' or 'F' . \n\n Example 1: \n \n```\nInput:\n expression = \"T?2:3\"\n\nOutput:\n \"2\"\n\nExplanation:\n If true, then result is 2; otherwise result is 3.\n```\n\n Example 2: \n \n```\nInput:\n expression = \"F?1:T?4:5\"\n\nOutput:\n \"4\"\n\nExplanation:\n The conditional expressions group right-to-left. Using parenthesis, it is read/evaluated as:\n\"(F ? 1 : (T ? 4 : 5))\" --> \"(F ? 1 : 4)\" --> \"4\"\nor \"(F ? 1 : (T ? 4 : 5))\" --> \"(T ? 4 : 5)\" --> \"4\"\n```\n\n Example 3: \n \n```\nInput:\n expression = \"T?T?F:5:3\"\n\nOutput:\n \"F\"\n\nExplanation:\n The conditional expressions group right-to-left. Using parenthesis, it is read/evaluated as:\n\"(T ? (T ? F : 5) : 3)\" --> \"(T ? F : 3)\" --> \"F\"\n\"(T ? (T ? F : 5) : 3)\" --> \"(T ? F : 5)\" --> \"F\"\n```\n\n Constraints: \n\n 5 <= expression.length <= 10 4 \n \n expression consists of digits, 'T' , 'F' , '?' , and ':' . \n \n It is guaranteed that expression is a valid ternary expression and that each number is a one-digit number .",
+  "code": "class Solution {\npublic:\n    string parseTernary(string expression) {\n        stack<char> values;\n        for (int i = static_cast<int>(expression.size()) - 1; i >= 0; --i) {\n            char c = expression[i];\n            if (c == '?') {\n                continue;\n            }\n            if (c == ':') {\n                continue;\n            }\n            if (i + 1 < static_cast<int>(expression.size()) && expression[i + 1] == '?') {\n                char yes = values.top();\n                values.pop();\n                char no = values.top();\n                values.pop();\n                values.push(c == 'T' ? yes : no);\n            } else {\n                values.push(c);\n            }\n        }\n        return string(1, values.top());\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178468732",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

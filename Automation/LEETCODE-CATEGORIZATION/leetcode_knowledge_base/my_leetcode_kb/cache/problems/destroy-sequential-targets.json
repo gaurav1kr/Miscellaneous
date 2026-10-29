@@ -1,0 +1,33 @@
+{
+  "id": "2453",
+  "title": "Destroy Sequential Targets",
+  "slug": "destroy-sequential-targets",
+  "url": "https://leetcode.com/problems/destroy-sequential-targets/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array nums consisting of positive integers, representing targets on a number line. You are also given an integer space . \n \n You have a machine which can destroy targets. Seeding the machine with some nums[i] allows it to destroy all targets with values that can be represented as nums[i] + c * space , where c is any non-negative integer. You want to destroy the maximum number of targets in nums . \n \n Return the minimum value of nums[i] you can seed the machine with to destroy the maximum number of targets. \n\n Example 1: \n \n```\nInput:\n nums = [3,7,8,1,1,5], space = 2\n\nOutput:\n 1\n\nExplanation:\n If we seed the machine with nums[3], then we destroy all targets equal to 1,3,5,7,9,... \nIn this case, we would destroy 5 total targets (all except for nums[2]). \nIt is impossible to destroy more than 5 targets, so we return nums[3].\n```\n\n Example 2: \n \n```\nInput:\n nums = [1,3,5,2,4,6], space = 2\n\nOutput:\n 1\n\nExplanation:\n Seeding the machine with nums[0], or nums[3] destroys 3 targets. \nIt is not possible to destroy more than 3 targets.\nSince nums[0] is the minimal integer that can destroy 3 targets, we return 1.\n```\n\n Example 3: \n \n```\nInput:\n nums = [6,2,5], space = 100\n\nOutput:\n 2\n\nExplanation:\n Whatever initial seed we select, we can only destroy 1 target. The minimal seed is nums[1].\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n 1 <= space <= 10 9",
+  "code": "class Solution { public: int destroyTargets(vector<int>& nums,int space){unordered_map<int,int>cnt;for(int x:nums)++cnt[x%space];int best=-1,ans=INT_MAX;for(int x:nums){int c=cnt[x%space];if(c>best||(c==best&&x<ans)){best=c;ans=x;}}return ans;} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176569692",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

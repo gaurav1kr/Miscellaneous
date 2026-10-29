@@ -1,0 +1,29 @@
+{
+  "id": "135",
+  "title": "Candy",
+  "slug": "candy",
+  "url": "https://leetcode.com/problems/candy/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "There are n children standing in a line. \n \n Each child is assigned a rating value given in the integer array ratings . \n \n You are giving candies to these children subjected to the following requirements: \n\n Each child must have at least one candy. \n \n Children with a higher rating get more candies than their neighbors. \n\n Return the minimum number of candies you need to have to distribute the candies to the children. \n\n Example 1: \n \n```\nInput:\n ratings = [1,0,2]\n\nOutput:\n 5\n\nExplanation:\n You can allocate to the first, second and third child with 2, 1, 2 candies respectively.\n```\n\n Example 2: \n \n```\nInput:\n ratings = [1,2,2]\n\nOutput:\n 4\n\nExplanation:\n You can allocate to the first, second and third child with 1, 2, 1 candies respectively.\nThe third child gets 1 candy because it satisfies the above two conditions.\n```\n\n Constraints: \n\n 1 <= n == ratings.length <= 5 * 10 4 \n \n 0 <= ratings[i] <= 5 * 10 4",
+  "code": "class Solution \n{\npublic:\n    int candy(vector<int>& ratings) \n    {\n        int n = ratings.size();\n        int candy = n, i=1;\n        while(i<n)\n        {\n            if(ratings[i] == ratings[i-1])\n            {\n                i++;\n                continue;\n            }\n            \n            //For increasing slope\n            int peak = 0;\n            while(ratings[i] > ratings [i-1])\n            {\n                peak++;\n                candy += peak;\n                i++;\n                if(i == n) return candy;\n            }\n            \n            //For decreasing slope\n            int valley = 0;\n            while(i<n && ratings[i] < ratings[i-1])\n            {\n                valley++;\n                candy += valley;\n                i++;\n            }\n            candy -= min(peak, valley); //Keep only the higher peak\n        }\n        return candy;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1485097030",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

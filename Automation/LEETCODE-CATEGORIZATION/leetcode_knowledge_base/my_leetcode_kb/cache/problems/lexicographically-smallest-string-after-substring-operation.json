@@ -1,0 +1,28 @@
+{
+  "id": "2734",
+  "title": "Lexicographically Smallest String After Substring Operation",
+  "slug": "lexicographically-smallest-string-after-substring-operation",
+  "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-substring-operation/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Given a string s consisting of lowercase English letters. Perform the following operation: \n\n Select any non-empty substring then replace every letter of the substring with the preceding letter of the English alphabet. For example, 'b' is converted to 'a', and 'a' is converted to 'z'. \n\n Return the lexicographically smallest string after performing the operation . \n\n Example 1: \n\n Input: s = \"cbabc\" \n \n Output: \"baabc\" \n \n Explanation: \n \n Perform the operation on the substring starting at index 0, and ending at index 1 inclusive. \n\n Example 2: \n\n Input: s = \"aa\" \n \n Output: \"az\" \n \n Explanation: \n \n Perform the operation on the last letter. \n\n Example 3: \n\n Input: s = \"acbbc\" \n \n Output: \"abaab\" \n \n Explanation: \n \n Perform the operation on the substring starting at index 1, and ending at index 4 inclusive. \n\n Example 4: \n\n Input: s = \"leetcode\" \n \n Output: \"kddsbncd\" \n \n Explanation: \n \n Perform the operation on the entire string. \n\n Constraints: \n\n 1 <= s.length <= 3 * 10 5 \n \n s consists of lowercase English letters",
+  "code": "class Solution {public:string smallestString(string s){int n=s.size(),i=0;while(i<n&&s[i]=='a')++i;if(i==n){s[n-1]='z';return s;}while(i<n&&s[i]!='a'){--s[i];++i;}return s;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176686342",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

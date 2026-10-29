@@ -1,0 +1,22 @@
+{
+  "id": "3802",
+  "title": "Number of Ways to Paint Sheets",
+  "slug": "number-of-ways-to-paint-sheets",
+  "url": "https://leetcode.com/problems/number-of-ways-to-paint-sheets/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [],
+  "primary_topic": "Other / Unclassified",
+  "related_topics": [],
+  "data_structures": [
+    "Vector"
+  ],
+  "description": "You are given an integer n representing the number of sheets. \n \n You are also given an integer array limit of size m , where limit[i] is the maximum number of sheets that can be painted using color i . \n \n You must paint all n sheets under the following conditions: \n\n Exactly two distinct colors are used. \n \n Each color must cover a single contiguous segment of sheets. \n \n The number of sheets painted with color i cannot exceed limit[i] . \n\n Return an integer denoting the number of distinct ways to paint all sheets. Since the answer may be large, return it modulo 10 9 + 7 . \n \n Note: Two ways differ if at least one sheet is painted with a different color. \n\n Example 1: \n\n Input: n = 4, limit = [3,1,2] \n \n Output: 6 \n \n Explanation: ​​​​​​​ \nFor each ordered pair (i, j) , where color i is used for the first segment and color j for the second segment ( i != j ), a split of x and 4 - x is valid if 1 <= x <= limit[i] and 1 <= 4 - x <= limit[j] .\n\n Valid pairs and counts are: \n\n (0, 1): x = 3 \n \n (0, 2): x = 2, 3 \n \n (1, 0): x = 1 \n \n (2, 0): x = 1, 2 \n\n Therefore, there are 6 valid ways in total. \n\n Example 2: \n\n Input: n = 3, limit = [1,2] \n \n Output: 2 \n \n Explanation: \n \n For each ordered pair (i, j) , where color i is used for the first segment and color j for the second segment ( i != j ), a split of x and 3 - x is valid if 1 <= x <= limit[i] and 1 <= 3 - x <= limit[j] . \n \n Valid pairs and counts are: \n\n (0, 1): x = 1 \n \n (1, 0): x = 2 \n\n Hence, there are 2 valid ways in total. \n\n Example 3: \n\n Input: n = 3, limit = [2,2] \n \n Output: 4 \n \n Explanation: \n \n For each ordered pair (i, j) , where color i is used for the first segment and color j for the second segment ( i != j ), a split of x and 3 - x is valid if 1 <= x <= limit[i] and 1 <= 3 - x <= limit[j] . \n \n Valid pairs and counts are: \n\n (0, 1): x = 1, 2 \n \n (1, 0): x = 1, 2 \n\n Therefore, there are 4 valid ways in total. \n\n Constraints: \n\n 2 <= n <= 10 9 \n \n 2 <= m == limit.length <= 10 5 \n \n 1 <= limit[i] <= 10 9",
+  "code": "class Solution {\npublic:\n    int numberOfWays(int n,vector<int>& limit){const long long MOD=1000000007;int m=limit.size();\n        vector<int> a=limit;for(int &x:a)x=min(x,n-1);sort(a.begin(),a.end());\n        // Count ordered pairs by first-color capacity: sum_j max(0,min(a_i,n-1)-max(1,n-a_j)+1).\n        vector<long long> pref(m+1);for(int i=0;i<m;++i)pref[i+1]=pref[i]+a[i];\n        long long total=0;\n        for(int x:a){int pos=lower_bound(a.begin(),a.end(),n-x)-a.begin();\n            // For j >= pos: valid lengths = min(x,n-1)-max(1,n-a_j)+1,\n            // unless a_j >= n-1, where max(1,n-a_j)=1.\n            int cut=lower_bound(a.begin(),a.end(),n-1)-a.begin();\n            int mid=min(cut,m);if(pos<mid){long long cnt=mid-pos;total+=cnt*(x-n+1)+pref[mid]-pref[pos];}\n            if(cut<m){int lo=max(pos,cut);total+=1LL*(m-lo)*x;}\n            total%=MOD;\n            // Remove the ordered pair using this exact color twice.\n            total-=max(0,2*x-n+1);\n        }\n        return (total%MOD+MOD)%MOD;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181152950",
+  "approach_summary": "Inspect constraints and derive an invariant.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

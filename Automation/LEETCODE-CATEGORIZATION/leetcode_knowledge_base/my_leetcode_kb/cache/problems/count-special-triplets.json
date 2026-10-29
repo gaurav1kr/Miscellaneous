@@ -1,0 +1,33 @@
+{
+  "id": "3583",
+  "title": "Count Special Triplets",
+  "slug": "count-special-triplets",
+  "url": "https://leetcode.com/problems/count-special-triplets/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n A special triplet is defined as a triplet of indices (i, j, k) such that: \n\n 0 <= i < j < k < n , where n = nums.length \n \n nums[i] == nums[j] * 2 \n \n nums[k] == nums[j] * 2 \n\n Return the total number of special triplets in the array. \n \n Since the answer may be large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: nums = [6,3,6] \n \n Output: 1 \n \n Explanation: \n \n The only special triplet is (i, j, k) = (0, 1, 2) , where: \n\n nums[0] = 6 , nums[1] = 3 , nums[2] = 6 \n \n nums[0] = nums[1] * 2 = 3 * 2 = 6 \n \n nums[2] = nums[1] * 2 = 3 * 2 = 6 \n\n Example 2: \n\n Input: nums = [0,1,0,0] \n \n Output: 1 \n \n Explanation: \n \n The only special triplet is (i, j, k) = (0, 2, 3) , where: \n\n nums[0] = 0 , nums[2] = 0 , nums[3] = 0 \n \n nums[0] = nums[2] * 2 = 0 * 2 = 0 \n \n nums[3] = nums[2] * 2 = 0 * 2 = 0 \n\n Example 3: \n\n Input: nums = [8,4,2,8,4] \n \n Output: 2 \n \n Explanation: \n \n There are exactly two special triplets: \n\n (i, j, k) = (0, 1, 3) \n\n nums[0] = 8 , nums[1] = 4 , nums[3] = 8 \n \n nums[0] = nums[1] * 2 = 4 * 2 = 8 \n \n nums[3] = nums[1] * 2 = 4 * 2 = 8 \n\n (i, j, k) = (1, 2, 4) \n\n nums[1] = 4 , nums[2] = 2 , nums[4] = 4 \n \n nums[1] = nums[2] * 2 = 2 * 2 = 4 \n \n nums[4] = nums[2] * 2 = 2 * 2 = 4 \n\n Constraints: \n\n 3 <= n == nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 5",
+  "code": "class Solution {public:\n int specialTriplets(vector<int>& nums){\n  const long long MOD=1000000007;unordered_map<long long,long long> left,right;\n  for(int x:nums)++right[x];long long ans=0;\n  for(int x:nums){--right[x];ans=(ans+left[2LL*x]*right[2LL*x])%MOD;++left[x];}\n  return ans;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177595265",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

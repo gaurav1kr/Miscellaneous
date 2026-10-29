@@ -1,0 +1,29 @@
+{
+  "id": "3207",
+  "title": "Maximum Points After Enemy Battles",
+  "slug": "maximum-points-after-enemy-battles",
+  "url": "https://leetcode.com/problems/maximum-points-after-enemy-battles/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer array enemyEnergies denoting the energy values of various enemies. \n \n You are also given an integer currentEnergy denoting the amount of energy you have initially. \n \n You start with 0 points, and all the enemies are unmarked initially. \n \n You can perform either of the following operations zero or multiple times to gain points: \n\n Choose an unmarked enemy, i , such that currentEnergy >= enemyEnergies[i] . By choosing this option:\n\n You gain 1 point. \n \n Your energy is reduced by the enemy's energy, i.e. currentEnergy = currentEnergy - enemyEnergies[i] . \n\n If you have at least 1 point, you can choose an unmarked enemy, i . By choosing this option:\n\n Your energy increases by the enemy's energy, i.e. currentEnergy = currentEnergy + enemyEnergies[i] . \n \n The e nemy i is marked . \n\n Return an integer denoting the maximum points you can get in the end by optimally performing operations. \n\n Example 1: \n\n Input: enemyEnergies = [3,2,2], currentEnergy = 2 \n \n Output: 3 \n \n Explanation: \n \n The following operations can be performed to get 3 points, which is the maximum: \n\n First operation on enemy 1: points increases by 1, and currentEnergy decreases by 2. So, points = 1 , and currentEnergy = 0 . \n \n Second operation on enemy 0: currentEnergy increases by 3, and enemy 0 is marked. So, points = 1 , currentEnergy = 3 , and marked enemies = [0] . \n \n First operation on enemy 2: points increases by 1, and currentEnergy decreases by 2. So, points = 2 , currentEnergy = 1 , and marked enemies = [0] . \n \n Second operation on enemy 2: currentEnergy increases by 2, and enemy 2 is marked. So, points = 2 , currentEnergy = 3 , and marked enemies = [0, 2] . \n \n First operation on enemy 1: points increases by 1, and currentEnergy decreases by 2. So, points = 3 , currentEnergy = 1 , and marked enemies = [0, 2] . \n\n Example 2: \n\n Input: enemyEnergies = [2] , currentEnergy = 10 \n \n Output: 5 \n \n Explanation: \n \n Performing the first operation 5 times on enemy 0 results in the maximum number of points. \n\n Constraints: \n\n 1 <= enemyEnergies.length <= 10 5 \n \n 1 <= enemyEnergies[i] <= 10 9 \n \n 0 <= currentEnergy <= 10 9",
+  "code": "class Solution {public:long long maximumPoints(vector<int>& enemyEnergies,int currentEnergy){int lo=*min_element(enemyEnergies.begin(),enemyEnergies.end());long long total=accumulate(enemyEnergies.begin(),enemyEnergies.end(),0LL);if(currentEnergy<lo)return 0;return (total+currentEnergy-lo)/lo;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177422101",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

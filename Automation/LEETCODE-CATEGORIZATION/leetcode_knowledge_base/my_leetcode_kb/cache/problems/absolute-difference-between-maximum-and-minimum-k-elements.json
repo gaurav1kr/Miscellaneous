@@ -1,0 +1,30 @@
+{
+  "id": "3774",
+  "title": "Absolute Difference Between Maximum and Minimum K Elements",
+  "slug": "absolute-difference-between-maximum-and-minimum-k-elements",
+  "url": "https://leetcode.com/problems/absolute-difference-between-maximum-and-minimum-k-elements/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums and an integer k . \n \n Find the absolute difference between: \n\n the sum of the k largest elements in the array; and \n \n the sum of the k smallest elements in the array. \n\n Return an integer denoting this difference. \n\n Example 1: \n\n Input: nums = [5,2,2,4], k = 2 \n \n Output: 5 \n \n Explanation: \n\n The k = 2 largest elements are 4 and 5. Their sum is 4 + 5 = 9 . \n \n The k = 2 smallest elements are 2 and 2. Their sum is 2 + 2 = 4 . \n \n The absolute difference is abs(9 - 4) = 5 . \n\n Example 2: \n\n Input: nums = [100], k = 1 \n \n Output: 0 \n \n Explanation: \n\n The largest element is 100. \n \n The smallest element is 100. \n \n The absolute difference is abs(100 - 100) = 0 . \n\n Constraints: \n\n 1 <= n == nums.length <= 100 \n \n 1 <= nums[i] <= 100 \n \n 1 <= k <= n",
+  "code": "class Solution { public: int absDifference(vector<int>& nums,int k) { sort(nums.begin(),nums.end());int n=nums.size(),ans=0;for(int i=0;i<k;++i)ans+=nums[n-1-i]-nums[i];return ans; } };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177755208",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

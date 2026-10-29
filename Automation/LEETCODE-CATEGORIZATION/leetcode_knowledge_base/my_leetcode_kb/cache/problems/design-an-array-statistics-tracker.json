@@ -1,0 +1,39 @@
+{
+  "id": "3369",
+  "title": "Design an Array Statistics Tracker ",
+  "slug": "design-an-array-statistics-tracker",
+  "url": "https://leetcode.com/problems/design-an-array-statistics-tracker/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Binary Search",
+    "Design",
+    "Queue",
+    "Heap (Priority Queue)",
+    "Data Stream",
+    "Ordered Set"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Heap / Priority Queue",
+    "Hashing / Frequency Counting",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Ordered map",
+    "Ordered set",
+    "Priority queue / heap",
+    "Queue"
+  ],
+  "description": "Design a data structure that keeps track of the values in it and answers some queries regarding their mean, median, and mode. \n \n Implement the StatisticsTracker class. \n\n StatisticsTracker() : Initialize the StatisticsTracker object with an empty array. \n \n void addNumber(int number) : Add  number to the data structure. \n \n void removeFirstAddedNumber() : Remove the earliest added number from the data structure. \n \n int getMean() : Return the floored mean of the numbers in the data structure. \n \n int getMedian() : Return the median of the numbers in the data structure. \n \n int getMode() : Return the mode of the numbers in the data structure. If there are multiple modes, return the smallest one. \n\n Note : \n\n The mean of an array is the sum of all the values divided by the number of values in the array. \n \n The median of an array is the middle element of the array when it is sorted in non-decreasing order. If there are two choices for a median, the larger of the two values is taken. \n \n The mode of an array is the element that appears most often in the array. \n\n Example 1: \n\n Input: \n [\"StatisticsTracker\", \"addNumber\", \"addNumber\", \"addNumber\", \"addNumber\", \"getMean\", \"getMedian\", \"getMode\", \"removeFirstAddedNumber\", \"getMode\"] \n[[], [4], [4], [2], [3], [], [], [], [], []] \n \n Output: \n [null, null, null, null, null, 3, 4, 4, null, 2] \n \n Explanation \nStatisticsTracker statisticsTracker = new StatisticsTracker(); \nstatisticsTracker.addNumber(4); // The data structure now contains [4] \nstatisticsTracker.addNumber(4); // The data structure now contains [4, 4] \nstatisticsTracker.addNumber(2); // The data structure now contains [4, 4, 2] \nstatisticsTracker.addNumber(3); // The data structure now contains [4, 4, 2, 3] \nstatisticsTracker.getMean(); // return 3 \nstatisticsTracker.getMedian(); // return 4 \nstatisticsTracker.getMode(); // return 4 \nstatisticsTracker.removeFirstAddedNumber(); // The data structure now contains [4, 2, 3] \nstatisticsTracker.getMode(); // return 2 \n \n Example 2: \n\n Input: \n [\"StatisticsTracker\", \"addNumber\", \"addNumber\", \"getMean\", \"removeFirstAddedNumber\", \"addNumber\", \"addNumber\", \"removeFirstAddedNumber\", \"getMedian\", \"addNumber\", \"getMode\"] \n[[], [9], [5], [], [], [5], [6], [], [], [8], []] \n \n Output: \n [null, null, null, 7, null, null, null, null, 6, null, 5] \n \n Explanation \nStatisticsTracker statisticsTracker = new StatisticsTracker(); \nstatisticsTracker.addNumber(9); // The data structure now contains [9] \nstatisticsTracker.addNumber(5); // The data structure now contains [9, 5] \nstatisticsTracker.getMean(); // return 7 \nstatisticsTracker.removeFirstAddedNumber(); // The data structure now contains [5] \nstatisticsTracker.addNumber(5); // The data structure now contains [5, 5] \nstatisticsTracker.addNumber(6); // The data structure now contains [5, 5, 6] \nstatisticsTracker.removeFirstAddedNumber(); // The data structure now contains [5, 6] \nstatisticsTracker.getMedian(); // return 6 \nstatisticsTracker.addNumber(8); // The data structure now contains [5, 6, 8] \nstatisticsTracker.getMode(); // return 5 \n\n Constraints: \n\n 1 <= number <= 10 9 \n \n At most, 10 5 calls will be made to addNumber , removeFirstAddedNumber , getMean , getMedian , and getMode in total. \n \n removeFirstAddedNumber , getMean , getMedian , and getMode will be called only if there is at least one element in the data structure.",
+  "code": "class StatisticsTracker {\n    queue<int> arrival;\n    multiset<int> low, high;\n    map<int, int> freq;\n    set<pair<int, int>> ranking;\n    long long sum = 0;\n    void balance() {\n        while (high.size() < low.size()) {\n            auto it = prev(low.end());\n            high.insert(*it); low.erase(it);\n        }\n        while (high.size() > low.size() + 1) {\n            auto it = high.begin();\n            low.insert(*it); high.erase(it);\n        }\n    }\n    void updateFreq(int x, int delta) {\n        int old = freq[x];\n        if (old) ranking.erase({-old, x});\n        int now = old + delta;\n        if (now) ranking.insert({-now, x});\n        freq[x] = now;\n    }\npublic:\n    StatisticsTracker() {}\n    void addNumber(int number) {\n        arrival.push(number); sum += number;\n        if (high.empty() || number >= *high.begin()) high.insert(number);\n        else low.insert(number);\n        balance(); updateFreq(number, 1);\n    }\n    void removeFirstAddedNumber() {\n        int x = arrival.front(); arrival.pop(); sum -= x;\n        auto it = high.find(x);\n        if (it != high.end()) high.erase(it);\n        else low.erase(low.find(x));\n        balance(); updateFreq(x, -1);\n    }\n    int getMean() { return (int)(sum / (long long)arrival.size()); }\n    int getMedian() { return *high.begin(); }\n    int getMode() { return ranking.begin()->second; }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179637528",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

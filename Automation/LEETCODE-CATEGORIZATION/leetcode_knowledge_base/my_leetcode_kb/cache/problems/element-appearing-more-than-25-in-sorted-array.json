@@ -1,0 +1,27 @@
+{
+  "id": "1287",
+  "title": "Element Appearing More Than 25% In Sorted Array",
+  "slug": "element-appearing-more-than-25-in-sorted-array",
+  "url": "https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array sorted in non-decreasing order, there is exactly one integer in the array that occurs more than 25% of the time, return that integer. \n\n Example 1: \n \n```\nInput:\n arr = [1,2,2,6,6,6,6,7,10]\n\nOutput:\n 6\n```\n\n Example 2: \n \n```\nInput:\n arr = [1,1]\n\nOutput:\n 1\n```\n\n Constraints: \n\n 1 <= arr.length <= 10 4 \n \n 0 <= arr[i] <= 10 5",
+  "code": "class Solution {\npublic:\n    int findSpecialInteger(vector<int>& arr) {\n        int n = arr.size();\n        for (int i : {n / 4, n / 2, 3 * n / 4}) {\n            int x = arr[i];\n            auto lo = lower_bound(arr.begin(), arr.end(), x);\n            auto hi = upper_bound(arr.begin(), arr.end(), x);\n            if (hi - lo > n / 4) return x;\n        }\n        return arr[0];\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175749168",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

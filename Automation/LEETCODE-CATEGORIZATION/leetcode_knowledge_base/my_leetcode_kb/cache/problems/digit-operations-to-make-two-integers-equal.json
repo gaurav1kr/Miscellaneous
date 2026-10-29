@@ -1,0 +1,36 @@
+{
+  "id": "3377",
+  "title": "Digit Operations to Make Two Integers Equal",
+  "slug": "digit-operations-to-make-two-integers-equal",
+  "url": "https://leetcode.com/problems/digit-operations-to-make-two-integers-equal/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Graph Theory",
+    "Heap (Priority Queue)",
+    "Number Theory",
+    "Shortest Path"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Heap / Priority Queue",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "Graph adjacency list",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given two integers n and m that consist of the same number of digits. \n \n You can perform the following operations any number of times: \n\n Choose any digit from n that is not 9 and increase it by 1. \n \n Choose any digit from n that is not 0 and decrease it by 1. \n\n The integer n must not be a prime number at any point, including its original value and after each operation. \n \n The cost of a transformation is the sum of all values that n takes throughout the operations performed. \n \n Return the minimum cost to transform n into m . If it is impossible, return -1. \n\n Example 1: \n\n Input: n = 10, m = 12 \n \n Output: 85 \n \n Explanation: \n \n We perform the following operations: \n\n Increase the first digit, now n = 2 0 . \n \n Increase the second digit, now n = 2 1 . \n \n Increase the second digit, now n = 2 2 . \n \n Decrease the first digit, now n = 1 2 . \n\n Example 2: \n\n Input: n = 4, m = 8 \n \n Output: -1 \n \n Explanation: \n \n It is impossible to make n equal to m . \n\n Example 3: \n\n Input: n = 6, m = 2 \n \n Output: -1 \n \n Explanation:   \n \n Since 2 is already a prime, we can't make n equal to m . \n\n Constraints: \n\n 1 <= n, m < 10 4 \n \n n and m consist of the same number of digits.",
+  "code": "class Solution {public:int minOperations(int n,int m){int len=to_string(n).size(),lim=1;for(int i=0;i<len;i++)lim*=10;vector<char>prime(lim,true);prime[0]=prime[1]=false;for(int p=2;p*p<lim;p++)if(prime[p])for(int j=p*p;j<lim;j+=p)prime[j]=false;if(prime[n]||prime[m])return -1;vector<long long>dist(lim,LLONG_MAX);priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>>pq;dist[n]=n;pq.push({n,n});while(!pq.empty()){auto cur=pq.top();pq.pop();long long d=cur.first;int u=cur.second;if(d!=dist[u])continue;if(u==m)return (int)d;for(int p=1;p<lim;p*=10){int digit=u/p%10;for(int step:{-1,1}){int z=digit+step;if(z<0||z>9||(p==lim/10&&z==0))continue;int v=u+step*p;if(prime[v])continue;if(d+v<dist[v]){dist[v]=d+v;pq.push({dist[v],v});}}}}return -1;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177472832",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

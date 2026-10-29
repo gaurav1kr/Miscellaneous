@@ -1,0 +1,34 @@
+{
+  "id": "1273",
+  "title": "Delete Tree Nodes",
+  "slug": "delete-tree-nodes",
+  "url": "https://leetcode.com/problems/delete-tree-nodes/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "DP on Trees"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "A tree rooted at node 0 is given as follows: \n\n The number of nodes is nodes ; \n \n The value of the i th node is value[i] ; \n \n The parent of the i th node is parent[i] . \n\n Remove every subtree whose sum of values of nodes is zero. \n \n Return the number of the remaining nodes in the tree . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2019/07/02/1421_sample_1.PNG] \n \n```\nInput:\n nodes = 7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-1]\n\nOutput:\n 2\n```\n\n Example 2: \n \n```\nInput:\n nodes = 7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-2]\n\nOutput:\n 6\n```\n\n Constraints: \n\n 1 <= nodes <= 10 4 \n \n parent.length == nodes \n \n 0 <= parent[i] <= nodes - 1 \n \n parent[0] == -1 which indicates that 0 is the root. \n \n value.length == nodes \n \n -10 5 <= value[i] <= 10 5 \n \n The given input is guaranteed to represent a valid tree .",
+  "code": "class Solution {\n    vector<vector<int>> children;\n    vector<int> values;\n\n    pair<long long, int> dfs(int node) {\n        long long sum = values[node];\n        int count = 1;\n        for (int child : children[node]) {\n            auto part = dfs(child);\n            sum += part.first;\n            count += part.second;\n        }\n        return sum == 0 ? make_pair(0LL, 0) : make_pair(sum, count);\n    }\n\npublic:\n    int deleteTreeNodes(int nodes, vector<int>& parent, vector<int>& value) {\n        children.assign(nodes, {});\n        values = value;\n        int root = 0;\n        for (int i = 0; i < nodes; ++i) {\n            if (parent[i] == -1) {\n                root = i;\n            } else {\n                children[parent[i]].push_back(i);\n            }\n        }\n        return dfs(root).second;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178570646",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

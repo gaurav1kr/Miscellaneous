@@ -1,0 +1,38 @@
+{
+  "id": "703",
+  "title": "Kth Largest Element in a Stream",
+  "slug": "kth-largest-element-in-a-stream",
+  "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Tree",
+    "Design",
+    "Binary Search Tree",
+    "Heap (Priority Queue)",
+    "Binary Tree",
+    "Data Stream"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "Heap / Priority Queue",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You are part of a university admissions office and need to keep track of the kth highest test score from applicants in real-time. This helps to determine cut-off marks for interviews and admissions dynamically as new applicants submit their scores. \n \n You are tasked to implement a class which, for a given integer  k , maintains a stream of test scores and continuously returns the  k th highest test score  after  a new score has been submitted. More specifically, we are looking for the k th highest score in the sorted list of all scores. \n \n Implement the  KthLargest class: \n\n KthLargest(int k, int[] nums) Initializes the object with the integer k and the stream of test scores  nums . \n \n int add(int val) Adds a new test score  val to the stream and returns the element representing the k th largest element in the pool of test scores so far. \n\n Example 1: \n\n Input: \n [\"KthLargest\", \"add\", \"add\", \"add\", \"add\", \"add\"] \n[[3, [4, 5, 8, 2]], [3], [5], [10], [9], [4]] \n \n Output: [null, 4, 5, 5, 8, 8] \n \n Explanation: \n \n KthLargest kthLargest = new KthLargest(3, [4, 5, 8, 2]); \nkthLargest.add(3); // return 4 \nkthLargest.add(5); // return 5 \nkthLargest.add(10); // return 5 \nkthLargest.add(9); // return 8 \nkthLargest.add(4); // return 8 \n\n Example 2: \n\n Input: \n [\"KthLargest\", \"add\", \"add\", \"add\", \"add\"] \n[[4, [7, 7, 7, 7, 8, 3]], [2], [10], [9], [9]] \n \n Output: [null, 7, 7, 7, 8] \n \n Explanation: \nKthLargest kthLargest = new KthLargest(4, [7, 7, 7, 7, 8, 3]); \nkthLargest.add(2); // return 7 \nkthLargest.add(10); // return 7 \nkthLargest.add(9); // return 7 \nkthLargest.add(9); // return 8 \n\n Constraints: \n\n 0 <= nums.length <= 10 4 \n \n 1 <= k <= nums.length + 1 \n \n -10 4 <= nums[i] <= 10 4 \n \n -10 4 <= val <= 10 4 \n \n At most 10 4 calls will be made to add .",
+  "code": "class KthLargest {\n    priority_queue<int, vector<int>, greater<int>> minHeap;\n    int K;\npublic:\n    KthLargest(int k, vector<int>& nums) {\n        K = k;\n        for (int num : nums) add(num);\n    }\n    int add(int val) {\n        minHeap.push(val);\n        if (minHeap.size() > K) minHeap.pop();\n        return minHeap.top();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1588073939",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

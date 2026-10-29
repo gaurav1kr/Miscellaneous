@@ -1,0 +1,29 @@
+{
+  "id": "2214",
+  "title": "Minimum Health to Beat Game",
+  "slug": "minimum-health-to-beat-game",
+  "url": "https://leetcode.com/problems/minimum-health-to-beat-game/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Greedy"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are playing a game that has n levels numbered from 0 to n - 1 . You are given a 0-indexed integer array damage where damage[i] is the amount of health you will lose to complete the i th level. \n \n You are also given an integer armor . You may use your armor ability at most once during the game on any level which will protect you from at most armor damage. \n \n You must complete the levels in order and your health must be greater than 0 at all times to beat the game. \n \n Return the minimum health you need to start with to beat the game. \n\n Example 1: \n \n```\nInput:\n damage = [2,7,4,3], armor = 4\n\nOutput:\n 13\n\nExplanation:\n One optimal way to beat the game starting at 13 health is:\nOn round 1, take 2 damage. You have 13 - 2 = 11 health.\nOn round 2, take 7 damage. You have 11 - 7 = 4 health.\nOn round 3, use your armor to protect you from 4 damage. You have 4 - 0 = 4 health.\nOn round 4, take 3 damage. You have 4 - 3 = 1 health.\nNote that 13 is the minimum health you need to start with to beat the game.\n```\n\n Example 2: \n \n```\nInput:\n damage = [2,5,3,4], armor = 7\n\nOutput:\n 10\n\nExplanation:\n One optimal way to beat the game starting at 10 health is:\nOn round 1, take 2 damage. You have 10 - 2 = 8 health.\nOn round 2, use your armor to protect you from 5 damage. You have 8 - 0 = 8 health.\nOn round 3, take 3 damage. You have 8 - 3 = 5 health.\nOn round 4, take 4 damage. You have 5 - 4 = 1 health.\nNote that 10 is the minimum health you need to start with to beat the game.\n```\n\n Example 3: \n \n```\nInput:\n damage = [3,3,3], armor = 0\n\nOutput:\n 10\n\nExplanation:\n One optimal way to beat the game starting at 10 health is:\nOn round 1, take 3 damage. You have 10 - 3 = 7 health.\nOn round 2, take 3 damage. You have 7 - 3 = 4 health.\nOn round 3, take 3 damage. You have 4 - 3 = 1 health.\nNote that you did not use your armor ability.\n```\n\n Constraints: \n\n n == damage.length \n \n 1 <= n <= 10 5 \n \n 0 <= damage[i] <= 10 5 \n \n 0 <= armor <= 10 5",
+  "code": "class Solution {\npublic:\n    long long minimumHealth(vector<int>& damage, int armor) {\n        long long total = 1;\n        int maximum = 0;\n        for (int x : damage) { total += x; maximum = max(maximum, x); }\n        return total - min(maximum, armor);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178844573",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "582",
+  "title": "Kill Process",
+  "slug": "kill-process",
+  "url": "https://leetcode.com/problems/kill-process/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "You have n processes forming a rooted tree structure. You are given two integer arrays pid and ppid , where pid[i] is the ID of the i th process and ppid[i] is the ID of the i th process's parent process. \n \n Each process has only one parent process but may have multiple children processes. Only one process has ppid[i] = 0 , which means this process has no parent process (the root of the tree). \n \n When a process is killed , all of its children processes will also be killed. \n \n Given an integer kill representing the ID of a process you want to kill, return a list of the IDs of the processes that will be killed. You may return the answer in any order . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/02/24/ptree.jpg] \n \n```\nInput:\n pid = [1,3,10,5], ppid = [3,0,5,3], kill = 5\n\nOutput:\n [5,10]\n\nExplanation:\n The processes colored in red are the processes that should be killed.\n```\n\n Example 2: \n \n```\nInput:\n pid = [1], ppid = [0], kill = 1\n\nOutput:\n [1]\n```\n\n Constraints: \n\n n == pid.length \n \n n == ppid.length \n \n 1 <= n <= 5 * 10 4 \n \n 1 <= pid[i] <= 5 * 10 4 \n \n 0 <= ppid[i] <= 5 * 10 4 \n \n Only one process has no parent. \n \n All the values of pid are unique . \n \n kill is guaranteed to be in pid .",
+  "code": "class Solution {\npublic:\n    vector<int> killProcess(vector<int>& pid, vector<int>& ppid, int kill) {\n        unordered_map<int, vector<int>> children;\n        for (int i = 0; i < static_cast<int>(pid.size()); ++i) {\n            children[ppid[i]].push_back(pid[i]);\n        }\n        vector<int> result;\n        queue<int> q;\n        q.push(kill);\n        while (!q.empty()) {\n            int current = q.front();\n            q.pop();\n            result.push_back(current);\n            for (int child : children[current]) {\n                q.push(child);\n            }\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178484839",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

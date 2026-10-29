@@ -1,0 +1,35 @@
+{
+  "id": "1650",
+  "title": "Lowest Common Ancestor of a Binary Tree III",
+  "slug": "lowest-common-ancestor-of-a-binary-tree-iii",
+  "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "Two Pointers",
+    "Tree",
+    "Binary Tree",
+    "Binary Lifting",
+    "Lowest Common Ancestor"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Tree / Trie",
+    "Hashing / Frequency Counting"
+  ],
+  "data_structures": [
+    "Binary tree",
+    "Hash map / hash set",
+    "Tree adjacency list"
+  ],
+  "description": "Given two nodes of a binary tree p and q , return their lowest common ancestor (LCA) . \n \n Each node will have a reference to its parent node. The definition for Node is below: \n \n```\nclass Node {\n public int val;\n public Node left;\n public Node right;\n public Node parent;\n}\n```\n\n According to the definition of LCA on Wikipedia : \"The lowest common ancestor of two nodes p and q in a tree T is the lowest node that has both p and q as descendants (where we allow a node to be a descendant of itself ).\" \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2018/12/14/binarytree.png] \n \n```\nInput:\n root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1\n\nOutput:\n 3\n\nExplanation:\n The LCA of nodes 5 and 1 is 3.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2018/12/14/binarytree.png] \n \n```\nInput:\n root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4\n\nOutput:\n 5\n\nExplanation:\n The LCA of nodes 5 and 4 is 5 since a node can be a descendant of itself according to the LCA definition.\n```\n\n Example 3: \n \n```\nInput:\n root = [1,2], p = 1, q = 2\n\nOutput:\n 1\n```\n\n Constraints: \n\n The number of nodes in the tree is in the range [2, 10 5 ] . \n \n -10 9 <= Node.val <= 10 9 \n \n All Node.val are unique . \n \n p != q \n \n p and q exist in the tree.",
+  "code": "class Solution {\npublic:\n    Node* lowestCommonAncestor(Node* p, Node* q) {\n        Node* a = p;\n        Node* b = q;\n        while (a != b) {\n            a = a ? a->parent : q;\n            b = b ? b->parent : p;\n        }\n        return a;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178598610",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

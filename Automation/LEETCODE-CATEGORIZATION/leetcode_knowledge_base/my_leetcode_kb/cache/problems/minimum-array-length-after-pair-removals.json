@@ -1,0 +1,37 @@
+{
+  "id": "2856",
+  "title": "Minimum Array Length After Pair Removals",
+  "slug": "minimum-array-length-after-pair-removals",
+  "url": "https://leetcode.com/problems/minimum-array-length-after-pair-removals/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Binary Search",
+    "Greedy",
+    "Counting"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Binary Search / Answer Search",
+    "Greedy / Intervals",
+    "Hashing / Frequency Counting",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Vector"
+  ],
+  "description": "Given an integer array num sorted in non-decreasing order. \n \n You can perform the following operation any number of times: \n\n Choose two indices, i and j , where nums[i] < nums[j] . \n \n Then, remove the elements at indices i and j from nums . The remaining elements retain their original order, and the array is re-indexed. \n\n Return the minimum length of nums after applying the operation zero or more times. \n\n Example 1: \n\n Input: nums = [1,2,3,4] \n \n Output: 0 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/18/tcase1.gif] \n\n Example 2: \n\n Input: nums = [1,1,2,2,3,3] \n \n Output: 0 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/19/tcase2.gif] \n\n Example 3: \n\n Input: nums = [1000000000,1000000000] \n \n Output: 2 \n \n Explanation: \n \n Since both numbers are equal, they cannot be removed. \n\n Example 4: \n\n Input: nums = [2,3,4,4,4] \n \n Output: 1 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/19/tcase3.gif] \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 9 \n \n nums is sorted in non-decreasing order.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {public:int minLengthAfterRemovals(vector<int>& nums){int n=nums.size(),mx=1,cnt=0;for(int i=0;i<n;){int j=i;while(j<n&&nums[j]==nums[i])++j;mx=max(mx,j-i);i=j;}return max(n%2,2*mx-n);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176726218",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

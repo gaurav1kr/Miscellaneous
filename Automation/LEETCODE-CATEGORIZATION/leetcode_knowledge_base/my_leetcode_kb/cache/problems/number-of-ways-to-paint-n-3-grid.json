@@ -1,0 +1,27 @@
+{
+  "id": "1411",
+  "title": "Number of Ways to Paint N × 3 Grid",
+  "slug": "number-of-ways-to-paint-n-3-grid",
+  "url": "https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Dynamic Programming",
+    "Graph Coloring"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You have a grid of size n x 3 and you want to paint each cell of the grid with exactly one of the three colors: Red , Yellow, or Green while making sure that no two adjacent cells have the same color (i.e., no two cells that share vertical or horizontal sides have the same color). \n \n Given n the number of rows of the grid, return the number of ways you can paint this grid . As the answer may grow large, the answer must be computed modulo 10 9 + 7 . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/03/26/e1.png] \n \n```\nInput:\n n = 1\n\nOutput:\n 12\n\nExplanation:\n There are 12 possible way to paint the grid as shown.\n```\n\n Example 2: \n \n```\nInput:\n n = 5000\n\nOutput:\n 30228214\n```\n\n Constraints: \n\n n == grid.length \n \n 1 <= n <= 5000",
+  "code": "class Solution {\npublic:\n    int numOfWays(int n) {\n        const int MOD = 1e9 + 7;\n        long a = 6, b = 6;\n\n        for (int i = 2; i <= n; ++i) {\n            long aNew = (2 * a + 2 * b) % MOD;\n            long bNew = (2 * a + 3 * b) % MOD;\n            a = aNew;\n            b = bNew;\n        }\n\n        return (a + b) % MOD;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595370356",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

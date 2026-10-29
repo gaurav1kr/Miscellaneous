@@ -1,0 +1,30 @@
+{
+  "id": "2678",
+  "title": "Number of Senior Citizens",
+  "slug": "number-of-senior-citizens",
+  "url": "https://leetcode.com/problems/number-of-senior-citizens/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed array of strings details . Each element of details provides information about a given passenger compressed into a string of length 15 . The system is such that: \n\n The first ten characters consist of the phone number of passengers. \n \n The next character denotes the gender of the person. \n \n The following two characters are used to indicate the age of the person. \n \n The last two characters determine the seat allotted to that person. \n\n Return the number of passengers who are strictly more than 60 years old . \n\n Example 1: \n \n```\nInput:\n details = [\"7868190130M7522\",\"5303914400F9211\",\"9273338290F4010\"]\n\nOutput:\n 2\n\nExplanation:\n The passengers at indices 0, 1, and 2 have ages 75, 92, and 40. Thus, there are 2 people who are over 60 years old.\n```\n\n Example 2: \n \n```\nInput:\n details = [\"1313579440F2036\",\"2921522980M5644\"]\n\nOutput:\n 0\n\nExplanation:\n None of the passengers are older than 60.\n```\n\n Constraints: \n\n 1 <= details.length <= 100 \n \n details[i].length == 15 \n \n details[i] consists of digits from '0' to '9'. \n \n details[i][10] is either 'M' or 'F' or 'O'. \n \n The phone numbers and seat numbers of the passengers are distinct.",
+  "code": "class Solution {public:int countSeniors(vector<string>&details){int ans=0;for(const auto&s:details)if((s[11]-'0')*10+s[12]-'0'>60)ans++;return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176637456",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

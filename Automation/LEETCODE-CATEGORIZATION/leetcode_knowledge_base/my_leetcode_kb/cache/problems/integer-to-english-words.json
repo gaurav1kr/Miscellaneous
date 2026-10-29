@@ -1,0 +1,29 @@
+{
+  "id": "273",
+  "title": "Integer to English Words",
+  "slug": "integer-to-english-words",
+  "url": "https://leetcode.com/problems/integer-to-english-words/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "String",
+    "Recursion"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Math / Number Theory"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "Convert a non-negative integer num to its English words representation. \n\n Example 1: \n \n```\nInput:\n num = 123\n\nOutput:\n \"One Hundred Twenty Three\"\n```\n\n Example 2: \n \n```\nInput:\n num = 12345\n\nOutput:\n \"Twelve Thousand Three Hundred Forty Five\"\n```\n\n Example 3: \n \n```\nInput:\n num = 1234567\n\nOutput:\n \"One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven\"\n```\n\n Constraints: \n\n 0 <= num <= 2 31 - 1",
+  "code": "class Solution\n{\npublic:\n  string numberToWords (int num)\n  {\n    vector < int >numbers = {\n      1000000000, 1000000, 1000, 100, 90, 80, 70, 60, 50, 40, 30, 20,\n      19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1\n    };\n\n    vector < string > words = {\n      \"Billion\", \"Million\", \"Thousand\", \"Hundred\", \"Ninety\", \"Eighty\",\n      \"Seventy\", \"Sixty\", \"Fifty\", \"Forty\", \"Thirty\", \"Twenty\",\n      \"Nineteen\", \"Eighteen\", \"Seventeen\", \"Sixteen\", \"Fifteen\", \"Fourteen\",\n      \"Thirteen\", \"Twelve\", \"Eleven\", \"Ten\", \"Nine\", \"Eight\", \"Seven\",\n      \"Six\", \"Five\", \"Four\", \"Three\", \"Two\", \"One\"\n    };\n\n    string result;\n\n    for (int i = 0; i < 31; i++)\n      {\n\tif (num >= numbers[i])\n\t  {\n\t    if (num >= 100)\n\t      result += numberToWords (num / numbers[i]) + \" \" + words[i] + \" \";\n\t    else\n\t      result += words[i] + \" \";\n\n\t    num %= numbers[i];\n\n\t    if (num == 0)\n\t      break;\n\t  }\n      }\n\n    return result.empty ()? \"Zero\" : result.substr (0, result.size () - 1);\n  }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1366862209",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

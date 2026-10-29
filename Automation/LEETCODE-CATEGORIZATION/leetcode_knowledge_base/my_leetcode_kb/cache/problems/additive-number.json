@@ -1,0 +1,28 @@
+{
+  "id": "306",
+  "title": "Additive Number",
+  "slug": "additive-number",
+  "url": "https://leetcode.com/problems/additive-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Backtracking"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "An additive number is a string whose digits can form an additive sequence . \n \n A valid additive sequence should contain at least three numbers. Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two. \n \n Given a string containing only digits, return true if it is an additive number or false otherwise. \n \n Note: Numbers in the additive sequence cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid. \n\n Example 1: \n \n```\nInput:\n \"112358\"\n\nOutput:\n true\n\nExplanation:\n \nThe digits can form an additive sequence: 1, 1, 2, 3, 5, 8. \n1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8\n```\n\n Example 2: \n \n```\nInput:\n \"199100199\"\n\nOutput:\n true\n\nExplanation:\n \nThe additive sequence is: 1, 99, 100, 199. \n1 + 99 = 100, 99 + 100 = 199\n```\n\n Constraints: \n\n 1 <= num.length <= 35 \n \n num consists only of digits. \n\n Follow up: How would you handle overflow for very large input integers?",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isAdditiveNumber(string num) {\n        int n = num.size();\n        for (int i = 1; i <= n / 2; ++i) {\n            for (int j = 1; max(i, j) <= n - i - j; ++j) {\n                string a = num.substr(0, i);\n                string b = num.substr(i, j);\n                if ((a.size() > 1 && a[0] == '0') || (b.size() > 1 && b[0] == '0')) continue;\n\n                string sum = a + b;\n                while (sum.size() < num.size()) {\n                    string c = addStrings(a, b);\n                    sum += c;\n                    a = b;\n                    b = c;\n                }\n                if (sum == num) return true;\n            }\n        }\n        return false;\n    }\n\n    string addStrings(string a, string b) {\n        string res;\n        int i = a.size() - 1, j = b.size() - 1, carry = 0;\n        while (i >= 0 || j >= 0 || carry) {\n            int x = i >= 0 ? a[i--] - '0' : 0;\n            int y = j >= 0 ? b[j--] - '0' : 0;\n            int sum = x + y + carry;\n            res = char(sum % 10 + '0') + res;\n            carry = sum / 10;\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1595376873",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

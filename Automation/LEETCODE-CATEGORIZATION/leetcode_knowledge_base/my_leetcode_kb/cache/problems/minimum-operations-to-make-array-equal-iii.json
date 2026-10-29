@@ -1,0 +1,36 @@
+{
+  "id": "4005",
+  "title": "Minimum Operations to Make Array Equal III",
+  "slug": "minimum-operations-to-make-array-equal-iii",
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-array-equal-iii/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Math",
+    "Counting",
+    "Number Theory"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Vector"
+  ],
+  "description": "You are given an integer array nums . \n \n In one operation, you may choose any element nums[i] and perform one of the following: \n\n Multiply nums[i] by an integer k , where k >= 2 . \n \n Divide nums[i] by an integer k , where 2 <= k < nums[i] , provided that nums[i] is divisible by k . \n\n Return the minimum number of operations required to make all elements of nums equal . \n\n Example 1: \n\n Input: nums = [6,12,8] \n \n Output: 3 \n \n Explanation: \n \n We can perform following operates to make all numbers to 6: \n\n Divide nums[1] = 12 by 2 to get 6. \n \n Divide nums[2] = 8 by 4 to get 2. \n \n Multiply nums[2] = 2 by 3 to get 6. \n\n Example 2: \n\n Input: nums = [5,15,20] \n \n Output: 2 \n \n Explanation: \n \n We can perform following operates to make all numbers to 5: \n\n Divide nums[1] = 15 by 3 to get 5. \n \n Divide nums[2] = 20 by 4 to get 5. \n\n Example 3: \n\n Input: nums = [7,7,7] \n \n Output: 0 \n \n Explanation: \n \n All elements are already equal, so no operations are needed. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 ​​​​​​​9",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nclass Solution {\npublic:\n    long long minOperations(vector<int>& a){\n        int n=a.size();unordered_map<int,int>freq;for(int x:a)freq[x]++;\n        if(freq.size()==1)return 0;\n        vector<int>pr;\n        for(int i=2;i<=31623;i++){\n            bool ok=true;for(int p:pr){if(1LL*p*p>i)break;if(i%p==0){ok=false;break;}}\n            if(ok)pr.push_back(i);\n        }\n        unordered_map<int,int>multiple;\n        unordered_map<int,vector<int>>divs;\n        for(auto &it:freq){\n            int x=it.first,z=x;vector<pair<int,int>>f;\n            for(int p:pr){if(1LL*p*p>z)break;if(z%p==0){int e=0;while(z%p==0)z/=p,e++;f.push_back({p,e});}}\n            if(z>1)f.push_back({z,1});\n            vector<int>d(1,1);\n            for(auto &pe:f){int len=d.size(),mul=1;\n                for(int j=1;j<=pe.second;j++){mul*=pe.first;for(int k=0;k<len;k++)d.push_back(d[k]*mul);}\n            }\n            divs[x]=d;\n            for(int v:d)multiple[v]+=it.second;\n        }\n        long long ans=n;\n        for(auto &it:freq){\n            int x=it.first;if(x==1)continue;\n            long long dividing=0;\n            for(int d:divs[x])if(freq.count(d))dividing+=freq[d];\n            long long equal=it.second;\n            long long cost=2LL*n-multiple[x]-dividing;\n            // Equal elements were subtracted twice, but should cost zero.\n            ans=min(ans,cost);\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181553210",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

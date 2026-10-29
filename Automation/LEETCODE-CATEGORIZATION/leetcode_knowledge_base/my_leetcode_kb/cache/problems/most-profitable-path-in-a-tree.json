@@ -1,0 +1,36 @@
+{
+  "id": "2467",
+  "title": "Most Profitable Path in a Tree",
+  "slug": "most-profitable-path-in-a-tree",
+  "url": "https://leetcode.com/problems/most-profitable-path-in-a-tree/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Graph adjacency list",
+    "Queue",
+    "Tree adjacency list",
+    "Vector"
+  ],
+  "description": "There is an undirected tree with n nodes labeled from 0 to n - 1 , rooted at node 0 . You are given a 2D integer array edges of length n - 1 where edges[i] = [a i , b i ] indicates that there is an edge between nodes a i and b i in the tree. \n \n At every node i , there is a gate. You are also given an array of even integers amount , where amount[i] represents: \n\n the price needed to open the gate at node i , if amount[i] is negative, or, \n \n the cash reward obtained on opening the gate at node i , otherwise. \n\n The game goes on as follows: \n\n Initially, Alice is at node 0 and Bob is at node bob . \n \n At every second, Alice and Bob each move to an adjacent node. Alice moves towards some leaf node , while Bob moves towards node 0 . \n \n For every node along their path, Alice and Bob either spend money to open the gate at that node, or accept the reward. Note that:\n\n If the gate is already open , no price will be required, nor will there be any cash reward. \n \n If Alice and Bob reach the node simultaneously , they share the price/reward for opening the gate there. In other words, if the price to open the gate is c , then both Alice and Bob pay  c / 2 each. Similarly, if the reward at the gate is c , both of them receive c / 2 each. \n\n If Alice reaches a leaf node, she stops moving. Similarly, if Bob reaches node 0 , he stops moving. Note that these events are independent of each other. \n\n Return the maximum net income Alice can have if she travels towards the optimal leaf node. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/10/29/eg1.png] \n \n```\nInput:\n edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount = [-2,4,2,-4,6]\n\nOutput:\n 6\n\nExplanation:\n \nThe above diagram represents the given tree. The game goes as follows:\n- Alice is initially on node 0, Bob on node 3. They open the gates of their respective nodes.\n Alice's net income is now -2.\n- Both Alice and Bob move to node 1. \n  Since they reach here simultaneously, they open the gate together and share the reward.\n  Alice's net income becomes -2 + (4 / 2) = 0.\n- Alice moves on to node 3. Since Bob already opened its gate, Alice's income remains unchanged.\n  Bob moves on to node 0, and stops moving.\n- Alice moves on to node 4 and opens the gate there. Her net income becomes 0 + 6 = 6.\nNow, neither Alice nor Bob can make any further moves, and the game ends.\nIt is not possible for Alice to get a higher net income.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/10/29/eg2.png] \n \n```\nInput:\n edges = [[0,1]], bob = 1, amount = [-7280,2350]\n\nOutput:\n -7280\n\nExplanation:\n \nAlice follows the path 0->1 whereas Bob follows the path 1->0.\nThus, Alice opens the gate at node 0 only. Hence, her net income is -7280.\n```\n\n Constraints: \n\n 2 <= n <= 10 5 \n \n edges.length == n - 1 \n \n edges[i].length == 2 \n \n 0 <= a i , b i < n \n \n a i != b i \n \n edges represents a valid tree. \n \n 1 <= bob < n \n \n amount.length == n \n \n amount[i] is an even integer in the range [-10 4 , 10 4 ] .",
+  "code": "class Solution { public: int mostProfitablePath(vector<vector<int>>& edges,int bob,vector<int>& amount){int n=amount.size();vector<vector<int>>g(n);for(auto &e:edges){g[e[0]].push_back(e[1]);g[e[1]].push_back(e[0]);}vector<int>par(n,-1),depth(n);queue<int>q;q.push(0);par[0]=0;while(!q.empty()){int u=q.front();q.pop();for(int v:g[u])if(par[v]==-1){par[v]=u;depth[v]=depth[u]+1;q.push(v);}}vector<int>bt(n,INT_MAX);for(int t=0,u=bob;;++t){bt[u]=t;if(u==0)break;u=par[u];}function<int(int,int,int)>dfs=[&](int u,int p,int t){int gain=t<bt[u]?amount[u]:(t==bt[u]?amount[u]/2:0);int best=INT_MIN;for(int v:g[u])if(v!=p)best=max(best,dfs(v,u,t+1));return gain+(best==INT_MIN?0:best);};return dfs(0,-1,0);} };\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176576798",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

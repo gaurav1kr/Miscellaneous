@@ -1,0 +1,31 @@
+{
+  "id": "2761",
+  "title": "Prime Pairs With Target Sum",
+  "slug": "prime-pairs-with-target-sum",
+  "url": "https://leetcode.com/problems/prime-pairs-with-target-sum/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Enumeration",
+    "Number Theory"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given an integer n . We say that two integers x and y form a prime number pair if: \n\n 1 <= x <= y <= n \n \n x + y == n \n \n x and y are prime numbers \n\n Return the 2D sorted list of prime number pairs [x i , y i ] . The list should be sorted in increasing order of x i . If there are no prime number pairs at all, return an empty array . \n \n Note: A prime number is a natural number greater than 1 with only two factors, itself and 1 . \n\n Example 1: \n \n```\nInput:\n n = 10\n\nOutput:\n [[3,7],[5,5]]\n\nExplanation:\n In this example, there are two prime pairs that satisfy the criteria. \nThese pairs are [3,7] and [5,5], and we return them in the sorted order as described in the problem statement.\n```\n\n Example 2: \n \n```\nInput:\n n = 2\n\nOutput:\n []\n\nExplanation:\n We can show that there is no prime number pair that gives a sum of 2, so we return an empty array.\n```\n\n Constraints: \n\n 1 <= n <= 10 6",
+  "code": "class Solution {public: vector<vector<int>> findPrimePairs(int n) {vector<bool> prime(n+1,true); prime[0]=prime[1]=false; for(int p=2;p*p<=n;++p) if(prime[p]) for(int j=p*p;j<=n;j+=p) prime[j]=false; vector<vector<int>> ans; for(int a=2;a<=n/2;++a) if(prime[a]&&prime[n-a]) ans.push_back({a,n-a}); return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176693317",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

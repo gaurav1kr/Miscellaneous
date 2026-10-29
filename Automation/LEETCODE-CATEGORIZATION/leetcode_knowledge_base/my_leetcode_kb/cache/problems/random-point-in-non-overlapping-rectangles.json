@@ -1,0 +1,37 @@
+{
+  "id": "497",
+  "title": "Random Point in Non-overlapping Rectangles",
+  "slug": "random-point-in-non-overlapping-rectangles",
+  "url": "https://leetcode.com/problems/random-point-in-non-overlapping-rectangles/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Binary Search",
+    "Reservoir Sampling",
+    "Prefix Sum",
+    "Ordered Set",
+    "Randomized"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Prefix Sum / Difference Array",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "You are given an array of non-overlapping axis-aligned rectangles rects where rects[i] = [a i , b i , x i , y i ] indicates that (a i , b i ) is the bottom-left corner point of the i th rectangle and (x i , y i ) is the top-right corner point of the i th rectangle. Design an algorithm to pick a random integer point inside the space covered by one of the given rectangles. A point on the perimeter of a rectangle is included in the space covered by the rectangle. \n \n Any integer point inside the space covered by one of the given rectangles should be equally likely to be returned. \n \n Note that an integer point is a point that has integer coordinates. \n \n Implement the Solution class: \n\n Solution(int[][] rects) Initializes the object with the given rectangles rects . \n \n int[] pick() Returns a random integer point [u, v] inside the space covered by one of the given rectangles. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/07/24/lc-pickrandomrec.jpg] \n \n```\nInput\n\n[\"Solution\", \"pick\", \"pick\", \"pick\", \"pick\", \"pick\"]\n[[[[-2, -2, 1, 1], [2, 2, 4, 6]]], [], [], [], [], []]\n\nOutput\n\n[null, [1, -2], [1, -1], [-1, -2], [-2, -2], [0, 0]]\n\nExplanation\n\nSolution solution = new Solution([[-2, -2, 1, 1], [2, 2, 4, 6]]);\nsolution.pick(); // return [1, -2]\nsolution.pick(); // return [1, -1]\nsolution.pick(); // return [-1, -2]\nsolution.pick(); // return [-2, -2]\nsolution.pick(); // return [0, 0]\n```\n\n Constraints: \n\n 1 <= rects.length <= 100 \n \n rects[i].length == 4 \n \n -10 9 <= a i < x i <= 10 9 \n \n -10 9 <= b i < y i <= 10 9 \n \n x i - a i <= 2000 \n \n y i - b i <= 2000 \n \n All the rectangles do not overlap. \n \n At most 10 4 calls will be made to pick .",
+  "code": "#include <vector>\n#include <cstdlib>\n#include <ctime>\n\nusing namespace std;\n\nclass Solution {\n    vector<vector<int>> rects;\n    vector<int> areas;\n    int totalArea;\n\npublic:\n    Solution(vector<vector<int>>& rects) {\n        this->rects = rects;\n        totalArea = 0;\n        for (auto& r : rects) {\n            totalArea += (r[2] - r[0] + 1) * (r[3] - r[1] + 1);\n            areas.push_back(totalArea);\n        }\n        srand(time(NULL));\n    }\n\n    vector<int> pick() {\n        int val = rand() % totalArea;\n        int idx = lower_bound(areas.begin(), areas.end(), val + 1) - areas.begin();\n        auto& r = rects[idx];\n        int x = r[0] + rand() % (r[2] - r[0] + 1);\n        int y = r[1] + rand() % (r[3] - r[1] + 1);\n        return {x, y};\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1599283082",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

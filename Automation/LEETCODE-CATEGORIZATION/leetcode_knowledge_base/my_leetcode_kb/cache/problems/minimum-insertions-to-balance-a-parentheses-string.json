@@ -1,0 +1,32 @@
+{
+  "id": "1541",
+  "title": "Minimum Insertions to Balance a Parentheses String",
+  "slug": "minimum-insertions-to-balance-a-parentheses-string",
+  "url": "https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack",
+    "Greedy",
+    "Bracket Sequences"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String"
+  ],
+  "description": "You are given a parentheses string s containing only the characters '(' and ')' . A parentheses string is balanced if it can be formed using the following rules: \n\n The empty string is balanced. \n \n If A is balanced, then '(' + A + '))' is balanced. \n \n If A and B are balanced, then their concatenation is balanced. \n\n In other words, every left parenthesis '(' must have a corresponding pair of two consecutive right parentheses '))' that comes after it, and every right parenthesis must belong to exactly one such matching pair. \n \n For example, \"())\" , \"())(())))\" and \"(())())))\" are balanced, while \")()\" , \"()))\" and \"(()))\" are not balanced. \n \n You can insert the characters '(' and ')' at any position of the string to balance it if needed. \n \n Return the minimum number of insertions needed to make s balanced. \n\n Example 1: \n\n Input: s = \"(()))\" \n \n Output: 1 \n \n Explanation: \n \n The second '(' is matched with two consecutive ')' , but the first '(' has only one matching ')' . We need to insert one more ')' at the end to make the string \"(())))\" , which is balanced. \n\n Example 2: \n\n Input: s = \"())\" \n \n Output: 0 \n \n Explanation: \n \n The string is already balanced because its '(' is followed by two consecutive ')' , and both right parentheses belong to that matching pair. \n\n Example 3: \n\n Input: s = \"))())(\" \n \n Output: 3 \n \n Explanation: \n \n Insert '(' at the beginning to match the first '))' , and insert '))' at the end to match the last '(' . Three insertions are needed in total. \n\n Constraints: \n\n 1 <= s.length <= 10 5 \n \n s consists of '(' and ')' only.",
+  "code": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minInsertions(string s) {\n        int res = 0, need = 0;\n        for (char c : s) {\n            if (c == '(') {\n                need += 2;\n                if (need % 2) {\n                    res++;\n                    need--;\n                }\n            } else {\n                need--;\n                if (need < 0) {\n                    res++;\n                    need = 1;\n                }\n            }\n        }\n        return res + need;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1612877293",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

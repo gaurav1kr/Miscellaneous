@@ -1,0 +1,34 @@
+{
+  "id": "785",
+  "title": "Is Graph Bipartite?",
+  "slug": "is-graph-bipartite",
+  "url": "https://leetcode.com/problems/is-graph-bipartite/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Graph Theory",
+    "Graph Coloring",
+    "Bipartite Graph"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Queue",
+    "Vector"
+  ],
+  "description": "There is an undirected graph with n nodes, where each node is numbered between 0 and n - 1 . You are given a 2D array graph , where graph[u] is an array of nodes that node u is adjacent to. More formally, for each v in graph[u] , there is an undirected edge between node u and node v . The graph has the following properties: \n\n There are no self-edges ( graph[u] does not contain u ). \n \n There are no parallel edges ( graph[u] does not contain duplicate values). \n \n If v is in graph[u] , then u is in graph[v] (the graph is undirected). \n \n The graph may not be connected, meaning there may be two nodes u and v such that there is no path between them. \n\n A graph is bipartite if the nodes can be partitioned into two independent sets A and B such that every edge in the graph connects a node in set A and a node in set B . \n \n Return true if and only if it is bipartite . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/10/21/bi2.jpg] \n \n```\nInput:\n graph = [[1,2,3],[0,2],[0,1,3],[0,2]]\n\nOutput:\n false\n\nExplanation:\n There is no way to partition the nodes into two independent sets such that every edge connects a node in one and a node in the other.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2020/10/21/bi1.jpg] \n \n```\nInput:\n graph = [[1,3],[0,2],[1,3],[0,2]]\n\nOutput:\n true\n\nExplanation:\n We can partition the nodes into two sets: {0, 2} and {1, 3}.\n```\n\n Constraints: \n\n graph.length == n \n \n 1 <= n <= 100 \n \n 0 <= graph[u].length < n \n \n 0 <= graph[u][i] <= n - 1 \n \n graph[u]  does not contain  u . \n \n All the values of graph[u] are unique . \n \n If graph[u] contains v , then graph[v] contains u .",
+  "code": "class Solution {\npublic:\n    bool Ans(vector<vector<int>>& graph, vector<int>& vis, int i){\n        queue<int> q;\n        q.push(i);\n        vis[i]=0;\n        while(!q.empty()){\n            int curr =q.front();\n            q.pop();\n            for(auto& v: graph[curr]){\n                if(vis[v]==-1){\n                    q.push(v);\n                    vis[v] = !vis[curr];\n                }else{\n                    if(vis[v]==vis[curr]) return false;\n                }\n            }\n        }\n        return true;\n    }\n   \n    bool isBipartite(vector<vector<int>>& graph) {\n        int n = graph.size();\n        queue<int> q;\n        vector<int> vis(n,-1);\n        for(int i=0;i<n;i++){\n            if(vis[i]==-1){\n                if(Ans(graph,vis,i)==false) return false;\n            }\n        }\n        return true;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1535265814",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

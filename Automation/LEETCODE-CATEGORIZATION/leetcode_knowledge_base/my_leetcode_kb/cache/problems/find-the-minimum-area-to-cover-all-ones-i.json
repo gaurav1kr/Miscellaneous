@@ -1,0 +1,29 @@
+{
+  "id": "3195",
+  "title": "Find the Minimum Area to Cover All Ones I",
+  "slug": "find-the-minimum-area-to-cover-all-ones-i",
+  "url": "https://leetcode.com/problems/find-the-minimum-area-to-cover-all-ones-i/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Matrix"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "You are given a 2D binary array grid . Find a rectangle with horizontal and vertical sides with the smallest area, such that all the 1's in grid lie inside this rectangle. \n \n Return the minimum possible area of the rectangle. \n\n Example 1: \n\n Input: grid = [[0,1,0],[1,0,1]] \n \n Output: 6 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/08/examplerect0.png] \n \n The smallest rectangle has a height of 2 and a width of 3, so it has an area of 2 * 3 = 6 . \n\n Example 2: \n\n Input: grid = [[1,0],[0,0]] \n \n Output: 1 \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/05/08/examplerect1.png] \n \n The smallest rectangle has both height and width 1, so its area is 1 * 1 = 1 . \n\n Constraints: \n\n 1 <= grid.length, grid[i].length <= 1000 \n \n grid[i][j] is either 0 or 1. \n \n The input is generated such that there is at least one 1 in grid .",
+  "code": "class Solution {public:int minimumArea(vector<vector<int>>& grid){int loR=INT_MAX,hiR=-1,loC=INT_MAX,hiC=-1;for(int i=0;i<(int)grid.size();++i)for(int j=0;j<(int)grid[0].size();++j)if(grid[i][j]){loR=min(loR,i);hiR=max(hiR,i);loC=min(loC,j);hiC=max(hiC,j);}return (hiR-loR+1)*(hiC-loC+1);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177417950",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

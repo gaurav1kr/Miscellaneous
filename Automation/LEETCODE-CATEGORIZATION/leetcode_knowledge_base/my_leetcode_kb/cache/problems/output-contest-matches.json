@@ -1,0 +1,30 @@
+{
+  "id": "544",
+  "title": "Output Contest Matches",
+  "slug": "output-contest-matches",
+  "url": "https://leetcode.com/problems/output-contest-matches/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "String",
+    "Recursion",
+    "Simulation"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "String",
+    "Vector"
+  ],
+  "description": "During the NBA playoffs, we always set the rather strong team to play with the rather weak team, like making the rank 1 team play with the rank n th team, which is a good strategy to make the contest more interesting. \n \n Given n teams, return their final contest matches in the form of a string . \n \n The n teams are labeled from 1 to n , which represents their initial rank (i.e., Rank 1 is the strongest team and Rank n is the weakest team). \n \n We will use parentheses '(' , and ')' and commas ',' to represent the contest team pairing. We use the parentheses for pairing and the commas for partition. During the pairing process in each round, you always need to follow the strategy of making the rather strong one pair with the rather weak one. \n\n Example 1: \n \n```\nInput:\n n = 4\n\nOutput:\n \"((1,4),(2,3))\"\n\nExplanation:\n\nIn the first round, we pair the team 1 and 4, the teams 2 and 3 together, as we need to make the strong team and weak team together.\nAnd we got (1, 4),(2, 3).\nIn the second round, the winners of (1, 4) and (2, 3) need to play again to generate the final winner, so you need to add the paratheses outside them.\nAnd we got the final answer ((1,4),(2,3)).\n```\n\n Example 2: \n \n```\nInput:\n n = 8\n\nOutput:\n \"(((1,8),(4,5)),((2,7),(3,6)))\"\n\nExplanation:\n\nFirst round: (1, 8),(2, 7),(3, 6),(4, 5)\nSecond round: ((1, 8),(4, 5)),((2, 7),(3, 6))\nThird round: (((1, 8),(4, 5)),((2, 7),(3, 6)))\nSince the third round will generate the final winner, you need to output the answer (((1,8),(4,5)),((2,7),(3,6))).\n```\n\n Constraints: \n\n n == 2 x where x in in the range [1, 12] .",
+  "code": "class Solution {\npublic:\n    string findContestMatch(int n) {\n        vector<string> teams;\n        for (int i = 1; i <= n; ++i) {\n            teams.push_back(to_string(i));\n        }\n        while (teams.size() > 1) {\n            vector<string> next;\n            int size = teams.size();\n            for (int i = 0; i < size / 2; ++i) {\n                next.push_back(\"(\" + teams[i] + \",\" + teams[size - 1 - i] + \")\");\n            }\n            teams.swap(next);\n        }\n        return teams.front();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178479171",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

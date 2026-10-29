@@ -1,0 +1,25 @@
+{
+  "id": "829",
+  "title": "Consecutive Numbers Sum",
+  "slug": "consecutive-numbers-sum",
+  "url": "https://leetcode.com/problems/consecutive-numbers-sum/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Enumeration"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory"
+  ],
+  "data_structures": [],
+  "description": "Given an integer n , return the number of ways you can write n as the sum of consecutive positive integers. \n\n Example 1: \n \n```\nInput:\n n = 5\n\nOutput:\n 2\n\nExplanation:\n 5 = 2 + 3\n```\n\n Example 2: \n \n```\nInput:\n n = 9\n\nOutput:\n 3\n\nExplanation:\n 9 = 4 + 5 = 2 + 3 + 4\n```\n\n Example 3: \n \n```\nInput:\n n = 15\n\nOutput:\n 4\n\nExplanation:\n 15 = 8 + 7 = 4 + 5 + 6 = 1 + 2 + 3 + 4 + 5\n```\n\n Constraints: \n\n 1 <= n <= 10 9",
+  "code": "\n#include <cmath>\nusing namespace std;\n\nclass Solution {\npublic:\n    int consecutiveNumbersSum(int N) {\n        int result = 0;\n        \n        for (int k = 1; k * (k + 1) / 2 <= N; ++k) {\n            if ((N - k * (k + 1) / 2) % k == 0) result++;\n        }\n        \n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592352149",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

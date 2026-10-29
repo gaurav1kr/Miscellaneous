@@ -1,0 +1,39 @@
+{
+  "id": "1908",
+  "title": "Game of Nim",
+  "slug": "game-of-nim",
+  "url": "https://leetcode.com/problems/game-of-nim/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Brainteaser",
+    "Game Theory",
+    "Nim Game",
+    "Sprague–Grundy Theorem",
+    "Impartial Game"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "Alice and Bob take turns playing a game with Alice starting first . \n \n In this game, there are n piles of stones. On each player's turn, the player should remove any positive number of stones from a non-empty pile of his or her choice . The first player who cannot make a move loses, and the other player wins. \n \n Given an integer array piles , where piles[i] is the number of stones in the i th pile, return true if Alice wins, or false if Bob wins . \n \n Both Alice and Bob play optimally . \n\n Example 1: \n \n```\nInput:\n piles = [1]\n\nOutput:\n true\n\nExplanation:\n There is only one possible scenario:\n- On the first turn, Alice removes one stone from the first pile. piles = [0].\n- On the second turn, there are no stones left for Bob to remove. Alice wins.\n```\n\n Example 2: \n \n```\nInput:\n piles = [1,1]\n\nOutput:\n false\n\nExplanation:\n It can be proven that Bob will always win. One possible scenario is:\n- On the first turn, Alice removes one stone from the first pile. piles = [0,1].\n- On the second turn, Bob removes one stone from the second pile. piles = [0,0].\n- On the third turn, there are no stones left for Alice to remove. Bob wins.\n```\n\n Example 3: \n \n```\nInput:\n piles = [1,2,3]\n\nOutput:\n false\n\nExplanation:\n It can be proven that Bob will always win. One possible scenario is:\n- On the first turn, Alice removes three stones from the third pile. piles = [1,2,0].\n- On the second turn, Bob removes one stone from the second pile. piles = [1,1,0].\n- On the third turn, Alice removes one stone from the first pile. piles = [0,1,0].\n- On the fourth turn, Bob removes one stone from the second pile. piles = [0,0,0].\n- On the fifth turn, there are no stones left for Alice to remove. Bob wins.\n```\n\n Constraints: \n\n n == piles.length \n \n 1 <= n <= 7 \n \n 1 <= piles[i] <= 7 \n\n Follow-up: Could you find a linear time solution? Although the linear time solution may be beyond the scope of an interview, it could be interesting to know.",
+  "code": "class Solution {\npublic:\n    bool nimGame(vector<int>& piles) {\n        int value = 0;\n        for (int x : piles) {\n            value ^= x;\n        }\n        return value != 0;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178623164",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

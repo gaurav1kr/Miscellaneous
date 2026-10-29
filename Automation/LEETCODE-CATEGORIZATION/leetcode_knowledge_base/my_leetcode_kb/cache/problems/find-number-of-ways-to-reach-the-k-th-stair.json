@@ -1,0 +1,32 @@
+{
+  "id": "3154",
+  "title": "Find Number of Ways to Reach the K-th Stair",
+  "slug": "find-number-of-ways-to-reach-the-k-th-stair",
+  "url": "https://leetcode.com/problems/find-number-of-ways-to-reach-the-k-th-stair/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Math",
+    "Dynamic Programming",
+    "Bit Manipulation",
+    "Memoization",
+    "Combinatorics"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Math / Number Theory",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "DP array / memo table"
+  ],
+  "description": "You are given a non-negative integer k . There exists a staircase with an infinite number of stairs, with the lowest stair numbered 0. \n \n Alice has an integer jump , with an initial value of 0. She starts on stair 1 and wants to reach stair k using any number of operations . If she is on stair i , in one operation she can: \n\n Go down to stair i - 1 . This operation cannot be used consecutively or on stair 0. \n \n Go up to stair i + 2 jump . And then, jump becomes jump + 1 . \n\n Return the total number of ways Alice can reach stair k . \n \n Note that it is possible that Alice reaches the stair k , and performs some operations to reach the stair k again. \n\n Example 1: \n\n Input: k = 0 \n \n Output: 2 \n \n Explanation: \n \n The 2 possible ways of reaching stair 0 are: \n\n Alice starts at stair 1.\n\n Using an operation of the first type, she goes down 1 stair to reach stair 0. \n\n Alice starts at stair 1.\n\n Using an operation of the first type, she goes down 1 stair to reach stair 0. \n \n Using an operation of the second type, she goes up 2 0 stairs to reach stair 1. \n \n Using an operation of the first type, she goes down 1 stair to reach stair 0. \n\n Example 2: \n\n Input: k = 1 \n \n Output: 4 \n \n Explanation: \n \n The 4 possible ways of reaching stair 1 are: \n\n Alice starts at stair 1. Alice is at stair 1. \n \n Alice starts at stair 1.\n\n Using an operation of the first type, she goes down 1 stair to reach stair 0. \n \n Using an operation of the second type, she goes up 2 0 stairs to reach stair 1. \n\n Alice starts at stair 1.\n\n Using an operation of the second type, she goes up 2 0 stairs to reach stair 2. \n \n Using an operation of the first type, she goes down 1 stair to reach stair 1. \n\n Alice starts at stair 1.\n\n Using an operation of the first type, she goes down 1 stair to reach stair 0. \n \n Using an operation of the second type, she goes up 2 0 stairs to reach stair 1. \n \n Using an operation of the first type, she goes down 1 stair to reach stair 0. \n \n Using an operation of the second type, she goes up 2 1 stairs to reach stair 2. \n \n Using an operation of the first type, she goes down 1 stair to reach stair 1. \n\n Constraints: \n\n 0 <= k <= 10 9",
+  "code": "class Solution {long long choose(int n,int r){if(r<0||r>n)return 0;r=min(r,n-r);long long v=1;for(int i=1;i<=r;++i)v=v*(n-r+i)/i;return v;}\n public:int waysToReachStair(int k){long long ans=0;for(int j=0;j<=32;++j){long long down=(1LL<<j)-k;if(down>=0&&down<=j+1)ans+=choose(j+1,(int)down);}return (int)ans;}\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2177399992",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

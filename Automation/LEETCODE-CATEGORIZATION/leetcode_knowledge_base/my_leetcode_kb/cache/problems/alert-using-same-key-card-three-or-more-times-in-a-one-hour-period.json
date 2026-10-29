@@ -1,0 +1,38 @@
+{
+  "id": "1604",
+  "title": "Alert Using Same Key-Card Three or More Times in a One Hour Period",
+  "slug": "alert-using-same-key-card-three-or-more-times-in-a-one-hour-period",
+  "url": "https://leetcode.com/problems/alert-using-same-key-card-three-or-more-times-in-a-one-hour-period/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "LeetCode company workers use key-cards to unlock office doors. Each time a worker uses their key-card, the security system saves the worker's name and the time when it was used. The system emits an alert if any worker uses the key-card three or more times in a one-hour period. \n \n You are given a list of strings keyName and keyTime where [keyName[i], keyTime[i]] corresponds to a person's name and the time when their key-card was used in a single day . \n \n Access times are given in the 24-hour time format \"HH:MM\" , such as \"23:51\" and \"09:49\" . \n \n Return a list of unique worker names who received an alert for frequent keycard use . Sort the names in ascending order alphabetically . \n \n Notice that \"10:00\" - \"11:00\" is considered to be within a one-hour period, while \"22:51\" - \"23:52\" is not considered to be within a one-hour period. \n\n Example 1: \n \n```\nInput:\n keyName = [\"daniel\",\"daniel\",\"daniel\",\"luis\",\"luis\",\"luis\",\"luis\"], keyTime = [\"10:00\",\"10:40\",\"11:00\",\"09:00\",\"11:00\",\"13:00\",\"15:00\"]\n\nOutput:\n [\"daniel\"]\n\nExplanation:\n \"daniel\" used the keycard 3 times in a one-hour period (\"10:00\",\"10:40\", \"11:00\").\n```\n\n Example 2: \n \n```\nInput:\n keyName = [\"alice\",\"alice\",\"alice\",\"bob\",\"bob\",\"bob\",\"bob\"], keyTime = [\"12:01\",\"12:00\",\"18:00\",\"21:00\",\"21:20\",\"21:30\",\"23:00\"]\n\nOutput:\n [\"bob\"]\n\nExplanation:\n \"bob\" used the keycard 3 times in a one-hour period (\"21:00\",\"21:20\", \"21:30\").\n```\n\n Constraints: \n\n 1 <= keyName.length, keyTime.length <= 10 5 \n \n keyName.length == keyTime.length \n \n keyTime[i] is in the format \"HH:MM\" . \n \n [keyName[i], keyTime[i]] is unique . \n \n 1 <= keyName[i].length <= 10 \n \n keyName[i] contains only lowercase English letters.",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<string> alertNames(vector<string>& keyName, vector<string>& keyTime) {\n        unordered_map<string, vector<int>> times;\n        for (int i = 0; i < (int)keyName.size(); ++i) {\n            int minute = stoi(keyTime[i].substr(0, 2)) * 60 +\n                         stoi(keyTime[i].substr(3, 2));\n            times[keyName[i]].push_back(minute);\n        }\n        vector<string> ans;\n        for (auto& entry : times) {\n            auto& v = entry.second;\n            sort(v.begin(), v.end());\n            for (int i = 2; i < (int)v.size(); ++i) {\n                if (v[i] - v[i - 2] <= 60) {\n                    ans.push_back(entry.first); break;\n                }\n            }\n        }\n        sort(ans.begin(), ans.end());\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175756053",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "1799",
+  "title": "Maximize Score After N Operations",
+  "slug": "maximize-score-after-n-operations",
+  "url": "https://leetcode.com/problems/maximize-score-after-n-operations/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Math",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Number Theory",
+    "Bitmask"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Bitmask",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given nums , an array of positive integers of size 2 * n . You must perform n operations on this array. \n \n In the i th operation (1-indexed) , you will: \n\n Choose two elements, x and y . \n \n Receive a score of i * gcd(x, y) . \n \n Remove x and y from nums . \n\n Return the maximum score you can receive after performing n operations. \n \n The function gcd(x, y) is the greatest common divisor of x and y . \n\n Example 1: \n \n```\nInput:\n nums = [1,2]\n\nOutput:\n 1\n\nExplanation:\n The optimal choice of operations is:\n(1 * gcd(1, 2)) = 1\n```\n\n Example 2: \n \n```\nInput:\n nums = [3,4,6,8]\n\nOutput:\n 11\n\nExplanation:\n The optimal choice of operations is:\n(1 * gcd(3, 6)) + (2 * gcd(4, 8)) = 3 + 8 = 11\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3,4,5,6]\n\nOutput:\n 14\n\nExplanation:\n The optimal choice of operations is:\n(1 * gcd(1, 5)) + (2 * gcd(2, 4)) + (3 * gcd(3, 6)) = 1 + 4 + 9 = 14\n```\n\n Constraints: \n\n 1 <= n <= 7 \n \n nums.length == 2 * n \n \n 1 <= nums[i] <= 10 6",
+  "code": "class Solution {\nint gcdValue(int a,int b){while(b){int r=a%b;a=b;b=r;}return a;}\npublic:\n int maxScore(vector<int>& nums){\n  int n=nums.size(),full=(1<<n)-1;vector<int> dp(1<<n,-1);dp[0]=0;\n  for(int mask=0;mask<=full;++mask){if(dp[mask]<0)continue;\n   int step=__builtin_popcount((unsigned)mask)/2+1;\n   for(int i=0;i<n;++i)if(!(mask>>i&1))for(int j=i+1;j<n;++j)if(!(mask>>j&1)){\n    int next=mask|(1<<i)|(1<<j);\n    dp[next]=max(dp[next],dp[mask]+step*gcdValue(nums[i],nums[j]));\n   }\n  }return dp[full];\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175761384",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

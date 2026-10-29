@@ -1,0 +1,36 @@
+{
+  "id": "491",
+  "title": "Non-decreasing Subsequences",
+  "slug": "non-decreasing-subsequences",
+  "url": "https://leetcode.com/problems/non-decreasing-subsequences/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Hashing / Frequency Counting",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return all the different possible non-decreasing subsequences of the given array with at least two elements . You may return the answer in any order . \n\n Example 1: \n \n```\nInput:\n nums = [4,6,7,7]\n\nOutput:\n [[4,6],[4,6,7],[4,6,7,7],[4,7],[4,7,7],[6,7],[6,7,7],[7,7]]\n```\n\n Example 2: \n \n```\nInput:\n nums = [4,4,3,2,1]\n\nOutput:\n [[4,4]]\n```\n\n Constraints: \n\n 1 <= nums.length <= 15 \n \n -100 <= nums[i] <= 100",
+  "code": "#include <vector>\n#include <unordered_set>\nusing namespace std;\n\nclass Solution {\npublic:\n    void backtrack(vector<int>& nums, int index, vector<int>& current, vector<vector<int>>& result) {\n        if (current.size() >= 2) {\n            result.push_back(current);\n        }\n        unordered_set<int> used;\n\n        for (int i = index; i < nums.size(); i++) {\n            if ((current.empty() || nums[i] >= current.back()) && used.find(nums[i]) == used.end()) {\n                used.insert(nums[i]);\n                current.push_back(nums[i]);\n                backtrack(nums, i + 1, current, result);\n                current.pop_back();\n            }\n        }\n    }\n\n    vector<vector<int>> findSubsequences(vector<int>& nums) {\n        vector<vector<int>> result;\n        vector<int> current;\n        backtrack(nums, 0, current, result);\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590175009",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

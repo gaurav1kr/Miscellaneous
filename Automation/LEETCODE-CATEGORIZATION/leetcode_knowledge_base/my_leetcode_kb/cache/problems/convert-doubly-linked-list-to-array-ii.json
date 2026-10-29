@@ -1,0 +1,31 @@
+{
+  "id": "3294",
+  "title": "Convert Doubly Linked List to Array II",
+  "slug": "convert-doubly-linked-list-to-array-ii",
+  "url": "https://leetcode.com/problems/convert-doubly-linked-list-to-array-ii/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Linked List",
+    "Doubly-Linked List"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Linked list",
+    "Vector"
+  ],
+  "description": "You are given an arbitrary node from a doubly linked list , which contains nodes that have a next pointer and a previous pointer. \n \n Return an integer array which contains the elements of the linked list in order . \n\n Example 1: \n\n Input: head = [1,2,3,4,5], node = 5 \n \n Output: [1,2,3,4,5] \n\n Example 2: \n\n Input: head = [4,5,6,7,8], node = 8 \n \n Output: [4,5,6,7,8] \n\n Constraints: \n\n The number of nodes in the given list is in the range [1, 500] . \n \n 1 <= Node.val <= 1000 \n \n All nodes have unique Node.val .",
+  "code": "/* LeetCode supplies the doubly-linked-list Node definition. */\nclass Solution {\npublic:\n    vector<int> toArray(Node* node) {\n        if (!node) return {};\n        while (node->prev) node = node->prev;\n        vector<int> result;\n        while (node) {\n            result.push_back(node->val);\n            node = node->next;\n        }\n        return result;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178969303",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

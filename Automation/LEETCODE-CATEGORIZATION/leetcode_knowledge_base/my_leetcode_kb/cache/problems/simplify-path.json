@@ -1,0 +1,30 @@
+{
+  "id": "71",
+  "title": "Simplify Path",
+  "slug": "simplify-path",
+  "url": "https://leetcode.com/problems/simplify-path/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Stack"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Stack",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given an absolute path for a Unix-style file system, which always begins with a slash '/' . Your task is to transform this absolute path into its simplified canonical path . \n \n The rules of a Unix-style file system are as follows: \n\n A single period '.' represents the current directory. \n \n A double period '..' represents the previous/parent directory. \n \n Multiple consecutive slashes such as '//' and '///' are treated as a single slash '/' . \n \n Any sequence of periods that does not match the rules above should be treated as a valid directory or file name . For example, '...' and '....' are valid directory or file names. \n\n The simplified canonical path should follow these rules : \n\n The path must start with a single slash '/' . \n \n Directories within the path must be separated by exactly one slash '/' . \n \n The path must not end with a slash '/' , unless it is the root directory. \n \n The path must not have any single or double periods ( '.' and '..' ) used to denote current or parent directories. \n\n Return the simplified canonical path . \n\n Example 1: \n\n Input: path = \"/home/\" \n \n Output: \"/home\" \n \n Explanation: \n \n The trailing slash should be removed. \n\n Example 2: \n\n Input: path = \"/home//foo/\" \n \n Output: \"/home/foo\" \n \n Explanation: \n \n Multiple consecutive slashes are replaced by a single one. \n\n Example 3: \n\n Input: path = \"/home/user/Documents/../Pictures\" \n \n Output: \"/home/user/Pictures\" \n \n Explanation: \n \n A double period \"..\" refers to the directory up a level (the parent directory). \n\n Example 4: \n\n Input: path = \"/../\" \n \n Output: \"/\" \n \n Explanation: \n \n Going one level up from the root directory is not possible. \n\n Example 5: \n\n Input: path = \"/.../a/../b/c/../d/./\" \n \n Output: \"/.../b/d\" \n \n Explanation: \n \n \"...\" is a valid name for a directory in this problem. \n\n Constraints: \n\n 1 <= path.length <= 3000 \n \n path consists of English letters, digits, period '.' , slash '/' or '_' . \n \n path is a valid absolute Unix path.",
+  "code": "#include <string>\n#include <sstream>\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    string simplifyPath(string path) {\n        vector<string> stack;\n        stringstream ss(path);\n        string dir;\n        \n        while (getline(ss, dir, '/')) {\n            if (dir == \"..\") {\n                if (!stack.empty()) stack.pop_back();\n            } else if (!dir.empty() && dir != \".\") {\n                stack.push_back(dir);\n            }\n        }\n        \n        string result = \"/\";\n        for (int i = 0; i < stack.size(); i++) {\n            result += stack[i];\n            if (i < stack.size() - 1) result += \"/\";\n        }\n        return result;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1591370634",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

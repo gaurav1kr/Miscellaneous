@@ -1,0 +1,27 @@
+{
+  "id": "3339",
+  "title": "Find the Number of K-Even Arrays",
+  "slug": "find-the-number-of-k-even-arrays",
+  "url": "https://leetcode.com/problems/find-the-number-of-k-even-arrays/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given three integers n , m , and k . \n \n An array arr is called k-even if there are exactly k indices such that, for each of these indices i ( 0 <= i < n - 1 ): \n\n (arr[i] * arr[i + 1]) - arr[i] - arr[i + 1] is even . \n\n Return the number of possible k-even arrays of size n where all elements are in the range [1, m] . \n \n Since the answer may be very large, return it modulo 10 9 + 7 . \n\n Example 1: \n\n Input: n = 3, m = 4, k = 2 \n \n Output: 8 \n \n Explanation: \n \n The 8 possible 2-even arrays are: \n\n [2, 2, 2] \n \n [2, 2, 4] \n \n [2, 4, 2] \n \n [2, 4, 4] \n \n [4, 2, 2] \n \n [4, 2, 4] \n \n [4, 4, 2] \n \n [4, 4, 4] \n\n Example 2: \n\n Input: n = 5, m = 1, k = 0 \n \n Output: 1 \n \n Explanation: \n \n The only 0-even array is [1, 1, 1, 1, 1] . \n\n Example 3: \n\n Input: n = 7, m = 7, k = 5 \n \n Output: 5832 \n\n Constraints: \n\n 1 <= n <= 750 \n \n 0 <= k <= n - 1 \n \n 1 <= m <= 1000",
+  "code": "class Solution {\npublic:\n    int countOfArrays(int n, int m, int k) {\n        const int MOD = 1000000007;\n        long long evenChoices = m / 2, oddChoices = m - evenChoices;\n        vector<array<long long, 2>> dp(k + 1), next(k + 1);\n        dp[0] = {oddChoices, evenChoices};\n        for (int i = 1; i < n; ++i) {\n            fill(next.begin(), next.end(), array<long long, 2>{0, 0});\n            for (int j = 0; j <= k; ++j) {\n                next[j][0] = ((dp[j][0] + dp[j][1]) * oddChoices) % MOD;\n                next[j][1] = dp[j][0] * evenChoices % MOD;\n                if (j > 0) next[j][1] = (next[j][1] + dp[j - 1][1] * evenChoices) % MOD;\n            }\n            dp.swap(next);\n        }\n        return static_cast<int>((dp[k][0] + dp[k][1]) % MOD);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178973821",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

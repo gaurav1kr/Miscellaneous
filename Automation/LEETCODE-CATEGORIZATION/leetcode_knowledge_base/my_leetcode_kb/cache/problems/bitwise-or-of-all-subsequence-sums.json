@@ -1,0 +1,35 @@
+{
+  "id": "2505",
+  "title": "Bitwise OR of All Subsequence Sums",
+  "slug": "bitwise-or-of-all-subsequence-sums",
+  "url": "https://leetcode.com/problems/bitwise-or-of-all-subsequence-sums/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Bit Manipulation",
+    "Brainteaser",
+    "Prefix Sum"
+  ],
+  "primary_topic": "Prefix Sum / Difference Array",
+  "related_topics": [
+    "Prefix Sum / Difference Array",
+    "Math / Number Theory",
+    "Bit Manipulation",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Prefix-sum array",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return the value of the bitwise OR of the sum of all possible subsequences in the array . \n \n A subsequence is a sequence that can be derived from another sequence by removing zero or more elements without changing the order of the remaining elements. \n\n Example 1: \n \n```\nInput:\n nums = [2,1,0,3]\n\nOutput:\n 7\n\nExplanation:\n All possible subsequence sums that we can have are: 0, 1, 2, 3, 4, 5, 6.\nAnd we have 0 OR 1 OR 2 OR 3 OR 4 OR 5 OR 6 = 7, so we return 7.\n```\n\n Example 2: \n \n```\nInput:\n nums = [0,0,0]\n\nOutput:\n 0\n\nExplanation:\n 0 is the only possible subsequence sum we can have, so we return 0.\n```\n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 0 <= nums[i] <= 10 9",
+  "code": "class Solution {\npublic:\n    long long subsequenceSumOr(vector<int>& nums) {\n        long long ans=0, prefix=0;\n        for (int x:nums) {\n            prefix+=x;\n            ans|=x;\n            ans|=prefix;\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179700394",
+  "approach_summary": "Turn repeated range sums or range updates into constant-time arithmetic.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

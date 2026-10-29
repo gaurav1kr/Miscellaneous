@@ -1,0 +1,26 @@
+{
+  "id": "2937",
+  "title": "Make Three Strings Equal",
+  "slug": "make-three-strings-equal",
+  "url": "https://leetcode.com/problems/make-three-strings-equal/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given three strings: s1 , s2 , and s3 . In one operation you can choose one of these strings and delete its rightmost character. Note that you cannot completely empty a string. \n \n Return the minimum number of operations required to make the strings equal . If it is impossible to make them equal, return -1 . \n\n Example 1: \n\n Input: s1 = \"abc\", s2 = \"abb\", s3 = \"ab\" \n \n Output: 2 \n \n Explanation:  Deleting the rightmost character from both s1 and s2 will result in three equal strings. \n\n Example 2: \n\n Input: s1 = \"dac\", s2 = \"bac\", s3 = \"cac\" \n \n Output: -1 \n \n Explanation: Since the first letters of s1 and s2 differ, they cannot be made equal. \n\n Constraints: \n\n 1 <= s1.length, s2.length, s3.length <= 100 \n \n s1 , s2 and s3 consist only of lowercase English letters.",
+  "code": "class Solution{public:int findMinimumOperations(string s1,string s2,string s3){int n=min(s1.size(),min(s2.size(),s3.size())),i=0;while(i<n&&s1[i]==s2[i]&&s2[i]==s3[i])i++;return i==0?-1:(int)(s1.size()+s2.size()+s3.size()-3*i);}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176762066",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

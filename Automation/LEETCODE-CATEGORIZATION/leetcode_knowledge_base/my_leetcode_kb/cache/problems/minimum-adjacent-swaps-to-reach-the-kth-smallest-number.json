@@ -1,0 +1,30 @@
+{
+  "id": "1850",
+  "title": "Minimum Adjacent Swaps to Reach the Kth Smallest Number",
+  "slug": "minimum-adjacent-swaps-to-reach-the-kth-smallest-number",
+  "url": "https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Two Pointers",
+    "String",
+    "Greedy"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Greedy / Intervals",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a string num , representing a large integer, and an integer k . \n \n We call some integer wonderful if it is a permutation of the digits in num and is greater in value than num . There can be many wonderful integers. However, we only care about the smallest-valued ones. \n\n For example, when num = \"5489355142\" :\n\n The 1 st smallest wonderful integer is \"5489355214\" . \n \n The 2 nd smallest wonderful integer is \"5489355241\" . \n \n The 3 rd smallest wonderful integer is \"5489355412\" . \n \n The 4 th smallest wonderful integer is \"5489355421\" . \n\n Return the minimum number of adjacent digit swaps that needs to be applied to num to reach the k th smallest wonderful integer . \n \n The tests are generated in such a way that k th  smallest wonderful integer exists. \n\n Example 1: \n \n```\nInput:\n num = \"5489355142\", k = 4\n\nOutput:\n 2\n\nExplanation:\n The 4\nth\n smallest wonderful number is \"5489355421\". To get this number:\n- Swap index 7 with index 8: \"5489355\n14\n2\" -> \"5489355\n41\n2\"\n- Swap index 8 with index 9: \"54893554\n12\n\" -> \"54893554\n21\n\"\n```\n\n Example 2: \n \n```\nInput:\n num = \"11112\", k = 4\n\nOutput:\n 4\n\nExplanation:\n The 4\nth\n smallest wonderful number is \"21111\". To get this number:\n- Swap index 3 with index 4: \"111\n12\n\" -> \"111\n21\n\"\n- Swap index 2 with index 3: \"11\n12\n1\" -> \"11\n21\n1\"\n- Swap index 1 with index 2: \"1\n12\n11\" -> \"1\n21\n11\"\n- Swap index 0 with index 1: \"\n12\n111\" -> \"\n21\n111\"\n```\n\n Example 3: \n \n```\nInput:\n num = \"00123\", k = 1\n\nOutput:\n 1\n\nExplanation:\n The 1\nst\n smallest wonderful number is \"00132\". To get this number:\n- Swap index 3 with index 4: \"001\n23\n\" -> \"001\n32\n\"\n```\n\n Constraints: \n\n 2 <= num.length <= 1000 \n \n 1 <= k <= 1000 \n \n num only consists of digits.",
+  "code": "class Solution {public:int getMinSwaps(string num,int k){string target=num;while(k--)next_permutation(target.begin(),target.end());int ans=0,n=num.size();for(int i=0;i<n;++i){int j=i;while(num[j]!=target[i])++j;while(j>i){swap(num[j],num[j-1]);--j;++ans;}}return ans;}};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175763138",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

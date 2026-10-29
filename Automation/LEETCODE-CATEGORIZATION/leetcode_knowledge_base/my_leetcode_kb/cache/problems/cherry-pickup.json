@@ -1,0 +1,32 @@
+{
+  "id": "741",
+  "title": "Cherry Pickup",
+  "slug": "cherry-pickup",
+  "url": "https://leetcode.com/problems/cherry-pickup/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "You are given an n x n grid representing a field of cherries, each cell is one of three possible integers. \n\n 0 means the cell is empty, so you can pass through, \n \n 1 means the cell contains a cherry that you can pick up and pass through, or \n \n -1 means the cell contains a thorn that blocks your way. \n\n Return the maximum number of cherries you can collect by following the rules below : \n\n Starting at the position (0, 0) and reaching (n - 1, n - 1) by moving right or down through valid path cells (cells with value 0 or 1 ). \n \n After reaching (n - 1, n - 1) , returning to (0, 0) by moving left or up through valid path cells. \n \n When passing through a path cell containing a cherry, you pick it up, and the cell becomes an empty cell 0 . \n \n If there is no valid path between (0, 0) and (n - 1, n - 1) , then no cherries can be collected. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/12/14/grid.jpg] \n \n```\nInput:\n grid = [[0,1,-1],[1,0,-1],[1,1,1]]\n\nOutput:\n 5\n\nExplanation:\n The player started at (0, 0) and went down, down, right right to reach (2, 2).\n4 cherries were picked up during this single trip, and the matrix becomes [[0,1,-1],[0,0,-1],[0,0,0]].\nThen, the player went left, up, up, left to return home, picking up one more cherry.\nThe total number of cherries picked up is 5, and this is the maximum possible.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[1,1,-1],[1,-1,1],[-1,1,1]]\n\nOutput:\n 0\n```\n\n Constraints: \n\n n == grid.length \n \n n == grid[i].length \n \n 1 <= n <= 50 \n \n grid[i][j] is -1 , 0 , or 1 . \n \n grid[0][0] != -1 \n \n grid[n - 1][n - 1] != -1",
+  "code": "class Solution \n{\npublic:\n    int solve(vector<vector<int>>& grid,int r1,int c1,int r2,int c2,int n,vector<vector<vector<int>>>& dp)\n    {\n        int cherries=0;\n        if(r1>=n||r2>=n||c1>=n||c2>=n||grid[r1][c1]==-1||grid[r2][c2]==-1)\n        {\n            return INT_MIN;\n        }\n        if(r1==n-1&&c1==n-1) \n        {\n            return grid[r1][c1];\n        }\n        if(dp[r1][c1][r2]!=-1) \n        {\n            return dp[r1][c1][r2];\n        }\n       \n        if(r1==r2&&c1==c2)\n        {\n            cherries+=grid[r1][c1];\n        }\n        else\n        {\n            cherries+=grid[r1][c1];\n            cherries+=grid[r2][c2];\n        }\n        int f1=solve(grid,r1,c1+1,r2,c2+1,n,dp);\n        int f2=solve(grid,r1+1,c1,r2,c2+1,n,dp);\n        int f3=solve(grid,r1+1,c1,r2+1,c2,n,dp);\n        int f4=solve(grid,r1,c1+1,r2+1,c2,n,dp);\n        cherries+=max(max(f1,f2),max(f3,f4));\n        return dp[r1][c1][r2]=cherries;\n    }\n    int cherryPickup(vector<vector<int>>& grid) \n    {\n        int n=grid.size();\n        int r1=0,c1=0,r2=0,c2=0;\n        vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(n+1, vector<int>(n+1, -1)));\n        int ans=solve(grid,r1,c1,r2,c2,n,dp);\n        return max(0,ans);\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1412496910",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

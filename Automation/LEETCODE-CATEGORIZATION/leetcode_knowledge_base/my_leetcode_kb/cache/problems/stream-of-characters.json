@@ -1,0 +1,42 @@
+{
+  "id": "1032",
+  "title": "Stream of Characters",
+  "slug": "stream-of-characters",
+  "url": "https://leetcode.com/problems/stream-of-characters/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "String",
+    "Design",
+    "Trie",
+    "Data Stream",
+    "Aho–Corasick Algorithm"
+  ],
+  "primary_topic": "Tree / Trie",
+  "related_topics": [
+    "Tree / Trie",
+    "String Algorithms",
+    "Stack / Queue",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Deque",
+    "Hash map",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Design an algorithm that accepts a stream of characters and checks if a suffix of these characters is a string of a given array of strings words . \n \n For example, if words = [\"abc\", \"xyz\"]  and the stream added the four characters (one by one) 'a' , 'x' , 'y' , and 'z' , your algorithm should detect that the suffix \"xyz\" of the characters \"axyz\" matches \"xyz\" from words . \n \n Implement the StreamChecker class: \n\n StreamChecker(String[] words) Initializes the object with the strings array words . \n \n boolean query(char letter) Accepts a new character from the stream and returns true if any non-empty suffix from the stream forms a word that is in words . \n\n Example 1: \n \n```\nInput\n\n[\"StreamChecker\", \"query\", \"query\", \"query\", \"query\", \"query\", \"query\", \"query\", \"query\", \"query\", \"query\", \"query\", \"query\"]\n[[[\"cd\", \"f\", \"kl\"]], [\"a\"], [\"b\"], [\"c\"], [\"d\"], [\"e\"], [\"f\"], [\"g\"], [\"h\"], [\"i\"], [\"j\"], [\"k\"], [\"l\"]]\n\nOutput\n\n[null, false, false, false, true, false, true, false, false, false, false, false, true]\n\nExplanation\n\nStreamChecker streamChecker = new StreamChecker([\"cd\", \"f\", \"kl\"]);\nstreamChecker.query(\"a\"); // return False\nstreamChecker.query(\"b\"); // return False\nstreamChecker.query(\"c\"); // return False\nstreamChecker.query(\"d\"); // return True, because 'cd' is in the wordlist\nstreamChecker.query(\"e\"); // return False\nstreamChecker.query(\"f\"); // return True, because 'f' is in the wordlist\nstreamChecker.query(\"g\"); // return False\nstreamChecker.query(\"h\"); // return False\nstreamChecker.query(\"i\"); // return False\nstreamChecker.query(\"j\"); // return False\nstreamChecker.query(\"k\"); // return False\nstreamChecker.query(\"l\"); // return True, because 'kl' is in the wordlist\n```\n\n Constraints: \n\n 1 <= words.length <= 2000 \n \n 1 <= words[i].length <= 200 \n \n words[i] consists of lowercase English letters. \n \n letter is a lowercase English letter. \n \n At most 4 * 10 4 calls will be made to query.",
+  "code": "#include <vector>\n#include <string>\n#include <deque>\n#include <unordered_map>\n#include <unordered_set>\n\nusing namespace std;\n\nclass StreamChecker {\nprivate:\n    struct TrieNode {\n        unordered_map<char, TrieNode*> children;\n        bool isEnd = false;\n    };\n\n    TrieNode* root;\n    deque<char> stream;\n    size_t maxWordLen;  // Maximum word length\n\npublic:\n    StreamChecker(vector<string>& words) {\n        root = new TrieNode();\n        maxWordLen = 0;\n\n        // Remove duplicate words\n        unordered_set<string> uniqueWords(words.begin(), words.end());\n\n        // Insert words into the Trie in reverse order\n        for (const string& word : uniqueWords) {\n            TrieNode* node = root;\n            maxWordLen = max(maxWordLen, word.size());\n            for (int i = word.size() - 1; i >= 0; i--) {\n                if (!node->children.count(word[i])) {\n                    node->children[word[i]] = new TrieNode();\n                }\n                node = node->children[word[i]];\n            }\n            node->isEnd = true;\n        }\n    }\n\n    bool query(char letter) {\n        stream.push_front(letter);\n        if (stream.size() > maxWordLen) {\n            stream.pop_back();  // Keep the stream size within the longest word length\n        }\n\n        TrieNode* node = root;\n        for (char c : stream) {\n            if (!node->children.count(c)) return false;\n            node = node->children[c];\n            if (node->isEnd) return true;\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1590150479",
+  "approach_summary": "Hierarchical traversal, ancestor queries, prefix lookup, or range structure.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

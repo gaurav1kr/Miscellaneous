@@ -1,0 +1,33 @@
+{
+  "id": "76",
+  "title": "Minimum Window Substring",
+  "slug": "minimum-window-substring",
+  "url": "https://leetcode.com/problems/minimum-window-substring/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "primary_topic": "Sliding Window / Two Pointers",
+  "related_topics": [
+    "Sliding Window / Two Pointers",
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map",
+    "Hash map / hash set",
+    "Ordered map",
+    "String"
+  ],
+  "description": "Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t ( including duplicates ) is included in the window . If there is no such substring, return the empty string \"\" . \n \n The testcases will be generated such that the answer is unique . \n\n Example 1: \n \n```\nInput:\n s = \"ADOBECODEBANC\", t = \"ABC\"\n\nOutput:\n \"BANC\"\n\nExplanation:\n The minimum window substring \"BANC\" includes 'A', 'B', and 'C' from string t.\n```\n\n Example 2: \n \n```\nInput:\n s = \"a\", t = \"a\"\n\nOutput:\n \"a\"\n\nExplanation:\n The entire string s is the minimum window.\n```\n\n Example 3: \n \n```\nInput:\n s = \"a\", t = \"aa\"\n\nOutput:\n \"\"\n\nExplanation:\n Both 'a's from t must be included in the window.\nSince the largest window of s only has one 'a', return empty string.\n```\n\n Constraints: \n\n m == s.length \n \n n == t.length \n \n 1 <= m, n <= 10 5 \n \n s and t consist of uppercase and lowercase English letters. \n\n Follow up: Could you find an algorithm that runs in O(m + n) time?",
+  "code": "class Solution {\npublic:\n    string minWindow(string s, string t) {\n    if (s.size() < t.size()) return \"\";\n\n    unordered_map<char, int> freq;\n    for (char c : t) freq[c]++;\n\n    int left = 0, right = 0, minLen = INT_MAX, count = t.size(), start = 0;\n    \n    while (right < s.size()) {\n        if (freq[s[right]]-- > 0) count--; // Found a needed character\n        right++;\n\n        while (count == 0) { // Valid window\n            if (right - left < minLen) {\n                minLen = right - left;\n                start = left;\n            }\n            if (++freq[s[left]] > 0) count++; // Shrink from left\n            left++;\n        }\n    }\n    \n    return minLen == INT_MAX ? \"\" : s.substr(start, minLen);\n}\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1542469268",
+  "approach_summary": "Contiguous range with an invariant; advance boundaries without rescanning.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "2361",
+  "title": "Minimum Costs Using the Train Line",
+  "slug": "minimum-costs-using-the-train-line",
+  "url": "https://leetcode.com/problems/minimum-costs-using-the-train-line/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "DP array / memo table",
+    "Vector"
+  ],
+  "description": "A train line going through a city has two routes, the regular route and the express route. Both routes go through the same n + 1 stops labeled from 0 to n . Initially, you start on the regular route at stop 0 . \n \n You are given two 1-indexed integer arrays regular and express , both of length n . regular[i] describes the cost it takes to go from stop i - 1 to stop i using the regular route, and express[i] describes the cost it takes to go from stop i - 1 to stop i using the express route. \n \n You are also given an integer expressCost which represents the cost to transfer from the regular route to the express route. \n \n Note that: \n\n There is no cost to transfer from the express route back to the regular route. \n \n You pay expressCost every time you transfer from the regular route to the express route. \n \n There is no extra cost to stay on the express route. \n\n Return a 1-indexed array costs of length n , where costs[i] is the minimum cost to reach stop i from stop 0 . \n \n Note that a stop can be counted as reached from either route. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2022/07/25/ex1drawio.png] \n \n```\nInput:\n regular = [1,6,9,5], express = [5,2,3,10], expressCost = 8\n\nOutput:\n [1,7,14,19]\n\nExplanation:\n The diagram above shows how to reach stop 4 from stop 0 with minimum cost.\n- Take the regular route from stop 0 to stop 1, costing 1.\n- Take the express route from stop 1 to stop 2, costing 8 + 2 = 10.\n- Take the express route from stop 2 to stop 3, costing 3.\n- Take the regular route from stop 3 to stop 4, costing 5.\nThe total cost is 1 + 10 + 3 + 5 = 19.\nNote that a different route could be taken to reach the other stops with minimum cost.\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2022/07/25/ex2drawio.png] \n \n```\nInput:\n regular = [11,5,13], express = [7,10,6], expressCost = 3\n\nOutput:\n [10,15,24]\n\nExplanation:\n The diagram above shows how to reach stop 3 from stop 0 with minimum cost.\n- Take the express route from stop 0 to stop 1, costing 3 + 7 = 10.\n- Take the regular route from stop 1 to stop 2, costing 5.\n- Take the express route from stop 2 to stop 3, costing 3 + 6 = 9.\nThe total cost is 10 + 5 + 9 = 24.\nNote that the expressCost is paid again to transfer back to the express route.\n```\n\n Constraints: \n\n n == regular.length == express.length \n \n 1 <= n <= 10 5 \n \n 1 <= regular[i], express[i], expressCost <= 10 5",
+  "code": "class Solution {\npublic:\n    vector<long long> minimumCosts(vector<int>& regular, vector<int>& express, int expressCost) {\n        long long r = 0, e = expressCost;\n        vector<long long> answer;\n        for (int i = 0; i < (int)regular.size(); ++i) {\n            long long nr = min(r, e) + regular[i];\n            long long ne = min(e, r + expressCost) + express[i];\n            r = nr; e = ne;\n            answer.push_back(min(r, e));\n        }\n        return answer;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178863320",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

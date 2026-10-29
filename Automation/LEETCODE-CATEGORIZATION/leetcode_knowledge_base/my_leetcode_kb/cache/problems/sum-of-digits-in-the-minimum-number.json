@@ -1,0 +1,29 @@
+{
+  "id": "1085",
+  "title": "Sum of Digits in the Minimum Number",
+  "slug": "sum-of-digits-in-the-minimum-number",
+  "url": "https://leetcode.com/problems/sum-of-digits-in-the-minimum-number/",
+  "difficulty": "Easy",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math"
+  ],
+  "primary_topic": "Math / Number Theory",
+  "related_topics": [
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given an integer array nums , return 0 if the sum of the digits of the minimum integer in nums is odd, or 1 otherwise . \n\n Example 1: \n \n```\nInput:\n nums = [34,23,1,24,75,33,54,8]\n\nOutput:\n 0\n\nExplanation:\n The minimal element is 1, and the sum of those digits is 1 which is odd, so the answer is 0.\n```\n\n Example 2: \n \n```\nInput:\n nums = [99,77,33,66,55]\n\nOutput:\n 1\n\nExplanation:\n The minimal element is 33, and the sum of those digits is 3 + 3 = 6 which is even, so the answer is 1.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    int sumOfDigits(vector<int>& nums) {\n        int value = *min_element(nums.begin(), nums.end());\n        int sum = 0;\n        while (value > 0) {\n            sum += value % 10;\n            value /= 10;\n        }\n        return sum % 2 == 0 ? 1 : 0;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178524013",
+  "approach_summary": "Exploit arithmetic invariants, divisibility, or combinatorial counting.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

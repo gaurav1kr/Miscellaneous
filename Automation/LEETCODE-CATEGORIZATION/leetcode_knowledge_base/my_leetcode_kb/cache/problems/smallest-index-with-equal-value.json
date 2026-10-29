@@ -1,0 +1,27 @@
+{
+  "id": "2057",
+  "title": "Smallest Index With Equal Value",
+  "slug": "smallest-index-with-equal-value",
+  "url": "https://leetcode.com/problems/smallest-index-with-equal-value/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array"
+  ],
+  "primary_topic": "Simulation / Implementation",
+  "related_topics": [
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "Given a 0-indexed integer array nums , return the smallest index i of nums such that i mod 10 == nums[i] , or -1 if such index does not exist . \n \n x mod y denotes the remainder when x is divided by y . \n\n Example 1: \n \n```\nInput:\n nums = [0,1,2]\n\nOutput:\n 0\n\nExplanation:\n \ni=0: 0 mod 10 = 0 == nums[0].\ni=1: 1 mod 10 = 1 == nums[1].\ni=2: 2 mod 10 = 2 == nums[2].\nAll indices have i mod 10 == nums[i], so we return the smallest index 0.\n```\n\n Example 2: \n \n```\nInput:\n nums = [4,3,2,1]\n\nOutput:\n 2\n\nExplanation:\n \ni=0: 0 mod 10 = 0 != nums[0].\ni=1: 1 mod 10 = 1 != nums[1].\ni=2: 2 mod 10 = 2 == nums[2].\ni=3: 3 mod 10 = 3 != nums[3].\n2 is the only index which has i mod 10 == nums[i].\n```\n\n Example 3: \n \n```\nInput:\n nums = [1,2,3,4,5,6,7,8,9,0]\n\nOutput:\n -1\n\nExplanation:\n No index satisfies i mod 10 == nums[i].\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 0 <= nums[i] <= 9",
+  "code": "class Solution {\npublic:\n    int smallestEqual(vector<int>& nums){\n        for(int i=0;i<(int)nums.size();++i)if(i%10==nums[i])return i;\n        return -1;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175770903",
+  "approach_summary": "Directly model operations, states, and edge cases.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

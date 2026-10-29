@@ -1,0 +1,26 @@
+{
+  "id": "831",
+  "title": "Masking Personal Information",
+  "slug": "masking-personal-information",
+  "url": "https://leetcode.com/problems/masking-personal-information/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String"
+  ],
+  "primary_topic": "String Algorithms",
+  "related_topics": [
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given a personal information string s , representing either an email address or a phone number . Return the masked personal information using the below rules . \n \n Email address: \n \n An email address is: \n\n A name consisting of at least two uppercase and lowercase English letters, followed by \n \n The '@' symbol, followed by \n \n The domain consisting of uppercase and lowercase English letters with a dot '.' somewhere in the middle (not the first or last character). \n\n To mask an email: \n\n The uppercase letters in the name and domain must be converted to lowercase letters. \n \n The middle letters of the name (i.e., all but the first and last letters) must be replaced by 5 asterisks \"*****\" . \n\n Phone number: \n \n A phone number is formatted as follows: \n\n The phone number contains 10-13 digits. \n \n The last 10 digits make up the local number . \n \n The remaining 0-3 digits, in the beginning, make up the country code . \n \n Separation characters from the set {'+', '-', '(', ')', ' '} separate the above digits in some way. \n\n To mask a phone number: \n\n Remove all separation characters . \n \n The masked phone number should have the form:\n\n \"***-***-XXXX\" if the country code has 0 digits. \n \n \"+*-***-***-XXXX\" if the country code has 1 digit. \n \n \"+**-***-***-XXXX\" if the country code has 2 digits. \n \n \"+***-***-***-XXXX\" if the country code has 3 digits. \n\n \"XXXX\" is the last 4 digits of the local number . \n\n Example 1: \n \n```\nInput:\n s = \"LeetCode@LeetCode.com\"\n\nOutput:\n \"l*****e@leetcode.com\"\n\nExplanation:\n s is an email address.\nThe name and domain are converted to lowercase, and the middle of the name is replaced by 5 asterisks.\n```\n\n Example 2: \n \n```\nInput:\n s = \"AB@qq.com\"\n\nOutput:\n \"a*****b@qq.com\"\n\nExplanation:\n s is an email address.\nThe name and domain are converted to lowercase, and the middle of the name is replaced by 5 asterisks.\nNote that even though \"ab\" is 2 characters, it still must have 5 asterisks in the middle.\n```\n\n Example 3: \n \n```\nInput:\n s = \"1(234)567-890\"\n\nOutput:\n \"***-***-7890\"\n\nExplanation:\n s is a phone number.\nThere are 10 digits, so the local number is 10 digits and the country code is 0 digits.\nThus, the resulting masked number is \"***-***-7890\".\n```\n\n Constraints: \n\n s is either a valid email or a phone number. \n \n If s is an email:\n\n 8 <= s.length <= 40 \n \n s consists of uppercase and lowercase English letters and exactly one '@' symbol and '.' symbol. \n\n If s is a phone number:\n\n 10 <= s.length <= 20 \n \n s consists of digits, spaces, and the symbols '(' , ')' , '-' , and '+' .",
+  "code": "class Solution {\npublic:\n    string maskPII(string s) {\n        if (s.find('@') != string::npos) {\n            transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return tolower(c); });\n            int at = s.find('@');\n            return s.substr(0, 1) + \"*****\" + s.substr(at - 1, 1) + s.substr(at);\n        }\n        string digits;\n        for (char c : s) if (isdigit(c)) digits += c;\n        int country = (int)digits.size() - 10;\n        string result = country ? \"+\" + string(country, '*') + \"-\" : \"\";\n        return result + \"***-***-\" + digits.substr(digits.size() - 4);\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175742054",
+  "approach_summary": "Prefix/suffix structure, substring matching, or character constraints.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

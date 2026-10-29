@@ -1,0 +1,39 @@
+{
+  "id": "676",
+  "title": "Implement Magic Dictionary",
+  "slug": "implement-magic-dictionary",
+  "url": "https://leetcode.com/problems/implement-magic-dictionary/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Depth-First Search",
+    "Design",
+    "Trie"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Tree / Trie",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Stack / Queue"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String",
+    "Trie",
+    "Vector"
+  ],
+  "description": "Design a data structure that is initialized with a list of different words. Provided a string, you should determine if you can change exactly one character in this string to match any word in the data structure. \n \n Implement the  MagicDictionary  class: \n\n MagicDictionary()  Initializes the object. \n \n void buildDict(String[] dictionary)  Sets the data structure with an array of distinct strings dictionary . \n \n bool search(String searchWord) Returns true if you can change exactly one character in searchWord to match any string in the data structure, otherwise returns false . \n\n Example 1: \n \n```\nInput\n\n[\"MagicDictionary\", \"buildDict\", \"search\", \"search\", \"search\", \"search\"]\n[[], [[\"hello\", \"leetcode\"]], [\"hello\"], [\"hhllo\"], [\"hell\"], [\"leetcoded\"]]\n\nOutput\n\n[null, null, false, true, false, false]\n\nExplanation\n\nMagicDictionary magicDictionary = new MagicDictionary();\nmagicDictionary.buildDict([\"hello\", \"leetcode\"]);\nmagicDictionary.search(\"hello\"); // return False\nmagicDictionary.search(\"hhllo\"); // We can change the second 'h' to 'e' to match \"hello\" so we return True\nmagicDictionary.search(\"hell\"); // return False\nmagicDictionary.search(\"leetcoded\"); // return False\n```\n\n Constraints: \n\n 1 <= dictionary.length <= 100 \n \n 1 <= dictionary[i].length <= 100 \n \n dictionary[i] consists of only lower-case English letters. \n \n All the strings in  dictionary  are distinct . \n \n 1 <= searchWord.length <= 100 \n \n searchWord  consists of only lower-case English letters. \n \n buildDict  will be called only once before search . \n \n At most 100 calls will be made to search .",
+  "code": "\n#include <unordered_set>\nusing namespace std;\n\nclass MagicDictionary {\n    unordered_set<string> words;\n    \npublic:\n    MagicDictionary() {}\n\n    void buildDict(vector<string> dict) {\n        for (string word : dict) words.insert(word);\n    }\n\n    bool search(string searchWord) {\n        for (int i = 0; i < searchWord.size(); ++i) {\n            char original = searchWord[i];\n            for (char c = 'a'; c <= 'z'; ++c) {\n                if (c != original) {\n                    searchWord[i] = c;\n                    if (words.count(searchWord)) return true;\n                }\n            }\n            searchWord[i] = original;\n        }\n        return false;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1592347823",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

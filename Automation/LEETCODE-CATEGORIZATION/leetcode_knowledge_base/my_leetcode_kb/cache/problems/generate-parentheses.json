@@ -1,0 +1,33 @@
+{
+  "id": "22",
+  "title": "Generate Parentheses",
+  "slug": "generate-parentheses",
+  "url": "https://leetcode.com/problems/generate-parentheses/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bracket Sequences"
+  ],
+  "primary_topic": "Dynamic Programming",
+  "related_topics": [
+    "Dynamic Programming",
+    "Backtracking / Bitmask",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "DP array / memo table",
+    "String",
+    "Vector"
+  ],
+  "description": "Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses . \n\n Example 1: \n \n```\nInput:\n n = 3\n\nOutput:\n [\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]\n```\n \n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n [\"()\"]\n```\n\n Constraints: \n\n 1 <= n <= 8",
+  "code": "class Solution\n{\n    vector<string> str ;\npublic:\n    void brackets(string output, int open, int close, int pairs , int n)\n    {\n        if(open == pairs && close == pairs && (output.length() == 2*n))\n            str.push_back(output);\n        else\n        {\n            if(open<pairs)\n                    brackets(output+\"(\",open+1,close,pairs,n);\n            if(close<open)\n                    brackets(output+\")\",open,close+1,pairs,n);\n        }\n    }\n    vector<string> generateParenthesis(int n) \n    {\n         for(int i=1;i<=n;i++)\n         {\n            brackets(\"\",0,0,i,n);\n         }\n         return str ;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "341323281",
+  "approach_summary": "Overlapping subproblems; choose state, transition, base case, and order.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

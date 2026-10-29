@@ -1,0 +1,33 @@
+{
+  "id": "3167",
+  "title": "Better Compression of String",
+  "slug": "better-compression-of-string",
+  "url": "https://leetcode.com/problems/better-compression-of-string/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Hash Table",
+    "String",
+    "Sorting",
+    "Counting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Sorted array",
+    "String"
+  ],
+  "description": "You are given a string compressed representing a compressed version of a string. The format is a character followed by its frequency. For example, \"a3b1a1c2\" is a compressed version of the string \"aaabacc\" . \n \n We seek a better compression with the following conditions: \n\n Each character should appear only once in the compressed version. \n \n The characters should be in alphabetical order . \n\n Return the better compression of compressed . \n \n Note: In the better version of compression, the order of letters may change, which is acceptable. \n\n Example 1: \n\n Input: compressed = \"a3c9b2c1\" \n \n Output: \"a3b2c10\" \n \n Explanation: \n \n Characters \"a\" and \"b\" appear only once in the input, but \"c\" appears twice, once with a size of 9 and once with a size of 1. \n \n Hence, in the resulting string, it should have a size of 10. \n\n Example 2: \n\n Input: compressed = \"c2b3a1\" \n \n Output: \"a1b3c2\" \n\n Example 3: \n\n Input: compressed = \"a2b4c1\" \n \n Output: \"a2b4c1\" \n\n Constraints: \n\n 1 <= compressed.length <= 6 * 10 4 \n \n compressed consists only of lowercase English letters and digits. \n \n compressed is a valid compression, i.e., each character is followed by its frequency. \n \n Frequencies are in the range [1, 10 4 ] and have no leading zeroes.",
+  "code": "class Solution {\npublic:\n    string betterCompression(string compressed) {\n        long long count[26] = {};\n        for (int i = 0; i < (int)compressed.size();) {\n            int c = compressed[i++] - 'a';\n            long long x = 0;\n            while (i < (int)compressed.size() && isdigit(compressed[i]))\n                x = x * 10 + compressed[i++] - '0';\n            count[c] += x;\n        }\n        string ans;\n        for (int i = 0; i < 26; ++i) if (count[i])\n            ans += string(1, char('a' + i)) + to_string(count[i]);\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178954077",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

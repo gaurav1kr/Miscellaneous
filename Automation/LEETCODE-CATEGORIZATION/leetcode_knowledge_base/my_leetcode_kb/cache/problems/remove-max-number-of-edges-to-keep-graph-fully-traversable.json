@@ -1,0 +1,29 @@
+{
+  "id": "1579",
+  "title": "Remove Max Number of Edges to Keep Graph Fully Traversable",
+  "slug": "remove-max-number-of-edges-to-keep-graph-fully-traversable",
+  "url": "https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Union-Find",
+    "Graph Theory"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path"
+  ],
+  "data_structures": [
+    "Disjoint set union",
+    "Graph adjacency list",
+    "Vector"
+  ],
+  "description": "Alice and Bob have an undirected graph of n nodes and three types of edges: \n\n Type 1: Can be traversed by Alice only. \n \n Type 2: Can be traversed by Bob only. \n \n Type 3: Can be traversed by both Alice and Bob. \n\n Given an array edges where edges[i] = [type i , u i , v i ] represents a bidirectional edge of type type i between nodes u i and v i , find the maximum number of edges you can remove so that after removing the edges, the graph can still be fully traversed by both Alice and Bob. The graph is fully traversed by Alice and Bob if starting from any node, they can reach all other nodes. \n \n Return the maximum number of edges you can remove, or return -1 if Alice and Bob cannot fully traverse the graph. \n\n Example 1: \n \n [Figure: https://assets.leetcode.com/uploads/2020/08/19/ex1.png] \n \n```\nInput:\n n = 4, edges = [[3,1,2],[3,2,3],[1,1,3],[1,2,4],[1,1,2],[2,3,4]]\n\nOutput:\n 2\n\nExplanation: \nIf we remove the 2 edges [1,1,2] and [1,1,3]. The graph will still be fully traversable by Alice and Bob. Removing any additional edge will not make it so. So the maximum number of edges we can remove is 2.\n```\n\n Example 2: \n \n [Figure: https://assets.leetcode.com/uploads/2020/08/19/ex2.png] \n \n```\nInput:\n n = 4, edges = [[3,1,2],[3,2,3],[1,1,4],[2,1,4]]\n\nOutput:\n 0\n\nExplanation: \nNotice that removing any edge will not make the graph fully traversable by Alice and Bob.\n```\n\n Example 3: \n \n [Figure: https://assets.leetcode.com/uploads/2020/08/19/ex3.png] \n \n```\nInput:\n n = 4, edges = [[3,2,3],[1,1,2],[2,3,4]]\n\nOutput:\n -1\n\nExplanation: \nIn the current graph, Alice cannot reach node 4 from the other nodes. Likewise, Bob cannot reach 1. Therefore it's impossible to make the graph fully traversable.\n```\n\n Constraints: \n\n 1 <= n <= 10 5 \n \n 1 <= edges.length <= min(10 5 , 3 * n * (n - 1) / 2) \n \n edges[i].length == 3 \n \n 1 <= type i <= 3 \n \n 1 <= u i < v i <= n \n \n All tuples (type i , u i , v i ) are distinct.",
+  "code": "#include <vector>\n\nusing namespace std;\n\nclass UnionFind {\npublic:\n    vector<int> parent;\n    int count;\n\n    UnionFind(int n) : parent(n + 1), count(n) {\n        for (int i = 1; i <= n; ++i) parent[i] = i;\n    }\n\n    int find(int u) {\n        if (u != parent[u]) parent[u] = find(parent[u]);\n        return parent[u];\n    }\n\n    bool unite(int u, int v) {\n        int pu = find(u), pv = find(v);\n        if (pu == pv) return false;\n        parent[pu] = pv;\n        count--;\n        return true;\n    }\n};\n\nclass Solution {\npublic:\n    int maxNumEdgesToRemove(int n, vector<vector<int>>& edges) {\n        UnionFind alice(n), bob(n);\n        int used = 0;\n\n        for (auto& e : edges) {\n            if (e[0] == 3) {\n                bool a = alice.unite(e[1], e[2]);\n                bool b = bob.unite(e[1], e[2]);\n                if (a || b) used++;\n            }\n        }\n\n        for (auto& e : edges) {\n            if (e[0] == 1) {\n                if (alice.unite(e[1], e[2])) used++;\n            } else if (e[0] == 2) {\n                if (bob.unite(e[1], e[2])) used++;\n            }\n        }\n\n        return (alice.count == 1 && bob.count == 1) ? edges.size() - used : -1;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610560270",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

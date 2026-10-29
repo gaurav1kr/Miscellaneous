@@ -1,0 +1,27 @@
+{
+  "id": "2058",
+  "title": "Find the Minimum and Maximum Number of Nodes Between Critical Points",
+  "slug": "find-the-minimum-and-maximum-number-of-nodes-between-critical-points",
+  "url": "https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Linked List"
+  ],
+  "primary_topic": "Linked List / Pointers",
+  "related_topics": [
+    "Linked List / Pointers"
+  ],
+  "data_structures": [
+    "Linked list",
+    "Vector"
+  ],
+  "description": "A critical point in a linked list is defined as either a local maxima or a local minima . \n \n A node is a local maxima if the current node has a value strictly greater than the previous node and the next node. \n \n A node is a local minima if the current node has a value strictly smaller than the previous node and the next node. \n \n Note that a node can only be a local maxima/minima if there exists both a previous node and a next node. \n \n Given a linked list head , return an array of length 2 containing [minDistance, maxDistance] where minDistance is the minimum distance between any two distinct critical points and maxDistance is the maximum distance between any two distinct critical points. If there are fewer than two critical points, return [-1, -1] . \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2021/10/13/a1.png] \n \n```\nInput:\n head = [3,1]\n\nOutput:\n [-1,-1]\n\nExplanation:\n There are no critical points in [3,1].\n```\n\n Example 2: \n [Figure: https://assets.leetcode.com/uploads/2021/10/13/a2.png] \n \n```\nInput:\n head = [5,3,1,2,5,1,2]\n\nOutput:\n [1,3]\n\nExplanation:\n There are three critical points:\n- [5,3,\n1\n,2,5,1,2]: The third node is a local minima because 1 is less than 3 and 2.\n- [5,3,1,2,\n5\n,1,2]: The fifth node is a local maxima because 5 is greater than 2 and 1.\n- [5,3,1,2,5,\n1\n,2]: The sixth node is a local minima because 1 is less than 5 and 2.\nThe minimum distance is between the fifth and the sixth node. minDistance = 6 - 5 = 1.\nThe maximum distance is between the third and the sixth node. maxDistance = 6 - 3 = 3.\n```\n\n Example 3: \n [Figure: https://assets.leetcode.com/uploads/2021/10/14/a5.png] \n \n```\nInput:\n head = [1,3,2,2,3,2,2,2,7]\n\nOutput:\n [3,3]\n\nExplanation:\n There are two critical points:\n- [1,\n3\n,2,2,3,2,2,2,7]: The second node is a local maxima because 3 is greater than 1 and 2.\n- [1,3,2,2,\n3\n,2,2,2,7]: The fifth node is a local maxima because 3 is greater than 2 and 2.\nBoth the minimum and maximum distances are between the second and the fifth node.\nThus, minDistance and maxDistance is 5 - 2 = 3.\nNote that the last node is not considered a local maxima because it does not have a next node.\n```\n\n Constraints: \n\n The number of nodes in the list is in the range [2, 10 5 ] . \n \n 1 <= Node.val <= 10 5",
+  "code": "class Solution {\npublic:\n    vector<int> nodesBetweenCriticalPoints(ListNode* head){\n        int first=-1,last=-1,mn=INT_MAX,idx=1;\n        ListNode *prev=head,*cur=head->next;\n        while(cur&&cur->next){\n            if((cur->val>prev->val&&cur->val>cur->next->val)||\n               (cur->val<prev->val&&cur->val<cur->next->val)){\n                if(first==-1)first=idx;\n                if(last!=-1)mn=min(mn,idx-last);\n                last=idx;\n            }\n            prev=cur;cur=cur->next;++idx;\n        }\n        if(first==last)return {-1,-1};return {mn,last-first};\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175771064",
+  "approach_summary": "Rewire node links while preserving ownership and pointer invariants.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "2611",
+  "title": "Mice and Cheese",
+  "slug": "mice-and-cheese",
+  "url": "https://leetcode.com/problems/mice-and-cheese/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue / heap",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "There are two mice and n different types of cheese, each type of cheese should be eaten by exactly one mouse. \n \n A point of the cheese with index i ( 0-indexed ) is: \n\n reward1[i] if the first mouse eats it. \n \n reward2[i] if the second mouse eats it. \n\n You are given a positive integer array reward1 , a positive integer array reward2 , and a non-negative integer k . \n \n Return the maximum points the mice can achieve if the first mouse eats exactly k types of cheese. \n\n Example 1: \n \n```\nInput:\n reward1 = [1,1,3,4], reward2 = [4,4,1,1], k = 2\n\nOutput:\n 15\n\nExplanation:\n In this example, the first mouse eats the 2\nnd\n (0-indexed) and the 3\nrd\n types of cheese, and the second mouse eats the 0\nth\n and the 1\nst\n types of cheese.\nThe total points are 4 + 4 + 3 + 4 = 15.\nIt can be proven that 15 is the maximum total points that the mice can achieve.\n```\n\n Example 2: \n \n```\nInput:\n reward1 = [1,1], reward2 = [1,1], k = 2\n\nOutput:\n 2\n\nExplanation:\n In this example, the first mouse eats the 0\nth\n (0-indexed) and 1\nst\n types of cheese, and the second mouse does not eat any cheese.\nThe total points are 1 + 1 = 2.\nIt can be proven that 2 is the maximum total points that the mice can achieve.\n```\n\n Constraints: \n\n 1 <= n == reward1.length == reward2.length <= 10 5 \n \n 1 <= reward1[i], reward2[i] <= 1000 \n \n 0 <= k <= n",
+  "code": "class Solution {\npublic:\n int miceAndCheese(vector<int>& reward1, vector<int>& reward2, int k) {\n  int total=accumulate(reward2.begin(),reward2.end(),0);\n  vector<int> gain;\n  for(int i=0;i<(int)reward1.size();++i)gain.push_back(reward1[i]-reward2[i]);\n  sort(gain.rbegin(),gain.rend());\n  for(int i=0;i<k;++i)total+=gain[i];\n  return total;\n }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2176628426",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

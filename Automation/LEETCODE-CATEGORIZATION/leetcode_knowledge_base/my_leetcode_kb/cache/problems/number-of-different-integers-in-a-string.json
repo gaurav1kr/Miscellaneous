@@ -1,0 +1,31 @@
+{
+  "id": "1805",
+  "title": "Number of Different Integers in a String",
+  "slug": "number-of-different-integers-in-a-string",
+  "url": "https://leetcode.com/problems/number-of-different-integers-in-a-string/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Hash Table",
+    "String"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms"
+  ],
+  "data_structures": [
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered set",
+    "String"
+  ],
+  "description": "You are given a string word that consists of digits and lowercase English letters. \n \n You will replace every non-digit character with a space. For example, \"a123bc34d8ef34\" will become \" 123  34 8  34\" . Notice that you are left with some integers that are separated by at least one space: \"123\" , \"34\" , \"8\" , and \"34\" . \n \n Return the number of different integers after performing the replacement operations on word . \n \n Two integers are considered different if their decimal representations without any leading zeros are different. \n\n Example 1: \n \n```\nInput:\n word = \"a\n123\nbc\n34\nd\n8\nef\n34\n\"\n\nOutput:\n 3\n\nExplanation: \nThe three different integers are \"123\", \"34\", and \"8\". Notice that \"34\" is only counted once.\n```\n\n Example 2: \n \n```\nInput:\n word = \"leet\n1234\ncode\n234\n\"\n\nOutput:\n 2\n```\n\n Example 3: \n \n```\nInput:\n word = \"a\n1\nb\n01\nc\n001\n\"\n\nOutput:\n 1\n\nExplanation: \nThe three integers \"1\", \"01\", and \"001\" all represent the same integer because\nthe leading zeros are ignored when comparing their decimal values.\n```\n\n Constraints: \n\n 1 <= word.length <= 1000 \n \n word consists of digits and lowercase English letters.",
+  "code": "#include <string>\n#include <unordered_set>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int numDifferentIntegers(string word) {\n        unordered_set<string> nums;\n        int i = 0, n = word.size();\n        while (i < n) {\n            if (isdigit(word[i])) {\n                int j = i;\n                while (j < n && isdigit(word[j])) ++j;\n                while (i < j && word[i] == '0') ++i; // remove leading zeros\n                nums.insert(word.substr(i, j - i));\n                i = j;\n            } else {\n                ++i;\n            }\n        }\n        return nums.size();\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610638274",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

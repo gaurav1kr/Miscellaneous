@@ -1,0 +1,35 @@
+{
+  "id": "827",
+  "title": "Making A Large Island",
+  "slug": "making-a-large-island",
+  "url": "https://leetcode.com/problems/making-a-large-island/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union-Find",
+    "Matrix"
+  ],
+  "primary_topic": "Graph Traversal / Shortest Path",
+  "related_topics": [
+    "Graph Traversal / Shortest Path",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "2D array / matrix",
+    "Array / vector",
+    "Disjoint set union",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an n x n binary matrix grid . You are allowed to change at most one 0 to be 1 . \n \n Return the size of the largest island in grid after applying this operation . \n \n An island is a 4-directionally connected group of 1 s. \n\n Example 1: \n \n```\nInput:\n grid = [[1,0],[0,1]]\n\nOutput:\n 3\n\nExplanation:\n Change one 0 to 1 and connect two 1s, then we get an island with area = 3.\n```\n\n Example 2: \n \n```\nInput:\n grid = [[1,1],[1,0]]\n\nOutput:\n 4\n\nExplanation: \nChange the 0 to 1 and make the island bigger, only one island with area = 4.\n```\n\n Example 3: \n \n```\nInput:\n grid = [[1,1],[1,1]]\n\nOutput:\n 4\n\nExplanation:\n Can't change any 0 to 1, only one island with area = 4.\n```\n\n Constraints: \n\n n == grid.length \n \n n == grid[i].length \n \n 1 <= n <= 500 \n \n grid[i][j] is either 0 or 1 .",
+  "code": "class DisjointSet\n{\n    public:\n    vector<int>rank,parent,size;\n    DisjointSet(int n)\n\t{\n        rank.resize(n+1,0);\n        parent.resize(n+1);\n        size.resize(n+1);\n        for(int i=0;i<=n;i++)\n\t\t{\n            parent[i]=i;\n            size[i]=1;\n        } \n    }\n\n    int findUPar(int n)\n\t{\n        if(parent[n]==n) return n;\n        return parent[n]=findUPar(parent[n]);\n    }\n\n    void unionBySize(int u,int v)\n\t{\n        int ulp_u=findUPar(u);\n        int ulp_v=findUPar(v);\n        if(ulp_u==ulp_v) return ;\n        if(size[ulp_u]<size[ulp_v])\n\t\t{\n            parent[ulp_u]=ulp_v;\n            size[ulp_v]+=size[ulp_u];\n        } \n        else\n\t\t{\n            parent[ulp_v]=ulp_u;\n            size[ulp_u]+=size[ulp_v];\n        }\n    }\n};\n\nclass Solution \n{\npublic:\n    int largestIsland(vector<vector<int>>& grid) \n\t{\n        int n=grid.size();\n        DisjointSet ds(n*n);\n        int x[]={-1,0,1,0};\n        int y[]={0,1,0,-1};\n        for(int i=0;i<n;i++)\n\t\t{\n            for(int j=0;j<n;j++)\n\t\t\t{\n                if(grid[i][j]==1)\n\t\t\t\t{\n                    for(int k=0;k<4;k++)\n\t\t\t\t\t{\n                        int ni=i+x[k];\n                        int nj=j+y[k];\n                        if(ni>=0 && nj>=0 && ni<n && nj<n && grid[ni][nj]==1)\n\t\t\t\t\t\t{\n                            int adjNode=n*ni+nj;\n                            int parNode=n*i+j;\n                            if(ds.findUPar(parNode)!=ds.findUPar(adjNode))\n\t\t\t\t\t\t\t{\n                                ds.unionBySize(parNode,adjNode);\n                            }\n                        }\n                    }\n                }\n            }\n        }\n\n        int count=0;\n        for(int i=0;i<n;i++){\n            for(int j=0;j<n;j++)\n\t\t\t{\n                if( grid[i][j]==0)\n\t\t\t\t{\n                    set<int>s;\n                    for(int k=0;k<4;k++)\n\t\t\t\t\t{\n                        int ni=i+x[k];\n                        int nj=j+y[k];\n                        if(ni>=0 && nj>=0 && ni<n && nj<n && grid[ni][nj]==1)\n\t\t\t\t\t\t{\n                            int adjNode=n*ni+nj;\n                            int parAdjNode=ds.findUPar(adjNode);\n                            s.insert(parAdjNode);\n                        }\n                    }\n                   int totalSize=0;\n                   for(auto x:s)\n\t\t\t\t   {\n\t\t\t\t\t\ttotalSize+=ds.size[x];\n                   } \n                 count=max(count,totalSize+1);\n                }\n            }\n        }\n        \n        for(int i=0;i<n*n;i++)\n\t\t{\n            count=max(count,ds.size[ds.findUPar(i)]);\n        }\n        return count;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1372302000",
+  "approach_summary": "Reachability, connected components, dependencies, or minimum path.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

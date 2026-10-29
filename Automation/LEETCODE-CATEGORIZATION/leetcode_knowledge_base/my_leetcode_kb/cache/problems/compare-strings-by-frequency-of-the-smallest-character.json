@@ -1,0 +1,38 @@
+{
+  "id": "1170",
+  "title": "Compare Strings by Frequency of the Smallest Character",
+  "slug": "compare-strings-by-frequency-of-the-smallest-character",
+  "url": "https://leetcode.com/problems/compare-strings-by-frequency-of-the-smallest-character/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Binary Search",
+    "Sorting"
+  ],
+  "primary_topic": "Binary Search / Answer Search",
+  "related_topics": [
+    "Binary Search / Answer Search",
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "Let the function f(s) be the frequency of the lexicographically smallest character in a non-empty string s . For example, if s = \"dcce\" then f(s) = 2 because the lexicographically smallest character is 'c' , which has a frequency of 2. \n \n You are given an array of strings words and another array of query strings queries . For each query queries[i] , count the number of words in words such that f(queries[i]) < f(W) for each W in words . \n \n Return an integer array answer , where each answer[i] is the answer to the i th query . \n\n Example 1: \n \n```\nInput:\n queries = [\"cbd\"], words = [\"zaaaz\"]\n\nOutput:\n [1]\n\nExplanation:\n On the first query we have f(\"cbd\") = 1, f(\"zaaaz\") = 3 so f(\"cbd\") < f(\"zaaaz\").\n```\n\n Example 2: \n \n```\nInput:\n queries = [\"bbb\",\"cc\"], words = [\"a\",\"aa\",\"aaa\",\"aaaa\"]\n\nOutput:\n [1,2]\n\nExplanation:\n On the first query only f(\"bbb\") < f(\"aaaa\"). On the second query both f(\"aaa\") and f(\"aaaa\") are both > f(\"cc\").\n```\n\n Constraints: \n\n 1 <= queries.length <= 2000 \n \n 1 <= words.length <= 2000 \n \n 1 <= queries[i].length, words[i].length <= 10 \n \n queries[i][j] , words[i][j] consist of lowercase English letters.",
+  "code": "#include <vector>\n#include <string>\n#include <algorithm>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int f(string s) {\n        char minChar = *min_element(s.begin(), s.end());\n        return count(s.begin(), s.end(), minChar);\n    }\n\n    vector<int> numSmallerByFrequency(vector<string>& queries, vector<string>& words) {\n        vector<int> wFreq;\n        for (string& w : words)\n            wFreq.push_back(f(w));\n        sort(wFreq.begin(), wFreq.end());\n\n        vector<int> res;\n        for (string& q : queries) {\n            int fq = f(q);\n            int count = wFreq.end() - upper_bound(wFreq.begin(), wFreq.end(), fq);\n            res.push_back(count);\n        }\n        return res;\n    }\n};",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1610577707",
+  "approach_summary": "Monotone feasibility predicate or ordered search space.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

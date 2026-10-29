@@ -1,0 +1,30 @@
+{
+  "id": "51",
+  "title": "N-Queens",
+  "slug": "n-queens",
+  "url": "https://leetcode.com/problems/n-queens/",
+  "difficulty": "Hard",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Backtracking",
+    "Algorithm X"
+  ],
+  "primary_topic": "Backtracking / Bitmask",
+  "related_topics": [
+    "Backtracking / Bitmask",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Vector"
+  ],
+  "description": "The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other. \n \n Given an integer n , return all distinct solutions to the n-queens puzzle . You may return the answer in any order . \n \n Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space, respectively. \n\n Example 1: \n [Figure: https://assets.leetcode.com/uploads/2020/11/13/queens.jpg] \n \n```\nInput:\n n = 4\n\nOutput:\n [[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]\n\nExplanation:\n There exist two distinct solutions to the 4-queens puzzle as shown above\n```\n\n Example 2: \n \n```\nInput:\n n = 1\n\nOutput:\n [[\"Q\"]]\n```\n\n Constraints: \n\n 1 <= n <= 9",
+  "code": "class Solution {\npublic:\n    vector<vector<string>> solveNQueens(int n) {\n        vector<vector<string>> results;\n        vector<string> board(n, string(n, '.'));\n        vector<bool> columns(n, false), diag1(2 * n - 1, false), diag2(2 * n - 1, false);\n        solve(0, n, board, results, columns, diag1, diag2);\n        return results;\n    }\n\nprivate:\n    void solve(int row, int n, vector<string>& board, vector<vector<string>>& results, \n               vector<bool>& columns, vector<bool>& diag1, vector<bool>& diag2) {\n        if (row == n) {\n            results.push_back(board);\n            return;\n        }\n\n        for (int col = 0; col < n; ++col) {\n            int d1 = row - col + n - 1;\n            int d2 = row + col;\n            if (columns[col] || diag1[d1] || diag2[d2]) continue;\n\n            board[row][col] = 'Q';\n            columns[col] = diag1[d1] = diag2[d2] = true;\n\n            solve(row + 1, n, board, results, columns, diag1, diag2);\n\n            board[row][col] = '.';\n            columns[col] = diag1[d1] = diag2[d2] = false;\n        }\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "1539872210",
+  "approach_summary": "Enumerate choices while pruning; compress subsets as masks.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "2164",
+  "title": "Sort Even and Odd Indices Independently",
+  "slug": "sort-even-and-odd-indices-independently",
+  "url": "https://leetcode.com/problems/sort-even-and-odd-indices-independently/",
+  "difficulty": "Easy",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Sorting"
+  ],
+  "primary_topic": "Sorting / Divide and Conquer",
+  "related_topics": [
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Sorted array",
+    "Vector"
+  ],
+  "description": "You are given a 0-indexed integer array nums . Rearrange the values of nums according to the following rules: \n\n Sort the values at odd indices of nums in non-increasing order.\n\n For example, if nums = [4, 1 ,2, 3 ] before this step, it becomes [4, 3 ,2, 1 ] after. The values at odd indices 1 and 3 are sorted in non-increasing order. \n\n Sort the values at even indices of nums in non-decreasing order.\n\n For example, if nums = [ 4 ,1, 2 ,3] before this step, it becomes [ 2 ,1, 4 ,3] after. The values at even indices 0 and 2 are sorted in non-decreasing order. \n\n Return the array formed after rearranging the values of nums . \n\n Example 1: \n \n```\nInput:\n nums = [4,1,2,3]\n\nOutput:\n [2,3,4,1]\n\nExplanation:\n \nFirst, we sort the values present at odd indices (1 and 3) in non-increasing order.\nSo, nums changes from [4,\n1\n,2,\n3\n] to [4,\n3\n,2,\n1\n].\nNext, we sort the values present at even indices (0 and 2) in non-decreasing order.\nSo, nums changes from [\n4\n,1,\n2\n,3] to [\n2\n,3,\n4\n,1].\nThus, the array formed after rearranging the values is [2,3,4,1].\n```\n\n Example 2: \n \n```\nInput:\n nums = [2,1]\n\nOutput:\n [2,1]\n\nExplanation:\n \nSince there is exactly one odd index and one even index, no rearrangement of values takes place.\nThe resultant array formed is [2,1], which is the same as the initial array.\n```\n\n Constraints: \n\n 1 <= nums.length <= 100 \n \n 1 <= nums[i] <= 100",
+  "code": "class Solution {\npublic:\n    vector<int> sortEvenOdd(vector<int>& nums) {\n        vector<int> a,b;\n        for(int i=0;i<(int)nums.size();++i) (i%2?b:a).push_back(nums[i]);\n        sort(a.begin(),a.end());sort(b.rbegin(),b.rend());\n        for(int i=0;i<(int)nums.size();++i) nums[i]=(i%2?b[i/2]:a[i/2]);\n        return nums;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2175876858",
+  "approach_summary": "Order elements to expose structure or split into manageable halves.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

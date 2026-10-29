@@ -1,0 +1,35 @@
+{
+  "id": "3217",
+  "title": "Delete Nodes From Linked List Present in Array",
+  "slug": "delete-nodes-from-linked-list-present-in-array",
+  "url": "https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "Linked List"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "Linked List / Pointers",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map / hash set",
+    "Hash set",
+    "Linked list",
+    "Ordered set",
+    "Vector"
+  ],
+  "description": "You are given an array of integers nums and the head of a linked list. Return the head of the modified linked list after removing all nodes from the linked list that have a value that exists in nums . \n\n Example 1: \n\n Input: nums = [1,2,3], head = [1,2,3,4,5] \n \n Output: [4,5] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/11/linkedlistexample0.png] \n \n Remove the nodes with values 1, 2, and 3. \n\n Example 2: \n\n Input: nums = [1], head = [1,2,1,2,1,2] \n \n Output: [2,2,2] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/11/linkedlistexample1.png] \n \n Remove the nodes with value 1. \n\n Example 3: \n\n Input: nums = [5], head = [1,2,3,4] \n \n Output: [1,2,3,4] \n \n Explanation: \n \n [Figure: https://assets.leetcode.com/uploads/2024/06/11/linkedlistexample2.png] \n \n No node has value 5. \n\n Constraints: \n\n 1 <= nums.length <= 10 5 \n \n 1 <= nums[i] <= 10 5 \n \n All elements in nums are unique. \n \n The number of nodes in the given list is in the range [1, 10 5 ] . \n \n 1 <= Node.val <= 10 5 \n \n The input is generated such that there is at least one node in the linked list that has a value not present in nums .",
+  "code": "\nclass Solution {\npublic:\n    ListNode* modifiedList(vector<int>& nums, ListNode* head) {\n        unordered_set<int> toDelete(nums.begin(), nums.end());\n\n        ListNode dummy(0);\n        dummy.next = head;\n\n        ListNode* prev = &dummy;\n        ListNode* curr = head;\n\n        while (curr != nullptr) {\n            if (toDelete.count(curr->val)) {\n                // Unlink the node.\n                prev->next = curr->next;\n                curr = curr->next;\n            } else {\n                prev = curr;\n                curr = curr->next;\n            }\n        }\n\n        return dummy.next;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181650781",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

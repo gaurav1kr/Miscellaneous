@@ -1,0 +1,36 @@
+{
+  "id": "3506",
+  "title": "Find Time Required to Eliminate Bacterial Strains",
+  "slug": "find-time-required-to-eliminate-bacterial-strains",
+  "url": "https://leetcode.com/problems/find-time-required-to-eliminate-bacterial-strains/",
+  "difficulty": "Hard",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Math",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "Heap / Priority Queue",
+    "Math / Number Theory",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Priority queue",
+    "Priority queue / heap",
+    "Queue",
+    "Vector"
+  ],
+  "description": "You are given an integer array timeReq and an integer splitTime . \n \n In the microscopic world of the human body, the immune system faces an extraordinary challenge: combatting a rapidly multiplying bacterial colony that threatens the body's survival. \n \n Initially, only one white blood cell ( WBC ) is deployed to eliminate the bacteria. However, the lone WBC quickly realizes it cannot keep up with the bacterial growth rate. \n \n The WBC devises a clever strategy to fight the bacteria: \n\n The i th bacterial strain takes timeReq[i] units of time to be eliminated. \n \n A single WBC can eliminate only one bacterial strain. Afterwards, the WBC is exhausted and cannot perform any other tasks. \n \n A WBC can split itself into two WBCs, but this requires splitTime units of time. Once split, the two WBCs can work in parallel on eliminating the bacteria. \n \n Only one WBC can work on a single bacterial strain. Multiple WBCs cannot attack one strain in parallel. \n\n You must determine the minimum time required to eliminate all the bacterial strains. \n \n Note that the bacterial strains can be eliminated in any order. \n\n Example 1: \n\n Input: timeReq = [10,4,5], splitTime = 2 \n \n Output: 12 \n \n Explanation: \n \n The elimination process goes as follows: \n\n Initially, there is a single WBC. The WBC splits into 2 WBCs after 2 units of time. \n \n One of the WBCs eliminates strain 0 at a time t = 2 + 10 = 12. The other WBC splits again, using 2 units of time. \n \n The 2 new WBCs eliminate the bacteria at times t = 2 + 2 + 4 and t = 2 + 2 + 5 . \n\n Example 2: \n\n Input: timeReq = [10,4], splitTime = 5 \n \n Output: 15 \n \n Explanation: \n \n The elimination process goes as follows: \n\n Initially, there is a single WBC. The WBC splits into 2 WBCs after 5 units of time. \n \n The 2 new WBCs eliminate the bacteria at times t = 5 + 10 and t = 5 + 4 . \n\n Constraints: \n\n 2 <= timeReq.length <= 10 5 \n \n 1 <= timeReq[i] <= 10 9 \n \n 1 <= splitTime <= 10 9",
+  "code": "class Solution {\npublic:\n    long long minEliminationTime(vector<int>& timeReq, int splitTime) {\n        priority_queue<long long, vector<long long>, greater<long long>> pq;\n        for (int x : timeReq) pq.push(x);\n        while (pq.size() > 1) {\n            long long a = pq.top(); pq.pop();\n            long long b = pq.top(); pq.pop();\n            pq.push(max(a, b) + splitTime);\n        }\n        return pq.top();\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2179638999",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

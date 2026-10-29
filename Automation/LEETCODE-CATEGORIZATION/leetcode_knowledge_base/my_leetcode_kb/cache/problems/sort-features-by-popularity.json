@@ -1,0 +1,40 @@
+{
+  "id": "1772",
+  "title": "Sort Features by Popularity",
+  "slug": "sort-features-by-popularity",
+  "url": "https://leetcode.com/problems/sort-features-by-popularity/",
+  "difficulty": "Medium",
+  "premium": true,
+  "tags": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Sorting"
+  ],
+  "primary_topic": "Hashing / Frequency Counting",
+  "related_topics": [
+    "Hashing / Frequency Counting",
+    "String Algorithms",
+    "Sorting / Divide and Conquer",
+    "Simulation / Implementation"
+  ],
+  "data_structures": [
+    "Array / vector",
+    "Hash map",
+    "Hash map / hash set",
+    "Hash set",
+    "Ordered map",
+    "Ordered set",
+    "Sorted array",
+    "String",
+    "Vector"
+  ],
+  "description": "You are given a string array features where features[i] is a single word that represents the name of a feature of the latest product you are working on. You have made a survey where users have reported which features they like. You are given a string array responses , where each responses[i] is a string containing space-separated words. \n \n The popularity of a feature is the number of responses[i] that contain the feature. You want to sort the features in non-increasing order by their popularity. If two features have the same popularity, order them by their original index in features . Notice that one response could contain the same feature multiple times; this feature is only counted once in its popularity. \n \n Return the features in sorted order. \n\n Example 1: \n \n```\nInput:\n features = [\"cooler\",\"lock\",\"touch\"], responses = [\"i like cooler cooler\",\"lock touch cool\",\"locker like touch\"]\n\nOutput:\n [\"touch\",\"cooler\",\"lock\"]\n\nExplanation:\n appearances(\"cooler\") = 1, appearances(\"lock\") = 1, appearances(\"touch\") = 2. Since \"cooler\" and \"lock\" both had 1 appearance, \"cooler\" comes first because \"cooler\" came first in the features array.\n```\n\n Example 2: \n \n```\nInput:\n features = [\"a\",\"aa\",\"b\",\"c\"], responses = [\"a\",\"a aa\",\"a a a a a\",\"b a\"]\n\nOutput:\n [\"a\",\"aa\",\"b\",\"c\"]\n```\n\n Constraints: \n\n 1 <= features.length <= 10 4 \n \n 1 <= features[i].length <= 10 \n \n features contains no duplicates. \n \n features[i] consists of lowercase letters. \n \n 1 <= responses.length <= 10 2 \n \n 1 <= responses[i].length <= 10 3 \n \n responses[i] consists of lowercase letters and spaces. \n \n responses[i] contains no two consecutive spaces. \n \n responses[i] has no leading or trailing spaces.",
+  "code": "class Solution {\npublic:\n    vector<string> sortFeatures(vector<string>& features, vector<string>& responses) {\n        unordered_map<string, int> count;\n        for (const string& feature : features) count[feature] = 0;\n        for (const string& response : responses) {\n            istringstream in(response);\n            unordered_set<string> seen;\n            string word;\n            while (in >> word) {\n                if (count.count(word)) seen.insert(word);\n            }\n            for (const string& feature : seen) ++count[feature];\n        }\n        stable_sort(features.begin(), features.end(), [&](const string& a, const string& b) {\n            return count[a] > count[b];\n        });\n        return features;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2178610620",
+  "approach_summary": "Fast membership, duplicate detection, counting, or complement lookup.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}

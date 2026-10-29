@@ -1,0 +1,30 @@
+{
+  "id": "3849",
+  "title": "Maximum Bitwise XOR After Rearrangement",
+  "slug": "maximum-bitwise-xor-after-rearrangement",
+  "url": "https://leetcode.com/problems/maximum-bitwise-xor-after-rearrangement/",
+  "difficulty": "Medium",
+  "premium": false,
+  "tags": [
+    "String",
+    "Greedy",
+    "Bit Manipulation"
+  ],
+  "primary_topic": "Greedy / Intervals",
+  "related_topics": [
+    "Greedy / Intervals",
+    "String Algorithms",
+    "Bit Manipulation"
+  ],
+  "data_structures": [
+    "String"
+  ],
+  "description": "You are given two binary strings s and t ​​​​​​​, each of length n . \n \n You may rearrange the characters of t in any order, but s must remain unchanged . \n \n Return a binary string of length n representing the maximum integer value obtainable by taking the bitwise XOR of s and rearranged t . \n\n Example 1: \n\n Input: s = \"101\", t = \"011\" \n \n Output: \"110\" \n \n Explanation: \n\n One optimal rearrangement of t is \"011\" . \n \n The bitwise XOR of s and rearranged t is \"101\" XOR \"011\" = \"110\" , which is the maximum possible. \n\n Example 2: \n\n Input: s = \"0110\", t = \"1110\" \n \n Output: \"1101\" \n \n Explanation: \n\n One optimal rearrangement of t is \"1011\" . \n \n The bitwise XOR of s and rearranged t is \"0110\" XOR \"1011\" = \"1101\" , which is the maximum possible. \n\n Example 3: \n\n Input: s = \"0101\", t = \"1001\" \n \n Output: \"1111\" \n \n Explanation: \n\n One optimal rearrangement of t is \"1010\" . \n \n The bitwise XOR of s and rearranged t is \"0101\" XOR \"1010\" = \"1111\" , which is the maximum possible. \n\n Constraints: \n\n 1 <= n == s.length == t.length <= 2 * 10 5 \n \n s[i] and t[i] are either '0' or '1' .",
+  "code": "class Solution {\npublic:\n    string maximumXor(string s, string t) {\n        int zeros = count(t.begin(), t.end(), '0');\n        int ones = (int)t.size() - zeros;\n        string ans;\n        ans.reserve(s.size());\n        for (char c : s) {\n            if (c == '0') {\n                if (ones) { ans += '1'; --ones; }\n                else { ans += '0'; --zeros; }\n            } else {\n                if (zeros) { ans += '1'; --zeros; }\n                else { ans += '0'; --ones; }\n            }\n        }\n        return ans;\n    }\n};\n",
+  "code_source": "accepted_cpp_submission",
+  "submission_id": "2181064088",
+  "approach_summary": "Locally optimal choices with an exchange or ordering argument.",
+  "analysis_source": "topic-tag heuristic; NOT a verified per-solution explanation",
+  "time_complexity": "Needs manual or AI-assisted code analysis",
+  "space_complexity": "Needs manual or AI-assisted code analysis"
+}
