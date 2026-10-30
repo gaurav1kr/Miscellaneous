@@ -441,9 +441,11 @@ Contiguous range with an invariant; advance boundaries without rescanning.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(min(n, Σ)) for the hash table; O(n) for the by-value input copy
+
+**Complexity reasoning:** The right pointer visits each character once; average O(1) unordered_map lookups update the left boundary. The string parameter is copied, and at most Σ distinct characters are stored.
 
 ### Problem description
 
@@ -542,9 +544,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Manacher’s algorithm preprocesses the string and computes palindrome radii in amortized linear time. The transformed string and radius array each require linear storage.
 
 ### Problem description
 
@@ -659,9 +663,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The two pointers move inward on every iteration, so there are at most n−1 iterations and only scalar variables are used.
 
 ### Problem description
 
@@ -761,9 +767,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary, excluding O(n²) output
+
+**Complexity reasoning:** Sorting costs O(n log n), then each fixed first element runs a linear two-pointer scan. In-place std::sort uses O(log n) stack space; stored triplets can occupy O(n²).
 
 ### Problem description
 
@@ -890,9 +898,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorting is O(n log n); for each first element the two-pointer scan takes O(n). In-place std::sort uses O(log n) stack space.
 
 ### Problem description
 
@@ -988,9 +998,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary, excluding O(n³) output
+
+**Complexity reasoning:** Two nested fixed-index loops each run a two-pointer scan, giving cubic time after sorting. std::sort uses logarithmic stack space; stored quadruplets can be cubic.
 
 ### Problem description
 
@@ -1102,9 +1114,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The fast pointer advances n+1 steps and both pointers then traverse the list at most once; the dummy node and pointers use constant extra memory.
 
 ### Problem description
 
@@ -1215,9 +1229,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A read index scans the sorted array once while a write index overwrites duplicates in place.
 
 ### Problem description
 
@@ -1317,9 +1333,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass copies retained elements forward in the original array; only indices are stored.
 
 ### Problem description
 
@@ -1425,9 +1443,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(H·N) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H+N) for by-value string copies
+
+**Complexity reasoning:** std::string::find searches for a needle of length N in a haystack of length H; naive matching can compare O(H·N) characters in the worst case. Both strings are passed by value.
 
 ### Problem description
 
@@ -1498,9 +1518,11 @@ int strStr(string haystack, string needle) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·k + m·k) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m·k + r) excluding input copies
+
+**Complexity reasoning:** The m words of length k populate a hash table. Across k offsets, window boundaries advance through O(n/k) tokens each; creating/hashing each token costs O(k). Frequency maps store up to m words and r result indices are returned.
 
 ### Problem description
 
@@ -1622,9 +1644,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The pivot search, successor search, and suffix reversal each traverse at most n elements; all changes are in place.
 
 ### Problem description
 
@@ -1729,9 +1753,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One traversal counts nodes; another finds the new tail after reducing k modulo the length. The list links are modified in place.
 
 ### Problem description
 
@@ -1828,9 +1854,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The Dutch-national-flag pointers advance or retreat on every iteration; swaps modify the original vector.
 
 ### Problem description
 
@@ -1912,9 +1940,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(|s|+|t|) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(min(|t|, Σ)) for counts, plus O(|s|+|t|) parameter copies
+
+**Complexity reasoning:** The frequency map is built from t, and the right and left window pointers each move at most |s| steps. Hash operations are expected constant time; both input strings are passed by value.
 
 ### Problem description
 
@@ -2027,9 +2057,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single read pointer scans the array and a write pointer retains at most two copies of each value in place.
 
 ### Problem description
 
@@ -2137,9 +2169,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The outer traversal and inner duplicate-skipping loop together move the head pointer forward at most n times; existing nodes are relinked.
 
 ### Problem description
 
@@ -2225,9 +2259,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each list node is appended once to one of two partitions and the partitions are joined using constant pointers.
 
 ### Problem description
 
@@ -2328,9 +2364,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m+n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The merge writes from the end, moving at least one input pointer backward per iteration without allocating another array.
 
 ### Problem description
 
@@ -2438,9 +2476,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) for the by-value string copy; O(1) auxiliary
+
+**Complexity reasoning:** Both pointers only advance inward while skipping non-alphanumeric characters and comparing letters; the input string is passed by value.
 
 ### Problem description
 
@@ -2533,9 +2573,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Floyd’s slow and fast pointers traverse at most a linear number of nodes and use constant memory.
 
 ### Problem description
 
@@ -2646,9 +2688,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Floyd’s cycle detection and the subsequent walk to the cycle entrance each take at most linear time with two pointers.
 
 ### Problem description
 
@@ -2773,9 +2817,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Finding the midpoint, reversing the second half, and interleaving the halves each require a linear pass and relink nodes in place.
 
 ### Problem description
 
@@ -2896,9 +2942,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Merge sort splits the list recursively into halves and merges each level in linear total time. Merging relinks nodes in place, but recursion uses O(log n) stack frames.
 
 ### Problem description
 
@@ -3036,9 +3084,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each character is pushed and popped once from the stack; the temporary word and result strings together occupy linear space.
 
 ### Problem description
 
@@ -3161,9 +3211,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) for the by-value string copy; O(1) auxiliary
+
+**Complexity reasoning:** The sliding window adds each character once and removes it at most once. A fixed 256-element frequency array provides constant auxiliary storage.
 
 ### Problem description
 
@@ -3243,9 +3295,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(a+b)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The two list pointers each traverse at most the combined lengths of the lists before meeting or both reaching the end.
 
 ### Problem description
 
@@ -3410,9 +3464,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n+m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+m) for by-value strings and substrings
+
+**Complexity reasoning:** The common prefix is scanned once; if necessary, substr creates suffix copies and compares them, each taking linear time in the remaining lengths.
 
 ### Problem description
 
@@ -3497,9 +3553,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n+m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+m)
+
+**Complexity reasoning:** Each version string is parsed once into integer components, then the component vectors are compared. The vectors and by-value string parameters require linear storage.
 
 ### Problem description
 
@@ -3622,9 +3680,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The two pointers move toward each other on every unsuccessful comparison; only indices and a sum are stored.
 
 ### Problem description
 
@@ -3752,9 +3812,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) average per add; O(u) average per find
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(u)
+
+**Complexity reasoning:** Hash-map insertion is expected constant time; find scans up to u distinct keys and performs expected constant-time complement lookups.
 
 ### Problem description
 
@@ -3850,9 +3912,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Reverse the full character array, then reverse each word; each character participates in a constant number of swaps.
 
 ### Problem description
 
@@ -3936,9 +4000,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Generate each fixed-length 10-character substring and count it in a hash map, then scan distinct entries; substring length is constant.
 
 ### Problem description
 
@@ -4026,9 +4092,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Three in-place reversals each touch at most n elements.
 
 ### Problem description
 
@@ -4121,9 +4189,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n) initial digits plus O(1) bounded iterations
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Floyd cycle detection uses two integers; after the first digit-square transform, values are bounded for fixed-width integers.
 
 ### Problem description
 
@@ -4233,9 +4303,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Right pointer advances n times and left pointer advances at most n times while maintaining the running sum.
 
 ### Problem description
 
@@ -4329,9 +4401,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Single pass with expected constant-time hash lookups and updates; map may store one last index per distinct value.
 
 ### Problem description
 
@@ -4413,9 +4487,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log(min(n,k+1)))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(min(n,k+1))
+
+**Complexity reasoning:** Maintain an ordered set of at most k+1 recent values; erase, lower_bound and insert each cost logarithmic time.
 
 ### Problem description
 
@@ -4511,9 +4587,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Fast/slow traversal reverses the first half in place, then compares corresponding nodes; only pointers are stored.
 
 ### Problem description
 
@@ -4597,9 +4675,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected construction; O(a+b) per shortest query
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Constructor indexes n word positions in vectors; each query merges the two sorted occurrence lists of lengths a and b.
 
 ### Problem description
 
@@ -4694,9 +4774,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary, plus O(n) by-value input copy
+
+**Complexity reasoning:** Two pointers compare mirrored digits; the rotation lookup table has five entries, while num is passed by value.
 
 ### Problem description
 
@@ -4784,9 +4866,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N) construction; O(1) amortized per next/hasNext
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Constructor copies all N elements into its member matrix; skip advances across each empty/exhausted row only once overall.
 
 ### Problem description
 
@@ -4889,9 +4973,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Collect start and end times into separate arrays, sort both, and scan each at most once.
 
 ### Problem description
 
@@ -4976,9 +5062,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sorting stack (typical)
+
+**Complexity reasoning:** Sort then fix each first element and scan remaining pairs with two pointers; std::sort uses logarithmic stack space typically.
 
 ### Problem description
 
@@ -5080,9 +5168,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h+k)
+
+**Complexity reasoning:** In-order DFS visits at most n nodes, maintaining a deque of up to k values and recursion stack of height h; output copies up to k values.
 
 ### Problem description
 
@@ -5178,9 +5268,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan eliminates non-celebrities and a second scan verifies the candidate using constant-time knows calls.
 
 ### Problem description
 
@@ -5278,9 +5370,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass swaps each nonzero element into the next available prefix position.
 
 ### Problem description
 
@@ -5358,9 +5452,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Floyd tortoise-hare cycle detection traverses the implicit index graph using two pointers.
 
 ### Problem description
 
@@ -5463,9 +5559,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n) per addNum; O(1) per findMedian
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each insertion performs a constant number of binary-heap push/pop operations; the two heaps store all n values.
 
 ### Problem description
 
@@ -5577,9 +5675,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(min(n, alphabet size))
+
+**Complexity reasoning:** Sliding-window pointers each move at most n steps; hash-map counts track only characters currently in the window. Input string is passed by value (O(n) copy).
 
 ### Problem description
 
@@ -5664,9 +5764,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Swap characters from both ends toward the middle, mutating the input vector in place.
 
 ### Problem description
 
@@ -5735,9 +5837,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary, plus O(n) by-value input copy
+
+**Complexity reasoning:** Two pointers scan inward, checking membership in a fixed ten-vowel hash set; string is passed by value.
 
 ### Problem description
 
@@ -5811,9 +5915,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n+m) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+m)
+
+**Complexity reasoning:** Build a hash set from n values, scan m values, and store distinct matches in a second set and result vector.
 
 ### Problem description
 
@@ -5888,9 +5994,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n+m) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+m)
+
+**Complexity reasoning:** Count the first array in a hash map and scan the second; operator[] may also insert absent keys, and results can contain min(n,m) values.
 
 ### Problem description
 
@@ -5974,9 +6082,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Compare polynomial values at both ends and write one element per iteration into a new result array.
 
 ### Problem description
 
@@ -6076,9 +6186,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(|s|+|t|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(|s|+|t|) including by-value parameters
+
+**Complexity reasoning:** Advance through t once while matching s; both strings are passed by value and therefore copied.
 
 ### Problem description
 
@@ -6153,9 +6265,11 @@ bool isSubsequence(string s, string t) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2) worst case
+
+**Complexity reasoning:** Recursive splitting may scan progressively smaller substrings; helper takes string by value, copying the entire n-character string at each recursion level, yielding quadratic total copy memory along a depth-n path.
 
 ### Problem description
 
@@ -6244,9 +6358,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(|word|+|abbr|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(|word|+|abbr|) including by-value parameters
+
+**Complexity reasoning:** Single scan parses letters or digit runs in abbr, advancing word index without rescanning; both arguments are copied by value.
 
 ### Problem description
 
@@ -6376,9 +6492,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Single loop tracks the current arithmetic-run length and accumulates counts.
 
 ### Problem description
 
@@ -6465,9 +6583,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(min(n, alphabet size)) auxiliary, plus O(n) input copy
+
+**Complexity reasoning:** Each character is added once and left pointer advances at most n times; hash counts maintain the window, and s is passed by value.
 
 ### Problem description
 
@@ -6561,9 +6681,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary, O(n) output
+
+**Complexity reasoning:** Fixed 26-entry frequency arrays are compared for each of the n - m + 1 windows; result indices can occupy O(n) space.
 
 ### Problem description
 
@@ -6656,9 +6778,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) worst-case temporary
+
+**Complexity reasoning:** Repeated vector erase/insert shifts O(n) characters each; to_string creates a temporary representation of run lengths.
 
 ### Problem description
 
@@ -6812,9 +6936,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(g log g + s log s)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log g + log s) sorting stack
+
+**Complexity reasoning:** Both input vectors are sorted in place, followed by one two-pointer scan; sorting may use logarithmic stack space.
 
 ### Problem description
 
@@ -6905,9 +7031,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) amortized
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Floyd pointers traverse directed jumps; the cleanup pass zeros visited entries so each index is processed only a constant number of times amortized.
 
 ### Problem description
 
@@ -7047,9 +7175,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(min(n1, |s2| + 1) * |s1|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n1 + |s2|)
+
+**Complexity reasoning:** Each processed copy of s1 is scanned, stopping when a repeated s2 index is found; two arrays of n1 + 1 and a state map are allocated.
 
 ### Problem description
 
@@ -7154,9 +7284,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(h log h + t log t + h log t)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log h + log t) sorting stack
+
+**Complexity reasoning:** Sort houses and heaters, then binary-search the heater positions for each house.
 
 ### Problem description
 
@@ -7256,9 +7388,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + k)
+
+**Complexity reasoning:** The sorted vector of k values is maintained with linear-time insertions and erasures for every window; the result holds n - k + 1 medians.
 
 ### Problem description
 
@@ -7386,9 +7520,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each generated character is appended once to the vector; the read pointer moves forward.
 
 ### Problem description
 
@@ -7472,9 +7608,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Both window pointers only move forward, and the number of zeros is maintained incrementally.
 
 ### Problem description
 
@@ -7560,9 +7698,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m log m + m² L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m) auxiliary
+
+**Complexity reasoning:** Sort m string indices by length, then compare up to m candidates against m strings, each subsequence scan taking at most L characters.
 
 ### Problem description
 
@@ -7652,9 +7792,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d log d * L + d * |s|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log d + L) auxiliary
+
+**Complexity reasoning:** Sort d dictionary words using length and lexicographic comparisons (up to L characters), then scan s once per candidate; returned word is copied.
 
 ### Problem description
 
@@ -7739,9 +7881,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(u)
+
+**Complexity reasoning:** Build a hash map of frequencies, then inspect each of u distinct values with expected constant-time lookups.
 
 ### Problem description
 
@@ -7853,9 +7997,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Reverse at most k characters in each block of length 2k; the input string is passed and returned by value.
 
 ### Problem description
 
@@ -7932,9 +8078,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** Convert the integer to a d-digit string, find the next permutation, reverse a suffix, and parse the result.
 
 ### Problem description
 
@@ -8013,9 +8161,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** A single pass locates word boundaries and reverses each character once; the input string is passed by value.
 
 ### Problem description
 
@@ -8095,9 +8245,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(|s1| + |s2|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Count s1 and slide a fixed-size frequency window through s2, comparing two 26-element arrays each iteration.
 
 ### Problem description
 
@@ -8182,9 +8334,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(u)
+
+**Complexity reasoning:** Count all numbers in a hash map and inspect adjacent-key frequencies with expected constant-time lookups.
 
 ### Problem description
 
@@ -8272,9 +8426,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sorting stack
+
+**Complexity reasoning:** Sort in O(n log n), then run a two-pointer sweep for each possible largest side, taking O(n²) total.
 
 ### Problem description
 
@@ -8355,9 +8511,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(T log k) intended; implementation may be invalid
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k) heap
+
+**Complexity reasoning:** The min-heap stores up to k list entries; each iteration pops and pushes one item. The code checks j >= size rather than j + 1, so it may index past the end and has no valid general-case runtime guarantee.
 
 ### Problem description
 
@@ -8457,9 +8615,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(sqrt(c))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two pointers range from 0 to floor(sqrt(c)) and move inward one position each iteration.
 
 ### Problem description
 
@@ -8534,9 +8694,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Compute the first k-element sum, then update each subsequent window in constant time.
 
 ### Problem description
 
@@ -8620,9 +8782,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Expand from all 2n - 1 possible palindrome centers, potentially scanning O(n) positions per center.
 
 ### Problem description
 
@@ -8717,9 +8881,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** DFS visits each tree node at most once and stores values in a hash set; recursive stack may be O(n) for a skewed tree.
 
 ### Problem description
 
@@ -8796,9 +8962,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log k + k log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k) auxiliary plus O(k) output
+
+**Complexity reasoning:** Keep a max-heap of at most k candidates across n values, extract k elements, and sort the result.
 
 ### Problem description
 
@@ -8884,9 +9052,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Scan inward once; on the first mismatch, at most two linear palindrome checks are performed.
 
 ### Problem description
 
@@ -8977,9 +9147,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Prefix sums and best-left/best-right arrays are built with linear passes, followed by a linear enumeration of middle windows.
 
 ### Problem description
 
@@ -9091,9 +9263,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Track lengths of the current and previous runs of identical bits in one scan.
 
 ### Problem description
 
@@ -9177,9 +9351,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) intended
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** A sliding product window advances each pointer at most n times, assuming the usual positive inputs and k > 1; the code only checks k == 0, so k == 1 can cause division-by-zero/out-of-bounds behavior.
 
 ### Problem description
 
@@ -9266,9 +9442,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm + 1001²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1001²) member storage
+
+**Complexity reasoning:** The fixed 1001-by-1001 DP table is zeroed, then all n*m pairs are compared and matching suffix lengths updated.
 
 ### Problem description
 
@@ -9354,9 +9532,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + n log D)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sorting stack
+
+**Complexity reasoning:** Sort n numbers, then binary-search the distance range D; each rank computation uses a linear two-pointer sweep.
 
 ### Problem description
 
@@ -9469,9 +9649,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(RC·I), worst-case O((RC)²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC)
+
+**Complexity reasoning:** Each stabilization round scans the R×C board and creates a crush mask. I is the number of rounds; each successful round removes at least one candy, so I ≤ RC.
 
 ### Problem description
 
@@ -9593,9 +9775,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m + L)
+
+**Complexity reasoning:** For every character of s, the algorithm scans all m positions of t backward. The DP array uses m entries and the returned substring has length L.
 
 ### Problem description
 
@@ -9691,9 +9875,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two passes locate final character occurrences and create partition lengths; the result may contain O(n) entries, plus a fixed 26-element table.
 
 ### Problem description
 
@@ -9784,9 +9970,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Filtering the two strings and checking their non-X characters each take linear time; the filtered strings require linear space.
 
 ### Problem description
 
@@ -9919,9 +10107,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** All n(n−1)/2 fractions are examined, maintaining a max-heap of at most k fractions.
 
 ### Problem description
 
@@ -10023,9 +10213,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The count helper makes one scan for each of two bounds, keeping only counters.
 
 ### Problem description
 
@@ -10109,9 +10301,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(W·|s| + Σ|w|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** For each of W words, isStretchy advances through runs of s and that word without backtracking; no extra collections are allocated.
 
 ### Problem description
 
@@ -10216,9 +10410,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two directional scans update the nearest occurrence distance in an n-element output vector.
 
 ### Problem description
 
@@ -10304,9 +10500,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorting takes O(n log n), and two binary searches are performed for each age; in-place sorting may use logarithmic stack space.
 
 ### Problem description
 
@@ -10419,9 +10617,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(J log J + W log W)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(J + log W)
+
+**Complexity reasoning:** Build and sort J job pairs, sort W workers, then sweep both once; job pairs occupy O(J) storage.
 
 ### Problem description
 
@@ -10522,9 +10722,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(RC)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each image element is reversed and inverted once in place; returning the image by value may require O(RC) output storage.
 
 ### Problem description
 
@@ -10612,9 +10814,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A single pass maintains a constant-time sliding probability sum and fills an n+1 DP array.
 
 ### Problem description
 
@@ -10719,9 +10923,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Left-to-right and right-to-left force passes each scan n positions, using a force vector and result string.
 
 ### Problem description
 
@@ -10837,9 +11043,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Each input string is copied into buildString and processed once; two resulting strings can occupy their combined input length.
 
 ### Problem description
 
@@ -10935,9 +11143,11 @@ bool backspaceCompare(string s, string t) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Once a mountain peak is found, its slopes are scanned and i skips to the right endpoint, preventing repeated scanning of those slopes.
 
 ### Problem description
 
@@ -11032,9 +11242,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Both n-element collections are sorted; two pointers greedily assign each number to an output position.
 
 ### Problem description
 
@@ -11126,9 +11338,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Slow and fast pointers traverse the linked list once without allocating nodes.
 
 ### Problem description
 
@@ -11207,9 +11421,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sort people in place and use two pointers for a linear pairing pass; sorting may use logarithmic stack space.
 
 ### Problem description
 
@@ -11312,9 +11528,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) expected
+
+**Complexity reasoning:** Both window boundaries only advance, and the hash map holds at most three distinct fruit types transiently.
 
 ### Problem description
 
@@ -11431,9 +11649,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Two pointers partition the array in place, each moving only inward; returning the vector may involve an O(n) copy.
 
 ### Problem description
 
@@ -11508,9 +11728,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Two indices scan inward and swap only letters in the local string parameter, which itself is passed by value.
 
 ### Problem description
 
@@ -11606,9 +11828,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Even and odd indices advance by two and misplaced elements are swapped in place; return-by-value may copy the vector.
 
 ### Problem description
 
@@ -11695,9 +11919,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** For each element, the inner loop adds all earlier pair sums to a hash map, which can hold O(n²) distinct sums.
 
 ### Problem description
 
@@ -11804,9 +12030,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Two pointers advance through name and typed at most once; input strings are passed by value and therefore copied.
 
 ### Problem description
 
@@ -11892,9 +12120,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The atMost helper runs twice, and each window boundary advances at most n times.
 
 ### Problem description
 
@@ -11993,9 +12223,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One pass chooses the low or high remaining value and appends n+1 values to the output.
 
 ### Problem description
 
@@ -12087,9 +12319,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorting dominates; the two-pointer token processing is linear and in place.
 
 ### Problem description
 
@@ -12196,9 +12430,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each prefix maximum search and up to two prefix reversals cost O(i) for i from n down to 2; the flip list contains O(n) entries.
 
 ### Problem description
 
@@ -12333,9 +12569,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A two-pointer scan writes n squared values directly into a new result vector.
 
 ### Problem description
 
@@ -12413,9 +12651,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass updates increasing and decreasing turbulent lengths using three scalar variables.
 
 ### Problem description
 
@@ -12526,9 +12766,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(a + b)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(a + b) output; O(1) auxiliary
+
+**Complexity reasoning:** Two pointers each advance at most once per interval; intersections are stored in the result.
 
 ### Problem description
 
@@ -12625,9 +12867,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two at-most-K hash-map windows each advance their left and right pointers monotonically; maps can hold n distinct keys.
 
 ### Problem description
 
@@ -12717,9 +12961,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One sweep maintains flip parity with an n-element marker array.
 
 ### Problem description
 
@@ -12827,9 +13073,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Both boundaries move forward at most n times; only scalar counters are maintained.
 
 ### Problem description
 
@@ -12931,9 +13179,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(20n) = O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(min(n, 2^20))
+
+**Complexity reasoning:** At most 20 bits are examined from each starting position; the hash set stores distinct represented integers.
 
 ### Problem description
 
@@ -13014,9 +13264,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P + sum |q|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(q) output; O(1) auxiliary excluding inputs
+
+**Complexity reasoning:** Each query is scanned once against the pattern; P is the by-value pattern copy length, and q is the number of queries.
 
 ### Problem description
 
@@ -13125,9 +13377,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each of two helper calls builds a prefix-sum array and scans the possible window endpoints.
 
 ### Problem description
 
@@ -13239,9 +13493,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary
+
+**Complexity reasoning:** Sorting dominates the linear two-pointer scan; standard introsort uses logarithmic stack space.
 
 ### Problem description
 
@@ -13346,9 +13602,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) expected
+
+**Complexity reasoning:** Binary search tests O(log n) lengths; each rolling-hash test scans O(n) characters with a hash set. Hash collisions are not verified.
 
 ### Problem description
 
@@ -13465,9 +13723,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n * L + nL^2 + nL log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nL)
+
+**Complexity reasoning:** Sorting n strings costs O(n log n * L) comparisons; each word forms L deletion strings costing O(L) each and uses an ordered string map with O(L log n) operations. L is maximum word length.
 
 ### Problem description
 
@@ -13599,9 +13859,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The initial window and subsequent sliding updates each visit at most n entries.
 
 ### Problem description
 
@@ -13696,9 +13958,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(|source| * (|target| + 1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each pass scans source and consumes at least one target character; at most |target| passes occur.
 
 ### Problem description
 
@@ -13797,9 +14061,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One count pass and one backwards in-place write pass, without auxiliary arrays.
 
 ### Problem description
 
@@ -13890,9 +14156,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary
+
+**Complexity reasoning:** Sort first, then move each of two pointers at most n times.
 
 ### Problem description
 
@@ -13977,9 +14245,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The sliding window updates a fixed 256-entry frequency array in constant time per character.
 
 ### Problem description
 
@@ -14072,9 +14342,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Repeated prepending to r and comparisons of growing chunk strings can each cost linear time per step; l and r together hold at most O(n) characters.
 
 ### Problem description
 
@@ -14179,9 +14451,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Count all ones once and maintain the number of ones in a fixed-size sliding window.
 
 ### Problem description
 
@@ -14283,9 +14557,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The inner scan can extend to the end for each starting index; a fixed 26-element frequency array is used.
 
 ### Problem description
 
@@ -14384,9 +14660,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including returned substring; O(1) auxiliary
+
+**Complexity reasoning:** The maximal-suffix two-pointer comparison skips discarded candidate ranges amortized linearly; substr copies the answer.
 
 ### Problem description
 
@@ -14470,9 +14748,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Running sum adds the entering element and removes the exiting element in one pass.
 
 ### Problem description
 
@@ -14587,9 +14867,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) for by-value string copies; O(1) auxiliary
+
+**Complexity reasoning:** The two pointers move monotonically; s and t are passed by value and copied.
 
 ### Problem description
 
@@ -14690,9 +14972,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n1 + n2) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n1 + h1 + h2)
+
+**Complexity reasoning:** DFS inserts the first tree values into a hash set and visits the second tree with expected constant-time lookups; recursive stacks use tree heights.
 
 ### Problem description
 
@@ -14784,9 +15068,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(a log a + b log b)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log a + log b) auxiliary
+
+**Complexity reasoning:** Both slot lists are sorted, then intersected with a linear two-pointer sweep.
 
 ### Problem description
 
@@ -14882,9 +15168,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass builds a four-character frequency map and the two window pointers each advance at most n times.
 
 ### Problem description
 
@@ -14995,9 +15283,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1000 + r)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(r) output; O(1) auxiliary
+
+**Complexity reasoning:** x increases or y decreases every iteration (at most 1999 calls); r matching pairs are returned.
 
 ### Problem description
 
@@ -15119,9 +15409,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The at-most-K sliding-window helper runs twice; each boundary moves only forward.
 
 ### Problem description
 
@@ -15221,9 +15513,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Recursion reaches the tail before printing on unwind, requiring n stack frames.
 
 ### Problem description
 
@@ -15319,9 +15613,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n * m) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n * m)
+
+**Complexity reasoning:** For every possible start, rebuild a length-m frequency window and construct/hash a length-m substring; up to n distinct strings of length m are retained.
 
 ### Problem description
 
@@ -15418,9 +15714,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) for by-value argument; O(1) auxiliary
+
+**Complexity reasoning:** Two pointers compare mirrored characters once; the string parameter is copied.
 
 ### Problem description
 
@@ -15524,9 +15822,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Initialize one k-element sum, then update the fixed-size window in constant time per position.
 
 ### Problem description
 
@@ -15613,9 +15913,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A single pass uses average O(1) unordered-set lookups and stores at most n previously seen values.
 
 ### Problem description
 
@@ -15702,9 +16004,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Both window boundaries advance at most n times; the three-entry frequency array is constant size.
 
 ### Problem description
 
@@ -15844,9 +16148,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m log m + n log m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log m) auxiliary
+
+**Complexity reasoning:** Sort the m elements of arr2 in place, then binary-search for each of the n elements of arr1; sorting uses logarithmic stack space.
 
 ### Problem description
 
@@ -15959,9 +16265,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The initial k-card sum and k left/right exchanges each require one pass with scalar state.
 
 ### Problem description
 
@@ -16070,9 +16378,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + w)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A stringstream scans the n-character sentence, extracting words and testing prefixes; the sentence stream owns a copy and extracted words require up to O(n) storage. Here w is the search-word length, and the initial prefix test may inspect up to w characters per candidate, bounded by total scanned word lengths when w is fixed per call.
 
 ### Problem description
 
@@ -16175,9 +16485,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop visits each character once, with constant-length vowel lookups and scalar counters.
 
 ### Problem description
 
@@ -16278,9 +16590,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k + log n) auxiliary
+
+**Complexity reasoning:** Two in-place sorts dominate; constructing the returned k-element vector costs O(k) space, plus O(log n) sorting stack.
 
 ### Problem description
 
@@ -16392,9 +16706,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each prefix sum is processed once with expected constant-time hash operations; the DP array and prefix-sum map each grow to n entries.
 
 ### Problem description
 
@@ -16511,9 +16827,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The right and left pointers each advance at most n times while tracking the number of zeros.
 
 ### Problem description
 
@@ -16610,9 +16928,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting dominates the linear power-of-two precomputation and two-pointer scan; the powers array stores n+1 entries.
 
 ### Problem description
 
@@ -16717,9 +17037,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** The nested loops generate n(n+1)/2 subarray sums, which are sorted before summing the requested range.
 
 ### Problem description
 
@@ -16824,9 +17146,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two indices each move forward through their respective sorted arrays once, accumulating segment scores.
 
 ### Problem description
 
@@ -16956,9 +17280,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) construction; O(p + q) dot product
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(p) per vector
+
+**Complexity reasoning:** Constructing a sparse vector scans n input entries and stores its p nonzeros; dotProduct merges the p and q stored nonzero lists.
 
 ### Problem description
 
@@ -17077,9 +17403,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Each direction builds a frequency hash map of one array and nests a scan of the other array with the mapped array; the two directions together cost O(nm), with hash tables of up to n or m entries.
 
 ### Problem description
 
@@ -17204,9 +17532,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Compute and sort n angles, duplicate the sorted angles, then advance a monotonic sliding window through at most n candidates.
 
 ### Problem description
 
@@ -17329,9 +17659,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each cross-string two-pointer check and remaining palindrome test traverses at most n characters; the input strings are passed by value, so their copies occupy O(n) total space.
 
 ### Problem description
 
@@ -17469,9 +17801,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m) output; O(1) auxiliary
+
+**Complexity reasoning:** Merge the two polynomial lists in one pass, allocating at most n+m nodes for the returned polynomial.
 
 ### Problem description
 
@@ -17608,9 +17942,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(hp + hq)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The two parent pointers walk upward and may switch starting nodes, traversing at most the sum of both ancestor-chain lengths.
 
 ### Problem description
 
@@ -17717,9 +18053,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + |k|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Initialize a sum of |k| circular entries and slide it across all n positions; the returned vector has n entries.
 
 ### Problem description
 
@@ -17834,9 +18172,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Compute the total and then move each sliding-window boundary at most n times, maintaining only scalar variables.
 
 ### Problem description
 
@@ -17938,9 +18278,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One pass performs average constant-time hash-map lookups and updates, storing unmatched element counts.
 
 ### Problem description
 
@@ -18036,9 +18378,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each element enters and leaves the hash set at most once as the unique-element window advances.
 
 ### Problem description
 
@@ -18129,9 +18473,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E log E + Q log Q + (E + Q)·n) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + Q + H) auxiliary
+
+**Complexity reasoning:** Sort E edges and Q query indices, then process edges incrementally with DSU. The submitted find has path compression but unite has no union-by-rank/size, so worst-case find can cost O(n); H is recursion depth up to O(n).
 
 ### Problem description
 
@@ -18261,9 +18607,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Collect adjusted positions of ones, build prefix sums, and evaluate every k-one window in O(1) time.
 
 ### Problem description
 
@@ -18379,9 +18727,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build a prefix-sum array; the two search indices j and k only move forward over all candidate split positions.
 
 ### Problem description
 
@@ -18492,9 +18842,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One traversal advances the selected node pointers, followed by a constant-time value swap.
 
 ### Problem description
 
@@ -18578,9 +18930,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each end pointer moves inward without revisiting characters; the string is passed by value, requiring O(n) storage for its copy.
 
 ### Problem description
 
@@ -18690,9 +19044,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + m)²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m) output; O(n + m) temporary
+
+**Complexity reasoning:** At each appended character, substr copies the remaining suffixes and compares them lexicographically, potentially scanning O(n+m) characters per step.
 
 ### Problem description
 
@@ -18787,9 +19143,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^(n/2) · n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^(n/2) + n)
+
+**Complexity reasoning:** Enumerate all subset sums in each half, sort the right-half sums, then binary-search once for each left-half sum; recursive DFS depth is O(n).
 
 ### Problem description
 
@@ -18907,9 +19265,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) worst-case transient copies/stack
+
+**Complexity reasoning:** At each recursive split, a hash set scans the current substring and substr creates copies; a highly unbalanced split produces a quadratic total, with recursion depth up to n.
 
 ### Problem description
 
@@ -19008,9 +19368,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nL)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each starting position in nums is tried at most once; comparing a group can inspect up to L elements, where L is the maximum group length.
 
 ### Problem description
 
@@ -19131,9 +19493,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(a + b)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(a + b)
+
+**Complexity reasoning:** Each character of both input strings is appended once to the result; a and b are their lengths.
 
 ### Problem description
 
@@ -19237,9 +19601,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m + n log n + q(n + u))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + u + q)
+
+**Complexity reasoning:** Degrees and edge multiplicities take expected O(m) preprocessing, sorting takes O(n log n), and each of q queries scans n sorted degrees and u distinct edge pairs; results and maps are stored.
 
 ### Problem description
 
@@ -19367,9 +19733,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(C + w)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(C + w)
+
+**Complexity reasoning:** Tokenization copies all C input characters into w words; prefix/suffix comparison visits at most w words.
 
 ### Problem description
 
@@ -19473,9 +19841,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan finds the first disagreement and another checks both possible shifts without allocating additional storage.
 
 ### Problem description
 
@@ -19578,9 +19948,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorting dominates the linear sliding-window scan; std::sort uses logarithmic auxiliary stack space.
 
 ### Problem description
 
@@ -19687,9 +20059,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass updates the current nondecreasing vowel run and the count of vowel groups.
 
 ### Problem description
 
@@ -19781,9 +20155,11 @@ class Solution {public:int longestBeautifulSubstring(string word){int best=0,len
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Copies half the input, computes its next permutation and reverse, then builds the resulting palindrome.
 
 ### Problem description
 
@@ -19875,9 +20251,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(kn + n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The target is copied and advanced through k permutations (O(n) each); finding and bubbling each target digit can require O(n²) total swaps.
 
 ### Problem description
 
@@ -20014,9 +20392,11 @@ class Solution {public:int getMinSwaps(string num,int k){string target=num;while
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each element enters and, after k steps, leaves the frequency map once; the map and answer can each contain O(n) entries.
 
 ### Problem description
 
@@ -20105,9 +20485,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The outer pointer advances through nums1 and j only moves forward through nums2; n and m are their respective lengths.
 
 ### Problem description
 
@@ -20211,9 +20593,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Each cell is visited during gravity simulation and again during rotation; the rotated matrix occupies mn cells.
 
 ### Problem description
 
@@ -20342,9 +20726,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(a + b)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(a + b)
+
+**Complexity reasoning:** Each iteration exhausts at least one run from the two encoded inputs; the output has at most a+b runs.
 
 ### Problem description
 
@@ -20456,9 +20842,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A running count of reachable predecessor positions makes each DP state constant-time; vector<bool> stores n flags.
 
 ### Problem description
 
@@ -20558,9 +20946,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks the three characters in every length-three substring with constant work per starting index.
 
 ### Problem description
 
@@ -20647,9 +21037,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorting dominates the subsequent linear pairing of smallest and largest elements; std::sort uses O(log n) stack space.
 
 ### Problem description
 
@@ -20745,9 +21137,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Constructs and sorts a length-n difference array, then counts valid pairs with one two-pointer sweep.
 
 ### Problem description
 
@@ -20842,9 +21236,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds the doubled string and two alternating templates, then slides a length-n mismatch-count window across 2n positions.
 
 ### Problem description
 
@@ -20969,9 +21365,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + r) log(r + 1)) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(r)
+
+**Complexity reasoning:** Binary search over r removable positions rebuilds an O(r)-size hash set and scans up to n characters per feasibility check.
 
 ### Problem description
 
@@ -21109,9 +21507,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Binary searches possible sums from 1 to S, the total input sum; each countAtMost call uses a linear two-pointer scan.
 
 ### Problem description
 
@@ -21230,9 +21630,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(100² p) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(p)
+
+**Complexity reasoning:** For each of 10,000 candidate grid points, constructs p Manhattan distances and applies expected linear-time nth_element; the distance vector holds p entries.
 
 ### Problem description
 
@@ -21336,9 +21738,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Manacher-style odd-radius computation and four propagation passes are linear; radius and boundary arrays each store n entries.
 
 ### Problem description
 
@@ -21436,9 +21840,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Reads words in sequence and compares at most C characters in total, where C is the total length of inspected words (bounded by all input word characters).
 
 ### Problem description
 
@@ -21523,9 +21929,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass tracks bracket balance and maximum imbalance using only scalar counters.
 
 ### Problem description
 
@@ -21642,9 +22050,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorts n scores and checks every contiguous group of k sorted scores in linear time; sorting needs logarithmic stack space.
 
 ### Problem description
 
@@ -21761,9 +22171,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Separates positions into two arrays, then greedily advances each array pointer at most once.
 
 ### Problem description
 
@@ -21876,9 +22288,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** The string is passed by value (O(n) copy), searched once, and its prefix reversed in place; no further growing storage is allocated.
 
 ### Problem description
 
@@ -21985,9 +22399,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorts and deduplicates in place, then uses two monotonically increasing pointers over unique values; sorting requires O(log n) stack space.
 
 ### Problem description
 
@@ -22100,9 +22516,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + B·A·(n + L))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(BL + n)
+
+**Complexity reasoning:** Counts characters, then breadth-first enumerates B candidate strings of length up to L with A eligible letters; each candidate is copied and validated by scanning n input characters. B can be exponential in L.
 
 ### Problem description
 
@@ -22214,9 +22632,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Runs two linear sliding-window passes, one for each target character, and keeps only counters and pointers.
 
 ### Problem description
 
@@ -22340,9 +22760,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n 2^n)
+
+**Complexity reasoning:** For two halves of size n, enumerate every subset and scan n bits; bucket sorting and binary searches add O(n 2^n) time. The subset-sum buckets hold O(2^n) values; the range-based loop `for(auto it : sumLeft)` also copies each bucket temporarily. Here the input length is 2n.
 
 ### Problem description
 
@@ -22482,9 +22904,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Visit each linked-list node once, moving negative-valued nodes to the front using pointer rewiring; no auxiliary container is allocated.
 
 ### Problem description
 
@@ -22593,9 +23017,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26n) = O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(26) = O(1)
+
+**Complexity reasoning:** Try at most 26 distinct-character counts; each candidate window length is processed with a linear sliding pass and a fixed 26-element frequency array.
 
 ### Problem description
 
@@ -22710,9 +23136,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Maintain a running sum for each window and fill an output vector of length n; only constant extra working state beyond the output.
 
 ### Problem description
 
@@ -22827,9 +23255,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Fast/slow pointers locate the predecessor of the middle node in one pass; unlinking and deleting it use constant additional memory.
 
 ### Problem description
 
@@ -22935,9 +23365,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two pointers water plants from opposite ends, advancing once per plant and keeping only capacities and a refill counter.
 
 ### Problem description
 
@@ -23054,9 +23486,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The right pointer advances through fruits once and the left pointer only advances, so the feasibility window is maintained in amortized constant time per fruit.
 
 ### Problem description
 
@@ -23173,9 +23607,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build a hash frequency table and update it at most twice per position while moving the excluded window. Expected constant-time hash operations; the table may store n distinct flavors. Note: the k=0 branch returns the map size after all removals, which is a correctness issue.
 
 ### Problem description
 
@@ -23284,9 +23720,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Compare characters from both ends of each word until the first palindrome is found; L is the total length of words examined. Returning the chosen string by value can require O(m) output space for its length m.
 
 ### Problem description
 
@@ -23378,9 +23816,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + k)
+
+**Complexity reasoning:** Traverse the input string once and insert spaces at k specified positions into a reserved output string. The by-value string argument also occupies O(n) storage.
 
 ### Problem description
 
@@ -23494,9 +23934,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each adjacent price pair is inspected once, maintaining the current descent-run length and cumulative count.
 
 ### Problem description
 
@@ -23595,9 +24037,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2 log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort 2m values, then try up to O(n) candidate differences; each attempt builds an ordered map and performs O(n) logarithmic map operations. Map and candidate output use O(n) memory.
 
 ### Problem description
 
@@ -23711,9 +24155,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Find the midpoint, reverse the second half in place, then walk paired nodes once to compute the maximum twin sum.
 
 ### Problem description
 
@@ -23818,9 +24264,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Count ones, compute the initial window sum, and slide through n circular positions using modulo indexing.
 
 ### Problem description
 
@@ -23928,9 +24376,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Scan nums once, writing positive and negative values into alternating indices of a newly allocated n-element vector.
 
 ### Problem description
 
@@ -24023,9 +24473,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Compute the power factor in k steps, scan the string right-to-left with a rolling hash, and return a length-k substring. The string parameter is passed by value, so its copy takes O(n) space.
 
 ### Problem description
 
@@ -24129,9 +24581,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Make three linear passes for values below, equal to, and above pivot, appending all n values to an output vector.
 
 ### Problem description
 
@@ -24223,9 +24677,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each outer pair, search backward for a match and potentially shift it right through adjacent swaps; these operations can total quadratic time. The input string is passed by value.
 
 ### Problem description
 
@@ -24328,9 +24784,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The `next` pointer only moves forward while each index is visited once; append qualifying indices to a result vector that can contain n entries.
 
 ### Problem description
 
@@ -24425,9 +24883,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Clamp and sort gardens, build prefix sums, then try at most n completion counts with a binary search over the remaining gardens. Prefix sums require O(n) extra space.
 
 ### Problem description
 
@@ -24641,9 +25101,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One pass tracks the most recent index of each card in an unordered_map, giving expected constant-time lookups and up to n entries.
 
 ### Problem description
 
@@ -24713,9 +25175,11 @@ class Solution {public:int minimumCardPickup(vector<int>& cards){unordered_map<i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(dk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d + k)
+
+**Complexity reasoning:** Convert the d-digit number to a string; for each of O(d) windows, substr and stoi process k characters. The temporary substring is O(k).
 
 ### Problem description
 
@@ -24820,9 +25284,11 @@ class Solution {public:int divisorSubstrings(int num,int k){string s=to_string(n
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort tile intervals, compute prefix lengths, and binary-search the last interval covered for each of n starting tiles; prefix sums occupy O(n) space.
 
 ### Problem description
 
@@ -24906,9 +25372,11 @@ class Solution {public:int maximumWhiteTiles(vector<vector<int>>& tiles,int carp
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(p log p + s log p)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(s)
+
+**Complexity reasoning:** Sort p potions, then binary-search the threshold for each of s spells; store s answers.
 
 ### Problem description
 
@@ -25027,9 +25495,11 @@ class Solution {public:vector<int> successfulPairs(vector<int>& spells,vector<in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Expand the right boundary once per element and shrink the left boundary at most n times, maintaining sum and counting valid suffixes.
 
 ### Problem description
 
@@ -25115,9 +25585,11 @@ class Solution {public:long long countSubarrays(vector<int>& nums,long long k){l
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Compare symmetric characters in one pass. The string parameter is passed by value, making an O(n) copy even though the comparison uses O(1) working state.
 
 ### Problem description
 
@@ -25210,9 +25682,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(b log b + p log p) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(p)
+
+**Complexity reasoning:** Sort buses and passengers, board each passenger at most once, then build a hash set of p arrival times and decrement past occupied times. Expected O(1) hash checks; sorting dominates.
 
 ### Problem description
 
@@ -25324,9 +25798,11 @@ class Solution {public:int latestTimeCatchTheBus(vector<int>& buses,vector<int>&
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Skip underscores using two monotonically increasing indices, comparing piece order and movement constraints. Both strings are passed by value.
 
 ### Problem description
 
@@ -25436,9 +25912,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build a hash set of n values, then perform two expected constant-time membership checks for each value.
 
 ### Problem description
 
@@ -25525,9 +26003,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Count white blocks in the initial length-k window, then slide the window in constant time per position. The string parameter is passed by value.
 
 ### Problem description
 
@@ -25614,9 +26094,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The implementation returns false immediately without examining n.
 
 ### Problem description
 
@@ -25687,9 +26169,11 @@ class Solution {public:bool isStrictlyPalindromic(int n){return false;}};
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each boundary advances at most n times; the bitmask is constant-sized.
 
 ### Problem description
 
@@ -25766,9 +26250,11 @@ class Solution {public:int longestNiceSubarray(vector<int>& nums){int mask=0,l=0
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two ordered-map updates per interval and one traversal of at most 2n event keys.
 
 ### Problem description
 
@@ -25845,9 +26331,11 @@ class Solution {public:int minGroups(vector<vector<int>>& intervals){map<int,int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(p log p + t log t)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log p + log t)
+
+**Complexity reasoning:** Both arrays are sorted and the trainer scan is linear; sorting uses logarithmic stack space.
 
 ### Problem description
 
@@ -25924,9 +26412,11 @@ class Solution {public:int matchPlayersAndTrainers(vector<int>& players,vector<i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(31n) = O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + 31) = O(n)
+
+**Complexity reasoning:** For each position the code scans 31 bit positions; the answer array stores n entries.
 
 ### Problem description
 
@@ -26011,9 +26501,11 @@ class Solution {public:vector<int> smallestSubarrays(vector<int>& nums){int n=nu
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two pointers only move inward, merging the smaller accumulated side in place conceptually.
 
 ### Problem description
 
@@ -26111,9 +26603,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds an unordered_set and checks each positive value once; hashing is expected constant time.
 
 ### Problem description
 
@@ -26195,9 +26689,11 @@ class Solution { public: int findMaxK(vector<int>& nums){unordered_set<int>s(num
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One adjacent-pair pass and one compaction pass; a separate result vector holds n values.
 
 ### Problem description
 
@@ -26292,9 +26788,11 @@ class Solution { public: vector<int> applyOperations(vector<int>& nums){int n=nu
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(min(n,k))
+
+**Complexity reasoning:** The sliding window updates a hash-frequency table and sum once per element; at most k values are tracked.
 
 ### Problem description
 
@@ -26375,9 +26873,11 @@ class Solution { public: long long maximumSubarraySum(vector<int>& nums,int k){u
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log c + k log c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(c)
+
+**Complexity reasoning:** At most min(n,2c) initial heap insertions and k pop/push steps, with heap sizes bounded by c (c = candidates); sorting is not used.
 
 ### Problem description
 
@@ -26484,9 +26984,11 @@ class Solution { public: long long totalCost(vector<int>& costs,int k,int candid
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting dominates; the ordered set stores up to n/2 pair sums, each inserted in logarithmic time.
 
 ### Problem description
 
@@ -26574,9 +27076,11 @@ class Solution { public: int distinctAverages(vector<int>& nums){sort(nums.begin
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each ending index, at most two candidate substrings of lengths k and k+1 are checked character by character; DP uses n+1 entries.
 
 ### Problem description
 
@@ -26656,9 +27160,11 @@ class Solution { public: int maxPalindromes(string s,int k){int n=s.size();vecto
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(|s|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans s once with a pointer into t, without allocating additional containers.
 
 ### Problem description
 
@@ -26752,9 +27258,11 @@ class Solution {public:int appendCharacters(string s,string t){int j=0;for(char 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorts the skills and checks n/2 symmetric pairs; sorting has logarithmic auxiliary stack usage.
 
 ### Problem description
 
@@ -26843,9 +27351,11 @@ class Solution {public:long long dividePlayers(vector<int>& skill){sort(skill.be
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q log q + mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(q + mn)
+
+**Complexity reasoning:** Sorts queries and visits each grid cell at most once; each cell is pushed and popped from a min-heap.
 
 ### Problem description
 
@@ -26932,9 +27442,11 @@ class Solution {public:vector<int> maxPoints(vector<vector<int>>& grid,vector<in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass tracks the previous nonzero fort and computes gaps between opposite types.
 
 ### Problem description
 
@@ -27018,9 +27530,11 @@ class Solution {public:int captureForts(vector<int>& forts){int last=-1,ans=0;fo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Counts three character types and uses a sliding window whose endpoints only advance.
 
 ### Problem description
 
@@ -27093,9 +27607,11 @@ class Solution {public:int takeCharacters(string s,int k){int cnt[3]={};for(char
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Each sliding-window insertion/removal recomputes modular powers via exponentiation by squaring; frequency map tracks at most k+1 keys.
 
 ### Problem description
 
@@ -27186,9 +27702,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log R)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds prefix sums and base powers in linear time; binary search runs O(log R) feasibility scans of length n, each allocating an expiry array (R is searched power range).
 
 ### Problem description
 
@@ -27303,9 +27821,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Both sliding-window pointers advance at most n times, with expected constant-time hash-map updates.
 
 ### Problem description
 
@@ -27387,9 +27907,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two pointers traverse the two sorted arrays without backtracking.
 
 ### Problem description
 
@@ -27468,9 +27990,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The left pointer only moves forward, and best-prefix values are stored in an n+1 array.
 
 ### Problem description
 
@@ -27563,9 +28087,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** Processes pairs of numbers using to_string, concatenation, and stoll; d is the maximum decimal digits in a pair (bounded for fixed-width ints).
 
 ### Problem description
 
@@ -27672,9 +28198,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorting dominates; each of two sum-bound counting passes moves two pointers inward in linear time.
 
 ### Problem description
 
@@ -27759,9 +28287,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m log m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** Builds left/right subsequence-position arrays and binary-searches the right array for each prefix length.
 
 ### Problem description
 
@@ -27862,9 +28392,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Merges two sorted input arrays with advancing indices and stores the merged output.
 
 ### Problem description
 
@@ -27953,9 +28485,11 @@ class Solution {public:vector<vector<int>> mergeArrays(vector<vector<int>>& a,ve
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorts values and greedily pairs lower and upper halves using forward-only pointers.
 
 ### Problem description
 
@@ -28042,9 +28576,11 @@ class Solution {public:int maxNumOfMarkedIndices(vector<int>& nums){sort(nums.be
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorts the array and scans it once, advancing a matching pointer greedily.
 
 ### Problem description
 
@@ -28115,9 +28651,11 @@ class Solution {public:int maximizeGreatness(vector<int>& nums){sort(nums.begin(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((h+g) log(h+g) + (h+g) log T)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log h + log g)
+
+**Complexity reasoning:** Sorts hens and grains; each feasibility check scans both arrays with monotonically advancing grain index, repeated for log T binary-search steps.
 
 ### Problem description
 
@@ -28225,9 +28763,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n * 50) = O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + 101)
+
+**Complexity reasoning:** Maintains a fixed 101-slot frequency array and scans at most 50 negative values for each completed window; output contains O(n) entries.
 
 ### Problem description
 
@@ -28390,9 +28930,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Slow/fast pointers traverse the circular list once and relink its two halves; the returned pair has constant size.
 
 ### Problem description
 
@@ -28477,9 +29019,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each mirrored character pair is processed once; the input string is passed by value and serves as the returned O(n) buffer.
 
 ### Problem description
 
@@ -28563,9 +29107,11 @@ class Solution {public:string makeSmallestPalindrome(string s){int n=s.size();fo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Both window endpoints only advance; the count of equal adjacent pairs is maintained incrementally.
 
 ### Problem description
 
@@ -28638,9 +29184,11 @@ class Solution {public:int longestSemiRepetitiveSubstring(string s){int l=0,pair
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The last-seen array has a fixed 256 entries, and each character is processed once.
 
 ### Problem description
 
@@ -28738,9 +29286,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L log L + Q log Q + L + Q + n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L + Q + n)
+
+**Complexity reasoning:** Sort L logs and Q timestamped queries, then sweep both with monotonically advancing pointers and a per-server count array.
 
 ### Problem description
 
@@ -28827,9 +29377,11 @@ class Solution {public:vector<int> countServers(int n,vector<vector<int>>& logs,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan tracks the current valid alternating run and its maximum length.
 
 ### Problem description
 
@@ -28925,9 +29477,11 @@ class Solution {public:int longestAlternatingSubarray(vector<int>& nums,int thre
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary
+
+**Complexity reasoning:** Sorting dominates; the two-pointer sweep is linear. Standard in-place sort uses logarithmic stack space.
 
 ### Problem description
 
@@ -29011,9 +29565,11 @@ class Solution {public:int maximumBeauty(vector<int>& nums,int k){sort(nums.begi
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n * min(10,n) * 10) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(F + n) expected
+
+**Complexity reasoning:** For each right endpoint, at most ten substrings of length at most ten are created and hash-checked; the forbidden set stores F total characters, plus temporary substring storage.
 
 ### Problem description
 
@@ -29092,9 +29648,11 @@ class Solution {public:int longestValidSubstring(string word,vector<string>& for
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build the distinct-value set, then expand and shrink a frequency-map window; each pointer advances at most n times.
 
 ### Problem description
 
@@ -29167,9 +29725,11 @@ class Solution {public:int countCompleteSubarrays(vector<int>& nums){int distinc
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary
+
+**Complexity reasoning:** Sorting dominates the linear two-pointer pair count; sort recursion uses logarithmic stack space.
 
 ### Problem description
 
@@ -29250,9 +29810,11 @@ class Solution {public:int countPairs(vector<int>& nums,int target){sort(nums.be
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scan str1 once while monotonically advancing the subsequence index in str2.
 
 ### Problem description
 
@@ -29346,9 +29908,11 @@ class Solution {public:bool canMakeSubsequence(string str1,string str2){int j=0;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Store each index once in a hash map of position vectors; two pointers scan each vector only once.
 
 ### Problem description
 
@@ -29429,9 +29993,11 @@ class Solution {public:int longestEqualSubarray(vector<int>& nums,int k){unorder
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m log m + h log m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m + h)
+
+**Complexity reasoning:** Sort m monsters, build sorted powers and prefix sums, then binary-search once per h heroes.
 
 ### Problem description
 
@@ -29555,9 +30121,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(min(n,k))
+
+**Complexity reasoning:** Each element enters and leaves the length-k hash-frequency window at most once.
 
 ### Problem description
 
@@ -29651,9 +30219,11 @@ class Solution {public:long long maxSum(vector<int>& nums,int m,int k){unordered
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scan each run of equal values once to obtain the maximum frequency.
 
 ### Problem description
 
@@ -29744,9 +30314,11 @@ class Solution {public:int minLengthAfterRemovals(vector<int>& nums){int n=nums.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(A+B) string comparisons
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Merge-scan the two word lists backwards, updating a fixed 2-by-27 boolean table; lexical comparisons may inspect word characters.
 
 ### Problem description
 
@@ -29871,9 +30443,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** After a linear total-sum pass, a sliding window traverses at most two cycles, with each pointer moving only forward.
 
 ### Problem description
 
@@ -29972,9 +30546,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + D*r + r)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(D + r)
+
+**Complexity reasoning:** Count n values; for each of D distinct values, bounded-knapsack residue windows touch O(r) DP states, including zero handling.
 
 ### Problem description
 
@@ -30080,9 +30656,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The implementation tests every ordered index pair with nested loops.
 
 ### Problem description
 
@@ -30187,9 +30765,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2) character scans; O(n^3) worst-case including string copies/comparisons
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For every starting 1, scan forward until k ones; constructing candidate substrings and lexicographically comparing them can each cost O(n).
 
 ### Problem description
 
@@ -30318,9 +30898,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Maintain prefix minimum and maximum while scanning candidate right endpoints once.
 
 ### Problem description
 
@@ -30428,9 +31010,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^4 + k*n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2 + k*n)
+
+**Complexity reasoning:** For each O(n²) substring, try up to O(n) divisors and compare up to O(n) characters; partition DP checks O(k n²) split points.
 
 ### Problem description
 
@@ -30545,9 +31129,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Every ordered pair of array values is checked for the strong-pair condition.
 
 ### Problem description
 
@@ -30642,9 +31228,11 @@ class Solution{public:int maximumStrongPairXor(vector<int>& nums){int ans=0;for(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + n B)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n B)
+
+**Complexity reasoning:** Sort then insert/remove/query values in a binary trie of B=21 bit levels; trie nodes occupy O(nB) space.
 
 ### Problem description
 
@@ -30735,9 +31323,11 @@ class Solution{struct Node{int ch[2]={-1,-1};int cnt=0;};vector<Node> tr;void mo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Count preceding ones for each zero in a single pass.
 
 ### Problem description
 
@@ -30826,9 +31416,11 @@ class Solution{public:long long minimumSteps(string s){long long ones=0,ans=0;fo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Partition into valid adjacent-letter segments; for each of at most 26 distinct-letter counts, run one fixed-size frequency window across the segment.
 
 ### Problem description
 
@@ -30923,9 +31515,11 @@ class Solution{public:int countCompleteSubstrings(string word,int k){int n=word.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A hash-frequency sliding window moves both pointers forward at most n times.
 
 ### Problem description
 
@@ -31016,9 +31610,11 @@ class Solution { public: int maxSubarrayLength(vector<int>& nums,int k){unordere
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Find the global maximum, then count qualifying windows using two monotonic pointers.
 
 ### Problem description
 
@@ -31089,9 +31685,11 @@ class Solution {public:long long countSubarrays(vector<int>& nums,int k){int mx=
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort and compute prefix sums; each window cost is O(1), and both pointers advance monotonically.
 
 ### Problem description
 
@@ -31173,9 +31771,11 @@ class Solution {public:int maxFrequencyScore(vector<int>& nums,long long k){sort
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Find the longest increasing prefix, then scan the increasing suffix backwards while decreasing the prefix pointer.
 
 ### Problem description
 
@@ -31262,9 +31862,11 @@ class Solution {public:int incremovableSubarrayCount(vector<int>& nums){int n=nu
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The increasing prefix and suffix are scanned once; the prefix pointer only moves left across all suffix iterations.
 
 ### Problem description
 
@@ -31351,9 +31953,11 @@ class Solution {public:long long incremovableSubarrayCount(vector<int>& nums){in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Run lengths are collected in linear time and sorted within each of 26 character groups; the stored run lengths total O(n).
 
 ### Problem description
 
@@ -31451,9 +32055,11 @@ class Solution {public:int maximumLength(string s){vector<vector<int>>runs(26);f
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The scan creates O(n) total runs, followed by sorting the run-length lists; the lists occupy O(n) space.
 
 ### Problem description
 
@@ -31551,9 +32157,11 @@ class Solution {public:int maximumLength(string s){vector<vector<int>>runs(26);f
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + |a| + |b| + A log(B + 1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + |a| + |b|)
+
+**Complexity reasoning:** Two KMP searches find occurrences in linear time; each of A matches of a performs binary search among B matches of b.
 
 ### Problem description
 
@@ -31641,9 +32249,11 @@ class Solution {vector<int> occurrences(const string&s,const string&p){int n=s.s
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + |a| + |b| + A log(B + 1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + |a| + |b|)
+
+**Complexity reasoning:** KMP computes the two sorted occurrence lists, then lower_bound is used for each occurrence of a.
 
 ### Problem description
 
@@ -31731,9 +32341,11 @@ class Solution {vector<int> occurrences(const string&s,const string&p){int n=s.s
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log(dist + 1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(dist)
+
+**Complexity reasoning:** The sliding candidate window is maintained in two multisets with logarithmic insertion, removal, and rebalancing; at most O(dist) elements are stored.
 
 ### Problem description
 
@@ -31846,9 +32458,11 @@ class Solution {public:long long minimumCost(vector<int>& nums,int k,int dist){i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m + T)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** KMP preprocessing costs O(m); the stream is read until the first match after T consumed elements, with amortized constant matching work per element.
 
 ### Problem description
 
@@ -31960,9 +32574,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m + T)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** The prefix-function table is O(m); KMP processes T streamed bits before finding the pattern.
 
 ### Problem description
 
@@ -32074,9 +32690,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each input element is appended once, and the second temporary array is concatenated once; both arrays together hold n elements.
 
 ### Problem description
 
@@ -32164,9 +32782,11 @@ class Solution {public:vector<int> resultArray(vector<int>&nums){vector<int>a{nu
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One pass collects positions and the longest run; prefix sums and a sliding median-cost calculation each traverse the positions once.
 
 ### Problem description
 
@@ -32278,9 +32898,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Both sliding-window pointers only move forward, and the fixed 26-entry frequency array uses constant auxiliary memory.
 
 ### Problem description
 
@@ -32337,9 +32959,11 @@ class Solution {public:int maximumLengthSubstring(string s){int f[26]={},l=0,ans
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The nested loops examine up to all subarrays, maintaining their bitwise OR in one scalar.
 
 ### Problem description
 
@@ -32416,9 +33040,11 @@ class Solution {public:int minimumSubarrayLength(vector<int>& nums,int k){int an
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(31n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(31)
+
+**Complexity reasoning:** Each insertion and removal updates 31 bit counts; the two window pointers move at most n steps each.
 
 ### Problem description
 
@@ -32496,9 +33122,11 @@ class Solution {public:int minimumSubarrayLength(vector<int>& nums,int k){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + m log m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n + log m)
+
+**Complexity reasoning:** Both input arrays are sorted in place; only three linear matching attempts follow. Sorting uses logarithmic stack space.
 
 ### Problem description
 
@@ -32567,9 +33195,11 @@ class Solution {public:int minimumAddedInteger(vector<int>& a,vector<int>& b){so
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Binary search makes O(log n) calls to a sliding-window distinct-count routine using an unordered_map of up to n keys.
 
 ### Problem description
 
@@ -32644,9 +33274,11 @@ class Solution {public:int medianOfUniquenessArray(vector<int>& nums){int n=nums
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** The descending inner loop updates a one-dimensional longest-common-substring DP array for every character pair.
 
 ### Problem description
 
@@ -32751,9 +33383,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** An ordered map counts n elements; each distinct power uses lower_bound and one DP transition, with O(n) map and vector storage.
 
 ### Problem description
 
@@ -32820,9 +33454,11 @@ class Solution {public:long long maximumTotalDamage(vector<int>& power){map<long
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass flips at most three elements at each position, followed by a final validation pass; changes are in place.
 
 ### Problem description
 
@@ -32893,9 +33529,11 @@ class Solution {public:int minOperations(vector<int>& nums){int n=nums.size(),an
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** In-place sorting dominates the linear two-ended scan; auxiliary space is the sorting recursion stack.
 
 ### Problem description
 
@@ -33034,9 +33672,11 @@ class Solution {public:double minimumAverage(vector<int>& nums){sort(nums.begin(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each circular position checks two adjacent pairs in constant time.
 
 ### Problem description
 
@@ -33109,9 +33749,11 @@ class Solution {public:int numberOfAlternatingGroups(vector<int>& colors){int n=
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop scans n+k-2 circular positions while maintaining only the current alternating run and answer.
 
 ### Problem description
 
@@ -33200,9 +33842,11 @@ class Solution {public:int numberOfAlternatingGroups(vector<int>& colors,int k){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m log m + n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log m + log n)
+
+**Complexity reasoning:** Both cut-cost arrays are sorted in place; a greedy merge processes each cut once, with sorting stack space.
 
 ### Problem description
 
@@ -33301,9 +33945,11 @@ class Solution {public:int minimumCost(int m,int n,vector<int>& horizontalCut,ve
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Horizontal and vertical symmetry mismatches are counted by two grid scans without auxiliary arrays.
 
 ### Problem description
 
@@ -33390,9 +34036,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each four-cell orbit is processed once, with separate constant-space scans of the central row and column.
 
 ### Problem description
 
@@ -33481,9 +34129,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A running consecutive-increase length is updated once per element; the result vector holds n-k+1 entries.
 
 ### Problem description
 
@@ -33568,9 +34218,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The single pass maintains the consecutive run and appends each window result to the output vector.
 
 ### Problem description
 
@@ -33655,9 +34307,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The sliding-window boundaries advance monotonically; two counters track the binary character frequencies.
 
 ### Problem description
 
@@ -33736,9 +34390,11 @@ class Solution { public: int countKConstraintSubstrings(string s,int k){int cnt[
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q)
+
+**Complexity reasoning:** The sliding window builds left bounds and prefix sums in O(n); each query uses lower_bound and constant-time arithmetic.
 
 ### Problem description
 
@@ -33819,9 +34475,11 @@ class Solution { public: vector<long long> countKConstraintSubstrings(string s,i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two linear passes for differences +1 and -1 maintain running sums and counts; a final pass corrects singletons.
 
 ### Problem description
 
@@ -33925,9 +34583,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The fixed alphabet counts are initialized from word2, then each pointer over word1 advances at most n times.
 
 ### Problem description
 
@@ -33998,9 +34658,11 @@ class Solution { public: long long validSubstringCount(string word1,string word2
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two sliding-window pointers each advance at most n times; 26-entry frequency arrays are fixed size (m = word2 length).
 
 ### Problem description
 
@@ -34073,9 +34735,11 @@ class Solution { public: long long validSubstringCount(string word1,string word2
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** A backward subsequence pass and a forward greedy pass process word1 once; suffix and returned-index vectors hold up to n entries.
 
 ### Problem description
 
@@ -34174,9 +34838,11 @@ class Solution { public: vector<int> validSequence(string word1,string word2){in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two linear atLeast scans; each boundary advances at most n times, with fixed-size vowel counters. The helper creates constant-length strings.
 
 ### Problem description
 
@@ -34255,9 +34921,11 @@ class Solution { int id(char c){string s="aeiou";size_t p=s.find(c);return p==st
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Both atLeast calls maintain amortized linear sliding windows and constant-sized vowel counts.
 
 ### Problem description
 
@@ -34336,9 +35004,11 @@ class Solution { int id(char c){string s="aeiou";size_t p=s.find(c);return p==st
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm + t)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** For every source character, the DP visits m+1 states; two length-m DP arrays and n removable-index flags are allocated (t = targetIndices size).
 
 ### Problem description
 
@@ -34441,9 +35111,11 @@ class Solution { public: int maxRemovals(string source,string pattern,vector<int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n-k+1)(k + d log d)) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k + n)
+
+**Complexity reasoning:** Each length-k window rebuilds a hash frequency map and sorts d distinct (frequency,value) pairs; output stores n-k+1 sums.
 
 ### Problem description
 
@@ -34520,9 +35192,11 @@ class Solution {public:vector<int> findXSum(vector<int>& nums,int k,int x){vecto
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k + n)
+
+**Complexity reasoning:** Each insertion/removal updates ordered map/set structures with at most k distinct values; rebalancing moves entries between sets and the result holds n-k+1 sums.
 
 ### Problem description
 
@@ -34601,9 +35275,11 @@ class Solution {int x;map<int,int> f;set<pair<int,int>> top,low;long long sum=0;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting intervals dominates; merging and the monotonic two-pointer scan are linear, with up to n merged intervals.
 
 ### Problem description
 
@@ -34699,9 +35375,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Right and left pointers each advance at most n times; a 26-element frequency array is fixed-size.
 
 ### Problem description
 
@@ -34770,9 +35448,11 @@ class Solution {public:int numberOfSubstrings(string s,int k){int f[26]={},l=0;l
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Both window pointers move forward at most n times, using a fixed 26-element frequency vector.
 
 ### Problem description
 
@@ -34857,9 +35537,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each input contributes a constant number of ordered-map events and counts; the sweep visits O(n) sorted event keys.
 
 ### Problem description
 
@@ -34936,9 +35618,11 @@ class Solution {public:int maxFrequency(vector<int>& nums,int k,int numOperation
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Ordered maps accumulate O(n) endpoints and original values, followed by one ordered sweep.
 
 ### Problem description
 
@@ -35015,9 +35699,11 @@ class Solution {public:int maxFrequency(vector<int>& nums,int k,int numOperation
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+q) log(q+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each feasibility check builds a difference array and scans up to q queries and n positions; binary search invokes it O(log(q+1)) times.
 
 ### Problem description
 
@@ -35114,9 +35800,11 @@ class Solution {public:int minZeroArray(vector<int>& nums,vector<vector<int>>& q
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+q) log(q+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(q)
+
+**Complexity reasoning:** Queries are sorted; each query is inserted and removed from priority queues at most once, and each position is visited once.
 
 ### Problem description
 
@@ -35205,9 +35893,11 @@ class Solution {public:int maxRemoval(vector<int>& nums,vector<vector<int>>& que
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n(r-l+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Prefix sums take linear time; each starting position checks up to r-l+1 allowed lengths. The prefix array has n+1 entries.
 
 ### Problem description
 
@@ -35292,9 +35982,11 @@ class Solution {public:int minimumSumSubarray(vector<int>& nums,int l,int r){int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** All n cyclic shifts are tested against all n positions; only scalar counters are used.
 
 ### Problem description
 
@@ -35374,9 +36066,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each starting position, substr creates up to O(n) characters and lexicographic max may compare O(n) characters; candidate strings use O(n) space.
 
 ### Problem description
 
@@ -35451,9 +36145,11 @@ class Solution {public:string answerString(string word,int numFriends){if(numFri
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The maximal-suffix two-pointer comparison advances or discards candidates in amortized linear time; the returned substring is up to n characters.
 
 ### Problem description
 
@@ -35533,9 +36229,11 @@ class Solution {public:string answerString(string word,int numFriends){int n=wor
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² log M)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** All O(n²) subarrays are considered; each extension computes Euclidean gcds on values bounded by M and updates product/lcm, stopping on overflow.
 
 ### Problem description
 
@@ -35610,9 +36308,11 @@ class Solution {template<class T,class U> long long gcd14(T a,U b){long long x=a
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two sorts and two linear two-pointer scans dominate; scan takes its vector argument by value, copying n intervals each time.
 
 ### Problem description
 
@@ -35687,9 +36387,11 @@ class Solution {long long scan(vector<vector<int>>v,long long k){int n=v.size(),
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Each window element is inserted and later erased from balanced multisets of at most k+1 elements; median and sums give O(1) window cost.
 
 ### Problem description
 
@@ -35816,9 +36518,11 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Gap construction and a single sliding sum over n+1 gaps are linear; the gap vector uses O(n) memory.
 
 ### Problem description
 
@@ -35909,9 +36613,11 @@ class Solution {public:int maxFreeTime(int eventTime,int k,vector<int>& startTim
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Twenty ordered digit pairs are checked; for each, both window boundaries move only forward. The parity table is 2-by-2.
 
 ### Problem description
 
@@ -35995,9 +36701,11 @@ class Solution {public:int maxDifference(string s,int k){int n=s.size(),ans=INT_
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + p)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + p)
+
+**Complexity reasoning:** Three KMP occurrence scans plus next-occurrence arrays and a final scan are linear in text length n and pattern length p.
 
 ### Problem description
 
@@ -36087,9 +36795,11 @@ class Solution {vector<int>occ(const string&s,const string&p){int n=s.size(),m=p
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two forward comparisons traverse at most the string lengths, without allocating additional containers.
 
 ### Problem description
 
@@ -36185,9 +36895,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³m² + n²m³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n³ + m³)
+
+**Complexity reasoning:** Generating every substring copies O(n³+m³) characters; O(n²m²) substring pairs each build and test a concatenation of length O(n+m).
 
 ### Problem description
 
@@ -36270,9 +36982,11 @@ class Solution {public:int longestPalindrome(string s,string t){int ans=0;vector
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³ + m³ + nm)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nm)
+
+**Complexity reasoning:** Each substring is explicitly palindrome-checked in cubic total time per string; cross-string DP fills an n-by-m table.
 
 ### Problem description
 
@@ -36355,9 +37069,11 @@ class Solution {public:int longestPalindrome(string s,string t){int n=s.size(),m
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log x + kn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + x)
+
+**Complexity reasoning:** Balanced multisets maintain sliding-window medians and costs in O(n log x); k DP rounds each scan n positions. DP and costs are O(n).
 
 ### Problem description
 
@@ -36432,9 +37148,11 @@ class Solution {public:long long minOperations(vector<int>&nums,int x,int k){int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + (n+q) LOG)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n LOG + q)
+
+**Complexity reasoning:** Sorting and rank mapping cost O(n log n); binary-lifting preprocessing takes n*LOG, and each of q queries takes LOG. LOG is fixed at 18 in the submitted code.
 
 ### Problem description
 
@@ -36571,9 +37289,11 @@ class Solution {public:vector<int> pathExistenceQueries(int n,vector<int>& nums,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass maintains minimum and maximum eligible first elements and tests their products with each last element.
 
 ### Problem description
 
@@ -36653,9 +37373,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(LW)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks every land/water ride pair in both orders; L and W are the two ride counts.
 
 ### Problem description
 
@@ -36783,9 +37505,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorts the array and advances two pointers once; sorting uses logarithmic stack space.
 
 ### Problem description
 
@@ -36871,9 +37595,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L log L + W log W)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L + W)
+
+**Complexity reasoning:** Each of two evaluations sorts its second ride category, builds prefix/suffix minima, and binary-searches for every first-category ride.
 
 ### Problem description
 
@@ -37021,9 +37747,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + U)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(U)
+
+**Complexity reasoning:** Each window boundary advances at most n times; initializes a frequency array of U=100001 entries.
 
 ### Problem description
 
@@ -37113,9 +37841,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k² + mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Swaps k floor(k/2) elements in the square, then returns the m-by-n grid by value (potential copy).
 
 ### Problem description
 
@@ -37195,9 +37925,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Groups all n values by limit and sorts each group; total sorting is bounded by O(n log n).
 
 ### Problem description
 
@@ -37383,9 +38115,11 @@ class Solution {public:long long maxTotal(vector<int>& value,vector<int>& limit)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds and sorts an absolute-value array, then counts valid pairs with monotone pointers.
 
 ### Problem description
 
@@ -37524,9 +38258,11 @@ class Solution { public: long long perfectPairs(vector<int>& nums){vector<long l
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds two prefix-sum arrays and evaluates each length-k interval in constant time.
 
 ### Problem description
 
@@ -37655,9 +38391,11 @@ class Solution { public: long long maxProfit(vector<int>& prices,vector<int>& st
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Uses stable_sort on n values, which can allocate a linear auxiliary buffer; returning nums by value may also copy.
 
 ### Problem description
 
@@ -37745,9 +38483,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log k) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Each window update performs hash lookups and ordered-set erase/insert operations over at most k active values.
 
 ### Problem description
 
@@ -37924,9 +38664,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Processes each arrival once using a hash frequency map and a length-n keep array.
 
 ### Problem description
 
@@ -38023,9 +38765,11 @@ class Solution { public: int minArrivalsToDiscard(vector<int>& arrivals,int w,in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk + n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + k)
+
+**Complexity reasoning:** Each item enters the knapsack DP once in O(k); for each cap x, tries up to min(n,k/x) capped items (bounded by O(n²)).
 
 ### Problem description
 
@@ -38098,9 +38842,11 @@ class Solution { public: vector<bool> subsequenceSumAfterCapping(vector<int>& nu
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Maintains a rolling displacement in constant time and inserts each of O(n) positions into an ordered set.
 
 ### Problem description
 
@@ -38185,9 +38931,11 @@ class Solution {public: int distinctPoints(string s,int k) {int x=0,y=0;auto mov
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Tries n prefix and n suffix reversals; each candidate copies, reverses, and compares strings of length n.
 
 ### Problem description
 
@@ -38270,9 +39018,11 @@ class Solution {public: string lexSmallest(string s) {string best=s;int n=s.size
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Copies and sorts heights, then alternates selecting extremes in one pass.
 
 ### Problem description
 
@@ -38393,9 +39143,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² + nσ)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Scans the target half and tries lexicographically greater symbols; candidate construction and repeated prefix/count copying cost up to O(n²+nσ), σ=26.
 
 ### Problem description
 
@@ -38500,9 +39252,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log N)
+
+**Complexity reasoning:** Extracts the binary digits of integer N and compares mirrored bit positions.
 
 ### Problem description
 
@@ -38581,9 +39335,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Greedily assigns signs in one pass, then sorts the resulting n signed integers.
 
 ### Problem description
 
@@ -38699,9 +39455,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(B log V + n log B)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(B + n)
+
+**Complexity reasoning:** Enumerates V=10000 candidate integers with O(log V)-bit palindrome checks, then binary-searches the B palindromes for each input.
 
 ### Problem description
 
@@ -38860,9 +39618,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Coordinate-compresses values by sorting and uses Fenwick tree updates/queries and lower_bound per window step.
 
 ### Problem description
 
@@ -38984,9 +39744,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Scans each word and reverses matching words; returning the string by value can require a copy.
 
 ### Problem description
 
@@ -39081,9 +39843,11 @@ class Solution { public: string reverseWords(string s) { auto vow=[](char c){ret
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Reverses the first k characters; the by-value string parameter holds n characters.
 
 ### Problem description
 
@@ -39162,9 +39926,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Both window pointers move monotonically; a hash map tracks counts and distinct-value sum.
 
 ### Problem description
 
@@ -39253,9 +40019,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^m N log N + 3^m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^m N + 2^m)
+
+**Complexity reasoning:** For each of 2^m subsets, concatenates and sorts up to N total elements; subset DP enumerates O(3^m) partitions. N is total input elements.
 
 ### Problem description
 
@@ -39411,9 +40179,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorts costs, builds prefix maxima, then binary-searches affordable partners for each item.
 
 ### Problem description
 
@@ -39527,9 +40297,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Separates characters into two strings, reverses both, and writes them back in one pass.
 
 ### Problem description
 
@@ -39633,9 +40405,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Fills two n-by-n dynamic-programming tables for every substring length and starting position.
 
 ### Problem description
 
@@ -39750,9 +40524,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorts requests, then uses an amortized linear deque scan of accepted timestamps.
 
 ### Problem description
 
@@ -39869,9 +40645,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + U)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(U)
+
+**Complexity reasoning:** Maintains two monotone sliding windows and fixed frequency arrays of U=100001 entries.
 
 ### Problem description
 
@@ -39991,9 +40769,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Reverses each of the n/k contiguous blocks of size n/k; returning the vector by value can copy n elements. Assumes valid k and nonzero block length.
 
 ### Problem description
 
@@ -40076,9 +40856,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Computes n running-prefix GCDs (O(log V) each), sorts n values, then computes up to n/2 more GCDs; V is the largest input value.
 
 ### Problem description
 
@@ -40231,9 +41013,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Checks mirrored character pairs until a match is found or all n positions have been visited; the input string is passed by value, adding O(n) copy space.
 
 ### Problem description
 
@@ -40319,9 +41103,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M log log M + nM) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M)
+
+**Complexity reasoning:** Builds an Eratosthenes sieve up to fixed M=200000; each even-indexed element may scan forward through as many as O(M) entries searching for a prime. This assumes indices remain within the sieve.
 
 ### Problem description
 
@@ -40438,9 +41224,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Counts nonzero entries, then counts zeros among the first nonzero positions using two linear passes.
 
 ### Problem description
 
@@ -40532,9 +41320,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including returned vector
+
+**Complexity reasoning:** One write pointer processes each element once, followed by resize; returning the vector by value can copy up to n elements.
 
 ### Problem description
 
@@ -40625,9 +41415,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² log S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Enumerates every subarray and, when its sum has the requested final digit, repeatedly divides the sum by 10 to inspect its leading digit; S bounds absolute subarray sums.
 
 ### Problem description
 
@@ -40724,9 +41516,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log S log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each prefix sum, enumerates O(log S) decimal magnitudes and performs two binary searches in a residue bucket. Buckets contain stored prefix sums; sortedness assumes nonnegative inputs.
 
 ### Problem description
 
@@ -40821,9 +41615,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(|s| + |t|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans the target once while maintaining two subsequence-match lengths (exact and allowing one replacement); string arguments are passed by value, requiring O(|s|+|t|) copy space.
 
 ### Problem description
 
@@ -40904,9 +41700,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P · n · n!) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n · n!)
+
+**Complexity reasoning:** Breadth-first search explores up to n! distinct permutations, copying/reversing length-n strings for each of P allowed prefix lengths; queue and hash map store permutation strings.
 
 ### Problem description
 
@@ -40995,9 +41793,11 @@ class Solution {public:int sortArray(vector<int>& a,vector<int>& pre){string sta
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Makes three linear passes over the string, appending each character to the result exactly once.
 
 ### Problem description
 
@@ -41087,9 +41887,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + Qn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + Q)
+
+**Complexity reasoning:** Counts source ones and builds a prefix array once; each of Q candidate strings is scanned up to twice, and one boolean is produced per query.
 
 ### Problem description
 
@@ -41276,9 +42078,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Separates even/odd characters and computes each component’s lexicographically minimal rotation in linear time using a two-pointer rotation algorithm; hash-set insertion is expected linear in total key length L.
 
 ### Problem description
 
@@ -41406,9 +42210,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Merges two time-ordered series with indices that only advance, appending at most n+m output rows.
 
 ### Problem description
 
@@ -41558,9 +42364,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + m log m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n + log m) auxiliary
+
+**Complexity reasoning:** Sorts prices and discounts descending, then sums prices and applies the first min(n,m) discounts. Standard library sorting uses logarithmic stack space.
 
 ### Problem description
 
@@ -41673,9 +42481,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds earliest and latest matched positions in two scans of the station string, then checks adjacent skill positions; two length-n arrays are allocated.
 
 ### Problem description
 
@@ -41791,9 +42601,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including argument copy
+
+**Complexity reasoning:** Compares bits from opposite ends of the 8n-bit representation; at most 4n bit pairs are checked and no auxiliary structure is created.
 
 ### Problem description
 
@@ -41877,9 +42689,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M log log M + n log M)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M + n log M)
+
+**Complexity reasoning:** Builds smallest-prime-factor table up to maximum M, factorizes each number into distinct prime factors, and adds/removes each factor at most once in a sliding window.
 
 ### Problem description
 
@@ -42010,9 +42824,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q log q + (n+q)√n) typical Mo ordering
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q + U)
+
+**Complexity reasoning:** Sorts q queries by Mo blocks and adjusts window endpoints; typical pointer movement is O((n+q)√n), with O(1) add/remove and a fixed U=100001 frequency array.
 
 ### Problem description
 
@@ -42149,9 +42965,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n + M + q)
+
+**Complexity reasoning:** Each of n elements performs one or two persistent segment-tree updates, each copying O(log n) nodes; each query makes one O(log n) range-sum query and constant-time hash checks. M=500001 for the last-occurrence array.
 
 ### Problem description
 
@@ -42332,9 +43150,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including argument copy
+
+**Complexity reasoning:** Counts equal circular adjacent pairs once and evaluates each of the n cut positions in constant time.
 
 ### Problem description
 
@@ -42427,9 +43247,11 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Computes the total and first half-window sum, then updates the half-window in constant time for every cyclic start.
 
 ### Problem description
 
@@ -42563,9 +43385,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nV)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** For each right extension and left removal, loops over V=500 possible values while maintaining frequency and pair-sum tables; each endpoint moves at most n times.
 
 ### Problem description
 

@@ -188,9 +188,11 @@ Directly model operations, states, and edge cases.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn) including output; O(1) auxiliary
+
+**Complexity reasoning:** Each matrix cell is visited once by the shrinking spiral boundaries.
 
 ### Problem description
 
@@ -282,9 +284,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including output
+
+**Complexity reasoning:** The three while loops advance the same index without revisiting intervals; the result stores at most n+1 intervals.
 
 ### Problem description
 
@@ -390,9 +394,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) including output; O(1) auxiliary
+
+**Complexity reasoning:** The n-by-n result is initialized and its cells filled in spiral order.
 
 ### Problem description
 
@@ -480,9 +486,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each read4 call handles at most four characters, and at most n characters are copied; the temporary buffer has four slots.
 
 ### Problem description
 
@@ -639,9 +647,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) per call
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each character is copied once; the persistent read4 buffer holds four characters across calls.
 
 ### Problem description
 
@@ -802,9 +812,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including output; O(1) auxiliary
+
+**Complexity reasoning:** One pass checks n+1 gaps and emits at most n+1 missing ranges.
 
 ### Problem description
 
@@ -896,9 +908,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including output; O(1) auxiliary
+
+**Complexity reasoning:** The inner loop advances the outer index, so each number is processed once; emitted range strings use linear total storage under fixed-width integers.
 
 ### Problem description
 
@@ -1006,9 +1020,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m²n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn) auxiliary per neighbor call
+
+**Complexity reasoning:** Important: cntNeighbours takes board by value, copying the entire m-by-n matrix for every cell; this dominates the two grid passes.
 
 ### Problem description
 
@@ -1146,9 +1162,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** The nested loops examine each existing character at most once; L is the total number of characters across words.
 
 ### Problem description
 
@@ -1300,9 +1318,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass updates the current and maximum run lengths.
 
 ### Problem description
 
@@ -1377,9 +1397,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each attack contributes its duration or the gap from the preceding attack.
 
 ### Problem description
 
@@ -1470,9 +1492,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(m+n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn) including output and map
+
+**Complexity reasoning:** Every cell is inserted into an ordered map keyed by diagonal, costing O(log(m+n)); iteration copies each diagonal vector and reverses even diagonals.
 
 ### Problem description
 
@@ -1565,9 +1589,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn) including output
+
+**Complexity reasoning:** When dimensions match, each cell is copied once into the new r-by-c matrix; when they do not, returning mat by value also copies mn cells.
 
 ### Problem description
 
@@ -1650,9 +1676,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn) including output
+
+**Complexity reasoning:** For each of mn cells, at most nine neighboring positions are examined.
 
 ### Problem description
 
@@ -1753,9 +1781,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass counts adjacent inversions and checks constant-time neighboring values.
 
 ### Problem description
 
@@ -1844,9 +1874,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single scan tracks the current strictly increasing run.
 
 ### Problem description
 
@@ -1933,9 +1965,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The index moves forward by one or two until the final bit.
 
 ### Problem description
 
@@ -2020,9 +2054,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(volume × n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) for returned vector copy; O(1) auxiliary otherwise
+
+**Complexity reasoning:** For each unit of water, the algorithm may scan left and right across n heights; returning heights by value copies n elements.
 
 ### Problem description
 
@@ -2144,9 +2180,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The nested loops compare each non-first-row/non-first-column cell to its upper-left neighbor.
 
 ### Problem description
 
@@ -2240,9 +2278,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The board is fixed at 3 by 3, and both winner checks examine a constant number of lines.
 
 ### Problem description
 
@@ -2370,9 +2410,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n⁴ log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Up to O(n²) set pixels per image yield O(n⁴) pairs; ordered-map increments cost O(log n), while displacement keys have only O(n²) possible values.
 
 ### Problem description
 
@@ -2474,9 +2516,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass considers distances between occupied seats and both ends.
 
 ### Problem description
 
@@ -2583,9 +2627,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn) including output
+
+**Complexity reasoning:** The transposed n-by-m matrix is allocated and each input cell copied once.
 
 ### Problem description
 
@@ -2670,9 +2716,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((R+C)²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC) including output
+
+**Complexity reasoning:** The expanding spiral traverses positions outside the grid too; reaching all R*C cells takes O((R+C)²) steps in the worst case.
 
 ### Problem description
 
@@ -2763,9 +2811,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass tracks whether increasing and decreasing order remain possible.
 
 ### Problem description
 
@@ -2851,9 +2901,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two length-n arrays store prefix maxima and suffix minima; three linear scans determine the split.
 
 ### Problem description
 
@@ -2956,9 +3008,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two pointers independently scan uphill from the left and downhill from the right.
 
 ### Problem description
 
@@ -3052,9 +3106,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n+q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(q) including output; O(1) auxiliary
+
+**Complexity reasoning:** The initial even sum scans n entries; each of q updates adjusts the sum in constant time.
 
 ### Problem description
 
@@ -3151,9 +3207,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The chessboard is fixed at 8 by 8; the rook search and four directional scans have bounded length.
 
 ### Problem description
 
@@ -3262,9 +3320,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two accumulate calls scan the full circular route and the selected segment.
 
 ### Problem description
 
@@ -3369,9 +3429,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q + 8B)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(q + 8)
+
+**Complexity reasoning:** Hashes q queen coordinates, then scans eight directions for at most B=8 board cells each; the hash set stores q positions (expected O(1) lookup).
 
 ### Problem description
 
@@ -3475,9 +3537,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nR)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each round copies the n-element array and scans its interior; R is the number of rounds until no value changes, with one O(n) temporary copy per round.
 
 ### Problem description
 
@@ -3579,9 +3643,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Flattens all mn cells, rotates the flat vector in linear time, then rebuilds an m-by-n result; both containers use mn space.
 
 ### Problem description
 
@@ -3695,9 +3761,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Examines each of n intervals once and emits at most two pieces per interval into the result.
 
 ### Problem description
 
@@ -3795,9 +3863,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Tests only three candidate values and uses lower_bound and upper_bound on the sorted array for each.
 
 ### Problem description
 
@@ -3868,9 +3938,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Traverses the input backward once, maintaining the greatest value seen; modifies the input in place.
 
 ### Problem description
 
@@ -3960,9 +4032,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Processes n input entries in pairs and appends L=sum(nums[0],nums[2],...) decoded values to the output.
 
 ### Problem description
 
@@ -4044,9 +4118,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans flips once, tracking the largest flipped position and incrementing a counter when the prefix is complete.
 
 ### Problem description
 
@@ -4142,9 +4218,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m(n + m))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m) output
+
+**Complexity reasoning:** For each of m rows, finds its minimum among n columns and checks that column across m rows; stores up to m lucky numbers.
 
 ### Problem description
 
@@ -4255,9 +4333,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Inserts each new value at an arbitrary vector position; shifting existing elements can take O(i) on insertion i.
 
 ### Problem description
 
@@ -4371,9 +4451,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Finds the maximum with one pass and creates one Boolean answer for each child with a second pass.
 
 ### Problem description
 
@@ -4475,9 +4557,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks each position once and stores only the previous position containing a one.
 
 ### Problem description
 
@@ -4558,9 +4642,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks the start and end times for each student with constant work per entry.
 
 ### Problem description
 
@@ -4650,9 +4736,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Appends two elements for each of n iterations; reserve avoids repeated vector growth.
 
 ### Problem description
 
@@ -4751,9 +4839,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L + R)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Computes the maximum left-ant position and minimum right-ant position with two linear scans.
 
 ### Problem description
 
@@ -4867,9 +4957,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^3)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Enumerates all triples i<j<k using three nested loops and evaluates three constant-time comparisons.
 
 ### Problem description
 
@@ -4968,9 +5060,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Maintains the current winner and consecutive win count in a single pass, possibly stopping early.
 
 ### Problem description
 
@@ -5069,9 +5163,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans values once, tracking the length of the current odd-number streak.
 
 ### Problem description
 
@@ -5149,9 +5245,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Emits the visited sectors between the initial and final sector, possibly wrapping once; no more than n sectors are emitted.
 
 ### Problem description
 
@@ -5252,9 +5350,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nmk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** For each possible starting index (at most n), compares up to m*k elements against the repeated base pattern.
 
 ### Problem description
 
@@ -5366,9 +5466,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Adds both diagonal cells for each row and subtracts the center once for odd n.
 
 ### Problem description
 
@@ -5493,9 +5595,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m + n)
+
+**Complexity reasoning:** Scans the m-by-n matrix to compute row and column counts, then scans it again to count special cells.
 
 ### Problem description
 
@@ -5587,9 +5691,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** Builds an n-by-n preference-rank matrix, records partners, and checks at most n-1 preferred people for each of n friends.
 
 ### Problem description
 
@@ -5727,9 +5833,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(c + W)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Processes c arriving customer groups and continues for W additional wheel turns to serve remaining customers (at most four per turn).
 
 ### Problem description
 
@@ -5855,9 +5963,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(51^2 * t)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Evaluates all 51-by-51 candidate coordinates and scans all t towers for each; only a few scalars and a two-element answer are stored.
 
 ### Problem description
 
@@ -5979,9 +6089,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds n+1 dynamic-programming values and then scans the vector once to find its maximum.
 
 ### Problem description
 
@@ -6093,9 +6205,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Sums n balances for each of m customer accounts; no auxiliary array is created.
 
 ### Problem description
 
@@ -6201,9 +6315,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Updates the finish time and accumulated waiting time for each customer exactly once.
 
 ### Problem description
 
@@ -6301,9 +6417,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Simulates n starting columns, following each ball through at most m rows, and stores one result per ball.
 
 ### Problem description
 
@@ -6422,9 +6540,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans rectangles once, updating the largest possible square side and its frequency.
 
 ### Problem description
 
@@ -6516,9 +6636,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One circular pass counts adjacent decreases, including the last-to-first comparison.
 
 ### Problem description
 
@@ -6615,9 +6737,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(p)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans all p points once, maintaining the best Manhattan distance and index.
 
 ### Problem description
 
@@ -6720,9 +6844,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass updates the running ascending-subarray sum and maximum.
 
 ### Problem description
 
@@ -6809,9 +6935,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks every array element and retains the smallest matching index distance.
 
 ### Problem description
 
@@ -6897,9 +7025,11 @@ class Solution {public:int getMinDistance(vector<int>& nums,int target,int start
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** At most four full matrix comparisons and four in-place layer rotations; each takes O(n²) time.
 
 ### Problem description
 
@@ -7009,9 +7139,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Finds the first violation, then checks at most two candidate removals with linear scans.
 
 ### Problem description
 
@@ -7100,9 +7232,11 @@ class Solution {public:bool canBeIncreasing(vector<int>& nums){int n=nums.size()
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m+n) auxiliary; O(mn) returned grid
+
+**Complexity reasoning:** Each ring is enumerated, copied, and rotated once; the largest ring uses O(m+n) temporary storage. Returning the grid by value may copy O(mn) elements.
 
 ### Problem description
 
@@ -7186,9 +7320,11 @@ class Solution {public:vector<vector<int>> rotateGrid(vector<vector<int>>& grid,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Allocates an n-element result and performs one indexed lookup per element.
 
 ### Problem description
 
@@ -7279,9 +7415,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Copies the original n elements and appends another n elements to the result.
 
 ### Problem description
 
@@ -7367,9 +7505,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks eight directions on a fixed 8×8 board, traversing at most seven cells per direction.
 
 ### Problem description
 
@@ -7448,9 +7588,11 @@ class Solution {public:bool checkMove(vector<vector<char>>& board,int rMove,int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds a suffix-minimum array in one pass and scans once with a running prefix maximum.
 
 ### Problem description
 
@@ -7562,9 +7704,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass tracks the minimum previously seen value and best positive difference.
 
 ### Problem description
 
@@ -7672,9 +7816,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m) auxiliary plus O(L) word copy
+
+**Complexity reasoning:** Scans row segments and builds each column into a temporary m-character vector; matching all segments examines at most O(mn) cells. The word parameter is copied by value (L characters).
 
 ### Problem description
 
@@ -7801,9 +7947,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Allocates and fills an m-by-n output matrix when the input length matches.
 
 ### Problem description
 
@@ -7899,9 +8047,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks each index against its value modulo ten until a match is found.
 
 ### Problem description
 
@@ -7996,9 +8146,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Stores a four-direction visited-state mask per cell; each (cell, direction) state is processed at most once.
 
 ### Problem description
 
@@ -8118,9 +8270,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Processes each plant once, accounting arithmetically for any refill trip.
 
 ### Problem description
 
@@ -8244,9 +8398,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(q)
+
+**Complexity reasoning:** Answers each of q queries in constant time using modular arithmetic and appends one result.
 
 ### Problem description
 
@@ -8361,9 +8517,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output; O(1) auxiliary
+
+**Complexity reasoning:** Computes the initial score once and evaluates n+1 division points, recording all best indices.
 
 ### Problem description
 
@@ -8569,9 +8727,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two nested loops test every distinct index pair.
 
 ### Problem description
 
@@ -8650,9 +8810,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Compresses consecutive equal values into a vector and checks each interior value once.
 
 ### Problem description
 
@@ -8742,9 +8904,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan tracks the value closest to zero, preferring positive values on ties.
 
 ### Problem description
 
@@ -8820,9 +8984,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn + g + w)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Marks g guards and w walls, sweeps every row and column in both directions, and counts unguarded cells.
 
 ### Problem description
 
@@ -8910,9 +9076,11 @@ class Solution {public:int countUnguarded(int m,int n,vector<vector<int>>& guard
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Repeated in-place rounds process n/2 + n/4 + ... elements, a geometric sum bounded by O(n).
 
 ### Problem description
 
@@ -9000,9 +9168,11 @@ class Solution {public:int minMaxGame(vector<int>& nums){int n=nums.size();while
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(b)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Visits at most b tax brackets, calculating the taxable portion for each.
 
 ### Problem description
 
@@ -9121,9 +9291,11 @@ class Solution {public:double calculateTax(vector<vector<int>>& brackets,int inc
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks each cell against the main- or anti-diagonal requirement.
 
 ### Problem description
 
@@ -9204,9 +9376,11 @@ class Solution {public:bool checkXMatrix(vector<vector<int>>& grid){int n=grid.s
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Evaluates every (n−2)×(n−2) window using nine constant-time comparisons and stores the result matrix.
 
 ### Problem description
 
@@ -9293,9 +9467,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(l)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans l log entries, computing task durations and tie-breaking by employee ID.
 
 ### Problem description
 
@@ -9406,9 +9582,11 @@ class Solution { public: int hardestWorker(int n, vector<vector<int>>& logs) { i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Counts ones in each row and column, then fills an m-by-n answer matrix.
 
 ### Problem description
 
@@ -9639,9 +9817,11 @@ class Solution {public:vector<vector<int>> onesMinusZeros(vector<vector<int>>& g
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(D)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(D)
+
+**Complexity reasoning:** Converts each integer to a decimal string and appends each digit once; D is the total number of digits.
 
 ### Problem description
 
@@ -9721,9 +9901,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn · d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Each of the m×n entries is converted to a decimal string of up to d digits; the width array stores n results.
 
 ### Problem description
 
@@ -9816,9 +9998,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Accumulate each of the m rows of n entries; the returned two-element vector has constant size.
 
 ### Problem description
 
@@ -9917,9 +10101,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(DN)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** For each of D divisors, test divisibility of all N numbers; only counters and the best divisor are retained.
 
 ### Problem description
 
@@ -10015,9 +10201,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each player’s n rolls is scanned once; checking the previous two rolls takes constant time.
 
 ### Problem description
 
@@ -10124,9 +10312,11 @@ class Solution {int score(vector<int>&v){int s=0;for(int i=0;i<(int)v.size();i++
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q)
+
+**Complexity reasoning:** Initialize an n-element color array, then update at most two adjacent pairs per query; store q answers.
 
 ### Problem description
 
@@ -10207,9 +10397,11 @@ class Solution {public:vector<int> colorTheArray(int n,vector<vector<int>>&queri
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass locates the positions of 1 and n, followed by constant-time arithmetic.
 
 ### Problem description
 
@@ -10304,9 +10496,11 @@ class Solution {public:int semiOrderedPermutation(vector<int>& nums){int n=nums.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k + h)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Close doors and advance k times, then traverse h houses until the opened door is reached (h ≤ k under the problem guarantee).
 
 ### Problem description
 
@@ -10405,9 +10599,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Try all n rotations; each rotation scans n positions while maintaining a length-n minimum-cost array.
 
 ### Problem description
 
@@ -10490,9 +10686,11 @@ class Solution {public:long long minCost(vector<int>& nums,int x){int n=nums.siz
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** For every starting index, extend the alternating run until it breaks; the nested scans can examine Θ(n²) pairs.
 
 ### Problem description
 
@@ -10575,9 +10773,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Check every 1-based index for divisibility into n and add the corresponding squared value.
 
 ### Problem description
 
@@ -10648,9 +10848,11 @@ class Solution {public:int sumOfSquares(vector<int>& nums){int n=nums.size(),ans
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Count qualifying employees in one pass through the hours array.
 
 ### Problem description
 
@@ -10728,9 +10930,11 @@ class Solution {public:int numberOfEmployeesWhoMetTarget(vector<int>& hours,int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scan adjacent pairs to find the unique descending boundary, then validate and compute the required shift count.
 
 ### Problem description
 
@@ -10817,9 +11021,11 @@ class Solution {public:int minimumRightShifts(vector<int>& nums){int n=nums.size
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each input item is processed once; the seen values and responses can each grow to linear size.
 
 ### Problem description
 
@@ -10929,9 +11135,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build prefix and suffix minima in two linear passes, then evaluate each middle index once.
 
 ### Problem description
 
@@ -11031,9 +11239,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** For each candidate champion, scan up to n opponents in the matrix; return immediately when a row wins against all others.
 
 ### Problem description
 
@@ -11118,9 +11328,11 @@ class Solution{public:int findChampion(vector<vector<int>>& grid){int n=grid.siz
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Evaluate both choices for the final pair; each choice scans the other n−1 positions with constant-time feasibility checks.
 
 ### Problem description
 
@@ -11224,9 +11436,11 @@ class Solution{public:int minOperations(vector<int>& nums1,vector<int>& nums2){i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Check each interior position against its two neighbors and append peak indices to the output vector.
 
 ### Problem description
 
@@ -11304,9 +11518,11 @@ class Solution{public:vector<int> findPeaks(vector<int>& mountain){vector<int> a
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Inspect each rectangle once, comparing squared diagonal length and area with the current best.
 
 ### Problem description
 
@@ -11381,9 +11597,11 @@ class Solution {public:int areaOfMaxDiagonal(vector<vector<int>>& dimensions){in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Every 3×3 candidate region is checked and, if valid, updated using constant-size loops; sum and count matrices each use mn cells.
 
 ### Problem description
 
@@ -11472,9 +11690,11 @@ class Solution {public:vector<vector<int>> resultGrid(vector<vector<int>>&a,int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** For each column, scan its m entries to find the maximum and scan again to replace −1 values; the input matrix is modified in place.
 
 ### Problem description
 
@@ -11551,9 +11771,11 @@ class Solution {public:vector<vector<int>> modifiedMatrix(vector<vector<int>>&a)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Process disjoint consecutive pairs until a pair sum differs from the first pair’s sum.
 
 ### Problem description
 
@@ -11632,9 +11854,11 @@ class Solution {public:int maxOperations(vector<int>&a){int sum=a[0]+a[1],ans=0;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Count elements below k with one linear pass and a single counter.
 
 ### Problem description
 
@@ -11724,9 +11948,11 @@ class Solution {public:int minOperations(vector<int>&nums,int k){int ans=0;for(i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort and deduplicate n values for coordinate compression; each element performs binary search and three Fenwick-tree operations, each O(log n).
 
 ### Problem description
 
@@ -11791,9 +12017,11 @@ class Solution {struct BIT{vector<long long> t;BIT(int n):t(n+1,LLONG_MIN/4){}vo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Track increasing and decreasing streak lengths while scanning the array once.
 
 ### Problem description
 
@@ -11874,9 +12102,11 @@ class Solution {public:int longestMonotonicSubarray(vector<int>& nums){int inc=1
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Inspect the four 2×2 subgrids of the fixed 3×3 board, counting at most four cells in each.
 
 ### Problem description
 
@@ -11951,9 +12181,11 @@ class Solution { public: bool canMakeSquare(vector<vector<char>>& grid){for(int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Find the minimum in each of the two length-n arrays; their difference is the added integer.
 
 ### Problem description
 
@@ -12030,9 +12262,11 @@ class Solution {public:int addedInteger(vector<int>& nums1,vector<int>& nums2){r
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Check the vertical and horizontal conditions for each grid cell without allocating extra storage.
 
 ### Problem description
 
@@ -12113,9 +12347,11 @@ class Solution {public:bool satisfiesConditions(vector<vector<int>>& grid){int m
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Compare parity of each adjacent pair, returning early if any pair matches.
 
 ### Problem description
 
@@ -12186,9 +12422,11 @@ class Solution {public:bool isArraySpecial(vector<int>& nums){for(int i=1;i<(int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Maintain the current champion and win streak while examining each remaining player at most once.
 
 ### Problem description
 
@@ -12283,9 +12521,11 @@ class Solution {public:int findWinningPlayer(vector<int>& skills,int k){int win=
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scan every grid cell and maintain minimum and maximum row/column indices containing a 1.
 
 ### Problem description
 
@@ -12352,9 +12592,11 @@ class Solution {public:int minimumArea(vector<vector<int>>& grid){int loR=INT_MA
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn(m+n)^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Enumerates horizontal, vertical, and mixed three-rectangle partitions; each candidate scans up to O(mn) cells to compute bounding areas.
 
 ### Problem description
 
@@ -12431,9 +12673,11 @@ class Solution {public:int minimumSum(vector<vector<int>>& grid){int m=grid.size
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(sqrt(red+blue))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each trial consumes rows of increasing size until the available balls run out; two starting colors are tried.
 
 ### Problem description
 
@@ -12514,9 +12758,11 @@ class Solution {public:int maxHeightOfTriangle(int red,int blue){auto run=[](int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Checks the previous mountain height for each index and stores qualifying indices.
 
 ### Problem description
 
@@ -12585,9 +12831,11 @@ class Solution { public: vector<int> stableMountains(vector<int>&height,int thre
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Tries every starting position and checks up to 2(k-1) adjacent pairs for its two length-k segments.
 
 ### Problem description
 
@@ -12654,9 +12902,11 @@ class Solution {public:bool hasIncreasingSubarrays(vector<int>& nums,int k){int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Counts adjacent unequal pairs in a single pass.
 
 ### Problem description
 
@@ -12738,9 +12988,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Computes one modular destination index and writes one result for every element.
 
 ### Problem description
 
@@ -12820,9 +13072,11 @@ class Solution {public:vector<int>constructTransformedArray(vector<int>&nums){in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans each event once, tracking the previous timestamp and best duration.
 
 ### Problem description
 
@@ -12901,9 +13155,11 @@ class Solution {public:int buttonWithLongestTime(vector<vector<int>>&events){int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks the fixed three-element condition at each possible ending index.
 
 ### Problem description
 
@@ -12962,9 +13218,11 @@ class Solution {public:int countSubarrays(vector<int>&nums){int ans=0;for(int i=
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn) output
+
+**Complexity reasoning:** Visits each grid cell once in alternating row directions, retaining every other value.
 
 ### Problem description
 
@@ -13051,9 +13309,11 @@ class Solution {public:vector<int>zigzagTraversal(vector<vector<int>>&grid){vect
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks each circular neighboring pair once.
 
 ### Problem description
 
@@ -13116,9 +13376,11 @@ class Solution { public: int maxAdjacentDistance(vector<int>& nums) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks at most two positions k away for every array element.
 
 ### Problem description
 
@@ -13181,9 +13443,11 @@ class Solution {public:int sumOfGoodNumbers(vector<int>& nums,int k){int ans=0,n
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Maintains the running minimum and appends it once per input cost.
 
 ### Problem description
 
@@ -13264,9 +13528,11 @@ class Solution {public:vector<int> minCosts(vector<int>&cost){vector<int>a;int b
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N·3^N) worst case, N=mn
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N) auxiliary
+
+**Complexity reasoning:** Starts DFS from up to N cells and backtracks over unvisited neighbors (at most three after the first step); recursion and the current path use O(N) memory.
 
 ### Problem description
 
@@ -13367,9 +13633,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Maintains the smallest rank encountered during a single traversal.
 
 ### Problem description
 
@@ -13456,9 +13724,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Advances one index across three consecutive monotonic runs without revisiting elements.
 
 ### Problem description
 
@@ -13536,9 +13806,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Evaluates each task’s start plus duration once.
 
 ### Problem description
 
@@ -13603,9 +13875,11 @@ class Solution { public: int earliestTime(vector<vector<int>>& tasks){int ans=IN
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Adds the applicable constant-time fee for each day-late value.
 
 ### Problem description
 
@@ -13691,9 +13965,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Accumulates values with alternating signs in one loop.
 
 ### Problem description
 
@@ -13764,9 +14040,11 @@ class Solution {public: int alternatingSum(vector<int>& nums) {int s=0;for(int i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks each consecutive triple once and updates the current Fibonacci-like run length.
 
 ### Problem description
 
@@ -13858,9 +14136,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(t)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks Manhattan distance and quality for each tower; the position vectors have fixed length two.
 
 ### Problem description
 
@@ -13981,9 +14261,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Walks backward through the strictly increasing suffix until the first violation.
 
 ### Problem description
 
@@ -14063,9 +14345,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Collects nonnegative values, copies the input, then fills eligible positions with rotated values.
 
 ### Problem description
 
@@ -14172,9 +14456,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Traverses backward while maintaining the suffix sum and count.
 
 ### Problem description
 
@@ -14261,9 +14547,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Simulates each turn with constant-time parity toggles and score updates.
 
 ### Problem description
 
@@ -14372,9 +14660,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans capacities once and keeps the smallest eligible capacity’s index.
 
 ### Problem description
 
@@ -14459,9 +14749,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds left and right arithmetic-run arrays and checks every possible modified position once.
 
 ### Problem description
 
@@ -14566,9 +14858,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Tracks the latest indices containing 1 and 2 during one scan.
 
 ### Problem description
 
@@ -14649,9 +14943,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Finds the maximum element’s position, then sums the two portions in linear passes.
 
 ### Problem description
 
@@ -14775,9 +15071,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds a suffix-maximum array and makes a second pass to collect valid elements.
 
 ### Problem description
 
@@ -14881,9 +15179,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Counts even and odd elements, then appends the opposite-parity count for every position.
 
 ### Problem description
 
@@ -14970,9 +15270,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Copies the n original elements and appends n elements in reverse order; the returned vector holds 2n elements.
 
 ### Problem description
 
@@ -15058,9 +15360,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk + k²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** For each of n elements, updates all k possible residue targets, then checks every pair of distinct even/odd targets. Two k-element cost arrays are stored.
 
 ### Problem description
 
@@ -15160,9 +15464,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds the reversed permutation and checks two candidate goal rotations in O(n). BFS visits at most 2n (orientation, shift) states, each with two constant-time transitions; distance, goal, and queue storage are O(n).
 
 ### Problem description
 
@@ -15274,9 +15580,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Each parity pass counts its elements, builds doubled residue frequencies and prefix sums, and evaluates k target residues in O(n + k) total. Choosing the two best odd-parity targets and combining costs takes O(k); temporary arrays are O(k).
 
 ### Problem description
 
@@ -15393,9 +15701,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans indices j from k through n-1 once, maintaining the maximum eligible earlier element and the best pair sum in scalar variables.
 
 ### Problem description
 
@@ -15493,9 +15803,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Processes each of the r elevator requests once, adding the distance from the previous floor; only two running scalars are kept.
 
 ### Problem description
 
@@ -15591,9 +15903,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Checks each of the d drones once using Manhattan distance and its range, tracking only the closest valid drone and its index.
 
 ### Problem description
 
@@ -15696,9 +16010,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Initializes two n-by-n matrices, then traverses all n² cells once to shift rows and once to shift columns; both temporary matrices require quadratic storage.
 
 ### Problem description
 
@@ -15785,9 +16101,11 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** After constant-time length and singleton checks, computes one sum over source and one over target; no auxiliary containers are allocated.
 
 ### Problem description
 

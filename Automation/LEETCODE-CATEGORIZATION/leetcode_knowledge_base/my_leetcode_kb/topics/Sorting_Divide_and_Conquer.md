@@ -75,9 +75,11 @@ Order elements to expose structure or split into manageable halves.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output; O(log n) sort stack
+
+**Complexity reasoning:** Sorts the intervals, then merges them in one pass; the result stores up to n intervals.
 
 ### Problem description
 
@@ -179,9 +181,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each node scans the already sorted prefix to find its insertion position; links are rearranged in place with one dummy node.
 
 ### Problem description
 
@@ -296,9 +300,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** The implementation calls std::sort and then scans adjacent sorted values once; it does not use the linear-time bucket method.
 
 ### Problem description
 
@@ -379,9 +385,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop always processes exactly 32 bits using shifts and masks.
 
 ### Problem description
 
@@ -466,9 +474,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) for 32-bit integers
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** At most 32 iterations shift n right and count the least significant bit.
 
 ### Problem description
 
@@ -547,9 +557,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** Sorts intervals and checks each adjacent pair once.
 
 ### Problem description
 
@@ -626,9 +638,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** Descending sort dominates the following linear scan for the h-index.
 
 ### Problem description
 
@@ -710,9 +724,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** An ordered set is kept at size at most three, making every insertion and deletion constant-bounded.
 
 ### Problem description
 
@@ -820,9 +836,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass tracks the largest and second-largest values and the largest index.
 
 ### Problem description
 
@@ -906,9 +924,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting dominates; the queue of n indices and output vector each use linear storage. Note: the final iteration accesses queue.front() after popping its last element, which is undefined behavior.
 
 ### Problem description
 
@@ -1020,9 +1040,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + 101)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(101)
+
+**Complexity reasoning:** Counts heights in a fixed 101-element array; the expected-height pointer only advances through the fixed range once.
 
 ### Problem description
 
@@ -1158,9 +1180,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output; O(log n) sort stack
+
+**Complexity reasoning:** Sorts the input, then scans adjacent differences, storing up to n-1 minimum-difference pairs.
 
 ### Problem description
 
@@ -1263,9 +1287,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(s log A) with s ships and A grid points; O(A) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log A) recursion stack
+
+**Complexity reasoning:** A rectangle is halved recursively; empty regions are pruned by hasShips. At each depth at most O(s) occupied rectangles branch, with logarithmic depth. With unrestricted s, the search may visit O(A) cells.
 
 ### Problem description
 
@@ -1364,9 +1390,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** Sorts by ascending start and descending end, then makes one pass tracking the farthest endpoint.
 
 ### Problem description
 
@@ -1457,9 +1485,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(min(m,n))) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Groups all mn cells by diagonal, sorts each diagonal, then writes elements back. Hash-map operations are expected constant time.
 
 ### Problem description
 
@@ -1551,9 +1581,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + f log f)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(f + log f)
+
+**Complexity reasoning:** Filters n restaurants, sorts the f matching rows, then creates the f-element ID result; sorting needs logarithmic stack space.
 
 ### Problem description
 
@@ -1671,9 +1703,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan computes sum, minimum, and maximum without allocating collections.
 
 ### Problem description
 
@@ -1760,9 +1794,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** Sorts the array and verifies the difference between each consecutive pair.
 
 ### Problem description
 
@@ -1844,9 +1880,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** Sorting dominates summing the middle 90% of the sorted array.
 
 ### Problem description
 
@@ -1935,9 +1973,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Copies x-coordinates into a vector, sorts them, and scans consecutive gaps.
 
 ### Problem description
 
@@ -2022,9 +2062,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) construction; O(n) per fetch
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The constructor builds n values; vector::erase shifts up to n elements and push_back is amortized constant time.
 
 ### Problem description
 
@@ -2114,9 +2156,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** Sorts the numbers and traverses adjacent values from right to left once.
 
 ### Problem description
 
@@ -2236,9 +2280,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** Sorts all numbers, then calculates the difference from the two smallest and two largest.
 
 ### Problem description
 
@@ -2323,9 +2369,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Splits n elements into two vectors, sorts each parity group, and writes the sorted values back.
 
 ### Problem description
 
@@ -2432,9 +2480,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n · d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** stable_sort performs O(n log n) mapped-value comparisons; each comparison converts up to d digits for both values. stable_sort may additionally allocate O(n) temporary storage, with implementation-dependent fallback.
 
 ### Problem description
 
@@ -2531,9 +2581,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** Sorts special floors and scans adjacent gaps once.
 
 ### Problem description
 
@@ -2611,9 +2663,11 @@ class Solution {public:int maxConsecutive(int bottom,int top,vector<int>& specia
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n · k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** Sorts n rows of length k+1 by one score; row swaps/moves during sorting can cost O(k) each.
 
 ### Problem description
 
@@ -2704,9 +2758,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) sort stack
+
+**Complexity reasoning:** Sorts ranges and scans them once, doubling the answer whenever a disjoint component begins.
 
 ### Problem description
 
@@ -2796,9 +2852,11 @@ class Solution {public:int countWays(vector<vector<int>>& ranges){sort(ranges.be
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r log r)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(r) output; O(log r) sort stack
+
+**Complexity reasoning:** Sorts r covered intervals and scans them to emit at most r+1 uncovered gaps.
 
 ### Problem description
 
@@ -2911,9 +2969,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Only the first three numbers are copied and sorted, so both work and storage are bounded by constants.
 
 ### Problem description
 
@@ -2995,9 +3055,11 @@ class Solution {public:int findNonMinOrMax(vector<int>& nums){if(nums.size()<3)r
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary for std::sort
+
+**Complexity reasoning:** Sorting dominates the single O(n) adjacent-gap scan.
 
 ### Problem description
 
@@ -3084,9 +3146,11 @@ class Solution {public:int findValueOfPartition(vector<int>& nums){sort(nums.beg
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting the index order costs O(n log n); each robot enters and leaves the collision stack at most once. The index, stack, and answer vectors take O(n) space.
 
 ### Problem description
 
@@ -3186,9 +3250,11 @@ class Solution {public:vector<int> survivedRobotsHealths(vector<int>& positions,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary for std::sort
+
+**Complexity reasoning:** Sorting dominates the O(n) scan of valid selection boundaries.
 
 ### Problem description
 
@@ -3271,9 +3337,11 @@ class Solution {public:int countWays(vector<int>& nums){sort(nums.begin(),nums.e
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(h log h + v log v)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log h + log v) auxiliary for sorting
+
+**Complexity reasoning:** The two bar lists are sorted separately and each scanned once to find the longest consecutive run; h and v are their lengths.
 
 ### Problem description
 
@@ -3366,9 +3434,11 @@ class Solution{int run(vector<int>& a){sort(a.begin(),a.end());int best=1,cur=1;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass maintains the two smallest elements after index zero.
 
 ### Problem description
 
@@ -3457,9 +3527,11 @@ class Solution {public:int minimumCost(vector<int>& nums){int a=INT_MAX,b=INT_MA
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The input is copied, each contiguous equal-popcount run is sorted, and the result is checked in O(n). The copied vector uses O(n) space.
 
 ### Problem description
 
@@ -3548,9 +3620,11 @@ class Solution {public:bool canSortArray(vector<int>& nums){vector<int>a=nums;in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary for std::sort
+
+**Complexity reasoning:** Sorting meeting intervals dominates the linear union-coverage sweep.
 
 ### Problem description
 
@@ -3627,9 +3701,11 @@ class Solution {public:int countDays(int days,vector<vector<int>>& meetings){sor
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each axis check builds and sorts n projected intervals, then scans them. The temporary projection vector uses O(n) space; up to two checks are performed.
 
 ### Problem description
 
@@ -3720,9 +3796,11 @@ class Solution {bool ok(vector<vector<int>>&a,int axis){vector<pair<int,int>>v;f
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, excluding the returned matrix
+
+**Complexity reasoning:** Each of 2n-1 diagonals is extracted, sorted, and written back; the total is O(n² log n). The largest temporary diagonal holds n elements.
 
 ### Problem description
 
@@ -3811,9 +3889,11 @@ class Solution {public:vector<vector<int>> sortMatrix(vector<vector<int>>& grid)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(4^n) = O(s²), s = 2^n
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(4^n) output plus O(n) recursion stack
+
+**Complexity reasoning:** Four recursive calls fill every cell of the s-by-s result exactly once; recursion depth is n.
 
 ### Problem description
 
@@ -3936,9 +4016,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((m-k+1)(n-k+1) k² log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O((m-k+1)(n-k+1) + k²)
+
+**Complexity reasoning:** Each k-by-k window copies k² entries, sorts and deduplicates them, then scans adjacent differences. Space includes the result and one window buffer.
 
 ### Problem description
 
@@ -4048,9 +4130,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary for std::sort
+
+**Complexity reasoning:** The comparator computes constant-time weighted scores; sorting dominates. The vector is returned by value without requiring an additional full copy.
 
 ### Problem description
 
@@ -4188,9 +4272,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n · w)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary for std::sort
+
+**Complexity reasoning:** Sorting makes O(n log n) comparisons, each reversing up to w bits of two integers. For fixed-width integers w is constant, giving O(n log n) time.
 
 ### Problem description
 
@@ -4274,9 +4360,11 @@ class Solution { int rev(int x){int r=0;while(x){r=(r<<1)|(x&1);x>>=1;}return r;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary for std::sort
+
+**Complexity reasoning:** Sorting is followed by a k-element accumulation; k <= n, so overall O(n log n).
 
 ### Problem description
 
@@ -4353,9 +4441,11 @@ class Solution { public: int absDifference(vector<int>& nums,int k) { sort(nums.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary for std::sort
+
+**Complexity reasoning:** Sorting intervals dominates the O(n) merge-and-count scan.
 
 ### Problem description
 
@@ -4468,9 +4558,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting and merging the n occupied intervals dominates; the merged and result vectors can each hold O(n) intervals.
 
 ### Problem description
 

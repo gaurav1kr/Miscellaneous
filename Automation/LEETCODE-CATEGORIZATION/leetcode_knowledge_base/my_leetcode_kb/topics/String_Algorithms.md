@@ -248,9 +248,11 @@ Prefix/suffix structure, substring matching, or character constraints.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + r)
+
+**Complexity reasoning:** Each input character is appended to one of r row strings, then the rows are concatenated; row storage and output hold n characters.
 
 ### Problem description
 
@@ -358,9 +360,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** The pointer scans whitespace, sign and digits at most once, maintaining only integer counters; the input string is passed by value.
 
 ### Problem description
 
@@ -529,9 +533,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each bracket is processed once with constant-size hash lookups; the stack can hold n opening brackets.
 
 ### Problem description
 
@@ -630,9 +636,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Across all n generated terms, each previous term is scanned once; L is the sum of their lengths, and the two working strings occupy at most the largest term size.
 
 ### Problem description
 
@@ -726,9 +734,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm + n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Every pair of digits is multiplied once; the intermediate digit vector and output have n+m positions.
 
 ### Problem description
 
@@ -820,9 +830,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Two backward scans skip trailing spaces and count the last word; only indices and a counter are used, excluding the by-value input.
 
 ### Problem description
 
@@ -919,9 +931,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** The finite-state flags are updated in one pass with no growing auxiliary container; the input is passed by value.
 
 ### Problem description
 
@@ -1022,9 +1036,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(max(n, m))
+
+**Complexity reasoning:** Each binary digit is consumed once, a possible carry adds one digit, and the result is reversed in place.
 
 ### Problem description
 
@@ -1100,9 +1116,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Each word is packed and emitted once, and L total characters are written across the padded lines; the result stores L characters.
 
 ### Problem description
 
@@ -1257,9 +1275,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Tokenization scans the path, and the directory vector plus reconstructed canonical path store at most n characters.
 
 ### Problem description
 
@@ -1399,9 +1419,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** There are d base-26 digits; prepending a character to the growing std::string shifts existing characters on every iteration.
 
 ### Problem description
 
@@ -1492,9 +1514,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each title character contributes one base-26 digit; the accumulator uses constant storage, excluding the by-value parameter.
 
 ### Problem description
 
@@ -1590,9 +1614,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The outer scan and nested digit scan together visit each character a constant number of times; saved parenthesis contexts can fill the stack.
 
 ### Problem description
 
@@ -1715,9 +1741,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass evaluates digit groups and applies operators using only current number, previous term and accumulated result.
 
 ### Problem description
 
@@ -1818,9 +1846,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nL)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each of n words is compared against two targets; L bounds word-comparison length, while indices and minimum distance are constant-size (target arguments are copied).
 
 ### Problem description
 
@@ -1908,9 +1938,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nL)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** The code scans all n words, comparing with target strings (up to L characters each), and tracks only last-seen positions.
 
 ### Problem description
 
@@ -2012,9 +2044,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 5^⌈n/2⌉)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n · 5^⌈n/2⌉)
+
+**Complexity reasoning:** Recursive construction branches over five outer pairs and copies O(n)-length strings for each generated candidate; returned strings dominate storage.
 
 ### Problem description
 
@@ -2098,9 +2132,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(H · 5^⌈H/2⌉)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** For each length up to H, DFS explores up to five choices per pair and checks completed O(H)-character candidates against bounds; one mutable string and recursion stack are retained.
 
 ### Problem description
 
@@ -2196,9 +2232,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N + k log M)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + k)
+
+**Complexity reasoning:** Encoding/decoding copies N total payload characters; k length prefixes require O(log M) digits each, where M is the maximum individual string length. Returned data occupies corresponding space.
 
 ### Problem description
 
@@ -2329,9 +2367,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log N)
+
+**Complexity reasoning:** The fixed 31-entry vocabulary is scanned for each recursive magnitude, and generated English words plus recursive calls scale with the number of decimal digits.
 
 ### Problem description
 
@@ -2436,9 +2476,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Up to n adjacent ++ pairs each trigger a full O(n) string copy, and all generated strings are retained.
 
 ### Problem description
 
@@ -2518,9 +2560,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(C + n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Building bitmasks examines C total word characters; every pair of n masks is checked, with one mask per word.
 
 ### Problem description
 
@@ -2617,9 +2661,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + D²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + D)
+
+**Complexity reasoning:** The input is scanned once, but repeated std::string concatenation while expanding nested groups can copy existing prefixes; D is decoded output length, and saved prefix strings occupy O(n+D).
 
 ### Problem description
 
@@ -2738,9 +2784,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A 32-bit integer needs at most eight hexadecimal digits, so the loop and resulting string have fixed bounds.
 
 ### Problem description
 
@@ -2818,9 +2866,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n)
+
+**Complexity reasoning:** The loop emits n strings; numeric entries are converted from integers with up to O(log n) digits, which also dominate stored output.
 
 ### Problem description
 
@@ -2908,9 +2958,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(max(n, m))
+
+**Complexity reasoning:** Digits are added right-to-left once and the resulting decimal string is reversed in place.
 
 ### Problem description
 
@@ -2998,9 +3050,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** A single pass detects transitions from spaces to non-spaces with one counter; the input parameter is passed by value.
 
 ### Problem description
 
@@ -3079,9 +3133,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The expression is scanned backward, with each value pushed and popped a constant number of times; the stack can hold O(n) characters.
 
 ### Problem description
 
@@ -3193,9 +3249,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The doubled string and its slice each require linear space; std::string::find performs a naive-compatible worst-case quadratic substring search.
 
 ### Problem description
 
@@ -3276,9 +3334,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The address is scanned for separators and tokenized; each token is validated once, and stringstream/token copies use linear storage (IP is passed by value).
 
 ### Problem description
 
@@ -3407,9 +3467,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One pass removes dashes and uppercases characters; grouping copies each character once into the output.
 
 ### Problem description
 
@@ -3501,9 +3563,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** Each of d base-7 digits is prepended to the result, shifting the existing prefix each time.
 
 ### Problem description
 
@@ -3577,9 +3641,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass counts uppercase characters; only a counter is stored.
 
 ### Problem description
 
@@ -3659,9 +3725,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** String equality may compare every character; lengths are constant-time.
 
 ### Problem description
 
@@ -3753,9 +3821,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Both inputs are copied into parse, scanned and sliced; the formatted result occupies linear space.
 
 ### Problem description
 
@@ -3846,9 +3916,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Convert n timestamps, sort their minute values, then scan adjacent and wraparound differences.
 
 ### Problem description
 
@@ -3933,9 +4005,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n)
+
+**Complexity reasoning:** At each tournament round the code copies and wraps every team representation; total generated string length across rounds is O(n log n).
 
 ### Problem description
 
@@ -4029,9 +4103,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scan attendance once while tracking absences and consecutive late arrivals.
 
 ### Problem description
 
@@ -4131,9 +4207,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** Only a constant number of palindrome candidates are constructed from d-digit prefixes; each string conversion costs O(d).
 
 ### Problem description
 
@@ -4234,9 +4312,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The parser advances through the code, using find to skip nonoverlapping segments and a stack of tag names.
 
 ### Problem description
 
@@ -4396,9 +4476,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + f log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Parse n characters across f fractions and reduce each accumulated numerator/denominator with gcd on values bounded by V.
 
 ### Problem description
 
@@ -4499,9 +4581,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) initialization; O(1) amortized per operation
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The constructor copies the compressed input; advance parses each run and its count once across all calls.
 
 ### Problem description
 
@@ -4608,9 +4692,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The equation is split into two substrings, each parsed once with constant-size coefficient counters.
 
 ### Problem description
 
@@ -4711,9 +4797,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each movement updates one of two coordinate counters exactly once.
 
 ### Problem description
 
@@ -4800,9 +4888,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + m) + (n + m)m) worst-case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Build a repeated string of length O(n+m), then call std::string::find up to twice; naive substring search can compare O((n+m)m) characters.
 
 ### Problem description
 
@@ -4884,9 +4974,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Characters are lowercased in place in the by-value input string.
 
 ### Problem description
 
@@ -4967,9 +5059,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** All source characters are scanned once, while the current line and collected output can hold O(N) characters.
 
 ### Problem description
 
@@ -5117,9 +5211,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log(n+1)) blocks, with fixed 32-bit address width
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log(n+1)) output blocks
+
+**Complexity reasoning:** Each iteration emits a maximal aligned CIDR block; the bit-selection loop and formatting are bounded by 32.
 
 ### Problem description
 
@@ -5245,9 +5341,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² log n) worst-case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) worst-case
+
+**Complexity reasoning:** Recursive decomposition repeatedly copies nested substrings; sorting constructed sibling strings adds comparison costs.
 
 ### Problem description
 
@@ -5345,9 +5443,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Recursive-descent parsing advances a shared position through the input; nested parentheses require O(n) call stack.
 
 ### Problem description
 
@@ -5494,9 +5594,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²) worst-case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Construct s+s, then use std::string::find for goal; a naive search may test O(n) offsets of length O(n).
 
 ### Problem description
 
@@ -5572,9 +5674,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Exactly three two-digit hexadecimal components are parsed, rounded and appended.
 
 ### Problem description
 
@@ -5668,9 +5772,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass accumulates letter widths, number of lines, and current line width.
 
 ### Problem description
 
@@ -5765,9 +5871,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + w²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + w²)
+
+**Complexity reasoning:** Each of w words extends a growing suffix of a characters, so total suffix/output length may be quadratic in word count.
 
 ### Problem description
 
@@ -5869,9 +5977,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Two indices scan maximal equal-character runs; the result stores up to O(n) start/end pairs.
 
 ### Problem description
 
@@ -5970,9 +6080,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Email masking lowercases and slices the input; phone masking collects digits before building the result.
 
 ### Problem description
 
@@ -6123,9 +6235,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N² L) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(NL)
+
+**Complexity reasoning:** Each guess filters up to N remaining words, comparing L characters per candidate; the hash set stores N strings.
 
 ### Problem description
 
@@ -6245,9 +6359,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each parenthesis is processed once, with a stack holding previous scores for nested groups.
 
 ### Problem description
 
@@ -6349,9 +6465,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** A forward scan computes decoded length; a backward scan reduces the index without expanding the decoded string.
 
 ### Problem description
 
@@ -6474,9 +6592,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n) if k > 1; O(n²) if k = 1
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting handles k>1; for k=1, construct and compare each of n rotations, each length n.
 
 ### Problem description
 
@@ -6575,9 +6695,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(K log R)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log R)
+
+**Complexity reasoning:** Both loops enumerate at most K = 99,999 palindromic roots; constructing, squaring and checking each candidate takes O(log R) digit work. The temporary strings use O(log R) space.
 
 ### Problem description
 
@@ -6686,9 +6808,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N log N · L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(NL + N)
+
+**Complexity reasoning:** stable_sort compares O(N log N) pairs of logs; each comparison scans or copies up to L characters via find, substr and string comparison. Stable sorting can use O(N) auxiliary entries; temporary substrings occupy O(L).
 
 ### Problem description
 
@@ -6797,9 +6921,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(RC)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each of C columns compares at most R adjacent row pairs, with early termination for unsorted columns.
 
 ### Problem description
 
@@ -6918,9 +7044,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(A + B + log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(A + B)
+
+**Complexity reasoning:** Parsing both strings scans their digits and constructs substrings; Euclidean gcd takes O(log V) arithmetic steps, where V bounds the computed integer values. Input strings are passed by value, and substrings take linear space.
 
 ### Problem description
 
@@ -7053,9 +7181,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each character is pushed once and at most three trailing characters are checked and erased; erasing the suffix is constant time. The simulated stack can hold n characters.
 
 ### Problem description
 
@@ -7171,9 +7301,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A single pass tracks nesting depth and appends non-outer parentheses to the result.
 
 ### Problem description
 
@@ -7286,9 +7418,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The robot processes every instruction once with constant-size direction state; the input string is passed by value, requiring O(n) storage.
 
 ### Problem description
 
@@ -7422,9 +7556,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each character is pushed onto or popped from the output string at most once.
 
 ### Problem description
 
@@ -7503,9 +7639,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** The two concatenations and their comparison inspect O(n+m) characters; gcd of lengths takes logarithmic time and the returned prefix is at most min(n,m).
 
 ### Problem description
 
@@ -7583,9 +7721,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + W·F)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Tokenization copies n text characters into words; scanning W words compares up to F characters in the two target words per candidate. Stored words and returned matches occupy O(n) space.
 
 ### Problem description
 
@@ -7681,9 +7821,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each expression character enters and leaves the stack at most once. The small unordered_set created for each closing parenthesis contains only constant-many truth values; stack depth is O(n).
 
 ### Problem description
 
@@ -7802,9 +7944,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The input is scanned once and each character generates at most three output characters.
 
 ### Problem description
 
@@ -7877,9 +8021,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A single traversal assigns a parity to every parenthesis; the result vector has n elements.
 
 ### Problem description
 
@@ -7982,9 +8128,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each character is checked against a fixed five-character vowel string and optionally copied into the result.
 
 ### Problem description
 
@@ -8054,9 +8202,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Date substrings have fixed lengths, and the month loop processes at most 11 entries of a 12-element table.
 
 ### Problem description
 
@@ -8138,9 +8288,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The code maintains the current equal-character run length and accumulates its contribution in one pass.
 
 ### Problem description
 
@@ -8222,9 +8374,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Although characters are read once, reversing nested substrings and concatenating stk.top() + curr can repeatedly copy the same characters at multiple nesting levels. Stack-held strings use O(n) total space.
 
 ### Problem description
 
@@ -8329,9 +8483,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each input character updates or creates one stack run; eliminated runs are popped once. The final pass writes at most n surviving characters.
 
 ### Problem description
 
@@ -8449,9 +8605,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One scan matches parentheses using a stack and validity vector, followed by a second scan to construct the output.
 
 ### Problem description
 
@@ -8569,9 +8727,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log(num + 1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log(num + 1))
+
+**Complexity reasoning:** Each iteration shifts num+1 right by one bit and appends one output bit, then reverses the resulting string.
 
 ### Problem description
 
@@ -8644,9 +8804,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** stoull parses the d-digit decimal input and repeated division generates at most O(d) hexadecimal digits, stored in the answer.
 
 ### Problem description
 
@@ -8729,9 +8891,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The scan consumes either one digit or a fixed two-digit code plus #, then reverses the decoded output.
 
 ### Problem description
 
@@ -8823,9 +8987,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + MW)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + MW)
+
+**Complexity reasoning:** Parsing copies n input characters into words; for maximum word length M and W words, the nested loops build M rows of up to W characters each.
 
 ### Problem description
 
@@ -8937,9 +9103,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each date uses fixed-size substrings, constant arithmetic and a loop over at most 11 months.
 
 ### Problem description
 
@@ -9012,9 +9180,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Constructing the repeated-character output writes n characters.
 
 ### Problem description
 
@@ -9099,9 +9269,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The algorithm scans the binary digits once from right to left using two counters; the input string is passed by value.
 
 ### Problem description
 
@@ -9208,9 +9380,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(W²L²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(WL)
+
+**Complexity reasoning:** Every ordered pair of W words may be tested with std::string::find, which has O(L²) worst-case matching cost for word lengths up to L. The returned strings can occupy O(WL) space.
 
 ### Problem description
 
@@ -9312,9 +9486,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The input is split into letter and digit buffers and then interleaved in a second linear pass.
 
 ### Problem description
 
@@ -9413,9 +9589,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The q shift operations are reduced to one net rotation; two substrings and their concatenation copy O(n) characters.
 
 ### Problem description
 
@@ -9519,9 +9697,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One scan tracks the length of the current run. The string argument is passed by value, so its copy occupies O(n) space.
 
 ### Problem description
 
@@ -9605,9 +9785,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² log n)
+
+**Complexity reasoning:** Enumerates O(n²) numerator/denominator pairs; each gcd takes O(log n). Output strings occupy O(n² log n) characters in the worst case.
 
 ### Problem description
 
@@ -9695,9 +9877,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L + w log w + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L + w)
+
+**Complexity reasoning:** Tokenizes L characters into w words, stable-sorts by word length in O(w log w) comparisons, and rebuilds the output. Word storage and result take O(L) space; stable_sort can allocate O(w) temporary storage.
 
 ### Problem description
 
@@ -9812,9 +9996,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The date has fixed length, and the 12-entry month map, substring extraction, and formatting have bounded cost.
 
 ### Problem description
 
@@ -9912,9 +10098,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans each character once and accumulates the triangular count for each contiguous run of ones.
 
 ### Problem description
 
@@ -10014,9 +10202,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Allocates a result of length n and writes each input character directly to its indexed destination.
 
 ### Problem description
 
@@ -10108,9 +10298,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each character is pushed at most once and popped at most once from the result used as a stack.
 
 ### Problem description
 
@@ -10215,9 +10407,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each call recurses into only one half of the conceptual string, reducing the level by one; recursion depth is n.
 
 ### Problem description
 
@@ -10328,9 +10522,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** Converts the integer to d decimal digits and scans them once to insert separators; both strings take O(d) space.
 
 ### Problem description
 
@@ -10403,9 +10599,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Counts ones in one pass and counts valid cut positions in a second pass; only scalar counters are used.
 
 ### Problem description
 
@@ -10511,9 +10709,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Scans the mutable string once and tests at most three candidate letters per question mark; edits the by-value input in place.
 
 ### Problem description
 
@@ -10599,9 +10799,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Counts spaces, tokenizes the text, and rebuilds a string of the same total length; words and output require linear storage.
 
 ### Problem description
 
@@ -10704,9 +10906,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Processes m log entries once, updating a single directory-depth counter; string comparisons have bounded length for the specified log format.
 
 ### Problem description
 
@@ -10818,9 +11022,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan increments/decrements nesting depth and tracks the maximum.
 
 ### Problem description
 
@@ -10901,9 +11107,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Computes each adjacent release-time difference once and keeps the best duration and key.
 
 ### Problem description
 
@@ -11015,9 +11223,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L₁ + L₂)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L₁ + L₂)
+
+**Complexity reasoning:** Concatenates both arrays into two strings and compares them; the concatenated strings occupy the total input-character length.
 
 ### Problem description
 
@@ -11111,9 +11321,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Advances through each encoded token once, appending one or two decoded characters to the result.
 
 ### Problem description
 
@@ -11211,9 +11423,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Filters digits in one pass and builds the formatted number using constant-size substrings per group.
 
 ### Problem description
 
@@ -11337,9 +11551,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Compares each bit against one alternating pattern and derives the mismatch count for the opposite pattern.
 
 ### Problem description
 
@@ -11427,9 +11643,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Updates the current equal-character run and cumulative substring count once per character.
 
 ### Problem description
 
@@ -11523,9 +11741,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Selects one fixed field and compares it against the rule value for each of m items; field-string comparisons are bounded by their lengths.
 
 ### Problem description
 
@@ -11618,9 +11838,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** The standard string find searches for the fixed two-character pattern "01" in a single linear scan.
 
 ### Problem description
 
@@ -11687,9 +11909,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Uses two fixed-position characters and a parity calculation.
 
 ### Problem description
 
@@ -11777,9 +12001,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Constructs a stringstream from the n-character input, extracts at most k words, and builds the truncated output.
 
 ### Problem description
 
@@ -11886,9 +12112,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Updates every second character in the by-value string with constant-time arithmetic.
 
 ### Problem description
 
@@ -11972,9 +12200,11 @@ class Solution {public:string replaceDigits(string s){for(int i=1;i<(int)s.size(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Tokenizes the input, places words into a fixed ten-slot vector, and concatenates them in sentence order.
 
 ### Problem description
 
@@ -12078,9 +12308,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Tracks the current run and longest zero/one runs during a single traversal.
 
 ### Problem description
 
@@ -12200,9 +12432,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(a+b+c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Converts each of the three words to a number with one pass over its characters; only integer accumulators are used.
 
 ### Problem description
 
@@ -12315,9 +12549,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Parses fixed-width HH:MM strings and performs constant-time rounding and arithmetic.
 
 ### Problem description
 
@@ -12403,9 +12639,11 @@ class Solution {int minutes(string s){return stoi(s.substr(0,2))*60+stoi(s.subst
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Repeated find scans the remaining string and erase shifts its suffix; up to O(n) removals can each cost O(n). The by-value mutable string holds O(n) characters.
 
 ### Problem description
 
@@ -12513,9 +12751,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Visits each maximal run of equal digits once, checking its length modulo three and counting runs with remainder two.
 
 ### Problem description
 
@@ -12623,9 +12863,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + k log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Initial character-to-number conversion scans n letters; each of k digit-sum passes processes a number with at most O(log n) digits after the first. The intermediate numeric string can hold O(n) characters.
 
 ### Problem description
 
@@ -12730,9 +12972,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each character is inspected once and appended at most once to the output string.
 
 ### Problem description
 
@@ -12825,9 +13069,11 @@ class Solution {public:string makeFancyString(string s){string out;for(char c:s)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P · W · L) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** For P patterns, std::string::find may examine O(W) starting positions and compare up to L characters per position; no extra container is built.
 
 ### Problem description
 
@@ -12944,9 +13190,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each operation is checked once at its middle character.
 
 ### Problem description
 
@@ -13060,9 +13308,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single index walks over the sentence, consuming each digit or non-digit once.
 
 ### Problem description
 
@@ -13177,9 +13427,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The string stream tokenizes the sentence and each word is validated character by character; token storage and stream buffering can use O(n) space.
 
 ### Problem description
 
@@ -13307,9 +13559,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The nested diagonal traversal visits at most rows × cols = n encoded positions; output stores up to n characters.
 
 ### Problem description
 
@@ -13423,9 +13677,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** All characters in the sentences are scanned once to count spaces; only counters are maintained.
 
 ### Problem description
 
@@ -13516,9 +13772,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** Every suffix of the m instructions is simulated until it ends or leaves the grid; the answer has m entries.
 
 ### Problem description
 
@@ -13673,9 +13931,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** The fixed two-character pattern ba is searched for across the string.
 
 ### Problem description
 
@@ -13761,9 +14021,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each bank row is scanned once by count; only the previous nonempty row count and total are retained.
 
 ### Problem description
 
@@ -13868,9 +14130,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** The input title is modified in place, with each word traversed to locate its end and lowercase its characters.
 
 ### Problem description
 
@@ -13970,9 +14234,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + k)
+
+**Complexity reasoning:** At most k−1 padding characters are appended; each padded character is copied once into the returned groups.
 
 ### Problem description
 
@@ -14063,9 +14329,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P · L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each of P words is checked against the prefix using a comparison of up to L prefix characters.
 
 ### Problem description
 
@@ -14155,9 +14423,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R · C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R · C)
+
+**Complexity reasoning:** The nested loops generate every cell name in the requested R-row by C-column range, storing all names in the result.
 
 ### Problem description
 
@@ -14247,9 +14517,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Two scans trim non-colliding boundary cars and one scan counts nonstationary cars in the remaining range.
 
 ### Problem description
 
@@ -14340,9 +14612,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n⁴) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** There are O(n²) pairs of parenthesis positions; each candidate performs multiple substrings/conversions and can build an O(n)-length answer.
 
 ### Problem description
 
@@ -14451,9 +14725,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · (1 + log k)) per round; O(n · r · (1 + log k)) total upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each round scans all current digits and converts group sums (at most O(log k) digits); r is the number of rounds and the intermediate string is O(n).
 
 ### Problem description
 
@@ -14543,9 +14819,11 @@ class Solution { public: string digitSum(string s,int k){while((int)s.size()>k){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P · L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each of P candidate prefixes compares up to L characters against the start of s.
 
 ### Problem description
 
@@ -14624,9 +14902,11 @@ class Solution {public:int countPrefixes(vector<string>& words,string s){int ans
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Every length-three window is checked once; only a constant-size best substring is stored.
 
 ### Problem description
 
@@ -14724,9 +15004,11 @@ class Solution {public:string largestGoodInteger(string num){string ans="";for(i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** std::count scans the entire input string once.
 
 ### Problem description
 
@@ -14798,9 +15080,11 @@ class Solution {public:int percentageLetter(string s,char letter){return 100*cou
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + Σ dᵢ) typical
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + Σ dᵢ)
+
+**Complexity reasoning:** Stream tokenization scans the sentence; valid price tokens are parsed and formatted with dᵢ digits, and the reconstructed sentence is stored.
 
 ### Problem description
 
@@ -14891,9 +15175,11 @@ class Solution {public:string discountPrices(string sentence,int discount){istri
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** addText O(t); deleteText O(1) amortized; cursorLeft/cursorRight O(k + 10)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Two strings hold the text on either side of the cursor. Cursor movement transfers up to k characters; tail copies at most ten. addText appends t characters.
 
 ### Problem description
 
@@ -14997,9 +15283,11 @@ class TextEditor {string left,right;string tail(){return left.substr(left.size()
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each password character is inspected once; the special-character set has fixed size.
 
 ### Problem description
 
@@ -15093,9 +15381,11 @@ class Solution {public:bool strongPasswordCheckerII(string password){if(password
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan toggles the inside-bars flag and counts eligible asterisks.
 
 ### Problem description
 
@@ -15196,9 +15486,11 @@ class Solution {public:int countAsterisks(string s){bool inside=false;int ans=0;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each character is appended or causes one removal from the output-as-stack.
 
 ### Problem description
 
@@ -15295,9 +15587,11 @@ class Solution {public:string removeStars(string s){string out;for(char c:s){if(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each date conversion parses fixed-width components and sums at most eleven month lengths.
 
 ### Problem description
 
@@ -15370,9 +15664,11 @@ class Solution {int day(string s){int m=stoi(s.substr(0,2)),d=stoi(s.substr(3));
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan tracks the current consecutive alphabetical run and the maximum run length.
 
 ### Problem description
 
@@ -15442,9 +15738,11 @@ class Solution {public:int longestContinuousSubstring(string s){int cur=1,best=1
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The implementation enumerates exactly 24 × 60 clock times, comparing five characters each.
 
 ### Problem description
 
@@ -15530,9 +15828,11 @@ class Solution { public: int countTime(string time){int ans=0;for(int h=0;h<24;+
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Four fixed-width time strings are compared lexicographically with a constant number of operations.
 
 ### Problem description
 
@@ -15626,9 +15926,11 @@ class Solution { public: bool haveConflict(vector<string>& event1,vector<string>
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Binary exponentiation repeatedly halves exponent n = |s|-k+1, using constant scalar state.
 
 ### Problem description
 
@@ -15732,9 +16034,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² + n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + p)
+
+**Complexity reasoning:** Tries up to n candidate part counts, computing digit lengths; for a successful count, builds p strings totaling O(n + p log p) characters. Worst-case candidate checks are O(n log n) digit work; repeated construction may yield O(n²) overall, with output storage O(n + p log p).
 
 ### Problem description
 
@@ -15814,9 +16118,11 @@ class Solution { public: vector<string> splitMessage(string message,int limit){i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Checks the first/last characters and scans spaces for adjacent word-boundary matches.
 
 ### Problem description
 
@@ -15949,9 +16255,11 @@ class Solution {public:bool isCircularSentence(string sentence){if(sentence.fron
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Scans each string to test whether it contains only digits; stoi processes numeric strings once. L is total input characters.
 
 ### Problem description
 
@@ -16031,9 +16339,11 @@ class Solution {public:int maximumValue(vector<string>& strs){int ans=0;for(auto
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Scans n words; each equality comparison can inspect up to its length, giving L total inspected characters in the worst case.
 
 ### Problem description
 
@@ -16142,9 +16452,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Two find calls each scan at most n characters to detect whether a one exists.
 
 ### Problem description
 
@@ -16235,9 +16547,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Processes each digit once, maintaining a rolling remainder and appending one output entry per digit.
 
 ### Problem description
 
@@ -16314,9 +16628,11 @@ class Solution {public:vector<int> divisibilityArray(string word,int m){long lon
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Counts each consecutive zero run followed by a one run; the index only moves forward.
 
 ### Problem description
 
@@ -16412,9 +16728,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Visits each record and reads two fixed-position age digits; n is the number of records.
 
 ### Problem description
 
@@ -16495,9 +16813,11 @@ class Solution {public:int countSeniors(vector<string>&details){int ans=0;for(co
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each character is pushed at most once and popped at most once from the auxiliary string stack.
 
 ### Problem description
 
@@ -16579,9 +16899,11 @@ class Solution {public:int minLength(string s){string st;for(char c:s){if(!st.em
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Removes trailing zeros in place from the by-value string; the input parameter itself occupies O(n) space.
 
 ### Problem description
 
@@ -16648,9 +16970,11 @@ class Solution {public:string removeTrailingZeros(string num){while(!num.empty()
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + v log v)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(v)
+
+**Complexity reasoning:** Collects v vowels, sorts them, and scans the input again to place sorted vowels.
 
 ### Problem description
 
@@ -16723,9 +17047,11 @@ class Solution {public:string sortVowels(string s){string v;auto isV=[](char c){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Scans all characters and accumulates nonempty tokens in the output and a temporary token string.
 
 ### Problem description
 
@@ -16828,9 +17154,11 @@ class Solution {public:vector<string> splitWordsBySeparator(vector<string>& word
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log k)
+
+**Complexity reasoning:** Repeatedly shifts k+1 right, appending one symbol per binary digit, then reverses the result.
 
 ### Problem description
 
@@ -16928,9 +17256,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Every i reverses the entire accumulated string, potentially taking linear time for each of n characters.
 
 ### Problem description
 
@@ -17017,9 +17347,11 @@ class Solution {public:string finalString(string s){string ans;for(char c:s){if(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Checks lengths and compares one initial character per word.
 
 ### Problem description
 
@@ -17110,9 +17442,11 @@ class Solution {public:bool isAcronym(vector<string>& words,string s){if(words.s
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Sorts two fixed pairs of positions in each four-character string and compares the results.
 
 ### Problem description
 
@@ -17187,9 +17521,11 @@ class Solution {public:bool canBeEqual(string s1,string s2){if(s1[0]>s1[2])swap(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Compares each adjacent pair once.
 
 ### Problem description
 
@@ -17283,9 +17619,11 @@ class Solution { public: int minChanges(string s) {int ans=0;for(int i=0;i<(int)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(min(a,b,c))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Scans the common prefix of the three strings and computes the number of deletions.
 
 ### Problem description
 
@@ -17342,9 +17680,11 @@ class Solution{public:int findMinimumOperations(string s1,string s2,string s3){i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Searches each word for x; L is total word length, and up to n indices are returned.
 
 ### Problem description
 
@@ -17438,9 +17778,11 @@ class Solution{public:vector<int> findWordsContaining(vector<string>& words,char
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Compares adjacent characters after converting both to lowercase.
 
 ### Problem description
 
@@ -17515,9 +17857,11 @@ class Solution {public:int countKeyChanges(string s){int ans=0;for(int i=1;i<(in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Sums absolute differences of each adjacent character pair.
 
 ### Problem description
 
@@ -17578,9 +17922,11 @@ class Solution {public:int scoreOfString(string s){int ans=0;for(int i=1;i<(int)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Fills at most four fixed positions in the five-character time string.
 
 ### Problem description
 
@@ -17645,9 +17991,11 @@ class Solution {public:string findLatestTime(string s){if(s[0]=='?')s[0]=(s[1]==
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Checks each character for alphanumeric validity and tracks whether vowels and consonants occur.
 
 ### Problem description
 
@@ -17734,9 +18082,11 @@ class Solution {public:bool isValid(string word){if(word.size()<3)return false;b
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each character belongs to one run of length at most nine, and each run contributes two output characters.
 
 ### Problem description
 
@@ -17811,9 +18161,11 @@ class Solution {public:string compressedString(string word){string ans;for(int i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Tracks current occupancy and maximum occupancy in one scan.
 
 ### Problem description
 
@@ -17985,9 +18337,11 @@ class Solution {public:int minimumChairs(string s){int cur=0,ans=0;for(char c:s)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Uses an output string as a stack; each letter is pushed once and removed at most once.
 
 ### Problem description
 
@@ -18058,9 +18412,11 @@ class Solution {public:string clearDigits(string s){string r;for(char c:s){if(is
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds the rotated result from two substrings, copying n characters in total.
 
 ### Problem description
 
@@ -18131,9 +18487,11 @@ class Solution {public:string getEncryptedString(string s,int k){int n=s.size();
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Scans characters until a vowel is found; membership testing uses a constant-length literal.
 
 ### Problem description
 
@@ -18210,9 +18568,11 @@ class Solution { public: bool doesAliceWin(string s) { for(char c:s) if(string("
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n√n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each right endpoint, enumerates at most O(√n) possible zero counts and uses the stored zero positions for constant-time counting.
 
 ### Problem description
 
@@ -18372,9 +18732,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Processes q commands once, updating a single flattened position.
 
 ### Problem description
 
@@ -18505,9 +18867,11 @@ class Solution { public: int finalPositionOfSnake(int n,vector<string>& commands
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n/k) output
+
+**Complexity reasoning:** Each of the n characters contributes once to a k-character block sum.
 
 ### Problem description
 
@@ -18588,9 +18952,11 @@ class Solution { public: string stringHash(string s, int k) { string out; for(in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Compares the parity of two fixed-size chessboard coordinates.
 
 ### Problem description
 
@@ -18659,9 +19025,11 @@ class Solution { public: bool checkTwoChessboards(string a,string b){return ((a[
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Parses three fixed-width date fields and converts bounded integers to binary.
 
 ### Problem description
 
@@ -18726,9 +19094,11 @@ class Solution { string bin(int x){string s;do{s+=char('0'+x%2);x/=2;}while(x);r
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Computes forward and reversed Z-arrays over pattern and text, then checks every alignment once.
 
 ### Problem description
 
@@ -18806,9 +19176,11 @@ class Solution { vector<int>zfunc(const string&s){int n=s.size();vector<int>z(n)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L + T)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T) output
+
+**Complexity reasoning:** Builds each intermediate screen string; T is the total length of all emitted strings (at most 26 times the sum of target prefix lengths).
 
 ### Problem description
 
@@ -18885,9 +19257,11 @@ class Solution {public:vector<string> stringSequence(string target){vector<strin
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Counts adjacent equal characters in one pass.
 
 ### Problem description
 
@@ -18958,9 +19332,11 @@ class Solution {public:int possibleStringCount(string word){int ans=1;for(int i=
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Accumulates digit sums at alternating indices.
 
 ### Problem description
 
@@ -19025,9 +19401,11 @@ class Solution {public:bool isBalanced(string num){int a=0,b=0;for(int i=0;i<(in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m) average
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m) auxiliary
+
+**Complexity reasoning:** Splits the pattern around its wildcard and uses two substring searches; standard string::find has implementation-dependent worst-case behavior.
 
 ### Problem description
 
@@ -19104,9 +19482,11 @@ class Solution {public:bool hasMatch(string s,string p){int pos=p.find('*');stri
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans maximal runs using two forward-moving indices.
 
 ### Problem description
 
@@ -19183,9 +19563,11 @@ class Solution {public:bool hasSpecialSubstring(string s,int k){int n=s.size();f
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Rebuilds a string of decreasing length in each round, totaling quadratic work.
 
 ### Problem description
 
@@ -19278,9 +19660,11 @@ class Solution {public:bool hasSameDigits(string s){while(s.size()>2){string t;f
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log_5 n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** For each of n+1 binomial coefficients, Lucas decomposition examines O(log_5 n) base-5 digits.
 
 ### Problem description
 
@@ -19374,9 +19758,11 @@ class Solution {int choose5(int n,int r){static int c[5][5]={{1},{1,1},{1,2,1},{
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Accumulates one weighted contribution per character.
 
 ### Problem description
 
@@ -19488,9 +19874,11 @@ class Solution {public:int reverseDegree(string s){int ans=0;for(int i=0;i<(int)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Counts ones and builds run-length groups in linear time, then checks each eligible group.
 
 ### Problem description
 
@@ -19595,9 +19983,11 @@ class Solution {public:int maxActiveSectionsAfterTrade(string s){int base=count(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Counts letters and constructs two palindrome halves plus an optional middle character.
 
 ### Problem description
 
@@ -19670,9 +20060,11 @@ class Solution {public:string smallestPalindrome(string s){int f[26]={};for(char
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each character is pushed or removes one prior character from the string stack.
 
 ### Problem description
 
@@ -19765,9 +20157,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((a+b) * min(a,b)) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(a+b)
+
+**Complexity reasoning:** Each merge checks containment and then compares suffix-prefix overlaps from longest to shortest; the returned strings occupy linear space.
 
 ### Problem description
 
@@ -19855,9 +20249,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Tokenizes and normalizes each word once, building a capped output tag.
 
 ### Problem description
 
@@ -19942,9 +20338,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary plus O(n) output
+
+**Complexity reasoning:** Computes adjacent LCPs and prefix/suffix maxima, then at most one bridging LCP per removal; S is total characters scanned across these comparisons.
 
 ### Problem description
 
@@ -20054,9 +20452,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Converts n squared and n cubed into bases 16 and 36 by repeated division.
 
 ### Problem description
 
@@ -20133,9 +20533,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + W)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(W)
+
+**Complexity reasoning:** Appending or duplicating and reversing the evolving output costs time proportional to its current length; W sums the lengths processed by these operations.
 
 ### Problem description
 
@@ -20259,9 +20661,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Stores the output length after every operation and walks the operations backward to locate character k.
 
 ### Problem description
 
@@ -20441,9 +20845,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n * L) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Checks each word against the first and last word; comparisons can scan up to L characters.
 
 ### Problem description
 
@@ -20532,9 +20938,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Uses run-length stack updates and removals, then materializes the surviving characters.
 
 ### Problem description
 
@@ -20690,9 +21098,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n * L) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Checks each word against both endpoint words; string equality can take O(L).
 
 ### Problem description
 
@@ -20781,9 +21191,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Walks the input once, maintaining the current output position and repeat count.
 
 ### Problem description
 
@@ -20877,9 +21289,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** Scans backward for the last even digit and returns the corresponding prefix.
 
 ### Problem description
 
@@ -20959,9 +21373,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Examines each character and tests membership in a constant-size vowel string.
 
 ### Problem description
 
@@ -21058,9 +21474,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output
+
+**Complexity reasoning:** For each index, creates its decimal representation and compares up to O(log n) characters.
 
 ### Problem description
 
@@ -21155,9 +21573,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(w) output
+
+**Complexity reasoning:** Sums weights over all S letters and appends one mapped character per word.
 
 ### Problem description
 
@@ -21261,9 +21681,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) for the by-value string parameter; O(1) additional working space
+
+**Complexity reasoning:** The loop removes at most n trailing characters. Each vowel check searches a fixed five-character string; the input string is copied because it is passed by value.
 
 ### Problem description
 
@@ -21342,9 +21764,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) for the by-value string parameter; O(1) additional working space
+
+**Complexity reasoning:** The sortedness check, minimum/maximum scans, and optional counts each traverse the string at most once; there is a constant number of such passes.
 
 ### Problem description
 
@@ -21435,9 +21859,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A fixed number of integer comparisons determines the returned constant-size color string.
 
 ### Problem description
 
@@ -21512,9 +21938,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary space, excluding the fixed-size result
+
+**Complexity reasoning:** The loop processes at most E events until ten wins; comparisons can inspect event text, with total examined length L. The score and win counter use constant space.
 
 ### Problem description
 
@@ -21665,9 +22093,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** For each of n characters, the DP examines 16 masks and two candidate bits, a constant number of transitions. Two fixed arrays of 16 integers store the states.
 
 ### Problem description
 
@@ -21765,9 +22195,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary space
+
+**Complexity reasoning:** The loop checks each adjacent character pair once and returns early if any difference exceeds two.
 
 ### Problem description
 
@@ -21845,9 +22277,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each timestamp has fixed HH:MM:SS length; extracting and parsing six two-digit fields requires constant time and temporary storage.
 
 ### Problem description
 
@@ -21925,9 +22359,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) for the by-value input string; O(1) auxiliary space
+
+**Complexity reasoning:** The algorithm tries n rotations and compares n/2 mirrored character pairs for each, with constant work per pair.
 
 ### Problem description
 
@@ -22017,9 +22453,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary space, plus O(n) for the by-value input string
+
+**Complexity reasoning:** There are 13 fixed feature passes. Each performs two FFTs and a pointwise product on the next power-of-two length at least 2n, plus linear scans; FFT dominates. The complex arrays and mismatch vector have O(n) elements.
 
 ### Problem description
 

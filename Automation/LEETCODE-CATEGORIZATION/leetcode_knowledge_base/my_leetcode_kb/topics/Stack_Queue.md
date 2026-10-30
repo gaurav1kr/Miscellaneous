@@ -48,9 +48,11 @@ LIFO/FIFO processing, parser state, or online operations.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) per operation
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) total
+
+**Complexity reasoning:** Two stacks store values and the running minima; each push, pop, top and getMin performs a constant number of stack operations.
 
 ### Problem description
 
@@ -146,9 +148,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** push O(n); pop/top/empty O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each push moves the n existing elements from q1 into q2; the temporary queue copy and assignments also cost linear time. The front then represents the stack top.
 
 ### Problem description
 
@@ -281,9 +285,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** push/empty O(1); pop/peek O(n) worst-case, O(1) amortized
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each value moves from input to output at most once; transfer is occasionally linear but O(1) amortized across operations.
 
 ### Problem description
 
@@ -387,9 +393,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** constructor O(a+b); next/hasNext O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(a+b)
+
+**Complexity reasoning:** The constructor copies both input vectors into member a; the queue holds at most two index pairs, and each next advances one index.
 
 ### Problem description
 
@@ -511,9 +519,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** constructor O(n) if base Iterator copies input; peek/next/hasNext O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) if base Iterator owns a copy; O(1) additional wrapper state
+
+**Complexity reasoning:** The wrapper caches only one value and a flag; any input-copy cost belongs to the underlying Iterator constructor.
 
 ### Problem description
 
@@ -623,9 +633,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) per next
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** A running sum is updated as one value enters and at most one old value leaves the queue of capacity k.
 
 ### Problem description
 
@@ -711,9 +723,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + L), where L is total log-string length
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + d + M), where d is maximum call depth and M is longest parsed log length
+
+**Complexity reasoning:** Each log is scanned and split into substrings once; a call stack tracks nesting and an n-element result array accumulates exclusive times.
 
 ### Problem description
 
@@ -861,9 +875,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m + L), where L is total length of numeric operation strings
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** Every operation causes constant stack work except parsing numeric text; the final stack is drained once.
 
 ### Problem description
 
@@ -1019,9 +1035,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary (excluding returned vector)
+
+**Complexity reasoning:** The input vector is reused as a stack. Each asteroid is written once and can be removed at most once, so the nested collision loop is amortized linear.
 
 ### Problem description
 
@@ -1149,9 +1167,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q) worst-case per ping; O(1) amortized
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(q) worst-case
+
+**Complexity reasoning:** A ping may evict many expired timestamps, but each timestamp is enqueued once and dequeued once across q calls.
 
 ### Problem description
 
@@ -1255,9 +1275,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each pushed value enters the stack once and is popped at most once while matching the desired pop sequence.
 
 ### Problem description
 
@@ -1350,9 +1372,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) amortized per push/pop/increment
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(c)
+
+**Complexity reasoning:** Two vectors hold up to capacity c elements; increments are stored lazily at one boundary index and propagated on pop.
 
 ### Problem description
 
@@ -1464,9 +1488,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(v), where v = target.back()
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(v) output
+
+**Complexity reasoning:** The loop processes each stream value through the last target element and emits one Push and optionally one Pop.
 
 ### Problem description
 
@@ -1594,9 +1620,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** constructor O(RC); update O((r2-r1+1)(c2-c1+1)); getValue O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC)
+
+**Complexity reasoning:** The constructor copies the matrix; updates directly write each selected cell, and reads index one stored cell.
 
 ### Problem description
 
@@ -1729,9 +1757,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²) worst-case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The queue initially stores n students. After each successful match, up to the remaining queue length may rotate before the next match.
 
 ### Problem description
 
@@ -1841,9 +1871,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) per method
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Steps are reduced modulo the perimeter; position and direction use constant-time arithmetic and a fixed number of comparisons.
 
 ### Problem description
 
@@ -1954,9 +1986,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single scan sums each person’s contribution, capped by tickets[k] (or tickets[k]-1 for later indices).
 
 ### Problem description
 
@@ -2058,9 +2092,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each person is enqueued and processed exactly once; idle time jumps to the next arrival rather than advancing second by second.
 
 ### Problem description
 
@@ -2184,9 +2220,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each element is pushed onto the vector stack once; every merge removes one stack entry, so all repeated merges total O(n).
 
 ### Problem description
 
