@@ -129,9 +129,11 @@ Nearest greater/smaller element, next boundary, or a window extremum.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Two pointers move inward exactly once per iteration, maintaining left/right maxima without additional arrays.
 
 ### Problem description
 
@@ -231,9 +233,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Each histogram index is pushed once and popped at most once from the monotonic stack.
 
 ### Problem description
 
@@ -317,9 +321,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r × c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(c) auxiliary
+
+**Complexity reasoning:** For each of r rows, update c histogram heights and scan them with a monotonic stack; both the heights and stack occupy O(c).
 
 ### Problem description
 
@@ -437,9 +443,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k) auxiliary; O(n − k + 1) output
+
+**Complexity reasoning:** Each index enters and leaves the deque at most once, and the deque holds at most k candidate indices.
 
 ### Problem description
 
@@ -549,9 +557,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Each preorder value is pushed once and popped at most once while tracking the permissible lower bound.
 
 ### Problem description
 
@@ -637,9 +647,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including the input-sized frequency map; O(1) for fixed lowercase alphabet
+
+**Complexity reasoning:** Two passes count and process characters; each character enters and leaves the stack at most once. The alphabet is limited to 26 lowercase letters.
 
 ### Problem description
 
@@ -728,9 +740,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(s × (m + n + k²)), where s = min(k,m) − max(0,k−n) + 1
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m + n + k) auxiliary per split, plus O(k) result
+
+**Complexity reasoning:** For each feasible split, getMax scans both arrays in O(m+n). Merge repeatedly compares remaining vectors lexicographically and erases from their fronts, each potentially O(k), giving O(k²) per merge.
 
 ### Problem description
 
@@ -855,9 +869,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary/output
+
+**Complexity reasoning:** Each digit is appended once and removed at most once; trimming leading zeroes and copying the suffix take at most linear time.
 
 ### Problem description
 
@@ -967,9 +983,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** The right-to-left scan pushes each value once and pops it at most once while maintaining the candidate middle value.
 
 ### Problem description
 
@@ -1075,9 +1093,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m + n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m) including the returned array
+
+**Complexity reasoning:** The monotonic stack processes each of the n elements in nums2 at most twice, the hash map stores their answers, and m queries use expected constant-time lookups.
 
 ### Problem description
 
@@ -1207,9 +1227,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary/output
+
+**Complexity reasoning:** The 2n circular scan pushes only first-pass indices and pops each index at most once; the result and stack each use O(n).
 
 ### Problem description
 
@@ -1298,9 +1320,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Two linear scans track prefix maxima and suffix minima to locate the unsorted interval without storing arrays.
 
 ### Problem description
 
@@ -1397,9 +1421,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²) worst case; O(n log n) for balanced splits
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) recursion depth worst case, plus O(n) output tree
+
+**Complexity reasoning:** Each recursive call linearly searches its subarray for the maximum; skewed input yields n+(n−1)+…+1 work and depth n.
 
 ### Problem description
 
@@ -1502,9 +1528,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Building the bloom-day array takes O(n). The sliding-window inner scan is amortized linear because each invalid position advances the left boundary past previously considered positions.
 
 ### Problem description
 
@@ -1609,9 +1637,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary/output
+
+**Complexity reasoning:** Every temperature index is pushed once and popped at most once, and the answer array stores n distances.
 
 ### Problem description
 
@@ -1698,9 +1728,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Prefix maxima and suffix minima are built in two passes; a third pass counts boundaries satisfying leftMax[i] ≤ rightMin[i+1].
 
 ### Problem description
 
@@ -1798,9 +1830,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** One pass maintains the largest value seen; a chunk closes whenever that value equals the current permutation index.
 
 ### Problem description
 
@@ -1891,9 +1925,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Construct n position/arrival-time pairs, sort by decreasing position, then scan once to count distinct fleet arrival times.
 
 ### Problem description
 
@@ -2008,9 +2044,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Compute n+1 prefix sums and process their indices in a monotonic deque, inserting and removing each index at most once.
 
 ### Problem description
 
@@ -2100,9 +2138,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) amortized per next() call; O(n) worst case for one call
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) retained state after n calls
+
+**Complexity reasoning:** Each price/span pair is pushed once and popped at most once across n calls; a single call may pop the entire stack.
 
 ### Problem description
 
@@ -2190,9 +2230,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Two monotonic-stack passes compute each element’s previous/next minimum boundaries; every index is pushed/popped at most once, followed by linear debug output and aggregation.
 
 ### Problem description
 
@@ -2316,9 +2358,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** A single Kadane-style scan tracks total, maximum subarray sum, and minimum subarray sum.
 
 ### Problem description
 
@@ -2416,9 +2460,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** A decreasing stack of left endpoints is built in one pass; scanning from the right pops each candidate at most once.
 
 ### Problem description
 
@@ -2508,9 +2554,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Each index performs ordered-map predecessor/successor lookups and insertion in O(log n), with two O(n) DP arrays.
 
 ### Problem description
 
@@ -2640,9 +2688,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) recursion depth worst case, plus O(n) output tree
+
+**Complexity reasoning:** The shared preorder index advances once per created node; bound checks are constant time, and recursion can reach depth n for a skewed BST.
 
 ### Problem description
 
@@ -2739,9 +2789,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary/output
+
+**Complexity reasoning:** Each node value is pushed and popped at most once; each multimap insertion, equal_range, find, and erase is O(log n) (plus any equivalent-key traversal), and n answers are appended.
 
 ### Problem description
 
@@ -2854,9 +2906,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Each number is pushed and popped at most once; stack size after each step counts valid subarrays ending at that position.
 
 ### Problem description
 
@@ -2950,9 +3004,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected for a fixed alphabet; O(n²) worst case from front string prepending
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary/output
+
+**Complexity reasoning:** Counting and monotonic-stack operations are expected linear, but constructing the answer with `st.top() + result` copies the existing prefix repeatedly, potentially O(n²). With 26 lowercase letters, the stack is bounded and this is effectively linear.
 
 ### Problem description
 
@@ -3048,9 +3104,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** The running +1/−1 prefix balance is updated once per element; an unordered map records the first index of each balance.
 
 ### Problem description
 
@@ -3140,9 +3198,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Each array value is pushed and popped at most once from the monotonic vector; a final pass combines remaining adjacent maxima.
 
 ### Problem description
 
@@ -3244,9 +3304,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each index enters and leaves the monotonic deque at most once; the DP array stores one value per element.
 
 ### Problem description
 
@@ -3353,9 +3415,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** This implementation uses a multiset, not a deque: each insertion and deletion costs O(log n), and each element is removed at most once.
 
 ### Problem description
 
@@ -3463,9 +3527,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The right-to-left monotonic stack pushes and pops each price at most once; the result copy and stack each use linear storage.
 
 ### Problem description
 
@@ -3568,9 +3634,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The deque removes expired or dominated points; every point is inserted and removed at most once.
 
 ### Problem description
 
@@ -3680,9 +3748,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r²c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(rc)
+
+**Complexity reasoning:** For every 1-cell the code scans upward through as many as r rows, while its full r-by-c DP matrix occupies O(rc) memory.
 
 ### Problem description
 
@@ -3787,9 +3857,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass adds each positive increase from the preceding target value; only scalar accumulators are used.
 
 ### Problem description
 
@@ -3920,9 +3992,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two boundary scans and a merging two-pointer scan each move monotonically through the array, using only indices.
 
 ### Problem description
 
@@ -4031,9 +4105,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Every number is pushed at most once and popped at most once; the stack and returned subsequence hold at most k elements.
 
 ### Problem description
 
@@ -4127,9 +4203,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + nB) worst case, O(n²) worst case when B = O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Memoized recursion evaluates at most n starting indices. Each state scans up to B loadable boxes and may scan backward through up to B boxes to find a port change; B = min(maxBoxes,n). The copied boxes, DP array, and recursion stack each require O(n) space.
 
 ### Problem description
 
@@ -4300,9 +4378,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each index is appended and removed from the deque at most once; the DP array and deque store up to n entries.
 
 ### Problem description
 
@@ -4416,9 +4496,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output; O(1) auxiliary
+
+**Complexity reasoning:** One reverse pass tracks the tallest building so far; the answer can contain every index, then is reversed.
 
 ### Problem description
 
@@ -4514,9 +4596,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each car index is pushed once and popped at most once from the collision-candidate stack; results and stack are linear.
 
 ### Problem description
 
@@ -4621,9 +4705,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The interval expands left or right exactly n-1 times, updating its minimum and score using scalar variables.
 
 ### Problem description
 
@@ -4713,9 +4799,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A prefix-sum array is constructed in one pass, then a monotonic stack finds each bar’s maximal span with at most one push and pop per index.
 
 ### Problem description
 
@@ -4838,9 +4926,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Right-to-left processing pushes each height once and pops it at most once; the result array and stack are linear.
 
 ### Problem description
 
@@ -4938,9 +5028,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two monotonic-stack passes compute nearest smaller boundaries, followed by two linear passes to populate and propagate window answers.
 
 ### Problem description
 
@@ -5071,9 +5163,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A suffix-minimum array is built backwards, then a prefix maximum is tracked in one forward scan.
 
 ### Problem description
 
@@ -5195,9 +5289,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary for sorting (implementation-dependent)
+
+**Complexity reasoning:** The code sorts character pairs by attack and defense, then makes a linear pass tracking the largest defense seen; sorting may use logarithmic stack space.
 
 ### Problem description
 
@@ -5300,9 +5396,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** A character-count pass precedes a monotonic-string pass; each character is appended and removed at most once, and the constructed subsequence is bounded by k.
 
 ### Problem description
 
@@ -5426,9 +5524,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+m) log(min(n,m)+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+m)
+
+**Complexity reasoning:** Both input arrays are sorted, then binary search invokes a linear greedy feasibility check using a deque; sorting and the deque require linear or less extra storage depending on the sort implementation.
 
 ### Problem description
 
@@ -5572,9 +5672,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two separate monotonic-stack scans compute the maximum and minimum contribution; each index is pushed and popped once per scan.
 
 ### Problem description
 
@@ -5712,9 +5814,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two monotonic boundary passes and two prefix-sum passes precede a linear contribution sum; all arrays and the stack are linear.
 
 ### Problem description
 
@@ -5842,9 +5946,11 @@ class Solution {public:int totalStrength(vector<int>& a){const long long MOD=100
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(rc)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(rc)
+
+**Complexity reasoning:** Each grid cell is processed once in its row and once in its column, and each height is pushed/popped at most once per stack traversal; the output matrix occupies O(rc).
 
 ### Problem description
 
@@ -5995,9 +6101,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The monotonic stack holds pairs of values and removal rounds; each value is pushed and popped at most once.
 
 ### Problem description
 
@@ -6084,9 +6192,11 @@ class Solution {public:int totalSteps(vector<int>& nums){vector<pair<int,int>> s
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each index enters each of the increasing and decreasing stacks once and is popped at most once; DP and both stacks are linear.
 
 ### Problem description
 
@@ -6187,9 +6297,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The monotonic stack processes each element once, popping it at most once and checking its maximal valid span.
 
 ### Problem description
 
@@ -6266,9 +6378,11 @@ class Solution {public:int validSubarraySize(vector<int>& nums,int threshold){in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The code converts mountains to intervals, sorts them, then scans once while tracking the farthest right endpoint; the interval array uses O(n) space.
 
 ### Problem description
 
@@ -6363,9 +6477,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each index enters and leaves the monotonic stack at most once; DP and stack arrays use linear memory.
 
 ### Problem description
 
@@ -6484,9 +6600,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A sliding window maintains its running-cost sum and a decreasing deque of charge-time indices; each index is inserted and removed at most once.
 
 ### Problem description
 
@@ -6562,9 +6680,11 @@ class Solution {public:int maximumRobots(vector<int>& chargeTimes,vector<int>& r
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V + V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** The iterative segment tree is allocated with 2V elements where V = max(nums)+1; each of n values performs a range-max query and point update in O(log V), plus O(V) initialization.
 
 ### Problem description
 
@@ -6659,9 +6779,11 @@ class Solution {vector<int>tree;int N;int query(int l,int r){if(l>r)return 0;int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** One pass tracks the last invalid index and latest occurrences of both bounds; each position contributes in constant time.
 
 ### Problem description
 
@@ -6736,9 +6858,11 @@ class Solution { public: long long countSubarrays(vector<int>& nums,int minK,int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including output
+
+**Complexity reasoning:** Each index enters and leaves the monotonic stack once, and at most once enters and leaves the min-heap; heap operations cost O(log n).
 
 ### Problem description
 
@@ -6824,9 +6948,11 @@ class Solution { public: vector<int> secondGreaterElement(vector<int>& nums){int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Two iterative list reversals and one filtering pass visit each node a constant number of times; links are rewired in place.
 
 ### Problem description
 
@@ -6899,9 +7025,11 @@ class Solution {ListNode* rev(ListNode* h){ListNode* p=nullptr;while(h){auto t=h
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Each reachable cell contributes at most one entry to its row heap and column heap; heap pushes and lazy expiry pops are logarithmic in their sizes.
 
 ### Problem description
 
@@ -7021,9 +7149,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+q) log(n+q))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+q)
+
+**Complexity reasoning:** Sort points, queries, and compressed coordinates; each point is updated once and each query performs one Fenwick prefix-maximum query, with binary searches for coordinate indices.
 
 ### Problem description
 
@@ -7190,9 +7320,11 @@ class Solution {public:vector<int> maximumSumQueries(vector<int>& nums1,vector<i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including output-independent deques
+
+**Complexity reasoning:** Each index is inserted and removed at most once from each monotonic deque; the left pointer never moves backward.
 
 ### Problem description
 
@@ -7273,9 +7405,11 @@ class Solution {public: long long continuousSubarrays(vector<int>& nums) {deque<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M log log M + n log n + n log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M+n)
+
+**Complexity reasoning:** The sieve and distinct-prime-factor scoring run over values up to M=max(nums); two stacks find spans in linear time, sorting indices costs O(n log n), and at most n modular exponentiations take O(log k) each.
 
 ### Problem description
 
@@ -7378,9 +7512,11 @@ int maximumScore(vector<int>& nums, int k) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two monotonic-stack passes find the nearest strictly greater values on each side, and a final pass computes all ranges.
 
 ### Problem description
 
@@ -7481,9 +7617,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A monotonic list of candidate left endpoints is built once; reverse scanning pops each candidate at most once.
 
 ### Problem description
 
@@ -7591,9 +7729,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** The code tries all n peak positions and scans up to n heights to the left and right for each peak.
 
 ### Problem description
 
@@ -7666,9 +7806,11 @@ class Solution {public:long long maximumSumOfHeights(vector<int>& maxHeights){in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two monotonic-stack sweeps compute left and right contributions; each index is pushed and popped at most once per sweep.
 
 ### Problem description
 
@@ -7774,9 +7916,11 @@ class Solution {public:long long maximumSumOfHeights(vector<int>& a){int n=a.siz
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+q) log q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+q)
+
+**Complexity reasoning:** Queries are bucketed by their later endpoint; each unresolved query enters and leaves a min-heap at most once while buildings are scanned.
 
 ### Problem description
 
@@ -7865,9 +8009,11 @@ class Solution{public:vector<int> leftmostBuildingQueries(vector<int>& heights,v
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The reverse DP maintains a deque of candidate future indices; each candidate is inserted and removed at most once.
 
 ### Problem description
 
@@ -7972,9 +8118,11 @@ class Solution{public:int minimumCoins(vector<int>& prices){int n=prices.size();
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Prefix sums and DP arrays take linear work; every position performs one binary search on prefix sums.
 
 ### Problem description
 
@@ -8066,9 +8214,11 @@ class Solution{public:int findMaximumLength(vector<int>& nums){int n=nums.size()
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Reverse DP uses a monotonic deque of future candidate costs; each index is pushed and removed at most once.
 
 ### Problem description
 
@@ -8192,9 +8342,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each value is pushed onto the decreasing stack once and popped at most once; equal maxima are counted using grouped frequencies.
 
 ### Problem description
 
@@ -8295,9 +8447,11 @@ class Solution {public:long long numberOfSubarrays(vector<int>& nums){vector<pai
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The nested loops consider every pair of jump endpoints and update the DP array.
 
 ### Problem description
 
@@ -8375,9 +8529,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** A single right-to-left scan maintains the largest reachable value and adds it to the score.
 
 ### Problem description
 
@@ -8444,9 +8600,11 @@ class Solution {public:long long maxScore(vector<int>& a){long long ans=0;int mx
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** One scan computes signed target differences and charges only increases in the required positive or negative operation count.
 
 ### Problem description
 
@@ -8525,9 +8683,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Computing row widths takes O(mn); each column is processed with a monotonic stack whose entries are pushed and popped once. The width matrix uses O(mn) memory.
 
 ### Problem description
 
@@ -8654,9 +8814,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The left endpoint moves backward once and the right endpoint only moves left; deque indices are pushed and popped at most once while costs are updated incrementally.
 
 ### Problem description
 
@@ -8725,9 +8887,11 @@ class Solution {public:long long countNonDecreasingSubarrays(vector<int>&nums,in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each of the two calc calls performs two linear monotonic-stack passes and one constant-work contribution pass; arrays and stacks occupy O(n).
 
 ### Problem description
 
@@ -8871,9 +9035,11 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A single scan appends values that are at least the last retained value; the vector can contain n values.
 
 ### Problem description
 
@@ -8940,9 +9106,11 @@ class Solution {public:int maximumPossibleSize(vector<int>& nums){vector<int> st
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Every positive value is pushed at most once and popped at most once from the increasing stack.
 
 ### Problem description
 
@@ -9031,9 +9199,11 @@ class Solution {public:int minOperations(vector<int>&nums){vector<int>st;int ans
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n-k+1)k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n-k+1) output, O(1) auxiliary
+
+**Complexity reasoning:** For each of the n-k+1 windows, the code scans up to k elements to find disorder boundaries and extrema; it does not reuse work across windows.
 
 ### Problem description
 
@@ -9121,9 +9291,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Both monotonic deques process each index at most twice; the left boundary advances only forward, and prefix-sum DP updates are constant time.
 
 ### Problem description
 
@@ -9215,9 +9387,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M log log M + n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M+n)
+
+**Complexity reasoning:** The prime sieve runs to M=max(nums). Each prime index is processed by monotonic deques, but a binary search over the growing prime-position vector occurs for every array position.
 
 ### Problem description
 
@@ -9325,9 +9499,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** One pass tracks the maximum weight in the current segment and closes a shipment when a smaller value is encountered.
 
 ### Problem description
 
@@ -9413,9 +9589,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The stack stores indices; every index is pushed once and popped at most once while candidate bowls are counted.
 
 ### Problem description
 
@@ -9498,9 +9676,11 @@ class Solution { public: long long bowlSubarrays(vector<int>& nums){int n=nums.s
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A frequency pass is followed by a monotonic string-stack pass; every character is pushed once and popped at most once.
 
 ### Problem description
 
@@ -9601,9 +9781,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each of k partition counts, the algorithm scans n prefix positions. Each line enters and leaves the monotonic convex hull at most once per pass, so the deque operations are amortized constant time. Prefix sums, two DP rows, and the hull each occupy O(n) space. This bound assumes the monotonic-prefix-sum condition required by the hull implementation.
 
 ### Problem description
 
@@ -9710,9 +9892,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The right endpoint advances n times, and the left endpoint only advances forward. Every index is inserted into and removed from each monotonic deque at most once, giving amortized linear time; the two deques together can hold O(n) indices.
 
 ### Problem description
 
@@ -9827,9 +10011,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nB), B = 15 (thus O(n) for fixed-width values)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nB), B = 15
+
+**Complexity reasoning:** The sliding-window maximum/minimum deques advance monotonically. Each prefix XOR is inserted into and removed from a binary trie at most once, and each trie update or maximum-XOR query examines B = 15 bit levels. The trie can allocate O(nB) nodes (including nodes whose counts later become zero); prefix XORs and deques use O(n) additional space. The fixed 15-bit trie is a constraint-specific implementation detail.
 
 ### Problem description
 
@@ -9914,9 +10100,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nB), B = 31 (thus O(n) for fixed-width integers)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nB), B = 31
+
+**Complexity reasoning:** Two monotonic-stack passes compute maximum-dominance boundaries in amortized O(n) time. Two passes store the nearest set-bit positions for each of 31 bit positions, and each index checks up to 31 bits before counting its valid subarrays. The prv/nxt tables dominate memory at O(31n).
 
 ### Problem description
 
@@ -10046,9 +10234,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log P)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The outer binary search tests O(log P) penalty values, where P is the initial upper bound total*(total+1)/2. Each solve() scans n prefixes, adding one convex-hull line and advancing/pruning hull positions amortized O(1) times per prefix. Prefix sums and each temporary hull use O(n) memory. The linear hull scan relies on increasing prefix sums and decreasing slopes.
 
 ### Problem description
 
@@ -10262,9 +10452,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each of m DP rounds, the code scans n endpoints and maintains a decreasing deque of eligible starting indices. Every candidate is pushed and popped at most once per round, so each round is O(n). Prefix sums, the two DP rows, and the deque require O(n) space.
 
 ### Problem description
 
@@ -10394,9 +10586,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log P)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each solve(penalty) performs a single O(n) DP scan using a monotonic deque; bestSingleSubarray() is also O(n). A binary search over the fixed penalty range [0, 20000000001] makes O(log P) calls to solve. The copied input, prefix sums, DP array, and deque use O(n) space. With the hard-coded 64-bit search range, log P is bounded by a constant.
 
 ### Problem description
 
@@ -10645,9 +10839,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The implementation initializes one fleet speed and scans the positions and speeds once from right to left. Each robot requires a constant number of comparisons and updates, and no auxiliary container is allocated.
 
 ### Problem description
 
@@ -10760,9 +10956,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Coordinate compression sorts n values and performs n binary searches. Each position makes Fenwick-tree updates/queries and ordered-set operations in O(log n) time. Each distinct active rank is removed at most once per activation, so all removal work is amortized O(n log n). Compressed values, ranks, counts, Fenwick tree, and active set use O(n) memory.
 
 ### Problem description
 
@@ -10959,9 +11157,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log² n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** At each divide-and-conquer level, the code builds left/right records with ordered-set queries/inserts, sorts the records, compresses values, and performs Fenwick-tree operations. This is O(s log s) for a segment of size s; across O(log n) levels the total is O(n log² n). Temporary arrays/sets and Fenwick storage total O(n) at any recursion level, and recursion adds O(log n) stack space. The initial unused sweep still takes O(s) per segment.
 
 ### Problem description
 

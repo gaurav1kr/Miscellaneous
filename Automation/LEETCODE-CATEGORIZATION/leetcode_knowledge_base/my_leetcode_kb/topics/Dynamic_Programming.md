@@ -612,9 +612,11 @@ Overlapping subproblems; choose state, transition, base case, and order.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn + m + n)
+
+**Complexity reasoning:** Memoizes at most (m+1)(n+1) index pairs; recursion can reach m+n levels.
 
 ### Problem description
 
@@ -730,9 +732,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(C_n n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(C_n n + n²)
+
+**Complexity reasoning:** Generates Catalan-number C_n strings; copying the partial string on recursive calls costs up to O(n) per edge. Output stores O(C_n n) characters.
 
 ### Problem description
 
@@ -813,9 +817,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One stack pass over the string; the stack can hold n indices.
 
 ### Problem description
 
@@ -912,9 +918,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Fills a (m+1) by (n+1) boolean DP table once.
 
 ### Problem description
 
@@ -1031,9 +1039,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Greedy scan maintains a constant number of range boundaries.
 
 ### Problem description
 
@@ -1130,9 +1140,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Kadane-style linear scan with constant running state.
 
 ### Problem description
 
@@ -1226,9 +1238,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Scans the array once, tracking farthest reachable position.
 
 ### Problem description
 
@@ -1305,9 +1319,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(min(m,n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Computes the binomial coefficient using min(m-1,n-1) arithmetic iterations; fixed-width arithmetic assumed.
 
 ### Problem description
 
@@ -1388,9 +1404,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Processes each grid cell once using a one-row DP array.
 
 ### Problem description
 
@@ -1502,9 +1520,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Updates each grid cell in place; excludes input grid storage.
 
 ### Problem description
 
@@ -1586,9 +1606,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Iterative Fibonacci-style recurrence with a few scalars.
 
 ### Problem description
 
@@ -1677,9 +1699,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Processes every character pair with two DP rows of length n+1.
 
 ### Problem description
 
@@ -1786,9 +1810,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n⁴)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n⁴)
+
+**Complexity reasoning:** At most O(n³) pairs of equal-length substrings are memoized, each testing up to n split points and copying substring/key data. Stored string keys add O(n) per state.
 
 ### Problem description
 
@@ -1916,9 +1942,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One DP state per character; 2-character substrings have constant length.
 
 ### Problem description
 
@@ -2034,9 +2062,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Exponential; output-sensitive, at least Ω(n C_n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** Exponential; output-sensitive
+
+**Complexity reasoning:** Unmemoized recursive generation repeatedly constructs all BST shapes; C_n is the nth Catalan number. Nodes and intermediate vectors are retained, and subtrees may be shared.
 
 ### Problem description
 
@@ -2122,9 +2152,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Catalan recurrence checks each root for each subtree size, storing n+1 counts.
 
 ### Problem description
 
@@ -2199,9 +2231,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Fills the (m+1)×(n+1) interleaving DP grid.
 
 ### Problem description
 
@@ -2324,9 +2358,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Fills a full DP table for all prefixes of s and t.
 
 ### Problem description
 
@@ -2459,9 +2495,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Constructs n rows with Θ(n²) total output entries.
 
 ### Problem description
 
@@ -2533,9 +2571,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Updates a Pascal row in place for n iterations.
 
 ### Problem description
 
@@ -2621,9 +2661,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Bottom-up updates the input triangle in place; Θ(n²) entries.
 
 ### Problem description
 
@@ -2715,9 +2757,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Single pass maintains minimum price and best profit.
 
 ### Problem description
 
@@ -2801,9 +2845,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Single pass sums positive adjacent differences.
 
 ### Problem description
 
@@ -2900,9 +2946,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Four running transaction states are updated for each price.
 
 ### Problem description
 
@@ -3012,9 +3060,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Each tree node is visited once; recursive call stack is tree height h.
 
 ### Problem description
 
@@ -3121,9 +3171,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² 2^n) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² 2^n) including output/cache
+
+**Complexity reasoning:** Enumerates up to 2^(n-1) partitions; substring creation, palindrome checks and output copying cost up to O(n²) per partition; cache stores substring keys.
 
 ### Problem description
 
@@ -3219,9 +3271,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each of n memoized starting indices, scans up to n endings and tests each palindrome in O(n); recursion and memo array use O(n).
 
 ### Problem description
 
@@ -3330,9 +3384,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³ + D)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + D)
+
+**Complexity reasoning:** Up to O(n²) candidate substrings are copied/hashed in O(n) each; D is total dictionary character storage.
 
 ### Problem description
 
@@ -3433,9 +3489,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Output-sensitive exponential
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** Output-sensitive exponential
+
+**Complexity reasoning:** Memoizes suffix results, but enumerating and copying all valid sentence combinations can be exponential in string length.
 
 ### Problem description
 
@@ -3548,9 +3606,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan tracks current maximum/minimum product and best answer.
 
 ### Problem description
 
@@ -3633,9 +3693,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Bottom-up DP visits each of the m×n cells once and retains one row of n values.
 
 ### Problem description
 
@@ -3733,9 +3795,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** For each of n prices, updates 2k transaction states stored in a single array.
 
 ### Problem description
 
@@ -3825,9 +3889,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan with two rolling best-profit states.
 
 ### Problem description
 
@@ -3913,9 +3979,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Runs the constant-space linear house-robber recurrence twice.
 
 ### Problem description
 
@@ -4011,9 +4079,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Processes each matrix cell once and stores an (m+1)×(n+1) DP table.
 
 ### Problem description
 
@@ -4103,9 +4173,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log₁₀ n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Iterates over the decimal place values of n.
 
 ### Problem description
 
@@ -4172,9 +4244,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Output-sensitive exponential
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** Output-sensitive exponential
+
+**Complexity reasoning:** Enumerates results for all parenthesizations (Catalan-number growth); memoized substring keys and vectors store generated outcomes, with additional string-copy overhead.
 
 ### Problem description
 
@@ -4293,9 +4367,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Processes each house once using three rolling paint-cost values.
 
 ### Problem description
 
@@ -4383,9 +4459,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Performs n minimum extractions and a constant number of balanced-tree insertions; the candidate set contains O(n) values.
 
 ### Problem description
 
@@ -4468,9 +4546,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Scans k colors per house while retaining only k DP costs.
 
 ### Problem description
 
@@ -4581,9 +4661,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Updates two rolling fence-count states per position.
 
 ### Problem description
 
@@ -4683,9 +4765,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n√n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each amount up to n, considers up to √n perfect-square candidates; DP occupies n+1 slots.
 
 ### Problem description
 
@@ -4775,9 +4859,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Exponential in n (worst case)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** Exponential in n (worst case)
+
+**Complexity reasoning:** Explores reachable configurations of the n-character game; memoization stores distinct strings and each state scans/copies up to O(n) characters.
 
 ### Problem description
 
@@ -4876,9 +4962,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Maintains three constant-size trading states across a single pass.
 
 ### Problem description
 
@@ -4963,9 +5051,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Interval DP evaluates each possible last balloon for each interval; stores a quadratic table.
 
 ### Problem description
 
@@ -5066,9 +5156,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+k)
+
+**Complexity reasoning:** For each of n generated numbers, scans k prime candidates; maintains n DP values and O(k) indices/candidates.
 
 ### Problem description
 
@@ -5178,9 +5270,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(Ac)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(A)
+
+**Complexity reasoning:** For c coin denominations, updates up to A amount states in a one-dimensional DP array.
 
 ### Problem description
 
@@ -5272,9 +5366,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Memoized DFS visits each cell once and checks at most four neighbors; DP and worst-case recursion stack use O(mn) space.
 
 ### Problem description
 
@@ -5407,9 +5503,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** One postorder DFS visit per tree node; recursion uses O(h) stack space for tree height h.
 
 ### Problem description
 
@@ -5514,9 +5612,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** One postorder traversal computes two states per node; recursion depth is tree height h.
 
 ### Problem description
 
@@ -5624,9 +5724,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including output; O(1) auxiliary
+
+**Complexity reasoning:** One DP update for each integer 1..n; returned vector contains n+1 entries.
 
 ### Problem description
 
@@ -5710,9 +5812,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Uses a fixed number of arithmetic operations and branches.
 
 ### Problem description
 
@@ -5800,9 +5904,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(9!) = O(1) for fixed 9-key board
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(9) = O(1)
+
+**Complexity reasoning:** Backtracking explores legal permutations of at most nine keys; used flags and recursion are bounded by nine.
 
 ### Problem description
 
@@ -5931,9 +6037,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(min(n,10))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Computes each digit-length contribution until n or ten distinct digits are reached.
 
 ### Problem description
 
@@ -6005,9 +6113,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Scans each grid cell and retains a column-count array of length n.
 
 ### Problem description
 
@@ -6111,9 +6221,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) excluding returned subset
+
+**Complexity reasoning:** Sorting costs O(n log n), followed by pairwise divisibility DP and parent tracking.
 
 ### Problem description
 
@@ -6215,9 +6327,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** For each interval, tries every possible first guess and stores the result in a quadratic interval DP.
 
 ### Problem description
 
@@ -6345,9 +6459,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Maintains two rolling lengths while scanning the array.
 
 ### Problem description
 
@@ -6453,9 +6569,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(tk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(t)
+
+**Complexity reasoning:** For each target sum up to t, checks k numbers; stores t+1 DP values.
 
 ### Problem description
 
@@ -6551,9 +6669,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Uses one pass to calculate sum and initial score, then constant-time recurrence per rotation.
 
 ### Problem description
 
@@ -6652,9 +6772,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) expected
+
+**Complexity reasoning:** Memoized halving and neighboring odd branches visit O(log n) distinct values; hash-map operations are expected constant time.
 
 ### Problem description
 
@@ -6748,9 +6870,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Each stone processes at most O(n) distinct jump lengths, with expected O(1) hash insertions; the map can store O(n²) states.
 
 ### Problem description
 
@@ -6842,9 +6966,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nS)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** For n numbers, the one-dimensional subset-sum DP scans sums through S = totalSum/2.
 
 ### Problem description
 
@@ -6931,9 +7057,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L + r·min(L,c))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Builds a sentence cycle of length L; each of r rows may backtrack up to min(L,c) characters, where c is the column count.
 
 ### Problem description
 
@@ -7056,9 +7184,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sorts n intervals by end time then scans once; in-place sorting uses O(log n) stack space.
 
 ### Problem description
 
@@ -7166,9 +7296,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Processes every pair of indices and stores up to O(n²) (index,difference) DP entries in hash maps.
 
 ### Problem description
 
@@ -7272,9 +7404,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Uses a fixed number of arithmetic and logarithm operations.
 
 ### Problem description
 
@@ -7369,9 +7503,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n + n)
+
+**Complexity reasoning:** At most 2^n used-number masks are memoized, each testing up to n choices; recursion depth is n.
 
 ### Problem description
 
@@ -7502,9 +7638,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(t + d!) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(t + d)
+
+**Complexity reasoning:** Builds balances from t transactions, then recursively tries opposite-sign partners among d nonzero debts; factorial upper bound.
 
 ### Problem description
 
@@ -7624,9 +7762,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Single pass through n characters, maintaining a fixed 26-element array.
 
 ### Problem description
 
@@ -7731,9 +7871,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n⁴) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n³)
+
+**Complexity reasoning:** O(n²) substrings; each may try O(n) splits with O(n)-length string concatenations and periodicity checks; O(n²) DP strings each of length up to n.
 
 ### Problem description
 
@@ -7857,9 +7999,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(Σ Lᵢ³) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(D + max Lᵢ)
+
+**Complexity reasoning:** For each word of length Lᵢ, tries O(Lᵢ²) substrings, each copied/hashed in O(Lᵢ); dictionary stores D total characters, plus word-local DP.
 
 ### Problem description
 
@@ -7951,9 +8095,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + 4^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorts n matchsticks then explores up to four side choices per matchstick; recursion and side sums use O(n) space.
 
 ### Problem description
 
@@ -8051,9 +8197,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(Σ Lᵢ + k m n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Counts characters across k strings (total length Σ Lᵢ), then updates an (m+1)×(n+1) DP table per string.
 
 ### Problem description
 
@@ -8154,9 +8302,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Processes all O(n²) intervals using one DP array of length n.
 
 ### Problem description
 
@@ -8246,9 +8396,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S·(b+h)²) expected upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S·(b+h))
+
+**Complexity reasoning:** Memoizes S distinct board/hand states; shrinking, key construction, and string insertions/copies cost up to quadratic in board length b plus hand size h per state.
 
 ### Problem description
 
@@ -8497,9 +8649,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nS)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** Subset-sum count DP updates S+1 entries per number, where S=(totalSum+target)/2.
 
 ### Problem description
 
@@ -8605,9 +8759,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Iteratively computes Fibonacci values with three scalar variables.
 
 ### Problem description
 
@@ -8702,9 +8858,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn·f)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn + m + n)
+
+**Complexity reasoning:** Memoizes at most m·n (ring position, key index) states, each scanning at most f matching ring positions; stores positions and recursion depth n.
 
 ### Problem description
 
@@ -8811,9 +8969,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two nested substring loops update two DP arrays of length n.
 
 ### Problem description
 
@@ -8900,9 +9060,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(kA)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(A)
+
+**Complexity reasoning:** For k coin denominations, updates a one-dimensional DP table of length A+1.
 
 ### Problem description
 
@@ -9007,9 +9169,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² + n!)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² + n)
+
+**Complexity reasoning:** Precomputes valid choices for n positions, then enumerates up to n! assignments with O(n) recursion depth and visited flags.
 
 ### Problem description
 
@@ -9113,9 +9277,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(rc)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(rc)
+
+**Complexity reasoning:** Multi-source BFS visits each of r·c cells at most once; distance grid and queue each hold up to O(rc) entries.
 
 ### Problem description
 
@@ -9229,9 +9395,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n⁴)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n³)
+
+**Complexity reasoning:** Memoizes O(n³) (left,right,carry) states and scans up to n merge positions per state; the fixed 101³ array scales cubically with the supported n.
 
 ### Problem description
 
@@ -9351,9 +9519,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Advances n days across only six attendance states using two fixed 2×3 arrays.
 
 ### Problem description
 
@@ -9469,9 +9639,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + D)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + D)
+
+**Complexity reasoning:** Appends n integer representations to the result; D is their total decimal digit count, which also determines output space.
 
 ### Problem description
 
@@ -9574,9 +9746,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(rc)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(c)
+
+**Complexity reasoning:** Visits each matrix cell once, maintaining two rows of four-direction DP values.
 
 ### Problem description
 
@@ -9671,9 +9845,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(w·n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each of w weeks, considers all n² origin/destination city pairs; keeps two length-n arrays.
 
 ### Problem description
 
@@ -9817,9 +9993,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nmK)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nmK + K)
+
+**Complexity reasoning:** Memoizes up to n·m·K grid-position/move states and uses recursion depth at most K; fixed-size array reserves constant bounded capacity.
 
 ### Problem description
 
@@ -9915,9 +10093,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Fills an (m+1)×(n+1) longest-common-subsequence table.
 
 ### Problem description
 
@@ -10003,9 +10183,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) for fixed 32-bit integers (O(W) for W-bit input)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) (O(W) for W-bit input)
+**Complexity reasoning:** Builds and scans a fixed 31-entry Fibonacci-style bit DP.
 
 ### Problem description
 
@@ -10106,9 +10287,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+**Complexity reasoning:** Each of n rows computes a length-(k+1) prefix array and DP row.
 
 ### Problem description
 
@@ -10201,9 +10383,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+**Complexity reasoning:** One iterative derangement recurrence per integer, using three scalars.
 
 ### Problem description
 
@@ -10280,9 +10463,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S · p · m + S · m) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S · m + K)
+**Complexity reasoning:** At most S distinct needs vectors are memoized; each checks p specials of m items and builds an O(m)-length key. K is total stored key-character count; recursion can reach depth O(sum(needs)).
 
 ### Problem description
 
@@ -10397,9 +10581,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+**Complexity reasoning:** Each input character performs constant work and writes one DP entry.
 
 ### Problem description
 
@@ -10546,9 +10731,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(p + R)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+**Complexity reasoning:** Processes p pairs, then scans integer endpoint range R = pmax − pmin + 1; both arrays have fixed 2002 entries.
 
 ### Problem description
 
@@ -10644,9 +10830,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+**Complexity reasoning:** The current count strictly increases by at least one per loop iteration; only scalars are stored.
 
 ### Problem description
 
@@ -10738,9 +10925,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+**Complexity reasoning:** For each press count, checks all earlier breakpoints; stores n+1 DP values.
 
 ### Problem description
 
@@ -10828,9 +11016,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · min(n, J))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+**Complexity reasoning:** For each position checks at most J = maxJump successors, using cost/next arrays and an output path.
 
 ### Problem description
 
@@ -10934,9 +11123,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+**Complexity reasoning:** Interval DP visits O(n²) intervals and scans up to n matching split positions per interval.
 
 ### Problem description
 
@@ -11028,9 +11218,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+**Complexity reasoning:** Each index compares against all preceding indices; length and count arrays have n entries.
 
 ### Problem description
 
@@ -11133,9 +11324,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+**Complexity reasoning:** One simultaneous forward/backward scan tracks feasible parenthesis balances.
 
 ### Problem description
 
@@ -11248,9 +11440,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²k + k)
+**Complexity reasoning:** Memoizes at most n²k board-position/move states, each branching to eight moves; recursion depth at most k.
 
 ### Problem description
 
@@ -11349,9 +11542,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P + S · m · (26 + a)) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(P + S · a + D · a)
+**Complexity reasoning:** Precounts P sticker characters; each of S memoized remaining strings tests m stickers and may build an O(a)-character successor (26 alphabet slots). D is maximum recursion depth.
 
 ### Problem description
 
@@ -11471,9 +11665,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + kⁿ · k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + k)
+**Complexity reasoning:** Sorts n values; backtracking can assign each of n elements to k buckets, with an O(k) terminal check and O(n) recursion depth.
 
 ### Problem description
 
@@ -11567,9 +11762,10 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+**Complexity reasoning:** Processes each pair of string positions once using a rolling row of length n+1.
 
 ### Problem description
 
@@ -11658,9 +11854,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+**Complexity reasoning:** Updates two holding states for each day and stores an (n+1) × 2 table.
 
 ### Problem description
 
@@ -11755,9 +11952,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+**Complexity reasoning:** Memoizes O(n²) intervals; each state can scan O(n) characters to find matching endpoints.
 
 ### Problem description
 
@@ -11858,9 +12056,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+**Complexity reasoning:** Sorts the input and performs n binary searches via upper_bound; map and DP storage are linear.
 
 ### Problem description
 
@@ -11955,9 +12154,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n³)
+**Complexity reasoning:** Three independent coordinates define O(n³) memo states; each checks four transitions, with O(n) recursion depth.
 
 ### Problem description
 
@@ -12090,9 +12290,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+**Complexity reasoning:** One DP pass over n stair costs, storing n+1 values.
 
 ### Problem description
 
@@ -12196,9 +12397,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r²c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+**Complexity reasoning:** Examines every pair of rows and scans c columns; only a few counters are used.
 
 ### Problem description
 
@@ -12306,9 +12508,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² + m) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² + m)
+**Complexity reasoning:** Builds a hash set of m mines and makes four O(n²) directional passes; hash operations are expected O(1).
 
 ### Problem description
 
@@ -12431,9 +12634,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(6! · 6) = O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(6! · 6) = O(1)
+**Complexity reasoning:** BFS explores at most 720 permutations of the fixed 2×3 board; each state is six characters.
 
 ### Problem description
 
@@ -12570,9 +12774,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E + R log(R + 1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(E + nk + R)
+**Complexity reasoning:** Builds E adjacency edges; each of R successful relaxations inserts a heap entry, with logarithmic heap cost. The n×(k+2) cost table bounds states, but repeated improvements may produce more heap entries.
 
 ### Problem description
 
@@ -12709,9 +12914,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+**Complexity reasoning:** Converts each integer from 1 to n to decimal and scans its O(log n) digits; only a temporary digit string is kept.
 
 ### Problem description
 
@@ -12813,9 +13019,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+**Complexity reasoning:** Computes one tiling recurrence per length and stores n+1 DP values.
 
 ### Problem description
 
@@ -12900,9 +13107,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(r²)
+**Complexity reasoning:** Visits the triangular region through requested row r; allocates a square (r+1) × (r+1) DP table.
 
 ### Problem description
 
@@ -13007,9 +13215,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+**Complexity reasoning:** At each index checks two swap states with constant-time transitions and scalar storage.
 
 ### Problem description
 
@@ -13117,9 +13326,10 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2ⁿ) expected, also bounded by distinct subset sums
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n · 2ⁿ)
+**Complexity reasoning:** For each element traverses reachable subset sums grouped by subset size; up to 2ⁿ distinct subsets can contribute, with hash-set storage and expected O(1) insertions.
 
 ### Problem description
 
@@ -13210,9 +13420,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((N/25)²) for N < 5000; O(1) for N ≥ 5000
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O((N/25)²)
+
+**Complexity reasoning:** Memoized DFS visits pairs of soup amounts in 25-ml increments; four transitions per state. The large-N cutoff returns immediately.
 
 ### Problem description
 
@@ -13328,9 +13540,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(Kn²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(Kn)
+
+**Complexity reasoning:** For each group count and endpoint, the code tries all preceding split positions using prefix sums.
 
 ### Problem description
 
@@ -13426,9 +13640,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S log S) for S generated queue states; no simple guaranteed bound in target alone
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** A priority queue expands position/speed states and an ordered map tracks visited states. Each queue/map operation is logarithmic in the number of states; state count depends on explored trajectories.
 
 ### Problem description
 
@@ -13556,9 +13772,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting costs O(n log n); each number checks all smaller factors, with an O(n)-entry hash DP.
 
 ### Problem description
 
@@ -13657,9 +13875,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two linear passes compute next and previous occurrence indices; the 26-character arrays are constant sized.
 
 ### Problem description
 
@@ -13765,9 +13985,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds adjacency lists and performs one postorder DFS and one rerooting DFS; each edge is traversed a constant number of times. Recursion may reach depth n.
 
 ### Problem description
 
@@ -13906,9 +14128,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + E)2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n2^n)
+
+**Complexity reasoning:** Multi-source BFS processes at most n·2^n node/mask states, scanning neighbors for each state.
 
 ### Problem description
 
@@ -14023,9 +14247,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each station enters the max-heap once and can be removed once; heap operations take logarithmic time.
 
 ### Problem description
 
@@ -14135,9 +14361,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** For every final index, two pointers scan earlier indices once; the pairwise DP table stores n² entries.
 
 ### Problem description
 
@@ -14237,9 +14465,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Interval lengths and starting positions form nested loops, while the DP keeps one row.
 
 ### Problem description
 
@@ -14330,9 +14560,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m·n·P)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nP)
+
+**Complexity reasoning:** For each of m crimes, the descending loops visit up to n people counts and P=minProfit+1 profit states.
 
 ### Problem description
 
@@ -14435,9 +14667,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Exponential in n (at most O(n·4^n) as a loose bound)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** Exponential output/tree storage; O(n) recursion depth excluding results
+
+**Complexity reasoning:** The recursion recomputes every odd-sized subtree case without memoization and combines all pairs of left/right generated trees; output trees are retained.
 
 ### Problem description
 
@@ -14532,9 +14766,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·W² log W) worst case with ordered sets
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nW) worst case for result set; O(W) active set
+
+**Complexity reasoning:** At each element, distinct suffix OR values (at most W bit-width values) are inserted into ordered sets; the result set can accumulate O(nW) values.
 
 ### Problem description
 
@@ -14638,9 +14874,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n!·n²) conservative upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) DP plus O(n) recursion/visited
+
+**Complexity reasoning:** The code explores permutations with a visited vector and copies the entire string on recursive calls. Its DP key omits the visited mask, so it is not a valid state-complete memoization; the bound is conservative.
 
 ### Problem description
 
@@ -14760,9 +14998,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² + nE)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² + E)
+
+**Complexity reasoning:** Retrograde BFS processes O(n²) mouse/cat/turn states and scans their predecessor adjacency lists; initializing degrees also scans graph edges.
 
 ### Problem description
 
@@ -14896,9 +15136,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(goal·n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(goal·n)
+
+**Complexity reasoning:** Two nested loops fill a goal-by-number-of-songs DP table with constant-time transitions.
 
 ### Problem description
 
@@ -15001,9 +15243,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single scan updates the number of ones and minimum flips using two counters.
 
 ### Problem description
 
@@ -15099,9 +15343,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Bottom-up DP updates the input matrix in place, reading only the next row.
 
 ### Problem description
 
@@ -15190,9 +15436,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each of n rounds processes ten digits and a fixed number of knight moves; the transition vectors have fixed size.
 
 ### Problem description
 
@@ -15301,9 +15549,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One pass updates the DP value for each prefix and the last occurrence of each of 26 letters.
 
 ### Problem description
 
@@ -15406,9 +15656,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²L³ + n²2^n + nL) upper bound, L=max word length
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n2^n + n² + nL)
+
+**Complexity reasoning:** All ordered word pairs test candidate overlap lengths using substring creation/comparison; bitmask DP checks up to n² transitions per mask, then constructs the answer.
 
 ### Problem description
 
@@ -15538,9 +15790,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nS) expected, S=sum(rods)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** The hash map stores possible height differences; each rod iterates over a copy of the current map and updates two choices per state.
 
 ### Problem description
 
@@ -15642,9 +15896,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r·c²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(c)
+
+**Complexity reasoning:** Each ordered pair of columns is checked across all r rows; the LIS-style DP has one entry per column.
 
 ### Problem description
 
@@ -15760,9 +16016,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log²(target)·log_x(target)) approximate upper bound for memoized branches
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log²(target)) approximate memoized states and recursion
+
+**Complexity reasoning:** Memoized recursion branches on rounding to neighboring powers of x; each state computes a power by repeated multiplication. The precise bound depends on the number of distinct reachable remainders.
 
 ### Problem description
 
@@ -15912,9 +16170,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Postorder DFS visits every tree node once; recursion stack height is h.
 
 ### Problem description
 
@@ -16023,9 +16283,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(D + t) expected, D=last travel day, t=number of travel days
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(D + t)
+
+**Complexity reasoning:** Builds a hash set of travel days and fills one DP entry for every calendar day through the final trip.
 
 ### Problem description
 
@@ -16147,9 +16409,11 @@ int mincostTickets(vector<int>& days, vector<int>& costs) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²·n!) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) auxiliary recursion/path copies, excluding result count
+
+**Complexity reasoning:** Backtracking tries unused elements at every depth; path is passed by value, causing O(n) copying per recursive call, and duplicate/square checks prune branches.
 
 ### Problem description
 
@@ -16252,9 +16516,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³/(k-1)) upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Interval DP considers O(n²) intervals and split points stepped by k−1; prefix sums take O(n) extra storage.
 
 ### Problem description
 
@@ -16375,9 +16641,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d²), d=number of decimal digits
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** For each digit position, the code tries at most ten smaller digits and computes permutation products of up to d factors.
 
 ### Problem description
 
@@ -16481,9 +16749,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass maintains the best previous value-plus-index and the best pair score.
 
 ### Problem description
 
@@ -16563,9 +16833,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary
+
+**Complexity reasoning:** Sorting n clips dominates the linear greedy scan; std::sort uses logarithmic stack space.
 
 ### Problem description
 
@@ -16679,9 +16951,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The result is determined by one parity check.
 
 ### Problem description
 
@@ -16759,9 +17033,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** The LCS table has (m+1)(n+1) cells, each computed in constant time.
 
 ### Problem description
 
@@ -16866,9 +17142,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Interval DP tries every split k for each of O(n²) intervals.
 
 ### Problem description
 
@@ -16968,9 +17246,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · min(n,k))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each prefix, at most k preceding elements are examined; the DP array has n+1 entries.
 
 ### Problem description
 
@@ -17060,9 +17340,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nS)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nS)
+
+**Complexity reasoning:** A 2D subset-sum DP processes n stones for each capacity up to S=floor(total/2).
 
 ### Problem description
 
@@ -17161,9 +17443,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(b · 2^b)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^b)
+
+**Complexity reasoning:** The bitmask DP considers up to 2^b bike subsets and tries up to b unused bikes per state.
 
 ### Problem description
 
@@ -17288,9 +17572,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log(high+1) + log(max(1,low)))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each countUpTo call examines one decimal place at a time with constant work.
 
 ### Problem description
 
@@ -17392,9 +17678,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** The LCS table takes O(mn) time/space; reconstructing and reversing the answer takes O(m+n) additional time and space.
 
 ### Problem description
 
@@ -17527,9 +17815,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each book scans backward through up to n previous books; only one DP array is allocated.
 
 ### Problem description
 
@@ -17628,9 +17918,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^s · P · L + s + P)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^s + s + P)
+
+**Complexity reasoning:** Memoization visits up to 2^s skill masks; each state scans P people and their skill lists (maximum length L). The fixed-size dp array is sized for 17 skills.
 
 ### Problem description
 
@@ -17770,9 +18062,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop updates three rolling Tribonacci values for each index.
 
 ### Problem description
 
@@ -17855,9 +18149,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn · min(m,n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Two m×n prefix-run tables are built, then each cell tests up to min(m,n) square side lengths.
 
 ### Problem description
 
@@ -17944,9 +18240,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Memoized states are indexed by (i,m); each state tries up to 2m, at most O(n), choices.
 
 ### Problem description
 
@@ -18043,9 +18341,11 @@ auto init = []() {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each pair of characters is examined once, retaining only two length-(n+1) DP rows.
 
 ### Problem description
 
@@ -18148,9 +18448,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · target · k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n · target)
+
+**Complexity reasoning:** Memoization stores up to (n+1)(target+1) states; each viable state tries k die faces.
 
 ### Problem description
 
@@ -18254,9 +18556,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** All n² grid cells are scanned and at most once enqueued/dequeued in multi-source BFS; the queue can hold O(n²) cells. The input grid is modified.
 
 ### Problem description
 
@@ -18369,9 +18673,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan maintains the best subarray sum with and without a deletion.
 
 ### Problem description
 
@@ -18467,9 +18773,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Kadane scans one or two copies of the input; concat materializes a 2n-element vector when k>1.
 
 ### Problem description
 
@@ -18582,9 +18890,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Interval DP fills O(n²) substrings using constant-time transitions.
 
 ### Problem description
 
@@ -18668,9 +18978,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A single pass updates an unordered_map entry for each value; hash operations are expected O(1).
 
 ### Problem description
 
@@ -18766,9 +19078,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each of n steps updates two fixed-length arrays of five vowel counts.
 
 ### Problem description
 
@@ -18871,9 +19185,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 6² · R)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n · 6 · 16)
+
+**Complexity reasoning:** The four nested loops process n rolls, six next faces, six prior faces, and at most R=max(rollMax) run lengths (R≤15); the 3D table allocates (n+1)×6×16 integers.
 
 ### Problem description
 
@@ -18984,9 +19300,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A conditional expression returns one of two constants.
 
 ### Problem description
 
@@ -19060,9 +19378,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · target)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(target)
+
+**Complexity reasoning:** For each coin, the implementation updates at most target+1 probability entries in reverse.
 
 ### Problem description
 
@@ -19143,9 +19463,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Each interval DP state examines up to O(n) matching positions k, over O(n²) intervals.
 
 ### Problem description
 
@@ -19237,9 +19559,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^w · (L+26))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(w + 26w + L)
+
+**Complexity reasoning:** Include/skip recursion explores up to 2^w subsets of words; each call copies a 26-element frequency vector and may scan its current word. Recursion depth is w and frequency-vector copies accumulate along the stack; L is the total length of input words and letters.
 
 ### Problem description
 
@@ -19369,9 +19693,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(p²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(p)
+
+**Complexity reasoning:** Catalan DP tries p possible partitions across each of p pair counts, with one p+1 array.
 
 ### Problem description
 
@@ -19453,9 +19779,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each number updates a fixed three-element residue DP array.
 
 ### Problem description
 
@@ -19552,9 +19880,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(steps · min(arrLen, steps/2+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(steps · min(arrLen, steps/2+1))
+
+**Complexity reasoning:** The 2D table has steps+1 rows and maxPos=min(arrLen, steps/2+1) columns, with constant work per cell.
 
 ### Problem description
 
@@ -19658,9 +19988,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R·C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R·C)
+
+**Complexity reasoning:** Three matrix scans initialize and fill one DP cell per position; a separate R-by-C table stores square sizes.
 
 ### Problem description
 
@@ -19816,9 +20148,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² + k·n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² + k·n)
+
+**Complexity reasoning:** Precompute palindrome-change costs for all substrings, then try every previous cut for each partition count and prefix.
 
 ### Problem description
 
@@ -19926,9 +20260,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R·C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(C)
+
+**Complexity reasoning:** For each row, find the smallest two previous-column values and update every column; only previous/current rows are kept.
 
 ### Problem description
 
@@ -20031,9 +20367,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Each board cell is processed once and relaxes at most three predecessor positions; score and count tables are n-by-n.
 
 ### Problem description
 
@@ -20141,9 +20479,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Every substring length and starting index is visited once, with constant-time interval transitions.
 
 ### Problem description
 
@@ -20247,9 +20587,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·27²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n·27²)
+
+**Complexity reasoning:** For each character, evaluate both finger choices for all 27-by-27 finger-position pairs; the implementation stores every layer.
 
 ### Problem description
 
@@ -20367,9 +20709,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build maximum right reach per left endpoint, then greedily scan positions once; maxReach has n+1 entries.
 
 ### Problem description
 
@@ -20473,9 +20817,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³ + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Floyd–Warshall tests all ordered triples of cities after initializing edges; an n-by-n distance matrix is retained.
 
 ### Problem description
 
@@ -20605,9 +20951,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d·n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d·n)
+
+**Complexity reasoning:** For every day and job prefix, scan all valid starts of its final segment; store a (d+1)-by-(n+1) table.
 
 ### Problem description
 
@@ -20721,9 +21069,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each index is memoized once and scans up to d positions in each direction; memo and worst-case DFS depth are O(n).
 
 ### Problem description
 
@@ -20837,9 +21187,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(C·4^R + C·R)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(C·2^R)
+
+**Complexity reasoning:** The code enumerates all pairs of row masks for adjacent columns, using a C-by-2^R DP table; building column masks costs O(C·R).
 
 ### Problem description
 
@@ -21004,9 +21356,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Multiply the two closed-form factors for each i from 1 to n using constant working state.
 
 ### Problem description
 
@@ -21096,9 +21450,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Count the input digits, remove at most two digits from fixed-size buckets, then construct an output string of at most n digits.
 
 ### Problem description
 
@@ -21196,9 +21552,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** The two DFS calls each traverse the tree once; recursion uses at most tree height h stack frames.
 
 ### Problem description
 
@@ -21310,9 +21668,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Postorder DFS computes BST validity, bounds and sum once per node; only recursion stack scales with height.
 
 ### Problem description
 
@@ -21426,9 +21786,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(U·L + q log q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(U·L + q)
+
+**Complexity reasoning:** Compute memoized Collatz lengths for q=hi−lo+1 input values, where U is the number of distinct visited values and L bounds per-value chain work without memo hits; then sort q pairs. Memo holds O(U) entries, and recursion can reach depth L.
 
 ### Problem description
 
@@ -21540,9 +21902,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Two memoized interval-choice recursions each visit O(n·(n/3)) index-and-count states with constant transitions.
 
 ### Problem description
 
@@ -21644,9 +22008,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** For each center index, scan its left and right sides to count increasing/decreasing partners; only counters are used.
 
 ### Problem description
 
@@ -21758,9 +22124,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·m·A·m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n·m)
+
+**Complexity reasoning:** Memoize position, KMP match length and two bound flags, trying up to A=26 letters and potentially following m failure links for each transition; LPS preprocessing is O(m).
 
 ### Problem description
 
@@ -21890,9 +22258,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Sort satisfaction in descending order, then scan it once; sorting uses O(log n) auxiliary stack space.
 
 ### Problem description
 
@@ -21998,9 +22368,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each suffix DP state considers at most three stone counts; the n+1 DP values are stored.
 
 ### Problem description
 
@@ -22115,9 +22487,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Update the two coloring-pattern counts once per row using constant-size state.
 
 ### Problem description
 
@@ -22197,9 +22571,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·D)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each starting index, extend the numeric substring until it exceeds k; at most D=floor(log10(k))+1 digits are examined, and dp has n+1 entries.
 
 ### Problem description
 
@@ -22299,9 +22675,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·m²·k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n·m·k)
+
+**Complexity reasoning:** For every length, maximum value and search cost, sum all smaller preceding maxima; store a 3D DP table.
 
 ### Problem description
 
@@ -22427,9 +22805,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(40·2^p·p + H)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(40·2^p + H)
+
+**Complexity reasoning:** For each of 40 hats and every subset of p people, iterate people eligible for that hat; H is the total input preference entries.
 
 ### Problem description
 
@@ -22551,9 +22931,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k·R·C·(R+C))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k·R·C)
+
+**Complexity reasoning:** For each cut count and top-left corner, try all horizontal and vertical cut positions; store prefix sums and k layers of grid DP.
 
 ### Problem description
 
@@ -22670,9 +23052,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(9·T·L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T·L)
+
+**Complexity reasoning:** Each of T target values tries nine digits and may copy/compare strings of length up to L=floor(T/minCost); the DP retains T+1 strings of that length.
 
 ### Problem description
 
@@ -22793,9 +23177,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R·C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(C)
+
+**Complexity reasoning:** Fill a row of pairwise subsequence DP with constant-time transitions; two C+1 arrays are reused.
 
 ### Problem description
 
@@ -22895,9 +23281,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R·C²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R·C²)
+
+**Complexity reasoning:** For each row and pair of robot columns, check at most nine next-position pairs; the implementation allocates all R·C² DP states.
 
 ### Problem description
 
@@ -23031,9 +23419,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P·B²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(P + B² + q)
+
+**Complexity reasoning:** Enumerate every split of each color group (P=product(b_i+1)); binomial coefficients are recursively memoized for totals up to B=sum(b_i), and DFS depth is q=number of colors.
 
 ### Problem description
 
@@ -23160,9 +23550,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m · n² · target)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m · n · target)
+
+**Complexity reasoning:** Memoization stores states by house index, previous color, and remaining neighborhoods; each unpainted state tries up to n colors.
 
 ### Problem description
 
@@ -23298,9 +23690,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³ + kn²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² + nk)
+
+**Complexity reasoning:** Computing each interval median cost scans the interval, totaling cubic work; partition DP tests every earlier split for each of k mailbox counts.
 
 ### Problem description
 
@@ -23406,9 +23800,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·2^n + 3^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n + n + d)
+
+**Complexity reasoning:** For every completed-course mask, eligibility scans n courses and the code enumerates all submasks of eligible courses; d is the number of dependencies.
 
 ### Problem description
 
@@ -23526,9 +23922,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n√n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each integer up to n checks square moves up to its square root; a boolean DP array stores n+1 results.
 
 ### Problem description
 
@@ -23628,9 +24026,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass updates the counts of even and odd prefix sums using a fixed number of integers.
 
 ### Problem description
 
@@ -23730,9 +24130,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two passes build distinct-character prefix/suffix counts using hash sets, followed by a linear split check; hash operations are expected constant time.
 
 ### Problem description
 
@@ -23836,9 +24238,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² · min(n,k+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+
+**Complexity reasoning:** For each prefix and allowed deletion count, the inner scan can extend across the entire prefix; the two-dimensional DP has O(nk) entries.
 
 ### Problem description
 
@@ -23965,9 +24369,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(c³ + c log c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(c²)
+
+**Complexity reasoning:** After sorting c cut positions, interval DP considers every interior cut for each pair of boundaries; the table has quadratic size.
 
 ### Problem description
 
@@ -24077,9 +24483,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L(n+e) + S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(Ln + e + S)
+
+**Complexity reasoning:** Each target-path position relaxes every adjacency edge and stores a predecessor per city; S is total character-comparison cost across string comparisons.
 
 ### Problem description
 
@@ -24234,9 +24642,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log² n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Memoized recursive calls reduce n by factors of two or three; there are O(log² n) distinct reachable values and recursion depth is logarithmic, with hash-map operations expected O(1).
 
 ### Problem description
 
@@ -24332,9 +24742,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** All O(n²) intervals try O(n) split points, using prefix sums for constant-time range totals.
 
 ### Problem description
 
@@ -24437,9 +24849,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass tracks the longest positive-product and negative-product suffix lengths with three counters.
 
 ### Problem description
 
@@ -24550,9 +24964,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Pascal combinations use quadratic time and storage; recursively partitioning the array costs at most quadratic time for a skewed BST, with O(n) extra temporary partition storage.
 
 ### Problem description
 
@@ -24674,9 +25090,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²F)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nF)
+
+**Complexity reasoning:** Memoization has n locations and F+1 fuel levels, and each state scans all n possible next locations.
 
 ### Problem description
 
@@ -24797,9 +25215,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass keeps the largest removal cost in the current same-color run and accumulates the remaining costs.
 
 ### Problem description
 
@@ -24908,9 +25328,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Each grid cell combines a constant number of extrema from above and left; two m-by-n DP tables are allocated.
 
 ### Problem description
 
@@ -25037,9 +25459,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn·2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m·2^n + n)
+
+**Complexity reasoning:** The memoized state is a first-group index and a second-group bitmask; each nonterminal state tries n connections, with an O(mn) minimum-cost preprocessing pass.
 
 ### Problem description
 
@@ -25173,9 +25597,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((log n)²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n)
+
+**Complexity reasoning:** Each recursive call removes the highest set bit; locating that bit with a linear bit scan costs O(log n) per call across at most O(log n) recursive calls.
 
 ### Problem description
 
@@ -25305,9 +25731,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³·2^n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** For every node subset, the implementation runs connectivity BFS and then BFS from every included node; on a tree this costs O(n²) per subset, plus O(n) subset scanning, with O(n) temporary memory and adjacency storage.
 
 ### Problem description
 
@@ -25457,9 +25885,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+
+**Complexity reasoning:** There are O(nk) memoized (points,segments) states, and each loops over up to n segment lengths.
 
 ### Problem description
 
@@ -25571,9 +26001,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting players costs O(n log n); the nested DP comparison of all prior players costs O(n²) and stores O(n) entries.
 
 ### Problem description
 
@@ -25687,9 +26119,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(ab·min(a,b))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** For every starting pair in strings of lengths a and b, the implementation extends the aligned substrings until a second mismatch or an end.
 
 ### Problem description
 
@@ -25827,9 +26261,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(WL + LT)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(LT + L)
+
+**Complexity reasoning:** Building per-column character frequencies costs O(WL); DP processes L columns and up to T target positions, storing a length-T array and L frequency rows.
 
 ### Problem description
 
@@ -26010,9 +26446,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop updates five fixed-size vowel counters for each length from 2 through n.
 
 ### Problem description
 
@@ -26105,9 +26543,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((h+v)²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O((h+v)²)
+
+**Complexity reasoning:** Pascal’s triangle fills a quadratic binomial table; building the path takes h+v steps and characters.
 
 ### Problem description
 
@@ -26223,9 +26663,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass counts a characters and another tracks the optimal split using two running counters.
 
 ### Problem description
 
@@ -26321,9 +26763,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N + m·2^m + u·3^m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + 2^m + u)
+
+**Complexity reasoning:** Frequency counting scans N numbers, subset sums take O(m·2^m), and each of u distinct values enumerates disjoint mask/submask pairs, totaling O(u·3^m).
 
 ### Problem description
 
@@ -26461,9 +26905,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn·3^n·I·E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn·3^n·I·E)
+
+**Complexity reasoning:** Each memo state records grid position, disjoint introvert/extrovert occupancy masks for the previous row, remaining introvert/extrovert quotas I and E, and left-neighbor type; each state explores three choices.
 
 ### Problem description
 
@@ -26592,9 +27038,11 @@ int getMaxGridHappiness(int m_, int n_, int introvertsCount, int extrovertsCount
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** At each of n positions the implementation compares an m-character word with the sequence and updates one DP entry.
 
 ### Problem description
 
@@ -26696,9 +27144,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·2^n + 3^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n)
+
+**Complexity reasoning:** Computing valid size-g group costs scans n bits per candidate mask; DP enumerates submasks of the remaining elements, bounded by 3^n across masks.
 
 ### Problem description
 
@@ -26805,9 +27255,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(26n²)
+
+**Complexity reasoning:** Each interval computes 26 ending-character states; the 3D table stores all interval/character combinations.
 
 ### Problem description
 
@@ -26912,9 +27364,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Prefix sums take linear time; the interval DP fills every pair of endpoints once.
 
 ### Problem description
 
@@ -27012,9 +27466,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** After sorting each cuboid and the list, the nested LIS-style transitions compare all earlier cuboids; the DP has n entries.
 
 ### Problem description
 
@@ -27132,9 +27588,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** The outer loop visits n candies and the descending inner loop updates up to k one-dimensional DP states.
 
 ### Problem description
 
@@ -27244,9 +27702,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n√n + q√n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n√n + q)
+
+**Complexity reasoning:** Small steps are precomputed across n positions; each of q large-step queries scans at most O(√n) elements, and answers are stored.
 
 ### Problem description
 
@@ -27347,9 +27807,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + log(S)·k^n·k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+k)
+
+**Complexity reasoning:** Sorting takes O(n log n); each of O(log S) binary-search feasibility tests can explore up to k choices at each of n job levels, scanning k workers per node; recursion and worker loads use O(n+k). S is the sum of job durations.
 
 ### Problem description
 
@@ -27453,9 +27915,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1000·P²·(1+J))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1000·P² + P·J + 1000)
+
+**Complexity reasoning:** Memoization considers at most 1000·P² (turn, mouse, cat) states and tests up to O(1+J) moves per state; the memo table, move lists, and recursion stack dominate. P=rows·cols, J=max(catJump,mouseJump).
 
 ### Problem description
 
@@ -27607,9 +28071,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M + log MOD + Σ√k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M+q)
+
+**Complexity reasoning:** Factorial/inverse preprocessing takes O(M), one modular exponentiation takes O(log MOD), and each query trial-divides up to √k; the output has q entries. M=max(n+15) across queries.
 
 ### Problem description
 
@@ -27696,9 +28162,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Palindrome intervals are precomputed in a quadratic table; all two-cut positions are then checked in O(n²).
 
 ### Problem description
 
@@ -27785,9 +28253,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop updates the best subarray ending with and without the squaring operation using constant-size state.
 
 ### Problem description
 
@@ -27872,9 +28342,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass tracks the smallest and largest prefix sums.
 
 ### Problem description
 
@@ -27953,9 +28425,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m²)
+
+**Complexity reasoning:** The DP considers O(m²) pairs of operation index and number of left picks, each with two constant-time transitions.
 
 ### Problem description
 
@@ -28085,9 +28559,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** The concatenated words form an n-by-n longest-palindromic-subsequence DP; checking cross-word endpoint pairs is also quadratic.
 
 ### Problem description
 
@@ -28193,9 +28669,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(B·3^t)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(t+B)
+
+**Complexity reasoning:** For each of B base costs, the recursion explores three choices per topping across t levels; the recursion stack is O(t) and the copied topping list is O(t), plus input-independent state.
 
 ### Problem description
 
@@ -28319,9 +28797,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+e) log(n+e))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+e)
+
+**Complexity reasoning:** Building the graph and heap-based Dijkstra cost O((n+e)log(n+e)); memoized DFS visits each node and edge at most once, with graph, heap, memo, and recursion storage.
 
 ### Problem description
 
@@ -28458,9 +28938,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1024·(k+n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1024+n/k+k)
+
+**Complexity reasoning:** Each residue class counts its members and scans 1024 states for every distinct value; across all classes the number of distinct values is at most n. The DP arrays use 1024 slots and a class frequency map uses at most O(n/k) entries.
 
 ### Problem description
 
@@ -28605,9 +29087,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^n·n²·log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n)
+
+**Complexity reasoning:** The bitmask DP enumerates up to n² available pairs per mask and computes each GCD in O(log V); the DP table has 2^n entries.
 
 ### Problem description
 
@@ -28715,9 +29199,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(b·Π(cᵢ+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(b·Π(cᵢ+1))
+
+**Complexity reasoning:** The memoized recursion tries up to b−1 remainder classes for each combination of remaining counts cᵢ; keys and recursion bookkeeping are stored per state. b is batchSize.
 
 ### Problem description
 
@@ -28828,9 +29314,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each obstacle position updates exactly three lane costs, stored in a fixed-size vector.
 
 ### Problem description
 
@@ -28950,9 +29438,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n+26e)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(26n+n+e)
+
+**Complexity reasoning:** Topological traversal visits every node and edge; each edge propagates 26 color counts. The graph and 26-entry count vector per node determine memory.
 
 ### Problem description
 
@@ -29075,9 +29565,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+
+**Complexity reasoning:** The nested loops fill an (n+1)-by-(k+1) table with constant work per state.
 
 ### Problem description
 
@@ -29200,9 +29692,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Prefix sums are accumulated in place, then one reverse pass updates a single game-state value.
 
 ### Problem description
 
@@ -29322,9 +29816,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n)
+
+**Complexity reasoning:** Every subset mask tries up to n unused partners; the subset DP stores one value for each mask.
 
 ### Problem description
 
@@ -29411,9 +29907,11 @@ class Solution {public:int minimumXORSum(vector<int>& nums1,vector<int>& nums2){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each road segment the code considers up to n skip counts; only current and next one-dimensional arrays are kept.
 
 ### Problem description
 
@@ -29518,9 +30016,11 @@ class Solution {public:int minSkips(vector<int>& dist,int speed,int hoursBefore)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(√n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop increases x until its triangular number reaches n, requiring Θ(√n) iterations.
 
 ### Problem description
 
@@ -29603,9 +30103,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Each expression character is pushed or reduced a constant number of times; the operand and operator stacks can each grow to O(L).
 
 ### Problem description
 
@@ -29724,9 +30226,11 @@ class Solution {using P=pair<int,int>;P combine(P a,P b,char op){P out={INT_MAX/
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S·n·2^(⌊n/2⌋)·log S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S+n)
+
+**Complexity reasoning:** For each memoized (n,a,b) state, the nested winner-enumeration recursion may explore up to 2^(⌊n/2⌋) match outcomes, with O(n) work per leaf and map lookup overhead. S is the number of distinct reachable states (at most O(n³)); memo plus recursion uses O(S+n).
 
 ### Problem description
 
@@ -29817,9 +30321,11 @@ class Solution {map<tuple<int,int,int>,pair<int,int>> memo;pair<int,int> dfs(int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass XORs all pile sizes into one accumulator.
 
 ### Problem description
 
@@ -29926,9 +30432,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The two alternating-subsequence DP states are updated once per array element.
 
 ### Problem description
 
@@ -30043,9 +30551,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log MOD)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The code computes a modular inverse separately for each of n+1 factorials, each costing O(log MOD); building the tree and the DFS are O(n). Factorial arrays, tree adjacency, and recursion use O(n) space.
 
 ### Problem description
 
@@ -30177,9 +30687,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((nT + mT) log(nT))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nT + m)
+
+**Complexity reasoning:** Each city/time pair may enter the heap; relaxations traverse edges across time states. T is maxTime and m is the number of edges.
 
 ### Problem description
 
@@ -30312,9 +30824,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m S² + n S²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m S² + S)
+
+**Complexity reasoning:** There are S=3·2^(m−1) valid column colorings. Checking all pairs takes O(m S²), and transitions scan at most S² pairs per column.
 
 ### Problem description
 
@@ -30446,9 +30960,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each row performs left-to-right and right-to-left passes over n columns; only four length-n arrays are retained.
 
 ### Problem description
 
@@ -30570,9 +31086,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n! · n · m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Every permutation of n mentors is scored against n students over m answers; the permutation array occupies O(n).
 
 ### Problem description
 
@@ -30678,9 +31196,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass updates three scalar subsequence counters.
 
 ### Problem description
 
@@ -30841,9 +31361,11 @@ class Solution {public:int countSpecialSubsequences(vector<int>& nums){const lon
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² + nk)
+
+**Complexity reasoning:** All interval costs take O(n²); the group/end/start DP loops require O(kn²), storing interval costs and group DP.
 
 ### Problem description
 
@@ -30935,9 +31457,11 @@ class Solution {public:int minSpaceWastedKResizing(vector<int>& nums,int k){int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + m) log(n + m))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Dijkstra relaxes each road and maintains a heap of candidate distances, plus adjacency lists and distance/count arrays.
 
 ### Problem description
 
@@ -31061,9 +31585,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** The LCP matrix and prefix-count DP each have n² cells, with constant-time comparisons and transitions per cell.
 
 ### Problem description
 
@@ -31174,9 +31700,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n w S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** For each of n rows, every one of w values is combined with each reachable sum; S is the maximum number of stored sums (the code stops if a newly built set exceeds 10000).
 
 ### Problem description
 
@@ -31302,9 +31830,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + n^n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** After sorting, binary search invokes exponential backtracking assigning n tasks to up to n sessions; recursion and session/seen storage are O(n).
 
 ### Problem description
 
@@ -31438,9 +31968,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The binary string is scanned once with three scalar counters.
 
 ### Problem description
 
@@ -31546,9 +32078,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + 30·2^10)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^10)
+
+**Complexity reasoning:** Counting input values costs O(n); each eligible value 2..30 scans the 1024 prime masks. The DP has 1024 entries.
 
 ### Problem description
 
@@ -31654,9 +32188,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One forward pass fills a length-n recurrence array.
 
 ### Problem description
 
@@ -31770,9 +32306,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n + n)
+
+**Complexity reasoning:** Each subset mask builds and tests a subsequence of at most n characters; subset-max propagation also takes O(n·2^n).
 
 ### Problem description
 
@@ -31885,9 +32423,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each subtree node is marked at most once as DFS progresses up the ancestor chain of the node containing value 1; adjacency and recursion use O(n).
 
 ### Problem description
 
@@ -32033,9 +32573,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The winner is determined by one modulo operation.
 
 ### Problem description
 
@@ -32141,9 +32683,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³ B² log B + a log B)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² B)
+
+**Complexity reasoning:** Interval DP tries O(n³) splits and up to B² pairs of possible values per split, inserting into ordered sets; B≤1001 and a is the number of answers.
 
 ### Problem description
 
@@ -32294,9 +32838,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass maintains two alternating-sum states and a running maximum.
 
 ### Problem description
 
@@ -32398,9 +32944,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Topological processing visits each course and prerequisite edge once; adjacency lists and queue/DP arrays store O(n+m) data.
 
 ### Problem description
 
@@ -32530,9 +33078,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L + n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L + n)
+
+**Complexity reasoning:** Tokenizing the sentence takes O(L) characters; the nested DP examines up to O(n²) word ranges, storing n word lengths and DP states.
 
 ### Problem description
 
@@ -32675,9 +33225,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nmD log(nmD))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nmD)
+
+**Complexity reasoning:** Memoized DFS records states (i,j,diff); at most three digit prefixes and constant letter moves branch per state. D bounds the possible difference range; ordered-set lookups cost logarithmic time.
 
 ### Problem description
 
@@ -32818,9 +33370,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each vowel contributes (i+1)(n−i); vowel membership checks a fixed five-character literal.
 
 ### Problem description
 
@@ -32929,9 +33483,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One greedy scan places buckets by modifying the input string in place.
 
 ### Problem description
 
@@ -33033,9 +33589,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** The grid is scanned twice, each time filling an m-by-n DP matrix; reversing rows costs O(m).
 
 ### Problem description
 
@@ -33160,9 +33718,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two linear passes compute nonincreasing/nondecreasing streak lengths and a final pass selects valid days.
 
 ### Problem description
 
@@ -33277,9 +33837,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Indegree pruning and cycle traversal each visit every vertex and functional-graph edge at most a constant number of times.
 
 ### Problem description
 
@@ -33425,9 +33987,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Backward DP evaluates each question once and stores n+1 optimal scores.
 
 ### Problem description
 
@@ -33523,9 +34087,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nS)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** At each index, both sign choices extend each distinct reachable difference; S is the maximum number of distinct differences in the hash map.
 
 ### Problem description
 
@@ -33647,9 +34213,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single corridor scan counts seats and multiplies the possible divider placements.
 
 ### Problem description
 
@@ -33756,9 +34324,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³ + n²·2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² + 2^n)
+
+**Complexity reasoning:** Precomputing the collinear-point mask for every point pair costs O(n³); subset DP considers up to n partners for each of 2^n masks, with O(n²) mask storage.
 
 ### Problem description
 
@@ -33873,9 +34443,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two heaps retain n elements each while prefix/suffix sums are recorded in arrays.
 
 ### Problem description
 
@@ -33985,9 +34557,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One scan updates the cheapest prefix removal and suffix-removal candidate.
 
 ### Problem description
 
@@ -34109,9 +34683,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S · q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** There are S = 3^q ternary masks for q slots; each mask scans q digits and possible slots.
 
 ### Problem description
 
@@ -34244,9 +34820,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(B + P² + hP²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(P² + P + w)
+
+**Complexity reasoning:** The recursive builder enumerates B partial brick arrangements, yielding P completed row masks; all P² row pairs are checked, and h−1 transitions traverse compatible pairs. Recursion depth is at most wall width w.
 
 ### Problem description
 
@@ -34359,9 +34937,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(T · L + L²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Each tire generates up to L consecutive-lap costs; the lap DP considers every split.
 
 ### Problem description
 
@@ -34472,9 +35052,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The descending 0/1 knapsack update runs for O(n) distinct card-row costs and O(n) sums.
 
 ### Problem description
 
@@ -34581,9 +35163,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nc)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nc)
+
+**Complexity reasoning:** The (carpets + 1) by (floor length + 1) table is filled once per state.
 
 ### Problem description
 
@@ -34673,9 +35257,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k · Σ min(k, |pile|))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Each pile tries each allowed take count and scans up to k capacities; two length-k arrays are kept.
 
 ### Problem description
 
@@ -34762,9 +35348,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two scans count digits and accumulate valid triples using constant counters.
 
 ### Problem description
 
@@ -34878,9 +35466,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^n · (n + m))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n · 2^n + n + m)
+
+**Complexity reasoning:** The mask DP scans n possible endpoints per mask and, for reachable states, adjacent highways; it stores a 2^n-by-n table and the graph.
 
 ### Problem description
 
@@ -34994,9 +35584,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each character contributes once using a fixed 26-entry last-position array.
 
 ### Problem description
 
@@ -35081,9 +35673,11 @@ class Solution {public:long long appealSum(string s){vector<int> last(26,-1);lon
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two passes maintain a priority queue with at most n elements, and a copied negated array.
 
 ### Problem description
 
@@ -35197,9 +35791,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each position checks at most four preceding equal digits and stores one DP value.
 
 ### Problem description
 
@@ -35291,9 +35887,11 @@ class Solution {public:int countTexts(string s){const int MOD=1000000007;int n=s
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn(m+n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn(m+n))
+
+**Complexity reasoning:** Memoization visits each grid position and possible balance at most once; recursion depth is O(m+n).
 
 ### Problem description
 
@@ -35388,9 +35986,11 @@ class Solution {int m,n;vector<vector<vector<int>>> memo;vector<vector<char>> *g
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26² n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each ordered pair of letters is scanned over the string; counters use fixed alphabet storage.
 
 ### Problem description
 
@@ -35469,9 +36069,11 @@ class Solution {public:int largestVariance(string s){int ans=0;vector<int> cnt(2
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nb)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(b)
+
+**Complexity reasoning:** For n stocks, the descending knapsack loop scans up to budget b and keeps one DP array.
 
 ### Problem description
 
@@ -35582,9 +36184,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each of m−1 row transitions, every pair of source and destination columns is considered.
 
 ### Problem description
 
@@ -35673,9 +36277,11 @@ class Solution {public:int minPathCost(vector<vector<int>>& grid,vector<vector<i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + n k^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + k)
+
+**Complexity reasoning:** Cookies are sorted, then depth-n backtracking explores at most k choices per cookie; each level also builds a set of at most k loads.
 
 ### Problem description
 
@@ -35767,9 +36373,11 @@ class Solution {int best;void dfs(vector<int>& c,int i,vector<int>& load,int cur
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** At most ten candidate counts are tested.
 
 ### Problem description
 
@@ -35864,9 +36472,11 @@ class Solution {public:int minimumNumbers(int num,int k){if(num==0)return 0;for(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One count pass and one reverse scan use only scalar state.
 
 ### Problem description
 
@@ -35948,9 +36558,11 @@ class Solution {public:int longestSubsequence(string s,int k){int ans=count(s.be
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn(m+n) + p)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Each of mn cells tests up to h/2 horizontal and w/2 vertical splits; p price entries initialize the table.
 
 ### Problem description
 
@@ -36045,9 +36657,11 @@ class Solution {public:long long sellingWood(int m,int n,vector<vector<int>>& pr
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Each tree node is processed once with four constant-size Boolean combinations; recursion uses tree height H.
 
 ### Problem description
 
@@ -36164,9 +36778,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each sequence length processes at most 7×6×6 constant-size transitions and two fixed tables.
 
 ### Problem description
 
@@ -36245,9 +36861,11 @@ class Solution {static bool coprime(int a,int b){while(b){int t=a%b;a=b;b=t;}ret
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A fixed number of scalar DP values are updated per plot.
 
 ### Problem description
 
@@ -36322,9 +36940,11 @@ class Solution {public:int countHousePlacements(int n){const long long M=1000000
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass computes both array sums and two Kadane-style maximum gains.
 
 ### Problem description
 
@@ -36429,9 +37049,11 @@ class Solution {public:int maximumsSplicedArray(vector<int>& nums1,vector<int>& 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The rolling active sharer count and daily DP array are updated once per day.
 
 ### Problem description
 
@@ -36512,9 +37134,11 @@ class Solution {public:int peopleAwareOfSecret(int n,int delay,int forget){const
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Each cell is memoized once and checks four neighbors; recursion depth can reach mn.
 
 ### Problem description
 
@@ -36599,9 +37223,11 @@ class Solution {int m,n;vector<vector<int>> memo;vector<vector<int>>* a;int dfs(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + M log log M + M log M)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + M + log M)
+
+**Complexity reasoning:** Factorials and inverses are precomputed through n+O(log M); a smallest-prime-factor sieve is built to M, then each value is factored using at most O(log M) divisions.
 
 ### Problem description
 
@@ -36711,9 +37337,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A single pass updates two running costs and appends one result per station.
 
 ### Problem description
 
@@ -36822,9 +37450,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The bottom-up DP evaluates constant-size partition checks for each prefix.
 
 ### Problem description
 
@@ -36910,9 +37540,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each character scans at most 26 letter states; the 26-entry DP array is fixed-size.
 
 ### Problem description
 
@@ -36999,9 +37631,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L * 2^10 * 10)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L * 2^10)
+
+**Complexity reasoning:** Digit DP memoizes position, used-digit mask, and started flag, trying up to ten digits per state; tight states add only a smaller overhead. L is the number of digits.
 
 ### Problem description
 
@@ -37097,9 +37731,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build the children adjacency list and visit every tree node and edge once; the adjacency list and DFS stack use linear space.
 
 ### Problem description
 
@@ -37214,9 +37850,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single scan maintains the zero count and required seconds using constant auxiliary variables.
 
 ### Problem description
 
@@ -37303,9 +37941,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single scan maintains the length of the current increasing run and accumulates its contribution.
 
 ### Problem description
 
@@ -37388,9 +38028,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k + log MOD)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Factorials require k iterations and k+1 storage; modular exponentiation uses binary powering in logarithmic time.
 
 ### Problem description
 
@@ -37463,9 +38105,11 @@ class Solution {public:int numberOfWays(int startPos,int endPos,int k){const lon
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n * 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n)
+
+**Complexity reasoning:** For each subset mask, the DP tries up to n remaining monsters; the DP array has 2^n entries.
 
 ### Problem description
 
@@ -37597,9 +38241,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two linear passes compute monotonic run lengths, followed by one scan of candidate indices; the two arrays and output use linear space.
 
 ### Problem description
 
@@ -37679,9 +38325,11 @@ class Solution {public:vector<int> goodIndices(vector<int>& nums,int k){int n=nu
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** The LCP table is filled over pairs of positions, then each suffix tries up to O(n) deletion lengths; the LCP matrix dominates memory.
 
 ### Problem description
 
@@ -37776,9 +38424,11 @@ class Solution {public:int deleteString(string s){int n=s.size();vector<vector<i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n * C * B)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(C * B)
+
+**Complexity reasoning:** For each of n fruits, the descending knapsack loops cover C+1 coupon counts and B+1 budget values; the 2D DP is retained.
 
 ### Problem description
 
@@ -37889,9 +38539,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m * n * k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n * k)
+
+**Complexity reasoning:** Each matrix cell iterates over k remainders; rolling row arrays store n*k states.
 
 ### Problem description
 
@@ -37984,9 +38636,11 @@ class Solution { public: int numberOfPaths(vector<vector<int>>& grid,int k){cons
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each element performs a Euclidean GCD with values at most V, using constant auxiliary storage.
 
 ### Problem description
 
@@ -38080,9 +38734,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + f log f + f * n * min(n, c_max))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort n robots and f factories, then for each factory and robot prefix try up to its capacity c_max; the rolling DP uses O(n) memory.
 
 ### Problem description
 
@@ -38186,9 +38842,11 @@ class Solution { public: long long minimumTotalDistance(vector<int>& robot,vecto
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2 log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** All O(n^2) possible segment starts are checked using Euclidean GCD, and the prefix DP holds n+1 entries.
 
 ### Problem description
 
@@ -38310,9 +38968,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(high)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(high)
+
+**Complexity reasoning:** One DP entry is calculated for every length up to high, with constant work per entry.
 
 ### Problem description
 
@@ -38390,9 +39050,11 @@ class Solution { public: int countGoodStrings(int low,int high,int zero,int one)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k * n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each of k partitions, one scan of the string maintains a running prefix sum; two DP arrays have n+1 entries.
 
 ### Problem description
 
@@ -38485,9 +39147,11 @@ class Solution {public:int beautifulPartitions(string s,int k,int minLength){con
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(100n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** At each position the code sums over 10-by-10 digit pairs and updates 10 counters; all digit-frequency arrays are fixed-size.
 
 ### Problem description
 
@@ -38588,9 +39252,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass tracks the current all-odd suffix and adds the count of even-product subarrays ending at each index.
 
 ### Problem description
 
@@ -38671,9 +39337,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m * n * (m+n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m * n * (m+n))
+
+**Complexity reasoning:** Every grid cell iterates through possible counts of ones along a path of length m+n-1; the full 3D boolean table is stored.
 
 ### Problem description
 
@@ -38765,9 +39433,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n * k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** For each number, descending subset-sum updates at most k states; only the k-entry DP array is stored.
 
 ### Problem description
 
@@ -38852,9 +39522,11 @@ class Solution {public:int countPartitions(vector<int>& nums,int k){const int M=
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each digit is processed once, maintaining the current numeric substring and partition count.
 
 ### Problem description
 
@@ -38936,9 +39608,11 @@ class Solution {public:int minimumPartition(string s,int k){long long cur=0;int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(maxLength)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(maxLength)
+
+**Complexity reasoning:** One DP state per length is filled with two constant-time transitions, using a length-indexed array.
 
 ### Problem description
 
@@ -39035,9 +39709,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Adjacency construction and a single tree DFS each take linear time; adjacency storage and recursion stack are linear.
 
 ### Problem description
 
@@ -39145,9 +39821,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each ending index, the algorithm scans all earlier split points and maintains a fresh frequency array and the prefix DP.
 
 ### Problem description
 
@@ -39260,9 +39938,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each middle index j, the code rebuilds prefix counts and scans the right suffix, both linear; auxiliary arrays are linear.
 
 ### Problem description
 
@@ -39354,9 +40034,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Two monotone-path DFS traversals visit each grid cell at most once because visited path cells are zeroed; recursion can reach m+n depth, while the input grid is modified in place.
 
 ### Problem description
 
@@ -39453,9 +40135,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each iteration shifts n right or changes an odd value by one; runs of trailing ones add at most a constant factor over the bit length.
 
 ### Problem description
 
@@ -39544,9 +40228,11 @@ class Solution {public:int minOperations(int n){int ans=0;while(n){if(n&1){++ans
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n * 2^10 * 10)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^10)
+
+**Complexity reasoning:** For each number, the algorithm tests ten primes and iterates over all 1024 masks; the DP array has fixed 1024 entries.
 
 ### Problem description
 
@@ -39635,9 +40321,11 @@ class Solution {public:int squareFreeSubsets(vector<int>& nums){const int MOD=10
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** String construction checks up to n positions for each new character, followed by validation of all n^2 LCP cells; only the output string is allocated.
 
 ### Problem description
 
@@ -39721,9 +40409,11 @@ class Solution {public:string findTheString(vector<vector<int>>& lcp){int n=lcp.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + g)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + g)
+
+**Complexity reasoning:** The graph and guess hash set are built once; initial DFS and reroot DFS each visit all n nodes, with expected constant-time hash lookups. g is the number of guesses.
 
 ### Problem description
 
@@ -39832,9 +40522,11 @@ class Solution {vector<vector<int>> adj;unordered_set<long long> st;int need,ans
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(T × S × C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** For each of T question types, the code scans target sums up to S and tries up to C allowed counts; two length-S DP arrays are used.
 
 ### Problem description
 
@@ -39971,9 +40663,11 @@ class Solution {public:int waysToReachTarget(int target,vector<vector<int>>& typ
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^n + n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + u)
+
+**Complexity reasoning:** The include/exclude DFS explores at most 2^n subsets after sorting; the recursion stack uses O(n) and the frequency map stores up to u distinct values.
 
 ### Problem description
 
@@ -40046,9 +40740,11 @@ class Solution {int ans=0,k;unordered_map<int,int> used;void dfs(vector<int>& a,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Initialize 26 letter costs, overwrite c custom costs, then scan n characters with a constant-size Kadane state.
 
 ### Problem description
 
@@ -40137,9 +40833,11 @@ class Solution {public:int maximumCostSubstring(string s,string chars,vector<int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + n log n × log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Ordered map/set operations build and traverse the k-separated chains, with at most n distinct values and logarithmic lookups; the chain DP itself is linear.
 
 ### Problem description
 
@@ -40251,9 +40949,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass counts each transition that starts another abc group; only a counter is stored.
 
 ### Problem description
 
@@ -40350,9 +41050,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n × t + n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each of t trips, the path DFS can traverse O(n) tree nodes; a final tree DP visits each node once. Adjacency, counts, and recursion require O(n) space.
 
 ### Problem description
 
@@ -40477,9 +41179,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The bottom-up loop processes each internal tree node once and modifies the provided cost array in place.
 
 ### Problem description
 
@@ -40566,9 +41270,11 @@ class Solution {public:int minIncrements(int n,vector<int>&cost){int ans=0;for(i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary
+
+**Complexity reasoning:** Sorting dominates the linear prefix-aggregation pass; auxiliary space is the sorting stack (implementation-dependent).
 
 ### Problem description
 
@@ -40673,9 +41379,11 @@ class Solution {public:int sumOfPower(vector<int>&nums){const long long M=100000
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** Each grid column scans all m rows and three predecessors; only the previous and current column states are kept.
 
 ### Problem description
 
@@ -40757,9 +41465,11 @@ class Solution {public:int maxMoves(vector<vector<int>>&grid){int m=grid.size(),
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n × Σ|w|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** At each of n positions, every dictionary word is checked with string::compare, which can inspect its full length; the suffix DP has n+1 entries.
 
 ### Problem description
 
@@ -40832,9 +41542,11 @@ class Solution {public:int minExtraChar(string s,vector<string>&dictionary){int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass multiplies nonzero values and tracks the negative closest to zero; no growing data structure is allocated.
 
 ### Problem description
 
@@ -40901,9 +41613,11 @@ class Solution {public:long long maxStrength(vector<int>&nums){if(nums.size()==1
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each adjacent character boundary is checked once, with constant running state.
 
 ### Problem description
 
@@ -40985,9 +41699,11 @@ class Solution {public:long long minimumCost(string s){long long ans=0,n=s.size(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L × S × 10)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** Digit DP processes L digits, both tight states, sums through S=max_sum, and up to ten digits per transition; rolling tables store O(S) entries.
 
 ### Problem description
 
@@ -41069,9 +41785,11 @@ public:int count(string num1,string num2,int min_sum,int max_sum){low=min_sum;hi
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² × 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n × 2^n)
+
+**Complexity reasoning:** Every subset mask and final index considers up to n next indices; the mask-by-last DP stores n·2^n states.
 
 ### Problem description
 
@@ -41140,9 +41858,11 @@ class Solution {public:int specialPerm(vector<int>& nums){const int MOD=10000000
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each wall, the algorithm updates n coverage states in descending order using a single length-n DP array.
 
 ### Problem description
 
@@ -41217,9 +41937,11 @@ class Solution {public:int paintWalls(vector<int>& cost,vector<int>& time){int n
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The result is computed from x, y, z using a constant number of arithmetic operations.
 
 ### Problem description
 
@@ -41290,9 +42012,11 @@ class Solution {public:int longestString(int x,int y,int z){return 2*(2*min(x,y)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26² × n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(26²)
+
+**Complexity reasoning:** Each word updates all 26×26 first/last-character states; only two fixed-size DP tables are maintained.
 
 ### Problem description
 
@@ -41432,9 +42156,11 @@ class Solution {public:int minimizeConcatenatedLength(vector<string>& words){con
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single pass multiplies the gaps between consecutive ones, storing only the previous position and answer.
 
 ### Problem description
 
@@ -41509,9 +42235,11 @@ class Solution {public:int numberOfGoodSubarraySplits(vector<int>& nums){const i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² + n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each reachable starting position, the inner loop extends a substring through the remaining characters; the DP has n+1 cells and the powers-of-five set is O(n).
 
 ### Problem description
 
@@ -41610,9 +42338,11 @@ class Solution {public: int minimumBeautifulSubstrings(string s){int n=s.size(),
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each destination index, all earlier indices are tested for a legal jump; a length-n DP array records the best count.
 
 ### Problem description
 
@@ -41712,9 +42442,11 @@ class Solution {public:int maximumJumps(vector<int>& nums,int target){int n=nums
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** At each position, four comparisons update two rolling DP lengths and the maximum.
 
 ### Problem description
 
@@ -41807,9 +42539,11 @@ class Solution {public:int maxNonDecreasingLength(vector<int>& nums1,vector<int>
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each element updates one of two parity scores and the best result.
 
 ### Problem description
 
@@ -41889,9 +42623,11 @@ class Solution {public:long long maxScore(vector<int>& nums,int x){const long lo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n × n^(1/x) + x × n^(1/x))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The outer loop enumerates integer bases with a^x≤n; each base computes its power and updates at most n knapsack states.
 
 ### Problem description
 
@@ -41977,9 +42713,11 @@ class Solution {public:int numberOfWays(int n,int x){const int MOD=1000000007;ve
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(Lh + Ll)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each digit-DP call scans its bound once using a fixed 2×2×11 state table and at most ten digit transitions; the bounds are length Lh and Ll.
 
 ### Problem description
 
@@ -42056,9 +42794,11 @@ class Solution {static const int MOD=1000000007;int countUpTo(const string& s){i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² + n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting n pairs costs O(n log n), followed by a descending knapsack update over up to n states per pair.
 
 ### Problem description
 
@@ -42139,9 +42879,11 @@ class Solution {public:int minimumTime(vector<int>& nums1,vector<int>& nums2,int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass checks adjacent sums, returning as soon as a qualifying pair is found.
 
 ### Problem description
 
@@ -42236,9 +42978,11 @@ class Solution {public:bool canSplitArray(vector<int>& nums,int m){if(nums.size(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L × L × k × 10)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L² × k)
+
+**Complexity reasoning:** Memoization stores digit position, odd-even count difference, remainder modulo k, and started flag; each state tries up to ten digits, with L bound digits.
 
 ### Problem description
 
@@ -42340,9 +43084,11 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log(k+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log(k+1))
+
+**Complexity reasoning:** Binary-lifting tables store O(log(k+1)) jump levels for n nodes; preprocessing and each node’s evaluation visit those levels.
 
 ### Problem description
 
@@ -42460,9 +43206,11 @@ class Solution {public:long long getMaxFunctionValue(vector<int>& receiver,long 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q(log n + 26))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n + 26n + q)
+
+**Complexity reasoning:** Tree traversal builds 26-weight prefix counts per node, binary lifting stores n log n ancestors, and each of q queries computes LCA and checks 26 weights.
 
 ### Problem description
 
@@ -42571,9 +43319,11 @@ class Solution {public:vector<int> minOperationsQueries(int n,vector<vector<int>
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n × 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n + n)
+
+**Complexity reasoning:** Subset DP tries up to n destinations for every mask; the DP stores 2^n states and the extra/empty lists use O(n) entries (n≤9).
 
 ### Problem description
 
@@ -42659,9 +43409,11 @@ class Solution {public:int minimumMoves(vector<vector<int>>& grid){vector<pair<i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** KMP prefix computation scans O(n) characters; 2-by-2 matrix exponentiation takes O(log k) time.
 
 ### Problem description
 
@@ -42751,9 +43503,11 @@ class Solution {public:int numberOfWays(string s,string t,long long k){const lon
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build adjacency lists, traverse the tree, then reroot answers across each edge once.
 
 ### Problem description
 
@@ -42856,9 +43610,11 @@ class Solution {public:vector<int> minEdgeReversals(int n,vector<vector<int>>& e
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sieve primes and identify nonprime components; tree edges are visited a constant number of times.
 
 ### Problem description
 
@@ -42955,9 +43711,11 @@ class Solution {public:long long countPaths(int n,vector<vector<int>>& edges){ve
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Indegree peeling, cycle detection, and reverse propagation each visit every node a constant number of times.
 
 ### Problem description
 
@@ -43050,9 +43808,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A zero check and greedy scan process each element once using constant auxiliary state.
 
 ### Problem description
 
@@ -43168,9 +43928,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Scan both strings to collect mismatches, then process each mismatch in a one-dimensional DP.
 
 ### Problem description
 
@@ -43267,9 +44029,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** One pass chooses alternating groups; returned strings occupy L total characters across the selected words.
 
 ### Problem description
 
@@ -43342,9 +44106,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + R)
+
+**Complexity reasoning:** All earlier word pairs may be checked character by character (max length L); parent/DP arrays take O(n), with R characters in the output.
 
 ### Problem description
 
@@ -43451,9 +44217,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each of k moves updates a fixed 2-by-2 DP table.
 
 ### Problem description
 
@@ -43565,9 +44333,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nT)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T)
+
+**Complexity reasoning:** For each of n numbers, update up to target T entries of a one-dimensional knapsack DP.
 
 ### Problem description
 
@@ -43651,9 +44421,11 @@ class Solution {public:int lengthOfLongestSubsequence(vector<int>& nums,int targ
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each number updates three constant-sized DP states.
 
 ### Problem description
 
@@ -43758,9 +44530,11 @@ class Solution{public:long long minIncrementOperations(vector<int>& nums,int k){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n H)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n H)
+
+**Complexity reasoning:** Tree traversal plus bottom-up DP for H=15 shift states per node.
 
 ### Problem description
 
@@ -43851,9 +44625,11 @@ class Solution{public:int maximumPoints(vector<vector<int>>& edges,vector<int>& 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build and traverse the tree, then calculate one keep value per node.
 
 ### Problem description
 
@@ -43949,9 +44725,11 @@ class Solution{public:long long maximumScoreAfterOperations(vector<vector<int>>&
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A fixed number of modular exponentiations use binary exponentiation.
 
 ### Problem description
 
@@ -44030,9 +44808,11 @@ class Solution{static const long long M=1000000007;long long power(long long a,i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A greedy left-to-right scan skips a character after each chosen modification.
 
 ### Problem description
 
@@ -44133,9 +44913,11 @@ class Solution{public:int removeAlmostEqualCharacters(string word){int ans=0;for
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** DFS merges only up to three maximum and two minimum values per child, so per-node sorting costs O(deg(u) log deg(u)); total O(n log n). Recursion uses O(h) stack and adjacency/results O(n).
 
 ### Problem description
 
@@ -44240,9 +45022,11 @@ class Solution {vector<vector<int>>g;vector<int>v;vector<long long>ans;struct Da
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(U³ + n L B + B)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(U² + n + B)
+
+**Complexity reasoning:** Floyd–Warshall costs O(U³) for U unique strings; for each source position and L distinct lengths, substring creation/hash lookup costs up to B characters. Input-rule string indexing uses O(B) storage.
 
 ### Problem description
 
@@ -44353,9 +45137,11 @@ class Solution {public:long long minimumCost(string source,string target,vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Directly evaluates the Frobenius formula with a constant number of arithmetic operations.
 
 ### Problem description
 
@@ -44431,9 +45217,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n 2^n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n)
+
+**Complexity reasoning:** For each subset, test up to n unused values, with Euclidean gcd taking O(log n).
 
 ### Problem description
 
@@ -44543,9 +45331,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log² x)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log x)
+
+**Complexity reasoning:** Memoized divisions by 5 and 11 reduce argument magnitude; the number of distinct states is logarithmically bounded per recursion layer, with conservative O(log² x) work.
 
 ### Problem description
 
@@ -44648,9 +45438,11 @@ class Solution {unordered_map<int,int>memo;int y;int dfs(int x){if(x<=y)return y
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(D² (limit + 1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(D)
+
+**Complexity reasoning:** For up to D digit lengths, process at most D prefix positions with up to limit+1 candidate digits and constant DP states.
 
 ### Problem description
 
@@ -44742,9 +45534,11 @@ class Solution {long long calc(long long bound,int limit,const string&s){if(boun
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26 n 2^26)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n 2^26)
+
+**Complexity reasoning:** Memoization tracks position, 26-bit character mask and one-change flag; each state considers up to 26 substitutions. Bounds are worst-case and loose.
 
 ### Problem description
 
@@ -44837,9 +45631,11 @@ class Solution {string s;int k;unordered_map<long long,int>memo;int dfs(int i,in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** A tree DFS visits each node and edge once; adjacency and recursion stack require O(n) and O(h) respectively.
 
 ### Problem description
 
@@ -44957,9 +45753,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Interval DP considers O(n²) subarrays and a constant number of transitions per interval.
 
 ### Problem description
 
@@ -45083,9 +45881,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((b-a+1) D)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Test every integer in the inclusive range, examining at most D decimal digits using a fixed digit bitmask.
 
 ### Problem description
 
@@ -45178,9 +45978,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Three memoized interval-DP runs each visit at most O(n²) intervals with constant branching.
 
 ### Problem description
 
@@ -45264,9 +46066,11 @@ class Solution {int solve(vector<int>&a,int target){int n=a.size();vector<vector
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort input then maintain hash-map DP entries for each number; expected O(1) map operations.
 
 ### Problem description
 
@@ -45345,9 +46149,11 @@ class Solution {public:int maxSelectedElements(vector<int>&nums){sort(nums.begin
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each value updates just the even and odd parity DP states; the edges argument is unused.
 
 ### Problem description
 
@@ -45454,9 +46260,11 @@ class Solution {public:long long maximumValueSum(vector<int>&nums,int k,vector<v
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Each input value updates k active and completed subsequence states.
 
 ### Problem description
 
@@ -45552,9 +46360,11 @@ class Solution {public:long long maximumStrength(vector<int>& nums,int k){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** For each number, update k+1 subset-sum DP entries in descending order.
 
 ### Problem description
 
@@ -45652,9 +46462,11 @@ class Solution {public:int sumOfPower(vector<int>& nums,int k){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² log n + g n k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² + n)
+
+**Complexity reasoning:** Sorting the n values and up to g=O(n²) distinct pairwise gaps costs O(n² log n); each gap runs a k-layer, n-position two-pointer DP in O(nk) time with O(n) working memory. The gap list uses O(n²) memory.
 
 ### Problem description
 
@@ -45761,9 +46573,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** For each of n columns, count m cells and evaluate 10 current and 10 previous digits; both digit DP arrays have constant size.
 
 ### Problem description
 
@@ -45853,9 +46667,11 @@ class Solution { public: int minimumOperations(vector<vector<int>>& grid) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(z·o + z + o)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(z·o)
+
+**Complexity reasoning:** The two-ending-state DP fills each pair of zero/one counts once, with constant-time inclusion/exclusion transitions; boundary initialization takes O(z+o).
 
 ### Problem description
 
@@ -45944,9 +46760,11 @@ class Solution { public: int numberOfStableArrays(int zero,int one,int limit){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(z·o + z + o)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(z·o)
+
+**Complexity reasoning:** The DP evaluates two states for every zero/one count pair using constant-time transitions and stores the complete (z+1) by (o+1) table.
 
 ### Problem description
 
@@ -46033,9 +46851,11 @@ class Solution { public: int numberOfStableArrays(int zero,int one,int limit){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each substring ending at position i is scanned backward with constant-time updates to a 26-element frequency array; only the one-dimensional partition DP is retained.
 
 ### Problem description
 
@@ -46098,9 +46918,11 @@ class Solution {public:int minimumSubstringsInPartition(string s){int n=s.size()
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A single backward pass calculates one DP value per energy index; the DP vector holds n entries.
 
 ### Problem description
 
@@ -46167,9 +46989,11 @@ class Solution {public:int maximumEnergy(vector<int>& energy,int k){int n=energy
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Each grid cell reads up to two previously computed prefix minima and updates the score; the minima matrix has m·n entries.
 
 ### Problem description
 
@@ -46240,9 +47064,11 @@ class Solution {public:int maxScore(vector<vector<int>>& grid){int m=grid.size()
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²·2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n·2^n)
+
+**Complexity reasoning:** The memoized subset DP has at most n·2^n mask/last states, each trying up to n next positions; reconstruction takes O(n²) time.
 
 ### Problem description
 
@@ -46311,9 +47137,11 @@ class Solution {int n;vector<int>a;vector<vector<int>>memo;int dfs(int mask,int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The outer loop is bounded by 33 iterations (j=0..32), and each binomial computation performs at most 16 scalar iterations. Both time and auxiliary space are constant for this fixed-width implementation.
 
 ### Problem description
 
@@ -46420,9 +47248,11 @@ class Solution {long long choose(int n,int r){if(r<0||r>n)return 0;r=min(r,n-r);
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Building the segment tree takes O(n); each of q point updates recomputes O(log n) constant-size 2x2 matrices. The tree stores O(n) matrices.
 
 ### Problem description
 
@@ -46498,9 +47328,11 @@ class Solution {using A=array<array<long long,2>,2>;struct Seg{int n;vector<A>t;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+
+**Complexity reasoning:** Each of n values updates k+1 unordered-map states with expected O(1) access; the maps can collectively store up to O(nk) keys.
 
 ### Problem description
 
@@ -46563,9 +47395,11 @@ class Solution {public:int maximumLength(vector<int>& nums,int k){vector<unorder
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+
+**Complexity reasoning:** The descending loop processes k+1 states per value; hash-map lookups/updates are expected constant time, with up to O(nk) stored entries.
 
 ### Problem description
 
@@ -46628,9 +47462,11 @@ class Solution {public:int maximumLength(vector<int>& nums,int k){vector<unorder
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + u·V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + u)
+
+**Complexity reasoning:** After sorting and deduplication, each of u distinct rewards scans up to its value (at most V=max reward) individual bits; the bit vectors occupy O(V) space.
 
 ### Problem description
 
@@ -46697,9 +47533,11 @@ class Solution {public:int maxTotalReward(vector<int>& rewardValues){sort(reward
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + u·V/64 + u)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V/64 + u)
+
+**Complexity reasoning:** After sorting and deduplication, each of u rewards shifts up to O(V/64) 64-bit words and merges the whole O(V/64)-word bitset. V is the maximum reward.
 
 ### Problem description
 
@@ -46783,9 +47621,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Three coin denominations update a one-dimensional length-n+1 combination-count DP; the final optional 4/8 additions take constant time.
 
 ### Problem description
 
@@ -46858,9 +47698,11 @@ class Solution {public:int numberOfWays(int n){const int M=1000000007;vector<int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single scan tracks only the parity of the number of suffix flips performed.
 
 ### Problem description
 
@@ -46935,9 +47777,11 @@ class Solution {public:int minOperations(vector<int>& nums){int flips=0;for(int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** For each length from 1 to n, the sliding-window inversion DP scans O(length²) inversion counts, totaling O(n³); the two buffers are sized by the O(n²) maximum inversion count.
 
 ### Problem description
 
@@ -47046,9 +47890,11 @@ class Solution {public:int numberOfPermutations(int n,vector<vector<int>>& requi
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each array element updates two scalar states for the possible signs, without allocating a DP table.
 
 ### Problem description
 
@@ -47141,9 +47987,11 @@ class Solution {public:long long maximumTotalCost(vector<int>& nums){long long p
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each value updates four constant-size parity/target states; storage is a fixed 2x2 array.
 
 ### Problem description
 
@@ -47218,9 +48066,11 @@ class Solution {public:int maximumLength(vector<int>& nums){int dp[2][2]={};for(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk + k²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k²)
+
+**Complexity reasoning:** The k by k DP table is initialized once; each of n elements scans all k target remainders and updates a single state.
 
 ### Problem description
 
@@ -47287,9 +48137,11 @@ class Solution {public:int maximumLength(vector<int>& nums,int k){vector<vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L + 26S + n + M)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S + n)
+
+**Complexity reasoning:** Building the trie costs O(L), where L is total dictionary length and S<=L+1 trie states. Failure transitions cost O(26S); scanning the n-character target and traversing M total matched output links costs O(n+M). Trie/output arrays and target DP use O(S+n) space.
 
 ### Problem description
 
@@ -47426,9 +48278,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n³)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Each of n columns iterates over O(n) previous heights and O(n) current heights, with prefix/suffix maxima making transitions constant-time. DP and prefix sums each store O(n²) values.
 
 ### Problem description
 
@@ -47521,9 +48375,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The tree is traversed in forward and reverse parent order; every edge is examined a constant number of times, and adjacency/parent/down/up/order arrays store O(n) values.
 
 ### Problem description
 
@@ -47639,9 +48495,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop updates only the even and odd subsequence counts for each input element.
 
 ### Problem description
 
@@ -47715,9 +48573,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nV)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** For each array position, the code builds an O(V) prefix sum and scans up to V candidate values, using three O(V)-length vectors; V is max(nums).
 
 ### Problem description
 
@@ -47800,9 +48660,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nV)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** Each element processes a prefix sum over values 0..V and O(V) candidate values; the three rolling vectors require O(V) space.
 
 ### Problem description
 
@@ -47885,9 +48747,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m n log n + mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m+n)
+
+**Complexity reasoning:** For every row, top-three candidates are obtained by sorting n column maxima (twice across the board), and candidate triples check O(n) middle-row cells. The top/bottom lists hold O(m) pairs, and the working column arrays hold O(n).
 
 ### Problem description
 
@@ -47977,9 +48841,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m n log n + mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m+n)
+
+**Complexity reasoning:** Sorting the n column maxima for each prefix and suffix row dominates; at most nine top/bottom pairs are checked against n middle-row cells per row. Only O(m+n) auxiliary data is retained.
 
 ### Problem description
 
@@ -48069,9 +48935,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One pass updates two length-(n+2) rolling-choice arrays; each update does constant work.
 
 ### Problem description
 
@@ -48146,9 +49014,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+
+**Complexity reasoning:** The palindrome DP stores (ceil(n/2)+1) by k remainder states and checks ten digits for each state. Computing powers and constructing the answer take O(n) time.
 
 ### Problem description
 
@@ -48231,9 +49101,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+m)^2 log(n+m))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Binary search tests limits up to O(n+m); each feasibility test scans every candidate value and all n first-array states, with O(n) rolling DP.
 
 ### Problem description
 
@@ -48331,9 +49203,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn) + U m 2^m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^m + U)
+
+**Complexity reasoning:** Building the ordered value-to-row map costs O(mn log(mn)); for each of U distinct values, the mask DP examines up to m available row bits per mask.
 
 ### Problem description
 
@@ -48406,9 +49280,11 @@ class Solution { public: int maxScore(vector<vector<int>>&grid){int m=grid.size(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2 + q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2 + q)
+
+**Complexity reasoning:** Two n-by-n interval tables are filled by increasing length, followed by O(1) lookup per query; the returned answer vector stores q entries.
 
 ### Problem description
 
@@ -48517,9 +49393,11 @@ class Solution { public: vector<int> maximumSubarrayXor(vector<int>&nums,vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(128nk + 128^2 n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n·128 + k·128)
+
+**Complexity reasoning:** Prefix and suffix OR-subsequence DP each scan 128 values for every k-state and position; each split compares up to 128 squared OR pairs.
 
 ### Problem description
 
@@ -48586,9 +49464,11 @@ class Solution { public: int maxValue(vector<int>&nums,int k){int n=nums.size();
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each element of b updates four fixed DP states in reverse order.
 
 ### Problem description
 
@@ -48651,9 +49531,11 @@ class Solution { public: long long maxScore(vector<int>&a,vector<int>&b){const l
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** Four arrays of size proportional to the maximum input value V are initialized; each input element performs constant-time neighbor lookups and updates.
 
 ### Problem description
 
@@ -48745,9 +49627,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The descending in-place DP update processes i states for each i from 1 through n; the final accumulation is linear.
 
 ### Problem description
 
@@ -48830,9 +49714,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For every round, three current moves and three previous moves scan the 2n+1 score offsets; only two rounds of score states are held.
 
 ### Problem description
 
@@ -48913,9 +49799,11 @@ class Solution {public:int countWinningSequences(string s){const int M=100000000
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(kn^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each of k days, each destination checks every possible source city, using rolling length-n score arrays.
 
 ### Problem description
 
@@ -48994,9 +49882,11 @@ class Solution {public:int maxScore(int n,int k,vector<vector<int>>& stayScore,v
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + rk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k + r)
+
+**Complexity reasoning:** Run-length encoding scans the n-character word; if needed, each of r runs updates k prefix-window DP entries, with rolling arrays and run lengths.
 
 ### Problem description
 
@@ -49069,9 +49959,11 @@ class Solution {public:int possibleStringCount(string word,int k){const int M=10
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + 26t)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(26)
+
+**Complexity reasoning:** The input string is counted once, then each of t transformations updates the fixed 26-character frequency vector.
 
 ### Problem description
 
@@ -49180,9 +50072,11 @@ class Solution {public:int lengthAfterTransformations(string s,int t){const int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nV^2 log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V^2)
+
+**Complexity reasoning:** For each number, a full (V+1)-squared GCD-pair DP table is copied and scanned; GCD computations take at most logarithmic time.
 
 ### Problem description
 
@@ -49281,9 +50175,11 @@ class Solution {long long gcd(long long a,long long b){while(b){long long r=a%b;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + 26^3 log(t+1) + sum(nums))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(26^2)
+
+**Complexity reasoning:** The 26-by-26 transition matrix is constructed from the shift counts and exponentiated by repeated squaring; matrix products are cubic in alphabet size.
 
 ### Problem description
 
@@ -49396,9 +50292,11 @@ class Solution {using Mat=vector<vector<long long>>;static const int MOD=1000000
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Each of n-1 positions scans the k+1 even-pair counters and swaps two rolling arrays.
 
 ### Problem description
 
@@ -49507,9 +50405,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + 10·E·T·C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(E·T + n)
+
+**Complexity reasoning:** For each digit, the DP considers used-even positions, target half-sum, and up to C choices of copies assigned to even positions; factorial arrays use O(n).
 
 ### Problem description
 
@@ -49589,9 +50489,11 @@ class Solution {public:int countBalancedPermutations(string num){const long long
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each number performs a constant number of expected-O(1) hash-map accesses; both maps store at most O(n) distinct keys.
 
 ### Problem description
 
@@ -49660,9 +50562,11 @@ class Solution {public:int sumOfGoodSubsequences(vector<int>& nums){const long l
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** Pascal binomial coefficients are precomputed in a triangular n-by-n table, and each set bit enumerates all possible counts in the remaining suffix.
 
 ### Problem description
 
@@ -49749,9 +50653,11 @@ class Solution {public:int countKReducibleNumbers(string s,int k){const int M=10
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** Two symmetric DP passes each allocate an n-by-n table and inspect at most three predecessor cells per upper-triangular state.
 
 ### Problem description
 
@@ -49842,9 +50748,11 @@ class Solution {public:int maxCollectedFruits(vector<vector<int>>& fruits){int n
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·a·b)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(a·b)
+
+**Complexity reasoning:** For each input element, all (op1+1)(op2+1) states evaluate a constant number of operation choices in rolling tables.
 
 ### Problem description
 
@@ -49952,9 +50860,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The DFS visits each tree edge once and sorts the gain values of each node; total sorting cost is bounded by O(n log n).
 
 ### Problem description
 
@@ -50039,9 +50949,11 @@ class Solution {vector<vector<pair<int,int>>>g;int k;pair<long long,long long>df
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n)
+
+**Complexity reasoning:** Every subset state scans all n locks and updates its successor state for each unused lock.
 
 ### Problem description
 
@@ -50198,9 +51110,11 @@ class Solution {public:int findMinimumTime(vector<int>&strength,int K){int n=str
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** The suffix longest-common-prefix matrix is built in quadratic time, and every pair of split positions is checked in O(1).
 
 ### Problem description
 
@@ -50271,9 +51185,11 @@ class Solution {public:int beautifulSplits(vector<int>&nums){int n=nums.size();v
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + 26F)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The string is counted and copied; for every target frequency from 1 to maximum F, a constant-size 26-letter DP is computed.
 
 ### Problem description
 
@@ -50403,9 +51319,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(16mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(16n)
+
+**Complexity reasoning:** Each grid cell iterates over 16 XOR values, while the rolling DP retains 16 states per column.
 
 ### Problem description
 
@@ -50542,9 +51460,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·300 + 300^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(300^2)
+
+**Complexity reasoning:** Each number scans 300 candidate previous values and 300 difference thresholds; a fixed 301-by-301 table stores states.
 
 ### Problem description
 
@@ -50651,9 +51571,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A single pass maintains prefix minima and uses expected constant-time hash updates for negative values.
 
 ### Problem description
 
@@ -50762,9 +51684,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each grid cell updates three neutralization states from the current column and left neighbor; only one row is retained.
 
 ### Problem description
 
@@ -50903,9 +51827,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Sorting dominates preprocessing, and each of n positions updates and sums up to k combination counts; the DP vector has k entries, excluding sort stack.
 
 ### Problem description
 
@@ -51047,9 +51973,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each mirrored pair of houses evaluates a fixed 3-by-3 color-state table with at most 3-by-3 predecessor choices.
 
 ### Problem description
 
@@ -51182,9 +52110,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(50n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each target value triggers a scan of the fixed 50 candidate values; other values update one fixed-size DP entry.
 
 ### Problem description
 
@@ -51273,9 +52203,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(26n)
+
+**Complexity reasoning:** Each caption position evaluates a constant 26-letter alphabet and three run-length states; the DP table stores these states for all n positions.
 
 ### Problem description
 
@@ -51463,9 +52395,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n 3^m + m 2^m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^m)
+
+**Complexity reasoning:** Subset LCMs are precomputed for 2^m masks. For each of n numbers, iterating every uncovered submask across all DP masks totals 3^m transitions.
 
 ### Problem description
 
@@ -51594,9 +52528,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(81n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** For each digit, the code updates remainders for divisors 1 through 9; their total remainder counts are constant (45). Both tables have fixed size.
 
 ### Problem description
 
@@ -51698,9 +52634,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26n + 26 log 26)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(26)
+
+**Complexity reasoning:** Each of at most 26 candidate character intervals may scan the string while expanding; sorting and storing at most 26 intervals use constant alphabet-sized resources.
 
 ### Problem description
 
@@ -51835,9 +52773,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nm)
+
+**Complexity reasoning:** Memoization computes at most eight states per grid cell (four directions and two turn flags), each with constant transitions. DFS recursion can also reach O(nm) depth.
 
 ### Problem description
 
@@ -51997,9 +52937,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each array position updates only six DP states (three switch counts and two lanes), using two fixed 3-by-2 arrays.
 
 ### Problem description
 
@@ -52142,9 +53084,11 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** Memoization stores states indexed by the next position and retained index; each state checks three removal choices. The recursion stack is O(n).
 
 ### Problem description
 
@@ -52221,9 +53165,11 @@ class Solution {public:int minCost(vector<int>& nums){int n=nums.size();if(n<3)r
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2 k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2 k)
+
+**Complexity reasoning:** The memoized interval endpoints and remaining budget define O(n^2 k) states, with constant-time transitions per state.
 
 ### Problem description
 
@@ -52298,9 +53244,11 @@ class Solution {public:int longestPalindromicSubsequence(string s,int k){int n=s
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each of k selected subarrays, one scan maintains the best prefix candidate and updates a length-n DP row. Only two rows and prefix sums are stored.
 
 ### Problem description
 
@@ -52373,9 +53321,11 @@ long long maxSum(vector<int>& nums,int k,int m){int n=nums.size(); const long lo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n q S log(q+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** Each binary-search feasibility check examines up to q queries for each of n positions and performs subset-sum updates up to that position’s target; S is the maximum target. A single DP array is reused per position.
 
 ### Problem description
 
@@ -52500,9 +53450,11 @@ class Solution {bool ok(vector<int>&a,vector<vector<int>>&q,int z){int n=a.size(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d T^3)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d T^2)
+
+**Complexity reasoning:** For each target digit sum 1..T (T=9d, d=number of decimal digits), digit DP has O(d target^2) states and up to ten transitions each; summing targets yields O(d T^3). The largest memo uses O(d T^2) space.
 
 ### Problem description
 
@@ -52561,9 +53513,11 @@ class Solution {long long count(long long bound){if(bound<=0)return 0;string s=t
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each endpoint i considers every earlier split j; prefix sums and a one-dimensional DP array store O(n) entries.
 
 ### Problem description
 
@@ -52644,9 +53598,11 @@ class Solution {public:long long minimumCost(vector<int>& nums,vector<int>& cost
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n P B / w)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(P B / w)
+
+**Complexity reasoning:** Each number copies and extends at most P distinct product states, each containing two fixed-width B-bit bitsets (B=3601; w is machine-word width). The maps retain O(P) bitset states.
 
 ### Problem description
 
@@ -52843,9 +53799,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(dL + d b^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d b + L)
+
+**Complexity reasoning:** Converting an L-digit decimal string to d base-b digits uses d long-division passes over up to L digits. The digit DP has O(d b) states, each considering up to b digits; two bounds are processed.
 
 ### Problem description
 
@@ -52920,9 +53878,11 @@ class Solution {const int M=1000000007;vector<int> convert(string s,int b){vecto
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** For each input number, all k residue counts are transferred into a new length-k array and accumulated into the answer.
 
 ### Problem description
 
@@ -53035,9 +53995,11 @@ class Solution {public:vector<long long> resultArray(vector<int>& nums,int k){ve
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n 2^n + |E|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n + n)
+
+**Complexity reasoning:** Each subset mask tries at most n next vertices after prerequisite masks are built from the edges. The DP contains 2^n entries.
 
 ### Problem description
 
@@ -53166,9 +54128,11 @@ class Solution {public:int maxProfit(int n,vector<vector<int>>&edges,vector<int>
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n k 2^n + n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k 2^n + n)
+
+**Complexity reasoning:** The memo has 2^n masks and k possible remainders, each trying up to n unused numbers. Sorting the reconstruction order costs O(n log n); recursion depth is O(n).
 
 ### Problem description
 
@@ -53283,9 +54247,11 @@ class Solution {public:vector<int> concatenatedDivisibility(vector<int>&nums,int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^3 k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2 k)
+
+**Complexity reasoning:** The DP indexes two retained signs and the merge count; each reachable state tries all later signs, producing at most O(n^3 k) transitions.
 
 ### Problem description
 
@@ -53445,9 +54411,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n m^3 k + m^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m^2 k + m^2)
+
+**Complexity reasoning:** For each of n input values, the DP loops over used count, carry, bit count and take count (at most O(m^3 k) combinations). Two 3D layers plus binomial coefficients are retained.
 
 ### Problem description
 
@@ -53537,9 +54505,11 @@ public:int magicalSum(int m,int k,vector<int>&nums){int n=nums.size();vector<vec
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k (n + |E|) B / w + nt)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n B / w)
+
+**Complexity reasoning:** For each of k edge counts, bitsets of B=601 bits are cleared and shifted/ORed along edges; the final scan tests up to t sums at n vertices. Two n-by-B-bit layers are stored.
 
 ### Problem description
 
@@ -53704,9 +54674,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+
+**Complexity reasoning:** Each node evaluates two parities and k+1 distance states, combining each child in constant time per state. Stored child DP tables and recursion can occupy O(nk).
 
 ### Problem description
 
@@ -53811,9 +54783,11 @@ class Solution {public:long long subtreeInversionSum(vector<vector<int>>&edges,v
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + q) log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n + q)
+
+**Complexity reasoning:** Tree traversal and binary-lifting preprocessing build O(n log n) ancestors; each of q queries performs three O(log n) LCA distance calculations.
 
 ### Problem description
 
@@ -53947,9 +54921,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The input is scanned once, with a fixed 26-entry array that is reset only on successful selections (constant alphabet size).
 
 ### Problem description
 
@@ -54024,9 +55000,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + q) log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n + q)
+
+**Complexity reasoning:** BFS and ancestor preprocessing take O(n log n); each query uses O(log n) binary-lifting LCA steps. The ancestor table and returned answers dominate storage.
 
 ### Problem description
 
@@ -54117,9 +55095,11 @@ class Solution {public:vector<int> assignEdgeWeights(vector<vector<int>>&edges,v
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n B^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nB)
+
+**Complexity reasoning:** For each tree edge, knapsack merging enumerates all pairs of budget values, giving O(n B^2) time. Child tables, temporary arrays and recursion require O(nB) space in the worst case.
 
 ### Problem description
 
@@ -54290,9 +55270,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^3)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** The interval erase DP considers O(n) split points for each of O(n^2) intervals. String concatenation and comparison in the suffix DP can cost O(n) per candidate, also yielding O(n^3) time; interval flags and suffix strings occupy O(n^2) space.
 
 ### Problem description
 
@@ -54398,9 +55380,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** For each price, all k+1 transaction counts update three position states. Only the current and copied next vectors are stored.
 
 ### Problem description
 
@@ -54488,9 +55472,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n 3^D)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n 2^D)
+
+**Complexity reasoning:** For each tree edge, combining a selected digit mask with every subset of its unused digits enumerates at most 3^D mask pairs (D=10). The tree DP stores 2^D states per node.
 
 ### Problem description
 
@@ -54654,9 +55640,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^3)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The interval DP tries O(n^2) substrings, and each cost calculation scans the substring (plus fixed 26-by-26 tables), giving cubic time. The prefix DP uses O(n) storage.
 
 ### Problem description
 
@@ -54792,9 +55780,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each candidate coin i, adding that denomination updates up to n-i+1 entries of the length-n ways array; the nested work totals O(n^2).
 
 ### Problem description
 
@@ -54941,9 +55931,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The tree adjacency list and DFS each visit every vertex and edge once; child-path summaries take linear total storage, with up to O(n) recursion depth.
 
 ### Problem description
 
@@ -55065,9 +56057,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(kn²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(kn)
+
+**Complexity reasoning:** Each of k partitions examines all earlier cut positions for every prefix; the DP table stores (k+1)(n+1) states.
 
 ### Problem description
 
@@ -55170,9 +56164,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each grid cell is processed once, while the rolling DP retains only one row.
 
 ### Problem description
 
@@ -55310,9 +56306,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P·m + mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m+n)
+
+**Complexity reasoning:** Generating the first m primes tests up to P candidate integers against at most m known primes; unbounded coin-change then performs m passes over n DP entries. P is the m-th prime.
 
 ### Problem description
 
@@ -55399,9 +56397,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2ⁿ n⁴)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2ⁿ n²)
+
+**Complexity reasoning:** At most 2ⁿ n² mask/endpoint states are queued, each testing up to n² endpoint pairs; the visited table and queue hold O(2ⁿ n²) states.
 
 ### Problem description
 
@@ -55512,9 +56512,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L²)
+
+**Complexity reasoning:** Building the binomial table takes O(L²); at most O(L) popcount targets each scan O(L) bits, where L=60 in this implementation.
 
 ### Problem description
 
@@ -55649,9 +56651,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Two linear scans update a constant number of counters; no input-sized auxiliary storage is allocated.
 
 ### Problem description
 
@@ -55733,9 +56737,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each adjacent pair updates three rolling DP states in constant time.
 
 ### Problem description
 
@@ -55843,9 +56849,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n w1 w2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(w1 w2)
+
+**Complexity reasoning:** For each weight, both bag-capacity dimensions are traversed; a single two-dimensional reachability table is retained.
 
 ### Problem description
 
@@ -55947,9 +56955,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn) + (k+1)mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** The mn cells are sorted once; each of k+1 rounds relaxes grid transitions, with k teleport sweeps over sorted cells. DP and cell arrays each hold mn entries.
 
 ### Problem description
 
@@ -56098,9 +57108,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n+k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** The modulo-indexed best array is initialized with k entries, and each input element performs constant-time updates.
 
 ### Problem description
 
@@ -56172,9 +57184,11 @@ class Solution { public: long long minArraySum(vector<int>& nums,int k){const lo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One backward suffix-minimum pass and one forward grouping pass process each element a constant number of times; suffix and output arrays are linear.
 
 ### Problem description
 
@@ -56271,9 +57285,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Both reverse mirror-target preprocessing and forward path propagation visit each grid cell once; three mn-sized tables are stored.
 
 ### Problem description
 
@@ -56419,9 +57435,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nB + B·2ᴮ)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2ᴮ)
+
+**Complexity reasoning:** Subset-max SOS DP traverses all 2ᴮ masks for each of B bits, plus two passes over n input numbers; the mask table has 2ᴮ entries.
 
 ### Problem description
 
@@ -56494,9 +57512,11 @@ class Solution { public: long long maxProduct(vector<int>& nums){int mx=*max_ele
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each number updates four fixed parity/run-length DP counters using constant work.
 
 ### Problem description
 
@@ -56579,9 +57599,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The three allowed jump lengths give at most three transitions per stair, and a DP array of n+1 entries is allocated.
 
 ### Problem description
 
@@ -56690,9 +57712,11 @@ class Solution {public: int climbStairs(int n, vector<int>& costs) {vector<long 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** Each of n lengths updates two arrays of m possible values using prefix/suffix running sums, where m=r-l+1.
 
 ### Problem description
 
@@ -56795,9 +57819,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m³ log n + m²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m²)
+
+**Complexity reasoning:** The 2m-by-2m transition matrix is built in O(m²), and binary exponentiation performs O(log n) dense matrix multiplications; matrix storage is quadratic.
 
 ### Problem description
 
@@ -56914,9 +57940,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each of L decimal digits processes a fixed 2×2×2 state space with at most 100 digit pairs; all DP arrays have fixed size.
 
 ### Problem description
 
@@ -57014,9 +58042,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·V²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** Each input position tries up to V target values and V previous values (V=100 here); only two V-sized DP rows are stored.
 
 ### Problem description
 
@@ -57112,9 +58142,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V·R·C + V²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V+R)
+
+**Complexity reasoning:** A sieve up to V=150 computes Möbius values; for each divisor, the implementation scans matrix entries across R rows and C columns. The sieve arrays have O(V) entries.
 
 ### Problem description
 
@@ -57210,9 +58242,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Forward and backward non-decreasing-run scans and a final candidate scan each take linear time; two length-n arrays are retained.
 
 ### Problem description
 
@@ -57302,9 +58336,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mnk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+
+**Complexity reasoning:** Each grid cell computes up to k budget states from top/left; rolling columns store n(k+1) states.
 
 ### Problem description
 
@@ -57437,9 +58473,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n·min(n,k))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(min(n,k))
+
+**Complexity reasoning:** For three fixed initial offsets, each element updates O(M) budget states with constant transitions, where M=min(n,2k); two DP arrays have O(M) entries.
 
 ### Problem description
 
@@ -57548,9 +58586,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** The decimal digits are scanned once, and a power-of-nine array of length L+1 is constructed.
 
 ### Problem description
 
@@ -57630,9 +58670,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((num2-num1+1)·L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Every integer in the inclusive range is converted to a decimal string and scanned for local peaks/valleys; L is the maximum digit count.
 
 ### Problem description
 
@@ -57729,9 +58771,11 @@ class Solution { int wave(long long x){string s=to_string(x);int ans=0;for(int i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L·10²·10)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L·10²)
+
+**Complexity reasoning:** Digit DP memoizes O(L·11·11) previous-digit states, each exploring at most 10 next digits; the recursion and memo table are bounded by the digit length L.
 
 ### Problem description
 
@@ -57846,9 +58890,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nB + B·2ᴮ)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+2ᴮ)
+
+**Complexity reasoning:** Each number is compressed over B active bits; subset zeta and Möbius transforms each visit B·2ᴮ mask-bit pairs, and arrays hold n+2ᴮ values.
 
 ### Problem description
 
@@ -57987,9 +59033,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Adjacency construction, parent traversal, bottom-up DP and rerooting each visit every tree edge a constant number of times; all arrays are linear.
 
 ### Problem description
 
@@ -58123,9 +59171,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(10L⁴)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L²)
+
+**Complexity reasoning:** For every candidate length up to L, digit DP has O(length²) position/difference states with at most 10 transitions, giving O(10·sum length³) as a conservative bound; the memo table uses O(L²) space.
 
 ### Problem description
 
@@ -58230,9 +59280,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** Each of the n grid rows uses a constant number of length-m prefix-sum and DP passes.
 
 ### Problem description
 
@@ -58407,9 +59459,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each number updates two prefix-XOR hash maps with expected constant-time lookups; maps hold at most n distinct keys.
 
 ### Problem description
 
@@ -58523,9 +59577,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Left/right alternating-run arrays and the deletion-bridge scan each traverse the array once.
 
 ### Problem description
 
@@ -58648,9 +59704,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nmk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mk)
+
+**Complexity reasoning:** The three nested loops evaluate k choices for every pair of positions, retaining only two m-by-k DP layers.
 
 ### Problem description
 
@@ -58775,9 +59833,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each house updates the two scalar take/skip states in constant time.
 
 ### Problem description
 
@@ -58874,9 +59934,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(3^(ceil(n/2)) + n log M) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(3^(ceil(n/2)) + n)
+
+**Complexity reasoning:** Meet-in-the-middle enumerates three choices per element in each half; hash-map matching is expected linear in enumerated states. M bounds input factorization values.
 
 ### Problem description
 
@@ -59033,9 +60095,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The result is computed directly with one arithmetic expression.
 
 ### Problem description
 
@@ -59154,9 +60218,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L^2 * 10 + 2^10 * 10) per bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L^2 + 2^10)
+
+**Complexity reasoning:** Digit DP has O(L^2) position/digit-sum states with up to ten transitions; the subset loop generates up to 2^10 digit sets and short strings. L is the number of decimal digits (bounded for long long).
 
 ### Problem description
 
@@ -59294,9 +60360,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n * 2^14)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^14)
+
+**Complexity reasoning:** Each element scans all 2^14 XOR masks, using current and next fixed-size arrays.
 
 ### Problem description
 
@@ -59392,9 +60460,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn * 1024)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n * 1024)
+
+**Complexity reasoning:** Each grid cell scans 1024 possible XOR values; rolling column bitsets store n sets.
 
 ### Problem description
 
@@ -59514,9 +60584,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(5001 * n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(5001)
+
+**Complexity reasoning:** Digit sums are precomputed for 0..5000 and each requested sum makes one prefix-DP pass over that range.
 
 ### Problem description
 
@@ -59619,9 +60691,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each possible peak updates two constant-size lexicographic DP states.
 
 ### Problem description
 
@@ -59732,9 +60806,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k + n)
+
+**Complexity reasoning:** Two choices for the first position each run n iterations over k DP states; the cost array uses n space.
 
 ### Problem description
 
@@ -59850,9 +60926,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L^2 * 10 + |directions|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L^2)
+
+**Complexity reasoning:** The path is marked once, then each digit-DP state (position, previous digit, tightness) tries at most ten digits; L=16 here.
 
 ### Problem description
 
@@ -60124,9 +61202,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + V)
+
+**Complexity reasoning:** Each index performs at most one Fenwick update and two queries; two Fenwick trees of size V and two length-n DP arrays are stored.
 
 ### Problem description
 
@@ -60244,9 +61324,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^3)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each m from 1 through n+1, the algorithm performs n DP lengths over m values; each iteration uses O(m) arrays, plus O(n) interpolation tables.
 
 ### Problem description
 
@@ -60362,9 +61444,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Row-wise and column-wise Kadane scans plus the interior-cell scan each visit at most mn cells with scalar state.
 
 ### Problem description
 
@@ -60492,9 +61576,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+
+**Complexity reasoning:** Every tree edge combines two k-remainder tables with a k-by-k convolution; each node stores two k-state arrays.
 
 ### Problem description
 
@@ -60610,9 +61696,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2 + nB)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(B)
+
+**Complexity reasoning:** For each item, the code scans all items to count freebies and runs a descending budget DP; the DP uses B+1 entries.
 
 ### Problem description
 
@@ -60720,9 +61808,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nk^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk)
+
+**Complexity reasoning:** Every child merge considers up to (k+1)^2 pairs of DP states; total edges are n-1 and node tables have k+1 entries.
 
 ### Problem description
 
@@ -60890,9 +61980,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A single scan updates scalar stay/move DP states for selected positions.
 
 ### Problem description
 
@@ -61005,9 +62097,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k+1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop checks every integer in the interval [max(1,n-k), n+k] using constant-time bit operations.
 
 ### Problem description
 
@@ -61096,9 +62190,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + |edges|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + |edges|)
+
+**Complexity reasoning:** The tree adjacency, traversal order, and bottom-up DP each process every node and edge a constant number of times.
 
 ### Problem description
 
@@ -61261,9 +62357,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L * 11 * 10)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L * 11)
+
+**Complexity reasoning:** The digit DP memoizes position and previous digit, with up to ten transitions; recursion depth is L digits.
 
 ### Problem description
 
@@ -61359,9 +62457,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + |edges|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + |edges|)
+
+**Complexity reasoning:** Bottom-up and rerooting traversals visit each edge a constant number of times; prefix/suffix arrays across nodes total O(edges).
 
 ### Problem description
 
@@ -61535,9 +62635,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + q) * LOG)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n * LOG)
+
+**Complexity reasoning:** Binary lifting builds LOG ancestor and 2x2 matrix tables for n nodes; each of q queries uses O(LOG) ancestor/matrix steps (LOG=16).
 
 ### Problem description
 
@@ -61827,9 +62929,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Kadane and both multiplier/division DP passes scan the array with a fixed number of scalar states.
 
 ### Problem description
 
@@ -61932,9 +63036,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((nP + |edges|P) log(nP + |edges|P))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nP + |edges|P)
+
+**Complexity reasoning:** Dijkstra runs on node-and-remaining-power states, with up to P+1 states per vertex and P+1 relaxations per edge; the heap may contain O(|edges|P) entries.
 
 ### Problem description
 
@@ -62075,9 +63181,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Every character updates two scalar DP states using a constant number of transitions.
 
 ### Problem description
 
@@ -62231,9 +63339,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(tnm)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nm)
+
+**Complexity reasoning:** For each of t target characters, the algorithm builds column prefixes, row prefixes, and the next (n+1)-by-(m+1) DP table.
 
 ### Problem description
 
@@ -62423,9 +63533,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N sqrt(V) + N P + P log P)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(P)
+
+**Complexity reasoning:** Each of N values is trial-divided up to its square root, unique prime factors are stored in an ordered set, and Kadane scans all N values once for each of P candidate primes. V is the maximum input value.
 
 ### Problem description
 
@@ -62587,9 +63699,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M N^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** For every pair of columns, the code checks up to M rows, then updates a one-dimensional longest-chain DP of N columns.
 
 ### Problem description
 
@@ -62705,9 +63819,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N M L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** At each of N source positions, every one of M rules can be tested character by character for up to L characters; the position DP has N+1 entries. L is the maximum rule length.
 
 ### Problem description
 
@@ -62880,9 +63996,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N S log S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** For each of N requests, at most two transitions are generated per currently retained state and inserted into an ordered map. S bounds the number of distinct four-component states in any layer; the map and state vector hold O(S) states.
 
 ### Problem description
 
@@ -63092,9 +64210,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M^2)
+
+**Complexity reasoning:** Sorting M requests costs O(M log M); the interval DP examines O(M^2) intervals with constant-time endpoint transitions and stores two values per interval.
 
 ### Problem description
 
@@ -63316,9 +64436,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M^2 2^M)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M 2^M)
+
+**Complexity reasoning:** There are 2^M subsets, up to M choices of the last fulfilled request, and up to M next requests per state; the table stores M values per subset.
 
 ### Problem description
 
@@ -63505,9 +64627,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N (T + 1) (log V + log(T + 1)))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T + log V + log(T + 1))
+
+**Complexity reasoning:** For each of N numbers, the implementation generates O(log V + log(T+1)) halving/doubling options and tries them for each reachable DP sum up to T. The DP uses O(T) cells plus the options list; V is the largest input value.
 
 ### Problem description
 
@@ -63675,9 +64799,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N T log V log(T + 1)) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T + log V log(T + 1))
+
+**Complexity reasoning:** For each number, every halved value is doubled up to target T to form at most O(log V log(T+1)) candidate options; the 0/1 subset-sum DP checks each option at each of T+1 sums. Hash-table operations are expected O(1).
 
 ### Problem description
 
@@ -63847,9 +64973,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N log N + 2048 U)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + 2048)
+
+**Complexity reasoning:** The array is copied, sorted, and deduplicated into U distinct values; BFS visits at most 2048 XOR states and tests all U values from each state.
 
 ### Problem description
 
@@ -63950,9 +65078,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N sqrt N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** There are O(sqrt N) triangular scores no greater than N; each triggers an O(N) unbounded-knapsack pass over the one-dimensional DP.
 
 ### Problem description
 
@@ -64067,9 +65197,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** One pass constructs N+1 alternating prefix sums; another pass maintains constant-sized parity maxima and evaluates each right endpoint once.
 
 ### Problem description
 
@@ -64224,9 +65356,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(D)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(D)
+
+**Complexity reasoning:** Digit DP has a constant number of parity, started, and tight states per digit and at most ten transitions per state. Each of the two bound queries takes O(D) time and recursion depth, where D is the number of decimal digits.
 
 ### Problem description
 
@@ -64338,9 +65472,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** The outer sell-day loop visits N days and the inner buy-day loop examines all earlier days; the profit DP stores N+1 entries.
 
 ### Problem description
 

@@ -282,9 +282,12 @@ Monotone feasibility predicate or ordered search space.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log(min(m, n)))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -399,9 +402,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -514,9 +520,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -621,9 +630,12 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -714,9 +726,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -799,9 +814,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -898,9 +916,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1015,9 +1036,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1138,9 +1162,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1227,9 +1254,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1315,9 +1345,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** DFS visits every node; recursion uses tree height h. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1426,9 +1459,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m+n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Bound derived from the loops, searches, recursion, and allocated containers in the provided C++ code. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1527,9 +1563,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1612,9 +1651,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1692,9 +1734,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1782,9 +1827,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1863,9 +1911,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -1952,9 +2003,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log m + log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -2085,9 +2139,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -2212,9 +2269,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -2315,9 +2375,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log k) amortized per add; O(k) per getIntervals
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k) stored
+
+**Complexity reasoning:** Ordered map lookup and merging intervals; output enumerates k intervals. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -2424,9 +2487,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -2531,9 +2597,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) amortized hit/get
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Queue of hit timestamps; each timestamp is inserted and removed once. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -2632,9 +2701,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(c² r log r)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(r)
+
+**Complexity reasoning:** All column pairs compress rows; ordered prefix sums cost O(r log r) each. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -2743,9 +2815,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -2825,9 +2900,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -2926,9 +3004,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each binary-search feasibility count walks an n×n sorted matrix in O(n). Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -3043,9 +3124,12 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -3125,9 +3209,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -3231,9 +3318,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -3366,9 +3456,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -3452,9 +3545,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((log N)²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Try O(log N) representation lengths and evaluate up to O(log N) digits. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -3552,9 +3648,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -3650,9 +3749,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r) build; O(log r) pick
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(r)
+
+**Complexity reasoning:** Prefix rectangle-area weights with binary search for weighted sampling. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -3766,9 +3868,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) build; O(log n) pick
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Prefix weights and binary search a random cumulative weight. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -3884,9 +3989,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -3967,9 +4075,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -4071,9 +4182,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -4161,9 +4275,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -4265,9 +4382,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -4350,9 +4470,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(b) expected build; O(1) expected pick
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(b)
+
+**Complexity reasoning:** Hash remapping blacklisted low-range values into allowed high-range values. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -4450,9 +4573,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log b) per booking
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(b)
+
+**Complexity reasoning:** Ordered map predecessor/successor checks and insertion. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -4537,9 +4663,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(b) per booking
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(b)
+
+**Complexity reasoning:** Ordered event map is traversed to test double booking. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -4636,9 +4765,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(b) per booking
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(b)
+
+**Complexity reasoning:** Ordered sweep-line event map is traversed for each booking. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -4728,9 +4860,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -4833,9 +4968,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(√|target|)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Bound derived from the loops, searches, recursion, and allocated containers in the provided C++ code. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -4940,9 +5078,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -5034,9 +5175,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Each binary-search threshold runs a grid DFS with a visited matrix. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -5179,9 +5323,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(W·L + S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** Each distinct word is checked by a scan of the source string; hash cache stores total word characters S. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -5291,9 +5438,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -5394,9 +5544,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -5480,9 +5633,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -5572,9 +5728,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -5655,9 +5814,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k n)
+
+**Complexity reasoning:** Memoization over egg/floor states with binary search per state. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -5778,9 +5940,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -5877,9 +6042,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d·a)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Bound derived from the loops, searches, recursion, and allocated containers in the provided C++ code. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -5999,9 +6167,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -6114,9 +6285,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) amortized set; O(log t) get
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T)
+
+**Complexity reasoning:** Append timestamped values per key; binary search historical entries. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -6222,9 +6396,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -6347,9 +6524,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -6445,9 +6625,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -6553,9 +6736,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -6653,9 +6839,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -6759,9 +6948,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Three binary searches find the peak and search both monotone halves. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -6885,9 +7077,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -7002,9 +7197,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) amortized set/snap; O(log t) get
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T)
+
+**Complexity reasoning:** Per-index timestamp histories searched by binary search. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -7098,9 +7296,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -7179,9 +7380,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) build; O(20 log n) expected per query
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Store occurrence positions; 20 randomized candidates each use two binary searches. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -7285,9 +7489,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -7387,9 +7594,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -7497,9 +7707,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n m (log m + log m))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** Ordered-map DP can hold O(m) states; each transition searches replacement array. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -7629,9 +7842,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The implementation processes grid cells and maintains grid-sized auxiliary state. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -7714,9 +7930,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -7852,9 +8071,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(a+b+c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Bound derived from the loops, searches, recursion, and allocated containers in the provided C++ code. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -7947,9 +8169,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -8059,9 +8284,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -8175,9 +8403,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -8276,9 +8507,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -8373,9 +8607,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** The implementation processes grid cells and maintains grid-sized auxiliary state. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -8476,9 +8713,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -8583,9 +8823,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m log n + m log m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** Binary-search soldier count per row, then sort rows. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -8708,9 +8951,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log T) insertion; O(k + log T) query
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T)
+
+**Complexity reasoning:** Ordered timestamps; iterate records within requested interval and output buckets. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -8817,9 +9063,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m+n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Bound derived from the loops, searches, recursion, and allocated containers in the provided C++ code. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -8902,9 +9151,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m+n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Bound derived from the loops, searches, recursion, and allocated containers in the provided C++ code. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -9013,9 +9265,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested iterations or repeated scans dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -9143,9 +9398,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -9282,9 +9540,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n) build; O(log n) query
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n)
+
+**Complexity reasoning:** Binary-lifting ancestor table and bitwise jumps. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -9388,9 +9649,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -9529,9 +9793,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log² n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested logarithmic searches, sorting phases, or ordered-data-structure operations dominate the work. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -9636,9 +9903,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Divide the candidate interval using logarithmically many compareSub calls. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -9748,9 +10018,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -9843,9 +10116,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -9958,9 +10234,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -10089,9 +10368,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -10193,9 +10475,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L log F)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Binary search font size; feasibility scans the text length L. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -10322,9 +10607,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Priority-queue shortest-path search on a grid. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -10454,9 +10742,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort inventories, then process price levels. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -10555,9 +10846,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -10697,9 +10991,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -10803,9 +11100,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -10910,9 +11210,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -11019,9 +11322,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n k log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n k)
+
+**Complexity reasoning:** Memoized event-selection DP across k choices, with binary search for next event. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -11134,9 +11440,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -11250,9 +11559,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log M)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Binary search the maximum feasible center value using arithmetic sums. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -11353,9 +11665,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -11493,9 +11808,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -11622,9 +11940,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -11707,9 +12028,12 @@ class Solution {public:vector<int> minInterval(vector<vector<int>>& intervals,ve
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + V log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -11805,9 +12129,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -11928,9 +12255,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -12056,9 +12386,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -12180,9 +12513,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -12287,9 +12623,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Binary search columns and scan m rows for each midpoint. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -12400,9 +12739,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S log L) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** Binary search subpath length with rolling-hash sets over S total path elements. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -12557,9 +12899,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -12642,9 +12987,12 @@ class Solution {public:long long minimumPerimeter(long long neededApples){long l
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -12808,9 +13156,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Binary search day with grid traversal per check. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -12952,9 +13303,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -13067,9 +13421,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -13174,9 +13531,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -13318,9 +13678,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -13450,9 +13813,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -13561,9 +13927,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -13679,9 +14048,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -13799,9 +14171,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) build; O(log n) query
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Store sorted occurrence indices and binary search each range. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -13892,9 +14267,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary (sorting stack excluded)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -14005,9 +14383,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -14181,9 +14562,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(80n) = O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Fixed 80 bisection iterations, each scanning all buckets. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -14291,9 +14675,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -14387,9 +14774,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -14495,9 +14885,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -14586,9 +14979,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -14697,9 +15093,12 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -14777,9 +15176,12 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+q) log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+q)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -14875,9 +15277,12 @@ class Solution {public:vector<int> countRectangles(vector<vector<int>>& rectangl
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -14957,9 +15362,12 @@ class Solution {public:vector<int> fullBloomFlowers(vector<vector<int>>& flowers
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Fire arrival BFS and binary-search waiting time with repeated reachability BFS. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -15126,9 +15534,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) build; O(log n) gather; O(n log n) worst-case scatter
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Segment tree searches and updates; scatter may update many distinct rows. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -15227,9 +15638,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -15330,9 +15744,12 @@ class Solution {public:long long minSumSquareDiff(vector<int>& nums1,vector<int>
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -15423,9 +15840,12 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -15510,9 +15930,12 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m log n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -15610,9 +16033,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -15688,9 +16114,12 @@ class Solution {public: vector<int> answerQueries(vector<int>& nums,vector<int>&
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) amortized per upload/longest
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Boolean upload markers and a monotonically advancing prefix pointer. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -15769,9 +16198,12 @@ class LUPrefix {vector<char>seen;int ptr=0;public:LUPrefix(int n):seen(n+2,0){}v
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -15852,9 +16284,12 @@ class Solution {public:long long numberOfPairs(vector<int>& nums1,vector<int>& n
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -15938,9 +16373,12 @@ class Solution { public: int minimizeArrayValue(vector<int>& nums){long long sum
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16028,9 +16466,12 @@ class Solution { public: long long minCost(vector<int>& nums,vector<int>& cost){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16114,9 +16555,12 @@ class Solution { void inorder(TreeNode*u,vector<int>&a){if(!u)return;inorder(u->
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16202,9 +16646,12 @@ class Solution {public:int maxJump(vector<int>& stones){int n=stones.size(),ans=
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16281,9 +16728,12 @@ class Solution {public:int longestSquareStreak(vector<int>& nums){sort(nums.begi
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log 10¹⁰)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Binary search answer with constant-time inclusion–exclusion checks. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16379,9 +16829,12 @@ class Solution {static long long gcd14(long long a,long long b){while(b){long lo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16467,9 +16920,12 @@ class Solution {public:int maximumTastiness(vector<int>& price,int k){sort(price
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16573,9 +17029,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16670,9 +17129,12 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n+b)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(b)
+
+**Complexity reasoning:** Bound derived from the loops, searches, recursion, and allocated containers in the provided C++ code. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16772,9 +17234,12 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16870,9 +17335,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -16961,9 +17429,12 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + nT)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T)
+
+**Complexity reasoning:** Sort tasks, then scan up to T time slots per task; boolean schedule of length T. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -17044,9 +17515,12 @@ class Solution {public:int findMinimumTime(vector<vector<int>>& tasks){sort(task
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -17128,9 +17602,12 @@ class Solution {public:long long repairCars(vector<int>& ranks,int cars){long lo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -17220,9 +17697,12 @@ class Solution {public:bool primeSubOperation(vector<int>& nums){int M=*max_elem
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -17309,9 +17789,12 @@ class Solution {public:vector<long long> minOperations(vector<int>& nums,vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -17392,9 +17875,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -17519,9 +18005,12 @@ class Solution {struct BIT{int n;vector<int>t;BIT(int n):n(n),t(n+1){}void add(i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -17618,9 +18107,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -17716,9 +18208,12 @@ class Solution {public:int maxIncreasingCells(vector<vector<int>>& mat){int m=ma
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -17825,9 +18320,12 @@ class Solution {public:int maxIncreasingGroups(vector<int>& usageLimits){sort(us
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Multi-source BFS then widest-path heap traversal on n×n grid. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -17931,9 +18429,12 @@ class Solution {public:int maximumSafenessFactor(vector<vector<int>>& grid){int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -18025,9 +18526,12 @@ class Solution {public:int minAbsoluteDifference(vector<int>& nums,int x){if(x==
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -18179,9 +18683,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -18254,9 +18761,12 @@ class Solution {public:int minimumOperations(vector<int>& nums){int a=0,b=0,c=0;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -18347,9 +18857,12 @@ class Solution {public:int maximizeTheProfit(int n,vector<vector<int>>& offers){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -18489,9 +19002,12 @@ class Solution {public:int maxNumberOfAlloys(int n,int k,int budget,vector<vecto
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -18588,9 +19104,12 @@ class Solution{public:long long maxBalancedSubsequenceSum(vector<int>& nums){int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -18720,9 +19239,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested iterations or repeated scans dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -18832,9 +19354,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -18919,9 +19444,12 @@ class Solution {bool pal(long long x){string s=to_string(x),t=s;reverse(t.begin(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -19128,9 +19656,12 @@ class Solution {long long price(long long n,int x){__int128 sum=0;for(int b=x-1;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -19245,9 +19776,12 @@ class Solution {public:int earliestSecondToMarkIndices(vector<int>&nums,vector<i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -19385,9 +19919,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -19474,9 +20011,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -19555,9 +20095,12 @@ class Solution {static long long gcd14(long long a,long long b){while(b){long lo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n m B)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n m B)
+
+**Complexity reasoning:** Memoized states indexed by position, group, and distinct bitwise-AND value; B is the number of distinct AND values per position (at most bit width plus one). Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -19667,9 +20210,12 @@ class Solution {public:int minimumValueSum(vector<int>& nums,vector<int>& andVal
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -19760,9 +20306,12 @@ class Solution {public:int maxPointsInsideSquare(vector<vector<int>>& points,str
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -19867,9 +20416,12 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n+q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Bound derived from the loops, searches, recursion, and allocated containers in the provided C++ code. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -19940,9 +20492,12 @@ class Solution {public:vector<bool> isArraySpecial(vector<int>& nums,vector<vect
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20030,9 +20585,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20115,9 +20673,12 @@ class Solution {struct Seg{int n;vector<int>t;Seg(int n):n(n),t(4*n){}void setv(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log² n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested logarithmic searches, sorting phases, or ordered-data-structure operations dominate the work. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20192,9 +20753,12 @@ class Solution {public:int minimumDifference(vector<int>& nums,int k){vector<int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20263,9 +20827,12 @@ class Solution {public:long long countSubarrays(vector<int>& nums,int k){vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20332,9 +20899,12 @@ class Solution { public: int minOperations(vector<int>& nums) { vector<int> d; f
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20399,9 +20969,12 @@ class Solution { public: int maxPossibleScore(vector<int>&start,int d){sort(star
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20476,9 +21049,12 @@ class Solution { public: int maxPathLength(vector<vector<int>>&coordinates,int k
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20565,9 +21141,12 @@ class Solution { struct Node{int next[26];Node(){fill(next,next+26,-1);}}; publi
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20654,9 +21233,12 @@ class Solution { public: int minValidStrings(vector<string>&words,string target)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20759,9 +21341,12 @@ class Solution { public: long long minNumberOfSeconds(int mountainHeight,vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20846,9 +21431,12 @@ class Solution { public: vector<int> gcdValues(vector<int>&nums,vector<long long
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -20955,9 +21543,12 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -21032,9 +21623,12 @@ class Solution {public:int maxIncreasingSubarrays(vector<int>& nums){int prev=0,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Binary search max difference; each feasibility check scans missing-value runs. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -21121,9 +21715,12 @@ class Solution {public:int minDifference(vector<int>& nums){int n=nums.size(),mn
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -21270,9 +21867,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -21347,9 +21947,12 @@ class Solution {public:int minLength(string s,int numOps){int n=s.size();auto ca
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -21424,9 +22027,12 @@ class Solution {public:int minLength(string s,int numOps){int n=s.size();auto ca
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -21558,9 +22164,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested iterations or repeated scans dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -21661,9 +22270,12 @@ class Solution {public:int minMaxWeight(int n,vector<vector<int>>&edges,int thre
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -21781,9 +22393,12 @@ class Solution {public:long long maxScore(vector<int>& points,int m){int n=point
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -21866,9 +22481,12 @@ class Solution {public:double separateSquares(vector<vector<int>>& squares){doub
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sweep 2n vertical events; coordinate-compressed segment tree updates. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -21951,9 +22569,12 @@ class Solution {struct Event{long long y,x1,x2;int delta;bool operator<(const Ev
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -22052,9 +22673,12 @@ class Solution {public:int maxDistance(int side,vector<vector<int>>& points,int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Nested iterations or repeated scans dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -22137,9 +22761,12 @@ class Solution {public:int numOfUnplacedFruits(vector<int>& fruits,vector<int>& 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build segment tree and locate/update the first feasible basket per fruit. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -22222,9 +22849,12 @@ class Solution {vector<int> tr;int n;void build(int p,int l,int r,vector<int>&a)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -22295,9 +22925,12 @@ class Solution {public:vector<int> solveQueries(vector<int>&nums,vector<int>&que
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -22564,9 +23197,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n) per operation (plus hash lookup)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Hash/set and ordered timestamp index support router operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -22682,9 +23318,12 @@ class Router {int cap;deque<array<int,3>>q;set<array<int,3>>seen;unordered_map<i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -22822,9 +23461,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -22917,9 +23559,12 @@ class Solution {public:vector<bool> pathExistenceQueries(int n,vector<int>&nums,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -23127,9 +23772,12 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -23252,9 +23900,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -23364,9 +24015,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log² n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested logarithmic searches, sorting phases, or ordered-data-structure operations dominate the work. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -23496,9 +24150,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log² n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested logarithmic searches, sorting phases, or ordered-data-structure operations dominate the work. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -23585,9 +24242,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -23722,9 +24382,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -23870,9 +24533,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -24007,9 +24673,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort degrees, prefix sums, and binary search once per degree threshold. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -24110,9 +24779,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -24240,9 +24912,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -24336,9 +25011,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested iterations or repeated scans dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -24443,9 +25121,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -24532,9 +25213,12 @@ class Solution {public: long long minimumTime(vector<int>& d,vector<int>& r) {lo
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log² n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested logarithmic searches, sorting phases, or ordered-data-structure operations dominate the work. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -24662,9 +25346,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -24770,9 +25457,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -24838,9 +25528,12 @@ class Solution { public: int countElements(vector<int>& nums,int k) { int n=nums
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -25001,9 +25694,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -25113,9 +25809,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -25247,9 +25946,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -25339,9 +26041,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(30n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -25427,9 +26132,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -25639,9 +26347,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -25750,9 +26461,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -25901,9 +26615,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The algorithm narrows a monotone search range; each feasibility check performs the stated scan or data-structure operations. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -26002,9 +26719,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log² n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Suffix-array doubling sorts n suffixes for O(log n) rounds. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -26151,9 +26871,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log² n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested logarithmic searches, sorting phases, or ordered-data-structure operations dominate the work. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -26282,9 +27005,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -26387,9 +27113,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -26510,9 +27239,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -26633,9 +27365,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(min(m,n)))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Prefix sums and binary search feasible square size over grid. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -26841,9 +27576,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The search interval shrinks geometrically, or balanced-tree operations take logarithmic time. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -26946,9 +27684,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A linear traversal processes the input; additional storage follows the allocated containers or recursion stack. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -27049,9 +27790,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log² n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Nested logarithmic searches, sorting phases, or ordered-data-structure operations dominate the work. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -27226,9 +27970,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P log P + n log P) first call; O(n log P) later
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(P)
+
+**Complexity reasoning:** One-time generation/sorting of P palindromes; binary search each input. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -27358,9 +28105,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Directly check every unordered pair of intervals. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -27452,9 +28202,12 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -27554,9 +28307,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 
@@ -27676,9 +28432,12 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sorting, balanced-tree operations, Fenwick/segment-tree updates, or binary searches dominate the implementation. Complexity is for the provided implementation (worst case unless noted); output storage is excluded unless stated.
+
 
 ### Problem description
 

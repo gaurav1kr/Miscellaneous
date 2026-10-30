@@ -471,9 +471,11 @@ Reachability, connected components, dependencies, or minimum path.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn·3^L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Starts a DFS at each grid cell and branches to at most three unvisited neighbors per subsequent character; recursion reaches length L.
 
 ### Problem description
 
@@ -576,9 +578,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The iterative inorder traversal pushes and pops each node once; its stack uses O(h), and the returned values use O(n).
 
 ### Problem description
 
@@ -683,9 +687,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Range-bound recursion visits each node once and holds at most one root-to-leaf call chain.
 
 ### Problem description
 
@@ -766,9 +772,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Inorder recursion visits each node once while tracking misplaced values with pointers; the call stack follows tree height.
 
 ### Problem description
 
@@ -860,9 +868,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Compares corresponding nodes at most once, with recursion bounded by the maximum tree height.
 
 ### Problem description
 
@@ -942,9 +952,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Mirror recursion compares each corresponding pair once and uses a call stack proportional to tree height.
 
 ### Problem description
 
@@ -1036,9 +1048,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Breadth-first traversal enqueues each node once; the queue and returned level vectors can each hold O(n) nodes.
 
 ### Problem description
 
@@ -1146,9 +1160,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each node is dequeued once and inserted into a deque in constant time; the queue and result occupy O(n) space.
 
 ### Problem description
 
@@ -1262,9 +1278,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Recursive depth computation visits every node and uses at most h nested calls.
 
 ### Problem description
 
@@ -1332,9 +1350,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** A depth pass and a level-filling pass each visit every node; output stores n values and recursion uses O(h) frames.
 
 ### Problem description
 
@@ -1435,9 +1455,11 @@ vector<vector<int>> levelOrderBottom(TreeNode* root) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Bottom-up height computation processes each node once and propagates an early imbalance marker; recursion uses O(h) frames.
 
 ### Problem description
 
@@ -1520,9 +1542,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** BFS visits each node at most once before finding a leaf; its queue may hold a full level.
 
 ### Problem description
 
@@ -1600,9 +1624,11 @@ int minDepth(TreeNode* root) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Depth-first search checks each visited node once; recursion depth is bounded by h.
 
 ### Problem description
 
@@ -1696,9 +1722,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + P·h)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h + P·h)
+
+**Complexity reasoning:** DFS visits n nodes and copies each successful root-to-leaf path (at most h values); P is the number of returned paths.
 
 ### Problem description
 
@@ -1816,9 +1844,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Reverse-preorder DFS rewires every node once and keeps recursion frames up to tree height.
 
 ### Problem description
 
@@ -1926,9 +1956,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Traverses each perfect-tree level via already connected next pointers and uses only a fixed number of pointers.
 
 ### Problem description
 
@@ -2052,9 +2084,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Queue-based level traversal visits each node once; a wide level can occupy O(n) queue slots.
 
 ### Problem description
 
@@ -2180,9 +2214,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N·L² + P·D·L²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N·L + P·D·L)
+
+**Complexity reasoning:** BFS visits up to N words and generates 26L L-character candidates per word. Reverse DFS enumerates P shortest paths of D words, testing 26L neighbors per path step; returned paths also store P·D words of length L.
 
 ### Problem description
 
@@ -2338,9 +2374,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N·L²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N·L)
+
+**Complexity reasoning:** BFS expands each dictionary word at most once, generating 26L candidate strings and hashing/copying O(L) characters each; queue and set store O(N) words.
 
 ### Problem description
 
@@ -2459,9 +2497,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds a hash set of n values and extends runs only from their starts; each distinct value belongs to one scanned run (expected hashing).
 
 ### Problem description
 
@@ -2560,9 +2600,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Recursive accumulation visits each node once and stores only the current root-to-node call chain.
 
 ### Problem description
 
@@ -2692,9 +2734,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Border DFS marks each reachable O once, followed by one full grid scan; worst-case recursion depth is mn.
 
 ### Problem description
 
@@ -2801,9 +2845,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Memoized DFS clones each vertex once and processes each neighbor edge once; map, recursion, and cloned graph take O(V + E) space.
 
 ### Problem description
 
@@ -2956,9 +3002,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Iterative preorder pushes and pops each node once; the returned vector holds n values and stack uses at most O(h).
 
 ### Problem description
 
@@ -3046,9 +3094,11 @@ vector<int> preorderTraversal(TreeNode* root) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Iterative postorder processes each node a constant number of times; output is O(n) and the stack O(h).
 
 ### Problem description
 
@@ -3145,9 +3195,11 @@ vector<int> postorderTraversal(TreeNode* root) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(h)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Walks down the left spine, rewiring pointers in place at each step; h is the original left-spine length.
 
 ### Problem description
 
@@ -3250,9 +3302,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** BFS examines each node once, keeping up to one tree level in the queue and up to h values in the result.
 
 ### Problem description
 
@@ -3362,9 +3416,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** The outer scan and DFS each touch grid cells only a constant number of times; recursion can span the entire grid.
 
 ### Problem description
 
@@ -3462,9 +3518,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Constructs adjacency lists and performs DFS cycle detection across vertices and edges; visited arrays, graph, and recursion consume O(V + E).
 
 ### Problem description
 
@@ -3605,9 +3663,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Kahn topological sorting builds adjacency and indegrees then processes each vertex and edge once; graph, queue, and result use O(V + E).
 
 ### Problem description
 
@@ -3729,9 +3789,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** addWord O(L); search O(26^L) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S + L) stored trie plus recursion
+
+**Complexity reasoning:** Inserting a word follows or creates L trie nodes. A search with wildcards can branch across up to 26 children at each position; DFS depth is at most L. S is the total number of allocated trie nodes.
 
 ### Problem description
 
@@ -3860,9 +3922,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Recursive DFS swaps the two child pointers once per node; recursion uses tree height h.
 
 ### Problem description
 
@@ -3942,9 +4006,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Morris inorder traversal creates and removes temporary threads; each edge is followed a constant number of times without a stack.
 
 ### Problem description
 
@@ -4062,9 +4128,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(h)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The iterative BST search follows one root-to-leaf path and stores only a few pointers.
 
 ### Problem description
 
@@ -4159,9 +4227,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** The recursive LCA search visits each node at most once, with at most h stack frames.
 
 ### Problem description
 
@@ -4271,9 +4341,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Postorder DFS checks each subtree once and stores at most h recursive frames.
 
 ### Problem description
 
@@ -4376,9 +4448,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nh + R)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nh + R)
+
+**Complexity reasoning:** Each recursive call copies its current path string, up to O(h) node labels/arrows per path; R is the total number of characters in returned paths. For variable-width integer values, replace h with the maximum path-string length.
 
 ### Problem description
 
@@ -4461,9 +4535,11 @@ vector<string> binaryTreePaths(TreeNode* root) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + E)
+
+**Complexity reasoning:** Builds an undirected adjacency list then BFS visits every reachable vertex and edge; arrays, adjacency lists and queue hold O(n + E) elements.
 
 ### Problem description
 
@@ -4567,9 +4643,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(C + 26^2 log 26)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(26^2 + Cmax)
+
+**Complexity reasoning:** Compares adjacent words across at most C total input characters, then topologically sorts a graph over the fixed 26-letter alphabet. Set insertion costs O(log 26); Cmax bounds the returned order string (at most 26). Thus both are O(C) time and O(1) auxiliary space for a fixed alphabet.
 
 ### Problem description
 
@@ -4681,9 +4759,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(h)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Walks one BST search path, updating a successor candidate in constant space.
 
 ### Problem description
 
@@ -4773,9 +4853,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Multi-source BFS enqueues every gate initially and each empty room at most once; the queue may hold O(mn) positions.
 
 ### Problem description
 
@@ -4877,9 +4959,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + B)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + B)
+
+**Complexity reasoning:** Serialization/deserialization process each node and null marker once using a queue and string streams. B is the number of characters in the encoded values, so string parsing/output also costs O(B).
 
 ### Problem description
 
@@ -5007,9 +5091,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** DFS visits every tree node once while carrying its consecutive-run length; only the recursive call stack grows with height h.
 
 ### Problem description
 
@@ -5101,9 +5187,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n 2^n)
+
+**Complexity reasoning:** BFS can generate up to 2^n distinct strings by deleting parentheses. Each candidate is checked in O(n), and generating up to n new strings by slicing/concatenation costs O(n^2) per candidate. Queue and visited set store O(2^n) strings of length at most n.
 
 ### Problem description
 
@@ -5220,9 +5308,11 @@ bool isValid(const string &s) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn + P alpha(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn + P)
+
+**Complexity reasoning:** Initializes DSU arrays for all mn cells. Each of P additions examines four neighbors with amortized inverse-Ackermann union/find; the result vector stores P counts.
 
 ### Problem description
 
@@ -5356,9 +5446,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds adjacency lists for the n-vertex tree and repeatedly removes leaves; each node and edge is processed O(1) times.
 
 ### Problem description
 
@@ -5471,9 +5563,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** BFS visits n nodes, inserting into an ordered map keyed by column in O(log n) per node. Queue, map, and result together hold O(n) nodes.
 
 ### Problem description
 
@@ -5570,9 +5664,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(Bmn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Runs a complete BFS from each of B buildings over up to mn cells; distance/reach grids, per-building seen grid and queue use O(mn) memory.
 
 ### Problem description
 
@@ -5723,9 +5819,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + E alpha(n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Initializes n DSU entries; union by size with path compression handles E edges in amortized O(alpha(n)) time each.
 
 ### Problem description
 
@@ -5819,9 +5917,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E log E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(E)
+
+**Complexity reasoning:** Sorts each airport’s outgoing tickets in reverse lexicographic order, then Hierholzer DFS consumes every ticket once; graph, itinerary and recursion use O(E) space.
 
 ### Problem description
 
@@ -5928,9 +6028,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** DFS visits each of N nested elements once; its call stack is bounded by maximum nesting depth H.
 
 ### Problem description
 
@@ -6034,9 +6136,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N + C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + C + H)
+
+**Complexity reasoning:** The constructor copies the nested input (C total stored elements) and recursively flattens N integer entries; the flat vector stores N values and recursion reaches depth H. next() and hasNext() are O(1).
 
 ### Problem description
 
@@ -6180,9 +6284,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N + C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + C)
+
+**Complexity reasoning:** Level-order BFS processes each nested element; queueing and copying NestedInteger objects can additionally copy their contained descendants, represented by C total copied nested data. The queue may retain copied nested structures.
 
 ### Problem description
 
@@ -6288,9 +6394,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(log min(x,y))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The standard Euclidean gcd algorithm runs in logarithmic time and uses constant additional memory (for positive jug sizes).
 
 ### Problem description
 
@@ -6383,9 +6491,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** Postorder DFS computes each node’s leaf-removal level once and appends its value to the appropriate output group; output holds n values and stack depth is h.
 
 ### Problem description
 
@@ -6470,9 +6580,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + C)
+
+**Complexity reasoning:** The parser scans n characters and builds nested objects; copying nested objects when popping/adding can cost C additional work and storage across nested containers. Without copy elision/move guarantees, C can be O(n^2) for deeply nested input.
 
 ### Problem description
 
@@ -6576,9 +6688,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + log n)
+
+**Complexity reasoning:** DFS generates each integer from 1 through n once; output stores n integers and recursion depth is O(log n).
 
 ### Problem description
 
@@ -6656,9 +6770,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** getline and string scans process at most n input characters; the stream copies the input and pathLength stores up to O(n) levels.
 
 ### Problem description
 
@@ -6795,9 +6911,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E + Q(V + E))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E + Q)
+
+**Complexity reasoning:** Builds a weighted adjacency map from E equations. Each of Q queries may DFS through all V variables and E edges, with a fresh visited set; graph and returned answers require O(V + E + Q) space.
 
 ### Problem description
 
@@ -6958,9 +7076,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Recursive DFS checks every node once for a left-leaf child; recursion stack height is h.
 
 ### Problem description
 
@@ -7033,9 +7153,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** The min-heap processes O(mn) cell/neighbor entries, each costing logarithmic time; visited cells and heap use O(mn) memory.
 
 ### Problem description
 
@@ -7156,9 +7278,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Two reverse BFS traversals each visit every cell at most once; reachability matrices and queues hold O(mn) entries.
 
 ### Problem description
 
@@ -7296,9 +7420,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The nested loops inspect each board cell once, checking only its top and left neighbors.
 
 ### Problem description
 
@@ -7380,9 +7506,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Inorder traversal visits each node once and relinks it in place; recursion reaches tree height h.
 
 ### Problem description
 
@@ -7482,9 +7610,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + L + h)
+
+**Complexity reasoning:** Serialization and parsing visit n nodes and process L characters; the encoded string/stream and recursion stack require the stated memory.
 
 ### Problem description
 
@@ -7608,9 +7738,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Breadth-first traversal enqueues each node once; the queue and returned levels can contain O(n) nodes.
 
 ### Problem description
 
@@ -7701,9 +7833,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** For each child pointer, the code scans forward to the end of its current child chain; repeated tail scans can be quadratic. Links are changed in place.
 
 ### Problem description
 
@@ -7863,9 +7997,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** Each N-ary/binary node is encoded or decoded once; newly allocated output nodes occupy O(n), with O(h) recursive stack.
 
 ### Problem description
 
@@ -7981,9 +8117,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(BL^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(BL)
+
+**Complexity reasoning:** For B bank strings of length L, each dequeued string generates 4L mutated candidates; hashing/copying each candidate costs O(L). The set and queue store O(BL) characters.
 
 ### Problem description
 
@@ -8089,9 +8227,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** Prefix-sum hash lookups/updates take expected constant time per node; the map can retain O(n) keys and recursion uses O(h) stack.
 
 ### Problem description
 
@@ -8186,9 +8326,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S + n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S + n)
+
+**Complexity reasoning:** S is the total number of integers in sequences; hash-set edge deduplication, indegrees and unique topological traversal are linear on average.
 
 ### Problem description
 
@@ -8378,9 +8520,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L^2) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L + h)
+
+**Complexity reasoning:** Recursive string concatenation during serialization can repeatedly copy long suffixes, giving quadratic work in encoded length L; deserialization scans characters once and recursion uses height h.
 
 ### Problem description
 
@@ -8492,9 +8636,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The grid is scanned once and each land cell checks only two previously visited neighbors.
 
 ### Problem description
 
@@ -8593,9 +8739,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn(m+n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** BFS explores at most mn stopping cells; each of four rolls can scan O(m+n) cells. Visited matrix and queue use O(mn).
 
 ### Problem description
 
@@ -8724,9 +8872,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn(m+n+P+log(mn)))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn P)
+
+**Complexity reasoning:** Dijkstra relaxations roll O(m+n) steps and copy/compare path strings of up to P characters; heap operations add logarithmic cost. Distances, path strings and queued routes occupy O(mn P) in a conservative bound, excluding stale heap duplicates.
 
 ### Problem description
 
@@ -8878,9 +9028,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** Inorder DFS visits every node once; result may contain n modes and the recursion stack has height h.
 
 ### Problem description
 
@@ -8975,9 +9127,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn(m+n+log(mn)))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Dijkstra uses a heap over grid stops and each directional relaxation rolls across up to m+n cells; distance table and heap are O(mn) up to duplicate entries.
 
 ### Problem description
 
@@ -9113,9 +9267,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** Postorder computes one subtree sum per node and counts it in a hash map; traversal stack reaches height h.
 
 ### Problem description
 
@@ -9195,9 +9351,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(w)
+
+**Complexity reasoning:** Level-order traversal visits each node once; the queue holds at most w nodes, where w is maximum tree width.
 
 ### Problem description
 
@@ -9288,9 +9446,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(w + h)
+
+**Complexity reasoning:** Every node is visited once, while the BFS queue holds at most w nodes and the output stores one value per level (h).
 
 ### Problem description
 
@@ -9377,9 +9537,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** DFS visits each revealed cell at most once and checks eight neighbors; recursion can reach mn cells.
 
 ### Problem description
 
@@ -9516,9 +9678,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Inorder traversal visits n nodes and keeps only the recursion stack of height h.
 
 ### Problem description
 
@@ -9599,9 +9763,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** The parser advances its index through the L-character input once; n newly allocated tree nodes and recursion depth h use memory.
 
 ### Problem description
 
@@ -9714,9 +9880,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Reverse inorder traversal updates each node once; only recursion stack of height h is needed.
 
 ### Problem description
 
@@ -9816,9 +9984,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nh) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** The outer function recursively calls itself for every subtree, and each call runs diameter_util over that subtree; on a chain this is O(n^2), with O(h) nested recursion depth.
 
 ### Problem description
 
@@ -9911,9 +10081,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** Boundary walks and leaf DFS together process O(n) nodes; the returned boundary list uses up to O(n) space and recursion depth is h.
 
 ### Problem description
 
@@ -10047,9 +10219,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Adjacency-matrix DFS scans n possible neighbors for each of n vertices; visited and recursion use O(n) space.
 
 ### Problem description
 
@@ -10149,9 +10323,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Postorder DFS computes increasing/decreasing lengths once per node; recursion depth is tree height h.
 
 ### Problem description
 
@@ -10260,9 +10436,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Recursive traversal visits every N-ary node once; call stack depth is h.
 
 ### Problem description
 
@@ -10339,9 +10517,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Postorder DFS calculates each subtree sum once and accumulates tilt; only height-h recursion is needed.
 
 ### Problem description
 
@@ -10448,9 +10628,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each array index is visited once across all cycle walks; the visited vector uses n bits.
 
 ### Problem description
 
@@ -10547,9 +10729,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(NM)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + M)
+
+**Complexity reasoning:** At each of N candidate tree nodes, isSame may compare M subtree nodes; recursion uses at most the combined tree heights.
 
 ### Problem description
 
@@ -10626,9 +10810,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Builds parent-to-children lists and BFS-visits each of n processes at most once; the map and queue use linear storage.
 
 ### Problem description
 
@@ -10729,9 +10915,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Iterative preorder pushes and pops each node once; the stack and returned traversal can each hold O(N) nodes.
 
 ### Problem description
 
@@ -10844,9 +11032,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** The explicit stack visits each node once, with O(N) traversal output and allocated Pair records; note that new Pair allocations are not deleted.
 
 ### Problem description
 
@@ -10965,9 +11155,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N^2) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N^2) worst case
+
+**Complexity reasoning:** Recursive string concatenation repeatedly copies subtree strings, quadratic on a skewed tree; live intermediate strings and output can also total quadratic storage.
 
 ### Problem description
 
@@ -11069,9 +11261,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Each overlapping node is merged once; recursion reaches height H, while existing subtrees are reused rather than copied.
 
 ### Problem description
 
@@ -11147,9 +11341,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(W + A)
+
+**Complexity reasoning:** Level-order search visits at most N existing nodes; the queue holds up to width W and A newly inserted nodes are allocated.
 
 ### Problem description
 
@@ -11268,9 +11464,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Constructor O(RC); set O(RC + F); get O(1); sum O(K + RC + F) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC + F + K) during sum
+
+**Complexity reasoning:** With RC cells, F stored formula dependencies, and K expanded references in the sum request, each recalculation builds a dependency graph and topologically traverses it; sum also expands K references.
 
 ### Problem description
 
@@ -11500,9 +11698,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(W + H)
+
+**Complexity reasoning:** BFS visits each tree node once; the queue holds at most W nodes and the output stores H level averages.
 
 ### Problem description
 
@@ -11583,9 +11783,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Constructor O(S); input O(S + M log M * L) worst case; # O(P) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S + M L + P)
+
+**Complexity reasoning:** S is total stored sentence characters, M matching sentences, L maximum sentence length, and P current prefix length; each character input scans all stored strings and sorts matches using string comparisons.
 
 ### Problem description
 
@@ -11718,9 +11920,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N^2) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N^2) worst case
+
+**Complexity reasoning:** Each node constructs and hashes a serialization of its entire subtree; on a skewed tree the cumulative serialized length and stored map keys are quadratic.
 
 ### Problem description
 
@@ -11835,9 +12039,11 @@ vector<TreeNode*> findDuplicateSubtrees(TreeNode* root)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(H * 2^H + N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H * 2^H + H)
+
+**Complexity reasoning:** Computes tree height then allocates an H by (2^H-1) string matrix and places N nodes; recursion uses O(H) stack.
 
 ### Problem description
 
@@ -11941,9 +12147,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(W + H)
+
+**Complexity reasoning:** BFS processes every node once; its queue holds at most W nodes, with constant work per node and level indices.
 
 ### Problem description
 
@@ -12082,9 +12290,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + H)
+
+**Complexity reasoning:** Postorder computes each subtree sum once, stores up to N sums, then scans them; recursion uses O(H) stack.
 
 ### Problem description
 
@@ -12172,9 +12382,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + H)
+
+**Complexity reasoning:** Builds a hash map of N encoded nodes and recursively follows each present child at most once; map and recursion store N entries and H frames.
 
 ### Problem description
 
@@ -12279,9 +12491,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** BST pruning recursively visits at most N nodes, with recursion depth at most tree height H.
 
 ### Problem description
 
@@ -12382,9 +12596,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** DFS inspects every tree node once to update the smallest qualifying value; recursion uses O(H) frames.
 
 ### Problem description
 
@@ -12498,9 +12714,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Enumerates at most 16 button combinations and at most six bulbs per combination; the set has at most 16 states.
 
 ### Problem description
 
@@ -12619,9 +12837,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(MN + T log T + T MN)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(MN + T)
+
+**Complexity reasoning:** Collects and sorts T trees, then runs a fresh O(MN) BFS for each tree; BFS visited grid uses O(MN) memory.
 
 ### Problem description
 
@@ -12780,9 +13000,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** buildDict O(DL) expected; search O(26 L^2) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(DL + L)
+
+**Complexity reasoning:** Stores D words of length L; search generates up to 25L modified strings, hashing each length-L candidate; mutable search string is passed by value.
 
 ### Problem description
 
@@ -12890,9 +13112,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N^2) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Union-Find uses path compression but no rank/size heuristic, so worst-case find chains may be linear; parent array uses N space.
 
 ### Problem description
 
@@ -12998,9 +13222,11 @@ class Solution
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N^2) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Two passes through N edges use path-compressed DSU without union by rank, permitting linear-depth finds in the worst case; parent/root arrays use O(N) space.
 
 ### Problem description
 
@@ -13108,9 +13334,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** A postorder DFS computes longest same-valued downward paths once per node; recursion uses height H.
 
 ### Problem description
 
@@ -13196,9 +13424,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Builds an employee lookup table and BFS-traverses the requested reporting subtree; the map, queue, and result are linear in employees.
 
 ### Problem description
 
@@ -13313,9 +13543,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(MN log(MN)) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(MN)
+
+**Complexity reasoning:** BFS visits each land cell once; sorting each island shape and ordered-set insertion of shape vectors cost at most O(MN log(MN)) total in the worst case.
 
 ### Problem description
 
@@ -13424,9 +13656,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(MN)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(MN)
+
+**Complexity reasoning:** DFS marks each grid cell at most once; worst-case recursion stack holds all MN land cells.
 
 ### Problem description
 
@@ -13527,9 +13761,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(MN log(MN)) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(MN)
+
+**Complexity reasoning:** For each island of size k, generates eight transformed shapes, sorts them, and inserts the canonical shape in an ordered set; summed work is O(MN log(MN)).
 
 ### Problem description
 
@@ -13668,9 +13904,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E log E * L) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(E L)
+
+**Complexity reasoning:** For E distinct emails of maximum length L, union/find groups emails and ordered sets sort their strings; ordered insertions and string comparisons dominate.
 
 ### Problem description
 
@@ -13785,9 +14023,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(MN)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(MN)
+
+**Complexity reasoning:** Flood-fill DFS changes each connected cell once; recursion can reach MN cells, while the returned image is modified in place.
 
 ### Problem description
 
@@ -13884,9 +14124,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((P + L) L + (P + L) α(P + L))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O((P + L)L)
+
+**Complexity reasoning:** Union-find processes P pairs and L sentence words; string hashing, copying and comparisons can each cost O(L), where L is the maximum word length. Union operations use path compression but no rank.
 
 ### Problem description
 
@@ -14020,9 +14262,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** A DFS builds parent pointers, followed by a BFS across each node at most once; parent map, queue, visited set and recursion hold O(N) entries.
 
 ### Problem description
 
@@ -14148,9 +14392,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((V + E) log(E + 1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Adjacency construction is linear; Dijkstra inserts at most O(E) heap entries and each heap operation costs O(log(E+1)).
 
 ### Problem description
 
@@ -14272,9 +14518,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((RC)^2 log(RC))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC)
+
+**Complexity reasoning:** Up to RC simulation rounds each scan the entire grid; ordered-set insertion costs O(log(RC)). Frontier and region sets, visited grid and queue occupy O(RC) space per round.
 
 ### Problem description
 
@@ -14437,9 +14685,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The lock has exactly 10^4 four-digit states and eight constant-cost transitions per state; these bounds are constant with respect to input size (plus deadend input iteration).
 
 ### Problem description
 
@@ -14566,9 +14816,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n k^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n k^n)
+
+**Complexity reasoning:** De Bruijn DFS visits k^n distinct length-n edges; constructing and hashing each n-character edge costs O(n). Seen strings and the result store O(n k^n) characters.
 
 ### Problem description
 
@@ -14686,9 +14938,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** The position map is built once and each couple is corrected by at most one constant-time swap.
 
 ### Problem description
 
@@ -14781,9 +15035,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Inorder DFS visits every node once; the only auxiliary storage is the recursion stack of height H.
 
 ### Problem description
 
@@ -14866,9 +15122,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** BFS colors each vertex once and examines every adjacency entry; color array and queue use O(V) space.
 
 ### Problem description
 
@@ -14989,9 +15247,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(P L)
+
+**Complexity reasoning:** The queue stores full path copies, where P is the number of partial paths generated and L ≤ V is their maximum length; copying each path costs O(L), and stored paths plus output can occupy O(P L).
 
 ### Problem description
 
@@ -15094,9 +15354,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V² + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** The implementation repeatedly scans all V vertices for newly zero outdegree nodes, up to V rounds; reverse adjacency lists require O(V+E) memory.
 
 ### Problem description
 
@@ -15215,9 +15477,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((RC + H) α(RC))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC + H)
+
+**Complexity reasoning:** Grid construction and reverse hit processing make O(RC+H) disjoint-set operations; path compression without rank gives amortized inverse-Ackermann-like performance in typical analyses, with O(RC+H) arrays and result.
 
 ### Problem description
 
@@ -15409,9 +15673,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Recursive postorder computes each subtree sum once; only the height-H recursion stack is auxiliary.
 
 ### Problem description
 
@@ -15507,9 +15773,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S + B)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S + B)
+
+**Complexity reasoning:** Each bus route is expanded at most once and each station is marked when popped; duplicate station enqueues may occur, bounded by total route entries S. B is number of buses.
 
 ### Problem description
 
@@ -15628,9 +15896,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N² α(N²))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N²)
+
+**Complexity reasoning:** Every grid cell inspects at most four neighbors in two passes; union-find operations are near-constant amortized and the DSU stores O(N²) entries.
 
 ### Problem description
 
@@ -15823,9 +16093,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(Q² L + Q² α(Q))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(Q)
+
+**Complexity reasoning:** All Q(Q-1)/2 string pairs are compared character by character (length L); union-find stores Q parents.
 
 ### Problem description
 
@@ -15938,9 +16210,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** Each room is enqueued once, and each key is inspected once; queue and visited array hold O(V) entries.
 
 ### Problem description
 
@@ -16039,9 +16313,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Kahn topological traversal processes each vertex and richer relation once; adjacency lists and indegree arrays dominate space.
 
 ### Problem description
 
@@ -16161,9 +16437,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S · L²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S · L)
+
+**Complexity reasoning:** At most S distinct string permutations are visited; each state scans O(L) swap candidates and creates/hashes O(L)-character strings. Queue and visited set store O(SL) characters.
 
 ### Problem description
 
@@ -16269,9 +16547,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Parent DFS and subsequent BFS each visit at most N tree nodes; maps, visited set and queue store O(N) pointers.
 
 ### Problem description
 
@@ -16385,9 +16665,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(RC · 2^K)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC · 2^K)
+
+**Complexity reasoning:** BFS explores at most RC·2^K (position,key-mask) states with four transitions each; visited and queue have the same bound (the code reserves 64 masks).
 
 ### Problem description
 
@@ -16535,9 +16817,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Postorder DFS computes subtree depth and candidate node once per tree node; recursion depth is H.
 
 ### Problem description
 
@@ -16672,9 +16956,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N₁ + N₂)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N₁ + N₂)
+
+**Complexity reasoning:** Both trees are traversed once and their leaves are collected in vectors; recursion and leaf vectors use at most linear space.
 
 ### Problem description
 
@@ -16763,9 +17049,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((V + E) log(E + 1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** A maximum-remaining-moves priority queue processes candidate edge relaxations; heap may hold O(E) entries, while graph and distances use O(V+E).
 
 ### Problem description
 
@@ -16904,9 +17192,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Build adjacency and recursively two-color every vertex, scanning each edge a constant number of times; adjacency plus DFS stack and colors are linear.
 
 ### Problem description
 
@@ -17025,9 +17315,11 @@ class Solution
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Inorder recursion rewires each node once, using only the height-H call stack.
 
 ### Problem description
 
@@ -17097,9 +17389,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N²)
+
+**Complexity reasoning:** The board contains N² squares; BFS visits each at most once and tries at most six dice outcomes. Visited and queue occupy O(N²).
 
 ### Problem description
 
@@ -17225,9 +17519,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N) construction; O(1) insert/get_root
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Constructor scans the complete tree level by level to initialize the incomplete-node queue; each insertion performs constant queue and pointer operations. Queue may hold O(N) nodes.
 
 ### Problem description
 
@@ -17339,9 +17635,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N² α(N) + I log I)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Adjacency matrix is scanned completely, union-find merges components, and I initially infected nodes are sorted. Parent and component maps require O(N) memory.
 
 ### Problem description
 
@@ -17475,9 +17773,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N² + I(N + E))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + E)
+
+**Complexity reasoning:** Construct adjacency from the N×N matrix, then run a fresh BFS for each of I initially infected candidates; each BFS scans at most N vertices and E edges. Graph and traversal arrays occupy O(N+E).
 
 ### Problem description
 
@@ -17625,9 +17925,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** DFS marks the first island and multi-source BFS expands through each grid cell at most once; queue and recursion can each hold O(mn) cells.
 
 ### Problem description
 
@@ -17790,9 +18092,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** BST pruning visits at most n nodes; recursion uses at most the tree height h.
 
 ### Problem description
 
@@ -17873,9 +18177,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each stone is visited once but its DFS scans all n stones; visited flags and recursion use O(n) space.
 
 ### Problem description
 
@@ -18002,9 +18308,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^h) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** The code may evaluate both flipped and unflipped subtree pairings without memoization, causing repeated comparisons; recursion depth is bounded by h.
 
 ### Problem description
 
@@ -18090,9 +18398,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M + n√M · M) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M + n)
+
+**Complexity reasoning:** The parent array is initialized through maximum value M. Trial division takes O(√M) per number and unranked DSU finds can traverse O(M) parent links; component counts use O(n) space.
 
 ### Problem description
 
@@ -18212,9 +18522,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(w)
+
+**Complexity reasoning:** Level-order traversal enqueues each node once; queue size is bounded by maximum width w.
 
 ### Problem description
 
@@ -18312,9 +18624,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Expanding each input cell into a 3×3 block takes O(mn), and flood-fill visits each expanded cell once; expanded grid and DFS stack use O(mn).
 
 ### Problem description
 
@@ -18452,9 +18766,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(w)
+
+**Complexity reasoning:** BFS checks each node once and stores at most one tree level of width w.
 
 ### Problem description
 
@@ -18535,9 +18851,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^n)
+
+**Complexity reasoning:** Each starting digit branches into at most two choices per subsequent position; generated output and recursion account for space.
 
 ### Problem description
 
@@ -18628,9 +18946,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** Preorder DFS visits each node once; output flips may use O(n) and recursion O(h).
 
 ### Problem description
 
@@ -18749,9 +19069,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Postorder recursion visits each node once and adjusts the parent coin balance; stack depth is O(h).
 
 ### Problem description
 
@@ -18849,9 +19171,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** BFS inserts n nodes into an ordered column map, then sorts entries within columns; map, queue, and output hold O(n) entries.
 
 ### Problem description
 
@@ -19010,9 +19334,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nh)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Passing and prepending a copied path string can cost O(h) per visited node; DFS stack and per-path strings require O(h) live space.
 
 ### Problem description
 
@@ -19116,9 +19442,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** With a fixed 26-character alphabet, DSU initialization and finds have constant bounds; q equations are processed twice.
 
 ### Problem description
 
@@ -19226,9 +19554,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(w)
+
+**Complexity reasoning:** BFS visits each node once and queues up to maximum level width w.
 
 ### Problem description
 
@@ -19330,9 +19660,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Multi-source BFS processes each grid cell at most once, and the queue may hold O(mn) cells.
 
 ### Problem description
 
@@ -19465,9 +19797,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + t)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One pass counts t trust pairs, then scans n candidates; trust-score array has n+1 entries.
 
 ### Problem description
 
@@ -19569,9 +19903,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Boundary DFS zeroes each land cell at most once and the final scan touches every cell; worst-case recursion depth is O(mn).
 
 ### Problem description
 
@@ -19680,9 +20016,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nh)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Each leaf scans its entire root-to-leaf path of length up to h; the recursion uses O(h), plus a fixed 1000-element local array.
 
 ### Problem description
 
@@ -19814,9 +20152,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Recursive traversal carries ancestor minimum and maximum and visits every node once; stack depth is O(h).
 
 ### Problem description
 
@@ -19905,9 +20245,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** A single scan parses the L-character encoding, and the stack holds at most h ancestor nodes.
 
 ### Problem description
 
@@ -20025,9 +20367,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** BFS visits each connected cell once, recording boundary cells; seen matrix, queue, and boundary list can each grow to O(mn).
 
 ### Problem description
 
@@ -20142,9 +20486,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(b + K)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(b + K)
+
+**Complexity reasoning:** Blocked cells are hashed in O(b); two BFS searches each stop after at most K=20001 discovered cells, with O(K) queue/visited storage.
 
 ### Problem description
 
@@ -20264,9 +20610,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Reverse inorder DFS visits each tree node once and uses O(h) recursion stack.
 
 ### Problem description
 
@@ -20369,9 +20717,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + e)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + e)
+
+**Complexity reasoning:** Building adjacency lists takes O(n+e), and each garden examines its neighbors once; adjacency and answer use O(n+e).
 
 ### Problem description
 
@@ -20488,9 +20838,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + e)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + e)
+
+**Complexity reasoning:** Three-color DFS explores each reachable vertex and edge once; adjacency, state array, and stack use O(n+e).
 
 ### Problem description
 
@@ -20622,9 +20974,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The 26-element union-find has fixed size, so q equivalence pairs and L base-string characters each take constant-time work.
 
 ### Problem description
 
@@ -20739,9 +21093,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Recursive postorder pruning visits each node once, with stack depth O(h).
 
 ### Problem description
 
@@ -20833,9 +21189,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L + R·L + R log R · L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R·L)
+
+**Complexity reasoning:** Parsing uses O(L); constructing R output strings copies up to L characters each, and lexicographic sorting compares strings of length up to L.
 
 ### Problem description
 
@@ -20938,9 +21296,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²)
+
+**Complexity reasoning:** Eight-direction BFS visits each cell of the n×n grid at most once; the queue may contain O(n²) cells.
 
 ### Problem description
 
@@ -21056,9 +21416,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P · L · log P + C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(P · L + C · L)
+
+**Complexity reasoning:** Recursive parsing forms unions and Cartesian products of word sets; ordered-set insertions and string concatenations depend on the number P of intermediate/generated strings, maximum string length L, and C combination attempts.
 
 ### Problem description
 
@@ -21193,9 +21555,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E log E + E · N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + E)
+
+**Complexity reasoning:** Sorting E logs dominates normally; union-find uses path compression but no rank, so a conservative O(N) per find is used.
 
 ### Problem description
 
@@ -21307,9 +21671,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N + D)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + D + H)
+
+**Complexity reasoning:** DFS visits N nodes once; hash set stores D deletion values, forest stores up to N roots, and recursion depth is H.
 
 ### Problem description
 
@@ -21395,9 +21761,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Postorder DFS computes sum and count once per node; recursion uses tree height H.
 
 ### Problem description
 
@@ -21489,9 +21857,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Two DFS passes each visit at most N nodes; recursion depth is H.
 
 ### Problem description
 
@@ -21608,9 +21978,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Build two adjacency lists, then BFS visits at most two color states per vertex and scans each colored edge.
 
 ### Problem description
 
@@ -21730,9 +22102,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E log E + E · V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Kruskal sorts E connections; union-find uses path compression without union by rank, so each find is conservatively bounded by V.
 
 ### Problem description
 
@@ -21836,9 +22210,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Topological BFS processes every course and dependency once, storing adjacency, indegrees, and queue.
 
 ### Problem description
 
@@ -21952,9 +22328,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** One postorder traversal computes subtree sizes; recursion depth is H.
 
 ### Problem description
 
@@ -22050,9 +22428,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each character is examined once; mapping and target set have at most 26 entries.
 
 ### Problem description
 
@@ -22140,9 +22520,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(W)
+
+**Complexity reasoning:** Level-order BFS processes N nodes and holds at most W nodes in the queue.
 
 ### Problem description
 
@@ -22240,9 +22622,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((V + E) log(V + E) + (V + E) · V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Kruskal sorts the E pipes plus V well edges; path-compressed DSU lacks rank, so a conservative O(V) find bound applies.
 
 ### Problem description
 
@@ -22368,9 +22752,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Builds adjacency lists and performs a DFS over vertices and edges; low-link array and recursion use O(V). Note: the supplied Tarjan implementation passes time by value, so its bridge detection may be incorrect.
 
 ### Problem description
 
@@ -22478,9 +22864,11 @@ class Solution
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(A log A)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(A)
+
+**Complexity reasoning:** BFS explores at most A=(|x|+5)(|y|+5) bounded board positions; ordered set insertion/lookup costs O(log A).
 
 ### Problem description
 
@@ -22583,9 +22971,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E · N + N log N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + E)
+
+**Complexity reasoning:** DSU performs E unions and N finds with path compression but no rank (conservative O(N) each); per-component priority queues contribute O(N log N).
 
 ### Problem description
 
@@ -22714,9 +23104,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N + M + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + M + E)
+
+**Complexity reasoning:** Constructs item/group dependency graphs, topologically sorts both, then groups and outputs N items; E is total prerequisite count.
 
 ### Problem description
 
@@ -22849,9 +23241,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N²)
+
+**Complexity reasoning:** BFS explores at most two orientations for each of N² snake positions; each state has constant transitions.
 
 ### Problem description
 
@@ -22998,9 +23392,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S log S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S)
+
+**Complexity reasoning:** Generates S stepping numbers not exceeding high (plus a constant number of discarded children), then sorts the results.
 
 ### Problem description
 
@@ -23092,9 +23488,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(F log F · L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(F · L)
+
+**Complexity reasoning:** Sorting F folder strings of maximum length L dominates; retained paths and output occupy O(F L).
 
 ### Problem description
 
@@ -23199,9 +23597,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V · L + E · L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V · L + E · L)
+
+**Complexity reasoning:** Each reachable URL is crawled once, and each returned link is parsed/hashed; L bounds URL length. The parser/network work is excluded.
 
 ### Problem description
 
@@ -23355,9 +23755,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((V + E) · L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O((V + E) · L)
+
+**Complexity reasoning:** Eight workers crawl each reachable URL once and inspect returned links; hash operations and hostname extraction cost up to L per URL. Excludes network latency and thread scheduling.
 
 ### Problem description
 
@@ -23553,9 +23955,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E)
+
+**Complexity reasoning:** Builds the tree adjacency list and runs BFS twice; each pass visits every vertex and edge once.
 
 ### Problem description
 
@@ -23664,9 +24068,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R · C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R · C)
+
+**Complexity reasoning:** Boundary flood-fill and interior DFS each visit every grid cell at most once; recursion may reach R·C depth.
 
 ### Problem description
 
@@ -23813,9 +24219,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(T · L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T · L)
+
+**Complexity reasoning:** Builds parent relationships and traces ancestor chains; T is number of listed regions and L bounds name length (hashing/copying).
 
 ### Problem description
 
@@ -23919,9 +24327,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S · L + K · W · L + K log K · W · L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S · L + K · W · L)
+
+**Complexity reasoning:** DSU groups S synonym words; DFS materializes K output sentences of W words and length up to W·L, then sorts them. Output construction and sorting dominate.
 
 ### Problem description
 
@@ -24044,9 +24454,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N) construction; O(1) expected per find
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + H)
+
+**Complexity reasoning:** DFS reconstructs and hashes N tree-node values; recursion depth H. Each membership query is expected O(1).
 
 ### Problem description
 
@@ -24192,9 +24604,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((R · C)²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O((R · C)²)
+
+**Complexity reasoning:** 0–1 BFS tracks (box position, player position) pairs: at most (R·C)² states with four transitions each.
 
 ### Problem description
 
@@ -24363,9 +24777,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R · C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R + C)
+
+**Complexity reasoning:** Two full grid scans count servers and evaluate communication; row/column counters take R+C space.
 
 ### Problem description
 
@@ -24478,9 +24894,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + H)
+
+**Complexity reasoning:** Builds children adjacency and copied values, then visits each node once; recursion depth is H.
 
 ### Problem description
 
@@ -24589,9 +25007,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R · C · 2^(R · C))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^(R · C))
+
+**Complexity reasoning:** BFS enumerates up to 2^(R·C) bitmask configurations and tests R·C flips per state; queue and visited set store states.
 
 ### Problem description
 
@@ -24724,9 +25144,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R C (K+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R C (K+1))
+
+**Complexity reasoning:** BFS can process each cell with each remaining elimination budget; the queue can hold that many states, while the best-budget grid uses O(RC).
 
 ### Problem description
 
@@ -24851,9 +25273,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N + A)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + A)
+
+**Complexity reasoning:** Each box opens at most once; its key and contained-box lists are scanned once. Queue entries and bookkeeping are bounded by the number of box references A plus N.
 
 ### Problem description
 
@@ -24984,9 +25408,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Two DFS passes visit every tree node once; each uses at most tree height H recursion depth.
 
 ### Problem description
 
@@ -25087,9 +25513,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N1 + N2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N1 + N2 + H1 + H2)
+
+**Complexity reasoning:** Two inorder traversals collect N1 and N2 values, followed by a linear merge; arrays store the values and recursion uses tree heights.
 
 ### Problem description
 
@@ -25177,9 +25605,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** DFS marks each reachable array index once; the visited array and recursion can each occupy N entries.
 
 ### Problem description
 
@@ -25283,9 +25713,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E + W + U log U)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + W + U)
+
+**Complexity reasoning:** BFS visits friendships once, scans W video entries for the target level, and sorts U distinct titles by frequency and name; storage includes the queue, counts, and sorted titles (excluding string-character costs).
 
 ### Problem description
 
@@ -25424,9 +25856,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Each tree node is visited once with parent/grandparent pointers; only the recursion stack of height H is needed.
 
 ### Problem description
 
@@ -25506,9 +25940,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + E)
+
+**Complexity reasoning:** Adjacency construction costs O(E), and DFS processes each vertex and edge once; adjacency, visited flags, and recursion use O(N+E).
 
 ### Problem description
 
@@ -25638,9 +26074,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Postorder recursion processes each node once and may reach tree height H; the tree is modified in place.
 
 ### Problem description
 
@@ -25736,9 +26174,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Two full subtree-sum DFS traversals each take linear time; recursion reaches height H.
 
 ### Problem description
 
@@ -25836,9 +26276,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** The value-to-index hash map is built once; each index is queued once and each equal-value list is scanned once then cleared.
 
 ### Problem description
 
@@ -25981,9 +26423,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Parent assignment, root detection, DFS, and visited counting each scan at most N nodes; arrays and recursion occupy O(N).
 
 ### Problem description
 
@@ -26098,9 +26542,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H + L)
+
+**Complexity reasoning:** Each of N tree nodes can start a matching attempt of up to L linked-list nodes; recursive matching and tree traversal use at most O(H+L) stack frames.
 
 ### Problem description
 
@@ -26200,9 +26646,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R C)
+
+**Complexity reasoning:** Zero-one BFS relaxes four neighbors per cell; distance matrix and deque use O(RC) space (standard bounded-degree 0-1 BFS).
 
 ### Problem description
 
@@ -26337,9 +26785,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Builds a manager-to-employee adjacency list and BFS visits every employee once; list and queue store O(N) items.
 
 ### Problem description
 
@@ -26456,9 +26906,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Constructs the tree adjacency list and traverses each node at most once with parent-aware BFS.
 
 ### Problem description
 
@@ -26565,9 +27017,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Searches corresponding original/cloned tree nodes in DFS order, using recursion depth at most H.
 
 ### Problem description
 
@@ -26662,9 +27116,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Inorder collects N values and balanced construction allocates N nodes; auxiliary vector takes O(N), with original-tree recursion up to H.
 
 ### Problem description
 
@@ -26758,9 +27214,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R C)
+
+**Complexity reasoning:** At most two deterministic path walks occur; each marks cells in a fresh R-by-C visited grid and stops on revisits.
 
 ### Problem description
 
@@ -26950,9 +27408,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Checks a root-to-leaf path by DFS, visiting at most N nodes with recursion depth bounded by H.
 
 ### Problem description
 
@@ -27061,9 +27521,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Builds N-node tree adjacency and performs one DFS; adjacency storage is linear and recursion can reach N.
 
 ### Problem description
 
@@ -27173,9 +27635,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Visits each node once while carrying the maximum ancestor value; stack depth is H.
 
 ### Problem description
 
@@ -27292,9 +27756,11 @@ class Solution
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Each root-to-leaf path updates a constant-size bitmask; DFS visits N nodes with stack depth H.
 
 ### Problem description
 
@@ -27385,9 +27851,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N^3 + E + Q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N^2 + Q)
+
+**Complexity reasoning:** Floyd–Warshall uses three nested N loops; initializing prerequisite edges and answering Q queries adds E+Q work; reachability matrix is N squared and output Q.
 
 ### Problem description
 
@@ -27510,9 +27978,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N + E) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + E)
+
+**Complexity reasoning:** Builds adjacency and a hash set of directed edge strings, then traverses the tree; assumes bounded-length node identifiers and expected O(1) hash operations.
 
 ### Problem description
 
@@ -27637,9 +28107,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H + K)
+
+**Complexity reasoning:** DFS visits N nodes once; recursion uses height H and the output stores K lonely-node values.
 
 ### Problem description
 
@@ -27747,9 +28219,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + H)
+
+**Complexity reasoning:** Two DFS passes clone nodes and then wire random pointers using expected O(1) hash lookups; clone map and cloned tree require N space, recursion H.
 
 ### Problem description
 
@@ -27870,9 +28344,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E^2 N) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + E)
+
+**Complexity reasoning:** After one sort, Kruskal is run O(E) times; each run scans E edges with DSU finds that can cost O(N) worst case because union-by-rank is absent. DSU takes O(N) and sorted edge list O(E).
 
 ### Problem description
 
@@ -28010,9 +28486,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N + H)
+
+**Complexity reasoning:** Clones each N-ary node and edge once; output tree holds N nodes and recursion reaches depth H.
 
 ### Problem description
 
@@ -28100,9 +28578,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N) including input copy
+
+**Complexity reasoning:** The vector of N node pointers is passed by value (O(N) copy), then every node and child reference is XOR-scanned once using O(1) additional working storage.
 
 ### Problem description
 
@@ -28213,9 +28693,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((V+E) log(E+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V+E)
+
+**Complexity reasoning:** Adjacency lists and a maximum-priority queue implement probability-based Dijkstra; successful relaxations insert heap entries.
 
 ### Problem description
 
@@ -28349,9 +28831,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N+H)
+
+**Complexity reasoning:** Building parent pointers and scanning child lists visit at most all nodes; recursion uses tree height H.
 
 ### Problem description
 
@@ -28533,9 +29017,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N + E + 26N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N+E+H)
+
+**Complexity reasoning:** DFS visits each tree edge and merges fixed 26-entry frequency arrays; recursion depth is H.
 
 ### Problem description
 
@@ -28658,9 +29144,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Each node and child edge is processed once while retaining only recursion frames.
 
 ### Problem description
 
@@ -28770,9 +29258,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N D²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(ND + H)
+
+**Complexity reasoning:** Each node combines up to D leaf distances per child, producing up to D² pair checks; returned distance vectors can coexist along recursion.
 
 ### Problem description
 
@@ -28888,9 +29378,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V+E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** An indegree array is populated by scanning edges, then scanned to collect zero-indegree vertices.
 
 ### Problem description
 
@@ -28985,9 +29477,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(MN)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(MN)
+
+**Complexity reasoning:** Each grid cell is marked once; visited matrix and DFS stack can each reach MN cells.
 
 ### Problem description
 
@@ -29111,9 +29605,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((MN)²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(MN)
+
+**Complexity reasoning:** Up to MN candidate land removals each trigger a full BFS island count; each BFS allocates MN visited entries.
 
 ### Problem description
 
@@ -29228,9 +29724,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** Two union-find structures process edges twice; without union by rank, path-compressed find has a conservative logarithmic amortized bound.
 
 ### Problem description
 
@@ -29383,9 +29881,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N² log N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N²)
+
+**Complexity reasoning:** This Prim variant pushes every unvisited neighbor for each extracted vertex, potentially storing Θ(N²) heap entries.
 
 ### Problem description
 
@@ -29489,9 +29989,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(C² MN)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(MN+C)
+
+**Complexity reasoning:** At most C=60 successful color erasures; each pass checks up to C color bounding boxes, each up to MN cells.
 
 ### Problem description
 
@@ -29620,9 +30122,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** birth: O(1) amortized; death: O(1) expected; getInheritanceOrder: O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N+H)
+
+**Complexity reasoning:** Child adjacency and deceased sets store N names; preorder DFS visits all N people with height H recursion.
 
 ### Problem description
 
@@ -29769,9 +30273,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(W)
+
+**Complexity reasoning:** Level-order BFS visits at most N nodes and holds at most W nodes of a level.
 
 ### Problem description
 
@@ -29858,9 +30364,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(W)
+
+**Complexity reasoning:** Each tree node is enqueued and checked once; queue width is W.
 
 ### Problem description
 
@@ -29983,9 +30491,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N1+N2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H1+H2)
+
+**Complexity reasoning:** Both expression trees are traversed once, accumulating counts in fixed-size arrays.
 
 ### Problem description
 
@@ -30093,9 +30603,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E+V²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V+E)
+
+**Complexity reasoning:** Degree and neighbor sets are built from roads, then every unordered vertex pair is examined.
 
 ### Problem description
 
@@ -30215,9 +30727,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(SL)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(SL)
+
+**Complexity reasoning:** BFS explores S distinct reachable strings; generating, hashing and rotating each length-L state costs O(L).
 
 ### Problem description
 
@@ -30364,9 +30878,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N log N + Q log N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N+Q)
+
+**Complexity reasoning:** The nested multiples loops perform O(N log N) unions; parent chains are path-compressed but not ranked.
 
 ### Problem description
 
@@ -30518,9 +31034,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(K log K + K log(M+N)) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(K+M+N)
+
+**Complexity reasoning:** K=MN cells are grouped by ordered value map; per-value hash-based DSU operations and rank updates process each cell, with sorting/map overhead.
 
 ### Problem description
 
@@ -30658,9 +31176,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Postorder recursion visits all nodes and tracks two targets; H is tree height.
 
 ### Problem description
 
@@ -30767,9 +31287,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(F+L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(F+L)
+
+**Complexity reasoning:** F forbidden entries populate a hash set; BFS explores at most two states for each position up to limit L.
 
 ### Problem description
 
@@ -30891,9 +31413,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** DFS visits nodes at most once, with a visited hash set and recursion stack.
 
 ### Problem description
 
@@ -31001,9 +31525,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(H)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop reverses parent links along the leaf-to-root path of length H.
 
 ### Problem description
 
@@ -31095,9 +31621,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N+K)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H+K)
+
+**Complexity reasoning:** A K-node target hash set is built, then DFS visits up to N tree nodes with height H stack.
 
 ### Problem description
 
@@ -31200,9 +31728,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(P+V²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(P+V)
+
+**Complexity reasoning:** Building adjacency uses P pairs; each node scans its neighbors and checks adjacency of a candidate parent, totaling at most quadratic work.
 
 ### Problem description
 
@@ -31329,9 +31859,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((N+E) log N) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N+E)
+
+**Complexity reasoning:** Union-find without rank processes E swaps, and hash maps count values across N component members.
 
 ### Problem description
 
@@ -31477,9 +32009,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** constructor: O(E log E + (V+E) log V); query: O(log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V log V + E)
+
+**Complexity reasoning:** Sort edges and build a minimum spanning forest, then precompute binary-lifting ancestor/max-edge tables; each query climbs logarithmically.
 
 ### Problem description
 
@@ -31641,9 +32175,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(MN)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(MN)
+
+**Complexity reasoning:** The grid is scanned for the start and BFS enqueues each traversable cell at most once; the queue may hold MN cells.
 
 ### Problem description
 
@@ -31782,9 +32318,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(H)
+
+**Complexity reasoning:** Two DFS path searches each visit at most N tree nodes; recursion and saved root-to-node paths use height H.
 
 ### Problem description
 
@@ -31889,9 +32427,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Build an adjacency map of N array values, then traverse the path once using a visited hash set and recursive DFS.
 
 ### Problem description
 
@@ -32017,9 +32557,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^3 + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** An adjacency matrix uses quadratic memory; enumerating triples of vertices dominates edge insertion.
 
 ### Problem description
 
@@ -32113,9 +32655,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Multi-source BFS visits each grid cell once; the result matrix and queue can each hold mn cells.
 
 ### Problem description
 
@@ -32243,9 +32787,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(50n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + 50h)
+
+**Complexity reasoning:** DFS examines all 50 possible values per node; adjacency, ancestor stacks and recursion use O(n + 50h) memory, with h tree height.
 
 ### Problem description
 
@@ -32370,9 +32916,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S^2 + V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S^2 + V)
+
+**Complexity reasoning:** Clearing the fixed S-by-S array takes O(S²); exploration and BFS each process discovered grid positions a constant number of times, with V reachable cells.
 
 ### Problem description
 
@@ -32629,9 +33177,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Only the first two edges are inspected.
 
 ### Problem description
 
@@ -32714,9 +33264,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((V+E) log V)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V+E)
+
+**Complexity reasoning:** Ordered-map/set DFS discovery and heap-based Dijkstra each process reachable grid vertices and edges; each ordered lookup/heap operation costs logarithmic time.
 
 ### Problem description
 
@@ -32897,9 +33449,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(BE + BG)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(E + B + G)
+
+**Complexity reasoning:** Building adjacency scans the B-by-G matrix; each of B augmentations can inspect up to E edges, with matching and visited arrays.
 
 ### Problem description
 
@@ -33040,9 +33594,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L log W + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L)
+
+**Complexity reasoning:** Sorting W strings uses character comparisons, bounded by O(L log W) across levels; substrings and the valid-word hash set use O(L) storage (excluding sort stack).
 
 ### Problem description
 
@@ -33145,9 +33701,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Each grid2 land cell is marked once by DFS; worst-case recursion depth is mn.
 
 ### Problem description
 
@@ -33224,9 +33782,11 @@ class Solution {int m,n;bool dfs(int r,int c,vector<vector<int>>& a,vector<vecto
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** BFS marks each open cell once and the queue can hold O(mn) cells; the maze itself is reused for visitation.
 
 ### Problem description
 
@@ -33364,9 +33924,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(T)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T)
+
+**Complexity reasoning:** Each input root/leaf and merged tree node is processed a constant number of times using hash tables and DFS, where T is total tree nodes.
 
 ### Problem description
 
@@ -33519,9 +34081,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(18(n+q))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(18n + q + h)
+
+**Complexity reasoning:** Tree DFS inserts/removes 18-bit trie paths and answers q queries in 18 steps each; trie nodes and recursion require memory.
 
 ### Problem description
 
@@ -33685,9 +34249,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L^2)
+
+**Complexity reasoning:** Recursive string concatenation repeatedly copies descendant signatures; in a deep chain, total signature length and copying can be quadratic in the total label length L.
 
 ### Problem description
 
@@ -33811,9 +34377,11 @@ class Solution {struct Node{map<string,Node*> child;string sig;bool removed=fals
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V+E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V+E)
+
+**Complexity reasoning:** Constructing adjacency lists and BFS each visit at most V vertices and E edges.
 
 ### Problem description
 
@@ -33930,9 +34498,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** One postorder traversal of n nodes uses recursion stack proportional to tree height h.
 
 ### Problem description
 
@@ -34030,9 +34600,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Flood-fill marks each farmland cell once; DFS can recurse through mn cells, and the output may also have O(mn) entries.
 
 ### Problem description
 
@@ -34160,9 +34732,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Constructor O(n); lock/unlock O(1); upgrade O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The constructor builds child lists; upgrade walks ancestors and recursively scans descendants, potentially all n nodes.
 
 ### Problem description
 
@@ -34287,9 +34861,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M log log M + n sqrt(M) + n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M+n)
+
+**Complexity reasoning:** Sieve costs O(M log log M); trial division for each of n numbers costs at most O(sqrt(M)); sorting costs O(n log n), where M is the maximum value.
 
 ### Problem description
 
@@ -34442,9 +35018,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V+E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V+E)
+
+**Complexity reasoning:** Adjacency construction and one BFS are linear in vertices and edges.
 
 ### Problem description
 
@@ -34600,9 +35178,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((V+E) log(V+E))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V+E)
+
+**Complexity reasoning:** Heap-based search records up to two distinct arrival times per vertex and processes at most two useful expansions per vertex.
 
 ### Problem description
 
@@ -34758,9 +35338,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Building the child lists and one DFS visit each node once; tree storage and recursion can be linear.
 
 ### Problem description
 
@@ -34884,9 +35466,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1001 k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1001 k)
+
+**Complexity reasoning:** At most 1001 valid states are expanded, each generating three operations for each of k numbers; the queue can contain O(1001k) generated entries.
 
 ### Problem description
 
@@ -35017,9 +35601,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(b^d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V+E+d)
+
+**Complexity reasoning:** DFS explores walks of length at most d=floor(maxTime/minEdgeTime), branching by maximum degree b; recursion depth d plus graph storage.
 
 ### Problem description
 
@@ -35146,9 +35732,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(QR alpha(n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+Q)
+
+**Complexity reasoning:** Each of Q requests may check all R restrictions via DSU finds; parent array and results require O(n+Q) space.
 
 ### Problem description
 
@@ -35311,9 +35899,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E + sum(deg(v)^2))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V+E)
+
+**Complexity reasoning:** For every vertex, all unordered pairs of its neighbors are checked with average O(1) hash lookup.
 
 ### Problem description
 
@@ -35423,9 +36013,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E log E + V + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V+E)
+
+**Complexity reasoning:** Meetings are sorted by time; each time group builds temporary adjacency and BFS processes its participants and edges.
 
 ### Problem description
 
@@ -35553,9 +36145,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((D+1)(V+E) log((D+1)V))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O((D+1)V + E)
+
+**Complexity reasoning:** Dijkstra runs on V*(D+1) city/discount states and up to E*(D+1) transitions.
 
 ### Problem description
 
@@ -35694,9 +36288,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Two root-to-target DFS searches visit at most n nodes each; recursive stack and constructed paths are bounded by tree height h.
 
 ### Problem description
 
@@ -35793,9 +36389,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(E)
+
+**Complexity reasoning:** Hierholzer traversal consumes each directed edge once; adjacency deques, traversal stack, and result use O(E) memory.
 
 ### Problem description
 
@@ -35978,9 +36576,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2 + n(n+E))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+E)
+
+**Complexity reasoning:** All bomb pairs are tested to construct the directed graph; a DFS from each of n bombs may traverse n vertices and E edges.
 
 ### Problem description
 
@@ -36115,9 +36715,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S + I + R + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S + I + R + L)
+
+**Complexity reasoning:** With S supplies, I ingredient occurrences, R recipes, and L total characters copied/hashed, building dependencies and processing each ingredient edge once is linear on average; queues, hash tables, and adjacency lists hold these entries.
 
 ### Problem description
 
@@ -36253,9 +36855,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V)
+
+**Complexity reasoning:** The DFS-based bipartite matching tries an augmenting path from up to V/2 grid cells; each attempt can visit O(V) cells (each has at most four neighbors). Matching, visited stamps, and the copied grid use O(V) space.
 
 ### Problem description
 
@@ -36385,9 +36989,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn + K log K)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn + K)
+
+**Complexity reasoning:** BFS visits at most mn cells, then sorts K eligible reachable items by distance, price, row, and column; the distance grid, BFS queue, and item list occupy O(mn + K) space.
 
 ### Problem description
 
@@ -36552,9 +37158,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26n alpha(n) + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + L)
+
+**Complexity reasoning:** Constructing bitmasks scans L total characters; for each of n words, 26 bit toggles and hash lookups trigger near-constant amortized DSU operations. DSU, masks, and hash maps store O(n) entries.
 
 ### Problem description
 
@@ -36688,9 +37296,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^V * V * (r+c))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^V)
+
+**Complexity reasoning:** With V=r*c cells, BFS can explore up to 2^V bitmask states. Each state scans V positions and, for each occupied cell, clears its row and column in O(r+c); visited states and queue need O(2^V) space.
 
 ### Problem description
 
@@ -36830,9 +37440,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E*n*log n + n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(E + n^2)
+
+**Complexity reasoning:** Topological processing propagates up to n ancestors across each edge via std::set insertions (O(log n) each), then materializes up to n^2 ancestor entries. The adjacency list and ancestor sets dominate storage.
 
 ### Problem description
 
@@ -36942,9 +37554,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + E) log(n + E))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + E)
+
+**Complexity reasoning:** Three Dijkstra runs use binary heaps on the forward/reversed graphs; the heap may contain O(E) entries and the graph plus three distance arrays take O(n+E) space.
 
 ### Problem description
 
@@ -37050,9 +37664,11 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + E)
+
+**Complexity reasoning:** Degree peeling removes non-cycle vertices once, followed by multi-source BFS from cycle vertices; each edge is examined a constant number of times.
 
 ### Problem description
 
@@ -37184,9 +37800,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(E + sum(deg(v) log deg(v)))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + E)
+
+**Complexity reasoning:** Building adjacency lists costs O(n+E); sorting each original neighbor list by score dominates. Each edge then checks at most 3*3 candidate endpoint pairs.
 
 ### Problem description
 
@@ -37285,9 +37903,11 @@ class Solution { public: int maximumScore(vector<int>& scores, vector<vector<int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The rooted tree is constructed once and DFS visits every node once, tracking the two longest compatible child paths. The adjacency list and recursion stack use O(n) space.
 
 ### Problem description
 
@@ -37370,9 +37990,11 @@ class Solution {int ans=1;vector<vector<int>> g;string s;int dfs(int u){int a=0,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Postorder DFS computes each subtree sum and node count once; only the recursion stack of height h is needed.
 
 ### Problem description
 
@@ -37453,9 +38075,11 @@ class Solution {int ans=0;pair<int,int> dfs(TreeNode* p){if(!p)return {0,0};auto
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + E + q*(n + E))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + E)
+
+**Complexity reasoning:** The tree adjacency list is built once. Each of q queries allocates O(n) arrays and runs a BFS from an endpoint followed by multi-source BFS from the selected path, each O(n+E); per-query storage is reused.
 
 ### Problem description
 
@@ -37595,9 +38219,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Count road endpoints to obtain n degrees, sort degrees, and compute their weighted sum; the degree array uses O(n) additional space.
 
 ### Problem description
 
@@ -37694,9 +38320,11 @@ class Solution {public:long long maximumImportance(int n,vector<vector<int>>& ro
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Zero-one BFS relaxes four neighboring cells using a deque, with linear work in the grid graph; the distance matrix and deque hold O(mn) entries.
 
 ### Problem description
 
@@ -37783,9 +38411,11 @@ class Solution {public:int minimumObstacles(vector<vector<int>>& grid){int m=gri
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q^2 * L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(q * L)
+
+**Complexity reasoning:** Without union by rank, weighted-DSU parent chains can reach O(q) depth; across q equations, finds and string/hash operations can cost O(q^2*L) in the worst case, where L bounds identifier length. Maps hold O(q) identifiers and their strings.
 
 ### Problem description
 
@@ -37901,9 +38531,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + E)*alpha(n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Process E undirected edges using path-compressed DSU, then inspect all n vertices to accumulate component-pair counts. Parent and size arrays hold n entries.
 
 ### Problem description
 
@@ -37984,9 +38616,11 @@ class Solution {vector<int> p,sz;int root(int x){return p[x]==x?x:p[x]=root(p[x]
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** DFS computes subtree XOR and entry/exit times in O(n); all pairs of non-root vertices are then checked in O(1) each. The tree, arrays, and recursion use O(n) memory.
 
 ### Problem description
 
@@ -38101,9 +38735,11 @@ class Solution {vector<vector<int>> adj;vector<int> tin,tout,xr;int timer;void d
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** The recursive evaluation visits each of n tree nodes once, with O(h) call-stack space for tree height h.
 
 ### Problem description
 
@@ -38196,9 +38832,11 @@ class Solution {public:bool evaluateTree(TreeNode* root){if(root->val<2)return r
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Follow each functional-graph successor chain from both starting nodes at most once, then scan all n candidates; two distance arrays use O(n) space.
 
 ### Problem description
 
@@ -38296,9 +38934,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A timestamp marks each vertex on its first traversal, so every functional-graph vertex is processed at most once; timestamp and depth arrays require O(n) space.
 
 ### Problem description
 
@@ -38387,9 +39027,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + E + r)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + E)
+
+**Complexity reasoning:** Build adjacency lists, mark r restricted vertices, then BFS through reachable vertices and their incident edges once. The graph, seen flags, and queue use O(n+E) memory.
 
 ### Problem description
 
@@ -38488,9 +39130,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Collect and sort all mn cells by value, then assign scores in one pass using row/column maxima; the sorted tuples and result grid occupy O(mn) space.
 
 ### Problem description
 
@@ -38594,9 +39238,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One pass accumulates each source index into its destination score and another selects the maximum; the score array has n entries.
 
 ### Problem description
 
@@ -38687,9 +39333,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n alpha(n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Activate positions in reverse removal order and union with up to two active neighbors; union-by-size and path compression make each operation amortized near-constant. DSU, sums, active flags, and answer arrays are linear.
 
 ### Problem description
 
@@ -38793,9 +39441,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The first BFS converts n tree nodes into an undirected adjacency map; the second BFS visits each node and edge once. Graph, queues, and visited set use O(n) space.
 
 ### Problem description
 
@@ -38895,9 +39545,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k^2 + k + R + C)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k^2 + R + C)
+
+**Complexity reasoning:** Two topological sorts process k vertices and R/C precedence edges, then construct a k-by-k matrix. The matrix dominates both time and space when k is large.
 
 ### Problem description
 
@@ -39011,9 +39663,11 @@ class Solution {vector<int> topo(int k,vector<vector<int>>& edges){vector<vector
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Mirror-pair DFS visits each tree node at most once and swaps values on odd levels; recursion depth is bounded by tree height h.
 
 ### Problem description
 
@@ -39109,9 +39763,11 @@ class Solution {void dfs(TreeNode*a,TreeNode*b,int depth){if(!a)return;if(depth&
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + E*alpha(n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + E)
+
+**Complexity reasoning:** A sorted map groups n vertices by value; processing all adjacency edges and DSU unions costs O(E alpha(n)) amortized. The graph, DSU, groups, and frequency maps use O(n+E) space.
 
 ### Problem description
 
@@ -39220,9 +39876,11 @@ class Solution {vector<int>p,sz;int find(int x){return p[x]==x?x:p[x]=find(p[x])
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The code tests up to n candidate component counts, each requiring a full tree DFS in O(n); the adjacency list and recursion stack occupy O(n) memory.
 
 ### Problem description
 
@@ -39304,9 +39962,11 @@ class Solution { public: int componentValue(vector<int>& nums,vector<vector<int>
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Toggle each of q query positions once, then propagate flip parity from parents through all n heap-indexed nodes. The flip array occupies O(n) space.
 
 ### Problem description
 
@@ -39401,9 +40061,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q)
+
+**Complexity reasoning:** Two tree traversals compute subtree heights and best remaining heights; q map lookups answer queries. Hash maps use expected constant-time operations.
 
 ### Problem description
 
@@ -39499,9 +40161,11 @@ class Solution { unordered_map<int,int> h,ans;int height(TreeNode* u){if(!u)retu
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build the tree, BFS for parents, follow Bob’s path, and DFS all nodes once.
 
 ### Problem description
 
@@ -39617,9 +40281,11 @@ class Solution { public: int mostProfitablePath(vector<vector<int>>& edges,int b
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** BFS visits n nodes; sorting each level costs O(sum w_i log w_i), bounded by O(n log n).
 
 ### Problem description
 
@@ -39730,9 +40396,11 @@ class Solution { public: int minimumOperations(TreeNode* root){queue<TreeNode*>q
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + m) log(n + m))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Multi-source Dijkstra starts with n heap entries and relaxes m undirected roads; the heap can hold O(n+m) entries.
 
 ### Problem description
 
@@ -39849,9 +40517,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Tree construction and a postorder DFS visit every node and road once.
 
 ### Problem description
 
@@ -39990,9 +40660,11 @@ class Solution {public: long long minimumFuelCost(vector<vector<int>>& roads,int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n B)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n B)
+
+**Complexity reasoning:** DFS computes subtree sums and Euler intervals; trie insertion/query takes B=46 bit steps per node and stores up to nB trie nodes.
 
 ### Problem description
 
@@ -40144,9 +40816,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Build the adjacency list and BFS the component containing city 1, examining its edges.
 
 ### Problem description
 
@@ -40238,9 +40912,11 @@ class Solution {public:int minScore(int n,vector<vector<int>>& roads){vector<vec
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n(n + m))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Check bipartiteness once, then run a complete BFS from each of n vertices; each BFS allocates O(n) distances.
 
 ### Problem description
 
@@ -40331,9 +41007,11 @@ class Solution {public:int magnificentSets(int n,vector<vector<int>>& edges){vec
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + sum(deg(v) log(deg(v))))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Construct adjacency values, sort each vertex’s neighbor list, and inspect at most k positive entries per vertex.
 
 ### Problem description
 
@@ -40425,9 +41103,11 @@ class Solution {public:int maxStarSum(vector<int>& vals,vector<vector<int>>& edg
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Build adjacency hash sets, count odd-degree vertices, and test at most n intermediate vertices; expected O(1) hash membership.
 
 ### Problem description
 
@@ -40523,9 +41203,11 @@ class Solution {public:bool isPossible(int n,vector<vector<int>>& edges){vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Dijkstra processes up to mn cells with heap operations; distance grid and heap use O(mn) memory.
 
 ### Problem description
 
@@ -40615,9 +41297,11 @@ class Solution {public:int minimumTime(vector<vector<int>>& grid){int m=grid.siz
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + h log h)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** BFS visits n tree nodes and collects h level sums; sort the h sums.
 
 ### Problem description
 
@@ -40701,9 +41385,11 @@ class Solution {public:long long kthLargestLevelSum(TreeNode* root,int k){queue<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** Index all n² board positions, then check each successive knight move.
 
 ### Problem description
 
@@ -40785,9 +41471,11 @@ class Solution {public:bool checkValidGrid(vector<vector<int>>& grid){int n=grid
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build the tree and repeatedly prune leaves in queues; each node and edge is removed at most once.
 
 ### Problem description
 
@@ -40876,9 +41564,11 @@ class Solution {public:int collectTheCoins(vector<int>& coins,vector<vector<int>
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n(n + m))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Run BFS from every node, each scanning up to n vertices and m edges.
 
 ### Problem description
 
@@ -40957,9 +41647,11 @@ class Solution {public:int findShortestCycle(int n,vector<vector<int>>& edges){v
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each unvisited index is inserted and erased from one balanced set at most once; BFS discovers each reachable position once.
 
 ### Problem description
 
@@ -41071,9 +41763,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Two level-order passes over each level update all nodes once; level vectors hold at most O(n) pointers.
 
 ### Problem description
 
@@ -41170,9 +41864,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + m) log(n + m)) per shortestPath; O(1) amortized per addEdge
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Adjacency-list construction costs O(n+m); each shortestPath call runs Dijkstra with a heap, while addEdge appends one edge.
 
 ### Problem description
 
@@ -41268,9 +41964,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** BFS scans every grid cell at most once, overwriting visited positive cells; queue can hold O(mn) cells.
 
 ### Problem description
 
@@ -41359,9 +42057,11 @@ class Solution {public:int findMaxFish(vector<vector<int>>& grid){int m=grid.siz
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r² log r)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(r²)
+
+**Complexity reasoning:** Dijkstra over r+1 special-road endpoint states scans all r roads per settled state; the heap can store O(r²) entries.
 
 ### Problem description
 
@@ -41462,9 +42162,11 @@ class Solution {public:int minimumCost(vector<int>&start,vector<int>&target,vect
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Build the graph and BFS each component, counting vertices and degree sums.
 
 ### Problem description
 
@@ -41547,9 +42249,11 @@ class Solution {public:int countCompleteComponents(int n,vector<vector<int>>&edg
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(h)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** At each rope-tree level, inspect the left subtree length and descend one branch; h is the tree height.
 
 ### Problem description
 
@@ -41678,9 +42382,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + m) log(n + m))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Build edge-indexed adjacency lists and perform two heap-based Dijkstra passes; updates to unknown edge weights are constant time.
 
 ### Problem description
 
@@ -41788,9 +42494,11 @@ class Solution {public:vector<vector<int>> modifiedGraphEdges(int n,vector<vecto
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n sqrt(U) + n α(n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + sqrt(U))
+
+**Complexity reasoning:** Trial-divide each value up to its square root and union indices sharing prime factors; U is the maximum input value.
 
 ### Problem description
 
@@ -41888,9 +42596,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k(n + m) log(k(n + m)))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k n + m + k m)
+
+**Complexity reasoning:** Dijkstra explores up to n(k+1) node/hop states and up to O(km) transitions; heap can store O(km) candidates.
 
 ### Problem description
 
@@ -42023,9 +42733,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + m) log(n + m) + t)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Run Dijkstra on the directed graph, then inspect t marked vertices; heap and adjacency lists hold O(n+m).
 
 ### Problem description
 
@@ -42159,9 +42871,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each node is pushed and popped from the ancestor stack at most once; hash-set insertions are expected O(1).
 
 ### Problem description
 
@@ -42263,9 +42977,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(h)
+
+**Complexity reasoning:** Recursive depth traversal visits each reachable tree node once; recursion depth is at most tree height h.
 
 ### Problem description
 
@@ -42376,9 +43092,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² α(n)) plus category-query cost
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Compare all pairs using the external category handler; union-find operations use path compression without union-by-size.
 
 ### Problem description
 
@@ -42485,9 +43203,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Traverse the rooted tree once; for each node, query its parity mask and 26 one-bit variants in a hash table (expected O(1) each).
 
 ### Problem description
 
@@ -42572,9 +43292,11 @@ class Solution {public:long long countPalindromePaths(vector<int>& parent,string
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n k log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(hk + k)
+
+**Complexity reasoning:** Each node merges and sorts at most 2k child values, then sorts its truncated list; recursion keeps up to k values per tree level (height h).
 
 ### Problem description
 
@@ -42705,9 +43427,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Two BFS passes each visit every grid cell at most once; flood times, distances and queues hold up to mn cells.
 
 ### Problem description
 
@@ -42858,9 +43582,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** The total and connected-component BFS scans visit each cell a constant number of times; seen flags and the queue use grid-sized storage.
 
 ### Problem description
 
@@ -42984,9 +43710,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build the tree, generate a parent-first order, then aggregate subtree sums once in reverse order; adjacency and auxiliary arrays are linear.
 
 ### Problem description
 
@@ -43089,9 +43817,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + e)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Count incoming edges and scan all vertices once; the indegree array holds n integers.
 
 ### Problem description
 
@@ -43186,9 +43916,11 @@ class Solution{public:int findChampion(int n,vector<vector<int>>& edges){vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort values by value, then sort original indices within disjoint groups; the total sorting cost is O(n log n) and temporary arrays are linear.
 
 ### Problem description
 
@@ -43282,9 +44014,11 @@ class Solution{public:vector<int> lexicographicallySmallestArray(vector<int>& nu
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^n (n^3 + e + n^2))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** For each subset, rebuild an n-by-n matrix, scan e roads, run Floyd–Warshall on included nodes and check all pairs; only one matrix exists at a time.
 
 ### Problem description
 
@@ -43405,9 +44139,11 @@ class Solution { public:int numberOfSets(int n,int maxDistance,vector<vector<int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r + L + 26^3)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(26^2)
+
+**Complexity reasoning:** Initialize and relax the 26-letter distance matrix, read r conversion rules, and scan strings of length L; fixed-size matrix is the only auxiliary structure.
 
 ### Problem description
 
@@ -43505,9 +44241,11 @@ class Solution {public:long long minimumCost(string source,string target,vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Enumerate all ordered distinct house pairs and evaluate three constant-time distance formulas; the output has n counters.
 
 ### Problem description
 
@@ -43610,9 +44348,11 @@ class Solution {public:vector<int> countOfPairs(int n,int x,int y){vector<int>a(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each starting house, generate only a constant number of affine breakpoints and sort them; difference-array updates are constant-time per interval.
 
 ### Problem description
 
@@ -43759,9 +44499,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For every tree node, DFS separately into each neighboring branch; each root processes O(n) nodes, with linear graph and recursion storage.
 
 ### Problem description
 
@@ -43855,9 +44597,11 @@ class Solution {public:vector<int> countPairsOfConnectableServers(vector<vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + e + q) alpha(n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q)
+
+**Complexity reasoning:** Union edges, aggregate one bitwise-AND cost per component, then answer q queries with path-compressed union-find; output stores q results.
 
 ### Problem description
 
@@ -43951,9 +44695,11 @@ public:vector<int> minimumCost(int n,vector<vector<int>>& edges,vector<vector<in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + e) log(n + e))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + e)
+
+**Complexity reasoning:** Build adjacency lists and run heap-based Dijkstra; each successful relaxation may add a heap entry.
 
 ### Problem description
 
@@ -44061,9 +44807,11 @@ class Solution {public:vector<int> minimumTime(int n,vector<vector<int>>& edges,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + e) log(n + e))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + e)
+
+**Complexity reasoning:** Run Dijkstra from both endpoints, then inspect every edge; adjacency, distances and priority queues require linear graph storage.
 
 ### Problem description
 
@@ -44149,9 +44897,11 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m 2^m + a)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^m + a)
+
+**Complexity reasoning:** Multi-source BFS traverses at most 2^m masks and checks m bit-flip neighbors per mask; a input values seed the queue and produce answers.
 
 ### Problem description
 
@@ -44255,9 +45005,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(w)
+
+**Complexity reasoning:** Level-order traversal visits each tree node once; the queue can hold w nodes, where w is the maximum level width.
 
 ### Problem description
 
@@ -44349,9 +45101,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n1 + n2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n1 + n2)
+
+**Complexity reasoning:** Two BFS traversals per tree find each diameter; adjacency lists, distance arrays and queues are linear in the two tree sizes.
 
 ### Problem description
 
@@ -44431,9 +45185,11 @@ class Solution {pair<int,int>bfs(int start,vector<vector<int>>&g){queue<int>q;q.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(c^2 alpha(c))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(c)
+
+**Complexity reasoning:** Compare each circle with all preceding circles and union intersecting pairs; DSU arrays use O(c) space.
 
 ### Problem description
 
@@ -44640,9 +45396,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q(n + q))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q)
+
+**Complexity reasoning:** After each of q road insertions, BFS re-traverses up to n vertices and the currently inserted edges; total edges grow to n-1+q.
 
 ### Problem description
 
@@ -44734,9 +45492,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + q) log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q)
+
+**Complexity reasoning:** A balanced set supports each upper_bound and each deletion in logarithmic time; every vertex is erased at most once across all queries.
 
 ### Problem description
 
@@ -44832,9 +45592,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One DFS computes subtree sizes and tests equal child sizes; adjacency lists and recursion stack use O(n) memory.
 
 ### Problem description
 
@@ -44921,9 +45683,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + 1) B + n^2 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O((n + 1) B + n 2^n)
+
+**Complexity reasoning:** Run knight-move BFS from n+1 positions on the fixed B=2500-square board, then memoize up to (n+1)2^n minimax states with up to n transitions each.
 
 ### Problem description
 
@@ -45024,9 +45788,11 @@ class Solution { public: int maxMoves(int kx,int ky,vector<vector<int>>&position
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Heap-based Dijkstra explores grid cells with at most four neighbors each; distance matrix and heap use grid-sized storage.
 
 ### Problem description
 
@@ -45117,9 +45883,11 @@ class Solution { public: bool findSafeWalk(vector<vector<int>>&grid,int health){
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + e)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + e)
+
+**Complexity reasoning:** BFS marks all methods reachable from k, then one scan checks invocations and another builds the returned method list.
 
 ### Problem description
 
@@ -45212,9 +45980,11 @@ class Solution { public: vector<int> remainingMethods(int n,int k,vector<vector<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The grid graph has bounded degree (at most four), so building adjacency and choosing neighbors, including the short linear neighbor searches, take linear time.
 
 ### Problem description
 
@@ -45303,9 +46073,11 @@ class Solution { public: vector<vector<int>> constructGridLayout(int n,vector<ve
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Three BFS passes on a tree find diameter endpoints and distances; adjacency lists, queues, and result arrays are linear.
 
 ### Problem description
 
@@ -45442,9 +46214,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + h)
+
+**Complexity reasoning:** Postorder traversal visits n nodes, records perfect subtree sizes and sorts up to n sizes; recursion uses tree height h.
 
 ### Problem description
 
@@ -45526,9 +46300,11 @@ class Solution {vector<int> sizes;int dfs(TreeNode* p){if(!p)return 0;int l=dfs(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A DFS creates subtree intervals in the postorder string, then Manacher’s odd/even passes and answer checks are all linear.
 
 ### Problem description
 
@@ -45625,9 +46401,11 @@ class Solution {public:vector<bool> findAnswer(vector<int>& parent,string s){int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build original and reparented trees with one DFS each, then compute new subtree sizes with another DFS; arrays and recursion are linear.
 
 ### Problem description
 
@@ -45712,9 +46490,11 @@ class Solution {public:vector<int> findSubtreeSizes(vector<int>& parent,string s
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Dijkstra processes the four-neighbor grid with a min-heap and waiting-time edge relaxations; distances and heap are O(mn).
 
 ### Problem description
 
@@ -45797,9 +46577,11 @@ class Solution {public:int minTimeToReach(vector<vector<int>>& moveTime){int m=m
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(RC log(RC))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC)
+
+**Complexity reasoning:** Dijkstra processes grid cells with four outgoing moves each; heap updates dominate.
 
 ### Problem description
 
@@ -45884,9 +46666,11 @@ class Solution {public:int minTimeToReach(vector<vector<int>>& moveTime){int m=m
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2 + m^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** A BFS is restarted at every node of each tree; each traversal visits at most its whole tree.
 
 ### Problem description
 
@@ -45980,9 +46764,11 @@ class Solution {vector<int>counts(vector<vector<int>>&e,int d){int n=e.size()+1;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + m)
+
+**Complexity reasoning:** Bipartite coloring traverses each tree once and counts its two color classes.
 
 ### Problem description
 
@@ -46074,9 +46860,11 @@ class Solution {pair<vector<int>,array<int,2>>color(vector<vector<int>>&e){int n
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(L log log L + L d log(Ld))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L + Ld)
+
+**Complexity reasoning:** A sieve covers values below L=10^d; Dijkstra visits up to L numbers with at most 2d digit transitions each.
 
 ### Problem description
 
@@ -46165,9 +46953,11 @@ class Solution {public:int minOperations(int n,int m){int len=to_string(n).size(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nT log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + T)
+
+**Complexity reasoning:** Each value scans its multiples up to threshold T; DSU joins and finds cost at most logarithmic depth here without union by rank.
 
 ### Problem description
 
@@ -46242,9 +47032,11 @@ class Solution {public:int countComponents(vector<int>&nums,int threshold){int n
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + e + c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + e)
+
+**Complexity reasoning:** Iterative Kosaraju visits each vertex and edge twice, then scans c initial crystal nodes and condensation indegrees.
 
 ### Problem description
 
@@ -46374,9 +47166,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^3)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^2)
+
+**Complexity reasoning:** The Hungarian assignment algorithm performs n augmentations, each scanning O(n^2) candidates; its cost matrix is quadratic.
 
 ### Problem description
 
@@ -46566,9 +47360,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V + E + S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + E + S)
+
+**Complexity reasoning:** Two reciprocal-rate graphs and two BFS traversals cover their vertices/edges; S accounts for copied string characters and keys.
 
 ### Problem description
 
@@ -46726,9 +47522,11 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** One tree DFS maintains root-path prefix sums and last-seen positions, with expected O(1) hash operations per node.
 
 ### Problem description
 
@@ -46818,9 +47616,11 @@ class Solution { public: vector<int> longestSpecialPath(vector<vector<int>>& edg
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(W + 2^a a^2 + K a)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(2^a a + W)
+
+**Complexity reasoning:** For a distinct active letters (at most 26), enumerate subsets and test each induced graph in O(a^2); store K qualifying 26-entry frequency arrays.
 
 ### Problem description
 
@@ -46908,9 +47708,11 @@ class Solution {public:vector<vector<int>> supersequences(vector<string>& words)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S + X)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S + X)
+
+**Complexity reasoning:** Memoized replacement expansion visits each referenced key once, but copies expanded strings; X measures total expanded output materialized across memo entries and text. Assumes acyclic substitutions.
 
 ### Problem description
 
@@ -47016,9 +47818,11 @@ class Solution {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + U)
+
+**Complexity reasoning:** Tree traversal performs a constant number of multiset insertions/erasures per node; U=50001 preallocated occurrence vectors.
 
 ### Problem description
 
@@ -47101,9 +47905,11 @@ class Solution {public:vector<int> longestSpecialPath(vector<vector<int>>& edges
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2 d + nd)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nd + n)
+
+**Complexity reasoning:** Build n sets of at most d properties and compare every pair by iterating one set; DSU operations are additional.
 
 ### Problem description
 
@@ -47186,9 +47992,11 @@ class Solution {public:int numberOfComponents(vector<vector<int>>&properties,int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q)
+
+**Complexity reasoning:** Euler-tour preprocessing is linear; each update/query performs O(log n) Fenwick operations.
 
 ### Problem description
 
@@ -47315,9 +48123,11 @@ class Solution {public:vector<int> treeQueries(int n,vector<vector<int>>& edges,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build a directed conversion tree and traverse its n nodes/edges once.
 
 ### Problem description
 
@@ -47400,9 +48210,11 @@ class Solution {public:vector<int> baseUnitConversions(vector<vector<int>>& conv
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log MOD + q log MOD)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q)
+
+**Complexity reasoning:** Each reverse conversion and each query computes a modular inverse by binary exponentiation; traversal is linear.
 
 ### Problem description
 
@@ -47522,9 +48334,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Construct two n-element label arrangements and sum adjacent products in a single pass; edges are used only for their count.
 
 ### Problem description
 
@@ -47609,9 +48423,11 @@ class Solution {public:long long maxScore(int n,vector<vector<int>>&edges){bool 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(RC)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC)
+
+**Complexity reasoning:** 0–1 BFS visits grid cells and expands each letter portal group at most once; each cell has four adjacent moves.
 
 ### Problem description
 
@@ -47692,9 +48508,11 @@ class Solution {public:int minMoves(vector<string>&matrix){int m=matrix.size(),n
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** BFS computes maximum root depth over n tree vertices, followed by a linear modular-power loop.
 
 ### Problem description
 
@@ -47779,9 +48597,11 @@ class Solution {public:int assignEdgeWeights(vector<vector<int>>&edges){const in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(RC 2^L (E+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC 2^L (E+1))
+
+**Complexity reasoning:** BFS states consist of cell, cleaned-litter mask, and remaining energy; each state has at most four transitions.
 
 ### Problem description
 
@@ -47915,9 +48735,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q log q + (n+q)sqrt(n) log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q)
+
+**Complexity reasoning:** Euler tour, coordinate compression, and Mo ordering precede O((n+q)sqrt(n)) window changes, each using a Fenwick update.
 
 ### Problem description
 
@@ -48106,9 +48928,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m 3^n n + m 2^n log(m 2^n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m 2^n)
+
+**Complexity reasoning:** Dijkstra has 2m2^n states; each state enumerates subsets of its available individuals and scans n bits for valid moves.
 
 ### Problem description
 
@@ -48232,9 +49056,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+e) log(n+e))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+e)
+
+**Complexity reasoning:** Time-window Dijkstra relaxes each directed edge; the heap can hold O(e) entries.
 
 ### Problem description
 
@@ -48352,9 +49178,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(e log c + c log c + q(log c + log c))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(c + e + q)
+
+**Complexity reasoning:** DSU builds components, ordered sets receive c stations, and each query uses a component find plus set lookup/erase.
 
 ### Problem description
 
@@ -48468,9 +49296,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(RC)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(RC)
+
+**Complexity reasoning:** Every nonzero grid cell is visited once by flood-fill BFS and zeroed in place; the queue can contain O(RC) cells.
 
 ### Problem description
 
@@ -48550,9 +49380,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M log log M + n log M + n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M + n log M)
+
+**Complexity reasoning:** Smallest-prime-factor sieve runs to maximum value M; each input is factored into distinct primes and BFS processes each factor bucket once.
 
 ### Problem description
 
@@ -48695,9 +49527,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+e) log(n+e))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+e)
+
+**Complexity reasoning:** Dijkstra runs on forward and doubled-cost reverse edges, with heap entries for relaxations.
 
 ### Problem description
 
@@ -48776,9 +49610,11 @@ class Solution { public: int minCost(int n,vector<vector<int>>& edges){vector<ve
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each reachable zero-count state is inserted/removed from a parity-indexed ordered set once, and BFS performs logarithmic set operations.
 
 ### Problem description
 
@@ -48877,9 +49713,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(S n^4 log S)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S n)
+
+**Complexity reasoning:** BFS explores up to S distinct array permutations; O(n^3) split-and-insert moves per state each copy O(n) elements, with map lookups comparing O(n)-length keys and costing O(n log S).
 
 ### Problem description
 
@@ -48954,9 +49792,11 @@ class Solution { public: int minSplitMerge(vector<int>& nums1,vector<int>& nums2
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + e log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + e)
+
+**Complexity reasoning:** DSU groups swappable indices; sorting values within disjoint components costs at most O(n log n).
 
 ### Problem description
 
@@ -49065,9 +49905,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M log log M + n log M + n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(M + n)
+
+**Complexity reasoning:** M is the maximum node value. The smallest-prime-factor sieve takes O(M log log M); factoring all n values takes O(n log M) worst case, and the tree traversal is linear.
 
 ### Problem description
 
@@ -49237,9 +50079,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nG)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nG)
+
+**Complexity reasoning:** G=21 fixed group slots. Each tree edge is visited once, and each node merges G group counts into its parent.
 
 ### Problem description
 
@@ -49388,9 +50232,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Three BFS passes each visit every node and edge of the tree; adjacency, distance arrays, and queues occupy linear space.
 
 ### Problem description
 
@@ -49532,9 +50378,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + r log r)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A tree traversal and reverse mismatch propagation are linear; sorting the r selected edge IDs costs O(r log r).
 
 ### Problem description
 
@@ -49665,9 +50513,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Three BFS runs on a tree and one pass comparing squared distances each take linear time and space.
 
 ### Problem description
 
@@ -49820,9 +50670,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + w) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(w)
+
+**Complexity reasoning:** BFS visits at most n tree nodes; nth_element selects the median among w nodes at the requested level in expected linear time and stores those w values.
 
 ### Problem description
 
@@ -49905,9 +50757,11 @@ class Solution {public:int levelMedian(TreeNode* root,int level){queue<TreeNode*
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + Q log² n + L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + Q + L)
+
+**Complexity reasoning:** Heavy-light decomposition and n point updates build the segment tree in O(n log n). Each of Q operations uses O(log n) for an update or O(log² n) for a path query; L is the total length of query strings parsed.
 
 ### Problem description
 
@@ -50029,9 +50883,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(p α(p)) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(p)
+
+**Complexity reasoning:** Coordinate maps and disjoint-set operations process p points with expected constant-time hashing and amortized inverse-Ackermann finds; at most 2p coordinate nodes are stored.
 
 ### Problem description
 
@@ -50144,9 +51000,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n²) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each of n starting nodes traverses up to n nodes of the tree, with expected O(1) hash-set operations. Parent mapping, traversal stack, and current-path value set are linear.
 
 ### Problem description
 
@@ -50285,9 +51143,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n + e) α(n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The e edge insertions perform parity-aware union-find queries and unions, with path compression and union by size.
 
 ### Problem description
 
@@ -50392,9 +51252,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(RC)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R)
+
+**Complexity reasoning:** Every entry of the R-by-C adjacency matrix is scanned once; the output holds one degree per row.
 
 ### Problem description
 
@@ -50502,9 +51364,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Level-order traversal visits every tree node once; the queue and per-level temporary vector can together hold O(n) nodes.
 
 ### Problem description
 
@@ -50595,9 +51459,11 @@ class Solution {public:vector<long long> zigzagLevelSum(TreeNode* root){vector<l
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(snm log(snm + s))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nm + s)
+
+**Complexity reasoning:** With s sources, a cell can receive multiple equal-distance improvements as higher colors arrive; conservatively up to O(s) heap updates per cell, each logarithmic in heap size.
 
 ### Problem description
 
@@ -50729,9 +51595,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^n n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + e)
+
+**Complexity reasoning:** The code enumerates all nonempty subsets; each performs an O(n) parity scan and up to n rounds of O(n) reachability expansion using bitmasks. Adjacency bitmasks require O(n) words.
 
 ### Problem description
 
@@ -50873,9 +51741,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n (n + e) log(n + e))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + e)
+
+**Complexity reasoning:** For each of n starting cities, two Dijkstra runs on the two road-weight graphs are followed by an O(n) scan; graph storage and per-run distance/heap space are O(n+e) under standard heap bounds.
 
 ### Problem description
 
@@ -51153,9 +52023,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((nk + ek) log(nk + ek))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nk + ek)
+
+**Complexity reasoning:** Dijkstra explores up to nk states (vertex, consecutive-label count) and ek transitions, using a heap and an n-by-(k+1) distance table.
 
 ### Problem description
 
@@ -51277,9 +52149,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** A forward traversal records nodes and a reverse traversal computes subtree maxima; expected O(1) hash-map access per node.
 
 ### Problem description
 
@@ -51377,9 +52251,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log(mn))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Dijkstra runs over two parity states per grid cell, with constant-degree moves and wait transitions.
 
 ### Problem description
 
@@ -51518,9 +52394,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(F (n + e) log(n + e))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + e)
+
+**Complexity reasoning:** Successive shortest augmenting paths use one Dijkstra pass per augmentation F, plus O(n) path and potential updates; the residual network has O(n) vertices and edges.
 
 ### Problem description
 
@@ -51668,9 +52546,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build child lists, run BFS for depths and height, then sum each node contribution once.
 
 ### Problem description
 
@@ -51841,9 +52721,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + Σ k_g log k_g)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n log n)
+
+**Complexity reasoning:** Binary-lifting preprocessing takes O(n log n). For each group of size k_g, virtual-tree construction sorts O(k_g) nodes and adds O(k_g) LCA queries, each O(log n); all group sizes sum to n.
 
 ### Problem description
 
@@ -52017,9 +52899,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((mnk) log(mnk))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mnk)
+
+**Complexity reasoning:** Dijkstra searches at most 5mn(k+1) states indexed by cell, turn count, and previous direction, with four transitions per state.
 
 ### Problem description
 

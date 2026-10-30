@@ -1,6 +1,6 @@
 # Bit Manipulation
 
-**Problems:** 44
+**Problems:** 45
 
 ## Quick revision checklist
 
@@ -51,6 +51,7 @@ Use XOR, bit masks, bit positions, or binary representation.
 - [3688. Bitwise OR of Even Numbers in an Array](#3688-bitwise-or-of-even-numbers-in-an-array) — Easy; code: yes
 - [3702. Longest Subsequence With Non-Zero Bitwise XOR](#3702-longest-subsequence-with-non-zero-bitwise-xor) — Medium; code: yes
 - [3827. Count Monobit Integers](#3827-count-monobit-integers) — Easy; code: yes
+- [3841. Palindromic Path Queries in a Tree](#3841-palindromic-path-queries-in-a-tree) — Hard; code: yes
 - [3950. Exactly One Consecutive Set Bits Pair](#3950-exactly-one-consecutive-set-bits-pair) — Easy; code: yes
 
 ---
@@ -73,9 +74,11 @@ Use XOR, bit masks, bit positions, or binary representation.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** One XOR pass; one accumulator.
 
 ### Problem description
 
@@ -147,9 +150,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** One pass with two fixed-width bitmask counters.
 
 ### Problem description
 
@@ -222,9 +227,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for 32-bit integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Exactly 32 bit-position iterations; no auxiliary collection.
 
 ### Problem description
 
@@ -302,9 +309,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1) auxiliary; O(1) output`
+
+**Complexity reasoning:** Two linear passes and a constant number of masks.
 
 ### Problem description
 
@@ -399,9 +408,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Each byte is inspected once with a remaining-byte counter.
 
 ### Problem description
 
@@ -514,9 +525,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for 32-bit integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Right-shifts until the XOR becomes zero; at most 31 iterations for the constraints.
 
 ### Problem description
 
@@ -594,9 +607,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for 32-bit integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Builds a mask one bit at a time.
 
 ### Problem description
 
@@ -675,9 +690,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for 32-bit integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Examines successive binary digits.
 
 ### Problem description
 
@@ -787,9 +804,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for 32-bit integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Visits each bit of the input once.
 
 ### Problem description
 
@@ -895,9 +914,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for 32-bit integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Doubles the mask until it exceeds n.
 
 ### Problem description
 
@@ -987,9 +1008,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(n) output; O(1) auxiliary`
+
+**Complexity reasoning:** Maintains one modulo-5 remainder per prefix and stores n answers.
 
 ### Problem description
 
@@ -1073,9 +1096,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for 32-bit integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Exactly 32 bit positions are examined.
 
 ### Problem description
 
@@ -1168,9 +1193,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(n) output; O(1) auxiliary`
+
+**Complexity reasoning:** Reconstructs and stores n + 1 integers from n encoded entries.
 
 ### Problem description
 
@@ -1247,9 +1274,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(n) output; O(1) auxiliary`
+
+**Complexity reasoning:** Two XOR passes plus linear reconstruction of the output permutation.
 
 ### Problem description
 
@@ -1335,9 +1364,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(p), at most O(w) = O(1) for 32-bit integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Brian Kernighan loop clears one set bit per iteration; p is popcount(start XOR goal).
 
 ### Problem description
 
@@ -1443,9 +1474,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** One maximum scan and one longest-run scan.
 
 ### Problem description
 
@@ -1524,9 +1557,11 @@ class Solution {public:int longestSubarray(vector<int>& nums){int mx=*max_elemen
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n + m) worst case`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** At most one traversal of each input array, conditional on opposite-array parity.
 
 ### Problem description
 
@@ -1599,9 +1634,11 @@ class Solution {public:int xorAllNums(vector<int>& nums1,vector<int>& nums2){int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(n) output; O(1) auxiliary`
+
+**Complexity reasoning:** Copies the prefix array and transforms it backwards.
 
 ### Problem description
 
@@ -1677,9 +1714,11 @@ class Solution { public: vector<int> findArray(vector<int>& pref){vector<int>a=p
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `Expected O(n + w); worst-case O(n² + w) with hash collisions`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(n)`
+
+**Complexity reasoning:** Constructs an unordered_set of n values, then probes at most w powers of two; hashing is expected O(1) per operation.
 
 ### Problem description
 
@@ -1748,9 +1787,11 @@ class Solution { public: int minImpossibleOR(vector<int>& nums) { unordered_set<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for 32-bit integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1) output and auxiliary`
+
+**Complexity reasoning:** Processes the bits of n; returns a fixed two-element vector.
 
 ### Problem description
 
@@ -1819,9 +1860,11 @@ class Solution {public:vector<int> evenOddBit(int n){vector<int> ans(2);int i=0;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** XORs every element once.
 
 ### Problem description
 
@@ -1918,9 +1961,11 @@ class Solution {public:bool doesValidArrayExist(vector<int>&derived){int x=0;for
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(60) = O(1)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** At most 60 candidate operation counts, each using a fixed-width popcount.
 
 ### Problem description
 
@@ -2001,9 +2046,11 @@ class Solution {public:int makeTheIntegerZero(int num1,int num2){for(int k=1;k<=
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** One pass, with constant-time fixed-width popcount per index.
 
 ### Problem description
 
@@ -2109,9 +2156,11 @@ class Solution {public:int sumIndicesWithKSetBits(vector<int>& nums,int k){int a
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(31n) = O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Checks all n values at each of 31 fixed bit positions.
 
 ### Problem description
 
@@ -2231,9 +2280,11 @@ class Solution{public:int findKOr(vector<int>& nums,int k){int ans=0;for(int b=0
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Counts even numbers in one pass.
 
 ### Problem description
 
@@ -2318,9 +2369,11 @@ class Solution {public:bool hasTrailingZeros(vector<int>& nums){int c=0;for(int 
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** XOR reduction followed by fixed-width popcount.
 
 ### Problem description
 
@@ -2407,9 +2460,11 @@ class Solution {public:int minOperations(vector<int>& nums,int k){for(int x:nums
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(30) = O(1) time and 30 oracle calls`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Makes exactly 30 commonSetBits calls; assumes each oracle call costs O(1).
 
 ### Problem description
 
@@ -2478,9 +2533,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(30) = O(1) time and 30 oracle calls`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** One initial commonBits call and 29 further calls; assumes each oracle call costs O(1).
 
 ### Problem description
 
@@ -2535,9 +2592,11 @@ class Solution {public:int findNumber(){int z=commonBits(0),ones=0,ans=0;for(int
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for fixed-width long long`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Scans bit positions until all bits of n−1 are inserted into zero-bit positions of x.
 
 ### Problem description
 
@@ -2596,9 +2655,11 @@ class Solution {public:long long minEnd(int n,int x){long long v=(long long)n-1,
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(n) output; O(1) auxiliary`
+
+**Complexity reasoning:** Creates one OR result for each adjacent pair.
 
 ### Problem description
 
@@ -2662,9 +2723,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(a + b + c)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Counts parity in each array and enumerates four parity combinations.
 
 ### Problem description
 
@@ -2749,9 +2812,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(a + b + c)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Three array scans and a constant-size parity calculation.
 
 ### Problem description
 
@@ -2828,9 +2893,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(1)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Fixed-width bitwise tests and popcount.
 
 ### Problem description
 
@@ -2899,9 +2966,11 @@ class Solution { public: int minChanges(int n,int k) { if((n&k)!=k) return -1; r
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(3! · 3 log 3) = O(1)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Sorts three integers and evaluates at most six permutations; all bit operations use fixed-width integers.
 
 ### Problem description
 
@@ -2964,9 +3033,11 @@ class Solution { public: int maxGoodNumber(vector<int>&nums){sort(nums.begin(),n
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(nw) = O(n) for fixed-width integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(n) output; O(1) auxiliary`
+
+**Complexity reasoning:** For each value, scans its trailing 1-bits; stores one answer per input.
 
 ### Problem description
 
@@ -3043,9 +3114,11 @@ class Solution { public: vector<int> minBitwiseArray(vector<int>&nums){vector<in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(nw) = O(n) for fixed-width integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(n) output; O(1) auxiliary`
+
+**Complexity reasoning:** For each value, scans its trailing 1-bits; stores one answer per input.
 
 ### Problem description
 
@@ -3122,9 +3195,11 @@ class Solution { public: vector<int> minBitwiseArray(vector<int>&nums){vector<in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n · 2^n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1) auxiliary`
+
+**Complexity reasoning:** Enumerates 2^n−2 nonempty proper subset masks, checking n elements for each.
 
 ### Problem description
 
@@ -3198,9 +3273,11 @@ class Solution {public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1) auxiliary; O(1) output`
+
+**Complexity reasoning:** Two passes over the array, each updating a fixed number of bitmasks.
 
 ### Problem description
 
@@ -3303,9 +3380,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Single scan with a running bitwise AND.
 
 ### Problem description
 
@@ -3383,9 +3462,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Checks array elements until a mismatch is found.
 
 ### Problem description
 
@@ -3449,9 +3530,11 @@ class Solution { public: int minOperations(vector<int>& nums){for(int x:nums)if(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** One pass with a running OR accumulator.
 
 ### Problem description
 
@@ -3524,9 +3607,11 @@ class Solution { public: int evenNumberBitwiseORs(vector<int>& nums){int ans=0;f
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(n)`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** At most two passes: XOR reduction and optional nonzero search.
 
 ### Problem description
 
@@ -3587,9 +3672,11 @@ class Solution {public: int longestSubsequence(vector<int>& nums) {int x=0;for(i
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for fixed-width integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Generates successive all-ones binary numbers until exceeding n.
 
 ### Problem description
 
@@ -3644,6 +3731,186 @@ public:
 ```
 
 
+
+## 3841. Palindromic Path Queries in a Tree
+
+**Problem:** https://leetcode.com/problems/palindromic-path-queries-in-a-tree/
+
+**Difficulty:** Hard | **Premium:** No
+
+**Tags:** Tree, Bit Manipulation, Binary Lifting, Euler Tour, Fenwick Tree
+
+**Primary pattern:** Bit Manipulation
+
+**Related patterns:** Tree / LCA, Range XOR Update / Point Query
+
+**Data structures (inferred):** Compact adjacency arrays, binary-lifting ancestor table, Fenwick tree, iterative DFS stack
+
+**Pattern recognition:** A path's characters can form a palindrome iff at most one frequency is odd. XOR a 26-bit character mask along the path. For nodes u and v, `pathMask = rootXor(u) ^ rootXor(v) ^ mask(LCA(u,v))`. Euler-tour subtree intervals allow character updates to affect every descendant's root XOR via a Fenwick difference array.
+
+**Approach verification:** User-reported LeetCode Accepted (1040/1040) for this optimized implementation; complexity derived from code.
+
+**Time complexity:** `O(n log n + Q(log n + L))` overall, where `L` is the maximum query-string length. Preprocessing `O(n log n)`; update `O(log n + L)`; path query `O(log n + L)`.
+
+**Space complexity:** `O(n log n + QL)` including the provided query strings, or `O(n log n)` auxiliary storage excluding input and output. The ancestor table has `16n` integers, with additional linear-sized adjacency, Euler-tour, BIT, DFS, and result storage.
+
+**Complexity reasoning:** DFS builds the ancestor table in `O(n log n)`; Fenwick initialization is `O(n)`. Each update makes at most two Fenwick point-XOR updates, and each path query performs an LCA plus two Fenwick prefix-XOR queries. Direct parsing scans at most `L` characters. The boolean output takes `O(Q)` bits.
+
+### Problem description
+
+Given a tree of `n` nodes with one lowercase character per node, process two kinds of operations: `update u c` changes the character at node `u`; `query u v` checks whether the characters along the unique `u`–`v` path can be rearranged into a palindrome. Return one boolean for each path query.
+
+**Constraints:** `1 <= n <= 5 * 10^4`, `1 <= queries.length <= 5 * 10^4`.
+
+### C++ solution
+
+**Source:** user-verified accepted_cpp_submission (optimized, C++14)
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+    static const int LOG = 16;
+
+    vector<array<int, LOG>> up;
+    vector<int> depth, tin, tout;
+    vector<int> head, to, nxt;
+    vector<int> bit;
+    string chars;
+    int timer, edgeCount, n;
+
+    void addEdge(int u, int v) {
+        to[edgeCount] = v;
+        nxt[edgeCount] = head[u];
+        head[u] = edgeCount++;
+    }
+
+    void updateBIT(int i, int value) {
+        for (; i <= n; i += i & -i)
+            bit[i] ^= value;
+    }
+
+    int prefixXor(int i) const {
+        int result = 0;
+        for (; i > 0; i -= i & -i)
+            result ^= bit[i];
+        return result;
+    }
+
+    int lca(int u, int v) const {
+        if (depth[u] < depth[v]) swap(u, v);
+        int diff = depth[u] - depth[v];
+        for (int j = 0; diff; ++j) {
+            if (diff & 1) u = up[u][j];
+            diff >>= 1;
+        }
+        if (u == v) return u;
+        for (int j = LOG - 1; j >= 0; --j) {
+            if (up[u][j] != up[v][j]) {
+                u = up[u][j];
+                v = up[v][j];
+            }
+        }
+        return up[u][0];
+    }
+
+    static int parseInt(const string& q, size_t& pos) {
+        int value = 0;
+        while (pos < q.size() && q[pos] >= '0' && q[pos] <= '9') {
+            value = value * 10 + q[pos] - '0';
+            ++pos;
+        }
+        return value;
+    }
+
+public:
+    vector<bool> palindromePath(int size, vector<vector<int>>& edges,
+                                string s, vector<string>& queries) {
+        n = size;
+        chars = std::move(s);
+        head.assign(n, -1);
+        to.resize(2 * (n - 1));
+        nxt.resize(2 * (n - 1));
+        edgeCount = 0;
+        for (const auto& e : edges) {
+            addEdge(e[0], e[1]);
+            addEdge(e[1], e[0]);
+        }
+
+        up.resize(n);
+        depth.assign(n, 0);
+        tin.resize(n);
+        tout.resize(n);
+        timer = 0;
+
+        struct Frame { int u, parent, edge; };
+        vector<Frame> st;
+        st.reserve(n);
+        up[0].fill(0);
+        tin[0] = ++timer;
+        st.push_back({0, -1, head[0]});
+
+        while (!st.empty()) {
+            Frame& f = st.back();
+            if (f.edge == -1) {
+                tout[f.u] = timer;
+                st.pop_back();
+                continue;
+            }
+            int e = f.edge;
+            f.edge = nxt[e];
+            int v = to[e];
+            if (v == f.parent) continue;
+            depth[v] = depth[f.u] + 1;
+            up[v][0] = f.u;
+            for (int j = 1; j < LOG; ++j)
+                up[v][j] = up[up[v][j - 1]][j - 1];
+            tin[v] = ++timer;
+            st.push_back({v, f.u, head[v]});
+        }
+
+        vector<int> diff(n + 2, 0);
+        for (int u = 0; u < n; ++u) {
+            int mask = 1 << (chars[u] - 'a');
+            diff[tin[u]] ^= mask;
+            if (tout[u] < n) diff[tout[u] + 1] ^= mask;
+        }
+
+        bit.assign(n + 1, 0);
+        for (int i = 1; i <= n; ++i) {
+            bit[i] ^= diff[i];
+            int parent = i + (i & -i);
+            if (parent <= n) bit[parent] ^= bit[i];
+        }
+
+        vector<bool> answer;
+        answer.reserve(queries.size());
+        for (const string& q : queries) {
+            bool isUpdate = (q[0] == 'u');
+            size_t pos = isUpdate ? 7 : 6;
+            int u = parseInt(q, pos);
+            ++pos;
+            if (isUpdate) {
+                char c = q[pos];
+                if (chars[u] == c) continue;
+                int delta = (1 << (chars[u] - 'a')) ^ (1 << (c - 'a'));
+                updateBIT(tin[u], delta);
+                if (tout[u] < n) updateBIT(tout[u] + 1, delta);
+                chars[u] = c;
+            } else {
+                int v = parseInt(q, pos);
+                int w = lca(u, v);
+                int mask = prefixXor(tin[u]) ^ prefixXor(tin[v])
+                           ^ (1 << (chars[w] - 'a'));
+                answer.push_back((mask & (mask - 1)) == 0);
+            }
+        }
+        return answer;
+    }
+};
+```
+
 ## 3950. Exactly One Consecutive Set Bits Pair
 
 **Problem:** https://leetcode.com/problems/exactly-one-consecutive-set-bits-pair/
@@ -3662,9 +3929,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** `O(w) = O(1) for 32-bit integers`
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** `O(1)`
+
+**Complexity reasoning:** Right-shifts and checks consecutive bit pairs.
 
 ### Problem description
 

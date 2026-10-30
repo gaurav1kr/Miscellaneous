@@ -90,9 +90,11 @@ Enumerate choices while pruning; compress subsets as masks.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(4^n · n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary; O(4^n · n) including output
+
+**Complexity reasoning:** At most four letters branch at each of n digits; every completed string of length n is copied.
 
 ### Problem description
 
@@ -177,9 +179,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(9^E · 81) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(E) auxiliary
+
+**Complexity reasoning:** For E empty cells, each recursive state may try nine digits; each solve call scans up to 81 cells, and validity checks scan nine fixed cells.
 
 ### Problem description
 
@@ -291,9 +295,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^(n + T/a) · (T/a)) loose upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + T/a) auxiliary, plus output
+
+**Complexity reasoning:** Include/exclude recursion advances an index or reduces the remaining target by at least a=min(candidates); successful paths are copied, with length at most T/a.
 
 ### Problem description
 
@@ -395,9 +401,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2^n) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus output
+
+**Complexity reasoning:** Subsets are enumerated after sorting, and each recursive state may scan up to n candidates; each reported combination is copied.
 
 ### Problem description
 
@@ -495,9 +503,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · n! · n) = O(n² · n!)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) auxiliary, plus O(n · n!) output
+
+**Complexity reasoning:** The helper takes its entire n-element vector by value on every recursive call; across Θ(n!) leaves and Θ(n) depth, copying adds another factor n.
 
 ### Problem description
 
@@ -597,9 +607,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · n!)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus O(n · n!) output
+
+**Complexity reasoning:** At most n! permutation leaves; each level scans n candidates, and each complete permutation is copied.
 
 ### Problem description
 
@@ -691,9 +703,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · n! + S · n²)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n² + n) auxiliary, plus O(S · n²) output
+
+**Complexity reasoning:** At most n! valid partial queen placements are explored; each of S solutions copies an n×n board.
 
 ### Problem description
 
@@ -790,9 +804,11 @@ private:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · n!)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** At most n! valid partial queen placements; each state checks up to n columns using constant-time occupancy arrays.
 
 ### Problem description
 
@@ -876,9 +892,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^n + k · C(n,k))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus O(k · C(n,k)) output
+
+**Complexity reasoning:** The implementation visits the full include/exclude tree, regardless of k, and copies each selected k-element subset.
 
 ### Problem description
 
@@ -976,9 +994,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus O(n · 2^n) output
+
+**Complexity reasoning:** Every subset is generated once; copying subsets costs their total size Θ(n·2^n).
 
 ### Problem description
 
@@ -1059,9 +1079,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary, plus O(2^n) output
+
+**Complexity reasoning:** The loop writes exactly 2^n Gray-code integers using constant-time bit operations.
 
 ### Problem description
 
@@ -1187,9 +1209,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + n · 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus O(n · 2^n) output
+
+**Complexity reasoning:** Sort once, then enumerate up to 2^n distinct subsets; each subset is copied.
 
 ### Problem description
 
@@ -1282,9 +1306,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 3³) = O(n) with four fixed segments
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus output
+
+**Complexity reasoning:** There are at most 3 choices for each of the first three segment lengths; this code passes the entire input string by value at each level.
 
 ### Problem description
 
@@ -1398,9 +1424,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^9 · 9)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(9) auxiliary, plus output
+
+**Complexity reasoning:** Enumerates subsets of the fixed digits 1 through 9, with at most nine recursion levels and copies of successful combinations.
 
 ### Problem description
 
@@ -1518,9 +1546,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(F · √n + L · R) loose bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L) auxiliary, plus O(L · R) output
+
+**Complexity reasoning:** For F visited factorization states, each state tests divisors through √remaining-value; R reported factorizations have length at most L=⌊log₂ n⌋.
 
 ### Problem description
 
@@ -1619,9 +1649,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + P · n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus O(P · n) output
+
+**Complexity reasoning:** Constructs the half-string and enumerates its P distinct permutations; each palindrome of length n is constructed and copied. P≤(⌊n/2⌋)!.
 
 ### Problem description
 
@@ -1711,9 +1743,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 4^(n-1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) auxiliary, plus output
+
+**Complexity reasoning:** Each of n−1 gaps can be joined or assigned one of three operators; this code copies the input and builds new expression strings at recursive calls.
 
 ### Problem description
 
@@ -1836,9 +1870,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² · (n+1)^m) loose upper bound, average-case hashing
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn + m + n) auxiliary
+
+**Complexity reasoning:** For m pattern positions and n input characters, an unmapped letter may try O(n) substrings, each taking O(n) to copy/hash/compare; mapped strings and recursion are retained.
 
 ### Problem description
 
@@ -1963,9 +1999,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^4) conservative bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) auxiliary
+
+**Complexity reasoning:** O(n²) initial-length pairs; each candidate performs up to O(n) arithmetic/concatenation steps on O(n)-length strings, with temporary strings up to O(n).
 
 ### Problem description
 
@@ -2081,9 +2119,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) auxiliary, plus O(n · 2^n) output
+
+**Complexity reasoning:** Each character is either abbreviated or kept. Passing the accumulating string by value can retain O(n²) total string data along recursion.
 
 ### Problem description
 
@@ -2181,9 +2221,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary, plus O(1) bounded output
+
+**Complexity reasoning:** Only the fixed 12×60 clock-time possibilities are checked; input size does not vary.
 
 ### Problem description
 
@@ -2272,9 +2314,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2^n + n · d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + d) auxiliary
+
+**Complexity reasoning:** Each of 2^n masks is scored by scanning n positions; up to d same-length dictionary differences are tested per mask, giving a tighter O(2^n(n+d)+nd) bound.
 
 ### Problem description
 
@@ -2452,9 +2496,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(R log R) with ordered set
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R) auxiliary
+
+**Complexity reasoning:** Each of R reachable cells is visited once; four directional checks perform balanced-tree lookups/inserts in O(log R). Robot operations are constant-time.
 
 ### Problem description
 
@@ -2596,9 +2642,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2^n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus O(n · 2^n) output
+
+**Complexity reasoning:** At most 2^n subsequences are explored; each state may inspect n candidates and hash values to suppress same-depth duplicates.
 
 ### Problem description
 
@@ -2685,9 +2733,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Exactly four input numbers; recursive pair choices and arithmetic operations form a fixed-size search tree.
 
 ### Problem description
 
@@ -2797,9 +2847,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The code checks at most 1440 minutes and uses a fixed-size digit-availability array.
 
 ### Problem description
 
@@ -2924,9 +2976,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(B^n · poly(n)) loose bound without memo hits
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(B^n · n) worst case
+
+**Complexity reasoning:** Each adjacent pair can have up to B allowed top characters; the queue explicitly constructs all candidate next rows and memoizes row strings. Work can grow exponentially in row length.
 
 ### Problem description
 
@@ -3068,9 +3122,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2^L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) auxiliary, plus O(n · 2^L) output
+
+**Complexity reasoning:** Branches twice for each of L alphabetic characters; the recursive string is passed by value and copied into output at leaves.
 
 ### Problem description
 
@@ -3153,9 +3209,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^4) worst case including generated strings
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) auxiliary, plus O(n^4) output
+
+**Complexity reasoning:** Across n split positions, each side can generate O(n) decimal representations; up to O(n³) coordinate pairs are constructed, each length O(n).
 
 ### Problem description
 
@@ -3270,9 +3328,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^3) conservative bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Tries O(n²) first-two-number choices, then validates up to O(n) digits by extending the Fibonacci sequence; recursion depth and stored sequence are O(n).
 
 ### Problem description
 
@@ -3393,9 +3453,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Enumerates at most 4! permutations of exactly four digits.
 
 ### Problem description
 
@@ -3484,9 +3546,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V · 3^V) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V) auxiliary
+
+**Complexity reasoning:** Backtracking explores self-avoiding walks over V traversable cells: at most four initial choices and three later choices; depth is at most V.
 
 ### Problem description
 
@@ -3656,9 +3720,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(26 · Σ(P(n,k), k=0..n))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + 26) auxiliary
+
+**Complexity reasoning:** Each distinct partial tile arrangement is explored, scanning 26 frequencies at every state; the number of states is bounded by partial permutations.
 
 ### Problem description
 
@@ -3757,9 +3823,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(5^d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** Generates all valid rotated-digit prefixes up to d digits, pruning values above the limit; recursion depth is d.
 
 ### Problem description
 
@@ -3871,9 +3939,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn · (mn) · 3^G) conservative
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn · G) auxiliary due to grid copies
+
+**Complexity reasoning:** DFS explores self-avoiding paths among G gold cells, starting from up to mn positions; the helper passes the entire m×n grid by value at recursive calls.
 
 ### Problem description
 
@@ -4029,9 +4099,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary, plus O(2^n) output
+
+**Complexity reasoning:** Generates each of the 2^n Gray-code values exactly once and XORs with start.
 
 ### Problem description
 
@@ -4114,9 +4186,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2^n) expected upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Explores include/exclude choices for up to n strings, with per-string validity/mask processing; exact cost depends on the implementation and string lengths.
 
 ### Problem description
 
@@ -4229,9 +4303,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Exponential in mn (backtracking)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn) auxiliary
+
+**Complexity reasoning:** Recursively tries square placements; worst-case search is exponential in board area, with board/height state and recursion bounded by the rectangle size.
 
 ### Problem description
 
@@ -4359,9 +4435,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(C(L,k) · k) preprocessing; O(1) hasNext; O(1) next excluding returned-string copy
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(C(L,k) · k) stored combinations
+
+**Complexity reasoning:** Precomputes all k-character combinations of L input characters and stores their strings; next returns a stored combination by value, costing O(k).
 
 ### Problem description
 
@@ -4463,9 +4541,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(10! · P) loose upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(P + 256 + 10)
+
+**Complexity reasoning:** Backtracks over injective digit assignments for at most ten distinct letters; P is total input/output character count processed per candidate assignment.
 
 ### Problem description
 
@@ -4628,9 +4708,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2^n) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus O(n) returned string
+
+**Complexity reasoning:** Generates happy strings with three first-letter choices and two subsequent choices until the kth string is reached; each leaf may copy n characters.
 
 ### Problem description
 
@@ -4742,9 +4824,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² · 2^n) expected upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) auxiliary
+
+**Complexity reasoning:** Enumerates up to 2^(n−1) split patterns; substrings are copied and hashed, each up to n characters, and retained distinct substrings total O(n) characters along a path.
 
 ### Problem description
 
@@ -4851,9 +4935,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m · 2^m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m + n) auxiliary
+
+**Complexity reasoning:** For m requests, explores include/exclude branches and checks n building balances at leaves; a tighter bound is O((m+n)·2^m).
 
 ### Problem description
 
@@ -4982,9 +5068,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · n!) loose upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary
+
+**Complexity reasoning:** Tries unused values in descending order while filling 2n−1 slots; backtracking can explore factorially many placements.
 
 ### Problem description
 
@@ -5073,9 +5161,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² · 2^n) conservative bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n²) auxiliary
+
+**Complexity reasoning:** At each position either ends or extends a number; each recursive step may create and parse an O(n)-length substring, with depth O(n).
 
 ### Problem description
 
@@ -5196,9 +5286,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** ORs all n values once, then applies the subset-XOR identity.
 
 ### Problem description
 
@@ -5298,9 +5390,11 @@ class Solution {public:int subsetXORSum(vector<int>& nums){int x=0;for(int v:num
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output; O(1) auxiliary beyond returned string
+
+**Complexity reasoning:** Uses Cantor diagonalization, reading one character from each of n strings to build an n-character result.
 
 ### Problem description
 
@@ -5397,9 +5491,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Enumerates all nonempty masks and scans n bits to compute each subset OR.
 
 ### Problem description
 
@@ -5501,9 +5597,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^7 · 7 + P · 7 log 7) with P enumerated half-permutations
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(7) auxiliary
+
+**Complexity reasoning:** Enumerates subsets of digits 1..7, builds bounded-length candidate strings and tests their permutations; constants are fixed by the digit alphabet.
 
 ### Problem description
 
@@ -5605,9 +5703,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(M^p · p² · 8)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(p · M)
+
+**Complexity reasoning:** For p≤4 pieces and at most M≤57 possible moves each, DFS enumerates move combinations; compatibility checks all pairs over at most eight time steps.
 
 ### Problem description
 
@@ -5757,9 +5857,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n² · 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Enumerates every good/bad assignment and checks up to n² statements for consistency.
 
 ### Problem description
 
@@ -5904,9 +6006,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(12 · 2^12)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(12)
+
+**Complexity reasoning:** Enumerates all subsets of 12 scoring regions and builds/checks a fixed-length allocation for each.
 
 ### Problem description
 
@@ -6009,9 +6113,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn + m · 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** Precomputes m row masks in O(mn), then checks every n-column subset against all m row masks.
 
 ### Problem description
 
@@ -6099,9 +6205,11 @@ class Solution {public:int maximumRows(vector<vector<int>>& matrix,int numSelect
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(V · 8^V) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V) auxiliary, plus O(V) returned board
+
+**Complexity reasoning:** Warnsdorff-ordered DFS still may backtrack over exponentially many knight tours; each of V=m·n recursion levels inspects at most eight moves.
 
 ### Problem description
 
@@ -6209,9 +6317,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · d · 2^d) upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** For each number up to n, recursively tries partitions of its d-digit square; at most 2^(d−1) partitions, with digit parsing in loops.
 
 ### Problem description
 
@@ -6289,9 +6399,11 @@ class Solution {bool check(const string&s,int pos,int target){if(pos==(int)s.siz
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · F_(n+2))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus O(n · F_(n+2)) output
+
+**Complexity reasoning:** Enumerates binary strings without consecutive zeros; their count follows Fibonacci growth and each emitted string has length n.
 
 ### Problem description
 
@@ -6352,9 +6464,11 @@ class Solution {void dfs(int n,string&s,vector<string>&out){if((int)s.size()==n)
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · n!)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus O(n · n!) output
+
+**Complexity reasoning:** Tries unused integers with alternating parity; factorial upper bound, and each completed permutation is copied.
 
 ### Problem description
 
@@ -6435,9 +6549,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(2^9 · 9 + P · L log L) loose upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(L) auxiliary
+
+**Complexity reasoning:** Enumerates digit subsets, constructs palindromic halves, and iterates half-string permutations; L≤16 and P counts permutations actually tested.
 
 ### Problem description
 
@@ -6513,9 +6629,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(F · √n) loose upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k) auxiliary, plus O(k) returned factors
+
+**Complexity reasoning:** Backtracks over nondecreasing divisors; F is the number of visited partial factorizations, each scanning divisors up to √remaining n.
 
 ### Problem description
 
@@ -6588,9 +6706,11 @@ class Solution { vector<int> best,cur;int spread=INT_MAX;void dfs(int n,int k,in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^4 · L + R log R · L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R · L) output; O(1) auxiliary excluding sort stack
+
+**Complexity reasoning:** Four nested word-index loops test candidate squares; each of R resulting four-word squares is sorted lexicographically, with word length L.
 
 ### Problem description
 
@@ -6701,9 +6821,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n · 2^n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) auxiliary, plus O(n · 2^n) output
+
+**Complexity reasoning:** Branches on allowed bits at each of n positions; copies each valid n-character binary string to output.
 
 ### Problem description
 

@@ -96,9 +96,11 @@ Repeatedly select the current min/max or maintain top-k candidates.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** N total nodes are each pushed and popped once from a min-heap containing at most k list heads.
 
 ### Problem description
 
@@ -222,9 +224,11 @@ ListNode* mergeKLists(vector<ListNode*>& lists) {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Each of n elements is pushed to a heap of at most k+1 entries, then excess elements are removed.
 
 ### Problem description
 
@@ -301,9 +305,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + u log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(u + k)
+
+**Complexity reasoning:** Hash frequencies of n values in expected O(n), then maintain a size-k heap for u distinct values; output holds k items.
 
 ### Problem description
 
@@ -397,9 +403,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** post O(1) amortized; feed O(T); follow/unfollow O(1) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(T + F)
+
+**Complexity reasoning:** The implementation scans up to T historical tweets backwards for each feed; hash-set follow operations are expected constant time. T is total tweets, F stored follow links.
 
 ### Problem description
 
@@ -531,9 +539,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm log(k+1) + k log(k+1)) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Nested loops examine at most n*m pairs and each qualifying candidate updates a size-k max-heap; sorted nums2 permits early breaks. Final extraction costs O(k log k).
 
 ### Problem description
 
@@ -645,9 +655,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + A)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + A)
+
+**Complexity reasoning:** Count n characters, create n+1 frequency buckets, and traverse them; A=256 possible byte values. Output and bucket array use linear space.
 
 ### Problem description
 
@@ -753,9 +765,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build n (score,index) pairs, sort them, and produce n rank strings.
 
 ### Problem description
 
@@ -879,9 +893,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(N log N)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(N)
+
+**Complexity reasoning:** Flatten N total intervals, sort by start, then scan to emit gaps.
 
 ### Problem description
 
@@ -974,9 +990,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** seat O(s + log s); leave O(log s)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(s)
+
+**Complexity reasoning:** seat() scans s occupied seats and inserts one into std::set; leave() erases by key. The ordered set stores s seats.
 
 ### Problem description
 
@@ -1097,9 +1115,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) including input copy; O(log n) stack beyond copy
+
+**Complexity reasoning:** Bottom-up heap construction costs O(n), followed by n extractions with O(log n) recursive heapify; vector is passed by value.
 
 ### Problem description
 
@@ -1203,9 +1223,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Insert each point into a max-heap capped at k and extract k closest points.
 
 ### Problem description
 
@@ -1303,9 +1325,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Heapify n stones, then repeatedly remove the two largest and possibly insert their difference; at most n rounds.
 
 ### Problem description
 
@@ -1394,9 +1418,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(nm log(nm))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(nm)
+
+**Complexity reasoning:** Generate every worker-bike distance (n*m), sort all tuples, and greedily assign pairs.
 
 ### Problem description
 
@@ -1512,9 +1538,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n) worst case
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Group n scores by ordered student ID, then sort each student’s scores; total sorting is bounded by O(n log n).
 
 ### Problem description
 
@@ -1604,9 +1632,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + R)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(R)
+
+**Complexity reasoning:** Update a fixed difference array for n trips and scan R=1001 possible stops; storage is the fixed stop array.
 
 ### Problem description
 
@@ -1701,9 +1731,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** join O(c log(U+C)); leave O(c log(U+C)); request O(o log(U+C))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(U+C)
+
+**Complexity reasoning:** Balanced owner/chunk sets and recycled-ID heap maintain U users and C ownership links; c is the user’s chunks and o the owners returned. Request copies o IDs and may insert an ownership link.
 
 ### Problem description
 
@@ -1841,9 +1873,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+k) log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k+n)
+
+**Complexity reasoning:** A set of k available servers and a min-heap of at most k busy servers process each of n requests; counts and result take O(k) space.
 
 ### Problem description
 
@@ -1957,9 +1991,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn + k)
+
+**Complexity reasoning:** Compute all m*n XOR prefix values in a full prefix matrix and maintain a size-k min-heap.
 
 ### Problem description
 
@@ -2048,9 +2084,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n) amortized
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each order is inserted into a buy/sell price heap; matching removes or reinserts heap entries, with total successful matches bounded by O(n) amortized.
 
 ### Problem description
 
@@ -2148,9 +2186,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** add O(log m) typical; calculate O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m)
+
+**Complexity reasoning:** A queue and three balanced multisets maintain the m-element window; each add performs a constant number of inserts/erases and rebalances, while midSum answers queries.
 
 ### Problem description
 
@@ -2308,9 +2348,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Append original indices, sort tasks by arrival, and enqueue/dequeue each task once in a priority queue.
 
 ### Problem description
 
@@ -2449,9 +2491,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** constructor O(n); reserve O(log n); unreserve O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Constructor pushes n seats into a min-heap; reservation and return each change the heap once.
 
 ### Problem description
 
@@ -2560,9 +2604,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn * r^2 * log(mn)) upper bound
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** For every cell, examine rhombus radii up to r=min(m,n), traversing O(radius) boundary cells; insert sums into an ordered set of at most O(mn*r) candidates (bound O(mn*r) space in general).
 
 ### Problem description
 
@@ -2681,9 +2727,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+t) log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+t)
+
+**Complexity reasoning:** Two heaps manage n servers; each of t tasks and each server release triggers logarithmic heap work. Result stores t assignments.
 
 ### Problem description
 
@@ -2827,9 +2875,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Append indices, sort n tasks by enqueue time, and process each through a min-heap ordered by duration and index.
 
 ### Problem description
 
@@ -2961,9 +3011,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** constructor O(n log n); reserve/unreserve O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The constructor inserts n seat IDs into a min-heap; each operation pushes or pops one seat.
 
 ### Problem description
 
@@ -3061,9 +3113,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn r^2 + Q log Q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(Q)
+
+**Complexity reasoning:** For each of mn top vertices, examine up to r=min(m,n) radii and walk O(radius) perimeter cells. Insert Q distinct sums into an ordered set; Q ≤ O(mnr).
 
 ### Problem description
 
@@ -3160,9 +3214,11 @@ class Solution {public:vector<int> getBiggestThree(vector<vector<int>>& grid){in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+t) log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n+t)
+
+**Complexity reasoning:** Initialize the n-server free heap; every task is assigned once and every busy-to-free transition performs logarithmic heap operations.
 
 ### Problem description
 
@@ -3289,9 +3345,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** constructor O(E log E); search/report O(1) bounded by 5; rent/drop O(log E)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(E)
+
+**Complexity reasoning:** Ordered maps and sets index E movie entries; each rental transition updates balanced trees. Search and report return at most five results.
 
 ### Problem description
 
@@ -3387,9 +3445,11 @@ class MovieRentingSystem {map<int,set<pair<int,int>>> available;set<tuple<int,in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort n arrival events, then release occupied chairs and allocate the smallest available chair using two heaps.
 
 ### Problem description
 
@@ -3483,9 +3543,11 @@ class Solution {public:int smallestChair(vector<vector<int>>& times,int targetFr
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n * L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n + L) auxiliary (excluding input and returned string)
+
+**Complexity reasoning:** Sorting n numeric strings uses O(n log n) comparisons; each equal-length lexicographic comparison can inspect up to L digits. std::sort uses O(log n) stack; returning a string copies up to L characters.
 
 ### Problem description
 
@@ -3597,9 +3659,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each of n buildings creates two events in an ordered map; updates cost O(log n), then a linear sweep creates at most O(n) segments.
 
 ### Problem description
 
@@ -3738,9 +3802,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** update O(log n); current O(log n); maximum/minimum O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) total
+
+**Complexity reasoning:** Ordered map and multiset store n distinct timestamps/prices; update performs logarithmic insertion/erasure. current uses map operator[] (O(log n)); extrema read begin/rbegin.
 
 ### Problem description
 
@@ -3861,9 +3927,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log k + k log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k) auxiliary plus O(k) output
+
+**Complexity reasoning:** Keep at most k value/index pairs in a min-heap while scanning n values, extract k entries, and sort the selected entries by original index.
 
 ### Problem description
 
@@ -3979,9 +4047,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** add O(log n); get O(log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) total
+
+**Complexity reasoning:** Two balanced ordered sets maintain ranked entries; add performs a constant number of set operations, and get transfers one entry between sets. String copying/comparison additionally depends on name length.
 
 ### Problem description
 
@@ -4123,9 +4193,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(d log d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(d)
+
+**Complexity reasoning:** Convert the d-digit number to a string, sort odd and even digit groups, then reconstruct the digits.
 
 ### Problem description
 
@@ -4202,9 +4274,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** upload O(L + log r) average; remove O(log r) average; watch O(w) average; like/dislike/getters O(1) average
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(V + r) total
+
+**Complexity reasoning:** Hash map stores V total video characters; recycled IDs occupy a heap of size r. Upload copies L characters; watch copies w requested characters. Heap operations cost O(log r), with expected O(1) hash lookup.
 
 ### Problem description
 
@@ -4365,9 +4439,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** popSmallest O(log r); addBack O(log r)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(r)
+
+**Complexity reasoning:** An ordered set holds r returned values below next; extracting or inserting an element costs logarithmic time. The direct next++ path is O(1).
 
 ### Problem description
 
@@ -4450,9 +4526,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n D) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(u)
+
+**Complexity reasoning:** For each of n integers, compute its digit sum in O(D) digits and update a hash map keyed by digit sum; u is the number of distinct sums.
 
 ### Problem description
 
@@ -4531,9 +4609,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n L + q)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n L + q)
+
+**Complexity reasoning:** Stable bucket sorting each of L digit positions processes n indices with 10 buckets; store all L+1 index orders and answer q queries in O(1) each.
 
 ### Problem description
 
@@ -4655,9 +4735,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m log A + n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary
+
+**Complexity reasoning:** Compute gcd of m divisor values (A bounds their magnitudes), sort n candidate values, then scan for the first divisor. Sorting is in-place aside from recursion stack.
 
 ### Problem description
 
@@ -4739,9 +4821,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** change O(log n) average; find O(1) average
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) total
+
+**Complexity reasoning:** Hash maps locate old/new assignments in expected constant time; balanced sets insert/erase indices in O(log n). find reads the smallest index from a set.
 
 ### Problem description
 
@@ -4831,9 +4915,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** constructor O(n log n * L); changeRating O(log n * L); highestRated O(L) average
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n L) total
+
+**Complexity reasoning:** Per-cuisine balanced sets rank n foods, with string comparisons/copies up to L characters; updates erase and reinsert, while highestRated returns a copied food name.
 
 ### Problem description
 
@@ -4977,9 +5063,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + k log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + k)
+
+**Complexity reasoning:** Sort n absolute values and enumerate k smallest subset losses using a heap with at most O(k) states. Assumes nonempty nums.
 
 ### Problem description
 
@@ -5060,9 +5148,11 @@ class Solution {public: long long kSum(vector<int>& nums,int k){long long base=0
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(m log m + (m+n) log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(m + n) auxiliary
+
+**Complexity reasoning:** Sort m meetings; each room enters/leaves the free and busy heaps at most O(m+n) times, with heap sizes bounded by n.
 
 ### Problem description
 
@@ -5162,9 +5252,11 @@ class Solution {public:int mostBooked(int n,vector<vector<int>>& meetings){sort(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n L) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n L)
+
+**Complexity reasoning:** Process n creator/ID strings through hash maps, copying and hashing strings of length at most L; final scans visit distinct creators.
 
 ### Problem description
 
@@ -5245,9 +5337,11 @@ class Solution { public: vector<vector<string>> mostPopularCreator(vector<string
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r c log c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log c) auxiliary
+
+**Complexity reasoning:** Sort each of r rows of c values and scan all r*c cells column by column; std::sort uses O(log c) stack.
 
 ### Problem description
 
@@ -5334,9 +5428,11 @@ class Solution {public:int deleteGreatestValue(vector<vector<int>>& grid){for(au
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(W + n log n) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(W + n)
+
+**Complexity reasoning:** Hash W feedback-word characters, tokenize and score reports totaling W characters, and sort n student scores. Hash lookup is expected O(1) per word excluding hashing cost.
 
 ### Problem description
 
@@ -5431,9 +5527,11 @@ class Solution {public:vector<int> topStudents(vector<string>& positive_feedback
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O((n+k) log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k)
+
+**Complexity reasoning:** Each of n boxes crosses in at most two bridge moves, and worker transitions use four heaps holding at most k workers; each heap operation is O(log k).
 
 ### Problem description
 
@@ -5559,9 +5657,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + k log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Build a max-heap of n gifts, perform k pop/push updates, then drain n values to sum them.
 
 ### Problem description
 
@@ -5654,9 +5754,11 @@ class Solution { public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Sort n (value,index) pairs, then scan once while marking each selected index and its neighbors.
 
 ### Problem description
 
@@ -5797,9 +5899,11 @@ class Solution {public:long long findScore(vector<int>& nums){int n=nums.size();
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(r c log c)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log c) auxiliary
+
+**Complexity reasoning:** Sort each of r rows containing c elements and scan all r*c entries to accumulate column maxima.
 
 ### Problem description
 
@@ -5872,9 +5976,11 @@ class Solution {public:int matrixSum(vector<vector<int>>&nums){for(auto&r:nums)s
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(log n) auxiliary
+
+**Complexity reasoning:** Sort n values in place and swap each adjacent pair; std::sort uses logarithmic recursion stack.
 
 ### Problem description
 
@@ -5950,9 +6056,11 @@ class Solution {public:vector<int> numberGame(vector<int>& nums){sort(nums.begin
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + t log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Heapify n values and perform t merge operations, each removing two minima and inserting one new value; t <= n-1.
 
 ### Problem description
 
@@ -6043,9 +6151,11 @@ class Solution {public:int minOperations(vector<int>&nums,int k){priority_queue<
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + q log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + q)
+
+**Complexity reasoning:** Build a heap of n (value,index) pairs; each entry is popped at most once across q queries, and every query also performs constant bookkeeping.
 
 ### Problem description
 
@@ -6134,9 +6244,11 @@ class Solution {public:vector<long long> unmarkedSumArray(vector<int>& nums,vect
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n) total
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** For each of n updates, erase and insert frequencies in a multiset (O(log n)); hash map lookup is expected O(1), and output stores n maxima.
 
 ### Problem description
 
@@ -6215,9 +6327,11 @@ class Solution {public:vector<long long> mostFrequentIDs(vector<int>& nums,vecto
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(k n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary
+
+**Complexity reasoning:** Each of k operations scans the n-element array with min_element and multiplies the chosen minimum in place.
 
 ### Problem description
 
@@ -6314,9 +6428,11 @@ class Solution { public: vector<int> getFinalState(vector<int>& nums,int k,int m
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + t log n + log k + n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Initialize an n-element heap; simulate t <= k multiplications until the minimum reaches the original maximum, then distribute remaining k operations using modular exponentiation. If multiplier > 1 and values are positive, t is bounded by the value range and n; worst case O(k log n).
 
 ### Problem description
 
@@ -6426,9 +6542,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(q log k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k + q)
+
+**Complexity reasoning:** Maintain a max-heap of at most k obstacle distances across q queries, and append one result per query.
 
 ### Problem description
 
@@ -6515,9 +6633,11 @@ class Solution { public: vector<int> resultsArray(vector<vector<int>>&queries,in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** constructor O(n^3 + n log n); setCell/unsetCell O(log n); largestMatrix O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n^3)
+
+**Complexity reasoning:** Allocate n^3 cells and initialize a balanced set of n layer counts; updates erase/insert one ranked layer, while largestMatrix reads the last set entry.
 
 ### Problem description
 
@@ -6642,9 +6762,11 @@ class Matrix3D {
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Constructor: O(t log t); add/edit: O(log h) expected; rmv: O(1) expected; execTop: O(r log h) expected, amortized O(log h) per inserted heap entry
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(t + h)
+
+**Complexity reasoning:** With t initial tasks and h accumulated heap entries, each add/edit pushes a priority-queue record; stale entries are removed lazily. execTop may discard r stale entries before finding a live task. The hash table stores active tasks and the heap can retain old records.
 
 ### Problem description
 
@@ -6725,9 +6847,11 @@ class TaskManager {struct Item{int user,priority;};unordered_map<int,Item>tasks;
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n + n log(k+1))
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + k)
+
+**Complexity reasoning:** Sort n indices by nums1, then process equal-value groups. Each nums2 value is pushed into a min-heap capped at k, giving O(log(k+1)) per insertion/removal; the output and index arrays require O(n) space.
 
 ### Problem description
 
@@ -6806,9 +6930,11 @@ class Solution {public:vector<long long> findMaxSum(vector<int>& nums1,vector<in
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n^2)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Each of at most n-1 merges scans the current array to test sortedness and locate the minimum adjacent sum; vector::erase also shifts O(n) elements. The copied working array has n entries.
 
 ### Problem description
 
@@ -6879,9 +7005,11 @@ class Solution {public:int minimumPairRemoval(vector<int>&nums){vector<long long
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** Initialize a heap with n-1 adjacent sums and track inversions with a bad counter. Each merge updates only neighboring links and adds O(1) heap records, so O(n) total heap pushes/pops cost O(log n) each. Arrays and heap use O(n) space.
 
 ### Problem description
 
@@ -6952,9 +7080,11 @@ class Solution {public:int minimumPairRemoval(vector<int>&nums){int n=nums.size(
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** addBid/updateBid/removeBid: O(log b) expected; getHighestBidder: O(1) expected
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(B + I)
+
+**Complexity reasoning:** For b bids on the affected item, ordered-set insert/erase costs O(log b), while unordered-map lookups are expected O(1). The largest set element is read through rbegin in constant time. B is the total stored bids and I the number of item entries.
 
 ### Problem description
 
@@ -7055,9 +7185,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Constructor: O(n log n); updatePriority/pollHighest: O(log n); empty poll: O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n)
+
+**Complexity reasoning:** The constructor inserts n events into an ordered set and hash map. Updating removes and reinserts one ordered-set key; polling removes its smallest key. The ordered set holds at most n events, and hash operations are expected O(1).
 
 ### Problem description
 
@@ -7171,9 +7303,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n log d + f d)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n + d)
+
+**Complexity reasoning:** Count n values in an ordered map of d distinct keys, taking O(log d) per update. Then perform f = maximum frequency full traversals of d keys, appending n total output values; hence O(fd) for the round scans and O(n) for the returned array.
 
 ### Problem description
 

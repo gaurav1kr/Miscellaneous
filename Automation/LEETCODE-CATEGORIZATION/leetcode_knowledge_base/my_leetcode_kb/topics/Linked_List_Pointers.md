@@ -56,9 +56,11 @@ Rewire node links while preserving ownership and pointer invariants.
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each iteration attaches one node from either sorted list; the remaining suffix is linked directly. n and m are the list lengths.
 
 ### Problem description
 
@@ -151,9 +153,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each pair is visited once and swapped using a fixed number of pointers; there is no recursion or auxiliary collection.
 
 ### Problem description
 
@@ -252,9 +256,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** One pass counts n nodes, then each complete group of k nodes is rewired in O(k), for O(n) total work; only pointers and counters are used.
 
 ### Problem description
 
@@ -367,9 +373,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The current pointer advances past each distinct node or bypasses a duplicate; each node is inspected at most a constant number of times.
 
 ### Problem description
 
@@ -445,9 +453,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(right)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Advance left - 1 nodes and perform right - left constant-time front insertions; only a fixed set of pointers is maintained.
 
 ### Problem description
 
@@ -549,9 +559,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The loop visits each original node once, either retaining it or bypassing it without allocating auxiliary storage.
 
 ### Problem description
 
@@ -635,9 +647,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each node is visited once and its next pointer is reversed using three pointers.
 
 ### Problem description
 
@@ -722,9 +736,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Copy the successor value and bypass the successor with a constant number of accesses.
 
 ### Problem description
 
@@ -823,9 +839,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Odd and even pointers advance through the list once and reconnect existing nodes in place.
 
 ### Problem description
 
@@ -908,9 +926,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Constructor: O(k); each operation: O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k) stored; O(1) per operation
+
+**Complexity reasoning:** The constructor initializes a vector of capacity k; all queue operations use indices, modulo arithmetic, and constant-time vector access.
 
 ### Problem description
 
@@ -1030,9 +1050,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Constructor: O(k); each operation: O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k) stored; O(1) per operation
+
+**Complexity reasoning:** The constructor allocates k + 1 slots; front/back insertions, deletions, and queries update circular indices without shifting elements.
 
 ### Problem description
 
@@ -1181,9 +1203,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Constructor: O(1); get/addAtIndex/deleteAtIndex: O(n); addAtHead: O(1); addAtTail: O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) stored; O(1) auxiliary per operation
+
+**Complexity reasoning:** The doubly linked list holds n nodes. Indexed operations walk from the head up to the requested index; adding at the head touches only the sentinels.
 
 ### Problem description
 
@@ -1327,9 +1351,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1) auxiliary; O(1) new node
+
+**Complexity reasoning:** The loop examines at most one full cycle of n nodes to find the insertion position, then changes two links.
 
 ### Problem description
 
@@ -1433,9 +1459,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** push/pop/popMax: O(log d); top/peekMax: O(1)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) stored; O(1) auxiliary per operation
+
+**Complexity reasoning:** A list stores n stack values and a balanced map indexes d distinct values. Map insertion/erasure costs O(log d); list and vector-end operations are constant amortized time. top and rbegin are constant time.
 
 ### Problem description
 
@@ -1586,9 +1614,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n + k)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(k) output; O(1) auxiliary excluding output
+
+**Complexity reasoning:** Count n nodes, traverse each node again while cutting parts, and create exactly k result pointers.
 
 ### Problem description
 
@@ -1685,9 +1715,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Expected O(log n) per search/add/erase; worst O(n) per operation; destructor O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) expected stored; O(1) auxiliary per operation (16 fixed levels)
+
+**Complexity reasoning:** Randomized levels give expected logarithmic traversal and constant expected pointers per node. The fixed 16-level cap allows linear worst-case scans; update arrays are fixed-size.
 
 ### Problem description
 
@@ -1837,9 +1869,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** Constructor: O(h); visit: O(u); back/forward: O(L)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(S) stored; O(L) returned string
+
+**Complexity reasoning:** h is homepage length, u the visited URL length, L the returned URL length, and S total stored string characters. URL copies/assignments and returning a string cost time proportional to its length; index changes alone are O(1).
 
 ### Problem description
 
@@ -1955,9 +1989,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each node is either skipped as one of m retained nodes or deleted among the next n nodes, so total pointer traversal and deletion are linear in list length.
 
 ### Problem description
 
@@ -2065,9 +2101,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(a + (b - a + 1) + m) = O(b + m)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Traverse to position a, advance past b, then scan m nodes to find list2 tail before splicing; m is list2 length.
 
 ### Problem description
 
@@ -2162,9 +2200,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(1) per operation (amortized)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) stored; O(1) auxiliary per operation
+
+**Complexity reasoning:** Two std::deque containers support constant-time end operations; balance transfers at most one element between ends per call.
 
 ### Problem description
 
@@ -2328,9 +2368,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The three-node sliding window advances once per node and records only the first/last critical positions and minimum gap.
 
 ### Problem description
 
@@ -2455,9 +2497,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** Each group is counted once and even-length groups are reversed in place; total nodes scanned and rewired are O(n).
 
 ### Problem description
 
@@ -2584,9 +2628,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The read pointer traverses each value and zero separator once, accumulating segment sums and relinking existing nodes.
 
 ### Problem description
 
@@ -2683,9 +2729,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(mn)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(mn)
+
+**Complexity reasoning:** Initializing the m-by-n matrix dominates; each linked-list node is placed once with constant-time direction checks.
 
 ### Problem description
 
@@ -2766,9 +2814,11 @@ class Solution {public:vector<vector<int>> spiralMatrix(int m,int n,ListNode* he
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(1)
+
+**Complexity reasoning:** The pointer advances by two nodes per round, comparing one pair and updating two counters.
 
 ### Problem description
 
@@ -2880,9 +2930,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output; O(1) auxiliary excluding output
+
+**Complexity reasoning:** Traverse n nodes once and append each value to the result vector.
 
 ### Problem description
 
@@ -2951,9 +3003,11 @@ public:
 
 **Approach verification:** topic-tag heuristic; NOT a verified per-solution explanation
 
-**Time complexity:** Needs manual or AI-assisted code analysis
+**Time complexity:** O(n)
 
-**Space complexity:** Needs manual or AI-assisted code analysis
+**Space complexity:** O(n) output; O(1) auxiliary excluding output
+
+**Complexity reasoning:** Walk backward to the head and then forward through the n-node list, appending all values to a vector.
 
 ### Problem description
 
